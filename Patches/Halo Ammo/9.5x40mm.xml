@@ -12,8 +12,8 @@
 
 
 	<ThingCategoryDef>
-		<defName>Ammo95x40mm</defName>
-		<label>9.5x40mm</label>
+		<defName>Ammo95X40mmUNSC</defName>
+		<label>9.5X40mm UNSC</label>
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
@@ -21,207 +21,219 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_95x40mm</defName>
-		<label>9.5x40mm</label>
+		<defName>AmmoSet_95X40mmUNSC</defName>
+		<label>9.5X40mm UNSC</label>
 		<ammoTypes>
-			<Ammo_95x40mm_FMJ>Bullet_95x40mm_FMJ</Ammo_95x40mm_FMJ>
-			<Ammo_95x40mm_AP>Bullet_95x40mm_AP</Ammo_95x40mm_AP>
-			<Ammo_95x40mm_HP>Bullet_95x40mm_HP</Ammo_95x40mm_HP>
-			<Ammo_95x40mm_Incendiary>Bullet_95x40mm_Incendiary</Ammo_95x40mm_Incendiary>
-			<Ammo_95x40mm_HE>Bullet_95x40mm_HE</Ammo_95x40mm_HE>
-			<Ammo_95x40mm_Sabot>Bullet_95x40mm_Sabot</Ammo_95x40mm_Sabot>				
+			<Ammo_95X40mmUNSC_FMJ>Bullet_95X40mmUNSC_FMJ</Ammo_95X40mmUNSC_FMJ>
+			<Ammo_95X40mmUNSC_AP>Bullet_95X40mmUNSC_AP</Ammo_95X40mmUNSC_AP>
+			<Ammo_95X40mmUNSC_HP>Bullet_95X40mmUNSC_HP</Ammo_95X40mmUNSC_HP>
+			<Ammo_95X40mmUNSC_Incendiary>Bullet_95X40mmUNSC_Incendiary</Ammo_95X40mmUNSC_Incendiary>
+			<Ammo_95X40mmUNSC_HE>Bullet_95X40mmUNSC_HE</Ammo_95X40mmUNSC_HE>
+			<Ammo_95X40mmUNSC_Sabot>Bullet_95X40mmUNSC_Sabot</Ammo_95X40mmUNSC_Sabot>				
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="95x40mmBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A high-velocity rifle round, used in machine guns and battle rifles.</description>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="95X40mmUNSCBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A relatively rare large diameter rifle catridge, advanced propellents allow it to be shortened consideraly without any loss of power. It is currently only used by UNSC battlerifles.</description>
 		<statBases>
-			<Mass>0.022</Mass>
-			<Bulk>0.03</Bulk>
+			<Mass>0.024</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>Ammo95x40mm</li>
+			<li>Ammo95X40mmUNSC</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_FMJ</defName>
-		<label>9.5x40mm cartridge (FMJ)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+		<defName>Ammo_95X40mmUNSC_FMJ</defName>
+		<label>9.5X40mm UNSC cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.1</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_FMJ</cookOffProjectile>
+		<generateAllowChance>0.4</generateAllowChance>
+		<cookOffProjectile>Bullet_95X40mmUNSC_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_AP</defName>
-		<label>9.5x40mm cartridge (AP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+		<defName>Ammo_95X40mmUNSC_AP</defName>
+		<label>9.5X40mm UNSC cartridge (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.1</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_AP</cookOffProjectile>
+		<generateAllowChance>0.4</generateAllowChance>
+		<cookOffProjectile>Bullet_95X40mmUNSC_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_HP</defName>
-		<label>9.5x40mm cartridge (HP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+		<defName>Ammo_95X40mmUNSC_HP</defName>
+		<label>9.5X40mm UNSC cartridge (HP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.1</MarketValue>
+			<MarketValue>0.12</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_HP</cookOffProjectile>
-	</ThingDef>
-		
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_Incendiary</defName>
-		<label>9.5x40mm cartridge (AP-I)</label>
-		<graphicData>
-		<texPath>Things/Ammo/Rifle/Incendiary</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		<MarketValue>0.14</MarketValue>
-		</statBases>
-		<ammoClass>IncendiaryAP</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_Incendiary</cookOffProjectile>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_HE</defName>
-		<label>9.5x40mm cartridge (HE)</label>
-		<graphicData>
-		<texPath>Things/Ammo/Rifle/HE</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		<MarketValue>0.2</MarketValue>
-		</statBases>
-		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_HE</cookOffProjectile>
+		<generateAllowChance>0.1</generateAllowChance>
+		<cookOffProjectile>Bullet_95X40mmUNSC_HP</cookOffProjectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="95x40mmBase">
-		<defName>Ammo_95x40mm_Sabot</defName>
-		<label>9.5x40mm cartridge (Sabot)</label>
-		<graphicData>
-		<texPath>Things/Ammo/Rifle/Sabot</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-		<MarketValue>0.11</MarketValue>
-		<Mass>0.017</Mass>
-		</statBases>
-		<ammoClass>Sabot</ammoClass>
-		<cookOffProjectile>Bullet_95x40mm_Sabot</cookOffProjectile>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+    <defName>Ammo_95X40mmUNSC_Incendiary</defName>
+    <label>9.5X40mm UNSC cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.17</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+	<generateAllowChance>0.2</generateAllowChance>
+    <cookOffProjectile>Bullet_95X40mmUNSC_Incendiary</cookOffProjectile>
+  </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+    <defName>Ammo_95X40mmUNSC_HE</defName>
+    <label>9.5X40mm UNSC cartridge (HEDP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.23</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+	<generateAllowChance>0.2</generateAllowChance>
+    <cookOffProjectile>Bullet_95X40mmUNSC_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="95X40mmUNSCBase">
+    <defName>Ammo_95X40mmUNSC_Sabot</defName>
+    <label>9.5X40mm UNSC cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.13</MarketValue>
+	  <Mass>0.02</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+	<generateAllowChance>0.2</generateAllowChance>
+    <cookOffProjectile>Bullet_95X40mmUNSC_Sabot</cookOffProjectile>
+  </ThingDef>
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_FMJ</defName>
-		<label>9.5mm bullet (FMJ)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base95X40mmUNSCBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>194</speed>
-			<damageAmountBase>23</damageAmountBase>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+			<damageDef>Bullet</damageDef>
+			<speed>196</speed>
+			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_AP</defName>
-		<label>9.5mm bullet (AP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_FMJ</defName>
+		<label>9.5mm UNSC bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>194</speed>
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationSharp>16</armorPenetrationSharp>
-			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>13</armorPenetrationSharp>
+			<armorPenetrationBlunt>80.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_HP</defName>
-		<label>9.5mm bullet (HP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_AP</defName>
+		<label>9.5mm UNSC bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>194</speed>
-			<damageAmountBase>29</damageAmountBase>
-			<armorPenetrationSharp>4</armorPenetrationSharp>
-			<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>26</armorPenetrationSharp>
+			<armorPenetrationBlunt>80.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_Incendiary</defName>
-		<label>9.5mm bullet (AP-I)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_HP</defName>
+		<label>9.5mm UNSC bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<speed>194</speed>
-		<damageAmountBase>14</damageAmountBase>
-		<armorPenetrationSharp>16</armorPenetrationSharp>
-		<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-		<secondaryDamage>
+			<damageAmountBase>24</damageAmountBase>
+			<armorPenetrationSharp>6.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>80.72</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_Incendiary</defName>
+		<label>9.5mm UNSC bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>17</damageAmountBase>
+		  <armorPenetrationSharp>26</armorPenetrationSharp>
+		  <armorPenetrationBlunt>80.72</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-				<def>Flame_Secondary</def>
-				<amount>9</amount>
+			  	<def>Flame_Secondary</def>
+			  	<amount>7</amount>
 				</li>
-		</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
-	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_HE</defName>
-		<label>9.5mm bullet (HE)</label>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_HE</defName>
+		<label>9.5mm UNSC bullet (HEDP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<speed>194</speed>
-		<damageAmountBase>23</damageAmountBase>
-		<armorPenetrationSharp>8</armorPenetrationSharp>
-		<armorPenetrationBlunt>82.8</armorPenetrationBlunt>
-		<secondaryDamage>
+		  <damageAmountBase>24</damageAmountBase>
+		  <armorPenetrationSharp>13</armorPenetrationSharp>
+		  <armorPenetrationBlunt>79.72</armorPenetrationBlunt>
+		  <secondaryDamage>
 				<li>
-				<def>Bomb_Secondary</def>
-				<amount>14</amount>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>13</amount>
 				</li>
-		</secondaryDamage>
+		  </secondaryDamage>
 		</projectile>
-	</ThingDef>
+	  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
-		<defName>Bullet_95x40mm_Sabot</defName>
-		<label>9.5mm bullet (Sabot)</label>
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base95X40mmUNSCBullet">
+		<defName>Bullet_95X40mmUNSC_Sabot</defName>
+		<label>9.5mm UNSC bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageAmountBase>11</damageAmountBase>
-		<armorPenetrationSharp>25</armorPenetrationSharp>
-		<armorPenetrationBlunt>86.28</armorPenetrationBlunt>
-		<speed>291</speed>
+		  <damageAmountBase>12</damageAmountBase>
+		  <armorPenetrationSharp>35</armorPenetrationSharp>
+		  <armorPenetrationBlunt>99.28</armorPenetrationBlunt>
+		  <speed>278</speed>
 		</projectile>
-	</ThingDef>
+	  </ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_FMJ</defName>
-		<label>make 9.5x40mm (FMJ) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (FMJ) cartridges.</description>
-		<jobString>Making 9.5x40mm (FMJ) cartridges.</jobString>
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_95X40mmUNSC_FMJ</defName>
+		<label>make 9.5X40mm UNSC (FMJ) cartridge x500</label>
+		<description>Craft 500 9.5X40mm UNSC (FMJ) cartridges.</description>
+		<jobString>Making 9.5X40mm UNSC (FMJ) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -229,7 +241,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>24</count>
+				<count>29</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -238,16 +250,16 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_95x40mm_FMJ>500</Ammo_95x40mm_FMJ>
+			<Ammo_95X40mmUNSC_FMJ>500</Ammo_95X40mmUNSC_FMJ>
 		</products>
-		<workAmount>2400</workAmount>		
+	<workAmount>5000</workAmount>		
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_AP</defName>
-		<label>make 9.5x40mm (AP) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (AP) cartridges.</description>
-		<jobString>Making 9.5x40mm (AP) cartridges.</jobString>
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_95X40mmUNSC_AP</defName>
+		<label>make 9.5X40mm UNSC (AP) cartridge x500</label>
+		<description>Craft 500 9.5X40mm UNSC (AP) cartridges.</description>
+		<jobString>Making 9.5X40mm UNSC (AP) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -255,7 +267,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>24</count>
+				<count>29</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -264,16 +276,16 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_95x40mm_AP>500</Ammo_95x40mm_AP>
+			<Ammo_95X40mmUNSC_AP>500</Ammo_95X40mmUNSC_AP>
 		</products>
-		<workAmount>2400</workAmount>		
+	<workAmount>5000</workAmount>		
 	</RecipeDef>
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_HP</defName>
-		<label>make 9.5x40mm (HP) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (HP) cartridges.</description>
-		<jobString>Making 9.5x40mm (HP) cartridges.</jobString>
+	<RecipeDef ParentName="UNAmmoRecipeBase">
+		<defName>MakeAmmo_95X40mmUNSC_HP</defName>
+		<label>make 9.5X40mm UNSC (HP) cartridge x500</label>
+		<description>Craft 500 9.5X40mm UNSC (HP) cartridges.</description>
+		<jobString>Making 9.5X40mm UNSC (HP) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -281,7 +293,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>24</count>
+				<count>29</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -290,124 +302,124 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_95x40mm_HP>500</Ammo_95x40mm_HP>
+			<Ammo_95X40mmUNSC_HP>500</Ammo_95X40mmUNSC_HP>
 		</products>
-		<workAmount>2400</workAmount>		
+	<workAmount>5000</workAmount>		
 	</RecipeDef>
 
-	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_Incendiary</defName>
-		<label>make 9.5x40mm (AP-I) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (AP-I) cartridges.</description>
-		<jobString>Making 9.5x40mm (AP-I) cartridges.</jobString>
-		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>24</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Prometheum</li>
-			</thingDefs>
-			</filter>
-			<count>3</count>
-		</li>
-		</ingredients>
-		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>Prometheum</li>
-		</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-		<Ammo_95x40mm_Incendiary>500</Ammo_95x40mm_Incendiary>
-		</products>
-		<workAmount>3600</workAmount>
-	</RecipeDef>
-	
-	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_HE</defName>
-		<label>make 9.5x40mm (HE) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (HE) cartridges.</description>
-		<jobString>Making 9.5x40mm (HE) cartridges.</jobString>
-		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>24</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>FSX</li>
-			</thingDefs>
-			</filter>
-			<count>5</count>
-		</li>
-		</ingredients>
-		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>FSX</li>
-		</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-		<Ammo_95x40mm_HE>500</Ammo_95x40mm_HE>
-		</products>
-		<workAmount>4400</workAmount>
-	</RecipeDef>
-	
-	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-		<defName>MakeAmmo_95x40mm_Sabot</defName>
-		<label>make 9.5x40mm (Sabot) cartridge x500</label>
-		<description>Craft 500 9.5x40mm (Sabot) cartridges.</description>
-		<jobString>Making 9.5x40mm (Sabot) cartridges.</jobString>
-		<ingredients>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-			</filter>
-			<count>14</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Uranium</li>
-			</thingDefs>
-			</filter>
-			<count>3</count>
-		</li>
-		<li>
-			<filter>
-			<thingDefs>
-				<li>Chemfuel</li>
-			</thingDefs>
-			</filter>
-			<count>3</count>
-		</li>		  
-		</ingredients>
-		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Steel</li>
-			<li>Uranium</li>
-			<li>Chemfuel</li>		
-		</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-		<Ammo_95x40mm_Sabot>500</Ammo_95x40mm_Sabot>
-		</products>
-		<workAmount>3200</workAmount>
-	</RecipeDef>
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_95X40mmUNSC_Incendiary</defName>
+    <label>make 9.5X40mm UNSC (AP-I) cartridge x500</label>
+    <description>Craft 500 9.5X40mm UNSC (AP-I) cartridges.</description>
+    <jobString>Making 9.5X40mm UNSC (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>29</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_95X40mmUNSC_Incendiary>500</Ammo_95X40mmUNSC_Incendiary>
+    </products>
+    <workAmount>6900</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_95X40mmUNSC_HE</defName>
+    <label>make 9.5X40mm UNSC (HEDP) cartridge x500</label>
+    <description>Craft 500 9.5X40mm UNSC (HEDP) cartridges.</description>
+    <jobString>Making 9.5X40mm UNSC (HEDP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>29</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_95X40mmUNSC_HE>500</Ammo_95X40mmUNSC_HE>
+    </products>
+    <workAmount>6900</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_95X40mmUNSC_Sabot</defName>
+    <label>make 9.5X40mm UNSC (Sabot) cartridge x500</label>
+    <description>Craft 500 9.5X40mm UNSC (Sabot) cartridges.</description>
+    <jobString>Making 9.5X40mm UNSC (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_95X40mmUNSC_Sabot>500</Ammo_95X40mmUNSC_Sabot>
+    </products>
+    <workAmount>5000</workAmount>
+  </RecipeDef>
       
 
       </value>
