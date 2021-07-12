@@ -22,34 +22,6 @@ namespace CombatExtended
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
 
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-            if (!respawningAfterLoad)
-            {
-                cellsToAffect = SimplePool<List<IntVec3>>.Get();
-                cellsToAffect.Clear();
-                damagedThings = SimplePool<List<Thing>>.Get();
-                damagedThings.Clear();
-                addedCellsAffectedOnlyByDamage = SimplePool<HashSet<IntVec3>>.Get();
-                addedCellsAffectedOnlyByDamage.Clear();
-            }
-        }
-
-        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
-        {
-            base.DeSpawn(mode);
-            cellsToAffect.Clear();
-            SimplePool<List<IntVec3>>.Return(cellsToAffect);
-            cellsToAffect = null;
-            damagedThings.Clear();
-            SimplePool<List<Thing>>.Return(damagedThings);
-            damagedThings = null;
-            addedCellsAffectedOnlyByDamage.Clear();
-            SimplePool<HashSet<IntVec3>>.Return(addedCellsAffectedOnlyByDamage);
-            addedCellsAffectedOnlyByDamage = null;
-        }
-
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
         {
