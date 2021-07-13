@@ -78,6 +78,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="def">Thing def</param>
         /// <returns>Is menu hidden</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsMenuHidden(this ThingDef def)
         {
             return isMenuHiddenArray[def.index];
@@ -88,6 +89,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="def">Thing def</param>
         /// <param name="value">New value</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetMenuHidden(this ThingDef def, bool value)
         {
             isMenuHiddenArray[def.index] = value;
@@ -101,6 +103,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="def">Weapon def</param>
         /// <returns>If this ThingDef is an AOE weapon</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsAOEWeapon(this ThingDef def)
         {
             return isAOEArray[def.index];
@@ -130,7 +133,7 @@ namespace CombatExtended
         /// Used for rendering of CE custom apparel layers.
         /// </summary>
         /// <param name="layer"></param>
-        /// <returns></returns>
+        /// <returns></returns>        
         private static bool IsVisibleLayer_Internal(ApparelLayerDef layer)
         {
             /* 
@@ -146,12 +149,23 @@ namespace CombatExtended
         /// <summary>
         /// Perpare the ThingDefExtensionCE.
         /// </summary>
-        /// <param name="def">ThingDef with </param>
+        /// <param name="def">ThingDef with </param>        
         private static void ProcessThingDefExtensionCE(ThingDef def)
         {
             ThingDefExtensionCE ext = def.GetModExtension<ThingDefExtensionCE>();
 
             isMenuHiddenArray[def.index] = ext.MenuHidden;
+        }
+
+        /// <summary>
+        /// Process weapon by checking if any ammo used by it is AOE
+        /// </summary>
+        /// <param name="def"></param>
+        private static void ProcessWeapons(ThingDef def)
+        {
+            CompProperties_AmmoUser props = (CompProperties_AmmoUser)def.comps.First(c => c.compClass == typeof(CompAmmoUser));
+
+            isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
         }
 
         /// <summary>
@@ -164,18 +178,20 @@ namespace CombatExtended
              * Check is it's a mortar projectile then check if detonateProjectile is not null
              * This should cover most types of AOE ammo
              */
-            isAOEArray[def.index] = def.isMortarAmmoSet || (def.ammoTypes?.Any(a => a.ammo?.detonateProjectile != null) ?? false);
+            isAOEArray[def.index] = def.isMortarAmmoSet || (def.ammoTypes?.Any(a => IsAOEAmmoLink(a)) ?? false);
         }
 
         /// <summary>
-        /// Process weapon by checking if any ammo used by it is AOE
+        /// Determine of given ammoLink is an AOE Ammo
         /// </summary>
-        /// <param name="def"></param>
-        private static void ProcessWeapons(ThingDef def)
+        /// <param name="link">AmmoLink</param>
+        /// <returns>If ammo is AOE</returns>
+        private static bool IsAOEAmmoLink(AmmoLink link)
         {
-            CompProperties_AmmoUser props = (CompProperties_AmmoUser)def.comps.First(c => c.compClass == typeof(CompAmmoUser));
-
-            isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
+            return link.ammo?.detonateProjectile != null
+                || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
+                || link.projectile?.thingClass == typeof(Projectile_Explosive)
+                || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
         }
     }
 }

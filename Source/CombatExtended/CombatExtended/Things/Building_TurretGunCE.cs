@@ -92,6 +92,7 @@ namespace CombatExtended
                 return this.gunInt;
             }
         }
+
         public ThingDef Projectile
         {
             get
@@ -107,6 +108,7 @@ namespace CombatExtended
                 return this.GunCompEq.PrimaryVerb.verbProps.defaultProjectile;
             }
         }
+
         public CompChangeableProjectile CompChangeable
         {
             get
@@ -115,6 +117,7 @@ namespace CombatExtended
                 return compChangeable;
             }
         }
+
         public CompAmmoUser CompAmmo
         {
             get
@@ -123,6 +126,7 @@ namespace CombatExtended
                 return compAmmo;
             }
         }
+
         public CompFireModes CompFireModes
         {
             get
@@ -196,7 +200,6 @@ namespace CombatExtended
         public override void PostMake()
         {
             base.PostMake();
-
             MakeGun();
         }
 
@@ -510,8 +513,7 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
-
-        public override void Draw()                     // Core method
+        public override void Draw()
         {
             top.DrawTurret(Vector3.zero, 0f);
             base.Draw();
