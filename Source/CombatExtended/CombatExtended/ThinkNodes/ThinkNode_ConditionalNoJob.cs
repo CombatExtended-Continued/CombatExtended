@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class ThinkNode_ConditionalNoJob : ThinkNode_Conditional
     {
-        protected override bool Satisfied(Pawn pawn)
+        public override bool Satisfied(Pawn pawn)
         {
             return pawn.CurJob == null;
         }

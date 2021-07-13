@@ -13,7 +13,7 @@ namespace CombatExtended
     {
         /// <inheritdoc cref="JobGiver_ManTurrets.TryGiveJob" />
         /// <remarks>Overriden to avoid invalid type cast exception.</remarks>
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             var thing = GenClosest.ClosestThingReachable(
                 GetRoot(pawn),

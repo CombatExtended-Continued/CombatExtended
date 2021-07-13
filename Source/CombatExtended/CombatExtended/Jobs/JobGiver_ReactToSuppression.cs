@@ -6,7 +6,7 @@ namespace CombatExtended
 {
     public class JobGiver_ReactToSuppression : ThinkNode_JobGiver
     {
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             var comp = pawn.TryGetComp<CompSuppressable>();
 

@@ -8,13 +8,12 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(JobGiver_PickUpOpportunisticWeapon), "ShouldEquip")]
+    [HarmonyPatch(typeof(JobGiver_PickUpOpportunisticWeapon), "ShouldEquipWeapon")]
     internal static class Harmony_JobGiver_PickUpOpportunisticWeapon
     {
-        [HarmonyPostfix]
-        internal static void Hook(Thing newWep, Pawn pawn, ref bool __result)
+        internal static void Postfix(Thing newWep, Pawn pawn, ref bool __result)
         {
-            __result = __result && newWep.def != CE_ThingDefOf.Gun_BinocularsRadio;
+            __result = __result && newWep.def != CE_ThingDefOf.Gun_BinocularsRadio && !(pawn.HasShield() && newWep.IsTwoHandedWeapon());
         }
     }
 }

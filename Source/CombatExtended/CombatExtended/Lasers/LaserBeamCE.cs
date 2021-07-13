@@ -11,7 +11,7 @@ namespace CombatExtended.Lasers
     public class LaserBeamCE : BulletCE
     {
 
-	protected override float DamageAmount
+	public override float DamageAmount
 	{
 	    get
 	    {
@@ -70,7 +70,7 @@ namespace CombatExtended.Lasers
         public Vector3 Origin => new Vector3(base.origin.x,0, base.origin.y);
 
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 dir = (destination - Origin).normalized;

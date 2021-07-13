@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     public class ThinkNode_ConditionalHasLoadout : ThinkNode_Conditional
     {
-        protected override bool Satisfied(Pawn pawn)
+        public override bool Satisfied(Pawn pawn)
         {
             var loadout = pawn.GetLoadout();
             return loadout != null && !loadout.Slots.NullOrEmpty();

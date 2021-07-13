@@ -27,7 +27,7 @@ namespace CombatExtended
         private const int collisionCheckSize = 5;
 
         #region Origin destination
-        protected Vector2 origin;
+        public Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
@@ -42,11 +42,11 @@ namespace CombatExtended
             }
         }
 
-        protected Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        protected Vector2 Destination
+        public Vector2 Destination
         {
             get
             {
@@ -61,8 +61,8 @@ namespace CombatExtended
         }
         #endregion
 
-        protected ThingDef equipmentDef;
-        protected Thing launcher;
+        public ThingDef equipmentDef;
+        public Thing launcher;
         public Thing intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
@@ -70,8 +70,8 @@ namespace CombatExtended
         public bool logMisses = true;
 
         #region Vanilla
-        protected bool landed;
-        protected int ticksToImpact;
+        public bool landed;
+        public int ticksToImpact;
         private Sustainer ambientSustainer;
         #endregion
 
@@ -103,7 +103,7 @@ namespace CombatExtended
 
         #region Ticks/Seconds
         float startingTicksToImpactInt = -1f;
-        protected float StartingTicksToImpact
+        public float StartingTicksToImpact
         {
             get
             {
@@ -135,7 +135,7 @@ namespace CombatExtended
         /// <summary>
         /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
         /// </summary>
-        protected int IntTicksToImpact
+        public int IntTicksToImpact
         {
             get
             {
@@ -150,7 +150,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
-        protected int FlightTicks
+        public int FlightTicks
         {
             get
             {
@@ -160,7 +160,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of float ticks the projectile has remained in the air for, including impact.
         /// </summary>
-        protected float fTicks
+        public float fTicks
         {
             get
             {
@@ -390,13 +390,14 @@ namespace CombatExtended
         }
         #endregion
 
-        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null) {
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
+        {
 
             float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
             float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
 
             ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
-            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
+            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
             Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
             Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
             Map map = launcher.Map;
@@ -412,45 +413,56 @@ namespace CombatExtended
             float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-            Vector3 muzzle = ray.GetPoint( (defWeapon == null ? 0.9f : defWeapon.barrelLength) );
+            Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
             var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
-            for (int i=1; i < verbProps.range; i++) {
+            for (int i = 1; i < verbProps.range; i++)
+            {
                 float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
                 if (pprops.damageFalloff)
                 {
-                  lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                    lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
                 }
-                
+
                 Vector3 tp = ray.GetPoint(i);
-                if (tp.y > CollisionVertical.WallCollisionHeight) {
+                if (tp.y > CollisionVertical.WallCollisionHeight)
+                {
                     break;
                 }
-                if (tp.y < 0) {
+                if (tp.y < 0)
+                {
                     destination = tp;
                     landed = true;
                     ExactPosition = tp;
                     Position = ExactPosition.ToIntVec3();
                     break;
                 }
-                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3())) {
-                    if (this == thing) {
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3()))
+                {
+                    if (this == thing)
+                    {
                         continue;
                     }
                     var bounds = CE_Utility.GetBoundsFor(thing);
-                    if (!bounds.IntersectRay(ray, out var dist)) {
+                    if (!bounds.IntersectRay(ray, out var dist))
+                    {
                         continue;
                     }
-                    if (i<2 && thing != intendedTarget) {
+                    if (i < 2 && thing != intendedTarget)
+                    {
                         continue;
                     }
 
-                    if (thing is Plant plant) {
-                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth)) {
+                    if (thing is Plant plant)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth))
+                        {
                             continue;
                         }
                     }
-                    else if (thing is Building) {
-                        if (!Rand.Chance(thing.def.fillPercent)) {
+                    else if (thing is Building)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent))
+                        {
                             continue;
                         }
                     }
@@ -466,11 +478,12 @@ namespace CombatExtended
                     lbce.Impact(thing, muzzle);
 
                     return;
-                    
+
                 }
-                 
+
             }
-            if (lbce!=null) {
+            if (lbce != null)
+            {
                 lbce.SpawnBeam(muzzle, destination);
                 Destroy(DestroyMode.Vanish);
                 return;
@@ -478,6 +491,7 @@ namespace CombatExtended
 
 
         }
+
 
         #region Launch
         /// <summary>
@@ -880,9 +894,9 @@ namespace CombatExtended
                     if (ticksToImpact % trailer.trailerMoteInterval == 0)
                     {
                         for (int i = 0; i < trailer.motesThrown; i++)
-                            {
-                                TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
-                            }
+                        {
+                            TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
+                        }
                     }
                 }
             }
@@ -974,7 +988,7 @@ namespace CombatExtended
             Impact(null);
         }
 
-        protected virtual void Impact(Thing hitThing)
+        public virtual void Impact(Thing hitThing)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {
