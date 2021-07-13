@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         private static List<Thing> tmpThreats = new List<Thing>();
 
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.playerSettings == null || !pawn.playerSettings.UsesConfigurableHostilityResponse)
             {

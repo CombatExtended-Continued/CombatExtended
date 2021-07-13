@@ -30,16 +30,16 @@ namespace CombatExtended
 
         #region Fields
 
-        protected int burstCooldownTicksLeft;
+        public int burstCooldownTicksLeft;
         public int burstWarmupTicksLeft;                                // Need this public so aim mode can modify it
-        protected LocalTargetInfo currentTargetInt = LocalTargetInfo.Invalid;
+        public LocalTargetInfo currentTargetInt = LocalTargetInfo.Invalid;
         private bool holdFire;
         private Thing gunInt;                                           // Better to be private, because Gun is used for access, instead
-        protected TurretTop top;
-        protected CompPowerTrader powerComp;
-        protected CompCanBeDormant dormantComp;
-        protected CompInitiatable initiatableComp;
-        protected CompMannable mannableComp;
+        public TurretTop top;
+        public CompPowerTrader powerComp;
+        public CompCanBeDormant dormantComp;
+        public CompInitiatable initiatableComp;
+        public CompMannable mannableComp;
 
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
@@ -333,7 +333,7 @@ namespace CombatExtended
             }
         }
 
-        protected void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
+        public void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
         {
             // Check for ammo first
             if (!Spawned
@@ -377,7 +377,7 @@ namespace CombatExtended
             burstWarmupTicksLeft = 1;
         }
 
-        protected LocalTargetInfo TryFindNewTarget()    // Core method
+        public LocalTargetInfo TryFindNewTarget()    // Core method
         {
             IAttackTargetSearcher attackTargetSearcher = this.TargSearcher();
             Faction faction = attackTargetSearcher.Thing.Faction;
@@ -440,14 +440,14 @@ namespace CombatExtended
             return true;
         }
 
-        protected void BeginBurst()                     // Added handling for ticksUntilAutoReload
+        public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
             AttackVerb.TryStartCastOn(CurrentTarget, false, true);
             OnAttackedTarget(CurrentTarget);
         }
 
-        protected void BurstComplete()                  // Added CompAmmo reload check
+        public void BurstComplete()                  // Added CompAmmo reload check
         {
             burstCooldownTicksLeft = BurstCooldownTime().SecondsToTicks();
             if (CompAmmo != null && CompAmmo.CurMagCount <= 0)
@@ -456,7 +456,7 @@ namespace CombatExtended
             }
         }
 
-        protected float BurstCooldownTime()             // Core method
+        public float BurstCooldownTime()             // Core method
         {
             if (def.building.turretBurstCooldownTime >= 0f)
             {

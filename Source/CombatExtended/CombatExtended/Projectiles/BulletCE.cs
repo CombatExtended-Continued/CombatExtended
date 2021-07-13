@@ -16,7 +16,7 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
-        protected virtual float DamageAmount
+        public virtual float DamageAmount
         {
             get
             {
@@ -24,7 +24,7 @@ namespace CombatExtended
             }
         }
 
-        protected virtual float PenetrationAmount
+        public virtual float PenetrationAmount
         {
             get
             {
@@ -50,7 +50,7 @@ namespace CombatExtended
                 Find.BattleLog.Add(logEntry);
         }
 
-        protected override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing)
         {
             bool cookOff = (launcher is AmmoThing);
 

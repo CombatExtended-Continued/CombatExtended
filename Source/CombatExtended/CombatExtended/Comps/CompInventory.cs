@@ -108,6 +108,22 @@ namespace CombatExtended
                 return MassBulkUtility.EncumberPenalty(currentWeight, capacityWeight);
             }
         }
+        public IEnumerable<ThingWithComps> weapons
+        {
+            get
+            {
+                if (meleeWeaponList != null)
+                {
+                    foreach (ThingWithComps weapon in meleeWeaponList)
+                        yield return weapon;
+                }
+                if (rangedWeaponList != null)
+                {
+                    foreach (ThingWithComps weapon in rangedWeaponList)
+                        yield return weapon;
+                }
+            }
+        }
         public ThingOwner container
         {
             get
@@ -134,7 +150,7 @@ namespace CombatExtended
         /// <returns>int amount of AmmoDef found in AmmoList.</returns>
         public int AmmoCountOfDef(AmmoDef def)
         {
-        	return ammoListCached.Where(t => t.def == def).Sum(t => t.stackCount);
+            return ammoListCached.Where(t => t.def == def).Sum(t => t.stackCount);
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -218,11 +234,11 @@ namespace CombatExtended
                         ammoListCached.Add(thing);
                     }
                     if (recs != null)
-					{
-                    	HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
-						if (rec != null && !rec.pickedUp)
-							rec.pickedUp = true;
-					}
+                    {
+                        HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
+                        if (rec != null && !rec.pickedUp)
+                            rec.pickedUp = true;
+                    }
                 }
             }
             currentBulkCached = newBulk;
@@ -258,7 +274,7 @@ namespace CombatExtended
             else
             {
                 thingWeight = thing.GetStatValue(StatDefOf.Mass);
-              //  thingWeight = thing.GetStatValue(CE_StatDefOf.Weight);
+                //  thingWeight = thing.GetStatValue(CE_StatDefOf.Weight);
                 thingBulk = thing.GetStatValue(CE_StatDefOf.Bulk);
             }
             // Subtract weight of currently equipped weapon
@@ -278,9 +294,9 @@ namespace CombatExtended
 
         public static void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
         {
-                 weight = eq.GetStatValue(StatDefOf.Mass);
+            weight = eq.GetStatValue(StatDefOf.Mass);
             //old     weight = eq.GetStatValue(CE_StatDefOf.Weight);
-                 bulk = eq.GetStatValue(CE_StatDefOf.Bulk);
+            bulk = eq.GetStatValue(CE_StatDefOf.Bulk);
 
             /*
             CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
@@ -293,11 +309,14 @@ namespace CombatExtended
             */
         }
 
+
+
         /// <summary>
         /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists
         /// </summary>
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
-        public void SwitchToNextViableWeapon(bool useFists = true)
+        /// <param name="useAOE">Whether to use AOE weapons (grenades, explosive, RPGs, etc)</param>
+        public void SwitchToNextViableWeapon(bool useFists = true, bool useAOE = false)
         {
             ThingWithComps newEq = null;
 
@@ -311,6 +330,8 @@ namespace CombatExtended
                 if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
+                    if (!useAOE && gun.def.IsAOEWeapon())
+                        continue;
                     if (compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
                     {
                         newEq = gun;
@@ -388,9 +409,9 @@ namespace CombatExtended
         {
             if (GenTicks.TicksAbs >= ticksToNextCleanUp)
             {
-	            // Ask HoldTracker to clean itself up...
-	            parentPawn.HoldTrackerCleanUp();
-	            ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
+                // Ask HoldTracker to clean itself up...
+                parentPawn.HoldTrackerCleanUp();
+                ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
             }
             base.CompTick();
             // Remove items from inventory if we're over the bulk limit

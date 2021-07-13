@@ -35,11 +35,11 @@ namespace CombatExtended
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
 
-        protected CompCharges compCharges = null;
-        protected CompAmmoUser compAmmo = null;
-        protected CompFireModes compFireModes = null;
-        protected CompChangeableProjectile compChangeable = null;
-        protected CompReloadable compReloadable = null;
+        public CompCharges compCharges = null;
+        public CompAmmoUser compAmmo = null;
+        public CompFireModes compFireModes = null;
+        public CompChangeableProjectile compChangeable = null;
+        public CompReloadable compReloadable = null;
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -58,7 +58,7 @@ namespace CombatExtended
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
 
-        protected CompCharges CompCharges
+        public CompCharges CompCharges
         {
             get
             {
@@ -87,7 +87,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        protected float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -97,13 +97,13 @@ namespace CombatExtended
             }
         }
 
-        protected float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
-        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
-        protected float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
-        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
+        public float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
+        public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
+        public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
+        public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
 
         // Ammo variables
-        protected CompAmmoUser CompAmmo
+        public CompAmmoUser CompAmmo
         {
             get
             {
@@ -130,7 +130,7 @@ namespace CombatExtended
             }
         }
 
-        protected CompChangeableProjectile CompChangeable
+        public CompChangeableProjectile CompChangeable
         {
             get
             {
@@ -234,7 +234,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -355,7 +355,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="rotation">The ref float to have horizontal sway in degrees added to.</param>
         /// <param name="angle">The ref float to have vertical sway in radians added to.</param>
-        protected void GetSwayVec(ref float rotation, ref float angle)
+        public void GetSwayVec(ref float rotation, ref float angle)
         {
             float ticks = (float)(Find.TickManager.TicksAbs + Shooter.thingIDNumber);
             rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
@@ -581,7 +581,7 @@ namespace CombatExtended
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
@@ -701,8 +701,6 @@ namespace CombatExtended
          * 
          * -NIA
          */
-
-        private List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
         public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {

@@ -12,9 +12,13 @@
     </weaponTags>
     <tradeability>None</tradeability>
     <destroyOnDrop>True</destroyOnDrop>
-    <menuHidden>True</menuHidden>
     <generateAllowChance>0</generateAllowChance>
     <smeltable>false</smeltable>
+    <modExtensions>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef Name="BaseAutoTurretGun" ParentName="BaseTurretGun" Abstract="True">
@@ -129,7 +133,7 @@
       <ShotSpread>0.2</ShotSpread>
       <SwayFactor>1.61</SwayFactor>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-    </statBases>  
+    </statBases>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <recoilAmount>1.67</recoilAmount>
@@ -167,7 +171,7 @@
     <label>flak turret</label>
     <description>A self-loading heavy cannon designed to attach to a turret.</description>
     <soundInteract>Artillery_ShellLoaded</soundInteract>
-     <graphicData>
+    <graphicData>
       <texPath>Things/Building/Security/TurretSniper_Top</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(2,2)</drawSize>

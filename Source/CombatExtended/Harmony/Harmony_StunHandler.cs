@@ -12,13 +12,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(StunHandler), "Notify_DamageApplied")]
     public static class Harmony_StunHandler_Notify_DamageApplied
     {
-        public static bool Prefix(StunHandler __instance,
-                      DamageInfo dinfo,
-                      bool affectedByEMP,
-                      int ___EMPAdaptedTicksLeft,
-                      int ___stunTicksLeft,
-                      bool ___stunFromEMP
-                      )
+        public static bool Prefix(StunHandler __instance, DamageInfo dinfo, ref int ___EMPAdaptedTicksLeft, ref int ___stunTicksLeft, ref bool ___stunFromEMP)
         {
 
             Pawn pawn = __instance.parent as Pawn;
@@ -32,7 +26,7 @@ namespace CombatExtended.HarmonyCE
                 bodySize = pawn.BodySize;
             }
 
-            if (dinfo.Def == DamageDefOf.EMP && affectedByEMP)
+            if (dinfo.Def == DamageDefOf.EMP && __instance.parent is Pawn p && !(p.RaceProps?.IsFlesh ?? false))
             {
                 if (___EMPAdaptedTicksLeft > 0)
                 {
@@ -40,8 +34,11 @@ namespace CombatExtended.HarmonyCE
                     int newStunTicks = Mathf.RoundToInt(dinfo.Amount * 30);
 
                     float stunResistChance = ((float)___EMPAdaptedTicksLeft / (float)newStunAdaptedTicks) * 15;
-                    void reStun()
+
+                    if (UnityEngine.Random.value > stunResistChance)
                     {
+                        ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
+
                         if (___stunTicksLeft > 0 && newStunTicks > ___stunTicksLeft)
                         {
                             ___stunTicksLeft = newStunTicks;
@@ -50,13 +47,6 @@ namespace CombatExtended.HarmonyCE
                         {
                             __instance.StunFor(newStunTicks, dinfo.Instigator, true, true);
                         }
-
-                    }
-
-                    if (UnityEngine.Random.value > stunResistChance)
-                    {
-                        ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
-                        reStun();
                     }
                     else
                     {
@@ -72,7 +62,15 @@ namespace CombatExtended.HarmonyCE
                             float adaptationReductionRatio = (adaptationReduction - ___EMPAdaptedTicksLeft) / adaptationReduction;
                             newStunAdaptedTicks = Mathf.RoundToInt(newStunAdaptedTicks * adaptationReductionRatio);
                             newStunTicks = Mathf.RoundToInt(newStunTicks * adaptationReductionRatio);
-                            reStun();
+
+                            if (___stunTicksLeft > 0 && newStunTicks > ___stunTicksLeft)
+                            {
+                                ___stunTicksLeft = newStunTicks;
+                            }
+                            else
+                            {
+                                __instance.StunFor(newStunTicks, dinfo.Instigator, true, true);
+                            }
                         }
                     }
 
@@ -87,12 +85,12 @@ namespace CombatExtended.HarmonyCE
             }
             return true;
         }
-        public static void Postfix(StunHandler __instance, DamageInfo dinfo, bool affectedByEMP)
+        public static void Postfix(StunHandler __instance, DamageInfo dinfo)
         {
             if (dinfo.Def == DamageDefOf.EMP)
             {
                 var dmgAmount = dinfo.Amount;
-                if (!affectedByEMP) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
+                if (__instance.parent is Pawn p && (p.RaceProps?.IsFlesh ?? false)) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
                 var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 9999, // Hack to avoid double-armor application (EMP damage reduced -> proportional electric damage reduced again)
                     dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
                 __instance.parent.TakeDamage(newDinfo);

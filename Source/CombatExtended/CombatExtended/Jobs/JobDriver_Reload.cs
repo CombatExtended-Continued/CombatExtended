@@ -89,7 +89,7 @@ namespace CombatExtended
         /// </summary>
         /// <returns>Ienumerable of type Toil</returns>
         /// <remarks>Remember that, in the case of jobs, effectively the entire method is executed before any actual activity occurs.</remarks>
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking and 'helpful' messages for what is wrong.
             if (holder == null) // A later check will catch this (failon) but that fails silently.

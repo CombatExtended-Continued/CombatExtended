@@ -33,7 +33,7 @@ namespace CombatExtended
         }
 
         [DebuggerHidden]
-		protected override IEnumerable<Toil> MakeNewToils()
+		public override IEnumerable<Toil> MakeNewToils()
 		{
 			yield return Toils_General.Wait(10);
 			yield return new Toil

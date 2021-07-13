@@ -210,6 +210,35 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Extension method to determine whether a pawn has equipped a shield
+        /// </summary>
+        /// <returns>True if the pawn has a shield equipped</returns>
+        public static bool HasShield(this Pawn pawn)
+        {
+            if ((pawn.apparel?.WornApparelCount ?? 0) == 0) return false;
+            return pawn.apparel.WornApparel.Any(a => a is Apparel_Shield);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool HasTwoWeapon(this Pawn pawn)
+        {
+            if (pawn.equipment?.Primary == null) return false;
+            return !(pawn.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool IsTwoHandedWeapon(this Thing weapon)
+        {
+            return !(weapon.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
+        }
+
+        /// <summary>
         /// Extension method to determine whether a ranged weapon has ammo available to it
         /// </summary>
         /// <returns>True if the gun has no CompAmmoUser, doesn't use ammo or has ammo in its magazine or carrier inventory, false otherwise</returns>
@@ -255,20 +284,30 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, ThingDef casingMoteDef, float size = 1f)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
         {
             if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(casingMoteDef, null);
-            moteThrown.Scale = Rand.Range(0.5f, 0.3f) * size;
-            moteThrown.exactRotation = Rand.Range(-3f, 4f);
-            moteThrown.exactPosition = loc;
-            moteThrown.airTimeLeft = 60;
-            moteThrown.SetVelocity((float)Rand.Range(160, 200), Rand.Range(0.7f, 0.5f));
-            //     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
-            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
+            FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
+            creationData.airTimeLeft = 60;
+            creationData.scale = Rand.Range(0.5f, 0.3f) * size;
+            creationData.rotation = Rand.Range(-3f, 4f);
+            creationData.spawnPosition = loc;
+            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            map.flecks.CreateFleck(creationData);
+        }
+
+        public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
+        {
+            MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
+            moteThrown.Attach(pawn);
+            moteThrown.exactPosition = pawn.DrawPos;
+            moteThrown.Scale = 1.0f;
+            moteThrown.SetVelocity(Rand.Range(20f, 25f), 0.4f);
+            GenSpawn.Spawn(moteThrown, pawn.Position, pawn.Map);
         }
         #endregion
 
@@ -417,6 +456,102 @@ namespace CombatExtended
             {
                 TryUpdateInventory(pawn);
             }
+        }
+
+        /// <summary>
+        /// Get all weapons a pawn has.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="weapons">Weapons</param>
+        /// <param name="rebuild">(Slow) wether to rebuild the cache</param>
+        /// <returns>If this pawn has a CompInventory or not</returns>
+        public static bool TryGetAllWeaponsInInventory(this Pawn pawn, out List<ThingWithComps> weapons, bool rebuildInvetory = false)
+        {
+            weapons = null;
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+            // check is this pawn has a CompInventory
+            if (compInventory == null)
+                return false;
+            if (rebuildInvetory)
+                compInventory.UpdateInventory();
+            // Add all weapons in the inventory
+            weapons = compInventory.weapons.ToList();
+            return true;
+        }
+
+        /// <summary>
+        /// THIS IS A VERY SLOW FUNCTION!! USE IT CAREFULY!
+        /// Try to find a random weapon in inventory that has ammo and is ready combat.
+        /// This will first check ranged weapons then melee weapons.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="weapon">out The random weapons (if no ranged weapons are found and includeMelee it will return a melee weapon)</param>
+        /// <param name="includeMelee">Return a random melee weapon if no ranged weapons found</param>
+        /// <param name="includeAOE">Include explosive weapons</param>
+        /// <returns>If a weapon is found</returns>
+        public static bool TryGetRandomUsableWeapon(this Pawn pawn, out ThingWithComps weapon, bool includeMelee = true, bool includeAOE = false, bool rebuildInvetory = false)
+        {
+            weapon = null;
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+
+            if (compInventory == null)
+                return false;
+            if (rebuildInvetory)
+                compInventory.UpdateInventory();
+            List<ThingWithComps> rangedGuns = compInventory.rangedWeaponList;
+            if (rangedGuns == null || rangedGuns.Count == 0)
+            {
+                if (!includeMelee)
+                    return false;
+                List<ThingWithComps> meleeWeapons = compInventory.meleeWeaponList;
+
+                if (meleeWeapons == null || meleeWeapons.Count == 0)
+                    return false;
+                weapon = meleeWeapons.RandomElement();
+                return true;
+            }
+            if (!Controller.settings.EnableAmmoSystem)
+            {
+                weapon = rangedGuns.RandomElement();
+                return true;
+            }
+            foreach (ThingWithComps gun in rangedGuns.InRandomOrder())
+            {
+                CompAmmoUser compAmmo = gun.GetComp<CompAmmoUser>();
+                if (compAmmo == null || compAmmo.IsEquippedGun)
+                    continue;
+                // check if this is an explosive weapon 
+                if (!includeAOE && (compAmmo.Props?.ammoSet?.ammoTypes?.RandomElement().ammo?.detonateProjectile != null))
+                    continue;
+                // check readiness
+                if (compAmmo.CanBeFiredNow || compAmmo.TryFindAmmoInInventory(out Thing _))
+                {
+                    weapon = gun;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+
+        #region Weapons
+
+        /// <summary>
+        /// Used to get or check if this pawn has a CE (ammo enabled weapon) weapon equiped.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="gun">out the Primary ammo enabled weapon/equipment</param>
+        /// <returns>If the primary equipment is ammo enabled weapon has been found</returns>
+        public static bool TryGetPrimaryCEWeapon(this Pawn pawn, out Thing gun)
+        {
+            gun = pawn.equipment?.Primary;
+            CompAmmoUser ammoUser = gun?.TryGetComp<CompAmmoUser>() ?? null;
+
+            if (ammoUser == null || !ammoUser.HasMagazine || ammoUser.CurMagCount > 0)
+                return false; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
+            return true;
         }
 
         #endregion

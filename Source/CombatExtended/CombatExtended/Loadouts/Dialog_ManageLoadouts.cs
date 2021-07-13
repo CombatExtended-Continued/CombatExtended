@@ -73,7 +73,7 @@ namespace CombatExtended
             CurrentLoadout = null;
             if (loadout != null && !loadout.defaultLoadout)
                 CurrentLoadout = loadout;
-            _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => IsSuitableThingDef(td)).ToList();
+            _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsMenuHidden() && IsSuitableThingDef(td)).ToList();
             _allDefsGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList();
             _selectableItems = new List<SelectableItem>();
             foreach (var td in _allSuitableDefs)

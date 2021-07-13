@@ -5,7 +5,7 @@ namespace CombatExtended
 {
     public class DamageWorker_BluntCE : DamageWorker_AddInjury
     {
-        protected override BodyPartRecord ChooseHitPart(DamageInfo dinfo, Pawn pawn)
+        public override BodyPartRecord ChooseHitPart(DamageInfo dinfo, Pawn pawn)
         {
             var parts = pawn.health.hediffSet.GetNotMissingParts(dinfo.Height, dinfo.Depth);
 

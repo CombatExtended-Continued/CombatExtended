@@ -231,7 +231,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to which the job is given.</param>
         /// <returns>Job that the pawn was instructed to do, be it hauling a dropped Thing or going and getting a Thing.</returns>
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             // Get inventory
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
