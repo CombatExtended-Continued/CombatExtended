@@ -14,7 +14,7 @@
 				<xpath>Defs/ThingDef[@Name="JDSExiledChestPlate(AR)ArmorBase" or 
 				@Name="JDSExiledChestPlateArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					<ArmorRating_Sharp>9.6</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -22,7 +22,7 @@
 				<xpath>Defs/ThingDef[@Name="JDSExiledChestPlate(AR)ArmorBase" or 
 				@Name="JDSExiledChestPlateArmorBase"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
 				</value>
 			</li>
 			
@@ -155,7 +155,7 @@
 				</value>
 			</li>
 			
-			<!--Plate Gambeson-->
+			<!--Plate Gambeson : Stronger in vanilla but costs less. No idea why.-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="JDSExiledPlateGambesonARArmorBase" or 
@@ -204,12 +204,12 @@
 				</value>
 			</li>
 			
-			<!-- -->
+			<!--King Armor-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="JDSExiledKingArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>26</ArmorRating_Sharp>
+					<ArmorRating_Sharp>24</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -237,12 +237,12 @@
 				</value>
 			</li>
 			
-			<!-- -->
+			<!--Knight Armor-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="JDSExiledKnightArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>22</ArmorRating_Sharp>
+					<ArmorRating_Sharp>24</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -270,12 +270,12 @@
 				</value>
 			</li>
 			
-			<!-- -->
+			<!--Knight Captain Armor-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="JDSExiledKnightCaptainArmorBase"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>22</ArmorRating_Sharp>
+					<ArmorRating_Sharp>24</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -303,7 +303,20 @@
 				</value>
 			</li>
 			
-			<!-- -->
+			<!--Price Change-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Colored_King_Armor" or
+				defName="Colored_Knight_Armor" or
+				defName="Colored_Knight_Captain"
+				]/costList/Plasteel</xpath>
+				<value>
+					<Plasteel>190</Plasteel>
+					<DevilstrandCloth>50</DevilstrandCloth>
+				</value>
+			</li>
+			
+			<!--Scholar Armor-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[@Name="JDSExiledScholarArmorBase"]/statBases/ArmorRating_Sharp</xpath>
@@ -333,6 +346,18 @@
 				<value>
 					<CarryBulk>10</CarryBulk>
 					<CarryWeight>60</CarryWeight>
+				</value>
+			</li>
+			
+			<!--Price Change-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Colored_Scholar_Armor"
+				]/costList/Steel</xpath>
+				<value>
+					<Plasteel>100</Plasteel>
+					<Steel>200</Steel>
+					<DevilstrandCloth>40</DevilstrandCloth>
 				</value>
 			</li>
 			

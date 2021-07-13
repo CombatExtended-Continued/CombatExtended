@@ -24,7 +24,7 @@
 		<defName>AmmoSet_GethRifle</defName>
 		<label>Geth Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_GethRifle</Ammo_ME>
+			<Ammo_MEG>Bullet_GethRifle</Ammo_MEG>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -32,7 +32,7 @@
 		<defName>AmmoSet_GethSMG</defName>
 		<label>Geth Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_GethSMG</Ammo_ME>
+			<Ammo_MEG>Bullet_GethSMG</Ammo_MEG>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -41,7 +41,7 @@
 		<defName>AmmoSet_GethShotgun</defName>
 		<label>Geth Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_GethShotgun</Ammo_ME>
+			<Ammo_MEG>Bullet_GethShotgun</Ammo_MEG>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -57,7 +57,7 @@
 		<defName>AmmoSet_GethSniper</defName>
 		<label>Geth Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_GethSniper</Ammo_ME>
+			<Ammo_MEG>Bullet_GethSniper</Ammo_MEG>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -65,7 +65,7 @@
 		<defName>AmmoSet_GethSpitfire</defName>
 		<label>Geth Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_GethSpitfire</Ammo_ME>
+			<Ammo_MEG>Bullet_GethSpitfire</Ammo_MEG>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
@@ -82,8 +82,8 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
-		<defName>Ammo_ME</defName>
-		<label>Thermal clip</label>
+		<defName>Ammo_MEG</defName>
+		<label>Geth Thermal clip</label>
 		<description>Thermal clips designed to fit most geth weapons. They are, however, incompatible with weapons made by other races.</description>
 		<statBases>
 			<Mass>0.01</Mass>
@@ -91,7 +91,7 @@
 			<MarketValue>0.24</MarketValue>
 		</statBases>
 		<tradeTags>
-                                                <li>CE_AutoEnableTrade_Sellable</li>
+                        <li>CE_AutoEnableTrade_Sellable</li>
 			<li>CE_AutoEnableCrafting_FabricationBench</li>
 			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
 		</tradeTags>
@@ -190,7 +190,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>280</speed>
+			<speed>240</speed>
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>11</damageAmountBase>
 			<secondaryDamage>
@@ -200,7 +200,7 @@
 				</li>
 			</secondaryDamage>
       <armorPenetrationSharp>13</armorPenetrationSharp>      
-      <armorPenetrationBlunt>19.8</armorPenetrationBlunt>
+      <armorPenetrationBlunt>21.8</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -223,7 +223,7 @@
 				</li>
 			</secondaryDamage>
       <armorPenetrationSharp>9</armorPenetrationSharp>      
-      <armorPenetrationBlunt>13.8</armorPenetrationBlunt>
+      <armorPenetrationBlunt>15.8</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -245,8 +245,8 @@
           <amount>4</amount>
         </li>
       </secondaryDamage>
-      <armorPenetrationSharp>8</armorPenetrationSharp>      
-      <armorPenetrationBlunt>12.8</armorPenetrationBlunt>
+      <armorPenetrationSharp>9</armorPenetrationSharp>      
+      <armorPenetrationBlunt>18.8</armorPenetrationBlunt>
       <pelletCount>3</pelletCount>
       <spreadMult>17.8</spreadMult>
 		</projectile>
@@ -301,7 +301,7 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>200</speed>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>14</damageAmountBase>
+			<damageAmountBase>13</damageAmountBase>
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
@@ -309,7 +309,7 @@
 				</li>
 			</secondaryDamage>
       <armorPenetrationSharp>16</armorPenetrationSharp>      
-      <armorPenetrationBlunt>24.8</armorPenetrationBlunt>
+      <armorPenetrationBlunt>29.8</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -340,7 +340,7 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="ChargeAmmoRecipeBase">
-		<defName>MakeAmmo_ME</defName>
+		<defName>MakeAmmo_MEG</defName>
 		<label>make Geth thermal clips</label>
 		<description>Craft 100 shots' worth of thermal clips.</description>
 		<jobString>Making thermal clips.</jobString>
@@ -379,7 +379,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_ME>100</Ammo_ME>
+			<Ammo_MEG>100</Ammo_MEG>
 		</products>
 		<researchPrerequisite>PlasmaSMGTechnology</researchPrerequisite>
 	</RecipeDef>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Erin's Lizard Doggo</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- ========== Lizard Doggo ========== -->
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[defName="ERN_lizarddoggo"]</xpath>
+
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Quadruped</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="ERN_lizarddoggo"]/statBases</xpath>
+
+          <value>
+			<MeleeDodgeChance>0.22</MeleeDodgeChance>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.04</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ERN_lizarddoggo"]/race/baseHealthScale</xpath>
+          <value>
+            <baseHealthScale>0.55</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/PawnKindDef[defName="ERN_lizarddoggo"]/combatPower</xpath>
+          <value>
+            <combatPower>50</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ERN_lizarddoggo"]/tools</xpath>
+
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+				<power>5</power>
+				<cooldownTime>0.8</cooldownTime>
+				<armorPenetrationBlunt>0.400</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.045</armorPenetrationSharp>
+				<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+				<power>5</power>
+				<cooldownTime>0.8</cooldownTime>
+				<armorPenetrationBlunt>0.400</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.045</armorPenetrationSharp>
+				<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+				<power>16</power>
+				<cooldownTime>1.63</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.10</armorPenetrationSharp>
+				<armorPenetrationBlunt>3.20</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+				<power>1</power>
+				<cooldownTime>1.26</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.230</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

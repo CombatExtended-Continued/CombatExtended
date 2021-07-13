@@ -44,10 +44,11 @@
 			</li>	
 		
 			<!-- ========== Riot Armor =========== -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>40</Bulk>
+					<Bulk>100</Bulk>
+					<Mass>60</Mass>
 					<WornBulk>10</WornBulk>
 				</value>
 			</li>
@@ -55,7 +56,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/equippedStatOffsets</xpath>
 				<value>
-					<CarryWeight>5</CarryWeight>
+					<CarryWeight>80</CarryWeight>
 				</value>
 			</li>
 
@@ -71,20 +72,30 @@
 				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>28</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.75</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					<ArmorRating_Blunt>28</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_Judicator"]/costList/Foerum</xpath>
+				<value>
+					<Foerum>190</Foerum>
+					<DevilstrandCloth>30</DevilstrandCloth>
 				</value>
 			</li>
 
 			<!-- ========== Riot Helmet =========== -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/statBases/Mass</xpath>
 				<value>
+					<Mass>5</Mass>
 					<Bulk>5</Bulk>
 					<WornBulk>1</WornBulk>
 				</value>
@@ -94,13 +105,29 @@
 				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>26</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.70</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>37.15</ArmorRating_Blunt>
+					<ArmorRating_Blunt>26</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_JudicatorH"]/costList/Foerum</xpath>
+				<value>
+					<Foerum>70</Foerum>
+					<DevilstrandCloth>10</DevilstrandCloth>
 				</value>
 			</li>
 			
@@ -114,19 +141,20 @@
 			</li>
 		
 			<!-- ========== Marksman Armor =========== -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGear"]/statBases</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGear"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>20</Bulk>
-					<WornBulk>3</WornBulk>
+					<Mass>15</Mass>
+					<Bulk>40</Bulk>
+					<WornBulk>10</WornBulk>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGear"]/equippedStatOffsets</xpath>
 				<value>
-					<CarryWeight>5</CarryWeight>
-					<CarryBulk>4</CarryBulk>
+					<CarryWeight>20</CarryWeight>
+					<CarryBulk>15</CarryBulk>
 				</value>
 			</li>
 
@@ -141,14 +169,15 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGear"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>15</ArmorRating_Sharp>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.20</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGear"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					<ArmorRating_Blunt>5</ArmorRating_Blunt>
 				</value>
 			</li>
 
@@ -165,13 +194,21 @@
 				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGearH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.20</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGearH"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					<ArmorRating_Blunt>5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_MarksmanGearH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-0.75</SmokeSensitivity>
 				</value>
 			</li>
 			
@@ -186,18 +223,18 @@
 
 			<!-- ========== Unity Guard Armor =========== -->
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>10</Bulk>
+					<Bulk>15</Bulk>
 					<WornBulk>5</WornBulk>
+					<Mass>11</Mass>
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/equippedStatOffsets</xpath>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/equippedStatOffsets/MoveSpeed</xpath>
 				<value>
-					<CarryWeight>4</CarryWeight>
-					<CarryBulk>5</CarryBulk>
+					<CarryBulk>10</CarryBulk>
 				</value>
 			</li>
 
@@ -212,13 +249,14 @@
 				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.30</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_UGCuirass"]/statBases</xpath>
 				<value>
-					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+					<ArmorRating_Blunt>10</ArmorRating_Blunt>
 				</value>
 			</li>
 		
@@ -234,14 +272,15 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Apparel_UGHelmet"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					<ArmorRating_Sharp>11</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.30</ArmorRating_Electric>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_UGHelmet"]/statBases</xpath>
 				<value>
-					<ArmorRating_Blunt>10</ArmorRating_Blunt>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
 				</value>
 			</li>
 			

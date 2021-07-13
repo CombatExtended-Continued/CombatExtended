@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+            			<!-- Biotic -->			
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Biotic_Throw" or defName="RE_Biotic_Pull" ]/range</xpath>
+		<value>
+      		<range>34</range>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Biotic_Annihilation" or defName="RE_Biotic_Dominate" or defName="RE_Biotic_Singularity" or defName="RE_Biotic_Flare" ]/range</xpath>
+		<value>
+      		<range>40</range>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Biotic_Charge"]/range</xpath>
+		<value>
+      		<range>46</range>
+		</value>
+	</li>
+
+
+            			<!-- Spectre -->		
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="RE_SpectreArmor_AdrenalineRushHediff"]/stages/li[1]</xpath>
+		<value>
+			<statOffsets>
+				<Suppressability>-0.5</Suppressability>
+			</statOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="RE_SpectreArmor_CombatMasteryHediff"]/stages/li[1]/statFactors</xpath>
+		<value>
+		                <statOffsets>
+      				<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+      				<AimingAccuracy>0.4</AimingAccuracy>
+                		</statOffsets>
+		</value>
+	</li>
+
+            			<!-- Tech -->	
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "RE_Tech_CombatDroneTurret"]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.9</fillPercent>
+        </value>
+      </li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Tech_CryoBlast" or defName="RE_Tech_Incinerate"]/range</xpath>
+		<value>
+      		<range>36</range>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Tech_CombatDrone"]/range</xpath>
+		<value>
+      		<range>24</range>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/RimEffect.AbilityDef[defName="RE_Tech_HexShield" or defName="RE_Tech_Overload" or defName="RE_Tech_Sabotage"]/range</xpath>
+		<value>
+      		<range>26</range>
+		</value>
+	</li>
+
+	
+			</operations>
+		</match>
+	</Operation>
+</Patch>

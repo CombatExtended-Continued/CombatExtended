@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MorrowRim - Bloodmoon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+
+				<!-- ========== hunt Spear ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MorrowRim_MeleeWeapon_HuntersSpear"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>shaft</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.35</cooldownTime>
+								<chanceFactor>0.15</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>MorrowRim_StabHunters</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>1.41</cooldownTime>
+								<chanceFactor>1.00</chanceFactor>
+								<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MorrowRim_MeleeWeapon_HuntersSpear"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MorrowRim_MeleeWeapon_HuntersSpear"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.17</MeleeCritChance>
+							<MeleeParryChance>1.45</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- ========== Hunter Bow ========== -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>MorrowRim_Bow_Hunters</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.8</ShotSpread>
+						<SwayFactor>2</SwayFactor>
+						<Bulk>5.00</Bulk>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_HuntardArrow_Stone</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>32</range>
+						<soundCast>Bow_Recurve</soundCast>
+					</Properties>
+					<AmmoUser>
+						<ammoSet>AmmoSet_HuntardArrow</ammoSet>
+					</AmmoUser>
+					<FireModes />
+					<AllowWithRunAndGun>true</AllowWithRunAndGun>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MorrowRim_Bow_Hunters"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.6</cooldownTime>
+								<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
