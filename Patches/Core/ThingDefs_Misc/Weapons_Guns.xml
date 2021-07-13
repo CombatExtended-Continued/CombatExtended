@@ -1273,7 +1273,7 @@
     <defName>Gun_ThumpCannon</defName>
     <statBases>
       <Mass>300.00</Mass>
-      <RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>0.82</SwayFactor>
@@ -1283,20 +1283,20 @@
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
-      <warmupTime>4.3</warmupTime>
-      <range>86</range>
+      <warmupTime>3.3</warmupTime>
+      <range>42</range>
       <burstShotCount>1</burstShotCount>
       <soundCast>ThumpCannon_Fire</soundCast>
       <soundCastTail>GunTail_Heavy</soundCastTail>
       <muzzleFlashScale>14</muzzleFlashScale>
-      <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+      <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
       <minRange>4</minRange>
       <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
     </Properties>
     <AmmoUser>
       <magazineSize>1</magazineSize>
       <reloadTime>9.8</reloadTime>
-      <ammoSet>Ammo_164x284mmDemo</ammoSet>
+      <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
     </AmmoUser>
     <FireModes>
       <aiAimMode>AimedShot</aiAimMode>
@@ -1307,7 +1307,7 @@
   </Operation>
 
     <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[@Name="Gun_ThumpCannon"]/tools</xpath>
+    <xpath>Defs/ThingDef[defName="Gun_ThumpCannon"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
