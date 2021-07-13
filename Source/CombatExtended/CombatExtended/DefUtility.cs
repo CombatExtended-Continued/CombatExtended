@@ -13,6 +13,11 @@ namespace CombatExtended
         /// </summary>
         internal static FlagArray isVisibleLayerArray = new FlagArray(ushort.MaxValue);
 
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
+
         // <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
@@ -35,6 +40,14 @@ namespace CombatExtended
             // Process all defs for isMenuHiddenArray
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(t => t.HasModExtension<ThingDefExtensionCE>()))
                 ProcessThingDefExtensionCE(def);
+
+            // Process all defs for ammo to find AOE defs
+            foreach (AmmoSetDef def in DefDatabase<AmmoSetDef>.AllDefs)
+                ProcessAmmo(def);
+
+            // Process all weapons
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
+                ProcessWeapons(def);
         }
 
         /// <summary>
@@ -84,6 +97,16 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Return wether this ThingDef is an AOE weapon def
+        /// </summary>
+        /// <param name="def">Weapon def</param>
+        /// <returns>If this ThingDef is an AOE weapon</returns>
+        public static bool IsAOEWeapon(this ThingDef def)
+        {
+            return isAOEArray[def.index];
+        }
+
+        /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
         /// <param name="def">Apparel def</param>        
@@ -129,6 +152,30 @@ namespace CombatExtended
             ThingDefExtensionCE ext = def.GetModExtension<ThingDefExtensionCE>();
 
             isMenuHiddenArray[def.index] = ext.MenuHidden;
+        }
+
+        /// <summary>
+        /// Process and check if this ammoSet is for a AOE weapons
+        /// </summary>
+        /// <param name="def">AmmoSetDef</param>
+        private static void ProcessAmmo(AmmoSetDef def)
+        {
+            /*
+             * Check is it's a mortar projectile then check if detonateProjectile is not null
+             * This should cover most types of AOE ammo
+             */
+            isAOEArray[def.index] = def.isMortarAmmoSet || (def.ammoTypes?.Any(a => a.ammo?.detonateProjectile != null) ?? false);
+        }
+
+        /// <summary>
+        /// Process weapon by checking if any ammo used by it is AOE
+        /// </summary>
+        /// <param name="def"></param>
+        private static void ProcessWeapons(ThingDef def)
+        {
+            CompProperties_AmmoUser props = (CompProperties_AmmoUser)def.comps.First(c => c.compClass == typeof(CompAmmoUser));
+
+            isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
         }
     }
 }

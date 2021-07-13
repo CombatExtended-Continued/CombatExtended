@@ -458,6 +458,102 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Get all weapons a pawn has.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="weapons">Weapons</param>
+        /// <param name="rebuild">(Slow) wether to rebuild the cache</param>
+        /// <returns>If this pawn has a CompInventory or not</returns>
+        public static bool TryGetAllWeaponsInInventory(this Pawn pawn, out List<ThingWithComps> weapons, bool rebuildInvetory = false)
+        {
+            weapons = null;
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+            // check is this pawn has a CompInventory
+            if (compInventory == null)
+                return false;
+            if (rebuildInvetory)
+                compInventory.UpdateInventory();
+            // Add all weapons in the inventory
+            weapons = compInventory.weapons.ToList();
+            return true;
+        }
+
+        /// <summary>
+        /// THIS IS A VERY SLOW FUNCTION!! USE IT CAREFULY!
+        /// Try to find a random weapon in inventory that has ammo and is ready combat.
+        /// This will first check ranged weapons then melee weapons.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="weapon">out The random weapons (if no ranged weapons are found and includeMelee it will return a melee weapon)</param>
+        /// <param name="includeMelee">Return a random melee weapon if no ranged weapons found</param>
+        /// <param name="includeAOE">Include explosive weapons</param>
+        /// <returns>If a weapon is found</returns>
+        public static bool TryGetRandomUsableWeapon(this Pawn pawn, out ThingWithComps weapon, bool includeMelee = true, bool includeAOE = false, bool rebuildInvetory = false)
+        {
+            weapon = null;
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+
+            if (compInventory == null)
+                return false;
+            if (rebuildInvetory)
+                compInventory.UpdateInventory();
+            List<ThingWithComps> rangedGuns = compInventory.rangedWeaponList;
+            if (rangedGuns == null || rangedGuns.Count == 0)
+            {
+                if (!includeMelee)
+                    return false;
+                List<ThingWithComps> meleeWeapons = compInventory.meleeWeaponList;
+
+                if (meleeWeapons == null || meleeWeapons.Count == 0)
+                    return false;
+                weapon = meleeWeapons.RandomElement();
+                return true;
+            }
+            if (!Controller.settings.EnableAmmoSystem)
+            {
+                weapon = rangedGuns.RandomElement();
+                return true;
+            }
+            foreach (ThingWithComps gun in rangedGuns.InRandomOrder())
+            {
+                CompAmmoUser compAmmo = gun.GetComp<CompAmmoUser>();
+                if (compAmmo == null || compAmmo.IsEquippedGun)
+                    continue;
+                // check if this is an explosive weapon 
+                if (!includeAOE && (compAmmo.Props?.ammoSet?.ammoTypes?.RandomElement().ammo?.detonateProjectile != null))
+                    continue;
+                // check readiness
+                if (compAmmo.CanBeFiredNow || compAmmo.TryFindAmmoInInventory(out Thing _))
+                {
+                    weapon = gun;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+
+        #region Weapons
+
+        /// <summary>
+        /// Used to get or check if this pawn has a CE (ammo enabled weapon) weapon equiped.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="gun">out the Primary ammo enabled weapon/equipment</param>
+        /// <returns>If the primary equipment is ammo enabled weapon has been found</returns>
+        public static bool TryGetPrimaryCEWeapon(this Pawn pawn, out Thing gun)
+        {
+            gun = pawn.equipment?.Primary;
+            CompAmmoUser ammoUser = gun?.TryGetComp<CompAmmoUser>() ?? null;
+
+            if (ammoUser == null || !ammoUser.HasMagazine || ammoUser.CurMagCount > 0)
+                return false; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
+            return true;
+        }
+
         #endregion
     }
 }

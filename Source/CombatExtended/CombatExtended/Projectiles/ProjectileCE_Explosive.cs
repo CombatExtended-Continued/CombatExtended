@@ -23,7 +23,7 @@ namespace CombatExtended
                 this.ticksToDetonation--;
                 if (this.ticksToDetonation <= 0)
                 {
-					//Explosions are all handled in base
+                    //Explosions are all handled in base
                     base.Impact(null);
                 }
             }
@@ -40,7 +40,7 @@ namespace CombatExtended
             }
             if (def.projectile.explosionDelay == 0)
             {
-				//Explosions are all handled in base
+                //Explosions are all handled in base
                 base.Impact(null);
                 return;
             }
@@ -48,25 +48,5 @@ namespace CombatExtended
             ticksToDetonation = def.projectile.explosionDelay;
             GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
         }
-            //This code was disabled because it didn't run under previous circumstances. Could be enabled if necessary
-            /*
-            if (map != null && base.ExactPosition.ToIntVec3().IsValid)
-            {
-                ThrowBigExplode(base.ExactPosition + Gen.RandomHorizontalVector(def.projectile.explosionRadius * 0.5f), base.Map, def.projectile.explosionRadius * 0.4f);
-            }
-            */
-        /*public static void ThrowBigExplode(Vector3 loc, Map map, float size)
-          {
-              if (!loc.ShouldSpawnMotesAt(map))
-              {
-                  return;
-              }
-              MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(ThingDef.Named("Mote_BigExplode"), null);
-              moteThrown.Scale = Rand.Range(5f, 6f) * size;
-              moteThrown.exactRotation = Rand.Range(0f, 0f);
-              moteThrown.exactPosition = loc;
-              moteThrown.SetVelocity((float)Rand.Range(6, 8), Rand.Range(0.002f, 0.003f));
-              GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
-          }*/
     }
 }
