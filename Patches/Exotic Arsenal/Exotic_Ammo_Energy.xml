@@ -182,8 +182,7 @@
 			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 				<damageAmountBase>12</damageAmountBase>
 				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveExpandPerStackcount>0.5</explosiveExpandPerStackcount>
-				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveRadius>0.4</explosiveRadius>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			  </li>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -355,7 +354,7 @@
       		<armorPenetrationBlunt>30</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
-			  	<def>Burn_Secondary</def>
+			  	<def>Flame_Secondary</def>
 			  	<amount>5</amount>
 				</li>
 				<li>
@@ -368,7 +367,7 @@
 	</ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlashfireBullet">
-		<defName>Bullet_Slashfire_HE</defName>
+		<defName>Bullet_Slashfire_HI</defName>
 		<label>Slashfire bullet</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
@@ -376,7 +375,7 @@
       		<armorPenetrationBlunt>30</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
-			  	<def>Burn_Secondary</def>
+			  	<def>Flame_Secondary</def>
 			  	<amount>8</amount>
 				</li>
 				<li>
@@ -420,7 +419,7 @@
 	</ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGlacialSFBullet">
-		<defName>Bullet_GlacialSF_HE</defName>
+		<defName>Bullet_GlacialSF_HI</defName>
 		<label>Slashfire bullet</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
@@ -461,7 +460,7 @@
 	</ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasecelsiusBullet">
-		<defName>Bullet_celsius_HE</defName>
+		<defName>Bullet_celsius_HI</defName>
 		<label>stasis blast</label>
     <graphicData>
       <texPath>Things/Projectile/Celsius2</texPath>
@@ -533,7 +532,7 @@
 		</projectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePaladinSFBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePaladinBullet">
 		<defName>Bullet_Paladin_HI</defName>
 		<label>mox8 paladin javelin shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -619,7 +618,7 @@
     </comps>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePaladinSFBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseUnleashedBullet">
 		<defName>Bullet_Unleashed_HI</defName>
 		<label>accelerated shot</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -638,9 +637,6 @@
     </comps>
 	</ThingDef>
 
-
-		</value>
-		</li>
 	<!-- ================== Ammo make ================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_Exotic_Energy</defName>
@@ -651,7 +647,7 @@
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Plasteel</li>
 					</thingDefs>
 				</filter>
 				<count>8</count>
@@ -756,6 +752,8 @@
 			<li>Exotic_Bench</li>
 		</recipeUsers>
 	</RecipeDef>
+		</value>
+		</li>
 
 		</operations>
 		</match>
