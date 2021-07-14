@@ -180,20 +180,19 @@ namespace CombatExtended.HarmonyCE
             [HarmonyPriority(Priority.Last)]
             internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
-                Type[] nestedTypes = typeof(PawnRenderer).GetNestedTypes(AccessTools.all);
-                Type displayType = nestedTypes.First();
-
+                Type displayType = typeof(PawnRenderer).GetNestedTypes(AccessTools.all).First();
                 foreach (var code in instructions)
                 {
                     /* 
                      * 1. Insert calls for head renderer
                      * 
-                     * Ldloc_4 is the bool used to controll the rendering of headstumps
+                     * Ldloc_2 is the bool used to controll the rendering of headstumps
                      *  
-                     * Look for Ldloc_4 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
+                     * Look for Ldloc_2 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
                      * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
                      */
-                    if (code.opcode == OpCodes.Ldloc_S && code.operand is LocalBuilder builder && builder.LocalIndex == 4)
+
+                    if (code.opcode == OpCodes.Ldloc_2)
                     {
                         // Insert new calls for headgear renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels }; // PawnRenderer renderer
@@ -219,7 +218,7 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "flags"));
 
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 4);  // ref bool hideHair                        
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool hideHair                        
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
                         Log.Message("Patched hair");
