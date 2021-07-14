@@ -219,6 +219,7 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
 Rim-Hivers!	|
+Rim Flood	|
 Rim-Shek	|
 RimSec Security |
 Rimsenal - Core |

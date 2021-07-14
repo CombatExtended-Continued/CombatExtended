@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim Flood</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Flood Combat-->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="CombatformG"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>1</min>
+								<max>2</max>
+							</primaryMagazineCount>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
