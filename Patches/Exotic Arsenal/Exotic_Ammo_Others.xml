@@ -1,0 +1,603 @@
+﻿<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Exotic Arsenal</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_5mmMono</defName>
+		<label>Monomolecular shards</label>
+		<ammoTypes>
+			<Ammo_5mmMono_Steel>Bullet_5mm_MonoSteel</Ammo_5mmMono_Steel>
+			<Ammo_5mmMono_Plasteel>Bullet_5mm_MonoPlasteel</Ammo_5mmMono_Plasteel>
+			<Ammo_5mmMono_Uranium>Bullet_5mm_MonoUranium</Ammo_5mmMono_Uranium>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Judgment</defName>
+		<label>8 gauge cluster shells</label>
+		<ammoTypes>
+			<Ammo_Judgment_Buck>Bullet_Judgment_CE</Ammo_Judgment_Buck>
+			<Ammo_Judgment_HE>Bullet_Judgment_HE</Ammo_Judgment_HE>
+			<Ammo_Judgment_Mayhem>Bullet_Judgment_Mayhem</Ammo_Judgment_Mayhem>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+  	<!-- ==================== AmmoClass========================== -->
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Monoshard</defName>
+    	<label>Monosteel</label>
+    	<labelShort>Monosteel</labelShort>
+    	<description>Wickedly sharp and resilient monomolecular bullets.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Monoshard2</defName>
+    	<label>MonoPlasteel</label>
+    	<labelShort>MonoPlasteel</labelShort>
+    	<description>Wickedly sharp and resilient monomolecular bullets. This one is made out of plasteel.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Monoshard3</defName>
+    	<label>MonoUranium</label>
+    	<labelShort>MonoUranium</labelShort>
+    	<description>Wickedly sharp and resilient monomolecular bullets. This one features a heavy depleted uranium core.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Buck</defName>
+    	<label>High Explosive Buckshot</label>
+    	<labelShort>HE buckshot</labelShort>
+    	<description>Large scattershot pellets tipped with a small explosive charge.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Cluster</defName>
+    	<label>Cluster shot</label>
+    	<labelShort>Cluster</labelShort>
+    	<description>You should test fire it inside your base and see what it does.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+  	<CombatExtended.AmmoCategoryDef>
+    	<defName>Exotic_Mayhem</defName>
+    	<label>Mayhem shot</label>
+    	<labelShort>Mayhem</labelShort>
+    	<description>Fuck around and find out.</description>
+  	</CombatExtended.AmmoCategoryDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="5mmMonoBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>This high-velocity monomolecular shard is only fired by exotic glitterworld weapons.</description>
+		<statBases>
+			<Mass>0.007</Mass>
+			<Bulk>0.007</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>Exotic_Ars</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="5mmMonoBase">
+		<defName>Ammo_5mmMono_Steel</defName>
+		<label>5mm Monoshard</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.08</MarketValue>
+		</statBases>
+		<ammoClass>Exotic_Monoshard</ammoClass>
+		<generateAllowChance>0.1</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="5mmMonoBase">
+		<defName>Ammo_5mmMono_Plasteel</defName>
+		<label>5mm Monoshard (plasteel)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.18</MarketValue>
+		</statBases>
+		<ammoClass>Exotic_Monoshard2</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="5mmMonoBase">
+		<defName>Ammo_5mmMono_Uranium</defName>
+		<label>5mm Monoshard (uranium)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.012</Mass>
+			<MarketValue>0.18</MarketValue>
+		</statBases>
+		<ammoClass>Exotic_Monoshard3</ammoClass>
+		<generateAllowChance>0</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="JudgmentBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Exotic shotgunshell, contains multiple high explosive submunition within.</description>
+		<statBases>
+			<Mass>0.05</Mass>
+			<Bulk>0.1</Bulk>
+		</statBases>
+		<thingCategories>
+			<li>Exotic_Ars</li>
+		</thingCategories>
+    		<stackLimit>1000</stackLimit>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_Judgment_Buck</defName>
+    <label>8 gauge Judgment shell (APHE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>Exotic_Buck</ammoClass>
+    <generateAllowChance>0.1</generateAllowChance>
+    <cookOffProjectile>Bullet_Judgment_Buck</cookOffProjectile>
+  </ThingDef>
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_Judgment_Cluster</defName>
+    <label>8 gauge Judgment shell (Cluster HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.35</MarketValue>
+    </statBases>
+    <ammoClass>Exotic_Cluster</ammoClass>
+    <generateAllowChance>0.05</generateAllowChance>
+    <cookOffProjectile>Bullet_Judgment_Cluster</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8GaugeBase">
+    <defName>Ammo_Judgment_Mayhem</defName>
+    <label>8 gauge Judgment shell (Mayhem)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.5</MarketValue>
+    </statBases>
+    <ammoClass>Exotic_Mayhem</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+    <cookOffProjectile>Bullet_Judgment_Mayhem</cookOffProjectile>
+  </ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFragment">
+		<defName>Mayhem_Bomblet</defName>
+		<label>bomblet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Sling/Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Fragment</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>10</speed>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>10</armorPenetrationBlunt>
+			<gravityFactor>15</gravityFactor>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>38</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.9</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  <Fragment_Small>9</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base5mmMonoBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Tyrant</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>200</speed>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base5mmMonoBullet">
+		<defName>Bullet_5mm_MonoSteel</defName>
+		<label>5mm monoshard</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>31.980</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base5mmMonoBullet">
+		<defName>Bullet_5mm_MonoPlasteel</defName>
+		<label>5mm monoshard(plasteel)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>300</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>40</armorPenetrationSharp>
+			<armorPenetrationBlunt>24.80</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base5mmMonoBullet">
+		<defName>Bullet_5mm_MonoUranium</defName>
+		<label>5mm monoshard (uranium)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>260</speed>
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>30</armorPenetrationSharp>
+			<armorPenetrationBlunt>51.980</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_Judgment_CE</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>9</damageAmountBase>
+      <pelletCount>8</pelletCount>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>6.52</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>4</amount>
+				</li>
+		  </secondaryDamage>
+      <spreadMult>17.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_Judgment_HE</defName>
+    <label>Cluster</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>3</damageAmountBase>
+      <pelletCount>7</pelletCount>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>6.52</armorPenetrationBlunt>
+      <spreadMult>36.6</spreadMult>
+    </projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>30</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.9</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  	<Fragment_Small>1</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+    <defName>Bullet_Judgment_Mayhem</defName>
+    <label>Mayhem</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>7.52</armorPenetrationBlunt>
+     <speed>24</speed>
+    </projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>10</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.9</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+			  	<Mayhem_Bomblet>7</Mayhem_Bomblet>
+			</fragments>
+		  </li>
+		</comps>
+  </ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_5mmMono_Steel</defName>
+		<label>make 5mm Monoshard x500</label>
+		<description>Craft 500 5mm Monoshard.</description>
+		<jobString>Making 5mm Monoshard.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_5mmMono_Steel>500</Ammo_5mmMono_Steel>
+		</products>
+		<workAmount>2500</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_5mmMono_Plasteel</defName>
+		<label>make 5mm Monoshard (plasteel) x500</label>
+		<description>Craft 5mm Monoshard (plasteel).</description>
+		<jobString>Making 5mm Monoshard (plasteel).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_5mmMono_Plasteel>500</Ammo_5mmMono_Plasteel>
+		</products>
+		<workAmount>5000</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_5mmMono_Uranium</defName>
+		<label>make 5mm monoshard (uranium) x500</label>
+		<description>Craft 5mm monoshard (uranium).</description>
+		<jobString>Making 5mm monoshard (uranium).</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_5mmMono_Uranium>500</Ammo_5mmMono_Uranium>
+		</products>
+		<workAmount>5000</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<!-- ==================== Shotty Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Judgment_Buck</defName>
+		<label>make APHE buckshot x100</label>
+		<description>Craft 100 APHE buckshot.</description>
+		<jobString>Making APHE buckshot.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX </li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Judgment_Buck>100</Ammo_Judgment_Buck>
+		</products>
+		<workAmount>2500</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Judgment_HE</defName>
+		<label>make HE cluster shot x100</label>
+		<description>Craft 50 HE cluster shot.</description>
+		<jobString>Making HE cluster shot.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX </li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Judgment_HE>50</Ammo_Judgment_HE>
+		</products>
+		<workAmount>5000</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Judgment_Mayhem</defName>
+		<label>make Mayhem Shot x50</label>
+		<description>Craft 50 Mayhem Shot.</description>
+		<jobString>Making Mayhem Shot.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>15</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>9</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>7</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX </li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Judgment_Mayhem>50</Ammo_Judgment_Mayhem>
+		</products>
+		<workAmount>7500</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
