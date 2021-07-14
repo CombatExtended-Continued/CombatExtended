@@ -124,7 +124,6 @@ namespace CombatExtended
                         startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
                         return startingTicksToImpactInt;
                     }
-
                     startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
                 }
                 return startingTicksToImpactInt;
@@ -507,19 +506,13 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-
+            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
             Launch(launcher, origin, equipment);
-            if (shotSpeed > 0f)
-            {
-                this.shotSpeed = shotSpeed;
-            }
-
-            ticksToImpact = IntTicksToImpact;
+            this.ticksToImpact = IntTicksToImpact;
         }
 
         public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
-            shotSpeed = def.projectile.speed;
             this.launcher = launcher;
             this.origin = origin;
             //For explosives/bullets, equipmentDef is important
@@ -862,12 +855,10 @@ namespace CombatExtended
             }
             if (CheckForCollisionBetween())
             {
-
                 return;
             }
             Position = ExactPosition.ToIntVec3();
-            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
-                def.projectile.soundImpactAnticipate != null)
+            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }

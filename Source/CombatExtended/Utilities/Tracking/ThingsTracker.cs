@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -14,6 +15,7 @@ namespace CombatExtended.Utilities
         private static Map[] maps = new Map[20];
         private static ThingsTracker[] comps = new ThingsTracker[20];
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ThingsTracker GetTracker(Map map)
         {
             return GetCachedTracker(map, fallbackMode: false);
@@ -133,8 +135,10 @@ namespace CombatExtended.Utilities
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range) => ThingsInRangeOf(thing.def, thing.Position, range);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> ThingsInRangeOf(TrackedThingsRequestCategory category, IntVec3 cell, float range)
         {
             ThingsTrackingModel tracker = GetModelFor(category);
@@ -151,6 +155,8 @@ namespace CombatExtended.Utilities
 
         public void Register(Thing thing)
         {
+            if (!thing.Position.IsValid || !thing.Position.InBounds(map))
+                return;
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
                 trackers[i]?.Register(thing);
@@ -160,9 +166,10 @@ namespace CombatExtended.Utilities
         {
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
-                trackers[i]?.Remove(thing);
+                trackers[i]?.DeRegister(thing);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ThingsTrackingModel[] GetModelsFor(Thing thing) => GetModelsFor(thing.def);
 
         public ThingsTrackingModel[] GetModelsFor(ThingDef def)
@@ -174,6 +181,7 @@ namespace CombatExtended.Utilities
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ThingsTrackingModel GetModelFor(TrackedThingsRequestCategory category)
         {
             switch (category)
@@ -193,8 +201,10 @@ namespace CombatExtended.Utilities
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsValidTrackableThing(Thing thing) => IsValidTrackableDef(thing.def);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsValidTrackableDef(ThingDef def) => validDefs[def.index];
 
         public void Notify_Spawned(Thing thing)

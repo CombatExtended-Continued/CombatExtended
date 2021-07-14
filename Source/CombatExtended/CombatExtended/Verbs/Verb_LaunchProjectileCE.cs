@@ -647,8 +647,7 @@ namespace CombatExtended
                                       shotRotation,
                                       ShotHeight,
                                       ShotSpeed,
-                                      EquipmentSource
-                                      );
+                                      EquipmentSource);
                 }
                 pelletMechanicsOnly = true;
             }
@@ -701,6 +700,8 @@ namespace CombatExtended
          * 
          * -NIA
          */
+
+        private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
         public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
