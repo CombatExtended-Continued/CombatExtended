@@ -7,153 +7,154 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 		    <operations>
-    <!--===== Melee Tools =====-->
-	<li Class="PatchOperationReplace">
+
+		<!--===== Melee Tools =====-->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+			defName="Gun_LightSMG" or
+			defName="Gun_LightAutopistol" or
+			defName="Gun_HeavyAutopistol" or 
+			defName="Gun_VarmitPistol" or
+			defName="Gun_AdvancedRevolver" or
+			defName="Gun_Snubby" or
+			defName="Gun_Magnum" or
+			defName="Gun_SawnoffPumpShotgun" or
+			defName="Gun_BreacherShotgun" or
+			defName="Gun_BreacherShotgunSemi"
+			]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+				<label>grip</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<chanceFactor>1.5</chanceFactor>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>muzzle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.54</cooldownTime>
+				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
 		<xpath>/Defs/ThingDef[
-		defName="Gun_LightSMG" or
-		defName="Gun_LightAutopistol" or
-		defName="Gun_HeavyAutopistol" or 
-		defName="Gun_VarmitPistol" or
-		defName="Gun_AdvancedRevolver" or
-		defName="Gun_Snubby" or
-		defName="Gun_Magnum" or
-		defName="Gun_SawnoffPumpShotgun" or
-		defName="Gun_BreacherShotgun" or
-		defName="Gun_BreacherShotgunSemi"
+			defName="Gun_ServiceRifle" or
+			defName="Gun_BattleRifle" or
+			defName="Gun_BattleDMR" or 
+			defName="Gun_HeavySniperRifle" or
+			defName="Gun_VarmitRifle" or
+			defName="Gun_DMR" or
+			defName="Gun_CombatShotgun" or 
+			defName="Gun_CrudeRifle" or
+			defName="Gun_EBR" or
+			defName="Gun_AdvancedShotgun" or
+			defName="Gun_AdvancedAssaultRifle" or 
+			defName="Gun_AutomaticShotgun" or
+			defName="Gun_ServiceSAW" or
+			defName="Gun_PDW" or
+			defName="Gun_ServiceDMR" or
+			defName="Gun_ServiceCarbine" or 
+			defName="Gun_SMG" or
+			defName="Gun_BattleCarbine" or
+			defName="Gun_CrudeSMG" or
+			defName="Gun_Carbine" or
+			defName="Gun_AdvancedPDW" or
+			defName="Gun_HMG" or
+			defName="Gun_SAW" or
+			defName="Gun_LightMinigun" or
+			defName="Gun_CrudeLMG" or
+			defName="Gun_ServiceHMG"
 		]/tools</xpath>
 		<value>
 		<tools>
 			<li Class="CombatExtended.ToolCE">
-			<label>grip</label>
+			<label>stock</label>
 			<capacities>
 				<li>Blunt</li>
 			</capacities>
-			<power>2</power>
-			<cooldownTime>1.54</cooldownTime>
+			<power>8</power>
+			<cooldownTime>1.55</cooldownTime>
 			<chanceFactor>1.5</chanceFactor>
-			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-			<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+			<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>5</power>
+			<cooldownTime>2.02</cooldownTime>
+			<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 			</li>
 			<li Class="CombatExtended.ToolCE">
 			<label>muzzle</label>
 			<capacities>
 				<li>Poke</li>
 			</capacities>
-			<power>2</power>
-			<cooldownTime>1.54</cooldownTime>
-			<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+			<power>8</power>
+			<cooldownTime>1.55</cooldownTime>
+			<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
 			<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 			</li>
 		</tools>
 		</value>
-  	</li>
+	</li>
 
-    <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[
-		defName="Gun_ServiceRifle" or
-		defName="Gun_BattleRifle" or
-		defName="Gun_BattleDMR" or 
-		defName="Gun_HeavySniperRifle" or
-		defName="Gun_VarmitRifle" or
-		defName="Gun_DMR" or
-		defName="Gun_CombatShotgun" or 
-		defName="Gun_CrudeRifle" or
-		defName="Gun_EBR" or
-		defName="Gun_AdvancedShotgun" or
-		defName="Gun_AdvancedAssaultRifle" or 
-		defName="Gun_AutomaticShotgun" or
-		defName="Gun_ServiceSAW" or
-		defName="Gun_PDW" or
-		defName="Gun_ServiceDMR" or
-		defName="Gun_ServiceCarbine" or 
-		defName="Gun_SMG" or
-		defName="Gun_BattleCarbine" or
-		defName="Gun_CrudeSMG" or
-		defName="Gun_Carbine" or
-		defName="Gun_AdvancedPDW" or
-		defName="Gun_HMG" or
-		defName="Gun_SAW" or
-		defName="Gun_LightMinigun" or
-		defName="Gun_CrudeLMG" or
-		defName="Gun_ServiceHMG"
-	]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>stock</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>8</power>
-          <cooldownTime>1.55</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>5</power>
-          <cooldownTime>2.02</cooldownTime>
-          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>8</power>
-          <cooldownTime>1.55</cooldownTime>
-          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
-
-<!--===== Bayonet =====-->
-<li Class="PatchOperationReplace">
-  <xpath>/Defs/ThingDef[defName="Gun_CarbineBayonet" or defName="Gun_ServiceCarbineBayonet" or defName="Gun_CrudeCarbine"]/tools</xpath>
-    <value>
-    <tools>
-	  <li Class="CombatExtended.ToolCE">
-	    <label>Blade</label>
-        <capacities>
-		  <li>Stab</li>
-		</capacities>
-		<power>8</power>
-		<cooldownTime>1.18</cooldownTime>
-		<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
-		<armorPenetrationSharp>0.54</armorPenetrationSharp>
-		<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-	   </li>
-	   <li Class="CombatExtended.ToolCE">
-	      <label>stock</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>8</power>
-          <cooldownTime>1.55</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+	<!--===== Bayonet =====-->
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/ThingDef[defName="Gun_CarbineBayonet" or defName="Gun_ServiceCarbineBayonet" or defName="Gun_CrudeCarbine"]/tools</xpath>
+		<value>
+		<tools>
+		<li Class="CombatExtended.ToolCE">
+			<label>Blade</label>
+			<capacities>
+			<li>Stab</li>
+			</capacities>
+			<power>8</power>
+			<cooldownTime>1.18</cooldownTime>
+			<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+			<armorPenetrationSharp>0.54</armorPenetrationSharp>
+			<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 		</li>
-		 <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>4</power>
-          <cooldownTime>2.02</cooldownTime>
-          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-	</tools>
-	</value>
-</li>
+		<li Class="CombatExtended.ToolCE">
+			<label>stock</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>8</power>
+			<cooldownTime>1.55</cooldownTime>
+			<chanceFactor>1.5</chanceFactor>
+			<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>barrel</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>4</power>
+			<cooldownTime>2.02</cooldownTime>
+			<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+			<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
 
 	<!--== Combat Extended duplicate removal on mods part ==-->
 	<li Class="PatchOperationRemove">
@@ -169,7 +170,7 @@
      <xpath>/Defs/ThingDef[defName="Gun_DartRifle"]</xpath>
     </li>
 
-	<!--==== Weapons ====-->
+	<!--==== Varmit Rifle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_VarmitRifle</defName>
 	<statBases>
@@ -205,6 +206,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Varmit Pistol ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_VarmitPistol</defName>
 	<statBases>
@@ -242,6 +244,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== .38 Snubby Revolver ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_Snubby</defName>
 	<statBases>
@@ -281,6 +284,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== SMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_SMG</defName>
 	<statBases>
@@ -320,6 +324,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== SAW ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceSAW</defName>
 	<statBases>
@@ -360,6 +365,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Service Rifle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceRifle</defName>
 	<statBases>
@@ -399,6 +405,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Service HMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceHMG</defName>
 	<statBases>
@@ -439,6 +446,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Service DMR ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceDMR</defName>
 	<statBases>
@@ -474,6 +482,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Service Carbine w/ Bayonet ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceCarbineBayonet</defName>
 	<statBases>
@@ -513,6 +522,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Service Carbine ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_ServiceCarbine</defName>
 	  <statBases>
@@ -552,6 +562,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== SAW ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_SAW</defName>
 	 <statBases>
@@ -591,6 +602,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== PDW ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_PDW</defName>
 	<statBases>
@@ -630,6 +642,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== S&W 500 ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_Magnum</defName>
 	 <statBases>
@@ -664,6 +677,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Light SMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_LightSMG</defName>
 	 <statBases>
@@ -704,6 +718,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Light Minigun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_LightMinigun</defName>
 	<statBases>
@@ -743,6 +758,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== HMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_HMG</defName>
 	 <statBases>
@@ -783,6 +799,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== AWP ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_HeavySniperRifle</defName>
 	 <statBases>
@@ -818,6 +835,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Desert Eagle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_HeavyAutopistol</defName>
 	<statBases>
@@ -852,6 +870,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== EBR ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_EBR</defName>
 	<statBases>
@@ -887,6 +906,7 @@
 	<researchPrerequisite>PrecisionRifling</researchPrerequisite>
 	</li>
 
+	<!--==== Crude SMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CrudeSMG</defName>
 	<statBases>
@@ -926,6 +946,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== DMR ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_DMR</defName>
 	 <statBases>
@@ -960,6 +981,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Crude Rifle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CrudeRifle</defName>
 	 <statBases>
@@ -995,6 +1017,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Crude LMG ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CrudeLMG</defName>
 	<statBases>
@@ -1035,6 +1058,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Crude Carbine ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CrudeCarbine</defName>
 	 <statBases>
@@ -1067,6 +1091,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Combat Shotgun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CombatShotgun</defName>
 	 <statBases>
@@ -1100,6 +1125,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Carbine w/ bayonet ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_CarbineBayonet</defName>
 	 <statBases>
@@ -1139,6 +1165,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Carbine ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	 <defName>Gun_Carbine</defName>
 	 <statBases>
@@ -1178,6 +1205,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Shorty Shotgun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_SawnoffPumpShotgun</defName>
 	 <statBases>
@@ -1213,6 +1241,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Light Autopistol ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 	<defName>Gun_LightAutopistol</defName>
 	 <statBases>
@@ -1249,6 +1278,7 @@
 	</weaponTags>
 	</li>
 
+	<!--==== Breaching Shotgun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BreacherShotgunSemi</defName>
     <statBases>
@@ -1282,6 +1312,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Battle Rifle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BattleRifle</defName>
     <statBases>
@@ -1321,6 +1352,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Breacher Shotgun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BreacherShotgun</defName>
     <statBases>
@@ -1355,6 +1387,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== DMR ====-->
     <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BattleDMR</defName>
     <statBases>
@@ -1389,6 +1422,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Battle Carbine ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BattleCarbine</defName>
     <statBases>
@@ -1428,6 +1462,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Auto Shotgun ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_AutomaticShotgun</defName>
     <statBases>
@@ -1461,6 +1496,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Advanced Shotgun ====-->
     <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_AdvancedShotgun</defName>
     <statBases>
@@ -1499,6 +1535,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Advanced Revolver ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_AdvancedRevolver</defName>
     <statBases>
@@ -1535,6 +1572,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Advanced PDW ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_AdvancedPDW</defName>
     <statBases>
@@ -1575,6 +1613,7 @@
     </weaponTags>
 	</li>
 
+	<!--==== Advanced Assault Rifle ====-->
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_AdvancedAssaultRifle</defName>
     <statBases>
@@ -1614,13 +1653,14 @@
     </weaponTags>
 	</li>
 
-<!--==== CE removes multibarrel research ====-->
+	<!--==== CE removes multibarrel research ====-->
     <li Class="PatchOperationReplace">
 	  <xpath>/Defs/ThingDef[defName="Gun_LightMinigun"]/recipeMaker/researchPrerequisite</xpath>
-	  <value>
+	  	<value>
 	      <researchPrerequisite>AdvancedFabrication</researchPrerequisite>
-	     </value>
-		 </li>
+		</value>
+	</li>
+	
 	  </operations>
 	 </match>
 	</Operation>
