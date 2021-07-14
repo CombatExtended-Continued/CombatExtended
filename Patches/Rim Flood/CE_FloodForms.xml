@@ -8,7 +8,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			<li Class="PatchOperationReplace">
+			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[@Name="BaseFlood"]/statBases</xpath>
 				<value>
 					<SmokeSensitivity>0.05</SmokeSensitivity>
@@ -159,13 +159,11 @@
 		</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="InfestForm"]</xpath>
+				<xpath>/Defs/ThingDef[defName="InfestForm"]/statBases</xpath>
 				<value>
-					<statBases>
 					<MeleeDodgeChance>0.5</MeleeDodgeChance>
 					<MeleeCritChance>0.1</MeleeCritChance>
 					<MeleeParryChance>0.1</MeleeParryChance>
-					</statBases>
 				</value>
 			</li>
 
