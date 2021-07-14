@@ -155,6 +155,7 @@ Leeani Playable Race	|
 Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
+Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
@@ -249,6 +250,7 @@ The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
+Thog's Guns - More Brukka Pack  |
 TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |
