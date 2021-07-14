@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using CombatExtended.Utilities;
 using HarmonyLib;
@@ -27,6 +28,7 @@ namespace CombatExtended.HarmonyCE
     }
 
     [HarmonyPatch(typeof(Thing), nameof(Thing.Position), MethodType.Setter)]
+    [HarmonyPriority(Priority.First)]
     public class Harmony_Thing_Position
     {
         private static FieldInfo fPosition = AccessTools.Field(typeof(Thing), "positionInt");
@@ -102,9 +104,18 @@ namespace CombatExtended.HarmonyCE
         }
     }
 
-    [HarmonyPatch(typeof(Thing), nameof(Thing.DeSpawn))]
+    [HarmonyPatch]
     public class Harmony_Thing_DeSpawn
     {
+        public static IEnumerable<MethodBase> TargetMethods()
+        {
+            yield return AccessTools.Method(typeof(Thing), nameof(Thing.DeSpawn));
+            yield return AccessTools.Method(typeof(Thing), nameof(Thing.ForceSetStateToUnspawned));
+            yield return AccessTools.Method(typeof(Thing), nameof(Thing.DecrementMapIndex));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [HarmonyPriority(Priority.First)]
         public static void Prefix(Thing __instance)
         {
             ThingsTracker.GetTracker(__instance.Map)?.Notify_DeSpawned(__instance);
@@ -114,6 +125,8 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(Thing), nameof(Thing.SpawnSetup))]
     public class Harmony_Thing_SpawnSetup
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [HarmonyPriority(Priority.First)]
         public static void Postfix(Thing __instance)
         {
             ThingsTracker.GetTracker(__instance.Map)?.Notify_Spawned(__instance);

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -10,6 +11,7 @@ namespace CombatExtended.Utilities
 {
     public static class GenClosest
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ThingsTracker GetThingTracker(this Map map)
         {
             return ThingsTracker.GetTracker(map);
