@@ -18,7 +18,7 @@ namespace CombatExtended.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ThingsTracker GetTracker(Map map)
         {
-            return GetCachedTracker(map, fallbackMode: false);
+            return map != null ? GetCachedTracker(map, fallbackMode: false) : null;
         }
 
         private static ThingsTracker GetCachedTracker(Map map, bool fallbackMode = false)
