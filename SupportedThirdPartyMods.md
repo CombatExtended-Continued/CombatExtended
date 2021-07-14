@@ -100,6 +100,7 @@ Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Mountain Animals |
+Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
 Expanded Patchleather	|
