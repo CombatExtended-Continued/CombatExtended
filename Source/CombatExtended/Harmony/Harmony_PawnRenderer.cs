@@ -161,38 +161,68 @@ namespace CombatExtended.HarmonyCE
                 return (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) });
             }
 
+            /// <summary>
+            /// Name of the compiler generated class containing from PawnRenderer.DrawHeadHair()
+            /// 0. headfacing
+            /// 1. bodyfacing
+            /// 2. onheadloc
+            /// 3. quat
+            /// 3. flags
+            /// 4. rootloc
+            /// 5. headoffset
+            /// </summary>
+            //private const string displayClassName = "DisplayClass39";
+
             /*
              * For VFE vikings compatiblity 
              * Required for better compatiblity 
              */
             [HarmonyPriority(Priority.Last)]
-            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
+                Type[] nestedTypes = typeof(PawnRenderer).GetNestedTypes(AccessTools.all);
+                Type displayType = nestedTypes.First();
+
                 foreach (var code in instructions)
                 {
                     /* 
                      * 1. Insert calls for head renderer
                      * 
-                     * Ldloc_3 is the bool used to controll the rendering of headstumps
+                     * Ldloc_4 is the bool used to controll the rendering of headstumps
                      *  
-                     * Look for Ldloc_3 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
+                     * Look for Ldloc_4 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
                      * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
                      */
-                    if (code.opcode == OpCodes.Ldloc_3)
+                    if (code.opcode == OpCodes.Ldloc_S && code.operand is LocalBuilder builder && builder.LocalIndex == 4)
                     {
                         // Insert new calls for headgear renderer
-                        yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels };  // PawnRenderer renderer
-                        yield return new CodeInstruction(OpCodes.Ldarg_0);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn")); // render.pawn 
-                        yield return new CodeInstruction(OpCodes.Ldarg_1);                           // Vector3 rootLoc
-                        yield return new CodeInstruction(OpCodes.Ldloc_0);                           // Vector3 headLoc
-                        yield return new CodeInstruction(OpCodes.Ldarg_2);                           // Vector3 headOffset
-                        yield return new CodeInstruction(OpCodes.Ldarg, 4);                          // Rot4 bodyFacing
-                        yield return new CodeInstruction(OpCodes.Ldloc_2);                           // Quaternion quaternion
-                        yield return new CodeInstruction(OpCodes.Ldarg, 7);                          // PawnRenderFlags flags
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 3);                       // ref bool hideHair                        
+                        yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels }; // PawnRenderer renderer
+
+                        yield return new CodeInstruction(OpCodes.Ldarg_0); // render.pawn
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 rootLoc
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "rootLoc"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 onHeadLoc
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "onHeadLoc"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Vector3 headOffset
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headOffset"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Rot4 bodyFacing
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "bodyFacing"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // Quaternion quat
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "quat"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "flags"));
+
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 4);  // ref bool hideHair                        
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
+                        Log.Message("Patched hair");
                     }
                     yield return code;
                 }
