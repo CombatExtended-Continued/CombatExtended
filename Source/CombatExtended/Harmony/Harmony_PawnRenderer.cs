@@ -178,19 +178,19 @@ namespace CombatExtended.HarmonyCE
                      * Look for Ldloc_3 (only one in the method), VFE vikings modify the IL just before, so it is not easy to contextualise. If it 
                      * breaks make sure to check compat with Alien Races & VFE-Vikings/Beards
                      */
-                    if (code.opcode == OpCodes.Ldloc_3)
+                    if (code.opcode == OpCodes.Ldloc_S && code.OperandIs(4))
                     {
                         // Insert new calls for headgear renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0) { labels = code.labels };  // PawnRenderer renderer
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(PawnRenderer), "pawn")); // render.pawn 
                         yield return new CodeInstruction(OpCodes.Ldarg_1);                           // Vector3 rootLoc
-                        yield return new CodeInstruction(OpCodes.Ldloc_0);                           // Vector3 headLoc
+                        yield return new CodeInstruction(OpCodes.Ldloc_S, 6);                           // Vector3 headLoc
                         yield return new CodeInstruction(OpCodes.Ldarg_2);                           // Vector3 headOffset
                         yield return new CodeInstruction(OpCodes.Ldarg, 4);                          // Rot4 bodyFacing
-                        yield return new CodeInstruction(OpCodes.Ldloc_2);                           // Quaternion quaternion
+                        yield return new CodeInstruction(OpCodes.Ldloc_0);                           // Quaternion quaternion
                         yield return new CodeInstruction(OpCodes.Ldarg, 7);                          // PawnRenderFlags flags
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 3);                       // ref bool hideHair                        
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 4);                       // ref bool hideHair                        
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
                     }

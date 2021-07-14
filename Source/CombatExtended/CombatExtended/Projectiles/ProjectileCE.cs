@@ -372,21 +372,21 @@ namespace CombatExtended
             {
                 launcher = null;
             }
-            Scribe_Values.Look<Vector2>(ref origin, "ori", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "tTI", 0, true);
-            Scribe_References.Look<Thing>(ref intendedTarget, "iT");
-            Scribe_References.Look<Thing>(ref launcher, "lcr");
-            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "ed");
-            Scribe_Values.Look<bool>(ref landed, "lnd");
+            Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_References.Look<Thing>(ref intendedTarget, "intendedTarget");
+            Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
+            Scribe_Values.Look<bool>(ref landed, "landed");
 
             //Here be new variables
-            Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
-            Scribe_Values.Look(ref shotRotation, "sRot", 0f, true);
-            Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
-            Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
-            Scribe_Values.Look<bool>(ref canTargetSelf, "cts");
-            Scribe_Values.Look<bool>(ref logMisses, "lM", true);
-            Scribe_Values.Look<bool>(ref castShadow, "cS", true);
+            Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
+            Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
+            Scribe_Values.Look(ref shotHeight, "shotHeight", 0f, true);
+            Scribe_Values.Look(ref shotSpeed, "shotSpeed", 0f, true);
+            Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
+            Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
+            Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
         }
         #endregion
 
@@ -488,8 +488,6 @@ namespace CombatExtended
                 Destroy(DestroyMode.Vanish);
                 return;
             }
-
-
         }
 
 
@@ -535,12 +533,9 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Collisions
-        static readonly FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        #region Collisions        
         static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        static readonly MethodInfo interceptBreakShield = typeof(CompProjectileInterceptor).GetMethod("BreakShield", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -580,19 +575,19 @@ namespace CombatExtended
             {
                 return false;
             }
-            interceptAngleField.SetValue(interceptorComp, lastExactPos.AngleToFlat(interceptorThing.TrueCenter()));
-            interceptTicksField.SetValue(interceptorComp, Find.TickManager.TicksGame);
+            interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
+            interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
             var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
             if (areWeLucky)
             {
                 var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
                 if (def.projectile.damageDef == DamageDefOf.EMP)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
                 }
                 else if (firstEMPSecondaryDamage != null)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
                 }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
@@ -867,6 +862,7 @@ namespace CombatExtended
             }
             if (CheckForCollisionBetween())
             {
+
                 return;
             }
             Position = ExactPosition.ToIntVec3();
