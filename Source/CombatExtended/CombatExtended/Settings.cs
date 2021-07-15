@@ -134,20 +134,21 @@ namespace CombatExtended
             // map is loaded will result in rendering issues.
             if (Current.Game == null)
             {
-                list.CheckboxLabeled("CE_Settings_ShowBackpacks".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_ShowTacticalVests_Title".Translate(), ref showTacticalVests, "CE_Settings_XhowTacticalVests_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
             }
             else
             {
                 // tell the user that he can only change these settings from main menu
-                list.Gap();
+                list.GapLine();
                 Text.Font = GameFont.Medium;
                 list.Label("CE_Settings_MainMenuOnly_Title".Translate(), tooltip: "CE_Settings_MainMenuOnly_Desc".Translate());
                 Text.Font = GameFont.Small;
 
-                list.GapLine();
-                list.Label("CE_Settings_ShowBackpacks".Translate(), tooltip: "CE_Settings_ShowBackpacks_Desc".Translate());
-                list.Label("CE_Settings_ShowTacticalVests_Title".Translate(), tooltip: "CE_Settings_XhowTacticalVests_Desc".Translate());
+                list.Gap();
+                list.Label("CE_Settings_ShowBackpacks_Title".Translate(), tooltip: "CE_Settings_ShowBackpacks_Desc".Translate());
+                list.Label("CE_Settings_ShowWebbing_Title".Translate(), tooltip: "CE_Settings_ShowWebbing_Desc".Translate());
+                list.Gap();
             }
 
 #if DEBUG
