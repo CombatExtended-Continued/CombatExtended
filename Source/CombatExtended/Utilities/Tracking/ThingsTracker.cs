@@ -94,6 +94,8 @@ namespace CombatExtended.Utilities
                 else
                     validDefs[def.index] = true;
             }
+            foreach (var def in DefDatabase<FleckDef>.AllDefs)
+                validDefs[def.index] = false;
         }
 
         public override void MapComponentOnGUI()
@@ -155,7 +157,7 @@ namespace CombatExtended.Utilities
 
         public void Register(Thing thing)
         {
-            if (!thing.Position.IsValid || !thing.Position.InBounds(map))
+            if (!IsValidTrackableThing(thing))
                 return;
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
@@ -164,6 +166,8 @@ namespace CombatExtended.Utilities
 
         public void Remove(Thing thing)
         {
+            if (!IsValidTrackableThing(thing))
+                return;
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
                 trackers[i]?.DeRegister(thing);
