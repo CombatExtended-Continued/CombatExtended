@@ -61,6 +61,19 @@ namespace CombatExtended.HarmonyCE
 
             private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
 
+            private static bool IsVisibleLayer(ApparelLayerDef def)
+            {
+                // If it's invisible skip everything
+                if (!def.IsVisibleLayer())
+                    return false;
+                // Enable toggling backpacks and tactical vests rendering             
+                if (!Controller.settings.ShowBackpacks && def == CE_ApparelLayerDefOf.Backpack)
+                    return false;
+                if (!Controller.settings.ShowTacticalVests && def == CE_ApparelLayerDefOf.Webbing)
+                    return false;
+                return true;
+            }
+
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
                 List<CodeInstruction> codes = instructions.ToList();
@@ -74,7 +87,7 @@ namespace CombatExtended.HarmonyCE
                      */
                     if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
                     {
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(DefUtility), nameof(DefUtility.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
                         i++;
                         yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
                         continue;
