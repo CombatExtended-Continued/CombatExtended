@@ -111,7 +111,6 @@ namespace CombatExtended.HarmonyCE
         {
             yield return AccessTools.Method(typeof(Thing), nameof(Thing.DeSpawn));
             yield return AccessTools.Method(typeof(Thing), nameof(Thing.ForceSetStateToUnspawned));
-            yield return AccessTools.Method(typeof(Thing), nameof(Thing.DecrementMapIndex));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

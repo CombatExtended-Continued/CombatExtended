@@ -26,7 +26,7 @@ namespace CombatExtended.Utilities
             public bool IsValid
             {
                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                get => (thing?.Spawned ?? false) && thing.positionInt.InBounds(thing.Map);
+                get => thing != null && thing.Spawned && thing.Position.InBounds(thing.Map);
             }
 
             public ThingPositionInfo(Thing thing)
@@ -96,7 +96,10 @@ namespace CombatExtended.Utilities
         public void Register(Thing thing)
         {
             if (indexByThing.ContainsKey(thing))
+            {
+                Notify_ThingPositionChanged(thing);
                 return;
+            }
             if (count + 1 >= sortedThings.Length)
             {
                 ThingPositionInfo[] temp = new ThingPositionInfo[sortedThings.Length * 2];
@@ -129,34 +132,28 @@ namespace CombatExtended.Utilities
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clean() => SweepClean();
-
         public void Notify_ThingPositionChanged(Thing thing)
         {
             if (!indexByThing.TryGetValue(thing, out int index))
             {
-                SweepClean();
                 Register(thing);
+                return;
             }
-            else
+            int i = index;
+            while (i + 1 < count && sortedThings[i] > sortedThings[i + 1])
             {
-                int i = index;
-                while (i + 1 < count && sortedThings[i] > sortedThings[i + 1])
-                {
-                    Swap<ThingPositionInfo>(i + 1, i, sortedThings);
-                    indexByThing[sortedThings[i].thing] = i;
-                    indexByThing[sortedThings[i + 1].thing] = i + 1;
-                    i++;
-                }
-                i = index;
-                while (i - 1 >= 0 && sortedThings[i] < sortedThings[i - 1])
-                {
-                    Swap<ThingPositionInfo>(i - 1, i, sortedThings);
-                    indexByThing[sortedThings[i].thing] = i;
-                    indexByThing[sortedThings[i - 1].thing] = i - 1;
-                    i--;
-                }
+                Swap<ThingPositionInfo>(i + 1, i, sortedThings);
+                indexByThing[sortedThings[i].thing] = i;
+                indexByThing[sortedThings[i + 1].thing] = i + 1;
+                i++;
+            }
+            i = index;
+            while (i - 1 >= 0 && sortedThings[i] < sortedThings[i - 1])
+            {
+                Swap<ThingPositionInfo>(i - 1, i, sortedThings);
+                indexByThing[sortedThings[i].thing] = i;
+                indexByThing[sortedThings[i - 1].thing] = i - 1;
+                i--;
             }
         }
 
@@ -230,32 +227,6 @@ namespace CombatExtended.Utilities
             for (i = count - offset; i < count; i++)
                 sortedThings[i].thing = null;
             count -= offset;
-        }
-
-        private void SweepClean()
-        {
-            int i = 0;
-            int offset = 0;
-            for (; i < count && i - offset >= 0; i++)
-            {
-                ThingPositionInfo current = sortedThings[i];
-                if (!current.IsValid)
-                {
-                    offset++;
-                    if (indexByThing.ContainsKey(current.thing))
-                        indexByThing.Remove(current.thing);
-                    current.thing = null;
-                }
-                else if (offset > 0)
-                {
-                    indexByThing[current.thing] = i - offset;
-                    sortedThings[i - offset] = current;
-                }
-            }
-            for (i = count - offset; i < count; i++)
-                sortedThings[i].thing = null;
-            count -= offset;
-            if (Prefs.DevMode) Log.Message($"Combat Extended: cleaned model for {def.defName}");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
