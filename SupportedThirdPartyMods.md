@@ -25,6 +25,7 @@ Mod |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
+[LF] Command And Conquer NOD Combat Armor
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
@@ -99,6 +100,7 @@ Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Mountain Animals |
+Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
 Expanded Patchleather	|
@@ -121,12 +123,14 @@ Genetic Rim |
 Genetic Rim Alpha Animal Patch |
 GeneticRim Cosmic Horrors Patch |
 GeneticRim Dinosauria Patch |
+GeneticRim Megafauna Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
+Halo UNSC Weapon Pack	|
 Hand 'n' Footwear	|
 Heavy Melee Weapons |
 High Caliber	|
@@ -151,6 +155,7 @@ Leeani Playable Race	|
 Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
+Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
@@ -165,6 +170,7 @@ Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
 Mister Meeseeks |
+Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
@@ -215,6 +221,8 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rimfire	|
 Rim-Hivers!	|
+Rim Flood	|
+Rim-Shek	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -229,6 +237,7 @@ SCP |
 SCP - Clothing Only	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
+Simple Ogre Race  |
 Simply More Melee	|
 Soviet Armory	|
 Space Worms (Continued) |
@@ -241,6 +250,7 @@ The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
+Thog's Guns - More Brukka Pack  |
 TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |
