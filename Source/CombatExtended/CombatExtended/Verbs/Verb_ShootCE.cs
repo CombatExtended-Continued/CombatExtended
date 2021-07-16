@@ -104,17 +104,19 @@ namespace CombatExtended
         public override void WarmupComplete()
         {
             var targetDist = (currentTarget.Cell - caster.Position).LengthHorizontal;
-            var aimTicks = (int)Mathf.Lerp(AimTicksMin, AimTicksMax, (targetDist / 100));
+            var aimTicks = 0;
+
             if (ShouldAim && !_isAiming)
             {
                 if (caster is Building_TurretGunCE turret)
-                {
+                {aimTicks = (int)Mathf.Lerp(AimTicksMin, AimTicksMax, targetDist / 100);
                     turret.burstWarmupTicksLeft += aimTicks;
                     _isAiming = true;
                     return;
                 }
                 if (ShooterPawn != null)
                 {
+                    aimTicks = (int)(Mathf.Lerp(AimTicksMin, AimTicksMax, targetDist / 100) * ShooterPawn.GetStatValue(StatDefOf.AimingDelayFactor));
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                     _isAiming = true;
                     return;
