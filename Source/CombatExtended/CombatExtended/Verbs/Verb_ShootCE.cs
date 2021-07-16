@@ -109,7 +109,8 @@ namespace CombatExtended
             if (ShouldAim && !_isAiming)
             {
                 if (caster is Building_TurretGunCE turret)
-                {aimTicks = (int)Mathf.Lerp(AimTicksMin, AimTicksMax, targetDist / 100);
+                {
+                    aimTicks = (int)Mathf.Lerp(AimTicksMin, AimTicksMax, targetDist / 100);
                     turret.burstWarmupTicksLeft += aimTicks;
                     _isAiming = true;
                     return;
