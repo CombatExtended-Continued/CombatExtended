@@ -188,7 +188,7 @@ namespace CombatExtended
 
         public static float GetLightingShift(Thing thing, float glow)
         {
-            return Mathf.Pow(Mathf.Clamp((1.0f - thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency)) - glow, 0f, 1.0f), 2);
+            return Mathf.Max((1.0f - glow) * (1.0f - thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
         }
 
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
