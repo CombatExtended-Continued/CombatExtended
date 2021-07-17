@@ -61,10 +61,25 @@ namespace CombatExtended.HarmonyCE
 
             private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
 
+            private static bool IsVisibleLayer(ApparelLayerDef def)
+            {
+                // If it's invisible skip everything
+                if (!def.IsVisibleLayer())
+                    return false;
+                // Moved to since backpacks use 
+                if (def == CE_ApparelLayerDefOf.Backpack)
+                    return false;
+                // Enable toggling webbing rendering             
+                if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
+                    return false;
+                return true;
+            }
+
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
                 List<CodeInstruction> codes = instructions.ToList();
-
+                Label l1 = generator.DefineLabel();
+                Label l2 = generator.DefineLabel();
                 for (int i = 0; i < codes.Count; i++)
                 {
                     CodeInstruction code = codes[i];
@@ -74,7 +89,7 @@ namespace CombatExtended.HarmonyCE
                      */
                     if (code.opcode == OpCodes.Ldsfld && code.OperandIs(fShell))
                     {
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(DefUtility), nameof(DefUtility.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(Harmony_PawnRenderer_DrawBodyApparel.IsVisibleLayer), parameters: new[] { typeof(ApparelLayerDef) }));
                         i++;
                         yield return new CodeInstruction(OpCodes.Brfalse_S, codes[i].operand);
                         continue;
@@ -93,8 +108,49 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Stfld, AccessTools.Field(typeof(Vector3), nameof(Vector3.y)));
                         code.labels = new List<Label>();
                     }
+                    /*
+                     * Find and add a condition to utilityLoc to make backpacks render behind hair
+                     */
+                    if (code.opcode == OpCodes.Ldarg_2)
+                    {
+                        /* 
+                         * Load apparelGraphicRecord from for(int i = 0....) { ApparelGraphicRecord apparelGraphicRecord = apparelGraphics[i];
+                         * From the start of the function
+                         */
+                        yield return new CodeInstruction(OpCodes.Ldloc_3).MoveLabelsFrom(code);
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ApparelGraphicRecord), nameof(ApparelGraphicRecord.sourceApparel)));
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def)));
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.apparel)));
+                        yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(ApparelProperties), nameof(ApparelProperties.LastLayer)));                // Load current apparel last layer
+
+                        yield return new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(CE_ApparelLayerDefOf), nameof(CE_ApparelLayerDefOf.Backpack)));              // Load backpack
+
+                        yield return new CodeInstruction(OpCodes.Bne_Un_S, l1); // Compare value
+
+                        yield return new CodeInstruction(OpCodes.Ldarg_1);      // shellloc
+                        yield return new CodeInstruction(OpCodes.Ldarg_S, 5);   // bodyFacing
+                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawBodyApparel), nameof(GetBackpackOffset)));                          // shellloc
+                        yield return new CodeInstruction(OpCodes.Br_S, l2);     // continue;
+
+                        code.labels = new List<Label>() { l1 };
+                        yield return code;
+                        codes[i + 1].labels.Add(l2);
+                        continue;
+                    }
                     yield return code;
                 }
+            }
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            private static Vector3 GetBackpackOffset(Vector3 vector, Rot4 bodyFacing)
+            {
+                /*
+                 * Need to subract  0.023166021f since if we don't backpacks will render 
+                 * infront of pawns when facing the player (south)
+                 */
+                if (bodyFacing == Rot4.South)
+                    vector.y -= 0.023166021f;
+                return vector;
             }
 
             /*
