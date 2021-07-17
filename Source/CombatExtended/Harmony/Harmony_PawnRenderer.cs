@@ -66,10 +66,11 @@ namespace CombatExtended.HarmonyCE
                 // If it's invisible skip everything
                 if (!def.IsVisibleLayer())
                     return false;
-                // Enable toggling backpacks and tactical vests rendering             
-                if (!Controller.settings.ShowBackpacks && def == CE_ApparelLayerDefOf.Backpack)
+                // Moved to since backpacks use 
+                if (def == CE_ApparelLayerDefOf.Backpack)
                     return false;
-                if (!Controller.settings.ShowTacticalVests && def == CE_ApparelLayerDefOf.Webbing)
+                // Enable toggling webbing rendering             
+                if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
                     return false;
                 return true;
             }
