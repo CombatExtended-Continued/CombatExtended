@@ -371,8 +371,8 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = verbProps.range;
-
-            report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
+            report.lightingShift = CE_Utility.GetLightingShift(caster, caster.Map.glowGrid.GameGlowAt(targetCell));
+            //report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
                 report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;

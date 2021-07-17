@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 namespace CombatExtended
 {
@@ -183,6 +184,12 @@ namespace CombatExtended
                 }
             }
             return 60 / movePerTick;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float GetLightingShift(Thing thing, float glow)
+        {
+            return Mathf.Pow(Mathf.Clamp(thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency) - glow, 0f, 1.0f), 2);
         }
 
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
