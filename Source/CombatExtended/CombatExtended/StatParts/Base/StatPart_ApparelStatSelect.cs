@@ -13,6 +13,17 @@ namespace CombatExtended
 
         private Dictionary<ApparelStatKey, float> cachedStats = new Dictionary<ApparelStatKey, float>();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private float GetApparelEfficiency(Apparel apparel)
+        {
+            ApparelStatKey key = new ApparelStatKey(apparel);
+
+            return cachedStats.TryGetValue(key, out float value) ?
+                value : cachedStats[key] = apparel.GetStatValue(apparelStat);
+        }
+
+        protected abstract float Select(float first, float second);
+
         public override void TransformValue(StatRequest req, ref float result)
         {
             if (req.HasThing && req.Thing is Pawn pawn && pawn.apparel != null)
@@ -31,16 +42,6 @@ namespace CombatExtended
                 return "";
             }
             return null;
-        }
-
-        protected abstract float Select(float first, float second);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private float GetApparelEfficiency(Apparel apparel)
-        {
-            ApparelStatKey key = new ApparelStatKey(apparel);
-            return cachedStats.TryGetValue(key, out float value) ?
-                value : cachedStats[key] = apparel.GetStatValue(apparelStat);
         }
     }
 }
