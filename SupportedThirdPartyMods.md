@@ -83,6 +83,7 @@ Cupro's Alloys	|
 Cute Penguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
+Darkest Rim: Core	|
 Defensive Machine Gun Turret Pack	|
 Devilstrand Colour Bundle   |
 Dinosauria |
