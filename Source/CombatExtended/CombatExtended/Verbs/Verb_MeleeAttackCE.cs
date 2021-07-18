@@ -262,7 +262,7 @@ namespace CombatExtended
                 damageInfo.SetHitPart(neck);
             }
 
-            damageInfo.SetBodyRegion(bodyRegion);
+            damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
