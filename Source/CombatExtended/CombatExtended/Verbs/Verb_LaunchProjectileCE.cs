@@ -366,6 +366,7 @@ namespace CombatExtended
         {
             IntVec3 targetCell = target.Cell;
             ShiftVecReport report = new ShiftVecReport();
+
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
@@ -373,6 +374,7 @@ namespace CombatExtended
             report.maxRange = verbProps.range;
             report.lightingShift = CE_Utility.GetLightingShift(caster, caster.Map.glowGrid.GameGlowAt(targetCell));
             //report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
+
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
                 report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
@@ -386,6 +388,7 @@ namespace CombatExtended
             GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
+
             if (Controller.settings.DebugVerbose)
             {
                 Log.Message($"<color=red>CE</color>: <color=orange>{caster}</color> shooting <color=orange>{target.Thing}</color> <color=yellow>ShiftVecReport</color>\n" +

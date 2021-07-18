@@ -5,11 +5,22 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CombatExtended
 {
     public class ShiftVecReport
     {
+        /// <summary>
+        /// This is cos(15 degree)
+        /// </summary>
+        private const float VisibilityCos7 = 0.96592582628f;
+
+        /// <summary>
+        /// This is sin(15 degree)
+        /// </summary>
+        private const float VisibilitySin7 = 0.2588190451f;
+
         public LocalTargetInfo target = null;
         public Pawn targetPawn
         {
@@ -40,6 +51,21 @@ namespace CombatExtended
         // Visibility variables
         public float lightingShift = 0f;
         public float weatherShift = 0f;
+
+        private float enviromentShiftInt = -1;
+        public float enviromentShift
+        {
+            get
+            {
+                if (enviromentShiftInt < 0)
+                {
+                    enviromentShiftInt = (lightingShift * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                }
+                return enviromentShiftInt;
+            }
+        }
+
+
         private float visibilityShiftInt = -1f;
         public float visibilityShift
         {
@@ -47,7 +73,7 @@ namespace CombatExtended
             {
                 if (visibilityShiftInt < 0)
                 {
-                    visibilityShiftInt = (lightingShift + weatherShift + smokeDensity) * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
+                    visibilityShiftInt = enviromentShift * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
@@ -87,7 +113,9 @@ namespace CombatExtended
         {
             get
             {
-                return leadDist * Mathf.Min(accuracyFactor * 0.25f, 3);
+                return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
+                    + Mathf.Min(lightingShift * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, 2.0f)
+                    + Mathf.Min(smokeDensity * 0.5f, 2.0f);
             }
         }
 
@@ -168,22 +196,31 @@ namespace CombatExtended
         public string GetTextReadout()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            if (visibilityShift > 0)
-            {
-                stringBuilder.AppendLine("   " + "CE_VisibilityError".Translate() + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
 
-                if (lightingShift > 0)
-                {
-                    stringBuilder.AppendLine("      " + "Darkness".Translate() + "\t" + AsPercent(lightingShift));
-                }
-                if (weatherShift > 0)
-                {
-                    stringBuilder.AppendLine("      " + "Weather".Translate() + "\t" + AsPercent(weatherShift));
-                }
-                if (smokeDensity > 0)
-                {
-                    stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
-                }
+            stringBuilder.AppendLine("   " + "CE_VisibilityError".Translate() + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " " + "CE_cells".Translate());
+
+            if (Controller.settings.DebuggingMode)
+            {
+                stringBuilder.AppendLine("   " + $"DEBUG: visibilityShift\t\t{visibilityShift} ");
+                stringBuilder.AppendLine("   " + $"DEBUG: leadDist\t\t{leadDist} ");
+                stringBuilder.AppendLine("   " + $"DEBUG: enviromentShift\t{enviromentShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: sightsEfficiency\t{sightsEfficiency}");
+                stringBuilder.AppendLine("   " + $"DEBUG: weathershift\t\t{weatherShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t\t{accuracyFactor}");
+                stringBuilder.AppendLine("   " + $"DEBUG: lightingShift\t\t{lightingShift}");
+            }
+
+            if (lightingShift > 0)
+            {
+                stringBuilder.AppendLine("      " + "Darkness".Translate() + "\t" + AsPercent(lightingShift));
+            }
+            if (weatherShift > 0)
+            {
+                stringBuilder.AppendLine("      " + "Weather".Translate() + "\t" + AsPercent(weatherShift));
+            }
+            if (smokeDensity > 0)
+            {
+                stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
             }
             if (leadShift > 0)
             {
