@@ -10,11 +10,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: prebuild
+      run: |
+        rm -rf AssemblyPublicizer
+        git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
     - name: build
       run: |
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer $PWD/AssemblyPublicizer
     - name: package
       run: |
         mkdir CombatExtended

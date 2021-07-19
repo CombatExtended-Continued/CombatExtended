@@ -11,7 +11,7 @@ tdir = tempfile.gettempdir()
 cwd = os.path.dirname(os.path.abspath(__file__))
 
 usage = f"""
-python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>] [--all-libs] [--verbose] [--download-libs]
+python Make.py [--reference <path/to/rimworld>] [--harmony <path/to/0Harmony.dll>] [-o <output/path.dll>] [--csproj <path/to/Source/CombatExtended.csproj>] [--all-libs] [--verbose] [--download-libs] [--publicize <somelibrary.dll>,...] [--publicizer <path/to/AssemblyPublicizer_Source>]
 
 If unspecified: 
   reference defaults to $RWREFERENCE or {os.path.abspath(cwd+'/../..')}
@@ -26,6 +26,9 @@ If unspecified:
   verbose outputs the values of $reference, $csproj, and $harmony after resolving them.
 
   download-libs fetches reference libraries from nuget.org to $TMP/rwreference, then sets reference to $TMP/rwreference
+
+--publicize takes a comma-separated list of dlls and publicizes them, then uses the public outputs in place of the original.
+--publicizer takes the path to the AssemblyPublicizer source code.  If needed, it will compile AssemblyPublicizer
 """
 
 if "--help" in sys.argv or "-h" in sys.argv:
@@ -33,6 +36,7 @@ if "--help" in sys.argv or "-h" in sys.argv:
     raise SystemExit(1)
 
 VERBOSE = "--verbose" in sys.argv or "-v" in sys.argv
+quiet = "" if VERBOSE else "-q"
 
 DOWNLOAD_LIBS = '--download-libs' in sys.argv
 
@@ -64,7 +68,30 @@ def findRimworld(ref):
     if dirs:
         return ref + f"/{dirs[0]}/Managed"
     
-        
+def publicize(p):
+    cwd = os.getcwd()
+    os.chdir(p.rsplit('/',1)[0])
+    os.system(f"mono {PUBLICIZER_EXE} --exit -i {p} -o {p[:-4]}_publicized.dll")
+    os.chdir(cwd)
+
+def downloadLib(name, version, dest):
+    print(f"Downloading {version} of {name} from nuget")
+    if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {dest}"):
+        raise Exception(f"Can't find version {version} of {name} on nuget")
+
+    
+def makePublicizer(p):
+    cwd = os.getcwd()
+    os.chdir(p)
+    
+    downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip")
+    downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip")
+    os.system(f"unzip {quiet} -o {tdir}/downloads/mono.cecil.zip -d .")
+    os.system(f"unzip {quiet} -o {tdir}/downloads/mono.options.zip -d .")
+    os.system("cp lib/net40/*dll .")
+    os.system("csc -out:AssemblyPublicizer.exe ./AssemblyPublicizer/AssemblyPublicizer.cs ./AssemblyPublicizer/Properties/AssemblyInfo.cs -r:Mono.Options.dll -r:Mono.Cecil.dll")
+    os.system("mono --aot AssemblyPublicizer.exe")
+    os.chdir(cwd)
 
 def findArg(s):
     if s in sys.argv:
@@ -89,7 +116,19 @@ else:
     else:
         HARMONY = findHarmony(RIMWORLD)
 
+pindex = findArg("--publicize")
+if pindex > -1:
+    PUBLICIZE=sys.argv[pindex+1].split(',')
+    pindex = findArg("--publicizer")
+    if pindex > -1:
+        PUBLICIZER_SOURCE = sys.argv[pindex+1]
+        PUBLICIZER_EXE = os.path.join(PUBLICIZER_SOURCE,"AssemblyPublicizer.exe")
+        if not os.path.exists(PUBLICIZER_EXE):
+            makePublicizer(PUBLICIZER_SOURCE)
+else:
+    PUBLICIZE=None
 
+    
     
 oindex = findArg("-o")
 
@@ -107,17 +146,18 @@ else:
 
 base_dir = CSPROJ.rsplit('/',1)[0]
 
+
+    
     
 with XMLOpen(CSPROJ) as csproj:
-    quiet = "" if VERBOSE else "-q"
+    
     if DOWNLOAD_LIBS:
         os.system(f"mkdir -p {tdir}/downloads/unpack")
         for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
             name = package.attributes['Include'].value
             version = package.attributes['Version'].value
-            print(f"Downloading {version} of {name} from nuget")
-            if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {tdir}/downloads/rwref-{idx}.zip"):
-                raise Exception(f"Can't find version {version} of {name} on nuget")
+            dest = f"{tdir}/downloads/rwref-{idx}.zip"
+            downloadLib(name, version, dest)
             os.system(f"unzip {quiet} -o {tdir}/downloads/rwref-{idx}.zip -d {tdir}/downloads/unpack")
         if VERBOSE:
             print(os.listdir(tdir+'/downloads'))
@@ -125,6 +165,7 @@ with XMLOpen(CSPROJ) as csproj:
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {tdir}/rwreference")
     
     libraries = [HARMONY]
+    removed_libraries = []
     sources = []
     if "--all-libs" in sys.argv:
         for reference in os.listdir(RIMWORLD):
@@ -136,6 +177,11 @@ with XMLOpen(CSPROJ) as csproj:
 
     for reference in csproj.getElementsByTagName("Reference"):
         hintPath = reference.getElementsByTagName("HintPath")
+        if 'Remove' in reference.attributes:
+            assemblyName = reference.attributes['Remove'].value.rsplit('\\',1)[1]
+            removed_libraries.append(assemblyName)
+            
+            continue
         if hintPath:
             hintPath = hintPath[0].firstChild.data.strip()
             hintPath = hintPath.replace("\\", "/")
@@ -181,6 +227,15 @@ with XMLOpen(CSPROJ) as csproj:
                     print("Directive to exclude non-existent file:", v)
     sources = [(base_dir+'/'+i) for i in sources]
 
+if PUBLICIZE:
+    for idx,l in enumerate(libraries):
+        if l.rsplit('/',1)[1] in PUBLICIZE:
+            libraries[idx] = l[:-4]+"_publicized.dll"
+            publicize(l)
+
+print(removed_libraries)
+#libraries = [l for l in libraries if not l.rsplit('/',1)[1] in removed_libraries]
+    
 args = ["csc", "-warnaserror", "-nostdlib", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
 if VERBOSE:

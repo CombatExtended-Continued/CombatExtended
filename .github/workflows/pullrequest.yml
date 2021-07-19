@@ -25,9 +25,11 @@ jobs:
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
+        rm -rf AssemblyPublicizer
+        git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
     - name: build
       run: |
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs 
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer $PWD/AssemblyPublicizer
     - name: package
       run: |
         mkdir CombatExtended
