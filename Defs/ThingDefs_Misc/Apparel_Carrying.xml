@@ -92,7 +92,7 @@
     <label>backpack</label>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
-      <texPath>Things/Apparel/Backpack/Milpack</texPath>
+      <texPath>Things/Apparel/Backpack/Backpack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -108,6 +108,7 @@
       <Cloth>40</Cloth>
     </costList>
     <apparel>
+      <careIfDamaged>false</careIfDamaged>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -122,7 +123,37 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
-      <wornGraphicPath>Things/Apparel/Backpack/Milpack</wornGraphicPath>
+      <wornGraphicPath>Things/Apparel/Backpack/Backpack</wornGraphicPath>
+      <wornGraphicData>
+      <renderUtilityAsPack>true</renderUtilityAsPack>
+        <east>
+          <offset>(0,-0.05)</offset>
+          <thin><offset>(0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+          <male><offset>(0.125,0)</offset></male>
+		      <female><offset>(0.125,0)</offset></female>	
+        </east>
+        <west>
+          <offset>(0,-0.05)</offset>
+          <thin><offset>(-0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+          <male><offset>(-0.125,0)</offset></male>
+		      <female><offset>(-0.125,0)</offset></female>		  
+        </west>
+        <north>
+          <offset>(0,-0.1)</offset> 
+          <thin><offset>(0,0)</offset></thin>
+          <hulk><offset>(0,-0.05)</offset></hulk>
+          <fat><offset>(0,-0.05)</offset></fat>
+        </north>		
+        <male>  <scale>(1,1)</scale></male>
+        <female><scale>(1,1)</scale></female>
+        <thin>  <scale>(1,1)</scale></thin>
+        <hulk>  <scale>(1,1)</scale></hulk>
+        <fat>   <scale>(1,1)</scale></fat>
+      </wornGraphicData>
     </apparel>
   </ThingDef>
 
@@ -158,6 +189,7 @@
       </recipeUsers>
     </recipeMaker>
     <apparel>
+      <careIfDamaged>false</careIfDamaged>
       <careIfWornByCorpse>false</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -168,7 +200,35 @@
       <tags>
         <li>Neolithic</li>
       </tags>
-      <wornGraphicPath>Things/Apparel/TribalPack/Tribalpack</wornGraphicPath>
+      <wornGraphicPath>Things/Apparel/TribalPack/Tribalpack</wornGraphicPath>      
+      <wornGraphicData>      
+      <renderUtilityAsPack>true</renderUtilityAsPack>
+        <east>
+          <offset>(0,-0.05)</offset>
+          <thin><offset>(0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+		      <female><offset>(-0.1,0)</offset></female>	
+        </east>
+        <west>
+          <offset>(0,-0.05)</offset>
+          <thin><offset>(-0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+		      <female><offset>(0.1,0)</offset></female>		  
+        </west>
+        <north>
+          <offset>(0,-0.1)</offset> 
+          <thin><offset>(0,0)</offset></thin>
+          <hulk><offset>(0,-0.05)</offset></hulk>
+          <fat><offset>(0,-0.05)</offset></fat>
+        </north>		
+        <male>  <scale>(1,1)</scale></male>
+        <female><scale>(1,1)</scale></female>
+        <thin>  <scale>(1,1)</scale></thin>
+        <hulk>  <scale>(1,1)</scale></hulk>
+        <fat>   <scale>(1,1)</scale></fat>
+      </wornGraphicData>      
     </apparel>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
