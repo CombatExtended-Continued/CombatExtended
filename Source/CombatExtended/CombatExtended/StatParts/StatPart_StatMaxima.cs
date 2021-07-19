@@ -8,7 +8,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    public partial class StatPart_ApparelStatMaxima : StatPart_ApparelStatSelect
+    public class StatPart_StatMaxima : StatPart_StatSelect
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override float Select(float first, float second)

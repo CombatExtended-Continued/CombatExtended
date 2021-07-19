@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public partial class StatPart_ApparelStatMinima : StatPart_ApparelStatSelect
+    public partial class StatPart_StatMinima : StatPart_StatSelect
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override float Select(float first, float second)
