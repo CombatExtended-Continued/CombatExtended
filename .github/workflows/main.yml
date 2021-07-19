@@ -18,7 +18,7 @@ jobs:
       run: |
         mkdir -p Assemblies
         mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer=$PWD/AssemblyPublicizer
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer $PWD/AssemblyPublicizer
     - name: package
       run: |
         mkdir CombatExtended
