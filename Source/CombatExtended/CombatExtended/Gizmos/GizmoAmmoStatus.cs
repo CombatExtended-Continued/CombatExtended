@@ -47,7 +47,7 @@ namespace CombatExtended
             if (compAmmo.HasMagazine)
             {
                 Rect barRect = inRect.BottomHalf();
-                Widgets.FillableBar(barRect, compAmmo.CurMagCount / compAmmo.Props.magazineSize);
+                Widgets.FillableBar(barRect, (float)compAmmo.CurMagCount / compAmmo.Props.magazineSize);
 
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
