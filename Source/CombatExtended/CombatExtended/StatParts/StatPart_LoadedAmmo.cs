@@ -15,9 +15,7 @@ namespace CombatExtended
 
         public override string ExplanationPart(StatRequest req)
         {
-            return TryGetValue(req, out float num)
-                ? "CE_StatsReport_LoadedAmmo".Translate() + ": " + parentStat.ValueToString(num)
-                : null;
+            return TryGetValue(req, out float num) ? "CE_StatsReport_LoadedAmmo".Translate() + ": " + parentStat.ValueToString(num) : null;
         }
 
         public bool TryGetValue(StatRequest req, out float num)
