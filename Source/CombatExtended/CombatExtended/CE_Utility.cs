@@ -564,7 +564,7 @@ namespace CombatExtended
         #region Lighting
 
         /// <summary>
-        /// Used to get the lighting penalty multiplier for a range
+        /// Used to get the lighting penalty multiplier for a given range
         /// </summary>
         /// <returns></returns>
         public static float LightingRangeMultiplier(float range)
