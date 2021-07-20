@@ -11,16 +11,6 @@ namespace CombatExtended
 {
     public class ShiftVecReport
     {
-        /// <summary>
-        /// This is cos(15 degree)
-        /// </summary>
-        private const float VisibilityCos7 = 0.96592582628f;
-
-        /// <summary>
-        /// This is sin(15 degree)
-        /// </summary>
-        private const float VisibilitySin7 = 0.2588190451f;
-
         public LocalTargetInfo target = null;
         public Pawn targetPawn
         {
