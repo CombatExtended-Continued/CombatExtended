@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -53,6 +54,8 @@ namespace CombatExtended
         public bool EnableSimplifiedAmmo => enableSimplifiedAmmo;
 
         // Debug settings - make sure all of these default to false for the release build
+        private bool debuggingMode = false;
+        private bool debugVerbose = false;
         private bool debugDrawPartialLoSChecks = false;
         private bool debugEnableInventoryValidation = false;
         private bool debugDrawTargetCoverChecks = false;
@@ -61,13 +64,15 @@ namespace CombatExtended
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
 
-        public bool DebugDrawInterceptChecks => debugDrawInterceptChecks;
-        public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks;
-        public bool DebugEnableInventoryValidation => debugEnableInventoryValidation;
-        public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks;
-        public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance;
-        public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup;
-        public bool DebugGenClosetPawn => debugGenClosetPawn;
+        public bool DebuggingMode => debuggingMode;
+        public bool DebugVerbose => debugVerbose;
+        public bool DebugDrawInterceptChecks => debugDrawInterceptChecks && debuggingMode;
+        public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks && debuggingMode;
+        public bool DebugEnableInventoryValidation => debugEnableInventoryValidation && debuggingMode;
+        public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks && debuggingMode;
+        public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
+        public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
+        public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -88,6 +93,7 @@ namespace CombatExtended
 
 #if DEBUG
             // Debug settings
+            Scribe_Values.Look(ref debuggingMode, "debuggingMode", false);
             Scribe_Values.Look(ref debugDrawInterceptChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugDrawPartialLoSChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugEnableInventoryValidation, "enableInventoryValidation", false);
@@ -156,16 +162,25 @@ namespace CombatExtended
             list.GapLine();
             Text.Font = GameFont.Medium;
             list.Label("Debug");
-            Text.Font = GameFont.Small;
             list.Gap();
-
-            list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
-            list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
-            list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
-            list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
-            list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
-            list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
-            list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+            Text.Font = GameFont.Small;
+            list.CheckboxLabeled("Enable debugging", ref debuggingMode, "This will enable all debugging features.");
+            if (debuggingMode)
+            {
+                list.GapLine();
+                list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
+                list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
+                list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
+                list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
+                list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
+                list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
+                list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
+                list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+            }
+            else
+            {
+                list.Gap();
+            }
 #endif
 
             // Do ammo settings

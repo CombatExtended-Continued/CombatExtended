@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 namespace CombatExtended
 {
@@ -183,6 +184,11 @@ namespace CombatExtended
                 }
             }
             return 60 / movePerTick;
+        }
+
+        public static float GetLightingShift(Thing thing, float glow)
+        {
+            return Mathf.Max((1.0f - glow) * (1.0f - thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
         }
 
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
@@ -535,7 +541,6 @@ namespace CombatExtended
 
         #endregion
 
-
         #region Weapons
 
         /// <summary>
@@ -552,6 +557,35 @@ namespace CombatExtended
             if (ammoUser == null || !ammoUser.HasMagazine || ammoUser.CurMagCount > 0)
                 return false; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
             return true;
+        }
+
+        #endregion
+
+        #region Lighting
+
+        /// <summary>
+        /// Used to get the lighting penalty multiplier for a given range
+        /// </summary>
+        /// <returns></returns>
+        public static float LightingRangeMultiplier(float range)
+        {
+            return lightingCurve.Evaluate(range);
+        }
+
+        #endregion
+
+        #region Initialization
+
+        private static readonly SimpleCurve lightingCurve = new SimpleCurve();
+
+        static CE_Utility()
+        {
+            lightingCurve.Add(05.00f, 0.05f);
+            lightingCurve.Add(10.00f, 0.15f);
+            lightingCurve.Add(18.00f, 0.475f);
+            lightingCurve.Add(25.00f, 1.00f);
+            lightingCurve.Add(35.00f, 1.20f);
+            lightingCurve.Add(90.00f, 2.00f);
         }
 
         #endregion

@@ -366,13 +366,15 @@ namespace CombatExtended
         {
             IntVec3 targetCell = target.Cell;
             ShiftVecReport report = new ShiftVecReport();
+
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = verbProps.range;
+            report.lightingShift = CE_Utility.GetLightingShift(caster, caster.Map.glowGrid.GameGlowAt(targetCell));
+            //report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
 
-            report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
                 report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
@@ -387,6 +389,19 @@ namespace CombatExtended
             report.cover = cover;
             report.smokeDensity = smokeDensity;
 
+            if (Controller.settings.DebugVerbose)
+            {
+                Log.Message($"<color=red>CE</color>: <color=orange>{caster}</color> shooting <color=orange>{target.Thing}</color> <color=yellow>ShiftVecReport</color>\n" +
+                    $"1- aimingAccuracy:{report.aimingAccuracy}\n" +
+                    $"2- sightsEfficiency:{report.sightsEfficiency}\n" +
+                    $"3- maxRange:{report.maxRange}\n" +
+                    $"4- lightingShift:{report.lightingShift}\n" +
+                    $"5- spreadDegrees:{report.spreadDegrees}\n" +
+                    $"6- smokeDensity:{report.smokeDensity}\n" +
+                    $"7- swayDegrees:{report.swayDegrees}\n" +
+                    $"8- shotSpeed:{report.shotSpeed}\n" +
+                    $"9- shotDist:{report.shotDist}\n");
+            }
             return report;
         }
 
