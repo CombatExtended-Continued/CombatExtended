@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>MorrowRim</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === Add DefModExtension === -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusScratch"]</xpath>
+
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusBite"]/additionalHediffs/li[hediff="MorrowRim_Corprus"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.005</severityPerDamageDealt>
+						</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusScratch"]/additionalHediffs/li[hediff="MorrowRim_Corprus"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.001</severityPerDamageDealt>
+						</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

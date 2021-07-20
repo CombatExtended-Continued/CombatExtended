@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rim Flood</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Sentinel -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="Sentinel"]//*[
+            def="Sentinelbody"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Sentinel"]//*[
+          def="Sentinelbody" or
+          def="ForerunnerHead"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Flood -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="Flood"]//*[
+            def="FloodBody" or
+            def="Nose"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Flood"]//*[
+          def="FloodBody" or
+          def="FloodHead" or
+          def="Nose" or
+          def="FloodMouth"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+    
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Flood"]//*[
+          def="Nose" or
+          def="FloodMouth"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
