@@ -8,11 +8,10 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
     public class GizmoAmmoStatus : Command
     {
         private static bool initialized;
-        //Link
+
         public CompAmmoUser compAmmo;
         public string prefix = "";
 
@@ -25,31 +24,31 @@ namespace CombatExtended
             return 120;
         }
 
+        public GizmoAmmoStatus()
+        {
+            if (!initialized)
+            {
+                InitializeTextures();
+                initialized = true;
+            }
+        }
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
         {
-            if (!initialized)
-                InitializeTextures();
+            Rect backgroundRect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), Height);
 
-            Rect overRect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), Height);
-            Widgets.DrawBox(overRect);
-            GUI.DrawTexture(overRect, BGTex);
+            Rect inRect = backgroundRect.ContractedBy(6);
+            GUI.DrawTexture(backgroundRect, BGTex);
 
-            Rect inRect = overRect.ContractedBy(6);
-
-            // Ammo type
-            Rect textRect = inRect;
-            textRect.height = overRect.height / 2;
             Text.Font = GameFont.Tiny;
+            Rect textRect = inRect.BottomHalf();
             Widgets.Label(textRect, prefix + (compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap));
 
-            // Bar
             if (compAmmo.HasMagazine)
             {
-                Rect barRect = inRect;
-                barRect.yMin = overRect.y + overRect.height / 2f;
-                float ePct = (float)compAmmo.CurMagCount / compAmmo.Props.magazineSize;
-                Widgets.FillableBar(barRect, ePct);
+                Rect barRect = inRect.TopHalf();
+                Widgets.FillableBar(barRect, compAmmo.CurMagCount / compAmmo.Props.magazineSize);
+
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Widgets.Label(barRect, compAmmo.CurMagCount + " / " + compAmmo.Props.magazineSize);
@@ -67,7 +66,6 @@ namespace CombatExtended
                 EmptyTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
             if (BGTex == null)
                 BGTex = ContentFinder<Texture2D>.Get("UI/Widgets/DesButBG", true);
-            initialized = true;
         }
     }
 }
