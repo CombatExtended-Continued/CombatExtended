@@ -41,12 +41,12 @@ namespace CombatExtended
             GUI.DrawTexture(backgroundRect, BGTex);
 
             Text.Font = GameFont.Tiny;
-            Rect textRect = inRect.BottomHalf();
+            Rect textRect = inRect.TopHalf();
             Widgets.Label(textRect, prefix + (compAmmo.CurrentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.CurrentAmmo.ammoClass.LabelCap));
 
             if (compAmmo.HasMagazine)
             {
-                Rect barRect = inRect.TopHalf();
+                Rect barRect = inRect.BottomHalf();
                 Widgets.FillableBar(barRect, compAmmo.CurMagCount / compAmmo.Props.magazineSize);
 
                 Text.Font = GameFont.Small;
