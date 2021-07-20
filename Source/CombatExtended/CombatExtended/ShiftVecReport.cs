@@ -5,7 +5,6 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CombatExtended
 {
