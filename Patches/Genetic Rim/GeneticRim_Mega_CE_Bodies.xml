@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>GeneticRim Megafauna Patch</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Mantis birb -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="GR_MantisBird"]//*[
+            def="Shell" or 
+            def="AvP_Xeno_Pronotum" or 
+            def="Elytra" or 
+            def="Eye" or 
+            def="Antenna" or 
+            def="InsectNostril" or 
+            def="Pronotum"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+<!--      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_MantisBird"]//*[
+          def="Beak" or 
+          def="Antenna" or
+          def="InsectNostril"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li> -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_MantisBird"]//*[
+            def="Shell" or 
+            def="Neck" or 
+            def="Pronotum" or 
+            def="InsectHead" or 
+            def="Beak" or 
+            def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Horny -->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndHorn"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Leg" or 
+            def="Eye" or 
+            def="Ear" or 
+            def="Nose"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+<!--      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndHorn"]//*[
+          def="Eye" or 
+          def="Ear" or
+          def="AnimalJaw" or
+          def="Nose"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li> -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndHorn"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Horn" or 
+            def="Head" or 
+            def="AnimalJaw" or 
+            def="Paw" or 
+            def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <!-- Tusky-->
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndTusks"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Tail" or 
+            def="Leg" or 
+            def="Eye" or 
+            def="Ear" or 
+            def="Nose"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+<!--      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndTusks"]//*[
+          def="Eye" or 
+          def="Ear" or
+          def="AnimalJaw" or
+          def="Nose"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li> -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndTusks"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Tail" or 
+            def="Tusk" or 
+            def="Head" or 
+            def="AnimalJaw" or 
+            def="Paw" or 
+            def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
