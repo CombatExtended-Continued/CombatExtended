@@ -116,6 +116,8 @@ Fate Grand Order - Styles Apparel Pack	|
 Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
+Forgotten Realms - Lizardfolk	|
+Forgotten Realms - Minotaur	|
 Forsakens	|
 Forsakens Fauna |
 Fuck it Unboomas Your Lope |
