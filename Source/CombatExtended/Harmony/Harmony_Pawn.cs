@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
         {
             foreach (CodeInstruction code in instructions)
             {
-                if (code.OperandIs(mIdeologyActive_Get))
+                if (code.opcode == OpCodes.Call && code.OperandIs(mIdeologyActive_Get))
                 {
                     yield return new CodeInstruction(OpCodes.Ldc_I4_0).MoveLabelsFrom(code).MoveBlocksFrom(code);
                     continue;
