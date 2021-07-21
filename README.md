@@ -6,6 +6,8 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 It is automatically updated a few minutes after each PR is merged.  
 If you want the latest development snapshot, without building it yourself:  **https://combatextended.lp-programming.com/CombatExtended-latest.zip**
 
+If you want to build it yourself, see Building.md
+
 # Features
 ## Shooting
 **Projectile rebalance:**
