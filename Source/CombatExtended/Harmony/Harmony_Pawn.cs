@@ -9,14 +9,21 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
+    /*
+     * Patch for Pawn.SpecialDisplayStats inorder to remove the darkness stats since they are redundent
+     */
     [HarmonyPatch]
     public static class Harmony_Pawn
     {
+        private const string targetMethod = "MoveNext";
+
+        private const string targetType = "SpecialDisplayStats";
+
         private static MethodBase mIdeologyActive_Get = AccessTools.PropertyGetter(typeof(ModsConfig), nameof(ModsConfig.IdeologyActive));
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method(typeof(Pawn).GetNestedTypes(AccessTools.all).First(t => t.Name.Contains("SpecialDisplayStats")), "MoveNext");
+            return AccessTools.Method(typeof(Pawn).GetNestedTypes(AccessTools.all).First(t => t.Name.Contains(targetType)), targetMethod);
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
