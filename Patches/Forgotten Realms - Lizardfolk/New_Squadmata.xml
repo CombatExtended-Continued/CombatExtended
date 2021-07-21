@@ -1,0 +1,198 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Forgotten Realms - Lizardfolk</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+  <!-- ========== Tribals ========== -->
+
+<PawnKindDef>
+    <defName>LizoGrenadier</defName>
+    <race>FR_Alien_Squamata</race>
+    <label>boomer</label>
+    <combatPower>65</combatPower>
+		<defaultFactionType>FR_SquamataTribes</defaultFactionType>
+		<backstoryCategories>
+			<li>Tribal</li>
+		</backstoryCategories>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0.05</chemicalAddictionChance>
+		<invNutrition>2.55</invNutrition>
+		<invFoodDef>Pemmican</invFoodDef>
+    <canBeSapper>true</canBeSapper>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelRequired>
+      <li>Apparel_WarVeil</li>
+      <li>Apparel_TribalBackpack</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <weaponMoney>
+      <min>60</min>
+      <max>400</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>CE_GrenadeNeolithic</li>
+    </weaponTags>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>800</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+		</techHediffsTags>
+		<techHediffsChance>0.33</techHediffsChance>
+    <modExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>6</min>
+          <max>18</max>
+        </primaryMagazineCount>
+        <forcedSidearm>
+          <sidearmMoney>
+            <min>80</min>
+            <max>160</max>
+          </sidearmMoney>
+          <weaponTags>
+            <li>CE_Sidearm_Tribal</li>
+          </weaponTags>
+        </forcedSidearm>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+<PawnKindDef>
+    <defName>LizoGunner</defName>
+    <race>FR_Alien_Squamata</race>
+    <label>thunderer</label>
+    <combatPower>65</combatPower>
+		<defaultFactionType>FR_SquamataTribes</defaultFactionType>
+		<backstoryCategories>
+			<li>Tribal</li>
+		</backstoryCategories>
+		<maxGenerationAge>60</maxGenerationAge>
+		<chemicalAddictionChance>0.05</chemicalAddictionChance>
+		<invNutrition>2.55</invNutrition>
+		<invFoodDef>Pemmican</invFoodDef>
+    <gearHealthRange>
+      <min>0.5</min>
+      <max>1.8</max>
+    </gearHealthRange>
+    <apparelMoney>
+      <min>180</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>Tribal</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_WarMask</li>
+    </apparelRequired>
+    <weaponMoney>
+      <min>180</min>
+      <max>290</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+		<techHediffsMoney>
+			<min>50</min>
+			<max>800</max>
+		</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+		</techHediffsTags>
+		<techHediffsChance>0.20</techHediffsChance>
+    <modExtensions>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>2</min>
+          <max>4</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>120</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.8</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>100</min>
+              <max>600</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+		</value>
+		</li>
+
+  <!-- ========== Add tribal grenadies ========== -->
+
+  <li Class="PatchOperationAdd"> <!-- Combat -->
+    <xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[1]/options</xpath>
+    <value>
+      <LizoGrenadier>10</LizoGrenadier>
+      <LizoGunner>20</LizoGunner>
+    </value>
+ </li>
+  
+  <li Class="PatchOperationAdd"> <!-- Normal fights, ranged only -->
+    <xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[2]/options</xpath>
+    <value>
+      <LizoGrenadier>15</LizoGrenadier>
+      <LizoGunner>30</LizoGunner>
+    </value>
+ </li>
+
+  <li Class="PatchOperationAdd"> <!--Peaceful-->
+    <xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[4]/options</xpath>
+    <value>
+      <LizoGrenadier>5</LizoGrenadier>
+      <LizoGunner>20</LizoGunner>
+    </value>
+ </li>
+
+  <li Class="PatchOperationAdd"> <!--Trader-->
+    <xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[5]/guards</xpath>
+    <value>
+      <LizoGrenadier>7</LizoGrenadier>
+      <LizoGunner>20</LizoGunner>
+    </value>
+ </li>
+
+  <li Class="PatchOperationAdd"> <!-- Settlement -->
+    <xpath>Defs/FactionDef[defName="FR_SquamataTribes"]/pawnGroupMakers/li[6]/options</xpath>
+    <value>
+      <LizoGrenadier>20</LizoGrenadier>
+      <LizoGunner>40</LizoGunner>
+    </value>
+ </li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

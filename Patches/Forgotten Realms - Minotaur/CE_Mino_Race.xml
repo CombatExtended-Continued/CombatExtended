@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Forgotten Realms - Minotaur</li>
+					</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<!-- Melee Tool & Basestats Defs -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]/statBases/Mass</xpath>
+					<value>
+      						<Mass>75</Mass>
+						<MeleeDodgeChance>1</MeleeDodgeChance>
+						<MeleeCritChance>1.66</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<AimingAccuracy>0.66</AimingAccuracy>
+          					<Suppressability>0.66</Suppressability>
+						<CarryWeight>50</CarryWeight>
+			                	<CarryBulk>30</CarryBulk>
+					</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]/statBases/MoveSpeed</xpath>
+				<value>
+					<MoveSpeed>4.8</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]/statBases/Flammability</xpath>
+				<value>
+					<Flammability>0.6</Flammability>
+				</value>
+			</li>
+
+		        <li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>1.75</baseHealthScale>
+					</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.3</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.3</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationSharp>0.4</armorPenetrationSharp>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Horn</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>3</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.33</chanceFactor>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FR_Alien_Minotaur"]</xpath>
+				<value>
+    					<comps>
+						<li>
+							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+							<li Class="CombatExtended.CompProperties_Suppressable" />
+    					</comps>
+				</value>
+			</li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
