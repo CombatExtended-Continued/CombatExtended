@@ -9,12 +9,12 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(Pawn), nameof(Pawn.SpecialDisplayStats))]
+    [HarmonyPatch]
     public static class Harmony_Pawn
     {
         private static MethodBase mIdeologyActive_Get = AccessTools.PropertyGetter(typeof(ModsConfig), nameof(ModsConfig.IdeologyActive));
 
-        private static MethodBase TargetMethod()
+        public static MethodBase TargetMethod()
         {
             return AccessTools.Method(typeof(Pawn).GetNestedTypes(AccessTools.all).First(t => t.Name.Contains("SpecialDisplayStats")), "MoveNext");
         }
