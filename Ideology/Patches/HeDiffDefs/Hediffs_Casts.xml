@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Combat Command -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CombatCommand"]/comps/li[@Class="HediffCompProperties_GiveHediffsInRange"]/range</xpath>
+		<value>
+			<range>14.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="CombatCommandBuff"]/comps/li[@Class="HediffCompProperties_Link"]/maxDistance</xpath>
+		<value>
+			<maxDistance>15</maxDistance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="CombatCommandBuff"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-0.25</Suppressability>
+		</value>
+	</Operation>
+
+	<!-- Marksman Command -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MarksmanCommand"]/comps/li[@Class="HediffCompProperties_GiveHediffsInRange"]/range</xpath>
+		<value>
+			<range>14.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/HediffDef[defName="MarksmanCommandBuff"]/stages/li/statOffsets/AimingDelayFactor</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="MarksmanCommandBuff"]/stages/li</xpath>
+		<value>
+			<statFactors>
+				<ReloadSpeed>1.10</ReloadSpeed>
+			</statFactors>		
+		</value>
+	</Operation>
+
+	<!-- Beserker Trance -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="BerserkTrance"]/stages/li/statOffsets</xpath>
+		<value>
+			<Suppressability>-10</Suppressability>
+		</value>
+	</Operation>
+
+</Patch>
+
