@@ -236,7 +236,7 @@ if PUBLICIZE:
 print(removed_libraries)
 #libraries = [l for l in libraries if not l.rsplit('/',1)[1] in removed_libraries]
     
-args = ["csc", "-warnaserror", "-nostdlib", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
+args = ["csc", "-unsafe", "-warnaserror", "-nostdlib", "-target:library", f'-out:{OUTPUT}', *sources, *[f'-r:{r}' for r in libraries]]
 
 if VERBOSE:
     print(HARMONY)
