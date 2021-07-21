@@ -14,6 +14,18 @@ The invocation used by CI is about as simple as it gets.
 `python Make.py --all-libs --download-libs` (for RW < 1.3), or
 `python Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer=$PWD/AssemblyPublicizer` (for RW >= 1.3)
 
+## Windows
+
+### Rider or Visual Studio
+To install and open in either Rider or Visual Studio.
+```
+$ git clone https://github.com/CombatExtended-Continued/CombatExtended
+$ start CombatExtended/Source/CombatExtended.sln 
+```
+`start` will open the sln file with whatever IDE you have set to open .sln files by default. You can also just open the sln file normally.
+
+After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
+
 ## Other options
 
 
