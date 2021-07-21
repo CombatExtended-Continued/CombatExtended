@@ -116,8 +116,11 @@ namespace CombatExtended
         private static void ProcessApparel(ThingDef def)
         {
             ApparelLayerDef layer = def.apparel.LastLayer;
-
-            isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index]; // set isVisibleLayerArray from the layer index since layers are processed first.
+            /*
+             * set isVisibleLayerArray from the layer index since layers are processed first.
+             */
+            if (layer != null)
+                isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
         }
 
         /// <summary>
@@ -154,7 +157,8 @@ namespace CombatExtended
         {
             ThingDefExtensionCE ext = def.GetModExtension<ThingDefExtensionCE>();
 
-            isMenuHiddenArray[def.index] = ext.MenuHidden;
+            if (ext != null)
+                isMenuHiddenArray[def.index] = ext.MenuHidden;
         }
 
         /// <summary>
@@ -163,9 +167,10 @@ namespace CombatExtended
         /// <param name="def"></param>
         private static void ProcessWeapons(ThingDef def)
         {
-            CompProperties_AmmoUser props = (CompProperties_AmmoUser)def.comps.First(c => c.compClass == typeof(CompAmmoUser));
+            CompProperties_AmmoUser props = (CompProperties_AmmoUser)(def.comps?.First(c => c.compClass == typeof(CompAmmoUser)) ?? null);
 
-            isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
+            if (props?.ammoSet != null)
+                isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
         }
 
         /// <summary>
