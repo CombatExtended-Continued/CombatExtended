@@ -10,11 +10,15 @@ namespace CombatExtended
     {
         public bool includeWeapons;
 
-        public StatDef apparelStat;
-
         public StatDef weaponStat = null;
 
+        public StatDef apparelStat;
+
+        public bool sumApparelsStat = false;
+
         public StatDef implantStat = null;
+
+        public bool sumImplantsStat = true;
 
         private Dictionary<EquipmentStatKey, float> cachedStats = new Dictionary<EquipmentStatKey, float>();
 
@@ -41,10 +45,23 @@ namespace CombatExtended
             {
                 if (apparelStat != null && pawn.apparel != null)
                 {
-                    ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
+                    if (sumApparelsStat)
+                    {
+                        float value = 0;
+                        ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
 
-                    for (int i = 0; i < wornApparel.Count; i++)
-                        result = Select(result, GetEquipmentStat(wornApparel[i], apparelStat));
+                        for (int i = 0; i < wornApparel.Count; i++)
+                            value += GetEquipmentStat(wornApparel[i], apparelStat);
+
+                        result = Select(value, result);
+                    }
+                    else
+                    {
+                        ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
+
+                        for (int i = 0; i < wornApparel.Count; i++)
+                            result = Select(result, GetEquipmentStat(wornApparel[i], apparelStat));
+                    }
                 }
                 if (weaponStat != null && pawn.equipment != null && pawn.equipment.Primary != null)
                 {
@@ -52,11 +69,25 @@ namespace CombatExtended
                 }
                 if (implantStat != null)
                 {
-                    List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
-                    for (int i = 0; i < hediffs.Count; i++)
+                    if (sumImplantsStat)
                     {
-                        if (hediffs[i] is Hediff_AddedPart addedpart && addedpart != null && addedpart.def.spawnThingOnRemoved != null)
-                            result = Select(result, GetAddedPartStat(addedpart));
+                        List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
+                        float value = 0f;
+                        for (int i = 0; i < hediffs.Count; i++)
+                        {
+                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
+                                value += GetAddedPartStat(addedpart);
+                        }
+                        result = Select(value, result);
+                    }
+                    else
+                    {
+                        List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
+                        for (int i = 0; i < hediffs.Count; i++)
+                        {
+                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
+                                result = Select(result, GetAddedPartStat(addedpart));
+                        }
                     }
                 }
             }
