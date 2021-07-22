@@ -186,9 +186,9 @@ namespace CombatExtended
             return 60 / movePerTick;
         }
 
-        public static float GetLightingShift(Thing thing, float glow)
+        public static float GetLightingShift(Thing caster, float glowAtTarget)
         {
-            return Mathf.Max((1.0f - glow) * (1.0f - thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
+            return Mathf.Max((1.0f - glowAtTarget) * (1.0f - caster.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
         }
 
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
@@ -570,6 +570,29 @@ namespace CombatExtended
         public static float LightingRangeMultiplier(float range)
         {
             return lightingCurve.Evaluate(range);
+        }
+
+        private static Map[] _maps = new Map[20];
+        private static LightingTracker[] _lightingTrackers = new LightingTracker[20];
+
+        public static LightingTracker GetLightingTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _maps.Length)
+            {
+                int expandedLength = Mathf.Max(_maps.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                LightingTracker[] trackers = new LightingTracker[expandedLength];
+                Array.Copy(_maps, maps, _maps.Length);
+                Array.Copy(_lightingTrackers, trackers, _lightingTrackers.Length);
+                _maps = maps;
+                _lightingTrackers = trackers;
+            }
+            if (_maps[index] == map)
+                return _lightingTrackers[index];
+            return _lightingTrackers[index] = (_maps[index] = map).GetComponent<LightingTracker>();
         }
 
         #endregion
