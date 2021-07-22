@@ -67,6 +67,7 @@ Animal Armor: Vanilla	|
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
+Arasaka Corporation [1.2]	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
