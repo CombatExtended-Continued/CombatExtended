@@ -204,7 +204,7 @@ namespace CombatExtended
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 cell = position + AdjCells[i];
-                if (cell.InBounds(map)) muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i]);
+                if (cell.InBounds(map)) muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i] / 13f);
             }
             if (Controller.settings.DebuggingMode && Controller.settings.DebugMuzzleFlash)
             {
