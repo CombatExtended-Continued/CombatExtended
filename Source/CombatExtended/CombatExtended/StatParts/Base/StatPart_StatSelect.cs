@@ -75,7 +75,10 @@ namespace CombatExtended
                         float value = 0f;
                         for (int i = 0; i < hediffs.Count; i++)
                         {
-                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart != null && addedpart.def.spawnThingOnRemoved != null)
+                            /*
+                             * .|.. This is idiotic to layer 10 reviews ontop of each other, .|.. this shit
+                             */
+                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
                                 value += GetAddedPartStat(addedpart);
                         }
                         result = Select(value, result);
@@ -85,7 +88,10 @@ namespace CombatExtended
                         List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
                         for (int i = 0; i < hediffs.Count; i++)
                         {
-                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart != null && addedpart.def.spawnThingOnRemoved != null)
+                            /*
+                             * .| ..This is idiotic to layer 10 reviews ontop of each other, .|.. this shit
+                             */
+                            if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
                                 result = Select(result, GetAddedPartStat(addedpart));
                         }
                     }
