@@ -54,7 +54,7 @@ namespace CombatExtended
 
             public float Intensity
             {
-                get => intensity * (1.0f - Mathf.Min(GenTicks.TicksGame - createdAt, FLASHAGE) / FLASHAGE);
+                get => intensity * (1.0f - Mathf.Min((float)GenTicks.TicksGame - createdAt, FLASHAGE) / FLASHAGE);
             }
 
             public bool Recent
