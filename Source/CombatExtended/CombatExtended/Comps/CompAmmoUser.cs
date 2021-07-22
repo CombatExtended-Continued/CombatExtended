@@ -59,8 +59,8 @@ namespace CombatExtended
         {
             get
             {
-                if (CompEquippable == null 
-                    || CompEquippable.PrimaryVerb == null 
+                if (CompEquippable == null
+                    || CompEquippable.PrimaryVerb == null
                     || CompEquippable.PrimaryVerb.caster == null
                     || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
                 {
@@ -80,11 +80,18 @@ namespace CombatExtended
         public bool UseAmmo
         {
             get
-			{
+            {
                 return Props.ammoSet != null && AmmoUtility.IsAmmoSystemActive(Props.ammoSet);
-			}
-		}
-		public bool HasAndUsesAmmoOrMagazine
+            }
+        }
+        public bool IsAOEWeapon
+        {
+            get
+            {
+                return parent.def.IsAOEWeapon();
+            }
+        }
+        public bool HasAndUsesAmmoOrMagazine
         {
             get
             {
@@ -314,7 +321,7 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-            
+
             if (curMagCountInt < 0) TryStartReload();
             return true;
         }
@@ -450,10 +457,8 @@ namespace CombatExtended
         private void DoOutOfAmmoAction()
         {
             if (ShouldThrowMote)
-            {
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
-            }
-            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon();
+            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon(useFists: true, useAOE: !(parent is Pawn pawn && pawn.IsColonist));
         }
 
         public void LoadAmmo(Thing ammo = null)
@@ -582,7 +587,7 @@ namespace CombatExtended
         {
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
             yield return ammoStatusGizmo;
-	    var mannableComp = turret?.GetMannable();
+            var mannableComp = turret?.GetMannable();
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
                 Action action = null;

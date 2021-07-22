@@ -19,7 +19,7 @@ namespace CombatExtended
             return pawn.Reserve(Victim, job, 1, -1, null);
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOn(delegate
             {

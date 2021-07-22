@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using Verse;
 
@@ -8,13 +11,23 @@ namespace CombatExtended.Utilities
 {
     public class ThingsTrackingModel
     {
+        [StructLayout(LayoutKind.Sequential)]
         private struct ThingPositionInfo : IComparable<ThingPositionInfo>
         {
             public Thing thing;
             public int createdOn;
 
-            public bool IsValid => thing.Spawned;
-            public int Age => GenTicks.TicksGame - createdOn;
+            public int Age
+            {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => GenTicks.TicksGame - createdOn;
+            }
+
+            public bool IsValid
+            {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => thing != null && thing.Spawned && thing.Position.InBounds(thing.Map);
+            }
 
             public ThingPositionInfo(Thing thing)
             {
@@ -22,6 +35,7 @@ namespace CombatExtended.Utilities
                 this.createdOn = GenTicks.TicksGame;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override int GetHashCode()
             {
                 return thing.thingIDNumber;
@@ -37,6 +51,7 @@ namespace CombatExtended.Utilities
                 return $"{thing.ToString()}:{thing.Position.ToString()}:{createdOn.ToString()}";
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public int CompareTo(ThingPositionInfo other)
             {
                 return thing.Position.x.CompareTo(other.thing.Position.x);
@@ -81,7 +96,10 @@ namespace CombatExtended.Utilities
         public void Register(Thing thing)
         {
             if (indexByThing.ContainsKey(thing))
+            {
+                Notify_ThingPositionChanged(thing);
                 return;
+            }
             if (count + 1 >= sortedThings.Length)
             {
                 ThingPositionInfo[] temp = new ThingPositionInfo[sortedThings.Length * 2];
@@ -104,26 +122,24 @@ namespace CombatExtended.Utilities
             }
         }
 
-        public void Remove(Thing thing)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void DeRegister(Thing thing)
         {
-            if (!indexByThing.ContainsKey(thing))
-                return;
-            int index = indexByThing[thing];
-            for (int i = index + 1; i < count; i++)
+            if (indexByThing.TryGetValue(thing, out int index))
             {
-                indexByThing[sortedThings[i].thing] = i - 1;
-                sortedThings[i - 1] = sortedThings[i];
+                RemoveClean(index);
+                indexByThing.Remove(thing);
             }
-            indexByThing.Remove(thing);
-            count--;
         }
 
         public void Notify_ThingPositionChanged(Thing thing)
         {
-            int i;
-            int index = indexByThing[thing];
-
-            i = index;
+            if (!indexByThing.TryGetValue(thing, out int index))
+            {
+                Register(thing);
+                return;
+            }
+            int i = index;
             while (i + 1 < count && sortedThings[i] > sortedThings[i + 1])
             {
                 Swap<ThingPositionInfo>(i + 1, i, sortedThings);
@@ -188,6 +204,32 @@ namespace CombatExtended.Utilities
             }
         }
 
+        private void RemoveClean(int index)
+        {
+            int i;
+            int offset = 1;
+            for (i = index + 1; i < count && i - offset >= 0; i++)
+            {
+                ThingPositionInfo current = sortedThings[i];
+                if (!current.IsValid)
+                {
+                    offset++;
+                    if (indexByThing.ContainsKey(current.thing))
+                        indexByThing.Remove(current.thing);
+                    current.thing = null;
+                }
+                else if (offset > 0)
+                {
+                    indexByThing[current.thing] = i - offset;
+                    sortedThings[i - offset] = current;
+                }
+            }
+            for (i = count - offset; i < count; i++)
+                sortedThings[i].thing = null;
+            count -= offset;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Swap<T>(int a, int b, T[] list)
         {
             T temp = list[a];

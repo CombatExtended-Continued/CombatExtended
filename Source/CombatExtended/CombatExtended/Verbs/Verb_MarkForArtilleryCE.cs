@@ -19,7 +19,7 @@ namespace CombatExtended
             }
         }
 
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             ArtilleryMarker marker = ThingMaker.MakeThing(ThingDef.Named(ArtilleryMarker.MarkerDef)) as ArtilleryMarker;
             ShiftVecReport report = ShiftVecReportFor(currentTarget);

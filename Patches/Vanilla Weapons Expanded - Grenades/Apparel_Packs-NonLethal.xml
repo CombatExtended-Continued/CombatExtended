@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	  <Operation Class="PatchOperationFindMod">
+        <mods>
+          <li>Vanilla Weapons Expanded - Grenades</li>
+        </mods>
+    <match Class="PatchOperationFindMod">
+        <mods>
+          <li>Vanilla Weapons Expanded - Non-Lethal</li>
+        </mods>
+        
+      <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Tear Gas Grenade Belt -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VWE_Apparel_GrenadeTearGasBelt"]/costList</xpath>
+		<value>
+			<costList>
+			<VWE_TearGasGrenade>5</VWE_TearGasGrenade>
+			</costList>	
+		</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VWE_Apparel_GrenadeTearGasBelt"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountToRefill</xpath>
+		<value>
+			<ammoCountPerCharge>1</ammoCountPerCharge>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VWE_Apparel_GrenadeTearGasBelt"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<label>throw tear gas</label>
+					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<onlyManualCast>True</onlyManualCast>
+					<warmupTime>1.5</warmupTime>
+					<range>10</range>
+					<minRange>5</minRange>
+					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					<soundCast>ThrowGrenade</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+					<defaultProjectile>VWENL_Projectile_TearGasGrenade</defaultProjectile>
+					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+				</li>
+			</verbs>
+		</value>
+		</li>
+
+			</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
+
