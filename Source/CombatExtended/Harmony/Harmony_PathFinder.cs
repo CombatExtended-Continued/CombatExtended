@@ -7,7 +7,7 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(PathFinder), "FindPath", new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode) })]
+    [HarmonyPatch(typeof(PathFinder), nameof(PathFinder.FindPath), new[] { typeof(IntVec3), typeof(LocalTargetInfo), typeof(TraverseParms), typeof(PathEndMode), typeof(PathFinderCostTuning) })]
     internal static class Harmony_PathFinder
     {
         internal static bool Prefix(ref PawnPath __result, IntVec3 start, LocalTargetInfo dest, TraverseParms traverseParms, PathEndMode peMode)

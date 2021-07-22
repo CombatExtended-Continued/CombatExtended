@@ -22,7 +22,8 @@ namespace CombatExtended
         private bool drawShield => Wearer.Drafted || (Wearer.CurJob?.def.alwaysShowWeapon ?? false) || (Wearer.mindState.duty?.def.alwaysShowWeapon ?? false);  // Copied from PawnRenderer.CarryWeaponOpenly(), we show the shield whenever weapons are drawn
         private bool IsTall => def.GetModExtension<ShieldDefExtension>()?.drawAsTall ?? false;
 
-        public override bool AllowVerbCast(IntVec3 root, Map map, LocalTargetInfo targ, Verb verb)
+
+        public override bool AllowVerbCast(Verb verb)
         {
             ThingWithComps primary = Wearer.equipment?.Primary;
             return primary == null || (primary.def.weaponTags?.Contains(OneHandedTag) ?? false);

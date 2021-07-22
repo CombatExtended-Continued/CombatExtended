@@ -47,7 +47,7 @@ namespace CombatExtended
 		/// </summary>
 		/// <param name="pawn">Pawn that the job is supposed to take place on.</param>
 		/// <returns>Job that the pawn is to be working on.</returns>
-		protected override Job TryGiveJob(Pawn pawn)
+		public override Job TryGiveJob(Pawn pawn)
 		{
 			ThingWithComps gun;
 			AmmoDef ammo;

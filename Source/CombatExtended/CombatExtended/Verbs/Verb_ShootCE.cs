@@ -1,4 +1,4 @@
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +33,7 @@ namespace CombatExtended
 
         #region Properties
 
-        protected override int ShotsPerBurst
+        public override int ShotsPerBurst
         {
             get
             {
@@ -80,7 +80,7 @@ namespace CombatExtended
             }
         }
 
-        protected override float SwayAmplitude
+        public override float SwayAmplitude
         {
             get
             {
@@ -174,7 +174,7 @@ namespace CombatExtended
             return base.CanHitTargetFrom(root, targ);
         }
 
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             //Reduce ammunition
             if (CompAmmo != null)
@@ -194,7 +194,7 @@ namespace CombatExtended
                 //Drop casings
                 if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
-                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, ThingDef.Named(projectilePropsCE.casingMoteDefname));
+                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
                 }
                 // This needs to here for weapons without magazine to ensure their last shot plays sounds
                 if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
@@ -203,7 +203,7 @@ namespace CombatExtended
                     {
                         if (VerbPropsCE.muzzleFlashScale > 0.01f)
                         {
-                            MoteMaker.MakeStaticMote(caster.Position, caster.Map, ThingDefOf.Mote_ShotFlash, VerbPropsCE.muzzleFlashScale);
+                            FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
                         }
                         if (VerbPropsCE.soundCast != null)
                         {

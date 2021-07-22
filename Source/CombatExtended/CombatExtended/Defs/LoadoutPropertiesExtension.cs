@@ -30,28 +30,28 @@ namespace CombatExtended
 
         // Copied from PawnWeaponGenerator.Reset() - 1:1 COPY!!! (Plus Shields)
         public static void Reset()
-		{
+        {
             // Initialize weapons
-			Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && !td.weaponTags.NullOrEmpty<string>();
+            Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && !td.weaponTags.NullOrEmpty<string>();
             allWeaponPairs = ThingStuffPair.AllWith(isWeapon);
-			foreach (ThingDef thingDef in from td in DefDatabase<ThingDef>.AllDefs
-			where isWeapon(td)
-			select td)
-			{
-				float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
-				float num2 = thingDef.generateCommonality / num;
-				if (num2 != 1f)
-				{
-					for (int i = 0; i < allWeaponPairs.Count; i++)
-					{
-						ThingStuffPair thingStuffPair = allWeaponPairs[i];
-						if (thingStuffPair.thing == thingDef)
-						{
+            foreach (ThingDef thingDef in from td in DefDatabase<ThingDef>.AllDefs
+                                          where isWeapon(td)
+                                          select td)
+            {
+                float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
+                float num2 = thingDef.generateCommonality / num;
+                if (num2 != 1f)
+                {
+                    for (int i = 0; i < allWeaponPairs.Count; i++)
+                    {
+                        ThingStuffPair thingStuffPair = allWeaponPairs[i];
+                        if (thingStuffPair.thing == thingDef)
+                        {
                             allWeaponPairs[i] = new ThingStuffPair(thingStuffPair.thing, thingStuffPair.stuff, thingStuffPair.commonalityMultiplier * num2);
-						}
-					}
-				}
-			}
+                        }
+                    }
+                }
+            }
 
             // Initialize shields
             allShieldPairs = ThingStuffPair.AllWith(td => td.thingClass == typeof(Apparel_Shield));
@@ -205,9 +205,9 @@ namespace CombatExtended
                 return;
 
             var money = shieldMoney.RandomInRange;
-            foreach(ThingStuffPair cur in allShieldPairs)
+            foreach (ThingStuffPair cur in allShieldPairs)
             {
-                if(cur.Price < money
+                if (cur.Price < money
                     && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
                     && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
                     && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)

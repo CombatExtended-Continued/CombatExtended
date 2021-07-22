@@ -7,116 +7,115 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- You just *know* there's a human bard somewhere out there that's responsible for this. -->
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<!-- Orcs are markedly larger than your average human. -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>1.3</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/alienRace/generalSettings/disallowedTraits/li[defName="Undergrounder"]</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.70</MeleeDodgeChance>
+					<MeleeCritChance>1.10</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<SmokeSensitivity>0.80</SmokeSensitivity>
+					<CarryWeight>50</CarryWeight>
+					<CarryBulk>30</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.66</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
 						</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/comps</xpath>
-							<success>Invert</success>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.66</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
 						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]</xpath>
-							<value>
-								<comps />
-							</value>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>5.05</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
 						</li>
-					</operations>
-				</li>
-
-				<!-- Orcs are markedly larger than your average human. -->
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/race/baseBodySize</xpath>
-					<value>
-						<baseBodySize>1.3</baseBodySize>
-					</value>
-				</li>
-
-				<li Class="PatchOperationRemove">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/alienRace/generalSettings/disallowedTraits/li[defName="Undergrounder"]</xpath>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>0.70</MeleeDodgeChance>
-						<MeleeCritChance>1.10</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<SmokeSensitivity>0.80</SmokeSensitivity>
-						<CarryWeight>50</CarryWeight>
-						<CarryBulk>30</CarryBulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>3</power>
-								<cooldownTime>1.66</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>3</power>
-								<cooldownTime>1.66</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>4</power>
-								<cooldownTime>5.05</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>1</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<capacities>
-									<li>Bite</li>
-								</capacities>
-								<power>8</power>
-								<cooldownTime>1.57</cooldownTime>
-								<chanceFactor>0.33</chanceFactor>
-								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.08</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<!-- While hardly remarkable for their intellectual prowess, orcs are nonetheless smart enough to take cover when arrows start flying. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Orc"]/comps</xpath>
-					<value>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.57</cooldownTime>
+							<chanceFactor>0.33</chanceFactor>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.08</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
-				</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- While hardly remarkable for their intellectual prowess, orcs are nonetheless smart enough to take cover when arrows start flying. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Orc"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
 
 			</operations>
 		</match>

@@ -157,7 +157,7 @@ namespace CombatExtended
                     this);
             }
             // Create sound and flash effects
-            if (AmmoDef.cookOffFlashScale > 0.01) MoteMaker.MakeStaticMote(Position, Map, ThingDefOf.Mote_ShotFlash, AmmoDef.cookOffFlashScale);
+            if (AmmoDef.cookOffFlashScale > 0.01) FleckMaker.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
             if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
             if (AmmoDef.cookOffTailSound != null) AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
 

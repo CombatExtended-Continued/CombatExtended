@@ -21,10 +21,10 @@ namespace CombatExtended.Lasers
         public float beamWidth = 1.0f;
         public float shieldDamageMultiplier = 0.5f;
         public float seam = -1f;
-        
+
         public float causefireChance = -1f;
         public bool canExplode = false;
-        
+
 
         public bool LightningBeam = false;
         public float LightningVariance = 3f;
@@ -38,9 +38,9 @@ namespace CombatExtended.Lasers
         public ThingDef beamGraphic;
 
         public List<string> textures;
-        public List<Material> materials = new List<Material> ();
+        public List<Material> materials = new List<Material>();
 
-        
+
         void CreateGraphics()
         {
             if (this.graphicData.graphicClass == typeof(Graphic_Random) || this.graphicData.graphicClass == typeof(Graphic_Flicker))
@@ -53,12 +53,12 @@ namespace CombatExtended.Lasers
                                             select x).ToList<Texture2D>();
                     if (list.NullOrEmpty<Texture2D>())
                     {
-                        Log.Error("Collection cannot init: No textures found at path " + textures[i], false);
+                        Log.Error("Collection cannot init: No textures found at path " + textures[i]);
                     }
                     for (int ii = 0; ii < list.Count; ii++)
                     {
-			var mat = MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, ShaderDatabase.TransparentPostLight);
-			mat.color = this.graphicData.color;
+                        var mat = MaterialPool.MatFrom(textures[i] + "/" + list[ii].name, ShaderDatabase.TransparentPostLight);
+                        mat.color = this.graphicData.color;
                     }
                 }
             }
@@ -66,9 +66,9 @@ namespace CombatExtended.Lasers
             {
                 for (int i = 0; i < textures.Count; i++)
                 {
-		    var mat = MaterialPool.MatFrom(textures[i], ShaderDatabase.TransparentPostLight);
-		    mat.color = this.graphicData.color;
-		    materials.Add(mat);
+                    var mat = MaterialPool.MatFrom(textures[i], ShaderDatabase.TransparentPostLight);
+                    mat.color = this.graphicData.color;
+                    materials.Add(mat);
                 }
             }
         }
@@ -78,13 +78,14 @@ namespace CombatExtended.Lasers
             if (materials.Count == 0 && textures.Count != 0)
                 CreateGraphics();
 
-            if (materials.Count == 0) {
+            if (materials.Count == 0)
+            {
                 return null;
             }
 
             if (index >= materials.Count || index < 0)
                 index = 0;
-	    materials[index].color = this.graphicData.color;
+            materials[index].color = this.graphicData.color;
             return materials[index];
         }
 

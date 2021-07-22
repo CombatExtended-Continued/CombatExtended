@@ -228,7 +228,7 @@ namespace CombatExtended.Lasers
                 //   Graphics.DrawMesh(mesh, drawingMatrix, FadedMaterialPool.FadedVersionOf(materialBeam, opacity), 0);
             }
         }
-        protected virtual void Explode()
+        public virtual void Explode()
         {
             Map map = base.Map;
             IntVec3 intVec = this.b.ToIntVec3();

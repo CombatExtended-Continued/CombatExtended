@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -23,6 +24,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(ApparelGraphicRecordGetter), "TryGetGraphicApparel")]
     internal static class Harmony_ApparelGraphicRecordGetter
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool IsHeadwear(ApparelLayerDef layer)
         {
             return layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false;

@@ -84,7 +84,7 @@ namespace CombatExtended
             return text;
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking/input validation.
             if (turret == null)
