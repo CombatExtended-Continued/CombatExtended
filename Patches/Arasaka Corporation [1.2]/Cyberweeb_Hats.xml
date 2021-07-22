@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Arasaka Corporation [1.2]</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+				<!-- == Cap ac == -->
+				<!-- statBases -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Cap_AC" or defName="Apparel_Cap_W_AC"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>0.024</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+						<Bulk>2</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Cap_AC" or defName="Apparel_Cap_W_AC"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+				<!-- == GasMask == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+      				<li Class="PatchOperationReplace">
+        				<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/statBases/ArmorRating_Sharp</xpath>
+        				<value>
+          					<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+        				</value>
+      				</li>
+
+      				<li Class="PatchOperationReplace">
+        				<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/statBases/ArmorRating_Blunt</xpath>
+        				<value>
+          					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+        				</value>
+      				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Hazmat_Mask_AC"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName = "Apparel_Hazmat_Mask_AC"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApparelHediffExtension">
+							<hediff>WearingGasMask</hediff>
+						</li>
+					</value>
+				</li>
+
+      <!-- === Helmet === -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_AC"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>8</ArmorRating_Sharp>
+          <Bulk>5</Bulk>
+          <WornBulk>1</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_AC"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>12</ArmorRating_Blunt>
+          <ArmorRating_Heat>0.42</ArmorRating_Heat>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_AC"]/costList</xpath>
+        <value>
+        <costList>
+	<Steel>30</Steel>
+        	<DevilstrandCloth>10</DevilstrandCloth>
+	<Plasteel>10</Plasteel>
+        </costList>
+        </value>
+      </li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Helmet_AC"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+					</value>
+				</li>
+
+     <!-- === Goggles === -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>8</ArmorRating_Sharp>
+          <Bulk>6</Bulk>
+          <WornBulk>1.5</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>12</ArmorRating_Blunt>
+          <ArmorRating_Heat>0.42</ArmorRating_Heat>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/costList</xpath>
+        <value>
+        <costList>
+		<Steel>25</Steel>
+        		<DevilstrandCloth>15</DevilstrandCloth>
+		<ComponentIndustrial>4</ComponentIndustrial>
+		<Plasteel>15</Plasteel>
+        </costList>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+        <value>
+	<ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+        </value>
+      </li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_Helmet_With_Techgogs_AC"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
