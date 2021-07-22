@@ -4,11 +4,33 @@
 	<!-- Combat Command -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="CombatCommand"]/verbProperties/range</xpath>
+		<value>
+			<range>14.9</range>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/AbilityDef[defName="CombatCommand"]/statBases/Ability_EffectRadius</xpath>
+		<value>
+			<Ability_EffectRadius>14.9</Ability_EffectRadius>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mote_CombatCommand"]/graphicData/drawSize</xpath>
+		<value>
+			<drawSize>30</drawSize>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="CombatCommand"]/comps/li[@Class="HediffCompProperties_GiveHediffsInRange"]/range</xpath>
 		<value>
 			<range>14.9</range>
 		</value>
 	</Operation>
+
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="CombatCommandBuff"]/comps/li[@Class="HediffCompProperties_Link"]/maxDistance</xpath>
@@ -41,7 +63,7 @@
 		<xpath>Defs/HediffDef[defName="MarksmanCommandBuff"]/stages/li</xpath>
 		<value>
 			<statFactors>
-				<ReloadSpeed>1.10</ReloadSpeed>
+				<ReloadSpeed>1.20</ReloadSpeed>
 			</statFactors>		
 		</value>
 	</Operation>
