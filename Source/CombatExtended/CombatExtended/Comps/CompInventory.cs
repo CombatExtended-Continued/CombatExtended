@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using Verse.Sound;
 using UnityEngine;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -18,6 +19,8 @@ namespace CombatExtended
         private const int CLEANUPTICKINTERVAL = 2100;
         private float currentWeightCached;
         private float currentBulkCached;
+        private int updatingLoadoutAge = -1;
+        private bool updatingLoadout = false;
         private List<Thing> ammoListCached = new List<Thing>();
         private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
@@ -33,7 +36,21 @@ namespace CombatExtended
                 return (CompProperties_Inventory)props;
             }
         }
-
+        public bool UpdatingLoadout
+        {
+            get
+            {
+                return GenTicks.TicksGame - updatingLoadoutAge < CLEANUPTICKINTERVAL && updatingLoadout;
+            }
+            set
+            {
+                if (value && !UpdatingLoadout)
+                {
+                    updatingLoadoutAge = GenTicks.TicksGame;
+                }
+                updatingLoadout = value;
+            }
+        }
         public float currentWeight
         {
             get
@@ -142,6 +159,14 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+
+            Scribe_Values.Look(ref updatingLoadout, "updatingLoadout", false);
+            Scribe_Values.Look(ref updatingLoadoutAge, "updatingLoadoutAge", -1);
+        }
 
         /// <summary>
         /// Similar to ThingContainer.TotalStackCountOfDef(), returns the count of all matching AmmoDefs in AmmoList cache.
@@ -309,8 +334,6 @@ namespace CombatExtended
             }
             */
         }
-
-
 
         /// <summary>
         /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists

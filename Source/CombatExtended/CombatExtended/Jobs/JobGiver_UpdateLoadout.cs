@@ -40,6 +40,11 @@ namespace CombatExtended
             {
                 return 9.2f;
             }
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            if (inventory == null)
+            {
+                return 0f;
+            }
             ItemPriority priority;
             Thing unused;
             int i;
@@ -49,12 +54,16 @@ namespace CombatExtended
             {
                 return 0f;
             }
-            if (priority == ItemPriority.Low) return 3f;
-
+            if (priority == ItemPriority.Low)
+            {
+                return inventory.UpdatingLoadout ? 35f : 3f;
+            }
             TimeAssignmentDef assignment = (pawn.timetable != null) ? pawn.timetable.CurrentAssignment : TimeAssignmentDefOf.Anything;
-            if (assignment == TimeAssignmentDefOf.Sleep) return 3f;
-
-            return 9.2f;
+            if (assignment == TimeAssignmentDefOf.Sleep)
+            {
+                return inventory.UpdatingLoadout ? 35f : 3f;
+            }
+            return inventory.UpdatingLoadout ? 35.0f : 9.2f;
         }
 
         /// <summary>
@@ -66,7 +75,7 @@ namespace CombatExtended
         /// <param name="count">The amount of closestThing to pickup.  Already checked if inventory can hold it.</param>
         /// <param name="carriedBy">If unable to find something on the ground to pickup, the pawn (pack animal/prisoner) which has the item to take.</param>
         /// <returns>LoadoutSlot which has something that can be picked up.</returns>
-        private LoadoutSlot GetPrioritySlot(Pawn pawn, out ItemPriority priority, out Thing closestThing, out int count, out Pawn carriedBy)
+        private static LoadoutSlot GetPrioritySlot(Pawn pawn, out ItemPriority priority, out Thing closestThing, out int count, out Pawn carriedBy)
         {
             priority = ItemPriority.None;
             LoadoutSlot slot = null;
@@ -154,7 +163,7 @@ namespace CombatExtended
         /// <param name="curThing">Thing found near pawn for potential pickup.</param>
         /// <param name="curCarrier">Pawn that is holding the curThing that 'pawn' wants.</param>
         /// <remarks>Was split off into a sepearate method so the code could be run from multiple places in caller but that is no longer needed.</remarks>
-        private void FindPickup(Pawn pawn, LoadoutSlot curSlot, int findCount, out ItemPriority curPriority, out Thing curThing, out Pawn curCarrier)
+        private static void FindPickup(Pawn pawn, LoadoutSlot curSlot, int findCount, out ItemPriority curPriority, out Thing curThing, out Pawn curCarrier)
         {
             curPriority = ItemPriority.None;
             curThing = null;
@@ -220,7 +229,7 @@ namespace CombatExtended
             }
         }
 
-        private bool AllowedByBiocode(Thing thing, Pawn pawn)
+        private static bool AllowedByBiocode(Thing thing, Pawn pawn)
         {
             CompBiocodable compBiocoded = thing.TryGetComp<CompBiocodable>();
             return (compBiocoded == null || !compBiocoded.Biocoded || compBiocoded.CodedPawn == pawn);
@@ -231,7 +240,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Pawn to which the job is given.</param>
         /// <returns>Job that the pawn was instructed to do, be it hauling a dropped Thing or going and getting a Thing.</returns>
-        public override Job TryGiveJob(Pawn pawn)
+        public static Job GetUpdateLoadoutJob(Pawn pawn)
         {
             // Get inventory
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
@@ -306,6 +315,17 @@ namespace CombatExtended
                 }
             }
             return null;
+        }
+
+        public override Job TryGiveJob(Pawn pawn)
+        {
+            Job job = GetUpdateLoadoutJob(pawn);
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            if (inventory != null)
+            {
+                inventory.UpdatingLoadout = job != null;
+            }
+            return job;
         }
 
         #endregion
