@@ -100,6 +100,8 @@ namespace CombatExtended
             }
         }
 
+        private const float MUZZLEFLASH_MEAN = 13f;
+
         public int NumGridCells
         {
             get
@@ -204,7 +206,7 @@ namespace CombatExtended
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 cell = position + AdjCells[i];
-                if (cell.InBounds(map)) muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i] / 13f);
+                if (cell.InBounds(map)) muzzle_grid[CellToIndex(cell)] += new MuzzleRecord(intensity * AdjWeights[i] / MUZZLEFLASH_MEAN);
             }
             if (Controller.settings.DebuggingMode && Controller.settings.DebugMuzzleFlash)
             {
