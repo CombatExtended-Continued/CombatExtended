@@ -606,7 +606,7 @@ namespace CombatExtended
             lightingCurve.Add(05.00f, 0.05f);
             lightingCurve.Add(10.00f, 0.15f);
             lightingCurve.Add(22.00f, 0.475f);
-            lightingCurve.Add(30.00f, 1.00f);
+            lightingCurve.Add(35.00f, 1.00f);
             lightingCurve.Add(60.00f, 1.20f);
             lightingCurve.Add(90.00f, 2.00f);
         }
