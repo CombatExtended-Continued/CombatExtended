@@ -1,9 +1,10 @@
 ﻿using System;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
 {
-    public class ProjectileCE_Flare : ProjectileCE
+    public class ProjectileCE_Flare : ProjectileCE_Explosive
     {
         public override void Impact(Thing hitThing)
         {
