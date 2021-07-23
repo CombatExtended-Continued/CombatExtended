@@ -18,6 +18,8 @@ namespace CombatExtended
 
         public static ThingDef FSX;
 
+        public static ThingDef Flare;
+
         public static ThingDef ExplosionCE;
 
         public static ThingDef AmmoBench;
