@@ -168,6 +168,18 @@ namespace CombatExtended
 
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
+        private LightingTracker _lightingTracker = null;
+        private LightingTracker LightingTracker
+        {
+            get
+            {
+                if (_lightingTracker == null)
+                {
+                    _lightingTracker = caster.Map.GetLightingTracker();
+                }
+                return _lightingTracker;
+            }
+        }
 
         #endregion
 
@@ -372,7 +384,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = verbProps.range;
-            report.lightingShift = CE_Utility.GetLightingShift(caster, caster.Map.glowGrid.GameGlowAt(targetCell));
+            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAt(targetCell));
             //report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
@@ -666,7 +678,12 @@ namespace CombatExtended
                 }
                 pelletMechanicsOnly = true;
             }
-            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
+
+            /*
+             * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
+             */
+            LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
+
             pelletMechanicsOnly = false;
             numShotsFired++;
             if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
