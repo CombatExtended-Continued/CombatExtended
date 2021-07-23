@@ -13,9 +13,9 @@ namespace CombatExtended
     {
         #region Fields
 
+        private int age = 0;
         private Pawn parentPawnInt = null;
-        private const int CLEANUPTICKINTERVAL = GenTicks.TickLongInterval;
-        private int ticksToNextCleanUp = GenTicks.TicksAbs;
+        private const int CLEANUPTICKINTERVAL = 2100;
         private float currentWeightCached;
         private float currentBulkCached;
         private List<Thing> ammoListCached = new List<Thing>();
@@ -156,6 +156,7 @@ namespace CombatExtended
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+
             UpdateInventory();
         }
 
@@ -187,7 +188,7 @@ namespace CombatExtended
                     float apparelWeight = apparel.GetStatValue(StatDefOf.Mass);
                     newBulk += apparelBulk;
                     newWeight += apparelWeight;
-                    if (apparelBulk > 0 && parentPawn != null && parentPawn.IsColonist && parentPawn.Spawned)
+                    if (age > CLEANUPTICKINTERVAL && apparelBulk > 0 && (parentPawn?.Spawned ?? false) && (parentPawn.factionInt?.IsPlayer ?? false))
                         LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_WornBulk, OpportunityType.GoodToKnow);
                 }
             }
@@ -407,11 +408,17 @@ namespace CombatExtended
 
         public override void CompTick()
         {
-            if (GenTicks.TicksAbs >= ticksToNextCleanUp)
+            /*
+             * Need to update this to avoid calling IsColonist too soon after spawning
+             */
+            age++;
+            /*
+             * Routin cleanup
+             */
+            if ((parentPawn.thingIDNumber + GenTicks.TicksGame) % CLEANUPTICKINTERVAL == 0)
             {
                 // Ask HoldTracker to clean itself up...
                 parentPawn.HoldTrackerCleanUp();
-                ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
             }
             base.CompTick();
             // Remove items from inventory if we're over the bulk limit
