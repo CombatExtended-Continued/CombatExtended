@@ -645,9 +645,10 @@ namespace CombatExtended
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
-                projectile.intendedTarget = currentTarget.Thing;
+                projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
                 if (instant)
                 {
                     var shotHeight = ShotHeight;

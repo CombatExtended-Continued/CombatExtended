@@ -61,9 +61,18 @@ namespace CombatExtended
         }
         #endregion
 
+
+        public Thing intendedTargetThing
+        {
+            get
+            {
+                return intendedTarget.Thing;
+            }
+        }
+
         public ThingDef equipmentDef;
         public Thing launcher;
-        public Thing intendedTarget;
+        public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
@@ -373,7 +382,7 @@ namespace CombatExtended
             }
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
-            Scribe_References.Look<Thing>(ref intendedTarget, "intendedTarget");
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
@@ -413,7 +422,7 @@ namespace CombatExtended
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
-            var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
+            var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
             for (int i = 1; i < verbProps.range; i++)
             {
                 float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
@@ -446,7 +455,7 @@ namespace CombatExtended
                     {
                         continue;
                     }
-                    if (i < 2 && thing != intendedTarget)
+                    if (i < 2 && thing != intendedTargetThing)
                     {
                         continue;
                     }
@@ -703,7 +712,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (thing == intendedTarget || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+                if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
                     if (TryCollideWith(thing))
                     {
