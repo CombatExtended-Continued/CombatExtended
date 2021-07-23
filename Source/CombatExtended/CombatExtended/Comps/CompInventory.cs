@@ -40,7 +40,7 @@ namespace CombatExtended
         {
             get
             {
-                return GenTicks.TicksGame - updatingLoadoutAge < 5000 && updatingLoadout;
+                return GenTicks.TicksGame - updatingLoadoutAge < CLEANUPTICKINTERVAL && updatingLoadout;
             }
             set
             {
