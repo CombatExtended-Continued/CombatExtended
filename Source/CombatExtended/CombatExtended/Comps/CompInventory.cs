@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using Verse.Sound;
 using UnityEngine;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -13,11 +14,13 @@ namespace CombatExtended
     {
         #region Fields
 
+        private int age = 0;
         private Pawn parentPawnInt = null;
-        private const int CLEANUPTICKINTERVAL = GenTicks.TickLongInterval;
-        private int ticksToNextCleanUp = GenTicks.TicksAbs;
+        private const int CLEANUPTICKINTERVAL = 2100;
         private float currentWeightCached;
         private float currentBulkCached;
+        private int updatingLoadoutAge = -1;
+        private bool updatingLoadout = false;
         private List<Thing> ammoListCached = new List<Thing>();
         private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
@@ -33,7 +36,21 @@ namespace CombatExtended
                 return (CompProperties_Inventory)props;
             }
         }
-
+        public bool UpdatingLoadout
+        {
+            get
+            {
+                return GenTicks.TicksGame - updatingLoadoutAge < CLEANUPTICKINTERVAL && updatingLoadout;
+            }
+            set
+            {
+                if (value && !UpdatingLoadout)
+                {
+                    updatingLoadoutAge = GenTicks.TicksGame;
+                }
+                updatingLoadout = value;
+            }
+        }
         public float currentWeight
         {
             get
@@ -143,6 +160,14 @@ namespace CombatExtended
 
         #region Methods
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+
+            Scribe_Values.Look(ref updatingLoadout, "updatingLoadout", false);
+            Scribe_Values.Look(ref updatingLoadoutAge, "updatingLoadoutAge", -1);
+        }
+
         /// <summary>
         /// Similar to ThingContainer.TotalStackCountOfDef(), returns the count of all matching AmmoDefs in AmmoList cache.
         /// </summary>
@@ -156,6 +181,7 @@ namespace CombatExtended
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
+
             UpdateInventory();
         }
 
@@ -187,7 +213,7 @@ namespace CombatExtended
                     float apparelWeight = apparel.GetStatValue(StatDefOf.Mass);
                     newBulk += apparelBulk;
                     newWeight += apparelWeight;
-                    if (apparelBulk > 0 && parentPawn != null && parentPawn.IsColonist && parentPawn.Spawned)
+                    if (age > CLEANUPTICKINTERVAL && apparelBulk > 0 && (parentPawn?.Spawned ?? false) && (parentPawn.factionInt?.IsPlayer ?? false))
                         LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_WornBulk, OpportunityType.GoodToKnow);
                 }
             }
@@ -309,8 +335,6 @@ namespace CombatExtended
             */
         }
 
-
-
         /// <summary>
         /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists
         /// </summary>
@@ -407,11 +431,17 @@ namespace CombatExtended
 
         public override void CompTick()
         {
-            if (GenTicks.TicksAbs >= ticksToNextCleanUp)
+            /*
+             * Need to update this to avoid calling IsColonist too soon after spawning
+             */
+            age++;
+            /*
+             * Routin cleanup
+             */
+            if ((parentPawn.thingIDNumber + GenTicks.TicksGame) % CLEANUPTICKINTERVAL == 0)
             {
                 // Ask HoldTracker to clean itself up...
                 parentPawn.HoldTrackerCleanUp();
-                ticksToNextCleanUp = GenTicks.TicksAbs + CLEANUPTICKINTERVAL;
             }
             base.CompTick();
             // Remove items from inventory if we're over the bulk limit

@@ -20,6 +20,7 @@ namespace CombatExtended
         public static StatDef SightsEfficiency;
         public static readonly StatDef AimingAccuracy = StatDef.Named("AimingAccuracy"); // pawn capacity
         public static readonly StatDef ReloadSpeed = StatDef.Named("ReloadSpeed"); // pawn capacity
+        public static readonly StatDef MuzzleFlash = StatDef.Named("MuzzleFlash");
 
         // *** Melee weapon stats ***
         public static StatDef MeleePenetrationFactor;
