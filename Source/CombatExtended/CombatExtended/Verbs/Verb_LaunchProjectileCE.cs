@@ -29,8 +29,8 @@ namespace CombatExtended
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)
-        private Vector2 newTargetLoc = new Vector2(0, 0);
-        private Vector2 sourceLoc = new Vector2(0, 0);
+        protected Vector2 newTargetLoc = new Vector2(0, 0);
+        protected Vector2 sourceLoc = new Vector2(0, 0);
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
