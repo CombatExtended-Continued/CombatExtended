@@ -36,34 +36,38 @@ namespace CombatExtended
         /// <returns>float indicating priority of pickup/drop job</returns>
         public override float GetPriority(Pawn pawn)
         {
+            CompInventory comp = pawn.TryGetComp<CompInventory>();
+            if (comp == null)
+            {
+                return 0f;
+            }
+            else if (comp.ForcedLoadoutUpdate)
+            {
+                return 35f;
+            }
+            else if (comp.SkipUpdateLoadout)
+            {
+                return 0f;
+            }
             if (pawn.HasExcessThing())
             {
                 return 9.2f;
             }
-            CompInventory inventory = pawn.TryGetComp<CompInventory>();
-            if (inventory == null)
-            {
-                return 0f;
-            }
-            ItemPriority priority;
-            Thing unused;
-            int i;
-            Pawn carriedBy;
-            LoadoutSlot slot = GetPrioritySlot(pawn, out priority, out unused, out i, out carriedBy);
+            LoadoutSlot slot = GetPrioritySlot(pawn, out ItemPriority priority, out _, out _, out _);
             if (slot == null)
             {
                 return 0f;
             }
             if (priority == ItemPriority.Low)
             {
-                return inventory.UpdatingLoadout ? 35f : 3f;
+                return 1f;
             }
             TimeAssignmentDef assignment = (pawn.timetable != null) ? pawn.timetable.CurrentAssignment : TimeAssignmentDefOf.Anything;
             if (assignment == TimeAssignmentDefOf.Sleep)
             {
-                return inventory.UpdatingLoadout ? 35f : 3f;
+                return 1f;
             }
-            return inventory.UpdatingLoadout ? 35.0f : 9.2f;
+            return 2.8f;
         }
 
         /// <summary>
@@ -314,16 +318,18 @@ namespace CombatExtended
                     }
                 }
             }
-            return null;
+            return pawn.thinker.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
         }
 
         public override Job TryGiveJob(Pawn pawn)
         {
-            Job job = GetUpdateLoadoutJob(pawn);
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            Job job = GetUpdateLoadoutJob(pawn);
             if (inventory != null)
             {
-                inventory.UpdatingLoadout = job != null;
+                inventory.Notify_LoadoutUpdated();
+                if (inventory.ForcedLoadoutUpdate)
+                    inventory.ForcedLoadoutUpdate = job != null;
             }
             return job;
         }
