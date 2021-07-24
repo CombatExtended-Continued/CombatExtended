@@ -14,7 +14,7 @@ namespace CombatExtended
         public const float DEFAULT_FLYOVER_FINAL_ALT = 4;
         public const float DEFAULT_DIRECT_ALT = 0;
 
-        public const float LANDGLOW_MIN_ALTITUDE = 15;
+        public const float LANDGLOW_MIN_ALTITUDE = 20;
         public const float LANDGLOW_SCALE = 2.5f;
 
         private const int SMOKE_MIN_INTERVAL = 7;
