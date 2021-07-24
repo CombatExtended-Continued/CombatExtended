@@ -14,8 +14,8 @@ namespace CombatExtended
         public const float DEFAULT_FLYOVER_FINAL_ALT = 15;
         public const float DEFAULT_DIRECT_ALT = 0;
 
-        private const int SMOKE_MIN_INTERVAL = 15;
-        private const int SMOKE_MAX_INTERVAL = 30;
+        private const int SMOKE_MIN_INTERVAL = 7;
+        private const int SMOKE_MAX_INTERVAL = 21;
 
         private const float SMOKE_MIN_SIZE = 0.15f;
         private const float SMOKE_MAX_SIZE = 1.25f;
