@@ -14,6 +14,9 @@ namespace CombatExtended
         public const float DEFAULT_FLYOVER_FINAL_ALT = 4;
         public const float DEFAULT_DIRECT_ALT = 0;
 
+        public const float LANDGLOW_MIN_ALTITUDE = 15;
+        public const float LANDGLOW_SCALE = 2.5f;
+
         private const int SMOKE_MIN_INTERVAL = 7;
         private const int SMOKE_MAX_INTERVAL = 21;
 
@@ -208,6 +211,10 @@ namespace CombatExtended
                 glowMote.attachedAltitudeThing = this;
                 glowMote.SpawnSetup(Map, false);
 
+                if (CurAltitude < LANDGLOW_MIN_ALTITUDE)
+                {
+                    FleckMaker.ThrowFireGlow(DrawPos, Map, LANDGLOW_SCALE * (1f - (CurAltitude - FinalAltitude) / (LANDGLOW_MIN_ALTITUDE - FinalAltitude)));
+                }
                 /*
                  * Use incase motes start breaking                                 
                  */
