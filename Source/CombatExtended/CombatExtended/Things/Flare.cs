@@ -9,10 +9,9 @@ namespace CombatExtended
     public class Flare : ThingWithComps
     {
         public const float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
-        public const float ALTITUDE_FACTOR = 0.4f;
         public const float ALTITUDE_DRAW_FACTOR = 0.7f;
-        public const float DEFAULT_FLYOVER_START_ALT = 30;
-        public const float DEFAULT_FLYOVER_FINAL_ALT = 5;
+        public const float DEFAULT_FLYOVER_START_ALT = 40;
+        public const float DEFAULT_FLYOVER_FINAL_ALT = 15;
         public const float DEFAULT_DIRECT_ALT = 0;
 
         private const int SMOKE_MIN_INTERVAL = 15;
@@ -106,14 +105,36 @@ namespace CombatExtended
                 return (float)(GenTicks.TicksGame - spawnTick) / BURN_TICKS;
             }
         }
+
+        private Vector3 _directDrawPos = new Vector3(0, 0, -1);
+        public Vector3 DirectDrawPos
+        {
+            get
+            {
+                if (_directDrawPos.z == -1)
+                {
+                    Log.Error($"CE: Tried to draw a miss configured flare {this} at {Position} with unknown DirectDrawPos. Defaulting to base.DirectDrawPos");
+                    _directDrawPos = base.DrawPos;
+                }
+                return _directDrawPos;
+            }
+            set
+            {
+                _directDrawPos = value;
+            }
+        }
         public override Vector3 DrawPos
         {
             get
             {
-                Vector3 pos = base.DrawPos;
-                pos.y = CurAltitude * 2;
-                pos.z += CurAltitude * ALTITUDE_DRAW_FACTOR;
-                return pos;
+                if (DrawMode == FlareDrawMode.FlyOver)
+                {
+                    Vector3 pos = base.DrawPos;
+                    pos.y = CurAltitude;
+                    pos.z += CurAltitude * ALTITUDE_DRAW_FACTOR;
+                    return pos;
+                }
+                return DirectDrawPos;
             }
         }
         private float CurAltitude
@@ -121,6 +142,13 @@ namespace CombatExtended
             get
             {
                 return StartingAltitude * (1 - Progress) + FinalAltitude * Progress;
+            }
+        }
+        private float HeightDrawScale
+        {
+            get
+            {
+                return (1.0f - (Progress * 2 - 0.5f) / 2f);
             }
         }
 
@@ -157,12 +185,49 @@ namespace CombatExtended
             base.Tick();
             if (nextSmokePuff <= 0)
             {
-                FleckMaker.ThrowSmoke(DrawPos, Map, Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE));
-                FleckMaker.ThrowFireGlow(DrawPos, Map, 0.6f);
+                /*
+                 * Both are copies form vanilla 1.2 smoke and fireglow motes.
+                 * Incase this breaks use the fleck system below.
+                 */
+
+                MoteThrownCE smokeMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareSmoke);
+                smokeMote.Scale = Rand.Range(1.5f, 2.5f) * Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE) * HeightDrawScale;
+                smokeMote.rotationRate = Rand.Range(-30f, 30f);
+                smokeMote.SetVelocity(Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
+                smokeMote.positionInt = Position;
+                smokeMote.exactPosition = DrawPos;
+                smokeMote.attachedAltitudeThing = this;
+                smokeMote.SpawnSetup(Map, false);
+
+                MoteThrownCE glowMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareGlow);
+                glowMote.Scale = Rand.Range(4f, 6f) * 0.6f * HeightDrawScale;
+                glowMote.rotationRate = Rand.Range(-3f, 3f);
+                glowMote.SetVelocity(Rand.Range(0, 360), 0.12f);
+                glowMote.positionInt = Position;
+                glowMote.exactPosition = DrawPos;
+                glowMote.attachedAltitudeThing = this;
+                glowMote.SpawnSetup(Map, false);
+
+                /*
+                 * Use incase motes start breaking                                 
+                 */
+                // FleckMaker.ThrowSmoke(DrawPos, Map, Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE));
+                // FleckMaker.ThrowFireGlow(DrawPos, Map, 0.6f);
+
                 nextSmokePuff = Rand.Range(SMOKE_MIN_INTERVAL, SMOKE_MAX_INTERVAL);
             }
             nextSmokePuff--;
             if (Progress >= 0.99f) Destroy();
+        }
+
+        public override void Draw()
+        {
+            var scale = HeightDrawScale;
+            var matrix = new Matrix4x4();
+            var rot = Rotation;
+
+            matrix.SetTRS(DrawPos + Graphic.DrawOffset(rot), Graphic.QuatFromRot(rot), new Vector3(scale, 0, scale));
+            Graphics.DrawMesh(Graphic.MeshAt(rot), matrix, Graphic.MatAt(rot), 0);
         }
     }
 }

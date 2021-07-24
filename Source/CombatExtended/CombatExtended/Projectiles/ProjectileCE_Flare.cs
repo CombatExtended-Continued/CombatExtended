@@ -52,9 +52,8 @@ namespace CombatExtended
             landed = true;
             Flare flare;
             flare = (Flare)ThingMaker.MakeThing(CE_ThingDefOf.Flare, null);
-            flare.StartingAltitude = Height;
-            flare.FinalAltitude = Height * Flare.ALTITUDE_FACTOR;
             flare.DrawMode = Flare.FlareDrawMode.FlyOver;
+            flare.StartingAltitude = Height;
             flare.Position = Position;
             flare.SpawnSetup(Map, false);
             base.Impact(null);
