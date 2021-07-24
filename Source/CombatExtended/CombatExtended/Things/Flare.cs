@@ -10,8 +10,8 @@ namespace CombatExtended
     {
         public const float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
         public const float ALTITUDE_DRAW_FACTOR = 0.7f;
-        public const float DEFAULT_FLYOVER_START_ALT = 40;
-        public const float DEFAULT_FLYOVER_FINAL_ALT = 15;
+        public const float DEFAULT_FLYOVER_START_ALT = 30;
+        public const float DEFAULT_FLYOVER_FINAL_ALT = 4;
         public const float DEFAULT_DIRECT_ALT = 0;
 
         private const int SMOKE_MIN_INTERVAL = 7;
