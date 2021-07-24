@@ -15,7 +15,11 @@ namespace CombatExtended
         public const float DEFAULT_DIRECT_ALT = 0;
 
         public const float LANDGLOW_MIN_ALTITUDE = 20;
-        public const float LANDGLOW_SCALE = 2.5f;
+        public const float LANDGLOW_SCALE = 4.0f;
+
+        public const float WATERSPLASH_MIN_ALTITUDE = 6;
+        public const float WATERSPLASH_VELOCITY = 5.0f;
+        public const float WATERSPLASH_SIZE = 2.5f;
 
         private const int SMOKE_MIN_INTERVAL = 7;
         private const int SMOKE_MAX_INTERVAL = 21;
@@ -183,6 +187,8 @@ namespace CombatExtended
             base.ExposeData();
         }
 
+        private static readonly Vector3 _moteDrawOffset = new Vector3(0, 0, -0.5f);
+
         public override void Tick()
         {
             base.Tick();
@@ -199,6 +205,7 @@ namespace CombatExtended
                 smokeMote.SetVelocity(Rand.Range(30, 40), Rand.Range(0.5f, 0.7f));
                 smokeMote.positionInt = Position;
                 smokeMote.exactPosition = DrawPos;
+                smokeMote.drawOffset = _moteDrawOffset;
                 smokeMote.attachedAltitudeThing = this;
                 smokeMote.SpawnSetup(Map, false);
 
@@ -207,6 +214,7 @@ namespace CombatExtended
                 glowMote.rotationRate = Rand.Range(-3f, 3f);
                 glowMote.SetVelocity(Rand.Range(0, 360), 0.12f);
                 glowMote.positionInt = Position;
+                glowMote.drawOffset = _moteDrawOffset;
                 glowMote.exactPosition = DrawPos;
                 glowMote.attachedAltitudeThing = this;
                 glowMote.SpawnSetup(Map, false);
@@ -214,6 +222,10 @@ namespace CombatExtended
                 if (CurAltitude < LANDGLOW_MIN_ALTITUDE)
                 {
                     FleckMaker.ThrowFireGlow(DrawPos, Map, LANDGLOW_SCALE * (1f - (CurAltitude - FinalAltitude) / (LANDGLOW_MIN_ALTITUDE - FinalAltitude)));
+                }
+                if (CurAltitude < WATERSPLASH_MIN_ALTITUDE)
+                {
+                    FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, Rand.Range(0.8f, 1.2f) * WATERSPLASH_SIZE * (1f - (CurAltitude - FinalAltitude) / (WATERSPLASH_MIN_ALTITUDE - FinalAltitude)), WATERSPLASH_VELOCITY);
                 }
                 /*
                  * Use incase motes start breaking                                 

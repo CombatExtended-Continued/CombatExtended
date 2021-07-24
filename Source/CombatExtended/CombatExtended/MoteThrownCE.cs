@@ -10,6 +10,7 @@ namespace CombatExtended
     public class MoteThrownCE : MoteThrown
     {
         public Thing attachedAltitudeThing = null;
+        public Vector3 drawOffset;
 
         private Graphic_Mote _moteGraphic = null;
         private Graphic_Mote MoteGraphic
@@ -30,7 +31,7 @@ namespace CombatExtended
                 {
                     pos.y = attachedAltitudeThing.DrawPos.y;
                 }
-                return pos;
+                return pos + drawOffset;
             }
         }
 
