@@ -34,6 +34,34 @@
 							</value>
 					</li>
 
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="AA_Dryad_Spitter"]/statBases</xpath>
+							<value>
+   								<AimingAccuracy>0.6</AimingAccuracy>
+							</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_Dryad_Spitter"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_PoisonBolt</defaultProjectile>
+										<warmupTime>1.5</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>2</minRange>
+										<range>44</range>
+										<soundCast>AA_PoisonBolt</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>venomous spit</label>
+										<commonality>.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
 
 					<!-- Nightling -->
 
