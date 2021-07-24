@@ -61,7 +61,10 @@ namespace CombatExtended
             generic.description = "Generic Loadout for perishable meals.  Intended for compatibility with pawns automatically picking up a meal for themself.";
             generic.label = "CE_Generic_Meal".Translate();
             generic.defaultCountType = LoadoutCountType.pickupDrop; // Fits with disabling of RimWorld Pawn behavior of fetching meals themselves.
-            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
+            generic._lambda = (td) =>
+            {
+                return td.IsNutritionGivingIngestible && td.ingestible != null && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
+            };
             generic.isBasic = true;
 
             defs.Add(generic);
@@ -74,7 +77,10 @@ namespace CombatExtended
             generic.description = "Generic Loadout for Raw Food.  Intended for compatibility with pawns automatically picking up raw food to train animals.";
             generic.label = "CE_Generic_RawFood".Translate();
             // Exclude drugs and corpses.  Also exclude any food worse than RawBad as in testing the pawns would not even pick it up for training.
-            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
+            generic._lambda = (td) =>
+            {
+                return td.IsNutritionGivingIngestible && td.ingestible != null && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
+            };
             generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.CachedNutrition)));
             //generic.defaultCount = 1;
             generic.isBasic = false; // doesn't need to be in loadouts by default as animal interaction talks to HoldTracker now.

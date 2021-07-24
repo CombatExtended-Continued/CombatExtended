@@ -201,7 +201,7 @@ namespace CombatExtended
                 workingInvList.AddRange(SelPawnForGear.inventory.innerContainer);
                 for (int i = 0; i < workingInvList.Count; i++)
                 {
-                    DrawThingRowCE(ref num, viewRect.width, workingInvList[i].GetInnerIfMinified(), true);
+                    DrawThingRowCE(ref num, viewRect.width, workingInvList[i], true);
                 }
             }
             if (Event.current.type == EventType.Layout)
@@ -218,7 +218,7 @@ namespace CombatExtended
         {
 
             Rect rect = new Rect(0f, y, width, _thingRowHeight);
-            Widgets.InfoCardButton(rect.width - 24f, y, thing);
+            Widgets.InfoCardButton(rect.width - 24f, y, thing.GetInnerIfMinified());
             rect.width -= 24f;
             if (CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony))
             {
