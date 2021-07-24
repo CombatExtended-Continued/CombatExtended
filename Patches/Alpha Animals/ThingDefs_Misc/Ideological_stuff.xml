@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Ideology</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- eye -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_UnblinkingEye"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_GazeAttack_AA</defaultProjectile>
+										<warmupTime>1.6</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>2</minRange>
+										<range>40</range>
+										<label>melting gaze</label>	
+										<muzzleFlashScale>0</muzzleFlashScale>				
+										<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+
+					<!-- Nightling -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_OcularNightling"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_Quill</defaultProjectile>
+										<warmupTime>2</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+										<minRange>2</minRange>
+										<range>18</range>
+										<soundCast>AA_DartSound</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
