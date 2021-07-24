@@ -9,10 +9,10 @@ namespace CombatExtended
     public class Flare : ThingWithComps
     {
         public const float BURN_TICKS = 35 * GenTicks.TicksPerRealSecond;
-        public const float ALTITUDE_FACTOR = 0.3f;
-        public const float ALTITUDE_DRAW_FACTOR = 0.4f;
-        public const float DEFAULT_FLYOVER_START_ALT = 15;
-        public const float DEFAULT_FLYOVER_FINAL_ALT = 2;
+        public const float ALTITUDE_FACTOR = 0.4f;
+        public const float ALTITUDE_DRAW_FACTOR = 0.7f;
+        public const float DEFAULT_FLYOVER_START_ALT = 30;
+        public const float DEFAULT_FLYOVER_FINAL_ALT = 5;
         public const float DEFAULT_DIRECT_ALT = 0;
 
         private const int SMOKE_MIN_INTERVAL = 15;
@@ -111,7 +111,7 @@ namespace CombatExtended
             get
             {
                 Vector3 pos = base.DrawPos;
-                pos.y = def.Altitude;
+                pos.y = CurAltitude * 2;
                 pos.z += CurAltitude * ALTITUDE_DRAW_FACTOR;
                 return pos;
             }
@@ -158,7 +158,7 @@ namespace CombatExtended
             if (nextSmokePuff <= 0)
             {
                 FleckMaker.ThrowSmoke(DrawPos, Map, Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE));
-                FleckMaker.ThrowFireGlow(DrawPos, Map, 1);
+                FleckMaker.ThrowFireGlow(DrawPos, Map, 0.6f);
                 nextSmokePuff = Rand.Range(SMOKE_MIN_INTERVAL, SMOKE_MAX_INTERVAL);
             }
             nextSmokePuff--;
