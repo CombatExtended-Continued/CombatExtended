@@ -380,6 +380,7 @@ namespace CombatExtended
             {
                 launcher = null;
             }
+
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
@@ -395,6 +396,15 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
+
+            // To insure saves don't get affected..
+            Thing target = null;
+            if (Scribe.mode != LoadSaveMode.Saving)
+            {
+                Scribe_References.Look<Thing>(ref target, "intendedTarget");
+                if (target != null)
+                    intendedTarget = new LocalTargetInfo(target);
+            }
         }
         #endregion
 
