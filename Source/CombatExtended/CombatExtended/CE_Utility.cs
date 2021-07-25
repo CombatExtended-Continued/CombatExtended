@@ -14,6 +14,17 @@ namespace CombatExtended
 {
     static class CE_Utility
     {
+        #region Camera
+
+        public static float CameraAltitude
+        {
+            get
+            {
+                return Find.CameraDriver?.CurrentRealPosition.y ?? -1;
+            }
+        }
+
+        #endregion
 
         #region Blitting
         private const int blitMaxDimensions = 64;
