@@ -236,16 +236,15 @@ namespace CombatExtended
         /// <returns>Amount of light at said position</returns>
         public float CombatGlowAtFor(IntVec3 source, IntVec3 target)
         {
-            float glowAtTarget = CombatGlowAt(target);
-            float glowAtSource = CombatGlowAt(source);
-            // Limit the advantage of being under a roof since the AI can be a bit stupid.
-            if (target.Roofed(map))
-                return Mathf.Max(glowAtTarget, glowAtSource / 2f);
-            // Limit the advantage of very large brightness differnces so the user can't abuse it so easily.
-            if (glowAtSource - MAX_GLOW_DIFF >= glowAtTarget)
-                return Mathf.Max(glowAtTarget, glowAtSource / 2f);
+            float glowAtSource = map.glowGrid.GameGlowAt(source);
+            // Detect day light
+            if (glowAtSource > 0.5f)
+            {
+                // Limit the advantage of being under a roof since the AI can be a bit stupid.                
+                return Mathf.Max(CombatGlowAt(target), glowAtSource / 2f);
+            }
             // Normally just return this
-            return glowAtTarget;
+            return CombatGlowAt(target);
         }
 
         private float GetGlowForCell(IntVec3 position)
