@@ -228,6 +228,26 @@ namespace CombatExtended
             return Mathf.Min(result, IsNight ? 0.5f : 1.0f);
         }
 
+        /// <summary>
+        /// Used to retrive the combat lighting value in CE in relation to an other position. It combines both the vanilla system and a new muzzle flash system with a diffusion system. It is used to balance the difference lighting during daytime hours.
+        /// </summary>
+        /// <param name="target">Position</param>
+        /// <param name="source">Position</param>
+        /// <returns>Amount of light at said position</returns>
+        public float CombatGlowAtFor(IntVec3 source, IntVec3 target)
+        {
+            float glowAtTarget = CombatGlowAt(target);
+            float glowAtSource = CombatGlowAt(source);
+            // Limit the advantage of being under a roof since the AI can be a bit stupid.
+            if (target.Roofed(map))
+                return Mathf.Max(glowAtTarget, glowAtSource / 2f);
+            // Limit the advantage of very large brightness differnces so the user can't abuse it so easily.
+            if (glowAtSource - 0.7 >= glowAtTarget)
+                return Mathf.Max(glowAtTarget, glowAtSource / 3f);
+            // Normally just return this
+            return glowAtTarget;
+        }
+
         private float GetGlowForCell(IntVec3 position)
         {
             if (position.InBounds(map))
