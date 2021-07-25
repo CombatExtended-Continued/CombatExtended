@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Arasaka Corporation [1.3]</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+
+      <!-- === Apparel_Turtleneck_AC === -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Apparel_Turtleneck_AC" or defName="Apparel_Workwear_AC" or defName="Apparel_Workwear_W_AC"]/statBases</xpath>
+        <value>
+          <Bulk>4</Bulk>
+          <WornBulk>0.5</WornBulk>
+        </value>
+      </li>
+
+      <!-- === Arasaka Aramid Vest === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Aramid_Vest_AC"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>14</ArmorRating_Sharp>
+          <Bulk>5</Bulk>
+          <WornBulk>2</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Aramid_Vest_AC"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>21</ArmorRating_Blunt>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Apparel_Aramid_Vest_AC"]/costList/Cloth</xpath>
+        <value>
+   		<Cloth>30</Cloth>
+        		<DevilstrandCloth>15</DevilstrandCloth>
+        </value>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="Apparel_Aramid_Vest_AC"]/equippedStatOffsets</xpath>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
