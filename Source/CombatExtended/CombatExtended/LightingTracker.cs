@@ -11,7 +11,6 @@ namespace CombatExtended
     public class LightingTracker : MapComponent
     {
         private const int FLASHAGE = 500;
-
         private const float WEIGHTS_DIG = 0.8f;
         private const float WEIGHTS_COL = 0.5f;
         private const float WEIGHTSSUM = WEIGHTS_DIG * 4f + WEIGHTS_COL * 4f + 1f;
@@ -226,6 +225,25 @@ namespace CombatExtended
             for (int i = 0; i < 9; i++)
                 result += AdjWeights[i] * GetGlowForCell(position + AdjCells[i]) / WEIGHTSSUM;
             return Mathf.Min(result, IsNight ? 0.5f : 1.0f);
+        }
+
+        /// <summary>
+        /// Used to retrive the combat lighting value in CE in relation to an other position. It combines both the vanilla system and a new muzzle flash system with a diffusion system. It is used to balance the difference lighting during daytime hours.
+        /// </summary>
+        /// <param name="target">Position</param>
+        /// <param name="source">Position</param>
+        /// <returns>Amount of light at said position</returns>
+        public float CombatGlowAtFor(IntVec3 source, IntVec3 target)
+        {
+            float glowAtSource = map.glowGrid.GameGlowAt(source);
+            // Detect day light
+            if (glowAtSource > 0.5f)
+            {
+                // Limit the advantage of being under a roof since the AI can be a bit stupid.                
+                return Mathf.Max(CombatGlowAt(target), glowAtSource / 2f);
+            }
+            // Normally just return this
+            return CombatGlowAt(target);
         }
 
         private float GetGlowForCell(IntVec3 position)
