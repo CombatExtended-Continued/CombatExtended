@@ -5,13 +5,12 @@
     <mods>
       <li>Vanilla Factions Expanded - Settlers</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- === Gun === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Gun_GatlingGun</defName>
-
           <statBases>
             <Bulk>15.54</Bulk>
             <ShotSpread>0.04</ShotSpread>
@@ -19,7 +18,6 @@
             <SightsEfficiency>1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <recoilAmount>1.52</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -34,13 +32,11 @@
             <muzzleFlashScale>10</muzzleFlashScale>
             <recoilPattern>Mounted</recoilPattern>
           </Properties>
-
           <AmmoUser>
             <magazineSize>40</magazineSize>
             <reloadTime>7.8</reloadTime>
             <ammoSet>AmmoSet_4570Gov</ammoSet>
           </AmmoUser>
-
           <FireModes>
             <aiUseBurstMode>false</aiUseBurstMode>
             <aimedBurstShotCount>5</aimedBurstShotCount>
@@ -50,15 +46,16 @@
 
         <!-- === Turret === -->
         <!-- == thingClass == -->
+
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/thingClass</xpath>
-
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
 
         <!-- == Remove stuff == -->
+      
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
         </li>
@@ -69,10 +66,6 @@
 
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="CompProperties_Flickable"]</xpath>
-        </li>
-
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/comps/li[@Class="VanillaFactionsExpandedSettlers.CompProperties_WarmUpReduction"]</xpath>
         </li>
 
          <li Class="PatchOperationRemove">
@@ -86,7 +79,6 @@
         <!-- == costList == -->
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]</xpath>
-
           <value>
             <costList>
               <Steel>325</Steel>
@@ -98,7 +90,6 @@
         <!-- == fillPercent == -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/fillPercent</xpath>
-
           <value>
             <fillPercent>0.85</fillPercent>
           </value>
@@ -107,7 +98,6 @@
         <!-- == turretBurstCooldownTime == -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/building/turretBurstCooldownTime</xpath>
-
           <value>
             <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
           </value>
@@ -116,11 +106,11 @@
         <!-- == ShootingAccuracy === -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="Turret_GatlingGun"]/statBases/ShootingAccuracyTurret</xpath>
-
           <value>
             <ShootingAccuracyTurret>0.35</ShootingAccuracyTurret>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>
