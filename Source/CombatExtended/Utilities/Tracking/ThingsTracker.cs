@@ -51,6 +51,7 @@ namespace CombatExtended.Utilities
         private ThingsTrackingModel apparelTracker;
         private ThingsTrackingModel ammoTracker;
         private ThingsTrackingModel medicineTracker;
+        private ThingsTrackingModel flaresTracker;
 
         public ThingsTracker(Map map) : base(map)
         {
@@ -59,6 +60,7 @@ namespace CombatExtended.Utilities
             ammoTracker = new ThingsTrackingModel(null, map, this);
             apparelTracker = new ThingsTrackingModel(null, map, this);
             medicineTracker = new ThingsTrackingModel(null, map, this);
+            flaresTracker = new ThingsTrackingModel(null, map, this);
 
             trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1][];
             for (int i = 0; i < trackers.Length; i++)
@@ -70,6 +72,8 @@ namespace CombatExtended.Utilities
                 trackers[def.index][1] = weaponsTracker;
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsApparel))
                 trackers[def.index][1] = apparelTracker;
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.thingClass == typeof(Flare)))
+                trackers[def.index][1] = flaresTracker;
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsMedicine))
                 trackers[def.index][1] = medicineTracker;
             foreach (var def in DefDatabase<AmmoDef>.AllDefs)
@@ -81,7 +85,9 @@ namespace CombatExtended.Utilities
             validDefs = new bool[ushort.MaxValue];
             foreach (var def in DefDatabase<ThingDef>.AllDefs)
             {
-                if (def.category == ThingCategory.Mote)
+                if (def.thingClass == typeof(Flare))
+                    validDefs[def.index] = true;
+                else if (def.category == ThingCategory.Mote)
                     validDefs[def.index] = false;
                 else if (def.category == ThingCategory.Filth)
                     validDefs[def.index] = false;
@@ -200,6 +206,8 @@ namespace CombatExtended.Utilities
                     return weaponsTracker;
                 case TrackedThingsRequestCategory.Medicine:
                     return medicineTracker;
+                case TrackedThingsRequestCategory.Flares:
+                    return flaresTracker;
                 default:
                     throw new NotSupportedException();
             }
