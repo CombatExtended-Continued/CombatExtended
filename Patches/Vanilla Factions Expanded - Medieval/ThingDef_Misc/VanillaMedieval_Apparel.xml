@@ -41,6 +41,13 @@
 				</li>
 
 				<!-- ========== Jester Hat / Kings Crown / Plague Mask =========== -->
+				<li Class="PatchOperationRemove">
+					<xpath>
+						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Sharp | 
+						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Blunt
+					</xpath>
+				</li>
+				
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[ defName="VFEM_Apparel_JesterHat" or defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases</xpath>
 					<value>
@@ -49,40 +56,27 @@
 					</value>
 				</li>
 
-				<!-- ========== Jester Hat / Kings Crown =========== -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_JesterHat" or defName="VFEM_Apparel_KingsCrown"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_JesterHat" or defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
 					</value>
 				</li>
 
-				<li Class="PatchOperationRemove">
-					<xpath>
-						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown"]/statBases/ArmorRating_Sharp | 
-						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown"]/statBases/ArmorRating_Blunt
-					</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]</xpath>
+					<value>
+						<costStuffCount>25</costStuffCount>
+						<stuffCategories>
+							<li>Leathery</li>
+						</stuffCategories>
+					</value>
 				</li>
 
-				<!-- ========== Plague Mask =========== -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]/apparel/layers/li[.="Overhead"]</xpath>
 					<value>
 						<li>StrappedHead</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Blunt</xpath>
-					<value>
-						<ArmorRating_Sharp>1</ArmorRating_Sharp>
 					</value>
 				</li>
 
