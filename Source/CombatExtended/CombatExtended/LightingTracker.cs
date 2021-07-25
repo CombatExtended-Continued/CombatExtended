@@ -11,7 +11,7 @@ namespace CombatExtended
     public class LightingTracker : MapComponent
     {
         private const int FLASHAGE = 500;
-
+        private const float MAX_GLOW_DIFF = 0.60f;
         private const float WEIGHTS_DIG = 0.8f;
         private const float WEIGHTS_COL = 0.5f;
         private const float WEIGHTSSUM = WEIGHTS_DIG * 4f + WEIGHTS_COL * 4f + 1f;
@@ -242,8 +242,8 @@ namespace CombatExtended
             if (target.Roofed(map))
                 return Mathf.Max(glowAtTarget, glowAtSource / 2f);
             // Limit the advantage of very large brightness differnces so the user can't abuse it so easily.
-            if (glowAtSource - 0.7 >= glowAtTarget)
-                return Mathf.Max(glowAtTarget, glowAtSource / 3f);
+            if (glowAtSource - MAX_GLOW_DIFF >= glowAtTarget)
+                return Mathf.Max(glowAtTarget, glowAtSource / 2f);
             // Normally just return this
             return glowAtTarget;
         }
