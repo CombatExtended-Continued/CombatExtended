@@ -38,7 +38,7 @@ namespace CombatExtended
             return report;
         }
 
-        private float GetMissRadiusForDist(float targDist)
+        protected virtual float GetMissRadiusForDist(float targDist)
         {
             float maxRange = this.verbProps.range;
             if (this.CompCharges != null)

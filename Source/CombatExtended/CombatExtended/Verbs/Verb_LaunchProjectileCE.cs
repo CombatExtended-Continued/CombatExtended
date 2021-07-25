@@ -29,8 +29,8 @@ namespace CombatExtended
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)
-        private Vector2 newTargetLoc = new Vector2(0, 0);
-        private Vector2 sourceLoc = new Vector2(0, 0);
+        protected Vector2 newTargetLoc = new Vector2(0, 0);
+        protected Vector2 sourceLoc = new Vector2(0, 0);
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
@@ -645,9 +645,10 @@ namespace CombatExtended
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
-                projectile.intendedTarget = currentTarget.Thing;
+                projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
