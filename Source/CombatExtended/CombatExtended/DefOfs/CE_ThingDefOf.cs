@@ -10,6 +10,10 @@ namespace CombatExtended
     [DefOf]
     public static class CE_ThingDefOf
     {
+        public static ThingDef Mote_FlareSmoke;
+
+        public static ThingDef Mote_FlareGlow;
+
         public static ThingDef Mote_SuppressIcon;
 
         public static ThingDef Mote_HunkerIcon;
@@ -17,6 +21,8 @@ namespace CombatExtended
         public static FleckDef Mote_EmptyCasing;
 
         public static ThingDef FSX;
+
+        public static ThingDef Flare;
 
         public static ThingDef ExplosionCE;
 
