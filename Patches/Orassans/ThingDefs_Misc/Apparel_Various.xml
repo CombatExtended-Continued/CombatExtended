@@ -7,7 +7,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-			
+
 				<!-- ========== Orassan Power Armor ========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Apparel_KittyArmor"]/statBases</xpath>
@@ -54,6 +54,52 @@
 					</value>
 				</li>
 
+				<!-- ========== Orassan Medium Powerarmor ======= -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/statBases</xpath>
+					<value>
+						<Bulk>70</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>100</CarryWeight>
+						<CarryBulk>22.5</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/statBases/Mass</xpath>
+					<value>
+						<Mass>25</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>50</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_MediumKittyArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
 				<!-- ========== Orassan Light Powarmor ========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Apparel_LightKittyArmor"]/statBases</xpath>
@@ -74,7 +120,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Apparel_LightKittyArmor"]/statBases/Mass</xpath>
 					<value>
-						<Mass>25</Mass>
+						<Mass>3</Mass>
 					</value>
 				</li>
 
