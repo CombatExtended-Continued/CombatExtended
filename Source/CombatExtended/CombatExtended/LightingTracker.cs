@@ -11,7 +11,6 @@ namespace CombatExtended
     public class LightingTracker : MapComponent
     {
         private const int FLASHAGE = 500;
-        private const float MAX_GLOW_DIFF = 0.60f;
         private const float WEIGHTS_DIG = 0.8f;
         private const float WEIGHTS_COL = 0.5f;
         private const float WEIGHTSSUM = WEIGHTS_DIG * 4f + WEIGHTS_COL * 4f + 1f;
