@@ -41,7 +41,7 @@ namespace CombatExtended
                 new BattleLogEntry_RangedImpact(
                     launcher,
                     hitThing,
-                    intendedTargetThing,
+                    intendedTarget,
                     ed,
                     def,
                     null //CoverDef Missing!
@@ -189,7 +189,7 @@ namespace CombatExtended
             var bullet = new Bullet
             {
                 def = this.def,
-                intendedTarget = this.intendedTargetThing,
+                intendedTarget = this.intendedTarget,
             };
 
             bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
