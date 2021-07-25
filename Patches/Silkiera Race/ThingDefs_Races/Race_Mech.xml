@@ -1,366 +1,367 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationSequence">
-	<operations>
-	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>[1.2]Silkiera Race</li></mods>
-			
-		<match Class="PatchOperationSequence">
+
+	<Operation Class="PatchOperationSequence">
 		<operations>
-		
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[@Name="HAR_SK_Mechanoid_race_Base"]/statBases/ArmorRating_Heat</xpath>
-				  <value>
-					<ArmorRating_Heat>0</ArmorRating_Heat>
-				  </value>
-			</li>
-		
-			<!-- Scyther Type -->
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_a"]/combatPower</xpath>
-				  <value>
-					<combatPower>100</combatPower>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Humanoid</bodyShape>
-					</li>
-				</value>
-			</li>
+			<li Class="PatchOperationFindMod">
+				<mods>
+					<li>[1.3]Silkiera Race</li>
+				</mods>
+				<match Class="PatchOperationSequence">
+					<operations>
 
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases</xpath>
-				  <value>
-					<Suppressability>0</Suppressability>
-					<SmokeSensitivity>0</SmokeSensitivity>
-					<MeleeDodgeChance>0.19</MeleeDodgeChance>
-					<MeleeCritChance>0.22</MeleeCritChance>
-					<MeleeParryChance>0.09</MeleeParryChance>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>4</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>6</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>36</power>
-							<cooldownTime>1.65</cooldownTime>
-							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>2.07</armorPenetrationSharp>
-							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[@Name="HAR_SK_Mechanoid_race_Base"]/statBases/ArmorRating_Heat</xpath>
+							<value>
+								<ArmorRating_Heat>0</ArmorRating_Heat>
+							</value>
 						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>left blade</label>
-							<capacities>
-								<li>Stab</li>
-							</capacities>
-							<power>12</power>
-							<cooldownTime>1.33</cooldownTime>
-							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>40</armorPenetrationSharp>
-							<armorPenetrationBlunt>20</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>36</power>
-							<cooldownTime>2.07</cooldownTime>
-							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>2.16</armorPenetrationSharp>
-							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right blade</label>
-							<capacities>
-								<li>Stab</li>
-							</capacities>
-							<power>12</power>
-							<cooldownTime>1.33</cooldownTime>
-							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>40</armorPenetrationSharp>
-							<armorPenetrationBlunt>20</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>6</power>
-							<cooldownTime>5.9</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Centipede Type -->
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_b"]/combatPower</xpath>
-				  <value>
-					<combatPower>130</combatPower>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>QuadrupedLow</bodyShape>
-					</li>
-				</value>
-			</li>
 
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases</xpath>
-				  <value>
-					<Suppressability>0</Suppressability>
-					<SmokeSensitivity>0</SmokeSensitivity>
-					<MeleeDodgeChance>0.02</MeleeDodgeChance>
-					<MeleeCritChance>0.15</MeleeCritChance>
-					<MeleeParryChance>0.41</MeleeParryChance>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>6</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>9</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>65</power>
-							<cooldownTime>3.97</cooldownTime>
-							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>6.4</armorPenetrationSharp>
-							<armorPenetrationBlunt>14.5</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>65</power>
-							<cooldownTime>3.97</cooldownTime>
-							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>6.4</armorPenetrationSharp>
-							<armorPenetrationBlunt>14.5</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>35</power>
-							<cooldownTime>3.51</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>15</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Bomb Drone -->
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Birdlike</bodyShape>
-					</li>
-				</value>
-			</li>
+						<!-- Scyther Type -->
 
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases</xpath>
-				  <value>
-					<Suppressability>0</Suppressability>
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>1</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>6</power>
-							<cooldownTime>2.25</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_a"]/combatPower</xpath>
+							<value>
+								<combatPower>100</combatPower>
+							</value>
 						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Trooper Type -->
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_e"]/combatPower</xpath>
-				  <value>
-					<combatPower>140</combatPower>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Humanoid</bodyShape>
-					</li>
-				</value>
-			</li>
 
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases</xpath>
-				  <value>
-					<Suppressability>0</Suppressability>
-					<SmokeSensitivity>0</SmokeSensitivity>
-					<MeleeDodgeChance>0.19</MeleeDodgeChance>
-					<MeleeCritChance>0.22</MeleeCritChance>
-					<MeleeParryChance>0.09</MeleeParryChance>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>4</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>6</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>12</power>
-							<cooldownTime>1.65</cooldownTime>
-							<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>2.07</armorPenetrationSharp>
-							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<li Class="PatchOperationAddModExtension">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]</xpath>
+							<value>
+								<li Class="CombatExtended.RacePropertiesExtensionCE">
+									<bodyShape>Humanoid</bodyShape>
+								</li>
+							</value>
 						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right blade</label>
-							<capacities>
-								<li>Cut</li>
-							</capacities>
-							<power>12</power>
-							<cooldownTime>2.07</cooldownTime>
-							<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-							<armorPenetrationSharp>2.16</armorPenetrationSharp>
-							<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases</xpath>
+							<value>
+								<Suppressability>0</Suppressability>
+								<SmokeSensitivity>0</SmokeSensitivity>
+								<MeleeDodgeChance>0.19</MeleeDodgeChance>
+								<MeleeCritChance>0.22</MeleeCritChance>
+								<MeleeParryChance>0.09</MeleeParryChance>
+							</value>
 						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>6</power>
-							<cooldownTime>5.9</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases/ArmorRating_Sharp</xpath>
+							<value>
+								<ArmorRating_Sharp>4</ArmorRating_Sharp>
+							</value>
 						</li>
-					</tools>
-				</value>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/statBases/ArmorRating_Blunt</xpath>
+							<value>
+								<ArmorRating_Blunt>6</ArmorRating_Blunt>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_a"]/tools</xpath>
+							<value>
+								<tools>
+									<li Class="CombatExtended.ToolCE">
+										<label>left blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>36</power>
+										<cooldownTime>1.65</cooldownTime>
+										<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>2.07</armorPenetrationSharp>
+										<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>left blade</label>
+										<capacities>
+											<li>Stab</li>
+										</capacities>
+										<power>12</power>
+										<cooldownTime>1.33</cooldownTime>
+										<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>40</armorPenetrationSharp>
+										<armorPenetrationBlunt>20</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>right blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>36</power>
+										<cooldownTime>2.07</cooldownTime>
+										<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>2.16</armorPenetrationSharp>
+										<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>right blade</label>
+										<capacities>
+											<li>Stab</li>
+										</capacities>
+										<power>12</power>
+										<cooldownTime>1.33</cooldownTime>
+										<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>40</armorPenetrationSharp>
+										<armorPenetrationBlunt>20</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>head</label>
+										<capacities>
+											<li>Blunt</li>
+										</capacities>
+										<power>6</power>
+										<cooldownTime>5.9</cooldownTime>
+										<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+										<chanceFactor>0.2</chanceFactor>
+										<armorPenetrationSharp>0</armorPenetrationSharp>
+										<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+									</li>
+								</tools>
+							</value>
+						</li>
+
+						<!-- Centipede Type -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_b"]/combatPower</xpath>
+							<value>
+								<combatPower>130</combatPower>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]</xpath>
+							<value>
+								<li Class="CombatExtended.RacePropertiesExtensionCE">
+									<bodyShape>QuadrupedLow</bodyShape>
+								</li>
+							</value>
+						</li>
+
+
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases</xpath>
+							<value>
+								<Suppressability>0</Suppressability>
+								<SmokeSensitivity>0</SmokeSensitivity>
+								<MeleeDodgeChance>0.02</MeleeDodgeChance>
+								<MeleeCritChance>0.15</MeleeCritChance>
+								<MeleeParryChance>0.41</MeleeParryChance>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases/ArmorRating_Sharp</xpath>
+							<value>
+								<ArmorRating_Sharp>6</ArmorRating_Sharp>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/statBases/ArmorRating_Blunt</xpath>
+							<value>
+								<ArmorRating_Blunt>9</ArmorRating_Blunt>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_b"]/tools</xpath>
+							<value>
+								<tools>
+									<li Class="CombatExtended.ToolCE">
+										<label>left blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>65</power>
+										<cooldownTime>3.97</cooldownTime>
+										<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>6.4</armorPenetrationSharp>
+										<armorPenetrationBlunt>14.5</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>right blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>65</power>
+										<cooldownTime>3.97</cooldownTime>
+										<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>6.4</armorPenetrationSharp>
+										<armorPenetrationBlunt>14.5</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>head</label>
+										<capacities>
+											<li>Blunt</li>
+										</capacities>
+										<power>35</power>
+										<cooldownTime>3.51</cooldownTime>
+										<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+										<armorPenetrationSharp>0</armorPenetrationSharp>
+										<armorPenetrationBlunt>15</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+								</tools>
+							</value>
+						</li>
+
+						<!-- Bomb Drone -->
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]</xpath>
+							<value>
+								<li Class="CombatExtended.RacePropertiesExtensionCE">
+									<bodyShape>Birdlike</bodyShape>
+								</li>
+							</value>
+						</li>
+
+
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases</xpath>
+							<value>
+								<Suppressability>0</Suppressability>
+								<SmokeSensitivity>0</SmokeSensitivity>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases/ArmorRating_Sharp</xpath>
+							<value>
+								<ArmorRating_Sharp>1</ArmorRating_Sharp>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/statBases/ArmorRating_Blunt</xpath>
+							<value>
+								<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_c"]/tools</xpath>
+							<value>
+								<tools>
+									<li Class="CombatExtended.ToolCE">
+										<label>head</label>
+										<capacities>
+											<li>Blunt</li>
+										</capacities>
+										<power>6</power>
+										<cooldownTime>2.25</cooldownTime>
+										<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+										<chanceFactor>0.2</chanceFactor>
+										<armorPenetrationSharp>0</armorPenetrationSharp>
+										<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+									</li>
+								</tools>
+							</value>
+						</li>
+
+						<!-- Trooper Type -->
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/PawnKindDef[defName="HAR_SK_Mechanoid_Kind_e"]/combatPower</xpath>
+							<value>
+								<combatPower>140</combatPower>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]</xpath>
+							<value>
+								<li Class="CombatExtended.RacePropertiesExtensionCE">
+									<bodyShape>Humanoid</bodyShape>
+								</li>
+							</value>
+						</li>
+
+
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases</xpath>
+							<value>
+								<Suppressability>0</Suppressability>
+								<SmokeSensitivity>0</SmokeSensitivity>
+								<MeleeDodgeChance>0.19</MeleeDodgeChance>
+								<MeleeCritChance>0.22</MeleeCritChance>
+								<MeleeParryChance>0.09</MeleeParryChance>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Sharp</xpath>
+							<value>
+								<ArmorRating_Sharp>4</ArmorRating_Sharp>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/statBases/ArmorRating_Blunt</xpath>
+							<value>
+								<ArmorRating_Blunt>6</ArmorRating_Blunt>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>/Defs/ThingDef[defName="HAR_SK_Mechanoid_race_e"]/tools</xpath>
+							<value>
+								<tools>
+									<li Class="CombatExtended.ToolCE">
+										<label>left blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>12</power>
+										<cooldownTime>1.65</cooldownTime>
+										<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>2.07</armorPenetrationSharp>
+										<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>right blade</label>
+										<capacities>
+											<li>Cut</li>
+										</capacities>
+										<power>12</power>
+										<cooldownTime>2.07</cooldownTime>
+										<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+										<armorPenetrationSharp>2.16</armorPenetrationSharp>
+										<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+										<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+									</li>
+									<li Class="CombatExtended.ToolCE">
+										<label>head</label>
+										<capacities>
+											<li>Blunt</li>
+										</capacities>
+										<power>6</power>
+										<cooldownTime>5.9</cooldownTime>
+										<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+										<chanceFactor>0.2</chanceFactor>
+										<armorPenetrationSharp>0</armorPenetrationSharp>
+										<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
+									</li>
+								</tools>
+							</value>
+						</li>
+
+					</operations>
+				</match>
 			</li>
-			
 		</operations>
-		</match>	
-	  </li>
-	</operations>	
-  </Operation>
+	</Operation>
+	
 </Patch>
