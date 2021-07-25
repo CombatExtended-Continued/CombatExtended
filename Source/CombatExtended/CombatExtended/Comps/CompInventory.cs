@@ -17,8 +17,10 @@ namespace CombatExtended
         private int age = 0;
         private Pawn parentPawnInt = null;
         private const int CLEANUPTICKINTERVAL = 2100;
+        private const int LOADOUTUPDATELINTERVAL = 20000;
         private float currentWeightCached;
         private float currentBulkCached;
+        private int updatingLoadoutCooldownTick = -1;
         private int updatingLoadoutAge = -1;
         private bool updatingLoadout = false;
         private List<Thing> ammoListCached = new List<Thing>();
@@ -36,7 +38,7 @@ namespace CombatExtended
                 return (CompProperties_Inventory)props;
             }
         }
-        public bool UpdatingLoadout
+        public bool ForcedLoadoutUpdate
         {
             get
             {
@@ -44,11 +46,18 @@ namespace CombatExtended
             }
             set
             {
-                if (value && !UpdatingLoadout)
+                if (value && !ForcedLoadoutUpdate)
                 {
                     updatingLoadoutAge = GenTicks.TicksGame;
                 }
                 updatingLoadout = value;
+            }
+        }
+        public bool SkipUpdateLoadout
+        {
+            get
+            {
+                return GenTicks.TicksGame < updatingLoadoutCooldownTick;
             }
         }
         public float currentWeight
@@ -163,9 +172,14 @@ namespace CombatExtended
         public override void PostExposeData()
         {
             base.PostExposeData();
-
+            Scribe_Values.Look(ref updatingLoadoutCooldownTick, "updatingLoadoutCooldownTick", 0);
             Scribe_Values.Look(ref updatingLoadout, "updatingLoadout", false);
             Scribe_Values.Look(ref updatingLoadoutAge, "updatingLoadoutAge", -1);
+        }
+
+        public void Notify_LoadoutUpdated()
+        {
+            updatingLoadoutCooldownTick = GenTicks.TicksGame + LOADOUTUPDATELINTERVAL;
         }
 
         /// <summary>

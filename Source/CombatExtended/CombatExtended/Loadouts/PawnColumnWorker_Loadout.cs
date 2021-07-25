@@ -104,7 +104,7 @@ namespace CombatExtended
                     CompInventory inventory = pawn.TryGetComp<CompInventory>();
                     if (inventory != null)
                     {
-                        inventory.UpdatingLoadout = job != null;
+                        inventory.ForcedLoadoutUpdate = job != null;
                     }
                     if (job != null)
                     {

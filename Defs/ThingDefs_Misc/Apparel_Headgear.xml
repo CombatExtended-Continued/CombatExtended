@@ -57,7 +57,7 @@
     <ThingDef ParentName="ArmorHelmetMakeableBase">
         <defName>Apparel_GasMask</defName>
         <label>gas mask</label>
-        <description>Sealed rubber mask with a filter attached. Will protect against smoke inhalation and airborne toxins</description>
+        <description>Sealed rubber mask with a filter attached. Will protect against smoke inhalation and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/GasMask/GasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -72,7 +72,7 @@
     </recipeMaker>
     <costList>
       <ComponentIndustrial>2</ComponentIndustrial>
-            <Chemfuel>10</Chemfuel>
+      <Chemfuel>10</Chemfuel>
     </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
@@ -120,7 +120,7 @@
     <ThingDef ParentName="HatMakeableBase">
         <defName>Apparel_ImprovGasMask</defName>
         <label>improvised gas mask</label>
-        <description>Crude gas mask fashioned from thick cloth and charcoal. Provides some limited protection against smoke and airborne toxins</description>
+        <description>Crude gas mask fashioned from thick cloth and charcoal. Provides some limited protection against smoke and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/ImprovGasMask/ImprovGasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
@@ -174,6 +174,121 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
+    </ThingDef>
+
+    <ThingDef ParentName="ArmorHelmetMakeableBase">
+        <defName>Apparel_SimpleNightVision</defName>
+        <label>night vision monocular</label>
+        <description>A simple, monocular night vision device, worn strapped to the head.</description>
+        <graphicData>
+            <texPath>Things/Apparel/SimpleNightVision/SimpleNightVision_south</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+    <techLevel>Industrial</techLevel>
+    <generateAllowChance>0.2</generateAllowChance>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+        <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>      
+    </recipeMaker>
+    <costList>
+      <ComponentIndustrial>6</ComponentIndustrial>
+      <Steel>50</Steel>
+    </costList>
+        <statBases>
+            <WorkToMake>8000</WorkToMake>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>0.5</Mass>
+            <Bulk>3</Bulk>
+            <WornBulk>1</WornBulk>
+            <EquipDelay>0.5</EquipDelay>
+            <NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+        </statBases>
+        <apparel>
+            <bodyPartGroups>
+                <li>Eyes</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/SimpleNightVision/SimpleNightVision</wornGraphicPath>
+            <layers>
+                <li>StrappedHead</li>
+            </layers>
+            <tags>
+                <li>IndustrialMilitaryAdvanced</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+        </apparel>
+        <modExtensions>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+                <HideHair>false</HideHair>
+                <HideBeard>false</HideBeard>
+            </li>
+        </modExtensions>
+        <thingCategories Inherit="false">
+            <li>Headgear</li>
+        </thingCategories>
+    </ThingDef>
+
+    <ThingDef ParentName="ArmorHelmetMakeableBase">
+        <defName>Apparel_AdvancedNightVision</defName>
+        <label>advanced night vision goggles</label>
+        <description>An set of advanced night vision goggles offering detailed, panoramic vision when fighting in the dark.</description>
+        <graphicData>
+            <texPath>Things/Apparel/AdvancedNightVision/AdvancedNightVision_south</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+    <techLevel>Industrial</techLevel>
+    <generateAllowChance>0.1</generateAllowChance>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <skillRequirements>
+        <Crafting>9</Crafting>
+      </skillRequirements>
+      <researchPrerequisite>MultiAnalyzer</researchPrerequisite>         
+    </recipeMaker>
+    <costList>
+      <ComponentIndustrial>12</ComponentIndustrial>
+      <Steel>50</Steel>
+      <Plasteel>20</Plasteel>
+    </costList>
+        <statBases>
+            <WorkToMake>14000</WorkToMake>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>0.75</Mass>
+            <Bulk>5</Bulk>
+            <WornBulk>1</WornBulk>
+            <EquipDelay>0.5</EquipDelay>
+            <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+        </statBases>
+        <apparel>
+            <bodyPartGroups>
+                <li>Eyes</li>
+            </bodyPartGroups>
+            <wornGraphicPath>Things/Apparel/AdvancedNightVision/AdvancedNightVision</wornGraphicPath>
+            <layers>
+                <li>StrappedHead</li>
+            </layers>
+            <tags>
+                <li>IndustrialMilitaryAdvanced</li>
+            </tags>
+            <defaultOutfitTags>
+                <li>Soldier</li>
+            </defaultOutfitTags>
+              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+        </apparel>
+        <modExtensions>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+                <HideHair>false</HideHair>
+                <HideBeard>false</HideBeard>
+            </li>
+        </modExtensions>
+        <thingCategories Inherit="false">
+            <li>Headgear</li>
+        </thingCategories>
     </ThingDef>
 
 </Defs>
