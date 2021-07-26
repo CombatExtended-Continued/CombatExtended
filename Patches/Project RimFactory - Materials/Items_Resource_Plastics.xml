@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Project RimFactory - Materials</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+			<!-- Copied Values from Expanded Materials - Plastics patch since it Project RimFactory merges it -->
+			<!-- Plastic -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_MixedPlastic"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_MixedPlastic"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.02</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_MixedPlastic"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+			<!-- Polyester -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_Polyester"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_Polyester"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.012</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_Polyester"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.015</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_Kevlar"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_Kevlar"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_Kevlar"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
