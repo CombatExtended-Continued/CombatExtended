@@ -205,10 +205,16 @@
       <Mass>0.85</Mass>
       <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
     </statBases>
+    <recipeMaker>
+      <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    </recipeMaker>
     <costList>
       <Steel>35</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>
     </costList>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootFlareCE</verbClass>
@@ -216,7 +222,6 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_Flare</defaultProjectile>
         <warmupTime>3</warmupTime>
-        <minRange>10</minRange>
         <range>45</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>InfernoCannon_Fire</soundCast>
@@ -227,7 +232,7 @@
           <canTargetLocations>true</canTargetLocations>
         </targetParams>
       </li>
-    </verbs>    
+    </verbs>
     <comps>
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>1</magazineSize>
@@ -235,7 +240,7 @@
         <ammoSet>AmmoSet_Flare</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
-        <aiUseBurstMode>FALSE</aiUseBurstMode>
+        <aiUseBurstMode>False</aiUseBurstMode>
         <aiAimMode>SuppressFire</aiAimMode>
       </li>
       <li Class="CombatExtended.CompProperties_Charges">
@@ -244,43 +249,29 @@
         </chargeSpeeds>
       </li>
     </comps>
-    <recipeMaker>
-      <researchPrerequisite>Gunsmithing</researchPrerequisite>
-    </recipeMaker>
-    <weaponTags>
-      <li>CE_OneHandedWeapon</li>
-    </weaponTags>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>grip</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>2</power>
-          <cooldownTime>1.54</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>2</power>
-          <cooldownTime>1.54</cooldownTime>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    <modExtensions>
-    <!--	
-      <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>0.93,0.93</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>2</power>
+        <cooldownTime>1.54</cooldownTime>
+        <chanceFactor>1.5</chanceFactor>
+        <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
       </li>
-    -->  
-    </modExtensions>	
+      <li Class="CombatExtended.ToolCE">
+        <label>muzzle</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>2</power>
+        <cooldownTime>1.54</cooldownTime>
+        <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+      </li>
+    </tools>
   </ThingDef>
 
 </Defs>
