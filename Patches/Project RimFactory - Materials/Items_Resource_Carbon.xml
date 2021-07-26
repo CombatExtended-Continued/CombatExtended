@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Project RimFactory - Materials</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<!-- Copied Values from Carbon Patch -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_Carbon" or defName="PRF_CarbonFiber" or defName="PRF_CarbonKevlarComposite" or 
+					defName="PRF_CarbonPlate" or defName="PRF_RawDiamond" or defName="PRF_SyntheticDiamond"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>
+						
+				<!-- Carbon Fiber -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonFiber"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>1.2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonFiber"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+		
+				<!-- carbon-kevlar composite -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonKevlarComposite"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonKevlarComposite"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.55</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				
+				<!-- Carbon fiber plate -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonPlate"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.5</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonPlate"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CarbonFiber"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
+				</li>
+				
+				<!-- Synthetic Diamond -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonPlate"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.45</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CarbonPlate"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.8</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
