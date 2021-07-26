@@ -99,6 +99,16 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Indicate that this weapon is a flare gun or other illumination device
+        /// </summary>
+        /// <param name="def">ThingDef</param>
+        /// <returns>If this ThingDef is an illumination device</returns>
+        public static bool IsIlluminationDevice(this ThingDef def)
+        {
+            return def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootFlareCE)) ?? false;
+        }
+
+        /// <summary>
         /// Return wether this ThingDef is an AOE weapon def
         /// </summary>
         /// <param name="def">Weapon def</param>

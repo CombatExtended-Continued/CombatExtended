@@ -18,5 +18,6 @@ namespace CombatExtended
         public static JobDef RunForCover;
         public static JobDef Stabilize;
         public static JobDef WaitKnockdown;
+        public static JobDef EquipFromInventory;
     }
 }
