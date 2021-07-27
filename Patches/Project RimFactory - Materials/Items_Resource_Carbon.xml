@@ -5,7 +5,6 @@
 			<li>Project RimFactory - Materials</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-			<success>Always</success>
 			<operations>
 				<!-- Copied Values from Expanded Materials - Plastics patch -->
 				<li Class="PatchOperationAdd">
@@ -43,7 +42,14 @@
 						<MeleePenetrationFactor>0.8</MeleePenetrationFactor>
 					</value>
 				</li>
-		
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PRF_CarbonFiber"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+						<li>Steeled</li>
+					</value>
+				</li>
+				
 				<!-- carbon-kevlar composite -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="PRF_CarbonKevlarComposite"]/statBases/StuffPower_Armor_Sharp</xpath>
@@ -69,13 +75,6 @@
 					<xpath>/Defs/ThingDef[defName="PRF_CarbonPlate"]/statBases/StuffPower_Armor_Blunt</xpath>
 					<value>
 						<StuffPower_Armor_Blunt>1.6</StuffPower_Armor_Blunt>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CarbonFiber"]/stuffProps/categories</xpath>
-					<value>
-						<li>Metallic_Weapon</li>
-						<li>Steeled</li>
 					</value>
 				</li>
 				
