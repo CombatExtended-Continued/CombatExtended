@@ -25,10 +25,16 @@ namespace CombatExtended
 
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+
             bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
             {
                 foreach (ICompTactics comp in TacticalComps)
                 {
+                    if (comp.StartCastOverridden)
+                    {
+                        comp.StartCastOverridden = false;
+                        continue;
+                    }
                     if (!comp.StartCastChecks(verb, castTarg, destTarg))
                     {
                         failedComp = comp;

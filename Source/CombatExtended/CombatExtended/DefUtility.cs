@@ -181,6 +181,8 @@ namespace CombatExtended
 
             if (props?.ammoSet != null)
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
+
+            isAOEArray[def.index] = isAOEArray[def.index] || (def.weaponTags?.Contains("CE_AI_Grenade") ?? false);
         }
 
         /// <summary>

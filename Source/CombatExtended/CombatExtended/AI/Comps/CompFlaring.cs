@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -8,6 +9,8 @@ namespace CombatExtended.AI
     public partial class CompFlaring : ICompTactics
     {
         private int lastFlared = -1;
+
+        private static Dictionary<Faction, int> factionLastFlare = new Dictionary<Faction, int>();
 
         public override int Priority => 500;
 
@@ -34,52 +37,65 @@ namespace CombatExtended.AI
             }
         }
 
-        public bool FlareRecently
+        public bool FlaredRecently
         {
             get
             {
-                return GenTicks.TicksGame - lastFlared < GenTicks.TickLongInterval;
+                return (GenTicks.TicksGame - lastFlared < GenTicks.TickLongInterval);
+            }
+        }
+
+        public bool FlaredRecentlyByFaction
+        {
+            get
+            {
+                if (SelPawn.factionInt != null && factionLastFlare.TryGetValue(SelPawn.factionInt, out int ticks)
+                    && GenTicks.TicksGame - ticks < GenTicks.TickLongInterval / 2) return true;
+                return false;
             }
         }
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (TargetVisible(castTarg.Cell) || FlareRecently)
+            if (VisibilityGoodAt(castTarg.Cell) || FlaredRecently || FlaredRecentlyByFaction)
             {
                 if ((verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !SelPawn.IsColonist))
                 {
-                    EquipWeapon(weapon);
+                    StartEquipWeaponJob(weapon);
                     return false;
                 }
                 return true;
             }
             if (!(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindFlare(out ThingWithComps flareGun))
             {
-                EquipWeapon(flareGun);
+                StartEquipWeaponJob(flareGun);
                 return false;
             }
             return true;
         }
 
-
         public override void OnStartCastSuccess(Verb verb)
         {
             base.OnStartCastSuccess(verb);
             if (verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false)
+            {
                 lastFlared = GenTicks.TicksGame;
+                if (SelPawn.Faction != null)
+                    factionLastFlare[SelPawn.Faction] = lastFlared;
+            }
         }
 
-        private void EquipWeapon(ThingWithComps gun)
+        public void StartEquipWeaponJob(ThingWithComps gun)
         {
             SelPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, gun), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
         }
 
-        private bool TargetVisible(IntVec3 target)
+        private bool VisibilityGoodAt(IntVec3 target)
         {
             LightingTracker tracker = LightingTracker;
             if (!tracker.IsNight)
                 return true;
-            if (target.DistanceTo(SelPawn.Position) < 20)
+            if (target.DistanceTo(SelPawn.Position) < 15)
                 return true;
             if (tracker.CombatGlowAtFor(SelPawn.Position, target) >= 0.5f)
                 return true;

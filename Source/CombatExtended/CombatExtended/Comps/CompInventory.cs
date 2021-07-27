@@ -17,7 +17,8 @@ namespace CombatExtended
         private int age = 0;
         private Pawn parentPawnInt = null;
         private const int CLEANUPTICKINTERVAL = 2100;
-        private const int LOADOUTUPDATELINTERVAL = 20000;
+        private const int LOADOUTUPDATELEXPIRY = 2000;
+        private const int LOADOUTUPDATELINTERVAL = 2500;
         private float currentWeightCached;
         private float currentBulkCached;
         private int updatingLoadoutCooldownTick = -1;
@@ -42,7 +43,7 @@ namespace CombatExtended
         {
             get
             {
-                return GenTicks.TicksGame - updatingLoadoutAge < CLEANUPTICKINTERVAL && updatingLoadout;
+                return GenTicks.TicksGame - updatingLoadoutAge < LOADOUTUPDATELEXPIRY && updatingLoadout;
             }
             set
             {
@@ -384,7 +385,10 @@ namespace CombatExtended
             // Equip the weapon
             if (newEq != null)
             {
-                TrySwitchToWeapon(newEq, stopJob);
+                if (!stopJob)
+                    parentPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, newEq), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                else
+                    TrySwitchToWeapon(newEq, stopJob);
             }
             else if (useFists)
             {
@@ -410,6 +414,23 @@ namespace CombatExtended
                     }
                 }
             }
+        }
+
+        public bool TryFindRandomAOEWeapon(out ThingWithComps weapon, Func<ThingWithComps, bool> predicate = null)
+        {
+            weapon = null;
+            foreach (ThingWithComps gun in rangedWeaponListCached.InRandomOrder())
+            {
+                if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
+                {
+                    if (gun.def.IsAOEWeapon() && (predicate == null || predicate.Invoke(gun)))
+                    {
+                        weapon = gun;
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public bool TryFindViableWeapon(out ThingWithComps weapon, bool useAOE = false, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
@@ -460,7 +481,6 @@ namespace CombatExtended
             {
                 return;
             }
-
             // Stop current job
             if (parentPawn.jobs != null && stopJob)
                 parentPawn.jobs.StopAll();
