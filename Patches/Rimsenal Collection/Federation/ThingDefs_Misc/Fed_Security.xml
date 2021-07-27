@@ -10,8 +10,8 @@
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
-					defName="Harmonizer" or
-					defName="Harvester"
+					@Name="FedHarvester" or
+					@Name="Harmonizer"
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -21,7 +21,7 @@
 			<!-- ==========  Harvester Cannon  =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Gun_Harvester</defName>
+			<defName>Gun_FedHarvester</defName>
 				<statBases>
 					<SightsEfficiency>1.0</SightsEfficiency>
 					<ShotSpread>0.12</ShotSpread>
@@ -54,19 +54,6 @@
 			</li>
 			
 			<!-- ==========  Plasma Bombard  =========== -->
-			<li Class="PatchOperationAdd">			
-				<xpath>Defs/ThingDef[defName="Harmonizer"]</xpath>
-				<value>
-					<placeWorkers>
-					  <li>PlaceWorker_NotUnderRoof</li>
-					  <li>PlaceWorker_TurretTop</li>
-					</placeWorkers>
-				</value>				
-			</li>
-
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Gun_PB"]/weaponTags</xpath>
-			</li>
 			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName = "Gun_PB"]</xpath>
