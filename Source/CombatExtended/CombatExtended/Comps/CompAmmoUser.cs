@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 using CombatExtended.Compatibility;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -458,7 +459,27 @@ namespace CombatExtended
         {
             if (ShouldThrowMote)
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
-            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon(useFists: true, useAOE: !(parent is Pawn pawn && pawn.IsColonist));
+            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
+            {
+                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !(parent is Pawn pawn && pawn.IsColonist)))
+                {
+                    Holder.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                    return;
+                }
+                IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+                foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo && supportedAmmo.Contains(ammo.AmmoDef)))
+                {
+                    if (CompInventory.CanFitInInventory(thing, out int count))
+                    {
+                        Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, thing);
+                        Job reload = TryMakeReloadJob();
+                        pickupAmmo.count = count;
+                        Holder.jobs.StartJob(pickupAmmo, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
+                        Holder.jobs.jobQueue.EnqueueFirst(reload);
+                        return;
+                    }
+                }
+            }
         }
 
         public void LoadAmmo(Thing ammo = null)

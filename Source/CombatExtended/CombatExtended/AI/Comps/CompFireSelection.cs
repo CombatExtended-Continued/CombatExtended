@@ -70,6 +70,7 @@ namespace CombatExtended.AI
                     float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
                     float range = Mathf.Max(verb.EffectiveRange, 1);
                     float recoilFactor = verbProps.recoilAmount * Mathf.Pow(0.5f + shotDist / range, 2);
+
                     if (recoilFactor <= 0.20f)
                     {
                         if (castTarg.HasThing && target.EdgingCloser(target))
@@ -112,6 +113,7 @@ namespace CombatExtended.AI
                         fireModes.TrySetAimMode(AimMode.AimedShot);
                         return;
                     }
+
                     fireModes.TrySetFireMode(FireMode.AutoFire);
                     fireModes.TrySetAimMode(AimMode.Snapshot);
                 }

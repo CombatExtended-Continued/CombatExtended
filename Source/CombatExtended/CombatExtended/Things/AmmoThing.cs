@@ -15,7 +15,7 @@ namespace CombatExtended
 
         #region Properties
 
-        private AmmoDef AmmoDef => def as AmmoDef;
+        public AmmoDef AmmoDef => def as AmmoDef;
         public bool IsCookingOff => numToCookOff > 0;
 
         #endregion
