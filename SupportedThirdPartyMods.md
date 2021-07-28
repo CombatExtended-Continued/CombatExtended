@@ -291,6 +291,6 @@ Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
-Xenohumans	|
+Xenohumans - Anthromorphs   |
 Xenoorca Race	|
 Zombieland	|

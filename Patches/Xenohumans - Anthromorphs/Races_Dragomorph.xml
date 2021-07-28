@@ -96,6 +96,25 @@
           </value>
         </li>
 
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ATK_Leather_Dragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+          <value>
+            <StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="ATK_Villager_Dragomorph"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+              <min>2</min>
+              <max>4</max>
+            </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
       </operations>
     </match>
   </Operation>
