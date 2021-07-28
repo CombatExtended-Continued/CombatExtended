@@ -38,23 +38,38 @@ namespace CombatExtended.HarmonyCE
         }
 
         /*
-         * Compatiblity stuff
+         * Compatiblity stuff IMPORTANT
          * 
          * These are patched by compatibility patches so we can have custom drawsize, drawoffsets for mods like Alien races
+         * IF YOU ARE A MODDER PLEASE READ THIS...
+         * 
+         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value. 
+         * These are to be patched by either other mods or by CE it self inorder to make the process of changing simple things in CE a bit simpler.
+         * 
+         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>               
          */
 
+        /// <summary>
+        /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
+        /// </summary>                
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Mesh GetHeadMesh(PawnRenderFlags renderFlags, Pawn pawn, Rot4 headFacing, PawnGraphicSet graphics)
         {
             return null;
         }
 
+        /// <summary>
+        /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
+        /// </summary>        
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Vector2 GetHeadCustomSize(ThingDef def)
         {
             return Vector2.one;
         }
 
+        /// <summary>
+        /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
+        /// </summary>        
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Vector2 GetHeadCustomOffset(ThingDef def)
         {
