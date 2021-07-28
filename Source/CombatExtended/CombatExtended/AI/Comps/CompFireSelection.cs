@@ -82,10 +82,10 @@ namespace CombatExtended.AI
                         fireModes.TrySetFireMode(FireMode.AutoFire);
                         return;
                     }
-                    else if (recoilFactor > 2.0f)
+                    else if (recoilFactor > 2.5f)
                     {
                         fireModes.TrySetAimMode(AimMode.AimedShot);
-                        fireModes.TrySetFireMode(FireMode.SingleFire);
+                        fireModes.TrySetFireMode(FireMode.BurstFire);
                         return;
                     }
 
