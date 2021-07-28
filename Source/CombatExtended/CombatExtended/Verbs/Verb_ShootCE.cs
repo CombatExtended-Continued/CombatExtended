@@ -37,19 +37,7 @@ namespace CombatExtended
         {
             get
             {
-                if (CompFireModes != null)
-                {
-                    if (CompFireModes.CurrentFireMode == FireMode.SingleFire)
-                    {
-                        return 1;
-                    }
-                    if (CompFireModes.CurrentFireMode == FireMode.BurstFire
-                        && CompFireModes.Props.aimedBurstShotCount > 0)
-                    {
-                        return CompFireModes.Props.aimedBurstShotCount;
-                    }
-                }
-                return VerbPropsCE.burstShotCount;
+                return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
             }
         }
 
@@ -85,9 +73,19 @@ namespace CombatExtended
             get
             {
                 var sway = base.SwayAmplitude;
-                if (ShouldAim) { return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency); }
-                else if (IsSuppressed) { return sway * SuppressionSwayFactor; }
+                if (ShouldAim)
+                    return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency);
+                else if (IsSuppressed)
+                    return sway * SuppressionSwayFactor;
                 return sway;
+            }
+        }
+
+        public float SpreadDegrees
+        {
+            get
+            {
+                return (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * (projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f);
             }
         }
 
@@ -97,6 +95,46 @@ namespace CombatExtended
         #endregion
 
         #region Methods
+
+        public float SwayAmplitudeFor(AimMode mode)
+        {
+            float sway = base.SwayAmplitude;
+            if (ShouldAimFor(mode))
+                return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency);
+            else if (IsSuppressed)
+                return sway * SuppressionSwayFactor;
+            return sway;
+        }
+
+        public bool ShouldAimFor(AimMode mode)
+        {
+            if (ShooterPawn != null)
+            {
+                // Check for hunting job
+                if (ShooterPawn.CurJob != null && ShooterPawn.CurJob.def == JobDefOf.Hunt)
+                    return true;
+
+                // Check for suppression
+                if (IsSuppressed) return false;
+
+                // Check for RunAndGun mod
+                if (ShooterPawn.pather?.Moving ?? false)
+                {
+                    return false;
+                }
+            }
+            return mode == AimMode.AimedShot;
+        }
+
+        public int ShotsPerBurstFor(FireMode mode)
+        {
+            if (CompFireModes != null)
+            {
+                if (mode == FireMode.SingleFire) return 1;
+                if (mode == FireMode.BurstFire && CompFireModes.Props.aimedBurstShotCount > 0) return CompFireModes.Props.aimedBurstShotCount;
+            }
+            return VerbPropsCE.burstShotCount;
+        }
 
         /// <summary>
         /// Handles activating aim mode at the start of the burst
@@ -151,6 +189,29 @@ namespace CombatExtended
                     _isAiming = false;
                 }
             }
+        }
+
+        public virtual ShiftVecReport SimulateShiftVecReportFor(LocalTargetInfo target, AimMode aimMode)
+        {
+            IntVec3 targetCell = target.Cell;
+            ShiftVecReport report = new ShiftVecReport();
+
+            report.target = target;
+            report.aimingAccuracy = AimingAccuracy;
+            report.sightsEfficiency = SightsEfficiency;
+            report.shotDist = (targetCell - caster.Position).LengthHorizontal;
+            report.maxRange = verbProps.range;
+            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
+
+            if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
+            {
+                report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
+            }
+            report.shotSpeed = ShotSpeed;
+            report.swayDegrees = SwayAmplitudeFor(aimMode);
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            return report;
         }
 
         /// <summary>

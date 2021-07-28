@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using CombatExtended.Utilities;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended.AI
@@ -24,10 +27,58 @@ namespace CombatExtended.AI
                     (int)((startPos.z * 3 + endPos.z) / 4f))))
             {
                 Thing cover = cell.GetCover(map);
-                map.debugDrawer.FlashCell(cell);
                 if (cover != null && cover.def.Fillage == FillCategory.Partial)
                     return true;
             }
+            return false;
+        }
+
+
+        public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)
+        {
+            int m = (int)mode;
+            while (m < 3)
+            {
+                mode = (FireMode)m++;
+                if (fireModes.CurrentFireMode != mode && fireModes.AvailableFireModes.Contains(mode))
+                {
+                    fireModes.CurrentFireMode = mode;
+                    break;
+                }
+            }
+        }
+
+        public static void TrySetAimMode(this CompFireModes fireModes, AimMode mode)
+        {
+            int m = (int)mode;
+            while (m < 3)
+            {
+                mode = (AimMode)m++;
+                if (fireModes.CurrentAimMode != mode && fireModes.AvailableAimModes.Contains(mode))
+                {
+                    fireModes.CurrentAimMode = mode;
+                    break;
+                }
+            }
+        }
+
+        public static bool EdgingCloser(this Pawn pawn, Pawn other)
+        {
+            float curDist = other.Position.DistanceTo(pawn.Position);
+            if (other.pather.moving && curDist > other.pather.destination.Cell.DistanceTo(pawn.Position))
+                return true;
+            if (pawn.pather.moving && curDist > pawn.pather.destination.Cell.DistanceTo(other.Position))
+                return true;
+            return false;
+        }
+
+        public static bool EdgingAway(this Pawn pawn, Pawn other)
+        {
+            float curDist = other.Position.DistanceTo(pawn.Position);
+            if (other.pather.moving && curDist < other.pather.destination.Cell.DistanceTo(pawn.Position))
+                return true;
+            if (pawn.pather.moving && curDist < pawn.pather.destination.Cell.DistanceTo(other.Position))
+                return true;
             return false;
         }
     }

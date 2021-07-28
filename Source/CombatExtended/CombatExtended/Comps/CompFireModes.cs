@@ -14,6 +14,7 @@ namespace CombatExtended
         #region Fields
 
         private Verb verbInt = null;
+
         private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
@@ -28,6 +29,22 @@ namespace CombatExtended
             get
             {
                 return (CompProperties_FireModes)props;
+            }
+        }
+
+        public IEnumerable<AimMode> AvailableAimModes
+        {
+            get
+            {
+                return availableAimModes;
+            }
+        }
+
+        public IEnumerable<FireMode> AvailableFireModes
+        {
+            get
+            {
+                return availableFireModes;
             }
         }
 
@@ -65,20 +82,44 @@ namespace CombatExtended
                 return Caster as Pawn;
             }
         }
+        private Faction _factionFireMode = null;
+        private bool _initCurrentFireMode = false;
         public FireMode CurrentFireMode
         {
             get
             {
-                if (useAIModes && Props.aiUseBurstMode && availableFireModes.Contains(FireMode.BurstFire)) return FireMode.BurstFire;
+                if ((!_initCurrentFireMode || _factionFireMode != Caster.Faction) && useAIModes && Props.aiUseBurstMode && availableFireModes.Contains(FireMode.BurstFire))
+                {
+                    _initCurrentFireMode = true;
+                    _factionFireMode = Caster.Faction;
+                    currentFireModeInt = FireMode.BurstFire;
+                }
                 return currentFireModeInt;
             }
+            set
+            {
+                _factionFireMode = Caster.Faction;
+                currentFireModeInt = value;
+            }
         }
+        private Faction _factionAimMode = null;
+        private bool _initCurrentAimMode = false;
         public AimMode CurrentAimMode
         {
             get
             {
-                if (useAIModes && availableAimModes.Contains(Props.aiAimMode)) return Props.aiAimMode;
+                if ((!_initCurrentAimMode || _factionAimMode != Caster.Faction) && useAIModes && availableAimModes.Contains(Props.aiAimMode))
+                {
+                    _initCurrentAimMode = true;
+                    _factionAimMode = Caster.Faction;
+                    currentAimModeInt = Props.aiAimMode;
+                }
                 return currentAimModeInt;
+            }
+            set
+            {
+                _factionAimMode = Caster.Faction;
+                currentAimModeInt = value;
             }
         }
         private bool useAIModes => Caster.Faction != Faction.OfPlayer;
@@ -159,18 +200,18 @@ namespace CombatExtended
         /// </summary>
         public void ResetModes()
         {
-        		//Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
-        	if (availableFireModes.Count > 0)
-            	currentFireModeInt = availableFireModes.ElementAt(0);
-            
-        	currentAimModeInt = availableAimModes.ElementAt(0);
+            //Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
+            if (availableFireModes.Count > 0)
+                currentFireModeInt = availableFireModes.ElementAt(0);
+
+            currentAimModeInt = availableAimModes.ElementAt(0);
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (CasterPawn != null && CasterPawn.Faction.Equals(Faction.OfPlayer))
             {
-                foreach(Command com in GenerateGizmos())
+                foreach (Command com in GenerateGizmos())
                 {
                     yield return com;
                 }

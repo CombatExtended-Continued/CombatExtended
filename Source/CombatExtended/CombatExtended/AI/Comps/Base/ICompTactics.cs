@@ -6,18 +6,6 @@ namespace CombatExtended.AI
 {
     public abstract class ICompTactics : ThingComp
     {
-        private bool _startCastOverridden;
-        public virtual bool StartCastOverridden
-        {
-            get
-            {
-                return _startCastOverridden;
-            }
-            set
-            {
-                _startCastOverridden = value;
-            }
-        }
 
         public virtual Pawn SelPawn
         {
@@ -30,16 +18,6 @@ namespace CombatExtended.AI
         public abstract int Priority
         {
             get;
-        }
-
-        private CompInventory _compInventory = null;
-        public virtual CompInventory CompInventory
-        {
-            get
-            {
-                if (_compInventory == null) _compInventory = SelPawn.TryGetComp<CompInventory>();
-                return _compInventory;
-            }
         }
 
         public virtual ThingWithComps CurrentWeapon
@@ -58,6 +36,16 @@ namespace CombatExtended.AI
                 if (_compSuppressable == null)
                     _compSuppressable = SelPawn.TryGetComp<CompSuppressable>();
                 return _compSuppressable;
+            }
+        }
+
+        private CompInventory _compInventory = null;
+        public virtual CompInventory CompInventory
+        {
+            get
+            {
+                if (_compInventory == null) _compInventory = SelPawn.TryGetComp<CompInventory>();
+                return _compInventory;
             }
         }
 
@@ -93,10 +81,7 @@ namespace CombatExtended.AI
         public void Notify_StartCastChecksFailed(ICompTactics failedComp)
         {
             if (failedComp != this)
-            {
-                _startCastOverridden = true;
                 OnStartCastFailed();
-            }
         }
 
         public void Notify_StartCastChecksSuccess(Verb verb) => OnStartCastSuccess(verb);
@@ -107,12 +92,6 @@ namespace CombatExtended.AI
 
         public virtual void OnStartCastSuccess(Verb verb)
         {
-        }
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look(ref _startCastOverridden, "_startCastOverriden", false);
         }
     }
 }

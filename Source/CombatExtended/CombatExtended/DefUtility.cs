@@ -120,6 +120,17 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Return wether this ThingDef is an Smoke weapon def
+        /// </summary>
+        /// <param name="def">Weapon def</param>
+        /// <returns>If this ThingDef is an smoke screening device</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ProduceSmokeScreen(this ThingDef def)
+        {
+            return def.weaponTags?.Contains("GrenadeSmoke") ?? false;
+        }
+
+        /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
         /// <param name="def">Apparel def</param>        
@@ -182,7 +193,9 @@ namespace CombatExtended
             if (props?.ammoSet != null)
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
 
-            isAOEArray[def.index] = isAOEArray[def.index] || (def.weaponTags?.Contains("CE_AI_Grenade") ?? false);
+            isAOEArray[def.index] = isAOEArray[def.index]
+                || (def.weaponTags?.Contains("CE_AI_Grenade") ?? false)
+                || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
         }
 
         /// <summary>
