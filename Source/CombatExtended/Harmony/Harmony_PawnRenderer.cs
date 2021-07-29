@@ -308,8 +308,9 @@ namespace CombatExtended.HarmonyCE
                     posVec.x *= -1;
 
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
+                matrix.m13 -= 0.005f;
                 Graphics.DrawMesh(mesh, matrix, mat, layer);
-
+                matrix.m13 += 0.005f;
                 if (equipment is WeaponPlatform platform)
                 {
                     AttachmentLink[] links = platform.CurLinks;
@@ -323,7 +324,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Matrix4x4 translaredMatrix = new Matrix4x4();
-                            translaredMatrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y) + link.Offset, rotation, scale);
+                            translaredMatrix.SetTRS(position + (posVec + link.Offset).RotatedBy(rotation.eulerAngles.y), rotation, scale);
                             Graphics.DrawMesh(mesh, translaredMatrix, link.attachment.graphic.MatSingle, layer);
                         }
                     }
