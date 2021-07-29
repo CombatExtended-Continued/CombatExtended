@@ -114,7 +114,7 @@ namespace CombatExtended
             AttachmentDef[] available = AvailableAttachments;
             for (int i = 0; i < available.Length; i++)
             {
-                if (Rand.Chance(1f / available.Length))
+                if (Rand.Chance(0.5f))
                 {
                     Thing attachment = ThingMaker.MakeThing(available[i]);
                     attachments.TryAdd(attachment);

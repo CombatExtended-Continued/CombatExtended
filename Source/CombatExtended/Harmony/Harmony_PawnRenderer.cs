@@ -292,8 +292,11 @@ namespace CombatExtended.HarmonyCE
 
             private static Thing equipment;
 
-            public static void Prefix(Thing eq)
+            private static Pawn pawn;
+
+            public static void Prefix(PawnRenderer __instance, Thing eq)
             {
+                pawn = __instance.pawn;
                 equipment = eq;
             }
 
