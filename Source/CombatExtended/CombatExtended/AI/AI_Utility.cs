@@ -81,5 +81,21 @@ namespace CombatExtended.AI
                 return true;
             return false;
         }
+
+        public static bool VisibilityGoodAt(this Map map, Pawn shooter, IntVec3 target, float nightVisionEfficiency = -1)
+        {
+            LightingTracker tracker = map.GetLightingTracker();
+            if (!tracker.IsNight)
+                return true;
+            if (target.DistanceTo(shooter.Position) < 15)
+                return true;
+            if (tracker.CombatGlowAtFor(shooter.Position, target) >= 0.5f)
+                return true;
+            if ((nightVisionEfficiency == -1 ? shooter.GetStatValue(CE_StatDefOf.NightVisionEfficiency) : nightVisionEfficiency) > 0.6)
+                return true;
+            if (target.Roofed(map))
+                return true;
+            return false;
+        }
     }
 }

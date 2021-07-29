@@ -17,7 +17,7 @@ namespace CombatExtended
         private int age = 0;
         private Pawn parentPawnInt = null;
         private const int CLEANUPTICKINTERVAL = 2100;
-        private const int LOADOUTUPDATELEXPIRY = 2000;
+        private const int LOADOUTUPDATELEXPIRY = 4000;
         private const int LOADOUTUPDATELINTERVAL = 2500;
         private float currentWeightCached;
         private float currentBulkCached;

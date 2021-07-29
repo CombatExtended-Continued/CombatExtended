@@ -76,6 +76,14 @@ namespace CombatExtended.AI
             }
         }
 
+        public virtual bool AIOnly
+        {
+            get
+            {
+                return !(SelPawn.Faction?.IsPlayer ?? false);
+            }
+        }
+
         public abstract bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg);
 
         public void Notify_StartCastChecksFailed(ICompTactics failedComp)
@@ -84,7 +92,10 @@ namespace CombatExtended.AI
                 OnStartCastFailed();
         }
 
-        public void Notify_StartCastChecksSuccess(Verb verb) => OnStartCastSuccess(verb);
+        public void Notify_StartCastChecksSuccess(Verb verb)
+        {
+            OnStartCastSuccess(verb);
+        }
 
         public virtual void OnStartCastFailed()
         {

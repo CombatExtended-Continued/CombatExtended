@@ -32,7 +32,7 @@ namespace CombatExtended
             }
         }
 
-        public IEnumerable<AimMode> AvailableAimModes
+        public List<AimMode> AvailableAimModes
         {
             get
             {
@@ -40,7 +40,7 @@ namespace CombatExtended
             }
         }
 
-        public IEnumerable<FireMode> AvailableFireModes
+        public List<FireMode> AvailableFireModes
         {
             get
             {

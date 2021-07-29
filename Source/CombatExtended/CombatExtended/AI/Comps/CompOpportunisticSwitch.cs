@@ -98,6 +98,11 @@ namespace CombatExtended.AI
             return true;
         }
 
+        //public bool StartSmokeScreenChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
+        //{
+
+        //}
+
         public bool StartAOEChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if ((verb.EquipmentSource?.def.IsAOEWeapon() ?? false))
@@ -123,15 +128,19 @@ namespace CombatExtended.AI
                 previousWeapon = null;
                 return true;
             }
-            float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
-            if (castTarg.HasThing && castTarg.Thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
+            if (!OpportunisticallySwitchedRecently)
             {
-                if (!OpportunisticallySwitchedRecently && CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
+                float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
+
+                if (castTarg.HasThing && castTarg.Thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
                 {
-                    previousWeapon = CurrentWeapon;
-                    StartEquipWeaponJob(weapon);
-                    lastOpportunisticSwitch = GenTicks.TicksGame;
-                    return false;
+                    if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
+                    {
+                        previousWeapon = CurrentWeapon;
+                        StartEquipWeaponJob(weapon);
+                        lastOpportunisticSwitch = GenTicks.TicksGame;
+                        return false;
+                    }
                 }
             }
             return true;
@@ -139,7 +148,7 @@ namespace CombatExtended.AI
 
         public bool StartFlareChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (VisibilityGoodAt(castTarg.Cell) || FlaredRecently || FlaredRecentlyByFaction)
+            if (Map.VisibilityGoodAt(SelPawn, castTarg.Cell, NightVisionEfficiency) || FlaredRecently || FlaredRecentlyByFaction)
             {
                 if ((verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !SelPawn.IsColonist))
                 {
@@ -148,11 +157,14 @@ namespace CombatExtended.AI
                 }
                 return true;
             }
-            if (!OpportunisticallySwitchedRecently && !(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindFlare(out ThingWithComps flareGun))
+            if (!OpportunisticallySwitchedRecently)
             {
-                StartEquipWeaponJob(flareGun);
-                lastOpportunisticSwitch = GenTicks.TicksGame;
-                return false;
+                if (!(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindFlare(out ThingWithComps flareGun))
+                {
+                    StartEquipWeaponJob(flareGun);
+                    lastOpportunisticSwitch = GenTicks.TicksGame;
+                    return false;
+                }
             }
             return true;
         }
@@ -198,22 +210,6 @@ namespace CombatExtended.AI
                 return false;
             }
             return hostiles > 1;
-        }
-
-        private bool VisibilityGoodAt(IntVec3 target)
-        {
-            LightingTracker tracker = LightingTracker;
-            if (!tracker.IsNight)
-                return true;
-            if (target.DistanceTo(SelPawn.Position) < 15)
-                return true;
-            if (tracker.CombatGlowAtFor(SelPawn.Position, target) >= 0.5f)
-                return true;
-            if (NightVisionEfficiency > 0.6)
-                return true;
-            if (target.Roofed(Map))
-                return true;
-            return false;
         }
     }
 }

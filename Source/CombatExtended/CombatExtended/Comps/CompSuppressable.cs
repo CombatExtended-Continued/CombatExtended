@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using UnityEngine;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -71,6 +72,16 @@ namespace CombatExtended
                     Log.Error("CE tried to get suppression threshold of non-pawn");
                 }
                 return threshold;
+            }
+        }
+
+        private CompInventory _compInventory = null;
+        private CompInventory CompInventory
+        {
+            get
+            {
+                if (_compInventory == null) _compInventory = parent.TryGetComp<CompInventory>();
+                return _compInventory;
             }
         }
 
