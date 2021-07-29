@@ -50,7 +50,6 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (!ShouldRun) return true;
             this._castTarg = castTarg;
             this._destTarg = destTarg;
 
@@ -125,9 +124,9 @@ namespace CombatExtended.AI
                 float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
                 float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
 
-                if (bullets < Mathf.Max(verbShoot.compAmmo.Props.magazineSize / 3f, 30) && shotDist > 35)
+                if (bullets < 100 && bullets < Mathf.Max(verbShoot.compAmmo.Props.magazineSize / 3f, 30) && shotDist > 35)
                 {
-                    if (shotDist < 25)
+                    if (shotDist < 50)
                     {
                         fireModes.TrySetAimMode(AimMode.Snapshot);
                         fireModes.TrySetFireMode(FireMode.BurstFire);

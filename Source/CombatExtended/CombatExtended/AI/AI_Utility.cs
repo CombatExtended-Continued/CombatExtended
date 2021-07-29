@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CombatExtended.Utilities;
 using RimWorld;
+using RimWorld.BaseGen;
 using Verse;
 
 namespace CombatExtended.AI
@@ -36,11 +37,15 @@ namespace CombatExtended.AI
 
         public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)
         {
+            if (fireModes.CurrentFireMode == mode && fireModes.AvailableFireModes.Contains(mode))
+                return;
             int m = (int)mode;
-            while (m < 3)
+            int i = 1;
+            while (i < 3)
             {
-                mode = (FireMode)m++;
-                if (fireModes.CurrentFireMode != mode && fireModes.AvailableFireModes.Contains(mode))
+                mode = (FireMode)((m + i) % 3);
+                i++;
+                if (fireModes.AvailableFireModes.Contains(mode))
                 {
                     fireModes.CurrentFireMode = mode;
                     break;
@@ -50,16 +55,21 @@ namespace CombatExtended.AI
 
         public static void TrySetAimMode(this CompFireModes fireModes, AimMode mode)
         {
+            if (fireModes.CurrentAimMode == mode && fireModes.AvailableAimModes.Contains(mode))
+                return;
             int m = (int)mode;
-            while (m < 3)
+            int i = 1;
+            while (i < 3)
             {
-                mode = (AimMode)m++;
-                if (fireModes.CurrentAimMode != mode && fireModes.AvailableAimModes.Contains(mode))
+                mode = (AimMode)((m + i) % 3);
+                i++;
+                if (fireModes.AvailableAimModes.Contains(mode))
                 {
                     fireModes.CurrentAimMode = mode;
                     break;
                 }
             }
+
         }
 
         public static bool EdgingCloser(this Pawn pawn, Pawn other)
