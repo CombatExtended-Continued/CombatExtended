@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -289,6 +290,12 @@ namespace CombatExtended.HarmonyCE
         {
             public static Rot4 south = Rot4.South;
 
+            private static Thing equipment;
+
+            public static void Prefix(Thing eq)
+            {
+                equipment = eq;
+            }
 
             private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
             {
@@ -302,6 +309,27 @@ namespace CombatExtended.HarmonyCE
 
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
                 Graphics.DrawMesh(mesh, matrix, mat, layer);
+
+                if (equipment is WeaponPlatform platform)
+                {
+                    AttachmentLink[] links = platform.CurLinks;
+                    for (int i = 0; i < links.Length; i++)
+                    {
+                        AttachmentLink link = links[i];
+                        if (!link.HasOffsets)
+                        {
+                            Graphics.DrawMesh(mesh, matrix, link.attachment.graphic.MatSingle, layer);
+                        }
+                        else
+                        {
+                            Matrix4x4 translaredMatrix = new Matrix4x4();
+                            translaredMatrix.SetTRS(
+                                position + posVec.RotatedBy(rotation.eulerAngles.y) + new Vector3(link.drawSettings.offset.x, 0, link.drawSettings.offset.y),
+                                rotation, scale);
+                            Graphics.DrawMesh(mesh, translaredMatrix, link.attachment.graphic.MatSingle, layer);
+                        }
+                    }
+                }
             }
 
             /*

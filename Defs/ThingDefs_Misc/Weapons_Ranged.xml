@@ -282,4 +282,227 @@
     </modExtensions>	
   </ThingDef>
 
+
+<CombatExtended.WeaponPlatformDef ParentName="BaseMakeableGun">
+    <defName>CE_Uzitak</defName>
+    <thingClass>CombatExtended.WeaponPlatform</thingClass>
+    <label>Uzitak</label>
+    <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
+    <graphicData>
+      <texPath>Things/Weapons/Uzitak/Uzitak</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+      <WorkToMake>9000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>1.00</SwayFactor>
+      <Bulk>7.31</Bulk>
+      <Mass>2.70</Mass>
+      <RangedWeapon_Cooldown>0.93</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>40</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+      <WoodLog>10</WoodLog>
+    </costList>
+    <weaponTags>
+      <li>GunHeavy</li>
+      <li>GrenadeSmoke</li>
+      <li>GrenadeEMP</li>
+    </weaponTags>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>1.75</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+        <warmupTime>0.6</warmupTime>
+        <range>12</range>
+        <burstShotCount>6</burstShotCount>
+        <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        <soundCast>Shot_MachinePistol</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>30</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_45ACP</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aimedBurstShotCount>3</aimedBurstShotCount>
+        <aiUseBurstMode>FALSE</aiUseBurstMode>
+      </li>
+    </comps>
+    <recipeMaker>
+      <researchPrerequisite>CE_Launchers</researchPrerequisite>
+    </recipeMaker>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>1.55</cooldownTime>
+        <chanceFactor>1.5</chanceFactor>
+        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+      </li>      
+    </tools>
+    <attachments>
+        <li>
+            <attachment>CE_AT_scope</attachment>            
+        </li>
+        <li>
+            <attachment>CE_AT_scope</attachment>   
+            <drawSettings>
+                <offset>(0.1, 0.1)</offset>
+            </drawSettings>
+        </li>
+        <li>
+            <attachment>CE_AT_Supperssor</attachment>            
+        </li>
+        <li>
+            <attachment>CE_AT_HandGaurd</attachment>            
+        </li>
+    </attachments>
+  </CombatExtended.WeaponPlatformDef>
+
+  <CombatExtended.WeaponPlatformDef ParentName="BaseMakeableGun">
+    <defName>CE_Testak</defName>
+    <thingClass>CombatExtended.WeaponPlatform</thingClass>
+    <label>Testak</label>
+    <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
+    <graphicData>
+      <texPath>Things/Weapons/Testak/Testak</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+      <Mass>3.26</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>1.33</SwayFactor>
+      <Bulk>10.03</Bulk>
+      <WorkToMake>30000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>40</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+      <WoodLog>10</WoodLog>
+    </costList>
+    <weaponTags>
+      <li>GunHeavy</li>
+      <li>GrenadeSmoke</li>
+      <li>GrenadeEMP</li>
+    </weaponTags>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>1.53</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+        <warmupTime>1.1</warmupTime>
+        <range>55</range>
+        <burstShotCount>6</burstShotCount>
+        <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+        <soundCast>Shot_AssaultRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>30</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aimedBurstShotCount>3</aimedBurstShotCount>
+        <aiUseBurstMode>TRUE</aiUseBurstMode>
+        <aiAimMode>AimedShot</aiAimMode>
+      </li>
+    </comps>
+    <recipeMaker>
+      <researchPrerequisite>CE_Launchers</researchPrerequisite>
+    </recipeMaker>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>1.55</cooldownTime>
+        <chanceFactor>1.5</chanceFactor>
+        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+      </li>      
+    </tools>
+    <attachments>       
+        <li>
+            <attachment>CE_AT_Testak_GR</attachment>            
+        </li>     
+        <li>
+            <attachment>CE_AT_Testak_SC</attachment>
+        </li>
+    </attachments>
+  </CombatExtended.WeaponPlatformDef>
+   
+  <CombatExtended.AttachmentDef>
+      <defName>CE_AT_Testak_GR</defName>
+      <thingClass>Thing</thingClass>      
+      <label>Grenade launcher</label>
+      <graphicData>
+        <texPath>Things/Weapons/Testak/Testak_GL</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData>
+  </CombatExtended.AttachmentDef>
+
+  <CombatExtended.AttachmentDef>
+      <defName>CE_AT_Testak_SC</defName>
+      <thingClass>Thing</thingClass>      
+      <label>8x scope</label>
+      <graphicData>
+        <texPath>Things/Weapons/Testak/Testak_SC</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData>
+  </CombatExtended.AttachmentDef>
+
+  <CombatExtended.AttachmentDef>
+      <defName>CE_AT_scope</defName>
+      <thingClass>Thing</thingClass>      
+      <label>scope</label>
+      <graphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_SP</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData>
+  </CombatExtended.AttachmentDef>
+
+  <CombatExtended.AttachmentDef>
+      <defName>CE_AT_Supperssor</defName>
+      <thingClass>Thing</thingClass>      
+      <label>Supperssor</label>
+      <graphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_SU</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData>
+  </CombatExtended.AttachmentDef>
+
+  <CombatExtended.AttachmentDef>
+      <defName>CE_AT_HandGaurd</defName>
+      <thingClass>Thing</thingClass>      
+      <label>HandGaurd</label>
+      <graphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_GR</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData>
+  </CombatExtended.AttachmentDef>
+  
 </Defs>
