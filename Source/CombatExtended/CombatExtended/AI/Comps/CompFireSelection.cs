@@ -50,6 +50,7 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+            if (!ShouldRun) return true;
             this._castTarg = castTarg;
             this._destTarg = destTarg;
 
@@ -66,6 +67,7 @@ namespace CombatExtended.AI
         public override void OnStartCastSuccess(Verb verb)
         {
             base.OnStartCastSuccess(verb);
+            if (!ShouldRun) return;
 
             var fireModes = verb.EquipmentSource.TryGetComp<CompFireModes>();
             if (verb.EquipmentSource != null && fireModes != null && _castTarg != null && _destTarg != null)

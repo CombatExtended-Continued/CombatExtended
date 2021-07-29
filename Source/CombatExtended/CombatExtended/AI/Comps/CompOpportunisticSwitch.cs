@@ -88,6 +88,7 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+            if (!ShouldRun) return true;
             // Check if we need to flare
             if (!UsedAOEWeaponRecently && !(verb.EquipmentSource?.def.IsAOEWeapon() ?? false) && !StartFlareChecks(verb, castTarg, destTarg))
                 return false;
@@ -98,10 +99,6 @@ namespace CombatExtended.AI
             return true;
         }
 
-        //public bool StartSmokeScreenChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
-        //{
-
-        //}
 
         public bool StartAOEChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
@@ -115,6 +112,12 @@ namespace CombatExtended.AI
                         previousWeapon = null;
                         return false;
                     }
+                    if (previousWeapon != null && previousWeapon.holdingOwner == null && previousWeapon.Spawned && previousWeapon.Position.DistanceTo(SelPawn.Position) < 5)
+                    {
+                        StartGotoEquipWeaponJob(previousWeapon);
+                        return false;
+                    }
+                    previousWeapon = null;
                     if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: false))
                     {
                         StartEquipWeaponJob(weapon);
@@ -123,12 +126,7 @@ namespace CombatExtended.AI
                     return true;
                 }
             }
-            if (UsedAOEWeaponRecently)
-            {
-                previousWeapon = null;
-                return true;
-            }
-            if (!OpportunisticallySwitchedRecently)
+            if (!OpportunisticallySwitchedRecently && !UsedAOEWeaponRecently)
             {
                 float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
 
@@ -172,6 +170,7 @@ namespace CombatExtended.AI
         public override void OnStartCastSuccess(Verb verb)
         {
             base.OnStartCastSuccess(verb);
+            if (!ShouldRun) return;
             if (verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false)
             {
                 lastFlared = GenTicks.TicksGame;
@@ -185,6 +184,11 @@ namespace CombatExtended.AI
         public void StartEquipWeaponJob(ThingWithComps gun)
         {
             SelPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, gun), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+        }
+
+        public void StartGotoEquipWeaponJob(ThingWithComps gun)
+        {
+            SelPawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Equip, gun), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
         }
 
         public override void PostExposeData()

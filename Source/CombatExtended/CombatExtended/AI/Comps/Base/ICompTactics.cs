@@ -76,7 +76,7 @@ namespace CombatExtended.AI
             }
         }
 
-        public virtual bool AIOnly
+        public virtual bool ShouldRun
         {
             get
             {
