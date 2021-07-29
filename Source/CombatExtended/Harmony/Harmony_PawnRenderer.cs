@@ -323,9 +323,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Matrix4x4 translaredMatrix = new Matrix4x4();
-                            translaredMatrix.SetTRS(
-                                position + posVec.RotatedBy(rotation.eulerAngles.y) + new Vector3(link.drawSettings.offset.x, 0, link.drawSettings.offset.y),
-                                rotation, scale);
+                            translaredMatrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y) + link.Offset, rotation, scale);
                             Graphics.DrawMesh(mesh, translaredMatrix, link.attachment.graphic.MatSingle, layer);
                         }
                     }
