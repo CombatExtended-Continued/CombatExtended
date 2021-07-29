@@ -43,6 +43,7 @@ namespace CombatExtended
             {
                 if (CompInventory != null)
                 {
+                    CompInventory.UpdateInventory();
                     int count = 0;
                     foreach (AmmoLink link in Props.ammoSet.ammoTypes)
                         count += CompInventory.AmmoCountOfDef(link.ammo);

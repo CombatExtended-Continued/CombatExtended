@@ -124,18 +124,10 @@ namespace CombatExtended.AI
                 float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
                 float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
 
-                if (bullets < 100 && bullets < Mathf.Max(verbShoot.compAmmo.Props.magazineSize / 3f, 30) && shotDist > 35)
+                if (bullets < 50 && bullets < verbShoot.compAmmo.Props.magazineSize && shotDist > 35)
                 {
-                    if (shotDist < 50)
-                    {
-                        fireModes.TrySetAimMode(AimMode.Snapshot);
-                        fireModes.TrySetFireMode(FireMode.BurstFire);
-                    }
-                    else
-                    {
-                        fireModes.TrySetAimMode(AimMode.AimedShot);
-                        fireModes.TrySetFireMode(FireMode.SingleFire);
-                    }
+                    fireModes.TrySetAimMode(AimMode.Snapshot);
+                    fireModes.TrySetFireMode(FireMode.BurstFire);
                     return;
                 }
                 if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
@@ -148,7 +140,8 @@ namespace CombatExtended.AI
                 {
                     float range = Mathf.Max(verb.EffectiveRange, 1);
                     float recoilFactor = verbProps.recoilAmount * (0.6f + shotDist / range);
-                    if (recoilFactor <= 0.40f)
+
+                    if (recoilFactor <= 0.60f)
                     {
                         if (castTarg.HasThing && target.EdgingCloser(target))
                         {
@@ -190,6 +183,11 @@ namespace CombatExtended.AI
                     fireModes.TrySetAimMode(AimMode.Snapshot);
                     fireModes.TrySetFireMode(smartAuto);
                 }
+            }
+            else
+            {
+                fireModes.TrySetAimMode(AimMode.Snapshot);
+                fireModes.TrySetFireMode(FireMode.AutoFire);
             }
         }
     }
