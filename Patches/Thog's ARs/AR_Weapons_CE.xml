@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Thog's ARs</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_THGNeoOmen" or 
+				defName="Gun_HERA" or 
+				defName="Gun_THGFalkorPetra" or 
+				defName="Gun_BadNews"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<!--Omen-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_THGNeoOmen</defName>
+				<statBases>
+					<Bulk>11.57</Bulk>
+					<Mass>4.63</Mass>
+					<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.5</SightsEfficiency>
+					<SwayFactor>1.55</SwayFactor>
+					<ShotSpread>0.06</ShotSpread>
+					<WorkToMake>36000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>45</Steel>
+					<Chemfuel>15</Chemfuel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>4.78</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_458WinchesterMagnum_FMJ</defaultProjectile>
+					<warmupTime>1.25</warmupTime>
+					<range>62</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>90</ticksBetweenBurstShots>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_458WinchesterMagnum</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+			<!--HERA-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_HERA</defName>
+				<statBases>
+					<Bulk>7.27</Bulk>
+					<Mass>3.12</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<SwayFactor>1.27</SwayFactor>
+					<ShotSpread>0.12</ShotSpread>
+					<WorkToMake>33000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>40</Steel>
+					<Chemfuel>10</Chemfuel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.91</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_300AACBlackout_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>40</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_300AACBlackout</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+			<!--Petra-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_THGFalkorPetra</defName>
+				<statBases>
+					<Bulk>10.7</Bulk>
+					<Mass>4.74</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.8</SightsEfficiency>
+					<SwayFactor>1.43</SwayFactor>
+					<ShotSpread>0.05</ShotSpread>
+					<WorkToMake>38000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>45</Steel>
+					<Chemfuel>15</Chemfuel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>2.88</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_300WinchesterMagnum_FMJ</defaultProjectile>
+					<warmupTime>1.35</warmupTime>
+					<range>75</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+					<soundCast>Shot_HeavySMG</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_300WinchesterMagnum</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+			<!--Badnews-->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_BadNews</defName>
+				<statBases>
+					<Bulk>12.2</Bulk>
+					<Mass>5.8</Mass>
+					<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.8</SightsEfficiency>
+					<SwayFactor>1.5</SwayFactor>
+					<ShotSpread>0.04</ShotSpread>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>45</Steel>
+					<Chemfuel>15</Chemfuel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>3.78</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+					<warmupTime>1.5</warmupTime>
+					<range>78</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>80</ticksBetweenBurstShots>
+					<soundCast>Shot_SniperRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_338Lapua</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
