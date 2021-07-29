@@ -60,6 +60,7 @@ namespace CombatExtended.AI
         public override void PostExposeData()
         {
             base.PostExposeData();
+
             Scribe_Values.Look(ref lastFireMode, "lastFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref lastAimMode, "lastAimMode", AimMode.Snapshot);
         }
@@ -124,13 +125,18 @@ namespace CombatExtended.AI
                 float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
                 float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
 
-                if (bullets < Mathf.Max(verbShoot.compAmmo.Props.magazineSize / 2f, 30) && shotDist > 35)
+                if (bullets < Mathf.Max(verbShoot.compAmmo.Props.magazineSize / 3f, 30) && shotDist > 35)
                 {
                     if (shotDist < 25)
+                    {
                         fireModes.TrySetAimMode(AimMode.Snapshot);
+                        fireModes.TrySetFireMode(FireMode.BurstFire);
+                    }
                     else
+                    {
                         fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.SingleFire);
+                        fireModes.TrySetFireMode(FireMode.SingleFire);
+                    }
                     return;
                 }
                 if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))

@@ -222,6 +222,9 @@ namespace CombatExtended
 
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+            if (CompSuppressable == null)
+                return true;
+
             bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
             {
                 foreach (ICompTactics comp in TacticalComps)
@@ -235,6 +238,7 @@ namespace CombatExtended
                 failedComp = null;
                 return true;
             }
+
             ICompTactics failedComp = null;
 
             if (!CompSuppressable.IsHunkering && AllChecksPassed(verb, castTarg, destTarg, out failedComp))
