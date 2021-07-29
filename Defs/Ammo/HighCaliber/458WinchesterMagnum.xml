@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	
+	<ThingCategoryDef>
+      <defName>Ammo458WinchesterMagnum</defName>
+      <label>.458 Winchester Magnum</label>
+      <parent>AmmoHighCaliber</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+    </ThingCategoryDef>
+	
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_458WinchesterMagnum</defName>
+    <label>.458 Winchester Magnum</label>
+    <ammoTypes>
+		<Ammo_458WinchesterMagnum_FMJ>Bullet_458WinchesterMagnum_FMJ</Ammo_458WinchesterMagnum_FMJ>
+<!-- 		<Ammo_458WinchesterMagnum_AP>Bullet_458WinchesterMagnum_AP</Ammo_458WinchesterMagnum_AP>
+		<Ammo_458WinchesterMagnum_HP>Bullet_458WinchesterMagnum_HP</Ammo_458WinchesterMagnum_HP> -->
+		<Ammo_458WinchesterMagnum_Incendiary>Bullet_458WinchesterMagnum_Incendiary</Ammo_458WinchesterMagnum_Incendiary>
+		<Ammo_458WinchesterMagnum_HE>Bullet_458WinchesterMagnum_HE</Ammo_458WinchesterMagnum_HE>
+		<Ammo_458WinchesterMagnum_Sabot>Bullet_458WinchesterMagnum_Sabot</Ammo_458WinchesterMagnum_Sabot>		
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo458WinchesterMagnumBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large and powerful cartridge designed to be fired at large game, like elephants or rhinoceroses.</description>
+    <statBases>
+      <Mass>0.06</Mass>
+      <Bulk>0.06</Bulk>
+    </statBases>
+  	<tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+  	</tradeTags>
+    <thingCategories>
+      <li>Ammo458WinchesterMagnum</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+    <defName>Ammo_458WinchesterMagnum_FMJ</defName>
+    <label>.458 Winchester Magnum cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.24</MarketValue>
+    </statBases>
+  	<ammoClass>FullMetalJacket</ammoClass>
+    <cookOffProjectile>Bullet_458WinchesterMagnum_FMJ</cookOffProjectile>
+  </ThingDef>
+
+<!-- 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+		<defName>Ammo_458WinchesterMagnum_AP</defName>
+		<label>.458 Winchester Magnum cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.24</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_458WinchesterMagnum_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+		<defName>Ammo_458WinchesterMagnum_HP</defName>
+		<label>.458 Winchester Magnum cartridge (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.24</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_458WinchesterMagnum_HP</cookOffProjectile>
+	</ThingDef> -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+    <defName>Ammo_458WinchesterMagnum_Incendiary</defName>
+    <label>.458 Winchester Magnum cartridge (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.34</MarketValue>
+    </statBases>
+    <ammoClass>IncendiaryAP</ammoClass>
+    <cookOffProjectile>Bullet_458WinchesterMagnum_Incendiary</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+    <defName>Ammo_458WinchesterMagnum_HE</defName>
+    <label>.458 Winchester Magnum cartridge (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.57</MarketValue>
+    </statBases>
+    <ammoClass>ExplosiveAP</ammoClass>
+    <cookOffProjectile>Bullet_458WinchesterMagnum_HE</cookOffProjectile>
+  </ThingDef>
+ 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo458WinchesterMagnumBase">
+    <defName>Ammo_458WinchesterMagnum_Sabot</defName>
+    <label>.458 Winchester Magnum cartridge (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.29</MarketValue>
+	  <Mass>0.046</Mass>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+    <cookOffProjectile>Bullet_458WinchesterMagnum_Sabot</cookOffProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base458WinchesterMagnumBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>132</speed>
+	  <dropsCasings>true</dropsCasings>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+    <defName>Bullet_458WinchesterMagnum_FMJ</defName>
+    <label>.458 Winchester Magnum bullet (FMJ)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>30</damageAmountBase>
+	  <armorPenetrationSharp>11</armorPenetrationSharp>
+	  <armorPenetrationBlunt>130.4</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+<!-- 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+		<defName>Bullet_458WinchesterMagnum_AP</defName>
+		<label>.458 Winchester Magnum bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<armorPenetrationBlunt>130.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+		<defName>Bullet_458WinchesterMagnum_HP</defName>
+		<label>.458 Winchester Magnum bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationBlunt>130.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef> -->
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+		<defName>Bullet_458WinchesterMagnum_Incendiary</defName>
+		<label>.458 Winchester Magnum bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>18</damageAmountBase>
+		  <armorPenetrationSharp>22</armorPenetrationSharp>
+		  <armorPenetrationBlunt>130.4</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>12</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+	  
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+		<defName>Bullet_458WinchesterMagnum_HE</defName>
+		<label>.458 Winchester Magnum bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>30</damageAmountBase>
+		  <armorPenetrationSharp>11</armorPenetrationSharp>
+		  <armorPenetrationBlunt>139.4</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>18</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	  </ThingDef>
+
+	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base458WinchesterMagnumBullet">
+		<defName>Bullet_458WinchesterMagnum_Sabot</defName>
+		<label>.458 Winchester Magnum bullet (Sabot)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageAmountBase>15</damageAmountBase>
+		  <armorPenetrationSharp>38.5</armorPenetrationSharp>
+		  <armorPenetrationBlunt>178.78</armorPenetrationBlunt>
+		  <speed>198</speed>
+		</projectile>
+	  </ThingDef>
+  
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_458WinchesterMagnum_FMJ</defName>
+    <label>make .458 Winchester Magnum (FMJ) cartridge x350</label>
+    <description>Craft 500 .458 Winchester Magnum (FMJ) cartridges.</description>
+    <jobString>Making .458 Winchester Magnum (FMJ) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_458WinchesterMagnum_FMJ>500</Ammo_458WinchesterMagnum_FMJ>
+    </products>
+    <workAmount>6000</workAmount>
+  </RecipeDef>
+
+<!-- 	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_458WinchesterMagnum_AP</defName>
+		<label>make .458 Winchester Magnum (AP) cartridge x500</label>
+		<description>Craft 500 .458 Winchester Magnum (AP) cartridges.</description>
+		<jobString>Making .458 Winchester Magnum (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_458WinchesterMagnum_AP>500</Ammo_458WinchesterMagnum_AP>
+		</products>
+    <workAmount>6000</workAmount>		
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_458WinchesterMagnum_HP</defName>
+		<label>make .458 Winchester Magnum (HP) cartridge x500</label>
+		<description>Craft 500 .458 Winchester Magnum (HP) cartridges.</description>
+		<jobString>Making .458 Winchester Magnum (HP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>60</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_458WinchesterMagnum_HP>500</Ammo_458WinchesterMagnum_HP>
+		</products>
+    <workAmount>6000</workAmount>		
+	</RecipeDef> -->
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_458WinchesterMagnum_Incendiary</defName>
+    <label>make .458 Winchester Magnum (AP-I) cartridge x500</label>
+    <description>Craft 500 .458 Winchester Magnum (AP-I) cartridges.</description>
+    <jobString>Making .458 Winchester Magnum (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_458WinchesterMagnum_Incendiary>500</Ammo_458WinchesterMagnum_Incendiary>
+    </products>
+    <workAmount>9200</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_458WinchesterMagnum_HE</defName>
+    <label>make .458 Winchester Magnum (HE) cartridge x500</label>
+    <description>Craft 500 .458 Winchester Magnum (HE) cartridges.</description>
+    <jobString>Making .458 Winchester Magnum (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_458WinchesterMagnum_HE>500</Ammo_458WinchesterMagnum_HE>
+    </products>
+    <workAmount>12400</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_458WinchesterMagnum_Sabot</defName>
+    <label>make .458 Winchester Magnum (Sabot) cartridge x500</label>
+    <description>Craft 500 .458 Winchester Magnum (Sabot) cartridges.</description>
+    <jobString>Making .458 Winchester Magnum (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>28</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_458WinchesterMagnum_Sabot>500</Ammo_458WinchesterMagnum_Sabot>
+    </products>
+    <workAmount>8800</workAmount>
+  </RecipeDef>
+  
+</Defs>
