@@ -222,7 +222,7 @@ namespace CombatExtended
 
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (CompSuppressable == null)
+            if (CompSuppressable == null || SelPawn.MentalState != null)
                 return true;
 
             bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
