@@ -110,90 +110,107 @@ def makePublicizer(p, verbose):
         os.chdir(cwd)
     return ap_path
 
-
-def parse_csproj(csproj_path, verbose):
+def parse_packages(csproj):
     packages = []
-    sources = []
+    for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
+        name = package.attributes['Include'].value
+        version = package.attributes['Version'].value
+        dest = f"{tdir}/downloads/rwref-{idx}.zip"
+        packages.append(PackageReference(name, version, dest))
+    return packages
+
+def parse_libraries(csproj):
     libraries = []
     removed_libraries = []
-    base_dir = os.path.split(csproj_path)[0]
+    for reference in csproj.getElementsByTagName("Reference"):
+        hintPath = reference.getElementsByTagName("HintPath")
+        if 'Remove' in reference.attributes:
+            assemblyName = reference.attributes['Remove'].value.rsplit('\\',1)[1]
+            removed_libraries.append(assemblyName)
+
+            continue
+        if hintPath:
+            hintPath = hintPath[0].firstChild.data.strip()
+            hintPath = hintPath.replace("\\", "/")
+        libraries.append(LibraryReference(reference.attributes['Include'].value, hintPath))
+    return libraries, removed_libraries
+
+def parse_sources(csproj, base_dir, verbose):
+    sources = []
+    for d, subds, files in os.walk(base_dir):
+        for f in files:
+            if f.endswith('.cs'):
+                p = os.path.join(d,f)
+                p = p.split(base_dir+'/', 1)[1]
+                sources.append(p)
+
+    for source in csproj.getElementsByTagName("Compile"):
+        if 'Include' in source.attributes:
+            sources.append(source.attributes['Include'].value.replace("\\", "/"))
+        if 'Remove' in source.attributes:
+            v = source.attributes['Remove'].value.replace('\\', '/')
+            if v in sources:
+                sources.remove(v)
+            else:
+                if v.endswith('**'):
+                    if verbose:
+                        print("Removing wildcard:",v)
+                    sl = len(sources)
+                    sources = [i for i in sources if not i.startswith(v[:-2])]
+                    if verbose:
+                        print(f"Removed {sl-len(sources)}")
+                else:
+                    print("Directive to exclude non-existent file:", v)
+    return [os.path.join(base_dir, i) for i in sources]
+
+def parse_publicize(csproj):
     publicized_libraries = []
+    publicize_task = [i for i in csproj.getElementsByTagName("Target")
+                          if 'Name' in i.attributes and i.attributes['Name'].value.startswith('Publi')]
+    variables = {}
+
+    for pt in publicize_task:
+
+        for pg in pt.getElementsByTagName("PropertyGroup"):
+            for var in pg.childNodes:
+                if var.nodeName != '#text':
+                    val = var.firstChild.data.strip()
+                    if '\\' in val:
+                        variables[var.nodeName] = val.rsplit('\\', 1)[1]
+                    elif ')' in val:
+                        variables[var.nodeName] = val.rsplit(')', 1)[1]
+                    else:
+                        variables[var.nodeName] = val
+        for pub in pt.getElementsByTagName("Publicise"):
+            target = pub.attributes['TargetAssemblyPath'].value
+
+            if '$' in target:
+                target = target.replace('$', '%')
+                target = target.replace(')', ')s')
+                target = target % variables
+
+            output = target.rsplit('.',1)[0] + '_publicized.dll'
+
+            publicized_libraries.append(PublicizeTarget(target, output))
+    return publicized_libraries
+
+def parse_csproj(csproj_path, verbose):
+    
+    base_dir = os.path.split(csproj_path)[0]
+    
     if verbose:
         print("Parsing .csproj: {csproj_path}")
     
     with XMLOpen(csproj_path) as csproj:
-        for idx, package in enumerate(csproj.getElementsByTagName("PackageReference")):
-            name = package.attributes['Include'].value
-            version = package.attributes['Version'].value
-            dest = f"{tdir}/downloads/rwref-{idx}.zip"
-            packages.append(PackageReference(name, version, dest))
+        packages = parse_packages(csproj)
 
-        for reference in csproj.getElementsByTagName("Reference"):
-            hintPath = reference.getElementsByTagName("HintPath")
-            if 'Remove' in reference.attributes:
-                assemblyName = reference.attributes['Remove'].value.rsplit('\\',1)[1]
-                removed_libraries.append(assemblyName)
+        libraries, removed_libraries = parse_libraries(csproj)
 
-                continue
-            if hintPath:
-                hintPath = hintPath[0].firstChild.data.strip()
-                hintPath = hintPath.replace("\\", "/")
-            libraries.append(LibraryReference(reference.attributes['Include'].value, hintPath))
+        sources = parse_sources(csproj, base_dir, verbose)
 
+        publicized_libraries = parse_publicize(csproj)
 
-        for d, subds, files in os.walk(base_dir):
-            for f in files:
-                if f.endswith('.cs'):
-                    p = os.path.join(d,f)
-                    p = p.split(base_dir+'/', 1)[1]
-                    sources.append(p)
-
-        for source in csproj.getElementsByTagName("Compile"):
-            if 'Include' in source.attributes:
-                sources.append(source.attributes['Include'].value.replace("\\", "/"))
-            if 'Remove' in source.attributes:
-                v = source.attributes['Remove'].value.replace('\\', '/')
-                if v in sources:
-                    sources.remove(v)
-                else:
-                    if v.endswith('**'):
-                        if verbose:
-                            print("Removing wildcard:",v)
-                        sl = len(sources)
-                        sources = [i for i in sources if not i.startswith(v[:-2])]
-                        if verbose:
-                            print(f"Removed {sl-len(sources)}")
-                    else:
-                        print("Directive to exclude non-existent file:", v)
-        sources = [(base_dir+'/'+i) for i in sources]
-
-        publicize_task = [i for i in csproj.getElementsByTagName("Target")
-                          if 'Name' in i.attributes and i.attributes['Name'].value.startswith('Publi')]
-        variables = {}
-            
-        for pt in publicize_task:
-            
-            for pg in pt.getElementsByTagName("PropertyGroup"):
-                for var in pg.childNodes:
-                    if var.nodeName != '#text':
-                        val = var.firstChild.data.strip()
-                        if '\\' in val:
-                            variables[var.nodeName] = val.rsplit('\\', 1)[1]
-                        elif ')' in val:
-                            variables[var.nodeName] = val.rsplit(')', 1)[1]
-                        else:
-                            variables[var.nodeName] = val
-            for pub in pt.getElementsByTagName("Publicise"):
-                target = pub.attributes['TargetAssemblyPath'].value
-                
-                if '$' in target:
-                    target = target.replace('$', '%')
-                    target = target.replace(')', ')s')
-                    target = target % variables
-
-                output = target.rsplit('.',1)[0] + '_publicized.dll'
-                    
-                publicized_libraries.append(PublicizeTarget(target, output))
+        
 
     return packages, libraries, removed_libraries, publicized_libraries, sources
 
