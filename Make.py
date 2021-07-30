@@ -29,14 +29,14 @@ class PublicizeTarget(object):
     outputName: str
 
 def parseArgs(argv):
-    argParser = argparse.ArgumentParser()
-    argParser.add_argument("--reference", type=str)
-    argParser.add_argument("--output", "-o", type=str, default="Assemblies/CombatExtended.dll")
-    argParser.add_argument("--csproj", type=str, default="Source/CombatExtended/CombatExtended.csproj")
-    argParser.add_argument("--all-libs", action="store_true", default=False)
-    argParser.add_argument("--verbose", "-v", action="count", default=0)
-    argParser.add_argument("--download-libs", action="store_true", default=False)
-    argParser.add_argument("--publicizer", type=str)
+    argParser = argparse.ArgumentParser(description="Automate compiling C# projects on Linux, using Mono")
+    argParser.add_argument("--reference", type=str, metavar="PATH", help="Location of Rimworld Reference libraries")
+    argParser.add_argument("--output", "-o", type=str, default="Assemblies/CombatExtended.dll", help="Output filename")
+    argParser.add_argument("--csproj", type=str, default="Source/CombatExtended/CombatExtended.csproj", help="C# project to build.")
+    argParser.add_argument("--all-libs", action="store_true", default=False, help="Reference all dlls in $reference, even those not specified by the .csproj file")
+    argParser.add_argument("--verbose", "-v", action="count", default=0, help="Increase verbosity, specify more times for more verbosity")
+    argParser.add_argument("--download-libs", action="store_true", default=False, help=f"Automatically download referenced packages to {tdir}/downloads and unpack them to $reference")
+    argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
