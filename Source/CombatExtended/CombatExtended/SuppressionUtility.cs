@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CombatExtended.AI;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -10,6 +11,8 @@ namespace CombatExtended
     public static class SuppressionUtility
     {
         public const float maxCoverDist = 10f; //Maximum distance to run for cover to
+
+        private static LightingTracker tracker;
 
         public static Job GetRunForCoverJob(Pawn pawn)
         {
@@ -45,6 +48,7 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
+            tracker = pawn.Map.GetLightingTracker();
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
 
             if (bestRating <= 0)
@@ -69,6 +73,7 @@ namespace CombatExtended
                 }
             }
             coverPosition = bestPos;
+            tracker = null;
             return bestRating >= 0;
         }
 
@@ -98,9 +103,11 @@ namespace CombatExtended
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
             {
+                cellRating -= tracker.CombatGlowAtFor(shooterPos, cell) / 2f;
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
-                if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map)) pathCost *= 5;
+                if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
+                    pathCost *= 5;
                 cellRating = cellRating / pathCost;
             }
             return cellRating;
@@ -109,7 +116,7 @@ namespace CombatExtended
         private static float GetCoverRating(Thing cover)
         {
             if (cover == null) return 0;
-            if (cover.def.category == ThingCategory.Plant) return cover.def.fillPercent; // Plant cover only has a random chance to block gunfire and is rated lower
+            if (cover.def.category == ThingCategory.Plant) return cover.def.fillPercent; // Plant cover only has a random chance to block gunfire and is rated lower            
             return 1;
         }
 
@@ -123,7 +130,7 @@ namespace CombatExtended
                 || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
                 || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
             {
-                breaks.Add(pawn.IsColonist? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
+                breaks.Add(pawn.IsColonist ? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
                 breaks.Add(CE_MentalStateDefOf.ShellShock);
             }
 
