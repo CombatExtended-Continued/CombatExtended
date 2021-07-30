@@ -416,11 +416,17 @@ namespace CombatExtended
             }
         }
 
-        public bool TryFindRandomAOEWeapon(out ThingWithComps weapon, Func<ThingWithComps, bool> predicate = null)
+        public bool TryFindRandomAOEWeapon(out ThingWithComps weapon, Func<ThingWithComps, bool> predicate = null, bool checkAmmo = false)
         {
             weapon = null;
             foreach (ThingWithComps gun in rangedWeaponListCached.InRandomOrder())
             {
+                if (checkAmmo)
+                {
+                    CompAmmoUser ammoUser = gun.TryGetComp<CompAmmoUser>();
+                    if (ammoUser != null && !ammoUser.HasAmmoOrMagazine)
+                        continue;
+                }
                 if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
                     if (gun.def.IsAOEWeapon() && (predicate == null || predicate.Invoke(gun)))
@@ -457,10 +463,16 @@ namespace CombatExtended
             return weapon != null;
         }
 
-        public bool TryFindFlare(out ThingWithComps flareGun)
+        public bool TryFindFlare(out ThingWithComps flareGun, bool checkAmmo = false)
         {
             foreach (ThingWithComps gun in rangedWeaponList)
             {
+                if (checkAmmo)
+                {
+                    CompAmmoUser ammoUser = gun.TryGetComp<CompAmmoUser>();
+                    if (ammoUser != null && !ammoUser.HasAmmoOrMagazine)
+                        continue;
+                }
                 if (gun.def.IsIlluminationDevice())
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();

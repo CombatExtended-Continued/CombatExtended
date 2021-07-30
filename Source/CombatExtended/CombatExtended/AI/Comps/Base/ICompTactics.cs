@@ -80,7 +80,8 @@ namespace CombatExtended.AI
         {
             get
             {
-                return !(SelPawn.Faction?.IsPlayer ?? false);
+                //return !(SelPawn.Faction?.IsPlayer ?? false);
+                return true;
             }
         }
 

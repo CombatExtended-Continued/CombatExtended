@@ -107,5 +107,18 @@ namespace CombatExtended.AI
                 return true;
             return false;
         }
+
+        public static IntVec3 FindAttackedClusterCenter(Pawn attacker, IntVec3 targetPos, float verbRange, float radius, Func<IntVec3, bool> predicate = null)
+        {
+            IntVec3 castPosition = attacker.Position;
+            IntVec3 center = targetPos;
+            foreach (IntVec3 node in targetPos.HostilesInRange(attacker.Map, attacker.Faction, radius * 1.8f).Select(p => p.Position))
+            {
+                IntVec3 centroid = new IntVec3((int)(((float)center.x + node.x) / 2f), (int)(((float)center.y + node.y) / 2f), (int)(((float)center.z + node.z) / 2f));
+                if (verbRange >= centroid.DistanceTo(castPosition) && (predicate?.Invoke(centroid) ?? false))
+                    center = centroid;
+            }
+            return center;
+        }
     }
 }

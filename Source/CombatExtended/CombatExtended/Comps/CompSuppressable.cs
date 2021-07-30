@@ -182,7 +182,7 @@ namespace CombatExtended
                     reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
                 }
-                if (reactJob != null && reactJob.def != pawn.CurJob?.def)
+                if (reactJob != null && reactJob.def != pawn.CurJob?.def && !(pawn.jobs?.curDriver is IJobDriver_Tactical))
                 {
                     // Only reserve destination when we know for certain the pawn isn't already running for cover
                     pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);

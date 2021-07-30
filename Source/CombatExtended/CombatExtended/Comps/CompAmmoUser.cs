@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -348,6 +349,8 @@ namespace CombatExtended
         /// </summary>
         public void TryStartReload()
         {
+            if (Holder.jobs?.curDriver is IJobDriver_Tactical)
+                return;
             if (!HasMagazine)
             {
                 if (!CanBeFiredNow)
@@ -464,6 +467,7 @@ namespace CombatExtended
         /// <remarks>TryUnload() should be called before this in most cases.</remarks>
         public Job TryMakeReloadJob()
         {
+
             if (!HasMagazine || (Holder == null && turret == null))
                 return null; // the job couldn't be created.
 
@@ -472,6 +476,7 @@ namespace CombatExtended
 
         private void DoOutOfAmmoAction()
         {
+            if (Holder.jobs?.curDriver is IJobDriver_Tactical) return;
             if (ShouldThrowMote)
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))

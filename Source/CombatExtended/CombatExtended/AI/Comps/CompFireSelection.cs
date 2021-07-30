@@ -133,7 +133,7 @@ namespace CombatExtended.AI
                 if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
                 {
                     fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.AutoFire);
+                    fireModes.TrySetFireMode(FireMode.BurstFire);
                     return;
                 }
                 if (castTarg.Thing is Pawn target)
@@ -162,6 +162,7 @@ namespace CombatExtended.AI
                         fireModes.TrySetFireMode(smartAuto);
                         return;
                     }
+
                     float pelletsAuto = verbShoot.ShotsPerBurstFor(FireMode.AutoFire);
                     float pelletsBurst = verbShoot.ShotsPerBurstFor(FireMode.BurstFire);
 

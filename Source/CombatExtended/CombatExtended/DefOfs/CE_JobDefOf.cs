@@ -19,5 +19,6 @@ namespace CombatExtended
         public static JobDef Stabilize;
         public static JobDef WaitKnockdown;
         public static JobDef EquipFromInventory;
+        public static JobDef OpportunisticAttack;
     }
 }

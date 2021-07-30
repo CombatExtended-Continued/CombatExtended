@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -670,16 +671,23 @@ namespace CombatExtended
              * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
              */
             LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
-
             pelletMechanicsOnly = false;
             numShotsFired++;
-            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            if (ShooterPawn != null)
             {
-                CompAmmo?.TryStartReload();
-            }
-            if (CompReloadable != null)
-            {
-                CompReloadable.UsedOnce();
+                if (ShooterPawn.jobs?.curDriver is IJobDriver_Tactical driver_Tactical)
+                {
+                    driver_Tactical.OnProjectileLaunched(this);
+                    return true;
+                }
+                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+                {
+                    CompAmmo?.TryStartReload();
+                }
+                if (CompReloadable != null)
+                {
+                    CompReloadable.UsedOnce();
+                }
             }
             return true;
         }

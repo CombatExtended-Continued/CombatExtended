@@ -22,8 +22,6 @@ namespace CombatExtended.AI
 
         private int lastOpportunisticSwitch = -1;
 
-        private ThingWithComps previousWeapon;
-
         private static Dictionary<Faction, int> factionLastFlare = new Dictionary<Faction, int>();
 
         public override int Priority => 500;
@@ -89,54 +87,33 @@ namespace CombatExtended.AI
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if (!ShouldRun) return true;
-            // Check if we need to flare
-            if (!UsedAOEWeaponRecently && !(verb.EquipmentSource?.def.IsAOEWeapon() ?? false) && !StartFlareChecks(verb, castTarg, destTarg))
+            if (OpportunisticallySwitchedRecently) return true;
+            if (!StartFlareChecks(verb, castTarg, destTarg))
                 return false;
-            // Check if we need to use an AOE desturctive weapon
-            if (!FlaredRecently && !(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && !StartAOEChecks(verb, castTarg, destTarg))
+            if (!StartAOEChecks(verb, castTarg, destTarg))
                 return false;
-            // TODO add a check for using smoke grenades
             return true;
         }
 
-
         public bool StartAOEChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if ((verb.EquipmentSource?.def.IsAOEWeapon() ?? false))
-            {
-                if (UsedAOEWeaponRecently || !(verb.EquipmentSource.TryGetComp<CompAmmoUser>()?.HasAmmoOrMagazine ?? true))
-                {
-                    if (previousWeapon != null && !previousWeapon.Destroyed && CompInventory.container.Contains(previousWeapon))
-                    {
-                        StartEquipWeaponJob(previousWeapon);
-                        previousWeapon = null;
-                        return false;
-                    }
-                    if (previousWeapon != null && previousWeapon.holdingOwner == null && previousWeapon.Spawned && previousWeapon.Position.DistanceTo(SelPawn.Position) < 5)
-                    {
-                        StartGotoEquipWeaponJob(previousWeapon);
-                        return false;
-                    }
-                    previousWeapon = null;
-                    if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: false))
-                    {
-                        StartEquipWeaponJob(weapon);
-                        return false;
-                    }
-                    return true;
-                }
-            }
-            if (!OpportunisticallySwitchedRecently && !UsedAOEWeaponRecently)
+            if (!UsedAOEWeaponRecently && !(verb.EquipmentSource?.def.IsAOEWeapon() ?? false))
             {
                 float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
 
                 if (castTarg.HasThing && castTarg.Thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
                 {
-                    if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
+                    if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, checkAmmo: true, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
                     {
-                        previousWeapon = CurrentWeapon;
-                        StartEquipWeaponJob(weapon);
-                        lastOpportunisticSwitch = GenTicks.TicksGame;
+                        var nextVerb = weapon.def.verbs.First(v => !v.IsMeleeAttack);
+                        var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, weapon.def.verbs.Max(v => v.range), 4, (pos) =>
+                        {
+                            return GenSight.LineOfSight(SelPawn.Position, pos, Map, skipFirstCell: true);
+                        });
+                        var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, weapon, targtPos.IsValid ? targtPos : castTarg.Cell);
+                        job.maxNumStaticAttacks = 1;
+
+                        SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
                         return false;
                     }
                 }
@@ -146,22 +123,24 @@ namespace CombatExtended.AI
 
         public bool StartFlareChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (Map.VisibilityGoodAt(SelPawn, castTarg.Cell, NightVisionEfficiency) || FlaredRecently || FlaredRecentlyByFaction)
+            if (!FlaredRecently && !FlaredRecentlyByFaction && !Map.VisibilityGoodAt(SelPawn, castTarg.Cell, NightVisionEfficiency))
             {
-                if ((verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !SelPawn.IsColonist))
+                if (!(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindFlare(out ThingWithComps flareGun, checkAmmo: true))
                 {
-                    StartEquipWeaponJob(weapon);
-                    return false;
-                }
-                return true;
-            }
-            if (!OpportunisticallySwitchedRecently)
-            {
-                if (!(verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && CompInventory.TryFindFlare(out ThingWithComps flareGun))
-                {
-                    StartEquipWeaponJob(flareGun);
-                    lastOpportunisticSwitch = GenTicks.TicksGame;
-                    return false;
+                    float range = flareGun.def.verbs.Max(v => v.range);
+                    VerbProperties nextVerb = flareGun.def.verbs.First(v => !v.IsMeleeAttack);
+                    if (range >= castTarg.Cell.DistanceTo(SelPawn.Position))
+                    {
+                        var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, flareGun.def.verbs.Max(v => v.range), 8, (pos) =>
+                        {
+                            return !nextVerb.requireLineOfSight || pos.Roofed(Map);
+                        });
+                        var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, flareGun, targtPos.IsValid ? targtPos : castTarg.Cell);
+                        job.maxNumStaticAttacks = 1;
+
+                        SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                        return false;
+                    }
                 }
             }
             return true;
@@ -179,16 +158,6 @@ namespace CombatExtended.AI
             }
             if (verb.EquipmentSource?.def.IsAOEWeapon() ?? false)
                 lastUsedAEOWeapon = GenTicks.TicksGame;
-        }
-
-        public void StartEquipWeaponJob(ThingWithComps gun)
-        {
-            SelPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, gun), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
-        }
-
-        public void StartGotoEquipWeaponJob(ThingWithComps gun)
-        {
-            SelPawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Equip, gun), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
         }
 
         public override void PostExposeData()
