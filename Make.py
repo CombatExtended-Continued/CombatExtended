@@ -240,8 +240,6 @@ def main(argv=sys.argv):
         os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {options.reference}")
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {options.reference}")
 
-    print(libraries)
-
     libraries = [resolveLibrary(l, options.reference, options.csproj, verbose) for l in libraries if '$' not in l.name]
 
     if options.all_libs:
@@ -258,6 +256,10 @@ def main(argv=sys.argv):
 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    if verbose > 2:
+        print(libraries)
+    if verbose > 6:
+        print(args)
     os.execvp(args[0], args)
     
 if __name__=='__main__':
