@@ -68,7 +68,6 @@ namespace CombatExtended.AI
                         this.pawn.equipment.TryTransferEquipmentToContainer(pawn.equipment?.Primary, this.CompInventory.container);
                     // Force equip the old weapon                   
                     this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
-                    this.pawn.equipment.Notify_EquipmentAdded(this.oldWeapon);
                 }
             });
         }
