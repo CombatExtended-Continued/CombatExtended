@@ -37,7 +37,7 @@ namespace CombatExtended.AI
 
         public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)
         {
-            if (fireModes.CurrentFireMode == mode && fireModes.AvailableFireModes.Contains(mode))
+            if (fireModes.CurrentFireMode == mode || fireModes.AvailableFireModes.Count == 1)
                 return;
             int m = (int)mode;
             int i = 1;
@@ -55,7 +55,7 @@ namespace CombatExtended.AI
 
         public static void TrySetAimMode(this CompFireModes fireModes, AimMode mode)
         {
-            if (fireModes.CurrentAimMode == mode && fireModes.AvailableAimModes.Contains(mode))
+            if (fireModes.CurrentAimMode == mode || fireModes.AvailableAimModes.Count == 1)
                 return;
             int m = (int)mode;
             int i = 1;

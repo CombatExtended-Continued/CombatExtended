@@ -73,14 +73,18 @@ namespace CombatExtended
                     Job job;
                     for (int i = 0; i < targetedBy.Count; i++)
                     {
-                        Verse.WeakReference<Pawn> reference = targetedBy[i];
-                        Pawn pawn;
-                        if (reference.IsAlive && (job = (pawn = reference.Target)?.jobs.curJob) != null && pawn.Spawned)
+                        try
                         {
-                            if (job.AnyTargetIs(parent))
-                                _targetedByCache.Add(reference.Target);
-                            if (job.AnyTargetIs(parent.Position) && (pawn.equipment.Primary?.def.IsAOEWeapon() ?? false))
-                                _targetedByCache.Add(reference.Target);
+                            Verse.WeakReference<Pawn> reference = targetedBy[i];
+                            Pawn pawn;
+                            if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
+                            {
+                                if (job.AnyTargetIs(parent))
+                                    _targetedByCache.Add(pawn);
+                            }
+                        }
+                        catch
+                        {
                         }
                     }
                 }
@@ -119,21 +123,6 @@ namespace CombatExtended
             }
         }
 
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            // Scribe the pawns targeting this pawn
-            List<Pawn> temp = Scribe.mode == LoadSaveMode.Saving ? TargetedBy : new List<Pawn>();
-            // Make sure not to call TargetedBy while loading
-            Scribe_Collections.Look(ref temp, "targetedBy", LookMode.Reference);
-            if (Scribe.mode != LoadSaveMode.Saving)
-            {
-                temp ??= new List<Pawn>();
-                targetedBy = temp.Select(p => new Verse.WeakReference<Pawn>(p)).ToList();
-            }
-            temp.Clear();
-        }
-
         private readonly TargetIndex[] _targetIndices = new TargetIndex[]
         {
             TargetIndex.A,
@@ -144,7 +133,7 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
-            if (parent.IsHashIntervalTick(90))
+            if (parent.IsHashIntervalTick(120))
             {
                 /*
                  * Clear the cache if it's very outdated to allow GC to take over

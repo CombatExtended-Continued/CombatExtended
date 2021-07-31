@@ -10,7 +10,7 @@ namespace CombatExtended.AI
 {
     public class CompOpportunisticSwitch : ICompTactics
     {
-        private const int COOLDOWN_OPPORTUNISTIC_TICKS = 600;
+        private const int COOLDOWN_OPPORTUNISTIC_TICKS = 1400;
 
         private const int COOLDOWN_TICKS = 2000;
 
@@ -19,6 +19,8 @@ namespace CombatExtended.AI
         private int lastFlared = -1;
 
         private int lastUsedAEOWeapon = -1;
+
+        private int lastOptimizedWeapon = -1;
 
         private int lastOpportunisticSwitch = -1;
 
@@ -63,7 +65,14 @@ namespace CombatExtended.AI
             {
                 return lastFlared != -1 && GenTicks.TicksGame - lastFlared < COOLDOWN_TICKS;
             }
+        }
 
+        public bool OptimizedWeaponRecently
+        {
+            get
+            {
+                return lastOptimizedWeapon != -1 && GenTicks.TicksGame - lastOptimizedWeapon < COOLDOWN_TICKS;
+            }
         }
 
         public virtual bool ShouldRun
@@ -96,14 +105,16 @@ namespace CombatExtended.AI
         {
             if (!ShouldRun) return true;
             if (OpportunisticallySwitchedRecently) return true;
-            if (!StartFlareChecks(verb, castTarg, destTarg))
+            if (TryFlare(verb, castTarg, destTarg))
                 return false;
-            if (!StartAOEChecks(verb, castTarg, destTarg))
+            if (TryUseAOE(verb, castTarg, destTarg))
+                return false;
+            if (TryOptimizeWeapon(verb, castTarg, destTarg))
                 return false;
             return true;
         }
 
-        public bool StartAOEChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
+        public bool TryUseAOE(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if (!UsedAOEWeaponRecently && !(verb.EquipmentSource?.def.IsAOEWeapon() ?? false))
             {
@@ -124,14 +135,14 @@ namespace CombatExtended.AI
                         job.maxNumStaticAttacks = 1;
 
                         SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
-                        return false;
+                        return true;
                     }
                 }
             }
-            return true;
+            return false;
         }
 
-        public bool StartFlareChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
+        public bool TryFlare(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if (!FlaredRecently && !FlaredRecentlyByFaction && !Map.VisibilityGoodAt(SelPawn, castTarg.Cell, NightVisionEfficiency))
             {
@@ -151,7 +162,7 @@ namespace CombatExtended.AI
                         job.maxNumStaticAttacks = 1;
 
                         SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
-                        return false;
+                        return true;
                     }
                 }
             }
@@ -160,11 +171,16 @@ namespace CombatExtended.AI
                 if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon))
                 {
                     SelPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced);
-                    return false;
+                    return true;
                 }
-                return false;
             }
-            return true;
+            return false;
+        }
+
+        public bool TryOptimizeWeapon(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
+        {
+            // TODO need weapon tags             
+            return false;
         }
 
         public override void OnStartCastSuccess(Verb verb)
@@ -186,6 +202,7 @@ namespace CombatExtended.AI
             base.PostExposeData();
             Scribe_Values.Look(ref lastUsedAEOWeapon, "lastUsedAEOWeapon", -1);
             Scribe_Values.Look(ref lastFlared, "lastFlared", -1);
+            Scribe_Values.Look(ref lastOptimizedWeapon, "lastOptimizedWeapon", -1);
             Scribe_Values.Look(ref lastOpportunisticSwitch, "lastOpportunisticSwitch", -1);
         }
 

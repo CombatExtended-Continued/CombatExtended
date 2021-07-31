@@ -10,10 +10,6 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            // Skip reloading in case the weapon has been used for an OpportunisticAttack 
-            if (SelPawn.jobs.curDriver.GetType() == typeof(JobDriver_AttackOpportunistic))
-                return true;
-
             // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
             CompAmmoUser gun = verb.EquipmentSource.TryGetComp<CompAmmoUser>();
 
