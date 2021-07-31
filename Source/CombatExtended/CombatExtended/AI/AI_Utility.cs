@@ -40,7 +40,7 @@ namespace CombatExtended.AI
             if (fireModes.CurrentFireMode == mode || fireModes.AvailableFireModes.Count == 1)
                 return;
             int m = (int)mode;
-            int i = 1;
+            int i = 0;
             while (i < 3)
             {
                 mode = (FireMode)((m + i) % 3);
@@ -58,7 +58,7 @@ namespace CombatExtended.AI
             if (fireModes.CurrentAimMode == mode || fireModes.AvailableAimModes.Count == 1)
                 return;
             int m = (int)mode;
-            int i = 1;
+            int i = 0;
             while (i < 3)
             {
                 mode = (AimMode)((m + i) % 3);

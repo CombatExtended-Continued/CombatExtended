@@ -102,8 +102,43 @@ namespace CombatExtended.AI
                     }
                 }
                 float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
+                float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
+
+                if (bullets < verbShoot.compAmmo.Props.magazineSize && shotDist > 50)
+                {
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
+                    fireModes.TrySetFireMode(FireMode.SingleFire);
+                    return;
+                }
+                if (bullets < verbShoot.compAmmo.Props.magazineSize * 1.5f && shotDist > 35)
+                {
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
+                    fireModes.TrySetFireMode(FireMode.BurstFire);
+                    return;
+                }
+                if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
+                {
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
+                    fireModes.TrySetFireMode(FireMode.BurstFire);
+                    return;
+                }
                 if (castTarg.Thing is Pawn target)
                 {
+                    if (SelPawn.EdgingCloser(target))
+                    {
+                        if (shotDist <= 25)
+                        {
+                            fireModes.TrySetAimMode(AimMode.SuppressFire);
+                            fireModes.TrySetFireMode(FireMode.AutoFire);
+                            return;
+                        }
+                        if (shotDist <= 35)
+                        {
+                            fireModes.TrySetAimMode(AimMode.Snapshot);
+                            fireModes.TrySetFireMode(FireMode.AutoFire);
+                            return;
+                        }
+                    }
                     float range = Mathf.Max(verb.EffectiveRange, 1);
                     float recoilFactor = verbProps.recoilAmount * (0.6f + shotDist / range);
 
@@ -126,6 +161,8 @@ namespace CombatExtended.AI
                         return;
                     }
                 }
+                fireModes.TrySetAimMode(AimMode.Snapshot);
+                fireModes.TrySetFireMode(FireMode.AutoFire);
             }
         }
     }
