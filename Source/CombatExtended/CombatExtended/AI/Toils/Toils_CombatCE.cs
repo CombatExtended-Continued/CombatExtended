@@ -55,11 +55,10 @@ namespace CombatExtended.AI
         public static IEnumerable<Toil> AttackStatic(IJobDriver_Tactical driver, TargetIndex targetIndex)
         {
             Toil init = new Toil();
-            int numAttacksMade = 0;
             bool startedIncapacitated = false;
             init.initAction = delegate
             {
-                Pawn pawn2 = driver.TargetThingA as Pawn;
+                Pawn pawn2 = driver.TargetThingB as Pawn;
                 if (pawn2 != null)
                 {
                     startedIncapacitated = pawn2.Downed;
@@ -84,7 +83,7 @@ namespace CombatExtended.AI
                             return;
                         }
                     }
-                    if (numAttacksMade >= driver.job.maxNumStaticAttacks && !driver.pawn.stances.FullBodyBusy)
+                    if (driver.numAttacksMade >= driver.job.maxNumStaticAttacks && !driver.pawn.stances.FullBodyBusy)
                     {
                         driver.EndJobWith(JobCondition.Succeeded);
                     }

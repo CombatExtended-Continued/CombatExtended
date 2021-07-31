@@ -8,6 +8,10 @@ namespace CombatExtended.AI
     {
         public override int Priority => 200;
 
+        public CompReload()
+        {
+        }
+
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             // gun isn't an ammo user that stores ammo internally or isn't out of bullets.

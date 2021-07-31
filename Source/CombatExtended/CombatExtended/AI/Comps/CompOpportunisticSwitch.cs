@@ -101,6 +101,10 @@ namespace CombatExtended.AI
             }
         }
 
+        public CompOpportunisticSwitch()
+        {
+        }
+
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if (!ShouldRun) return true;
@@ -108,8 +112,6 @@ namespace CombatExtended.AI
             if (TryFlare(verb, castTarg, destTarg))
                 return false;
             if (TryUseAOE(verb, castTarg, destTarg))
-                return false;
-            if (TryOptimizeWeapon(verb, castTarg, destTarg))
                 return false;
             return true;
         }
@@ -177,17 +179,10 @@ namespace CombatExtended.AI
             return false;
         }
 
-        public bool TryOptimizeWeapon(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
-        {
-            // TODO need weapon tags             
-            return false;
-        }
-
         public override void OnStartCastSuccess(Verb verb)
         {
             base.OnStartCastSuccess(verb);
-            if (!ShouldRun) return;
-            if (verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false)
+            if (verb.EquipmentSource?.def.IsIlluminationDevice() ?? false)
             {
                 lastFlared = GenTicks.TicksGame;
                 if (SelPawn.Faction != null)

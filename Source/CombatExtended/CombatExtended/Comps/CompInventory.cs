@@ -444,14 +444,14 @@ namespace CombatExtended
             grenade = (ThingWithComps)container.FirstOrFallback(t => t.def.weaponTags?.Contains("GrenadeSmoke") ?? false, null);
             if (grenade == null)
                 return false;
-            //if (grenade.stackCount > 1)
-            //{
-            //    // we only need one
-            //    grenade = (ThingWithComps)grenade.SplitOff(1);
-            //    // after spliting make sure to add it to inventory 
-            //    if (grenade.holdingOwner != container)
-            //        container.TryAddOrTransfer(grenade, canMergeWithExistingStacks: false);
-            //}
+            CompAmmoUser ammoUser = grenade.TryGetComp<CompAmmoUser>();
+            if (ammoUser != null)
+            {
+                if (ammoUser.CurAmmoProjectile?.projectile?.damageDef != DamageDefOf.Smoke)
+                    return false;
+                if (ammoUser.CurAmmoProjectile?.projectile?.postExplosionSpawnThingDef != ThingDefOf.Gas_Smoke)
+                    return false;
+            }
             return true;
         }
 

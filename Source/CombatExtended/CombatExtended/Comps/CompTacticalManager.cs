@@ -24,16 +24,13 @@ namespace CombatExtended
             }
         }
 
-        private List<ICompTactics> _tacticalComps = null;
+        private List<ICompTactics> _tacticalComps = new List<ICompTactics>();
         public List<ICompTactics> TacticalComps
         {
             get
             {
-                if (_tacticalComps == null)
-                {
-                    _tacticalComps = parent.comps?.Where(c => c is ICompTactics).Cast<ICompTactics>().ToList() ?? null;
-                    _tacticalComps?.SortBy(c => -1 * c.Priority);
-                }
+                if ((_tacticalComps?.Count ?? 0) == 0)
+                    ValidateComps();
                 return _tacticalComps;
             }
         }
@@ -198,6 +195,12 @@ namespace CombatExtended
             }
         }
 
+        public override void CompTickRare()
+        {
+            base.CompTickRare();
+            TryGiveTacticalJobs();
+        }
+
         public void Notify_BeingTargetedBy(Pawn pawn)
         {
             for (int i = 0; i < targetedBy.Count; i++)
@@ -208,10 +211,9 @@ namespace CombatExtended
             targetedBy.Add(new Verse.WeakReference<Pawn>(pawn));
         }
 
-
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (CompSuppressable == null || SelPawn.MentalState != null)
+            if (CompSuppressable == null || SelPawn.MentalState != null || CompSuppressable.IsHunkering)
                 return true;
 
             bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
@@ -242,6 +244,44 @@ namespace CombatExtended
                     comp.Notify_StartCastChecksFailed(failedComp);
                 return false;
             }
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Collections.Look(ref _tacticalComps, "tacticalComps", LookMode.Deep);
+            this.ValidateComps();
+        }
+
+        private void TryGiveTacticalJobs()
+        {
+            if (CompSuppressable == null || CompSuppressable.IsHunkering)
+                return;
+            if (SelPawn.Downed)
+                return;
+            foreach (ICompTactics comp in TacticalComps)
+            {
+                Job job = comp.TryGiveTacticalJob();
+                if (job != null)
+                {
+                    SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    return;
+                }
+            }
+        }
+
+        private void ValidateComps()
+        {
+            if (_tacticalComps == null)
+                _tacticalComps = new List<ICompTactics>();
+            foreach (Type type in typeof(ICompTactics).AllSubclassesNonAbstract())
+            {
+                ICompTactics comp;
+                if ((comp = _tacticalComps.FirstOrFallback(t => t.GetType() == type)) == null)
+                    _tacticalComps.Add(comp = (ICompTactics)Activator.CreateInstance(type, new object[0]));
+                comp.Initialize(SelPawn);
+            }
+            _tacticalComps.SortBy(t => -1f * t.Priority);
         }
     }
 }

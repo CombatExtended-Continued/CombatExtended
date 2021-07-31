@@ -40,6 +40,10 @@ namespace CombatExtended.AI
             }
         }
 
+        public CompFireSelection()
+        {
+        }
+
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             this._castTarg = castTarg;
@@ -86,7 +90,9 @@ namespace CombatExtended.AI
             }
             if (verb is Verb_ShootCE verbShoot && verb.verbProps is VerbPropertiesCE verbProps && verbProps.defaultProjectile?.projectile is ProjectilePropertiesCE projProps)
             {
-                if (projProps.pelletCount > 1)
+                float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
+
+                if (projProps.pelletCount > 1 && shotDist < 20)
                 {
                     if (verbProps.warmupTime > 1.5f)
                     {
@@ -101,38 +107,18 @@ namespace CombatExtended.AI
                         return;
                     }
                 }
-                float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
                 float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
-
-                if (bullets < verbShoot.compAmmo.Props.magazineSize && shotDist > 50)
-                {
-                    fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.SingleFire);
-                    return;
-                }
-                if (bullets < verbShoot.compAmmo.Props.magazineSize * 1.5f && shotDist > 35)
-                {
-                    fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.BurstFire);
-                    return;
-                }
-                if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
-                {
-                    fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.BurstFire);
-                    return;
-                }
                 if (castTarg.Thing is Pawn target)
                 {
                     if (SelPawn.EdgingCloser(target))
                     {
-                        if (shotDist <= 25)
+                        if (shotDist <= 20)
                         {
                             fireModes.TrySetAimMode(AimMode.SuppressFire);
                             fireModes.TrySetFireMode(FireMode.AutoFire);
                             return;
                         }
-                        if (shotDist <= 35)
+                        if (shotDist <= 40)
                         {
                             fireModes.TrySetAimMode(AimMode.Snapshot);
                             fireModes.TrySetFireMode(FireMode.AutoFire);
@@ -160,6 +146,18 @@ namespace CombatExtended.AI
                         fireModes.TrySetFireMode(FireMode.AutoFire);
                         return;
                     }
+                }
+                if (bullets < verbShoot.compAmmo.Props.magazineSize && shotDist > 50)
+                {
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
+                    fireModes.TrySetFireMode(FireMode.SingleFire);
+                    return;
+                }
+                if (bullets < verbShoot.compAmmo.Props.magazineSize * 1.5f && shotDist > 35)
+                {
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
+                    fireModes.TrySetFireMode(FireMode.BurstFire);
+                    return;
                 }
                 fireModes.TrySetAimMode(AimMode.Snapshot);
                 fireModes.TrySetFireMode(FireMode.AutoFire);

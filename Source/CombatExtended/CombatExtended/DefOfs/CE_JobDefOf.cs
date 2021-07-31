@@ -20,5 +20,6 @@ namespace CombatExtended
         public static JobDef WaitKnockdown;
         public static JobDef EquipFromInventory;
         public static JobDef OpportunisticAttack;
+        public static JobDef TendSelf;
     }
 }

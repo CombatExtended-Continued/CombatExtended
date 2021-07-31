@@ -23,7 +23,7 @@ namespace CombatExtended
         private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
         private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
 
-        private const int HelpRequestCooldown = 1200;
+        private const int HelpRequestCooldown = 2400;
 
         #endregion
 
@@ -270,7 +270,6 @@ namespace CombatExtended
                 && GenTicks.TicksGame - lastHelpRequestAt > HelpRequestCooldown)
             {
                 lastHelpRequestAt = GenTicks.TicksGame;
-
                 SuppressionUtility.TryRequestHelp(parent as Pawn);
             }
         }

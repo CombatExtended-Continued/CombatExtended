@@ -31,15 +31,6 @@ namespace CombatExtended.AI
         }
 
 
-        public override IEnumerable<Toil> MakeNewToils()
-        {
-            if (CompSuppressable?.IsHunkering ?? false)
-            {
-                return SkipperToil();
-            }
-            return MakeToils();
-        }
-
         public override void ExposeData()
         {
             base.ExposeData();
@@ -49,20 +40,6 @@ namespace CombatExtended.AI
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
-        }
-
-        protected abstract IEnumerable<Toil> MakeToils();
-
-        private IEnumerable<Toil> SkipperToil()
-        {
-            Toil toil = new Toil();
-            toil.defaultDuration = 15;
-            toil.defaultCompleteMode = ToilCompleteMode.Delay;
-            toil.AddFinishAction(() =>
-            {
-                this.EndJobWith(JobCondition.Incompletable);
-            });
-            yield return toil;
         }
     }
 }

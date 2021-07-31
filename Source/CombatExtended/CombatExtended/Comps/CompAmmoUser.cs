@@ -349,6 +349,9 @@ namespace CombatExtended
         /// </summary>
         public void TryStartReload()
         {
+            if (Wielder?.jobs.curDriver is IJobDriver_Tactical)
+                return;
+
             if (!HasMagazine)
             {
                 if (!CanBeFiredNow)

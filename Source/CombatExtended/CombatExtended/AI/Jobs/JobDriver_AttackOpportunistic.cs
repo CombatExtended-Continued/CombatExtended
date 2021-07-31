@@ -21,7 +21,7 @@ namespace CombatExtended.AI
             }
         }
 
-        protected override IEnumerable<Toil> MakeToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             if (pawn.equipment == null)
             {
