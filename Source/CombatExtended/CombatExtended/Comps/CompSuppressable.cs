@@ -18,10 +18,12 @@ namespace CombatExtended
         private const float maxSuppression = 1050f;          // Cap to prevent suppression from building indefinitely
         private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
         private const float SuppressionDecayRate = 5f;       // How much suppression decays per tick
-        private const int TicksPerMote = 150;                // How many ticks between throwing a mote
+        private const int TicksPerMote = 150;                // How many ticks between throwing a mote        
 
         private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
         private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
+
+        private const int HelpRequestCooldown = 1200;
 
         #endregion
 
@@ -34,6 +36,7 @@ namespace CombatExtended
          * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing 
          * pawns or having to track fire coming from multiple locations
          */
+        private int lastHelpRequestAt = -1;
 
         private IntVec3 suppressorLoc;
         private float locSuppressionAmount = 0f;
@@ -129,6 +132,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref locSuppressionAmount, "locSuppression", 0f);
             Scribe_Values.Look(ref isSuppressed, "isSuppressed", false);
             Scribe_Values.Look(ref ticksUntilDecay, "ticksUntilDecay", 0);
+            Scribe_Values.Look(ref lastHelpRequestAt, "lastHelpRequestAt", -1);
         }
 
         public void AddSuppression(float amount, IntVec3 origin)
@@ -259,6 +263,15 @@ namespace CombatExtended
                 {
                     CE_Utility.MakeIconOverlay((Pawn)parent, CE_ThingDefOf.Mote_SuppressIcon);
                 }
+            }
+            if (!parent.Faction.IsPlayerSafe()
+                && parent.IsHashIntervalTick(120)
+                && isSuppressed
+                && GenTicks.TicksGame - lastHelpRequestAt > HelpRequestCooldown)
+            {
+                lastHelpRequestAt = GenTicks.TicksGame;
+
+                SuppressionUtility.TryRequestHelp(parent as Pawn);
             }
         }
 

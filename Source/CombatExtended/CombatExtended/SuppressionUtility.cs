@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CombatExtended.AI;
+using CombatExtended.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -13,6 +14,32 @@ namespace CombatExtended
         public const float maxCoverDist = 10f; //Maximum distance to run for cover to
 
         private static LightingTracker tracker;
+
+        public static bool TryRequestHelp(Pawn pawn)
+        {
+            Map map = pawn.Map;
+            float curLevel = pawn.TryGetComp<CompSuppressable>().CurrentSuppression;
+            ThingWithComps grenade = null;
+            foreach (Pawn other in pawn.Position.PawnsInRange(map, 8))
+            {
+                if (other.Faction != pawn.Faction)
+                    continue;
+                if (other.jobs?.curDriver is IJobDriver_Tactical)
+                    continue;
+                if (!(other.TryGetComp<CompInventory>()?.TryFindSmokeWeapon(out grenade) ?? false))
+                    continue;
+                CompSuppressable otherSup = other.TryGetComp<CompSuppressable>();
+                if ((otherSup?.isSuppressed ?? true) || otherSup.CurrentSuppression > curLevel)
+                    continue;
+                if (!GenSight.LineOfSight(pawn.Position, other.Position, map))
+                    continue;
+                Job job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, grenade, pawn.Position);
+                job.maxNumStaticAttacks = 1;
+                other.jobs.StartJob(job, JobCondition.InterruptForced);
+                return true;
+            }
+            return false;
+        }
 
         public static Job GetRunForCoverJob(Pawn pawn)
         {
@@ -116,8 +143,30 @@ namespace CombatExtended
         private static float GetCoverRating(Thing cover)
         {
             if (cover == null) return 0;
+            if (cover is Gas) return 0.8f;
             if (cover.def.category == ThingCategory.Plant) return cover.def.fillPercent; // Plant cover only has a random chance to block gunfire and is rated lower            
             return 1;
+        }
+
+        public static bool TryGetSmokeScreeningJob(Pawn pawn, IntVec3 suppressorLoc, out Job job)
+        {
+            job = null;
+            ThingWithComps grenade = null;
+            if (!pawn.TryGetComp<CompInventory>()?.TryFindSmokeWeapon(out grenade) ?? true)
+                return false;
+            var range = 5;
+            var castTarget = pawn.Position;
+            foreach (IntVec3 cell in GenSightCE.PartialLineOfSights(pawn, suppressorLoc))
+            {
+                if (cell.DistanceTo(pawn.Position) >= range)
+                    break;
+                castTarget = cell;
+            }
+            if (!castTarget.IsValid)
+                castTarget = pawn.Position;
+            job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, grenade, castTarget);
+            job.maxNumStaticAttacks = 1;
+            return true;
         }
 
         public static List<MentalStateDef> GetPossibleBreaks(Pawn pawn)

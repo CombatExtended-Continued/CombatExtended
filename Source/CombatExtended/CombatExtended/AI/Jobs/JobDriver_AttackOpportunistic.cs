@@ -39,16 +39,21 @@ namespace CombatExtended.AI
                     this.oldWeapon = this.pawn.equipment.Primary;
                     this.pawn.equipment.TryTransferEquipmentToContainer(this.oldWeapon, this.CompInventory.container);
                 }
+                ThingWithComps weapon = this.JobWeapon;
+                if (weapon.stackCount > 1)
+                    weapon = (ThingWithComps)weapon.SplitOff(1);
                 // Force equip the new weapon
-                this.pawn.equipment.equipment.TryAddOrTransfer(this.JobWeapon);
+                this.pawn.equipment.equipment.TryAddOrTransfer(weapon);
                 this.ReadyForNextToil();
             }).FailOn(() => JobWeapon == null || JobWeapon.Destroyed);
 
             // Reload if needed
-            CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
-            if (compAmmo != null && compAmmo.EmptyMagazine)
-                yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A);
-
+            if (JobWeapon.stackCount == 1)
+            {
+                CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
+                if (compAmmo != null && compAmmo.UseAmmo && compAmmo.EmptyMagazine)
+                    yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A);
+            }
             // Start the attack
             foreach (Toil toil in Toils_CombatCE.AttackStatic(this, TargetIndex.B))
                 yield return toil;
@@ -56,16 +61,14 @@ namespace CombatExtended.AI
             // switch back action
             this.AddFinishAction(() =>
             {
-                if (oldWeapon != null)
+                if (oldWeapon != null && oldWeapon != pawn.equipment?.Primary && !oldWeapon.Destroyed)
                 {
-                    if (oldWeapon != pawn.equipment?.Primary && !oldWeapon.Destroyed)
-                    {
-                        // Force the new weapon into inventory
-                        if (pawn.equipment?.Primary != null)
-                            this.pawn.equipment.TryTransferEquipmentToContainer(pawn.equipment?.Primary, this.CompInventory.container);
-                        // Force equip the old weapon                   
-                        this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
-                    }
+                    // Force the new weapon into inventory
+                    if (pawn.equipment?.Primary != null)
+                        this.pawn.equipment.TryTransferEquipmentToContainer(pawn.equipment?.Primary, this.CompInventory.container);
+                    // Force equip the old weapon                   
+                    this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
+                    this.pawn.equipment.Notify_EquipmentAdded(this.oldWeapon);
                 }
             });
         }

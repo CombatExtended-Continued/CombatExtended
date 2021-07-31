@@ -34,7 +34,6 @@ namespace CombatExtended.AI
             return false;
         }
 
-
         public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)
         {
             if (fireModes.CurrentFireMode == mode || fireModes.AvailableFireModes.Count == 1)

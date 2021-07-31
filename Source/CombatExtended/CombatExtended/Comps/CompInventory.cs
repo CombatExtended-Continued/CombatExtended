@@ -439,6 +439,22 @@ namespace CombatExtended
             return false;
         }
 
+        public bool TryFindSmokeWeapon(out ThingWithComps grenade)
+        {
+            grenade = (ThingWithComps)container.FirstOrFallback(t => t.def.weaponTags?.Contains("GrenadeSmoke") ?? false, null);
+            if (grenade == null)
+                return false;
+            //if (grenade.stackCount > 1)
+            //{
+            //    // we only need one
+            //    grenade = (ThingWithComps)grenade.SplitOff(1);
+            //    // after spliting make sure to add it to inventory 
+            //    if (grenade.holdingOwner != container)
+            //        container.TryAddOrTransfer(grenade, canMergeWithExistingStacks: false);
+            //}
+            return true;
+        }
+
         public bool TryFindViableWeapon(out ThingWithComps weapon, bool useAOE = false, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
         {
             weapon = null;
