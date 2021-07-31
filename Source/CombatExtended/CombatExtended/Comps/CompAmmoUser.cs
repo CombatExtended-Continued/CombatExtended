@@ -343,6 +343,9 @@ namespace CombatExtended
             return true;
         }
 
+        // used as a rate limiter
+        private int _lastReloadJobTick = -1;
+
         // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
         /// <summary>
         /// Overrides a Pawn's current activities to start reloading a gun or turret.  Has a code path to resume the interrupted job.
@@ -393,11 +396,12 @@ namespace CombatExtended
             }
 
             // Issue reload job
-            if (IsEquippedGun)
+            if (IsEquippedGun && _lastReloadJobTick != GenTicks.TicksGame && (Wielder.jobs.curJob?.def ?? null) != CE_JobDefOf.ReloadWeapon)
             {
                 Job reloadJob = TryMakeReloadJob();
                 if (reloadJob == null)
                     return;
+                _lastReloadJobTick = GenTicks.TicksGame;
                 reloadJob.playerForced = true;
                 Wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, Wielder.CurJob?.def != reloadJob.def, true);
             }
