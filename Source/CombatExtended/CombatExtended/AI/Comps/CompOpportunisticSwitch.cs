@@ -113,6 +113,8 @@ namespace CombatExtended.AI
                 {
                     if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, checkAmmo: true, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
                     {
+                        lastOpportunisticSwitch = GenTicks.TicksGame;
+
                         var nextVerb = weapon.def.verbs.First(v => !v.IsMeleeAttack);
                         var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, weapon.def.verbs.Max(v => v.range), 4, (pos) =>
                         {
@@ -139,9 +141,11 @@ namespace CombatExtended.AI
                     VerbProperties nextVerb = flareGun.def.verbs.First(v => !v.IsMeleeAttack);
                     if (range >= castTarg.Cell.DistanceTo(SelPawn.Position))
                     {
+                        lastOpportunisticSwitch = GenTicks.TicksGame;
+
                         IntVec3 targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, flareGun.def.verbs.Max(v => v.range), 8, (pos) =>
                         {
-                            return !nextVerb.requireLineOfSight || pos.Roofed(Map);
+                            return !nextVerb.requireLineOfSight || !pos.Roofed(Map);
                         });
                         Job job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, flareGun, targtPos.IsValid ? targtPos : castTarg.Cell);
                         job.maxNumStaticAttacks = 1;
