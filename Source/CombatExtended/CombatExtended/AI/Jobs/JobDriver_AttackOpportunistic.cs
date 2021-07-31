@@ -8,40 +8,29 @@ namespace CombatExtended.AI
 {
     public class JobDriver_AttackOpportunistic : IJobDriver_Tactical
     {
-        private ThingWithComps _weapon;
-        public ThingWithComps Weapon
-        {
-            get
-            {
-                if (_weapon == null)
-                    _weapon = (ThingWithComps)TargetA.Thing;
-                return _weapon;
-            }
-        }
-
-        private ThingWithComps _nextWeapon;
-        public ThingWithComps NextWeapon
-        {
-            get
-            {
-                if (_nextWeapon == null)
-                    _nextWeapon = (ThingWithComps)TargetB.Thing;
-                return _nextWeapon;
-            }
-        }
-
         private ThingWithComps oldWeapon;
 
-        public override IEnumerable<Toil> MakeToils()
+        private ThingWithComps _jobWeapon;
+        public ThingWithComps JobWeapon
         {
-            this.FailOnDestroyedOrNull(TargetIndex.A);
-            this.FailOn(() => pawn.equipment == null);
+            get
+            {
+                if (_jobWeapon == null)
+                    _jobWeapon = (ThingWithComps)TargetA.Thing;
+                return _jobWeapon;
+            }
+        }
 
+        protected override IEnumerable<Toil> MakeToils()
+        {
             if (pawn.equipment == null)
             {
                 Log.Warning("CE: JobDriver_AttackStaticOnce recived a pawn with equipment = null");
                 yield break;
             }
+            this.FailOnDestroyedOrNull(TargetIndex.A);
+            this.FailOn(() => pawn.equipment == null);
+
             yield return Toils_General.Do(() =>
             {
                 // Force the old weapon into inventory
@@ -51,32 +40,34 @@ namespace CombatExtended.AI
                     this.pawn.equipment.TryTransferEquipmentToContainer(this.oldWeapon, this.CompInventory.container);
                 }
                 // Force equip the new weapon
-                this.pawn.equipment.equipment.TryAddOrTransfer(this.Weapon);
+                this.pawn.equipment.equipment.TryAddOrTransfer(this.JobWeapon);
                 this.ReadyForNextToil();
-            }).FailOn(() => Weapon == null || Weapon.Destroyed);
+            }).FailOn(() => JobWeapon == null || JobWeapon.Destroyed);
 
-            CompAmmoUser compAmmo = Weapon.TryGetComp<CompAmmoUser>();
+            // Reload if needed
+            CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
             if (compAmmo != null && compAmmo.EmptyMagazine)
-            {
-                foreach (Toil toil in Toils_CombatCE.ReloadEquipedWeapon(pawn, compAmmo, TargetIndex.A))
-                    yield return toil;
-            }
-            Toil attackToil = Toils_CombatCE.AttackStatic(this, TargetIndex.B);
-            attackToil.AddFinishAction(() =>
+                yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A);
+
+            // Start the attack
+            foreach (Toil toil in Toils_CombatCE.AttackStatic(this, TargetIndex.B))
+                yield return toil;
+
+            // switch back action
+            this.AddFinishAction(() =>
             {
                 if (oldWeapon != null)
                 {
-                    // Force the new weapon into inventory
-                    if (Weapon != null && Weapon.holdingOwner != this.CompInventory.container && Weapon.holdingOwner == this.pawn.equipment.equipment)
+                    if (oldWeapon != pawn.equipment?.Primary && !oldWeapon.Destroyed)
                     {
-                        this.oldWeapon = Weapon;
-                        this.pawn.equipment.TryTransferEquipmentToContainer(this.Weapon, this.CompInventory.container);
+                        // Force the new weapon into inventory
+                        if (pawn.equipment?.Primary != null)
+                            this.pawn.equipment.TryTransferEquipmentToContainer(pawn.equipment?.Primary, this.CompInventory.container);
+                        // Force equip the old weapon                   
+                        this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
                     }
-                    // Force equip the old weapon                   
-                    this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
                 }
             });
-            yield return attackToil;
         }
 
         public override void ExposeData()

@@ -9,24 +9,50 @@ namespace CombatExtended.AI
 {
     public static class Toils_CombatCE
     {
-        public static IEnumerable<Toil> ReloadEquipedWeapon(Pawn pawn, CompAmmoUser compAmmo, TargetIndex weaponIndex)
+        public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex)
         {
-            Toil waitToil = new Toil() { actor = pawn };
+            // fields            
+            CompAmmoUser compAmmo = null;
+            int reloadingTime = 0;
+            int startTick = 0;
+            // reloading toil
+            Toil waitToil = new Toil() { actor = driver.pawn };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(compAmmo.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
-            yield return waitToil.WithProgressBarToilDelay(weaponIndex);
-
-            Toil reloadToil = new Toil() { actor = pawn };
-            reloadToil.AddFinishAction(() =>
+            waitToil.defaultDuration = 300;
+            waitToil.AddPreInitAction(() =>
             {
-                compAmmo.TryFindAmmoInInventory(out Thing ammo);
-                compAmmo.LoadAmmo(ammo);
+                if (driver.pawn.equipment?.Primary == null)
+                {
+                    driver.EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+                compAmmo = driver.pawn.equipment?.Primary.TryGetComp<CompAmmoUser>();
+                if (compAmmo == null || !compAmmo.HasAmmoOrMagazine)
+                {
+                    driver.EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+                startTick = GenTicks.TicksGame;
+                reloadingTime = Mathf.CeilToInt(compAmmo.Props.reloadTime.SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             });
-            reloadToil.defaultCompleteMode = ToilCompleteMode.Instant;
-            yield return reloadToil;
+            waitToil.tickAction = () =>
+            {
+                if (GenTicks.TicksGame - startTick >= reloadingTime)
+                {
+                    Thing ammo = null;
+                    if (compAmmo == null || !compAmmo.TryFindAmmoInInventory(out ammo) || ammo == null)
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    compAmmo.LoadAmmo(ammo);
+                    driver.ReadyForNextToil();
+                }
+            };
+            return waitToil.WithProgressBarToilDelay(progressIndex);
         }
 
-        public static Toil AttackStatic(JobDriver driver, TargetIndex targetIndex)
+        public static IEnumerable<Toil> AttackStatic(IJobDriver_Tactical driver, TargetIndex targetIndex)
         {
             Toil init = new Toil();
             int numAttacksMade = 0;
@@ -45,7 +71,7 @@ namespace CombatExtended.AI
                 LocalTargetInfo target = driver.job.GetTarget(targetIndex);
                 if (!driver.job.GetTarget(targetIndex).IsValid)
                 {
-                    driver.ReadyForNextToil();
+                    driver.EndJobWith(JobCondition.Succeeded);
                 }
                 else
                 {
@@ -54,27 +80,28 @@ namespace CombatExtended.AI
                         Pawn pawn = target.Thing as Pawn;
                         if (target.Thing.Destroyed || (pawn != null && !startedIncapacitated && pawn.Downed) || (pawn != null && pawn.IsInvisible()))
                         {
-                            driver.EndJobWith(JobCondition.Incompletable);
+                            driver.EndJobWith(JobCondition.Succeeded);
                             return;
                         }
                     }
                     if (numAttacksMade >= driver.job.maxNumStaticAttacks && !driver.pawn.stances.FullBodyBusy)
                     {
-                        driver.ReadyForNextToil();
+                        driver.EndJobWith(JobCondition.Succeeded);
                     }
                     else if (driver.pawn.TryStartAttack(target))
                     {
-                        numAttacksMade++;
+                        driver.numAttacksMade++;
                     }
                     else if (!driver.pawn.stances.FullBodyBusy)
                     {
-                        driver.ReadyForNextToil();
+                        driver.EndJobWith(JobCondition.Incompletable);
                     }
                 }
             };
             init.defaultCompleteMode = ToilCompleteMode.Never;
             init.activeSkill = () => Toils_Combat.GetActiveSkillForToil(init);
-            return init;
+            yield return Toils_Misc.ThrowColonistAttackingMote(TargetIndex.A);
+            yield return init;
         }
     }
 }

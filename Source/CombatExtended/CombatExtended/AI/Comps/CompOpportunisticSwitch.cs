@@ -12,7 +12,7 @@ namespace CombatExtended.AI
     {
         private const int COOLDOWN_OPPORTUNISTIC_TICKS = 600;
 
-        private const int COOLDOWN_TICKS = 1200;
+        private const int COOLDOWN_TICKS = 2000;
 
         private const int COOLDOWN_FACTION_TICKS = 600;
 
@@ -64,6 +64,14 @@ namespace CombatExtended.AI
                 return lastFlared != -1 && GenTicks.TicksGame - lastFlared < COOLDOWN_TICKS;
             }
 
+        }
+
+        public virtual bool ShouldRun
+        {
+            get
+            {
+                return !(SelPawn.Faction?.IsPlayer ?? false);
+            }
         }
 
         public bool FlaredRecentlyByFaction
@@ -131,17 +139,26 @@ namespace CombatExtended.AI
                     VerbProperties nextVerb = flareGun.def.verbs.First(v => !v.IsMeleeAttack);
                     if (range >= castTarg.Cell.DistanceTo(SelPawn.Position))
                     {
-                        var targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, flareGun.def.verbs.Max(v => v.range), 8, (pos) =>
+                        IntVec3 targtPos = AI_Utility.FindAttackedClusterCenter(SelPawn, castTarg.Cell, flareGun.def.verbs.Max(v => v.range), 8, (pos) =>
                         {
                             return !nextVerb.requireLineOfSight || pos.Roofed(Map);
                         });
-                        var job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, flareGun, targtPos.IsValid ? targtPos : castTarg.Cell);
+                        Job job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, flareGun, targtPos.IsValid ? targtPos : castTarg.Cell);
                         job.maxNumStaticAttacks = 1;
 
                         SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
                         return false;
                     }
                 }
+            }
+            if ((verb?.EquipmentSource?.def.IsIlluminationDevice() ?? false) && !(SelPawn.jobs?.curDriver is IJobDriver_Tactical))
+            {
+                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon))
+                {
+                    SelPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced);
+                    return false;
+                }
+                return false;
             }
             return true;
         }

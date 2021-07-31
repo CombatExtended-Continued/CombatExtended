@@ -7,6 +7,8 @@ namespace CombatExtended.AI
 {
     public abstract class IJobDriver_Tactical : JobDriver
     {
+        public int numAttacksMade = 0;
+
         private CompSuppressable _compSuppressable = null;
         public virtual CompSuppressable CompSuppressable
         {
@@ -28,16 +30,20 @@ namespace CombatExtended.AI
             }
         }
 
-        public virtual void OnProjectileLaunched(Verb verb)
-        {
-        }
 
         public override IEnumerable<Toil> MakeNewToils()
         {
             if (CompSuppressable?.IsHunkering ?? false)
+            {
                 return SkipperToil();
-
+            }
             return MakeToils();
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref numAttacksMade, "numAttacksMade", 0);
         }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -45,7 +51,7 @@ namespace CombatExtended.AI
             return true;
         }
 
-        public abstract IEnumerable<Toil> MakeToils();
+        protected abstract IEnumerable<Toil> MakeToils();
 
         private IEnumerable<Toil> SkipperToil()
         {

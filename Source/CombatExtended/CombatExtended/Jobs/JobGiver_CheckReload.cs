@@ -50,10 +50,6 @@ namespace CombatExtended
         /// <returns>Job that the pawn is to be working on.</returns>
         public override Job TryGiveJob(Pawn pawn)
         {
-            // skip for tactical jobs
-            if (pawn.jobs?.curDriver is IJobDriver_Tactical)
-                return null;
-
             ThingWithComps gun;
             AmmoDef ammo;
             Job reloadJob = null;

@@ -675,11 +675,6 @@ namespace CombatExtended
             numShotsFired++;
             if (ShooterPawn != null)
             {
-                if (ShooterPawn.jobs?.curDriver is IJobDriver_Tactical driver_Tactical)
-                {
-                    driver_Tactical.OnProjectileLaunched(this);
-                    return true;
-                }
                 if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
                 {
                     CompAmmo?.TryStartReload();

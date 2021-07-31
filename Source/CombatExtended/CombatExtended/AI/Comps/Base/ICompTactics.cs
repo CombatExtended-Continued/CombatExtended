@@ -76,15 +76,6 @@ namespace CombatExtended.AI
             }
         }
 
-        public virtual bool ShouldRun
-        {
-            get
-            {
-                //return !(SelPawn.Faction?.IsPlayer ?? false);
-                return true;
-            }
-        }
-
         public abstract bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg);
 
         public void Notify_StartCastChecksFailed(ICompTactics failedComp)

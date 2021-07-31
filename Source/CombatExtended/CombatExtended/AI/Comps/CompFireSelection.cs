@@ -9,7 +9,6 @@ namespace CombatExtended.AI
 {
     public class CompFireSelection : ICompTactics
     {
-        private Verb lastVerb = null;
         private FireMode lastFireMode = FireMode.AutoFire;
         private AimMode lastAimMode = AimMode.Snapshot;
 
@@ -33,18 +32,11 @@ namespace CombatExtended.AI
             }
         }
 
-        private int _lastOptimized = -1;
-        public bool ShouldOptimze
+        public virtual bool ShouldRun
         {
             get
             {
-                if (_lastOptimized == -1)
-                    _lastOptimized = GenTicks.TicksGame; ;
-                return GenTicks.TicksGame - _lastOptimized > 600;
-            }
-            set
-            {
-                if (!value) _lastOptimized = GenTicks.TicksGame;
+                return !(SelPawn.Faction?.IsPlayer ?? false);
             }
         }
 
@@ -69,23 +61,11 @@ namespace CombatExtended.AI
             base.OnStartCastSuccess(verb);
             if (!ShouldRun) return;
 
-            var fireModes = verb.EquipmentSource.TryGetComp<CompFireModes>();
+            CompFireModes fireModes = verb.EquipmentSource?.TryGetComp<CompFireModes>() ?? null;
+
             if (verb.EquipmentSource != null && fireModes != null && _castTarg != null && _destTarg != null)
-            {
-                if (ShouldOptimze || lastVerb != verb)
-                {
-                    OptimizeModes(fireModes, verb, _castTarg.Value, _destTarg.Value);
-                    this.lastVerb = verb;
-                    this.ShouldOptimze = false;
-                    this.lastAimMode = fireModes.CurrentAimMode;
-                    this.lastFireMode = fireModes.CurrentFireMode;
-                }
-                else
-                {
-                    fireModes.TrySetAimMode(this.lastAimMode);
-                    fireModes.TrySetFireMode(this.lastFireMode);
-                }
-            }
+                OptimizeModes(fireModes, verb, _castTarg.Value, _destTarg.Value);
+
             this._castTarg = null;
             this._destTarg = null;
         }
@@ -122,25 +102,17 @@ namespace CombatExtended.AI
                     }
                 }
                 float shotDist = castTarg.Cell.DistanceTo(SelPawn.Position);
-                float bullets = verbShoot.compAmmo.CurMagCount + verbShoot.compAmmo.MagsLeft;
-
-                if (bullets < 50 && bullets < verbShoot.compAmmo.Props.magazineSize && shotDist > 35)
-                {
-                    fireModes.TrySetAimMode(AimMode.Snapshot);
-                    fireModes.TrySetFireMode(FireMode.BurstFire);
-                    return;
-                }
-                if (!Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
-                {
-                    fireModes.TrySetAimMode(AimMode.AimedShot);
-                    fireModes.TrySetFireMode(FireMode.BurstFire);
-                    return;
-                }
                 if (castTarg.Thing is Pawn target)
                 {
                     float range = Mathf.Max(verb.EffectiveRange, 1);
                     float recoilFactor = verbProps.recoilAmount * (0.6f + shotDist / range);
 
+                    if (shotDist / range > 0.5f && !Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
+                    {
+                        fireModes.TrySetAimMode(AimMode.AimedShot);
+                        fireModes.TrySetFireMode(FireMode.BurstFire);
+                        return;
+                    }
                     if (recoilFactor <= 0.60f)
                     {
                         if (castTarg.HasThing && target.EdgingCloser(target))
@@ -153,42 +125,7 @@ namespace CombatExtended.AI
                         fireModes.TrySetFireMode(FireMode.AutoFire);
                         return;
                     }
-
-                    FireMode smartAuto = bullets < verbShoot.compAmmo.Props.magazineSize * 1.5f ? FireMode.BurstFire : FireMode.AutoFire;
-
-                    if (fireModes.AvailableFireModes.Count == 1)
-                    {
-                        fireModes.TrySetAimMode(AimMode.AimedShot);
-                        fireModes.TrySetFireMode(smartAuto);
-                        return;
-                    }
-
-                    float pelletsAuto = verbShoot.ShotsPerBurstFor(FireMode.AutoFire);
-                    float pelletsBurst = verbShoot.ShotsPerBurstFor(FireMode.BurstFire);
-
-                    var allies = target.GetTacticalManager().TargetedByEnemy;
-                    var suppressable = target.TryGetComp<CompSuppressable>();
-
-                    if (allies.Count(p => p.equipment?.Primary?.def.IsMeleeWeapon ?? false) > 1 && !suppressable.isSuppressed)
-                    {
-                        fireModes.TrySetAimMode(AimMode.SuppressFire);
-                        fireModes.TrySetFireMode(smartAuto);
-                        return;
-                    }
-                    if (shotDist / range > 0.6f)
-                    {
-                        fireModes.TrySetAimMode(AimMode.AimedShot);
-                        fireModes.TrySetFireMode(smartAuto);
-                        return;
-                    }
-                    fireModes.TrySetAimMode(AimMode.Snapshot);
-                    fireModes.TrySetFireMode(smartAuto);
                 }
-            }
-            else
-            {
-                fireModes.TrySetAimMode(AimMode.Snapshot);
-                fireModes.TrySetFireMode(FireMode.AutoFire);
             }
         }
     }
