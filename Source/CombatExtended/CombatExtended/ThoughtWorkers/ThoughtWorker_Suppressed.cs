@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     class ThoughtWorker_Suppressed : ThoughtWorker
     {
-        protected override ThoughtState CurrentStateInternal(Pawn p)
+        public override ThoughtState CurrentStateInternal(Pawn p)
         {
             CompSuppressable comp = p.TryGetComp<CompSuppressable>();
             if (comp != null)

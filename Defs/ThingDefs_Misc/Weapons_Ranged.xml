@@ -13,7 +13,7 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
-      <WorkToMake>9000</WorkToMake>	
+      <WorkToMake>9000</WorkToMake>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.16</ShotSpread>
       <SwayFactor>1.00</SwayFactor>
@@ -25,11 +25,11 @@
       <Steel>40</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>
       <WoodLog>10</WoodLog>
-    </costList>	
+    </costList>
     <weaponTags>
-      	  <li>GunHeavy</li>
-	  <li>GrenadeSmoke</li>
-	  <li>GrenadeEMP</li>		  
+      <li>GunHeavy</li>
+      <li>GrenadeSmoke</li>
+      <li>GrenadeEMP</li>
     </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
@@ -61,7 +61,7 @@
     </comps>
     <recipeMaker>
       <researchPrerequisite>CE_Launchers</researchPrerequisite>
-    </recipeMaker>	
+    </recipeMaker>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>stock</label>
@@ -116,43 +116,42 @@
       <Bulk>7.31</Bulk>
       <Mass>20.00</Mass>
       <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
-      <MarketValue>1400</MarketValue>      
+      <MarketValue>1400</MarketValue>
     </statBases>
     <techLevel>Spacer</techLevel>
-    <menuHidden>True</menuHidden>
     <tradeability>None</tradeability>
-    <destroyOnDrop>true</destroyOnDrop>    
+    <destroyOnDrop>true</destroyOnDrop>
     <weaponTags>
-      <li>MechanoidGunLongRange</li>  
+      <li>MechanoidGunLongRange</li>
     </weaponTags>
     <verbs>
-	  <li Class="CombatExtended.VerbPropertiesCE">
-		<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-		<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-		<hasStandardCommand>true</hasStandardCommand>
-		<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-		<warmupTime>3</warmupTime>
-		<minRange>10</minRange>
-		<range>45</range>
-		<burstShotCount>1</burstShotCount>
-		<soundCast>Mortar_LaunchA</soundCast>
-		<muzzleFlashScale>16</muzzleFlashScale>
-		<circularError>3</circularError>
-		<indirectFirePenalty>0.3</indirectFirePenalty>
-		<targetParams>
-		  <canTargetLocations>true</canTargetLocations>
-		</targetParams>
-	  </li>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+        <warmupTime>3</warmupTime>
+        <minRange>10</minRange>
+        <range>45</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>Mortar_LaunchA</soundCast>
+        <muzzleFlashScale>16</muzzleFlashScale>
+        <circularError>3</circularError>
+        <indirectFirePenalty>0.3</indirectFirePenalty>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
     </verbs>
     <comps>
-	  <li Class="CombatExtended.CompProperties_Charges">
-		<chargeSpeeds>
-		  <li>30</li>
-		  <li>50</li>
-		  <li>70</li>
-		  <li>90</li>
-		</chargeSpeeds>
-	  </li>	
+      <li Class="CombatExtended.CompProperties_Charges">
+        <chargeSpeeds>
+          <li>30</li>
+          <li>50</li>
+          <li>70</li>
+          <li>90</li>
+        </chargeSpeeds>
+      </li>
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>5</magazineSize>
         <reloadTime>12</reloadTime>
@@ -180,7 +179,107 @@
         <DrawSize>1.2,1.4</DrawSize>
         <DrawOffset>0.0,0.0</DrawOffset>
       </li>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
     </modExtensions>
   </ThingDef>
-  
+
+  <!-- ==================== Flare Gun ==================== -->
+
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>CE_FlareGun</defName>
+    <label>flare gun</label>
+    <description>An ancient, single-shot flare gun, used for signaling or illumination. Loaded from the breech, its barrel is too thin to fire anything but flares.</description>
+    <graphicData>
+      <texPath>Things/Weapons/FlareGun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Autopistol</soundInteract>
+    <statBases>
+      <WorkToMake>6000</WorkToMake>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.18</ShotSpread>
+      <SwayFactor>0.87</SwayFactor>
+      <Bulk>1.75</Bulk>
+      <Mass>0.85</Mass>
+      <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>35</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootFlareCE</verbClass>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_Flare</defaultProjectile>
+        <warmupTime>3</warmupTime>
+        <range>45</range>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <muzzleFlashScale>16</muzzleFlashScale>
+        <circularError>3</circularError>
+        <indirectFirePenalty>0.5</indirectFirePenalty>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>    
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>1</magazineSize>
+        <reloadTime>2.2</reloadTime>
+        <ammoSet>AmmoSet_Flare</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiUseBurstMode>False</aiUseBurstMode>
+        <aiAimMode>SuppressFire</aiAimMode>
+      </li>
+      <li Class="CombatExtended.CompProperties_Charges">
+        <chargeSpeeds>
+          <li>60</li>
+        </chargeSpeeds>
+      </li>
+    </comps>
+    <recipeMaker>
+      <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    </recipeMaker>
+    <weaponTags Inherit="False">
+      <li>CE_FlareLauncher</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    <modExtensions>
+    <!--	
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>0.93,0.93</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    -->  
+    </modExtensions>	
+  </ThingDef>
+
 </Defs>

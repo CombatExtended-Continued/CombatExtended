@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Project RimFactory - Materials</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Combined Bulk -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_RawClay" or defName="PRF_Cement" or defName="PRF_RawSand"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

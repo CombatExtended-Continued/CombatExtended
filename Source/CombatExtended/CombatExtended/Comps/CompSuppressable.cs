@@ -13,19 +13,19 @@ namespace CombatExtended
     {
         #region Constants
 
-        private const float minSuppressionDist = 5f;        //Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
-        private const float maxSuppression = 1050f;          //Cap to prevent suppression from building indefinitely
+        private const float minSuppressionDist = 5f;         // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
+        private const float maxSuppression = 1050f;          // Cap to prevent suppression from building indefinitely
         private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
-        private const float SuppressionDecayRate = 5f;    // How much suppression decays per tick
-        private const int TicksPerMote = 150;               // How many ticks between throwing a mote
+        private const float SuppressionDecayRate = 5f;       // How much suppression decays per tick
+        private const int TicksPerMote = 150;                // How many ticks between throwing a mote
 
-        private const int MinTicksUntilMentalBreak = 600;  // How long until pawn can have a mental break
-        private const float ChanceBreakPerTick = 0.001f;    // How likely we are to break each tick above the threshold
+        private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break
+        private const float ChanceBreakPerTick = 0.001f;     // How likely we are to break each tick above the threshold
 
         #endregion
 
         #region Fields
-        
+
         // --------------- Location calculations ---------------
 
         /*
@@ -33,9 +33,10 @@ namespace CombatExtended
          * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing 
          * pawns or having to track fire coming from multiple locations
          */
+
         private IntVec3 suppressorLoc;
         private float locSuppressionAmount = 0f;
-        
+
         private float currentSuppression = 0f;
         public bool isSuppressed = false;
 
@@ -108,7 +109,7 @@ namespace CombatExtended
         #endregion
 
         #region Methods
-        
+
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -172,9 +173,9 @@ namespace CombatExtended
                 }
                 if (reactJob != null && reactJob.def != pawn.CurJob?.def)
                 {
-                	//only reserve destination when we know for certain the pawn isn't already running for cover
-                	pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
-                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def==JobDefOf.ManTurret);
+                    // Only reserve destination when we know for certain the pawn isn't already running for cover
+                    pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
+                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
                     LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
                 }
                 else
@@ -203,7 +204,7 @@ namespace CombatExtended
 
             if (ticksHunkered > MinTicksUntilMentalBreak && Rand.Chance(ChanceBreakPerTick))
             {
-                var pawn = (Pawn) parent;
+                var pawn = (Pawn)parent;
                 if (pawn.mindState != null && !pawn.mindState.mentalStateHandler.InMentalState)
                 {
                     var possibleBreaks = SuppressionUtility.GetPossibleBreaks(pawn);
@@ -215,7 +216,7 @@ namespace CombatExtended
             }
 
             //Apply decay once per second
-            if(ticksUntilDecay > 0)
+            if (ticksUntilDecay > 0)
             {
                 ticksUntilDecay--;
             }
@@ -236,35 +237,18 @@ namespace CombatExtended
                 locSuppressionAmount -= Mathf.Min(SuppressionDecayRate, locSuppressionAmount);
             }
 
-            //Throw mote at set interval
+            // Throw mote at set interval
             if (parent.IsHashIntervalTick(TicksPerMote) && CanReactToSuppression)
             {
-                if (IsHunkering)
+                if (this.IsHunkering)
                 {
-                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_HunkerIcon);
+                    CE_Utility.MakeIconOverlay((Pawn)parent, CE_ThingDefOf.Mote_HunkerIcon);
                 }
-	            else if (this.isSuppressed)
+                else if (this.isSuppressed)
                 {
-                    //MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), parent.Map, "CE_SuppressedMote".Translate());
-                    MoteMaker.ThrowMetaIcon(parent.Position, parent.Map, CE_ThingDefOf.Mote_SuppressIcon);
+                    CE_Utility.MakeIconOverlay((Pawn)parent, CE_ThingDefOf.Mote_SuppressIcon);
                 }
-			}
-
-            /*if (Gen.IsHashIntervalTick(parent, ticksPerMote + Rand.Range(30, 300))
-                && parent.def.race.Humanlike && !robotBodyList.Contains(parent.def.race.body.defName))
-            {
-                if (isHunkering || isSuppressed)
-                {
-                    AGAIN: string rndswearsuppressed = RulePackDef.Named("SuppressedMote").Rules.RandomElement().Generate();
-
-                    if (rndswearsuppressed == "[suppressed]" || rndswearsuppressed == "" || rndswearsuppressed == " ")
-                    {
-                        goto AGAIN;
-                    }
-                    MoteMaker.ThrowText(this.parent.Position.ToVector3Shifted(), Find.CurrentMap, rndswearsuppressed);
-                }
-                //standard    MoteMaker.ThrowText(parent.Position.ToVector3Shifted(), "CE_SuppressedMote".Translate());
-            }*/
+            }
         }
 
         #endregion

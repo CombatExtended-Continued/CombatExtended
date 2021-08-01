@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Alpha Animals</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Ideology</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- eye -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_UnblinkingEye"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_AcidicVomit_CE</defaultProjectile>
+										<warmupTime>1.6</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>2</minRange>
+										<range>40</range>
+										<label>melting gaze</label>	
+										<muzzleFlashScale>0</muzzleFlashScale>				
+										<commonality>1</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="AA_Dryad_Spitter"]/statBases</xpath>
+							<value>
+   								<AimingAccuracy>0.6</AimingAccuracy>
+							</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_Dryad_Spitter"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_PoisonBolt</defaultProjectile>
+										<warmupTime>1.5</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<minRange>2</minRange>
+										<range>44</range>
+										<soundCast>AA_PoisonBolt</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>venomous spit</label>
+										<commonality>.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+
+					<!-- Nightling -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_OcularNightling"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_Quill</defaultProjectile>
+										<warmupTime>2</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+										<minRange>2</minRange>
+										<range>18</range>
+										<soundCast>AA_DartSound</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<commonality>0.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+        						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+							<defName>AA_GazeAttack_CE</defName>
+							<label>the male gaze</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>AA_AcidSpit</damageDef>		
+								<damageAmountBase>22</damageAmountBase>
+            							<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.1</armorPenetrationBlunt>		
+								<speed>60</speed>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>

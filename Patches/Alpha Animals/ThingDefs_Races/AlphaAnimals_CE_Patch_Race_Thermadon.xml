@@ -33,9 +33,17 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="AA_Thermadon"]/statBases</xpath>
 				<value>
+					<NightVisionEfficiency>0.5</NightVisionEfficiency>
 					<MeleeDodgeChance>0.1</MeleeDodgeChance>
-					<MeleeCritChance>0.18</MeleeCritChance>
+					<MeleeCritChance>0.2</MeleeCritChance>
 					<MeleeParryChance>0.2</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_Thermadon"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>2</baseHealthScale>
 				</value>
 			</li>
 
@@ -53,16 +61,27 @@
 				<xpath>/Defs/ThingDef[defName="AA_Thermadon"]/tools</xpath>
 				<value>
 					<tools>
+					<li Class="CombatExtended.ToolCE">
+							<label>head claw</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>3</cooldownTime>
+							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+							<armorPenetrationSharp>5</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head claw</label>
 							<capacities>
 								<li>Cut</li>
 							</capacities>
-							<power>24</power>
-							<cooldownTime>2</cooldownTime>
+							<power>28</power>
+							<cooldownTime>2.8</cooldownTime>
 							<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.25</armorPenetrationSharp>
-							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>

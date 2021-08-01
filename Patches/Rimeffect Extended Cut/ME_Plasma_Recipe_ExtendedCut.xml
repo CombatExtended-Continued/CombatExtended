@@ -1,0 +1,103 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rim-Effect: Extended Cut</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_ME_Plasma</defName>
+		<label>Plasma Power Cell</label>
+		<description>Plasma containment power cell optimized for M-19 Ballista rifle.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.015</Bulk>
+			<MarketValue>0.25</MarketValue>
+		</statBases>
+		<tradeTags>
+      			<li>CE_AutoEnableTrade_Sellable</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoPlasmaCellRifle</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>Plasma</ammoClass>
+		<comps>
+			<!-- Arbitarily defined cookoff explosive stats; represents a plasma containment system failing -->
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  </li>
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="ChargeAmmoRecipeBase">
+		<defName>MakeAmmo_ME_Plasma</defName>
+		<label>make plasma cells</label>
+		<description>Craft 50 shots' worth of plasma cells.</description>
+		<jobString>Making plasma cells.</jobString>
+		<workAmount>2500</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_ME_Plasma>50</Ammo_ME_Plasma>
+		</products>
+		<researchPrerequisite>RE_AllianceWeaponry</researchPrerequisite>
+		<recipeUsers>
+			<li>RE_ManufacturingBench</li>
+		</recipeUsers>
+		</RecipeDef>
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>[O21] Forgotten Realms</li>
@@ -9,7 +8,7 @@
       <operations>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>Humanoid</bodyShape>
@@ -21,11 +20,11 @@
           <success>Always</success>
           <operations>
             <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]/comps</xpath>
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]/comps</xpath>
               <success>Invert</success>
             </li>
             <li Class="PatchOperationAdd">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]</xpath>
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]</xpath>
               <value>
                 <comps />
               </value>
@@ -34,18 +33,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
-          <value>
-            <li>
-              <defName>Beauty</defName>
-              <degree>1</degree>
-              <chance>20</chance>
-            </li>
-          </value>
-        </li>
-
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]/statBases</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]/statBases</xpath>
           <value>
             <MeleeDodgeChance>1.1</MeleeDodgeChance>
             <MeleeCritChance>0.8</MeleeCritChance>
@@ -56,7 +44,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]/tools</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -95,7 +83,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_ElfBase"]/comps</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_ElfBase"]/comps</xpath>
           <value>
             <li>
               <compClass>CombatExtended.CompPawnGizmo</compClass>

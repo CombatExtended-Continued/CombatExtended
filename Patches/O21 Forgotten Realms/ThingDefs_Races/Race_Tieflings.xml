@@ -7,107 +7,106 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
-						</li>
-					</value>
-				</li>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
+			<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+				<value>
+					<li>
+						<defName>Beauty</defName>
+						<degree>1</degree>
+						<chance>10</chance>
+					</li>
+					<li>
+						<defName>Bloodlust</defName>
+						<chance>20</chance>
+					</li>
+				</value>
+			</li>
 
-				<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
-					<value>
-						<li>
-							<defName>Beauty</defName>
-							<degree>1</degree>
-							<chance>10</chance>
-						</li>
-						<li>
-							<defName>Bloodlust</defName>
-							<chance>20</chance>
-						</li>
-					</value>
-				</li>
+			<!-- Tieflings generally have slightly better reflexes than your standard human, and an innate resistance to heat. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1.1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<ArmorRating_Heat>0.20</ArmorRating_Heat>
+				</value>
+			</li>
 
-				<!-- Tieflings generally have slightly better reflexes than your standard human, and an innate resistance to heat. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>1.1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<ArmorRating_Heat>0.20</ArmorRating_Heat>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.26</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.26</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>4.49</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Tiefling"]/comps</xpath>
-					<value>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
-				</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>4.49</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
 
 			</operations>
 		</match>

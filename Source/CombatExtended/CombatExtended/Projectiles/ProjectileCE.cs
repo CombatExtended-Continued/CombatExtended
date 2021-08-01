@@ -27,7 +27,7 @@ namespace CombatExtended
         private const int collisionCheckSize = 5;
 
         #region Origin destination
-        protected Vector2 origin;
+        public Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
@@ -42,11 +42,11 @@ namespace CombatExtended
             }
         }
 
-        protected Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        protected Vector2 Destination
+        public Vector2 Destination
         {
             get
             {
@@ -61,17 +61,26 @@ namespace CombatExtended
         }
         #endregion
 
-        protected ThingDef equipmentDef;
-        protected Thing launcher;
-        public Thing intendedTarget;
+
+        public Thing intendedTargetThing
+        {
+            get
+            {
+                return intendedTarget.Thing;
+            }
+        }
+
+        public ThingDef equipmentDef;
+        public Thing launcher;
+        public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
 
         #region Vanilla
-        protected bool landed;
-        protected int ticksToImpact;
+        public bool landed;
+        public int ticksToImpact;
         private Sustainer ambientSustainer;
         #endregion
 
@@ -103,7 +112,7 @@ namespace CombatExtended
 
         #region Ticks/Seconds
         float startingTicksToImpactInt = -1f;
-        protected float StartingTicksToImpact
+        public float StartingTicksToImpact
         {
             get
             {
@@ -124,7 +133,6 @@ namespace CombatExtended
                         startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
                         return startingTicksToImpactInt;
                     }
-
                     startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
                 }
                 return startingTicksToImpactInt;
@@ -135,7 +143,7 @@ namespace CombatExtended
         /// <summary>
         /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
         /// </summary>
-        protected int IntTicksToImpact
+        public int IntTicksToImpact
         {
             get
             {
@@ -150,7 +158,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
-        protected int FlightTicks
+        public int FlightTicks
         {
             get
             {
@@ -160,7 +168,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of float ticks the projectile has remained in the air for, including impact.
         /// </summary>
-        protected float fTicks
+        public float fTicks
         {
             get
             {
@@ -372,31 +380,42 @@ namespace CombatExtended
             {
                 launcher = null;
             }
-            Scribe_Values.Look<Vector2>(ref origin, "ori", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "tTI", 0, true);
-            Scribe_References.Look<Thing>(ref intendedTarget, "iT");
-            Scribe_References.Look<Thing>(ref launcher, "lcr");
-            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "ed");
-            Scribe_Values.Look<bool>(ref landed, "lnd");
+
+            Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
+            Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
+            Scribe_Values.Look<bool>(ref landed, "landed");
 
             //Here be new variables
-            Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
-            Scribe_Values.Look(ref shotRotation, "sRot", 0f, true);
-            Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
-            Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
-            Scribe_Values.Look<bool>(ref canTargetSelf, "cts");
-            Scribe_Values.Look<bool>(ref logMisses, "lM", true);
-            Scribe_Values.Look<bool>(ref castShadow, "cS", true);
+            Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
+            Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
+            Scribe_Values.Look(ref shotHeight, "shotHeight", 0f, true);
+            Scribe_Values.Look(ref shotSpeed, "shotSpeed", 0f, true);
+            Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
+            Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
+            Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
+
+            // To insure saves don't get affected..
+            Thing target = null;
+            if (Scribe.mode != LoadSaveMode.Saving)
+            {
+                Scribe_References.Look<Thing>(ref target, "intendedTarget");
+                if (target != null)
+                    intendedTarget = new LocalTargetInfo(target);
+            }
         }
         #endregion
 
-        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null) {
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
+        {
 
             float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
             float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
 
             ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
-            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159/2.0f);
+            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
             Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
             Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
             Map map = launcher.Map;
@@ -412,45 +431,56 @@ namespace CombatExtended
             float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
-            Vector3 muzzle = ray.GetPoint( (defWeapon == null ? 0.9f : defWeapon.barrelLength) );
-            var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
-            for (int i=1; i < verbProps.range; i++) {
+            Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
+            var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
+            for (int i = 1; i < verbProps.range; i++)
+            {
                 float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
                 if (pprops.damageFalloff)
                 {
-                  lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                    lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
                 }
-                
+
                 Vector3 tp = ray.GetPoint(i);
-                if (tp.y > CollisionVertical.WallCollisionHeight) {
+                if (tp.y > CollisionVertical.WallCollisionHeight)
+                {
                     break;
                 }
-                if (tp.y < 0) {
+                if (tp.y < 0)
+                {
                     destination = tp;
                     landed = true;
                     ExactPosition = tp;
                     Position = ExactPosition.ToIntVec3();
                     break;
                 }
-                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3())) {
-                    if (this == thing) {
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3()))
+                {
+                    if (this == thing)
+                    {
                         continue;
                     }
                     var bounds = CE_Utility.GetBoundsFor(thing);
-                    if (!bounds.IntersectRay(ray, out var dist)) {
+                    if (!bounds.IntersectRay(ray, out var dist))
+                    {
                         continue;
                     }
-                    if (i<2 && thing != intendedTarget) {
+                    if (i < 2 && thing != intendedTargetThing)
+                    {
                         continue;
                     }
 
-                    if (thing is Plant plant) {
-                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth)) {
+                    if (thing is Plant plant)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth))
+                        {
                             continue;
                         }
                     }
-                    else if (thing is Building) {
-                        if (!Rand.Chance(thing.def.fillPercent)) {
+                    else if (thing is Building)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent))
+                        {
                             continue;
                         }
                     }
@@ -466,18 +496,18 @@ namespace CombatExtended
                     lbce.Impact(thing, muzzle);
 
                     return;
-                    
+
                 }
-                 
+
             }
-            if (lbce!=null) {
+            if (lbce != null)
+            {
                 lbce.SpawnBeam(muzzle, destination);
                 Destroy(DestroyMode.Vanish);
                 return;
             }
-
-
         }
+
 
         #region Launch
         /// <summary>
@@ -495,19 +525,13 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-
+            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
             Launch(launcher, origin, equipment);
-            if (shotSpeed > 0f)
-            {
-                this.shotSpeed = shotSpeed;
-            }
-
-            ticksToImpact = IntTicksToImpact;
+            this.ticksToImpact = IntTicksToImpact;
         }
 
         public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
-            shotSpeed = def.projectile.speed;
             this.launcher = launcher;
             this.origin = origin;
             //For explosives/bullets, equipmentDef is important
@@ -521,12 +545,9 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Collisions
-        static readonly FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        #region Collisions        
         static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        static readonly MethodInfo interceptBreakShield = typeof(CompProjectileInterceptor).GetMethod("BreakShield", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -566,19 +587,19 @@ namespace CombatExtended
             {
                 return false;
             }
-            interceptAngleField.SetValue(interceptorComp, lastExactPos.AngleToFlat(interceptorThing.TrueCenter()));
-            interceptTicksField.SetValue(interceptorComp, Find.TickManager.TicksGame);
+            interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
+            interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
             var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
             if (areWeLucky)
             {
                 var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
                 if (def.projectile.damageDef == DamageDefOf.EMP)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
                 }
                 else if (firstEMPSecondaryDamage != null)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
                 }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
@@ -701,7 +722,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (thing == intendedTarget || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+                if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
                     if (TryCollideWith(thing))
                     {
@@ -856,8 +877,7 @@ namespace CombatExtended
                 return;
             }
             Position = ExactPosition.ToIntVec3();
-            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
-                def.projectile.soundImpactAnticipate != null)
+            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
@@ -880,9 +900,9 @@ namespace CombatExtended
                     if (ticksToImpact % trailer.trailerMoteInterval == 0)
                     {
                         for (int i = 0; i < trailer.motesThrown; i++)
-                            {
-                                TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
-                            }
+                        {
+                            TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
+                        }
                     }
                 }
             }
@@ -974,7 +994,7 @@ namespace CombatExtended
             Impact(null);
         }
 
-        protected virtual void Impact(Thing hitThing)
+        public virtual void Impact(Thing hitThing)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {

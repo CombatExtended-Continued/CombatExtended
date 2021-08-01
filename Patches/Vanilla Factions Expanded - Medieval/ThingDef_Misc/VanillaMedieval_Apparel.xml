@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-    <mods>
-        <li>Vanilla Factions Expanded - Medieval</li>
-    </mods>
+		<mods>
+			<li>Vanilla Factions Expanded - Medieval</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-			<operations>		
+			<operations>
 
 				<!-- ========== Light Helmet =========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetLight"]/statBases</xpath>
 					<value>
 						<Bulk>3</Bulk>
-						<WornBulk>1</WornBulk>					
+						<WornBulk>1</WornBulk>
 					</value>
-				</li>	
+				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetLight"]/statBases/StuffEffectMultiplierArmor</xpath>
@@ -30,14 +29,54 @@
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetHeavy"]/statBases</xpath>
 					<value>
 						<Bulk>5</Bulk>
-						<WornBulk>1</WornBulk>					
+						<WornBulk>1</WornBulk>
 					</value>
-				</li>			
+				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetHeavy"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== Jester Hat / Kings Crown / Plague Mask =========== -->
+				<li Class="PatchOperationRemove">
+					<xpath>
+						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Sharp | 
+						/Defs/ThingDef[defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/ArmorRating_Blunt
+					</xpath>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[ defName="VFEM_Apparel_JesterHat" or defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_JesterHat" or defName="VFEM_Apparel_KingsCrown" or defName="VFEM_Apparel_PlagueMask"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]</xpath>
+					<value>
+						<costStuffCount>25</costStuffCount>
+						<stuffCategories>
+							<li>Leathery</li>
+						</stuffCategories>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlagueMask"]/apparel/layers/li[.="Overhead"]</xpath>
+					<value>
+						<li>StrappedHead</li>
 					</value>
 				</li>
 
@@ -64,7 +103,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateArmorHeavy"]/equippedStatOffsets/MeleeDodgeChance</xpath>
 					<value>
-						<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+						<MeleeDodgeChance>-0.2</MeleeDodgeChance>
 					</value>
 				</li>
 
@@ -81,7 +120,7 @@
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_Tabard"]/statBases</xpath>
 					<value>
 						<Bulk>4</Bulk>
-						<WornBulk>1</WornBulk>					
+						<WornBulk>1</WornBulk>
 					</value>
 				</li>
 
@@ -92,7 +131,40 @@
 					</value>
 				</li>
 
+				<!-- ========== Jester Outfit / Dame Dress =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_JesterOutfit" or defName="VFEM_Apparel_DameDress"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_JesterOutfit" or defName="VFEM_Apparel_DameDress"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- ========== King's Robes =========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_KingsRobes"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<WornBulk>1.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_KingsRobes"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

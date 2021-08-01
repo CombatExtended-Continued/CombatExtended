@@ -7,13 +7,13 @@ namespace CombatExtended.HarmonyCE
 {
 
 
-    [HarmonyPatch(typeof(ShieldBelt), "AllowVerbCast")]
+    [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.AllowVerbCast))]
     internal static class ShieldBelt_PatchAllowVerbCast
     {
-        internal static void Postfix(ref bool __result, IntVec3 root, Map map, LocalTargetInfo targ, Verb verb)
+        internal static void Postfix(ref bool __result, Verb verb)
         {
             var mark = verb as Verb_MarkForArtillery;
-            if (mark!=null)
+            if (mark != null)
             {
                 __result = true;
                 return;
@@ -36,7 +36,7 @@ namespace CombatExtended.HarmonyCE
                     }
                 }
             }
-            
+
             //Original:
             //          return !(verb is Verb_LaunchProjectile) || ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
 
@@ -77,10 +77,10 @@ namespace CombatExtended.HarmonyCE
              */
 
             //if (A=0 && C=1 && D=1) E=B;
-            if (!(verb is Verb_LaunchProjectile) && (verb is Verb_LaunchProjectileCE) && __result)
-            {
-                __result = ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
-            }
+            //if (!(verb is Verb_LaunchProjectile) && (verb is Verb_LaunchProjectileCE) && __result)
+            //{
+            //    __result = ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
+            //}
 
             //NOTE. The method could maybe be transpiled or something fancy
         }
@@ -89,10 +89,11 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(ShieldBelt), "Tick")]
     internal static class ShieldBelt_DisableOnOperateTurret
     {
-        private const int SHORT_SHIELD_RECHARGE_TIME =  2 * GenTicks.TicksPerRealSecond;
+        private const int SHORT_SHIELD_RECHARGE_TIME = 2 * GenTicks.TicksPerRealSecond;
         internal static void Postfix(ShieldBelt __instance, ref int ___ticksToReset, int ___StartingTicksToReset)
         {
-            if (!Controller.settings.TurretsBreakShields) {
+            if (!Controller.settings.TurretsBreakShields)
+            {
                 return;
             }
             if (__instance.Wearer?.CurJob?.def == JobDefOf.ManTurret && (__instance.Wearer?.jobs?.curDriver?.OnLastToil ?? false))
