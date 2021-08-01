@@ -10,6 +10,13 @@ namespace CombatExtended.AI
 {
     public class CompOpportunisticSwitch : ICompTactics
     {
+        private enum TargetType
+        {
+            None = 0,
+            Pawn = 1,
+            Turret = 2
+        }
+
         private const int COOLDOWN_OPPORTUNISTIC_TICKS = 1400;
 
         private const int COOLDOWN_TICKS = 2000;
@@ -120,10 +127,16 @@ namespace CombatExtended.AI
         {
             if (!UsedAOEWeaponRecently && !(verb.EquipmentSource?.def.IsAOEWeapon() ?? false))
             {
+                TargetType targetType = TargetType.None;
                 float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
 
-                if (castTarg.HasThing && (ShouldTargetPawns(castTarg.Thing, distance) || ShouldTargetTurrets(castTarg.Thing, distance)))
+                if (castTarg.HasThing &&
+                    (TargetingPawns(castTarg.Thing, distance, out targetType) || TargetingTurrets(castTarg.Thing, distance, out targetType) || Rand.Chance(0.1f)))
                 {
+                    // TODO add the ability to switch to EMP ammo or weapons
+                    if (targetType == TargetType.Turret)
+                    {
+                    }
                     if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, checkAmmo: true, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
                     {
                         lastOpportunisticSwitch = GenTicks.TicksGame;
@@ -141,13 +154,25 @@ namespace CombatExtended.AI
                     }
                 }
             }
-            bool ShouldTargetPawns(Thing thing, float distance)
+            bool TargetingPawns(Thing thing, float distance, out TargetType targetType)
             {
-                return thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn);
+                targetType = TargetType.None;
+                if (thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
+                {
+                    targetType = TargetType.Pawn;
+                    return true;
+                }
+                return false;
             }
-            bool ShouldTargetTurrets(Thing thing, float distance)
+            bool TargetingTurrets(Thing thing, float distance, out TargetType targetType)
             {
-                return thing is Building_Turret && (distance > 8 || SelPawn.HiddingBehindCover(thing.positionInt));
+                targetType = TargetType.None;
+                if (thing is Building_Turret && (distance > 8 || SelPawn.HiddingBehindCover(thing.positionInt)))
+                {
+                    targetType = TargetType.Turret;
+                    return true;
+                }
+                return false;
             }
             return false;
         }

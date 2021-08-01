@@ -21,6 +21,17 @@ namespace CombatExtended.AI
             }
         }
 
+        private Thing _jobAmmo;
+        public Thing JobAmmo
+        {
+            get
+            {
+                if (_jobAmmo == null)
+                    _jobAmmo = TargetC.Thing;
+                return _jobAmmo;
+            }
+        }
+
         public override IEnumerable<Toil> MakeNewToils()
         {
             if (pawn.equipment == null)
@@ -51,8 +62,8 @@ namespace CombatExtended.AI
             if (JobWeapon.stackCount == 1)
             {
                 CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
-                if (compAmmo != null && compAmmo.UseAmmo && compAmmo.EmptyMagazine)
-                    yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A);
+                if (compAmmo != null && compAmmo.UseAmmo && (compAmmo.EmptyMagazine || JobAmmo != null))
+                    yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A, JobAmmo);
             }
             // Start the attack
             foreach (Toil toil in Toils_CombatCE.AttackStatic(this, TargetIndex.B))

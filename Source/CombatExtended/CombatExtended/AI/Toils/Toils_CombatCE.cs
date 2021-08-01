@@ -9,7 +9,7 @@ namespace CombatExtended.AI
 {
     public static class Toils_CombatCE
     {
-        public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex)
+        public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex, Thing ammo = null)
         {
             // fields            
             CompAmmoUser compAmmo = null;
@@ -39,8 +39,17 @@ namespace CombatExtended.AI
             {
                 if (GenTicks.TicksGame - startTick >= reloadingTime)
                 {
-                    Thing ammo = null;
-                    if (compAmmo == null || !compAmmo.TryFindAmmoInInventory(out ammo) || ammo == null)
+                    if (compAmmo == null)
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    if (ammo == null && !compAmmo.TryFindAmmoInInventory(out ammo))
+                    {
+                        driver.EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    if (!compAmmo.EmptyMagazine && !compAmmo.TryUnload())
                     {
                         driver.EndJobWith(JobCondition.Incompletable);
                         return;
