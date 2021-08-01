@@ -122,7 +122,7 @@ namespace CombatExtended.AI
             {
                 float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
 
-                if (castTarg.HasThing && castTarg.Thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn))
+                if (castTarg.HasThing && (ShouldTargetPawns(castTarg.Thing, distance) || ShouldTargetTurrets(castTarg.Thing, distance)))
                 {
                     if (CompInventory.TryFindRandomAOEWeapon(out ThingWithComps weapon, checkAmmo: true, predicate: (g) => g.def.Verbs?.Any(t => t.range >= distance + 3) ?? false))
                     {
@@ -140,6 +140,14 @@ namespace CombatExtended.AI
                         return true;
                     }
                 }
+            }
+            bool ShouldTargetPawns(Thing thing, float distance)
+            {
+                return thing is Pawn pawn && (distance > 8 || SelPawn.HiddingBehindCover(pawn.positionInt)) && TargetIsSquad(pawn);
+            }
+            bool ShouldTargetTurrets(Thing thing, float distance)
+            {
+                return thing is Building_Turret && (distance > 8 || SelPawn.HiddingBehindCover(thing.positionInt));
             }
             return false;
         }

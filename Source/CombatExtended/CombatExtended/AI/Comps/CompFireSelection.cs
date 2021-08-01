@@ -114,6 +114,7 @@ namespace CombatExtended.AI
                     }
                 }
                 float bullets = verbShoot.CompAmmo.CurMagCount + verbShoot.CompAmmo.MagsLeft;
+
                 if (castTarg.Thing is Pawn target)
                 {
                     if (SelPawn.EdgingCloser(target))
