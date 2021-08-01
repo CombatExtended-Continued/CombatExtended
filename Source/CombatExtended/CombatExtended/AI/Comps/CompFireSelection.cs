@@ -154,6 +154,18 @@ namespace CombatExtended.AI
                         return;
                     }
                 }
+                if (castTarg.Thing is Building_Turret)
+                {
+                    if (shotDist > 40)
+                    {
+                        fireModes.TrySetAimMode(AimMode.AimedShot);
+                        fireModes.TrySetFireMode(FireMode.BurstFire);
+                        return;
+                    }
+                    fireModes.TrySetAimMode(AimMode.Snapshot);
+                    fireModes.TrySetFireMode(FireMode.AutoFire);
+                    return;
+                }
                 if (bullets < verbShoot.CompAmmo.Props.magazineSize && shotDist > 50)
                 {
                     fireModes.TrySetAimMode(AimMode.AimedShot);
