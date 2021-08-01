@@ -255,10 +255,10 @@ namespace CombatExtended
 
         private void TryGiveTacticalJobs()
         {
-            if (CompSuppressable == null || CompSuppressable.IsHunkering)
+            if (CompSuppressable == null || CompSuppressable.IsHunkering || !SelPawn.Spawned || SelPawn.Downed)
+            {
                 return;
-            if (SelPawn.Downed)
-                return;
+            }
             foreach (ICompTactics comp in TacticalComps)
             {
                 Job job = comp.TryGiveTacticalJob();
