@@ -67,6 +67,7 @@ Animal Armor: Vanilla	|
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
+Arasaka Corporation [1.3]	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
@@ -291,6 +292,6 @@ Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
-Xenohumans	|
+Xenohumans - Anthromorphs   |
 Xenoorca Race	|
 Zombieland	|
