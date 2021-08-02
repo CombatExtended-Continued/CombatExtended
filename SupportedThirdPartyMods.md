@@ -15,17 +15,15 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
-[HLX] Rimworld: UNSC Armoury |
-[HLX] ReGrowth - Extinct Animals Pack
+[HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
-[HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
-[LF] Command And Conquer NOD Combat Armor
+[LF] Command And Conquer NOD Combat Armor |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
@@ -67,6 +65,7 @@ Animal Armor: Vanilla	|
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
+Arasaka Corporation [1.3]	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
@@ -131,6 +130,7 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
+HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Hand 'n' Footwear	|
 Heavy Melee Weapons |
@@ -202,6 +202,7 @@ Penguin	|
 Polarisbloc - Security Force	|
 Poleepkwa Race Update	|
 Prestige Specialist Armours	|
+Project RimFactory - Materials |
 Prostheses+ |
 PsiTech	|
 Rabbie The Moonrabbit	|
@@ -258,6 +259,7 @@ Tribal Warrior Set! |
 Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
+Ultratech: Altered Carbon Remastered |
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
@@ -277,6 +279,7 @@ Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded - Heavy Weapons |
+Vanilla Weapons Expanded - Laser |
 Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
@@ -285,12 +288,12 @@ Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
-VGP Fabrics
+VGP Fabrics |
 Vulpine Race Pack	|
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
-Xenohumans	|
+Xenohumans - Anthromorphs |
 Xenoorca Race	|
 Zombieland	|

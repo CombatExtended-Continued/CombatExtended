@@ -193,6 +193,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("   " + $"DEBUG: visibilityShift\t\t{visibilityShift} ");
                 stringBuilder.AppendLine("   " + $"DEBUG: leadDist\t\t{leadDist} ");
                 stringBuilder.AppendLine("   " + $"DEBUG: enviromentShift\t{enviromentShift}");
+                stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t{accuracyFactor}");
+                stringBuilder.AppendLine("   " + $"DEBUG: circularMissRadius\t{circularMissRadius}");
                 stringBuilder.AppendLine("   " + $"DEBUG: sightsEfficiency\t{sightsEfficiency}");
                 stringBuilder.AppendLine("   " + $"DEBUG: weathershift\t\t{weatherShift}");
                 stringBuilder.AppendLine("   " + $"DEBUG: accuracyFactor\t\t{accuracyFactor}");

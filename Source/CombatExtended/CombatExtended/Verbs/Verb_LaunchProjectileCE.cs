@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -69,7 +70,7 @@ namespace CombatExtended
                 return compCharges;
             }
         }
-        private float ShotSpeed
+        protected float ShotSpeed
         {
             get
             {
@@ -169,7 +170,7 @@ namespace CombatExtended
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
         private LightingTracker _lightingTracker = null;
-        private LightingTracker LightingTracker
+        protected LightingTracker LightingTracker
         {
             get
             {
@@ -392,27 +393,14 @@ namespace CombatExtended
             }
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitude;
-            var spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
+
             GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
-
-            if (Controller.settings.DebugVerbose)
-            {
-                Log.Message($"<color=red>CE</color>: <color=orange>{caster}</color> shooting <color=orange>{target.Thing}</color> <color=yellow>ShiftVecReport</color>\n" +
-                    $"1- aimingAccuracy:{report.aimingAccuracy}\n" +
-                    $"2- sightsEfficiency:{report.sightsEfficiency}\n" +
-                    $"3- maxRange:{report.maxRange}\n" +
-                    $"4- lightingShift:{report.lightingShift}\n" +
-                    $"5- spreadDegrees:{report.spreadDegrees}\n" +
-                    $"6- smokeDensity:{report.smokeDensity}\n" +
-                    $"7- swayDegrees:{report.swayDegrees}\n" +
-                    $"8- shotSpeed:{report.shotSpeed}\n" +
-                    $"9- shotDist:{report.shotDist}\n");
-            }
             return report;
         }
 
@@ -683,16 +671,18 @@ namespace CombatExtended
              * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
              */
             LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
-
             pelletMechanicsOnly = false;
             numShotsFired++;
-            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            if (ShooterPawn != null)
             {
-                CompAmmo?.TryStartReload();
-            }
-            if (CompReloadable != null)
-            {
-                CompReloadable.UsedOnce();
+                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+                {
+                    CompAmmo?.TryStartReload();
+                }
+                if (CompReloadable != null)
+                {
+                    CompReloadable.UsedOnce();
+                }
             }
             return true;
         }
