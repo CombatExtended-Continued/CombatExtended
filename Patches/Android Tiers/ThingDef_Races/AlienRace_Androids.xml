@@ -117,6 +117,7 @@
 				  defName="Android3Tier" or
 				  defName="Android4Tier" or
 				  defName="Android5Tier" or
+				  defName="M8Mech" or
 				  defName="M7Mech"
 				  ]</xpath>
 				  <value>
@@ -132,6 +133,7 @@
 				  defName="Android3Tier" or
 				  defName="Android4Tier" or
 				  defName="Android5Tier" or
+				  defName="M8Mech" or
 				  defName="M7Mech"
 				  ]/comps</xpath>
 				  <value>
@@ -157,10 +159,13 @@
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]/statBases</xpath>
 				  <value>
-				    <MeleeDodgeChance>0.85</MeleeDodgeChance>
-					<MeleeCritChance>0.85</MeleeCritChance>
-					<MeleeParryChance>0.85</MeleeParryChance>
-					<SmokeSensitivity>0.1</SmokeSensitivity>
+				    <MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.5</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+					<SmokeSensitivity>0.5</SmokeSensitivity>
+					<AimingAccuracy>0.5</AimingAccuracy>
+					<CarryWeight>30</CarryWeight>
+					<CarryBulk>15</CarryBulk>
 				  </value>
 				</li>
 				<!--0.5mm Steel-->
@@ -176,6 +181,13 @@
 				  <value>
 				    <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
 				  </value>
+				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>0.9</baseBodySize>
+					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
@@ -223,11 +235,14 @@
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]/statBases</xpath>
 				  <value>
-				    <MeleeDodgeChance>0.95</MeleeDodgeChance>
-					<MeleeCritChance>0.95</MeleeCritChance>
-					<MeleeParryChance>0.95</MeleeParryChance>
-					<Suppressability>0.10</Suppressability>
-					<SmokeSensitivity>0.05</SmokeSensitivity>
+				    <MeleeDodgeChance>0.8</MeleeDodgeChance>
+					<MeleeCritChance>0.8</MeleeCritChance>
+					<MeleeParryChance>0.8</MeleeParryChance>
+					<Suppressability>0.15</Suppressability>
+					<AimingAccuracy>0.66</AimingAccuracy>
+					<SmokeSensitivity>0.25</SmokeSensitivity>
+					<CarryWeight>40</CarryWeight>
+					<CarryBulk>20</CarryBulk>
 				  </value>
 				</li>
 				<!--1mm Steel-->
@@ -284,16 +299,24 @@
 					</tools>
 				  </value>
 				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>1</baseBodySize>
+					</value>
+				</li>
 				
 				<!--T3-->
 				
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]/statBases</xpath>
 				  <value>
-				    <MeleeDodgeChance>1</MeleeDodgeChance>
+					<NightVisionEfficiency>0.2</NightVisionEfficiency>
+				    	<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1.1</MeleeCritChance>
 					<MeleeParryChance>1.1</MeleeParryChance>
-					<Suppressability>0.10</Suppressability>
+					<Suppressability>0.2</Suppressability>
 					<SmokeSensitivity>0</SmokeSensitivity>
 				  </value>
 				</li>
@@ -357,10 +380,11 @@
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]/statBases</xpath>
 				  <value>
-				    <MeleeDodgeChance>1.2</MeleeDodgeChance>
+					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+				    	<MeleeDodgeChance>1.2</MeleeDodgeChance>
 					<MeleeCritChance>1.2</MeleeCritChance>
 					<MeleeParryChance>1.2</MeleeParryChance>
-					<Suppressability>0.25</Suppressability>
+					<Suppressability>0.3</Suppressability>
 					<SmokeSensitivity>0</SmokeSensitivity>
 				  </value>
 				</li>
@@ -423,10 +447,14 @@
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/statBases</xpath>
 				  <value>
+					<NightVisionEfficiency>0.6</NightVisionEfficiency>
 				    <MeleeDodgeChance>1.25</MeleeDodgeChance>
 					<MeleeCritChance>1.25</MeleeCritChance>
 					<MeleeParryChance>1.25</MeleeParryChance>
 					<SmokeSensitivity>0</SmokeSensitivity>
+					<Suppressability>0.2</Suppressability>
+					<CarryWeight>100</CarryWeight>
+					<CarryBulk>80</CarryBulk>
 				  </value>
 				</li>
 				<!--80% Power armor Equivalent : They can't wear armor in the first place-->
@@ -443,6 +471,21 @@
 				    <ArmorRating_Blunt>36</ArmorRating_Blunt>
 				  </value>
 				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2</baseBodySize>
+					</value>
+				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.5</baseHealthScale>
+					</value>
+				</li>
+
 				<!--T5 melee fist attacks are extremely strong.-->
 				<li Class="PatchOperationReplace">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/tools</xpath>
@@ -453,10 +496,10 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>45</power>
-						<cooldownTime>2.5</cooldownTime>
+						<power>40</power>
+						<cooldownTime>2.4</cooldownTime>
 						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>20.00</armorPenetrationBlunt>
+						<armorPenetrationBlunt>24.00</armorPenetrationBlunt>
 					  </li>
 					  
 					  <li Class="CombatExtended.ToolCE">
@@ -464,10 +507,10 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>45</power>
-						<cooldownTime>2.5</cooldownTime>
+						<power>40</power>
+						<cooldownTime>2.4</cooldownTime>
 						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>20.00</armorPenetrationBlunt>
+						<armorPenetrationBlunt>24.00</armorPenetrationBlunt>
 					  </li>
 					  
 					  <li Class="CombatExtended.ToolCE">
@@ -475,23 +518,88 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>7</power>
+						<power>10</power>
 						<cooldownTime>2.24</cooldownTime>
 						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+						<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 					  </li>
 					</tools>
 				  </value>
 				</li>
+
+				<!--M8 Mech-->
+				<li Class="PatchOperationAdd">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M8Mech"]/statBases</xpath>
+				  <value>
+					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+				    <MeleeDodgeChance>1.0</MeleeDodgeChance>
+					<MeleeCritChance>1.0</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
+					<SmokeSensitivity>0</SmokeSensitivity>
+					<CarryBulk>50</CarryBulk>
+				  </value>
+				</li>
+				<!--150% Power Armor : brings it more in line with centipede armor rating ratio-->
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M8Mech"]/statBases/ArmorRating_Sharp</xpath>
+				  <value>
+				    <ArmorRating_Sharp>24</ArmorRating_Sharp>
+				  </value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M8Mech"]/statBases/ArmorRating_Blunt</xpath>
+				  <value>
+				    <ArmorRating_Blunt>60</ArmorRating_Blunt>
+				  </value>
+				</li>
+				<!--13ms/50kg. Body scale 5.2-->
+				<li Class="PatchOperationReplace">
+				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M8Mech"]/tools</xpath>
+				  <value>
+				    <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>80</power>
+						<cooldownTime>3.07</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>48.25</armorPenetrationBlunt>
+					  </li>
+					  
+					  <li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>80</power>
+						<cooldownTime>3.07</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>48.25</armorPenetrationBlunt>
+					  </li>
+					</tools>
+				  </value>
+				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M8Mech"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>6</baseHealthScale>
+					</value>
+				</li>
+
 				<!--M7 Mech-->
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/statBases</xpath>
 				  <value>
-				    <MeleeDodgeChance>1.25</MeleeDodgeChance>
-					<MeleeCritChance>1.25</MeleeCritChance>
-					<MeleeParryChance>1.25</MeleeParryChance>
+					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+				    	<MeleeDodgeChance>1.0</MeleeDodgeChance>
+					<MeleeCritChance>1.0</MeleeCritChance>
+					<MeleeParryChance>1.0</MeleeParryChance>
 					<SmokeSensitivity>0</SmokeSensitivity>
-					<CarryBulk>40</CarryBulk>
+					<CarryBulk>50</CarryBulk>
 				  </value>
 				</li>
 				<!--150% Power Armor : brings it more in line with centipede armor rating ratio-->
@@ -518,10 +626,10 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>88</power>
+						<power>80</power>
 						<cooldownTime>3.07</cooldownTime>
 						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>42.25</armorPenetrationBlunt>
+						<armorPenetrationBlunt>48.25</armorPenetrationBlunt>
 					  </li>
 					  
 					  <li Class="CombatExtended.ToolCE">
@@ -529,13 +637,20 @@
 						<capacities>
 						  <li>Blunt</li>
 						</capacities>
-						<power>88</power>
+						<power>80</power>
 						<cooldownTime>3.07</cooldownTime>
 						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-						<armorPenetrationBlunt>42.25</armorPenetrationBlunt>
+						<armorPenetrationBlunt>48.25</armorPenetrationBlunt>
 					  </li>
 					</tools>
 				  </value>
+				</li>
+
+		        	<li Class="PatchOperationReplace">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>6</baseHealthScale>
+					</value>
 				</li>
 				
 			  </operations>
