@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Android tiers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Mutant Leather -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Tainted_Skin"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Tainted_Skin"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Tainted_Skin"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.02</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>
