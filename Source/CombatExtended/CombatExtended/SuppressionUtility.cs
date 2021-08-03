@@ -131,7 +131,7 @@ namespace CombatExtended
             }
 
             // Avoid bullets and other danger source
-            cellRating -= dangerTracker.DangerAt(cell) * 3;
+            cellRating -= dangerTracker.DangerAt(cell) * 4;
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))

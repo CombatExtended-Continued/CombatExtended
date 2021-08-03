@@ -12,6 +12,7 @@ namespace CombatExtended
         private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 140;
         private const int DANGER_TICKS_MAX = 800;
+        private const float DANGER_BULLET_MAX_DIST = 40f;
 
         private const float WEIGHTS_DIG = 0.8f;
         private const float WEIGHTS_COL = 0.5f;
@@ -54,13 +55,13 @@ namespace CombatExtended
             dangerArray = new int[map.cellIndices.NumGridCells];
         }
 
-        public void Notify_BulletAt(IntVec3 pos)
+        public void Notify_BulletAt(IntVec3 pos, float distance)
         {
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 cell = pos + AdjCells[i];
                 if (cell.InBounds(map))
-                    IncreaseAt(cell, (int)(DANGER_TICKS_BULLET_STEP * AdjWeights[i]));
+                    IncreaseAt(cell, (int)((DANGER_TICKS_BULLET_STEP * AdjWeights[i]) * Mathf.Max(DANGER_BULLET_MAX_DIST - distance, 0) / DANGER_BULLET_MAX_DIST));
             }
             if (Controller.settings.DebugMuzzleFlash) FLashCell(pos);
         }

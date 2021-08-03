@@ -915,8 +915,9 @@ namespace CombatExtended
                     }
                 }
             }
-            if (shotHeight < 2.0f && originInt.DistanceTo(positionInt) > 3)
-                DangerTracker?.Notify_BulletAt(Position);
+            float distToOrigin = originInt.DistanceTo(positionInt);
+            if (shotHeight < 2.0f && distToOrigin > 3)
+                DangerTracker?.Notify_BulletAt(Position, distToOrigin);
         }
 
         /// <summary>
