@@ -328,8 +328,7 @@ namespace CombatExtended
             if (inventory != null)
             {
                 inventory.Notify_LoadoutUpdated();
-                if (inventory.ForcedLoadoutUpdate)
-                    inventory.ForcedLoadoutUpdate = job != null;
+                inventory.ForcedLoadoutUpdate = job != null;
             }
             return job;
         }
