@@ -79,18 +79,9 @@ namespace CombatExtended
 
         public float DangerAt(IntVec3 pos)
         {
-            float value = 0;
-            float part;
-            for (int i = 0; i < 9; i++)
-            {
-                IntVec3 cell = pos + AdjCells[i];
-                if (cell.InBounds(map))
-                {
-                    part = (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(cell)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / DANGER_TICKS;
-                    value += part * AdjWeights[i] / WEIGHTSSUM;
-                }
-            }
-            return value;
+            if (pos.InBounds(map))
+                return (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(pos)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / DANGER_TICKS;
+            return 0f;
         }
 
         public float DangerAt(int index)
@@ -115,7 +106,7 @@ namespace CombatExtended
                 if (cell.InBounds(map))
                 {
                     float value = DangerAt(cell);
-                    map.debugDrawer.FlashCell(cell, value, $"{value}");
+                    if (value > 0f) map.debugDrawer.FlashCell(cell, value, $"{value}");
                 }
             }
         }
