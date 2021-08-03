@@ -100,8 +100,8 @@ def makePublicizer(p, verbose):
         quiet = "-q" if verbose < 5 else ""
         cwd = os.getcwd()
         os.chdir(p)
-        downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip")
-        downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip")
+        downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip", verbose=verbose)
+        downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip", verbose=verbose)
         os.system(f"unzip {quiet} -o {tdir}/downloads/mono.cecil.zip -d .")
         os.system(f"unzip {quiet} -o {tdir}/downloads/mono.options.zip -d .")
         os.system("cp lib/net40/*dll .")
