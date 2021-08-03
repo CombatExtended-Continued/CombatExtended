@@ -18,6 +18,15 @@ namespace CombatExtended
         private float density;
         private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
 
+        private DangerTracker _dangerTracker = null;
+        private DangerTracker DangerTracker
+        {
+            get
+            {
+                return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
+            }
+        }
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             updateTickOffset = Rand.Range(0, UpdateIntervalTicks);
@@ -71,6 +80,8 @@ namespace CombatExtended
                 SpreadToAdjacentCells();
                 ApplyHediffs();
             }
+            if (this.IsHashIntervalTick(120))
+                DangerTracker?.Notify_SmokeAt(Position);
 
             base.Tick();
         }
