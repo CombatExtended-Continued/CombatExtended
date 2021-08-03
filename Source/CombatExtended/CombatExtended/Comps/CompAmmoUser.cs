@@ -485,7 +485,7 @@ namespace CombatExtended
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
             {
-                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !(parent is Pawn pawn && pawn.IsColonist)))
+                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !Holder.IsColonist))
                 {
                     Holder.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
                     return;
@@ -493,6 +493,8 @@ namespace CombatExtended
                 IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
                 foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo && supportedAmmo.Contains(ammo.AmmoDef)))
                 {
+                    if (Holder.IsColonist && !thing.Position.AdjacentTo8WayOrInside(Holder))
+                        continue;
                     if (CompInventory.CanFitInInventory(thing, out int count))
                     {
                         Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, thing);
@@ -504,6 +506,7 @@ namespace CombatExtended
                     }
                 }
             }
+            CompInventory?.SwitchToNextViableWeapon(true, !Holder.IsColonist, stopJob: false);
         }
 
         public void LoadAmmo(Thing ammo = null)
