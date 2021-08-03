@@ -7,93 +7,72 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 			
-			<!-- Add backpacks to list of allowed apparel for Lion race -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/alienRace/raceRestriction/whiteApparelList</xpath>
-				<value>
-					<li>Apparel_Backpack</li>
-				</value>
-			</li>
-			
-			<!-- Spawn backpacks for selected Lion pawntypes -->
+		<!-- Add backpacks to list of allowed apparel for Lion race -->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Lion"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			<value>
+				<li>Apparel_Backpack</li>
+			</value>
+		</li>
+		
+		<!-- Spawn backpacks for selected Lion pawntypes -->
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/PawnKindDef[
-					defName="LionColonist" or
-					defName="LionCommando" or
-					defName="LionCommandoElite" or
-					defName="LionHunter" or
-					defName="LionPackLeader" or
-					defName="LionRecruit" or
-					defName="LionSecurityGuard" or
-					defName="LionTrader"
-				]</xpath>
-				<value>
-					<apparelRequired>
-						<li>Apparel_Backpack</li>
-					</apparelRequired>
-				</value>
-			</li>
-			
-			<!-- Reduce max Silver carried by Military Lion pawns (original mod allowed them to have up to 20k silver coins, which weights over 100 kgs and prevents other inventory items from being spawned) -->
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/PawnKindDef[@Name="LionMilBase"]/inventoryOptions/subOptionsChooseOne/li[thingDef="Silver"]/countRange/max</xpath>
-				<value>
-					<max>200</max>
-				</value>
-			</li>
-			
-			<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Lion pawntypes -->
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-					defName="LionRefugee" or
-					defName="LionSlave"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>2</min>
-							<max>4</max>
-						</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-					defName="LionColonist" or
-					defName="LionCommando" or
-					defName="LionCommandoElite" or
-					defName="LionHunter" or
-					defName="LionPackLeader" or
-					defName="LionRecruit" or
-					defName="LionSecurityGuard" or
-					defName="LionTrader"
-				]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-						<primaryMagazineCount>
-							<min>6</min>
-							<max>8</max>
-						</primaryMagazineCount>
-						<sidearms>
-							<li>
-								<generateChance>1</generateChance>
-								<magazineCount>
-									<min>2</min>
-									<max>3</max>
-								</magazineCount>	
-								<weaponTags>
-									<li>CE_Sidearm</li>
-								</weaponTags>
-							</li>
-						</sidearms>
-					</li>
-				</value>
-			</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/PawnKindDef[
+				defName="LionColonist" or
+				defName="LionCommando" or
+				defName="LionCommandoElite" or
+				defName="LionHunter" or
+				defName="LionPackLeader" or
+				defName="LionRecruit" or
+				defName="LionSecurityGuard" or
+				defName="LionTrader"
+			]</xpath>
+			<value>
+				<apparelRequired>
+					<li>Apparel_Backpack</li>
+				</apparelRequired>
+			</value>
+		</li>
+		
+		<!-- Spawn different combinations of primary ammo, secondary weapon and ammo for various Lion pawntypes -->
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[@Name="LionCivBase"]</xpath>
+			<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>4</max>
+					</primaryMagazineCount>
+				</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[@Name="LionMilBase"]</xpath>
+			<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>5</min>
+						<max>7</max>
+					</primaryMagazineCount>
+					<sidearms>
+						<li>
+							<generateChance>0.5</generateChance>
+							<magazineCount>
+								<min>2</min>
+								<max>3</max>
+							</magazineCount>	
+							<weaponTags>
+								<li>CE_Sidearm</li>
+							</weaponTags>
+						</li>
+					</sidearms>
+				</li>
+			</value>
+		</li>
 
 		</operations>
 		</match>
