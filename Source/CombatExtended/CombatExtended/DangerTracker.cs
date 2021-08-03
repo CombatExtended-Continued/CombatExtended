@@ -12,7 +12,7 @@ namespace CombatExtended
         private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 140;
         private const int DANGER_TICKS_MAX = 800;
-        private const float DANGER_BULLET_MAX_DIST = 40f;
+        private const float DANGER_BULLET_MAX_DIST = 20f;
 
         private const float WEIGHTS_DIG = 0.8f;
         private const float WEIGHTS_COL = 0.5f;
