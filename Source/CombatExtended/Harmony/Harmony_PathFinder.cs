@@ -71,11 +71,11 @@ namespace CombatExtended.HarmonyCE
 
         private static int GetDangerAt(int index)
         {
-            int value = (int)dangerTracker.DangerAt(index) * 800;
+            int value = (int)dangerTracker.DangerAt(index) * 4000;
             if (crouching)
                 value /= 2;
-            if (combaten)
-                value += (int)lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 400;
+            if (combaten && lightingTracker.IsNight)
+                value += (int)lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 2000;
             return value;
         }
     }

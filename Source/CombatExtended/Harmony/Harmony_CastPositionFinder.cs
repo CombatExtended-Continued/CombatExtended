@@ -38,7 +38,7 @@ namespace CombatExtended.HarmonyCE
             {
                 if (dangerTracker != null)
                 {
-                    __result *= Mathf.Max(1 - dangerTracker.DangerAt(c), 0.5f);
+                    __result -= dangerTracker.DangerAt(c) * 4;
                     __result *= 1f - lightingTracker.CombatGlowAt(c) / 2f;
                 }
             }
