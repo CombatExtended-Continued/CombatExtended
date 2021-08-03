@@ -916,7 +916,7 @@ namespace CombatExtended
                 }
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
-            if (shotHeight < 2.0f && distToOrigin > 3)
+            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
                 DangerTracker?.Notify_BulletAt(Position, distToOrigin);
         }
 
