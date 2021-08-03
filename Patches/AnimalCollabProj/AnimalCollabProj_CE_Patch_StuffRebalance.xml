@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>AnimalCollabProj</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- Clear these out all at once so we can just replace them easily -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="Leather_ACP" or 
+					defName="ACPFerretSilk" or 
+					defName="ACPBDireWolfWool" or 
+					defName="ACPSpidersilk" or 
+					defName="ACPLlamaWool" or 
+					@Name="ACPWoolBase"
+				]/statBases/StuffPower_Armor_Sharp |
+				Defs/ThingDef[
+					defName="Leather_ACP" or 
+					defName="ACPFerretSilk" or 
+					defName="ACPBDireWolfWool" or 
+					defName="ACPSpidersilk" or 
+					defName="ACPLlamaWool" or 
+					@Name="ACPWoolBase"
+				]/statBases/StuffPower_Armor_Blunt</xpath>
+				<success>Always</success>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Leather_ACP"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.33</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.165</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ACPFerretSilk"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.12</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ACPBDireWolfWool"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.35</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.17</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ACPSpidersilk"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.30</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.14</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ACPLlamaWool"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.20</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="ACPWoolBase"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+					<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

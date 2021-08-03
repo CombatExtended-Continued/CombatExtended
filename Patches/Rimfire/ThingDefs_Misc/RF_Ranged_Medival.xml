@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rimfire 2.5</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!-- ========== Short crossbow ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RF_ShortCrossbow</defName>
+				<statBases>
+					<Mass>3.5</Mass>
+					<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.25</ShotSpread>
+					<SwayFactor>1.35</SwayFactor>
+					<Bulk>10</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+					<warmupTime>2.6</warmupTime>
+					<range>16</range>
+					<soundCast>Interact_BeatFire</soundCast>
+					<ejectsCasings>false</ejectsCasings>
+				</Properties>
+				<AmmoUser>
+					<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2</reloadTime>
+				</AmmoUser>
+				<FireModes/>
+				<weaponTags>
+					<li>CE_AI_Rifle</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RF_ShortCrossbow"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>limb</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>nock</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.075</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

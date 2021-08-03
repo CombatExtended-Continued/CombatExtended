@@ -49,7 +49,19 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_FlameBreath"]/projectile</xpath>
+				<xpath>Defs/ThingDef[defName="MM_AcidicBreath"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>20</speed>
+						<damageDef>MM_ToxicBreath</damageDef>
+						<damageAmountBase>2</damageAmountBase>
+						<flyOverhead>false</flyOverhead>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/VFECore.ExpandableProjectileDef[defName="MM_FlameBreathAnimated"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>40</speed>
@@ -58,18 +70,6 @@
 						<explosionRadius>1.1</explosionRadius>
 						<ai_IsIncendiary>true</ai_IsIncendiary>
 						<soundExplode>Interact_Ignite</soundExplode>
-					</projectile>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_PoisonBreath"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>20</speed>
-						<damageDef>MM_ToxicBreath</damageDef>
-						<damageAmountBase>2</damageAmountBase>
-						<flyOverhead>false</flyOverhead>
 					</projectile>
 				</value>
 			</li>

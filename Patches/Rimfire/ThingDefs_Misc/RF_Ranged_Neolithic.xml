@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rimfire 2.5</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!-- ========== Atlatl ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RF_Atlatl</defName>
+				<statBases>
+					<Mass>0.8</Mass>
+					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					<SightsEfficiency>0.6</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>2</SwayFactor>
+					<Bulk>0.8</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Pilum_Fired</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>16</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>2</reloadTime>
+					<ammoSet>AmmoSet_Javelins</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<weaponTags>
+					<li>CE_Pila</li>
+				</weaponTags>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RF_Atlatl"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.6</cooldownTime>
+							<armorPenetration>0.102</armorPenetration>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>2.3</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetration>0.241</armorPenetration>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>
