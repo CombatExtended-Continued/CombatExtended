@@ -490,30 +490,31 @@ namespace CombatExtended
                     Holder.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
                     return;
                 }
-                IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
-                foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo && supportedAmmo.Contains(ammo.AmmoDef)))
+                if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
                 {
-                    bool adjAmmo = false;
-                    if (thing.Position.AdjacentTo8WayOrInside(Holder))
-                        adjAmmo = true;
-                    else if (Holder.IsColonist)
-                        continue;
-                    if (CompInventory.CanFitInInventory(thing, out int count))
+                    IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+                    foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
+                                                && supportedAmmo.Contains(ammo.AmmoDef)
+                                                && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
                     {
-                        if (!adjAmmo)
+                        if (CompInventory.CanFitInInventory(thing, out int count))
                         {
-                            Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, thing);
-                            pickupAmmo.count = count;
-                            Holder.jobs.StartJob(pickupAmmo, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
+                            Thing ammo = thing;
+                            if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
+                            {
+                                Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
+                                pickupAmmo.count = count;
+                                Holder.jobs.StartJob(pickupAmmo, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
+                            }
+                            else
+                            {
+                                ammo = thing.SplitOff(count);
+                                CompInventory.container.TryAddOrTransfer(ammo);
+                            }
+                            Job reload = TryMakeReloadJob();
+                            Holder.jobs.jobQueue.EnqueueFirst(reload);
+                            return;
                         }
-                        else
-                        {
-                            Thing ammo = thing.SplitOff(count);
-                            CompInventory.container.TryAddOrTransfer(ammo);
-                        }
-                        Job reload = TryMakeReloadJob();
-                        Holder.jobs.jobQueue.EnqueueFirst(reload);
-                        return;
                     }
                 }
             }
