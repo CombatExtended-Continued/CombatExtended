@@ -79,8 +79,7 @@ namespace CombatExtended
 
         public float DangerAt(IntVec3 pos)
         {
-            if (pos.InBounds(map))
-                return (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(pos)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / DANGER_TICKS;
+            if (pos.InBounds(map)) return (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(pos)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / DANGER_TICKS;
             return 0f;
         }
 
