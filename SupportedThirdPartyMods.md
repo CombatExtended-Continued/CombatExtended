@@ -52,6 +52,7 @@ A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
 Alpha Ships |
+Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|

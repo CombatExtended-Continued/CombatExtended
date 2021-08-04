@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ancient Blade Cyborg</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_BarracudaHMG" or defName="Gun_ShrimpAutomaticRifle"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+ </li>
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_BarracudaHMG</defName>
+    <statBases>
+      <Mass>20.12</Mass>
+      <RangedWeapon_Cooldown>0.96</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>1.54</SwayFactor>
+      <Bulk>22.7</Bulk>
+      <WorkToMake>70000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>200</Steel>
+      <WoodLog>10</WoodLog>
+      <ComponentIndustrial>10</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>1.33</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>1.4</warmupTime>
+      <range>68</range>
+      <minRange>1.9</minRange>
+      <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+      <burstShotCount>10</burstShotCount>
+      <soundCast>Shot_BarracudaHMG</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+      </targetParams>
+      <recoilPattern>Mounted</recoilPattern>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>75</magazineSize>
+      <reloadTime>7.8</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <researchPrerequisite>GasOperation</researchPrerequisite>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+ </li>
+
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_BarracudaHMG"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.35,1.18</DrawSize>
+        <DrawOffset>0.13,-0.03</DrawOffset>
+      </li>
+    </value>
+ </li>
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ShrimpAutomaticRifle</defName>
+    <statBases>
+      <Mass>2.86</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.29</SwayFactor>
+      <Bulk>8.03</Bulk>
+      <WorkToMake>30000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>40</Steel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+      <Chemfuel>10</Chemfuel>
+    </costList>
+    <Properties>
+      <recoilAmount>1.28</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+      <warmupTime>0.75</warmupTime>
+      <range>30</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <soundCast>Shot_MachinePistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>30</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_45ACP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+ </li>
+
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_ShrimpAutomaticRifle"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.16,1.25</DrawSize>
+        <DrawOffset>0.05,-0.07</DrawOffset>
+      </li>
+    </value>
+ </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
