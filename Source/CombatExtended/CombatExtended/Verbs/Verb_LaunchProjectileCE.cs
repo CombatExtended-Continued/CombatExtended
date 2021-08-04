@@ -795,7 +795,7 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
-            if (ShooterPawn != null && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
             {
                 goodDest = IntVec3.Invalid;
                 return false;
@@ -820,9 +820,12 @@ namespace CombatExtended
                     continue;
                 if (Vector3.Distance(source, thing.Position.ToVector3()) < interceptor.Props.radius + 1)
                     continue;
-                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) > interceptor.Props.radius)
+                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
+                float d2 = Vector3.Distance(target, thing.Position.ToVector3());
+                if (d1 <= interceptor.Props.radius + 1 && d2 <= interceptor.Props.radius + 1)
                     continue;
-                return true;
+                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius + 1)
+                    return true;
             }
             return false;
         }
