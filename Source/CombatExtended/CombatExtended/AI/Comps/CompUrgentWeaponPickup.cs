@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace CombatExtended.AI
 {
-    public class CompWeaponPickup : ICompTactics
+    public class CompUrgentWeaponPickup : ICompTactics
     {
         private const int BULLETIMPACT_COOLDOWN = 800;
 
@@ -25,7 +25,7 @@ namespace CombatExtended.AI
 
         public override int Priority => 20;
 
-        public CompWeaponPickup()
+        public CompUrgentWeaponPickup()
         {
         }
 
