@@ -795,11 +795,12 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
-            if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
-            {
-                goodDest = IntVec3.Invalid;
-                return false;
-            }
+            // DISABLED: reason is testing a better alternative..
+            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            //{
+            //    goodDest = IntVec3.Invalid;
+            //    return false;
+            //}
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;

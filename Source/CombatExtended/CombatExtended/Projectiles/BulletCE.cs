@@ -8,6 +8,7 @@ using Verse.Sound;
 using RimWorld;
 using UnityEngine;
 using HarmonyLib;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -171,6 +172,8 @@ namespace CombatExtended
                         {
                             thingList[j].Notify_BulletImpactNearby(impactData);
                         }
+                        if (thingList[j] is Pawn pawn)
+                            pawn.GetTacticalManager()?.Notify_BulletImpactNearby();
                     }
                 }
             }
