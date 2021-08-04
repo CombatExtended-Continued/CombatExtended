@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class ="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--============= Helmets =============-->
+				<!--Wendy Exfil Ballistic-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_EXFILBallisticHelmet_Tan"/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+					
+				</li>
+				<!--M1 Helmet-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_M1Helmet_Vietnam"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.375</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.143</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.386</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_M1Helmet_Vietnam"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!--3M F70-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNApparel_3MF70HighCut_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.375</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.143</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.386</ArmorRating_Heat>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
+
