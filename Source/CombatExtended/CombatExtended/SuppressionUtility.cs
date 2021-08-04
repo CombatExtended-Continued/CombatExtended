@@ -122,7 +122,7 @@ namespace CombatExtended
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating += 2f;
+                cellRating += 4f;
             }
             else
             {
@@ -130,11 +130,25 @@ namespace CombatExtended
                 Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
                 IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
                 Thing cover = coverCell.GetCover(pawn.Map);
-                cellRating += GetCoverRating(cover);
+                cellRating += GetCoverRating(cover) * 2;
             }
 
             // Avoid bullets and other danger source
             cellRating -= dangerTracker.DangerAt(cell) * 4;
+
+            // better cover rating system
+            float coverLOSRating = 0;
+            foreach (IntVec3 pos in pawn.Map.PartialLineOfSights(cell, shooterPos))
+            {
+                Thing cover = pos.GetCover(pawn.Map);
+                if (cover == null)
+                    continue;
+                if (cover is Gas)
+                    coverLOSRating += 2;
+                else if (cover.def.Fillage == FillCategory.Partial)
+                    coverLOSRating += 4;
+            }
+            cellRating += Mathf.Min(coverLOSRating, 25);
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
@@ -150,7 +164,7 @@ namespace CombatExtended
             {
                 CompProjectileInterceptor interceptor = interceptors[i];
                 if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                    cellRating += 20;
+                    cellRating += 10;
             }
             return cellRating;
         }
