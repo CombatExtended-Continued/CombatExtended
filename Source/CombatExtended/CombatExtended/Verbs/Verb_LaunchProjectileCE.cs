@@ -818,6 +818,8 @@ namespace CombatExtended
                 CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
                 if (!interceptor.Active)
                     continue;
+                if (Vector3.Distance(source, thing.Position.ToVector3()) < interceptor.Props.radius + 1)
+                    continue;
                 if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) > interceptor.Props.radius)
                     continue;
                 return true;
