@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CombatExtended.AI;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -101,7 +102,7 @@ namespace CombatExtended
                         pawn.mindState.mentalStateHandler.TryStartMentalState(CE_MentalStateDefOf.WanderConfused);
                     continue;
                 }
-
+                pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
                 var severity = InhalationPerSec * Mathf.Pow(density / MaxDensity, 2) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
             }

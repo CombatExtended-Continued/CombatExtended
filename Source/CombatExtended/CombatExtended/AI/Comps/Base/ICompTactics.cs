@@ -91,6 +91,10 @@ namespace CombatExtended.AI
             return null;
         }
 
+        public virtual void TickRarer()
+        {
+        }
+
         public virtual bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             return true;
