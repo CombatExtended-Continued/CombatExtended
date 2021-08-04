@@ -573,5 +573,38 @@ namespace CombatExtended
         }
 
         #endregion
+
+        public static float DistanceToSegment(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
+        {
+            float dx = lineEnd.x - lineStart.x;
+            float dz = lineEnd.z - lineStart.z;
+            if ((dx == 0) && (dz == 0))
+            {
+                closest = lineStart;
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+                return Mathf.Sqrt(dx * dx + dz * dz);
+            }
+            float t = ((point.x - lineStart.x) * dx + (point.z - lineStart.z) * dz) / (dx * dx + dz * dz);
+            if (t < 0)
+            {
+                closest = new Vector3(lineStart.x, 0, lineStart.z);
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+            }
+            else if (t > 1)
+            {
+                closest = new Vector3(lineEnd.x, 0, lineEnd.z);
+                dx = point.x - lineEnd.x;
+                dz = point.z - lineEnd.z;
+            }
+            else
+            {
+                closest = new Vector3(lineStart.x + t * dx, 0, lineStart.z + t * dz);
+                dx = point.x - closest.x;
+                dz = point.z - closest.z;
+            }
+            return Mathf.Sqrt(dx * dx + dz * dz);
+        }
     }
 }

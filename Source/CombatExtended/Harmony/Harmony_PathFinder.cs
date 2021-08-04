@@ -46,37 +46,39 @@ namespace CombatExtended.HarmonyCE
         /*
          * Search for the vairable that is initialized by the value from the avoid grid or search for
          * ((i > 3) ? num9 : num8) + num15;
+         * 
+         * DISABLED: reason is it need a bit more constant tuning but never the less the code is 100% working
          */
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
-        {
-            List<CodeInstruction> codes = instructions.ToList();
-            bool finished = false;
-            for (int i = 0; i < codes.Count; i++)
-            {
-                if (!finished)
-                {
-                    if (codes[i].opcode == OpCodes.Stloc_S && codes[i].operand is LocalBuilder builder1 && builder1.LocalIndex == 46)
-                    {
-                        finished = true;
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 43).MoveLabelsFrom(codes[i]).MoveBlocksFrom(codes[i]);
-                        yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PathFinder_FindPath), nameof(Harmony_PathFinder_FindPath.GetDangerAt)));
-                        yield return new CodeInstruction(OpCodes.Add);
-                    }
-                }
-                yield return codes[i];
-            }
-            if (finished)
-                Log.Message("CE: Patched pather!");
-        }
+        //public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+        //{
+        //    List<CodeInstruction> codes = instructions.ToList();
+        //    bool finished = false;
+        //    for (int i = 0; i < codes.Count; i++)
+        //    {
+        //        if (!finished)
+        //        {
+        //            if (codes[i].opcode == OpCodes.Stloc_S && codes[i].operand is LocalBuilder builder1 && builder1.LocalIndex == 46)
+        //            {
+        //                finished = true;
+        //                yield return new CodeInstruction(OpCodes.Ldloc_S, 43).MoveLabelsFrom(codes[i]).MoveBlocksFrom(codes[i]);
+        //                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PathFinder_FindPath), nameof(Harmony_PathFinder_FindPath.GetDangerAt)));
+        //                yield return new CodeInstruction(OpCodes.Add);
+        //            }
+        //        }
+        //        yield return codes[i];
+        //    }
+        //    if (finished)
+        //        Log.Message("CE: Patched pather!");
+        //}
 
-        private static int GetDangerAt(int index)
-        {
-            int value = (int)dangerTracker.DangerAt(index) * 4000;
-            if (crouching)
-                value /= 2;
-            if (combaten && lightingTracker.IsNight)
-                value += (int)lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 2000;
-            return value;
-        }
+        //private static int GetDangerAt(int index)
+        //{
+        //    int value = (int)dangerTracker.DangerAt(index) * 4000;
+        //    if (crouching)
+        //        value /= 2;
+        //    if (combaten && lightingTracker.IsNight)
+        //        value += (int)lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 2000;
+        //    return value;
+        //}
     }
 }
