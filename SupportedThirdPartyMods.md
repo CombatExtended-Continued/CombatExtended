@@ -52,6 +52,7 @@ A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
 Alpha Ships |
+Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
@@ -82,6 +83,7 @@ Cupro's Alloys	|
 CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
+Darkest Night SK Steam	|
 Darkest Rim: Core	|
 Defensive Machine Gun Turret Pack	|
 Devilstrand Colour Bundle   |
