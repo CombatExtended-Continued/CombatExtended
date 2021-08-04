@@ -795,12 +795,37 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
+            if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            {
+                goodDest = IntVec3.Invalid;
+                return false;
+            }
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
             }
             goodDest = IntVec3.Invalid;
+            return false;
+        }
+
+        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
+        {
+            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Thing thing = list[i];
+                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
+                if (!interceptor.Active)
+                    continue;
+                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
+                if (d1 < interceptor.Props.radius + 1)
+                    continue;
+                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
+                    return true;
+                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
+                    return true;
+            }
             return false;
         }
 

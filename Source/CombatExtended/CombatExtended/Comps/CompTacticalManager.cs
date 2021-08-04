@@ -195,11 +195,15 @@ namespace CombatExtended
             }
         }
 
+        private int _counter = 0;
+
         public override void CompTickRare()
         {
             base.CompTickRare();
             TryGiveTacticalJobs();
+            if (_counter++ % 2 == 0) TickRarer();
         }
+
 
         public void Notify_BeingTargetedBy(Pawn pawn)
         {
@@ -246,11 +250,41 @@ namespace CombatExtended
             }
         }
 
+        public T GetTacticalComp<T>() where T : ICompTactics
+        {
+            return (T)TacticalComps.FirstOrFallback(c => c is T, null);
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Collections.Look(ref _tacticalComps, "tacticalComps", LookMode.Deep);
-            this.ValidateComps();
+            try
+            {
+                Scribe_Collections.Look(ref _tacticalComps, "tacticalComps", LookMode.Deep);
+            }
+            catch (Exception er)
+            {
+                Log.Error($"CE: Error scribing {parent} {er}");
+            }
+            finally
+            {
+                this.ValidateComps();
+            }
+        }
+
+        private void TickRarer()
+        {
+            foreach (ICompTactics comp in TacticalComps)
+            {
+                try
+                {
+                    comp.TickRarer();
+                }
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Error ticking comp {comp.GetType()} with error {er}");
+                }
+            }
         }
 
         private void TryGiveTacticalJobs()
