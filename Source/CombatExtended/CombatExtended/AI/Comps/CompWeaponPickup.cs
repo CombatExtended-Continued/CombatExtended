@@ -56,6 +56,8 @@ namespace CombatExtended.AI
                 return;
             if (CompInventory?.SwitchToNextViableWeapon(false, true, false) ?? true)
                 return;
+            if (CompInventory.rangedWeaponList == null)
+                return;
             foreach (ThingWithComps thing in CompInventory.rangedWeaponList)
             {
                 CompAmmoUser compAmmo = thing.TryGetComp<CompAmmoUser>();
@@ -76,28 +78,29 @@ namespace CombatExtended.AI
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, resumeCurJobAfterwards: true);
                     return;
                 }
-                if (thing is ThingWithComps weapon)
-                {
-                    CompAmmoUser compAmmo = weapon.TryGetComp<CompAmmoUser>();
-                    if (compAmmo == null)
-                        continue;
-                    IEnumerable<AmmoDef> supportedAmmo = compAmmo.Props?.ammoSet?.ammoTypes?.Select(a => a.ammo) ?? null;
-                    if (supportedAmmo == null)
-                        continue;
-                    foreach (AmmoThing ammo in ammos)
-                    {
-                        if (!supportedAmmo.Contains(ammo.AmmoDef))
-                            continue;
-                        if (!Map.reachability.CanReach(SelPawn.positionInt, ammo, PathEndMode.InteractionCell, TraverseMode.NoPassClosedDoors))
-                            continue;
-                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
-                        job.count = Mathf.Min(ammo.stackCount, compAmmo.Props.magazineSize);
-                        SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
-                        job = JobMaker.MakeJob(JobDefOf.TakeInventory, weapon);
-                        SelPawn.jobs.jobQueue.EnqueueFirst(job);
-                        return;
-                    }
-                }
+                // TODO need more tunning
+                //if (thing is ThingWithComps weapon)
+                //{
+                //    CompAmmoUser compAmmo = weapon.TryGetComp<CompAmmoUser>();
+                //    if (compAmmo == null)
+                //        continue;
+                //    IEnumerable<AmmoDef> supportedAmmo = compAmmo.Props?.ammoSet?.ammoTypes?.Select(a => a.ammo) ?? null;
+                //    if (supportedAmmo == null)
+                //        continue;
+                //    foreach (AmmoThing ammo in ammos)
+                //    {
+                //        if (!supportedAmmo.Contains(ammo.AmmoDef))
+                //            continue;
+                //        if (!Map.reachability.CanReach(SelPawn.positionInt, ammo, PathEndMode.InteractionCell, TraverseMode.NoPassClosedDoors))
+                //            continue;
+                //        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
+                //        job.count = Mathf.Min(ammo.stackCount, compAmmo.Props.magazineSize);
+                //        SelPawn.jobs.StartJob(job, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
+                //        job = JobMaker.MakeJob(JobDefOf.TakeInventory, weapon);
+                //        SelPawn.jobs.jobQueue.EnqueueFirst(job);
+                //        return;
+                //    }
+                //}
             }
         }
     }
