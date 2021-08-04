@@ -42,6 +42,7 @@ namespace CombatExtended.AI
         public override void PostExposeData()
         {
             base.PostExposeData();
+            Scribe_Values.Look(ref lastBulletImpact, "lastBulletImpact", -1);
         }
 
         private void CheckPrimaryEquipment()
