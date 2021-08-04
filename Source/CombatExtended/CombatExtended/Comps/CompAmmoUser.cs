@@ -503,6 +503,10 @@ namespace CombatExtended
                                         && supportedAmmo.Contains(ammo.AmmoDef)
                                         && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
             {
+                if (!Holder.CanReserve(thing))
+                    continue;
+                if (!Holder.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                    continue;
                 if (CompInventory.CanFitInInventory(thing, out int count))
                 {
                     Thing ammo = thing;
