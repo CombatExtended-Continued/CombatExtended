@@ -795,7 +795,7 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
-            if (ShooterPawn != null && Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
             {
                 goodDest = IntVec3.Invalid;
                 return false;
