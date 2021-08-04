@@ -23,7 +23,8 @@ namespace CombatExtended.AI
         public override void TickRarer()
         {
             base.TickRarer();
-            if (ticks % 2 == 0) UpdateGasMask();
+            if (ticks % 2 == 0)
+                UpdateGasMask();
             ticks++;
         }
 

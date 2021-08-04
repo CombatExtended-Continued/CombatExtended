@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
             map = __instance.map;
             dangerTracker = __instance.map.GetDangerTracker();
             lightingTracker = __instance.map.GetLightingTracker();
-            combaten = traverseParms.pawn?.jobs?.curJob.def.alwaysShowWeapon ?? false;
+            combaten = traverseParms.pawn?.jobs?.curJob?.def.alwaysShowWeapon ?? false;
             var pawn = traverseParms.pawn;
             var comp = pawn?.TryGetComp<CompSuppressable>();
 
