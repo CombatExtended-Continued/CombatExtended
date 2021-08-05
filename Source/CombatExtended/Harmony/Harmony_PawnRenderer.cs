@@ -363,12 +363,12 @@ namespace CombatExtended.HarmonyCE
             {
                 if (rotation == Rot4.East)
                 {
-                    offset.x += 0.09f * multiplier;
+                    offset.x += 0.08f * multiplier;
                     offset.z -= 0.098f * multiplier;
                 }
                 else if (rotation == Rot4.West)
                 {
-                    offset.x -= 0.09f * multiplier;
+                    offset.x -= 0.08f * multiplier;
                     offset.z -= 0.098f * multiplier;
                 }
                 else if (rotation == Rot4.North)
