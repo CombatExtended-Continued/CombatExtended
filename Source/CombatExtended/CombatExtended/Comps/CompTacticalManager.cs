@@ -250,6 +250,21 @@ namespace CombatExtended
             }
         }
 
+        public void Notify_BulletImpactNearby()
+        {
+            foreach (ICompTactics comp in TacticalComps)
+            {
+                try
+                {
+                    comp.Notify_BulletImpactNearBy();
+                }
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Error running Notify_BulletImpactNearBy {comp.GetType()} with error {er}");
+                }
+            }
+        }
+
         public T GetTacticalComp<T>() where T : ICompTactics
         {
             return (T)TacticalComps.FirstOrFallback(c => c is T, null);

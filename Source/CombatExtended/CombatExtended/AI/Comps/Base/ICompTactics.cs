@@ -112,6 +112,10 @@ namespace CombatExtended.AI
         {
         }
 
+        public virtual void Notify_BulletImpactNearBy()
+        {
+        }
+
         public void ExposeData()
         {
             Scribe_References.Look(ref pawnInt, "pawnInt");
