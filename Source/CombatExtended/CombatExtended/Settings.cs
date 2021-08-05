@@ -22,6 +22,7 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
+        private bool crouchingAnimation = false;
 
         public bool ShowCasings => showCasings;
         public bool ShowTaunts => showTaunts;
@@ -30,7 +31,9 @@ namespace CombatExtended
         public bool MergeExplosions => mergeExplosions;
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
+        public bool CrouchingAnimation => crouchingAnimation;
         public bool ShowTacticalVests => showTacticalVests;
+
 
         public bool ShowTutorialPopup = true;
 
@@ -92,6 +95,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
+            Scribe_Values.Look(ref crouchingAnimation, "crouchingAnimation", false);
 
 #if DEBUG
             // Debug settings
@@ -137,7 +141,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
-
+            list.CheckboxLabeled("CE_Settings_CrouchingAnimation_Title".Translate(), ref crouchingAnimation, "CE_Settings_CrouchingAnimation_Desc".Translate());
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
             if (Current.Game == null)

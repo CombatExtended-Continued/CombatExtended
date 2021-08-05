@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 using CombatExtended.AI;
+using UnityEngine.UIElements;
 
 namespace CombatExtended
 {
@@ -29,6 +30,10 @@ namespace CombatExtended
 
         #region Fields
 
+        // --------------- Rendering helpers ---------------
+
+        public static CompSuppressable CurrentSuppressable = null;
+
         // --------------- Location calculations ---------------
 
         /*
@@ -36,6 +41,7 @@ namespace CombatExtended
          * That way if suppression stops coming from location A but keeps coming from location B the location will get updated without bouncing 
          * pawns or having to track fire coming from multiple locations
          */
+
         private int lastHelpRequestAt = -1;
 
         private IntVec3 suppressorLoc;
@@ -115,6 +121,21 @@ namespace CombatExtended
                 return !pawn.Position.InHorDistOf(SuppressorLoc, minSuppressionDist)
                     && !pawn.Downed
                     && !pawn.InMentalState;
+            }
+        }
+        private bool _crouchingCapableInit = false;
+        private bool _crouchingCapable = false;
+        private bool CrouchingCapable
+        {
+            get
+            {
+                if (!_crouchingCapableInit)
+                {
+                    Pawn pawn = parent as Pawn;
+                    _crouchingCapableInit = true;
+                    _crouchingCapable = pawn.RaceProps.Humanlike;
+                }
+                return _crouchingCapable;
             }
         }
 
@@ -210,7 +231,13 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
-
+            // used to enable check pawn graphics for crouching
+            if (CrouchingCapable && Controller.settings.CrouchingAnimation)
+            {
+                CurrentSuppressable = this;
+                CheckCrouchingGraphics();
+            }
+            else CurrentSuppressable = null;
             // Update suppressed tick counter and check for mental breaks
             if (!isSuppressed)
                 ticksHunkered = 0;
@@ -271,6 +298,22 @@ namespace CombatExtended
             {
                 lastHelpRequestAt = GenTicks.TicksGame;
                 SuppressionUtility.TryRequestHelp(parent as Pawn);
+            }
+        }
+
+
+        private int _lastSetDirty = -1;
+        private bool _crouching = false;
+
+        private void CheckCrouchingGraphics()
+        {
+            Pawn pawn = parent as Pawn;
+            bool couchingNow = pawn.IsCrouching();
+            if (couchingNow != _crouching && GenTicks.TicksGame - _lastSetDirty > 60)
+            {
+                _lastSetDirty = GenTicks.TicksGame;
+                _crouching = couchingNow;
+                pawn.drawer.renderer.graphics.SetAllGraphicsDirty();
             }
         }
 

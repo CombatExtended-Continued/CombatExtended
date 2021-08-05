@@ -23,6 +23,11 @@ namespace CombatExtended
         /// </summary>
         internal static FlagArray isMenuHiddenArray = new FlagArray(ushort.MaxValue);
 
+        // <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isCrouchingJob = new FlagArray(ushort.MaxValue);
+
         /// <summary>
         /// Used to create and initialize def related flags that are often checked but require more than 2 or 3 steps to caculate.
         /// Should be only called when all defs are loaded.
@@ -48,6 +53,10 @@ namespace CombatExtended
             // Process all weapons
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
                 ProcessWeapons(def);
+
+            // Process all weapons
+            foreach (JobDef def in DefDatabase<JobDef>.AllDefs.Where(d => d.HasModExtension<JobDefExtensionCE>()))
+                ProcessJob(def);
         }
 
         /// <summary>
@@ -117,6 +126,17 @@ namespace CombatExtended
         public static bool IsAOEWeapon(this ThingDef def)
         {
             return isAOEArray[def.index];
+        }
+
+
+        /// <summary>
+        /// Return wether this JobDef is a crouching job
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
+        public static bool IsCrouchingJob(this JobDef job)
+        {
+            return isCrouchingJob[job.index];
         }
 
         /// <summary>
@@ -224,6 +244,15 @@ namespace CombatExtended
                 || link.projectile?.thingClass == typeof(ProjectileCE_Explosive)
                 || link.projectile?.thingClass == typeof(Projectile_Explosive)
                 || (link.projectile?.comps?.Any(c => c.compClass == typeof(CompFragments) || c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+        }
+
+        /// <summary>
+        /// Process and check if this jobDef including crouching
+        /// </summary>
+        /// <param name="job">JobDef with JobDefExtensionCE</param>
+        private static void ProcessJob(JobDef job)
+        {
+            isCrouchingJob[job.index] = job.GetModExtension<JobDefExtensionCE>().isCrouchJob;
         }
     }
 }

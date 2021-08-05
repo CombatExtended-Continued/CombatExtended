@@ -350,6 +350,38 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
+        [HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt))]
+        internal static class Harmony_PawnRenderer_BaseHeadOffsetAt
+        {
+            public static void Postfix(PawnRenderer __instance, ref Vector3 __result, Rot4 rotation)
+            {
+                if (Controller.settings.CrouchingAnimation && __instance.pawn.IsCrouching())
+                    Offset(rotation, ref __result, 1.0f);
+            }
+
+            private static void Offset(Rot4 rotation, ref Vector3 offset, float multiplier = 1f)
+            {
+                if (rotation == Rot4.East)
+                {
+                    offset.x += 0.12f * multiplier;
+                    offset.z -= 0.08f * multiplier;
+                }
+                else if (rotation == Rot4.West)
+                {
+                    offset.x -= 0.12f * multiplier;
+                    offset.z -= 0.08f * multiplier;
+                }
+                else if (rotation == Rot4.North)
+                {
+                    offset.z -= 0.1f * multiplier;
+                }
+                else if (rotation == Rot4.South)
+                {
+                    offset.z -= 0.07f * multiplier;
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(PawnRenderer), "DrawEquipmentAiming")]
         internal static class Harmony_PawnRenderer_DrawEquipmentAiming
         {
