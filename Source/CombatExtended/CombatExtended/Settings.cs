@@ -22,7 +22,7 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
-        private bool crouchingAnimation = false;
+        private bool crouchingAnimation = true;
 
         public bool ShowCasings => showCasings;
         public bool ShowTaunts => showTaunts;
@@ -95,7 +95,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
-            Scribe_Values.Look(ref crouchingAnimation, "crouchingAnimation", false);
+            Scribe_Values.Look(ref crouchingAnimation, "crouchingAnimation", true);
 
 #if DEBUG
             // Debug settings
