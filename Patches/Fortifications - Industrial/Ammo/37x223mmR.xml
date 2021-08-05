@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Fortifications - Industrial</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>Ammo37x223mmR</defName>
+					<label>37x223mmR</label>
+					<parent>AmmoShells</parent>
+					<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_37x223mmR</defName>
+					<label>37x223mmR</label>
+					<ammoTypes>
+						<Ammo_37x223mmR_HE>Bullet_37x223mmR_HE</Ammo_37x223mmR_HE>
+						<Ammo_37x223mmR_AP>Bullet_37x223mmR_AP</Ammo_37x223mmR_AP>
+					</ammoTypes>
+					<isMortarAmmoSet>true</isMortarAmmoSet>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo37x223mmRBase" ParentName="SmallAmmoBase" Abstract="True">
+					<description>Medium caliber cannon shell used by light, quick-firing anti-tank guns.</description>
+					<statBases>
+						<Mass>1.305</Mass>
+						<Bulk>1.41</Bulk>
+					</statBases>
+					<tradeTags>
+						<li>CE_AutoEnableTrade</li>
+						<li>CE_AutoEnableCrafting_TableMachining</li>
+					</tradeTags>
+					<thingCategories>
+						<li>Ammo37x223mmR</li>
+					</thingCategories>
+					<stackLimit>150</stackLimit>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo37x223mmRBase">
+					<defName>Ammo_37x223mmR_HE</defName>
+					<label>37x223mmR cartridge (APHE)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Cannon/HE</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>1.50</drawSize>
+					</graphicData>
+					<statBases>
+						<MarketValue>8.25</MarketValue>
+					</statBases>
+					<ammoClass>ExplosiveAP</ammoClass>
+					<cookOffProjectile>Bullet_37x223mmR_HE</cookOffProjectile>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo37x223mmRBase">
+					<defName>Ammo_37x223mmR_AP</defName>
+					<label>37x223mmR cartridge (AP)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Cannon/HEAT</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>1.50</drawSize>
+					</graphicData>
+					<statBases>
+						<MarketValue>5.24</MarketValue>
+					</statBases>
+					<ammoClass>ArmorPiercing</ammoClass>
+					<cookOffProjectile>Bullet_37x223mmR_AP</cookOffProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef ParentName="Base40x365mmBoforsBullet">
+					<defName>Bullet_37x223mmR_HE</defName>
+					<label>37x223mmR shell (APHE)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>153</speed>
+						<damageAmountBase>155</damageAmountBase>
+						<armorPenetrationSharp>54</armorPenetrationSharp>
+						<armorPenetrationBlunt>5574.18</armorPenetrationBlunt>
+						<secondaryDamage>
+							<li>
+								<def>Bomb_Secondary</def>
+								<amount>93</amount>
+							</li>
+						</secondaryDamage>
+					</projectile>
+				</ThingDef>
+
+				<ThingDef ParentName="Base40x365mmBoforsBullet">
+					<defName>Bullet_37x223mmR_AP</defName>
+					<label>37x223mmR shell (AP)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>153</speed>
+						<damageAmountBase>97</damageAmountBase>
+						<armorPenetrationSharp>77</armorPenetrationSharp>
+						<armorPenetrationBlunt>5574.18</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_37x223mmR_HE</defName>
+					<label>make 37x223mmR (HE) cartridge x25</label>
+					<description>Craft 25 37x223mmR (HE) cartridges.</description>
+					<jobString>Making 37x223mmR (HE) cartridges.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>66</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>23</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_37x223mmR_HE>25</Ammo_37x223mmR_HE>
+					</products>
+					<workAmount>15800</workAmount>
+				</RecipeDef>
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_37x223mmR_AP</defName>
+					<label>make 37x223mmR (AP) cartridge x25</label>
+					<description>Craft 25 37x223mmR (AP) cartridges.</description>
+					<jobString>Making 37x223mmR (AP) cartridges.</jobString>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>66</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_37x223mmR_AP>25</Ammo_37x223mmR_AP>
+					</products>
+					<workAmount>10800</workAmount>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>
