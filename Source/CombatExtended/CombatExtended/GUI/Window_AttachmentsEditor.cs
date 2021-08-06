@@ -44,12 +44,26 @@ namespace CombatExtended
 
             // cache stuff
             foreach (string s in categories)
-                categoryToDef[s] = availableDefs.Where(t => t.slotTags.Contains(s))?.ToList() ?? new List<AttachmentDef>();
+                categoryToDef[s] = availableDefs.Where(t => t.slotTags.First() == s)?.ToList() ?? new List<AttachmentDef>();
+        }
+
+        public override void PreOpen()
+        {
+            base.PreOpen();
+            RebuildCache();
         }
 
         protected override void DoLeftPanel(Rect inRect)
         {
+            Rect statRect = inRect.BottomPartPixels(195);
+            inRect.yMin += 5;
+            inRect.yMax -= 200;
+            inRect.width = Mathf.Min(inRect.width, inRect.height);
+            inRect = inRect.CenteredOnXIn(statRect);
+            Widgets.DrawBoxSolid(inRect, Widgets.MenuSectionBGBorderColor);
+            Widgets.DrawBoxSolid(inRect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
             GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, selected, hoveringOver, 0.7f);
+            Widgets.DrawBoxSolid(statRect.TopPartPixels(1), Widgets.MenuSectionBGBorderColor);
         }
 
         protected override void DoRightPanel(Rect inRect)

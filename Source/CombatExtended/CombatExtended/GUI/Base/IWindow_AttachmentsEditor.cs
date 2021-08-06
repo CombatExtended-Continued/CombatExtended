@@ -60,10 +60,9 @@ namespace CombatExtended
                 rightRect.yMin += PANEL_INNER_MARGINS;
                 rightRect.xMax -= PANEL_INNER_MARGINS;
                 rightRect.yMax -= PANEL_INNER_MARGINS;
-                Widgets.DrawMenuSection(rightRect);
                 GUIUtility.ExecuteSafeGUIAction(() =>
                 {
-                    this.DoRightPanel(rightRect.ContractedBy(PANEL_INNER_MARGINS));
+                    this.DoRightPanel(rightRect);
                 });
 
                 leftRect.xMin += PANEL_INNER_MARGINS;
