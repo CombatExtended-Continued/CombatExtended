@@ -52,6 +52,7 @@ namespace CombatExtended.Utilities
         private ThingsTrackingModel ammoTracker;
         private ThingsTrackingModel medicineTracker;
         private ThingsTrackingModel flaresTracker;
+        private ThingsTrackingModel attachmentTracker;
 
         public ThingsTracker(Map map) : base(map)
         {
@@ -61,6 +62,7 @@ namespace CombatExtended.Utilities
             apparelTracker = new ThingsTrackingModel(null, map, this);
             medicineTracker = new ThingsTrackingModel(null, map, this);
             flaresTracker = new ThingsTrackingModel(null, map, this);
+            attachmentTracker = new ThingsTrackingModel(null, map, this); ;
 
             trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1][];
             for (int i = 0; i < trackers.Length; i++)
@@ -78,6 +80,8 @@ namespace CombatExtended.Utilities
                 trackers[def.index][1] = medicineTracker;
             foreach (var def in DefDatabase<AmmoDef>.AllDefs)
                 trackers[def.index][1] = ammoTracker;
+            foreach (var def in DefDatabase<AttachmentDef>.AllDefs)
+                trackers[def.index][1] = attachmentTracker;
 
             if (validDefs != null)
                 return;
@@ -123,6 +127,8 @@ namespace CombatExtended.Utilities
                     others = GenClosest.ApparelInRange(thing.Position, map, 50);
                 else if (thing.def.IsWeapon)
                     others = GenClosest.WeaponsInRange(thing.Position, map, 50);
+                else if (thing.def is AttachmentDef)
+                    others = GenClosest.AttachmentsInRange(thing.Position, map, 50);
                 else
                     others = GenClosest.SimilarInRange(thing, 50);
                 Vector2 a = UI.MapToUIPosition(thing.DrawPos);
@@ -208,6 +214,8 @@ namespace CombatExtended.Utilities
                     return medicineTracker;
                 case TrackedThingsRequestCategory.Flares:
                     return flaresTracker;
+                case TrackedThingsRequestCategory.Attachments:
+                    return attachmentTracker;
                 default:
                     throw new NotSupportedException();
             }

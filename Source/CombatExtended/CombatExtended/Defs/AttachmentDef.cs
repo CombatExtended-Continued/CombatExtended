@@ -6,15 +6,21 @@ namespace CombatExtended
 {
     public class AttachmentDef : ThingDef
     {
-        public List<string> slotsTag;
+        public List<string> slotTags;
+
+        public List<string> attachmentTags;
+
+        public GraphicData attachmentGraphicData;
 
         public GraphicData outlineGraphicData;
 
         public override void PostLoad()
         {
             base.PostLoad();
-            if (slotsTag == null)
-                slotsTag = new List<string>();
+            if (slotTags == null)
+                slotTags = new List<string>();
+            if (attachmentTags == null)
+                attachmentTags = new List<string>();
         }
     }
 }
