@@ -14,6 +14,17 @@ namespace CombatExtended
 {
     static class CE_Utility
     {
+        #region Camera
+
+        public static float CameraAltitude
+        {
+            get
+            {
+                return Find.CameraDriver?.CurrentRealPosition.y ?? -1;
+            }
+        }
+
+        #endregion
 
         #region Blitting
         private const int blitMaxDimensions = 64;
@@ -186,9 +197,9 @@ namespace CombatExtended
             return 60 / movePerTick;
         }
 
-        public static float GetLightingShift(Thing thing, float glow)
+        public static float GetLightingShift(Thing caster, float glowAtTarget)
         {
-            return Mathf.Max((1.0f - glow) * (1.0f - thing.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
+            return Mathf.Max((1.0f - glowAtTarget) * (1.0f - caster.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
         }
 
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
@@ -471,8 +482,9 @@ namespace CombatExtended
         /// <param name="weapons">Weapons</param>
         /// <param name="rebuild">(Slow) wether to rebuild the cache</param>
         /// <returns>If this pawn has a CompInventory or not</returns>
-        public static bool TryGetAllWeaponsInInventory(this Pawn pawn, out List<ThingWithComps> weapons, bool rebuildInvetory = false)
+        public static bool TryGetAllWeaponsInInventory(this Pawn_InventoryTracker inventoryTracker, out IEnumerable<ThingWithComps> weapons, Func<ThingWithComps, bool> predicate = null, bool rebuildInvetory = false)
         {
+            Pawn pawn = inventoryTracker.pawn;
             weapons = null;
             CompInventory compInventory = pawn.TryGetComp<CompInventory>();
             // check is this pawn has a CompInventory
@@ -481,81 +493,7 @@ namespace CombatExtended
             if (rebuildInvetory)
                 compInventory.UpdateInventory();
             // Add all weapons in the inventory
-            weapons = compInventory.weapons.ToList();
-            return true;
-        }
-
-        /// <summary>
-        /// THIS IS A VERY SLOW FUNCTION!! USE IT CAREFULY!
-        /// Try to find a random weapon in inventory that has ammo and is ready combat.
-        /// This will first check ranged weapons then melee weapons.
-        /// </summary>
-        /// <param name="pawn">Pawn</param>
-        /// <param name="weapon">out The random weapons (if no ranged weapons are found and includeMelee it will return a melee weapon)</param>
-        /// <param name="includeMelee">Return a random melee weapon if no ranged weapons found</param>
-        /// <param name="includeAOE">Include explosive weapons</param>
-        /// <returns>If a weapon is found</returns>
-        public static bool TryGetRandomUsableWeapon(this Pawn pawn, out ThingWithComps weapon, bool includeMelee = true, bool includeAOE = false, bool rebuildInvetory = false)
-        {
-            weapon = null;
-            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
-
-            if (compInventory == null)
-                return false;
-            if (rebuildInvetory)
-                compInventory.UpdateInventory();
-            List<ThingWithComps> rangedGuns = compInventory.rangedWeaponList;
-            if (rangedGuns == null || rangedGuns.Count == 0)
-            {
-                if (!includeMelee)
-                    return false;
-                List<ThingWithComps> meleeWeapons = compInventory.meleeWeaponList;
-
-                if (meleeWeapons == null || meleeWeapons.Count == 0)
-                    return false;
-                weapon = meleeWeapons.RandomElement();
-                return true;
-            }
-            if (!Controller.settings.EnableAmmoSystem)
-            {
-                weapon = rangedGuns.RandomElement();
-                return true;
-            }
-            foreach (ThingWithComps gun in rangedGuns.InRandomOrder())
-            {
-                CompAmmoUser compAmmo = gun.GetComp<CompAmmoUser>();
-                if (compAmmo == null || compAmmo.IsEquippedGun)
-                    continue;
-                // check if this is an explosive weapon 
-                if (!includeAOE && (compAmmo.Props?.ammoSet?.ammoTypes?.RandomElement().ammo?.detonateProjectile != null))
-                    continue;
-                // check readiness
-                if (compAmmo.CanBeFiredNow || compAmmo.TryFindAmmoInInventory(out Thing _))
-                {
-                    weapon = gun;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        #endregion
-
-        #region Weapons
-
-        /// <summary>
-        /// Used to get or check if this pawn has a CE (ammo enabled weapon) weapon equiped.
-        /// </summary>
-        /// <param name="pawn">Pawn</param>
-        /// <param name="gun">out the Primary ammo enabled weapon/equipment</param>
-        /// <returns>If the primary equipment is ammo enabled weapon has been found</returns>
-        public static bool TryGetPrimaryCEWeapon(this Pawn pawn, out Thing gun)
-        {
-            gun = pawn.equipment?.Primary;
-            CompAmmoUser ammoUser = gun?.TryGetComp<CompAmmoUser>() ?? null;
-
-            if (ammoUser == null || !ammoUser.HasMagazine || ammoUser.CurMagCount > 0)
-                return false; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
+            weapons = (predicate == null ? compInventory.weapons : compInventory.weapons.Where(w => predicate.Invoke(w)));
             return true;
         }
 
@@ -572,6 +510,52 @@ namespace CombatExtended
             return lightingCurve.Evaluate(range);
         }
 
+        private static Map[] _mapsLighting = new Map[20];
+        private static LightingTracker[] _lightingTrackers = new LightingTracker[20];
+
+        public static LightingTracker GetLightingTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _mapsLighting.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsLighting.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                LightingTracker[] trackers = new LightingTracker[expandedLength];
+                Array.Copy(_mapsLighting, maps, _mapsLighting.Length);
+                Array.Copy(_lightingTrackers, trackers, _lightingTrackers.Length);
+                _mapsLighting = maps;
+                _lightingTrackers = trackers;
+            }
+            if (_mapsLighting[index] == map)
+                return _lightingTrackers[index];
+            return _lightingTrackers[index] = (_mapsLighting[index] = map).GetComponent<LightingTracker>();
+        }
+
+        private static Map[] _mapsDanger = new Map[20];
+        private static DangerTracker[] _DangerTrackers = new DangerTracker[20];
+
+        public static DangerTracker GetDangerTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _mapsDanger.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsDanger.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                DangerTracker[] trackers = new DangerTracker[expandedLength];
+                Array.Copy(_mapsDanger, maps, _mapsDanger.Length);
+                Array.Copy(_DangerTrackers, trackers, _DangerTrackers.Length);
+                _mapsDanger = maps;
+                _DangerTrackers = trackers;
+            }
+            if (_mapsDanger[index] == map)
+                return _DangerTrackers[index];
+            return _DangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
+        }
+
         #endregion
 
         #region Initialization
@@ -582,12 +566,45 @@ namespace CombatExtended
         {
             lightingCurve.Add(05.00f, 0.05f);
             lightingCurve.Add(10.00f, 0.15f);
-            lightingCurve.Add(18.00f, 0.475f);
-            lightingCurve.Add(25.00f, 1.00f);
-            lightingCurve.Add(35.00f, 1.20f);
+            lightingCurve.Add(22.00f, 0.475f);
+            lightingCurve.Add(35.00f, 1.00f);
+            lightingCurve.Add(60.00f, 1.20f);
             lightingCurve.Add(90.00f, 2.00f);
         }
 
         #endregion
+
+        public static float DistanceToSegment(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
+        {
+            float dx = lineEnd.x - lineStart.x;
+            float dz = lineEnd.z - lineStart.z;
+            if ((dx == 0) && (dz == 0))
+            {
+                closest = lineStart;
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+                return Mathf.Sqrt(dx * dx + dz * dz);
+            }
+            float t = ((point.x - lineStart.x) * dx + (point.z - lineStart.z) * dz) / (dx * dx + dz * dz);
+            if (t < 0)
+            {
+                closest = new Vector3(lineStart.x, 0, lineStart.z);
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+            }
+            else if (t > 1)
+            {
+                closest = new Vector3(lineEnd.x, 0, lineEnd.z);
+                dx = point.x - lineEnd.x;
+                dz = point.z - lineEnd.z;
+            }
+            else
+            {
+                closest = new Vector3(lineStart.x + t * dx, 0, lineStart.z + t * dz);
+                dx = point.x - closest.x;
+                dz = point.z - closest.z;
+            }
+            return Mathf.Sqrt(dx * dx + dz * dz);
+        }
     }
 }

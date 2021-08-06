@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using CombatExtended.AI;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -19,7 +20,9 @@ namespace CombatExtended.HarmonyCE
 
                 if (!ammoComp.CanBeFiredNow)
                 {
-                    __result = ammoComp.HasAmmo ? JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) : JobMaker.MakeJob(JobDefOf.AttackMelee, __result.targetA);
+                    __result = ammoComp.HasAmmo && !(pawn.jobs?.curDriver is IJobDriver_Tactical) ?
+                        JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) :
+                        JobMaker.MakeJob(JobDefOf.AttackMelee, __result.targetA);
                 }
             }
         }

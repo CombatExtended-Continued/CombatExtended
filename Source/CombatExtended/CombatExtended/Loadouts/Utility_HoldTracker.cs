@@ -301,18 +301,18 @@ namespace CombatExtended
             {
                 storage.Add(pawn.equipment.Primary.def, new Integer(1));
                 gun = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
-                if (gun != null && gun.UseAmmo)
+                if (gun != null && gun.UseAmmo && gun.CurrentAmmo != null)
                     storage.Add(gun.CurrentAmmo, new Integer(gun.CurMagCount));
             }
             // get the pawn's inventory
             foreach (Thing thing in pawn.inventory.innerContainer)
             {
                 Thing thing2 = thing.GetInnerIfMinified();
-                if (!storage.ContainsKey(thing2.def))
+                if (thing2 != null && !storage.ContainsKey(thing2.def))
                     storage.Add(thing2.def, new Integer(0));
                 storage[thing2.def].value += thing2.stackCount;
                 gun = thing2.TryGetComp<CompAmmoUser>();
-                if (gun != null && gun.UseAmmo)
+                if (gun != null && gun.UseAmmo && gun.CurrentAmmo != null)
                 {
                     if (storage.ContainsKey(gun.CurrentAmmo))
                         storage[gun.CurrentAmmo].value += gun.CurMagCount;
@@ -443,7 +443,7 @@ namespace CombatExtended
             //Add stack count from inventory
             CompInventory inventory = pawn?.TryGetComp<CompInventory>();
             itemCount += inventory?.container?.TotalStackCountOfDef(thingDef) ?? 0;
-            
+
             if (thingDef is AmmoDef)
             {
                 //Add stack count from equipped primary (magazine ammo)

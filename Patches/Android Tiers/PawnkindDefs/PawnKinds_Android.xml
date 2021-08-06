@@ -8,19 +8,44 @@
 		<li>Android tiers</li></mods>
 			<match Class="PatchOperationSequence">
 			<operations>
-			
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>Defs/PawnKindDef[
 					defName="AndroidT1CollectiveColonist" or
 					defName="AndroidT2CollectiveColonist" or
-					defName="AndroidT3CollectiveColonist" or
 					defName="AndroidT1CollectiveSoldier" or
 					defName="AndroidT2CollectiveSoldier" or
+					defName="AndroidT1RaiderFactionSpecific" or
+					defName="AndroidT2RaiderFactionSpecific"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>3</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.5</generateChance>
+								<sidearmMoney>
+									<min>20</min>
+									<max>120</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="AndroidT3CollectiveColonist" or
 					defName="AndroidT3CollectiveSoldier" or
 					defName="AndroidT4CollectiveSoldier" or
 					defName="AndroidT4CollectiveLeader" or
-					defName="AndroidT1RaiderFactionSpecific" or
-					defName="AndroidT2RaiderFactionSpecific" or
 					defName="AndroidT3RaiderFactionSpecific" or
 					defName="AndroidT4RaiderFactionSpecific"
 					]</xpath>

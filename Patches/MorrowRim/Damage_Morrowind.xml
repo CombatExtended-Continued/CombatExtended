@@ -8,31 +8,17 @@
 
 		<match Class="PatchOperationSequence">
 			<operations>
-				<!-- === Add DefModExtension === -->
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusScratch"]</xpath>
+			<!-- === Add DefModExtension === -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusScratch"]</xpath>
+				<value>
+					<li Class="CombatExtended.DamageDefExtensionCE">
+						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+					</li>
+				</value>
+			</li>
 
-					<value>
-						<li Class="CombatExtended.DamageDefExtensionCE">
-							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
-						</li>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusBite"]/additionalHediffs/li[hediff="MorrowRim_Corprus"]/severityPerDamageDealt</xpath>
-						<value>
-							<severityPerDamageDealt>0.005</severityPerDamageDealt>
-						</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="MorrowRim_CorprusScratch"]/additionalHediffs/li[hediff="MorrowRim_Corprus"]/severityPerDamageDealt</xpath>
-						<value>
-							<severityPerDamageDealt>0.001</severityPerDamageDealt>
-						</value>
-				</li>
 			</operations>
 		</match>
 	</Operation>
-
 </Patch>

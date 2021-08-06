@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using HarmonyLib;
+using CombatExtended.AI;
 using Verse;
 using Verse.AI;
 
@@ -37,6 +38,8 @@ namespace CombatExtended.HarmonyCE
                 {
                     finished = true;
                     yield return new CodeInstruction(OpCodes.Ldarg_0).MoveLabelsFrom(code);
+                    yield return new CodeInstruction(OpCodes.Ldarg_1);
+                    yield return new CodeInstruction(OpCodes.Ldarg_2);
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_Verb_TryStartCastOn), nameof(Harmony_Verb_TryStartCastOn.CheckReload)));
                     yield return new CodeInstruction(OpCodes.Brtrue_S, l1);
 
@@ -51,11 +54,18 @@ namespace CombatExtended.HarmonyCE
         }
 
         // Functions like a prefix.  If this has something to do return false. if nothing to do return true.
-        static bool CheckReload(Verb __instance)
+        static bool CheckReload(Verb __instance, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+            // no work to do as the verb isn't the right kind.
             if (!(__instance is Verb_ShootCE || __instance is Verb_ShootCEOneUse))
-                return true; // no work to do as the verb isn't the right kind.
+                return true;
+            // If this verb is owned by a pawn that has the tactical manager
+            if (__instance.CasterIsPawn)
+                return __instance.CasterPawn.GetTacticalManager().TryStartCastChecks(__instance, castTarg, destTarg);
 
+            // Legacy setup
+            //
+            // TODO update this to the modern stander
             CompAmmoUser gun = __instance.EquipmentSource.TryGetComp<CompAmmoUser>();
             if (gun == null || !gun.HasMagazine || gun.CurMagCount > 0)
                 return true; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.

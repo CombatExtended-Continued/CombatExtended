@@ -60,6 +60,7 @@ namespace CombatExtended
         private bool debugEnableInventoryValidation = false;
         private bool debugDrawTargetCoverChecks = false;
         private bool debugGenClosetPawn = false;
+        private bool debugMuzzleFlash = false;
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
@@ -70,6 +71,7 @@ namespace CombatExtended
         public bool DebugDrawPartialLoSChecks => debugDrawPartialLoSChecks && debuggingMode;
         public bool DebugEnableInventoryValidation => debugEnableInventoryValidation && debuggingMode;
         public bool DebugDrawTargetCoverChecks => debugDrawTargetCoverChecks && debuggingMode;
+        public bool DebugMuzzleFlash => debugMuzzleFlash && debuggingMode;
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
@@ -176,6 +178,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
                 list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
                 list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+                list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
             }
             else
             {

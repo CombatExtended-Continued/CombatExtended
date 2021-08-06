@@ -8,6 +8,7 @@ using Verse.Sound;
 using RimWorld;
 using UnityEngine;
 using HarmonyLib;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -41,7 +42,7 @@ namespace CombatExtended
                 new BattleLogEntry_RangedImpact(
                     launcher,
                     hitThing,
-                    intendedTarget,
+                    intendedTargetThing,
                     ed,
                     def,
                     null //CoverDef Missing!
@@ -171,6 +172,8 @@ namespace CombatExtended
                         {
                             thingList[j].Notify_BulletImpactNearby(impactData);
                         }
+                        if (thingList[j] is Pawn pawn)
+                            pawn.GetTacticalManager()?.Notify_BulletImpactNearby();
                     }
                 }
             }
@@ -189,7 +192,7 @@ namespace CombatExtended
             var bullet = new Bullet
             {
                 def = this.def,
-                intendedTarget = this.intendedTarget,
+                intendedTarget = this.intendedTargetThing,
             };
 
             bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible

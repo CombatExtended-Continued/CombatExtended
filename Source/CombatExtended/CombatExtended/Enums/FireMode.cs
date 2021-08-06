@@ -7,8 +7,8 @@ namespace CombatExtended
 {
     public enum FireMode : byte
     {
-        AutoFire,
-        BurstFire,
-        SingleFire
+        AutoFire = 0,
+        BurstFire = 1,
+        SingleFire = 2
     }
 }

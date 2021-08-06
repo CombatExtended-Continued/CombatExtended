@@ -99,6 +99,16 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Indicate that this weapon is a flare gun or other illumination device
+        /// </summary>
+        /// <param name="def">ThingDef</param>
+        /// <returns>If this ThingDef is an illumination device</returns>
+        public static bool IsIlluminationDevice(this ThingDef def)
+        {
+            return def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootFlareCE)) ?? false;
+        }
+
+        /// <summary>
         /// Return wether this ThingDef is an AOE weapon def
         /// </summary>
         /// <param name="def">Weapon def</param>
@@ -107,6 +117,17 @@ namespace CombatExtended
         public static bool IsAOEWeapon(this ThingDef def)
         {
             return isAOEArray[def.index];
+        }
+
+        /// <summary>
+        /// Return wether this ThingDef is an Smoke weapon def
+        /// </summary>
+        /// <param name="def">Weapon def</param>
+        /// <returns>If this ThingDef is an smoke screening device</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ProduceSmokeScreen(this ThingDef def)
+        {
+            return def.weaponTags?.Contains("GrenadeSmoke") ?? false;
         }
 
         /// <summary>
@@ -171,6 +192,12 @@ namespace CombatExtended
 
             if (props?.ammoSet != null)
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
+
+            isAOEArray[def.index] = isAOEArray[def.index]
+                || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
+                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
+                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
+                || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
         }
 
         /// <summary>

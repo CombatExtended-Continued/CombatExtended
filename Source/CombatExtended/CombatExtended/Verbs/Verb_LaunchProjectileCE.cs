@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -29,8 +30,8 @@ namespace CombatExtended
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)
-        private Vector2 newTargetLoc = new Vector2(0, 0);
-        private Vector2 sourceLoc = new Vector2(0, 0);
+        protected Vector2 newTargetLoc = new Vector2(0, 0);
+        protected Vector2 sourceLoc = new Vector2(0, 0);
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
@@ -69,7 +70,7 @@ namespace CombatExtended
                 return compCharges;
             }
         }
-        private float ShotSpeed
+        protected float ShotSpeed
         {
             get
             {
@@ -168,6 +169,18 @@ namespace CombatExtended
 
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
+        private LightingTracker _lightingTracker = null;
+        protected LightingTracker LightingTracker
+        {
+            get
+            {
+                if (_lightingTracker == null)
+                {
+                    _lightingTracker = caster.Map.GetLightingTracker();
+                }
+                return _lightingTracker;
+            }
+        }
 
         #endregion
 
@@ -372,8 +385,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = verbProps.range;
-            report.lightingShift = CE_Utility.GetLightingShift(caster, caster.Map.glowGrid.GameGlowAt(targetCell));
-            //report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
+            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
@@ -381,27 +393,14 @@ namespace CombatExtended
             }
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitude;
-            var spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
+
             GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
-
-            if (Controller.settings.DebugVerbose)
-            {
-                Log.Message($"<color=red>CE</color>: <color=orange>{caster}</color> shooting <color=orange>{target.Thing}</color> <color=yellow>ShiftVecReport</color>\n" +
-                    $"1- aimingAccuracy:{report.aimingAccuracy}\n" +
-                    $"2- sightsEfficiency:{report.sightsEfficiency}\n" +
-                    $"3- maxRange:{report.maxRange}\n" +
-                    $"4- lightingShift:{report.lightingShift}\n" +
-                    $"5- spreadDegrees:{report.spreadDegrees}\n" +
-                    $"6- smokeDensity:{report.smokeDensity}\n" +
-                    $"7- swayDegrees:{report.swayDegrees}\n" +
-                    $"8- shotSpeed:{report.shotSpeed}\n" +
-                    $"9- shotDist:{report.shotDist}\n");
-            }
             return report;
         }
 
@@ -633,9 +632,10 @@ namespace CombatExtended
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
-                projectile.intendedTarget = currentTarget.Thing;
+                projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
@@ -666,16 +666,23 @@ namespace CombatExtended
                 }
                 pelletMechanicsOnly = true;
             }
-            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
+
+            /*
+             * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
+             */
+            LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
             pelletMechanicsOnly = false;
             numShotsFired++;
-            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            if (ShooterPawn != null)
             {
-                CompAmmo?.TryStartReload();
-            }
-            if (CompReloadable != null)
-            {
-                CompReloadable.UsedOnce();
+                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+                {
+                    CompAmmo?.TryStartReload();
+                }
+                if (CompReloadable != null)
+                {
+                    CompReloadable.UsedOnce();
+                }
             }
             return true;
         }
@@ -788,12 +795,38 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
+            // DISABLED: reason is testing a better alternative..
+            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            //{
+            //    goodDest = IntVec3.Invalid;
+            //    return false;
+            //}
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
             }
             goodDest = IntVec3.Invalid;
+            return false;
+        }
+
+        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
+        {
+            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Thing thing = list[i];
+                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
+                if (!interceptor.Active)
+                    continue;
+                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
+                if (d1 < interceptor.Props.radius + 1)
+                    continue;
+                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
+                    return true;
+                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
+                    return true;
+            }
             return false;
         }
 

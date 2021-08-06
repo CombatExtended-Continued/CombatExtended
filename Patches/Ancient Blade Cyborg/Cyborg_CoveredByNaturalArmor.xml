@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ancient Blade Cyborg</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <!-- ========== Modify coverage ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Ribcage"]/coverage</xpath>
+					<value>
+						<coverage>0.012</coverage>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Pelvis"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Stomach"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Heart"]/coverage</xpath>
+					<value>
+						<coverage>0.04</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Lung"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Kidney"]/coverage</xpath>
+					<value>
+						<coverage>0.03</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Liver"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgNeck"]/coverage</xpath>
+    <value>
+      <coverage>0.055</coverage>
+    </value>
+  </li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="CyborgNeck"]/parts/li[def="Head"]/parts/li[def="CyborgSkull"]/parts/li[def="ArtificialBrain"]/coverage</xpath>
+					<value>
+						<coverage>0.9</coverage>
+					</value>
+				</li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgNeck"]/parts/li[def="Head"]/parts/li[def = "CyborgNose"]/coverage</xpath>
+    <value>
+      <coverage>0.08</coverage>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgNeck"]/parts/li[def="Head"]/parts/li[def = "CyborgSightSensor"]/coverage</xpath>
+    <value>
+      <coverage>0.06</coverage>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgNeck"]/parts/li[def="Head"]/parts/li[def = "CyborgEye"]/coverage</xpath>
+    <value>
+      <coverage>0.05</coverage>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgShoulder"]/coverage</xpath>
+    <value>
+      <coverage>0.085</coverage>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "Shoulder"]/coverage</xpath>
+    <value>
+      <coverage>0.085</coverage>
+    </value>
+  </li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Clavicle"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Humerus"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="Cyborg"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Radius"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/BodyDef[defName = "Cyborg"]/corePart/parts/li[def = "CyborgLeg"]/coverage</xpath>
+    <value>
+      <coverage>0.1</coverage>
+    </value>
+  </li>
+
+  <!-- ========== Add armor coverage ========== -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Cyborg"]//*[
+          def="CyborgTorso" or 
+          def="CyborgNeck" or 
+          def="Head" or 
+          def="Jaw" or 
+          def="CyborgEar" or
+          def="CyborgNose" or
+          def="CyborgShoulder" or
+          def="Shoulder" or
+          def="CyborgArm" or
+          def="Arm" or
+          def="CyborgBladeFist" or
+          def="CyborgHand" or
+          def="Hand" or
+          def="CyborgFoot" or
+          def="CyborgLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Cyborg"]//*[
+          def="CyborgJaw" or 
+          def="CyborgNose" or
+          def="CyborgSightSensor" or
+          def="CyborgEye"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

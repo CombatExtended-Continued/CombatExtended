@@ -61,9 +61,18 @@ namespace CombatExtended
         }
         #endregion
 
+
+        public Thing intendedTargetThing
+        {
+            get
+            {
+                return intendedTarget.Thing;
+            }
+        }
+
         public ThingDef equipmentDef;
         public Thing launcher;
-        public Thing intendedTarget;
+        public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
@@ -243,6 +252,15 @@ namespace CombatExtended
             }
         }
 
+        private DangerTracker _dangerTracker = null;
+        private DangerTracker DangerTracker
+        {
+            get
+            {
+                return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
+            }
+        }
+
         private int lastShotLine = -1;
         private Ray shotLine;
         public Ray ShotLine
@@ -371,9 +389,10 @@ namespace CombatExtended
             {
                 launcher = null;
             }
+
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
-            Scribe_References.Look<Thing>(ref intendedTarget, "intendedTarget");
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
@@ -386,6 +405,15 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
+
+            // To insure saves don't get affected..
+            Thing target = null;
+            if (Scribe.mode != LoadSaveMode.Saving)
+            {
+                Scribe_References.Look<Thing>(ref target, "intendedTarget");
+                if (target != null)
+                    intendedTarget = new LocalTargetInfo(target);
+            }
         }
         #endregion
 
@@ -413,7 +441,7 @@ namespace CombatExtended
 
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
-            var it_bounds = CE_Utility.GetBoundsFor(intendedTarget);
+            var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
             for (int i = 1; i < verbProps.range; i++)
             {
                 float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
@@ -446,7 +474,7 @@ namespace CombatExtended
                     {
                         continue;
                     }
-                    if (i < 2 && thing != intendedTarget)
+                    if (i < 2 && thing != intendedTargetThing)
                     {
                         continue;
                     }
@@ -703,7 +731,7 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if (thing == intendedTarget || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+                if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
                     if (TryCollideWith(thing))
                     {
@@ -887,6 +915,9 @@ namespace CombatExtended
                     }
                 }
             }
+            float distToOrigin = originInt.DistanceTo(positionInt);
+            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
+                DangerTracker?.Notify_BulletAt(Position, distToOrigin);
         }
 
         /// <summary>

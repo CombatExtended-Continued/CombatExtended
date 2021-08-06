@@ -61,7 +61,10 @@ namespace CombatExtended
             generic.description = "Generic Loadout for perishable meals.  Intended for compatibility with pawns automatically picking up a meal for themself.";
             generic.label = "CE_Generic_Meal".Translate();
             generic.defaultCountType = LoadoutCountType.pickupDrop; // Fits with disabling of RimWorld Pawn behavior of fetching meals themselves.
-            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
+            generic._lambda = (td) =>
+            {
+                return td != null && td.IsNutritionGivingIngestible && td.ingestible != null && td.ingestible.preferability >= FoodPreferability.MealAwful && td.GetCompProperties<CompProperties_Rottable>()?.daysToRotStart <= 5 && !td.IsDrug;
+            };
             generic.isBasic = true;
 
             defs.Add(generic);
@@ -74,7 +77,10 @@ namespace CombatExtended
             generic.description = "Generic Loadout for Raw Food.  Intended for compatibility with pawns automatically picking up raw food to train animals.";
             generic.label = "CE_Generic_RawFood".Translate();
             // Exclude drugs and corpses.  Also exclude any food worse than RawBad as in testing the pawns would not even pick it up for training.
-            generic._lambda = td => td.IsNutritionGivingIngestible && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
+            generic._lambda = (td) =>
+            {
+                return td != null && td.IsNutritionGivingIngestible && td.ingestible != null && td.ingestible.preferability <= FoodPreferability.RawTasty && td.ingestible.HumanEdible && td.plant == null && !td.IsDrug && !td.IsCorpse;
+            };
             generic.defaultCount = Convert.ToInt32(Math.Floor(targetNutrition / everything.Where(td => generic.lambda(td)).Average(td => td.ingestible.CachedNutrition)));
             //generic.defaultCount = 1;
             generic.isBasic = false; // doesn't need to be in loadouts by default as animal interaction talks to HoldTracker now.
@@ -90,7 +96,7 @@ namespace CombatExtended
             generic.description = "Generic Loadout for Drugs.  Intended for compatibility with pawns automatically picking up drugs in compliance with drug policies.";
             generic.label = "CE_Generic_Drugs".Translate();
             generic.thingRequestGroup = ThingRequestGroup.Drug;
-            generic._lambda = td => td.IsDrug;
+            generic._lambda = td => td != null && td.IsDrug;
             generic.isBasic = true;
 
             defs.Add(generic);
@@ -104,7 +110,7 @@ namespace CombatExtended
             generic.description = "Generic Loadout for Medicine.  Intended for pawns which will handle triage activities.";
             generic.label = "CE_Generic_Medicine".Translate();
             generic.thingRequestGroup = ThingRequestGroup.Medicine;
-            generic._lambda = td => td.IsMedicine;
+            generic._lambda = td => td != null && td.IsMedicine;
             generic.isBasic = true;
             defs.Add(generic);
             // now for the guns and ammo...
@@ -130,7 +136,7 @@ namespace CombatExtended
                 generic.defaultCountType = LoadoutCountType.pickupDrop; // we want ammo to get picked up.
                                                                         //generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Contains(td);
                 generic.thingRequestGroup = ThingRequestGroup.HaulableEver;
-                generic._lambda = td => td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
+                generic._lambda = td => td != null && td is AmmoDef && gun.GetCompProperties<CompProperties_AmmoUser>().ammoSet.ammoTypes.Any(al => al.ammo == td);
                 defs.Add(generic);
                 //Log.Message(string.Concat("Combat Extended :: LoadoutGenericDef :: ", generic.LabelCap, " list: ", string.Join(", ", DefDatabase<ThingDef>.AllDefs.Where(t => generic.lambda(t)).Select(t => t.label).ToArray())));
             }
