@@ -24,7 +24,28 @@ namespace CombatExtended
             }
         }
 
-        #endregion      
+        #endregion
+
+        #region Attachments
+
+
+        public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
+        {
+            AttachmentDef[] attachments = platform.CurAttachmentsDef;
+            for (int i = 0; i < attachments.Length; i++)
+            {
+                if (attachments[i].slotTags.Any(s => attachment.slotTags.Contains(s)))
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatformDef platform)
+        {
+            return platform.attachments.Any(l => l.attachment == attachment);
+        }
+
+        #endregion
 
         #region Blitting
         private const int blitMaxDimensions = 64;

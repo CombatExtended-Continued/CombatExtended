@@ -245,6 +245,19 @@ namespace CombatExtended
                         SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                         InterfaceIngest(thing);
                     }
+                    rect.width -= 24f;
+                }
+            }
+            if (thing == SelPawn.equipment?.Primary && thing is WeaponPlatform platform)
+            {
+                Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
+                TooltipHandler.TipRegion(rect3, "CE_EditWeapon".Translate());
+                if (Widgets.ButtonImage(rect3, TexButton.OpenDebugActionsMenu))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
+                    if (!Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
+                        Find.WindowStack.Add(new Window_AttachmentsEditor(platform, SelPawn.Map));
+                    this.CloseTab();
                 }
                 rect.width -= 24f;
             }

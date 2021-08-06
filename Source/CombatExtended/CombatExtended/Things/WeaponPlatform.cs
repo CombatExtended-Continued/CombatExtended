@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using HarmonyLib;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -26,7 +27,7 @@ namespace CombatExtended
         }
 
         private AttachmentDef[] _availableAttachments;
-        public AttachmentDef[] AvailableAttachments
+        public AttachmentDef[] AvailableAttachmentDefs
         {
             get
             {
@@ -110,7 +111,7 @@ namespace CombatExtended
 
         public void AddRandomAttachments()
         {
-            AttachmentDef[] available = AvailableAttachments;
+            AttachmentDef[] available = AvailableAttachmentDefs;
             for (int i = 0; i < available.Length; i++)
             {
                 if (Rand.Chance(0.5f))
@@ -132,6 +133,32 @@ namespace CombatExtended
                 currentAttachments[i] = (AttachmentDef)attachment.def;
                 currentLinks[i] = Platform.attachments.First(a => a.attachment == attachment.def);
                 i++;
+            }
+        }
+
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+        {
+            Vector3 pos = this.DrawPos;
+            Rot4 rot = this.Rotation;
+            AttachmentLink[] links = CurLinks;
+            Mesh mesh = this.Graphic.MeshAt(rot);
+
+            pos += this.Graphic.DrawOffset(rot);
+            pos.y -= 0.0025f;
+            for (int i = 0; i < links.Length; i++)
+            {
+                AttachmentLink link = links[i];
+                if (link.attachment.outlineGraphicData != null)
+                    Graphics.DrawMesh(mesh, pos, rot.AsQuat, link.attachment.outlineGraphicData.Graphic.MatSingle, 0);
+            }
+            pos.y += 0.0025f;
+            Graphics.DrawMesh(mesh, pos, rot.AsQuat, this.Graphic.MatAt(rot), 0);
+            pos.y += 0.0025f;
+            for (int i = 0; i < links.Length; i++)
+            {
+                AttachmentLink link = links[i];
+                if (link.attachment.attachmentGraphicData != null)
+                    Graphics.DrawMesh(mesh, pos, rot.AsQuat, link.attachment.attachmentGraphicData.Graphic.MatSingle, 0);
             }
         }
     }
