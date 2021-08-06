@@ -33,7 +33,7 @@
 					]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<!-- Equvalent to vanilla Synthread duster at normal quality -->
-						<ArmorRating_Sharp>1</ArmorRating_Sharp>
+						<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
 					</value>
 				</li>
 				
@@ -44,7 +44,7 @@
 					]/statBases/ArmorRating_Blunt</xpath>
 					<value>
 						<!-- Equvalent to vanilla Synthread duster at normal quality -->
-						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<ArmorRating_Blunt>0.35</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -53,7 +53,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases</xpath>
 					<value>
-						<!-- Slightly larger item bulk than vanilla Power armor helmet, to account for horns on Forsaken helmet -->
+						<!-- No night vision stats as Forsakens already have night vision >:( -->
 						<Bulk>6</Bulk>
 						<WornBulk>1.5</WornBulk>
 					</value>
@@ -75,6 +75,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationAdd">
+   				 <xpath>Defs/ThingDef[defName="TForsakenH"]/equippedStatOffsets</xpath>
+    				<value>
+      				<ToxicSensitivity>-0.50</ToxicSensitivity>
+      				<SmokeSensitivity>-1</SmokeSensitivity>
+    				</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+    				<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases</xpath>
+    					<value>
+      					<Flammability>0</Flammability>
+    					</value>
+				</li>
+  
+
+				<li Class="PatchOperationReplace">
+    				<xpath>Defs/ThingDef[defName="TForsakenH"]/statBases/MaxHitPoints</xpath>
+    				<value>
+      					<MaxHitPoints>250</MaxHitPoints>
+    				</value>
+				</li>
+
 				<!-- ========== Forsaken Armor ========== -->
 
 				<li Class="PatchOperationAdd">
@@ -88,7 +111,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="TForsakenA"]/equippedStatOffsets</xpath>
 					<value>
-						<CarryBulk>10</CarryBulk>
+						<CarryBulk>20</CarryBulk>
 						<CarryWeight>80</CarryWeight>
 					</value>
 				</li>
@@ -106,6 +129,44 @@
 					<value>
 						<!-- Equvalent to vanilla Power armor at normal quality -->
 						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="FF_ForsakenA"]/statBases/Mass</xpath>
+					<value>
+						<Mass>40</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="FF_ForsakenA"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<!-- ========== Ultima Plant ========== -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Ultima"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor at normal quality -->
+						<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Ultima"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor at normal quality -->
+						<StuffPower_Armor_Blunt>0.18</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Ultima"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<!-- Equvalent to vanilla Power armor at normal quality -->
+						<StuffPower_Armor_Heat>0.08</StuffPower_Armor_Heat>
 					</value>
 				</li>
 
