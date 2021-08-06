@@ -54,7 +54,7 @@
 		<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>10</MarketValue>
+		<MarketValue>12</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_16x65mm_HE</cookOffProjectile>
@@ -62,7 +62,7 @@
 	
 	<!-- ================== Projectile ================== -->
     
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base145x114mmBullet">
       <defName>Bullet_16x65mm_HE</defName>
       <label>16x65mm bullet (HE)</label>
       <graphicData>
@@ -73,7 +73,7 @@
         <damageDef>Bullet</damageDef>
         <speed>400</speed>      
       <damageAmountBase>70</damageAmountBase>
-      <armorPenetrationSharp>100</armorPenetrationSharp>
+      <armorPenetrationSharp>150</armorPenetrationSharp>
       <armorPenetrationBlunt>885.88</armorPenetrationBlunt>
       <secondaryDamage>
         <li>
@@ -81,6 +81,7 @@
         <amount>36</amount>
         </li>
       </secondaryDamage>
+	  <dropsCasings>false</dropsCasings>
       </projectile>
       <comps>
         <li Class="CombatExtended.CompProperties_ExplosiveCE">
