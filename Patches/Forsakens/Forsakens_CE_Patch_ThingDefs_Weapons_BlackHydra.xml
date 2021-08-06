@@ -8,14 +8,12 @@
 			<operations>
 
 				<!-- ========== Forsaken Black Hydra ========== -->
-
-				<!-- (CE implementation based on BFG 9000 from CP DOOM mod, with infinite ammo as per item description in original Forsakens mod) -->
  
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ForsakenHydra</defName>
 					<statBases>
 						<Mass>10.00</Mass>
-						<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.00</SightsEfficiency>
 						<ShotSpread>0.01</ShotSpread>
 						<SwayFactor>2</SwayFactor>
@@ -32,7 +30,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_HydraBlast</defaultProjectile>
 						<warmupTime>3</warmupTime>
-						<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 						<range>62</range>
 						<soundCast>ChargeLance_Fire</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -45,7 +43,7 @@
 					</Properties>
     					<AmmoUser>
       						<magazineSize>1</magazineSize>
-      						<reloadTime>5.5</reloadTime>
+      						<reloadTime>6</reloadTime>
    					 </AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
@@ -95,16 +93,14 @@
 								<damageAmountBase>124</damageAmountBase>
 								<armorPenetrationSharp>76</armorPenetrationSharp>
 								<armorPenetrationBlunt>42.273</armorPenetrationBlunt>
-								<speed>75</speed>
+								<speed>80</speed>
 								<ai_IsIncendiary>true</ai_IsIncendiary>
 							</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-      			<explosionRadius>3</explosionRadius>
-     			 <damageDef>Thermobaric</damageDef>
-      			<damageAmountBase>200</damageAmountBase>
-      			<armorPenetrationSharp>0</armorPenetrationSharp>
-      			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<damageAmountBase>200</damageAmountBase>
+			<explosiveDamageType>Thermobaric</explosiveDamageType>
+			<explosiveRadius>3</explosiveRadius>
       			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
