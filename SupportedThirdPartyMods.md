@@ -52,6 +52,7 @@ A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
 Alpha Ships |
+Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
@@ -79,9 +80,10 @@ Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
-Cute Penguin	|
+CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
+Darkest Night SK Steam	|
 Darkest Rim: Core	|
 Defensive Machine Gun Turret Pack	|
 Devilstrand Colour Bundle   |
@@ -132,7 +134,6 @@ GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
-Hand 'n' Footwear	|
 Heavy Melee Weapons |
 High Caliber	|
 Hive Armory |
@@ -198,7 +199,6 @@ Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
 Pawnbold Race   |
-Penguin	|
 Polarisbloc - Security Force	|
 Poleepkwa Race Update	|
 Prestige Specialist Armours	|
@@ -213,7 +213,6 @@ Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
 Revia Race |
-Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
 Rim-Effect: Core	|
@@ -221,7 +220,6 @@ Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
-Rimfire	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Shek	|

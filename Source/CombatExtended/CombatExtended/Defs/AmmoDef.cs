@@ -22,6 +22,8 @@ namespace CombatExtended
         // mortar ammo should still availabe when the ammo system is off
         public bool isMortarAmmo = false;
 
+        public List<string> ammoTags;
+
         private List<DefHyperlink> originalHyperlinks;
 
         private List<ThingDef> users;

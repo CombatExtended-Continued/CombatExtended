@@ -194,8 +194,7 @@ namespace CombatExtended
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
 
             isAOEArray[def.index] = isAOEArray[def.index]
-                || (def.weaponTags?.Contains("CE_AI_Grenade") ?? false)
-                || (def.weaponTags?.Contains("CE_AI_Launcher") ?? false)
+                || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
                 || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
                 || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
                 || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);

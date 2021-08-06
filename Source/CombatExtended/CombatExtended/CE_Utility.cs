@@ -510,7 +510,7 @@ namespace CombatExtended
             return lightingCurve.Evaluate(range);
         }
 
-        private static Map[] _maps = new Map[20];
+        private static Map[] _mapsLighting = new Map[20];
         private static LightingTracker[] _lightingTrackers = new LightingTracker[20];
 
         public static LightingTracker GetLightingTracker(this Map map)
@@ -518,19 +518,42 @@ namespace CombatExtended
             int index = map?.Index ?? -1;
             if (index < 0)
                 return null;
-            if (index >= _maps.Length)
+            if (index >= _mapsLighting.Length)
             {
-                int expandedLength = Mathf.Max(_maps.Length * 2, index + 1);
+                int expandedLength = Mathf.Max(_mapsLighting.Length * 2, index + 1);
                 Map[] maps = new Map[expandedLength];
                 LightingTracker[] trackers = new LightingTracker[expandedLength];
-                Array.Copy(_maps, maps, _maps.Length);
+                Array.Copy(_mapsLighting, maps, _mapsLighting.Length);
                 Array.Copy(_lightingTrackers, trackers, _lightingTrackers.Length);
-                _maps = maps;
+                _mapsLighting = maps;
                 _lightingTrackers = trackers;
             }
-            if (_maps[index] == map)
+            if (_mapsLighting[index] == map)
                 return _lightingTrackers[index];
-            return _lightingTrackers[index] = (_maps[index] = map).GetComponent<LightingTracker>();
+            return _lightingTrackers[index] = (_mapsLighting[index] = map).GetComponent<LightingTracker>();
+        }
+
+        private static Map[] _mapsDanger = new Map[20];
+        private static DangerTracker[] _DangerTrackers = new DangerTracker[20];
+
+        public static DangerTracker GetDangerTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _mapsDanger.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsDanger.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                DangerTracker[] trackers = new DangerTracker[expandedLength];
+                Array.Copy(_mapsDanger, maps, _mapsDanger.Length);
+                Array.Copy(_DangerTrackers, trackers, _DangerTrackers.Length);
+                _mapsDanger = maps;
+                _DangerTrackers = trackers;
+            }
+            if (_mapsDanger[index] == map)
+                return _DangerTrackers[index];
+            return _DangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
         }
 
         #endregion
@@ -550,5 +573,38 @@ namespace CombatExtended
         }
 
         #endregion
+
+        public static float DistanceToSegment(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
+        {
+            float dx = lineEnd.x - lineStart.x;
+            float dz = lineEnd.z - lineStart.z;
+            if ((dx == 0) && (dz == 0))
+            {
+                closest = lineStart;
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+                return Mathf.Sqrt(dx * dx + dz * dz);
+            }
+            float t = ((point.x - lineStart.x) * dx + (point.z - lineStart.z) * dz) / (dx * dx + dz * dz);
+            if (t < 0)
+            {
+                closest = new Vector3(lineStart.x, 0, lineStart.z);
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+            }
+            else if (t > 1)
+            {
+                closest = new Vector3(lineEnd.x, 0, lineEnd.z);
+                dx = point.x - lineEnd.x;
+                dz = point.z - lineEnd.z;
+            }
+            else
+            {
+                closest = new Vector3(lineStart.x + t * dx, 0, lineStart.z + t * dz);
+                dx = point.x - closest.x;
+                dz = point.z - closest.z;
+            }
+            return Mathf.Sqrt(dx * dx + dz * dz);
+        }
     }
 }
