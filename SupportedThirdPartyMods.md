@@ -200,7 +200,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
-Poleepkwa Race Update	|
+Poleepkwa Race	|
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
