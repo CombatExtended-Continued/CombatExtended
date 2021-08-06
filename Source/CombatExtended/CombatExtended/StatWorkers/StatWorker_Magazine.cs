@@ -27,22 +27,38 @@ namespace CombatExtended
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
+            float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
+            return size + base.GetValueUnfinalized(req, true);
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             StringBuilder stringBuilder = new StringBuilder();
             var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
-            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(ammoProps.magazineSize, ToStringStyle.Integer));
+            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
             stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-            var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-            return ammoProps.magazineSize + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " "+"LetterSecond".Translate();
+            if (!optionalReq.HasThing)
+            {
+                var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
+                return ammoProps.magazineSize + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+            }
+            else
+            {
+                var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
+                return GetMagSize(optionalReq) + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+            }
+        }
+
+        private int GetMagSize(StatRequest req)
+        {
+            if (req.HasThing)
+                return (int)req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity);
+            return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
         }
     }
 }

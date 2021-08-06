@@ -138,7 +138,7 @@ namespace CombatExtended
 
         public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
         public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
-        public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.Props.magazineSize / 6);
+        public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
         public CompMannable MannableComp => mannableComp;
@@ -704,7 +704,7 @@ namespace CombatExtended
         public void TryOrderReload(bool forced = false)
         {
             //No reload necessary at all --
-            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.Props.magazineSize)))
+            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
                 return;
 
             //Non-mannableComp interaction

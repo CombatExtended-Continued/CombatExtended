@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -129,7 +129,7 @@ namespace CombatExtended.Compatibility
 	    if (ammo==null) {
 		return false;
 	    }
-	    return (ammo.HasMagazine && ammo.CurMagCount <= ammo.Props.magazineSize * threshold) || (ensureAmmoType && ammo.CurrentAmmo != ammo.SelectedAmmo);
+	    return (ammo.HasMagazine && ammo.CurMagCount <= ammo.MagSize * threshold) || (ensureAmmoType && ammo.CurrentAmmo != ammo.SelectedAmmo);
 	}
 
 	public static void TryForceReload(this Building_Turret turret) {
@@ -143,7 +143,7 @@ namespace CombatExtended.Compatibility
 		return;
 	    }
 	    var compAmmo = turret.GetAmmo();
-            if ((compAmmo.CurrentAmmo == compAmmo.SelectedAmmo && (!compAmmo.HasMagazine || compAmmo.CurMagCount == compAmmo.Props.magazineSize)))
+            if ((compAmmo.CurrentAmmo == compAmmo.SelectedAmmo && (!compAmmo.HasMagazine || compAmmo.CurMagCount == compAmmo.MagSize)))
                 return;
 	    var mannableComp = turret.GetMannable();
             if (!mannableComp?.MannedNow ?? true)

@@ -358,16 +358,10 @@
     </tools>
     <attachments>        
         <li>
-            <attachment>CE_AT_scope</attachment>   
-            <drawSettings>
-                <offset>(0.05, 0.00)</offset>
-            </drawSettings>
+            <attachment>CE_AT_scope</attachment>              
         </li>
         <li>
-            <attachment>CE_AT_Supperssor</attachment>     
-            <drawSettings>
-                <offset>(0.05, 0.0)</offset>
-            </drawSettings>       
+            <attachment>CE_AT_Supperssor</attachment>                 
         </li>
         <li>
             <attachment>CE_AT_HandGaurd</attachment>            
@@ -461,6 +455,10 @@
       <defName>CE_AT_Testak_GR</defName>
       <thingClass>Thing</thingClass>      
       <label>Grenade launcher</label>
+      <statBases>        
+        <ShotSpread>1.2</ShotSpread>
+        <MagazineCapacity>10</MagazineCapacity>
+      </statBases>
       <graphicData>
         <texPath>Things/Weapons/Testak/Testak_GL</texPath>
         <graphicClass>Graphic_Single</graphicClass>
@@ -470,7 +468,10 @@
   <CombatExtended.AttachmentDef>
       <defName>CE_AT_Testak_SC</defName>
       <thingClass>Thing</thingClass>      
-      <label>8x scope</label>
+      <label>8x scope</label>      
+      <statBases>        
+        <SightsEfficiency>2.0</SightsEfficiency>
+      </statBases>
       <graphicData>
         <texPath>Things/Weapons/Testak/Testak_SC</texPath>
         <graphicClass>Graphic_Single</graphicClass>
@@ -481,30 +482,52 @@
       <defName>CE_AT_scope</defName>
       <thingClass>Thing</thingClass>      
       <label>scope</label>
+      <statBases>        
+        <SightsEfficiency>1.3</SightsEfficiency>
+      </statBases>
       <graphicData>
         <texPath>Things/Weapons/Uzitak/Uzitak_SP</texPath>
         <graphicClass>Graphic_Single</graphicClass>
       </graphicData>
+      <outlineGraphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_SP_Outline</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </outlineGraphicData>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef>
       <defName>CE_AT_Supperssor</defName>
       <thingClass>Thing</thingClass>      
       <label>Supperssor</label>
+      <statBases>
+        <MuzzleFlash>0.55</MuzzleFlash>
+        <SwayFactor>1.2</SwayFactor>
+      </statBases>
       <graphicData>
         <texPath>Things/Weapons/Uzitak/Uzitak_SU</texPath>
         <graphicClass>Graphic_Single</graphicClass>
       </graphicData>
+      <outlineGraphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_SU_Outline</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </outlineGraphicData>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef>
-      <defName>CE_AT_HandGaurd</defName>
-      <thingClass>Thing</thingClass>      
+      <defName>CE_AT_HandGaurd</defName>            
+      <thingClass>Thing</thingClass>    
+      <statBases>        
+        <ShotSpread>0.7</ShotSpread>
+      </statBases>  
       <label>HandGaurd</label>
       <graphicData>
         <texPath>Things/Weapons/Uzitak/Uzitak_GR</texPath>
         <graphicClass>Graphic_Single</graphicClass>
       </graphicData>
+      <outlineGraphicData>
+        <texPath>Things/Weapons/Uzitak/Uzitak_GR_Outline</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </outlineGraphicData>
   </CombatExtended.AttachmentDef>
   
 </Defs>

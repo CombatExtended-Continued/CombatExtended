@@ -171,7 +171,7 @@ namespace CombatExtended
                 //compReloader.TryUnload(out newAmmo);
                 //if (newAmmo?.CanStackWith(ammo) ?? false)
                 //{
-                //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.Props.magazineSize - ammo.stackCount));
+                //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.MagSize - ammo.stackCount));
                 //}
                 AmmoDef currentAmmo = compReloader.CurrentAmmo;
                 if (currentAmmo != ammo?.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines

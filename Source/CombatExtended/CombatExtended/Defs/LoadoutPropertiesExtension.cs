@@ -184,7 +184,7 @@ namespace CombatExtended
             {
                 // Generate currently loaded ammo
                 thingToAdd = compAmmo.CurrentAmmo;
-                unitCount = Mathf.Max(1, compAmmo.Props.magazineSize);  // Guns use full magazines as units
+                unitCount = Mathf.Max(1, compAmmo.MagSize);  // Guns use full magazines as units
             }
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
             ammoThing.stackCount = ammoCount * unitCount;

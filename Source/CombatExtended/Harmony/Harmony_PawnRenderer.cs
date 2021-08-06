@@ -360,6 +360,10 @@ namespace CombatExtended.HarmonyCE
 
             private static Pawn pawn;
 
+            private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.005f, 0));
+
+            private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.003f, 0));
+
             public static void Prefix(PawnRenderer __instance, Thing eq)
             {
                 pawn = __instance.pawn;
@@ -375,28 +379,26 @@ namespace CombatExtended.HarmonyCE
 
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
-
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                matrix.m13 -= 0.005f;
-                Graphics.DrawMesh(mesh, matrix, mat, layer);
-                matrix.m13 += 0.005f;
-                if (equipment is WeaponPlatform platform)
+                AttachmentLink[] links = null;
+                WeaponPlatform platform = null;
+                if (equipment is WeaponPlatform)
                 {
-                    AttachmentLink[] links = platform.CurLinks;
+                    platform = (WeaponPlatform)equipment;
+                    links = platform.CurLinks;
+                    Matrix4x4 m = TBot5 * matrix;
                     for (int i = 0; i < links.Length; i++)
                     {
                         AttachmentLink link = links[i];
-                        if (!link.HasOffsets)
-                        {
-                            Graphics.DrawMesh(mesh, matrix, link.attachment.graphic.MatSingle, layer);
-                        }
-                        else
-                        {
-                            Matrix4x4 translaredMatrix = new Matrix4x4();
-                            translaredMatrix.SetTRS(position + (posVec + link.Offset).RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                            Graphics.DrawMesh(mesh, translaredMatrix, link.attachment.graphic.MatSingle, layer);
-                        }
+                        if (link.attachment.outlineGraphicData != null)
+                            Graphics.DrawMesh(mesh, m, link.attachment.outlineGraphicData.Graphic.MatSingle, layer);
                     }
+                }
+                Graphics.DrawMesh(mesh, TBot3 * matrix, mat, layer);
+                if (platform != null)
+                {
+                    for (int i = 0; i < links.Length; i++)
+                        Graphics.DrawMesh(mesh, matrix, links[i].attachment.graphic.MatSingle, layer);
                 }
             }
 

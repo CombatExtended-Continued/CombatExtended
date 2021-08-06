@@ -12,7 +12,6 @@ namespace CombatExtended
         public ThingOwner<Thing> attachments;
 
         private AttachmentDef[] currentAttachments;
-
         private AttachmentLink[] currentLinks;
 
         private WeaponPlatformDef _platformDef;

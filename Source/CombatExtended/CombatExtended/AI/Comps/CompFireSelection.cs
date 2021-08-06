@@ -166,13 +166,13 @@ namespace CombatExtended.AI
                     fireModes.TrySetFireMode(FireMode.AutoFire);
                     return;
                 }
-                if (bullets < verbShoot.CompAmmo.Props.magazineSize && shotDist > 50)
+                if (bullets < verbShoot.CompAmmo.MagSize && shotDist > 50)
                 {
                     fireModes.TrySetAimMode(AimMode.AimedShot);
                     fireModes.TrySetFireMode(FireMode.SingleFire);
                     return;
                 }
-                if (bullets < verbShoot.CompAmmo.Props.magazineSize * 1.5f && shotDist > 35)
+                if (bullets < verbShoot.CompAmmo.MagSize * 1.5f && shotDist > 35)
                 {
                     fireModes.TrySetAimMode(AimMode.AimedShot);
                     fireModes.TrySetFireMode(FireMode.BurstFire);

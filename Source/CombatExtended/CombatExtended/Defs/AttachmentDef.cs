@@ -8,6 +8,8 @@ namespace CombatExtended
     {
         public List<string> slotsTag;
 
+        public GraphicData outlineGraphicData;
+
         public override void PostLoad()
         {
             base.PostLoad();

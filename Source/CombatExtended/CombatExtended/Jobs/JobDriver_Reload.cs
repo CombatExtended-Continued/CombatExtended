@@ -163,7 +163,7 @@ namespace CombatExtended
             // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
             System.Func<bool> jumpCondition =
                 () => compReloader.Props.reloadOneAtATime &&
-                      compReloader.CurMagCount < compReloader.Props.magazineSize &&
+                      compReloader.CurMagCount < compReloader.MagSize &&
                       (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
             Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             yield return jumpToil;

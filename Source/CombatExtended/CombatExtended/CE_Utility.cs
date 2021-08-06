@@ -24,7 +24,7 @@ namespace CombatExtended
             }
         }
 
-        #endregion
+        #endregion      
 
         #region Blitting
         private const int blitMaxDimensions = 64;

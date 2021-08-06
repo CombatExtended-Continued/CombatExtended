@@ -79,7 +79,7 @@ namespace CombatExtended
             {
                 return false;
             }
-            CELogger.Message($"Total magazine size: {ammo.Props.magazineSize}. Needed: {ammo.MissingToFullMagazine}");
+            CELogger.Message($"Total magazine size: {ammo.MagSize}. Needed: {ammo.MissingToFullMagazine}");
 
             return JobGiverUtils_Reload.CanReload(pawn, turret, forced);
         }

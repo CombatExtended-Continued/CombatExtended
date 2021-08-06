@@ -104,7 +104,7 @@ namespace CombatExtended
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
 
         // Ammo variables
-        public CompAmmoUser CompAmmo
+        public virtual CompAmmoUser CompAmmo
         {
             get
             {
@@ -115,7 +115,7 @@ namespace CombatExtended
                 return compAmmo;
             }
         }
-        public ThingDef Projectile
+        public virtual ThingDef Projectile
         {
             get
             {
@@ -143,7 +143,7 @@ namespace CombatExtended
             }
         }
 
-        public CompFireModes CompFireModes
+        public virtual CompFireModes CompFireModes
         {
             get
             {
