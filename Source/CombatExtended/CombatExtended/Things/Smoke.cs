@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CombatExtended.AI;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -17,6 +18,15 @@ namespace CombatExtended
 
         private float density;
         private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
+
+        private DangerTracker _dangerTracker = null;
+        private DangerTracker DangerTracker
+        {
+            get
+            {
+                return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
+            }
+        }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -71,6 +81,8 @@ namespace CombatExtended
                 SpreadToAdjacentCells();
                 ApplyHediffs();
             }
+            if (this.IsHashIntervalTick(120))
+                DangerTracker?.Notify_SmokeAt(Position);
 
             base.Tick();
         }
@@ -90,7 +102,7 @@ namespace CombatExtended
                         pawn.mindState.mentalStateHandler.TryStartMentalState(CE_MentalStateDefOf.WanderConfused);
                     continue;
                 }
-
+                pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
                 var severity = InhalationPerSec * Mathf.Pow(density / MaxDensity, 2) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
                 HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
             }

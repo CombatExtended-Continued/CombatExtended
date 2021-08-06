@@ -485,25 +485,48 @@ namespace CombatExtended
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
             {
-                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !(parent is Pawn pawn && pawn.IsColonist)))
+                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !Holder.IsColonist))
                 {
                     Holder.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
                     return;
                 }
-                IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
-                foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo && supportedAmmo.Contains(ammo.AmmoDef)))
+                if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
+                    TryPickupAmmo();
+            }
+            CompInventory?.SwitchToNextViableWeapon(true, !Holder.IsColonist, stopJob: false);
+        }
+
+        public bool TryPickupAmmo()
+        {
+            IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+            foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
+                                        && supportedAmmo.Contains(ammo.AmmoDef)
+                                        && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
+            {
+                if (!Holder.CanReserve(thing))
+                    continue;
+                if (!Holder.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                    continue;
+                if (CompInventory.CanFitInInventory(thing, out int count))
                 {
-                    if (CompInventory.CanFitInInventory(thing, out int count))
+                    Thing ammo = thing;
+                    if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
                     {
-                        Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, thing);
-                        Job reload = TryMakeReloadJob();
+                        Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
                         pickupAmmo.count = count;
                         Holder.jobs.StartJob(pickupAmmo, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
-                        Holder.jobs.jobQueue.EnqueueFirst(reload);
-                        return;
                     }
+                    else
+                    {
+                        ammo = thing.SplitOff(count);
+                        CompInventory.container.TryAddOrTransfer(ammo);
+                    }
+                    Job reload = TryMakeReloadJob();
+                    Holder.jobs.jobQueue.EnqueueFirst(reload);
+                    return true;
                 }
             }
+            return false;
         }
 
         public void LoadAmmo(Thing ammo = null)

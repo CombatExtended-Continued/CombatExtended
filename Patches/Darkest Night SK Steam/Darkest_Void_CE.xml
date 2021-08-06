@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Darkest Night SK Steam</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/Verse.ThingDef[defName="Void"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/Verse.ThingDef[defName="Void"]/statBases/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					<MeleeCritChance>0.36</MeleeCritChance>
+					<MeleeParryChance>0.2</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/Verse.ThingDef[defName="Void"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1.9</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>12</armorPenetrationBlunt>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<capacities>
+						  <li>ToxicBite</li>
+						</capacities>
+						<power>28</power>
+						<cooldownTime>1.35</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<capacities>
+						  <li>Cut</li>
+						  <li>Stab</li>
+						</capacities>
+						<power>19</power>
+						<cooldownTime>1.18</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						<armorPenetrationSharp>10</armorPenetrationSharp>
+					  </li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/Verse.ThingDef[defName="Void"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>0.6</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="Void"]/combatPower</xpath>
+				<value>
+					<combatPower>100</combatPower>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
