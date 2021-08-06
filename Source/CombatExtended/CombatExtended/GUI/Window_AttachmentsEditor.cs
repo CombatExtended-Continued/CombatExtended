@@ -6,7 +6,6 @@ using UnityEngine;
 using Verse;
 using CombatExtended.RocketGUI;
 using GUIUtility = CombatExtended.RocketGUI.GUIUtility;
-using Microsoft.Build.Framework.XamlTypes;
 
 namespace CombatExtended
 {
