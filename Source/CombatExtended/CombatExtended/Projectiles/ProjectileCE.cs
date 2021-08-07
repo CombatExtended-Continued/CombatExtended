@@ -252,6 +252,15 @@ namespace CombatExtended
             }
         }
 
+        private DangerTracker _dangerTracker = null;
+        private DangerTracker DangerTracker
+        {
+            get
+            {
+                return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
+            }
+        }
+
         private int lastShotLine = -1;
         private Ray shotLine;
         public Ray ShotLine
@@ -906,6 +915,9 @@ namespace CombatExtended
                     }
                 }
             }
+            float distToOrigin = originInt.DistanceTo(positionInt);
+            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
+                DangerTracker?.Notify_BulletAt(Position, distToOrigin);
         }
 
         /// <summary>

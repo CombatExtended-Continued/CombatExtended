@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>The Mantodean insectoid race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedMarrowLight"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedMarrowLight"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedMarrowHeavy"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedMarrowHeavy"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>48</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedCombatPincer"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>pincer</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>1.33</cooldownTime>
+							<armorPenetrationSharp>40</armorPenetrationSharp>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="MutatedPincer"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.11</cooldownTime>
+							<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+	
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
