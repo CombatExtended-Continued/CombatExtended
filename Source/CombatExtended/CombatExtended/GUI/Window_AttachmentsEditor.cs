@@ -56,6 +56,7 @@ namespace CombatExtended
 
         protected override void DoLeftPanel(Rect inRect)
         {
+            inRect.yMin += 6;
             Rect statRect = inRect.BottomPartPixels(25 * 6 + 10);
             inRect.yMax -= 25 * 6 + 10 + 5;
             inRect.width = Mathf.Min(inRect.width, inRect.height);
