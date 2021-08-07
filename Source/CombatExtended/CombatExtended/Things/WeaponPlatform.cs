@@ -111,10 +111,10 @@ namespace CombatExtended
 
         public void AddRandomAttachments()
         {
-            AttachmentDef[] available = AvailableAttachmentDefs;
-            for (int i = 0; i < available.Length; i++)
+            List<AttachmentDef> available = AvailableAttachmentDefs.InRandomOrder().ToList();
+            for (int i = 0; i < available.Count; i++)
             {
-                if (Rand.Chance(0.5f))
+                if (Rand.Chance(0.5f) && !attachments.Any(a => ((AttachmentDef)a.def).slotTags.Any(s => available[i].slotTags.Contains(s))))
                 {
                     Thing attachment = ThingMaker.MakeThing(available[i]);
                     attachments.TryAdd(attachment);
