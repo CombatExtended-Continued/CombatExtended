@@ -318,7 +318,11 @@ namespace CombatExtended
                     }
                 }
             }
-            return pawn.thinker.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
+            if (inventory.ApparelChanged)
+            {
+                return pawn.thinker.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
+            }
+            return null;
         }
 
         public override Job TryGiveJob(Pawn pawn)
@@ -329,6 +333,8 @@ namespace CombatExtended
             {
                 inventory.Notify_LoadoutUpdated();
                 inventory.ForcedLoadoutUpdate = job != null;
+                if (job != null)
+                    inventory.UpdateApparelSetHash();
             }
             return job;
         }

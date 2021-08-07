@@ -78,7 +78,7 @@ namespace CombatExtended.AI
         {
             if ((verb.EquipmentSource?.def.IsIlluminationDevice() ?? false) || verb is Verb_ShootFlareCE)
             {
-                fireModes.TrySetAimMode(AimMode.SuppressFire);
+                fireModes.TrySetAimMode(AimMode.Snapshot);
                 fireModes.TrySetFireMode(FireMode.AutoFire);
                 return;
             }
@@ -92,7 +92,7 @@ namespace CombatExtended.AI
             {
                 if (verbShoot.CompAmmo == null)
                 {
-                    fireModes.TrySetAimMode(AimMode.Snapshot);
+                    fireModes.TrySetAimMode(AimMode.AimedShot);
                     fireModes.TrySetFireMode(FireMode.AutoFire);
                     return;
                 }
@@ -100,18 +100,9 @@ namespace CombatExtended.AI
 
                 if (projProps.pelletCount > 1 && shotDist < 20)
                 {
-                    if (verbProps.warmupTime > 1.5f)
-                    {
-                        fireModes.TrySetAimMode(AimMode.SuppressFire);
-                        fireModes.TrySetFireMode(FireMode.AutoFire);
-                        return;
-                    }
-                    else
-                    {
-                        fireModes.TrySetAimMode(AimMode.Snapshot);
-                        fireModes.TrySetFireMode(FireMode.AutoFire);
-                        return;
-                    }
+                    fireModes.TrySetAimMode(AimMode.Snapshot);
+                    fireModes.TrySetFireMode(FireMode.AutoFire);
+                    return;
                 }
                 float bullets = verbShoot.CompAmmo.CurMagCount + verbShoot.CompAmmo.MagsLeft;
 
@@ -119,13 +110,13 @@ namespace CombatExtended.AI
                 {
                     if (SelPawn.EdgingCloser(target))
                     {
-                        if (shotDist <= 20)
+                        if (shotDist <= 15)
                         {
                             fireModes.TrySetAimMode(AimMode.SuppressFire);
                             fireModes.TrySetFireMode(FireMode.AutoFire);
                             return;
                         }
-                        if (shotDist <= 40)
+                        if (shotDist <= 30)
                         {
                             fireModes.TrySetAimMode(AimMode.Snapshot);
                             fireModes.TrySetFireMode(FireMode.AutoFire);
@@ -143,14 +134,20 @@ namespace CombatExtended.AI
                     }
                     if (recoilFactor <= 0.60f)
                     {
-                        if (castTarg.HasThing && target.EdgingCloser(target))
+                        if (shotDist / range < 0.4f)
                         {
-                            fireModes.TrySetAimMode(AimMode.SuppressFire);
+                            fireModes.TrySetAimMode(AimMode.Snapshot);
                             fireModes.TrySetFireMode(FireMode.AutoFire);
                             return;
                         }
-                        fireModes.TrySetAimMode(AimMode.Snapshot);
+                        fireModes.TrySetAimMode(AimMode.AimedShot);
                         fireModes.TrySetFireMode(FireMode.AutoFire);
+                        return;
+                    }
+                    if (recoilFactor > 3.5f && shotDist / range >= 0.6f)
+                    {
+                        fireModes.TrySetAimMode(AimMode.AimedShot);
+                        fireModes.TrySetFireMode(FireMode.BurstFire);
                         return;
                     }
                 }
@@ -178,7 +175,7 @@ namespace CombatExtended.AI
                     fireModes.TrySetFireMode(FireMode.BurstFire);
                     return;
                 }
-                fireModes.TrySetAimMode(AimMode.Snapshot);
+                fireModes.TrySetAimMode(AimMode.AimedShot);
                 fireModes.TrySetFireMode(FireMode.AutoFire);
             }
         }
