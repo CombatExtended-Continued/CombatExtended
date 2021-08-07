@@ -158,6 +158,8 @@ namespace CombatExtended.RocketGUI
                 Widgets.DrawTextureFitted(inRect, texture, 1.0f);
                 foreach (AttachmentDef attachment in attachments)
                 {
+                    if (attachment.attachmentGraphicData == null)
+                        continue;
                     texture = (Texture2D)attachment.attachmentGraphicData.Graphic.MatSingle.mainTexture;
                     if (attachment == highlight)
                         GUI.color = color;

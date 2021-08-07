@@ -398,7 +398,10 @@ namespace CombatExtended.HarmonyCE
                 if (platform != null)
                 {
                     for (int i = 0; i < links.Length; i++)
-                        Graphics.DrawMesh(mesh, matrix, links[i].attachment.attachmentGraphicData.Graphic.MatSingle, layer);
+                    {
+                        if (links[i].attachment.attachmentGraphicData != null)
+                            Graphics.DrawMesh(mesh, matrix, links[i].attachment.attachmentGraphicData.Graphic.MatSingle, layer);
+                    }
                 }
             }
 
