@@ -63,6 +63,19 @@ namespace CombatExtended.HarmonyCE
         private static void PatchThingOwner()
         {
             // Need to patch ThingOwner<T> manually for all child classes of Thing
+            var baseThingOwnerType = typeof(ThingOwner);
+            //Post add notification patches
+            var postfixNotifyAdded = typeof(Harmony_ThingOwner_NotifyAdded_Patch).GetMethod("Postfix");
+            instance.Patch(baseThingOwnerType.GetMethod("NotifyAdded", BindingFlags.Instance | BindingFlags.NonPublic), null, new HarmonyMethod(postfixNotifyAdded));
+            var postfixNotifyAddedAndMergedWith = typeof(Harmony_ThingOwner_NotifyAddedAndMergedWith_Patch).GetMethod("Postfix");
+            instance.Patch(baseThingOwnerType.GetMethod("NotifyAddedAndMergedWith", BindingFlags.Instance | BindingFlags.NonPublic), null, new HarmonyMethod(postfixNotifyAddedAndMergedWith));
+            //Post take notification patch
+            var postfixTake = typeof(Harmony_ThingOwner_Take_Patch).GetMethod("Postfix");
+            instance.Patch(baseThingOwnerType.GetMethod("Take", new Type[] { typeof(Thing), typeof(int) }), null, new HarmonyMethod(postfixTake));
+            //Post remove notification patch
+            var postfixRemove = typeof(Harmony_ThingOwner_NotifyRemoved_Patch).GetMethod("Postfix");
+            instance.Patch(baseThingOwnerType.GetMethod("NotifyRemoved", BindingFlags.Instance | BindingFlags.NonPublic), null, new HarmonyMethod(postfixRemove));
+            /*
             var postfixTryAdd = typeof(Harmony_ThingOwner_TryAdd_Patch).GetMethod("Postfix");
             var postfixTake = typeof(Harmony_ThingOwner_Take_Patch).GetMethod("Postfix");
             var postfixRemove = typeof(Harmony_ThingOwner_Remove_Patch).GetMethod("Postfix");
@@ -75,7 +88,7 @@ namespace CombatExtended.HarmonyCE
                 instance.Patch(type.GetMethod("TryAdd", new Type[] { typeof(Thing), typeof(bool) }), null, new HarmonyMethod(postfixTryAdd));
                 instance.Patch(type.GetMethod("Take", new Type[] { typeof(Thing), typeof(int) }), null, new HarmonyMethod(postfixTake));
                 instance.Patch(type.GetMethod("Remove", new Type[] { typeof(Thing) }), null, new HarmonyMethod(postfixRemove));
-            }
+            }*/
         }
 
         private static void PatchHediffWithComps(Harmony harmonyInstance)
