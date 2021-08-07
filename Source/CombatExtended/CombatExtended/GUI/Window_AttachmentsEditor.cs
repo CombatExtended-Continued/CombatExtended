@@ -85,7 +85,7 @@ namespace CombatExtended
                     collapsible.Gap(1.00f);
                     collapsible.Line(1.0f);
                 }
-                collapsible.Label($"CE_AttachmentSlot_{cat}".Translate(), fontSize: GameFont.Tiny, fontStyle: FontStyle.Bold);
+                collapsible.Label($"CE_AttachmentSlot_{cat}".Translate(), fontSize: GameFont.Small, fontStyle: FontStyle.Bold);
                 collapsible.Gap(3);
 
                 foreach (AttachmentDef attachment in categoryToDef[cat])
@@ -94,7 +94,7 @@ namespace CombatExtended
                     {
                         bool checkOn = attachment.slotTags.All(s => catergoryToSelected[s].attachment == attachment);
                         bool checkOnPrev = checkOn;
-                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false);
+                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
                         if (checkOn != checkOnPrev)
                         {
                             if (checkOn)

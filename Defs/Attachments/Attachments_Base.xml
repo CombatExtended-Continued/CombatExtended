@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <CombatExtended.AttachmentDef Name="Attachments_Base" Abstract="true">       
-    <thingClass>Thing</thingClass>             
+  <CombatExtended.AttachmentDef Name="AttachmentBase" Abstract="true">       
+    <thingClass>ThingWithComps</thingClass>             
     <category>Item</category>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <useHitPoints>true</useHitPoints>
@@ -11,6 +11,9 @@
       <MaxHitPoints>100</MaxHitPoints>      
       <Flammability>1</Flammability>			
     </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
     <selectable>true</selectable>
     <altitudeLayer>Item</altitudeLayer>
     <stackLimit>1</stackLimit>
@@ -25,7 +28,7 @@
 
   <!-- ==================== Bases with different textures ==================== -->
 
-  <CombatExtended.AttachmentDef Name="Attachments_SightBase" Abstract="true" ParentName="Attachments_Base">               
+  <CombatExtended.AttachmentDef Name="AttachmentSightBase" ParentName="AttachmentBase" Abstract="true">               
     <slotTags>
       <li>Sight</li>
     </slotTags>
@@ -35,7 +38,7 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef Name="Attachments_MagBase" Abstract="true" ParentName="Attachments_Base">           
+  <CombatExtended.AttachmentDef Name="AttachmentMagBase" ParentName="AttachmentBase" Abstract="true">           
     <slotTags>
       <li>Mag</li>
     </slotTags>
@@ -45,7 +48,7 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
 
-   <CombatExtended.AttachmentDef Name="Attachments_MuzzleBase" Abstract="true" ParentName="Attachments_Base">          
+   <CombatExtended.AttachmentDef Name="AttachmentMuzzleBase" ParentName="AttachmentBase" Abstract="true">          
     <slotTags>
       <li>Muzzle</li>
     </slotTags>
@@ -55,7 +58,7 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef Name="Attachments_UnderbarrelBase" Abstract="true" ParentName="Attachments_Base">           
+  <CombatExtended.AttachmentDef Name="AttachmentUnderbarrelBase" ParentName="AttachmentBase" Abstract="true">           
     <slotTags>
       <li>Underbarrel</li>
     </slotTags>
@@ -65,5 +68,4 @@
     </graphicData>   
   </CombatExtended.AttachmentDef>
   
-
 </Defs>
