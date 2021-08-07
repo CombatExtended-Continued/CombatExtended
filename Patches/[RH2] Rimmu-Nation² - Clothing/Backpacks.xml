@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="RH2_BackpackBase" or @Name="RH2_BackpackMakeableBase"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>Backpack</li>
+						</layers>
+					</value>
+				</li>
+				<!-- == statBases == -->
+				<!-- Sling / Ultralight Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_Wasing"]/statBases
+					</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<!-- Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_StudentBackpack"]/statBases
+					</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+				<!-- Medium Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_BearGryllsBearpac"]/statBases
+					</xpath>
+					<value>
+						<Bulk>7</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+				<!-- Medium Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_Motherlode"]/statBases
+					</xpath>
+					<value>
+						<Bulk>9</Bulk>
+						<WornBulk>4</WornBulk>
+					</value>
+				</li>
+				<!-- Medium Heavy Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_RUSH24BP"]/statBases
+					</xpath>
+					<value>
+						<Bulk>11</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+				<!-- Heavy Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_LBT0101JJ"]/statBases
+					</xpath>
+					<value>
+						<Bulk>13</Bulk>
+						<WornBulk>6</WornBulk>
+					</value>
+				</li>
+				<!-- Heavy Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_MOLLE2UCP"]/statBases
+					</xpath>
+					<value>
+						<Bulk>20</Bulk>
+						<WornBulk>8</WornBulk>
+					</value>
+				</li>
+				<!-- == CarryBulk == -->
+				<!-- Sling / Ultralight Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_Wasing"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>20</CarryBulk>
+					</value>
+				</li>
+				<!-- Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_StudentBackpack"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>25</CarryBulk>
+					</value>
+				</li>
+				<!-- Medium Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_BearGryllsBearpac"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>34</CarryBulk>
+					</value>
+				</li>
+				<!-- Medium Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_Motherlode"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>38</CarryBulk>
+					</value>
+				</li>
+				<!-- Medium Heavy Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_RUSH24BP"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>40</CarryBulk>
+					</value>
+				</li>
+				<!-- Heavy Light Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_LBT0101JJ"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>50</CarryBulk>
+					</value>
+				</li>
+				<!-- Heavy Pack -->
+				<li Class="PatchOperationAdd">
+					<xpath>
+						/Defs/ThingDef[
+						defName = "RNApparel_Backpack_MOLLE2UCP"]/equippedStatOffsets
+					</xpath>
+					<value>
+							<CarryBulk>75</CarryBulk>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
