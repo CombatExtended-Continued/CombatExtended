@@ -40,8 +40,8 @@ namespace CombatExtended
             availableDefs = platform.AvailableAttachmentDefs;
 
             // register currently equiped attachments
-            foreach (Thing attachment in platform.attachments)
-                this.Add((AttachmentDef)attachment.def);
+            foreach (AttachmentDef attachmentDef in platform.TargetConfig)
+                this.Add(attachmentDef);
 
             // cache stuff
             foreach (string s in categories)
@@ -94,6 +94,13 @@ namespace CombatExtended
                     {
                         bool checkOn = attachment.slotTags.All(s => catergoryToSelected[s].attachment == attachment);
                         bool checkOnPrev = checkOn;
+                        if (checkOn && !weapon.attachments.Any(a => a.def == attachment))
+                            Widgets.ButtonImageFitted(rect.LeftPartPixels(22).ContractedBy(3), TexButton.Plus, Color.green);
+                        if (!checkOn && weapon.attachments.Any(a => a.def == attachment))
+                            Widgets.ButtonImageFitted(rect.LeftPartPixels(22).ContractedBy(3), TexButton.Minus, Color.red);
+                        rect.xMin += 24;
+                        Widgets.DefIcon(rect.LeftPartPixels(22).ContractedBy(2), attachment);
+                        rect.xMin += 24;
                         GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
                         if (checkOn != checkOnPrev)
                         {
@@ -135,56 +142,78 @@ namespace CombatExtended
 
         private void DoStatPanel(Rect inRect)
         {
-            inRect.yMin += 5;
-            Rect rect = inRect.TopPartPixels(25);
-            CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
-            if (ammoProp != null)
-                DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
+            inRect.xMin += 5;
+            inRect.xMax -= 5;
+            DrawLeft(inRect.LeftPartPixels(inRect.width / 2 - 2.5f));
+            DrawRight(inRect.RightPartPixels(inRect.width / 2 - 2.5f));
 
-            DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
-            DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
-            DoXmlStat(ref rect, CE_StatDefOf.SightsEfficiency);
-            DoXmlStat(ref rect, CE_StatDefOf.ReloadSpeed);
-            DoXmlStat(ref rect, StatDefOf.Mass, sum: true);
-
-            void DoXmlStat(ref Rect rect, StatDef stat, bool sum = false)
+            void DrawLeft(Rect inRect)
             {
-                float before = weaponDef.GetStatValueAbstract(stat);
-                float after = before;
-                foreach (AttachmentDef attachment in selected)
+                inRect.yMin += 5;
+                Rect rect = inRect.TopPartPixels(25);
+                CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
+                if (ammoProp != null)
+                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
+
+                DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
+                DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
+                DoXmlStat(ref rect, CE_StatDefOf.SightsEfficiency);
+                DoXmlStat(ref rect, CE_StatDefOf.ReloadSpeed);
+                DoXmlStat(ref rect, StatDefOf.Mass, sum: true);
+            }
+            void DrawRight(Rect inRect)
+            {
+                inRect.yMin += 5;
+                Rect rect = inRect.TopPartPixels(25);
+                CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
+                if (ammoProp != null)
+                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
+
+                DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
+                DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
+                DoXmlStat(ref rect, CE_StatDefOf.SightsEfficiency);
+                DoXmlStat(ref rect, CE_StatDefOf.ReloadSpeed);
+                DoXmlStat(ref rect, StatDefOf.Mass, sum: true);
+            }
+        }
+
+        private void DoXmlStat(ref Rect rect, StatDef stat, bool sum = false)
+        {
+            float before = weaponDef.GetStatValueAbstract(stat);
+            float after = before;
+            foreach (AttachmentDef attachment in selected)
+            {
+                float m = attachment.GetStatValueAbstract(stat);
+                if (m != 0)
                 {
-                    float m = attachment.GetStatValueAbstract(stat);
-                    if (m != 0)
-                    {
-                        if (!sum)
-                            after *= m;
-                        else
-                            after += m;
-                    }
+                    if (!sum)
+                        after *= m;
+                    else
+                        after += m;
                 }
-                DrawLine(ref rect, stat.label, before, after);
             }
+            DrawLine(ref rect, stat.label, before, after);
+        }
 
-            void DrawLine(ref Rect inRect, string label, float before, float after)
+        private void DrawLine(ref Rect inRect, string label, float before, float after)
+        {
+            string color = before > after ? "red" : "green";
+            string sign = before > after ? "-" : "+";
+            string beforeText = $"{String.Format("{0:n}", Math.Round(before, 2))}";
+            string afterText = $"<color={color}>({sign}{String.Format("{0:n}", Math.Round(Mathf.Abs(after - before), 2))})</color>";
+            Rect rect = inRect;
+            inRect.y += 25;
+            GUIUtility.ExecuteSafeGUIAction(() =>
             {
-                string color = before > after ? "red" : "green";
-                string sign = before > after ? "-" : "+";
-                string beforeText = $"{String.Format("{0:n}", Math.Round(before, 2))}";
-                string afterText = $"<color={color}>({sign}{String.Format("{0:n}", Math.Round(Mathf.Abs(after - before), 2))})</color>";
-                Rect rect = inRect;
-                inRect.y += 25;
-                GUIUtility.ExecuteSafeGUIAction(() =>
-                {
-                    Text.Font = GameFont.Small;
-                    Text.WordWrap = false;
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    rect.xMin += 15;
-                    rect.xMax -= 15;
-                    Widgets.Label(rect, label.CapitalizeFirst());
-                    Widgets.Label(rect.RightPartPixels(95), beforeText);
-                    Widgets.Label(rect.RightPartPixels(50), afterText);
-                });
-            }
+                Text.Font = GameFont.Small;
+                Text.WordWrap = false;
+                Text.Anchor = TextAnchor.UpperLeft;
+                rect.xMin += 15;
+                rect.xMax -= 15;
+                Widgets.Label(rect, label.CapitalizeFirst());
+                Widgets.Label(rect.RightPartPixels(85), beforeText);
+                Widgets.Label(rect.RightPartPixels(50), afterText);
+            });
         }
 
         private void Add(AttachmentDef def)
@@ -225,6 +254,9 @@ namespace CombatExtended
                 weapon.Rebuild();
                 return;
             }
+            weapon.TargetConfig.Clear();
+            foreach (AttachmentDef def in selected)
+                weapon.TargetConfig.Add(def);
         }
     }
 }

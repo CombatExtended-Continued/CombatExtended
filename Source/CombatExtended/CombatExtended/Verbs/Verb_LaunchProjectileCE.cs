@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
+using System.Net.Mail;
 
 namespace CombatExtended
 {
@@ -152,6 +153,31 @@ namespace CombatExtended
                     compFireModes = EquipmentSource.TryGetComp<CompFireModes>();
                 }
                 return compFireModes;
+            }
+        }
+
+        private float _effectiveAge = 0;
+        private float _effectiveRange = 0;
+
+        public override float EffectiveRange
+        {
+            get
+            {
+                if (EquipmentSource is WeaponPlatform platform)
+                {
+                    if (GenTicks.TicksGame == _effectiveAge && !(Find.TickManager?.Paused ?? true))
+                        return _effectiveRange;
+
+                    float range = base.EffectiveRange;
+                    foreach (Thing attachment in platform.attachments)
+                        range *= attachment.GetStatValue(CE_StatDefOf.WeaponRangeMultiplier);
+
+                    _effectiveAge = GenTicks.TicksGame;
+                    _effectiveRange = range;
+
+                    return _effectiveRange;
+                }
+                return base.EffectiveRange;
             }
         }
 
@@ -384,7 +410,7 @@ namespace CombatExtended
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
-            report.maxRange = verbProps.range;
+            report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
@@ -574,7 +600,7 @@ namespace CombatExtended
             if (!TryFindCEShootLineFromTo(root, targ, out shootLine))
             {
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
-                if (lengthHorizontalSquared > verbProps.range * verbProps.range)
+                if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
                     report = "Out of range";
                 }
@@ -732,14 +758,14 @@ namespace CombatExtended
                 resultingLine = default(ShootLine);
                 return false;
             }
-            if (verbProps.range <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
+            if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
-            if (num > verbProps.range * verbProps.range || num < verbProps.minRange * verbProps.minRange)
+            if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
