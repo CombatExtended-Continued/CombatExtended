@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[O21] Forgotten Realms</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]</xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Humanoid</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]/statBases</xpath>
+          <value>
+            <NightVisionEfficiency>0.6</NightVisionEfficiency>
+            <MeleeDodgeChance>1.1</MeleeDodgeChance>
+            <MeleeCritChance>0.8</MeleeCritChance>
+            <MeleeParryChance>0.85</MeleeParryChance>
+            <CarryWeight>35</CarryWeight>
+            <CarryBulk>20</CarryBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>4.49</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Chitine"]/comps</xpath>
+          <value>
+            <li>
+              <compClass>CombatExtended.CompPawnGizmo</compClass>
+            </li>
+            <li Class="CombatExtended.CompProperties_Suppressable" />
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

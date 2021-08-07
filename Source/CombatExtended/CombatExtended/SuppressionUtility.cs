@@ -13,7 +13,11 @@ namespace CombatExtended
     {
         public const float maxCoverDist = 10f; //Maximum distance to run for cover to
 
-        private static LightingTracker tracker;
+        private static LightingTracker lightingTracker;
+
+        private static DangerTracker dangerTracker;
+
+        private static List<CompProjectileInterceptor> interceptors;
 
         public static bool TryRequestHelp(Pawn pawn)
         {
@@ -75,7 +79,9 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
-            tracker = pawn.Map.GetLightingTracker();
+            interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
+            lightingTracker = pawn.Map.GetLightingTracker();
+            dangerTracker = pawn.Map.GetDangerTracker();
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
 
             if (bestRating <= 0)
@@ -100,13 +106,13 @@ namespace CombatExtended
                 }
             }
             coverPosition = bestPos;
-            tracker = null;
+            lightingTracker = null;
             return bestRating >= 0;
         }
 
         private static float GetCellCoverRatingForPawn(Pawn pawn, IntVec3 cell, IntVec3 shooterPos)
         {
-            // Check for invalid locations
+            // Check for invalid locations            
             if (!cell.IsValid || !cell.Standable(pawn.Map) || !pawn.CanReserveAndReach(cell, PathEndMode.OnCell, Danger.Deadly) || cell.ContainsStaticFire(pawn.Map))
             {
                 return -1;
@@ -116,7 +122,7 @@ namespace CombatExtended
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating += 2f;
+                cellRating += 4f;
             }
             else
             {
@@ -124,18 +130,41 @@ namespace CombatExtended
                 Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
                 IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
                 Thing cover = coverCell.GetCover(pawn.Map);
-                cellRating += GetCoverRating(cover);
+                cellRating += GetCoverRating(cover) * 2;
             }
+
+            // Avoid bullets and other danger source
+            cellRating -= dangerTracker.DangerAt(cell) * 4;
+
+            // better cover rating system
+            float coverLOSRating = 0;
+            foreach (IntVec3 pos in pawn.Map.PartialLineOfSights(cell, shooterPos))
+            {
+                Thing cover = pos.GetCover(pawn.Map);
+                if (cover == null)
+                    continue;
+                if (cover is Gas)
+                    coverLOSRating += 2;
+                else if (cover.def.Fillage == FillCategory.Partial)
+                    coverLOSRating += 4;
+            }
+            cellRating += Mathf.Min(coverLOSRating, 25);
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
             {
-                cellRating -= tracker.CombatGlowAtFor(shooterPos, cell) / 2f;
+                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) / 2f;
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
                     pathCost *= 5;
                 cellRating = cellRating / pathCost;
+            }
+            for (int i = 0; i < interceptors.Count; i++)
+            {
+                CompProjectileInterceptor interceptor = interceptors[i];
+                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
+                    cellRating += 10;
             }
             return cellRating;
         }

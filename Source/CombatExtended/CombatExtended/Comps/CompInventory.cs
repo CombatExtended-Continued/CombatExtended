@@ -355,7 +355,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
         /// <param name="useAOE">Whether to use AOE weapons (grenades, explosive, RPGs, etc)</param>
-        public void SwitchToNextViableWeapon(bool useFists = true, bool useAOE = false, bool stopJob = true, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
+        public bool SwitchToNextViableWeapon(bool useFists = true, bool useAOE = false, bool stopJob = true, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
         {
             ThingWithComps newEq = null;
 
@@ -389,6 +389,7 @@ namespace CombatExtended
                     parentPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, newEq), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
                 else
                     TrySwitchToWeapon(newEq, stopJob);
+                return true;
             }
             else if (useFists)
             {
@@ -413,7 +414,9 @@ namespace CombatExtended
                         }
                     }
                 }
+                return true;
             }
+            return false;
         }
 
         public bool TryFindRandomAOEWeapon(out ThingWithComps weapon, Func<ThingWithComps, bool> predicate = null, bool checkAmmo = false)

@@ -97,8 +97,12 @@ namespace CombatExtended
 
         public static IEnumerable<IntVec3> PartialLineOfSights(this Pawn pawn, LocalTargetInfo targetFacing)
         {
-            Map map = pawn.Map;
-            IntVec3 startPos = pawn.Position;
+            return PartialLineOfSights(pawn.Map, pawn, targetFacing);
+        }
+
+        public static IEnumerable<IntVec3> PartialLineOfSights(this Map map, LocalTargetInfo source, LocalTargetInfo targetFacing)
+        {
+            IntVec3 startPos = source.Cell;
             IntVec3 endPos = targetFacing.Cell;
             foreach (IntVec3 cell in GenSight.PointsOnLineOfSight(startPos, new IntVec3(
                     (int)((startPos.x * 3 + endPos.x) / 4f),
