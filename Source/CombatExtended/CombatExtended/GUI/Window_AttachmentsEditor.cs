@@ -57,13 +57,6 @@ namespace CombatExtended
         protected override void DoLeftPanel(Rect inRect)
         {
             Rect statRect = inRect.BottomPartPixels(25 * 6 + 10);
-            GUIUtility.ExecuteSafeGUIAction(() =>
-            {
-                Text.Font = GameFont.Small;
-                Text.CurFontStyle.fontStyle = FontStyle.Bold;
-                Widgets.Label(inRect.TopPartPixels(25), $"{weaponDef.label.CapitalizeFirst()}");
-            });
-            inRect.yMin += 25;
             inRect.yMax -= 25 * 6 + 10 + 5;
             inRect.width = Mathf.Min(inRect.width, inRect.height);
             inRect = inRect.CenteredOnXIn(statRect);
