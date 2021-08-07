@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aoba's Various Apparel vol.1</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Thavnirian Bustier -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "AVA_Apparel_ThavnirianBustier"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "AVA_Apparel_ThavnirianBustier"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Miko -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "AVA_Apparel_Miko"]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "AVA_Apparel_Miko"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+

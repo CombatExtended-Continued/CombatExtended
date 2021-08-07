@@ -64,6 +64,7 @@ Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Anty the War Ant Race |
+Aoba's Various Apparel  |v
 Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
@@ -96,12 +97,11 @@ Dragons!	|
 ED-Shields	|
 Epona The centaur race  |
 Equiums Horse Race	|
-Erin's Critter Collection |
-Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Mountain Animals |
+Erin's Wildlife |
 Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
