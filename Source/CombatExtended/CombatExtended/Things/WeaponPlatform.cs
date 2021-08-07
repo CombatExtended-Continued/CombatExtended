@@ -123,7 +123,7 @@ namespace CombatExtended
             Rebuild();
         }
 
-        private void Rebuild()
+        public void Rebuild()
         {
             currentAttachments = new AttachmentDef[attachments.Count];
             currentLinks = new AttachmentLink[attachments.Count];

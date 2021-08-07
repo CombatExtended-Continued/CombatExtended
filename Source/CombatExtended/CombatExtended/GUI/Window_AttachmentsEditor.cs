@@ -102,7 +102,7 @@ namespace CombatExtended
                             else
                                 Remove(attachment);
                         }
-                        if (checkOn && Mouse.IsOver(rect))
+                        if (Mouse.IsOver(rect))
                         {
                             hoveringOver = attachment;
                             TooltipHandler.TipRegion(rect, attachment.description.CapitalizeFirst());
@@ -214,6 +214,17 @@ namespace CombatExtended
 
         private void Apply()
         {
+            if (Prefs.DevMode)
+            {
+                weapon.attachments.ClearAndDestroyContents();
+                foreach (AttachmentDef attachmentDef in selected)
+                {
+                    Thing attachment = ThingMaker.MakeThing(attachmentDef);
+                    weapon.attachments.TryAdd(attachment);
+                }
+                weapon.Rebuild();
+                return;
+            }
         }
     }
 }
