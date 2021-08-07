@@ -102,7 +102,7 @@ namespace CombatExtended
                             else
                                 Remove(attachment);
                         }
-                        if (Mouse.IsOver(rect))
+                        if (checkOn && Mouse.IsOver(rect))
                         {
                             hoveringOver = attachment;
                             TooltipHandler.TipRegion(rect, attachment.description.CapitalizeFirst());
