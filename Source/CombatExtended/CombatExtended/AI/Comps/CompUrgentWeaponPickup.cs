@@ -60,6 +60,10 @@ namespace CombatExtended.AI
         {
             if (SelPawn.Faction.IsPlayerSafe())
                 return;
+            if (SelPawn.RaceProps.IsMechanoid)
+                return;
+            if (!SelPawn.RaceProps.Humanlike)
+                return;
             if (SelPawn.equipment == null)
                 return;
             if (SelPawn.equipment.Primary != null)

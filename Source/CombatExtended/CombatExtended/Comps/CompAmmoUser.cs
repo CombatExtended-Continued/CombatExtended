@@ -498,6 +498,10 @@ namespace CombatExtended
 
         public bool TryPickupAmmo()
         {
+            if (!Holder.RaceProps.Humanlike)
+                return false;
+            if (Holder.MentalState != null)
+                return false;
             IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
             foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
                                         && supportedAmmo.Contains(ammo.AmmoDef)
