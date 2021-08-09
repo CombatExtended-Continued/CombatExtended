@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Equipment</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === Scarf === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AnimalScarfBase"]/statBases</xpath>
+					<value>
+						<Bulk>1</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="AnimalScarfBase"]/statBases/ArmorRating_Sharp</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AnimalScarfBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
