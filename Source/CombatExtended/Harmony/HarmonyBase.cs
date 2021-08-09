@@ -75,20 +75,6 @@ namespace CombatExtended.HarmonyCE
             //Post remove notification patch
             var postfixRemove = typeof(Harmony_ThingOwner_NotifyRemoved_Patch).GetMethod("Postfix");
             instance.Patch(baseThingOwnerType.GetMethod("NotifyRemoved", BindingFlags.Instance | BindingFlags.NonPublic), null, new HarmonyMethod(postfixRemove));
-            /*
-            var postfixTryAdd = typeof(Harmony_ThingOwner_TryAdd_Patch).GetMethod("Postfix");
-            var postfixTake = typeof(Harmony_ThingOwner_Take_Patch).GetMethod("Postfix");
-            var postfixRemove = typeof(Harmony_ThingOwner_Remove_Patch).GetMethod("Postfix");
-
-            var baseType = typeof(Thing);
-            var types = baseType.AllSubclassesNonAbstract().AddItem(baseType);
-            foreach (Type current in types)
-            {
-                var type = typeof(ThingOwner<>).MakeGenericType(current);
-                instance.Patch(type.GetMethod("TryAdd", new Type[] { typeof(Thing), typeof(bool) }), null, new HarmonyMethod(postfixTryAdd));
-                instance.Patch(type.GetMethod("Take", new Type[] { typeof(Thing), typeof(int) }), null, new HarmonyMethod(postfixTake));
-                instance.Patch(type.GetMethod("Remove", new Type[] { typeof(Thing) }), null, new HarmonyMethod(postfixRemove));
-            }*/
         }
 
         private static void PatchHediffWithComps(Harmony harmonyInstance)
