@@ -9,6 +9,17 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="Mantodean"]//*[
+          def="Jaw" or 
+          def="EyeSet"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
         <li Class="PatchOperationAdd">
           <xpath>
             /Defs/BodyDef[defName="Mantodean"]//*[

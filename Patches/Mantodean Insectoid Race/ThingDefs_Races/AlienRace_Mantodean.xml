@@ -41,14 +41,34 @@
 					</li>
 				</value>
 			</li>
-
 			
 			<li Class="PatchOperationAdd">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Mantodean"]/statBases</xpath>
 				  <value>
-					<Suppressability>0.5</Suppressability>
-					<SmokeSensitivity>0.6</SmokeSensitivity>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+					<ArmorRating_Blunt>1</ArmorRating_Blunt>
+					<MeleeDodgeChance>0.7</MeleeDodgeChance>
+					<MeleeCritChance>1.28</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>0.4</Suppressability>
+					<CarryBulk>30</CarryBulk>
+					<SmokeSensitivity>0.5</SmokeSensitivity>
 				  </value>
+			</li>
+
+
+		    	<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Mantodean"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1.3</baseHealthScale>
+				</value>
+			</li>
+
+		    	<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Mantodean"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>1.3</baseBodySize>
+				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
@@ -59,47 +79,25 @@
 							<label>left pincer</label>
 							<capacities>
 								<li>Cut</li>
-							</capacities>
-							<power>14</power>
-							<cooldownTime>1.68</cooldownTime>
-							<linkedBodyPartsGroup>Leftpincer</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>9</armorPenetrationBlunt>
-							<armorPenetrationSharp>3.25</armorPenetrationSharp>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>left pincer</label>
-							<capacities>
 								<li>ToxicBite</li>
 							</capacities>
-							<power>7</power>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<power>16</power>
 							<cooldownTime>1.68</cooldownTime>
 							<linkedBodyPartsGroup>Leftpincer</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>9</armorPenetrationBlunt>
-							<armorPenetrationSharp>3.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right pincer</label>
 							<capacities>
 								<li>Cut</li>
-							</capacities>
-							<power>14</power>
-							<cooldownTime>1.68</cooldownTime>
-							<linkedBodyPartsGroup>Rightpincer</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>9</armorPenetrationBlunt>
-							<armorPenetrationSharp>3.25</armorPenetrationSharp>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right pincer</label>
-							<capacities>
 								<li>ToxicBite</li>
 							</capacities>
-							<power>7</power>
-							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<power>16</power>
 							<cooldownTime>1.68</cooldownTime>
 							<linkedBodyPartsGroup>Rightpincer</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>9</armorPenetrationBlunt>
-							<armorPenetrationSharp>3.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>jaw</label>
@@ -108,7 +106,7 @@
 							</capacities>
 							<power>28</power>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							<cooldownTime>3.77</cooldownTime>
+							<cooldownTime>3.17</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>20</armorPenetrationBlunt>
 							<armorPenetrationSharp>7</armorPenetrationSharp>
@@ -118,23 +116,23 @@
 							<capacities>
 								<li>ToxicBite</li>
 							</capacities>
-							<power>14</power>
+							<power>20</power>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							<cooldownTime>3.77</cooldownTime>
+							<cooldownTime>3.17</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>20</armorPenetrationBlunt>
-							<armorPenetrationSharp>7</armorPenetrationSharp>
+							<armorPenetrationSharp>10</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>2</power>
+							<power>3</power>
 							<cooldownTime>4.49</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<chanceFactor>0.1</chanceFactor>
-							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
