@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Cybernetic Organism and Neural Network</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Berserker chip -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_BerserkerChip"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<painFactor>0.5</painFactor>
+								<statOffsets>
+									<MeleeHitChance>12</MeleeHitChance>
+									<MeleeDodgeChance>0.4</MeleeDodgeChance>
+									<PainShockThreshold>0.75</PainShockThreshold>
+								</statOffsets>
+								<capMods>
+									<li>
+										<capacity>Consciousness</capacity>
+										<offset>0.10</offset>
+									</li>
+								</capMods>
+							</li>
+						</stages>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
