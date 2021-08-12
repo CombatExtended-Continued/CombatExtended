@@ -180,18 +180,8 @@ namespace CombatExtended
         private void DoXmlStat(ref Rect rect, StatDef stat, bool sum = false)
         {
             float before = weaponDef.GetStatValueAbstract(stat);
-            float after = before;
-            foreach (AttachmentDef attachment in selected)
-            {
-                float m = attachment.GetStatValueAbstract(stat);
-                if (m != 0)
-                {
-                    if (!sum)
-                        after *= m;
-                    else
-                        after += m;
-                }
-            }
+            float after = before;            
+            stat.TransformValue(this.weaponDef.attachments.Where(t => selected.Contains(t.attachment)).ToList(), ref after);
             DrawLine(ref rect, stat.label, before, after);
         }
 

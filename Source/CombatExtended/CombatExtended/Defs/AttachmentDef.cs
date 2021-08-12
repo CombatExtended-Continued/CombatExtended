@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace CombatExtended
@@ -14,13 +16,61 @@ namespace CombatExtended
 
         public GraphicData outlineGraphicData;
 
-        public override void PostLoad()
+        public List<StatModifier> statOffsets;        
+
+        public List<StatModifier> statMultipliers;
+
+        public List<StatModifier> statReplacers;
+
+        [Unsaved(allowLoading = false)]
+        public bool statsValidated = false;
+        
+        /// <summary>
+        /// Used to validate and sync the important stats that are not going to be require adding a stat part for or
+        /// for those in stat bases.
+        /// </summary>
+        public void ValidateStats()
         {
-            base.PostLoad();
-            if (slotTags == null)
-                slotTags = new List<string>();
-            if (attachmentTags == null)
-                attachmentTags = new List<string>();
+            if (statsValidated)
+            {
+                Log.Warning($"CE: called ValidateStats for a valid attachment stat configuration! {this.defName}");
+                return;
+            }
+
+            if (this.slotTags == null)
+                this.slotTags = new List<string>();
+            if (this.attachmentTags == null)
+                this.attachmentTags = new List<string>();
+
+            if (this.statOffsets == null)
+                this.statOffsets = new List<StatModifier>();
+            if (this.statMultipliers == null)
+                this.statMultipliers = new List<StatModifier>();
+            if (this.statReplacers == null)
+                this.statReplacers = new List<StatModifier>();
+
+            statsValidated = true;
+            StatModifier modifier;
+            
+            modifier = this.statBases.FirstOrFallback(s => s.stat == StatDefOf.Mass, null);
+            if (modifier != null && !this.statOffsets.Any(m => m.stat == StatDefOf.Mass))
+                this.statOffsets.Add(modifier);
+
+            modifier = this.statBases.FirstOrFallback(s => s.stat == CE_StatDefOf.Bulk, null);
+            if (modifier != null && !this.statOffsets.Any(m => m.stat == CE_StatDefOf.Bulk))
+                this.statOffsets.Add(modifier);
+
+            modifier = this.statBases.FirstOrFallback(s => s.stat == StatDefOf.MarketValue, null);
+            if (modifier != null && !this.statOffsets.Any(m => m.stat == StatDefOf.MarketValue))
+                this.statOffsets.Add(modifier);            
+
+            modifier = this.statBases.FirstOrFallback(s => s.stat == StatDefOf.Flammability, null);
+            if (modifier != null && !this.statOffsets.Any(m => m.stat == StatDefOf.Flammability))
+                this.statMultipliers.Add(modifier);
+
+            modifier = this.statBases.FirstOrFallback(s => s.stat == CE_StatDefOf.MagazineCapacity, null);
+            if (modifier != null && !this.statReplacers.Any(m => m.stat == CE_StatDefOf.MagazineCapacity))
+                this.statReplacers.Add(modifier);
         }
     }
 }

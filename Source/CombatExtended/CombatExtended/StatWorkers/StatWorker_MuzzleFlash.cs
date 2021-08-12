@@ -21,7 +21,10 @@ namespace CombatExtended
                         count++;
                     }
                 }
-                return base.GetValueUnfinalized(req) + scale / count;
+                float val = scale / count;
+                if (def is WeaponPlatformDef platform && platform.attachments != null)
+                    stat.TransformValue(platform.attachments, ref val);
+                return val;
             }
             return 0f;
         }

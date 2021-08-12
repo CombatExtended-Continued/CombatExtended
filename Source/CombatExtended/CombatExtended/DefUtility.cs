@@ -48,6 +48,14 @@ namespace CombatExtended
             // Process all weapons
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
                 ProcessWeapons(def);
+
+            // Prepare attachments
+            foreach (AttachmentDef def in DefDatabase<AttachmentDef>.AllDefs)
+                def.ValidateStats();
+
+            // Prepare weaponPlatforms
+            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)
+                def.PrepareStats();
         }
 
         /// <summary>

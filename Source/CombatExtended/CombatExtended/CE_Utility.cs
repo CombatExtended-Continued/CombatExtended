@@ -45,6 +45,45 @@ namespace CombatExtended
             return platform.attachments.Any(l => l.attachment == attachment);
         }
 
+
+        /// <summary>
+        /// Used to tranform a stat for a given attachment link list. It will first check for overriden stats then apply offsets and multipliers.        
+        /// </summary>
+        /// <param name="stat">StatDef</param>
+        /// <param name="links">The current attachment links</param>
+        /// <param name="val">Val</param>        
+        public static void TransformValue(this StatDef stat, List<AttachmentLink> links,ref float val)
+        {
+            if (links == null || links.Count == 0)
+                return;
+            for (int i = 0; i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];
+                StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                // stop since we found an override modifier.
+                val = modifier.value;                
+                return;
+            }
+            for (int i = 0;i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];               
+                StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                val += modifier.value;
+            }
+            for (int i = 0; i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];                
+                StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value == 0)
+                    continue;
+                val *= modifier.value;
+            }            
+        }
+
         #endregion
 
         #region Blitting
