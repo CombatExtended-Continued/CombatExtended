@@ -7,6 +7,9 @@ namespace CombatExtended
 {
     public class WeaponPlatformDef : ThingDef
     {
+        /// <summary>
+        /// Contain attachmentlinks which are the binder for attachments
+        /// </summary>
         public List<AttachmentLink> attachmentLinks;               
 
         /// <summary>
