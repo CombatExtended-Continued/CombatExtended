@@ -91,7 +91,7 @@ namespace CombatExtended
             get
             {
                 if (_availableAttachments == null)
-                    _availableAttachments = Platform.attachments.Select(a => a.attachment).ToArray();
+                    _availableAttachments = Platform.attachmentLinks.Select(a => a.attachment).ToArray();
                 return _availableAttachments;
             }
         }
@@ -194,7 +194,7 @@ namespace CombatExtended
             foreach (Thing attachment in attachments)
             {
                 currentAttachments[i] = (AttachmentDef)attachment.def;
-                currentLinks[i] = Platform.attachments.First(a => a.attachment == attachment.def);
+                currentLinks[i] = Platform.attachmentLinks.First(a => a.attachment == attachment.def);
                 i++;
             }
         }

@@ -7,24 +7,25 @@ namespace CombatExtended
 {
     public class WeaponPlatformDef : ThingDef
     {
-        public List<AttachmentLink> attachments;               
+        public List<AttachmentLink> attachmentLinks;               
 
         /// <summary>
         /// Used to to cache the stat modifiers in links so we don't have to search for what is overriden
         /// </summary>
         public void PrepareStats()
         {
-            if (attachments == null)
+            if (attachmentLinks == null)
             {
-                attachments = new List<AttachmentLink>();
+                attachmentLinks = new List<AttachmentLink>();
                 return;
             }
-            for (int i = 0; i < attachments.Count; i++)
+            HashSet<StatDef> stats = new HashSet<StatDef>();
+            for (int i = 0; i < attachmentLinks.Count; i++)
             {
                 bool processOffsets = true;
                 bool processMultipliers = true;
                 bool processReplaces = true;
-                AttachmentLink link = attachments[i];
+                AttachmentLink link = attachmentLinks[i];
                 // validate stats incase this was called before the attachment def has excuted postload
                 if (!link.attachment.statsValidated)
                     link.attachment.ValidateStats();
@@ -70,6 +71,22 @@ namespace CombatExtended
                         if (link.statMultipliers.All(m => m.stat != modifier.stat))
                             link.statMultipliers.Add(modifier);
                     }
+                }
+                // add a stat base with default value if it doesn't exists
+                foreach (StatModifier modifier in link.attachment.statReplacers)
+                {
+                    if (statBases.All(s => s.stat != modifier.stat))
+                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue , stat = modifier.stat });
+                }
+                foreach (StatModifier modifier in link.attachment.statOffsets)
+                {
+                    if (statBases.All(s => s.stat != modifier.stat))
+                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue, stat = modifier.stat });
+                }
+                foreach (StatModifier modifier in link.attachment.statMultipliers)
+                {
+                    if (statBases.All(s => s.stat != modifier.stat))
+                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue, stat = modifier.stat });
                 }
             }
         }

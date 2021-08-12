@@ -42,7 +42,7 @@ namespace CombatExtended
 
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatformDef platform)
         {
-            return platform.attachments.Any(l => l.attachment == attachment);
+            return platform.attachmentLinks.Any(l => l.attachment == attachment);
         }
 
 

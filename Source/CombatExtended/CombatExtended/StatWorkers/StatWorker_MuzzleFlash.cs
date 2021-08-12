@@ -22,8 +22,8 @@ namespace CombatExtended
                     }
                 }
                 float val = scale / count;
-                if (def is WeaponPlatformDef platform && platform.attachments != null)
-                    stat.TransformValue(platform.attachments, ref val);
+                if (def is WeaponPlatformDef platform && platform.attachmentLinks != null)
+                    stat.TransformValue(platform.attachmentLinks, ref val);
                 return val;
             }
             return 0f;

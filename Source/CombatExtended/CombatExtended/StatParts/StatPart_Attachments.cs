@@ -22,11 +22,11 @@ namespace CombatExtended
                 return;
             }
             platform = (WeaponPlatformDef)req.Thing.def;
-            if (platform?.attachments == null)
+            if (platform?.attachmentLinks == null)
             {
                 return;
             }
-            this.parentStat.TransformValue(platform.attachments, ref val);
+            this.parentStat.TransformValue(platform.attachmentLinks, ref val);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace CombatExtended
         public Window_AttachmentsEditor(WeaponPlatform platform, Map map) : base(platform, map)
         {
             // sort categories from all weapons
-            categories = weaponDef.attachments.SelectMany(t => t.attachment.slotTags).Distinct().ToList();
+            categories = weaponDef.attachmentLinks.SelectMany(t => t.attachment.slotTags).Distinct().ToList();
             categories.Sort();
 
             // save available stuff
@@ -181,7 +181,7 @@ namespace CombatExtended
         {
             float before = weaponDef.GetStatValueAbstract(stat);
             float after = before;            
-            stat.TransformValue(this.weaponDef.attachments.Where(t => selected.Contains(t.attachment)).ToList(), ref after);
+            stat.TransformValue(this.weaponDef.attachmentLinks.Where(t => selected.Contains(t.attachment)).ToList(), ref after);
             DrawLine(ref rect, stat.label, before, after);
         }
 
