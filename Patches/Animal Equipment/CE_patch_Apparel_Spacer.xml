@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Equipment</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Power Armor -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<WornBulk>15</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerArmorBase"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>10</CarryBulk>
+						<ToxicSensitivity>-0.50</ToxicSensitivity>
+					</value>
+				</li>
+				<!-- Power Helm -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0</Flammability>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerHelmBase"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalSpacerHelmBase"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ToxicSensitivity>-0.50</ToxicSensitivity>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+						</equippedStatOffsets>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
