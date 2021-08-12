@@ -37,10 +37,45 @@
 						</stages>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_OuterBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>32</power>
+								<cooldownTime>0.83</cooldownTime>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
 
 				<!-- Power arm -->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/HediffDef[defName="Trunken_hediff_PowerArms"]/stages</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_PowerArms"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
 				</li>
 
 				<!-- Exoskeleton armor -->
