@@ -12,7 +12,18 @@ namespace CombatExtended
         /// <summary>
         /// Contain attachmentlinks which are the binder for attachments
         /// </summary>
-        public List<AttachmentLink> attachmentLinks;               
+        public List<AttachmentLink> attachmentLinks;
+
+        private Texture2D _UIWeaponTex = null;
+        public Texture2D UIWeaponTex
+        {
+            get
+            {                
+                if (_UIWeaponTex == null)
+                    _UIWeaponTex = (Texture2D)graphic.MatSingle.mainTexture;
+                return _UIWeaponTex;
+            }
+        }
 
         /// <summary>
         /// Used to to cache the stat modifiers in links so we don't have to search for what is overriden

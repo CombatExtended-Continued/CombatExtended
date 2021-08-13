@@ -11,6 +11,10 @@ namespace CombatExtended
 {
     public class Window_AttachmentsEditor : IWindow_AttachmentsEditor
     {
+        private const int PANEL_RIGHT_WIDTH = 250;
+        private const int PANEL_ACTION_HEIGHT = 50;
+        private const int PANEL_INNER_MARGINS = 4;
+
         struct SelectionHolder
         {
             public AttachmentDef attachment;
@@ -19,8 +23,8 @@ namespace CombatExtended
         private AttachmentDef hoveringOver = null;
 
         private readonly List<string> categories;
-
-        private readonly HashSet<AttachmentDef> selected = new HashSet<AttachmentDef>();
+        
+        private readonly HashSet<AttachmentLink> selected = new HashSet<AttachmentLink>();
 
         private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true);
 
@@ -52,9 +56,51 @@ namespace CombatExtended
         {
             base.PreOpen();
             RebuildCache();
+        }        
+
+        protected override void DoContent(Rect inRect)
+        {
+            if (weapon?.Destroyed ?? true)
+            {
+                Close(doCloseSound: true);
+                return;
+            }
+            Rect leftRect = inRect;
+            leftRect.xMax -= PANEL_RIGHT_WIDTH - 5;
+            Rect rightRect = inRect.RightPartPixels(PANEL_RIGHT_WIDTH);
+            Rect actionRect = rightRect.BottomPartPixels(PANEL_ACTION_HEIGHT);
+            rightRect.yMax -= PANEL_ACTION_HEIGHT - 5;
+
+            rightRect.xMin += PANEL_INNER_MARGINS;
+            rightRect.yMin += PANEL_INNER_MARGINS;
+            rightRect.xMax -= PANEL_INNER_MARGINS;
+            rightRect.yMax -= PANEL_INNER_MARGINS;
+            GUIUtility.ExecuteSafeGUIAction(() =>
+            {
+                this.DoRightPanel(rightRect);
+            });
+
+            leftRect.xMin += PANEL_INNER_MARGINS;
+            leftRect.yMin += PANEL_INNER_MARGINS;
+            leftRect.xMax -= PANEL_INNER_MARGINS;
+            leftRect.yMax -= PANEL_INNER_MARGINS;
+            Widgets.DrawMenuSection(leftRect);
+            GUIUtility.ExecuteSafeGUIAction(() =>
+            {
+                this.DoLeftPanel(leftRect);
+            });
+
+            actionRect.xMin += PANEL_INNER_MARGINS;
+            actionRect.yMin += PANEL_INNER_MARGINS;
+            actionRect.xMax -= PANEL_INNER_MARGINS;
+            actionRect.yMax -= PANEL_INNER_MARGINS;
+            GUIUtility.ExecuteSafeGUIAction(() =>
+            {
+                this.DoActionPanel(actionRect);
+            });
         }
 
-        protected override void DoLeftPanel(Rect inRect)
+        private void DoLeftPanel(Rect inRect)
         {
             inRect.yMin += 6;
             Rect statRect = inRect.BottomPartPixels(25 * 6 + 10);
@@ -64,11 +110,13 @@ namespace CombatExtended
             Widgets.DrawBoxSolid(inRect, Widgets.MenuSectionBGBorderColor);
             Widgets.DrawBoxSolid(inRect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
             GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, selected, hoveringOver, 0.7f);
+            if (Prefs.DevMode && Widgets.ButtonText(inRect.TopPartPixels(20).LeftPartPixels(75), "edit offsets") && !Find.WindowStack.IsOpen<Window_AttachmentsDebugger>())
+                Find.WindowStack.Add(new Window_AttachmentsDebugger(weaponDef));
             Widgets.DrawBoxSolid(statRect.TopPartPixels(1), Widgets.MenuSectionBGBorderColor);
             DoStatPanel(statRect);
         }
 
-        protected override void DoRightPanel(Rect inRect)
+        private void DoRightPanel(Rect inRect)
         {
             if (!Mouse.IsOver(inRect))
                 hoveringOver = null;
@@ -124,7 +172,7 @@ namespace CombatExtended
                 hoveringOver = null;
         }
 
-        protected override void DoActionPanel(Rect inRect)
+        private void DoActionPanel(Rect inRect)
         {
             Text.Font = GameFont.Small;
             Rect closeRect = inRect.RightHalf();
@@ -153,7 +201,7 @@ namespace CombatExtended
                 Rect rect = inRect.TopPartPixels(25);
                 CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
                 if (ammoProp != null)
-                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
+                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.attachment.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
 
                 DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
                 DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
@@ -167,7 +215,7 @@ namespace CombatExtended
                 Rect rect = inRect.TopPartPixels(25);
                 CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
                 if (ammoProp != null)
-                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
+                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.attachment.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
 
                 DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
                 DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
@@ -181,7 +229,7 @@ namespace CombatExtended
         {
             float before = weaponDef.GetStatValueAbstract(stat);
             float after = before;            
-            stat.TransformValue(this.weaponDef.attachmentLinks.Where(t => selected.Contains(t.attachment)).ToList(), ref after);
+            stat.TransformValue(this.weaponDef.attachmentLinks.Where(t => selected.Contains(t)).ToList(), ref after);
             DrawLine(ref rect, stat.label, before, after);
         }
 
@@ -208,14 +256,14 @@ namespace CombatExtended
 
         private void Add(AttachmentDef def)
         {
-            selected.RemoveWhere(d => d.slotTags.Any(t => def.slotTags.Contains(t)));
-            selected.Add(def);
-            RebuildCache();
+            selected.RemoveWhere(d => d.attachment.slotTags.Any(t => def.slotTags.Contains(t)));
+            selected.Add(weaponDef.attachmentLinks.First(t => t.attachment == def));
+            RebuildCache();            
         }
 
         private void Remove(AttachmentDef def)
         {
-            selected.RemoveWhere(d => d.slotTags.Any(t => def.slotTags.Contains(t)));
+            selected.RemoveWhere(d => d.attachment.slotTags.Any(t => def.slotTags.Contains(t)));            
             RebuildCache();
         }
 
@@ -224,10 +272,10 @@ namespace CombatExtended
             catergoryToSelected.Clear();
             foreach (string s in categories)
                 catergoryToSelected[s] = new SelectionHolder() { attachment = null };
-            foreach (AttachmentDef def in selected)
-            {
-                foreach (string s in def.slotTags)
-                    catergoryToSelected[s] = new SelectionHolder() { attachment = def };
+            foreach (AttachmentLink link in selected)
+            {                
+                foreach (string s in link.attachment.slotTags)
+                    catergoryToSelected[s] = new SelectionHolder() { attachment = link.attachment };
             }
         }
 
@@ -236,17 +284,17 @@ namespace CombatExtended
             if (Prefs.DevMode)
             {
                 weapon.attachments.ClearAndDestroyContents();
-                foreach (AttachmentDef attachmentDef in selected)
-                {
-                    Thing attachment = ThingMaker.MakeThing(attachmentDef);
+                foreach (AttachmentLink link in selected)                    
+                {                    
+                    Thing attachment = ThingMaker.MakeThing(link.attachment);
                     weapon.attachments.TryAdd(attachment);
                 }
                 weapon.Rebuild();
                 return;
             }
             weapon.TargetConfig.Clear();
-            foreach (AttachmentDef def in selected)
-                weapon.TargetConfig.Add(def);
+            foreach (AttachmentLink link in selected)
+                weapon.TargetConfig.Add(link.attachment);
         }
     }
 }

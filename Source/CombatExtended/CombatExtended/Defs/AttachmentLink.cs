@@ -11,7 +11,7 @@ namespace CombatExtended
     public class AttachmentLink
     {
         public AttachmentDef attachment;
-        public Vector2 drawOffset = Vector2.negativeInfinity;
+        public Vector2 drawOffset = Vector2.zero;        
 
         public List<StatModifier> statOffsets;
         public List<StatModifier> statMultipliers;
@@ -20,7 +20,6 @@ namespace CombatExtended
         private Material attachmentMat;
         private Material outlineMat;
         private WeaponPlatformDef parent;        
-
 
         public WeaponPlatformDef Parent
         {
@@ -62,21 +61,51 @@ namespace CombatExtended
             }
         }
 
+        public bool HasDrawOffset
+        {
+            get
+            {
+                return drawOffset.x != 0 || drawOffset.y != 0;
+            }
+        }
+
+        private Texture2D _UIAttachmentTex = null;
+        public Texture2D UIAttachmentTex
+        {
+            get
+            {
+                if (_UIAttachmentTex == null)
+                    _UIAttachmentTex = (Texture2D)AttachmentMat.mainTexture;
+                return _UIAttachmentTex;
+            }
+        }
+
+        private Texture2D _UIOutlineTex = null;
+        public Texture2D UIOutlineTex
+        {
+            get
+            {
+                if (_UIOutlineTex == null)
+                    _UIOutlineTex = (Texture2D)OutlineMat.mainTexture;                
+                return _UIOutlineTex;
+            }
+        }        
+
         public void PrepareTexture(WeaponPlatformDef parent)
         {
             this.parent = parent;
-            if (drawOffset.x <= -100 || drawOffset.y <= -100)
-                return;
-            
-            attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);            
-            attachmentMat.mainTextureOffset = drawOffset;
- 
+            if (!HasDrawOffset)
+                return;            
+
+            attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);           
+            attachmentMat.mainTextureOffset = drawOffset;            
+
             if (HasOutline)
             {                
                 outlineMat = new Material(attachment.outlineGraphicData.Graphic.MatSingle);                
-                outlineMat.mainTextureOffset = drawOffset;               
+                outlineMat.mainTextureOffset = drawOffset;                                
             }
-        }
+        }        
 
         // Incase the above method stop working
         // 

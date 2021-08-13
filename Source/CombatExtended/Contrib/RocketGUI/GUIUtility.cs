@@ -139,7 +139,7 @@ namespace CombatExtended.RocketGUI
 
         private static readonly Color _hColor = new Color(0.05f, 0.05f, 0.05f, 0.8f);
 
-        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentDef> attachments, AttachmentDef highlight = null, float scale = 1.0f)
+        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentLink> attachments, AttachmentDef highlight = null, float scale = 1.0f)
         {
             ExecuteSafeGUIAction(() =>
             {
@@ -147,23 +147,37 @@ namespace CombatExtended.RocketGUI
                 if (highlight != null)
                     GUI.color = _hColor;
                 Texture2D texture;
-                foreach (AttachmentDef attachment in attachments)
+                Texture2D weaponTex = platform.UIWeaponTex;
+                foreach (AttachmentLink link in attachments)
                 {
+                    AttachmentDef attachment = link.attachment;
                     if (attachment.outlineGraphicData == null)
                         continue;
-                    texture = (Texture2D)attachment.outlineGraphicData.Graphic.MatSingle.mainTexture;
-                    Widgets.DrawTextureFitted(inRect, texture, 1.0f);
-                }
-                texture = (Texture2D)platform.graphicData.Graphic.MatSingle.mainTexture;
-                Widgets.DrawTextureFitted(inRect, texture, 1.0f);
-                foreach (AttachmentDef attachment in attachments)
+                    texture = link.UIOutlineTex;
+                    Rect rect = inRect;
+                    if (link.HasDrawOffset)
+                    {
+                        rect.x -= rect.width * link.drawOffset.x;
+                        rect.y += rect.height * link.drawOffset.y;
+                    }
+                    Widgets.DrawTextureFitted(rect, texture, 1.0f);
+                }               
+                Widgets.DrawTextureFitted(inRect, weaponTex, 1.0f);
+                foreach (AttachmentLink link in attachments)
                 {
+                    AttachmentDef attachment = link.attachment;
                     if (attachment.attachmentGraphicData == null)
                         continue;
-                    texture = (Texture2D)attachment.attachmentGraphicData.Graphic.MatSingle.mainTexture;
+                    texture = link.UIAttachmentTex;
                     if (attachment == highlight)
                         GUI.color = color;
-                    Widgets.DrawTextureFitted(inRect, texture, 1.0f);
+                    Rect rect = inRect;
+                    if (link.HasDrawOffset)
+                    {
+                        rect.x -= rect.width * link.drawOffset.x;
+                        rect.y += rect.height * link.drawOffset.y;
+                    }
+                    Widgets.DrawTextureFitted(rect, texture, 1.0f);
                     if (attachment == highlight)
                         GUI.color = _hColor;
                 }
