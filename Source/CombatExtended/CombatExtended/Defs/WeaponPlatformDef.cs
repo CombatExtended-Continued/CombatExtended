@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -91,6 +93,8 @@ namespace CombatExtended
                     if (statBases.All(s => s.stat != modifier.stat))
                         statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue, stat = modifier.stat });
                 }
+                // offset the textures
+                link.PrepareTexture(this);
             }
         }
     }

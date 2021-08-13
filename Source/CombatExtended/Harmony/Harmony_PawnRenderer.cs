@@ -360,9 +360,9 @@ namespace CombatExtended.HarmonyCE
 
             private static Pawn pawn;
 
-            private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.005f, 0));
+            private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
 
-            private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.003f, 0));
+            private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
 
             public static void Prefix(PawnRenderer __instance, Thing eq)
             {
@@ -372,8 +372,12 @@ namespace CombatExtended.HarmonyCE
 
             private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
             {
+                bool flip = false;
+                if (mesh == MeshPool.plane10Flip)
+                    flip = true;
+
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();
+                Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
 
@@ -385,22 +389,24 @@ namespace CombatExtended.HarmonyCE
                 if (equipment is WeaponPlatform)
                 {
                     platform = (WeaponPlatform)equipment;
-                    links = platform.CurLinks;
-                    Matrix4x4 m = TBot5 * matrix;
+                    links = platform.CurLinks;                   
+                    mesh = !flip ? CE_MeshPool.plane10Bot : CE_MeshPool.plane10FlipBot;
                     for (int i = 0; i < links.Length; i++)
                     {
                         AttachmentLink link = links[i];
-                        if (link.attachment.outlineGraphicData != null)
-                            Graphics.DrawMesh(mesh, m, link.attachment.outlineGraphicData.Graphic.MatSingle, layer);
+                        if (link.HasOutline)
+                            Graphics.DrawMesh(mesh, matrix, link.OutlineMat, layer);
                     }
                 }
-                Graphics.DrawMesh(mesh, TBot3 * matrix, mat, layer);
+                mesh = !flip ? CE_MeshPool.plane10Mid : CE_MeshPool.plane10FlipMid;
+                Graphics.DrawMesh(mesh, matrix, mat, layer);
                 if (platform != null)
                 {
+                    mesh = !flip ? CE_MeshPool.plane10Top : CE_MeshPool.plane10FlipTop;
                     for (int i = 0; i < links.Length; i++)
                     {
-                        if (links[i].attachment.attachmentGraphicData != null)
-                            Graphics.DrawMesh(mesh, matrix, links[i].attachment.attachmentGraphicData.Graphic.MatSingle, layer);
+                        if (links[i].HasAttachmentMat)
+                            Graphics.DrawMesh(mesh, matrix, links[i].AttachmentMat, layer);
                     }
                 }
             }
