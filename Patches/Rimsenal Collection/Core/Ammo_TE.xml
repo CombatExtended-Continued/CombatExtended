@@ -6,7 +6,14 @@
     </mods>
 		<match Class="PatchOperationSequence">
 		 <operations>		
-
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/DamageDef[defName="KineticImpact"]/defaultDamage</xpath>
+			<value>
+				<defaultDamage>25</defaultDamage>
+				<defaultArmorPenetration>50</defaultArmorPenetration>
+			</value>
+		</li>
 
 		<li Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
@@ -46,7 +53,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.36</MarketValue>
+			<MarketValue>1.5</MarketValue>
 		</statBases>
 		<ammoClass>KineticEnergy</ammoClass>
 	</ThingDef>
@@ -58,19 +65,37 @@
 		<description>Craft 500 TE Universal Power Cell.</description>
 		<jobString>Making TE Universal Power Cell.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>10</count>
+		  </li>	  
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
 		</ingredients>
 		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
 		</fixedIngredientFilter>
 		<researchPrerequisite>KineticTech</researchPrerequisite>
 		<recipeUsers Inherit="False">
@@ -79,7 +104,7 @@
 		<products>
 			<Ammo_TEPowerCell>500</Ammo_TEPowerCell>
 		</products>
-	<workAmount>6500</workAmount>
+	<workAmount>19000</workAmount>
 	</RecipeDef>
 
 	<!-- ==================== TE Power Core ========================== -->
@@ -101,7 +126,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ================== Projectiles ================== -->
+	<!-- ================== Projectiles ==================
 
 	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_TEPowerCore_KE</defName>
@@ -125,7 +150,31 @@
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		</comps>
+	</ThingDef> -->
+	
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletPurple">
+		<defName>Bullet_TEPowerCore_KE</defName>
+		<label>TE energy blast (KE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/ImpactL</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>		
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>KineticImpact</damageDef>
+			<dropsCasings>false</dropsCasings>		
+			<damageAmountBase>8</damageAmountBase>
+			<armorPenetrationBlunt>2000</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>1</damageAmountBase>
+			<explosiveDamageType>KineticImpact</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
 	</ThingDef>
+
 
 	<!-- ==================== TE Power Charge ========================== -->
 
@@ -156,11 +205,11 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Crush</damageDef>
+			<damageDef>KineticImpact</damageDef>
 			<speed>48</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBlunt>75</armorPenetrationBlunt>
+			<damageAmountBase>30</damageAmountBase>
+			<armorPenetrationBlunt>24</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -196,11 +245,14 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>KineticImpact</damageDef>
 			<speed>40</speed>
-			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>40</damageAmountBase>
-			<explosionRadius>1.25</explosionRadius>
-			<armorPenetrationBlunt>50</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<explosiveDamageType>KineticImpact</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== TE Concentrated Power Charge ========================== -->
@@ -232,11 +284,11 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Crush</damageDef>
-			<speed>88</speed>
+			<damageDef>KineticImpact</damageDef>
+			<speed>72</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBlunt>90</armorPenetrationBlunt>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationBlunt>54</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
