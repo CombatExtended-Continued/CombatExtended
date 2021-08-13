@@ -8,24 +8,31 @@
 			<operations>
 				<!-- Berserker chip -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[defName="Trunken_hediff_BerserkerChip"]/stages</xpath>
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_BerserkerChip"]/stages/li/statOffsets/MeleeHitChance</xpath>
 					<value>
-						<stages>
-							<li>
-								<painFactor>0.5</painFactor>
-								<statOffsets>
-									<MeleeHitChance>12</MeleeHitChance>
-									<MeleeDodgeChance>0.4</MeleeDodgeChance>
-									<PainShockThreshold>0.75</PainShockThreshold>
-								</statOffsets>
-								<capMods>
-									<li>
-										<capacity>Consciousness</capacity>
-										<offset>0.10</offset>
-									</li>
-								</capMods>
-							</li>
-						</stages>
+						<MeleeHitChance>12</MeleeHitChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_BerserkerChip"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_BerserkerChip"]/stages/li</xpath>
+					<value>
+						<statFactors>
+							<Suppressability>0</Suppressability>
+						</statFactors>
+					</value>
+				</li>
+
+				<!-- Combat AI -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_CombatAI"]/stages/li/statOffsets</xpath>
+					<value>
+						<Suppressability>-0.25</Suppressability>
 					</value>
 				</li>
 			</operations>
