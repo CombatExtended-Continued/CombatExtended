@@ -30,11 +30,9 @@ namespace CombatExtended
 
 
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
-        {
-            AttachmentDef[] attachments = platform.CurAttachmentsDef;
-            for (int i = 0; i < attachments.Length; i++)
-            {
-                if (attachments[i].slotTags.Any(s => attachment.slotTags.Contains(s)))
+        {            
+            foreach(Thing thing in platform.attachments) { 
+                if ((thing.def as AttachmentDef).slotTags.Any(s => attachment.slotTags.Contains(s)))
                     return false;
             }
             return true;

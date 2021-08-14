@@ -1,79 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using HarmonyLib;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps, IThingHolder
-    {
+    {      
         public ThingOwner<Thing> attachments;
 
-        private AttachmentDef[] currentAttachments;
-        private AttachmentLink[] currentLinks;
-        private List<AttachmentDef> targetConfig = new List<AttachmentDef>();
+        private List<AttachmentDef> _additionList = new List<AttachmentDef>();
+        private List<AttachmentDef> _removalList = new List<AttachmentDef>();
+        private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();
 
         public List<AttachmentDef> TargetConfig
         {
             get
             {
-                return targetConfig;
+                return _targetConfig.ToList();
+            }
+            set
+            {
+                _targetConfig = value;
+                UpdateConfiguration();
+            }
+        }      
+
+        private AttachmentLink[] _curLinks;
+        public AttachmentLink[] CurLinks
+        {
+            get
+            {
+                if(_curLinks == null || _curLinks.Count() != attachments.Count)
+                    UpdateConfiguration();
+                return _curLinks;
             }
         }
 
         public bool ConfigApplied
         {
             get
-            {
-                if (targetConfig.Count == 0)
-                    return true;
-                if (TargetConfigHash == CurConfigHash)
-                    return true;
-                if (targetConfig.Count == attachments.Count)
-                {
-                    List<AttachmentDef> target = targetConfig;
-                    List<AttachmentDef> current = attachments.InnerListForReading.Select(a => (AttachmentDef)a.def).ToList();
-                    if (target.Intersect(current)?.Count() == target.Count)
-                    {
-                        this.targetConfig = current;
-                        return true;
-                    }
-                }
-                return false;
+            {                                
+                return _additionList.Count == 0 && _removalList.Count == 0;
             }
         }
 
-        private int TargetConfigHash
+        private CompEquippable _compEquippable;
+        public CompEquippable CompEquippable
         {
             get
             {
-                int hash = 1;
-                unchecked
-                {
-                    foreach (AttachmentDef def in targetConfig)
-                        hash = (def.shortHash * 16777619) ^ ((hash * 31) ^ 378551);
-                }
-                return hash;
+                if (_compEquippable == null)
+                    _compEquippable = GetComp<CompEquippable>();
+                return _compEquippable;
             }
         }
 
-        private int CurConfigHash
+        public Pawn Wielder
         {
             get
             {
-                int hash = 1;
-                unchecked
-                {
-                    foreach (Thing thing in attachments)
-                        hash = (thing.def.shortHash * 16777619) ^ ((hash * 31) ^ 378551);
-                }
-                return hash;
+                if (CompEquippable == null || CompEquippable.PrimaryVerb == null || CompEquippable.PrimaryVerb.caster == null
+                    || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
+                    return null;                
+                return CompEquippable.PrimaryVerb.CasterPawn;
             }
         }
 
+        public List<AttachmentDef> RemovalList
+        {
+            get
+            {
+                return _removalList;
+            }
+        }
+
+        public List<AttachmentDef> AdditionList
+        {
+            get
+            {
+                return _additionList;
+            }
+        }
+      
         private WeaponPlatformDef _platformDef;
         public WeaponPlatformDef Platform
         {
@@ -85,63 +97,24 @@ namespace CombatExtended
             }
         }
 
-        private AttachmentDef[] _availableAttachments;
-        public AttachmentDef[] AvailableAttachmentDefs
+        private Dictionary<AttachmentDef, AttachmentLink> _LinkByDef = new Dictionary<AttachmentDef, AttachmentLink>();
+        public Dictionary<AttachmentDef, AttachmentLink> LinkByDef
         {
             get
             {
-                if (_availableAttachments == null)
-                    _availableAttachments = Platform.attachmentLinks.Select(a => a.attachment).ToArray();
-                return _availableAttachments;
-            }
-        }
-
-        public AttachmentLink[] CurLinks
-        {
-            get
-            {
-                if (currentAttachments == null || currentAttachments.Length < attachments.Count) Rebuild();
-                else
+                if(_LinkByDef.Count != Platform.attachmentLinks.Count)
                 {
-                    int i = 0;
-                    foreach (var thing in attachments)
-                    {
-                        if (thing.def != currentAttachments[i++])
-                        {
-                            Rebuild();
-                            break;
-                        }
-                    }
+                    _LinkByDef.Clear();
+                    foreach (AttachmentLink link in Platform.attachmentLinks)
+                        _LinkByDef.Add(link.attachment, link);
                 }
-                return currentLinks;
-            }
-        }
-
-        public AttachmentDef[] CurAttachmentsDef
-        {
-            get
-            {
-                if (currentAttachments == null || currentAttachments.Length != attachments.Count) Rebuild();
-                else
-                {
-                    int i = 0;
-                    foreach (var thing in attachments)
-                    {
-                        if (thing.def != currentAttachments[i++])
-                        {
-                            Rebuild();
-                            break;
-                        }
-                    }
-                }
-                return currentAttachments;
+                return _LinkByDef;
             }
         }
 
         public WeaponPlatform()
         {
-
-            this.attachments = new ThingOwner<Thing>(this);
+            this.attachments = new ThingOwner<Thing>(this);            
         }
 
         public void GetChildHolders(List<IThingHolder> outChildren)
@@ -156,73 +129,78 @@ namespace CombatExtended
 
         public override void ExposeData()
         {
-            base.ExposeData();
+            base.ExposeData();           
+            Scribe_Collections.Look(ref _additionList, "additionList", LookMode.Def);
+            if (_additionList == null)
+                _additionList = new List<AttachmentDef>();
+            Scribe_Collections.Look(ref _removalList, "removalList", LookMode.Def);
+            if (_removalList == null)
+                _removalList = new List<AttachmentDef>();
             Scribe_Deep.Look(ref this.attachments, "attachments", this);
-            Scribe_Collections.Look(ref this.targetConfig, "targetConfig", LookMode.Def);
-            if (this.targetConfig == null)
-                this.targetConfig = new List<AttachmentDef>();
+            Scribe_Collections.Look(ref this._targetConfig, "targetConfig", LookMode.Def);
+            if (this._targetConfig == null)
+                this._targetConfig = new List<AttachmentDef>();
             if (Scribe.mode != LoadSaveMode.Saving)
-                Rebuild();
+                UpdateConfiguration();
         }
+
+        /// <summary>
+        /// Return the attachments we need to either remove or add
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<AttachmentDef> GetModificationList()
+        {
+            return AdditionList.Concat(RemovalList);            
+        }        
 
         public override void PostPostMake()
         {
             base.PostPostMake();
-            AddRandomAttachments();
+            this.RandomiseAttachments();
         }
 
-        public void AddRandomAttachments()
+        public virtual void RandomiseAttachments()
         {
-            List<AttachmentDef> available = AvailableAttachmentDefs.InRandomOrder().ToList();
-            for (int i = 0; i < available.Count; i++)
+            if (Prefs.DevMode)
             {
-                if (Rand.Chance(0.5f) && !attachments.Any(a => ((AttachmentDef)a.def).slotTags.Any(s => available[i].slotTags.Contains(s))))
+                List<AttachmentDef> available = Platform.attachmentLinks
+                                                           .Select(a => a.attachment)
+                                                           .InRandomOrder()
+                                                           .ToList();
+                for (int i = 0; i < available.Count; i++)
                 {
-                    this.targetConfig.Add(available[i]);
-                    Thing attachment = ThingMaker.MakeThing(available[i]);
-                    attachments.TryAdd(attachment);
+                    if (Rand.Chance(0.5f) && !attachments.Any(a => ((AttachmentDef)a.def).slotTags.Any(s => available[i].slotTags.Contains(s))))
+                    {
+                        this._targetConfig.Add(available[i]);
+                        Thing attachment = ThingMaker.MakeThing(available[i]);
+                        attachments.TryAdd(attachment);
+                    }
                 }
             }
-            Rebuild();
+            this.UpdateConfiguration();
         }
 
-        public void Rebuild()
+        public AttachmentLink GetLink(AttachmentDef def)
         {
-            currentAttachments = new AttachmentDef[attachments.Count];
-            currentLinks = new AttachmentLink[attachments.Count];
-            int i = 0;
-            foreach (Thing attachment in attachments)
-            {
-                currentAttachments[i] = (AttachmentDef)attachment.def;
-                currentLinks[i] = Platform.attachmentLinks.First(a => a.attachment == attachment.def);
-                i++;
-            }
+            return LinkByDef.TryGetValue(def, out var link) ? link : null;
         }
 
-        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+        public void UpdateConfiguration()
         {
-            Vector3 pos = this.DrawPos;
-            Rot4 rot = this.Rotation;
-            AttachmentLink[] links = CurLinks;
-            Mesh mesh = this.Graphic.MeshAt(rot);
+            _removalList.Clear();
+            _additionList.Clear();            
+            _curLinks = attachments.Select(t => LinkByDef[t.def as AttachmentDef]).ToArray();
 
-            pos += this.Graphic.DrawOffset(rot);
-            pos.y -= 0.0025f;
-            for (int i = 0; i < links.Length; i++)
+            foreach (AttachmentLink link in Platform.attachmentLinks)
             {
-                AttachmentLink link = links[i];
-                if (link.attachment.outlineGraphicData != null)
-                    Graphics.DrawMesh(mesh, pos, rot.AsQuat, link.attachment.outlineGraphicData.Graphic.MatSingle, 0);
-            }
-            pos.y += 0.0025f;
-            Graphics.DrawMesh(mesh, pos, rot.AsQuat, this.Graphic.MatAt(rot), 0);
-            pos.y += 0.0025f;
-            for (int i = 0; i < links.Length; i++)
-            {
-                AttachmentLink link = links[i];
-                if (link.attachment.attachmentGraphicData != null)
-                    Graphics.DrawMesh(mesh, pos, rot.AsQuat, link.attachment.attachmentGraphicData.Graphic.MatSingle, 0);
-            }
+                AttachmentDef def = link.attachment;
+                bool inConfig = _targetConfig.Any(d => d.index == def.index);
+                bool inContainer = attachments.Any(thing => thing.def.index == def.index);
+                if (inConfig && !inContainer)                
+                    _additionList.Add(def);                    
+                else if (!inConfig && inContainer)
+                    _removalList.Add(def);                                    
+            }            
         }
     }
 }

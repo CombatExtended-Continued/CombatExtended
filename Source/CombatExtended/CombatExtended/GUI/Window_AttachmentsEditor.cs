@@ -6,6 +6,7 @@ using Verse;
 using CombatExtended.RocketGUI;
 using GUIUtility = CombatExtended.RocketGUI.GUIUtility;
 using RimWorld;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -41,7 +42,7 @@ namespace CombatExtended
             categories.Sort();
 
             // save available stuff
-            availableDefs = platform.AvailableAttachmentDefs;
+            availableDefs = platform.Platform.attachmentLinks.Select(a => a.attachment).ToArray();
 
             // register currently equiped attachments
             foreach (AttachmentDef attachmentDef in platform.TargetConfig)
@@ -281,7 +282,11 @@ namespace CombatExtended
 
         private void Apply()
         {
-            if (Prefs.DevMode)
+            // Update the current config
+            weapon.TargetConfig = selected.Select(l => l.attachment).ToList();
+            weapon.UpdateConfiguration();
+
+            if (Prefs.DevMode && DebugSettings.godMode)
             {
                 weapon.attachments.ClearAndDestroyContents();
                 foreach (AttachmentLink link in selected)                    
@@ -289,12 +294,13 @@ namespace CombatExtended
                     Thing attachment = ThingMaker.MakeThing(link.attachment);
                     weapon.attachments.TryAdd(attachment);
                 }
-                weapon.Rebuild();
+                weapon.UpdateConfiguration();
                 return;
             }
-            weapon.TargetConfig.Clear();
-            foreach (AttachmentLink link in selected)
-                weapon.TargetConfig.Add(link.attachment);
+
+            // Try start the update job 
+            Job job = weapon.Wielder.thinker.GetMainTreeThinkNode<JobGiver_ModifyWeapon>().TryGiveJob(weapon.Wielder);
+            weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptForced);
         }
     }
 }
