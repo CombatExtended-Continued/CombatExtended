@@ -15,13 +15,13 @@ namespace CombatExtended
         public int intB;
         public int intC;
 
-        private List<Def> _targetDefs;
-        public List<Def> targetDefs
+        private List<ThingDef> _targetDefs;
+        public List<ThingDef> targetDefs
         {
             get
             {
                 if (_targetDefs == null)
-                    _targetDefs = new List<Def>();
+                    _targetDefs = new List<ThingDef>();
                 return _targetDefs;
             }
         }
@@ -38,7 +38,7 @@ namespace CombatExtended
 
             Scribe_Collections.Look(ref _targetDefs, "TargetDef", LookMode.Def);
             if (_targetDefs == null)
-                _targetDefs = new List<Def>();
+                _targetDefs = new List<ThingDef>();
         }
     }
 }
