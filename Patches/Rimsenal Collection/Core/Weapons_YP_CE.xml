@@ -107,10 +107,9 @@
 				<xpath>Defs/thingDef[defName="YP_SeoLi"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>48500</WorkToMake>
 						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.14</ShotSpread>
-						<SwayFactor>1.21</SwayFactor>
+						<SwayFactor>1.15</SwayFactor>
 						<Bulk>8.20</Bulk>
 						<Mass>3.12</Mass>
 						<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
@@ -122,14 +121,14 @@
 				<value>
 					<verbs>
 					<li Class="CombatExtended.VerbPropertiesCE">					
-						<recoilAmount>1.04</recoilAmount> <!-- 1.48 -->
+						<recoilAmount>0.80</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_RifleYP</defaultProjectile>
 						<warmupTime>1.0</warmupTime>
 						<burstShotCount>10</burstShotCount>
-						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-						<range>42</range>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+						<range>38</range>
 						<soundCast>RS_ShotShard</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>4</muzzleFlashScale>
@@ -142,13 +141,13 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>50</magazineSize>
+							<magazineSize>60</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_RifleYP</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
 							<aimedBurstShotCount>5</aimedBurstShotCount>
-							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
 							<aiAimMode>AimedShot</aiAimMode>	
 						</li>
 					</comps>	
@@ -160,7 +159,6 @@
 				<xpath>Defs/thingDef[defName="YP_SagPung"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>42500</WorkToMake>
 						<SightsEfficiency>1.1</SightsEfficiency>
 						<ShotSpread>0.40</ShotSpread>
 						<SwayFactor>0.20</SwayFactor>
@@ -175,13 +173,15 @@
 				<value>
 					<verbs>
 					<li Class="CombatExtended.VerbPropertiesCE">					
-						<recoilAmount>1.37</recoilAmount>
+						<recoilAmount>0.25</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_SwarmerYP</defaultProjectile>
 						<warmupTime>0.6</warmupTime>
 						<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
-						<range>18</range>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<range>15</range>
 						<soundCast>RS_ShotSwarm</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
@@ -194,11 +194,13 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>36</magazineSize>
+							<magazineSize>60</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_SwarmerYP</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
+							<aimedBurstShotCount>2</aimedBurstShotCount>
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
 							<aiAimMode>AimedShot</aiAimMode>
 						</li>						
 					</comps>					
@@ -210,7 +212,6 @@
 				<xpath>Defs/thingDef[defName="YP_SangAe"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>55500</WorkToMake>
 						<SightsEfficiency>1.86</SightsEfficiency>
 						<ShotSpread>0.04</ShotSpread>
 						<SwayFactor>1.52</SwayFactor>
@@ -224,12 +225,15 @@
 				<xpath>Defs/thingDef[defName="YP_SangAe"]/verbs</xpath>
 				<value>
 					<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">					
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>1.33</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_SpikeYP</defaultProjectile>
 						<warmupTime>1.3</warmupTime>
-						<range>75</range>
+						<range>68</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 						<soundCast>RS_ShotSpike</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>8</muzzleFlashScale>
@@ -242,12 +246,13 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>8</magazineSize>
+							<magazineSize>24</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_SpikeYP</ammoSet>
 						</li>
 						<li Class="CombatExtended.CompProperties_FireModes">
-							<aiUseBurstMode>FALSE</aiUseBurstMode>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
+							<aimedBurstShotCount>3</aimedBurstShotCount>
 							<aiAimMode>AimedShot</aiAimMode>	
 						</li>						
 					</comps>					
@@ -259,12 +264,11 @@
 				<xpath>Defs/thingDef[defName="YP_SeolHwa"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>50500</WorkToMake>
-						<SightsEfficiency>0.7</SightsEfficiency>
+						<SightsEfficiency>0.5</SightsEfficiency>
 						<ShotSpread>0.2</ShotSpread>
-						<SwayFactor>1</SwayFactor>
-						<Bulk>2.50</Bulk>
-						<Mass>2.32</Mass>
+						<SwayFactor>1.5</SwayFactor>
+						<Bulk>4.7</Bulk>
+						<Mass>4.32</Mass>
 						<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
 					</statBases>				
 				</value>
@@ -274,7 +278,7 @@
 				<value>
 					<verbs>
 					<li Class="CombatExtended.VerbPropertiesCE">
-						<recoilAmount>1.12</recoilAmount> <!-- 1.6 -->
+						<recoilAmount>0.32</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
@@ -313,12 +317,11 @@
 				<xpath>Defs/thingDef[defName="YP_GeugGwang"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>42500</WorkToMake>
 						<SightsEfficiency>1.0</SightsEfficiency>
 						<ShotSpread>0.0</ShotSpread>
 						<SwayFactor>1.21</SwayFactor>
 						<Bulk>8.70</Bulk>
-						<Mass>3.12</Mass>
+						<Mass>4.32</Mass>
 						<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 					</statBases>				
 				</value>
@@ -332,9 +335,9 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_GeugGwang_CE</defaultProjectile>
-						<warmupTime>4</warmupTime>
+						<warmupTime>1</warmupTime>
 						<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
-						<range>80</range>
+						<range>62</range>
 						<soundCast>RS_ShotBoreas</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>14</muzzleFlashScale>
@@ -356,12 +359,11 @@
 				<xpath>Defs/thingDef[defName="YP_VectorShot"]/statBases</xpath>
 				<value>
 					<statBases>
-						<WorkToMake>58500</WorkToMake>
 						<SightsEfficiency>3.0</SightsEfficiency>
 						<ShotSpread>0.02</ShotSpread>
 						<SwayFactor>0.25</SwayFactor>
-						<Bulk>4.20</Bulk>
-						<Mass>2.80</Mass>
+						<Bulk>6.20</Bulk>
+						<Mass>3.06</Mass>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					</statBases>				
 				</value>
@@ -384,6 +386,9 @@
 						<muzzleFlashScale>10</muzzleFlashScale>
 						<circularError>0</circularError>
 						<indirectFirePenalty>0</indirectFirePenalty>
+						<targetParams>
+						  <canTargetLocations>true</canTargetLocations>
+						</targetParams>
 					</li>	
 					</verbs>				
 				</value>
@@ -393,7 +398,7 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>12</magazineSize>
+							<magazineSize>16</magazineSize>
 							<reloadTime>4</reloadTime>
 							<ammoSet>AmmoSet_VectorYP</ammoSet>
 						</li>

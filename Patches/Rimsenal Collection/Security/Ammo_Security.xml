@@ -76,7 +76,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			</graphicData>
 			<statBases>
-			<MarketValue>52.64</MarketValue>
+			<MarketValue>150</MarketValue>
 			</statBases>
 				<ammoClass>MoltenShell</ammoClass>
 			<comps>
@@ -99,15 +99,9 @@
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>false</dropsCasings>			
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>238</damageAmountBase>
-			  <secondaryDamage>
-				<li>
-				  <def>Flame_Secondary</def>
-				  <amount>49</amount>
-				</li>
-			  </secondaryDamage>
-			<armorPenetrationSharp>132</armorPenetrationSharp>
-			<armorPenetrationBlunt>33728</armorPenetrationBlunt>	  
+			<damageAmountBase>400</damageAmountBase>
+			<armorPenetrationSharp>700</armorPenetrationSharp>
+			<armorPenetrationBlunt>80000</armorPenetrationBlunt>	  
 			</projectile>
 			<comps>
 				<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -116,11 +110,12 @@
 					<explosiveRadius>0.5</explosiveRadius>
 					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>	
 				</li>
-				<li Class="CombatExtended.CompProperties_Fragments">
+			    <li Class="CombatExtended.CompProperties_Fragments">
+					<fragSpeedFactor>0.5</fragSpeedFactor>
 					<fragments>
-					  <Fragment_Molten>25</Fragment_Molten>
+					  <Fragment_Large>325</Fragment_Large>
 					</fragments>
-				</li>
+			    </li>	
 			</comps>
 		</ThingDef>
 
@@ -134,27 +129,39 @@
 			  <li>
 				<filter>
 				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>18</count>
+			  </li>
+			  <li>
+				<filter>
+				  <thingDefs>
 					<li>Steel</li>
 				  </thingDefs>
 				</filter>
-				<count>88</count>
+				<count>10</count>
+			  </li>	  
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>18</count>
 			  </li>
 			</ingredients>
-			<researchPrerequisite Inherit="False">
-			<li>SiegeEmplacementTech</li>	  
-			</researchPrerequisite>					
-			<recipeUsers Inherit="False">
-				<li>JITable</li>
-			</recipeUsers>			
 			<fixedIngredientFilter>
 			  <thingDefs>
-				<li>Steel</li>
+				<li>Plasteel</li>
+				<li>Steel</li>		
+				<li>ComponentIndustrial</li>
 			  </thingDefs>
 			</fixedIngredientFilter>
 			<products>
 			  <Ammo_MoltenShell>5</Ammo_MoltenShell>
 			</products>
-			<workAmount>8800</workAmount>
+			<workAmount>19000</workAmount>
 		  </RecipeDef>
 
 		<!-- ================== ATGMs ================== -->

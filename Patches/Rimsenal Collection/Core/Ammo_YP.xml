@@ -58,9 +58,9 @@
 
 		<CombatExtended.AmmoSetDef>
 			<defName>AmmoSet_RifleYP</defName>
-			<label>Heavy YP</label>
+			<label>Light YP</label>
 			<ammoTypes>
-				<Ammo_SpikeYP>Bullet_RifleYP</Ammo_SpikeYP>
+				<Ammo_RifleYP>Bullet_RifleYP</Ammo_RifleYP>
 			</ammoTypes>
 		</CombatExtended.AmmoSetDef>
 		
@@ -97,7 +97,7 @@
 				<graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
-				<MarketValue>0.09</MarketValue>
+				<MarketValue>1</MarketValue>
 			</statBases>
 			<ammoClass>CarbonCrystal</ammoClass>
 			<cookOffProjectile>Bullet_RifleYP</cookOffProjectile>
@@ -116,9 +116,9 @@
 				<damageDef>Shredder</damageDef>
 				<speed>170</speed>
 				<dropsCasings>false</dropsCasings>			
-				<damageAmountBase>12.5</damageAmountBase>
-				<armorPenetrationBlunt>34</armorPenetrationBlunt>
-				<armorPenetrationSharp>17.5</armorPenetrationSharp>	
+				<damageAmountBase>5</damageAmountBase>
+				<armorPenetrationBlunt>10</armorPenetrationBlunt>
+				<armorPenetrationSharp>30</armorPenetrationSharp>	
 			</projectile>
 		</ThingDef>
 		
@@ -134,8 +134,8 @@
 				<speed>55</speed>
 				<dropsCasings>false</dropsCasings>			
 				<damageAmountBase>6</damageAmountBase>
-				<armorPenetrationBlunt>5</armorPenetrationBlunt>
-				<armorPenetrationSharp>7</armorPenetrationSharp>	
+				<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				<armorPenetrationSharp>8</armorPenetrationSharp>	
 				<pelletCount>12</pelletCount>
 				<spreadMult>1</spreadMult>	
 			</projectile>
@@ -144,32 +144,50 @@
 		<!-- ==================== Recipe: YP Rifle ========================== -->
 		<RecipeDef ParentName="AmmoRecipeBase">
 			<defName>MakeAmmo_RifleYP</defName>
-			<label>make Light YP cartridge x500</label>
-			<description>Craft 500 Light YP cartridges.</description>
+			<label>make Light YP cartridge x750</label>
+			<description>Craft 750 Light YP cartridges.</description>
 			<jobString>Making Light YP cartridges.</jobString>
 			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>35</count>
-				</li>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>Plasteel</li>
+				  </thingDefs>
+				</filter>
+				<count>18</count>
+			  </li>
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>Steel</li>
+				  </thingDefs>
+				</filter>
+				<count>10</count>
+			  </li>	  
+			  <li>
+				<filter>
+				  <thingDefs>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</filter>
+				<count>18</count>
+			  </li>
 			</ingredients>
 			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
-				</thingDefs>
+			  <thingDefs>
+				<li>Plasteel</li>
+				<li>Steel</li>		
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
 			</fixedIngredientFilter>
 			<researchPrerequisite>ShardTech</researchPrerequisite>
 			<recipeUsers Inherit="False">
 				<li>YPTable</li>
 			</recipeUsers>		
 			<products>
-				<Ammo_RifleYP>500</Ammo_RifleYP>
+				<Ammo_RifleYP>750</Ammo_RifleYP>
 			</products>
-		<workAmount>3500</workAmount>
+		<workAmount>19000</workAmount>
 		</RecipeDef>
 
 	<!-- ==================== YP Spike ========================== -->
@@ -224,7 +242,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.12</MarketValue>
+			<MarketValue>1.5</MarketValue>
 		</statBases>
 		<ammoClass>CarbonCrystal</ammoClass>
 		<cookOffProjectile>Bullet_SpikeYP</cookOffProjectile>
@@ -243,9 +261,9 @@
 			<damageDef>Shredder</damageDef>
 			<speed>240</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>14</damageAmountBase>
-			<armorPenetrationBlunt>55</armorPenetrationBlunt>
-			<armorPenetrationSharp>30</armorPenetrationSharp>			
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationBlunt>36</armorPenetrationBlunt>
+			<armorPenetrationSharp>36</armorPenetrationSharp>			
 		</projectile>
 	</ThingDef>
 	
@@ -258,15 +276,15 @@
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Shredder</damageDef>
-			<speed>130</speed>
+			<speed>180</speed>
 			<soundHitThickRoof>RS_ShotShard</soundHitThickRoof>
 			<flyOverhead>true</flyOverhead>
 			<gravityFactor>450</gravityFactor>
 			<dropsCasings>false</dropsCasings>		
 			<damageAmountBase>5</damageAmountBase>
-			<armorPenetrationBlunt>55</armorPenetrationBlunt>
-			<armorPenetrationSharp>4.5</armorPenetrationSharp>
-			<pelletCount>4</pelletCount>
+			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<pelletCount>2</pelletCount>
 			<spreadMult>40</spreadMult>	
 		</projectile>
 	</ThingDef>
@@ -278,19 +296,37 @@
 		<description>Craft 500 Heavy YP cartridges.</description>
 		<jobString>Making Heavy YP cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>35</count>
-			</li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>10</count>
+		  </li>	  
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
 		</ingredients>
 		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
 		</fixedIngredientFilter>
 		<researchPrerequisite>ShardTech</researchPrerequisite>
 		<recipeUsers Inherit="False">
@@ -299,7 +335,7 @@
 		<products>
 			<Ammo_SpikeYP>500</Ammo_SpikeYP>
 		</products>
-	<workAmount>3500</workAmount>
+	<workAmount>19000</workAmount>
 	</RecipeDef>
 
 	<!-- ================== YP Microwave - Projectiles ================== -->

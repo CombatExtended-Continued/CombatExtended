@@ -11,7 +11,7 @@
 			<xpath>Defs</xpath>
 			<value>
 
-	<!-- ==================== JI Molten Fragmentation ==========================
+	<!-- ==================== JI Molten Fragmentation (Old) ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFragment">
 		<defName>Fragment_Molten</defName>
@@ -28,24 +28,168 @@
 			<armorPenetrationBlunt>3</armorPenetrationBlunt>
 			<gravityFactor>25</gravityFactor>
 		</projectile>
-	</ThingDef> -->
+	</ThingDef>
+	
+	<!-- ==================== JI Rocket Shells (Old/Security) ========================== -->
 
-	<!-- ==================== JI Rocket Shells ========================== -->
+    <ThingCategoryDef>
+      <defName>AmmoJIRockets</defName>
+      <label>JI Siege Rockets</label>
+      <parent>AmmoRockets</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+    </ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_JIRocket</defName>
+		<label>Siege rocket</label>
+		<ammoTypes>
+		<Ammo_JIRocket>Bullet_JISiegeRocket</Ammo_JIRocket>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="88mmRPzBRocketBase" ParentName="AmmoBase" Abstract="True">
+    <description>Bulky siege rockets, fired by the heaviest of Jotun Interstellar weaponry. An outer casing of high explosives around a shaped-charge core makes it capable of engaging both hard and soft targets.</description>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoJIRockets</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
+    <cookOffFlashScale>40</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="88mmRPzBRocketBase">
+    <defName>Ammo_JIRocket</defName>
+    <label>Siege rocket</label>
+    <graphicData>
+      <texPath>ThirdParty/Rimsenal/JI/JI_Shell</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>40</MarketValue>
+	  <Mass>4</Mass>
+	  <Bulk>9</Bulk>
+    </statBases>
+	<ammoClass>RocketHE</ammoClass>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>50</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>4</explosiveRadius>
+        <explosionSound>Explosion_GiantBomb</explosionSound>
+	  </li>	
+	  <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Large>3</Fragment_Large>
+        </fragments>
+	  </li>	  
+    </comps>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseRPG7Grenade">
+		<defName>Bullet_JISiegeRocket</defName>
+		<label>Siege rocket</label>
+		<graphicData>
+			<texPath>Things/Projectile/Rocket</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>			
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>80</speed>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>		
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>210</damageAmountBase>
+			<armorPenetrationBlunt>25</armorPenetrationBlunt>
+			<armorPenetrationSharp>500</armorPenetrationSharp>			
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>98</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>2.5</explosiveRadius>
+			<explosionSound>Explosion_GiantBomb</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>	
+		</comps>
+	</ThingDef>
+
+	<!-- ==================== Recipe: JI Rocket Shells ========================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+	<defName>MakeAmmo_JIRocket</defName>
+	<label>make siege rockets x5</label>
+	<description>Craft 5 JI siege rockets rockets.</description>
+	<jobString>Making JI siege rockets rockets.</jobString>
+	<workAmount>7500</workAmount>
+	<ingredients>
+		<li>
+		<filter>
+			<thingDefs>
+			<li>Steel</li>
+			</thingDefs>
+		</filter>
+		<count>20</count>
+		</li>
+		<li>
+		<filter>
+			<thingDefs>
+			<li>FSX</li>
+			</thingDefs>
+		</filter>
+		<count>3</count>
+		</li>
+		<li>
+		<filter>
+			<thingDefs>
+			<li>ComponentIndustrial</li>
+			</thingDefs>
+		</filter>
+		<count>2</count>
+		</li>
+	</ingredients>
+	<fixedIngredientFilter>
+		<thingDefs>
+		<li>Steel</li>
+		<li>FSX</li>
+		<li>ComponentIndustrial</li>
+		</thingDefs>
+	</fixedIngredientFilter>
+	<researchPrerequisite>SiegeTech</researchPrerequisite>
+	<recipeUsers Inherit="False">
+		<li>JITable</li>
+	</recipeUsers>		
+	<products>
+		<Ammo_JIRocket>5</Ammo_JIRocket>
+	</products>	
+	</RecipeDef>	
+
+	<!-- ==================== JI Siege Shells ========================== -->
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JISiege</defName>
 		<label>Siege Cannon</label>
 		<ammoTypes>
-		<Ammo_JI_Alloy>Bullet_JISiegeRocket</Ammo_JI_Alloy>
+		<Ammo_JI_Alloy>Bullet_JISiegeRound</Ammo_JI_Alloy>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef ParentName="BaseRPG7Grenade">
-		<defName>Bullet_JISiegeRocket</defName>
+		<defName>Bullet_JISiegeRound</defName>
 		<label>grendel shell</label>
 		<graphicData>
 			<texPath>Things/Projectile/SCM</texPath>
@@ -113,7 +257,7 @@
 		<defName>AmmoAlloy</defName>
 		<label>Semi-molten Alloy Round</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
+		<iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -232,7 +376,7 @@
 		<defName>AmmoMoltenSlug</defName>
 		<label>Semi-molten alloy</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
+		<iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
