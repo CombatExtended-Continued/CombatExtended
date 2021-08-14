@@ -15,14 +15,14 @@ namespace CombatExtended
         public int intB;
         public int intC;
 
-        private List<ThingDef> _targetDefs;
-        public List<ThingDef> targetDefs
+        private List<ThingDef> _targetThingDefs;
+        public List<ThingDef> targetThingDefs
         {
             get
             {
-                if (_targetDefs == null)
-                    _targetDefs = new List<ThingDef>();
-                return _targetDefs;
+                if (_targetThingDefs == null)
+                    _targetThingDefs = new List<ThingDef>();
+                return _targetThingDefs;
             }
         }
 
@@ -36,9 +36,9 @@ namespace CombatExtended
             Scribe_Values.Look(ref intB, "intB");
             Scribe_Values.Look(ref intC, "intC");
 
-            Scribe_Collections.Look(ref _targetDefs, "TargetDef", LookMode.Def);
-            if (_targetDefs == null)
-                _targetDefs = new List<ThingDef>();
+            Scribe_Collections.Look(ref _targetThingDefs, "TargetThingDef", LookMode.Def);
+            if (_targetThingDefs == null)
+                _targetThingDefs = new List<ThingDef>();
         }
     }
 }

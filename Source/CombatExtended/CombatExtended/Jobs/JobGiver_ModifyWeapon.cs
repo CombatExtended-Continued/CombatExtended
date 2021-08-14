@@ -97,7 +97,7 @@ namespace CombatExtended
             JobCE job = new JobCE();
             job.def = CE_JobDefOf.ModifyWeapon;
             job.targetA = bench;
-            job.targetDefs.Add(attachmentDef);            
+            job.targetThingDefs.Add(attachmentDef);            
             job.targetQueueA = new List<LocalTargetInfo>() { weapon };
             job.targetQueueB = new List<LocalTargetInfo>(chosenIngThings.Count);
             job.countQueue = new List<int>(chosenIngThings.Count);
