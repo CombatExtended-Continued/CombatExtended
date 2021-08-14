@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Kobolds of the Rim</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- Simple Shirt -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Kobold_SimpleShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Tribal Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Kobold_TribalArmor"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Kobold_TribalArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				<ArmorRating_Blunt>1</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<!-- Scout Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Kobold_ScoutArmor"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Kobold_ScoutArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				<ArmorRating_Blunt>1.3</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<!-- Tribal Hat -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Kobold_TribalHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Paint & Earrings -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Kobold_ScoutPaint" or defName="Kobold_WarlordPaint" or defName="Kobold_GeneralEarring"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<WornBulk>0.05</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Kobold_ScoutPaint" or defName="Kobold_WarlordPaint" or defName="Kobold_GeneralEarring"]/statBases/StuffEffectMultiplierArmor</xpath>
+		</li>
+
+		<!-- Shoulder Fur -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Kobold_ShoulderFur"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Kobold_ShoulderFur"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- General & Warlord Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Kobold_GeneralArmor" or defName ="Kobold_WarlordArmor"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>2</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Kobold_GeneralArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+				<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Kobold_WarlordArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+				<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

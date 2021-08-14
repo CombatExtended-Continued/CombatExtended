@@ -154,6 +154,7 @@ Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
 Kit's VFE Weapons |
+Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
