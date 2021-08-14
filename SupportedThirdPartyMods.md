@@ -4,8 +4,8 @@ Combat Extended comes with built-in support for a number of popular third-party 
 
 If the mod(s) you are interested in isn't on this list, first confirm that the mod requires one, and then check to see whether the original mod(s) contains its own compatibility patches or if there is a standalone patch mod available.
 
-Mod |
---- |
+| Mod                                       | steamWork Url | Supprot Versions |
+| ----------------------------------------- | ------------- | ---------------- |
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
