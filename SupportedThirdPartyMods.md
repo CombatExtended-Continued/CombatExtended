@@ -42,6 +42,13 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[Ry]Rimcraft	|
+[Ry]Rimcraft Allied Races	|
+[Ry]Rimcraft Animals	|
+[Ry]Rimcraft Factions	|
+[Ry]Rimcraft Metals	|
+[Ry]Rimcraft Scenarios	|
+[Ry]Rimcraft Weaponry	|
 [RWY] Advanced Mechanoid Warfare    |
 [RWY] Dragon's Descent: Void Dwellers
 [SS] Maid Project	|
