@@ -10,11 +10,13 @@ namespace CombatExtended
 {
     public class Window_AttachmentsDebugger : Window
     {
-        private const int PANEL_RIGHT_WIDTH = 400;
+        private const int PANEL_RIGHT_WIDTH = 350;
 
         public readonly WeaponPlatformDef weaponDef;
 
         private List<AttachmentLink> links = null;
+
+        private List<WeaponPlatformDef.WeaponGraphicPart> parts = new List<WeaponPlatformDef.WeaponGraphicPart>();
 
         private Dictionary<AttachmentLink, bool> hidden = new Dictionary<AttachmentLink, bool>();
 
@@ -22,7 +24,7 @@ namespace CombatExtended
 
         private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true);
 
-        public override Vector2 InitialSize => new Vector2(1000, 800);
+        public override Vector2 InitialSize => new Vector2(800, 600);
 
         private string searchText = "";
 
@@ -49,8 +51,9 @@ namespace CombatExtended
                 link.PrepareTexture(weaponDef);
                 links.Add(link);
                 this.fake.Add(link, true);
-                this.hidden.Add(link, true);
+                this.hidden.Add(link, true);                
             }
+            this.UpdateRenderingCache();
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -87,10 +90,11 @@ namespace CombatExtended
         {
             base.WindowOnGUI();
             if (_counter++ % 60 == 0)
-            {
+            {               
                 this.weaponDef.attachmentLinks = links.Where(l => weaponDef.attachmentLinks.Contains(l)).ToList();
                 foreach (AttachmentLink link in this.weaponDef.attachmentLinks)
                     link.PrepareTexture(this.weaponDef);
+                this.UpdateRenderingCache();
             }
         }
 
@@ -125,7 +129,8 @@ namespace CombatExtended
                     collapsible.Gap(10);
                 }
                 bool showen = !this.hidden[link];
-                collapsible.CheckboxLabeled($"{link.attachment.label}", ref showen, fontSize: GameFont.Small);
+                if (collapsible.CheckboxLabeled($"{link.attachment.label}", ref showen, fontSize: GameFont.Small))
+                    UpdateRenderingCache();
                 this.hidden[link] = !showen;
                 if (showen)
                 {
@@ -155,18 +160,35 @@ namespace CombatExtended
                     {
                         Text.Font = GameFont.Tiny;
                         GUI.color = Color.green;
-                        Widgets.TextField(rect, $"{link.drawScale}");
+                        Widgets.TextField(rect, $"({Math.Round(link.drawScale.x, 3)}, {Math.Round(link.drawScale.y, 3)})");
                     }, useMargins: true);
                     collapsible.Gap(2);
                     collapsible.Lambda(20, (rect) =>
                     {
                         Text.Font = GameFont.Tiny;
-                        link.drawScale = Widgets.HorizontalSlider(rect, link.drawScale, 0.6f, 1.6f, true, $"drawScale={Math.Round(link.drawScale, 3)}");
+                        link.drawScale.x = Widgets.HorizontalSlider(rect, link.drawScale.x, 0.6f, 1.6f, true, $"drawScale.x={Math.Round(link.drawScale.x, 3)}");
+                    }, useMargins: true);
+                    collapsible.Gap(2);
+                    collapsible.Lambda(20, (rect) =>
+                    {
+                        Text.Font = GameFont.Tiny;
+                        link.drawScale.y = Widgets.HorizontalSlider(rect, link.drawScale.y, 0.6f, 1.6f, true, $"drawScale.y={Math.Round(link.drawScale.y, 3)}");
                     }, useMargins: true);
                 }
                 collapsible.Line(1);
             }
             collapsible.End(ref inRect);
+        }
+
+        private void UpdateRenderingCache()
+        {
+            parts.Clear();
+            HashSet<AttachmentLink> links = this.links.Where(l => !hidden[l]).ToHashSet();
+            foreach (WeaponPlatformDef.WeaponGraphicPart part in weaponDef.defaultGraphicParts)
+            {
+                if (!links.Any(l => l.attachment.slotTags?.Any(s => part.slotTags?.Contains(s) ?? false) ?? false))
+                    parts.Add(part);                    
+            }
         }
 
         private void DoLeftPanel(Rect inRect)
@@ -183,7 +205,7 @@ namespace CombatExtended
             rect = rect.CenteredOnYIn(inRect);            
             Widgets.DrawBoxSolid(rect, Widgets.MenuSectionBGBorderColor);
             Widgets.DrawBoxSolid(rect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
-            GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, links.Where(l => !hidden[l]).ToHashSet(), null, 0.7f);
+            GUIUtility.DrawWeaponWithAttachments(rect, weaponDef, links.Where(l => !hidden[l]).ToHashSet(), parts: parts);
         }        
     }
 }

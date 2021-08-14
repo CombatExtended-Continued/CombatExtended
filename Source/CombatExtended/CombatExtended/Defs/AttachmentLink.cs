@@ -11,16 +11,20 @@ namespace CombatExtended
     public class AttachmentLink
     {        
         public AttachmentDef attachment;
-        public float drawScale = 1f;
+        public Vector2 drawScale = Vector2.one;
         public Vector2 drawOffset = Vector2.zero;        
 
         public List<StatModifier> statOffsets;
         public List<StatModifier> statMultipliers;
         public List<StatModifier> statReplacers;        
+      
+        private WeaponPlatformDef parent;
 
-        private Material attachmentMat;
-        private Material outlineMat;
-        private WeaponPlatformDef parent;        
+        public Mesh meshTop;
+        public Mesh meshBot;
+
+        public Mesh meshFlipTop;
+        public Mesh meshFlipBot;
 
         public WeaponPlatformDef Parent
         {
@@ -34,7 +38,7 @@ namespace CombatExtended
         {
             get
             {
-                return attachment.outlineGraphicData != null || outlineMat != null;
+                return attachment.outlineGraphicData != null;
             }
         }
 
@@ -42,7 +46,7 @@ namespace CombatExtended
         {
             get
             {
-                return attachment.attachmentGraphicData != null || attachmentMat != null;
+                return attachment.attachmentGraphicData != null;
             }
         }
 
@@ -50,7 +54,7 @@ namespace CombatExtended
         {
             get
             {
-                return attachmentMat ?? attachment.attachmentGraphicData.Graphic.MatSingle;
+                return attachment.attachmentGraphicData.Graphic.MatSingle;
             }
         }
 
@@ -58,7 +62,7 @@ namespace CombatExtended
         {
             get
             {
-                return outlineMat ?? attachment.outlineGraphicData.Graphic.MatSingle;
+                return attachment.outlineGraphicData.Graphic.MatSingle;
             }
         }
 
@@ -94,27 +98,31 @@ namespace CombatExtended
 
         public void PrepareTexture(WeaponPlatformDef parent)
         {
-            this.parent = parent;
-            if (!HasDrawOffset && drawScale == 1.0f)
-                return;
-
-            attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);                       
-            attachmentMat.mainTextureOffset = drawOffset;
-            attachmentMat.mainTextureScale = new Vector2(2f - drawScale, 2f -  drawScale);            
-
-            if (HasOutline)
-            {                
-                outlineMat = new Material(attachment.outlineGraphicData.Graphic.MatSingle);                
-                outlineMat.mainTextureOffset = drawOffset;
-                outlineMat.mainTextureScale = new Vector2(2f -  drawScale, 2f - drawScale);                ;
-            }
+            this.parent = parent;                       
+            this.meshTop = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_TOP);
+            this.meshBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT);
+            this.meshFlipTop = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_TOP, true);
+            this.meshFlipBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT, true);          
         }
 
-        private static readonly Color zeros = new Color(0f, 0f, 0f, 0f); 
-
         // NOTE:
-        // 
+        //
+        // Put the code below in PrepareTexture
+        //
+        // attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);                       
+        // attachmentMat.mainTextureOffset = drawOffset;
+        // attachmentMat.mainTextureScale = new Vector2(2f - drawScale, 2f -  drawScale);            
+        //
+        // if (HasOutline)
+        // {                
+        //    outlineMat = new Material(attachment.outlineGraphicData.Graphic.MatSingle);                
+        //    outlineMat.mainTextureOffset = drawOffset;
+        //    outlineMat.mainTextureScale = new Vector2(2f -  drawScale, 2f - drawScale);                ;
+        // }
+        //
         // If the scaling above is broken at some point use these below to scale manually.
+        //
+        // private static readonly Color zeros = new Color(0f, 0f, 0f, 0f);
         //
         // private static Texture2D LoadAndScale(string path, float scale)
         // {                        
@@ -136,7 +144,7 @@ namespace CombatExtended
         //    tex.Compress(highQuality: true);            
         //    tex.Apply(updateMipmaps: true, makeNoLongerReadable: false);
         //    return tex;
-        //}
+        // }
         // private static Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
         // {
         //    Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
@@ -152,7 +160,7 @@ namespace CombatExtended
         //    }
         //    result.Apply();
         //    return result;
-        //}
+        // }
         // private static Texture2D LoadTexture(string path)
         // {
         //    if (!File.Exists(path))

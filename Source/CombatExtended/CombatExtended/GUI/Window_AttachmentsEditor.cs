@@ -24,7 +24,9 @@ namespace CombatExtended
         private AttachmentDef hoveringOver = null;
 
         private readonly List<string> categories;
-        
+
+        private List<WeaponPlatformDef.WeaponGraphicPart> parts = new List<WeaponPlatformDef.WeaponGraphicPart>();
+
         private readonly HashSet<AttachmentLink> selected = new HashSet<AttachmentLink>();
 
         private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true);
@@ -51,6 +53,8 @@ namespace CombatExtended
             // cache stuff
             foreach (string s in categories)
                 categoryToDef[s] = availableDefs.Where(t => t.slotTags.First() == s)?.ToList() ?? new List<AttachmentDef>();
+
+            UpdateRenderingCache();
         }
 
         public override void PreOpen()
@@ -101,6 +105,17 @@ namespace CombatExtended
             });
         }
 
+        private void UpdateRenderingCache()
+        {
+            parts.Clear();
+            HashSet<AttachmentLink> links = selected;
+            foreach (WeaponPlatformDef.WeaponGraphicPart part in weaponDef.defaultGraphicParts)
+            {
+                if (!links.Any(l => l.attachment.slotTags?.Any(s => part.slotTags?.Contains(s) ?? false) ?? false))
+                    parts.Add(part);
+            }
+        }
+
         private void DoLeftPanel(Rect inRect)
         {
             inRect.yMin += 6;
@@ -110,7 +125,7 @@ namespace CombatExtended
             inRect = inRect.CenteredOnXIn(statRect);
             Widgets.DrawBoxSolid(inRect, Widgets.MenuSectionBGBorderColor);
             Widgets.DrawBoxSolid(inRect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
-            GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, selected, hoveringOver, 0.7f);
+            GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, selected, parts, hoveringOver);
             if (Prefs.DevMode && Widgets.ButtonText(inRect.TopPartPixels(20).LeftPartPixels(75), "edit offsets") && !Find.WindowStack.IsOpen<Window_AttachmentsDebugger>())
                 Find.WindowStack.Add(new Window_AttachmentsDebugger(weaponDef));
             Widgets.DrawBoxSolid(statRect.TopPartPixels(1), Widgets.MenuSectionBGBorderColor);
@@ -157,6 +172,7 @@ namespace CombatExtended
                                 Add(attachment);
                             else
                                 Remove(attachment);
+                            UpdateRenderingCache(); 
                         }
                         if (Mouse.IsOver(rect))
                         {

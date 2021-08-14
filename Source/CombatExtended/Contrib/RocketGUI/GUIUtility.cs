@@ -139,7 +139,7 @@ namespace CombatExtended.RocketGUI
 
         private static readonly Color _hColor = new Color(0.05f, 0.05f, 0.05f, 0.8f);
 
-        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentLink> attachments, AttachmentDef highlight = null, float scale = 1.0f)
+        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentLink> attachments, List<WeaponPlatformDef.WeaponGraphicPart> parts = null, AttachmentDef highlight = null)
         {
             ExecuteSafeGUIAction(() =>
             {
@@ -147,7 +147,7 @@ namespace CombatExtended.RocketGUI
                 if (highlight != null)
                     GUI.color = _hColor;
                 Texture2D texture;
-                Texture2D weaponTex = platform.UIWeaponTex;
+                Texture2D weaponTex = platform.UIWeaponTex;                
                 foreach (AttachmentLink link in attachments)
                 {
                     AttachmentDef attachment = link.attachment;
@@ -158,13 +158,29 @@ namespace CombatExtended.RocketGUI
                     if (link.HasDrawOffset)
                     {
                         rect.x -= rect.width * link.drawOffset.x;
-                        rect.y += rect.height * link.drawOffset.y;
+                        rect.y -= rect.height * link.drawOffset.y;
                     }
-                    //rect.width *= link.drawScale;
-                    //rect.yMin = rect.yMax - rect.height * link.drawScale;
-                    Widgets.DrawTextureFitted(rect, texture, 1.0f);
-                }               
-                Widgets.DrawTextureFitted(inRect, weaponTex, 1.0f);
+                    rect.xMin = rect.xMax - rect.width * link.drawScale.x;
+                    rect.yMin = rect.yMax - rect.height * link.drawScale.y;
+                    GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);
+                }
+                if (parts != null)
+                {
+                    foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
+                    {
+                        if (part.HasOutline)
+                            GUI.DrawTexture(inRect, part.UIOutlineTex, ScaleMode.StretchToFill);
+                    }
+                }
+                GUI.DrawTexture(inRect, weaponTex, ScaleMode.StretchToFill);
+                if (parts != null)
+                {
+                    foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
+                    {
+                        if (part.HasPartMat)
+                            GUI.DrawTexture(inRect, part.UIPartTex, ScaleMode.StretchToFill);
+                    }
+                }
                 foreach (AttachmentLink link in attachments)
                 {
                     AttachmentDef attachment = link.attachment;
@@ -177,11 +193,11 @@ namespace CombatExtended.RocketGUI
                     if (link.HasDrawOffset)
                     {
                         rect.x -= rect.width * link.drawOffset.x;
-                        rect.y += rect.height * link.drawOffset.y;
-                    }                    
-                    //rect.width *= link.drawScale;
-                    //rect.yMin = rect.yMax - rect.height * link.drawScale;
-                    Widgets.DrawTextureFitted(rect, texture, 1.0f);
+                        rect.y -= rect.height * link.drawOffset.y;
+                    }
+                    rect.xMin = rect.xMax - rect.width * link.drawScale.x;
+                    rect.yMin = rect.yMax - rect.height * link.drawScale.y;
+                    GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);                    
                     if (attachment == highlight)
                         GUI.color = _hColor;
                 }
@@ -190,7 +206,6 @@ namespace CombatExtended.RocketGUI
 
         public static void DropDownMenu<T>(Func<T, string> labelLambda, Action<T> selectedLambda, T[] options)
         {
-
             DropDownMenu(labelLambda, selectedLambda, options.AsEnumerable());
         }
 

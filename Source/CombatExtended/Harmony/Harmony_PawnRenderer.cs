@@ -386,27 +386,42 @@ namespace CombatExtended.HarmonyCE
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
                 AttachmentLink[] links = null;
                 WeaponPlatform platform = null;
+
+                mesh = !flip ? CE_MeshMaker.plane10Mid : CE_MeshMaker.plane10FlipMid;
                 if (equipment is WeaponPlatform)
                 {
                     platform = (WeaponPlatform)equipment;
-                    links = platform.CurLinks;                   
-                    mesh = !flip ? CE_MeshPool.plane10Bot : CE_MeshPool.plane10FlipBot;
+                    links = platform.CurLinks;
+                    Mesh m = !flip ? CE_MeshMaker.plane10Bot : CE_MeshMaker.plane10FlipBot;
+                    foreach (WeaponPlatformDef.WeaponGraphicPart part in platform.VisibleDefaultParts)
+                    {
+                        if(part.HasOutline)
+                            Graphics.DrawMesh(m, matrix, part.OutlineMat, layer);
+                    }
                     for (int i = 0; i < links.Length; i++)
                     {
                         AttachmentLink link = links[i];
                         if (link.HasOutline)
-                            Graphics.DrawMesh(mesh, matrix, link.OutlineMat, layer);
-                    }
+                            Graphics.DrawMesh(!flip ? links[i].meshBot : links[i].meshFlipBot, matrix, link.OutlineMat, layer);
+                    }                    
                 }
-                mesh = !flip ? CE_MeshPool.plane10Mid : CE_MeshPool.plane10FlipMid;
+                //
+                // Render the main weapon mat
                 Graphics.DrawMesh(mesh, matrix, mat, layer);
+
                 if (platform != null)
                 {
-                    mesh = !flip ? CE_MeshPool.plane10Top : CE_MeshPool.plane10FlipTop;
+                    Mesh m = !flip ? CE_MeshMaker.plane10Top : CE_MeshMaker.plane10FlipTop;
+                    foreach (WeaponPlatformDef.WeaponGraphicPart part in platform.VisibleDefaultParts)
+                    {
+                        if (part.HasPartMat)
+                            Graphics.DrawMesh(m, matrix, part.PartMat, layer);
+                    }
                     for (int i = 0; i < links.Length; i++)
                     {
-                        if (links[i].HasAttachmentMat)
-                            Graphics.DrawMesh(mesh, matrix, links[i].AttachmentMat, layer);
+                        AttachmentLink link = links[i];
+                        if (link.HasAttachmentMat)
+                            Graphics.DrawMesh(!flip ? link.meshTop : link.meshFlipTop, matrix, link.AttachmentMat, layer);
                     }
                 }
             }

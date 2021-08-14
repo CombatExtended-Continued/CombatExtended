@@ -12,6 +12,8 @@ namespace CombatExtended
     {      
         public ThingOwner<Thing> attachments;
 
+        private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
+
         private List<AttachmentDef> _additionList = new List<AttachmentDef>();
         private List<AttachmentDef> _removalList = new List<AttachmentDef>();
         private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();
@@ -101,6 +103,16 @@ namespace CombatExtended
             get
             {
                 return _additionList;
+            }
+        }
+
+        public List<WeaponPlatformDef.WeaponGraphicPart> VisibleDefaultParts
+        {
+            get
+            {
+                if (_defaultPart == null)
+                    _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
+                return _defaultPart;
             }
         }
       
@@ -217,7 +229,10 @@ namespace CombatExtended
         public void UpdateConfiguration()
         {
             _removalList.Clear();
-            _additionList.Clear();            
+            _additionList.Clear();
+            /*
+             * <=========   attachments =========> 
+             */
             _curLinks = attachments.Select(t => LinkByDef[t.def as AttachmentDef]).ToArray();
 
             foreach (AttachmentLink link in Platform.attachmentLinks)
@@ -229,7 +244,19 @@ namespace CombatExtended
                     _additionList.Add(def);                    
                 else if (!inConfig && inContainer)
                     _removalList.Add(def);                                    
-            }            
+            }
+            /*
+             * <========= default parts =========> 
+             */
+            _defaultPart.Clear();
+            foreach (WeaponPlatformDef.WeaponGraphicPart part in Platform.defaultGraphicParts)
+            {
+                /*
+                 * We add default parts that enable use to change the graphics of the weapon
+                 */
+                if (part.slotTags == null || part.slotTags.All(s => _curLinks.All(l => !l.attachment.slotTags.Contains(s))))                
+                    _defaultPart.Add(part);                                
+            }
         }
     }
 }
