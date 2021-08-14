@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[Ry]Rimcraft Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+        <!-- === Kodo === -->
+						
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="WoW_Animal_Kodo"]/statBases</xpath>
+				<value>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+				<MeleeCritChance>0.62</MeleeCritChance>
+				<MeleeParryChance>0.3</MeleeParryChance>
+				<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WoW_Animal_Kodo"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities><li>BiteBlunt</li></capacities>
+							<power>10</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.47</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>32.96</armorPenetrationBlunt>	
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.47</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>32.960</armorPenetrationBlunt>	
+				</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities><li>Blunt</li><li>Poke</li></capacities>
+							<power>51</power>
+							<cooldownTime>3</cooldownTime>
+            							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+            							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>48</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+        <!-- === Elekk === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="WoW_Animal_Elekk"]/statBases</xpath>
+          <value>
+            <MeleeDodgeChance>0.15</MeleeDodgeChance>
+            <MeleeCritChance>0.90</MeleeCritChance>
+            <MeleeParryChance>0.33</MeleeParryChance>
+            <ArmorRating_Blunt>4</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="WoW_Animal_Elekk"]/tools</xpath>
+
+          <value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>tusk</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>58</power>
+					<cooldownTime>3.37</cooldownTime>
+					<linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>46.226</armorPenetrationBlunt>	
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.47</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>28.96</armorPenetrationBlunt>	
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right foot</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.47</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>28.960</armorPenetrationBlunt>	
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>3.69</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>40</armorPenetrationBlunt>	
+				</li>
+			</tools>
+          </value>
+        </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[Ry]Rimcraft Weaponry</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoWR_NightElf_RecurveBow"
+						or defName="WoWR_BloodElf_Bow" 
+						or defName="WoWR_Alliance_Longbow" 
+						or defName="WoWR_BloodElf_HawkBow" 
+						or defName="WoWR_HighElf_Longbow"
+						or defName="WoWR_HighElf_RecurveBow" 
+						or defName="WoWR_Forsaken_DarkBow"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoWR_Draenei__Crossbow"
+					 	or defName="WoWR_Draenei_Longbow"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+<defName>WoWR_Alliance_Longbow</defName>
+    <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>6.00</Bulk>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>34</range>
+      <soundCast>Bow_Large</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_GreatArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+</li>
+			
+<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+<defName>WoWR_NightElf_RecurveBow</defName>
+   <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>4.00</Bulk>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>32</range>
+      <soundCast>Bow_Recurve</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+</li>
+
+<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+<defName>WoWR_BloodElf_Bow</defName>
+   <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>4.00</Bulk>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>32</range>
+      <soundCast>Bow_Recurve</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>WoWR_BloodElf_HawkBow</defName>
+   <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>4.00</Bulk>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>32</range>
+      <soundCast>Bow_Recurve</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>WoWR_HighElf_Longbow</defName>
+    <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>6.00</Bulk>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>34</range>
+      <soundCast>Bow_Large</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_GreatArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>WoWR_HighElf_RecurveBow</defName>
+   <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>4.00</Bulk>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>32</range>
+      <soundCast>Bow_Recurve</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>WoWR_Forsaken_DarkBow</defName>
+   <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>4.00</Bulk>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_StreamlinedArrow_Stone</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>32</range>
+      <soundCast>Bow_Recurve</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>WoWR_Draenei__Crossbow</defName>
+          <statBases>
+            <Bulk>6</Bulk>
+            <SwayFactor>1.2</SwayFactor>
+            <ShotSpread>0.4</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <warmupTime>1</warmupTime>
+            <range>32</range>
+            <soundCast>Bow_Large</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>5</reloadTime>
+            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+         <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>WoWR_Draenei_Longbow</defName>
+    <statBases>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.8</ShotSpread>
+      <SwayFactor>2</SwayFactor>
+      <Bulk>6.00</Bulk>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>36</range>
+      <soundCast>Bow_Large</soundCast>
+    </Properties>
+    <AmmoUser>
+      <ammoSet>AmmoSet_GreatArrow</ammoSet>
+    </AmmoUser>
+    <FireModes />
+    <weaponTags>
+      <li>CE_Bow</li>
+    </weaponTags>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+					
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_GreatArrowWOW</defName>
+					<label>great arrows</label>
+					<ammoTypes>
+					  <Ammo_GreatArrow_Stone>Projectile_GreatArrowWOW_Stone</Ammo_GreatArrow_Stone>
+					  <Ammo_GreatArrow_Steel>Projectile_GreatArrowWOW_Steel</Ammo_GreatArrow_Steel>
+					  <Ammo_GreatArrow_Plasteel>Projectile_GreatArrowWOW_Plasteel</Ammo_GreatArrow_Plasteel>
+					  <Ammo_GreatArrow_Venom>Projectile_GreatArrowWOW_Venom</Ammo_GreatArrow_Venom>
+					  <Ammo_GreatArrow_Flame>Projectile_GreatArrowWOW_Flame</Ammo_GreatArrow_Flame>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+					
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowWOW_Stone</defName>
+						<label>great arrow (stone)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>33</speed>
+							<damageAmountBase>28</damageAmountBase> 
+							<armorPenetrationBlunt>14.98</armorPenetrationBlunt>
+							<armorPenetrationSharp>4</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.1</preExplosionSpawnChance>	
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowWOW_Steel</defName>
+						<label>great arrow (steel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowWOW_Plasteel</defName>
+						<label>great arrow (plasteel)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>37</speed>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationBlunt>19.26</armorPenetrationBlunt>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.375</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowWOW_Venom</defName>
+						<label>great arrow (venom)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>36</speed>
+							<damageDef>Arrow</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<secondaryDamage>
+								<li>
+								<def>ArrowVenom</def>
+								<amount>6</amount>
+								</li>
+							</secondaryDamage>			
+							<armorPenetrationBlunt>21.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>8</armorPenetrationSharp>
+							<preExplosionSpawnChance>0.3</preExplosionSpawnChance>
+							<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+						<defName>Projectile_GreatArrowWOW_Flame</defName>
+						<label>great arrow (flame)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>36</speed>
+					  <damageDef>Arrow</damageDef>
+					  <damageAmountBase>6</damageAmountBase>
+					  <armorPenetrationBlunt>10.54</armorPenetrationBlunt>
+					  <armorPenetrationSharp>4</armorPenetrationSharp>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame</def>
+						  <amount>1</amount>
+						  <chance>0.33</chance>
+						</li>
+					  </secondaryDamage>
+					</projectile>
+					</ThingDef>
+					
+				</value>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

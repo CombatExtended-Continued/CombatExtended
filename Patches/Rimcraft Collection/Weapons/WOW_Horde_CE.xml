@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
+	<!-- T1 Cleaver -->
+				<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_WarCleaver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.725</armorPenetrationBlunt>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>26</power>
+					<cooldownTime>1.34</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>2.056</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+		</li>
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_WarCleaver"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_WarCleaver"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_WarCleaver"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+		</li>
+	<!-- T1 Gladius -->
+				<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_Gladius"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.58</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.34</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.46</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+		</li>
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_Gladius"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_Gladius"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_Horde_Gladius"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+		</li>
+
+				<!-- T3 Greataxe -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Greataxe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.99</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>51</power>
+								<cooldownTime>2.44</cooldownTime>
+								<armorPenetrationBlunt>6.488</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Greataxe"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Greataxe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.33</MeleeCritChance>
+							<MeleeParryChance>0.44</MeleeParryChance>
+							<MeleeDodgeChance>0.4</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- T2 Spear -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_GreatSpear"]/tools</xpath>
+					<value>
+						<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.78</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.56</cooldownTime>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_GreatSpear"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_GreatSpear"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.12</MeleeCritChance>
+							<MeleeParryChance>1.18</MeleeParryChance>
+							<MeleeDodgeChance>1.0</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- T2 Maul -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Maul"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.87</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								<chanceFactor>0.1</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>2.36</cooldownTime>
+								<armorPenetrationBlunt>14.76</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Maul"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Horde_Maul"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>2.4</MeleeCritChance>
+							<MeleeParryChance>0.24</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

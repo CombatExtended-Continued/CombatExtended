@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[Ry]Rimcraft Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="WoW_Animal_Hawkstrider" or defName="WoW_Animal_Voidstrider"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.4</MeleeDodgeChance>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>0.07</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="WoW_Animal_Hawkstrider" or defName="WoW_Animal_Voidstrider"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>claws</label>
+							<capacities>
+								<li>Scratch</li><li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.28</cooldownTime>
+							<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>15</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.75</armorPenetrationSharp>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li><li>Stab</li>
+							</capacities>
+							<power>26</power>
+							<cooldownTime>1.68</cooldownTime>
+							<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>13</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>
