@@ -8,6 +8,63 @@
 			<match Class="PatchOperationSequence">
 				<operations>
 
+			<!-- ====== The Eye ====== -->
+
+					<li Class="PatchOperationConditional">
+					<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+					<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/parts/li[def="AA_JellyfishTentacle"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="AA_EyeBody]/corePart/parts/li[def="AA_JellyfishTentacle"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/parts/li[def="AA_JellyfishTentacle"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+					<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/parts/li[def="Head"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/parts/li[def="Head"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/BodyDef[defName="AA_EyeBody"]/corePart/parts/li[def="Head"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+					</li>
+
+
 			<!-- ====== Adding custom bodytype for TurtleLike creatures ======= -->
 			
 					<li Class="PatchOperationAdd">

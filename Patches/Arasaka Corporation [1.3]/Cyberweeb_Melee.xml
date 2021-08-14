@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Arasaka Corporation [1.3]</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- === Weeb sword === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "MeleeWeapon_Thermal_Katana_AC"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.27</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>16</power>
+					<extraMeleeDamages>
+					<li>
+						<def>Burn</def>
+						<amount>5</amount>
+					</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.536</armorPenetrationBlunt>
+					<armorPenetrationSharp>12</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>30</power>
+					<extraMeleeDamages>
+					<li>
+						<def>Burn</def>
+						<amount>8</amount>
+					</li>
+					</extraMeleeDamages>
+					<cooldownTime>1.4</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<armorPenetrationSharp>6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "MeleeWeapon_Thermal_Katana_AC"]/statBases</xpath>
+		<value>
+		<statBases>
+			<WorkToMake>50000</WorkToMake>
+			<Mass>1</Mass>
+      			<Bulk>7.5</Bulk>
+      			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</statBases>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "MeleeWeapon_Thermal_Katana_AC"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.9</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- === katana === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Millitary_Katana_AC"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.27</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.3</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.559</armorPenetrationBlunt>
+					<armorPenetrationSharp>6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>1.4</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>0.674</armorPenetrationBlunt>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Millitary_Katana_AC"]/statBases</xpath>
+		<value>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>0.9</Mass>
+      			<Bulk>7.5</Bulk>
+      			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</statBases>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Millitary_Katana_AC"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.9</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Millitary_Katana_AC"]/costList</xpath>
+		<value>
+		<costList>
+			<Steel>40</Steel>
+			<Plasteel>60</Plasteel>
+		</costList>
+		</value>
+	</li> 
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_Thermal_Katana_AC"]/costList</xpath>
+		<value>
+		<costList>
+			<Steel>25</Steel>
+			<Plasteel>75</Plasteel>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		</value>
+	</li>  
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

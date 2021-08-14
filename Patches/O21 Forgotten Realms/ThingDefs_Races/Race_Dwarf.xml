@@ -7,115 +7,115 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
-						</li>
-					</value>
-				</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>0.8</MeleeCritChance>
-						<MeleeParryChance>0.8</MeleeParryChance>
-					</value>
-				</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]/statBases</xpath>
+				<value>
+					<NightVisionEfficiency>0.5</NightVisionEfficiency>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>0.8</MeleeCritChance>
+					<MeleeParryChance>0.8</MeleeParryChance>
+				</value>
+			</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left hand</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-								<surpriseAttack>
-									<extraMeleeDamages>
-										<li>
-											<def>Stun</def>
-											<amount>14</amount>
-										</li>
-									</extraMeleeDamages>
-								</surpriseAttack>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right hand</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-								<surpriseAttack>
-									<extraMeleeDamages>
-										<li>
-											<def>Stun</def>
-											<amount>14</amount>
-										</li>
-									</extraMeleeDamages>
-								</surpriseAttack>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<capacities>
-									<li>Bite</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>1.11</cooldownTime>
-								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.01</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<!-- Goblins aren't bright, but they're not fools. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Dwarf"]/comps</xpath>
-					<value>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left hand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
-				</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right hand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.11</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Dwarf"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
 
 			</operations>
 		</match>

@@ -21,7 +21,7 @@ namespace CombatExtended
             return pawn.Reserve(TargetA, job) && pawn.Reserve(TargetB, job);
         }
 
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOn(() => Patient == null || Medicine == null);
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);

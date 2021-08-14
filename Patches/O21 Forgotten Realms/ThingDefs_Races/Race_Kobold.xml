@@ -7,123 +7,124 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
-						</li>
-					</value>
-				</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/alienRace/generalSettings</xpath>
-					<value>
-						<forcedRaceTraitEntries>
-							<li>
-								<defName>Xenophobia</defName>
-								<degree>1</degree>
-								<chance>20</chance>
-							</li>
-						</forcedRaceTraitEntries>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/race/baseBodySize</xpath>
-					<value>
-						<baseBodySize>0.6</baseBodySize>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/statBases</xpath>
-					<value>
-						<CarryWeight>18</CarryWeight>
-						<CarryBulk>15</CarryBulk>
-						<MeleeDodgeChance>1.1</MeleeDodgeChance>
-						<MeleeCritChance>0.4</MeleeCritChance>
-						<MeleeParryChance>0.5</MeleeParryChance>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>teeth</label>
-								<capacities>
-									<li>Bite</li>
-								</capacities>
-								<power>5</power>
-								<cooldownTime>1.26</cooldownTime>
-								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.01</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>left fist</label>
-								<capacities>
-									<li>Scratch</li>
-								</capacities>
-								<power>4</power>
-								<cooldownTime>1.57</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.04</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right fist</label>
-								<capacities>
-									<li>Scratch</li>
-								</capacities>
-								<power>4</power>
-								<cooldownTime>1.57</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.04</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>1.85</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>0.46</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Kobold"]/comps</xpath>
-					<value>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/alienRace/generalSettings</xpath>
+				<value>
+					<forcedRaceTraitEntries>
 						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+							<defName>Xenophobia</defName>
+							<degree>1</degree>
+							<chance>20</chance>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
-				</li>
+					</forcedRaceTraitEntries>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>0.6</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/statBases</xpath>
+				<value>
+					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+					<CarryWeight>40</CarryWeight>
+					<CarryBulk>20</CarryBulk>
+					<MeleeDodgeChance>1.1</MeleeDodgeChance>
+					<MeleeCritChance>0.4</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>teeth</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.26</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.57</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.04</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.57</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.04</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.85</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.46</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Kobold"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
 				
 			</operations>
 		</match>

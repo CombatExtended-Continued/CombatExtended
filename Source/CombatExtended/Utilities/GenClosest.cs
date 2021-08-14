@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -10,6 +11,7 @@ namespace CombatExtended.Utilities
 {
     public static class GenClosest
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ThingsTracker GetThingTracker(this Map map)
         {
             return ThingsTracker.GetTracker(map);
@@ -49,6 +51,12 @@ namespace CombatExtended.Utilities
         {
             ThingsTracker tracker = map.GetThingTracker();
             return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Weapons, cell, range).Select(t => t as ThingWithComps);
+        }
+
+        public static IEnumerable<ThingWithComps> FlaresInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Flares, cell, range).Select(t => t as ThingWithComps);
         }
 
         public static IEnumerable<ThingWithComps> MedicineInRange(this IntVec3 cell, Map map, float range)

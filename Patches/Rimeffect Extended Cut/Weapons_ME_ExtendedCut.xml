@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Extended Cut</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <!-- ========== Melee Tools ========== -->
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[defName="RE_Gun_SpacerBattleRifle" or defName="RE_Gun_SpacerMarksmanRifle" or defName="RE_Gun_SpacerAssaultRifle" or defName="RE_Gun_AlliancePrecisionRifle"  or defName="RE_Gun_ChakramLauncher"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <!-- Value -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerAssaultRifle' or defName='RE_Gun_SpacerMarksmanRifle']/statBases/MarketValue</xpath> 
+    <value>
+	<MarketValue>600</MarketValue>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerBattleRifle']/statBases/MarketValue</xpath> 
+    <value>
+	<MarketValue>700</MarketValue>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerChakramLauncher']/statBases/MarketValue</xpath> 
+    <value>
+	<MarketValue>1000</MarketValue>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AlliancePrecisionRifle']/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>8</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+  <!-- ========== M7 Lancer ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_SpacerAssaultRifle</defName>
+    <statBases>
+      <WorkToMake>40000</WorkToMake>
+      <SightsEfficiency>1.1</SightsEfficiency>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.37</SwayFactor>
+      <Bulk>8</Bulk>
+      <Mass>4</Mass>
+      <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M8_Basic</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>55</range>
+      <ammoConsumedPerShotCount>0</ammoConsumedPerShotCount>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+      <soundCast>RE_Shot_Avenger</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.37</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>38</magazineSize>
+      <reloadTime>4.8</reloadTime>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerAssaultRifle']/label</xpath> 
+    <value>
+      <label>M7 Lancer</label>
+    </value>
+  </li>
+
+ <li Class="PatchOperationReplace">
+ <xpath>/Defs/ThingDef[defName="RE_Gun_SpacerAssaultRifle"]/description</xpath>
+ <value>
+               <description>The M7-Lancer is a rare collector's item that was introduced shortly after the First Contact War. The Lancer has been refurbished by an unknown master weaponsmith, and it now uses the higher velocity rounds of today's weaponry. It does not need heat sinks, instead utilizing weapon heat-generation from an earlier era. Few of these finely crafted weapons are in existence.</description>
+ </value>
+ </li>
+
+  <!-- ========== Not Mattock ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_SpacerBattleRifle</defName>
+    <statBases>
+      <WorkToMake>40000</WorkToMake>
+      <SightsEfficiency>1.35</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.29</SwayFactor>
+      <Bulk>8.8</Bulk>
+      <Mass>4.5</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_L89_Basic</defaultProjectile>
+      <warmupTime>1.0</warmupTime>
+      <range>60</range>
+      <ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+      <burstShotCount>3</burstShotCount>
+      <ticksBetweenBurstShots>28</ticksBetweenBurstShots>
+      <soundCast>RE_Shot_Halberd</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.54</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>36</magazineSize>
+      <reloadTime>3.8</reloadTime>
+      <ammoSet>AmmoSet_L89</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>2</aimedBurstShotCount>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerBattleRifle']/label</xpath> 
+    <value>
+      <label>L-89 Halberd</label>
+    </value>
+  </li>
+
+ <li Class="PatchOperationReplace">
+ <xpath>/Defs/ThingDef[defName="RE_Gun_SpacerBattleRifle"]/description</xpath>
+ <value>
+               <description>The sleek L-89 Halberd favors power and precision. The semi-automatic rifle was the Andromeda Initiative's attempt to make a weapon on par with the reliable M-96 Mattock that also used Initiative breakthroughs in materials science. Only a few were made, but their effectiveness in the field is unquestioned.</description>
+ </value>
+ </li>
+
+  <!-- ========== M-29 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_SpacerMarksmanRifle</defName>
+    <statBases>
+      <WorkToMake>40000</WorkToMake>
+      <SightsEfficiency>2.5</SightsEfficiency>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>1.45</SwayFactor>
+      <Bulk>10</Bulk>
+      <Mass>3.4</Mass>
+      <RangedWeapon_Cooldown>0.44</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M29_Basic</defaultProjectile>
+      <burstShotCount>3</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <warmupTime>1.45</warmupTime>
+      <range>75</range>
+      <soundCast>RE_Shot_Incisor</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilAmount>0.94</recoilAmount>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>15</magazineSize>
+      <reloadTime>3.6</reloadTime>
+      <ammoSet>AmmoSet_M29</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerMarksmanRifle']/label</xpath>
+    <value>
+      <label>M-29 Incisor</label>
+    </value>
+  </li>
+
+ <li Class="PatchOperationReplace">
+ <xpath>/Defs/ThingDef[defName="RE_Gun_SpacerMarksmanRifle"]/description</xpath>
+ <value>
+               <description>The Incisor is one of a new wave of military and police sniper rifles designed to overload active defenses such as shields. the Incisor was initially advertised as having negligible recoil, although under real combat conditions the second and third rounds frequently climb in difficulty.</description>
+ </value>
+ </li>
+
+  <!-- ========== M-19 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_AlliancePrecisionRifle</defName>
+    <statBases>
+      <WorkToMake>50000</WorkToMake>
+      <SightsEfficiency>2.4</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.42</SwayFactor>
+      <Bulk>10</Bulk>
+      <Mass>4.4</Mass>
+      <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_M19_Basic</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>72</range>
+      <soundCast>RE_Shot_Ballista</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+		<costList>
+			<Steel>30</Steel>
+			<Plasteel>35</Plasteel>
+			<ComponentSpacer>2</ComponentSpacer>
+      			<Chemfuel>10</Chemfuel>
+		</costList>
+    <AmmoUser>
+      <magazineSize>6</magazineSize>
+      <reloadTime>5.9</reloadTime>
+      <ammoSet>AmmoSet_M19</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_AlliancePrecisionRifle']/label</xpath>
+    <value>
+      <label>M-19 Ballista</label>
+    </value>
+  </li>
+
+ <li Class="PatchOperationReplace">
+ <xpath>/Defs/ThingDef[defName="RE_Gun_AlliancePrecisionRifle"]/description</xpath>
+ <value>
+               <description>the M-Series Ballista is an extremely versatile medium-to-long range combat weapon. Harnessing the exhaustive resources of synthetic plasma, the Ballista meets the critical requirements of low-cost abundant ammunition for today's highly mobile snipers, Each projectile contains a small, but very powerful, nanite core that detonates approximately 0.33 seconds after impact. The detonation stage of the projectile is devastating, targets hit by the bullet are not likely to survive.</description>
+ </value>
+ </li>
+
+  <!-- ========== ChakramLauncher ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>RE_Gun_SpacerChakramLauncher</defName>
+    <statBases>
+      <WorkToMake>52000</WorkToMake>
+      <SightsEfficiency>1.25</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.56</SwayFactor>
+      <Bulk>12</Bulk>
+      <Mass>6</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_Chakram_Basic</defaultProjectile>
+      <warmupTime>1.25</warmupTime>
+      <range>62</range>
+      <ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+      <soundCast>RE_Shot_Chakram</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>50</magazineSize>
+      <reloadTime>4.0</reloadTime>
+      <ammoSet>AmmoSet_Chakram</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+  <!-- Name -->
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='RE_Gun_SpacerChakramLauncher']/label</xpath>
+    <value>
+      <label>Chakram Launcher</label>
+    </value>
+  </li>
+
+ <li Class="PatchOperationReplace">
+ <xpath>/Defs/ThingDef[defName="RE_Gun_SpacerChakramLauncher"]/description</xpath>
+ <value>
+               <description>The fancifully named Chakram Launcher uses an internal fabricator to manufacture lightweight ammunition discs wrapped in holographic tracers. The discs explode on impact, sending shrapnel tearing through the enemy.</description>
+ </value>
+ </li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
+

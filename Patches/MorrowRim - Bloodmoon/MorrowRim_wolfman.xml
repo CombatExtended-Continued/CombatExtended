@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MorrowRim - Bloodmoon</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Werewolf"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Werewolf"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.36</MeleeDodgeChance>
+					<MeleeCritChance>0.29</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+					<ArmorRating_Sharp>0.12</ArmorRating_Sharp>
+					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Werewolf"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left hand claws</label>
+							<capacities>
+          								<li>MorrowRim_WerewolfScratch</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>0.75</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right hand claws</label>
+							<capacities>
+          								<li>MorrowRim_WerewolfScratch</li>
+							</capacities>
+							<power>16</power>
+							<cooldownTime>0.75</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>1</armorPenetrationSharp>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+          								<li>MorrowRim_WerewolfBite</li>
+							</capacities>
+							<power>29</power>
+							<cooldownTime>1.66</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<chanceFactor>0.75</chanceFactor>
+							<armorPenetrationSharp>2.25</armorPenetrationSharp>
+							<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

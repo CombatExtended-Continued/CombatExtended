@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[LF] Command And Conquer NOD Combat Armor</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Helmet === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+            <WornBulk>2</WornBulk>
+            <Flammability>0.4</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>130</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/statBases/WorkToMake</xpath>
+          <value>
+	<WorkToMake>11000</WorkToMake>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>10</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>15</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <PsychicSensitivity>-0.1</PsychicSensitivity>
+              <ToxicSensitivity>-0.50</ToxicSensitivity>
+              <SmokeSensitivity>-1</SmokeSensitivity>
+              <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/costList</xpath>
+          <value>
+            <costList>
+              <Steel>40</Steel>
+              <Plasteel>10</Plasteel>
+              <Cloth>5</Cloth>
+              <DevilstrandCloth>15</DevilstrandCloth>
+              <ComponentSpacer>1</ComponentSpacer>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/apparel/layers</xpath>
+          <value>
+            <li>StrappedHead</li>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+
+        <!-- === Armor === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases</xpath>
+          <value>
+            <Bulk>50</Bulk>
+            <WornBulk>12</WornBulk>
+            <Flammability>0.4</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases/WorkToMake</xpath>
+          <value>
+	<WorkToMake>34000</WorkToMake>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases/Mass</xpath>
+          <value>
+            <Mass>18</Mass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>300</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>14</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>22</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/costList</xpath>
+          <value>
+            <costList>
+              <Steel>80</Steel>
+              <Plasteel>40</Plasteel>
+              <Cloth>20</Cloth>
+              <DevilstrandCloth>40</DevilstrandCloth>
+              <ComponentIndustrial>4</ComponentIndustrial>
+              <ComponentSpacer>1</ComponentSpacer>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CNC_NOD_Militant_Armor"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryBulk>8</CarryBulk>
+              <ToxicSensitivity>-0.20</ToxicSensitivity>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

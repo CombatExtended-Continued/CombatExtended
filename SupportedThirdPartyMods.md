@@ -15,16 +15,16 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
-[HLX] Rimworld: UNSC Armoury |
-[HLX] ReGrowth - Extinct Animals Pack
+[HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
-[HLX] Ultratech: Altered Carbon - Armoury
 [JDS] EFT Apparel |
 [JDS] Exiled Dawn |
 [JDS] Star Wars BlasTech Industries |
 [JDS] The Forge - Exiled Dawn |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
+[LF] Command And Conquer NOD Combat Armor |
+[O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
 [Ods] SCP Outfits Only Edition	|
@@ -51,6 +51,8 @@ Mod |
 A Dog Said...	|
 Alpha Animals |
 Alpha Biomes |
+Alpha Ships |
+Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Android Tiers	|
@@ -61,9 +63,11 @@ Anima Animals  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
+Animal Equipment	|
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
+Arasaka Corporation [1.3]	|
 Area Rugs	|
 Autocleaner	|
 Auto-Mortars	|
@@ -74,12 +78,16 @@ Black Widows	|
 Carbon	|
 Censored Armory  |
 Clay Soldier Race |
+Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Cupro's Alloys	|
-Cute Penguin	|
+CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
+Darkest Night SK Steam	|
+Darkest Rim: Core	|
 Defensive Machine Gun Turret Pack	|
+Devilstrand Colour Bundle   |
 Dinosauria |
 Dishonored Assassin Coat |
 Dishonored Assassin Mask |
@@ -93,7 +101,9 @@ Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
+Erin's Lizard Doggo |
 Erin's Mountain Animals |
+Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
 Expanded Patchleather	|
@@ -109,21 +119,26 @@ Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
-Forsakens Fauna |
+Forsakens Fauna |  
+Fortifications - Industrial |
+Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Genetic Rim |
 Genetic Rim Alpha Animal Patch |
 GeneticRim Cosmic Horrors Patch |
 GeneticRim Dinosauria Patch |
+GeneticRim Megafauna Patch |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
 Halo - Rimworld Auxiliary Combat Armory	|
-Hand 'n' Footwear	|
+HALO: UNSC Armoury |
+Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 High Caliber	|
+Hive Armory |
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
@@ -144,18 +159,22 @@ Leeani Playable Race	|
 Let's Have a Cat!	|
 Logann Race	|
 Magical Menagerie	|
+Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
-Midworld Expanded Flak Armor  |
+Midworld Expanded: Flak Armor  |
 Mincho, The Mint Choco Slime  |
+Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
+MiningCo. Spaceship	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
 Mister Meeseeks |
+Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
@@ -163,7 +182,14 @@ More Utility Packs	|
 More Vanilla Turrets	|
 Morgante Mafia Weapons Pack |
 Morgante WW2 Italian Weapons    |
+MorrowRim	|
+MorrowRim - Ashlands Swamp  |
+MorrowRim - Bloodmoon  |
+MorrowRim - Colovian Fur Helm	|
+MorrowRim - Just the Animals	|
+MorrowRim - Trolls	|
 Moyo - From the Depth   |
+Nanosuit   |
 Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
@@ -175,26 +201,30 @@ Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
 Pawnbold Race   |
-Penguin	|
 Polarisbloc - Security Force	|
-Poleepkwa Race Update	|
+Poleepkwa Race	|
 Prestige Specialist Armours	|
+Project RimFactory - Materials |
 Prostheses+ |
 PsiTech	|
 Rabbie The Moonrabbit	|
 Racc Race	|
 Race to the Rim |
+Radworld    |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
 Redcoat Apparel	|
 Revia Race |
-Right Tool: Rebalanced	|
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
+Rim-Effect: Core	|
+Rim-Effect: Extended Cut	|
+Rim-Effect: N7	|
 Rimefeller	|
 RimEffect - Asari of the Rims	|
-Rimfire	|
 Rim-Hivers!	|
+Rim Flood	|
+Rim-Shek	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -209,6 +239,7 @@ SCP |
 SCP - Clothing Only	|
 Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
+Simple Ogre Race  |
 Simply More Melee	|
 Soviet Armory	|
 Space Worms (Continued) |
@@ -221,14 +252,17 @@ The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
+Thog's Guns - More Brukka Pack  |
 TouhouStyle	|
 Trading Economy	|
 Tribal Warrior Set! |
 Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
+Ultratech: Altered Carbon Remastered |
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
+Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
@@ -239,12 +273,14 @@ Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
 Vanilla Weapons Expanded - Frontier	|
 Vanilla Weapons Expanded - Grenades |
 Vanilla Weapons Expanded - Heavy Weapons |
+Vanilla Weapons Expanded - Laser |
 Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
@@ -253,12 +289,12 @@ Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
-VGP Fabrics
+VGP Fabrics |
 Vulpine Race Pack	|
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
-Xenohumans	|
+Xenohumans - Anthromorphs |
 Xenoorca Race	|
 Zombieland	|

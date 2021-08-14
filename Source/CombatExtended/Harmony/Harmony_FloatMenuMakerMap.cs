@@ -21,12 +21,13 @@ namespace CombatExtended.HarmonyCE
     static class FloatMenuMakerMap_PatchKnowledge
     {
 
-        const string ClassNamePart = "DisplayClass8";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
+        const string ClassNamePart = "DisplayClass9_19";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
         const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
 
-        // Target the class containing several KnowledgeDemonstrated, MakeStaticMote, Mote_FeedbackEquip ..
+        // Target the class containing several KnowledgeDemonstrated, MakeFleckMote, FleckDefOf.FeedbackEquip ..
         // 1.0: FloatMenuMakerMap.<AddHumanLikeOrders>c__AnonStoreyB.<>m__0(),
         // 1.1: FloatMenuMakerMap.<>c__DisplayClass5_11.g__Equip|11()()
+        // 1.3: FloatMenuMakerMap.<>c__DisplayClass9_19.g__Equip|25()()
         static MethodBase TargetMethod()
         {
             List<Type> classes = typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all).ToList();

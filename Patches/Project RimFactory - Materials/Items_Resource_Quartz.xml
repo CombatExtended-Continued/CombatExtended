@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Project RimFactory - Materials</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Quartz -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_quartz"]/statBases</xpath>
+					<value>
+						<Bulk>0.03</Bulk>
+					</value>
+				</li>		
+				<!-- Crystal Powder -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases</xpath>
+					<value>
+						<Bulk>0.02</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PRF_CrystalPowder"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.004</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

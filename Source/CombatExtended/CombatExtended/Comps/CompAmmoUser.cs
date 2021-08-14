@@ -8,6 +8,8 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 using CombatExtended.Compatibility;
+using CombatExtended.Utilities;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -36,6 +38,21 @@ namespace CombatExtended
             }
         }
 
+        public int MagsLeft
+        {
+            get
+            {
+                if (CompInventory != null)
+                {
+                    CompInventory.UpdateInventory();
+                    int count = 0;
+                    foreach (AmmoLink link in Props.ammoSet.ammoTypes)
+                        count += CompInventory.AmmoCountOfDef(link.ammo);
+                    return count;
+                }
+                return 0;
+            }
+        }
         public int CurMagCount
         {
             get
@@ -59,8 +76,8 @@ namespace CombatExtended
         {
             get
             {
-                if (CompEquippable == null 
-                    || CompEquippable.PrimaryVerb == null 
+                if (CompEquippable == null
+                    || CompEquippable.PrimaryVerb == null
                     || CompEquippable.PrimaryVerb.caster == null
                     || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
                 {
@@ -80,11 +97,18 @@ namespace CombatExtended
         public bool UseAmmo
         {
             get
-			{
+            {
                 return Props.ammoSet != null && AmmoUtility.IsAmmoSystemActive(Props.ammoSet);
-			}
-		}
-		public bool HasAndUsesAmmoOrMagazine
+            }
+        }
+        public bool IsAOEWeapon
+        {
+            get
+            {
+                return parent.def.IsAOEWeapon();
+            }
+        }
+        public bool HasAndUsesAmmoOrMagazine
         {
             get
             {
@@ -314,10 +338,13 @@ namespace CombatExtended
 
 
             // Original: curMagCountInt--;
-            
+
             if (curMagCountInt < 0) TryStartReload();
             return true;
         }
+
+        // used as a rate limiter
+        private int _lastReloadJobTick = -1;
 
         // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
         /// <summary>
@@ -325,6 +352,9 @@ namespace CombatExtended
         /// </summary>
         public void TryStartReload()
         {
+            if (Wielder?.jobs.curDriver is IJobDriver_Tactical)
+                return;
+
             if (!HasMagazine)
             {
                 if (!CanBeFiredNow)
@@ -366,11 +396,12 @@ namespace CombatExtended
             }
 
             // Issue reload job
-            if (IsEquippedGun)
+            if (IsEquippedGun && _lastReloadJobTick != GenTicks.TicksGame && (Wielder.jobs.curJob?.def ?? null) != CE_JobDefOf.ReloadWeapon)
             {
                 Job reloadJob = TryMakeReloadJob();
                 if (reloadJob == null)
                     return;
+                _lastReloadJobTick = GenTicks.TicksGame;
                 reloadJob.playerForced = true;
                 Wielder.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, Wielder.CurJob?.def != reloadJob.def, true);
             }
@@ -441,6 +472,7 @@ namespace CombatExtended
         /// <remarks>TryUnload() should be called before this in most cases.</remarks>
         public Job TryMakeReloadJob()
         {
+
             if (!HasMagazine || (Holder == null && turret == null))
                 return null; // the job couldn't be created.
 
@@ -450,10 +482,55 @@ namespace CombatExtended
         private void DoOutOfAmmoAction()
         {
             if (ShouldThrowMote)
-            {
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
+            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
+            {
+                if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !Holder.IsColonist))
+                {
+                    Holder.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, weapon), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                    return;
+                }
+                if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
+                    TryPickupAmmo();
             }
-            if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt)) CompInventory.SwitchToNextViableWeapon();
+            CompInventory?.SwitchToNextViableWeapon(true, !Holder.IsColonist, stopJob: false);
+        }
+
+        public bool TryPickupAmmo()
+        {
+            if (!Holder.RaceProps.Humanlike)
+                return false;
+            if (Holder.MentalState != null)
+                return false;
+            IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
+            foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
+                                        && supportedAmmo.Contains(ammo.AmmoDef)
+                                        && (!Holder.IsColonist || (!ammo.IsForbidden(Holder) && ammo.Position.AdjacentTo8WayOrInside(Holder)))))
+            {
+                if (!Holder.CanReserve(thing))
+                    continue;
+                if (!Holder.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                    continue;
+                if (CompInventory.CanFitInInventory(thing, out int count))
+                {
+                    Thing ammo = thing;
+                    if (!ammo.Position.AdjacentTo8WayOrInside(Holder))
+                    {
+                        Job pickupAmmo = JobMaker.MakeJob(JobDefOf.TakeInventory, ammo);
+                        pickupAmmo.count = count;
+                        Holder.jobs.StartJob(pickupAmmo, JobCondition.InterruptForced, resumeCurJobAfterwards: false);
+                    }
+                    else
+                    {
+                        ammo = thing.SplitOff(count);
+                        CompInventory.container.TryAddOrTransfer(ammo);
+                    }
+                    Job reload = TryMakeReloadJob();
+                    Holder.jobs.jobQueue.EnqueueFirst(reload);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void LoadAmmo(Thing ammo = null)
@@ -582,7 +659,7 @@ namespace CombatExtended
         {
             GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
             yield return ammoStatusGizmo;
-	    var mannableComp = turret?.GetMannable();
+            var mannableComp = turret?.GetMannable();
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
                 Action action = null;

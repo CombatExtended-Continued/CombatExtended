@@ -7,8 +7,8 @@ namespace CombatExtended
 {
     public enum AimMode : byte
     {
-        AimedShot,
-        Snapshot,
-        SuppressFire
+        SuppressFire = 0,
+        Snapshot = 1,
+        AimedShot = 2,
     }
 }

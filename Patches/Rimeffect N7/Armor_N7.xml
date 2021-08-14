@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: N7</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit" or defName="REN7_Apparel_N7Armor" or defName="REN7_Apparel_N7HeavyArmor"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+						<li>Backpack</li>
+					</value>
+				</li>
+
+				<!-- === Mask === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>11</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>180</MaxHitPoints>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/equippedStatOffsets</xpath>
+					<value>
+						<AimingDelayFactor>-0.07</AimingDelayFactor>
+						<ToxicSensitivity>-0.2</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>35</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_N7AdeptMask"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Adept suit === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>40</Bulk>
+						<WornBulk>6</WornBulk>
+						<Mass>12</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>400</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>12</CarryWeight>
+						<CarryBulk>55</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.3</ToxicSensitivity>
+						<MoveSpeed>0.6</MoveSpeed>
+                                                			<Suppressability>-0.1</Suppressability>
+      						<ReloadSpeed>0.15</ReloadSpeed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7AdeptSuit"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>25</DevilstrandCloth>
+					</value>
+				</li>
+
+
+				<!-- === Medium Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>0.5</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>13</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>200</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<value>
+						<PsychicSensitivity>-0.2</PsychicSensitivity>
+						<AimingDelayFactor>-0.07</AimingDelayFactor>
+						<ToxicSensitivity>-0.5</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>45</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Helmet"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Medium Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>60</Bulk>
+						<WornBulk>7</WornBulk>
+						<Mass>22</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>36</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>450</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<CarryWeight>22</CarryWeight>
+						<CarryBulk>60</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.3</ToxicSensitivity>
+      						<MoveSpeed>0.2</MoveSpeed>
+                                                			<Suppressability>-0.1</Suppressability>
+      						<ReloadSpeed>0.15</ReloadSpeed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7Armor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>35</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- === Heavy Alliance Helmet === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>2.5</WornBulk>
+						<Mass>6</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>17</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>34</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>250</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<PsychicSensitivity>-0.3</PsychicSensitivity>
+							<AimingAccuracy>0.25</AimingAccuracy>
+							<ToxicSensitivity>-0.5</ToxicSensitivity>
+							<CarryWeight>5</CarryWeight>
+							<CarryBulk>1</CarryBulk>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+							<PainShockThreshold>0.05</PainShockThreshold>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>75</Plasteel>
+							<DevilstrandCloth>15</DevilstrandCloth>
+	  						<RE_ElementZero>10</RE_ElementZero>
+							<ComponentSpacer>3</ComponentSpacer>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>MiddleHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Heavy Alliance Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>80</Bulk>
+						<WornBulk>20</WornBulk>
+						<Mass>60</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>22</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>60</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>550</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryWeight>75</CarryWeight>
+							<CarryBulk>80</CarryBulk>
+							<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+							<ToxicSensitivity>-0.5</ToxicSensitivity>
+							<PainShockThreshold>0.1</PainShockThreshold>
+      							<MoveSpeed>-0.25</MoveSpeed>
+                                                				<Suppressability>-0.15</Suppressability>
+      							<ReloadSpeed>0.15</ReloadSpeed>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="REN7_Apparel_N7HeavyArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>50</DevilstrandCloth>
+						<Hyperweave>10</Hyperweave>
+					</value>
+				</li>
+
+				<!-- Omni Shield -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="REN7_Omnishield"]</xpath>
+					<value>
+						 <ThingDef ParentName="ShieldBase">
+							<defName>REN7_Omnishield</defName>
+							<label>Omni shield</label>
+							<description>An omni shield capable of intercepting a majority of ranged and melee attacks.</description>
+							<techLevel>Ultra</techLevel>
+							<graphicData>
+			           					<texPath>Things/Item/Equipment/Shield/OmniShield/OmniShield</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>Transparent</shaderType>
+            								<drawSize>0.83</drawSize>
+							</graphicData>
+        							<costList>
+            								<RE_ElementZero>40</RE_ElementZero>
+            								<Plasteel>40</Plasteel>
+        							</costList>
+							<thingCategories Inherit="False">
+								<li>Shields</li>
+							</thingCategories>							
+							<recipeMaker>
+							  <researchPrerequisite>RE_OmniTool</researchPrerequisite>		
+							  <recipeUsers>
+								<li>RE_ManufacturingBench</li>
+							  </recipeUsers>
+							</recipeMaker>		
+							<statBases>
+							  <WorkToMake>40000</WorkToMake>
+							  <MaxHitPoints>220</MaxHitPoints>
+							  <ArmorRating_Blunt>22</ArmorRating_Blunt>
+							  <ArmorRating_Sharp>12</ArmorRating_Sharp>
+							  <Mass>4</Mass>
+							  <Bulk>9</Bulk>
+							  <WornBulk>6</WornBulk>
+							</statBases>
+							<equippedStatOffsets>
+							  <ReloadSpeed>-0.1</ReloadSpeed>
+							  <MeleeHitChance>-1</MeleeHitChance>
+							  <ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+							  <AimingAccuracy>-0.08</AimingAccuracy>
+							  <Suppressability>-0.5</Suppressability>
+							  <MeleeCritChance>-0.1</MeleeCritChance>
+							  <MeleeParryChance>1.0</MeleeParryChance>
+							</equippedStatOffsets>
+							<apparel>
+							 <careIfWornByCorpse>false</careIfWornByCorpse>
+							 <careIfDamaged>false</careIfDamaged>
+							 <wearPerDay>0</wearPerDay>
+							  <tags>
+								<li>UltratechN7</li>
+							  </tags>
+							</apparel>
+	    						<tradeTags>
+           							<li>RE_OmniShield</li>
+        							</tradeTags>						
+							<modExtensions>
+							  <li Class="CombatExtended.ShieldDefExtension">
+								<shieldCoverage>
+								  <li>Hands</li>
+								  <li>Arms</li>
+								  <li>Shoulders</li>
+								  <li>Torso</li>
+								  <li>Neck</li>
+          								  <li>Teeth</li>
+								</shieldCoverage>
+        								<crouchCoverage>
+          								 <li>Legs</li>
+          								 <li>FullHead</li>
+        								</crouchCoverage>
+								<drawAsTall>false</drawAsTall>
+							  </li>						  
+							</modExtensions>
+						  </ThingDef>					
+					</value>
+				</li>				
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

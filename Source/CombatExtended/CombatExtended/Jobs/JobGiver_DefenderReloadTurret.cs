@@ -19,7 +19,7 @@ namespace CombatExtended
         /// Set arbitrarily, balance if needed.
         /// </summary>
         private const float ammoReloadThreshold = .5f;
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             var turret = TryFindTurretWhichNeedsReloading(pawn);
             if (turret == null)

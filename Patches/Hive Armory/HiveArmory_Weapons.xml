@@ -31,7 +31,7 @@
 								<cooldownTime>2.08</cooldownTime>
 								<chanceFactor>1.165</chanceFactor>
 								<armorPenetrationBlunt>4.8</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.85</armorPenetrationSharp>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 							</li>
 							<li Class="CombatExtended.ToolCE">
@@ -43,7 +43,7 @@
 								<cooldownTime>1.64</cooldownTime>
 								<chanceFactor>1.165</chanceFactor>
 								<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
-								<armorPenetrationSharp>1.2</armorPenetrationSharp>
+								<armorPenetrationSharp>1.33</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 							</li>
 						</tools>
@@ -70,18 +70,11 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Kenshi_Polearm]/stuffCategories</xpath>
+					<xpath>Defs/ThingDef[defName="Kenshi_Polearm"]/stuffCategories</xpath>
 					<value>
     						<stuffCategories>
       							<li>Metallic_Weapon</li>
     						</stuffCategories>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Kenshi_Staff"]/techLevel</xpath>
-					<value>
-						<techLevel>Neolithic</techLevel>
 					</value>
 				</li>
 
@@ -104,11 +97,19 @@
 								<label>shaft</label>
 								<capacities>
 									<li>Blunt</li>
-									<li>Poke</li>
 								</capacities>
 								<power>15</power>
-								<cooldownTime>1.62</cooldownTime>
+								<cooldownTime>1.6</cooldownTime>
 								<armorPenetrationBlunt>6.0</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>Head</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.2</cooldownTime>
+								<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
 							</li>
 						</tools>
 					</value>
@@ -122,13 +123,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="Kenshi_Staff"]/statBases</xpath>
-					<value>
-						<Bulk>10</Bulk>
-						<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
-					</value>
-				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Kenshi_Staff"]/stuffCategories</xpath>
@@ -140,23 +134,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Kenshi_Staff"]/weaponTags</xpath>
-					<value>
-						<weaponTags>
-							<li>NeolithicMeleeDecent</li>
-						</weaponTags>
-					</value>
-				</li>
-
- 				<li Class='PatchOperationReplace'>
-    				<xpath>/Defs/ThingDef[defName='Kenshi_Staff']/recipeMaker/skillRequirements</xpath> 
-    					<value>
-      						<skillRequirements>
-        							<Crafting>1</Crafting>
-      						</skillRequirements>
-    					</value>
-  				</li>
 
 			</operations>
 		</match>

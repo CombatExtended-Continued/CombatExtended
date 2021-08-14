@@ -8,7 +8,7 @@
       <operations>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>Humanoid</bodyShape>
@@ -20,11 +20,11 @@
           <success>Always</success>
           <operations>
             <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]/comps</xpath>
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]/comps</xpath>
               <success>Invert</success>
             </li>
             <li Class="PatchOperationAdd">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]</xpath>
+              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]</xpath>
               <value>
                 <comps />
               </value>
@@ -33,8 +33,9 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]/statBases</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]/statBases</xpath>
           <value>
+            <NightVisionEfficiency>0.4</NightVisionEfficiency>
             <MeleeDodgeChance>1</MeleeDodgeChance>
             <MeleeCritChance>1</MeleeCritChance>
             <MeleeParryChance>1</MeleeParryChance>
@@ -42,7 +43,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]/tools</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -81,7 +82,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Gith"]/comps</xpath>
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Gith"]/comps</xpath>
           <value>
             <li>
               <compClass>CombatExtended.CompPawnGizmo</compClass>

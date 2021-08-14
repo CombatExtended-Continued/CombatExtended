@@ -1,0 +1,761 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Exotic Arsenal</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>		
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+              <!-- ==================== Ammo Cat========================== -->
+ 
+	<ThingCategoryDef>
+		<defName>Exotic_Ars</defName>
+		<label>Exotic Ammo</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPlasmaMedium</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Equilibrium</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Equilibrium_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Equilibrium_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Aesa</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Aesa_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Aesa_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Shiver</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Shiver_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Shiver_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Slashfire</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Slashfire_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Slashfire_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GlacialSF</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_GlacialSF_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_GlacialSF_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_celsius</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_celsius_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_celsius_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Oberon</defName>
+		<label>Toxic energy bolts</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Oberon_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Oberon_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Paladin</defName>
+		<label>Hard light</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Paladin_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Paladin_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BFaith</defName>
+		<label>Plasma incinerator</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_BFaith_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_BFaith_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Unleashed</defName>
+		<label>Exotic energy cells</label>
+		<ammoTypes>
+			<Ammo_Exotic_Energy>Bullet_Unleashed_CE</Ammo_Exotic_Energy>
+			<Ammo_Exotic_Energy_HI>Bullet_Unleashed_HI</Ammo_Exotic_Energy_HI>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+  <!-- ==================== AmmoClass========================== -->
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>Exotic_Normal</defName>
+    <label>Exotic energy cell</label>
+    <labelShort>EEC</labelShort>
+    <description>The exotic energy cell does a funni.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <CombatExtended.AmmoCategoryDef>
+    <defName>Exotic_Hipower</defName>
+    <label>Overcharged exotic energy cell</label>
+    <labelShort>OEEC</labelShort>
+    <description>Overcharge the energy cell to increase its power output at the cost of making it unstable and volatile. Its effects are weapon dependent, it is also usually less accurate than thr regular version.</description>
+  </CombatExtended.AmmoCategoryDef>
+
+  <!-- ==================== Ammo Type ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_Exotic_Energy</defName>
+		<label>Exotic energy cells</label>
+		<description>Exotic energy cell used by rare glitterworld energy weapons.</description>
+		<statBases>
+			<Mass>0.014</Mass>
+			<Bulk>0.014</Bulk>
+			<MarketValue>1</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>Exotic_Ars</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>Exotic_Normal</ammoClass>
+    		<generateAllowChance>0.4</generateAllowChance>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_Exotic_Energy_HI</defName>
+		<label>Overcharged Exotic energy cells</label>
+		<description>Exotic energy cell used by rare glitterworld energy weapons. These cells in particular, exudes big dick energy.</description>
+		<statBases>
+			<Mass>0.018</Mass>
+			<Bulk>0.014</Bulk>
+			<MarketValue>1.66</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<!-- Plasma ammo can't be handloaded, and the containment cell must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>Exotic_Ars</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/PlasmaCell/Rifle</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>Exotic_Hipower</ammoClass>
+    		<generateAllowChance>0.2</generateAllowChance>
+		<comps>
+			<!-- Arbitarily defined cookoff explosive stats; represents a plasma containment system failing -->
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>12</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.4</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			  </li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>1</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<!-- ================== New DMG================== -->
+
+  <DamageDef ParentName="Flame">
+    <defName>ExoticFlame</defName>
+    <label>prometheum flame</label>
+    <additionalHediffs>
+      <li>
+        <hediff>PrometheumSoaked</hediff>
+        <severityPerDamageDealt>0.02</severityPerDamageDealt>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+	<!-- ================== Projectiles Equilibrium================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseEquilibriumBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      	<texPath>Things/Projectile/Equilibrium</texPath>
+      	<graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>1.2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Energy_Damage</damageDef>
+      <speed>90</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseEquilibriumBullet">
+		<defName>Bullet_Equilibrium_CE</defName>
+		<label>Equilibrium shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Energy_Damage</damageDef>
+			<damageAmountBase>23</damageAmountBase>
+      			<armorPenetrationSharp>24</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>36</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>13</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseEquilibriumBullet">
+		<defName>Bullet_Equilibrium_HI</defName>
+		<label>equilibrium shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>23</damageAmountBase>
+      <armorPenetrationSharp>24</armorPenetrationSharp>      
+      <armorPenetrationBlunt>36</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Bomb_Secondary</def>
+			  	<amount>20</amount>
+				</li>
+		  </secondaryDamage>
+      		<spreadMult>3.0</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Aesa ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseAesaBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Aesa</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>1.2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>ExoticFlame</damageDef>
+      <speed>168</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAesaBullet">
+		<defName>Bullet_Aesa_CE</defName>
+		<label>aesa p40 shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      		<damageAmountBase>30</damageAmountBase>
+      		<armorPenetrationSharp>50</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>50</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAesaBullet">
+		<defName>Bullet_Aesa_HI</defName>
+		<label>aesa p40 shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      		<damageAmountBase>20</damageAmountBase>
+      		<armorPenetrationSharp>50</armorPenetrationSharp>
+      		<armorPenetrationBlunt>50</armorPenetrationBlunt>
+      		<spreadMult>2.0</spreadMult>
+		</projectile>
+   		 <comps>
+	 		<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<explosiveDamageType>ExoticFlame</explosiveDamageType>
+      			<damageAmountBase>20</damageAmountBase>
+			<explosiveRadius>0.9</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  		</li>
+    		</comps>
+	</ThingDef>
+
+	<!-- ================== Shiver ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseShiverBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Shiver</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Stasis_Damage</damageDef>
+      <speed>150</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseShiverBullet">
+		<defName>Bullet_Shiver_CE</defName>
+		<label>frostmourne shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>30</armorPenetrationSharp>      
+      <armorPenetrationBlunt>30</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseShiverBullet">
+		<defName>Bullet_Shiver_HI</defName>
+		<label>frostmourne shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>23</damageAmountBase>
+      <armorPenetrationSharp>30</armorPenetrationSharp>      
+      <armorPenetrationBlunt>30</armorPenetrationBlunt>
+      		<spreadMult>2.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Slashfire ================== -->
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseSlashfireBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>88</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlashfireBullet">
+		<defName>Bullet_Slashfire_CE</defName>
+		<label>Slashfire bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      		<armorPenetrationSharp>15</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>5</amount>
+				</li>
+				<li>
+			  	<def>Flame</def>
+			  	<amount>1</amount>
+				<chance>0.15</chance>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseSlashfireBullet">
+		<defName>Bullet_Slashfire_HI</defName>
+		<label>Slashfire bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      		<armorPenetrationSharp>15</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Flame_Secondary</def>
+			  	<amount>8</amount>
+				</li>
+				<li>
+			  	<def>ExoticFlame</def>
+			  	<amount>1</amount>
+				<chance>0.15</chance>
+				</li>
+		  </secondaryDamage>
+      		<spreadMult>2.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== GlacialSF ================== -->
+
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseGlacialSFBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>88</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGlacialSFBullet">
+		<defName>Bullet_GlacialSF_CE</defName>
+		<label>Slashfire bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Stasis_Damage</def>
+			  	<amount>6</amount>
+				</li>
+		  </secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGlacialSFBullet">
+		<defName>Bullet_GlacialSF_HI</defName>
+		<label>Slashfire bullet</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>      
+      <armorPenetrationBlunt>30</armorPenetrationBlunt>
+		  <secondaryDamage>
+				<li>
+			  	<def>Stasis_Damage</def>
+			  	<amount>9</amount>
+				</li>
+		  </secondaryDamage>
+      		<spreadMult>2.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+
+	<!-- ================== celsius ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BasecelsiusBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Celsius1</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Flame</damageDef>
+			<speed>144</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasecelsiusBullet">
+		<defName>Bullet_celsius_CE</defName>
+		<label>plasma blast</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+      		<armorPenetrationSharp>30</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasecelsiusBullet">
+		<defName>Bullet_celsius_HI</defName>
+		<label>stasis blast</label>
+    <graphicData>
+      <texPath>Things/Projectile/Celsius2</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+        			<damageDef>Stasis_Damage</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+      			<armorPenetrationSharp>30</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Oberon ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseOberonBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Oberon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Oberon_damage</damageDef>
+	<speed>90</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOberonBullet">
+		<defName>Bullet_Oberon_CE</defName>
+		<label>Oberon Toxin Bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>24</damageAmountBase>
+      <armorPenetrationSharp>30</armorPenetrationSharp>      
+      <armorPenetrationBlunt>40</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOberonBullet">
+		<defName>Bullet_Oberon_HI</defName>
+		<label>Oberon Toxin Bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>30</damageAmountBase>
+      <armorPenetrationSharp>40</armorPenetrationSharp>      
+      <armorPenetrationBlunt>40</armorPenetrationBlunt>
+      		<spreadMult>2.0</spreadMult>
+		</projectile>
+	</ThingDef>
+
+	<!-- ================== Paladin ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BasePaladinBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Paladin</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>HL_Bullet</damageDef>
+			<speed>400</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePaladinBullet">
+		<defName>Bullet_Paladin_CE</defName>
+		<label>mox8 paladin javelin shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+      		<armorPenetrationSharp>40</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>40</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePaladinBullet">
+		<defName>Bullet_Paladin_HI</defName>
+		<label>mox8 paladin javelin shot</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+      		<armorPenetrationSharp>40</armorPenetrationSharp>      
+      		<armorPenetrationBlunt>40</armorPenetrationBlunt>
+      		<spreadMult>2.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+
+	<!-- ================== BFaith ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseBFaithBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/BFBullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+		<drawSize>1.2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Flame</damageDef>
+			<speed>148</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBFaithBullet">
+		<defName>Bullet_BFaith_CE</defName>
+    		<label>blinding faith plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+      			<armorPenetrationSharp>24</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBFaithBullet">
+		<defName>Bullet_BFaith_HI</defName>
+    		<label>blinding faith plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+      			<armorPenetrationSharp>32</armorPenetrationSharp>      
+      			<armorPenetrationBlunt>5</armorPenetrationBlunt>
+		  	<secondaryDamage>
+				<li>
+			  	<def>ExoticFlame</def>
+			  	<amount>5</amount>
+				</li>
+		  	</secondaryDamage>
+      		<spreadMult>2.5</spreadMult>
+		</projectile>
+	</ThingDef>
+
+
+	<!-- ================== Unleashed ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseUnleashedBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/ChargeBlaster</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+			<speed>88</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseUnleashedBullet">
+		<defName>Bullet_Unleashed_CE</defName>
+		<label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>41</damageAmountBase>
+      <soundExplode>MortarBomb_Explode</soundExplode>
+      <armorPenetrationSharp>60</armorPenetrationSharp>
+      <armorPenetrationBlunt>38.005</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<explosiveDamageType>UnleashedCE</explosiveDamageType>
+		<explosiveRadius>2.5</explosiveRadius>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
+    </comps>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseUnleashedBullet">
+		<defName>Bullet_Unleashed_HI</defName>
+		<label>accelerated shot</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>41</damageAmountBase>
+      <soundExplode>MortarBomb_Explode</soundExplode>
+      <armorPenetrationSharp>60</armorPenetrationSharp>
+      <armorPenetrationBlunt>38.005</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<explosiveDamageType>UnleashedCE</explosiveDamageType>
+		<explosiveRadius>3.5</explosiveRadius>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
+    </comps>
+	</ThingDef>
+
+	<!-- ================== Ammo make ================== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Exotic_Energy</defName>
+		<label>make exotic energy cell x100</label>
+		<description>Craft 100 exotic energy cell.</description>
+		<jobString>Making exotic energy cell.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>FSX</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Exotic_Energy>100</Ammo_Exotic_Energy>
+		</products>
+		<workAmount>4000</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Exotic_Energy_HI</defName>
+		<label>make overcharged exotic energy cell x100</label>
+		<description>Craft 100 overcharged exotic energy cell.</description>
+		<jobString>Making overcharged exotic energy cell.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Plasteel</li>
+				<li>FSX</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Exotic_Energy_HI>100</Ammo_Exotic_Energy_HI>
+		</products>
+		<workAmount>8000</workAmount>
+		<researchPrerequisite>Exotic_Decoding</researchPrerequisite>
+		<recipeUsers>
+			<li>Exotic_Bench</li>
+		</recipeUsers>
+	</RecipeDef>
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

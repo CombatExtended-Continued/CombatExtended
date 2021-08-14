@@ -5,6 +5,7 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using Verse.AI;
 
 namespace CombatExtended
 {
@@ -30,7 +31,7 @@ namespace CombatExtended
             return "CE_EditX".Translate(untranslatedString.Translate());
         }
         #endregion TranspilerReferencedItems
-        
+
         private IEnumerable<Widgets.DropdownMenuElement<Loadout>> Button_GenerateMenu(Pawn pawn)
         {
             using (List<Loadout>.Enumerator enu = LoadoutManager.Loadouts.GetEnumerator())
@@ -78,21 +79,43 @@ namespace CombatExtended
             float num3 = rect.x;
             //added:
             float num4 = rect.y + ((rect.height - IconSize) / 2);
+            float equipNowWidth = "CE_UpdateLoadoutNow".Translate().GetWidthCached();
 
             // Reduce width if we're adding a clear forced button
             bool somethingIsForced = pawn.HoldTrackerAnythingHeld();
-            Rect loadoutButtonRect = new Rect(num3, rect.y + 2f, (float)num, rect.height - 4f);
+            Rect loadoutRect = new Rect(num3, rect.y + 2f, (float)num, rect.height - 4f);
             if (somethingIsForced)
             {
-                loadoutButtonRect.width -= 4f + (float)num2;
+                loadoutRect.width -= 4f + (float)num2;
             }
 
             // Main loadout button
-            string label = pawn.GetLoadout().label.Truncate(loadoutButtonRect.width, null);
-            Widgets.Dropdown<Pawn, Loadout>(loadoutButtonRect, pawn, (Pawn p) => p.GetLoadout(), new Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<Loadout>>>(Button_GenerateMenu), label, null, null, null, null, true);
+            Rect mainLoadoutButton = pawn.Spawned ? loadoutRect.LeftPartPixels(loadoutRect.width - equipNowWidth - 16) : loadoutRect;
+            mainLoadoutButton.xMax -= 2;
+            string label = pawn.GetLoadout().label.Truncate(mainLoadoutButton.width, null);
+            Widgets.Dropdown<Pawn, Loadout>(mainLoadoutButton, pawn, (Pawn p) => p.GetLoadout(), new Func<Pawn, IEnumerable<Widgets.DropdownMenuElement<Loadout>>>(Button_GenerateMenu), label, null, null, null, null, true);
+
+            if (pawn.Spawned)
+            {
+                Rect forceEquipNow = loadoutRect.RightPartPixels(equipNowWidth + 12);
+                if (Widgets.ButtonText(forceEquipNow, "CE_UpdateLoadoutNow".Translate()))
+                {
+                    Job job = JobGiver_UpdateLoadout.GetUpdateLoadoutJob(pawn);
+                    CompInventory inventory = pawn.TryGetComp<CompInventory>();
+                    if (inventory != null)
+                    {
+                        inventory.ForcedLoadoutUpdate = job != null;
+                    }
+                    if (job != null)
+                    {
+                        pawn.jobs.StopAll(false, true);
+                        pawn.jobs.StartJob(job, JobCondition.InterruptForced, tag: JobTag.ChangingApparel);
+                    }
+                }
+            }
 
             // Clear forced button
-            num3 += loadoutButtonRect.width;
+            num3 += loadoutRect.width;
             num3 += 4f;
             //changed: Rect forcedHoldRect = new Rect(num3, rect.y + 2f, (float)num2, rect.height - 4f);
             Rect forcedHoldRect = new Rect(num3, num4, (float)num2, (float)num2);

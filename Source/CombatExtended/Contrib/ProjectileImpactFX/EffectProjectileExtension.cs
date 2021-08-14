@@ -29,7 +29,7 @@ namespace ProjectileImpactFX
 
         public void ThrowMote(Vector3 loc, Map map, ThingDef explosionMoteDef, Color color, SoundDef sound, Thing hitThing = null)
         {
-	    ThingDef explosionmoteDef = explosionMoteDef;
+            ThingDef explosionmoteDef = explosionMoteDef;
             ThingDef ImpactMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail(this.ImpactMoteDef) ?? null;
             ThingDef ImpactGlowMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail(this.ImpactGlowMoteDef) ?? null;
             float explosionSize = this.explosionMoteSize;
@@ -107,7 +107,7 @@ namespace ProjectileImpactFX
                 }
             }
         }
-        
+
         void TriggerEffect(EffecterDef effect, Vector3 position, Map map, Thing hitThing = null)
         {
             TriggerEffect(effect, IntVec3.FromVector3(position), map);
