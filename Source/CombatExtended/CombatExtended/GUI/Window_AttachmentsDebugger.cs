@@ -76,10 +76,22 @@ namespace CombatExtended
         public override void Close(bool doCloseSound = true)
         {
             base.Close(doCloseSound);
-
             this.weaponDef.attachmentLinks = links.Where(l => weaponDef.attachmentLinks.Contains(l)).ToList();
             foreach (AttachmentLink link in this.weaponDef.attachmentLinks)
                 link.PrepareTexture(this.weaponDef);
+        }
+
+        private int _counter = 0;
+
+        public override void WindowOnGUI()
+        {
+            base.WindowOnGUI();
+            if (_counter++ % 60 == 0)
+            {
+                this.weaponDef.attachmentLinks = links.Where(l => weaponDef.attachmentLinks.Contains(l)).ToList();
+                foreach (AttachmentLink link in this.weaponDef.attachmentLinks)
+                    link.PrepareTexture(this.weaponDef);
+            }
         }
 
         private void DoContent(Rect inRect)
@@ -136,7 +148,21 @@ namespace CombatExtended
                     {
                         Text.Font = GameFont.Tiny;
                         link.drawOffset.y = Widgets.HorizontalSlider(rect, link.drawOffset.y, -0.75f, 0.75f, true, $"drawOffset.y={Math.Round(link.drawOffset.y, 3)}");
-                    }, useMargins: true);                                                         
+                    }, useMargins: true);
+                    collapsible.Gap(2);
+                    collapsible.Label($"current drawScale value:", fontSize: GameFont.Tiny);
+                    collapsible.Lambda(18, (rect) =>
+                    {
+                        Text.Font = GameFont.Tiny;
+                        GUI.color = Color.green;
+                        Widgets.TextField(rect, $"{link.drawScale}");
+                    }, useMargins: true);
+                    collapsible.Gap(2);
+                    collapsible.Lambda(20, (rect) =>
+                    {
+                        Text.Font = GameFont.Tiny;
+                        link.drawScale = Widgets.HorizontalSlider(rect, link.drawScale, 0.6f, 1.6f, true, $"drawScale={Math.Round(link.drawScale, 3)}");
+                    }, useMargins: true);
                 }
                 collapsible.Line(1);
             }

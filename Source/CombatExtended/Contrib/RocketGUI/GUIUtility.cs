@@ -160,6 +160,8 @@ namespace CombatExtended.RocketGUI
                         rect.x -= rect.width * link.drawOffset.x;
                         rect.y += rect.height * link.drawOffset.y;
                     }
+                    rect.width *= link.drawScale;
+                    rect.yMin = rect.yMax - rect.height * link.drawScale;
                     Widgets.DrawTextureFitted(rect, texture, 1.0f);
                 }               
                 Widgets.DrawTextureFitted(inRect, weaponTex, 1.0f);
@@ -171,12 +173,14 @@ namespace CombatExtended.RocketGUI
                     texture = link.UIAttachmentTex;
                     if (attachment == highlight)
                         GUI.color = color;
-                    Rect rect = inRect;
+                    Rect rect = inRect;                    
                     if (link.HasDrawOffset)
                     {
                         rect.x -= rect.width * link.drawOffset.x;
                         rect.y += rect.height * link.drawOffset.y;
                     }
+                    rect.width *= link.drawScale;
+                    rect.yMin = rect.yMax - rect.height * link.drawScale;
                     Widgets.DrawTextureFitted(rect, texture, 1.0f);
                     if (attachment == highlight)
                         GUI.color = _hColor;
