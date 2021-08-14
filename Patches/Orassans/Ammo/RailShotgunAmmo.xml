@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Orassans</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+    <ThingCategoryDef>
+		<defName>AmmoRailShot</defName>
+		<label>railgun shot shell</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_RailShell</defName>
+		<label>rail shotgun shells</label>
+		<ammoTypes>
+			<Ammo_Railgun_Buck>Bullet_Railgun_Buck</Ammo_Railgun_Buck>
+			<Ammo_Railgun_Slug>Bullet_Railgun_Slug</Ammo_Railgun_Slug>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="RailGaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Unlike other railgun rounds these require a casing to be used effectively, and unlike shotguns, the buckshot isn't as easily foiled by armor.</description>
+    <statBases>
+      <Mass>0.023</Mass>
+      <Bulk>0.06</Bulk>
+    </statBases>
+    <tradeTags>
+		<li>CE_AutoEnableTrade</li>
+      	<li>CE_AutoEnableCrafting_FabricationBench</li>
+		<li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoRailShot</li>
+    </thingCategories>
+    <stackLimit>5000</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RailGaugeBase">
+    <defName>Ammo_Railgun_Buck</defName>
+    <label>railgun shell (Buck)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Shotgun/RailShot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.1</MarketValue>
+    </statBases>
+    <ammoClass>BuckShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RailGaugeBase">
+    <defName>Ammo_Railgun_Slug</defName>
+    <label>railgun shell (Slug)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Shotgun/RailSlug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.048</Mass>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+  </ThingDef>
+
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseRailShotBullet" ParentName="Base12GaugeBullet" Abstract="true">
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRailShotBullet">
+    <defName>Bullet_Railgun_Buck</defName>
+    <label>rail buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>16</damageAmountBase>
+      <pelletCount>9</pelletCount>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>20</armorPenetrationBlunt>
+      <spreadMult>15.8</spreadMult>
+	  <speed>400</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRailShotBullet">
+    <defName>Bullet_Railgun_Slug</defName>
+    <label>rail shotgun slug (sabot)</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>73</damageAmountBase>
+			<armorPenetrationSharp>130</armorPenetrationSharp>
+			<armorPenetrationBlunt>7250</armorPenetrationBlunt>
+			<speed>500</speed>
+		</projectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_Railgun_Buck</defName>
+    <label>make railgun (Buck) shell x200</label>
+    <description>Craft 200 12 gauge (Buck) shells.</description>
+    <jobString>Making 12 gauge (Buck) shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+    <products>
+      <Ammo_Railgun_Buck>200</Ammo_Railgun_Buck>
+    </products>
+    <workAmount>2200</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_Railgun_Slug</defName>
+    <label>make railgun (Slug) shell x200</label>
+    <description>Craft 200 railgun (Slug) shells.</description>
+    <jobString>Making railgun (Slug) shells.</jobString>
+	<workAmount>2200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Railgun_Slug>200</Ammo_Railgun_Slug>
+		</products>
+  </RecipeDef>
+
+      </value>
+    </match>
+  </Operation>
+
+</Patch>
