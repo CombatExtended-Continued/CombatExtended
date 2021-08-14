@@ -7,20 +7,40 @@ using Verse;
 namespace CombatExtended
 {
     public class AttachmentDef : ThingDef
-    {
-        public List<string> slotTags;
+    {        
+        #region Attachments config
 
+        /// <summary>
+        /// Slot tags won't overlap on a given weapon.
+        /// </summary>
+        public List<string> slotTags;
+        /// <summary>
+        /// Used for AI loadout generation
+        /// </summary>
         public List<string> attachmentTags;
 
-        public GraphicData attachmentGraphicData;
+        #endregion 
 
+        #region InGameRenderingData
+
+        /// <summary>
+        /// Used for rendering attachment.
+        /// </summary>
+        public GraphicData attachmentGraphicData;
+        /// <summary>
+        /// Used for rendering attachment.
+        /// </summary>
         public GraphicData outlineGraphicData;
 
+        #endregion
+
+        #region UnifiedStatModifier
+
         public List<StatModifier> statOffsets;        
-
         public List<StatModifier> statMultipliers;
-
         public List<StatModifier> statReplacers;
+
+        #endregion
 
         [Unsaved(allowLoading = false)]
         public bool statsValidated = false;

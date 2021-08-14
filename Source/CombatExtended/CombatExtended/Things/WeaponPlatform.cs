@@ -16,6 +16,9 @@ namespace CombatExtended
         private List<AttachmentDef> _removalList = new List<AttachmentDef>();
         private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();
 
+        /// <summary>
+        /// The config that this weapon should have. Used for billing.
+        /// </summary>
         public List<AttachmentDef> TargetConfig
         {
             get
@@ -30,6 +33,9 @@ namespace CombatExtended
         }      
 
         private AttachmentLink[] _curLinks;
+        /// <summary>
+        /// Return the current attachments links
+        /// </summary>
         public AttachmentLink[] CurLinks
         {
             get
@@ -40,6 +46,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Wether the target config match the current loadout
+        /// </summary>
         public bool ConfigApplied
         {
             get
@@ -59,6 +68,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// The wielder pawn
+        /// </summary>
         public Pawn Wielder
         {
             get
@@ -70,6 +82,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Attachments that need to be removed
+        /// </summary>
         public List<AttachmentDef> RemovalList
         {
             get
@@ -78,6 +93,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Attachments that need to be added
+        /// </summary>
         public List<AttachmentDef> AdditionList
         {
             get
@@ -151,14 +169,11 @@ namespace CombatExtended
         public IEnumerable<AttachmentDef> GetModificationList()
         {
             return AdditionList.Concat(RemovalList);            
-        }        
+        }                
 
-        public override void PostPostMake()
-        {
-            base.PostPostMake();
-            this.RandomiseAttachments();
-        }
-
+        /// <summary>
+        /// Create a random set of attachments
+        /// </summary>
         public virtual void RandomiseAttachments()
         {
             if (Prefs.DevMode)
@@ -180,11 +195,25 @@ namespace CombatExtended
             this.UpdateConfiguration();
         }
 
+        public override void PostPostMake()
+        {
+            base.PostPostMake();
+            this.RandomiseAttachments();
+        }
+
+        /// <summary>
+        /// Get attachment link for a given attachment def
+        /// </summary>
+        /// <param name="def">Attachment def</param>
+        /// <returns>Said attachment link</returns>
         public AttachmentLink GetLink(AttachmentDef def)
         {
             return LinkByDef.TryGetValue(def, out var link) ? link : null;
         }
 
+        /// <summary>
+        /// Used to update the internel config lists
+        /// </summary>
         public void UpdateConfiguration()
         {
             _removalList.Clear();

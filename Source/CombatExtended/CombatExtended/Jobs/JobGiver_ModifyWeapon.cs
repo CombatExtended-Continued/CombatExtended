@@ -48,26 +48,21 @@ namespace CombatExtended
             if (platform.ConfigApplied)
                 return null;
 
+            AttachmentDef attachmentDef;
             // get the crafting bench we are going to use for crafting
             Building bench = pawn.Map.listerBuildings.AllBuildingsColonistOfDef(CE_BuildingDefOf.GunsmithingBench)
                                      .FirstOrFallback(b => pawn.CanReach(b, PathEndMode.InteractionCell, Danger.Unspecified, false), null);
             if (bench == null)
-                return null;
-
+                return null;            
             List<ThingCount> chosenIngThings = new List<ThingCount>();
             
             IBillGiver billGiver = bench as IBillGiver;
-            // try find attachment to add to the weapon
-            if (!TryFindTargetAndIngredients(pawn, bench, platform, out AttachmentDef attachmentDef, out chosenIngThings))
-            {
-                // if there is nothing to remove as well the we have nothing left to do.
-                if(platform.RemovalList.Count == 0)
-                    return null;
-                // choose a random removal element
-                chosenIngThings ??= new List<ThingCount>();
-                chosenIngThings.Clear();
+            // First try removing the stuff that require removal
+            if (platform.RemovalList.Count != 0)                            
                 attachmentDef = platform.RemovalList.RandomElement();
-            }            
+            // Attempt to crafta new attachment 
+            else if (!TryFindTargetAndIngredients(pawn, bench, platform, out attachmentDef, out chosenIngThings))
+                return null;
             Job haulOffJob = null;
             Job modifyJob = TryCreateModifyJob(pawn, platform, attachmentDef, bench, billGiver, chosenIngThings, out haulOffJob);
             // if the job used for clearing the workbench is not null return it and enqueue the crafting job
