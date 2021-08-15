@@ -148,9 +148,10 @@ namespace CombatExtended
             {
                 displayStats = new List<StatDef>()
                 {
-                    StatDefOf.Mass,
                     StatDefOf.MarketValue,
+                    StatDefOf.Mass,
                     CE_StatDefOf.Bulk,
+                    StatDefOf.RangedWeapon_Cooldown,
                     CE_StatDefOf.SightsEfficiency,
                     CE_StatDefOf.NightVisionEfficiency_Weapon,
                     CE_StatDefOf.ReloadSpeed,
@@ -169,6 +170,7 @@ namespace CombatExtended
                 negativeStats = new List<StatDef>()
                 {
                     StatDefOf.Mass,
+                    StatDefOf.RangedWeapon_Cooldown,
                     CE_StatDefOf.ReloadSpeed,
                     CE_StatDefOf.Bulk,
                     CE_StatDefOf.MuzzleFlash,
