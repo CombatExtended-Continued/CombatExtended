@@ -258,6 +258,11 @@ namespace CombatExtended.RocketGUI
 
         public static void CheckBoxLabeled(Rect rect, string label, ref bool checkOn, bool disabled = false, bool monotone = false, float iconWidth = 20, GameFont font = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal, bool placeCheckboxNearText = false, bool drawHighlightIfMouseover = true, Texture2D texChecked = null, Texture2D texUnchecked = null)
         {
+            CheckBoxLabeled(rect, label, Color.white, ref checkOn, disabled, monotone, iconWidth, font, fontStyle, placeCheckboxNearText, drawHighlightIfMouseover, texChecked, texUnchecked);
+        }
+
+        public static void CheckBoxLabeled(Rect rect, string label, Color radioColor, ref bool checkOn, bool disabled = false, bool monotone = false, float iconWidth = 20, GameFont font = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal, bool placeCheckboxNearText = false, bool drawHighlightIfMouseover = true, Texture2D texChecked = null, Texture2D texUnchecked = null)
+        {
             bool checkOnInt = checkOn;
             ExecuteSafeGUIAction(() =>
             {
@@ -284,11 +289,15 @@ namespace CombatExtended.RocketGUI
                 Rect iconRect = new Rect(0f, 0f, iconWidth, iconWidth);
                 iconRect.center = rect.RightPartPixels(iconWidth).center;
                 Color color = GUI.color;
-                if (disabled || monotone)
+                if(radioColor != Color.white)
+                {
+                    GUI.color = radioColor;
+                }
+                else if (disabled || monotone)
                 {
                     GUI.color = Widgets.InactiveColor;
-                }
-                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);
+                }               
+                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);                
                 if (disabled || monotone)
                 {
                     GUI.color = color;

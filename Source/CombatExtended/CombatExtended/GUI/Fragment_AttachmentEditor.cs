@@ -23,22 +23,26 @@ namespace CombatExtended
         private static List<StatDef> negativeStats = null;
 
         private AttachmentDef hoveringOver = null;
+        private List<ThingDefCountClass> cost = new List<ThingDefCountClass>();
+        private List<string> tags = new List<string>();
 
         private Dictionary<StatDef, float> statBases = new Dictionary<StatDef, float>();
         private Dictionary<StatDef, float> stats = new Dictionary<StatDef, float>();
+
         private Dictionary<AttachmentLink, bool> attachedByAt = new Dictionary<AttachmentLink, bool>();
         private Dictionary<AttachmentLink, bool> additionByAt = new Dictionary<AttachmentLink, bool>();
         private Dictionary<AttachmentLink, bool> removalByAt = new Dictionary<AttachmentLink, bool>();
 
         private List<WeaponPlatformDef.WeaponGraphicPart> visibleDefaultParts = new List<WeaponPlatformDef.WeaponGraphicPart>();
+
         private List<AttachmentLink> links = new List<AttachmentLink>();
-        private List<AttachmentLink> target = new List<AttachmentLink>();
-        private List<string> tags = new List<string>();
+        private List<AttachmentLink> target = new List<AttachmentLink>();        
 
         private Dictionary<string, List<AttachmentLink>> linksByTag = new Dictionary<string, List<AttachmentLink>>();
 
         private readonly Listing_Collapsible collapsible_radios = new Listing_Collapsible(true, true);
         private readonly Listing_Collapsible collapsible_stats = new Listing_Collapsible(true, true);
+        private readonly Listing_Collapsible collapsible_center = new Listing_Collapsible(true, true);        
 
         public List<AttachmentLink> CurConfig
         {
@@ -52,7 +56,7 @@ namespace CombatExtended
         {
             get
             {
-                return links.Where(t => attachedByAt[t]).ToList();
+                return links.Where(t => !attachedByAt[t] && additionByAt[t]).ToList();
             }
         }
 
@@ -139,7 +143,9 @@ namespace CombatExtended
         /// Initialize the fragment.
         /// </summary>
         private void InitializeFragment()
-        {            
+        {
+            collapsible_center.CollapsibleBGBorderColor = Color.gray;
+            collapsible_center.Margins = new Vector2(3, 0);
             collapsible_stats.CollapsibleBGBorderColor = Color.gray;
             collapsible_stats.Margins = new Vector2(3, 0);
             collapsible_radios.CollapsibleBGBorderColor = Color.gray;
@@ -207,7 +213,7 @@ namespace CombatExtended
             collapsible_radios.Label("CE_Attachments_Options".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.white, hightlightIfMouseOver: false);
             collapsible_radios.Gap(2);
             collapsible_radios.Label("CE_Attachments_Options_Tip".Translate());
-            collapsible_radios.Gap(1);
+            collapsible_radios.Gap(1);            
             bool started = false;
             bool stop = false;
             foreach (string tag in tags)
@@ -230,7 +236,8 @@ namespace CombatExtended
                         bool checkOn = visible;
                         Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), attachment);
                         rect.xMin += 25;
-                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
+                        Color color = additionByAt[link] ? Color.green : (removalByAt[link] ? Color.red : Color.white);
+                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), color, ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);                        
                         if (checkOn != visible)
                         {
                             if (checkOn)
@@ -269,11 +276,39 @@ namespace CombatExtended
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
                 Widgets.DrawMenuSection(inRect);
+                if (cost.Count != 0)
+                {
+                    Rect costRect = inRect.BottomPartPixels((cost.Count + 2) * 22f);
+                    costRect.xMin += 5;
+                    costRect.xMax -= 5;
+                    collapsible_center.Expanded = true;
+                    collapsible_center.Begin(costRect);
+                    collapsible_center.Label($"CE_EditAttachmentsCost".Translate(), color: Color.gray, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, hightlightIfMouseOver: false);
+                    collapsible_center.Line(1.0f);
+                    collapsible_center.Gap(2.00f);
+                    foreach (ThingDefCountClass countClass in cost)
+                    {
+                        collapsible_center.Lambda(20, (rect) =>
+                        {
+                            Text.Font = GameFont.Small;
+                            Text.Anchor = TextAnchor.UpperLeft;
+                            Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), countClass.thingDef);
+                            rect.xMin += 25;
+                            Widgets.Label(rect, countClass.thingDef.label);
+                            Text.Anchor = TextAnchor.UpperRight;
+                            Widgets.Label(rect, $"x{countClass.count}");
+                        }, useMargins: true);
+                        collapsible_center.Gap(2);
+                    }
+                    collapsible_center.End(ref costRect);
+                    inRect.yMax -= (cost.Count + 1.5f) * 20f / 2f;
+                }
                 Rect rect = inRect;
                 rect.width = Mathf.Min(rect.width, rect.height);
                 rect.height = rect.width;
                 rect = rect.CenteredOnXIn(inRect);
                 GUIUtility.DrawWeaponWithAttachments(rect.ContractedBy(10), weaponDef, target.ToHashSet(), parts: visibleDefaultParts, hoveringOver);
+
                 inRect.yMin += rect.height;
                 if (Prefs.DevMode && DebugSettings.godMode)
                 {
@@ -300,7 +335,7 @@ namespace CombatExtended
             collapsible_stats.Gap(2);
             collapsible_stats.Label("CE_Attachments_Information_Tip".Translate(), hightlightIfMouseOver: false);
             collapsible_stats.Gap(4);
-            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray, hightlightIfMouseOver: false);
+            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.white, hightlightIfMouseOver: false);            
             collapsible_stats.Line(1);
             foreach (StatDef stat in displayStats)
             {
@@ -399,6 +434,22 @@ namespace CombatExtended
             {
                 float val = weapon != null ? weapon.GetWeaponStatWith(stat, target) : weaponDef.GetWeaponStatAbstractWith(stat, target);
                 stats[stat] = val - statBases[stat];
+            }
+            // recache the cost
+            cost.Clear();
+            foreach(AttachmentLink link in CurAdditions)
+            {
+                foreach(ThingDefCountClass countClass in link.attachment.costList)
+                {
+                    // try not to add the same thing twice
+                    ThingDefCountClass counter = cost.FirstOrFallback(c => c.thingDef == countClass.thingDef, null);
+                    if(counter == null)
+                    {
+                        counter = new ThingDefCountClass(countClass.thingDef, 0);
+                        cost.Add(counter);
+                    }
+                    counter.count += countClass.count;
+                }
             }
         }
 
