@@ -236,7 +236,7 @@ namespace CombatExtended
                         bool checkOn = visible;
                         Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), attachment);
                         rect.xMin += 25;
-                        Color color = additionByAt[link] ? Color.green : (removalByAt[link] ? Color.red : Color.white);
+                        Color color = (attachedByAt[link] && !removalByAt[link]) ? Color.white : (additionByAt[link] ? Color.green : (removalByAt[link] ?  Color.red : Color.white));
                         GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), color, ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);                        
                         if (checkOn != visible)
                         {
@@ -335,7 +335,7 @@ namespace CombatExtended
             collapsible_stats.Gap(2);
             collapsible_stats.Label("CE_Attachments_Information_Tip".Translate(), hightlightIfMouseOver: false);
             collapsible_stats.Gap(4);
-            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.white, hightlightIfMouseOver: false);            
+            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray, hightlightIfMouseOver: false);            
             collapsible_stats.Line(1);
             foreach (StatDef stat in displayStats)
             {
