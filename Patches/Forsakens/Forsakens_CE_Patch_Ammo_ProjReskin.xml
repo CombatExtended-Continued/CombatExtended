@@ -20,6 +20,8 @@
 							<label>8x35mm Charged</label>
 							<ammoTypes>
 								<Ammo_8x35mmCharged>Bullet_8x35mmCharged_ForsakenSniper</Ammo_8x35mmCharged>
+		      						<Ammo_8x35mmCharged_AP>Bullet_8x35mmCharged_AP_ForsakenSniper</Ammo_8x35mmCharged_AP>
+      								<Ammo_8x35mmCharged_Ion>Bullet_8x35mmCharged_Ion_ForsakenSniper</Ammo_8x35mmCharged_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
 
@@ -27,7 +29,7 @@
 							<defName>Bullet_8x35mmCharged_ForsakenSniper</defName>
 							<label>8x35mm Charged bullet</label>
 							<graphicData>
-								<texPath>Weapons/SnipPulse</texPath>
+								<texPath>Weapons/Sniper/SnipPulse</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -38,9 +40,50 @@
 										<amount>6</amount>
 									</li>
 								</secondaryDamage>
-								<armorPenetrationSharp>14</armorPenetrationSharp>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
 								<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
 							</projectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+							<defName>Bullet_8x35mmCharged_AP_ForsakenSniper</defName>
+							<label>8x35mm Charged bullet</label>
+							<graphicData>
+								<texPath>Weapons/Sniper/SnipPulse</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+    							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      							<damageAmountBase>15</damageAmountBase>
+      							<secondaryDamage>
+        								<li>
+          									<def>Bomb_Secondary</def>
+          									<amount>2</amount>
+        								</li>
+      							</secondaryDamage>
+      							<armorPenetrationSharp>30</armorPenetrationSharp>
+      							<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+    						</projectile>
+						</ThingDef>
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmChargedBullet">
+							<defName>Bullet_8x35mmCharged_Ion_ForsakenSniper</defName>
+							<label>8x35mm Charged bullet</label>
+							<graphicData>
+								<texPath>Weapons/Sniper/SnipPulse</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+    						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      						<damageAmountBase>15</damageAmountBase>
+      						<secondaryDamage>
+        						<li>
+          							<def>EMP</def>
+          							<amount>9</amount>
+        							</li>
+      						</secondaryDamage>
+      						<armorPenetrationSharp>22.5</armorPenetrationSharp>
+      						<armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+      						<empShieldBreakChance>0.2</empShieldBreakChance>
+    						</projectile>
 						</ThingDef>
 
 						<!-- ========== 12 Gauge Charged shotgun cartridge for Forsaken ShotGun ========== -->
@@ -50,6 +93,8 @@
 							<label>12 Gauge Charged</label>
 							<ammoTypes>
 								<Ammo_12GaugeCharged>Bullet_12GaugeCharged_ForsakenShotGun</Ammo_12GaugeCharged>
+      								<Ammo_12GaugeCharged_Slug>Bullet_12GaugeCharged_Slug_ForsakenShotGun</Ammo_12GaugeCharged_Slug>
+      								<Ammo_12GaugeCharged_Ion>Bullet_12GaugeCharged_Ion_ForsakenShotGun</Ammo_12GaugeCharged_Ion>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
 
@@ -57,8 +102,10 @@
 							<defName>Bullet_12GaugeCharged_ForsakenShotGun</defName>
 							<label>charge shot pellet</label>
 							<graphicData>
-								<texPath>Weapons/ShotPulse</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
+     								 <texPath>Weapons/Shotgun/ShotPulse</texPath>
+      								<graphicClass>Graphic_Single</graphicClass>
+      								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>0.5,0.5</drawSize>
 							</graphicData>
 							<!-- Original mod implemented the shotgun blast as a slug  -->
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -70,9 +117,56 @@
 									</li>
 								</secondaryDamage>
 								<armorPenetrationSharp>8</armorPenetrationSharp>      
-								<armorPenetrationBlunt>32.4</armorPenetrationBlunt>
+								<armorPenetrationBlunt>24.4</armorPenetrationBlunt>
+      								<pelletCount>4</pelletCount>
+      								<spreadMult>17.8</spreadMult>
 							</projectile>
 						</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
+    <defName>Bullet_12GaugeCharged_Slug_ForsakenShotGun</defName>
+    <label>charge shot (Slug)</label>
+							<graphicData>
+     								 <texPath>Weapons/Shotgun/ShotPulse</texPath>
+      								<graphicClass>Graphic_Single</graphicClass>
+      								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>25</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>13</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>12</armorPenetrationSharp>      
+      <armorPenetrationBlunt>90</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeChargedBullet">
+    <defName>Bullet_12GaugeCharged_Ion_ForsakenShotGun</defName>
+    <label>charge shot (Ion slug)</label>
+							<graphicData>
+     								 <texPath>Weapons/Shotgun/ShotPulse</texPath>
+      								<graphicClass>Graphic_Single</graphicClass>
+      								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>6</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>8</armorPenetrationSharp>      
+      <armorPenetrationBlunt>14.4</armorPenetrationBlunt>
+      <pelletCount>4</pelletCount>
+      <spreadMult>17.8</spreadMult>
+      <empShieldBreakChance>0.025</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
 
 						<!-- ========== 5x35mm Charged cartridge for Forsaken Assault Rifle ========== -->
 
@@ -89,8 +183,8 @@
 							<defName>Bullet_5x35mmCharged_ForsakenAR</defName>
 							<label>5x35mm Charged bullet</label>
 							<graphicData>
-								<texPath>Weapons/SmolPulse</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
+      								<texPath>Weapons/AssaultRifle/SmolPulse</texPath>
+      								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
 								<damageDef>Bullet</damageDef>

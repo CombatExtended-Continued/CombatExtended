@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Arasaka Corporation [1.3]</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<ThingCategoryDef>
+		<defName>Ammo6mmSmartGyrojet</defName>
+		<label>6mm Smart</label>
+		<parent>AmmoPistols</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_6mmSmartGyrojet</defName>
+		<label>6mm Smart</label>
+		<ammoTypes>
+			<Ammo_6mmSmartGyrojet_FMJ>Bullet_6mmSmartGyrojet_FMJ</Ammo_6mmSmartGyrojet_FMJ>
+			<Ammo_6mmSmartGyrojet_AP>Bullet_6mmSmartGyrojet_AP</Ammo_6mmSmartGyrojet_AP>
+			<Ammo_6mmSmartGyrojet_HP>Bullet_6mmSmartGyrojet_HP</Ammo_6mmSmartGyrojet_HP>			
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="6mmSmartGyrojetBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Overengineered pistol rounds that utilizes miniature rockets for propulsion instead of gunpowder. It features limited self guidance.</description>
+		<statBases>
+			<Mass>0.011</Mass>
+			<Bulk>0.014</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+      			<li>CE_AutoEnableCrafting_FabricationBench</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo6mmSmartGyrojet</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="6mmSmartGyrojetBase">
+		<defName>Ammo_6mmSmartGyrojet_FMJ</defName>
+		<label>6mm Smart rocket (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_6mmSmartGyrojet_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="6mmSmartGyrojetBase">
+		<defName>Ammo_6mmSmartGyrojet_AP</defName>
+		<label>6mm Smart rocket (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_6mmSmartGyrojet_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="6mmSmartGyrojetBase">
+		<defName>Ammo_6mmSmartGyrojet_HP</defName>
+		<label>6mm Smart rocket (HP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_6mmSmartGyrojet_HP</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base6mmSmartGyrojetBullet" ParentName="Base45ACPBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>74</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6mmSmartGyrojetBullet">
+		<defName>Bullet_6mmSmartGyrojet_FMJ</defName>
+		<label>6mm Smart bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6mmSmartGyrojetBullet">
+		<defName>Bullet_6mmSmartGyrojet_AP</defName>
+		<label>6mm Smart bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6mmSmartGyrojetBullet">
+		<defName>Bullet_6mmSmartGyrojet_HP</defName>
+		<label>6mm Smart bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>2.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>18.4</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_6mmSmartGyrojet_FMJ</defName>
+		<label>make 6mm Smart (FMJ) rocket x200</label>
+		<description>Craft 200 6mm Smart (FMJ) rockets.</description>
+		<jobString>Making 6mm Smart (FMJ) rockets.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>8</count>
+		  </li>
+      		<li>
+        			<filter>
+          			<thingDefs>
+            				<li>ComponentIndustrial</li>
+          			</thingDefs>
+        			</filter>
+        			<count>2</count>
+      		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Steel</li>
+        			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_6mmSmartGyrojet_FMJ>200</Ammo_6mmSmartGyrojet_FMJ>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_6mmSmartGyrojet_AP</defName>
+		<label>make 6mm Smart (AP) rocket x200</label>
+		<description>Craft 200 6mm Smart (AP) rockets.</description>
+		<jobString>Making 6mm Smart (AP) rockets.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>8</count>
+		  </li>
+      		<li>
+        			<filter>
+          			<thingDefs>
+            				<li>ComponentIndustrial</li>
+          			</thingDefs>
+        			</filter>
+        			<count>2</count>
+      		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Steel</li>
+        			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_6mmSmartGyrojet_AP>200</Ammo_6mmSmartGyrojet_AP>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_6mmSmartGyrojet_HP</defName>
+		<label>make 6mm Smart (HP) rocket x200</label>
+		<description>Craft 200 6mm Smart (HP) rockets.</description>
+		<jobString>Making 6mm Smart (HP) rockets.</jobString>
+		<ingredients>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>10</count>
+		  </li>
+      		<li>
+        			<filter>
+          			<thingDefs>
+            				<li>ComponentIndustrial</li>
+          			</thingDefs>
+        			</filter>
+        			<count>2</count>
+      		</li>
+		</ingredients>
+		<fixedIngredientFilter>
+		  <thingDefs>
+			<li>Steel</li>
+        			<li>ComponentIndustrial</li>
+		  </thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_6mmSmartGyrojet_HP>200</Ammo_6mmSmartGyrojet_HP>
+		</products>
+		<workAmount>2400</workAmount>
+	</RecipeDef>	
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

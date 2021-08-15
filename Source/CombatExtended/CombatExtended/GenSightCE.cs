@@ -8,7 +8,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    class GenSightCE
+    public static class GenSightCE
     {
         /// <summary>
         /// Equivalent of Verse.GenSight.PointsOnLineOfSight, with support for floating-point vectors.
@@ -92,6 +92,27 @@ namespace CombatExtended
                         );
                     }
                 }
+            }
+        }
+
+        public static IEnumerable<IntVec3> PartialLineOfSights(this Pawn pawn, LocalTargetInfo targetFacing)
+        {
+            return PartialLineOfSights(pawn.Map, pawn, targetFacing);
+        }
+
+        public static IEnumerable<IntVec3> PartialLineOfSights(this Map map, LocalTargetInfo source, LocalTargetInfo targetFacing)
+        {
+            IntVec3 startPos = source.Cell;
+            IntVec3 endPos = targetFacing.Cell;
+            foreach (IntVec3 cell in GenSight.PointsOnLineOfSight(startPos, new IntVec3(
+                    (int)((startPos.x * 3 + endPos.x) / 4f),
+                    (int)((startPos.y * 3 + endPos.y) / 4f),
+                    (int)((startPos.z * 3 + endPos.z) / 4f))))
+            {
+                Thing cover = cell.GetCover(map);
+                if (cover != null && cover.def.Fillage == FillCategory.Full)
+                    yield break;
+                yield return cell;
             }
         }
 

@@ -33,6 +33,15 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="VAEA_Apparel_Backpack"]/apparel/layers</xpath>
+				<value>
+					<layers>
+						<li>Backpack</li>
+					</layers>
+				</value>
+			</li>
+
 			<!-- == Banner == -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAEA_Apparel_BattleBanner"]/statBases</xpath>
@@ -77,22 +86,24 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAEA_Apparel_Quiver"]</xpath>
 				<value>
-				<equippedStatOffsets>
-					<CarryBulk>2.5</CarryBulk>
-				</equippedStatOffsets>	
+					<equippedStatOffsets>
+						<CarryBulk>2.5</CarryBulk>	
+						<ReloadSpeed>0.1</ReloadSpeed>
+					</equippedStatOffsets>	
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAEA_Apparel_AmmoPack"]</xpath>
 				<value>
-				<equippedStatOffsets>
-					<CarryBulk>3.5</CarryBulk>
-				</equippedStatOffsets>	
+					<equippedStatOffsets>				
+						<CarryBulk>3.5</CarryBulk>
+						<ReloadSpeed>0.1</ReloadSpeed>
+					</equippedStatOffsets>	
 				</value>
 			</li>
 
-			<!-- == Backpack == -->
+			<!-- == Explosive Belt == -->
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="VAEA_Apparel_ExplosiveBelt"]/statBases</xpath>
 				<value>
@@ -109,6 +120,9 @@
 					<Bulk>15</Bulk>
 					<WornBulk>5</WornBulk>
 					<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>0.82</SwayFactor>					
 				</value>
 			</li>
 
@@ -118,6 +132,7 @@
 					<verbs>
 						<li Class="CombatExtended.VerbPropertiesCE">
 							<label>Gun</label>
+							<recoilAmount>0.76</recoilAmount>
 							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
 							<hasStandardCommand>true</hasStandardCommand>
 							<onlyManualCast>True</onlyManualCast>

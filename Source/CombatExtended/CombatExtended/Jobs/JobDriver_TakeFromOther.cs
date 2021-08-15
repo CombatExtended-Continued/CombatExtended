@@ -96,7 +96,7 @@ namespace CombatExtended
         /// Handles the various yield returns that make up an iterated toil sequence.
         /// </summary>
         /// <returns>IEnumberable of Toil containing the sequence of actions the Pawn should take to fulfill the JobDriver's task.</returns>
-		protected override IEnumerable<Toil> MakeNewToils()
+		public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(sourceInd);
             this.FailOnDestroyedOrNull(thingInd);

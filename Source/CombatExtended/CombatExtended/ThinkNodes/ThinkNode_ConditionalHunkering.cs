@@ -11,7 +11,7 @@ namespace CombatExtended
 {
     class ThinkNode_ConditionalHunkering : ThinkNode_Conditional
     {
-        protected override bool Satisfied(Pawn pawn)
+        public override bool Satisfied(Pawn pawn)
         {
             CompSuppressable comp = pawn.TryGetComp<CompSuppressable>();
             return comp != null && comp.CanReactToSuppression && comp.IsHunkering;

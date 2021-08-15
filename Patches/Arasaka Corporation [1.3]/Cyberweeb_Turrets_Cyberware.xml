@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Arasaka Corporation [1.3]</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<!-- Remove refuelable property -->
+		<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+        		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/thingClass</xpath>
+        		<value>
+          		<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        		</value>
+		</li>
+
+      		<li Class="PatchOperationReplace">
+        		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/costList</xpath>
+        		<value>
+		<costList>
+			<Steel>440</Steel>
+			<Plasteel>40</Plasteel>
+			<ComponentIndustrial>15</ComponentIndustrial>
+		</costList>
+        		</value>
+      		</li>
+
+		<!-- Make turrets taller -->
+      		<li Class="PatchOperationReplace">
+        		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/fillPercent</xpath>
+        		<value>
+          			<fillPercent>1</fillPercent>
+        		</value>
+      		</li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+  
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/statBases/WorkToBuild</xpath>
+	  	<value>
+			<WorkToBuild>60000</WorkToBuild>
+	  		<AimingAccuracy>0.33</AimingAccuracy>
+	  	</value>
+	  </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Security_Turret_AC"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<value>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>1350</basePowerConsumption>
+			</li>	
+		</value>
+    </li>
+			<!-- Make the Turret usable -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gun_Security_Turret_AC</defName>
+			  <statBases>
+			  <Mass>10.00</Mass>
+			  <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.06</ShotSpread>
+			  <SwayFactor>1.33</SwayFactor>
+			  <Bulk>1.00</Bulk>
+			</statBases>
+			<Properties>
+			  <recoilAmount>1.33</recoilAmount>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_25x137mmNATO_FMJ</defaultProjectile>
+			  <warmupTime>1.35</warmupTime>
+			  <range>75</range>
+        			<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+        			<burstShotCount>6</burstShotCount>
+			  <minRange>2.0</minRange>
+			  <soundCast>Shot_Turret</soundCast>
+      			<soundCastTail>GunTail_Heavy</soundCastTail>
+			  <muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>100</magazineSize>
+			  <reloadTime>7.8</reloadTime>
+			  <ammoSet>AmmoSet_25x137mmNATO</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+      			<aimedBurstShotCount>3</aimedBurstShotCount>
+      			<noSnapshot>true</noSnapshot>
+			</FireModes>
+			</li>
+
+			<!-- Implant Hediffs -->
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Arasaka_Mantis_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeDPS>0.20</MeleeDPS>
+					<MeleeHitChance>0.20</MeleeHitChance>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<IncomingDamageFactor>-0.05</IncomingDamageFactor>
+				</statOffsets>
+			</value>
+			</li>
+
+ 			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Arasaka_Leg_AC" or defName="Arasaka_Arm_AC" or defName="Arasaka_Spine_AC" or defName="Arasaka_Ribcage_AC"]/stages/li[1]/statOffsets/IncomingDamageFactor</xpath>
+			<value>
+					<IncomingDamageFactor>-0.05</IncomingDamageFactor>
+			</value>
+			</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Arasaka_Mantis_AC"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>mantis blade</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.0</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					<armorPenetrationSharp>6</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>mantis blade</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>34</power>
+					<cooldownTime>1.29</cooldownTime>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Arasaka_Arm_AC"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>2.75</armorPenetrationBlunt>
+					<soundMeleeHit>MeleeHit_BionicPunch</soundMeleeHit>
+					<soundMeleeMiss>MeleeMiss_BionicPunch</soundMeleeMiss>
+				</li>
+			</tools>
+		</value>
+	</li>
+			<!-- Add night vision to eyes when it comes out-->
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Arasaka_Eye_AC"]/statBases</xpath>
+			<value>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Arasaka_Eye_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+				</statOffsets>
+			</value>
+			</li>
+
+			<!-- Reduce surpression for cyberdeck Does increased consciousness increase Suppressability?-->
+
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKI_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.075</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKII_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.15</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKIII_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.25</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKIV_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.5</Suppressability>
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

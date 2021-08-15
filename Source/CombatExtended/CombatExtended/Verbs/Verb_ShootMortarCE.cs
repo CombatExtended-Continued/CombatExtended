@@ -3,16 +3,8 @@ using UnityEngine;
 using Verse;
 namespace CombatExtended
 {
-	public class Verb_ShootMortarCE : Verb_ShootCE
-	{
-        /*public override void WarmupComplete()
-        {
-            base.WarmupComplete();
-            if (ShooterPawn != null && ShooterPawn.skills != null)
-            {
-                ShooterPawn.skills.Learn(SkillDefOf.Shooting, 100);
-            }
-        }*/
+    public class Verb_ShootMortarCE : Verb_ShootCE
+    {
         public override ShiftVecReport ShiftVecReportFor(LocalTargetInfo target)
         {
             ShiftVecReport report = base.ShiftVecReportFor(target);
@@ -46,7 +38,7 @@ namespace CombatExtended
             return report;
         }
 
-        private float GetMissRadiusForDist(float targDist)
+        protected virtual float GetMissRadiusForDist(float targDist)
         {
             float maxRange = this.verbProps.range;
             if (this.CompCharges != null)
@@ -61,5 +53,5 @@ namespace CombatExtended
             float missRadiusFactor = rangePercent <= 0.5f ? 1 - rangePercent : 0.5f + ((rangePercent - 0.5f) / 2);
             return VerbPropsCE.circularError * missRadiusFactor;
         }
-	}
+    }
 }

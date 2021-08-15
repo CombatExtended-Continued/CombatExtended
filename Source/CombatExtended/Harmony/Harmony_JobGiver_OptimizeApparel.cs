@@ -10,7 +10,7 @@ namespace CombatExtended.HarmonyCE
 {
     ///Give melee/ballistic shields a negative apparel score if the pawn has a two-handed weapon.
     ///Mimics vanilla behavior regarding shield belts and ranged weapons.
-    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), "ApparelScoreGain_NewTmp")]
+    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), nameof(JobGiver_OptimizeApparel.ApparelScoreGain))]
     internal static class Harmony_JobGiver_OptimizeApparel_ApparelScoreGain
     {
         internal static bool Prefix(Pawn pawn, Apparel ap, ref float __result)

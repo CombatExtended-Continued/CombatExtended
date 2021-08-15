@@ -1,86 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationSequence">
-	<operations>
-	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>[1.2]Silkiera Race</li></mods>
-			
-		<match Class="PatchOperationSequence">
+
+	<Operation Class="PatchOperationSequence">
 		<operations>
-			<!--Ammo-->
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-				defName="HAR_Silkiera_Player"
+			<li Class="PatchOperationFindMod">
+
+				<mods>
+					<li>[1.3]Silkiera Race</li>
+				</mods>
+
+				<match Class="PatchOperationSequence">
+					<operations>
+						<!--Ammo-->
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>Defs/PawnKindDef[ defName="HAR_Silkiera_Player"
 				]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-						<min>0</min>
-						<max>2</max>
-					</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-				@Name="HAR_Silkiera_KindBase_NPC"
+							<value>
+								<li Class="CombatExtended.LoadoutPropertiesExtension">
+									<primaryMagazineCount>
+										<min>0</min>
+										<max>2</max>
+									</primaryMagazineCount>
+								</li>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>Defs/PawnKindDef[ @Name="HAR_Silkiera_KindBase_NPC"
 				]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-						<min>2</min>
-						<max>6</max>
-					</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/PawnKindDef[
-				@Name="HAR_SK_Mechanoid_Kind_Base"
+							<value>
+								<li Class="CombatExtended.LoadoutPropertiesExtension">
+									<primaryMagazineCount>
+										<min>2</min>
+										<max>6</max>
+									</primaryMagazineCount>
+								</li>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAddModExtension">
+							<xpath>Defs/PawnKindDef[ @Name="HAR_SK_Mechanoid_Kind_Base"
 				]</xpath>
-				<value>
-					<li Class="CombatExtended.LoadoutPropertiesExtension">
-					<primaryMagazineCount>
-						<min>10</min>
-						<max>10</max>
-					</primaryMagazineCount>
-					</li>
-				</value>
-			</li>
-			
-			<!--Backpack-->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
-				<value>
-					<li>HAR_SK_Apparel</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationConditional">
-				<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]</xpath>
-					<value>
-						<apparelRequired>
-							<li>Apparel_Backpack</li>
-						</apparelRequired>
-					</value>
-				</nomatch>
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
-					<value>
-					</value>
+							<value>
+								<li Class="CombatExtended.LoadoutPropertiesExtension">
+									<primaryMagazineCount>
+										<min>10</min>
+										<max>10</max>
+									</primaryMagazineCount>
+								</li>
+							</value>
+						</li>
+
+						<!--Backpack-->
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+							<value>
+								<li>HAR_SK_Apparel</li>
+							</value>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
+							<nomatch Class="PatchOperationAdd">
+								<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]</xpath>
+								<value>
+									<apparelRequired>
+										<li>Apparel_Backpack</li>
+									</apparelRequired>
+								</value>
+							</nomatch>
+							<match Class="PatchOperationAdd">
+								<xpath>/Defs/PawnKindDef[@Name="HAR_Silkiera_KindBase"]/apparelRequired</xpath>
+								<value>
+								</value>
+							</match>
+						</li>
+
+					</operations>
 				</match>
 			</li>
-			
 		</operations>
-		</match>	
-	  </li>
-	</operations>	
-  </Operation>
+	</Operation>
+	
 </Patch>

@@ -3,6 +3,7 @@
 
   <ThingDef Name="TurretBase" ParentName="BuildingBase" Abstract="True">
     <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+    <drawerType>MapMeshAndRealTime</drawerType>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
       <damageData>
@@ -26,14 +27,14 @@
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <fillPercent>0.85</fillPercent>
-    <castEdgeShadows>true</castEdgeShadows>
+    <castEdgeShadows>false</castEdgeShadows>
     <hasTooltip>true</hasTooltip>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretBurstCooldownTime>1</turretBurstCooldownTime>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -87,9 +88,13 @@
   <ThingDef ParentName="TurretAutoBase">
     <defName>Turret_Blaster</defName>
     <label>charge blaster auto-turret</label>
-	<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/MachineGunBase</texPath>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
     </graphicData>
     <statBases>
       <WorkToBuild>48000</WorkToBuild>
@@ -114,9 +119,9 @@
     </costList>
     <building>
       <turretGunDef>Gun_BlasterTurret</turretGunDef>
-        <ai_combatDangerous>true</ai_combatDangerous>
+      <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -132,12 +137,16 @@
   <ThingDef ParentName="TurretAutoBase">
     <defName>Turret_Heavy</defName>
     <label>heavy auto-turret</label>
-	<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/MachineGunBase</texPath>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
     </graphicData>
     <statBases>
-	  <WorkToBuild>80000</WorkToBuild>
+      <WorkToBuild>80000</WorkToBuild>
       <MarketValue>2150</MarketValue>
       <MaxHitPoints>550</MaxHitPoints>
       <Flammability>0.05</Flammability>
@@ -153,11 +162,11 @@
       <ComponentIndustrial>8</ComponentIndustrial>
     </costList>
     <building>
-	 <combatPower>45</combatPower>
-	 <ai_combatDangerous>true</ai_combatDangerous>
+      <combatPower>45</combatPower>
+      <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_HeavyTurret</turretGunDef>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -179,7 +188,7 @@
   <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_M240B</defName>
     <label>M240B</label>
-	<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/MachineGunBase</texPath>
     </graphicData>
@@ -194,11 +203,12 @@
       <Steel>125</Steel>
       <ComponentIndustrial>4</ComponentIndustrial>
     </costList>
+    <castEdgeShadows>true</castEdgeShadows>
     <building>
       <turretGunDef>Gun_M240B</turretGunDef>
-       <ai_combatDangerous>true</ai_combatDangerous>
+      <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -213,7 +223,7 @@
   <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_KPV</defName>
     <label>KPV machine gun</label>
-	<constructionSkillPrerequisite>7</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>7</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/MachineGunBase</texPath>
     </graphicData>
@@ -232,7 +242,8 @@
       <turretGunDef>Gun_KPV</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-	<placeWorkers>
+    <castEdgeShadows>true</castEdgeShadows>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -247,7 +258,7 @@
   <ThingDef ParentName="TurretMannedCraftableBase">
     <defName>Turret_AGSThirty</defName>
     <label>AGS-30</label>
-	<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/AGS30Base</texPath>
     </graphicData>
@@ -261,12 +272,13 @@
       <Steel>115</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
+    <castEdgeShadows>true</castEdgeShadows>
     <specialDisplayRadius>8</specialDisplayRadius>
     <building>
       <turretGunDef>Gun_AGSThirty</turretGunDef>
       <ai_combatDangerous>true</ai_combatDangerous>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
@@ -281,9 +293,14 @@
   <ThingDef ParentName="TurretMannedBase">
     <defName>Turret_Flak</defName>
     <label>90mm flak turret</label>
-	<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
     <graphicData>
       <texPath>Things/Building/Turrets/FlakTurret_Base</texPath>
+      <shadowData>
+        <offset>(-0.13,-0.87,-0.1)</offset>
+        <volume>(0.5,0.4,1.05)</volume>
+      </shadowData>
     </graphicData>
     <statBases>
       <MaxHitPoints>500</MaxHitPoints>
@@ -291,22 +308,22 @@
       <Mass>1000</Mass>
       <Bulk>1000</Bulk>
     </statBases>
-    <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
     <costList>
-      <Steel>495</Steel>
+      <Steel>500</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
     <specialDisplayRadius>16</specialDisplayRadius>
     <building>
       <turretGunDef>Gun_FlakTurret</turretGunDef>
-     <ai_combatDangerous>true</ai_combatDangerous>
+      <ai_combatDangerous>true</ai_combatDangerous>
       <turretTopDrawSize>4</turretTopDrawSize>
     </building>
-	<placeWorkers>
+    <placeWorkers>
       <li>PlaceWorker_TurretTop</li>
       <li>PlaceWorker_ShowTurretRadius</li>
     </placeWorkers>
-    <size>(2,2)</size>
+    <size>(3,3)</size>
+    <interactionCellOffset>(-1,0,-1)</interactionCellOffset>
     <minifiedDef>MinifiedThing</minifiedDef>
     <researchPrerequisites>
       <li>CE_TurretHeavyWeapons</li>

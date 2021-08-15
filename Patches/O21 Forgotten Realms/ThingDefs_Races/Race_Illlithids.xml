@@ -8,7 +8,7 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -20,11 +20,11 @@
 				<success>Always</success>
 				<operations>
 					<li Class="PatchOperationTest">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/comps</xpath>
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/comps</xpath>
 						<success>Invert</success>
 					</li>
 					<li Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]</xpath>
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]</xpath>
 						<value>
 							<comps />
 						</value>
@@ -33,7 +33,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/race/baseBodySize</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/race/baseBodySize</xpath>
 				<value>
 					<baseBodySize>1</baseBodySize>
 				</value>
@@ -41,8 +41,9 @@
 
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/statBases</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/statBases</xpath>
 				<value>
+					<NightVisionEfficiency>0.6</NightVisionEfficiency>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1</MeleeCritChance>
 					<MeleeParryChance>1</MeleeParryChance>
@@ -51,7 +52,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/tools</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -101,7 +102,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/comps</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>

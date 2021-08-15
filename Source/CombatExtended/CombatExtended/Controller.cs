@@ -31,6 +31,9 @@ namespace CombatExtended
             // Inject pawn and plant bounds
             LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
 
+            // Initialize the DefUtility (a caching system for common checks on defs)
+            LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
+
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup

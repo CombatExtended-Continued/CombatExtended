@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>HALO: UNSC Armoury</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Combat Helmet === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="HUA_Apparel_CombatHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <Bulk>6</Bulk>
+            <WornBulk>2</WornBulk>
+            <ArmorRating_Heat>0.54</ArmorRating_Heat>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="HUA_Apparel_CombatHelmet"]/statBases</xpath>
+          <value>
+            <ArmorRating_Sharp>10</ArmorRating_Sharp>
+            <ArmorRating_Blunt>14</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="HUA_Apparel_CombatHelmet"]/description</xpath>
+          <value>
+            <description>A heavy combat helmet with a complex design, reinforced with plasteel.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="HUA_Apparel_CombatHelmet"]/stuffCategories/li[.="Metallic"]</xpath>
+          <value>
+            <li>Steeled</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="HUA_Apparel_CombatHelmet"]/costList</xpath>
+          <value>
+            <costList>
+              <Plasteel>20</Plasteel>
+              <DevilstrandCloth>15</DevilstrandCloth>
+            </costList>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

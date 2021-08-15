@@ -70,10 +70,10 @@ namespace CombatExtended
 
         public Dialog_ManageLoadouts(Loadout loadout)
         {
-        	CurrentLoadout = null;
-        	if (loadout != null && !loadout.defaultLoadout)
-            	CurrentLoadout = loadout;
-            _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.menuHidden && IsSuitableThingDef(td)).ToList();
+            CurrentLoadout = null;
+            if (loadout != null && !loadout.defaultLoadout)
+                CurrentLoadout = loadout;
+            _allSuitableDefs = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsMenuHidden() && IsSuitableThingDef(td)).ToList();
             _allDefsGeneric = DefDatabase<LoadoutGenericDef>.AllDefs.OrderBy(g => g.label).ToList();
             _selectableItems = new List<SelectableItem>();
             foreach (var td in _allSuitableDefs)
@@ -82,7 +82,7 @@ namespace CombatExtended
                 {
                     thingDef = td,
                     isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
-                        //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
+                    //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
                 });
             }
             SetSource(SourceSelection.Ranged);
@@ -148,7 +148,7 @@ namespace CombatExtended
                     td.thingClass != typeof(MinifiedThing) &&
                     td.thingClass != typeof(UnfinishedThing) &&
                     !td.destroyOnDrop &&
-                    td.category == ThingCategory.Item) 
+                    td.category == ThingCategory.Item)
                     ||
                     td.Minifiable;
         }
@@ -192,7 +192,7 @@ namespace CombatExtended
                 (canvas.width - _margin) / 2f,
                 canvas.height - 24f - _topAreaHeight - _margin * 3);
 
-        	LoadoutManager.SortLoadouts();
+            LoadoutManager.SortLoadouts();
             List<Loadout> loadouts = LoadoutManager.Loadouts.Where(l => !l.defaultLoadout).ToList();
 
             // DRAW CONTENTS
@@ -200,7 +200,7 @@ namespace CombatExtended
             // select loadout
             if (Widgets.ButtonText(selectRect, "CE_SelectLoadout".Translate()))
             {
-            	
+
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
 
                 if (loadouts.Count == 0)
@@ -210,8 +210,8 @@ namespace CombatExtended
                     for (int i = 0; i < loadouts.Count; i++)
                     {
                         int local_i = i;
-                    	options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
-                    	{ CurrentLoadout = loadouts[local_i]; }));
+                        options.Add(new FloatMenuOption(loadouts[i].LabelCap, delegate
+                        { CurrentLoadout = loadouts[local_i]; }));
                     }
                 }
 
@@ -228,8 +228,8 @@ namespace CombatExtended
             // copy loadout
             if (CurrentLoadout != null && Widgets.ButtonText(copyRect, "CE_CopyLoadout".Translate()))
             {
-            	CurrentLoadout = CurrentLoadout.Copy();
-            	LoadoutManager.AddLoadout(CurrentLoadout);
+                CurrentLoadout = CurrentLoadout.Copy();
+                LoadoutManager.AddLoadout(CurrentLoadout);
             }
             // delete loadout
             if (loadouts.Any(l => l.canBeDeleted) && Widgets.ButtonText(deleteRect, "CE_DeleteLoadout".Translate()))
@@ -267,7 +267,7 @@ namespace CombatExtended
                 // and stop further drawing
                 return;
             }
-            
+
             // name
             DrawNameField(nameRect);
 
@@ -322,18 +322,18 @@ namespace CombatExtended
                 SetSource(SourceSelection.Ammo);
             TooltipHandler.TipRegion(button, "CE_SourceAmmoTip".Translate());
             button.x += 24f + _margin;
-            
+
             // Minified
             GUI.color = _sourceType == SourceSelection.Minified ? GenUI.MouseoverColor : Color.white;
             if (Widgets.ButtonImage(button, _iconMinified))
-            	SetSource(SourceSelection.Minified);
+                SetSource(SourceSelection.Minified);
             TooltipHandler.TipRegion(button, "CE_SourceMinifiedTip".Translate());
             button.x += 24f + _margin;
-            
+
             // Generic
             GUI.color = _sourceType == SourceSelection.Generic ? GenUI.MouseoverColor : Color.white;
             if (Widgets.ButtonImage(button, _iconGeneric))
-            	SetSource(SourceSelection.Generic);
+                SetSource(SourceSelection.Generic);
             TooltipHandler.TipRegion(button, "CE_SourceGenericTip".Translate());
             button.x += 24f + _margin;
 
@@ -376,7 +376,7 @@ namespace CombatExtended
             {
                 case SourceSelection.Ranged:
                     _source = _selectableItems.Where(row => row.thingDef.IsRangedWeapon).ToList();
-                    _sourceType = SourceSelection.Ranged;                   
+                    _sourceType = SourceSelection.Ranged;
                     break;
 
                 case SourceSelection.Melee:
@@ -393,7 +393,7 @@ namespace CombatExtended
                     _source = _selectableItems.Where(row => row.thingDef.Minifiable).ToList();
                     _sourceType = SourceSelection.Minified;
                     break;
-                
+
                 case SourceSelection.Generic:
                     _sourceType = SourceSelection.Generic;
                     initGenericVisibilityDictionary();
@@ -409,7 +409,7 @@ namespace CombatExtended
             if (!_source.NullOrEmpty())
             {
                 _source = _source.OrderBy(td => td.thingDef.label).ToList();
-            }            
+            }
         }
 
         private void DrawCountField(Rect canvas, LoadoutSlot slot)
@@ -465,11 +465,11 @@ namespace CombatExtended
                 countRect.xMin - _iconSize - _margin,
                 row.yMin + (row.height - _iconSize) / 2f,
                 _iconSize, _iconSize);
-            
+
             Rect countModeRect = new Rect(
-            	ammoRect.xMin - _iconSize - _margin,
-            	row.yMin + (row.height - _iconSize) / 2f,
-            	_iconSize, _iconSize);
+                ammoRect.xMin - _iconSize - _margin,
+                row.yMin + (row.height - _iconSize) / 2f,
+                _iconSize, _iconSize);
 
             Rect deleteRect = new Rect(countRect.xMax + _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
 
@@ -516,15 +516,15 @@ namespace CombatExtended
                         {
                             options.Add(new FloatMenuOption(link.ammo.LabelCap, delegate
                             {
-		                        CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo, (magazineSize <= 1 ? link.ammo.defaultAmmoCount : magazineSize)));
+                                CurrentLoadout.AddSlot(new LoadoutSlot(link.ammo, (magazineSize <= 1 ? link.ammo.defaultAmmoCount : magazineSize)));
                             }));
                         }
                         // Add in the generic for this gun.
                         LoadoutGenericDef generic = DefDatabase<LoadoutGenericDef>.GetNamed("GenericAmmo-" + slot.thingDef.defName);
                         if (generic != null)
-                        	options.Add(new FloatMenuOption(generic.LabelCap, delegate
-							{
-                        		CurrentLoadout.AddSlot(new LoadoutSlot(generic));
+                            options.Add(new FloatMenuOption(generic.LabelCap, delegate
+                            {
+                                CurrentLoadout.AddSlot(new LoadoutSlot(generic));
                             }));
 
                         Find.WindowStack.Add(new FloatMenu(options, "CE_AddAmmoFor".Translate(slot.thingDef.LabelCap)));
@@ -534,15 +534,15 @@ namespace CombatExtended
 
             // count
             DrawCountField(countRect, slot);
-            
+
             // toggle count mode
             if (slot.genericDef != null)
             {
-	            Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
-	            string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
-	            if (Widgets.ButtonImage(countModeRect, curModeIcon))
-	            	slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
-	            TooltipHandler.TipRegion(countModeRect, tipString);
+                Texture2D curModeIcon = slot.countType == LoadoutCountType.dropExcess ? _iconDropExcess : _iconPickupDrop;
+                string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
+                if (Widgets.ButtonImage(countModeRect, curModeIcon))
+                    slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
+                TooltipHandler.TipRegion(countModeRect, tipString);
             }
 
             // delete
@@ -640,12 +640,12 @@ namespace CombatExtended
 
         private void DrawSlotSelection(Rect canvas)
         {
-        	int count = _sourceType == SourceSelection.Generic ? _sourceGeneric.Count : _source.Count;
+            int count = _sourceType == SourceSelection.Generic ? _sourceGeneric.Count : _source.Count;
             GUI.DrawTexture(canvas, _darkBackground);
-            
+
             if ((_sourceType != SourceSelection.Generic && _source.NullOrEmpty()) || (_sourceType == SourceSelection.Generic && _sourceGeneric.NullOrEmpty()))
                 return;
-            
+
             Rect viewRect = new Rect(canvas);
             viewRect.width -= 16f;
             viewRect.height = count * _rowHeight;
@@ -661,19 +661,21 @@ namespace CombatExtended
                 Color baseColor = GUI.color;
                 if (_sourceType == SourceSelection.Generic)
                 {
-                	if (GetVisibleGeneric(_sourceGeneric[i]))
-                		GUI.color = Color.gray;
-                } else {
-                    if(_source[i].isGreyedOut)
+                    if (GetVisibleGeneric(_sourceGeneric[i]))
+                        GUI.color = Color.gray;
+                }
+                else
+                {
+                    if (_source[i].isGreyedOut)
                         GUI.color = Color.gray;
                 }
 
                 Rect row = new Rect(0f, i * _rowHeight, canvas.width, _rowHeight);
                 Rect labelRect = new Rect(row);
                 if (_sourceType == SourceSelection.Generic)
-                	TooltipHandler.TipRegion(row, _sourceGeneric[i].GetWeightAndBulkTip());
+                    TooltipHandler.TipRegion(row, _sourceGeneric[i].GetWeightAndBulkTip());
                 else
-                	TooltipHandler.TipRegion(row, _source[i].thingDef.GetWeightAndBulkTip());
+                    TooltipHandler.TipRegion(row, _source[i].thingDef.GetWeightAndBulkTip());
 
                 labelRect.xMin += _margin;
                 if (i % 2 == 0)
@@ -682,20 +684,20 @@ namespace CombatExtended
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Text.WordWrap = false;
                 if (_sourceType == SourceSelection.Generic)
-                	Widgets.Label(labelRect, _sourceGeneric[i].LabelCap);
+                    Widgets.Label(labelRect, _sourceGeneric[i].LabelCap);
                 else
-	                Widgets.Label(labelRect, _source[i].thingDef.LabelCap);
+                    Widgets.Label(labelRect, _source[i].thingDef.LabelCap);
                 Text.WordWrap = true;
                 Text.Anchor = TextAnchor.UpperLeft;
 
                 Widgets.DrawHighlightIfMouseover(row);
                 if (Widgets.ButtonInvisible(row))
                 {
-                	LoadoutSlot slot;
-                	if (_sourceType == SourceSelection.Generic)
-                		slot = new LoadoutSlot(_sourceGeneric[i]);
-                	else
-                    	slot = new LoadoutSlot(_source[i].thingDef);
+                    LoadoutSlot slot;
+                    if (_sourceType == SourceSelection.Generic)
+                        slot = new LoadoutSlot(_sourceGeneric[i]);
+                    else
+                        slot = new LoadoutSlot(_source[i].thingDef);
                     CurrentLoadout.AddSlot(slot);
                 }
                 // revert to original color
@@ -703,22 +705,22 @@ namespace CombatExtended
             }
             Widgets.EndScrollView();
         }
-        
+
         #endregion Methods
-        
-		#region ListDrawOptimization        
-        
-		/* This region is used by DrawSlotSelection and setup by SetSource when Generics type is chosen.
+
+        #region ListDrawOptimization        
+
+        /* This region is used by DrawSlotSelection and setup by SetSource when Generics type is chosen.
 		 * Purpose is to spread the load out over time, instead of checking the state of every generic per frame, only one generic is tested in a given frame.
          * and then some time (frames) are allowed to pass before the next check.
          * 
          * The reason is that checking the existence of a generic requires that we consider all possible things.
          * A well written generic won't be too hard to test on a given frame.
          */
-		
+
         static readonly Dictionary<LoadoutGenericDef, VisibilityCache> genericVisibility = new Dictionary<LoadoutGenericDef, VisibilityCache>();
         const int advanceTicks = 1; //	GenTicks.TicksPerRealSecond / 4;
-        
+
         /// <summary>
         /// Purpose is to handle deciding if a generic's state (something on the map or not) should be checked or not based on current frame.
         /// </summary>
@@ -726,39 +728,39 @@ namespace CombatExtended
         /// <returns></returns>
         private bool GetVisibleGeneric(LoadoutGenericDef def)
         {
-        	if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
-        	{
-        		genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
-        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
-        	}
-        	
-        	return genericVisibility[def].check;
+            if (GenTicks.TicksAbs >= genericVisibility[def].ticksToRecheck)
+            {
+                genericVisibility[def].ticksToRecheck = GenTicks.TicksAbs + (advanceTicks * genericVisibility[def].position);
+                genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+            }
+
+            return genericVisibility[def].check;
         }
-        
+
         private void initGenericVisibilityDictionary()
         {
-        	int tick = GenTicks.TicksAbs;
-        	int position = 1;
-        	foreach (LoadoutGenericDef def in _sourceGeneric)
-        	{
-        		if (!genericVisibility.ContainsKey(def)) genericVisibility.Add(def, new VisibilityCache());
-        		genericVisibility[def].ticksToRecheck = tick;
-        		genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
-        		genericVisibility[def].position = position;
-        		position++;
-        		tick += advanceTicks;
-        	}
+            int tick = GenTicks.TicksAbs;
+            int position = 1;
+            foreach (LoadoutGenericDef def in _sourceGeneric)
+            {
+                if (!genericVisibility.ContainsKey(def)) genericVisibility.Add(def, new VisibilityCache());
+                genericVisibility[def].ticksToRecheck = tick;
+                genericVisibility[def].check = Find.CurrentMap.listerThings.AllThings.Find(x => def.lambda(x.GetInnerIfMinified().def) && !x.def.Minifiable) == null;
+                genericVisibility[def].position = position;
+                position++;
+                tick += advanceTicks;
+            }
         }
-        
+
         private class VisibilityCache
         {
-        	public int ticksToRecheck = 0;
-        	public bool check = true;
-        	public int position = 0;
+            public int ticksToRecheck = 0;
+            public bool check = true;
+            public int position = 0;
         }
-        	
-		#endregion GenericDrawOptimization     
-        
+
+        #endregion GenericDrawOptimization     
+
         private class SelectableItem
         {
             public ThingDef thingDef;

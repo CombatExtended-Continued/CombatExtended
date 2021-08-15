@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
+using CombatExtended.AI;
 
 namespace CombatExtended
 {
@@ -29,17 +30,17 @@ namespace CombatExtended
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
         // Angle in Vector2(degrees, radians)
-        private Vector2 newTargetLoc = new Vector2(0, 0);
-        private Vector2 sourceLoc = new Vector2(0, 0);
+        protected Vector2 newTargetLoc = new Vector2(0, 0);
+        protected Vector2 sourceLoc = new Vector2(0, 0);
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
 
-        protected CompCharges compCharges = null;
-        protected CompAmmoUser compAmmo = null;
-        protected CompFireModes compFireModes = null;
-        protected CompChangeableProjectile compChangeable = null;
-        protected CompReloadable compReloadable = null;
+        public CompCharges compCharges = null;
+        public CompAmmoUser compAmmo = null;
+        public CompFireModes compFireModes = null;
+        public CompChangeableProjectile compChangeable = null;
+        public CompReloadable compReloadable = null;
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -58,7 +59,7 @@ namespace CombatExtended
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
 
-        protected CompCharges CompCharges
+        public CompCharges CompCharges
         {
             get
             {
@@ -69,7 +70,7 @@ namespace CombatExtended
                 return compCharges;
             }
         }
-        private float ShotSpeed
+        protected float ShotSpeed
         {
             get
             {
@@ -87,7 +88,7 @@ namespace CombatExtended
                 return shotSpeed;
             }
         }
-        protected float ShotHeight => (new CollisionVertical(caster)).shotHeight;
+        public float ShotHeight => (new CollisionVertical(caster)).shotHeight;
         private Vector3 ShotSource
         {
             get
@@ -97,13 +98,13 @@ namespace CombatExtended
             }
         }
 
-        protected float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
-        protected float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
-        protected float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
-        protected virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
+        public float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
+        public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
+        public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
+        public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
 
         // Ammo variables
-        protected CompAmmoUser CompAmmo
+        public CompAmmoUser CompAmmo
         {
             get
             {
@@ -130,7 +131,7 @@ namespace CombatExtended
             }
         }
 
-        protected CompChangeableProjectile CompChangeable
+        public CompChangeableProjectile CompChangeable
         {
             get
             {
@@ -168,6 +169,18 @@ namespace CombatExtended
 
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
+        private LightingTracker _lightingTracker = null;
+        protected LightingTracker LightingTracker
+        {
+            get
+            {
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
+                {
+                    _lightingTracker = caster.Map.GetLightingTracker();
+                }
+                return _lightingTracker;
+            }
+        }
 
         #endregion
 
@@ -234,7 +247,7 @@ namespace CombatExtended
         /// <summary>
         /// Shifts the original target position in accordance with target leading, range estimation and weather/lighting effects
         /// </summary>
-        protected virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
+        public virtual void ShiftTarget(ShiftVecReport report, bool calculateMechanicalOnly = false, bool isInstant = false)
         {
             if (!calculateMechanicalOnly)
             {
@@ -355,7 +368,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="rotation">The ref float to have horizontal sway in degrees added to.</param>
         /// <param name="angle">The ref float to have vertical sway in radians added to.</param>
-        protected void GetSwayVec(ref float rotation, ref float angle)
+        public void GetSwayVec(ref float rotation, ref float angle)
         {
             float ticks = (float)(Find.TickManager.TicksAbs + Shooter.thingIDNumber);
             rotation += SwayAmplitude * (float)Mathf.Sin(ticks * 0.022f);
@@ -366,27 +379,28 @@ namespace CombatExtended
         {
             IntVec3 targetCell = target.Cell;
             ShiftVecReport report = new ShiftVecReport();
+
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = verbProps.range;
+            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
-            report.lightingShift = 1 - caster.Map.glowGrid.GameGlowAt(targetCell);
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
                 report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
             }
             report.shotSpeed = ShotSpeed;
             report.swayDegrees = SwayAmplitude;
-            var spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
+
             GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
-
             return report;
         }
 
@@ -547,7 +561,7 @@ namespace CombatExtended
                     foreach (Apparel current in wornApparel)
                     {
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
-                        if (!current.AllowVerbCast(root, caster.Map, targ, this) && !(current is ShieldBelt && isTurretOperator))
+                        if (!current.AllowVerbCast(this) && !(current is ShieldBelt && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;
@@ -581,7 +595,7 @@ namespace CombatExtended
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
@@ -618,9 +632,10 @@ namespace CombatExtended
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
-                projectile.intendedTarget = currentTarget.Thing;
+                projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
@@ -647,21 +662,27 @@ namespace CombatExtended
                                       shotRotation,
                                       ShotHeight,
                                       ShotSpeed,
-                                      EquipmentSource
-                                      );
+                                      EquipmentSource);
                 }
                 pelletMechanicsOnly = true;
             }
-            /// Log.Message("Fired from "+caster.ThingID+" at "+ShotHeight); /// 
+
+            /*
+             * Notify the lighting tracker that shots fired with muzzle flash value of VerbPropsCE.muzzleFlashScale
+             */
+            LightingTracker.Notify_ShotsFiredAt(caster.Position, intensity: VerbPropsCE.muzzleFlashScale);
             pelletMechanicsOnly = false;
             numShotsFired++;
-            if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+            if (ShooterPawn != null)
             {
-                CompAmmo?.TryStartReload();
-            }
-            if (CompReloadable != null)
-            {
-                CompReloadable.UsedOnce();
+                if (CompAmmo != null && !CompAmmo.CanBeFiredNow)
+                {
+                    CompAmmo?.TryStartReload();
+                }
+                if (CompReloadable != null)
+                {
+                    CompReloadable.UsedOnce();
+                }
             }
             return true;
         }
@@ -702,7 +723,7 @@ namespace CombatExtended
          * -NIA
          */
 
-        private List<IntVec3> tempLeanShootSources = new List<IntVec3>();
+        private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
         public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
@@ -774,12 +795,38 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
+            // DISABLED: reason is testing a better alternative..
+            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            //{
+            //    goodDest = IntVec3.Invalid;
+            //    return false;
+            //}
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
             }
             goodDest = IntVec3.Invalid;
+            return false;
+        }
+
+        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
+        {
+            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Thing thing = list[i];
+                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
+                if (!interceptor.Active)
+                    continue;
+                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
+                if (d1 < interceptor.Props.radius + 1)
+                    continue;
+                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
+                    return true;
+                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
+                    return true;
+            }
             return false;
         }
 
