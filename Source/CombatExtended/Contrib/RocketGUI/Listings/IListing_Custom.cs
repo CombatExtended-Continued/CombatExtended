@@ -42,6 +42,10 @@ namespace CombatExtended.RocketGUI
 
         public Color CollapsibleBGBorderColor = Widgets.MenuSectionBGBorderColor;
 
+        public bool drawBorder = false;
+
+        public bool drawBackground = false;
+
         protected struct RectSlice
         {
             public Rect inside;
@@ -64,9 +68,10 @@ namespace CombatExtended.RocketGUI
             get => (inXMax - inXMin) - margins.x * 2f;
         }
 
-        public virtual Vector4 Margins
+        public virtual Vector2 Margins
         {
             get => this.margins;
+            set => this.margins = value;
         }
 
         public Rect Rect
@@ -82,9 +87,11 @@ namespace CombatExtended.RocketGUI
             }
         }
 
-        public IListing_Custom(bool scrollViewOnOverflow = true)
+        public IListing_Custom(bool scrollViewOnOverflow = true, bool drawBorder = false, bool drawBackground = false)
         {
             this.ScrollViewOnOverflow = scrollViewOnOverflow;
+            this.drawBorder = drawBorder;
+            this.drawBackground = drawBackground;
         }
 
         protected virtual void Begin(Rect inRect, bool scrollViewOnOverflow = true)
@@ -118,7 +125,7 @@ namespace CombatExtended.RocketGUI
             Text.CurFontStyle.fontStyle = FontStyle.Normal;
         }
 
-        protected virtual void Label(TaggedString text, string tooltip = null, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal)
+        protected virtual void Label(TaggedString text, Color color, string tooltip = null, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal, TextAnchor anchor = TextAnchor.UpperLeft)
         {
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
@@ -127,6 +134,8 @@ namespace CombatExtended.RocketGUI
                 {
                     Widgets.DrawHighlightIfMouseover(slice.outside);
                 }
+                GUI.color = color;
+                Text.Anchor = anchor;
                 Text.Font = fontSize;
                 Text.CurFontStyle.fontStyle = fontStyle;
                 Widgets.Label(slice.inside, text);
@@ -226,10 +235,8 @@ namespace CombatExtended.RocketGUI
         }
 
         protected virtual void Line(float thickness)
-        {
-            Gap(height: 3.5f);
-            Widgets.DrawBoxSolid(this.Slice(thickness, includeMargins: false).outside, this.CollapsibleBGBorderColor);
-            Gap(height: 3.5f);
+        {            
+            Widgets.DrawBoxSolid(!drawBorder ? this.Slice(thickness, includeMargins: true).inside : this.Slice(thickness, includeMargins: false).outside, this.CollapsibleBGBorderColor);            
         }
 
         protected virtual bool ButtonText(TaggedString text, bool disabled = false, bool drawBackground = false)
@@ -254,7 +261,8 @@ namespace CombatExtended.RocketGUI
         {
             Gap(height: 5);
             GUI.color = this.CollapsibleBGBorderColor;
-            Widgets.DrawBox(new Rect(inXMin, inYMin, inXMax - inXMin, curYMin - inYMin));
+            if(drawBorder)
+                Widgets.DrawBox(new Rect(inXMin, inYMin, inXMax - inXMin, curYMin - inYMin));
 
             started = true;
             previousHeight = Mathf.Abs(inYMin - curYMin);
@@ -289,7 +297,8 @@ namespace CombatExtended.RocketGUI
                 inside.yMax -= margins.y / 2f;
             }
             this.curYMin += includeMargins ? height + margins.y : height;
-            Widgets.DrawBoxSolid(outside, CollapsibleBGColor);
+            if (drawBackground)
+                Widgets.DrawBoxSolid(outside, CollapsibleBGColor);
             return new RectSlice(inside, outside);
         }
     }

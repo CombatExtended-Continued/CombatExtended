@@ -22,14 +22,14 @@ namespace CombatExtended
 
         private Dictionary<AttachmentLink, bool> fake = new Dictionary<AttachmentLink, bool>();
 
-        private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true);
+        private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true, true, true);
 
         public override Vector2 InitialSize => new Vector2(800, 600);
 
         private string searchText = "";
 
         public Window_AttachmentsDebugger(WeaponPlatformDef weaponDef)
-        {
+        {            
             this.links = weaponDef.attachmentLinks.ToList();
             this.layer = WindowLayer.Super;            
             this.resizer = new WindowResizer();

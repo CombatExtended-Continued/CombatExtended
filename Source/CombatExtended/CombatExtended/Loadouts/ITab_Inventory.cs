@@ -256,7 +256,7 @@ namespace CombatExtended
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                     if (!Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
-                        Find.WindowStack.Add(new Window_AttachmentsEditor(platform, SelPawn.Map));
+                        Find.WindowStack.Add(new Window_AttachmentsEditor(platform));
                     this.CloseTab();
                 }
                 rect.width -= 24f;

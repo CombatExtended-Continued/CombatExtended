@@ -62,25 +62,32 @@ namespace CombatExtended.RocketGUI
             }
         }
 
-        public Listing_Collapsible(bool expanded = false, bool scrollViewOnOverflow = true) : base(scrollViewOnOverflow)
+        public Listing_Collapsible(bool expanded = false, bool scrollViewOnOverflow = true, bool drawBorder = false, bool drawBackground = false) : base(scrollViewOnOverflow, drawBorder, drawBackground)
         {
             this.expanded = expanded;
             this.group = new Group_Collapsible();
         }
 
-        public Listing_Collapsible(Group_Collapsible group, bool expanded = false, bool scrollViewOnOverflow = true) : base(scrollViewOnOverflow)
+        public Listing_Collapsible(Group_Collapsible group, bool expanded = false, bool scrollViewOnOverflow = true, bool drawBorder = false, bool drawBackground = false) : base(scrollViewOnOverflow, drawBorder, drawBackground)
         {
             this.expanded = expanded;
             this.group = group;
             this.group.Register(this);
         }
 
-        public virtual void Begin(Rect inRect, TaggedString title, bool drawInfo = true, bool drawIcon = true, bool hightlightIfMouseOver = true)
+        public virtual void Begin(Rect inRect)
+        {
+            base.Begin(inRect);
+            this.Gap(2);
+        }
+
+        public virtual void Begin(Rect inRect, TaggedString title, bool drawInfo = true, bool drawIcon = true, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Small, FontStyle fontStyle = FontStyle.Normal)
         {
             base.Begin(inRect);
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
-                Text.Font = GameFont.Tiny;
+                Text.Font = fontSize;
+                Text.CurFontStyle.fontStyle = fontStyle;
                 Text.Anchor = TextAnchor.MiddleLeft;
                 RectSlice slice = Slice(title.GetTextHeight(this.insideWidth - 30f));
                 if (hightlightIfMouseOver)
@@ -91,7 +98,7 @@ namespace CombatExtended.RocketGUI
                 GUIUtility.ExecuteSafeGUIAction(() =>
                 {
                     GUI.color = this.CollapsibleBGBorderColor;
-                    GUI.color = Color.gray;
+                    GUI.color = Color.gray;                    
                     if (drawInfo)
                     {
                         Text.Font = GameFont.Tiny;
@@ -101,9 +108,12 @@ namespace CombatExtended.RocketGUI
                 });
                 GUIUtility.ExecuteSafeGUIAction(() =>
                 {
-                    Text.Font = GameFont.Small;
-                    Text.CurFontStyle.fontStyle = FontStyle.Normal;
-                    Text.CurFontStyle.fontSize = 12;
+                    Text.Font = fontSize;
+                    Text.CurFontStyle.fontStyle = fontStyle;
+                    if (this.drawBorder && this.drawBackground)
+                    {
+                        Text.CurFontStyle.fontSize = 12;                        
+                    }
                     Text.Anchor = TextAnchor.MiddleLeft;
                     GUI.color = this.CollapsibleBGBorderColor;
                     GUI.color = Color.gray;
@@ -120,22 +130,38 @@ namespace CombatExtended.RocketGUI
                     Expanded = !Expanded;
                 }
                 GUI.color = this.CollapsibleBGBorderColor;
-                Widgets.DrawBox(slice.outside, 1);
-            });
-            if (Expanded)
+                if (this.drawBorder)
+                {
+                    Widgets.DrawBox(slice.outside, 1);
+                }
+            });            
+            if (Expanded && drawBorder)
             {
                 this.Gap(2);
+            }
+            if (!drawBorder)
+            {
+                this.Line(1);
             }
             base.Start();
         }
 
-        public void Label(TaggedString text, string tooltip = null, bool invert = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal)
+        public void Label(TaggedString text, string tooltip = null, bool invert = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal, TextAnchor anchor = TextAnchor.UpperLeft)
         {
             if (invert == this.expanded)
             {
                 return;
             }
-            base.Label(text, tooltip, hightlightIfMouseOver, fontSize, fontStyle);
+            base.Label(text, GUI.color, tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
+        }
+
+        public void Label(TaggedString text, Color color, string tooltip = null, bool invert = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal, TextAnchor anchor = TextAnchor.UpperLeft)
+        {
+            if (invert == this.expanded)
+            {
+                return;
+            }
+            base.Label(text, color,tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
         }
 
         public bool CheckboxLabeled(TaggedString text, ref bool checkOn, string tooltip = null, bool invert = false, bool disabled = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal)
@@ -198,11 +224,11 @@ namespace CombatExtended.RocketGUI
             {
                 base.Line(thickness);
             }
-        }
+        }        
 
         public override void End(ref Rect inRect)
         {
-            base.End(ref inRect);
+            base.End(ref inRect);            
         }
 
         protected override RectSlice Slice(float height, bool includeMargins = true)

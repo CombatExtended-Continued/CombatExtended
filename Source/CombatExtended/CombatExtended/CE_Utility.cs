@@ -35,7 +35,7 @@ namespace CombatExtended
         /// <param name="stat"></param>
         /// <param name="applyPostProcess"></param>
         /// <returns></returns>
-        public static float GetStatWithAbstractAttachments(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
+        public static float GetWeaponStatWith(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
         {
             StatRequest req = StatRequest.For(platform);
             float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);           
@@ -67,20 +67,56 @@ namespace CombatExtended
             return val;
         }
 
+        /// <summary>
+        /// A comibination of StatWorker.FinalizeValue and GetStatValue but with the ability to get stats without attachments affecting the calculations or using a custom list of stats.
+        /// This version can be used with only the weapon def.
+        /// </summary>
+        /// <param name="platform"></param>
+        /// <param name="stat"></param>
+        /// <param name="applyPostProcess"></param>
+        /// <returns></returns>
+        public static float GetWeaponStatAbstractWith(this WeaponPlatformDef platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
+        {            
+            platform.statBases.FirstOrFallback(s => s.stat == stat);            
+            StatModifier statBase = platform.statBases.FirstOrFallback(s => s.stat == stat);
+            float val = statBase != null ? statBase.value : stat.defaultBaseValue;            
+            if (stat.parts != null)
+            {                
+                for (int i = 0; i < stat.parts.Count; i++)
+                {
+                    if(stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
+                        stat.parts[i].TransformValue(new StatRequest() { qualityCategoryInt = QualityCategory.Normal}, ref val);                                            
+                }
+                if (links != null)
+                    stat.TransformValue(links, ref val);
+            }
+            if (applyPostProcess && stat.postProcessCurve != null)
+                val = stat.postProcessCurve.Evaluate(val);           
+            if (Find.Scenario != null)
+                val *= Find.Scenario.GetStatFactor(stat);
+            if (Mathf.Abs(val) > stat.roundToFiveOver)
+                val = Mathf.Round(val / 5f) * 5f;
+            if (stat.roundValue)
+                val = Mathf.RoundToInt(val);
+            if (applyPostProcess)
+                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);
+            return val;
+        }
+
+        /// <summary>
+        /// Return wether you attach an attachment to a weapon with having to remove stuff.
+        /// </summary>
+        /// <param name="attachment">Attachment</param>
+        /// <param name="platform">Weapon</param>
+        /// <returns>Wether you can attach without conflicts</returns>
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
         {            
             foreach(Thing thing in platform.attachments) { 
-                if ((thing.def as AttachmentDef).slotTags.Any(s => attachment.slotTags.Contains(s)))
+                if (!platform.Platform.AttachmentsCompatible((thing.def as AttachmentDef), attachment))
                     return false;
             }
             return true;
         }
-
-        public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatformDef platform)
-        {
-            return platform.attachmentLinks.Any(l => l.attachment == attachment);
-        }
-
 
         /// <summary>
         /// Used to tranform a stat for a given attachment link list. It will first check for overriden stats then apply offsets and multipliers.        

@@ -19,9 +19,9 @@ namespace CombatExtended
         {
             WeaponPlatform platform;
             if (!req.HasThing || !(req.Thing?.def is WeaponPlatformDef))
-            {
+            {                
                 return;
-            }
+            }            
             platform = (WeaponPlatform)req.Thing;
             if (platform.Platform?.attachmentLinks == null)
             {
