@@ -23,6 +23,7 @@ namespace CombatExtended
         public static readonly StatDef MuzzleFlash = StatDef.Named("MuzzleFlash");
         public static readonly StatDef MagazineCapacity = StatDef.Named("MagazineCapacity");
         public static readonly StatDef WeaponRangeMultiplier = StatDef.Named("WeaponRangeMultiplier");
+        public static readonly StatDef NightVisionEfficiency_Weapon = StatDef.Named("NightVisionEfficiency_Weapon");
 
         // *** Melee weapon stats ***
         public static StatDef MeleePenetrationFactor;

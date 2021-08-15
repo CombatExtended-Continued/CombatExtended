@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -9,7 +10,7 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps, IThingHolder
-    {      
+    {        
         public ThingOwner<Thing> attachments;
 
         private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
@@ -205,7 +206,7 @@ namespace CombatExtended
                 }
             }
             this.UpdateConfiguration();
-        }
+        }       
 
         public override void PostPostMake()
         {

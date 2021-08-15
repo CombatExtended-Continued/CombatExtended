@@ -96,6 +96,11 @@ namespace CombatExtended
             }
         }        
 
+        /// <summary>
+        /// Used to prepare and update the meshs used in rendering so we can apply both scaling and offsets at the level of vertices.
+        /// This should be called when ever a change to scale or offset happen.
+        /// </summary>
+        /// <param name="parent"></param>
         public void PrepareTexture(WeaponPlatformDef parent)
         {
             this.parent = parent;                       
@@ -103,6 +108,16 @@ namespace CombatExtended
             this.meshBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT);
             this.meshFlipTop = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_TOP, true);
             this.meshFlipBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT, true);          
+        }
+
+        /// <summary>
+        /// Used to determine if this is compatible with another attachment
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool CompatibleWith(AttachmentLink other)
+        {
+            return parent.AttachmentsCompatible(this.attachment, other.attachment);
         }
 
         // NOTE:

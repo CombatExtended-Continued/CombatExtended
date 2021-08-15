@@ -1,322 +1,334 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+using RimWorld;
 using Verse;
 using CombatExtended.RocketGUI;
+using UnityEngine;
 using GUIUtility = CombatExtended.RocketGUI.GUIUtility;
-using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse.AI;
 
 namespace CombatExtended
 {
-    public class Window_AttachmentsEditor : IWindow_AttachmentsEditor
-    {
-        private const int PANEL_RIGHT_WIDTH = 250;
-        private const int PANEL_ACTION_HEIGHT = 50;
-        private const int PANEL_INNER_MARGINS = 4;
+    public class Window_AttachmentsEditor : Window
+    {        
+        private const int PANEL_BASE_WIDTH = 450;
+        private const int PANEL_BASE_HEIGHT = 450;
 
-        struct SelectionHolder
-        {
-            public AttachmentDef attachment;
-        }
+        public readonly WeaponPlatform weapon;
+        public readonly WeaponPlatformDef weaponDef;
+
+        private static List<StatDef> displayStats = null;
+        private static List<StatDef> positiveStats = null;
+        private static List<StatDef> negativeStats = null;
 
         private AttachmentDef hoveringOver = null;
 
-        private readonly List<string> categories;
+        private Dictionary<StatDef, float> statBases = new Dictionary<StatDef, float>();
+        private Dictionary<StatDef, float> stats = new Dictionary<StatDef, float>();
+        private Dictionary<AttachmentLink, bool> attachedByAt = new Dictionary<AttachmentLink, bool>();
+        private Dictionary<AttachmentLink, bool> additionByAt = new Dictionary<AttachmentLink, bool>();
+        private Dictionary<AttachmentLink, bool> removalByAt = new Dictionary<AttachmentLink, bool>();
 
-        private List<WeaponPlatformDef.WeaponGraphicPart> parts = new List<WeaponPlatformDef.WeaponGraphicPart>();
+        private List<WeaponPlatformDef.WeaponGraphicPart> visibleDefaultParts = new List<WeaponPlatformDef.WeaponGraphicPart>();
+        private List<AttachmentLink> links = new List<AttachmentLink>();
+        private List<AttachmentLink> target = new List<AttachmentLink>();
+        private List<string> tags = new List<string>();
 
-        private readonly HashSet<AttachmentLink> selected = new HashSet<AttachmentLink>();
+        private Dictionary<string, List<AttachmentLink>> linksByTag = new Dictionary<string, List<AttachmentLink>>();
 
-        private readonly Listing_Collapsible collapsible = new Listing_Collapsible(true, true);
+        private readonly Listing_Collapsible collapsible_radios = new Listing_Collapsible(true, true);
+        private readonly Listing_Collapsible collapsible_stats = new Listing_Collapsible(true, true);
 
-        private readonly Dictionary<string, List<AttachmentDef>> categoryToDef = new Dictionary<string, List<AttachmentDef>>();
-
-        private readonly Dictionary<string, SelectionHolder> catergoryToSelected = new Dictionary<string, SelectionHolder>();
-
-        private readonly AttachmentDef[] availableDefs;
-
-        public Window_AttachmentsEditor(WeaponPlatform platform, Map map) : base(platform, map)
+        public override Vector2 InitialSize
         {
-            // sort categories from all weapons
-            categories = weaponDef.attachmentLinks.SelectMany(t => t.attachment.slotTags).Distinct().ToList();
-            categories.Sort();
-
-            // save available stuff
-            availableDefs = platform.Platform.attachmentLinks.Select(a => a.attachment).ToArray();
-
-            // register currently equiped attachments
-            foreach (AttachmentDef attachmentDef in platform.TargetConfig)
-                this.Add(attachmentDef);
-
-            // cache stuff
-            foreach (string s in categories)
-                categoryToDef[s] = availableDefs.Where(t => t.slotTags.First() == s)?.ToList() ?? new List<AttachmentDef>();
-
-            UpdateRenderingCache();
-        }
-
-        public override void PreOpen()
-        {
-            base.PreOpen();
-            RebuildCache();
-        }        
-
-        protected override void DoContent(Rect inRect)
-        {
-            if (weapon?.Destroyed ?? true)
+            get
             {
-                Close(doCloseSound: true);
-                return;
+                return new Vector2(1000, 575);
             }
-            Rect leftRect = inRect;
-            leftRect.xMax -= PANEL_RIGHT_WIDTH - 5;
-            Rect rightRect = inRect.RightPartPixels(PANEL_RIGHT_WIDTH);
-            Rect actionRect = rightRect.BottomPartPixels(PANEL_ACTION_HEIGHT);
-            rightRect.yMax -= PANEL_ACTION_HEIGHT - 5;
+        }
 
-            rightRect.xMin += PANEL_INNER_MARGINS;
-            rightRect.yMin += PANEL_INNER_MARGINS;
-            rightRect.xMax -= PANEL_INNER_MARGINS;
-            rightRect.yMax -= PANEL_INNER_MARGINS;
-            GUIUtility.ExecuteSafeGUIAction(() =>
+        public Window_AttachmentsEditor(WeaponPlatform weapon, Map map)
+        {
+            if(displayStats == null)
             {
-                this.DoRightPanel(rightRect);
+                displayStats = new List<StatDef>()
+                {
+                    StatDefOf.Mass,
+                    StatDefOf.MarketValue,
+                    CE_StatDefOf.Bulk,
+                    CE_StatDefOf.SightsEfficiency,
+                    CE_StatDefOf.NightVisionEfficiency_Weapon,
+                    CE_StatDefOf.ReloadSpeed,
+                    CE_StatDefOf.MuzzleFlash,
+                    CE_StatDefOf.MagazineCapacity,
+                    CE_StatDefOf.ShotSpread,
+                    CE_StatDefOf.SwayFactor,
+                };
+                positiveStats = new List<StatDef>()
+                {                   
+                    StatDefOf.MarketValue,                    
+                    CE_StatDefOf.SightsEfficiency,
+                    CE_StatDefOf.NightVisionEfficiency_Weapon,                                    
+                    CE_StatDefOf.MagazineCapacity,                                        
+                };
+                negativeStats = new List<StatDef>()
+                {
+                    StatDefOf.Mass,
+                    CE_StatDefOf.ReloadSpeed,
+                    CE_StatDefOf.Bulk,                    
+                    CE_StatDefOf.MuzzleFlash,                    
+                    CE_StatDefOf.ShotSpread,
+                    CE_StatDefOf.SwayFactor,
+                };                
+            }
+            this.links = weapon.Platform.attachmentLinks;
+            this.weapon = weapon;
+            this.weaponDef = weapon.Platform;
+            this.layer = WindowLayer.Dialog;
+            this.resizer = new WindowResizer();
+            this.forcePause = true;
+            this.doCloseButton = false;
+            this.doCloseX = false;
+            this.draggable = true;            
+
+            foreach(AttachmentLink link in weaponDef.attachmentLinks)
+            {
+                string tag = link.attachment.slotTags.First();
+                if (!this.linksByTag.TryGetValue(tag, out List<AttachmentLink> tagLinks))
+                {
+                    this.tags.Add(tag);
+                    this.linksByTag[tag] = new List<AttachmentLink>();
+                }
+                this.linksByTag[tag].Add(link);
+                this.attachedByAt[link] = false;
+                this.additionByAt[link] = false;
+                this.removalByAt[link] = false;
+            }
+            this.tags.SortBy(x => x);
+            foreach (AttachmentLink link in weapon.CurLinks)
+            {                
+                this.attachedByAt[link] = true;
+                this.AddAttachment(link, update: false);
+            }
+            foreach(StatDef stat in displayStats)           
+                statBases[stat] =  weapon.GetStatWithAbstractAttachments(stat, null, true);
+            
+            this.Update();
+        }
+
+        public override void DoWindowContents(Rect inRect)
+        {
+            GUIUtility.ExecuteSafeGUIAction(() =>
+            {                
+                Rect titleRect = inRect;
+                Text.Font = GameFont.Medium;
+                titleRect.xMin += 5;
+                titleRect.height = 35;
+                Widgets.DefIcon(titleRect.LeftPartPixels(titleRect.height).ContractedBy(2), weaponDef, scale: 1.7f);
+                titleRect.xMin += titleRect.height + 10;
+                Widgets.Label(titleRect, "CE_EditAttachments".Translate() + $": {weaponDef.label.CapitalizeFirst()}");
             });
-
-            leftRect.xMin += PANEL_INNER_MARGINS;
-            leftRect.yMin += PANEL_INNER_MARGINS;
-            leftRect.xMax -= PANEL_INNER_MARGINS;
-            leftRect.yMax -= PANEL_INNER_MARGINS;
-            Widgets.DrawMenuSection(leftRect);
+            inRect.yMin += 40;
+            Rect rect = inRect;
+            rect.height = PANEL_BASE_HEIGHT;
+            hoveringOver = null;
+            DoRightPanel(rect.RightPartPixels((inRect.width - PANEL_BASE_WIDTH) / 2f).ContractedBy(2));            
+            rect.xMax -= (inRect.width - PANEL_BASE_WIDTH) / 2f;
+            DoCenterPanel(rect.RightPartPixels(PANEL_BASE_WIDTH).ContractedBy(2));
+            rect.xMax -= PANEL_BASE_WIDTH;
+            DoLeftPanel(rect.ContractedBy(2));
+            inRect.yMin += PANEL_BASE_HEIGHT + 5;           
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
-                this.DoLeftPanel(leftRect);
-            });
-
-            actionRect.xMin += PANEL_INNER_MARGINS;
-            actionRect.yMin += PANEL_INNER_MARGINS;
-            actionRect.xMax -= PANEL_INNER_MARGINS;
-            actionRect.yMax -= PANEL_INNER_MARGINS;
-            GUIUtility.ExecuteSafeGUIAction(() =>
-            {
-                this.DoActionPanel(actionRect);
+                Text.Font = GameFont.Small;
+                Rect actionRect = inRect;
+                actionRect.yMin += 5;
+                actionRect.width = 300;
+                actionRect = actionRect.CenteredOnXIn(inRect);                
+                GUI.color = Color.red;
+                if (Widgets.ButtonText(actionRect.RightPartPixels(146), "CE_Close".Translate()))
+                {
+                    this.Close();
+                }
+                GUI.color = Color.white;
+                if (Widgets.ButtonText(actionRect.LeftPartPixels(146), "CE_Apply".Translate()))
+                {
+                    this.Apply();
+                    this.Close();
+                }
             });
         }
 
-        private void UpdateRenderingCache()
+        private void DoRightPanel(Rect inRect)
         {
-            parts.Clear();
-            HashSet<AttachmentLink> links = selected;
-            foreach (WeaponPlatformDef.WeaponGraphicPart part in weaponDef.defaultGraphicParts)
+            collapsible_radios.Expanded = true;
+            collapsible_radios.Begin(inRect, "CE_Attachments_Selection".Translate(), false, false);
+            bool started = false;
+            bool stop = false;
+            foreach(string tag in tags)
             {
-                if (!links.Any(l => l.attachment.slotTags?.Any(s => part.slotTags?.Contains(s) ?? false) ?? false))
-                    parts.Add(part);
+                if (started)
+                {
+                    collapsible_radios.Gap(2.00f);
+                    collapsible_radios.Line(1.0f);
+                }
+                collapsible_radios.Gap(3);
+                collapsible_radios.Lambda(24, (rect) =>
+                {                                     
+                    GUIUtility.ExecuteSafeGUIAction(() =>
+                    {
+                        Text.Font = GameFont.Small;
+                        Text.CurFontStyle.fontSize = 12;
+                        Widgets.Label(rect, $"CE_AttachmentSlot_{tag}".Translate());
+                    });
+                }, useMargins: true);                
+                foreach (AttachmentLink link in linksByTag[tag])
+                {
+                    AttachmentDef attachment = link.attachment;
+                    collapsible_radios.Lambda(20, (rect) =>
+                    {                        
+                        bool visible = (attachedByAt[link] || additionByAt[link]) && !removalByAt[link];
+                        bool checkOn = visible;                        
+                        Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), attachment);
+                        rect.xMin += 25;
+                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
+                        if(checkOn != visible)
+                        {
+                            if (checkOn)
+                            {
+                                AddAttachment(link);
+                            }
+                            else
+                            {
+                                RemoveAttachment(link);
+                            }
+                            stop = true;
+                        }
+                        if (Mouse.IsOver(rect.ExpandedBy(2)))
+                        {
+                            hoveringOver = attachment;
+                            TooltipHandler.TipRegion(rect, attachment.description.CapitalizeFirst());
+                        }                        
+                    }, useMargins: true, hightlightIfMouseOver: true);
+                    collapsible_radios.Gap(2);
+                    if (stop) break;
+                }
+                started = true;
+                if (stop) break;
+            }
+            collapsible_radios.End(ref inRect);
+            inRect.yMin -= 1;
+            Widgets.DrawMenuSection(inRect);
+        }
+
+        private void DoCenterPanel(Rect inRect)
+        {
+            Widgets.DrawMenuSection(inRect);
+            Rect rect = inRect;            
+            rect.width = Mathf.Min(rect.width, rect.height);
+            rect.height = rect.width;
+            rect = rect.CenteredOnXIn(inRect);            
+            GUIUtility.DrawWeaponWithAttachments(rect.ContractedBy(10), weaponDef, target.ToHashSet(), parts: visibleDefaultParts, hoveringOver);
+            inRect.yMin += rect.height;
+            if (Prefs.DevMode && DebugSettings.godMode)
+            {
+                GUIUtility.ExecuteSafeGUIAction(() =>
+                {
+                    GUI.color = Color.cyan;
+                    if (Widgets.ButtonText(rect.TopPartPixels(20).LeftPartPixels(75), "edit offsets"))
+                        Find.WindowStack.Add(new Window_AttachmentsDebugger(weaponDef));
+                });
             }
         }
 
         private void DoLeftPanel(Rect inRect)
         {
-            inRect.yMin += 6;
-            Rect statRect = inRect.BottomPartPixels(25 * 6 + 10);
-            inRect.yMax -= 25 * 6 + 10 + 5;
-            inRect.width = Mathf.Min(inRect.width, inRect.height);
-            inRect = inRect.CenteredOnXIn(statRect);
-            Widgets.DrawBoxSolid(inRect, Widgets.MenuSectionBGBorderColor);
-            Widgets.DrawBoxSolid(inRect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
-            GUIUtility.DrawWeaponWithAttachments(inRect, weaponDef, selected, parts, hoveringOver);
-            if (Prefs.DevMode && Widgets.ButtonText(inRect.TopPartPixels(20).LeftPartPixels(75), "edit offsets") && !Find.WindowStack.IsOpen<Window_AttachmentsDebugger>())
-                Find.WindowStack.Add(new Window_AttachmentsDebugger(weaponDef));
-            Widgets.DrawBoxSolid(statRect.TopPartPixels(1), Widgets.MenuSectionBGBorderColor);
-            DoStatPanel(statRect);
-        }
-
-        private void DoRightPanel(Rect inRect)
-        {
-            if (!Mouse.IsOver(inRect))
-                hoveringOver = null;
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.UpperLeft;
-
-            collapsible.Expanded = true;
-            collapsible.Begin(inRect, "CE_Attachments_Selection".Translate(), false, false, false);
-            int i = 0;
-            foreach (string cat in categories)
+            collapsible_stats.Expanded = true;
+            collapsible_stats.Begin(inRect, weaponDef.label, false, false);
+            foreach (StatDef stat in displayStats)
             {
-                if (i++ > 0)
+                collapsible_stats.Lambda(18, (rect) =>
                 {
-                    collapsible.Gap(1.00f);
-                    collapsible.Line(1.0f);
-                }
-                collapsible.Label($"CE_AttachmentSlot_{cat}".Translate(), fontSize: GameFont.Small, fontStyle: FontStyle.Bold);
-                collapsible.Gap(3);
-
-                foreach (AttachmentDef attachment in categoryToDef[cat])
-                {
-                    collapsible.Lambda(22, (rect) =>
-                    {
-                        bool checkOn = attachment.slotTags.All(s => catergoryToSelected[s].attachment == attachment);
-                        bool checkOnPrev = checkOn;
-                        if (checkOn && !weapon.attachments.Any(a => a.def == attachment))
-                            Widgets.ButtonImageFitted(rect.LeftPartPixels(22).ContractedBy(3), TexButton.Plus, Color.green);
-                        if (!checkOn && weapon.attachments.Any(a => a.def == attachment))
-                            Widgets.ButtonImageFitted(rect.LeftPartPixels(22).ContractedBy(3), TexButton.Minus, Color.red);
-                        rect.xMin += 24;
-                        Widgets.DefIcon(rect.LeftPartPixels(22).ContractedBy(2), attachment);
-                        rect.xMin += 24;
-                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
-                        if (checkOn != checkOnPrev)
-                        {
-                            if (checkOn)
-                                Add(attachment);
-                            else
-                                Remove(attachment);
-                            UpdateRenderingCache(); 
-                        }
-                        if (Mouse.IsOver(rect))
-                        {
-                            hoveringOver = attachment;
-                            TooltipHandler.TipRegion(rect, attachment.description.CapitalizeFirst());
-                        }
-                    }, useMargins: true, hightlightIfMouseOver: true);
-                }
+                    TooltipHandler.TipRegion(rect, stat.description);
+                    Text.Font = GameFont.Small;
+                    Text.CurFontStyle.fontSize = 12;
+                    Text.Anchor = TextAnchor.UpperLeft;                    
+                    Widgets.Label(rect.LeftPart(0.75f), stat.label);
+                    GUI.color = GetStatColor(stat);                    
+                    Widgets.Label(rect.RightPart(0.25f), $" {((float)Math.Round(statBases[stat] + stats[stat], 2)).ToStringByStyle(stat.toStringStyle)}");
+                    GUI.color = Color.white;
+                    Text.Anchor = TextAnchor.UpperRight;                    
+                    Widgets.Label(rect.LeftPart(0.75f), $"{((float)Math.Round(statBases[stat], 2)).ToStringByStyle(stat.toStringStyle)} |");
+                }, useMargins: true, hightlightIfMouseOver: true);
             }
-            collapsible.End(ref inRect);
+            collapsible_stats.End(ref inRect);
             inRect.yMin -= 1;
             Widgets.DrawMenuSection(inRect);
-            if (Mouse.IsOver(inRect))
-                hoveringOver = null;
-        }
-
-        private void DoActionPanel(Rect inRect)
-        {
-            Text.Font = GameFont.Small;
-            Rect closeRect = inRect.RightHalf();
-            closeRect.xMin += 1.5f;
-            Rect applyRect = inRect.LeftHalf();
-            applyRect.xMax -= 1.5f;
-            if (Widgets.ButtonText(closeRect, "CE_Close".Translate()))
-                Close();
-            if (Widgets.ButtonText(applyRect, "CE_Apply".Translate()))
-            {
-                Apply();
-                Close();
-            }
-        }
-
-        private void DoStatPanel(Rect inRect)
-        {
-            inRect.xMin += 5;
-            inRect.xMax -= 5;
-            DrawLeft(inRect.LeftPartPixels(inRect.width / 2 - 2.5f));
-            DrawRight(inRect.RightPartPixels(inRect.width / 2 - 2.5f));
-
-            void DrawLeft(Rect inRect)
-            {
-                inRect.yMin += 5;
-                Rect rect = inRect.TopPartPixels(25);
-                CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
-                if (ammoProp != null)
-                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.attachment.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
-
-                DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
-                DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
-                DoXmlStat(ref rect, CE_StatDefOf.SightsEfficiency);
-                DoXmlStat(ref rect, CE_StatDefOf.ReloadSpeed);
-                DoXmlStat(ref rect, StatDefOf.Mass, sum: true);
-            }
-            void DrawRight(Rect inRect)
-            {
-                inRect.yMin += 5;
-                Rect rect = inRect.TopPartPixels(25);
-                CompProperties_AmmoUser ammoProp = weaponDef.GetCompProperties<CompProperties_AmmoUser>();
-                if (ammoProp != null)
-                    DrawLine(ref rect, "magazine capacity", ammoProp.magazineSize, ammoProp.magazineSize + selected.Sum(s => s.attachment.GetStatValueAbstract(CE_StatDefOf.MagazineCapacity)));
-
-                DoXmlStat(ref rect, CE_StatDefOf.SwayFactor);
-                DoXmlStat(ref rect, CE_StatDefOf.ShotSpread);
-                DoXmlStat(ref rect, CE_StatDefOf.SightsEfficiency);
-                DoXmlStat(ref rect, CE_StatDefOf.ReloadSpeed);
-                DoXmlStat(ref rect, StatDefOf.Mass, sum: true);
-            }
-        }
-
-        private void DoXmlStat(ref Rect rect, StatDef stat, bool sum = false)
-        {
-            float before = weaponDef.GetStatValueAbstract(stat);
-            float after = before;            
-            stat.TransformValue(this.weaponDef.attachmentLinks.Where(t => selected.Contains(t)).ToList(), ref after);
-            DrawLine(ref rect, stat.label, before, after);
-        }
-
-        private void DrawLine(ref Rect inRect, string label, float before, float after)
-        {
-            string color = before > after ? "red" : "green";
-            string sign = before > after ? "-" : "+";
-            string beforeText = $"{String.Format("{0:n}", Math.Round(before, 2))}";
-            string afterText = $"<color={color}>({sign}{String.Format("{0:n}", Math.Round(Mathf.Abs(after - before), 2))})</color>";
-            Rect rect = inRect;
-            inRect.y += 25;
-            GUIUtility.ExecuteSafeGUIAction(() =>
-            {
-                Text.Font = GameFont.Small;
-                Text.WordWrap = false;
-                Text.Anchor = TextAnchor.UpperLeft;
-                rect.xMin += 15;
-                rect.xMax -= 15;
-                Widgets.Label(rect, label.CapitalizeFirst());
-                Widgets.Label(rect.RightPartPixels(85), beforeText);
-                Widgets.Label(rect.RightPartPixels(50), afterText);
-            });
-        }
-
-        private void Add(AttachmentDef def)
-        {
-            selected.RemoveWhere(d => d.attachment.slotTags.Any(t => def.slotTags.Contains(t)));
-            selected.Add(weaponDef.attachmentLinks.First(t => t.attachment == def));
-            RebuildCache();            
-        }
-
-        private void Remove(AttachmentDef def)
-        {
-            selected.RemoveWhere(d => d.attachment.slotTags.Any(t => def.slotTags.Contains(t)));            
-            RebuildCache();
-        }
-
-        private void RebuildCache()
-        {
-            catergoryToSelected.Clear();
-            foreach (string s in categories)
-                catergoryToSelected[s] = new SelectionHolder() { attachment = null };
-            foreach (AttachmentLink link in selected)
-            {                
-                foreach (string s in link.attachment.slotTags)
-                    catergoryToSelected[s] = new SelectionHolder() { attachment = link.attachment };
-            }
         }
 
         private void Apply()
         {
-            // Update the current config
+            List<AttachmentLink> selected = links.Where(l => additionByAt[l] || (attachedByAt[l] && !removalByAt[l])).ToList();
             weapon.TargetConfig = selected.Select(l => l.attachment).ToList();
             weapon.UpdateConfiguration();
-
             if (Prefs.DevMode && DebugSettings.godMode)
             {
                 weapon.attachments.ClearAndDestroyContents();
-                foreach (AttachmentLink link in selected)                    
-                {                    
+                foreach (AttachmentLink link in selected)
+                {
                     Thing attachment = ThingMaker.MakeThing(link.attachment);
                     weapon.attachments.TryAdd(attachment);
                 }
                 weapon.UpdateConfiguration();
-                return;
-            }
-
-            // Try start the update job 
+            }            
             Job job = weapon.Wielder.thinker.GetMainTreeThinkNode<JobGiver_ModifyWeapon>().TryGiveJob(weapon.Wielder);
-            weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptForced);
+            if(job != null)
+                weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptForced);            
+        }
+
+        private void AddAttachment(AttachmentLink attachmentLink, bool update = true)
+        {                      
+            foreach (AttachmentLink other in links)
+            {
+                if ((attachedByAt[other] || additionByAt[other]) && !removalByAt[other] && !attachmentLink.CompatibleWith(other))
+                    RemoveAttachment(other, update: false);
+            }           
+            removalByAt[attachmentLink] = false;
+            additionByAt[attachmentLink] = true;            
+            if(update) Update();
+        }
+
+        private void RemoveAttachment(AttachmentLink attachmentLink, bool update = true)
+        {
+            additionByAt[attachmentLink] = false;
+            if (attachedByAt[attachmentLink]) removalByAt[attachmentLink] = true;
+            if (update) Update();
+        }        
+
+        private void Update()
+        {            
+            target.Clear();
+            target.AddRange(links.Where(l => (attachedByAt[l] && !removalByAt[l]) || additionByAt[l]));
+            visibleDefaultParts.Clear();
+            visibleDefaultParts.AddRange(weaponDef.defaultGraphicParts);
+            visibleDefaultParts.RemoveAll(p => target.Any(l => weaponDef.AttachmentRemoves(l.attachment, p)));
+            stats.Clear();
+            foreach (StatDef stat in displayStats)
+            {
+                float val = weapon.GetStatWithAbstractAttachments(stat, target);                
+                stats[stat] = val - statBases[stat];
+            }
+        }
+        
+        private Color GetStatColor(StatDef stat)
+        {
+            float diff = stats[stat];
+            if (positiveStats.Contains(stat))            
+                return diff > 0 ? Color.green : (diff == 0 ? Color.white : Color.red);
+            if (negativeStats.Contains(stat))
+                return diff > 0 ? Color.red : (diff == 0 ? Color.white : Color.green);
+            throw new NotImplementedException();
         }
     }
 }

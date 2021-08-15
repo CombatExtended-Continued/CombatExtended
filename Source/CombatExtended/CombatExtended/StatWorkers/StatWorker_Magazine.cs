@@ -28,7 +28,7 @@ namespace CombatExtended
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
             float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
-            return size + base.GetValueUnfinalized(req, true);
+            return size;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

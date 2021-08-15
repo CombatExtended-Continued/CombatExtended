@@ -28,6 +28,44 @@ namespace CombatExtended
 
         #region Attachments
 
+        /// <summary>
+        /// A comibination of StatWorker.FinalizeValue and GetStatValue but with the ability to get stats without attachments affecting the calculations or using a custom list of stats
+        /// </summary>
+        /// <param name="platform"></param>
+        /// <param name="stat"></param>
+        /// <param name="applyPostProcess"></param>
+        /// <returns></returns>
+        public static float GetStatWithAbstractAttachments(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
+        {
+            StatRequest req = StatRequest.For(platform);
+            float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);           
+            if (stat.parts != null)
+            {
+                for (int i = 0; i < stat.parts.Count; i++)
+                {
+                    if(!(stat.parts[i] is StatPart_Attachments))
+                        stat.parts[i].TransformValue(req, ref val);
+                }
+                if(links != null)
+                    stat.TransformValue(links, ref val);
+            }
+            if (applyPostProcess && stat.postProcessCurve != null)            
+                val = stat.postProcessCurve.Evaluate(val);            
+            if (applyPostProcess && stat.postProcessStatFactors != null)
+            {
+                for (int j = 0; j < stat.postProcessStatFactors.Count; j++)                
+                    val *= req.Thing.GetStatValue(stat.postProcessStatFactors[j]);                
+            }
+            if (Find.Scenario != null)            
+                val *= Find.Scenario.GetStatFactor(stat);            
+            if (Mathf.Abs(val) > stat.roundToFiveOver)            
+                val = Mathf.Round(val / 5f) * 5f;            
+            if (stat.roundValue)            
+                val = Mathf.RoundToInt(val);            
+            if (applyPostProcess)            
+                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);            
+            return val;
+        }
 
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
         {            

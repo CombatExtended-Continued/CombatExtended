@@ -137,15 +137,13 @@ namespace CombatExtended.RocketGUI
             });
         }
 
-        private static readonly Color _hColor = new Color(0.05f, 0.05f, 0.05f, 0.8f);
+        private static readonly Color _hColor = new Color(0.2f, 0.2f, 0.2f, 1.0f);
 
         public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentLink> attachments, List<WeaponPlatformDef.WeaponGraphicPart> parts = null, AttachmentDef highlight = null)
         {
             ExecuteSafeGUIAction(() =>
             {
-                Color color = GUI.color;
-                if (highlight != null)
-                    GUI.color = _hColor;
+                Color color = GUI.color;                
                 Texture2D texture;
                 Texture2D weaponTex = platform.UIWeaponTex;                
                 foreach (AttachmentLink link in attachments)
@@ -172,6 +170,8 @@ namespace CombatExtended.RocketGUI
                             GUI.DrawTexture(inRect, part.UIOutlineTex, ScaleMode.StretchToFill);
                     }
                 }
+                if (highlight != null)
+                    GUI.color = _hColor;
                 GUI.DrawTexture(inRect, weaponTex, ScaleMode.StretchToFill);
                 if (parts != null)
                 {

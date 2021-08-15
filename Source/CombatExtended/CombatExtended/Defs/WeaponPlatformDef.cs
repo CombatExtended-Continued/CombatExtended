@@ -78,7 +78,7 @@ namespace CombatExtended
                     return outlineGraphicData.Graphic.MatSingle;
                 }
             }
-        }
+        }        
 
         /// <summary>
         /// Contain attachmentlinks which are the binder for attachments
@@ -108,6 +108,43 @@ namespace CombatExtended
                 defaultGraphicParts = new List<WeaponGraphicPart>();
             if (attachmentLinks == null)
                 attachmentLinks = new List<AttachmentLink>();
+        }
+
+        /// <summary>
+        /// Compatibility cache
+        /// </summary>
+        private Dictionary<Pair<AttachmentDef, AttachmentDef>, bool> _compatibilite = new Dictionary<Pair<AttachmentDef, AttachmentDef>, bool>();
+
+        /// <summary>
+        /// Used to find wether 2 attachments are compatible with each other
+        /// </summary>
+        /// <param name="first">First</param>
+        /// <param name="second">Second</param>
+        /// <returns>Wether if they are compatible</returns>
+        public bool AttachmentsCompatible(AttachmentDef first, AttachmentDef second)
+        {           
+            if (first.index > second.index)            
+                return AttachmentsCompatible(second, first);            
+            Pair<AttachmentDef, AttachmentDef> key = new Pair<AttachmentDef, AttachmentDef>(first, second);
+            if (_compatibilite.TryGetValue(key, out bool compatible))
+                return compatible;
+            return _compatibilite[key] = first.slotTags.All(s => !second.slotTags.Contains(s));
+        }
+
+        private Dictionary<Pair<AttachmentDef, WeaponGraphicPart>, bool> _removes = new Dictionary<Pair<AttachmentDef, WeaponGraphicPart>, bool>();
+
+        /// <summary>
+        /// Used to find wether an attachment will remove a default graphic part.
+        /// </summary>
+        /// <param name="first">First</param>
+        /// <param name="second">Second</param>
+        /// <returns>Wether if they are compatible</returns>
+        public bool AttachmentRemoves(AttachmentDef attachment, WeaponGraphicPart part)
+        {                        
+            Pair<AttachmentDef, WeaponGraphicPart> key = new Pair<AttachmentDef, WeaponGraphicPart>(attachment, part);
+            if (_removes.TryGetValue(key, out bool removes))
+                return removes;
+            return _removes[key] = attachment.slotTags.Any(s => part.slotTags.Contains(s));
         }
 
         /// <summary>

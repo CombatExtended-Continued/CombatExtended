@@ -20,13 +20,10 @@ namespace CombatExtended
                         scale += prop.muzzleFlashScale;
                         count++;
                     }
-                }
-                float val = scale / count;
-                if (def is WeaponPlatformDef platform && platform.attachmentLinks != null)
-                    stat.TransformValue(platform.attachmentLinks, ref val);
-                return val;
+                }                
+                return scale / count;
             }
             return 0f;
-        }
+        }        
     }
 }
