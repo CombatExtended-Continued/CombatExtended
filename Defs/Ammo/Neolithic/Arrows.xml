@@ -98,7 +98,7 @@
       <MarketValue>1.07</MarketValue>
     </statBases>
     <ammoClass>PlasteelArrow</ammoClass>
-    <generateAllowChance>0</generateAllowChance>
+    <generateAllowChance>0.2</generateAllowChance>
   </ThingDef>
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
@@ -128,6 +128,7 @@
       <MarketValue>1.16</MarketValue>
     </statBases>
     <ammoClass>FlameArrow</ammoClass>
+    <generateAllowChance>0.2</generateAllowChance>
   </ThingDef>
 
   <!-- ================== Projectiles (short bow) ================== -->
@@ -232,11 +233,18 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>24</speed>
-	    <damageDef>Flame</damageDef>
+      <damageDef>Arrow</damageDef>
       <damageAmountBase>3</damageAmountBase>
       <armorPenetrationSharp>0.2</armorPenetrationSharp>
       <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-	  <!-- destroyed on use -->
+      <secondaryDamage>
+        <li>
+          <def>Flame</def>
+          <amount>1</amount>
+          <chance>0.33</chance>
+        </li>
+      </secondaryDamage>
+      <!-- destroyed on use -->
     </projectile>
   </ThingDef>
 
@@ -337,10 +345,17 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>33</speed>
-	    <damageDef>Flame</damageDef>
+      <damageDef>Arrow</damageDef>
       <damageAmountBase>3</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
       <armorPenetrationBlunt>2.96</armorPenetrationBlunt>
+      <secondaryDamage>
+        <li>
+          <def>Flame</def>
+          <amount>1</amount>
+          <chance>0.33</chance>
+        </li>
+      </secondaryDamage>
     </projectile>
   </ThingDef>
 

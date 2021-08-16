@@ -35,8 +35,8 @@ namespace CombatExtended.Compatibility
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(EDShields.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(EDShields.ImpactSomethingCallback);
-	    Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
-	    HitSoundDef = (SoundDef) t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
+            Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
+            HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
         public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
@@ -44,12 +44,12 @@ namespace CombatExtended.Compatibility
              */
             Map map = projectile.Map;
             Vector3 exactPosition = projectile.ExactPosition;
-	    IntVec3 origin = projectile.OriginIV3;
+            IntVec3 origin = projectile.OriginIV3;
             getShields(map);
 
             foreach (Building building in shields)
             {
-       	        var shield = building as Building_Shield;
+                var shield = building as Building_Shield;
                 var generator = shield.GetComp<Comp_ShieldGenerator>();
                 bool isActive = generator.IsActive();
                 if (!isActive)
@@ -61,10 +61,10 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-                int fieldRadius = (int) generator.FieldRadius_Active();
-		int fieldRadiusSq = fieldRadius * fieldRadius;
+                int fieldRadius = (int)generator.FieldRadius_Active();
+                int fieldRadiusSq = fieldRadius * fieldRadius;
                 float DistanceSq = projectile.Position.DistanceToSquared(shield.Position) - fieldRadiusSq;
-		float originDistanceSq = origin.DistanceToSquared(shield.Position) - fieldRadiusSq;
+                float originDistanceSq = origin.DistanceToSquared(shield.Position) - fieldRadiusSq;
                 if (DistanceSq > 0)
                 {
                     continue;
@@ -85,11 +85,10 @@ namespace CombatExtended.Compatibility
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
 
                     generator.FieldIntegrity_Current -= damage;
-		    
-                    exactPosition = getExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius-1) * (fieldRadius-1));
-		    MoteMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
-		    projectile.ExactPosition = exactPosition;
 
+                    exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
+                    FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    projectile.ExactPosition = exactPosition;
                     return true;
                 }
             }
@@ -109,51 +108,38 @@ namespace CombatExtended.Compatibility
             {
                 var shield = building as Building_Shield;
                 var generator = shield.GetComp<Comp_ShieldGenerator>();
-                bool isActive = (bool) generator.IsActive();
+                bool isActive = (bool)generator.IsActive();
                 if (!isActive)
                 {
                     continue;
                 }
-                bool blockIndirect = (bool) generator.BlockIndirect_Active();
+                bool blockIndirect = (bool)generator.BlockIndirect_Active();
                 if (!blockIndirect)
                 {
                     continue;
                 }
-                int fieldRadius = (int) generator.FieldRadius_Active();
-		int fieldRadiusSq = fieldRadius * fieldRadius;
+                int fieldRadius = (int)generator.FieldRadius_Active();
+                int fieldRadiusSq = fieldRadius * fieldRadius;
                 float DistanceSq = projectile.Position.DistanceToSquared(shield.Position) - fieldRadiusSq;
                 if (DistanceSq > 0)
                 {
                     continue;
                 }
                 HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-                MoteMaker.ThrowLightningGlow(destination, map, 0.5f);
+                FleckMaker.ThrowLightningGlow(destination, map, 0.5f);
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
-		generator.FieldIntegrity_Current -= damage;
+                generator.FieldIntegrity_Current -= damage;
                 return true;
             }
             return false;
         }
 
-        private static Vector3 getExactPosition(Vector3 origin, Vector3 curPosition, Vector3 shieldPosition, float radiusSq)
-        {
-  	    Vector3 velocity = curPosition - origin;
-
-	    double a = velocity.sqrMagnitude;
-	    double b = 2 * (velocity.x * (origin.x - shieldPosition.x) + velocity.z * (origin.z - shieldPosition.z));
-	    double c = (shieldPosition - origin).sqrMagnitude - radiusSq;
-	    double det = b*b - 4 * a * c;
-	    if (det < 0) {
-	      return curPosition;
-	    }
-	    float scalar  = (float) (2 * c / (-b + Math.Sqrt(det)));
-	    return velocity * scalar + origin;
-        }
 
         public static void getShields(Map map)
         {
             int thisTick = Find.TickManager.TicksAbs;
-            if (lastCacheTick != thisTick || lastCacheMap != map) {
+            if (lastCacheTick != thisTick || lastCacheMap != map)
+            {
                 List<Building> buildings = map.listerBuildings.allBuildingsColonist;
                 shields = buildings.Where(b => b is Building_Shield).ToList();
                 lastCacheTick = thisTick;

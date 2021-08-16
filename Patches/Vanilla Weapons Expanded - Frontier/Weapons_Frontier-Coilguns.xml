@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	  <Operation Class="PatchOperationFindMod">
+        <mods>
+          <li>Vanilla Weapons Expanded - Frontier</li>
+        </mods>
+    <match Class="PatchOperationFindMod">
+        <mods>
+          <li>Vanilla Weapons Expanded - Coilguns</li>
+        </mods>
+        
+      <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- === Tools === -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWEFT_Gun_GaussRevolver"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>grip</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VWEFT_Gun_GaussRepeater"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- === Gauss Revolver === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEFT_Gun_GaussRevolver</defName>
+        <statBases>
+          <Mass>1.45</Mass>
+          <Bulk>2.50</Bulk>
+          <SwayFactor>1.32</SwayFactor>
+          <ShotSpread>0.17</ShotSpread>
+          <SightsEfficiency>0.70</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.51</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_CoilGun_Magnum</defaultProjectile>
+          <warmupTime>0.8</warmupTime>
+          <range>15</range>
+          <soundCast>VWE_Shot_GaussMagnum</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>6</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>0.95</reloadTime>
+          <ammoSet>AmmoSet_GaussRevolver_HR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>FrontierCoilguns</li>
+        </weaponTags>
+      </li>
+
+      <!-- === Gauss Repeater === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VWEFT_Gun_GaussRepeater</defName>
+        <statBases>
+          <Mass>4.3</Mass>
+          <Bulk>10.0</Bulk>
+          <SwayFactor>1.30</SwayFactor>
+          <ShotSpread>0.07</ShotSpread>
+          <SightsEfficiency>1.00</SightsEfficiency>
+          <RangedWeapon_Cooldown>0.77</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_CoilGun_Rifle</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>48</range>
+          <soundCast>VWE_Shot_GaussRifle</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>12</magazineSize>
+					<reloadOneAtATime>true</reloadOneAtATime>
+					<reloadTime>1</reloadTime>          
+          <ammoSet>AmmoSet_GaussRepeater_HR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aiUseBurstMode>True</aiUseBurstMode>         
+        </FireModes>
+        <weaponTags>
+          <li>FrontierCoilguns</li>
+        </weaponTags>
+      </li>
+
+			</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
+

@@ -14,8 +14,7 @@ namespace CombatExtended.HarmonyCE
     {
         private static bool RenderSpecial(ApparelLayerDef layer)
         {
-            return (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
-                   || layer.drawOrder > ApparelLayerDefOf.Shell.drawOrder;
+            return (layer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false) || layer.drawOrder > ApparelLayerDefOf.Shell.drawOrder;
         }
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

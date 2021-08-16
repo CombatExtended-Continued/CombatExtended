@@ -79,17 +79,6 @@
 							<armorPenetrationBlunt>0.456</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
-							<label>venom fangs</label>
-							<capacities>
-								<li>ToxicBite</li>
-							</capacities>
-							<power>7</power>
-							<cooldownTime>1.4</cooldownTime>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationSharp>1.52</armorPenetrationSharp>
-							<armorPenetrationBlunt>2.278</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
 							<label>snake tail</label>
 							<capacities>
 								<li>Blunt</li>
@@ -99,10 +88,40 @@
 							<linkedBodyPartsGroup>tail</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>1.094</armorPenetrationBlunt>
 						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>fangs</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.4</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.52</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.278</armorPenetrationBlunt>
+						</li>
 					</tools>
 				</value>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Hediff_VenomGlands"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>venom fangs</label>
+							<capacities>
+								<li>ToxicBite</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.4</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.52</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.278</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
 
 			
 			<!--Venom immunity to make social fights less lethal-->

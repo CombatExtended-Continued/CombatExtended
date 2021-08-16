@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Epona Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!--========= Stuffable =========-->
+			
+			<!--Shirt-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaShirt" or 
+				defName="Apparel_EponaShirtNoSleeves" or 
+				defName="Apparel_EponaThighSocks" or 
+				defName="Apparel_EponaThighSocksSkirt"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!--Beret-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaHelmetBeret"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!--Shirt-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaRibbonRed" or 
+				defName="Apparel_EponaRibbonBlue" or 
+				defName="Apparel_EponaHairbandMaid"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!--Barding-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaCoatBardPlain" or 
+				defName="Apparel_EponaCoatBardBavaria" or 
+				defName="Apparel_EponaCoatBardQuarter" or 
+				defName="Apparel_EponaCoatBardCross" or 
+				defName="Apparel_EponaCoatBardFleur" or 
+				defName="Apparel_EponaCoatBardStripes" or 
+				defName="Apparel_EponaCoatBardEagle" or 
+				defName="Apparel_EponaCoatBardLion" or 
+				defName="Apparel_EponaCoatBardClover" or 
+				defName="Apparel_EponaCoatBardDiamond" or 
+				defName="Apparel_EponaCoatBardHeart" or 
+				defName="Apparel_EponaCoatBardSpade"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					<Bulk>12.5</Bulk>
+					<WornBulk>4</WornBulk>
+				</value>
+			</li>
+			
+			<!--Maid Coat-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaCoatMaid"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+					<Bulk>7.5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Buff Coat-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaCoatBuff"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>7.5</StuffEffectMultiplierArmor>
+					<Bulk>12.5</Bulk>
+					<WornBulk>4</WornBulk>
+				</value>
+			</li>
+			
+			<!--Robe-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaRobeArctic"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>7.5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<!--Cloak-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaRobeCloak"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Breastplate-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaArmorBreastplate"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>3</WornBulk>
+				</value>
+			</li>
+			
+			<!--Full Plate-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaArmorFullPlate"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.7</StuffEffectMultiplierArmor>
+					<Bulk>100</Bulk>
+					<WornBulk>8</WornBulk>
+				</value>
+			</li>
+			
+			<!--Plate Leggings-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaThighGreaves"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Plate Helmets-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaHelmetLobster"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>0.5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaHelmetBurgonet"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4.5</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaHelmetArmet"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>3</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+			
+			<!--Metallic Armor Adjustments-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaHelmetArmet" or
+				defName="Apparel_EponaHelmetBurgonet" or
+				defName="Apparel_EponaHelmetLobster" or
+				defName="Apparel_EponaThighGreaves" or
+				defName="Apparel_EponaArmorFullPlate" or
+				defName="Apparel_EponaArmorBreastplate"
+				]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+					  <li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				defName="Apparel_EponaHelmetArmet" or
+				defName="Apparel_EponaHelmetBurgonet" or
+				defName="Apparel_EponaThighGreaves" or
+				defName="Apparel_EponaArmorFullPlate" or
+				defName="Apparel_EponaArmorBreastplate"
+				]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<!--========= Fixed Armor Value =========-->
+			
+			<!--Royalrobe-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaRobeRoyalRed" or 
+				defName="Apparel_EponaRobeRoyalBlue"
+				]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaRobeRoyalRed" or 
+				defName="Apparel_EponaRobeRoyalBlue"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaRobeRoyalRed" or 
+				defName="Apparel_EponaRobeRoyalBlue"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--EVA Coat-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitRobe"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitRobe"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>5</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitRobe"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--EVA-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaEVASuit"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>15</WornBulk>
+					<Mass>50</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaEVASuit"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaEVASuit"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>45</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaEVASuit"]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+					<CarryWeight>80</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<MoveSpeed>-0.8</MoveSpeed>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaEVASuit"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>50</DevilstrandCloth>
+				</value>
+			</li>
+			
+			<!--EVA Helmet-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>36</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+					<AimingAccuracy>0.15</AimingAccuracy>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_EponaSpaceSuitHelmet"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>20</DevilstrandCloth>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

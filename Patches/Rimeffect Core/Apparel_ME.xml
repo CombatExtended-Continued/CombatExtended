@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RE_Apparel_AllianceOfficerHat"]/apparel/layers</xpath>
+    <value>
+		<layers Inherit="false">
+			<li>Overhead</li>
+			<li>MiddleHead</li>
+		</layers>
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RE_Apparel_Fatigues"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>	  
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Apparel_AllianceDressJacket"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>1</WornBulk>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
+		</value>
+ </li>
+
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Apparel_AllianceDressJacket"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+		</value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Apparel_FormalShirt"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>40</costStuffCount>
+		</value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RE_Apparel_FormalShirt"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>	  
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RE_Apparel_FormalJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <Bulk>3</Bulk>
+		  <WornBulk>1</WornBulk>
+		  <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>	  
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RE_Apparel_BattleUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<WornBulk>2</WornBulk>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+		</value>
+ </li>
+
+ <li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RE_Apparel_BattleUniform"]/statBases</xpath>
+		<value>
+			<ArmorRating_Blunt>0.4</ArmorRating_Blunt>
+		</value>
+ </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

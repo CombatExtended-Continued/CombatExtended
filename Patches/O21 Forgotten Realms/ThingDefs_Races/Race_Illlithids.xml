@@ -7,108 +7,109 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]</xpath>
-					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>1</baseBodySize>
+				</value>
+			</li>
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/statBases</xpath>
+				<value>
+					<NightVisionEfficiency>0.6</NightVisionEfficiency>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<SmokeSensitivity>1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 						</li>
-					</value>
-				</li>
-
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/comps</xpath>
-							<success>Invert</success>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]</xpath>
-							<value>
-								<comps />
-							</value>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>4.96</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.938</armorPenetrationBlunt>
 						</li>
-					</operations>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/race/baseBodySize</xpath>
-					<value>
-						<baseBodySize>1</baseBodySize>
-					</value>
-				</li>
-
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/statBases</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<SmokeSensitivity>1</SmokeSensitivity>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>1.5</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right fist</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>1.5</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>3</power>
-								<cooldownTime>4.96</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>0.938</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<capacities>
-									<li>Bite</li>
-								</capacities>
-								<power>3</power>
-								<cooldownTime>1.57</cooldownTime>
-								<chanceFactor>0.33</chanceFactor>
-								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.03</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_Alien_Illithid"]/comps</xpath>
-					<value>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.57</cooldownTime>
+							<chanceFactor>0.33</chanceFactor>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.03</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
-				</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Illithid"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
 
 			</operations>
 		</match>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Japanese Dogs</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+	    <!-- === bodyShape === -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="Poetik_Shiba" or 
+          defName="Poetik_Kai" or 
+          defName="Poetik_Hokkaido" or 
+          defName="Poetik_Kishu" or 
+          defName="Poetik_Shikoku" or 
+          defName="Poetik_AkitaJapanese"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+		
+      <!-- === Shiba and Kai === -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Poetik_Shiba" or defName="Poetik_Kai"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.25</MeleeDodgeChance>
+          <MeleeCritChance>0.04</MeleeCritChance>
+          <MeleeParryChance>0.01</MeleeParryChance>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[ defName="Poetik_Shiba" or defName="Poetik_Kai"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>0.3</baseHealthScale>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="Poetik_Shiba" or defName="Poetik_Kai"]/combatPower</xpath>
+        <value>
+          <combatPower>30</combatPower>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Poetik_Shiba" ordefName="Poetik_Kai"]/tools</xpath>
+        <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>left claw</label>
+            <capacities>
+              <li>Scratch</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>0.62</cooldownTime>
+            <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0.03</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.21</armorPenetrationBlunt>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>right claw</label>
+            <capacities>
+              <li>Scratch</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>0.62</cooldownTime>
+            <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0.03</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.21</armorPenetrationBlunt>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <capacities>
+              <li>Bite</li>
+            </capacities>
+            <power>6</power>
+            <cooldownTime>1.66</cooldownTime>
+            <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0.1</armorPenetrationSharp>
+            <armorPenetrationBlunt>2.1</armorPenetrationBlunt>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>1</power>
+            <cooldownTime>1.76</cooldownTime>
+            <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <chanceFactor>0.2</chanceFactor>
+            <armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+          </li>
+        </tools>
+        </value>
+      </li>
+
+        <!-- === Hokkaido === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Poetik_Hokkaido"]/statBases</xpath>
+          <value>
+            <MeleeDodgeChance>0.24</MeleeDodgeChance>
+            <MeleeCritChance>0.05</MeleeCritChance>
+			      <MeleeParryChance>0.01</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_Hokkaido"]/race/baseHealthScale</xpath>
+          <value>
+            <baseHealthScale>0.4</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/PawnKindDef[defName="Poetik_Hokkaido"]/combatPower</xpath>
+          <value>
+            <combatPower>40</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_Hokkaido"]/tools</xpath>
+          <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>0.69</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.24</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>0.69</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.24</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>7</power>
+              <cooldownTime>1.66</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.1</armorPenetrationSharp>
+              <armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.72</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.12</armorPenetrationBlunt>
+            </li>
+          </tools>
+          </value>
+        </li>
+
+        <!-- === Kishu and Shikoku === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Poetik_Kishu" ordefName="Poetik_Shikoku"]/statBases</xpath>
+          <value>
+            <MeleeDodgeChance>0.19</MeleeDodgeChance>
+            <MeleeCritChance>0.05</MeleeCritChance>
+			      <MeleeParryChance>0.03</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_Kishu" or defName="Poetik_Shikoku"]/race/baseHealthScale</xpath>
+          <value>
+            <baseHealthScale>0.6</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/PawnKindDef[defName="Poetik_Kishu" ordefName="Poetik_Shikoku"]/combatPower</xpath>
+          <value>
+            <combatPower>50</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_Kishu" ordefName="Poetik_Shikoku"]/tools</xpath>
+          <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>6</power>
+              <cooldownTime>0.86</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.28</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>6</power>
+              <cooldownTime>0.86</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.03</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.28</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.77</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.1</armorPenetrationSharp>
+              <armorPenetrationBlunt>2.8</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.72</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+            </li>
+          </tools>
+          </value>
+        </li>
+		
+        <!-- === Akita === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Poetik_AkitaJapanese"]/statBases</xpath>
+          <value>
+            <MeleeDodgeChance>0.24</MeleeDodgeChance>
+            <MeleeCritChance>0.05</MeleeCritChance>
+			      <MeleeParryChance>0.04</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_AkitaJapanese"]/race/baseHealthScale</xpath>
+          <value>
+            <baseHealthScale>0.85</baseHealthScale>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/PawnKindDef[defName="Poetik_AkitaJapanese"]/combatPower</xpath>
+          <value>
+            <combatPower>65</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Poetik_AkitaJapanese"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>0.72</cooldownTime>
+                <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.05</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.42</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right claw</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>0.72</cooldownTime>
+                <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.05</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.42</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Bite</li>
+                </capacities>
+                <power>18</power>
+                <cooldownTime>1.51</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.12</armorPenetrationSharp>
+                <armorPenetrationBlunt>3.1</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.24</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

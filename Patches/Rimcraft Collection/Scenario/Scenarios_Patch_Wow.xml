@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[Ry]Rimcraft Scenarios</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Add ammo to scenario === -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ScenarioDef[defName="AllianceScenario"
+		               or defName="BloodElfScenario"
+		               or defName="DraeneiScenario"
+		               or defName="ForsakenScenario"
+		               or defName="HighElfScenario"
+		               or defName="HordeScenario"
+		               or defName="DwarfScenario"
+		               or defName="NightElfScenario"
+		               or defName="TrollScenario"]/scenario/parts</xpath>
+
+          	<value>
+			<li Class="ScenPart_StartingThing_Defined">
+			  <def>StartingThing_Defined</def>
+			  <thingDef>Ammo_Arrow_Steel</thingDef>
+			  <count>120</count>
+			</li>
+	</value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
+

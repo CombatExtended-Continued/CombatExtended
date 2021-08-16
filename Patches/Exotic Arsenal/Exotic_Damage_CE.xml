@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Exotic Arsenal</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Hard_Burn"]/injuryProps/painPerSeverity</xpath>
+		<value>
+			<painPerSeverity>0.025</painPerSeverity>
+  		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="Energy_Burn"]/injuryProps/painPerSeverity</xpath>
+		<value>
+			<painPerSeverity>0.025</painPerSeverity>
+  		</value>
+	</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+   <DamageDef Name="Gauss">
+    <defName>UnleashedCE</defName>
+    <label>charge blaster shot</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
+    <deathMessage>{0} has died in an explosion.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Electric</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <minDamageToFragment>15</minDamageToFragment>
+    <defaultDamage>200</defaultDamage>
+    <defaultStoppingPower>1</defaultStoppingPower>
+    <defaultArmorPenetration>96</defaultArmorPenetration>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellMote>UnleashedMote</explosionCellMote>
+    <soundExplosion>Explosion_EMP</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
+  </DamageDef>
+
+		</value>
+		</li>
+					
+				</operations>
+			</match>
+	</Operation>
+</Patch>

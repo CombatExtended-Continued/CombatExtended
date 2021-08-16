@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Weapons Expanded - Frontier</li>
+	</mods>
+
+	<match Class="PatchOperationSequence">
+	<operations>
+
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Quickdraw</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_41RimfireHR</defName>
+		<label>.41 Rimfire</label>
+		<ammoTypes>
+			<Ammo_41Rimfire_FMJ>Bullet_41RimfireHR_FMJ</Ammo_41Rimfire_FMJ>
+			<Ammo_41Rimfire_AP>Bullet_41RimfireHR_AP</Ammo_41Rimfire_AP>
+			<Ammo_41Rimfire_HP>Bullet_41RimfireHR_HP</Ammo_41Rimfire_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_FMJ</defName>
+		<label>.41 Rimfire bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>6</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>6</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_AP</defName>
+		<label>.41 Rimfire bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>4</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>4</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base41RimfireBullet">
+		<defName>Bullet_41RimfireHR_HP</defName>
+		<label>.41 Rimfire bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>1</armorPenetrationSharp>
+			<armorPenetrationBlunt>1.36</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>7</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	</value>
+	</match>
+	</li>
+
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Coilguns</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GaussRevolver_HR</defName>
+		<label>Gauss Revolver</label>
+		<ammoTypes>
+			<Ammo_6mmRailgun_Sabot>Bullet_GaussRevolver_HR</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_GaussRepeater_HR</defName>
+		<label>Gauss Repeater</label>
+		<ammoTypes>
+			<Ammo_6mmRailgun_Sabot>Bullet_GaussRepeater_HR</Ammo_6mmRailgun_Sabot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRevolver_HR</defName>
+		<label>Gauss revolver slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationSharp>22.2</armorPenetrationSharp>
+			<armorPenetrationBlunt>115.42</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>14</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>   
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE"  ParentName="BaseLaserBullet">
+		<defName>Bullet_GaussRepeater_HR</defName>
+		<label>Gauss repeater slug</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<isInstant>true</isInstant>
+			<damageFalloff>False</damageFalloff>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>35.1</armorPenetrationSharp>
+			<armorPenetrationBlunt>190.8</armorPenetrationBlunt>
+			<secondaryDamage>
+			<li>
+			<def>Bullet</def>
+			<amount>16</amount>
+			<chance>0.10</chance>
+			</li>
+			</secondaryDamage>			  
+		</projectile>    		
+	</ThingDef>
+
+	</value>
+	</match>
+	</li>
+
+	<li Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Laser</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserRevolver_HR</defName>
+		<label>Salvaged Laser Revolver</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserRevolver_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserRepeater_HR</defName>
+		<label>Salvaged Laser Repeater</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserRepeater_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_SalvagedLaserHuntingRifle_HR</defName>
+		<label>Salvaged Laser Hunting Rifle</label>
+		<ammoTypes>
+			<Ammo_LaserChargePack>Bullet_Laser_SalvagedLaserHuntingRifle_HR</Ammo_LaserChargePack>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_Laser_SalvagedLaserRevolver_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>12</damageAmountBase>
+            <armorPenetrationSharp>15.5</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>12</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_Laser_SalvagedLaserRepeater_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>20</damageAmountBase>
+            <armorPenetrationSharp>16.75</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>20</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletGreen">
+		<defName>Bullet_Laser_SalvagedLaserHuntingRifle_HR</defName>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>24</damageAmountBase>
+            <armorPenetrationSharp>18.75</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bullet</def>
+				<amount>24</amount>
+				<chance>0.10</chance>
+				</li>
+			</secondaryDamage>			
+		</projectile>
+	</ThingDef>
+
+	</value>
+	</match>	
+	</li>
+
+		</operations>
+	</match>
+</Operation>
+</Patch>

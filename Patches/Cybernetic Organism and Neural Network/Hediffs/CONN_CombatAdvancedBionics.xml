@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Cybernetic Organism and Neural Network</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Robotic eye -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_IndependentEye"]/stages/li</xpath>
+					<value>
+						<statOffsets>
+							<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+						</statOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="ANN_IndependentEye"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+					</value>
+				</li>
+
+				<!-- Outer blade -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_OuterBlade"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<statOffsets>
+									<MeleeDodgeChance>0.4</MeleeDodgeChance>
+									<MeleeCritChance>0.14</MeleeCritChance>
+									<MeleeParryChance>0.4</MeleeParryChance>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_OuterBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>blade</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>32</power>
+								<cooldownTime>0.83</cooldownTime>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Power arm -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_PowerArms"]/stages</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_PowerArms"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>fist</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- Exoskeleton armor -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_ExoskeletonArmor"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<statOffsets>
+									<CONN_HealthPointAddedToPart>80</CONN_HealthPointAddedToPart>
+									<ArmorRating_Blunt>4</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.1</ArmorRating_Heat>
+									<ArmorRating_Sharp>2</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+				<!-- Dermalplating -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_Dermalplating"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<statOffsets>
+									<CONN_HealthPointAddedToPart>50</CONN_HealthPointAddedToPart>
+									<ArmorRating_Blunt>8</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.2</ArmorRating_Heat>
+									<ArmorRating_Sharp>4</ArmorRating_Sharp>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+				<!-- Lionheart -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="Trunken_hediff_Lionheart"]/stages/li/statOffsets/MeleeDodgeChance</xpath>
+					<value>
+						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

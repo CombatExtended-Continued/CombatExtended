@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medical System Expansion 2</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- == Combat modules == -->
+				<!-- Ranged platform module -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="RangedPlatformModule"]/stages/li/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<AimingAccuracy>0.25</AimingAccuracy>
+							<ReloadSpeed>0.25</ReloadSpeed>
+							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+						</statOffsets>
+					</value>
+				</li>
+				<!-- Melee platform module -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MeleePlatformModule"]/stages/li/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<MeleeDodgeChance>0.24</MeleeDodgeChance>
+							<MeleeHitChance>4</MeleeHitChance>
+							<MeleeParryChance>0.16</MeleeParryChance>
+							<MeleeCritChance>0.16</MeleeCritChance>
+						</statOffsets>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -10,6 +10,20 @@
     <hediffSolid>CrackBeanbag</hediffSolid>
   </DamageDef>
 
+	<DamageDef ParentName="CutBase">
+		<defName>Taser</defName>
+		<label>taser</label>
+		<deathMessage>{0} has been tasered to death.</deathMessage>
+		<hediff>MuscleSpasms</hediff>
+		<hediffSkin>TaserStab</hediffSkin>
+		<hediffSolid>TaserStab</hediffSolid>
+		<modExtensions>		
+		<li Class="CombatExtended.DamageDefExtensionCE">
+			<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+		</li>	
+		</modExtensions>					
+	</DamageDef>
+
   <DamageDef ParentName="Bullet">
     <defName>Fragment</defName>
     <label>fragment</label>
@@ -75,9 +89,9 @@
     <buildingDamageFactor>0</buildingDamageFactor>
     <explosionAffectOutsidePartsOnly>true</explosionAffectOutsidePartsOnly>
     <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
-    <explosionCellMote>Mote_BlastEMP</explosionCellMote>
+    <explosionCellFleck>BlastEMP</explosionCellFleck>
     <explosionColorEdge>(0.8, 0.8, 0.8, 0.8)</explosionColorEdge>
-    <explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
+    <explosionInteriorFleck>ElectricalSpark</explosionInteriorFleck>
     <soundExplosion>Explosion_EMP</soundExplosion>
     <combatLogRules>Damage_EMP</combatLogRules>
     <modExtensions>

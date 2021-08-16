@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Xenohumans - Anthromorphs</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]</xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Humanoid</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]/statBases</xpath>
+          <value>
+            <MeleeDodgeChance>1</MeleeDodgeChance>
+            <MeleeCritChance>1</MeleeCritChance>
+            <MeleeParryChance>1</MeleeParryChance>
+            <Suppressability>1</Suppressability>
+            <SmokeSensitivity>1</SmokeSensitivity>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <success>Always</success>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right fist</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>4.49</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <success>Always</success>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATK_Dragomorph"]/comps</xpath>
+          <value>
+            <li>
+              <compClass>CombatExtended.CompPawnGizmo</compClass>
+            </li>
+            <li Class="CombatExtended.CompProperties_Suppressable" />
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ATK_Leather_Dragon"]/statBases/StuffPower_Armor_Sharp</xpath>
+          <value>
+            <StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="ATK_Villager_Dragomorph"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+              <min>2</min>
+              <max>4</max>
+            </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -12,9 +12,13 @@
     </weaponTags>
     <tradeability>None</tradeability>
     <destroyOnDrop>True</destroyOnDrop>
-    <menuHidden>True</menuHidden>
     <generateAllowChance>0</generateAllowChance>
     <smeltable>false</smeltable>
+    <modExtensions>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <ThingDef Name="BaseAutoTurretGun" ParentName="BaseTurretGun" Abstract="True">
@@ -85,7 +89,7 @@
       <MarketValue>2000</MarketValue>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
-      <SwayFactor>1.69</SwayFactor>
+      <SwayFactor>0.98</SwayFactor>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
@@ -109,6 +113,103 @@
         <magazineSize>40</magazineSize>
         <reloadTime>7.8</reloadTime>
         <ammoSet>AmmoSet_145x114mm</ammoSet>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ================== Autocannon Turret ================== -->
+
+  <ThingDef ParentName="BaseTurretGun">
+    <defName>Gun_AutocannonTurret</defName>
+    <label>autocannon turret</label>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretAutocannon_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <description>An automated heavy machine gun designed to be mounted on a turret, effective against infantry and light vehicles.</description>
+    <statBases>
+      <MarketValue>2000</MarketValue>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.2</ShotSpread>
+      <SwayFactor>1.61</SwayFactor>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>1.67</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+        <warmupTime>4.3</warmupTime>
+        <range>78</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
+        <soundCast>HeavyMG</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>16</muzzleFlashScale>
+        <recoilPattern>Mounted</recoilPattern>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>80</magazineSize>
+        <reloadTime>7.8</reloadTime>
+        <ammoSet>AmmoSet_20x110mmHispano</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiAimMode>AimedShot</aiAimMode>
+        <noSnapshot>true</noSnapshot>
+        <noSingleShot>true</noSingleShot>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ================== Sniper turret ================== -->
+
+  <ThingDef ParentName="BaseTurretGun">
+    <defName>Gun_TurretSniper</defName>
+    <label>flak turret</label>
+    <description>A self-loading heavy cannon designed to attach to a turret.</description>
+    <soundInteract>Artillery_ShellLoaded</soundInteract>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretSniper_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>2000</MarketValue>
+      <SightsEfficiency>2.3</SightsEfficiency>
+      <ShotSpread>0.01</ShotSpread>
+      <SwayFactor>1.14</SwayFactor>
+      <RangedWeapon_Cooldown>10.7</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_90mmCannonShell_HEAT</defaultProjectile>
+        <warmupTime>6.55</warmupTime>
+        <minRange>16</minRange>
+        <range>86</range>
+        <burstShotCount/>
+        <soundCast>120mm</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>20</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <recoilPattern>Mounted</recoilPattern>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>3</magazineSize>
+        <reloadTime>9.8</reloadTime>
+        <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+      </li>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiAimMode>AimedShot</aiAimMode>
+        <noSnapshot>true</noSnapshot>
       </li>
     </comps>
   </ThingDef>
@@ -210,11 +311,11 @@
   <ThingDef ParentName="BaseTurretGun">
     <defName>Gun_FlakTurret</defName>
     <label>Flak gun</label>
+    <description>90mm Flak cannon on a stationary emplacement.</description>
     <graphicData>
       <texPath>Things/Building/Turrets/FlakTurret_Top</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <description>90mm Flak cannon on a stationary emplacement.</description>
     <soundInteract>Artillery_ShellLoaded</soundInteract>
     <statBases>
       <MarketValue>2000</MarketValue>
@@ -231,7 +332,7 @@
         <warmupTime>4.55</warmupTime>
         <minRange>16</minRange>
         <range>86</range>
-        <burstShotCount />
+        <burstShotCount/>
         <soundCast>120mm</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>20</muzzleFlashScale>

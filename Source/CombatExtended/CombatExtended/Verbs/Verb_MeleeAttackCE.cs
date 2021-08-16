@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,7 +22,6 @@ namespace CombatExtended
     {
         #region Constants
 
-        private const int TargetCooldown = 50;
         private const float DefaultHitChance = 0.6f;
         private const float ShieldBlockChance = 0.75f;   // If we have a shield equipped, this is the chance a parry will be a shield block
         private const int KnockdownDuration = 120;   // Animal knockdown lasts for this long
@@ -65,7 +64,7 @@ namespace CombatExtended
         /// Performs the actual melee attack part. Awards XP, calculates and applies whether an attack connected and the outcome.
         /// </summary>
         /// <returns>True if the attack connected, false otherwise</returns>
-        protected override bool TryCastShot()
+        public override bool TryCastShot()
         {
             Pawn casterPawn = CasterPawn;
             if (casterPawn.stances.FullBodyBusy)
@@ -249,8 +248,9 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
             DamageDef def = damDef;
             //END 1:1 COPY
-            BodyPartHeight bodyRegion = GetBodyPartHeightFor(target);   //Custom // Add check for body height
-            //START 1:1 COPY
+            BodyPartHeight bodyRegion = BodyPartHeight.Undefined; //Alistaire: The GetBodyPartHeightFor code is completely broken and targets Bottom some 90% of the time! Therefore easiest fix to set to Vanilla (Undefined)
+                                                                  //GetBodyPartHeightFor(target);   //Custom // Add check for body height
+                                                                  //START 1:1 COPY
             DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
 
             // Predators get a neck bite on immobile targets
@@ -261,7 +261,7 @@ namespace CombatExtended
                 damageInfo.SetHitPart(neck);
             }
 
-            damageInfo.SetBodyRegion(bodyRegion);
+            damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
@@ -317,23 +317,10 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Checks whether a target can move. Immobile targets include anything that's not a pawn and pawns that are lying down/incapacitated.
-        /// Immobile targets don't award XP, nor do they benefit from dodge/parry and attacks against them always crit.
-        /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
-		private bool IsTargetImmobile(LocalTargetInfo target)
-        {
-            Thing thing = target.Thing;
-            Pawn pawn = thing as Pawn;
-            return thing.def.category != ThingCategory.Pawn || pawn.Downed || pawn.GetPosture() != PawnPosture.Standing || pawn.stances.stunner.Stunned;    // Added check for stunned
-        }
-
-        /// <summary>
         /// Applies all DamageInfosToApply to the target. Increases damage on critical hits.
         /// </summary>
         /// <param name="target">Target to apply damage to</param>
-		protected override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
+        public override DamageWorker.DamageResult ApplyMeleeDamageToTarget(LocalTargetInfo target)
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             IEnumerable<DamageInfo> damageInfosToApply = DamageInfosToApply(target, isCrit);
@@ -435,10 +422,11 @@ namespace CombatExtended
                         sound = verb.SoundHitPawn();
                     }
                 }
-                sound?.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+                // Held, because the caster may have died and despawned
+                sound?.PlayOneShot(new TargetInfo(caster.PositionHeld, caster.MapHeld));
             }
             // Register with parry tracker
-            ParryTracker tracker = defender.Map?.GetComponent<ParryTracker>();
+            ParryTracker tracker = defender.MapHeld?.GetComponent<ParryTracker>();
             if (tracker == null)
             {
                 Log.Error("CE failed to find ParryTracker to register pawn " + defender.ToString());
@@ -447,80 +435,6 @@ namespace CombatExtended
             {
                 tracker.RegisterParryFor(defender, verbProps.AdjustedCooldownTicks(this, defender));
             }
-        }
-
-        /// <summary>
-        /// Selects a random BodyPartHeight out of the ones our CasterPawn can hit, depending on our body size vs the target's. So a rabbit can hit top height of another rabbit, but not of a human.
-        /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
-        private BodyPartHeight GetBodyPartHeightFor(LocalTargetInfo target)
-        {
-            Pawn pawn = target.Thing as Pawn;
-            if (pawn == null || CasterPawn == null) return BodyPartHeight.Undefined;
-            var casterReach = new CollisionVertical(CasterPawn).Max * 1.2f;
-            var targetHeight = new CollisionVertical(pawn);
-            BodyPartHeight maxHeight = targetHeight.GetRandWeightedBodyHeightBelow(casterReach);
-            BodyPartHeight height = (BodyPartHeight)Rand.RangeInclusive(1, (int)maxHeight);
-            return height;
-        }
-
-        // unmodified
-        private SoundDef SoundHitPawn()
-        {
-            if (EquipmentSource != null && EquipmentSource.Stuff != null)
-            {
-                if (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
-                {
-                    if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
-                    {
-                        return EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
-                    }
-                }
-                else if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
-                {
-                    return EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
-                }
-            }
-            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeHitPawn.NullOrUndefined())
-            {
-                return CasterPawn.def.race.soundMeleeHitPawn;
-            }
-            return SoundDefOf.Pawn_Melee_Punch_HitPawn;
-        }
-
-        // unmodified
-        private SoundDef SoundHitBuilding()
-        {
-            if (EquipmentSource != null && EquipmentSource.Stuff != null)
-            {
-                if (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp)
-                {
-                    if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp.NullOrUndefined())
-                    {
-                        return EquipmentSource.Stuff.stuffProps.soundMeleeHitSharp;
-                    }
-                }
-                else if (!EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
-                {
-                    return EquipmentSource.Stuff.stuffProps.soundMeleeHitBlunt;
-                }
-            }
-            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeHitBuilding.NullOrUndefined())
-            {
-                return CasterPawn.def.race.soundMeleeHitBuilding;
-            }
-            return SoundDefOf.Pawn_Melee_Punch_HitBuilding;
-        }
-
-        // unmodified
-        private SoundDef SoundMiss()
-        {
-            if (CasterPawn != null && !CasterPawn.def.race.soundMeleeMiss.NullOrUndefined())
-            {
-                return CasterPawn.def.race.soundMeleeMiss;
-            }
-            return SoundDefOf.Pawn_Melee_Punch_Miss;
         }
 
         private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)

@@ -43,31 +43,32 @@
 							<label>horn</label>
 							<capacities>
 								<li>Blunt</li>
+								<li>Poke</li>
 							</capacities>
-							<power>60</power>
-							<cooldownTime>2.5</cooldownTime>
+							<power>81</power>
+							<cooldownTime>2.48</cooldownTime>
 							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>40.226</armorPenetrationBlunt>	
+							<armorPenetrationBlunt>120.226</armorPenetrationBlunt>	
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>48</power>
+							<power>56</power>
 							<cooldownTime>2.0</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationSharp>16</armorPenetrationSharp>
-							<armorPenetrationBlunt>28</armorPenetrationBlunt>	
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>	
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>40</power>
+							<power>47</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>25</armorPenetrationBlunt>	
+							<armorPenetrationBlunt>45</armorPenetrationBlunt>	
 							<chanceFactor>0.1</chanceFactor>
 						</li>
 					</tools>
@@ -95,29 +96,27 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationConditional">
-				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]</xpath>
-						<value>
-							<comps>
-								<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
-									<hediffname>AA_LowBleed</hediffname>
-									<hediffseverity>1</hediffseverity>
-								</li>
-							</comps>
-						</value>
-				</nomatch>
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
-						<value>
-							<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
-								<hediffname>AA_LowBleed</hediffname>
-								<hediffseverity>1</hediffseverity>
-							</li>
-						</value>
-				</match>
-			</li>
+			<!-- Add Low Bleed Hediff -->
+
+		<li Class="PatchOperationConditional">
+	 	<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+          			<nomatch Class="PatchOperationAdd">
+            				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]</xpath>
+            				<value>
+              					<comps />
+            				</value>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
+			<value>
+				<li Class="AnimalBehaviours.CompProperties_InitialHediff">
+					<hediffname>AA_LowBleed</hediffname>
+					<hediffseverity>1</hediffseverity>
+				</li>
+			</value>
+		</li>
 
 			</operations>
 		</match>

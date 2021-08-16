@@ -33,7 +33,19 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Gun_PumpShotgun" or defName="Gun_ChainShotgun" or defName="Gun_BoltActionRifle" or defName="Gun_AssaultRifle" or defName="Gun_SniperRifle" or defName="Gun_HeavySMG" or defName="Gun_IncendiaryLauncher" or defName="Gun_LMG" or defName="Gun_ChargeRifle"]/tools</xpath>
+    <xpath>
+      Defs/ThingDef[
+        defName="Gun_PumpShotgun" or 
+        defName="Gun_ChainShotgun" or 
+        defName="Gun_BoltActionRifle" or 
+        defName="Gun_AssaultRifle" or 
+        defName="Gun_SniperRifle" or 
+        defName="Gun_HeavySMG" or 
+        defName="Gun_IncendiaryLauncher" or 
+        defName="Gun_LMG" or 
+        defName="Gun_ChargeRifle"
+      ]/tools
+    </xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -95,7 +107,7 @@
     <defName>Gun_Revolver</defName>
     <statBases>
       <Mass>1.39</Mass>
-      <RangedWeapon_Cooldown>0.42</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
       <SightsEfficiency>0.7</SightsEfficiency>
       <ShotSpread>0.18</ShotSpread>
       <SwayFactor>1.27</SwayFactor>
@@ -118,7 +130,7 @@
     </Properties>
     <AmmoUser>
       <magazineSize>6</magazineSize>
-      <reloadTime>3.5</reloadTime>
+      <reloadTime>4.6</reloadTime>
       <ammoSet>AmmoSet_44Magnum</ammoSet>
     </AmmoUser>
     <FireModes>
@@ -126,7 +138,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_Sidearm</li>
-      <li>CE_AI_Pistol</li>
+      <li>CE_AI_BROOM</li>
       <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -179,7 +191,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_Sidearm</li>
-      <li>CE_AI_Pistol</li>
+      <li>CE_AI_BROOM</li>
       <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
@@ -231,7 +243,7 @@
     </AmmoUser>
     <FireModes />
     <weaponTags>
-      <li>CE_AI_AssaultWeapon</li>
+      <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
   </Operation>
@@ -282,7 +294,7 @@
     </AmmoUser>
     <FireModes />
     <weaponTags>
-      <li>CE_AI_AssaultWeapon</li>
+      <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
   </Operation>
@@ -334,7 +346,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Rifle</li>
+      <li>CE_AI_SR</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
@@ -392,7 +404,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Rifle</li>
+      <li>CE_AI_AR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
   </Operation>
@@ -444,7 +456,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Rifle</li>
+      <li>CE_AI_SR</li>
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
@@ -501,7 +513,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_SMG</li>
-      <li>CE_AI_AssaultWeapon</li>
+      <li>CE_AI_BROOM</li>
       <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
@@ -541,7 +553,7 @@
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
       <warmupTime>0.6</warmupTime>
-      <range>15</range>
+      <range>25</range>
       <burstShotCount>6</burstShotCount>
       <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
       <soundCast>Shot_HeavySMG</soundCast>
@@ -559,7 +571,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_SMG</li>
-      <li>CE_AI_AssaultWeapon</li>
+      <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
   </Operation>
@@ -617,8 +629,7 @@
       <aiAimMode>SuppressFire</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Rifle</li>
-      <li>CE_AI_Launcher</li>
+      <li>CE_AI_AOE</li>
       <li>EliteGun</li>
     </weaponTags>
     <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
@@ -682,7 +693,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_MachineGun</li>
-      <li>CE_AI_Suppressive</li>
+      <li>CE_AI_LMG</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
@@ -741,7 +752,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Rifle</li>
+      <li>CE_AI_AR</li>
     </weaponTags>
     <researchPrerequisite>ChargedShot</researchPrerequisite>
   </Operation>
@@ -882,7 +893,15 @@
     <value>
       <tradeability>None</tradeability>
       <destroyOnDrop>True</destroyOnDrop>
-      <menuHidden>True</menuHidden>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_Minigun"]</xpath>
+    <value>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
     </value>
   </Operation>
 
@@ -990,7 +1009,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Launcher</li>
+      <li>CE_AI_AOE</li>
     </weaponTags>
     <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
@@ -1097,7 +1116,7 @@
       <noSingleShot>true</noSingleShot>
     </FireModes>
     <weaponTags>
-      <li>CE_AI_Launcher</li>
+      <li>CE_AI_AOE</li>
     </weaponTags>
     <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
@@ -1219,7 +1238,7 @@
     </weaponTags>
   </Operation>
 
-    <Operation Class="PatchOperationReplace">
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[@Name="Gun_InfernoCannonBase"]/tools</xpath>
     <value>
       <tools>
@@ -1247,6 +1266,73 @@
     </value>
   </Operation>
 
+  <!-- ========== Thump cannon ========== -->
+
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_ThumpCannon</defName>
+    <statBases>
+      <Mass>300.00</Mass>
+      <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.01</ShotSpread>
+      <SwayFactor>0.82</SwayFactor>
+      <Bulk>20.00</Bulk>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
+      <warmupTime>3.3</warmupTime>
+      <range>42</range>
+      <burstShotCount>1</burstShotCount>
+      <soundCast>ThumpCannon_Fire</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+      <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+      <minRange>4</minRange>
+      <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>9.8</reloadTime>
+      <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_Launcher</li>
+    </weaponTags>
+  </Operation>
+
+    <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_ThumpCannon"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>2.44</cooldownTime>
+          <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_ThumpCannon"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.95,1.95</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    </value>
+  </Operation>
+
   <!-- ========== Charge lance ========== -->
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -1256,7 +1342,7 @@
       <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
-      <SwayFactor>0.88</SwayFactor>
+      <SwayFactor>1</SwayFactor>
       <Bulk>13.00</Bulk>
     </statBases>
     <Properties>
@@ -1271,8 +1357,8 @@
       <muzzleFlashScale>9</muzzleFlashScale>
     </Properties>
     <AmmoUser>
-      <magazineSize>1</magazineSize>
-      <reloadTime>1.6</reloadTime>
+      <magazineSize>5</magazineSize>
+      <reloadTime>3</reloadTime>
       <ammoSet>AmmoSet_5x35mmCharged</ammoSet>
     </AmmoUser>
     <FireModes>
@@ -1308,17 +1394,13 @@
         <DrawSize>1.35,1.50</DrawSize>
         <DrawOffset>0.0,0.0</DrawOffset>
       </li>
+      <li Class="CombatExtended.ThingDefExtensionCE">
+        <MenuHidden>True</MenuHidden>
+      </li>
     </value>
   </Operation>
 
-  <!-- ========== Remove Needle Gun ========== -->
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="Gun_Needle"]</xpath>
-  </Operation>
-
   <!-- Disable for player -->
-
   <Operation Class="PatchOperationAttributeSet">
     <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
     <attribute>ParentName</attribute>
@@ -1345,14 +1427,6 @@
     <value>
       <tradeability>None</tradeability>
       <destroyOnDrop>True</destroyOnDrop>
-      <menuHidden>True</menuHidden>
-    </value>
-  </Operation>
-  
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Gun_InfernoCannon"]</xpath>
-    <value>
-      <destroyOnDrop>True</destroyOnDrop>
     </value>
   </Operation>
 
@@ -1360,12 +1434,18 @@
     <xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"SpacerGun")]</xpath>
   </Operation>
 
+  <!-- ========== Remove Needle Gun ========== -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_Needle"]</xpath>
+  </Operation>
+
   <!-- Increase Orbital Bombardment Range -->
   <Operation Class="PatchOperationReplace">
     <xpath>/Defs/ThingDef[defName="OrbitalTargeterBombardment" or defName="OrbitalTargeterPowerBeam"]/verbs/li/range</xpath>
-      <value>
-        <range>60</range>
-      </value>
+    <value>
+      <range>60</range>
+    </value>
   </Operation>
 
   <!-- Remove Smoke and EMP Launchers -->
@@ -1378,4 +1458,3 @@
   </Operation>
 
 </Patch>
-

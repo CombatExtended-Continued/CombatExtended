@@ -8,108 +8,120 @@ using Verse;
 using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 namespace CombatExtended
 {
     static class CE_Utility
     {
-    	
-    	#region Blitting
-    	private const int blitMaxDimensions = 64;
-    	
-		/// <summary>
-		/// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
-		/// </summary>
-		/// <param name="texture">Any texture with or without read-write protection</param>
-		/// <param name="blitRect">The Rect to be extracted from the <i>rtSize</i>'d render of <i>texture</i> (.x+.width, .y+.height smaller than <i>rtSize</i>)</param>
-		/// <param name="rtSize">The size that <i>texture</i> is to be rendered at</param>
-		/// <returns>Texture2D of size <i>blitRect</i>.width, <i>blitRect</i>.height extracted from a <i>rtSize</i>[0] width, <i>rtSize</i>[1] height render of <i>texture</i> starting at position (<i>blitRect</i>.x, <i>blitRect</i>.y).</returns>
-    	public static Texture2D Blit(this Texture2D texture, Rect blitRect, int[] rtSize)
-    	{
-			var prevFilterMode = texture.filterMode;
-			texture.filterMode = FilterMode.Point;
-			
-		   	RenderTexture rt = RenderTexture
-		   		.GetTemporary(rtSize[0],						//render width
-		   		              rtSize[1],						//render height
-		   		              0,								//no depth buffer
-		   		              RenderTextureFormat.Default,		//default (=automatic) color mode
-		   		              RenderTextureReadWrite.Default,	//default (=automatic) r/w mode
-		   		              1);								//no anti-aliasing (1=none,2=2x,4=4x,8=8x)
-			
-		   	rt.filterMode = FilterMode.Point;
-		   	
-			RenderTexture.active = rt;
-			
-			Graphics.Blit(texture, rt);
-			
-			Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
-			blit.ReadPixels(blitRect, 0, 0);
-			blit.Apply();
-			
-			RenderTexture.active = null;
-			
-			texture.filterMode = prevFilterMode;
-			
-			return blit;
-    	}
-    	
-    	/// <summary>
-    	/// Texture2D.GetPixels() method circumventing the read-write protection and taking into account <i>blitMaxDimensions</i>.
-    	/// </summary>
-    	/// <param name="texture">Any texture with/without read-write protection, of any size (but will be scaled to blitMaxDimensions if larger than those)</param>
-    	/// <param name="width">Final width of Color[]</param>
-    	/// <param name="height">Final height of Color[]</param>
-    	/// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
-    	public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
-		{
-    		width = texture.width;
-    		height = texture.height;
-    		if (texture.width > texture.height)
-    		{
-    			width = Math.Min(width, blitMaxDimensions);
-    			height = (int)((float)width * ((float)texture.height / (float)texture.width));
-    		}
-    		else if (texture.height > texture.width)
-    		{
-    			height = Math.Min(height, blitMaxDimensions);
-    			width = (int)((float)height * ((float)texture.width / (float)texture.height));
-    		}
-    		else
-    		{
-    			width = Math.Min(width, blitMaxDimensions);
-    			height = Math.Min(height, blitMaxDimensions);
-    		}
-    		
-			Color[] color = null;
-			
-			var blitRect = new Rect(0, 0, width, height);
-			var rtSize = new []{width, height};
-			
-			if (width == texture.width && height == texture.height)
-			{
-				try
-				{
-					color = texture.GetPixels();
-				}
-				catch
-				{
-					color = texture.Blit(blitRect, rtSize).GetPixels();
-				}
-			}
-			else
-			{
-				color = texture.Blit(blitRect, rtSize).GetPixels();
-			}
-			return color;
-		}
-    	
-    	public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
-		{
-    		return texture.Blit(blitRect, new int[]{texture.width, texture.height});
-		}
-    	#endregion
-    	
+        #region Camera
+
+        public static float CameraAltitude
+        {
+            get
+            {
+                return Find.CameraDriver?.CurrentRealPosition.y ?? -1;
+            }
+        }
+
+        #endregion
+
+        #region Blitting
+        private const int blitMaxDimensions = 64;
+
+        /// <summary>
+        /// Code from https://gamedev.stackexchange.com/questions/92285/unity3d-resize-texture-without-corruption
+        /// </summary>
+        /// <param name="texture">Any texture with or without read-write protection</param>
+        /// <param name="blitRect">The Rect to be extracted from the <i>rtSize</i>'d render of <i>texture</i> (.x+.width, .y+.height smaller than <i>rtSize</i>)</param>
+        /// <param name="rtSize">The size that <i>texture</i> is to be rendered at</param>
+        /// <returns>Texture2D of size <i>blitRect</i>.width, <i>blitRect</i>.height extracted from a <i>rtSize</i>[0] width, <i>rtSize</i>[1] height render of <i>texture</i> starting at position (<i>blitRect</i>.x, <i>blitRect</i>.y).</returns>
+        public static Texture2D Blit(this Texture2D texture, Rect blitRect, int[] rtSize)
+        {
+            var prevFilterMode = texture.filterMode;
+            texture.filterMode = FilterMode.Point;
+
+            RenderTexture rt = RenderTexture
+                .GetTemporary(rtSize[0],                        //render width
+                           rtSize[1],                       //render height
+                           0,                               //no depth buffer
+                           RenderTextureFormat.Default,     //default (=automatic) color mode
+                           RenderTextureReadWrite.Default,  //default (=automatic) r/w mode
+                           1);                              //no anti-aliasing (1=none,2=2x,4=4x,8=8x)
+
+            rt.filterMode = FilterMode.Point;
+
+            RenderTexture.active = rt;
+
+            Graphics.Blit(texture, rt);
+
+            Texture2D blit = new Texture2D((int)blitRect.width, (int)blitRect.height);
+            blit.ReadPixels(blitRect, 0, 0);
+            blit.Apply();
+
+            RenderTexture.active = null;
+
+            texture.filterMode = prevFilterMode;
+
+            return blit;
+        }
+
+        /// <summary>
+        /// Texture2D.GetPixels() method circumventing the read-write protection and taking into account <i>blitMaxDimensions</i>.
+        /// </summary>
+        /// <param name="texture">Any texture with/without read-write protection, of any size (but will be scaled to blitMaxDimensions if larger than those)</param>
+        /// <param name="width">Final width of Color[]</param>
+        /// <param name="height">Final height of Color[]</param>
+        /// <returns>Color[] array after resizing to fit blitMaxDimensions</returns>
+        public static Color[] GetColorSafe(this Texture2D texture, out int width, out int height)
+        {
+            width = texture.width;
+            height = texture.height;
+            if (texture.width > texture.height)
+            {
+                width = Math.Min(width, blitMaxDimensions);
+                height = (int)((float)width * ((float)texture.height / (float)texture.width));
+            }
+            else if (texture.height > texture.width)
+            {
+                height = Math.Min(height, blitMaxDimensions);
+                width = (int)((float)height * ((float)texture.width / (float)texture.height));
+            }
+            else
+            {
+                width = Math.Min(width, blitMaxDimensions);
+                height = Math.Min(height, blitMaxDimensions);
+            }
+
+            Color[] color = null;
+
+            var blitRect = new Rect(0, 0, width, height);
+            var rtSize = new[] { width, height };
+
+            if (width == texture.width && height == texture.height)
+            {
+                try
+                {
+                    color = texture.GetPixels();
+                }
+                catch
+                {
+                    color = texture.Blit(blitRect, rtSize).GetPixels();
+                }
+            }
+            else
+            {
+                color = texture.Blit(blitRect, rtSize).GetPixels();
+            }
+            return color;
+        }
+
+        public static Texture2D BlitCrop(this Texture2D texture, Rect blitRect)
+        {
+            return texture.Blit(blitRect, new int[] { texture.width, texture.height });
+        }
+        #endregion
+
         #region Misc
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
@@ -140,8 +152,16 @@ namespace CombatExtended
         /// <returns>Move speed in cells per second</returns>
         public static float GetMoveSpeed(Pawn pawn)
         {
+            if (!pawn.pather.Moving)
+            {
+                return 0f;
+            }
             float movePerTick = 60 / pawn.GetStatValue(StatDefOf.MoveSpeed, false);    //Movement per tick
-            movePerTick +=  pawn.Map.pathGrid.CalculatedCostAt(pawn.Position, false, pawn.Position);
+
+            //pawn.pather.nextCellCostLeft
+            //the orginial is (pawn.Position, false, pawn.Position) before 1.3
+
+            movePerTick += pawn.Map.pathing.For(pawn).pathGrid.CalculatedCostAt(pawn.pather.nextCell, perceivedStatic: false, pawn.Position);
             Building edifice = pawn.Position.GetEdifice(pawn.Map);
             if (edifice != null)
             {
@@ -176,10 +196,15 @@ namespace CombatExtended
             }
             return 60 / movePerTick;
         }
-        
+
+        public static float GetLightingShift(Thing caster, float glowAtTarget)
+        {
+            return Mathf.Max((1.0f - glowAtTarget) * (1.0f - caster.GetStatValue(CE_StatDefOf.NightVisionEfficiency)), 0f);
+        }
+
         public static float ClosestDistBetween(Vector2 origin, Vector2 destination, Vector2 target)
         {
-        	return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
+            return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
         }
 
         /// <summary>
@@ -189,7 +214,7 @@ namespace CombatExtended
         /// <returns>Turret operator if one is found, null if not</returns>
         public static Pawn TryGetTurretOperator(Thing thing)
         {
-        	// Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
+            // Building_TurretGunCE DOES NOT inherit from Building_TurretGun!!!
             if (thing is Building_Turret)
             {
                 CompMannable comp = thing.TryGetComp<CompMannable>();
@@ -199,6 +224,35 @@ namespace CombatExtended
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped a shield
+        /// </summary>
+        /// <returns>True if the pawn has a shield equipped</returns>
+        public static bool HasShield(this Pawn pawn)
+        {
+            if ((pawn.apparel?.WornApparelCount ?? 0) == 0) return false;
+            return pawn.apparel.WornApparel.Any(a => a is Apparel_Shield);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool HasTwoWeapon(this Pawn pawn)
+        {
+            if (pawn.equipment?.Primary == null) return false;
+            return !(pawn.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
+        }
+
+        /// <summary>
+        /// Extension method to determine whether a pawn has equipped two handed weapon
+        /// </summary>
+        /// <returns>True if the pawn has equipped a two handed weapon</returns>
+        public static bool IsTwoHandedWeapon(this Thing weapon)
+        {
+            return !(weapon.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
         }
 
         /// <summary>
@@ -247,20 +301,30 @@ namespace CombatExtended
         #endregion Misc
 
         #region MoteThrower
-        public static void ThrowEmptyCasing(Vector3 loc, Map map, ThingDef casingMoteDef, float size = 1f)
+        public static void ThrowEmptyCasing(Vector3 loc, Map map, FleckDef casingFleckDef, float size = 1f)
         {
             if (!Controller.settings.ShowCasings || !loc.ShouldSpawnMotesAt(map) || map.moteCounter.SaturatedLowPriority)
             {
                 return;
             }
-            MoteThrown moteThrown = (MoteThrown)ThingMaker.MakeThing(casingMoteDef, null);
-            moteThrown.Scale = Rand.Range(0.5f, 0.3f) * size;
-            moteThrown.exactRotation = Rand.Range(-3f, 4f);
-            moteThrown.exactPosition = loc;
-            moteThrown.airTimeLeft = 60;
-            moteThrown.SetVelocity((float)Rand.Range(160, 200), Rand.Range(0.7f, 0.5f));
-            //     moteThrown.SetVelocityAngleSpeed((float)Rand.Range(160, 200), Rand.Range(0.020f, 0.0115f));
-            GenSpawn.Spawn(moteThrown, loc.ToIntVec3(), map);
+            FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
+            creationData.airTimeLeft = 60;
+            creationData.scale = Rand.Range(0.5f, 0.3f) * size;
+            creationData.rotation = Rand.Range(-3f, 4f);
+            creationData.spawnPosition = loc;
+            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            map.flecks.CreateFleck(creationData);
+        }
+
+        public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
+        {
+            MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
+            moteThrown.Attach(pawn);
+            moteThrown.exactPosition = pawn.DrawPos;
+            moteThrown.Scale = 1.0f;
+            moteThrown.SetVelocity(Rand.Range(20f, 25f), 0.4f);
+            GenSpawn.Spawn(moteThrown, pawn.Position, pawn.Map);
         }
         #endregion
 
@@ -269,29 +333,29 @@ namespace CombatExtended
         /// Gravity constant in meters per second squared
         /// </summary>
         public const float GravityConst = 9.8f * 0.2f;
-		
+
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
         {
-        	if (roof == null)
-        		return new Bounds();
-        	
-        	float height = CollisionVertical.WallCollisionHeight;
-        	
-        	if (roof.isNatural)
-        		height *= CollisionVertical.NaturalRoofThicknessMultiplier;
-        	
-        	if (roof.isThickRoof)
-        		height *= CollisionVertical.ThickRoofThicknessMultiplier;
-        	
-        	height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
-        	
-        	Vector3 center = cell.ToVector3Shifted();
-        	center.y = CollisionVertical.WallCollisionHeight + height / 2f;
-        	
-        	return new Bounds(center,
-        	                  new Vector3(1f, height, 1f));
+            if (roof == null)
+                return new Bounds();
+
+            float height = CollisionVertical.WallCollisionHeight;
+
+            if (roof.isNatural)
+                height *= CollisionVertical.NaturalRoofThicknessMultiplier;
+
+            if (roof.isThickRoof)
+                height *= CollisionVertical.ThickRoofThicknessMultiplier;
+
+            height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
+
+            Vector3 center = cell.ToVector3Shifted();
+            center.y = CollisionVertical.WallCollisionHeight + height / 2f;
+
+            return new Bounds(center,
+                              new Vector3(1f, height, 1f));
         }
-        
+
         public static Bounds GetBoundsFor(Thing thing)
         {
             if (thing == null)
@@ -314,18 +378,18 @@ namespace CombatExtended
         /// <returns>Distance from center of Thing to its edge in cells</returns>
         public static float GetCollisionWidth(Thing thing)
         {
-        	/* Possible solution for fixing tree widths
+            /* Possible solution for fixing tree widths
 			if (thing.IsTree())
         	{
         		return (thing as Plant).def.graphicData.shadowData.volume.x;
         	}*/
-        	
+
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	return GetCollisionBodyFactors(pawn).x;
+                return GetCollisionBodyFactors(pawn).x;
             }
-            
+
             return 1f;    //Buildings, etc. fill out a full square
         }
 
@@ -341,27 +405,27 @@ namespace CombatExtended
                 Log.Error("CE calling GetCollisionBodyHeightFactor with nullPawn");
                 return new Vector2(1, 1);
             }
-            
-        	var factors = BoundsInjector.ForPawn(pawn);
-            
+
+            var factors = BoundsInjector.ForPawn(pawn);
+
             if (pawn.GetPosture() != PawnPosture.Standing)
             {
-	            RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
-	            
-	            var shape = props.bodyShape;
-	            
-	            if (shape == CE_BodyShapeDefOf.Invalid)
-	            {
-	            	Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(),  35000198 + pawn.GetHashCode());
-	            }
-	            
-	            factors.x *= shape.widthLaying/shape.width;
-	            factors.y *= shape.heightLaying/shape.height;
+                RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
+
+                var shape = props.bodyShape;
+
+                if (shape == CE_BodyShapeDefOf.Invalid)
+                {
+                    Log.ErrorOnce("CE returning BodyType Undefined for pawn " + pawn.ToString(), 35000198 + pawn.GetHashCode());
+                }
+
+                factors.x *= shape.widthLaying / shape.width;
+                factors.y *= shape.heightLaying / shape.height;
             }
-            
+
             return factors;
         }
-		
+
         /// <summary>
         /// Determines whether a pawn should be currently crouching down or not
         /// </summary>
@@ -411,6 +475,136 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Get all weapons a pawn has.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="weapons">Weapons</param>
+        /// <param name="rebuild">(Slow) wether to rebuild the cache</param>
+        /// <returns>If this pawn has a CompInventory or not</returns>
+        public static bool TryGetAllWeaponsInInventory(this Pawn_InventoryTracker inventoryTracker, out IEnumerable<ThingWithComps> weapons, Func<ThingWithComps, bool> predicate = null, bool rebuildInvetory = false)
+        {
+            Pawn pawn = inventoryTracker.pawn;
+            weapons = null;
+            CompInventory compInventory = pawn.TryGetComp<CompInventory>();
+            // check is this pawn has a CompInventory
+            if (compInventory == null)
+                return false;
+            if (rebuildInvetory)
+                compInventory.UpdateInventory();
+            // Add all weapons in the inventory
+            weapons = (predicate == null ? compInventory.weapons : compInventory.weapons.Where(w => predicate.Invoke(w)));
+            return true;
+        }
+
         #endregion
+
+        #region Lighting
+
+        /// <summary>
+        /// Used to get the lighting penalty multiplier for a given range
+        /// </summary>
+        /// <returns></returns>
+        public static float LightingRangeMultiplier(float range)
+        {
+            return lightingCurve.Evaluate(range);
+        }
+
+        private static Map[] _mapsLighting = new Map[20];
+        private static LightingTracker[] _lightingTrackers = new LightingTracker[20];
+
+        public static LightingTracker GetLightingTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _mapsLighting.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsLighting.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                LightingTracker[] trackers = new LightingTracker[expandedLength];
+                Array.Copy(_mapsLighting, maps, _mapsLighting.Length);
+                Array.Copy(_lightingTrackers, trackers, _lightingTrackers.Length);
+                _mapsLighting = maps;
+                _lightingTrackers = trackers;
+            }
+            if (_mapsLighting[index] == map)
+                return _lightingTrackers[index];
+            return _lightingTrackers[index] = (_mapsLighting[index] = map).GetComponent<LightingTracker>();
+        }
+
+        private static Map[] _mapsDanger = new Map[20];
+        private static DangerTracker[] _DangerTrackers = new DangerTracker[20];
+
+        public static DangerTracker GetDangerTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _mapsDanger.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsDanger.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                DangerTracker[] trackers = new DangerTracker[expandedLength];
+                Array.Copy(_mapsDanger, maps, _mapsDanger.Length);
+                Array.Copy(_DangerTrackers, trackers, _DangerTrackers.Length);
+                _mapsDanger = maps;
+                _DangerTrackers = trackers;
+            }
+            if (_mapsDanger[index] == map)
+                return _DangerTrackers[index];
+            return _DangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
+        }
+
+        #endregion
+
+        #region Initialization
+
+        private static readonly SimpleCurve lightingCurve = new SimpleCurve();
+
+        static CE_Utility()
+        {
+            lightingCurve.Add(05.00f, 0.05f);
+            lightingCurve.Add(10.00f, 0.15f);
+            lightingCurve.Add(22.00f, 0.475f);
+            lightingCurve.Add(35.00f, 1.00f);
+            lightingCurve.Add(60.00f, 1.20f);
+            lightingCurve.Add(90.00f, 2.00f);
+        }
+
+        #endregion
+
+        public static float DistanceToSegment(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
+        {
+            float dx = lineEnd.x - lineStart.x;
+            float dz = lineEnd.z - lineStart.z;
+            if ((dx == 0) && (dz == 0))
+            {
+                closest = lineStart;
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+                return Mathf.Sqrt(dx * dx + dz * dz);
+            }
+            float t = ((point.x - lineStart.x) * dx + (point.z - lineStart.z) * dz) / (dx * dx + dz * dz);
+            if (t < 0)
+            {
+                closest = new Vector3(lineStart.x, 0, lineStart.z);
+                dx = point.x - lineStart.x;
+                dz = point.z - lineStart.z;
+            }
+            else if (t > 1)
+            {
+                closest = new Vector3(lineEnd.x, 0, lineEnd.z);
+                dx = point.x - lineEnd.x;
+                dz = point.z - lineEnd.z;
+            }
+            else
+            {
+                closest = new Vector3(lineStart.x + t * dx, 0, lineStart.z + t * dz);
+                dx = point.x - closest.x;
+                dz = point.z - closest.z;
+            }
+            return Mathf.Sqrt(dx * dx + dz * dz);
+        }
     }
 }

@@ -1,68 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<ThingDef Name="BaseWeaponNeolithic" Abstract="True">
-		<category>Item</category>
-		<thingClass>ThingWithComps</thingClass>
-		<equipmentType>Primary</equipmentType>
-		<pathCost>10</pathCost>
-		<useHitPoints>True</useHitPoints>
-		<selectable>True</selectable>
-		<graphicData>
-			<onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
-		</graphicData>
-		<drawGUIOverlay>true</drawGUIOverlay>
-		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>1.0</Flammability>
-			<DeteriorationRate>2</DeteriorationRate>
-			<SellPriceFactor>0.5</SellPriceFactor>
-		</statBases>
-		<altitudeLayer>Item</altitudeLayer>
-		<alwaysHaulable>True</alwaysHaulable>
-		<tickerType>Never</tickerType>
-		<techLevel>Neolithic</techLevel>
-		<weaponTags>
-			<li>Neolithic</li>
-		</weaponTags>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<comps>
-			<li Class="CompProperties_Forbiddable" />
-			<li>
-				<compClass>CompEquippable</compClass>
-			</li>
-			<li>
-				<compClass>CompQuality</compClass>
-			</li>
-		</comps>
-		<recipeMaker>
-			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-			<workSkill>Crafting</workSkill>
-			<recipeUsers>
-				<li>ElectricSmithy</li>
-				<li>FueledSmithy</li>
-			</recipeUsers>
-			<effectWorking>Smelt</effectWorking>
-			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-		</recipeMaker>
-	</ThingDef>
-
-	<ThingDef Name="BaseProjectileNeolithic" Abstract="True">
-		<category>Projectile</category>
-		<tickerType>Normal</tickerType>
-		<altitudeLayer>Projectile</altitudeLayer>
-		<thingClass>CombatExtended.BulletCE</thingClass>
-		<label>arrow</label>
-		<useHitPoints>False</useHitPoints>
-		<neverMultiSelect>True</neverMultiSelect>
-		<graphicData>
-			<shaderType>Transparent</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE" />
-	</ThingDef>
-
 	<!-- Pilum-specific base (both ammo and weapon) -->
 	<ThingDef ParentName="AmmoBase" Name="BaseWeaponAndAmmoNeolithic" Abstract="True">
 		<equipmentType>Primary</equipmentType>
@@ -116,13 +54,11 @@
 		<equippedAngleOffset>30</equippedAngleOffset>
 		<stackLimit>25</stackLimit>
 		<weaponTags>
-      		<li>NeolithicRangedHeavy</li>
+			<li>NeolithicRangedHeavy</li>
 			<li>CE_Pila</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-		</tradeTags>
+		<tradeability>All</tradeability>
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
 				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>

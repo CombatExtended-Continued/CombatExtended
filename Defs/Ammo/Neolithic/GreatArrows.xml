@@ -84,7 +84,7 @@
       <MarketValue>3.06</MarketValue>
     </statBases>
     <ammoClass>PlasteelArrow</ammoClass>
-    <generateAllowChance>0</generateAllowChance>
+    <generateAllowChance>0.2</generateAllowChance>
   </ThingDef>
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
@@ -114,6 +114,7 @@
       <MarketValue>1.29</MarketValue>
     </statBases>
     <ammoClass>FlameArrow</ammoClass>
+    <generateAllowChance>0.2</generateAllowChance>
   </ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
@@ -213,12 +214,19 @@
 			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Flame</damageDef>
-			<damageAmountBase>3</damageAmountBase>
-			<armorPenetrationBlunt>1.18</armorPenetrationBlunt>
-			<armorPenetrationSharp>1</armorPenetrationSharp>
-		</projectile>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Arrow</damageDef>
+      <damageAmountBase>3</damageAmountBase>
+      <armorPenetrationBlunt>1.18</armorPenetrationBlunt>
+      <armorPenetrationSharp>1</armorPenetrationSharp>
+      <secondaryDamage>
+        <li>
+          <def>Flame</def>
+          <amount>1</amount>
+          <chance>0.33</chance>
+        </li>
+      </secondaryDamage>
+    </projectile>
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->

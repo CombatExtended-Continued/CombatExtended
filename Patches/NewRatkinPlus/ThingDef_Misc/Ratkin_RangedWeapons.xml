@@ -9,7 +9,7 @@
 
 		<!-- ========== Melee Tools - Rifles ========== -->
 		  <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RK_Rifle" or defName="RK_SniperRifle" or defName="RK_FlechetteRifle" or defName="RK_FlechetteSniperRifle"]/tools</xpath>
+			<xpath>Defs/ThingDef[defName="RK_Rifle" or defName="RK_SniperRifle" or defName="RK_FlechetteRifle" or defName="RK_FlechetteSniperRifle" or defName="RK_Rifle_line"]/tools</xpath>
 			<value>
 			  <tools>
 				<li Class="CombatExtended.ToolCE">
@@ -94,7 +94,7 @@
 			  <defaultProjectile>Projectile_CrossbowBolt_Stone</defaultProjectile>
 			  <warmupTime>1</warmupTime>
 			  <range>26</range>
-			  <soundCast>Bow_Large</soundCast>
+			  <soundCast>Bow_Small</soundCast>
 			</Properties>
 			<costList>
 				<WoodLog>40</WoodLog>
@@ -208,7 +208,7 @@
 			<costList>
 				<WoodLog>30</WoodLog>
 				<Steel>55</Steel>
-				<ComponentIndustrial>3</ComponentIndustrial>
+				<ComponentIndustrial>1</ComponentIndustrial>
 			</costList>
 			<Properties>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -216,7 +216,7 @@
 			  <defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
 			  <warmupTime>1.1</warmupTime>
 			  <range>55</range>
-			  <soundCast>Shot_BoltActionRifle</soundCast>
+			  <soundCast>Rifle</soundCast>
 			  <soundCastTail>GunTail_Heavy</soundCastTail>
 			  <muzzleFlashScale>9</muzzleFlashScale>
 			</Properties>
@@ -238,6 +238,45 @@
 				<li>CE_AI_Rifle</li>
 			</weaponTags>
 		  </li>
+		  
+		  <!-- ========== Shotgun ========== -->
+		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RK_Rifle_line</defName>
+			<statBases>
+			  <Mass>3.30</Mass>
+			  <RangedWeapon_Cooldown>1.00</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1</SightsEfficiency>
+			  <ShotSpread>0.14</ShotSpread>
+			  <SwayFactor>1.22</SwayFactor>
+			  <Bulk>9</Bulk>
+			  <WorkToMake>9500</WorkToMake>
+			</statBases>
+			<costList>
+			  <Steel>45</Steel>
+			  <WoodLog>10</WoodLog>
+			  <ComponentIndustrial>1</ComponentIndustrial>
+			</costList>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+			  <warmupTime>0.6</warmupTime>
+			  <range>16</range>
+			  <soundCast>FlechetteRifle</soundCast>
+			  <soundCastTail>GunTail_Heavy</soundCastTail>
+			  <muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+			  <magazineSize>5</magazineSize>
+			  <reloadOneAtATime>true</reloadOneAtATime>
+			  <reloadTime>0.85</reloadTime>
+			  <ammoSet>AmmoSet_12Gauge</ammoSet>
+			</AmmoUser>
+			<FireModes>
+			</FireModes>
+			<weaponTags>
+			</weaponTags>
+		  </li>
 
 		  <!-- ========== Sniper Rifle ========== -->
 		  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -254,7 +293,7 @@
 			<costList>
 				<WoodLog>30</WoodLog>
 				<Steel>70</Steel>
-				<ComponentIndustrial>5</ComponentIndustrial>
+				<ComponentIndustrial>2</ComponentIndustrial>
 			</costList>
 			<Properties>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -262,7 +301,7 @@
 			  <defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
 			  <warmupTime>1.3</warmupTime>
 			  <range>68</range>
-			  <soundCast>Shot_BoltActionRifle</soundCast>
+			  <soundCast>Rifle</soundCast>
 			  <soundCastTail>GunTail_Heavy</soundCastTail>
 			  <muzzleFlashScale>9</muzzleFlashScale>
 			</Properties>

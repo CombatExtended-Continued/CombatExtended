@@ -9,14 +9,16 @@
     <match Class="PatchOperationSequence">
       <operations>
         <!-- === Settler === -->
-        <!-- We'll add this as a secondary' -->
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+        <!-- We'll add this as a secondary -->
+        <li Class="PatchOperationConditional">
+            <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+            <match Class="PatchOperationRemove">
+                <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+            </match>
         </li>
 
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/PawnKindDef[defName="Settler"]</xpath>
-
           <value>
             <li Class="CombatExtended.LoadoutPropertiesExtension">
               <primaryMagazineCount>
@@ -35,7 +37,7 @@
                     <max>200</max>
                   </sidearmMoney>
                   <weaponTags>
-                    <li>GrenadeDynamite</li> <!-- Custom tag so they only spawn with dynamite -->
+                    <li>GrenadeDynamite</li>
                   </weaponTags>
                 </li>
               </sidearms>
@@ -46,7 +48,6 @@
         <!-- === Deputy | Militia | Frontier Trader === -->
         <li Class="PatchOperationAddModExtension">
           <xpath>/Defs/PawnKindDef[defName="Deputy" or defName="Militia" or defName="Frontier_Trader" or defName="Sheriff" or defName="Mayor"]</xpath>
-
           <value>
             <li Class="CombatExtended.LoadoutPropertiesExtension">
               <primaryMagazineCount>
@@ -56,6 +57,7 @@
             </li>
           </value>
         </li>
+
       </operations>
     </match>
 

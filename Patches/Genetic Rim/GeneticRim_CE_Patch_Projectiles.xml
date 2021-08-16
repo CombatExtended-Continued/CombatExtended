@@ -48,9 +48,9 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Bullet</damageDef>
-						<damageAmountBase>20</damageAmountBase>
+						<damageAmountBase>17</damageAmountBase>
 						<speed>200</speed>
-						<armorPenetrationSharp>10</armorPenetrationSharp>
+						<armorPenetrationSharp>14</armorPenetrationSharp>
 						<armorPenetrationBlunt>30</armorPenetrationBlunt>
 					</projectile>
 				</value>
@@ -88,10 +88,16 @@
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>1500</damageAmountBase>
+						<damageDef>Burn</damageDef>
+						<damageAmountBase>500</damageAmountBase>
 						<speed>300</speed>
 			                                                 <ai_IsIncendiary>true</ai_IsIncendiary>
+		  				<secondaryDamage>
+						<li>
+			  			<def>PrometheumFlame</def>
+			  			<amount>3</amount>
+						</li>
+		  				</secondaryDamage>
 					</projectile>
 				</value>
 			</li>
@@ -102,9 +108,9 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<flyOverhead>false</flyOverhead>
 						<damageDef>Stun</damageDef>
-						<damageAmountBase>20</damageAmountBase>
+						<damageAmountBase>15</damageAmountBase>
 						<speed>140</speed>
-						<armorPenetrationSharp>2.5</armorPenetrationSharp>
+						<armorPenetrationSharp>2</armorPenetrationSharp>
 						<armorPenetrationBlunt>3</armorPenetrationBlunt>
 					</projectile>
 				</value>
@@ -170,11 +176,12 @@
 				<xpath>/Defs/ThingDef[defName="GR_Proj_ThrownSac"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>10</speed>
+						<speed>6</speed>
+						<flyOverhead>False</flyOverhead>
 						<damageDef>Bomb</damageDef>
 						<damageAmountBase>30</damageAmountBase>
-			                                                <explosionRadius >2.9</explosionRadius >
-			                                                 <explosionDelay>70</explosionDelay>
+			                                                <explosionRadius >2.5</explosionRadius >
+			                                                 <explosionDelay>60</explosionDelay>
 					</projectile>
 				</value>
 			</li>
@@ -202,8 +209,8 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>31</speed>
 						<damageDef>Bomb</damageDef>
-						<damageAmountBase>45</damageAmountBase>
-			                                                <explosionRadius >4</explosionRadius >
+						<damageAmountBase>56</damageAmountBase>
+			                                                <explosionRadius >3.5</explosionRadius >
 			                                                <explosionDelay>1</explosionDelay>
 					</projectile>
 				</value>
@@ -214,7 +221,7 @@
 				<xpath>/Defs/ThingDef[defName="GR_IncendiaryMote"]/projectile</xpath>
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>17</speed>
+						<speed>16</speed>
 						<damageDef>Flame</damageDef>
 						<damageAmountBase>5</damageAmountBase>
 						<explosionRadius>1.1</explosionRadius>
@@ -248,11 +255,35 @@
 				</value>
 			</li>
 
+
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="GR_Weapon_ThrownSac"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="GR_Weapon_ThrownSac"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>75</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<detonateProjectile>GR_Proj_ThrownSac</detonateProjectile>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="GR_Weapon_ThrownSac"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</li>
+
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>GR_Weapon_ThrownSac</defName>
 		<statBases>
-			<Mass>0.4</Mass>
-			<Bulk>0.7</Bulk>
+			<Mass>0.55</Mass>
+			<Bulk>2.1</Bulk>
 			<MarketValue>7.05</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			<SightsEfficiency>0.65</SightsEfficiency>
@@ -261,8 +292,8 @@
 			<label>throw sac</label>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<range>12</range>
-			<minRange>2.9</minRange>
+			<range>11</range>
+			<minRange>1.5</minRange>
 			<warmupTime>0.8</warmupTime>
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>

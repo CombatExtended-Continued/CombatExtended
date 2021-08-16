@@ -31,6 +31,9 @@ namespace CombatExtended
             // Inject pawn and plant bounds
             LongEventHandler.QueueLongEvent(BoundsInjector.Inject, "CE_LongEvent_BoundingBoxes", false, null);
 
+            // Initialize the DefUtility (a caching system for common checks on defs)
+            LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
+
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup
@@ -38,6 +41,9 @@ namespace CombatExtended
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
 
             LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
+
+            //This is uncommented in the repository's assembly, so players that download the repo without compiling it are warned about potential issues.
+            //LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
         }
 
         private static void DoTutorialPopup()
@@ -67,6 +73,22 @@ namespace CombatExtended
         public override void DoSettingsWindowContents(Rect inRect)
         {
             settings.DoWindowContents(inRect);
+        }
+
+        //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
+        private void ShowUncompiledBuildWarning()
+        {
+            var continueAnywayAction = new Action(() =>
+            {
+
+            });
+            var getDevBuildAction = new Action(() =>
+            {
+                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
+            });
+
+            var dialog = new Dialog_MessageBox("CE_UncompiledDevBuild".Translate(), "CE_ContinueAnyway".Translate(), continueAnywayAction, "CE_GetCompiledDevBuild".Translate(), getDevBuildAction, null, true);
+            Find.WindowStack.Add(dialog);
         }
     }
 }

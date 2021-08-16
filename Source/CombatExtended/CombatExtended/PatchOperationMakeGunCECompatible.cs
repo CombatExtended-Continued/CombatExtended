@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Xml;
 
 using Verse;
@@ -17,7 +17,7 @@ namespace CombatExtended
         public XmlContainer costList;
         public XmlContainer researchPrerequisite;
 
-        protected override bool ApplyWorker(XmlDocument xml)
+        public override bool ApplyWorker(XmlDocument xml)
         {
             bool result = false;
 

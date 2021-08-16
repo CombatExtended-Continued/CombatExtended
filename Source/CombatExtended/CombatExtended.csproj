@@ -1,88 +1,152 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <AssemblyName>CombatExtended</AssemblyName>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
-    <Version>1.1.2</Version>
-    <Company />
-    <Authors />
-    <Copyright>CC BY-NC-SA 4.0 2020</Copyright>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\Assemblies\</OutputPath>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\Assemblies\</OutputPath>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
-  </Target>
-
-  <ItemGroup>
-    <Compile Remove="AI\**" />
-    <EmbeddedResource Remove="AI\**" />
-    <None Remove="AI\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="CombatExtended\Comps\CompProperties_SquadBrain.cs" />
-    <Compile Remove="CombatExtended\Comps\CompSquadBrain.cs" />
-    <Compile Remove="CombatExtended\Jobs\JobGiver_SquadDuty.cs" />
-    <Compile Remove="CombatExtended\Loadouts\HoldTrackerAssignment.cs" />
-    <Compile Remove="CombatExtended\Loadouts\ITabInjector.cs" />
-    <Compile Remove="CombatExtended\Loadouts\LoadoutAssignment.cs" />
-    <Compile Remove="CombatExtended\Loadouts\MainTabWindow_OutfitsAndLoadouts.cs" />
-    <Compile Remove="CombatExtended\Projectiles\ProjectileCE_Explosive_RL.cs" />
-    <Compile Remove="CombatExtended\ThinkNodes\ThinkNode_ConditionalHasSquad.cs" />
-    <Compile Remove="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
-    <Compile Remove="Harmony\Harmony-HediffComp_GetsOld.cs" />
-    <Compile Remove="Harmony\Harmony-RaidStrategyWorker_ImmediateAttackSappers.cs" />
-    <Compile Remove="Harmony\Harmony_WeatherDecider.cs" />
-    <Compile Remove="Projectile_FireTrail.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.2753" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="VFESecurity">
-      <HintPath>..\packages\VFESecurity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="EDShields">
-      <HintPath>..\packages\ED-Shields-Reference.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SOS2">
-      <HintPath>..\packages\ShipsHaveInsides.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProjectRimFactory">
-      <HintPath>..\packages\ProjectRimFactory-Reference.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
+		<AssemblyName>CombatExtended</AssemblyName>
+		<AssemblyVersion>1.1.2.0</AssemblyVersion>
+		<FileVersion>1.1.2.0</FileVersion>
+		<Version>1.1.2</Version>
+		<Company />
+		<Authors />
+		<Copyright>CC BY-NC-SA 4.0 2020</Copyright>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\Assemblies\</OutputPath>
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<LangVersion>default</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\..\Assemblies\</OutputPath>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<LangVersion>default</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\Program Files (x86)\Mono\bin\pdb2mdb.bat')">
+		<Exec Command="if $(ConfigurationName) == Debugger call &quot;C:\Program Files (x86)\Mono\bin\pdb2mdb.bat&quot; $(TargetDir)$(TargetName)$(TargetExt)" />
+	</Target>
+	<ItemGroup>
+		<Compile Remove="AI\**" />
+		<EmbeddedResource Remove="AI\**" />
+		<None Remove="AI\**" />
+		<None Remove="Contrib\Collections\" />
+		<None Remove="CombatExtended\StatParts\Base\" />
+		<None Remove="CombatExtended\AI\" />
+		<None Remove="CombatExtended\AI\Comps\" />
+		<None Remove="CombatExtended\AI\Comps\Base\" />
+		<None Remove="CombatExtended\AI\Jobs\" />
+		<None Remove="CombatExtended\AI\Toils\" />
+		<None Remove="CombatExtended\AI\Jobs\Base\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="CombatExtended\Comps\CompProperties_SquadBrain.cs" />
+		<Compile Remove="CombatExtended\Comps\CompSquadBrain.cs" />
+		<Compile Remove="CombatExtended\Jobs\JobGiver_SquadDuty.cs" />
+		<Compile Remove="CombatExtended\Loadouts\HoldTrackerAssignment.cs" />
+		<Compile Remove="CombatExtended\Loadouts\ITabInjector.cs" />
+		<Compile Remove="CombatExtended\Loadouts\LoadoutAssignment.cs" />
+		<Compile Remove="CombatExtended\Loadouts\MainTabWindow_OutfitsAndLoadouts.cs" />
+		<Compile Remove="CombatExtended\Projectiles\ProjectileCE_Explosive_RL.cs" />
+		<Compile Remove="CombatExtended\ThinkNodes\ThinkNode_ConditionalHasSquad.cs" />
+		<Compile Remove="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
+		<Compile Remove="Harmony\Harmony-HediffComp_GetsOld.cs" />
+		<Compile Remove="Harmony\Harmony-RaidStrategyWorker_ImmediateAttackSappers.cs" />
+		<Compile Remove="Harmony\Harmony_WeatherDecider.cs" />
+		<Compile Remove="Projectile_FireTrail.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="CombatExtended\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="VFESecurity">
+			<HintPath>..\packages\VFESecurity.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="EDShields">
+			<HintPath>..\packages\ED-Shields-Reference.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SOS2">
+			<HintPath>..\packages\ShipsHaveInsides.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="ProjectRimFactory">
+			<HintPath>..\packages\ProjectRimFactory-Reference.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Properties\" />
+		<Folder Include="Contrib\Collections\" />
+		<Folder Include="CombatExtended\StatParts\Base\" />
+		<Folder Include="CombatExtended\AI\" />
+		<Folder Include="CombatExtended\AI\Comps\" />
+		<Folder Include="CombatExtended\AI\Comps\Base\" />
+		<Folder Include="CombatExtended\AI\Jobs\" />
+		<Folder Include="CombatExtended\AI\Toils\" />
+		<Folder Include="CombatExtended\AI\Jobs\Base\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3087" GeneratePathProperty="true" />
+		<PackageReference Include="Lib.Harmony" Version="2.1.1" ExcludeAssets="runtime" />
+		<PackageReference Include="TaskPubliciser" Version="1.0.3" />
+		<PackageReference Include="Microsoft.NETCore.Platforms" Version="5.0.2" />
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.2">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+	<Target Name="Publicise" BeforeTargets="UpdateReferences">
+		<!-- Set our variables -->
+		<PropertyGroup>
+			<AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
+			<Unity_CoreModule>$(PkgKrafs_Rimworld_Ref)\ref\net472\UnityEngine.CoreModule.dll</Unity_CoreModule>
+			<PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
+			<AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
+			<Unity_CoreModule_Publicised>$(PubliciseOutputPath)UnityEngine.CoreModule_publicised.dll</Unity_CoreModule_Publicised>
+		</PropertyGroup>
+		<!-- Publicise the dlls (if required) -->
+		<Message Importance="High" Text="Publicising Rimworld Assembly ..." />
+		<Publicise TargetAssemblyPath="$(AssemblyCSharp)" OutputPath="$(PubliciseOutputPath)" Condition="Exists('$(AssemblyCSharp)')" />
+		<Publicise TargetAssemblyPath="$(Unity_CoreModule)" OutputPath="$(PubliciseOutputPath)" Condition="Exists('$(Unity_CoreModule)')" />
+		<!-- Add references to the new publicised dlls -->
+		<Message Importance="High" Text="Replacing reference to un-publicised assemblies with publicised equivalents ..." />
+	</Target>
+	<Target Name="AddRefrences" BeforeTargets="UpdateReferences" AfterTargets="Publicise">
+		<!-- Set our variables -->
+		<PropertyGroup>
+			<AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
+			<Unity_CoreModule>$(PkgKrafs_Rimworld_Ref)\ref\net472\UnityEngine.CoreModule.dll</Unity_CoreModule>
+			<PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
+			<AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
+			<Unity_CoreModule_Publicised>$(PubliciseOutputPath)UnityEngine.CoreModule_publicised.dll</Unity_CoreModule_Publicised>
+		</PropertyGroup>
+		<!-- Publicise the dlls (if required) -->
+		<ItemGroup>
+			<Reference Include="$(AssemblyCSharp_Publicised)">
+				<SpecificVersion>false</SpecificVersion>
+				<HintPath>$(AssemblyCSharp_Publicised)</HintPath>
+				<Implicit>true</Implicit>
+				<Private>false</Private>
+			</Reference>
+			<Reference Include="$(Unity_CoreModule_Publicised)">
+				<SpecificVersion>false</SpecificVersion>
+				<HintPath>$(Unity_CoreModule_Publicised)</HintPath>
+				<Implicit>true</Implicit>
+				<Private>false</Private>
+			</Reference>
+		</ItemGroup>
+	</Target>
+	<Target Name="UpdateReferences" AfterTargets="ResolveLockFileReferences">
+		<Message Importance="High" Text="Remove References at ($(PkgKrafs_Rimworld_Ref))" />
+		<ItemGroup>
+			<Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
+			<Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\UnityEngine.CoreModule.dll" />
+		</ItemGroup>
+	</Target>
 </Project>

@@ -128,9 +128,10 @@ namespace CombatExtended
             return BodyPartHeight.Top;
         }
 
+        /* Alistaire: Part of code that targets Bottom too often
         public BodyPartHeight GetRandWeightedBodyHeightBelow(float threshold)
         {
             return GetCollisionBodyHeight(Rand.Range(Min, threshold));
-        }
+        }*/
     }
 }

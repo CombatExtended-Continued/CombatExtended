@@ -44,10 +44,147 @@
 				</FireModes>
 			</li>
 			
+			<!-- ========== Line Rifle =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="AT_hydroheliumion_B"]</xpath>
+				<value>
+				  <ThingDef ParentName="BaseMakeableGun_Anty">
+					<defName>AT_hydroheliumion_B</defName>
+					<label>Red Burst Line Rifle</label>
+					<description>It is a weapon developed by Anties to deal with targets with thick armor or strong body itself, such as mechanoids.\n\n Unlike conventional acid weapons, it fires Red Burst, a compound of Anty-acid and Refleum, rather than Anty-acid. Exhibits powerful power.</description>
+					<graphicData>
+						<texPath>Things/Weapons/AT_hydroheliumion_B</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<soundInteract>hydroheliumion_A</soundInteract>
+					<statBases>
+					  <WorkToMake>90000</WorkToMake>
+					  <SightsEfficiency>1</SightsEfficiency>
+					  <ShotSpread>0.14</ShotSpread>
+					  <SwayFactor>1.51</SwayFactor>
+					  <Bulk>9.60</Bulk>
+					  <Mass>5.45</Mass>
+					  <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					</statBases>
+					<equippedAngleOffset>45</equippedAngleOffset>
+					<weaponTags>
+						<li>hydroheliumion_B</li>
+					</weaponTags>
+					<costList>
+						<AntyExoskeleton>80</AntyExoskeleton>
+						<Refleum>15</Refleum>
+						<Uranium>20</Uranium>
+						<ComponentSpacer>4</ComponentSpacer>
+						<Anty_Recyclecore>1</Anty_Recyclecore>
+					</costList>
+					<verbs>
+					  <li Class="CombatExtended.VerbPropertiesCE">
+						<recoilAmount>2.36</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_AntyRedAcidLine</defaultProjectile>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+						<warmupTime>0.6</warmupTime>
+						<range>16</range>
+						<soundCast>ShotAnty_G</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					  </li>
+					</verbs>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>10</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_AntyRedAcidLine</ammoSet>
+					  </li>
+					  <li Class="CombatExtended.CompProperties_FireModes">
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+					  </li>
+					</comps>
+					<recipeMaker>
+						<skillRequirements>
+							<Crafting>10</Crafting>
+							<Intellectual>10</Intellectual>
+						</skillRequirements>
+						<researchPrerequisite>hydroheliumion_B</researchPrerequisite>
+					</recipeMaker>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						<extraMeleeDamages>
+							<li>
+								<def>Anty_Poke</def>
+								<amount>10</amount>
+								<chance>0.35</chance>
+							</li>
+							<li>
+								<def>EMP</def>
+								<amount>12</amount>
+								<chance>0.25</chance>
+							</li>
+							<li>
+								<def>Stun</def>
+								<amount>3</amount>
+								<chance>0.15</chance>
+							</li>
+						</extraMeleeDamages>
+					  </li>
+					</tools>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<!-- ========== Cluster =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>AT_hydroheliumion_C</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.85</SwayFactor>
+					<Bulk>11.03</Bulk>
+					<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_AntyRedAcidCluster</defaultProjectile>
+					<warmupTime>3</warmupTime>
+					<range>62</range>
+					<ammoConsumedPerShotCount>200</ammoConsumedPerShotCount>
+					<soundCast>ShotAnty_G</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>8</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>200</magazineSize>
+					<reloadTime>5.1</reloadTime>
+					<ammoSet>AmmoSet_AntyRedAcidCluster</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+			</li>
+			
 			<!-- ========== Melee Attacks =========== -->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="AT_hydroheliumion_A"
+				<xpath>Defs/ThingDef[defName="AT_hydroheliumion_A" or
+				defName="AT_hydroheliumion_C"
 				]/tools</xpath>
 				<value>
 					<tools>

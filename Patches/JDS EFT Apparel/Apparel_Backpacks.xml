@@ -9,29 +9,19 @@
       <operations>
 
         <!-- === Backpacks  === -->
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[
-              defName = "JDSTarkov_Backpack_TacticalSling" or
-              defName = "JDSTarkov_Backpack_T-Bag" or
-              defName = "JDSTarkov_Backpack_Beta2Bag" or
-              defName = "JDSTarkov_Backpack_MBSS" or
-              defName = "JDSTarkov_Backpack_DayPack" or
-              defName = "JDSTarkov_Backpack_SFMP" or
-              defName = "JDSTarkov_Backpack_Paratus" or
-              defName = "JDSTarkov_Backpack_Tri-Zip" or
-              defName = "JDSTarkov_Backpack_F5bag" or
-              defName = "JDSTarkov_Backpack_Mechanism" or
-              defName = "JDSTarkov_Backpack_AttackTwo" or
-              defName = "JDSTarkov_Backpack_ArmyBag" or
-              defName = "JDSTarkov_Backpack_Berkut" or
-              defName = "JDSTarkov_Backpack_6SH118bag" or
-              defName = "JDSTarkov_Backpack_F4Bag" or
-              defName = "JDSTarkov_Backpack_Blackjack50Bag" or
-              defName = "JDSTarkov_Backpack_Pilgrim" or
-              defName = "JDSTarkov_Backpack_ScavBP"
-            ]/statBases/CarryingCapacity
-          </xpath>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="JDSFrontierBackpackBase"]/apparel/bodyPartGroups</xpath>
+          <value>
+            <li>Shoulders</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="JDSFrontierBackpackBase"]/apparel/layers</xpath>
+          <value>
+            <li>Backpack</li>
+          </value>
         </li>
 
         <!-- == statBases == -->
@@ -91,8 +81,8 @@
 
         <!-- == CarryBulk == -->
         <!-- Sling Packs -->
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_TacticalSling" or defName="JDSTarkov_Backpack_T-Bag"]</xpath>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="JDSTarkov_Backpack_TacticalSling" or defName="JDSTarkov_Backpack_T-Bag"]/equippedStatOffsets</xpath>
           <value>
             <equippedStatOffsets>
               <CarryBulk>10</CarryBulk>
@@ -101,14 +91,14 @@
         </li>
 
         <!-- Small Packs -->
-        <li Class="PatchOperationAdd">
+        <li Class="PatchOperationReplace">
           <xpath>
             /Defs/ThingDef[
               defName = "JDSTarkov_Backpack_Beta2Bag" or
               defName = "JDSTarkov_Backpack_MBSS" or
               defName = "JDSTarkov_Backpack_DayPack" or
               defName = "JDSTarkov_Backpack_SFMP"
-            ]
+            ]/equippedStatOffsets
           </xpath>
           <value>
             <equippedStatOffsets>
@@ -118,7 +108,7 @@
         </li>
 
         <!-- Medium Packs -->
-        <li Class="PatchOperationAdd">
+        <li Class="PatchOperationReplace">
           <xpath>
             /Defs/ThingDef[
               defName = "JDSTarkov_Backpack_Paratus" or
@@ -129,7 +119,7 @@
               defName = "JDSTarkov_Backpack_ArmyBag" or
               defName = "JDSTarkov_Backpack_Berkut" or
               defName = "JDSTarkov_Backpack_ScavBP"
-            ]
+            ]/equippedStatOffsets
           </xpath>
           <value>
             <equippedStatOffsets>
@@ -139,14 +129,14 @@
         </li>
 
         <!-- Large Packs -->
-        <li Class="PatchOperationAdd">
+        <li Class="PatchOperationReplace">
           <xpath>
             /Defs/ThingDef[
               defName = "JDSTarkov_Backpack_6SH118bag" or
               defName = "JDSTarkov_Backpack_F4Bag" or
               defName = "JDSTarkov_Backpack_Blackjack50Bag" or
               defName = "JDSTarkov_Backpack_Pilgrim"
-            ]
+            ]/equippedStatOffsets
           </xpath>
           <value>
             <equippedStatOffsets>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>MorrowRim</li>
+		<li>MorrowRim - Just the Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStrider"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedTall</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStrider"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.66</MeleeDodgeChance>
+					<MeleeCritChance>0.67</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_SiltStrider"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_SiltStrider"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_SiltStrider"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+							<power>28</power>
+							<cooldownTime>3.4</cooldownTime>
+				                                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				                                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				                                                <chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>27</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>left scythed arm</label>
+						<capacities>
+			  				<li>Stab</li>
+						</capacities>
+						<power>41</power>
+						<cooldownTime>2.4</cooldownTime>
+						<linkedBodyPartsGroup>MorrowRim_InsectArmAttackTool_L</linkedBodyPartsGroup>
+						<chanceFactor>0.7</chanceFactor>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>right scythed arm</label>
+						<capacities>
+			  				<li>Stab</li>
+						</capacities>
+						<power>41</power>
+						<cooldownTime>2.4</cooldownTime>
+						<linkedBodyPartsGroup>MorrowRim_InsectArmAttackTool_R</linkedBodyPartsGroup>
+						<chanceFactor>0.7</chanceFactor>
+						<armorPenetrationSharp>4</armorPenetrationSharp>
+						<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixHound"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixHound"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.14</MeleeParryChance>
+					<ArmorRating_Blunt>0.18</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixHound"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>proboscis</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.45</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.444</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<chanceFactor>0.2</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Shalk" or defName="MorrowRim_FungalShalk"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Shalk" or defName="MorrowRim_FungalShalk"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.23</MeleeDodgeChance>
+					<MeleeCritChance>0.04</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
+				</value>
+			</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MorrowRim_Shalk" or defName="MorrowRim_FungalShalk"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>0.33</ArmorRating_Blunt>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="MorrowRim_Shalk" or defName="MorrowRim_FungalShalk"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.33</ArmorRating_Sharp>
+		</value>
+	</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_Shalk" or defName="MorrowRim_FungalShalk"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+							<power>2</power>
+							<cooldownTime>1.85</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+				                                               <label>mandibles</label>
+							<capacities>
+			  					<li>Bite</li>
+			  					<li>MorrowRim_BurnBite</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.26</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.78</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AshHopper"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>QuadrupedLow</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AshHopper"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeCritChance>0.1</MeleeCritChance>
+					<MeleeParryChance>0.25</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_AshHopper"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_AshHopper"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_AshHopper"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>3</power>
+				<cooldownTime>1.85</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+				                                               <label>mandibles</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.4</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.34</armorPenetrationSharp>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixOx"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixOx"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.03</MeleeDodgeChance>
+					<MeleeCritChance>0.19</MeleeCritChance>
+					<MeleeParryChance>0.14</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_NixOx"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>0.6</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MorrowRim_NixOx"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MorrowRim_NixOx"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>3</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

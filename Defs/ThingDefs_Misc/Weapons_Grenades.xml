@@ -43,22 +43,6 @@
     <resourceReadoutPriority>First</resourceReadoutPriority>
   </ThingDef>
 
-  <ThingDef Name="BaseGrenadeProjectile" Abstract="True">
-    <category>Projectile</category>
-    <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>projectile</label>
-    <tickerType>Normal</tickerType>
-    <useHitPoints>False</useHitPoints>
-    <neverMultiSelect>True</neverMultiSelect>
-    <graphicData>
-      <shaderType>Transparent</shaderType>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <flyOverhead>false</flyOverhead>
-    </projectile>
-  </ThingDef>
-
   <!-- ==================== Flashbang grenade ========================== -->
 
   <ThingDef ParentName="BaseGrenadeProjectile">
@@ -100,8 +84,8 @@
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
+      <li>CE_AI_AOE</li>
       <li>CE_GrenadeFlashbang</li>
-      <li>CE_AI_Nonlethal</li>
     </weaponTags>
     <thingCategories>
       <li>Grenades</li>
@@ -125,12 +109,12 @@
       </li>
     </verbs>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>25</damageAmountBase>
-		<explosiveDamageType>Stun</explosiveDamageType>
-		<explosiveRadius>4</explosiveRadius>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>25</damageAmountBase>
+        <explosiveDamageType>Stun</explosiveDamageType>
+        <explosiveRadius>4</explosiveRadius>
         <explosionSound>Explosion_Stun</explosionSound>
-	  </li>
+      </li>
     </comps>
   </ThingDef>
 
@@ -145,7 +129,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <explosionRadius>2.5</explosionRadius >
+      <explosionRadius>2.5</explosionRadius>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>234</damageAmountBase>
       <explosionDelay>90</explosionDelay>
@@ -164,7 +148,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>Interact_Grenade</soundInteract>
-    <techLevel>Industrial</techLevel>
+    <techLevel>Neolithic</techLevel>
     <stackLimit>25</stackLimit>
     <statBases>
       <Mass>1.5</Mass>
@@ -174,6 +158,7 @@
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
+      <li>CE_AI_AOE</li>
       <li>CE_GrenadeNeolithic</li>
     </weaponTags>
     <thingCategories>
@@ -197,7 +182,7 @@
         <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
       </li>
     </verbs>
-	<detonateProjectile>Proj_GrenadeStickBomb</detonateProjectile>
+    <detonateProjectile>Proj_GrenadeStickBomb</detonateProjectile>
   </ThingDef>
 
   <!-- ==================== Smoke grenade ========================== -->
@@ -240,8 +225,8 @@
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-      <li>CE_AI_Nonlethal</li>
-      <li>GrenadeSmoke</li>	  
+      <li>CE_AI_SMOKE</li>
+      <li>GrenadeSmoke</li>
     </weaponTags>
     <thingCategories>
       <li>Grenades</li>
@@ -265,12 +250,12 @@
       </li>
     </verbs>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>4</damageAmountBase>
-		<explosiveDamageType>Smoke</explosiveDamageType>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>4</damageAmountBase>
+        <explosiveDamageType>Smoke</explosiveDamageType>
         <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
         <preExplosionSpawnChance>1</preExplosionSpawnChance>
-	  </li>
+      </li>
     </comps>
   </ThingDef>
 
@@ -314,7 +299,7 @@
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
-      <li>CE_AI_Nonlethal</li>
+      <li>CE_AI_AOE</li>
     </weaponTags>
     <thingCategories>
       <li>Grenades</li>
@@ -338,13 +323,13 @@
       </li>
     </verbs>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<explosiveDamageType>Extinguish</explosiveDamageType>
-		<explosiveRadius>6.5</explosiveRadius>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosiveDamageType>Extinguish</explosiveDamageType>
+        <explosiveRadius>6.5</explosiveRadius>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
-	  </li>
+      </li>
     </comps>
   </ThingDef>
 

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+  <!-- ========== Minified Thing ========== -->
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MinifiedThing"]</xpath>
+		<attribute>Name</attribute>
+		<value>MinifiedBase</value>
+	</Operation>
+  
+  <Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="MinifiedTree"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>MinifiedBase</value>
+	</Operation>
+
   <!-- ========== Resource RawPlant ========== -->
 
   <Operation Class="PatchOperationAdd">
@@ -66,5 +80,30 @@
     </value>
   </Operation>
 
+  <!-- Reinforced Barrel -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="ReinforcedBarrel"]/statBases</xpath>
+    <value>
+      <Bulk>8</Bulk>
+    </value>
+  </Operation>
+
+  <!-- Ensure chunks have stuffProps so they can be used in recipes (like "make stone sling bullets") whithout throwing "not a stuff" error -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/ThingDef[@Name="ChunkBase"]/stuffProps</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[@Name="ChunkBase"]</xpath>
+        <value>
+          <stuffProps></stuffProps>
+        </value>
+      </li>
+    </operations>
+  </Operation>
 </Patch>
 

@@ -5,13 +5,12 @@
     <mods>
       <li>Vanilla Weapons Expanded</li>
     </mods>
-
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- === Projectile === -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
-
           <value>
             <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseBullet">
               <thingClass>CombatExtended.BulletCE</thingClass>
@@ -25,10 +24,13 @@
                 <speed>80</speed>
                 <damageDef>VWE_RangedCut</damageDef>
                 <damageAmountBase>8</damageAmountBase>
+                <armorPenetrationSharp>0.65</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
               </projectile>
             </ThingDef>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>

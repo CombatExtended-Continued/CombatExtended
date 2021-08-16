@@ -7,6 +7,8 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using CombatExtended.Compatibility;
+using CombatExtended.Lasers;
+using ProjectileImpactFX;
 
 namespace CombatExtended
 {
@@ -25,7 +27,7 @@ namespace CombatExtended
         private const int collisionCheckSize = 5;
 
         #region Origin destination
-        protected Vector2 origin;
+        public Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
@@ -40,11 +42,11 @@ namespace CombatExtended
             }
         }
 
-        protected Vector3 destinationInt = new Vector3(0f, 0f, -1f);
+        public Vector3 destinationInt = new Vector3(0f, 0f, -1f);
         /// <summary>
         /// Calculates the destination (zero height) reached with a projectile of speed <i>shotSpeed</i> fired at <i>shotAngle</i> from height <i>shotHeight</i> starting from <i>origin</i>. Does not take into account air resistance.
         /// </summary>
-        protected Vector2 Destination
+        public Vector2 Destination
         {
             get
             {
@@ -59,17 +61,26 @@ namespace CombatExtended
         }
         #endregion
 
-        protected ThingDef equipmentDef;
-        protected Thing launcher;
-        public Thing intendedTarget;
-        public float minCollisionSqr;
+
+        public Thing intendedTargetThing
+        {
+            get
+            {
+                return intendedTarget.Thing;
+            }
+        }
+
+        public ThingDef equipmentDef;
+        public Thing launcher;
+        public LocalTargetInfo intendedTarget;
+        public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
 
         #region Vanilla
-        protected bool landed;
-        protected int ticksToImpact;
+        public bool landed;
+        public int ticksToImpact;
         private Sustainer ambientSustainer;
         #endregion
 
@@ -101,7 +112,7 @@ namespace CombatExtended
 
         #region Ticks/Seconds
         float startingTicksToImpactInt = -1f;
-        protected float StartingTicksToImpact
+        public float StartingTicksToImpact
         {
             get
             {
@@ -122,7 +133,6 @@ namespace CombatExtended
                         startingTicksToImpactInt = (float)((origin - Destination).magnitude / (Mathf.Cos(shotAngle) * shotSpeed)) * (float)GenTicks.TicksPerRealSecond;
                         return startingTicksToImpactInt;
                     }
-
                     startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
                 }
                 return startingTicksToImpactInt;
@@ -133,7 +143,7 @@ namespace CombatExtended
         /// <summary>
         /// An integer ceil value of StartingTicksToImpact. intTicksToImpact is equal to -1 when not initialized.
         /// </summary>
-        protected int IntTicksToImpact
+        public int IntTicksToImpact
         {
             get
             {
@@ -148,7 +158,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of integer ticks this projectile has remained in the air for, ignoring impact.
         /// </summary>
-        protected int FlightTicks
+        public int FlightTicks
         {
             get
             {
@@ -158,7 +168,7 @@ namespace CombatExtended
         /// <summary>
         /// The amount of float ticks the projectile has remained in the air for, including impact.
         /// </summary>
-        protected float fTicks
+        public float fTicks
         {
             get
             {
@@ -239,6 +249,15 @@ namespace CombatExtended
             get
             {
                 return (ExactPosition - LastPos);
+            }
+        }
+
+        private DangerTracker _dangerTracker = null;
+        private DangerTracker DangerTracker
+        {
+            get
+            {
+                return _dangerTracker ?? (_dangerTracker = Map.GetDangerTracker());
             }
         }
 
@@ -324,6 +343,10 @@ namespace CombatExtended
             }
         }
 
+
+        // Todo: When rimworld harmony updates to 2.0.4 use FieldRefAccess
+        private static readonly FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
         private Material[] shadowMaterial;
         private Material ShadowMaterial
         {
@@ -332,18 +355,17 @@ namespace CombatExtended
                 if (shadowMaterial == null)
                 {
                     //Get fully black version of this.Graphic
-		    var g = Graphic as Graphic_Collection;
-		    if (g!=null)
-		    {
-			shadowMaterial = GetShadowMaterial(g);
-		    }
-		
-		    else
-		    {
-			shadowMaterial = new Material[1];
-			shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
-		    }
+                    if (Graphic is Graphic_Collection g)
+                    {
+                        shadowMaterial = GetShadowMaterial(g);
+                    }
+                    else
+                    {
+                        shadowMaterial = new Material[1];
+                        shadowMaterial[0] = Graphic.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
+                    }
                 }
+
                 return shadowMaterial[Rand.Range(0, this.shadowMaterial.Length)];
             }
         }
@@ -367,23 +389,134 @@ namespace CombatExtended
             {
                 launcher = null;
             }
-            Scribe_Values.Look<Vector2>(ref origin, "ori", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "tTI", 0, true);
-            Scribe_References.Look<Thing>(ref intendedTarget, "iT");
-            Scribe_References.Look<Thing>(ref launcher, "lcr");
-            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "ed");
-            Scribe_Values.Look<bool>(ref landed, "lnd");
+
+            Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
+            Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
+            Scribe_Values.Look<bool>(ref landed, "landed");
 
             //Here be new variables
-            Scribe_Values.Look(ref shotAngle, "ang", 0f, true);
-            Scribe_Values.Look(ref shotRotation, "sRot", 0f, true);
-            Scribe_Values.Look(ref shotHeight, "hgt", 0f, true);
-            Scribe_Values.Look(ref shotSpeed, "spd", 0f, true);
-            Scribe_Values.Look<bool>(ref canTargetSelf, "cts");
-            Scribe_Values.Look<bool>(ref logMisses, "lM", true);
-            Scribe_Values.Look<bool>(ref castShadow, "cS", true);
+            Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
+            Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
+            Scribe_Values.Look(ref shotHeight, "shotHeight", 0f, true);
+            Scribe_Values.Look(ref shotSpeed, "shotSpeed", 0f, true);
+            Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
+            Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
+            Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
+
+            // To insure saves don't get affected..
+            Thing target = null;
+            if (Scribe.mode != LoadSaveMode.Saving)
+            {
+                Scribe_References.Look<Thing>(ref target, "intendedTarget");
+                if (target != null)
+                    intendedTarget = new LocalTargetInfo(target);
+            }
         }
         #endregion
+
+        public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
+        {
+
+            float magicSpreadFactor = Mathf.Sin(0.06f / 2 * Mathf.Deg2Rad) + aperatureSize;
+            float magicLaserDamageConstant = 1 / (magicSpreadFactor * magicSpreadFactor * 3.14159f);
+
+            ProjectilePropertiesCE pprops = def.projectile as ProjectilePropertiesCE;
+            shotRotation = Mathf.Deg2Rad * shotRotation + (float)(3.14159 / 2.0f);
+            Vector3 direction = new Vector3(Mathf.Cos(shotRotation) * Mathf.Cos(shotAngle), Mathf.Sin(shotAngle), Mathf.Sin(shotRotation) * Mathf.Cos(shotAngle));
+            Vector3 origin3 = new Vector3(origin.x, shotHeight, origin.y);
+            Map map = launcher.Map;
+            Vector3 destination = direction * verbProps.range + origin3;
+            this.shotAngle = shotAngle;
+            this.shotHeight = shotHeight;
+            this.shotRotation = shotRotation;
+            this.launcher = launcher;
+            this.origin = origin;
+            equipmentDef = equipment?.def ?? null;
+            Ray ray = new Ray(origin3, direction);
+            var lbce = this as LaserBeamCE;
+            float spreadRadius = Mathf.Sin(spreadDegrees / 2.0f * Mathf.Deg2Rad);
+
+            LaserGunDef defWeapon = equipmentDef as LaserGunDef;
+            Vector3 muzzle = ray.GetPoint((defWeapon == null ? 0.9f : defWeapon.barrelLength));
+            var it_bounds = CE_Utility.GetBoundsFor(intendedTargetThing);
+            for (int i = 1; i < verbProps.range; i++)
+            {
+                float spreadArea = (i * spreadRadius + aperatureSize) * (i * spreadRadius + aperatureSize) * 3.14159f;
+                if (pprops.damageFalloff)
+                {
+                    lbce.DamageModifier = 1 / (magicLaserDamageConstant * spreadArea);
+                }
+
+                Vector3 tp = ray.GetPoint(i);
+                if (tp.y > CollisionVertical.WallCollisionHeight)
+                {
+                    break;
+                }
+                if (tp.y < 0)
+                {
+                    destination = tp;
+                    landed = true;
+                    ExactPosition = tp;
+                    Position = ExactPosition.ToIntVec3();
+                    break;
+                }
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3()))
+                {
+                    if (this == thing)
+                    {
+                        continue;
+                    }
+                    var bounds = CE_Utility.GetBoundsFor(thing);
+                    if (!bounds.IntersectRay(ray, out var dist))
+                    {
+                        continue;
+                    }
+                    if (i < 2 && thing != intendedTargetThing)
+                    {
+                        continue;
+                    }
+
+                    if (thing is Plant plant)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent * plant.Growth))
+                        {
+                            continue;
+                        }
+                    }
+                    else if (thing is Building)
+                    {
+                        if (!Rand.Chance(thing.def.fillPercent))
+                        {
+                            continue;
+                        }
+                    }
+                    ExactPosition = tp;
+                    destination = tp;
+                    landed = true;
+                    LastPos = destination;
+                    ExactPosition = destination;
+                    Position = ExactPosition.ToIntVec3();
+
+                    lbce.SpawnBeam(muzzle, destination);
+
+                    lbce.Impact(thing, muzzle);
+
+                    return;
+
+                }
+
+            }
+            if (lbce != null)
+            {
+                lbce.SpawnBeam(muzzle, destination);
+                Destroy(DestroyMode.Vanish);
+                return;
+            }
+        }
+
 
         #region Launch
         /// <summary>
@@ -401,19 +534,13 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-
+            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
             Launch(launcher, origin, equipment);
-            if (shotSpeed > 0f)
-            {
-                this.shotSpeed = shotSpeed;
-            }
-
-            ticksToImpact = IntTicksToImpact;
+            this.ticksToImpact = IntTicksToImpact;
         }
 
         public virtual void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
         {
-            shotSpeed = def.projectile.speed;
             this.launcher = launcher;
             this.origin = origin;
             //For explosives/bullets, equipmentDef is important
@@ -427,12 +554,9 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Collisions
-        static readonly FieldInfo interceptAngleField = typeof(CompProjectileInterceptor).GetField("lastInterceptAngle", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly FieldInfo interceptTicksField = typeof(CompProjectileInterceptor).GetField("lastInterceptTicks", BindingFlags.NonPublic | BindingFlags.Instance);
+        #region Collisions        
         static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        static readonly MethodInfo interceptBreakShield = typeof(CompProjectileInterceptor).GetMethod("BreakShield", BindingFlags.NonPublic | BindingFlags.Instance);
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -472,19 +596,19 @@ namespace CombatExtended
             {
                 return false;
             }
-            interceptAngleField.SetValue(interceptorComp, lastExactPos.AngleToFlat(interceptorThing.TrueCenter()));
-            interceptTicksField.SetValue(interceptorComp, Find.TickManager.TicksGame);
+            interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
+            interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
             var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
             if (areWeLucky)
             {
                 var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
                 if (def.projectile.damageDef == DamageDefOf.EMP)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
                 }
                 else if (firstEMPSecondaryDamage != null)
                 {
-                    interceptBreakShield.Invoke(interceptorComp, new object[] { new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage) });
+                    interceptorComp.BreakShield(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
                 }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
@@ -521,7 +645,7 @@ namespace CombatExtended
             }
 
             #region Sanity checks
-            if (ticksToImpact == 0 || def.projectile.flyOverhead)
+            if (ticksToImpact < 0 || def.projectile.flyOverhead)
                 return false;
 
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
@@ -570,36 +694,24 @@ namespace CombatExtended
                 return true;
             }
             var roofChecked = false;
-            var justWallsRoofs = false;
 
-            //Check for minimum PAWN collision distance
-            float distFromOrigin = cell.DistanceToSquared(OriginIV3);
-            bool skipCollision = !def.projectile.alwaysFreeIntercept
-                && (minCollisionSqr <= 1f
-                    ? distFromOrigin < 1f
-                    : distFromOrigin <= Mathf.Min(144f, minCollisionSqr / 4));
-
-            var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell))
-                .Where(t => justWallsRoofs ? t.def.Fillage == FillCategory.Full : (t is Pawn || t.def.Fillage != FillCategory.None)).ToList();
+            var mainThingList = new List<Thing>(Map.thingGrid.ThingsListAtFast(cell)).Where(t => t is Pawn || t.def.Fillage != FillCategory.None).ToList();
 
             //Find pawns in adjacent cells and append them to main list
-            if (!justWallsRoofs)
+            var adjList = new List<IntVec3>();
+            adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
+
+            //Iterate through adjacent cells and find all the pawns
+            foreach (var curCell in adjList)
             {
-                var adjList = new List<IntVec3>();
-                adjList.AddRange(GenAdj.CellsAdjacentCardinal(cell, Rot4.FromAngleFlat(shotRotation), new IntVec2(collisionCheckSize, 0)).ToList());
-
-                //Iterate through adjacent cells and find all the pawns
-                foreach (var curCell in adjList)
+                if (curCell != cell && curCell.InBounds(Map))
                 {
-                    if (curCell != cell && curCell.InBounds(Map))
-                    {
-                        mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
-                        .Where(x => x is Pawn));
+                    mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
+                    .Where(x => x is Pawn));
 
-                        if (Controller.settings.DebugDrawInterceptChecks)
-                        {
-                            Map.debugDrawer.FlashCell(curCell, 0.7f);
-                        }
+                    if (Controller.settings.DebugDrawInterceptChecks)
+                    {
+                        Map.debugDrawer.FlashCell(curCell, 0.7f);
                     }
                 }
             }
@@ -619,13 +731,18 @@ namespace CombatExtended
                 if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
 
                 // Check for collision
-                if ((!skipCollision || thing == intendedTarget) && TryCollideWith(thing))
-                    return true;
+                if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
+                {
+                    if (TryCollideWith(thing))
+                    {
+                        return true;
+                    }
+                }
 
                 // Apply suppression. The height here is NOT that of the bullet in CELL,
                 // it is the height at the END OF THE PATH. This is because SuppressionRadius
                 // is not considered an EXACT limit.
-                if (!justWallsRoofs && ExactPosition.y < SuppressionRadius)
+                if (ExactPosition.y < SuppressionRadius)
                 {
                     var pawn = thing as Pawn;
                     if (pawn != null)
@@ -769,8 +886,7 @@ namespace CombatExtended
                 return;
             }
             Position = ExactPosition.ToIntVec3();
-            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal &&
-                def.projectile.soundImpactAnticipate != null)
+            if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
             }
@@ -784,6 +900,24 @@ namespace CombatExtended
             {
                 ambientSustainer.Maintain();
             }
+
+            if (def.HasModExtension<TrailerProjectileExtension>())
+            {
+                var trailer = def.GetModExtension<TrailerProjectileExtension>();
+                if (trailer != null)
+                {
+                    if (ticksToImpact % trailer.trailerMoteInterval == 0)
+                    {
+                        for (int i = 0; i < trailer.motesThrown; i++)
+                        {
+                            TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
+                        }
+                    }
+                }
+            }
+            float distToOrigin = originInt.DistanceTo(positionInt);
+            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
+                DangerTracker?.Notify_BulletAt(Position, distToOrigin);
         }
 
         /// <summary>
@@ -872,8 +1006,17 @@ namespace CombatExtended
             Impact(null);
         }
 
-        protected virtual void Impact(Thing hitThing)
+        public virtual void Impact(Thing hitThing)
         {
+            if (def.HasModExtension<EffectProjectileExtension>())
+            {
+                def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
+                                                                            Map,
+                                                                            def.projectile.damageDef.explosionCellMote,
+                                                                            def.projectile.damageDef.explosionColorCenter,
+                                                                            def.projectile.damageDef.soundExplosion,
+                                                                            hitThing);
+            }
             var ignoredThings = new List<Thing>();
 
             //Spawn things from preExplosionSpawnThingDef != null
@@ -918,8 +1061,8 @@ namespace CombatExtended
             {
                 //Handle anything explosive
 
-                if (hitThing is Pawn && (hitThing as Pawn).Dead)
-                    ignoredThings.Add((hitThing as Pawn).Corpse);
+                if (hitThing is Pawn pawn && pawn.Dead)
+                    ignoredThings.Add(pawn.Corpse);
 
                 var suppressThings = new List<Pawn>();
                 var dir = new float?(origin.AngleTo(Vec2Position()));
@@ -937,8 +1080,7 @@ namespace CombatExtended
 
                     // Apply suppression around impact area
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true)
-                            .Where(x => x is Pawn).Select(x => x as Pawn));
+                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true).OfType<Pawn>());
                 }
 
                 if (explodingComp != null)
@@ -946,12 +1088,12 @@ namespace CombatExtended
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
 
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true)
-                        .Where(x => x is Pawn).Select(x => x as Pawn));
+                        suppressThings.AddRange(GenRadial
+                            .RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true).OfType<Pawn>());
                 }
 
                 foreach (var thing in suppressThings)
-                    ApplySuppression(thing as Pawn);
+                    ApplySuppression(thing);
             }
 
             Destroy();
@@ -1014,16 +1156,14 @@ namespace CombatExtended
         }
         #endregion
 
-        #endregion
+        private static Material[] GetShadowMaterial(Graphic_Collection g)
+        {
+            var collection = (Graphic[])subGraphics.GetValue(g);
+            var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();
 
-	public static Material[] GetShadowMaterial(Graphic_Collection g) {
-	    FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-	    Graphic[] collection = (Graphic[]) subGraphics.GetValue(g);
-	    Material[] shadows = new Material[collection.Length];
-	    for (int i=0; i<collection.Length; i++) {
-		shadows[i] = collection[i].GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle;
-	    }
-	    return shadows;
-	}
+            return shadows;
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using System.Runtime.Remoting.Messaging;
 
 namespace CombatExtended
 {
@@ -25,7 +26,7 @@ namespace CombatExtended
 
             if (map == null)
             {
-                Log.Warning("CombatExtended :: Tried to do explosionCE in a null map.", false);
+                Log.Warning("CombatExtended :: Tried to do explosionCE in a null map.");
                 return;
             }
             if (damAmount < 0)
@@ -34,7 +35,7 @@ namespace CombatExtended
                 armorPenetration = damType.defaultArmorPenetration;
                 if (damAmount < 0)
                 {
-                    Log.ErrorOnce("CombatExtended :: Attempted to trigger an explosionCE without defined damage", 910948823, false);
+                    Log.ErrorOnce("CombatExtended :: Attempted to trigger an explosionCE without defined damage", 910948823);
                     damAmount = 1;
                 }
             }

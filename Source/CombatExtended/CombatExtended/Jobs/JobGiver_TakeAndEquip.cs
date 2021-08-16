@@ -1,4 +1,4 @@
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Linq;
 using Verse;
@@ -150,7 +150,7 @@ namespace CombatExtended
             else return 0f;
         }
 
-        protected override Job TryGiveJob(Pawn pawn)
+        public override Job TryGiveJob(Pawn pawn)
         {
             if (!Controller.settings.EnableAmmoSystem || !Controller.settings.AutoTakeAmmo)
             {
@@ -176,7 +176,7 @@ namespace CombatExtended
                 return null;
             }
 
-            if (!pawn.Faction.IsPlayer && FindBattleWorthyEnemyPawnsCount(Find.CurrentMap, pawn) > 25)
+            if (!pawn.Faction.IsPlayer && FindBattleWorthyEnemyPawnsCount(pawn.Map, pawn) > 25)
             {
                 return null;
             }

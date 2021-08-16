@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Halo UNSC Weapon Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ResearchProjectDef[defName="UNSC_RocketLauncher"]/prerequisites</xpath>
+    <value>
+ 	<prerequisites>
+	<li>CE_Launchers</li>
+	<li>Basic_UNSCWeapons</li>
+	</prerequisites>
+    </value>
+  </li>
+
+
+  <!-- ========== Melee Tools ========== -->
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[defName="M7_SubmachineGun" or defName="M6D_Personal_Defense_Weapon_System"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>3</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef[defName="MA5D_ICWS" or defName="BR85_Service_Rifle" or defName="M90-CAWS_Shotgun"
+     or defName="SRS99C-S2_AM" or defName="M392_Designated_Marksman_Rifle" or defName="M41_SSR_MAV_AW" or defName="M319_Individual_Grenade_Launcher" or defName="M739_SAW" or defName="Asymmetric_Recoilless_Carbine" or defName="W-AV_M6_G-NR"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>7</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+				
+ <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='M6D_Personal_Defense_Weapon_System' or defName='M7_SubmachineGun' or defName='M319_Individual_Grenade_Launcher']/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='MA5D_ICWS' or defName='BR85_Service_Rifle' or defName='M392_Designated_Marksman_Rifle']/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='SRS99C-S2_AM' or defName='M739_SAW' or defName='Asymmetric_Recoilless_Carbine']/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>7</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[defName='W-AV_M6_G-NR']/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>8</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+
+  <li Class='PatchOperationRemove'>
+    <xpath>/Defs/ThingDef[defName='SRS99C-S2_AM' or defName='M739_SAW' or defName='Asymmetric_Recoilless_Carbine' or defName='MA5D_ICWS' or defName='BR85_Service_Rifle' or defName='M392_Designated_Marksman_Rifle' or defName='W-AV_M6_G-NR' or defName='M6D_Personal_Defense_Weapon_System' or defName='M7_SubmachineGun' or defName='M319_Individual_Grenade_Launcher' or defName='M41_SSR_MAV_AW'or defName='M90-CAWS_Shotgun']/statBases/MarketValue</xpath> 
+  </li>
+
+			<!-- === Spartan Laser === -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>W-AV_M6_G-NR</defName>
+        <statBases>
+          <WorkToMake>100000</WorkToMake>
+					<Mass>19.07</Mass>
+					<Bulk>18.00</Bulk>
+					<SwayFactor>2</SwayFactor>
+					<ShotSpread>0.01</ShotSpread>
+					<SightsEfficiency>2.25</SightsEfficiency>
+					<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+				</statBases>
+				<costList>
+				  <Steel>100</Steel>
+          <Chemfuel>60</Chemfuel>
+          <Plasteel>100</Plasteel>
+				  <ComponentSpacer>6</ComponentSpacer>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Bullet_Laser_SpartanLaserInf</defaultProjectile>
+					<warmupTime>2.6</warmupTime>
+					<range>86</range>
+					<soundCast>Shot_SpartanLaser</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>18</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>4</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_SpartanLaserInf</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>     
+				</FireModes>
+			</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<!-- === Spartan Laser Beam === -->
+
+			<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+				<defName>Bullet_Laser_SpartanLaserInf</defName>
+				<label>laser beam</label>                          
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<damageAmountBase>100</damageAmountBase>
+					<armorPenetrationSharp>600</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+		  		<secondaryDamage>
+					<li>
+			  		<def>Burn</def>
+			  			<amount>100</amount>
+					</li>
+		  		</secondaryDamage>
+				</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>100</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.0</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+				<seam>2</seam>			          
+			</ThingDef>
+
+			<!-- === Spartan Laser Battery === -->
+
+			<ThingCategoryDef>
+				<defName>AmmoHeavyLaserChargePack</defName>
+				<label>heavy laser charge pack</label>
+				<parent>AmmoAdvanced</parent>
+				<iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+			</ThingCategoryDef>
+
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_SpartanLaserInf</defName>
+				<label>Spartan laser battery cell</label>
+				<ammoTypes>
+					<Ammo_HeavyLaserChargePack>Bullet_Laser_SpartanLaserInf</Ammo_HeavyLaserChargePack>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+
+			<!-- ==================== Ammo ========================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyLaserChargePackBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+				<description>A battery pack for a heavy laser weapon.</description>
+				<statBases>
+					<Mass>0.5</Mass>
+					<Bulk>1</Bulk>
+				</statBases>
+				<tradeTags>
+					<li>CE_AutoEnableTrade_Sellable</li>
+					<li>CE_AutoEnableCrafting_FabricationBench</li>
+				</tradeTags>
+				<thingCategories>
+					<li>AmmoHeavyLaserChargePack</li>
+				</thingCategories>
+				<stackLimit>200</stackLimit>	
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="LaserChargePackBase">
+				<defName>Ammo_HeavyLaserChargePack</defName>
+				<label>heavy laser charge pack</label>
+				<graphicData>
+				<texPath>Things/Ammo/PlasmaCell/Heavy</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>10.69</MarketValue>
+				</statBases>
+				<ammoClass>Charged</ammoClass>
+			</ThingDef>
+
+			<!-- ==================== Recipes ========================== -->
+
+			<RecipeDef ParentName="ChargeAmmoRecipeBase">
+				<defName>MakeAmmo_HeavyLaserChargePack</defName>
+				<label>make laser charge pack x10</label>
+				<description>Craft 10 laser charge pack.</description>
+				<jobString>Making laser charge pack.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+					</filter>
+					<count>10</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>10</count>
+				</li>	  
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>6</count>
+				</li>
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Plasteel</li>
+					<li>Steel</li>		
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_HeavyLaserChargePack>10</Ammo_HeavyLaserChargePack>
+				</products>
+				<workAmount>8400</workAmount>
+			</RecipeDef>
+
+			</value>
+			</li>
+
+  <!-- ========== MA5C ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>MA5D_ICWS</defName>
+    <statBases>
+      <WorkToMake>31000</WorkToMake>
+      <SightsEfficiency>1.1</SightsEfficiency>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.32</SwayFactor>
+      <Bulk>8</Bulk>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmUNSC_FMJ</defaultProjectile>
+      <warmupTime>1</warmupTime>
+      <range>55</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+      <soundCast>Shot_MA5D</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.8</recoilAmount>
+    </Properties>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+      <Chemfuel>20</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>32</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_762x51mmUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>True</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+  </li>
+
+  <!-- ========== BR85 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>BR85_Service_Rifle</defName>
+    <statBases>
+      <WorkToMake>35000</WorkToMake>
+      <SightsEfficiency>1.5</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.4</SwayFactor>
+      <Bulk>8</Bulk>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_95x40mmUNSC_FMJ</defaultProjectile>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <warmupTime>1.1</warmupTime>
+      <range>60</range>
+      <soundCast>Shot_BattleRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilAmount>1.67</recoilAmount>
+    </Properties>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+      <Chemfuel>20</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>36</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_95x40mmUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+  <!-- ========== SAW ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>M739_SAW</defName>
+    <statBases>
+      <WorkToMake>56000</WorkToMake>
+      <SightsEfficiency>1.1</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.43</SwayFactor>
+      <Bulk>12</Bulk>
+      <Mass>6</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmUNSC_FMJ</defaultProjectile>
+      <warmupTime>1.25</warmupTime>
+      <range>62</range>
+      <burstShotCount>10</burstShotCount>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <soundCast>Shot_SAW</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Mounted</recoilPattern>
+      <recoilAmount>1.33</recoilAmount>
+    </Properties>
+    <costList>
+      <Steel>90</Steel>
+      <ComponentIndustrial>7</ComponentIndustrial>
+      <Chemfuel>30</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>128</magazineSize>
+      <reloadTime>6.0</reloadTime>
+      <ammoSet>AmmoSet_762x51mmUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+    </FireModes>
+  </li>
+
+  <!-- ========== M-7 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>M7_SubmachineGun</defName>
+    <statBases>
+      <WorkToMake>18000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>1.24</SwayFactor>
+      <Bulk>3.75</Bulk>
+      <Mass>1.8</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_5x23mmCaseless_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>26</range>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+      <soundCast>Shot_SMG</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <recoilPattern>Regular</recoilPattern>
+      <recoilAmount>1.17</recoilAmount>
+    </Properties>
+    <costList>
+      <Steel>35</Steel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+      <Chemfuel>10</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>60</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_5x23mmCaseless</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+    </FireModes>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </li>
+
+  <!-- ========== SRS99 ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>SRS99C-S2_AM</defName>
+    <statBases>
+      <WorkToMake>56000</WorkToMake>
+      <SightsEfficiency>3.5</SightsEfficiency>
+      <ShotSpread>0.03</ShotSpread>
+      <SwayFactor>1.88</SwayFactor>
+      <Bulk>15.0</Bulk>
+      <Mass>8.20</Mass>
+      <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_145x114mmUNSC_FMJ</defaultProjectile>
+      <warmupTime>3.2</warmupTime>
+      <range>90</range>
+      <soundCast>Shot_SRS99C-S2_AM</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>11</muzzleFlashScale>
+    </Properties>
+    <costList>
+      <Steel>80</Steel>
+      <Plasteel>20</Plasteel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <Chemfuel>30</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>4.8</reloadTime>
+      <ammoSet>AmmoSet_145x114mmUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+<!-- ========== Shotgun ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>M90-CAWS_Shotgun</defName>
+    <statBases>
+      <WorkToMake>25000</WorkToMake>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.12</ShotSpread>
+      <SwayFactor>1.28</SwayFactor>
+      <Bulk>8</Bulk>
+      <Mass>3.4</Mass>
+      <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_8Gauge_Buck</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>18</range>
+      <soundCast>Shot_Shotgun</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <Chemfuel>20</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>12</magazineSize>
+      <reloadOneAtATime>true</reloadOneAtATime>
+      <reloadTime>0.85</reloadTime>
+      <ammoSet>AmmoSet_8GaugeUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+    </FireModes>
+  </li>
+
+  <!-- ==========heavy Magnum ========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>M6D_Personal_Defense_Weapon_System</defName>
+    <statBases>
+      <WorkToMake>13000</WorkToMake>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.11</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
+      <Bulk>2.5</Bulk>
+      <Mass>1</Mass>
+      <RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_127x40mm_FMJ</defaultProjectile>
+      <warmupTime>0.66</warmupTime>
+      <range>15</range>
+      <soundCast>Shot_Magnum</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <Chemfuel>10</Chemfuel>
+    </costList>
+    <AmmoUser>
+      <magazineSize>12</magazineSize>
+      <reloadTime>3.5</reloadTime>
+      <ammoSet>AmmoSet_127x40mmUNSC</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+  </li>
+
+		<!-- === Grenadier === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>M319_Individual_Grenade_Launcher</defName>
+			<statBases>
+				<WorkToMake>12000</WorkToMake>
+				<Mass>3</Mass>
+				<Bulk>7.0</Bulk>
+				<SwayFactor>1</SwayFactor>
+				<ShotSpread>0.12</ShotSpread>
+				<SightsEfficiency>1.1</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>50</Steel>
+      				<Chemfuel>20</Chemfuel>
+				<ComponentIndustrial>3</ComponentIndustrial>
+			</costList>
+			<Properties>
+      				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_40mmGrenade_UNSCHEDP</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>1.1</warmupTime>
+				<range>55</range>
+        				<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+        				<minRange>4</minRange>
+				<soundCast>Shot_Halo_GrenadeLauncher</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+        				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+    			<AmmoUser>
+      				<reloadOneAtATime>true</reloadOneAtATime>
+      				<magazineSize>1</magazineSize>
+      				<reloadTime>2</reloadTime>
+      				<ammoSet>AmmoSet_40mmGrenade</ammoSet>
+    			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<!-- === Railgun === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Asymmetric_Recoilless_Carbine</defName>
+			<statBases>
+				<WorkToMake>60000</WorkToMake>
+				<Mass>14.9</Mass>
+				<Bulk>12.0</Bulk>
+				<SwayFactor>1.5</SwayFactor>
+				<ShotSpread>0.01</ShotSpread>
+				<SightsEfficiency>1.6</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>60</Steel>
+      				<Chemfuel>40</Chemfuel>
+      				<Plasteel>50</Plasteel>
+				<ComponentSpacer>2</ComponentSpacer>
+			</costList>
+			<Properties>
+      				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_16x65mm_HE</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>1.35</warmupTime>
+				<range>78</range>
+        				<minRange>1.5</minRange>
+				<soundCast>Shot_Halo_Railgun</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+          					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+			</Properties>
+    			<AmmoUser>
+      				<magazineSize>1</magazineSize>
+      				<reloadTime>2</reloadTime>
+      				<ammoSet>AmmoSet_16x65mm</ammoSet>
+    			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<!-- === Rocket Launcher === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>M41_SSR_MAV_AW</defName>
+			<statBases>
+				<WorkToMake>45000</WorkToMake>
+				<Mass>8</Mass>
+				<Bulk>12.0</Bulk>
+				<SwayFactor>2</SwayFactor>
+				<ShotSpread>0.03</ShotSpread>
+				<SightsEfficiency>2</SightsEfficiency>
+				<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<Steel>100</Steel>
+      				<Chemfuel>30</Chemfuel>
+      				<Plasteel>20</Plasteel>
+				<ComponentIndustrial>7</ComponentIndustrial>
+			</costList>
+			<Properties>
+      				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_M41Rocket_HEAT</defaultProjectile>
+				<burstShotCount>1</burstShotCount>
+				<warmupTime>2</warmupTime>
+				<range>62</range>
+        				<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+        				<minRange>4</minRange>
+				<soundCast>Shot_Halo_Rocketlauncher</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+				<onlyManualCast>True</onlyManualCast>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+          					<canTargetPawns>true</canTargetPawns>
+				</targetParams>
+			</Properties>
+    			<AmmoUser>
+      				<reloadOneAtATime>true</reloadOneAtATime>
+      				<magazineSize>2</magazineSize>
+      				<reloadTime>4</reloadTime>
+      				<ammoSet>AmmoSet_M41Rocket</ammoSet>
+    			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+  <!-- ========== M392 DMR========== -->
+  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+    <defName>M392_Designated_Marksman_Rifle</defName>
+    <statBases>
+      <WorkToMake>35000</WorkToMake>
+      <SightsEfficiency>2.4</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.47</SwayFactor>
+      <Bulk>10.0</Bulk>
+      <Mass>4.40</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>True</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmUNSC_FMJ_DMR</defaultProjectile>
+      <burstShotCount>2</burstShotCount>
+      <ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+      <recoilAmount>1.56</recoilAmount>
+      <warmupTime>1.2</warmupTime>
+      <range>72</range>
+      <soundCast>Shot_DMR</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <costList>
+	<Steel>60</Steel>
+      	<Chemfuel>20</Chemfuel>
+	<ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <AmmoUser>
+      <magazineSize>15</magazineSize>
+      <reloadTime>3</reloadTime>
+      <ammoSet>AmmoSet_762x51mmUNSC_DMR</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>False</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
+

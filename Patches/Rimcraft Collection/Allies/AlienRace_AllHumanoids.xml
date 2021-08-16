@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[Ry]Rimcraft Allied Races</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="WoW_MagharOrc"]/statBases/MeleeDodgeChance</xpath>
+				  <value>
+					<MeleeDodgeChance>0.8</MeleeDodgeChance>
+					<MeleeCritChance>1.33</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>0.66</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+				  </value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="WoW_Nightborne"]/statBases/MeleeDodgeChance</xpath>
+				  <value>
+					<MeleeDodgeChance>1.33</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+					<NightVisionEfficiency>0.66</NightVisionEfficiency>
+				  </value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="WoW_VoidElf"]/statBases/MeleeDodgeChance</xpath>
+				  <value>
+					<MeleeDodgeChance>1.33</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+					<SmokeSensitivity>1</SmokeSensitivity>
+					<NightVisionEfficiency>0.33</NightVisionEfficiency>
+				  </value>
+			</li>
+
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

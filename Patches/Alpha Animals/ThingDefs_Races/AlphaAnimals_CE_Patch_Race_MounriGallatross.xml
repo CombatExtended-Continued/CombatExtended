@@ -31,7 +31,7 @@
 			<li Class="PatchOperationReplace">
 		                 <xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/race/baseHealthScale</xpath>
 		                 <value>
-			               <baseHealthScale>8</baseHealthScale>
+			               <baseHealthScale>7.5</baseHealthScale>
 		                 </value>
 
 	                </li>
@@ -43,31 +43,32 @@
 							<label>horn</label>
 							<capacities>
 								<li>Blunt</li>
+								<li>Poke</li>
 							</capacities>
-							<power>86</power>
-							<cooldownTime>2.4</cooldownTime>
+							<power>80</power>
+							<cooldownTime>2.48</cooldownTime>
 							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>70.226</armorPenetrationBlunt>	
+							<armorPenetrationBlunt>80.226</armorPenetrationBlunt>	
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>60</power>
+							<power>56</power>
 							<cooldownTime>2.0</cooldownTime>
 							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationSharp>11</armorPenetrationSharp>
-							<armorPenetrationBlunt>22</armorPenetrationBlunt>	
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<armorPenetrationBlunt>36</armorPenetrationBlunt>	
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>46</power>
+							<power>47</power>
 							<cooldownTime>2</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>31</armorPenetrationBlunt>	
+							<armorPenetrationBlunt>40</armorPenetrationBlunt>	
 							<chanceFactor>0.1</chanceFactor>
 						</li>
 					</tools>
@@ -76,29 +77,25 @@
 			
 			<!-- Add Low Bleed Hediff -->
 
-			<li Class="PatchOperationConditional">
-				<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]</xpath>
-						<value>
-							<comps>
-								<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
-									<hediffname>AA_LowBleed</hediffname>
-									<hediffseverity>1</hediffseverity>
-								</li>
-							</comps>
-						</value>
-				</nomatch>
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
-						<value>
-							<li Class="AlphaBehavioursAndEvents.CompProperties_InitialHediff">
-								<hediffname>AA_LowBleed</hediffname>
-								<hediffseverity>1</hediffseverity>
-							</li>
-						</value>
-				</match>
-			</li>
+		<li Class="PatchOperationConditional">
+	 	<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+          			<nomatch Class="PatchOperationAdd">
+            				<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]</xpath>
+            				<value>
+              					<comps />
+            				</value>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+			<value>
+				<li Class="AnimalBehaviours.CompProperties_InitialHediff">
+					<hediffname>AA_LowBleed</hediffname>
+					<hediffseverity>1</hediffseverity>
+				</li>
+			</value>
+		</li>
 
 			</operations>
 		</match>

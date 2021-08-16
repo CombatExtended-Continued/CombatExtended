@@ -121,47 +121,11 @@
 			
 			<!-- ==========  Moyo Glaive  =========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Moyo_Spear</defName>
-				<statBases>
-					<SightsEfficiency>1.00</SightsEfficiency>
-					<ShotSpread>0.20</ShotSpread>
-					<SwayFactor>2.21</SwayFactor>
-					<Bulk>19.50</Bulk>
-					<Mass>3.60</Mass>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-				</statBases>
-				
-				<Properties>
-					<recoilAmount>1.33</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x18mmMoyo</defaultProjectile>
-					<warmupTime>0.6</warmupTime>
-					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-					<range>16</range>
-					<soundCast>Shot_ChargeRifle</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-				</Properties>
-				
-				<AmmoUser>
-					<magazineSize>24</magazineSize>
-					<reloadTime>4.9</reloadTime>
-					<ammoSet>AmmoSet_6x18mmMoyo</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>Snapshot</aiAimMode>
-				</FireModes>
-			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_Spear"]/statBases</xpath>
 				<value>
 					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					<Bulk>12.50</Bulk>
 				</value>
 			</li>
 			
@@ -181,29 +145,11 @@
 				<value>
 				  <tools>
 					  <li Class="CombatExtended.ToolCE">
-						<label>Point</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>12</power>
-						<extraMeleeDamages>
-							<li>
-								<def>Moyo_Cryo</def>
-								<amount>10</amount>
-							</li>
-						</extraMeleeDamages>
-						<cooldownTime>1.72</cooldownTime>
-						<chanceFactor>1</chanceFactor>
-						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
-						<armorPenetrationSharp>20.74</armorPenetrationSharp>
-						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
 						<label>blade</label>
 						<capacities>
 						  <li>Cut</li>
 						</capacities>
-						<power>27</power>
+						<power>34</power>
 						<extraMeleeDamages>
 							<li>
 								<def>Moyo_Cryo</def>
@@ -213,7 +159,7 @@
 						<cooldownTime>1.72</cooldownTime>
 						<chanceFactor>1</chanceFactor>
 						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
-						<armorPenetrationSharp>12.96</armorPenetrationSharp>
+						<armorPenetrationSharp>17.39</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 					  </li>
 					  <li Class="CombatExtended.ToolCE">
@@ -234,47 +180,11 @@
 			
 			<!-- ==========  Moyo Royal Glaive : 20% Reduction to Sway/Recoil =========== -->
 			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Moyo_GDSpear</defName>
-				<statBases>
-					<SightsEfficiency>1.10</SightsEfficiency>
-					<ShotSpread>0.16</ShotSpread>
-					<SwayFactor>1.784</SwayFactor>
-					<Bulk>19.50</Bulk>
-					<Mass>5.40</Mass>
-					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-				</statBases>
-				
-				<Properties>
-					<recoilAmount>1</recoilAmount>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
-					<warmupTime>0.5</warmupTime>
-					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-					<range>21</range>
-					<soundCast>Shot_ChargeRifle</soundCast>
-					<soundCastTail>GunTail_Light</soundCastTail>
-					<muzzleFlashScale>9</muzzleFlashScale>
-				</Properties>
-				
-				<AmmoUser>
-					<magazineSize>24</magazineSize>
-					<reloadTime>4.9</reloadTime>
-					<ammoSet>AmmoSet_6x24mmMoyo</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>Snapshot</aiAimMode>
-				</FireModes>
-			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_GDSpear"]/statBases</xpath>
 				<value>
 					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+					<Bulk>12.50</Bulk>
 				</value>
 			</li>
 			
@@ -294,29 +204,11 @@
 				<value>
 				  <tools>
 					  <li Class="CombatExtended.ToolCE">
-						<label>Point</label>
-						<capacities>
-						  <li>Stab</li>
-						</capacities>
-						<power>13</power>
-						<extraMeleeDamages>
-							<li>
-								<def>Moyo_Cryo</def>
-								<amount>10</amount>
-							</li>
-						</extraMeleeDamages>
-						<cooldownTime>1.76</cooldownTime>
-						<chanceFactor>1</chanceFactor>
-						<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
-						<armorPenetrationSharp>36.51</armorPenetrationSharp>
-						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-					  </li>
-					  <li Class="CombatExtended.ToolCE">
 						<label>blade</label>
 						<capacities>
 						  <li>Cut</li>
 						</capacities>
-						<power>35</power>
+						<power>41</power>
 						<extraMeleeDamages>
 							<li>
 								<def>Moyo_Cryo</def>
@@ -326,7 +218,7 @@
 						<cooldownTime>1.76</cooldownTime>
 						<chanceFactor>1</chanceFactor>
 						<armorPenetrationBlunt>4.56</armorPenetrationBlunt>
-						<armorPenetrationSharp>22.85</armorPenetrationSharp>
+						<armorPenetrationSharp>26.08</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 					  </li>
 					  <li Class="CombatExtended.ToolCE">
@@ -376,8 +268,8 @@
 						<power>33</power>
 						<cooldownTime>3.98</cooldownTime>
 						<chanceFactor>1</chanceFactor>
-						<armorPenetrationBlunt>75</armorPenetrationBlunt>
-						<armorPenetrationSharp>25</armorPenetrationSharp>
+						<armorPenetrationBlunt>65</armorPenetrationBlunt>
+						<armorPenetrationSharp>16</armorPenetrationSharp>
 					  </li>
 				  </tools>
 				</value>
@@ -503,7 +395,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
+					<defaultProjectile>Bullet_Abyssnail</defaultProjectile>
 					<warmupTime>0.5</warmupTime>
 					<range>20</range>
 					<soundCast>Shot_ChargeRifle</soundCast>
@@ -512,9 +404,9 @@
 				</Properties>
 				
 				<AmmoUser>
-					<magazineSize>7</magazineSize>
+					<magazineSize>30</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_6x24mmMoyo</ammoSet>
+					<ammoSet>AmmoSet_Abyssnail</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>Snapshot</aiAimMode>
@@ -542,7 +434,7 @@
 				</statBases>
 				
 				<Properties>
-					<recoilAmount>1</recoilAmount>
+					<recoilAmount>1.26</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_6x18mmMoyo</defaultProjectile>
@@ -581,7 +473,7 @@
 				</statBases>
 				
 				<Properties>
-					<recoilAmount>1.14</recoilAmount>
+					<recoilAmount>0.99</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_6x24mmMoyo</defaultProjectile>
@@ -606,6 +498,46 @@
 				</FireModes>
 			</li>
 			
+			<!-- ========== Charge Rifle (Warped) : Removed ===========
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Moyo_WarpedRifle</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.09</ShotSpread>
+					<SwayFactor>1.53</SwayFactor>
+					<Bulk>8.80</Bulk>
+					<Mass>6.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.14</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_6x24mmWMoyo</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_6x24mmWMoyo</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			 -->
+			 
 			<!-- ========== Charge Autocannon =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -620,7 +552,7 @@
 				</statBases>
 				
 				<Properties>
-					<recoilAmount>1.18</recoilAmount>
+					<recoilAmount>1.83</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
@@ -661,7 +593,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_8x35mmMoyoSniper</defaultProjectile>
+					<defaultProjectile>Bullet_8x50mmMoyo</defaultProjectile>
 					<warmupTime>1.7</warmupTime>
 					<range>78</range>
 					<soundCast>Shot_ChargeRifle</soundCast>
@@ -672,7 +604,7 @@
 				<AmmoUser>
 					<magazineSize>15</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_8x35mmMoyoSniper</ammoSet>
+					<ammoSet>AmmoSet_8x50mmMoyo</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -727,7 +659,7 @@
 				</statBases>
 				
 				<Properties>
-					<recoilAmount>1.34</recoilAmount>
+					<recoilAmount>1.43</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
@@ -766,10 +698,10 @@
 				</statBases>
 				
 				<Properties>
-					<recoilAmount>1.02</recoilAmount>
+					<recoilAmount>1.68</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_8x35mmMoyo</defaultProjectile>
+					<defaultProjectile>Bullet_8x50mmMoyo</defaultProjectile>
 					<warmupTime>1.2</warmupTime>
 					<burstShotCount>10</burstShotCount>
 					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
@@ -782,7 +714,7 @@
 				<AmmoUser>
 					<magazineSize>40</magazineSize>
 					<reloadTime>4</reloadTime>
-					<ammoSet>AmmoSet_8x35mmMoyo</ammoSet>
+					<ammoSet>AmmoSet_8x50mmMoyo</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aimedBurstShotCount>5</aimedBurstShotCount>
@@ -879,7 +811,8 @@
 				defName="Moyo_PrecisionRifle" or 
 				defName="Moyo_AutoCannon" or
 				defName="Moyo_ChargeRifle" or
-				defName="Moyo_ChargeSMG"
+				defName="Moyo_ChargeSMG" or
+				defName="Moyo_WarpedRifle"
 				]/tools</xpath>
 				<value>
 					<tools>

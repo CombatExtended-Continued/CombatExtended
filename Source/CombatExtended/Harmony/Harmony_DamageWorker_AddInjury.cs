@@ -25,17 +25,19 @@ namespace CombatExtended.HarmonyCE
             {
                 if (pawn.Spawned) LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_ArmorSystem, OpportunityType.Critical);   // Inform the player about armor deflection
             }
+            Patch_CheckDuplicateDamageToOuterParts.lastHitPartHealth = pawn.health.hediffSet.GetPartHealth(newDinfo.HitPart);
+            
             dinfo = newDinfo;
         }
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-        
+
             var codes = instructions.ToList();
-           
+
             // Find armor block
             var armorBlockEnd = codes.FirstIndexOf(c => ReferenceEquals(c.operand, typeof(ArmorUtility).GetMethod("GetPostArmorDamage", AccessTools.all)));
-          
+
             int armorBlockStart = -1;
 
             for (int i = armorBlockEnd; i > 0; i--)
@@ -88,7 +90,7 @@ namespace CombatExtended.HarmonyCE
                 _applyingSecondary = true;
                 foreach (var sec in props.secondaryDamage)
                 {
-                    if (pawn.Dead)
+                    if (pawn.Dead || !Rand.Chance(sec.chance))
                     {
                         break;
                     }
@@ -99,6 +101,63 @@ namespace CombatExtended.HarmonyCE
                 _applyingSecondary = false;
             }
         }
+    }
+
+    [StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(DamageWorker_AddInjury), "CheckDuplicateDamageToOuterParts")]
+    static class Patch_CheckDuplicateDamageToOuterParts
+    {
+        public static float lastHitPartHealth = 0;
+	static MethodInfo FinalizeAndAddInjury = null;
+
+	static Patch_CheckDuplicateDamageToOuterParts()
+	{
+	    FinalizeAndAddInjury = typeof(DamageWorker_AddInjury).GetMethod("FinalizeAndAddInjury",
+									    BindingFlags.Instance | BindingFlags.NonPublic,
+									    null,
+									    new Type[] {
+										typeof(Pawn),
+										typeof(Hediff_Injury),
+										typeof(DamageInfo),
+										typeof(DamageWorker.DamageResult) },
+									    null);
+	}
+	
+	[HarmonyPrefix]
+	static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
+	{
+	    var hitPart = dinfo.HitPart;
+	    if (dinfo.Def != DamageDefOf.SurgicalCut && dinfo.Def != DamageDefOf.ExecutionCut && hitPart.IsInGroup(CE_BodyPartGroupDefOf.OutsideSquishy))
+	    {
+		var parent = hitPart.parent;
+		if (parent != null)
+		{
+                    float hitPartHealth = lastHitPartHealth;
+                    if (hitPartHealth > totalDamage)
+                    {
+                        return true;
+                    }
+
+		    dinfo.SetHitPart(parent);
+                    float parentPartHealth = pawn.health.hediffSet.GetPartHealth(parent);
+                    if (parentPartHealth != 0f && parent.coverageAbs > 0f)
+		    {
+			Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, parent), pawn, null);
+			hediff_Injury.Part = parent;
+			hediff_Injury.source = dinfo.Weapon;
+			hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
+			hediff_Injury.Severity = totalDamage - (hitPartHealth * hitPartHealth / totalDamage);
+			if (hediff_Injury.Severity <= 0f)
+			{
+			    hediff_Injury.Severity = 1f;
+			}
+			FinalizeAndAddInjury.Invoke(__instance, new object[]{pawn, hediff_Injury, dinfo, result});
+		    }
+		}
+	    }
+	    
+	    return true;
+	}
     }
 
     // Should work as long as ShouldReduceDamageToPreservePart exists

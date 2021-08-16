@@ -93,7 +93,7 @@ namespace CombatExtended
             Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
         }
 
-        protected float GetAltitudeOffset(Rot4 rotation)
+        public float GetAltitudeOffset(Rot4 rotation)
         {
         	VisibleAccessoryDefExtension myDef = def.GetModExtension<VisibleAccessoryDefExtension>() ?? new VisibleAccessoryDefExtension();
             myDef.Validate();
@@ -157,7 +157,7 @@ namespace CombatExtended
         }
 		
 		//Utility, return if the apparel is worn on the head/body.        
-       	protected bool onHead
+       	public bool onHead
     	{
        		get {
        			if (!_OnHeadCache.ContainsKey(def.defName))

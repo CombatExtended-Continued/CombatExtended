@@ -10,7 +10,7 @@
 
 			<!-- 'Verdict' Concussion Baton -->	
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="AD_ConcussionBaton" or defName="AD_FedConcussionBaton"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -53,7 +53,25 @@
 						<MeleeDodgeChance>0.2</MeleeDodgeChance>						
 					</equippedStatOffsets>
 				</value>
-			</li>			
+			</li>
+			<!--Since both bions are the same race, we'll buff the AI only weapon to boost the melee stats, since the melee one does visibly have a shield-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AD_FedConcussionBaton"]/statBases</xpath>
+				<value>
+					<Bulk>2.5</Bulk>
+					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>					
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="AD_FedConcussionBaton"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>1.2</MeleeCritChance>
+						<MeleeParryChance>1.2</MeleeParryChance>
+						<MeleeDodgeChance>1.2</MeleeDodgeChance>						
+					</equippedStatOffsets>
+				</value>
+			</li>					
 
 		  <li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="AD_ConcussionBaton"]/weaponTags</xpath>

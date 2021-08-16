@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Pawnbold Race</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- ========== Starting Things ========== -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ScenarioDef[defName="PawnboldLostTribe"]/scenario/parts</xpath>
+        <value>
+          <li Class="ScenPart_StartingThing_Defined">
+            <def>StartingThing_Defined</def>
+            <thingDef>Ammo_Arrow_Stone</thingDef>
+            <count>100</count>
+          </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath> /Defs/ScenarioDef[defName="PawnboldLostTribe"]/scenario/parts/li[thingDef="Pila" and @Class="ScenPart_StartingThing_Defined"]</xpath>
+        <value>
+          <count>10</count>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

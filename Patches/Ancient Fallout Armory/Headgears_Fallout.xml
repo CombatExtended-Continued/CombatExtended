@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Ancient Fallout Armory</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Materials === -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Fallarmory_FlightHelmet" or
+				defName="Fallarmory_MetalArmorHelmetA" or
+				defName="Fallarmory_MetalArmorHelmetB" or
+				defName="Fallarmory_CombatarmorHelmet"
+				]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+
+			<!-- === Flight Helmet === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_FlightHelmet" or defName="Fallarmory_USFlightHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_FlightHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_USFlightHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_USFlightHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>6</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_FlightHelmet" or defName="Fallarmory_USFlightHelmet"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_FlightHelmet" or defName="Fallarmory_USFlightHelmet"]/apparel/layers</xpath>
+				<value>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
+			<!-- === Metal Helmet === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_MetalArmorHelmetA" or defName="Fallarmory_MetalArmorHelmetB"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_MetalArmorHelmetA" or defName="Fallarmory_MetalArmorHelmetB"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- === Combat Helmet === -->			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_CombatarmorHelmet" or defName="FallArmory_CombatarmorHelmetUS"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Fallarmory_CombatarmorHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>7.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FallArmory_CombatarmorHelmetUS"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>9</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FallArmory_CombatarmorHelmetUS"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>14</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- === Secret Service Helmet === -->			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="FallArmory_SecretServiceHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FallArmory_SecretServiceHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FallArmory_SecretServiceHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="FallArmory_SecretServiceHelmet"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

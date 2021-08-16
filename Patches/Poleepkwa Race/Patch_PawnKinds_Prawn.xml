@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Poleepkwa Race Update</li>
+		<li>Poleepkwa Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Tribal -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_Worker" ]/combatPower</xpath>
+					<value>
+						<combatPower>30</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Poleepkwa_Archer"]/combatPower</xpath>
+					<value>
+						<combatPower>30</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Poleepkwa_CaravanSoldier"]/combatPower</xpath>
+					<value>
+						<combatPower>40</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="Poleepkwa_Leader"]/combatPower</xpath>
+					<value>
+						<combatPower>75</combatPower>
+					</value>
+				</li>
+
+				<!-- Hive_Archer -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="Poleepkwa_Archer" or defName="Poleepkwa_CaravanSoldier"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>20</min>
+								<max>40</max>
+							</primaryMagazineCount>
+							<shieldMoney>
+								<min>100</min>
+								<max>140</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.6</shieldChance>
+							<sidearms>
+								<li>
+									<sidearmMoney>
+										<min>40</min>
+										<max>80</max>
+									</sidearmMoney>
+									<weaponTags>
+										<li>CE_Sidearm_Tribal</li>
+									</weaponTags>
+								</li>
+							</sidearms>
+						</li>
+					</value>
+				</li>
+
+				<!-- Hiver_Warrior -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="Poleepkwa_Warrior" or defName="Poleepkwa_CaravanSoldier"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>200</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.75</shieldChance>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
