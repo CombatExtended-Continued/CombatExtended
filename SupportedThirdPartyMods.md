@@ -42,6 +42,13 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[Ry]Rimcraft	|
+[Ry]Rimcraft Allied Races	|
+[Ry]Rimcraft Animals	|
+[Ry]Rimcraft Factions	|
+[Ry]Rimcraft Metals	|
+[Ry]Rimcraft Scenarios	|
+[Ry]Rimcraft Weaponry	|
 [RWY] Advanced Mechanoid Warfare    |
 [RWY] Dragon's Descent: Void Dwellers
 [SS] Maid Project	|
@@ -63,6 +70,7 @@ Anima Animals  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
+Animal Equipment	|
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
@@ -114,11 +122,15 @@ Fallout Traits	|
 Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
+FCP Makeshift Weapons Pack	|
+FCP Minuteman Equipment Teaser	|
+FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
 Forsakens	|
-Forsakens Fauna |
+Forsakens Fauna |  
+Fortifications - Industrial |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Genetic Rim |
@@ -200,7 +212,7 @@ Outer Rim - Tatooine    |
 Palm Cats   |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
-Poleepkwa Race Update	|
+Poleepkwa Race	|
 Prestige Specialist Armours	|
 Project RimFactory - Materials |
 Prostheses+ |
@@ -271,6 +283,7 @@ Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |

@@ -205,7 +205,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_lightingTracker == null)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
+
+				<!-- T1 sword -->			
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warblade"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.23</cooldownTime>
+								<armorPenetrationBlunt>0.56</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.8</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.18</cooldownTime>
+								<armorPenetrationBlunt>1.512</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.64</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warblade"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warblade"]/statBases/Mass</xpath>
+					<value>
+						<Mass>1</Mass>						
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warblade"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.33</MeleeCritChance>
+							<MeleeParryChance>0.4</MeleeParryChance>
+							<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Bloodelf_Warblade"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!--T3 Greatboy -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_GreatSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.99</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>2.488</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.0</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_GreatSword"]/statBases</xpath>
+					<value>
+						<Bulk>9</Bulk>
+						<MeleeCounterParryBonus>0.64</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_GreatSword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.48</MeleeCritChance>
+							<MeleeParryChance>0.64</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Ranseur -->			
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Ranseur"]/tools</xpath>
+					<value>
+						<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.78</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.3</cooldownTime>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Ranseur"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+    						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Ranseur"]</xpath>
+					<value>
+						<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.18</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Polearm -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Glaive"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>1.08</cooldownTime>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.78</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1.18</cooldownTime>
+								<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Glaive"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+    						<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Glaive"]</xpath>
+					<value>
+						<equippedStatOffsets>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>1.45</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!--T1 Mace-->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warmace"]/tools</xpath>
+					<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.64</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>5.025</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warmace"]/statBases</xpath>
+					<value>
+    						<Bulk>3.5</Bulk>
+    						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Bloodelf_Warmace"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.33</MeleeCritChance>
+							<MeleeParryChance>0.33</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Bloodelf_Warmace"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

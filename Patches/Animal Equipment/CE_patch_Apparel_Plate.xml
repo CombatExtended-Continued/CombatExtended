@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Equipment</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Plate Armor -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalPlateArmorBase"]/statBases</xpath>
+					<value>
+						<Bulk>35</Bulk>
+						<WornBulk>10</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalPlateArmorBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!-- Plate Helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalPlateHelmBase"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[@Name="AnimalPlateHelmBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

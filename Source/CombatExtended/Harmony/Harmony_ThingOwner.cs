@@ -10,20 +10,28 @@ using HarmonyLib;
 namespace CombatExtended.HarmonyCE
 {
     // Need to patch all methods that can modify pawn's inventory to refresh CompInventory cache when it happens
-
-    //[HarmonyPatch(typeof(ThingOwner), "TryAdd", new Type[] { typeof(Thing), typeof(bool) })]
-    public class Harmony_ThingOwner_TryAdd_Patch
+    public class Harmony_ThingOwner_NotifyAdded_Patch
     {
-        public static void Postfix(ThingOwner __instance, bool __result)
+        public static void Postfix(ThingOwner __instance, Thing item)
         {
-            if (__result)
+            if (item != null)
             {
                 CE_Utility.TryUpdateInventory(__instance);
             }
         }
     }
 
-    //[HarmonyPatch(typeof(ThingOwner), "Take", new Type[] { typeof(Thing), typeof(int) })]
+    public class Harmony_ThingOwner_NotifyAddedAndMergedWith_Patch
+    {
+        public static void Postfix(ThingOwner __instance, Thing item, int mergedCount)
+        {
+            if (item != null && mergedCount != 0)
+            {
+                CE_Utility.TryUpdateInventory(__instance);
+            }
+        }
+    }
+
     public class Harmony_ThingOwner_Take_Patch
     {
         public static void Postfix(ThingOwner __instance, Thing __result)
@@ -35,12 +43,11 @@ namespace CombatExtended.HarmonyCE
         }
     }
 
-    //[HarmonyPatch(typeof(ThingOwner), "Remove", new Type[] { typeof(Thing) })]
-    public class Harmony_ThingOwner_Remove_Patch
+    public class Harmony_ThingOwner_NotifyRemoved_Patch
     {
-        public static void Postfix(ThingOwner __instance, bool __result)
+        public static void Postfix(ThingOwner __instance, Thing item)
         {
-            if (__result)
+            if (item != null)
             {
                 CE_Utility.TryUpdateInventory(__instance);
             }

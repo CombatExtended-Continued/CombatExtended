@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+	<!-- T1  -->
+				<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="WoWM_NightElf_Tomahawk"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.44</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.34</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.66</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.56</cooldownTime>
+					<chanceFactor>1.33</chanceFactor>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.78</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+		</li>
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_NightElf_Tomahawk"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_NightElf_Tomahawk"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WoWM_NightElf_Tomahawk"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+		</li>
+
+				<!-- T1 -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Mooncleaver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.99</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.23</cooldownTime>
+								<armorPenetrationBlunt>0.888</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.46</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.34</cooldownTime>
+					<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.64</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Mooncleaver"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.44</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Mooncleaver"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.27</MeleeCritChance>
+							<MeleeParryChance>0.44</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoWM_NightElf_Mooncleaver"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li>
+				</value>
+				</li>
+
+				<!-- T2 Spear -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Moonglaive"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.18</cooldownTime>
+								<armorPenetrationBlunt>1.68</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.68</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>1.18</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Moonglaive"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Moonglaive"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.08</MeleeCritChance>
+							<MeleeParryChance>0.65</MeleeParryChance>
+							<MeleeDodgeChance>1.0</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- T2 -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Halberd"]/tools</xpath>
+					<value>
+						<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.78</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.39</cooldownTime>
+								<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.65</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>36</power>
+								<cooldownTime>1.96</cooldownTime>
+								<armorPenetrationBlunt>5.488</armorPenetrationBlunt>
+								<armorPenetrationSharp>1</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Halberd"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+    						<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_NightElf_Halberd"]</xpath>
+					<value>
+						<equippedStatOffsets>
+				<MeleeCritChance>0.24</MeleeCritChance>
+				<MeleeParryChance>1.08</MeleeParryChance>
+				<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

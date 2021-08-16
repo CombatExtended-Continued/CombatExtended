@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+ <li Class='PatchOperationRemove'>
+		<xpath>Defs/ThingDef[defName="WoWM_Alliance_Halberd"
+				or defName="WoWM_Alliance_Polearm"
+				or defName="WoWM_Alliance_BattleHammer"
+				or defName="WoWM_Alliance_Claymore"
+				or defName="WoWM_Bloodelf_Ranseur"
+				or defName="WoWM_Bloodelf_Glaive"
+				or defName="WoWM_Bloodelf_GreatSword"
+				or defName="WoWM_Draenei_Mace"
+				or defName="WoWM_Draenei_Hammer"
+				or defName="WoWM_Draenei_Claymore"
+				or defName="WoWM_Draenei_GreatHammer"
+				or defName="WoWM_Forsaken_Halberd"
+				or defName="WoWM_Forsaken_Greatsword"
+				or defName="WoWM_HighElf_Warhammer"
+				or defName="WoWM_HighElf_Glaive"
+				or defName="WoWM_HighElf_Greatsword"
+				or defName="WoWM_Horde_Maul"
+				or defName="WoWM_Horde_GreatSpear"
+				or defName="WoWM_Horde_Greataxe"
+				or defName="WoWM_NightElf_Mooncleaver"
+				or defName="WoWM_NightElf_Halberd"
+				or defName="WoWM_Horde_Maul"
+				or defName="WoWM_Horde_Maul"]/equippedStatOffsets</xpath>
+  </li>
+
+ <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[@Name="WoW_AllianceT1_BaseWeapon"
+		or @Name="WoW_NightElfT1_BaseWeapon"
+		or @Name="WoW_HighElfT1_BaseWeapon"
+		or @Name="WoW_DraeneiT1_BaseWeapon"
+		or @Name="WoW_HordeT1_BaseWeapon"
+		or @Name="WoW_BloodElfT1_BaseWeapon"
+		or @Name="WoW_ForsakenT1_BaseWeapon"]/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+  <li Class='PatchOperationReplace'>
+    <xpath>/Defs/ThingDef[@Name="WoW_AllianceT2_BaseWeapon"
+		or @Name="WoW_NightElfT2_BaseWeapon"
+		or @Name="WoW_HighElfT2_BaseWeapon"
+		or @Name="WoW_DraeneiT2_BaseWeapon"
+		or @Name="WoW_HordeT2_BaseWeapon"
+		or @Name="WoW_BloodElfT2_BaseWeapon"
+		or @Name="WoW_ForsakenT2_BaseWeapon"]/recipeMaker/skillRequirements</xpath> 
+    <value>
+      <skillRequirements>
+        <Crafting>10</Crafting>
+      </skillRequirements>
+    </value>
+  </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
