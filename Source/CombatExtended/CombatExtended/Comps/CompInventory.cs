@@ -184,6 +184,30 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// WARNING this is very slow. Return the available weight.
+        /// </summary>
+        /// <param name="updateInventory">Wether to recalculate the cache. Setting this to false can result in invalid results.</param>
+        /// <returns></returns>
+        public float GetAvailableWeight(bool updateInventory = true)
+        {
+            if(updateInventory)
+                UpdateInventory();
+            return availableWeight;
+        }
+
+        /// <summary>
+        /// WARNING this is very slow. Return the available bulk.
+        /// </summary>
+        /// <param name="updateInventory">Wether to recalculate the cache. Setting this to false can result in invalid results.</param>
+        /// <returns></returns>
+        public float GetAvailableBulk(bool updateInventory = true)
+        {
+            if (updateInventory)
+                UpdateInventory();
+            return availableBulk;
+        }
+
+        /// <summary>
         /// Similar to ThingContainer.TotalStackCountOfDef(), returns the count of all matching AmmoDefs in AmmoList cache.
         /// </summary>
         /// <param name="def">ThingDef to count.</param>
@@ -284,6 +308,53 @@ namespace CombatExtended
             }
             currentBulkCached = newBulk;
             currentWeightCached = newWeight;
+        }
+
+        /// <summary>
+        /// Determines if and how many of an item def currently fit into the inventory with regards to weight/bulk constraints.
+        /// </summary>
+        /// <param name="thingDef">ThingDef to check</param>
+        /// <param name="count">Maximum amount of that item that can fit into the inventory</param>
+        /// <param name="ignoreEquipment">Whether to include currently equipped weapons when calculating current weight/bulk</param>
+        /// <param name="useApparelCalculations">Whether to use calculations for worn apparel. This will factor in equipped stat offsets boosting inventory space and use the worn bulk and weight.</param>
+        /// <returns>True if one or more items fit into the inventory</returns>
+        public bool CanFitInInventory(ThingDef thingDef, out int count, bool ignoreEquipment = false, bool useApparelCalculations = false)
+        {
+            float thingWeight;
+            float thingBulk;
+
+            if (useApparelCalculations)
+            {
+                thingWeight = thingDef.GetStatValueAbstract(StatDefOf.Mass);
+                thingBulk = thingDef.GetStatValueAbstract(CE_StatDefOf.WornBulk);
+                if (thingWeight <= 0 && thingBulk <= 0)
+                {
+                    count = 1;
+                    return true;
+                }
+                // Subtract the stat offsets we get from wearing this
+                thingWeight -= thingDef.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryWeight);
+                thingBulk -= thingDef.equippedStatOffsets.GetStatOffsetFromList(CE_StatDefOf.CarryBulk);
+            }
+            else
+            {
+                thingWeight = thingDef.GetStatValueAbstract(StatDefOf.Mass);
+                //  thingWeight = thing.GetStatValue(CE_StatDefOf.Weight);
+                thingBulk = thingDef.GetStatValueAbstract(CE_StatDefOf.Bulk);
+            }
+            // Subtract weight of currently equipped weapon
+            float eqBulk = 0f;
+            float eqWeight = 0f;
+            if (ignoreEquipment && parentPawn.equipment != null && parentPawn.equipment.Primary != null)
+            {
+                ThingWithComps eq = parentPawn.equipment.Primary;
+                GetEquipmentStats(eq, out eqWeight, out eqBulk);
+            }
+            // Calculate how many items we can fit into our inventory
+            float amountByWeight = thingWeight <= 0 ? 1 : (availableWeight + eqWeight) / thingWeight;
+            float amountByBulk = thingBulk <= 0 ? 1 : (availableBulk + eqBulk) / thingBulk;
+            count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, 1));
+            return count > 0;
         }
 
         /// <summary>

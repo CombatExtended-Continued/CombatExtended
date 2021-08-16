@@ -183,35 +183,17 @@ namespace CombatExtended
         {
             return AdditionList.Concat(RemovalList);            
         }                
-
-        /// <summary>
-        /// Create a random set of attachments
-        /// </summary>
-        public virtual void RandomiseAttachments()
-        {
-            if (Prefs.DevMode)
-            {
-                List<AttachmentDef> available = Platform.attachmentLinks
-                                                           .Select(a => a.attachment)
-                                                           .InRandomOrder()
-                                                           .ToList();
-                for (int i = 0; i < available.Count; i++)
-                {
-                    if (Rand.Chance(0.5f) && !attachments.Any(a => ((AttachmentDef)a.def).slotTags.Any(s => available[i].slotTags.Contains(s))))
-                    {
-                        this._targetConfig.Add(available[i]);
-                        Thing attachment = ThingMaker.MakeThing(available[i]);
-                        attachments.TryAdd(attachment);
-                    }
-                }
-            }
-            this.UpdateConfiguration();
-        }       
-
+         
         public override void PostPostMake()
         {
             base.PostPostMake();
-            this.RandomiseAttachments();
+            this.UpdateConfiguration();
+        }
+
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            this.UpdateConfiguration();
         }
 
         /// <summary>

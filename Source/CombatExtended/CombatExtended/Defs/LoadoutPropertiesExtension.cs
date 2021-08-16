@@ -11,11 +11,13 @@ namespace CombatExtended
     public class LoadoutPropertiesExtension : DefModExtension
     {
         #region Fields
-
+        
         public FloatRange primaryMagazineCount = FloatRange.Zero;
+        public AttachmentOption primaryAttachments;
+
         public FloatRange shieldMoney = FloatRange.Zero;
-        public List<string> shieldTags;
-        public float shieldChance = 0;
+        public List<string> shieldTags;        
+        public float shieldChance = 0;        
         public SidearmOption forcedSidearm;
         public List<SidearmOption> sidearms;
 
@@ -23,6 +25,8 @@ namespace CombatExtended
         private static List<ThingStuffPair> allShieldPairs;
         private static List<ThingStuffPair> workingWeapons = new List<ThingStuffPair>();
         private static List<ThingStuffPair> workingShields = new List<ThingStuffPair>();
+        private static List<AttachmentLink> attachmentLinks = new List<AttachmentLink>();
+        private static List<AttachmentLink> selectedAttachments = new List<AttachmentLink>();
 
         #endregion
 
@@ -82,8 +86,14 @@ namespace CombatExtended
             if (primary != null)
             {
                 LoadWeaponWithRandAmmo(primary);
-                inventory.UpdateInventory();    // Inventory load changed, need to update
-                TryGenerateAmmoFor(pawn.equipment.Primary, inventory, Mathf.RoundToInt(primaryMagazineCount.RandomInRange));
+                // Inventory load changed, need to update
+                inventory.UpdateInventory();   
+                // Try add attachments to the main weapon
+                if(primaryAttachments != null && primary is WeaponPlatform platform)
+                {
+                    TryGenerateAttachments(inventory, platform, primaryAttachments);
+                }
+                TryGenerateAmmoFor(pawn.equipment.Primary, inventory, Mathf.RoundToInt(primaryMagazineCount.RandomInRange));                
             }
 
             // Generate shield
@@ -97,6 +107,51 @@ namespace CombatExtended
                     TryGenerateWeaponWithAmmoFor(pawn, inventory, current);
                 }
             }
+        }
+
+        public void TryGenerateAttachments(CompInventory inventory, WeaponPlatform weapon, AttachmentOption option)
+        {            
+            selectedAttachments.Clear();
+            attachmentLinks.Clear();
+            // First grab every possible attachment for this weapon
+            attachmentLinks.AddRange(weapon.Platform.attachmentLinks);
+            // If tags are specified then remove attachments that doesn't match them
+            if (option.attachmentTags != null && option.attachmentTags.Count > 0)
+            {
+                // Remove attachments that are not in the options.
+                attachmentLinks.RemoveAll(l => l.attachment.attachmentTags.All(s => !option.attachmentTags.Contains(s)));
+            }            
+            float availableWeight = inventory.GetAvailableWeight();
+            float availableBulk = inventory.GetAvailableBulk();
+            foreach (AttachmentLink link in attachmentLinks.InRandomOrder())
+            {                
+                if (selectedAttachments.Count >= option.attachmentCount.max || availableWeight <= 0 || availableBulk <= 0)
+                {
+                    break;
+                }
+                float weight = link.attachment.GetStatValueAbstract(StatDefOf.Mass);
+                float bulk = link.attachment.GetStatValueAbstract(CE_StatDefOf.Bulk);                
+                if (availableWeight < weight || availableBulk < bulk || selectedAttachments.Any(l => !l.CompatibleWith(link)))
+                {
+                    continue;
+                }                               
+                if (option.attachmentCount.min > selectedAttachments.Count || (Rand.ChanceSeeded(weapon.def.generateAllowChance, weapon.thingIDNumber ^ (int)weapon.def.shortHash ^ 28554824)))
+                {
+                    selectedAttachments.Add(link);
+                    availableWeight -= weight;
+                    availableBulk -= bulk;
+                }                             
+            }
+            // Add the selected attachments to the weapons
+            weapon.TargetConfig = selectedAttachments.Select(l => l.attachment).ToList();
+
+            foreach (AttachmentLink link in selectedAttachments)
+            {
+                Thing attachment = ThingMaker.MakeThing(link.attachment);
+                weapon.attachments.TryAddOrTransfer(attachment);
+            }
+            // Recalcuate internal states.
+            weapon.UpdateConfiguration();
         }
 
         private void TryGenerateWeaponWithAmmoFor(Pawn pawn, CompInventory inventory, SidearmOption option)
@@ -133,7 +188,7 @@ namespace CombatExtended
             if (workingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
             {
                 // Create the actual weapon and put it into inventory
-                ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
+                ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);                
                 LoadWeaponWithRandAmmo(thingWithComps); //Custom
                 int count; //Custom
                 if (inventory.CanFitInInventory(thingWithComps, out count)) //Custom
@@ -141,8 +196,14 @@ namespace CombatExtended
                     PawnGenerator.PostProcessGeneratedGear(thingWithComps, pawn);
                     if (inventory.container.TryAdd(thingWithComps)) //Custom
                     {
-                        TryGenerateAmmoFor(thingWithComps, inventory, Mathf.RoundToInt(option.magazineCount.RandomInRange)); //Custom
-                    }
+                        TryGenerateAmmoFor(thingWithComps, inventory, Mathf.RoundToInt(option.magazineCount.RandomInRange));
+                        // Try to add the attachments
+                        inventory.UpdateInventory();
+                        if (option.attachments != null && thingWithComps is WeaponPlatform platform)
+                        {
+                            TryGenerateAttachments(inventory, platform, option.attachments);
+                        }
+                    }                    
                 }
             }
             workingWeapons.Clear();

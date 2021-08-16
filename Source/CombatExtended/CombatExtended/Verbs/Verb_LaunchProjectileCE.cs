@@ -171,31 +171,6 @@ namespace CombatExtended
             }
         }
 
-        private float _effectiveAge = 0;
-        private float _effectiveRange = 0;
-
-        public override float EffectiveRange
-        {
-            get
-            {
-                if (EquipmentSource is WeaponPlatform platform)
-                {
-                    if (GenTicks.TicksGame == _effectiveAge && !(Find.TickManager?.Paused ?? true))
-                        return _effectiveRange;
-
-                    float range = base.EffectiveRange;
-                    foreach (Thing attachment in platform.attachments)
-                        range *= attachment.GetStatValue(CE_StatDefOf.WeaponRangeMultiplier);
-
-                    _effectiveAge = GenTicks.TicksGame;
-                    _effectiveRange = range;
-
-                    return _effectiveRange;
-                }
-                return base.EffectiveRange;
-            }
-        }
-
         public CompReloadable CompReloadable
         {
             get
