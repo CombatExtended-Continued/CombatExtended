@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <operations>
+			
+<!--*********** TREBUCHET not patched! ***********-->
+
+            <!--Clean and Replace-->
+		    <li Class="PatchOperationRemove">
+		        <xpath>Defs/ThingDef[defName = "DankPyon_Turret_Ballista"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		    </li>
+
+		    <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[
+					defName = "DankPyon_Turret_Ballista"]/thingClass</xpath>
+                <value>
+                    <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+                </value>
+		    </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName = "DankPyon_Turret_Ballista"]/fillPercent</xpath>
+                <value>
+                    <fillPercent>0.85</fillPercent>
+                </value>
+            </li>
+
+
+	        <!--Ballista Ammos-->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs</xpath>
+                <value>
+	                <CombatExtended.AmmoSetDef>
+		                <defName>AmmoSet_BallistaJavelins</defName>
+		                <label>javelins</label>
+		                <ammoTypes>
+    			            <Pila>BallistaPilum_Fired</Pila>
+		                </ammoTypes>
+	                </CombatExtended.AmmoSetDef>
+	
+	                <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+        		        <defName>BallistaPilum_Fired</defName>
+		                <label>pilum (fired)</label>
+		                <projectile Class="CombatExtended.ProjectilePropertiesCE">
+    			            <damageAmountBase>45</damageAmountBase>
+			                <speed>60</speed>
+			                <armorPenetrationBlunt>141.12</armorPenetrationBlunt>
+			                <armorPenetrationSharp>18</armorPenetrationSharp>
+			                <preExplosionSpawnChance>0.4</preExplosionSpawnChance> <!-- 1.67 javelins per resource -->
+			                <preExplosionSpawnThingDef>Pila</preExplosionSpawnThingDef>
+		                </projectile>
+	                </ThingDef>
+                </value>
+            </li>
+
+		    <!-- ========== Ballista - Weapon ========== -->
+		    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		        <defName>DankPyon_Gun_BallistaTurret</defName>
+		        <statBases>
+        		    <SightsEfficiency>1</SightsEfficiency>
+		            <ShotSpread>1</ShotSpread>
+		            <SwayFactor>0.2</SwayFactor>
+		            <Bulk>4.00</Bulk>
+		            <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		        </statBases>
+		        <Properties>
+        		    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		            <hasStandardCommand>true</hasStandardCommand>
+		            <defaultProjectile>BallistaPilum_Fired</defaultProjectile>
+		            <warmupTime>1.4</warmupTime>
+		            <range>45</range>
+		            <soundCast>BulletImpact_Wood</soundCast>
+		            <soundCastTail>GunTail_Heavy</soundCastTail>
+		            <recoilPattern>Mounted</recoilPattern>
+		        </Properties>
+		        <AmmoUser>
+        		    <magazineSize>1</magazineSize>
+		            <reloadTime>1.5</reloadTime>
+		            <ammoSet>AmmoSet_BallistaJavelins</ammoSet>
+		        </AmmoUser>
+		        <FireModes>
+        		    <aiAimMode>AimedShot</aiAimMode>
+		            <noSnapshot>true</noSnapshot>
+		            <noSingleShot>false</noSingleShot>
+    		    </FireModes>
+		    </li>
+
+		    <li Class="PatchOperationAdd">
+		        <xpath>/Defs/ThingDef[defName = "DankPyon_Gun_BallistaTurret"]/weaponTags</xpath>
+		        <value>
+		            <li>TurretGun</li>
+		        </value>
+		    </li>
+
+        </operations>
+	</match>
+    </Operation>
+</Patch>

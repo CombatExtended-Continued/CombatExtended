@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Medieval Overhaul</li>
+        </mods>
+		<match Class="PatchOperationSequence">
+            <operations>
+
+			<!--disabled very stupid raid type-->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/FactionDef[ @Name = "DankPyon_NobleHouseFactionBase"]/pawnGroupMakers/li[2]/commonality</xpath>
+                    <value>
+                        <commonality>0</commonality>
+                    </value>
+                </li>	
+		
+            <!--Give Shields-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Footman"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>350</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>KiteShield</li>
+								<li>HeaterShield</li>
+                                <li>Buckler</li>
+							</shieldTags>
+							<shieldChance>0.9</shieldChance>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Knight" or defName="DankPyon_Medieval_Lord"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>200</min>
+								<max>600</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>HeaterShield</li>
+								<li>KiteShield</li>
+							</shieldTags>
+							<shieldChance>0.7</shieldChance>
+						</li>
+					</value>
+				</li>
+
+				<!-- Trying to add shields to Arbalesters, doesn't work
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>600</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>Pavise</li>
+								<li>KiteShield</li>
+							</shieldTags>
+							<shieldChance>0.9</shieldChance>
+						</li>
+					</value>
+				</li>-->
+
+            <!--Give ammo to crosbowman-->
+                <li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>12</min>
+								<max>20</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>150</min>
+									<max>250</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
+					<value>
+						<apparelRequired>
+							<li>Apparel_TribalBackpack</li>
+						</apparelRequired>
+					</value>
+				</li>
+                
+            </operations>
+		</match>  
+	</Operation>
+</Patch>
+

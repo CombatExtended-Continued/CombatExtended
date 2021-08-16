@@ -1,0 +1,2326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Table of contents
+
+        Maces
+            Bludgeon
+            Nomad Mace
+            Morning Star
+            Winged Mace
+
+        Two-Handed Maces
+            Goedendag
+            Two-Handed Mace
+            Two-Handed Flanged Mace
+
+        Spears
+            Militia Spear
+            Boar Spear
+            Fighting Spear
+
+        Two-Handed Spears
+            Warfork
+            Spetum
+
+        Swords
+            Falchion
+            Arming Sword
+            Noble Sword
+            Fencing Sword
+
+        Two-Handed Swords
+            Long Sword
+            Great Sword
+
+        Hammers
+            Military Pick
+            Warhammer
+        
+        Two-Handed Hammers
+            Pickaxe
+            Two-Handed Mallet
+            Two-Handed Hammer
+            Polehammer
+
+        Axes
+            Hatchet
+            Handaxe
+            Fighting Axe
+
+        Two-Handed Axes
+            Woodcutter's Axe
+            Bardiche
+            Great Axe
+            Long Axe
+
+        Polearms
+            Pitchfork
+            Hooked Blade
+            Billhook
+            Pike
+            Swordlance
+-->
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Medieval Overhaul</li>
+        </mods>
+		<match Class="PatchOperationSequence">
+            <operations>
+
+<!--Maces-->
+                <!--Mace : Bludgeon (Standart CE mace) -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bludgeon"]/statBases</xpath>
+                  <value>
+                    <Bulk>3.50</Bulk>
+                    <MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bludgeon"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.42</MeleeCritChance>
+                    <MeleeParryChance>0.24</MeleeParryChance>
+                    <MeleeDodgeChance>0.2</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bludgeon"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bludgeon"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>1.9</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Mace : Nomad Mace (Mace with more pen)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NomadMace"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NomadMace"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.42</MeleeCritChance>
+                    <MeleeParryChance>0.24</MeleeParryChance>
+                    <MeleeDodgeChance>0.2</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NomadMace"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NomadMace"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>16</power>
+                        <cooldownTime>2</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>6.925</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Mace : Morning Star (tad bit more dmg but less pen)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MorningStar"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MorningStar"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.42</MeleeCritChance>
+                    <MeleeParryChance>0.24</MeleeParryChance>
+                    <MeleeDodgeChance>0.2</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MorningStar"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MorningStar"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>2.1</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>6.925</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Mace : Winged Mace (Mace with even more pen)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WingedMace"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WingedMace"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.42</MeleeCritChance>
+                    <MeleeParryChance>0.24</MeleeParryChance>
+                    <MeleeDodgeChance>0.2</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WingedMace"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WingedMace"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>17</power>
+                        <cooldownTime>2.1</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>7.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Two-Handed Maces-->
+                <!--Two-Handed Mace: Goedendag -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Goedendag"]/statBases</xpath>
+                  <value>
+                    <Bulk>10</Bulk>
+                    <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Goedendag"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.50</MeleeCritChance>
+                    <MeleeParryChance>0.9</MeleeParryChance>
+                    <MeleeDodgeChance>0.35</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Goedendag"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>7</power>
+                        <cooldownTime>2.20</cooldownTime>
+                        <chanceFactor>0.15</chanceFactor>
+                        <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>22</power>
+                        <cooldownTime>2.15</cooldownTime>
+                        <chanceFactor>0.35</chanceFactor>
+                        <armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>29</power>
+                        <cooldownTime>1.80</cooldownTime>
+                        <chanceFactor>0.60</chanceFactor>
+                        <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Mace : Common Two-Handed Mace (2handed morningstar)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMace"]/statBases</xpath>
+                  <value>
+                    <Bulk>9</Bulk>
+                    <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMace"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>1.80</MeleeCritChance>
+                    <MeleeParryChance>0.40</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMace"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>2.40</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>10.225</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Mace : Two-Handed Flanged Mace (2handed winged mace, more pen a bit less dmg) -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedFlangedMace"]/statBases</xpath>
+                  <value>
+                    <Bulk>9</Bulk>
+                    <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedFlangedMace"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>2.30</MeleeCritChance>
+                    <MeleeParryChance>0.40</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedFlangedMace"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>27</power>
+                        <cooldownTime>3.30</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>14.225</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Spears-->
+                <!--Spear : Militia Spear -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitiaSpear"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.58</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitiaSpear"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.17</MeleeCritChance>
+                    <MeleeParryChance>0.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.27</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitiaSpear"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitiaSpear"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.35</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.54</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>16</power>
+                        <cooldownTime>1.54</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.65</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Spear : Boar Spear -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_BoarSpear"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.50</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_BoarSpear"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.17</MeleeCritChance>
+                    <MeleeParryChance>0.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.3</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_BoarSpear"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_BoarSpear"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.40</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>4</power>
+                        <cooldownTime>1.39</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>1.60</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.71</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Spear : Fighting Spear -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingSpear"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingSpear"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.17</MeleeCritChance>
+                    <MeleeParryChance>0.5</MeleeParryChance>
+                    <MeleeDodgeChance>0.2</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingSpear"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingSpear"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.50</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>4</power>
+                        <cooldownTime>1.6</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>1.6</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.75</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Two-Handed Spears-->
+                <!--Two-Handed Spear : Warfrok -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warfork"]/statBases</xpath>
+                  <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>0.65</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warfork"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.17</MeleeCritChance>
+                    <MeleeParryChance>1.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.9</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warfork"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>7</power>
+                        <cooldownTime>2.20</cooldownTime>
+                        <chanceFactor>0.15</chanceFactor>
+                        <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>4</power>
+                        <cooldownTime>1.79</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>24</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>4</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.55</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Spear : Spetum -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Spetum"]/statBases</xpath>
+                  <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>0.45</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Spetum"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.17</MeleeCritChance>
+                    <MeleeParryChance>1.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.9</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Spetum"]/tools</xpath>
+                <value>
+                    <tools>
+                   <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>7</power>
+                        <cooldownTime>2.20</cooldownTime>
+                        <chanceFactor>0.15</chanceFactor>
+                        <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>4</power>
+                        <cooldownTime>1.79</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>27</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.90</chanceFactor>
+                        <armorPenetrationBlunt>4</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.65</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Swords-->
+                <!--Sword : Falchion (sword without Stab and more slash dmg)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Falchion"]/statBases</xpath>
+                  <value>
+                    <Bulk>5</Bulk>
+                    <MeleeCounterParryBonus>0.25</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Falchion"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.15</MeleeCritChance>
+                    <MeleeParryChance>0.30</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Falchion"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Falchion"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.69</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>25</power>   
+                        <cooldownTime>1.36</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>0.95</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Sword : Arming Sword -->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_ArmingSword"]/statBases</xpath>
+                  <value>
+                    <Bulk>6</Bulk>
+                    <MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_ArmingSword"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.40</MeleeCritChance>
+                    <MeleeParryChance>0.60</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_ArmingSword"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_ArmingSword"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>1.46</cooldownTime>
+                        <chanceFactor>0.50</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.40</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>22</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.45</chanceFactor>
+                        <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Sword : Noble Sword (arming sword with more dmg)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NobleSword"]/statBases</xpath>
+                  <value>
+                    <Bulk>6</Bulk>
+                    <MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NobleSword"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.40</MeleeCritChance>
+                    <MeleeParryChance>0.60</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NobleSword"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_NobleSword"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>22</power>
+                        <cooldownTime>1.46</cooldownTime>
+                        <chanceFactor>0.50</chanceFactor>
+                        <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.40</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>25</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.45</chanceFactor>
+                        <armorPenetrationBlunt>1.1</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Sword : Fencing Sword (low slash dmg & chances, low cd, hight crit and parry, high Stab chances and counter parry)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FencingSword"]/statBases</xpath>
+                  <value>
+                    <Bulk>8</Bulk>
+                    <MeleeCounterParryBonus>1.75</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FencingSword"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>2.50</MeleeCritChance>
+                    <MeleeParryChance>1</MeleeParryChance>
+                    <MeleeDodgeChance>0.50</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FencingSword"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FencingSword"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.29</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>1.25</cooldownTime>
+                        <chanceFactor>0.85</chanceFactor>
+                        <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.4</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>16</power>
+                        <cooldownTime>1.46</cooldownTime>
+                        <chanceFactor>0.10</chanceFactor>
+                        <armorPenetrationBlunt>1.3</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Two-Handed Swords-->
+                <!--Two-Handed Sword Sword : Long Sword-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longsword"]/statBases</xpath>
+                  <value>
+                    <Bulk>8</Bulk>
+                    <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longsword"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.63</MeleeCritChance>
+                    <MeleeParryChance>0.75</MeleeParryChance>
+                    <MeleeDodgeChance>0.40</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longsword"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>1.69</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.60</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.60</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>36</power>
+                        <cooldownTime>1.56</cooldownTime>
+                        <chanceFactor>0.35</chanceFactor>
+                        <armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Sword Sword : Great Sword-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greatsword"]/statBases</xpath>
+                  <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>0.70</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greatsword"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.30</MeleeCritChance>
+                    <MeleeParryChance>1.20</MeleeParryChance>
+                    <MeleeDodgeChance>0.50</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greatsword"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>1.69</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>24</power>
+                        <cooldownTime>1.98</cooldownTime>
+                        <chanceFactor>0.50</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.90</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>48</power>
+                        <cooldownTime>2.86</cooldownTime>
+                        <chanceFactor>0.45</chanceFactor>
+                        <armorPenetrationBlunt>3.592</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.58</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Hammers-->
+               
+
+                <!--Hammer: Military Pick-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitaryPick"]/statBases</xpath>
+                  <value>
+                    <Bulk>5</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitaryPick"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>0.06</MeleeCritChance>
+                    <MeleeParryChance>0.12</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitaryPick"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_MilitaryPick"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.69</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>17</power>
+                        <cooldownTime>1.80</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.8</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Hammer: Warhammer-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warhammer"]/statBases</xpath>
+                  <value>
+                    <Bulk>5</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warhammer"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.06</MeleeCritChance>
+                    <MeleeParryChance>0.22</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warhammer"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Warhammer"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.69</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>17</power>
+                        <cooldownTime>1.85</cooldownTime>
+                        <chanceFactor>0.15</chanceFactor>
+                        <armorPenetrationBlunt>6.7</armorPenetrationBlunt>
+                        <armorPenetrationSharp>3.0</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                        <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>19</power>
+                        <cooldownTime>1.90</cooldownTime>
+                        <chanceFactor>0.80</chanceFactor>
+                        <armorPenetrationBlunt>8.2</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Two-Handed Hammers--> 
+
+                <!--Two-Handed Hammer: Pickaxe-->
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pickaxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>11</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pickaxe"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>0.9</MeleeCritChance>
+                    <MeleeParryChance>0.22</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pickaxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>2.0</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>19</power>
+                        <cooldownTime>2.3</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>8.5</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.72</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Hammer : Two-Handed Mallet-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMallet"]/statBases</xpath>
+                  <value>
+                    <Bulk>10</Bulk>
+                    <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMallet"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>2</MeleeCritChance>
+                    <MeleeParryChance>0.40</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedMallet"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>21</power>
+                        <cooldownTime>2.35</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>9.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Hammer : Two-Handed Hammer-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedHammer"]/statBases</xpath>
+                  <value>
+                    <Bulk>10</Bulk>
+                    <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedHammer"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>2.1</MeleeCritChance>
+                    <MeleeParryChance>0.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_TwoHandedHammer"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>            
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>24</power>
+                        <cooldownTime>2.86</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>13.225</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Hammer : Polehammer-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Polehammer"]/statBases</xpath>
+                  <value>
+                    <Bulk>10</Bulk>
+                    <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Polehammer"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>2.40</MeleeCritChance>
+                    <MeleeParryChance>1.30</MeleeParryChance>
+                    <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Polehammer"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>2</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>21</power>
+                        <cooldownTime>2.7</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>9.225</armorPenetrationBlunt>
+                        <armorPenetrationSharp>4.3</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>23</power>
+                        <cooldownTime>2.7</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>11.825</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Axes-->
+                <!--Axe: Hatchet-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Hatchet"]/statBases</xpath>
+                  <value>
+                    <Bulk>3</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Hatchet"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>0.31</MeleeCritChance>
+                    <MeleeParryChance>0.22</MeleeParryChance>
+                    <MeleeDodgeChance>0.12</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Hatchet"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Hatchet"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>0.95</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>10</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>1.58</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Axe: Handaxe-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Handaxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>3</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Handaxe"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>0.31</MeleeCritChance>
+                    <MeleeParryChance>0.22</MeleeParryChance>
+                    <MeleeDodgeChance>0.22</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Handaxe"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Handaxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>0.95</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>11</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>21</power>
+                        <cooldownTime>1.58</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Axe: Fighting Axe-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingAxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>3</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingAxe"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.31</MeleeCritChance>
+                    <MeleeParryChance>0.22</MeleeParryChance>
+                    <MeleeDodgeChance>0.22</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingAxe"]/weaponTags</xpath>
+                <value>
+                    <li>CE_OneHandedWeapon</li>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_FightingAxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>0.95</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.32</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>23</power>
+                        <cooldownTime>1.58</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Two-Handed Axes-->
+                <!--Two-Handed Axe: Woodcutter's Axe-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WoodcuttersAxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>4</Bulk>
+                    <MeleeCounterParryBonus>0.22</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WoodcuttersAxe"]/equippedStatOffsets</xpath>
+                <value>
+                    <MeleeCritChance>0.11</MeleeCritChance>
+                    <MeleeParryChance>0.28</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_WoodcuttersAxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>1.95</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>29</power>
+                        <cooldownTime>2.48</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.90</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Axe: Bardiche-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bardiche"]/statBases</xpath>
+                  <value>
+                    <Bulk>7</Bulk>
+                    <MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bardiche"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.30</MeleeCritChance>
+                    <MeleeParryChance>0.60</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Bardiche"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>2.48</cooldownTime>
+                        <chanceFactor>0.15</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>1.95</cooldownTime>
+                        <chanceFactor>0.20</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.32</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>35</power>
+                        <cooldownTime>2.48</cooldownTime>
+                        <chanceFactor>0.60</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.95</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Axe: Great Axe-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greataxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>7</Bulk>
+                    <MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greataxe"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.30</MeleeCritChance>
+                    <MeleeParryChance>0.40</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Greataxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>2.18</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>37</power>
+                        <cooldownTime>2.18</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.95</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Two-Handed Axe: Long Axe-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longaxe"]/statBases</xpath>
+                  <value>
+                    <Bulk>7</Bulk>
+                    <MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longaxe"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.30</MeleeCritChance>
+                    <MeleeParryChance>0.50</MeleeParryChance>
+                    <MeleeDodgeChance>0.23</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Longaxe"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Blunt</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>2.05</cooldownTime>
+                        <chanceFactor>0.25</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>32</power>
+                        <cooldownTime>2.05</cooldownTime>
+                        <chanceFactor>0.70</chanceFactor>
+                        <armorPenetrationBlunt>9.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+<!--Polearms-->
+                <!--Polearm: Pitchfork-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pitchfork"]/statBases</xpath>
+                  <value>
+                    <Bulk>5</Bulk>
+                    <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pitchfork"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.44</MeleeCritChance>
+                    <MeleeParryChance>1.33</MeleeParryChance>
+                    <MeleeDodgeChance>0.5</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pitchfork"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>17</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.25</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Polearm: Hookedblade (you ugly child)-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_HookedBlade"]/statBases</xpath>
+                  <value>
+                    <Bulk>5</Bulk>
+                    <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_HookedBlade"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.44</MeleeCritChance>
+                    <MeleeParryChance>0.90</MeleeParryChance>
+                    <MeleeDodgeChance>0.5</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_HookedBlade"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>16</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.30</chanceFactor>
+                        <armorPenetrationBlunt>6.9</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.5</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>23</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.65</chanceFactor>
+                        <armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.25</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Polearm: Billhook-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Billhook"]/statBases</xpath>
+                  <value>
+                    <Bulk>7</Bulk>
+                    <MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Billhook"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.60</MeleeCritChance>
+                    <MeleeParryChance>1</MeleeParryChance>
+                    <MeleeDodgeChance>0.5</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Billhook"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>11</power>
+                        <cooldownTime>1.4</cooldownTime>
+                        <chanceFactor>0.50</chanceFactor>
+                        <armorPenetrationBlunt>4</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.1</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.45</chanceFactor>
+                        <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.38</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Polearm: Pike-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pike"]/statBases</xpath>
+                  <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pike"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.08</MeleeCritChance>
+                    <MeleeParryChance>0.95</MeleeParryChance>
+                    <MeleeDodgeChance>1.27</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Pike"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>1.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>1.5</cooldownTime>
+                        <chanceFactor>0.95</chanceFactor>
+                        <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>3</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+
+                <!--Polearm: Swordlance-->
+
+                <li Class="PatchOperationAdd">
+                  <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Swordlance"]/statBases</xpath>
+                  <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
+                  </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Swordlance"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                    <MeleeCritChance>0.08</MeleeCritChance>
+                    <MeleeParryChance>0.95</MeleeParryChance>
+                    <MeleeDodgeChance>1.27</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName="DankPyon_MeleeWeapon_Swordlance"]/tools</xpath>
+                <value>
+                    <tools>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>shaft</label>
+                        <capacities>
+                            <li>Poke</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.3</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Stab</li>
+                        </capacities>
+                        <power>18</power>
+                        <cooldownTime>1.8</cooldownTime>
+                        <chanceFactor>0.20</chanceFactor>
+                        <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                    </li>
+                    <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                            <li>Cut</li>
+                        </capacities>
+                        <power>28</power>
+                        <cooldownTime>2.3</cooldownTime>
+                        <chanceFactor>0.75</chanceFactor>
+                        <armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.85</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                    </li>
+                    </tools>
+                </value>
+                </li>
+<!--End-->
+            </operations>
+		</match>  
+	</Operation>
+</Patch>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+<!--Utility-->
+    <!--Quiver-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Quiver"]/statBases</xpath>
+            <value>
+                <Bulk>5</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Quiver"]</xpath>
+            <value>
+                <equippedStatOffsets>
+                    <CarryBulk>15</CarryBulk>
+                    <ReloadSpeed>0.4</ReloadSpeed>
+                </equippedStatOffsets> 
+            </value>
+        </li>
+
+<!--Gloves 'n Boots'-->
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[
+            defName="DankPyon_Handwear_GlovesLeather" or
+            defName="DankPyon_Handwear_GlovesSplinted" or
+            defName="DankPyon_Handwear_GlovesPlate" or
+            defName="DankPyon_Footwear_BootsLeather" or
+            defName="DankPyon_Footwear_BootsSplinted" or
+            defName="DankPyon_Footwear_BootsPlate"]/equippedStatOffsets</xpath>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName = "DankPyon_Handwear_GlovesLeather" or
+                defName = "DankPyon_Footwear_BootsLeather"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName = "DankPyon_Handwear_GlovesSplinted" or
+                defName = "DankPyon_Footwear_BootsSplinted"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName = "DankPyon_Handwear_GlovesPlate" or
+                defName = "DankPyon_Footwear_BootsPlate"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+<!--Boots-->
+
+<!--Body-->        
+    <!--Leather Tunic-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Leather_Tunic"]/statBases</xpath>
+            <value>
+                <Bulk>20</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+    	<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Leather_Tunic"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+			</value>
+		</li>	
+
+    <!--Padded Surcoat, Gambeson-->
+    <!--Surcoat:skin, Gambeson:middle-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_Padded_Surcoat" or 
+                defName="Dankpyon_Apparel_Gambeson"]/statBases</xpath>
+            <value>
+                <Bulk>30</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/label</xpath>
+			<value>
+				<label>arming doublet</label>
+			</value>
+		</li>
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/description</xpath>
+			<value>
+				<description>a well-fitting padded jacket, very simiar the gambeson but lighter, usually worn for undergarment for armor for additional padding, can still catch some cuts</description>
+			</value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+			</value>
+		</li>	
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+			</value>
+		</li>	
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			</value>
+		</li>	
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+			</value>
+		</li>
+        
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Surcoat"]/statBases/Mass</xpath>
+            <value>
+                    <Mass>2.3</Mass>      
+            </value>
+        </li>
+                
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/statBases/Mass</xpath>
+            <value>
+                    <Mass>3</Mass>      
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/apparel/layers</xpath>
+            <value>
+                <layers>
+                    <li>Middle</li>             
+                </layers>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_Padded_Surcoat" or 
+                defName="Dankpyon_Apparel_Gambeson"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <li>Legs</li>                  <!-- Added extra coverage -->
+                <li>Arms</li>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_Padded_Surcoat"]/costList/Cloth</xpath>
+            <value>
+                <Cloth>60</Cloth>             <!-- Adjusted price for extra coverage-->
+            </value>
+        </li>               
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/costList/Cloth</xpath>
+            <value>
+                <Cloth>90</Cloth>           <!-- Adjusted price for extra coverage-->
+            </value>
+        </li>
+
+    <!--Padded Leather-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Leather"]/statBases</xpath>
+            <value>
+                <Bulk>30</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Padded_Leather"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>13</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+    <!--Hauberk, Heavy Hauberk-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Hauberk" or defName="DankPyon_Apparel_Heavy_Hauberk"]/statBases</xpath>
+            <value>
+                <Bulk>30</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Hauberk"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+			</value>
+		</li>
+        
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Hauberk"]/statBases/Mass</xpath>
+            <value>
+                    <Mass>5.3</Mass>      
+            </value>
+        </li>
+        
+   		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Apparel_Heavy_Hauberk"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1.7</ArmorRating_Sharp>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Hauberk" or defName="DankPyon_Apparel_Heavy_Hauberk"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+			</value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Hauberk" or defName="DankPyon_Apparel_Heavy_Hauberk"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <bodyPartGroups>
+                    <li>Torso</li>
+                    <li>Shoulders</li>
+                    <li>Arms</li>
+                </bodyPartGroups>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Heavy_Hauberk"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <li>Legs</li>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/costStuffCount</xpath>
+            <value>
+                <costStuffCount>120</costStuffCount>
+            </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName = "DankPyon_Apparel_Hauberk" or defName="DankPyon_Apparel_Heavy_Hauberk"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Heavy_Hauberk"]/equippedStatOffsets</xpath>
+            <value>
+                <MeleeDodgeChance>-0.10</MeleeDodgeChance>
+            </value>
+        </li>
+
+    <!--Coat Of Plates, Brigandine-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_CoatOfPlates" or
+                defName="DankPyon_Apparel_Brigandine"]/statBases</xpath>
+            <value>
+                <Bulk>60</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_CoatOfPlates"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>2.2</ArmorRating_Sharp>
+			</value>
+		</li>
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_CoatOfPlates"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>3</ArmorRating_Blunt>
+			</value>
+		</li>
+        
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Brigandine"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_CoatOfPlates" or
+                defName="DankPyon_Apparel_Brigandine"]/statBases/Mass</xpath>
+            <value>
+                <Mass>14</Mass>
+            </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_CoatOfPlates" or
+                defName="DankPyon_Apparel_Brigandine"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_CoatOfPlates" or
+                defName="DankPyon_Apparel_Brigandine"]/equippedStatOffsets</xpath>
+            <value>
+                <MeleeDodgeChance>-0.20</MeleeDodgeChance>
+            </value>
+        </li>
+
+    <!--Breast Plate-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/statBases</xpath>
+            <value>
+                <Bulk>40</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/costStuffCount</xpath>
+            <value>
+                <costStuffCount>100</costStuffCount>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2.6</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+
+    <!--Full Plate-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/statBases</xpath>
+            <value>
+                <Bulk>100</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2.6</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/statBases/Mass</xpath>
+            <value>
+                <Mass>15</Mass>
+            </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/equippedStatOffsets</xpath>
+            <value>
+                <MeleeDodgeChance>-0.25</MeleeDodgeChance>
+            </value>
+        </li>
+  
+      </operations>
+	</match>
+	</Operation>
+
+</Patch>

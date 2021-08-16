@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <operations>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="DankPyon_Crossbow" or defName="DankPyon_CrossbowHeavy"]/tools</xpath>
+            <value>
+                <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+                    <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+                </tools>
+            </value>
+        </li>
+
+        <!-- === Crossbow === -->
+
+        <!-- WIP arbalesters with shields
+        <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName = "DankPyon_CrossbowHeavy"]/weaponClasses/li[2]</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName = "DankPyon_Crossbow"]</xpath>
+            <value>
+                <modExtensions>
+                    <li Class="VFECore.ThingDefExtension">
+                        <usableWithShields>true</usableWithShields>
+                    </li>
+                </modExtensions>
+            </value>
+        </li>-->
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>DankPyon_Crossbow</defName>
+            <statBases>
+                <Bulk>6</Bulk>
+                <SwayFactor>1.2</SwayFactor>
+                <ShotSpread>0.25</ShotSpread>
+                <SightsEfficiency>1</SightsEfficiency>
+                <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+                <WoodLog>70</WoodLog>
+                <DankPyon_ComponentBasic>2</DankPyon_ComponentBasic>
+            </costList>
+            <Properties>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>True</hasStandardCommand>
+                <defaultProjectile>Projectile_DankPyonCrossbowBolt_Steel</defaultProjectile>
+                <warmupTime>1</warmupTime>
+                <range>23</range>
+                <soundCast>Bow_Large</soundCast>
+            </Properties>
+            <AmmoUser>
+                <magazineSize>1</magazineSize>
+                <reloadTime>3.5</reloadTime>
+                <ammoSet>AmmoSet_DankPyonCrossbowBolt</ammoSet>
+            </AmmoUser>
+            <FireModes>
+                <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+            <weaponTags>
+                <li>CE_Bow</li>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </li>
+
+        <!-- === Heavy Crossbow === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>DankPyon_CrossbowHeavy</defName>
+            <statBases>
+                <Bulk>6</Bulk>
+                <SwayFactor>1.0</SwayFactor>
+                <ShotSpread>0.20</ShotSpread>
+                <SightsEfficiency>1</SightsEfficiency>
+                <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+                <WoodLog>60</WoodLog>
+                <Steel>25</Steel>
+                <DankPyon_ComponentBasic>3</DankPyon_ComponentBasic>
+            </costList>
+            <Properties>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>True</hasStandardCommand>
+                <defaultProjectile>Projectile_ArbalestBolt_Steel</defaultProjectile>
+                <warmupTime>1</warmupTime>
+                <range>28</range>
+                <soundCast>Bow_Large</soundCast>
+            </Properties>
+            <AmmoUser>
+                <magazineSize>1</magazineSize>
+                <reloadTime>5.5</reloadTime>
+                <ammoSet>AmmoSet_ArbalestBolt</ammoSet>
+            </AmmoUser>
+            <FireModes>
+                <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+            <weaponTags>
+                <li>CE_Bow</li>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </li>
+
+        <!-- ========== Hunting bow ========== -->
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>DankPyon_Bow_Hunting</defName>
+            <statBases>
+                <SightsEfficiency>0.6</SightsEfficiency>
+                <ShotSpread>1</ShotSpread>
+                <SwayFactor>2</SwayFactor>
+                <Bulk>4.00</Bulk>
+                <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+                <WoodLog>15</WoodLog>
+            </costList>
+            <Properties>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Projectile_HuntingArrow_Stone</defaultProjectile>
+                <warmupTime>1.2</warmupTime>
+                <range>32</range>
+                <soundCast>Bow_Recurve</soundCast>
+            </Properties>
+            <AmmoUser>
+                <ammoSet>AmmoSet_HuntingArrow</ammoSet>
+            </AmmoUser>
+            <FireModes />
+            <weaponTags>
+                <li>CE_Bow</li>
+            </weaponTags>
+            <researchPrerequisite>RecurveBow</researchPrerequisite>
+            <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="DankPyon_Bow_Hunting"]/tools</xpath>
+            <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+            </tools>
+            </value>
+        </li>
+
+        <!-- ========== War bow ========== -->
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>Bow_War</defName>
+            <statBases>
+                <SightsEfficiency>0.6</SightsEfficiency>
+                <ShotSpread>1</ShotSpread>
+                <SwayFactor>2</SwayFactor>
+                <Bulk>5.00</Bulk>
+                <RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+                <WoodLog>20</WoodLog>
+            </costList>
+            <Properties>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Projectile_WarArrow_Stone</defaultProjectile>
+                <warmupTime>1.5</warmupTime>
+                <range>40</range>
+                <soundCast>Bow_Large</soundCast>
+            </Properties>
+            <AmmoUser>
+                <ammoSet>AmmoSet_WarArrow</ammoSet>
+            </AmmoUser>
+            <FireModes />
+            <weaponTags>
+                <li>CE_Bow</li>
+            </weaponTags>
+            <researchPrerequisite>Greatbow</researchPrerequisite>
+            <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="Bow_War"]/tools</xpath>
+            <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+                    <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+            </tools>
+            </value>
+        </li>
+
+        </operations>
+	</match>
+    </Operation>
+</Patch>
