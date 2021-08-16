@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Metals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Add Bulk and thingCategories -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="WoW_MetalBase"]/statBases</xpath>
+				<value>
+					<Bulk>0.04</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="WoW_thorium" or
+				defName="WoW_darkiron" or
+				defName="WoW_mithril" or
+				defName="WoW_adamantite" or
+				defName="WoW_hardened_adamantite" or
+				defName="WoW_truesilver"
+				]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li> 
+
+			<!-- Thorium -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_thorium"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.75</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_thorium"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>2.6</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_thorium"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.1</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_thorium"]/statBases/BluntDamageMultiplier</xpath>
+				<value>
+					<BluntDamageMultiplier>1.1</BluntDamageMultiplier>
+				</value>
+			</li>
+
+			<!-- Dark Iron -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_darkiron"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.75</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_darkiron"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>2.6</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_darkiron"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.3</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_darkiron"]/statBases/SharpDamageMultiplier</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoW_darkiron"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.2</MeleePenetrationFactor>
+				</value>
+			</li> 
+
+			<!-- Mithril -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_mithril"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.2</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_mithril"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.9</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_mithril"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.08</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_mithril"]/statBases/SharpDamageMultiplier</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoW_mithril"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.7</Mass>
+					<MeleePenetrationFactor>1.1</MeleePenetrationFactor>
+					<MeleeWeapon_CooldownMultiplier>0.9</MeleeWeapon_CooldownMultiplier>
+				</value>
+			</li>
+
+			<!-- Adamantite -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_adamantite"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.6</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_adamantite"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>2.75</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_adamantite"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.1</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_adamantite"]/statBases/SharpDamageMultiplier</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_adamantite"]/statBases/BluntDamageMultiplier</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoW_adamantite"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.5</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- Hardened Adamantite -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_hardened_adamantite"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>2.5</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_hardened_adamantite"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>4</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_hardened_adamantite"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.12</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_hardened_adamantite"]/statBases/SharpDamageMultiplier</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="WoW_hardened_adamantite"]/statBases/BluntDamageMultiplier</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoW_hardened_adamantite"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>2</MeleePenetrationFactor>
+				</value>
+			</li>
+
+
+			<!-- True Silvah -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_truesilver"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>1.18</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_truesilver"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.68</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="WoW_truesilver"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.03</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="WoW_truesilver"]/stuffProps/statFactors</xpath>
+				<value>
+					<MeleePenetrationFactor>1.07</MeleePenetrationFactor>
+				</value>
+			</li>
+
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

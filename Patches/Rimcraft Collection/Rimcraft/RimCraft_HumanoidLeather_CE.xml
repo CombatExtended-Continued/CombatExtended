@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!--========== Humanoid leather ============-->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_WoWBloodElf"
+						or defName="Leather_WoWDraenei"
+						or defName="Leather_WoWDwarf"
+						or defName="Leather_WoWGnome"
+						or defName="Leather_WoWGoblin"
+						or defName="Leather_WoWHighElf"
+						or defName="Leather_WoWNightElf"
+						or defName="Leather_WoWOrc"
+						or defName="Leather_WoWTroll"
+						or defName="Leather_WoWWorgen"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<!--========== Forsaken leathers ============-->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_WoWForsaken"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
