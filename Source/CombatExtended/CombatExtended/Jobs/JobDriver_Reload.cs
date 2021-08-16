@@ -151,8 +151,8 @@ namespace CombatExtended
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
-            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;            
+            waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(indReloader);
 
             //Actual reloader

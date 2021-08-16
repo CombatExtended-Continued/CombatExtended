@@ -9,7 +9,7 @@ namespace CombatExtended
     {
         public StatWorker_TicksBetweenBurstShots()
         {
-        }       
+        }        
 
         public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
         {

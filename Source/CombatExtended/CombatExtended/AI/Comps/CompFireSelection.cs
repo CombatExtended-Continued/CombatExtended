@@ -133,7 +133,7 @@ namespace CombatExtended.AI
                         }
                     }
                     float range = Mathf.Max(verb.EffectiveRange, 1);
-                    float recoilFactor = verbProps.recoilAmount * (0.6f + shotDist / range);
+                    float recoilFactor = verbShoot.RecoilAmount * (0.6f + shotDist / range);
 
                     if (shotDist / range > 0.5f && !Map.VisibilityGoodAt(SelPawn, castTarg.Cell, nightVisionEfficiency: NightVisionEfficiency))
                     {

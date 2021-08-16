@@ -183,6 +183,21 @@ namespace CombatExtended
             }
         }
 
+        public float RecoilAmount
+        {
+            get
+            {
+                float recoil = VerbPropsCE.recoilAmount;
+                if(EquipmentSource != null)
+                {
+                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    if (modified > 0)
+                        recoil = modified;
+                }
+                return recoil;
+            }
+        }
+
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
         private LightingTracker _lightingTracker = null;
@@ -367,7 +382,7 @@ namespace CombatExtended
         /// <param name="angle">The ref float to have vertical recoil in radians added to.</param>
         private void GetRecoilVec(ref float rotation, ref float angle)
         {
-            var recoil = VerbPropsCE.recoilAmount;
+            var recoil = RecoilAmount;
             float maxX = recoil * 0.5f;
             float minX = -maxX;
             float maxY = recoil;
