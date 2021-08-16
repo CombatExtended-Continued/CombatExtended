@@ -99,7 +99,7 @@ namespace CombatExtended
             {
                 Job job = weapon.Wielder.thinker.GetMainTreeThinkNode<JobGiver_ModifyWeapon>().TryGiveJob(weapon.Wielder);
                 if (job != null)
-                    weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptForced);
+                    weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptOptional);
             }
         }
     }

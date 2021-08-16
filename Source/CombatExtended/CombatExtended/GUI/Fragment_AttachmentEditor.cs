@@ -114,7 +114,7 @@ namespace CombatExtended
             this.links = weapon.Platform.attachmentLinks;
             this.weapon = weapon;
             this.weaponDef = weapon.Platform;
-
+            
             foreach (AttachmentLink link in weaponDef.attachmentLinks)
             {
                 string tag = link.attachment.slotTags.First();
@@ -129,10 +129,22 @@ namespace CombatExtended
                 this.removalByAt[link] = false;
             }
             this.tags.SortBy(x => x);
-            foreach (AttachmentLink link in weapon.CurLinks)
+            foreach (AttachmentLink link in weapon.Platform.attachmentLinks.Where(l => weapon.TargetConfig.Any(a => a == l.attachment)))
             {
-                this.attachedByAt[link] = true;
+                if(weapon.attachments.Any(a => a.def.index == link.attachment.index))
+                    this.attachedByAt[link] = true;                
                 this.AddAttachment(link, update: false);
+            }
+            List<AttachmentDef> tempConfig = weapon.TargetConfig;
+            foreach (AttachmentLink link in weapon.Platform.attachmentLinks)
+            {
+                if (weapon.attachments.Any(a => a.def == link.attachment))
+                {
+                    this.attachedByAt[link] = true;
+                    if (!tempConfig.Contains(link.attachment))
+                        this.removalByAt[link] = true;
+                }else if(tempConfig.Contains(link.attachment))
+                    this.additionByAt[link] = true;
             }
             foreach (StatDef stat in displayStats)
                 statBases[stat] = weapon.GetWeaponStatWith(stat, null, true);
