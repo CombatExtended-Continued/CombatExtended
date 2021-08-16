@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>FCP Minuteman Equipment Teaser</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- === Minuteman basic === -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Uniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Uniform"]/costStuffCount</xpath>
+	<value>
+		<costStuffCount>30</costStuffCount>
+	</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Uniform"]/statBases/Mass</xpath>
+          <value>
+            <Mass>0.2</Mass>
+          </value>
+        </li>
+
+        <!-- === Minuteman Vet === -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Veteran_Uniform" or defName="FCP_Apparel_Minuteman_Regular_Army_Uniform"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Veteran_Uniform" or defName="FCP_Apparel_Minuteman_Regular_Army_Uniform"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Veteran_Uniform" or defName="FCP_Apparel_Minuteman_Regular_Army_Uniform"]/costStuffCount</xpath>
+	<value>
+		<costStuffCount>50</costStuffCount>
+	</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Veteran_Uniform" or defName="FCP_Apparel_Minuteman_Regular_Army_Uniform"]/statBases/Mass</xpath>
+          <value>
+            <Mass>0.75</Mass>
+            <Bulk>5</Bulk>
+            <WornBulk>1</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Veteran_Uniform" or defName="FCP_Apparel_Minuteman_Regular_Army_Uniform" or defName="FCP_Apparel_Minuteman_Officer_Uniform" or defName="FCP_Apparel_Minuteman_Generals_Uniform"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+        </li>
+
+        <!-- === Minuteman Occifer === -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Officer_Uniform" or defName="FCP_Apparel_Minuteman_Generals_Uniform"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>10</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Officer_Uniform" or defName="FCP_Apparel_Minuteman_Generals_Uniform"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>16</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Officer_Uniform" or defName="FCP_Apparel_Minuteman_Generals_Uniform"]/costList</xpath>
+	<value>
+    		<costList>
+      		<Cloth>40</Cloth>
+      		<Hyperweave>25</Hyperweave>
+      		<Plasteel>45</Plasteel>
+    		</costList>
+	</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="FCP_Apparel_Minuteman_Officer_Uniform" or defName="FCP_Apparel_Minuteman_Generals_Uniform"]/statBases/Mass</xpath>
+          <value>
+            <Mass>4.5</Mass>
+            <Bulk>8</Bulk>
+            <WornBulk>1</WornBulk>
+          </value>
+        </li>
+
+        <!-- === Hat === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Hat" or defName="FCP_Apparel_Minuteman_Generals_Hat"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+            <WornBulk>1</WornBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Hat" or defName="FCP_Apparel_Minuteman_Generals_Hat"]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="FCP_Apparel_Minuteman_Militia_Hat" or defName="FCP_Apparel_Minuteman_Generals_Hat"]/apparel/layers</xpath>
+          <value>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
