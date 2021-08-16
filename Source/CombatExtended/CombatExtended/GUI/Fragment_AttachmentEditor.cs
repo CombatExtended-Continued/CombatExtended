@@ -172,15 +172,18 @@ namespace CombatExtended
                     StatDefOf.RangedWeapon_Cooldown,
                     CE_StatDefOf.SightsEfficiency,
                     CE_StatDefOf.NightVisionEfficiency_Weapon,
+                    CE_StatDefOf.TicksBetweenBurstShots,
+                    CE_StatDefOf.BurstShotCount,
                     CE_StatDefOf.ReloadSpeed,
                     CE_StatDefOf.MuzzleFlash,
                     CE_StatDefOf.MagazineCapacity,
                     CE_StatDefOf.ShotSpread,
-                    CE_StatDefOf.SwayFactor,
+                    CE_StatDefOf.SwayFactor,                    
                 };
                 positiveStats = new List<StatDef>()
                 {
                     StatDefOf.MarketValue,
+                    CE_StatDefOf.BurstShotCount,
                     CE_StatDefOf.SightsEfficiency,
                     CE_StatDefOf.NightVisionEfficiency_Weapon,
                     CE_StatDefOf.MagazineCapacity,
@@ -189,6 +192,7 @@ namespace CombatExtended
                 {
                     StatDefOf.Mass,
                     StatDefOf.RangedWeapon_Cooldown,
+                    CE_StatDefOf.TicksBetweenBurstShots,
                     CE_StatDefOf.ReloadSpeed,
                     CE_StatDefOf.Bulk,
                     CE_StatDefOf.MuzzleFlash,
@@ -371,22 +375,22 @@ namespace CombatExtended
                     }, useMargins: true, hightlightIfMouseOver: true);
                 });
             }
-            if (hoveringOver == null)
-            {
-                collapsible_stats.Gap(4);
-                collapsible_stats.Label(weaponDef.label, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray);
-                collapsible_stats.Line(1);
-                collapsible_stats.Gap(2);
-                collapsible_stats.Label(weaponDef.DescriptionDetailed, fontSize: GameFont.Small);
-            }
-            else
-            {
-                collapsible_stats.Gap(4);
-                collapsible_stats.Label(hoveringOver.label, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray);
-                collapsible_stats.Line(1);
-                collapsible_stats.Gap(2);
-                collapsible_stats.Label(hoveringOver.DescriptionDetailed, fontSize: GameFont.Small);
-            }
+            //if (hoveringOver == null)
+            //{
+            //    collapsible_stats.Gap(4);
+            //    collapsible_stats.Label(weaponDef.label, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray);
+            //    collapsible_stats.Line(1);
+            //    collapsible_stats.Gap(2);
+            //    collapsible_stats.Label(weaponDef.DescriptionDetailed, fontSize: GameFont.Small);
+            //}
+            //else
+            //{
+            //    collapsible_stats.Gap(4);
+            //    collapsible_stats.Label(hoveringOver.label, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray);
+            //    collapsible_stats.Line(1);
+            //    collapsible_stats.Gap(2);
+            //    collapsible_stats.Label(hoveringOver.DescriptionDetailed, fontSize: GameFont.Small);
+            //}
             collapsible_stats.End(ref inRect);
         }
 

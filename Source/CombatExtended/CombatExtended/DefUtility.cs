@@ -206,6 +206,14 @@ namespace CombatExtended
                 || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
                 || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
                 || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+
+            float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots });
+
+            float burstShotCount = def.verbs.Max(v => v.burstShotCount);
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.BurstShotCount, value = burstShotCount });
         }
 
         /// <summary>

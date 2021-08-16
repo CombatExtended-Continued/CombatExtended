@@ -173,7 +173,7 @@ namespace CombatExtended
                 }
                 return CurMagCount >= MagSize;
             }
-        }
+        }        
 
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory

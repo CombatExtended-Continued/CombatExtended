@@ -36,7 +36,7 @@ namespace CombatExtended
         public override int ShotsPerBurst
         {
             get
-            {
+            {                
                 return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
             }
         }
@@ -127,13 +127,20 @@ namespace CombatExtended
         }
 
         public int ShotsPerBurstFor(FireMode mode)
-        {
+        {            
             if (CompFireModes != null)
             {
                 if (mode == FireMode.SingleFire) return 1;
                 if (mode == FireMode.BurstFire && CompFireModes.Props.aimedBurstShotCount > 0) return CompFireModes.Props.aimedBurstShotCount;
             }
-            return VerbPropsCE.burstShotCount;
+            float burstShotCount = VerbPropsCE.burstShotCount;
+            if (EquipmentSource != null)
+            {
+                float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                if (modified > 0)
+                    burstShotCount = modified;
+            }
+            return (int)burstShotCount;
         }
 
         /// <summary>

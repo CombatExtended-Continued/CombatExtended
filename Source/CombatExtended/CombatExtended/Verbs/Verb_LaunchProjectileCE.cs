@@ -60,6 +60,21 @@ namespace CombatExtended
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
 
+        public override int ShotsPerBurst
+        {
+            get
+            {
+                float shotsPerBurst = base.ShotsPerBurst;
+                if (EquipmentSource != null)
+                {
+                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    if (modified > 0)
+                        shotsPerBurst = modified;
+                }
+                return (int) shotsPerBurst;
+            }
+        }
+
         public CompCharges CompCharges
         {
             get

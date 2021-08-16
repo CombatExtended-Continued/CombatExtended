@@ -257,7 +257,7 @@ namespace CombatExtended
                  */
                 if (part.slotTags == null || part.slotTags.All(s => _curLinks.All(l => !l.attachment.slotTags.Contains(s))))                
                     _defaultPart.Add(part);                                
-            }
+            }           
         }
     }
 }
