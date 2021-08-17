@@ -13,6 +13,7 @@ namespace CombatExtended
     {        
         public ThingOwner<Thing> attachments;
 
+        private Quaternion drawQat;
         private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
 
         private List<AttachmentDef> _additionList = new List<AttachmentDef>();
@@ -193,7 +194,17 @@ namespace CombatExtended
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            // create the random angle for when sat on the ground.
+            float angle = Rand.Range(-Platform.graphicData.onGroundRandomRotateAngle, Platform.graphicData.onGroundRandomRotateAngle) % 180;
+            this.drawQat = angle.ToQuat();
             this.UpdateConfiguration();
+        }
+
+        public override void DrawAt(Vector3 drawLoc, bool flip = false)
+        {
+            Matrix4x4 matrix = new Matrix4x4();
+            matrix.SetTRS(drawLoc, drawQat, Vector3.one);
+            DrawPlatform(matrix, false);
         }
 
         /// <summary>
@@ -204,6 +215,27 @@ namespace CombatExtended
         public AttachmentLink GetLink(AttachmentDef def)
         {
             return LinkByDef.TryGetValue(def, out var link) ? link : null;
+        }
+
+        private List<Pair<Material, Mesh>> _graphicCache;
+        private List<Pair<Material, Mesh>> _graphicFlipCache;
+
+        /// <summary>
+        /// Used to render the actual weapon.
+        /// </summary>
+        /// <param name="matrix">Matrix4x4</param>
+        /// <param name="flip">Flip</param>
+        /// <param name="layer">Layer</param>
+        public void DrawPlatform(Matrix4x4 matrix, bool flip = false, int layer = 0)
+        {
+            if (_graphicCache.NullOrEmpty() || _graphicFlipCache.NullOrEmpty())
+                UpdateDrawCache();
+            List<Pair<Material, Mesh>> cache = !flip ? _graphicCache : _graphicFlipCache;
+            for (int i = 0; i < cache.Count; i++)
+            {
+                Pair<Material, Mesh> part = cache[i];
+                Graphics.DrawMesh(part.Second, matrix, part.First, layer);
+            }
         }
 
         /// <summary>
@@ -238,8 +270,63 @@ namespace CombatExtended
                  * We add default parts that enable use to change the graphics of the weapon
                  */
                 if (part.slotTags == null || part.slotTags.All(s => _curLinks.All(l => !l.attachment.slotTags.Contains(s))))                
-                    _defaultPart.Add(part);                                
-            }           
-        }
+                    _defaultPart.Add(part);
+            }
+            /*
+             * <========= graphic cache =========> 
+             */
+            _graphicCache = null;
+            _graphicFlipCache = null;
+        }               
+
+        /// <summary>
+        /// Used to rebuild rendering internel cache
+        /// </summary>
+        public void UpdateDrawCache()
+        {
+            _graphicCache ??= new List<Pair<Material, Mesh>>();
+            _graphicCache.Clear();
+            _graphicFlipCache ??= new List<Pair<Material, Mesh>>();
+            _graphicFlipCache.Clear();
+            for (int i = 0; i < _defaultPart.Count; i++)
+            {
+                WeaponPlatformDef.WeaponGraphicPart part = _defaultPart[i];
+                if (part.HasOutline)
+                {
+                    _graphicCache.Add(new Pair<Material, Mesh>(part.OutlineMat, CE_MeshMaker.plane10Bot));
+                    _graphicFlipCache.Add(new Pair<Material, Mesh>(part.OutlineMat, CE_MeshMaker.plane10FlipBot));
+                }
+            }
+            for (int i = 0; i < _curLinks.Length; i++)
+            {
+                AttachmentLink link = _curLinks[i];
+                if (link.HasOutline)
+                {
+                    _graphicCache.Add(new Pair<Material, Mesh>(link.OutlineMat, link.meshBot));
+                    _graphicFlipCache.Add(new Pair<Material, Mesh>(link.OutlineMat, link.meshFlipBot));
+                }
+            }
+            _graphicCache.Add(new Pair<Material, Mesh>(Platform.graphic.MatSingle, CE_MeshMaker.plane10Mid));
+            _graphicFlipCache.Add(new Pair<Material, Mesh>(Platform.graphic.MatSingle, CE_MeshMaker.plane10FlipMid));
+
+            for (int i = 0; i < _defaultPart.Count; i++)
+            {
+                WeaponPlatformDef.WeaponGraphicPart part = _defaultPart[i];
+                if (part.HasPartMat)
+                {
+                    _graphicCache.Add(new Pair<Material, Mesh>(part.PartMat, CE_MeshMaker.plane10Top));
+                    _graphicFlipCache.Add(new Pair<Material, Mesh>(part.PartMat, CE_MeshMaker.plane10FlipTop));
+                }
+            }
+            for (int i = 0; i < _curLinks.Length; i++)
+            {
+                AttachmentLink link = _curLinks[i];
+                if (link.HasAttachmentMat)
+                {
+                    _graphicCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshTop));
+                    _graphicFlipCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshFlipTop));
+                }
+            }
+        }        
     }
 }

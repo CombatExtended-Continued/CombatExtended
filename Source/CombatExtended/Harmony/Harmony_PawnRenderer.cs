@@ -370,59 +370,18 @@ namespace CombatExtended.HarmonyCE
             }
 
             private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {
-                bool flip = false;
-                if (mesh == MeshPool.plane10Flip)
-                    flip = true;
-
+            {              
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
                 Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                AttachmentLink[] links = null;
-                WeaponPlatform platform = null;
-
-                mesh = !flip ? CE_MeshMaker.plane10Mid : CE_MeshMaker.plane10FlipMid;
-                if (equipment is WeaponPlatform)
-                {
-                    platform = (WeaponPlatform)equipment;
-                    links = platform.CurLinks;
-                    Mesh m = !flip ? CE_MeshMaker.plane10Bot : CE_MeshMaker.plane10FlipBot;
-                    foreach (WeaponPlatformDef.WeaponGraphicPart part in platform.VisibleDefaultParts)
-                    {
-                        if(part.HasOutline)
-                            Graphics.DrawMesh(m, matrix, part.OutlineMat, layer);
-                    }
-                    for (int i = 0; i < links.Length; i++)
-                    {
-                        AttachmentLink link = links[i];
-                        if (link.HasOutline)
-                            Graphics.DrawMesh(!flip ? links[i].meshBot : links[i].meshFlipBot, matrix, link.OutlineMat, layer);
-                    }                    
-                }
-                //
-                // Render the main weapon mat
-                Graphics.DrawMesh(mesh, matrix, mat, layer);
-
-                if (platform != null)
-                {
-                    Mesh m = !flip ? CE_MeshMaker.plane10Top : CE_MeshMaker.plane10FlipTop;
-                    foreach (WeaponPlatformDef.WeaponGraphicPart part in platform.VisibleDefaultParts)
-                    {
-                        if (part.HasPartMat)
-                            Graphics.DrawMesh(m, matrix, part.PartMat, layer);
-                    }
-                    for (int i = 0; i < links.Length; i++)
-                    {
-                        AttachmentLink link = links[i];
-                        if (link.HasAttachmentMat)
-                            Graphics.DrawMesh(!flip ? link.meshTop : link.meshFlipTop, matrix, link.AttachmentMat, layer);
-                    }
-                }
+                if(eq is WeaponPlatform platform)                
+                    platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
+                else
+                    Graphics.DrawMesh(mesh, matrix, mat, layer);
             }
 
             /*
