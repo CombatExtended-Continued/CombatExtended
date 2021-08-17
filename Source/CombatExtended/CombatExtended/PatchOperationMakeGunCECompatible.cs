@@ -98,12 +98,15 @@ namespace CombatExtended
             {
                 thingClassElement.InnerText = "CombatExtended.WeaponPlatform";
             }
+
+            GetOrCreateNode(xml, xmlNode, "drawerType", out XmlElement drawerTypeElement); // change thingClass
+            drawerTypeElement.InnerText = "RealtimeOnly";
         }       
 
         private void AddOrReplaceAttachmentLinks(XmlDocument xml, XmlNode xmlNode)
         {
             GetOrCreateNode(xml, xmlNode, nameof(WeaponPlatformDef.attachmentLinks), out XmlElement element);
-
+            
             Populate(xml, this.attachmentLinks.node, ref element);
         }
 
