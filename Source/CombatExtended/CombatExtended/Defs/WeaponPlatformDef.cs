@@ -146,7 +146,7 @@ namespace CombatExtended
                 return removes;
             return _removes[key] = attachment.slotTags.Any(s => part.slotTags.Contains(s));
         }
-
+    
         /// <summary>
         /// Used to to cache the stat modifiers in links so we don't have to search for what is overriden
         /// </summary>

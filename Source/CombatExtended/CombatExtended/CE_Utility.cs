@@ -150,7 +150,7 @@ namespace CombatExtended
             {
                 AttachmentLink link = links[i];                
                 StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
-                if (modifier == null || modifier.value == 0)
+                if (modifier == null || modifier.value <= 0)
                     continue;
                 val *= modifier.value;
             }            

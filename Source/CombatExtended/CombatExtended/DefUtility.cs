@@ -54,8 +54,8 @@ namespace CombatExtended
                 def.ValidateStats();
 
             // Prepare weaponPlatforms
-            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)
-                def.PrepareStats();
+            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
+                def.PrepareStats();            
         }
 
         /// <summary>
