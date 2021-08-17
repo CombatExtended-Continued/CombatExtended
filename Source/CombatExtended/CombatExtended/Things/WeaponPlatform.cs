@@ -145,7 +145,7 @@ namespace CombatExtended
         }
 
         public WeaponPlatform()
-        {
+        {            
             this.attachments = new ThingOwner<Thing>(this);            
         }
 
@@ -200,11 +200,19 @@ namespace CombatExtended
             this.UpdateConfiguration();
         }
 
+        private Matrix4x4 _drawMat;
+        private Vector3 _drawLoc;
+
         public override void DrawAt(Vector3 drawLoc, bool flip = false)
         {
-            Matrix4x4 matrix = new Matrix4x4();
-            matrix.SetTRS(drawLoc, drawQat, Vector3.one);
-            DrawPlatform(matrix, false);
+            // Check draw matrix cache
+            if (_drawLoc.x != drawLoc.x || _drawLoc.z != drawLoc.z)
+            {
+                _drawMat = new Matrix4x4();
+                _drawMat.SetTRS(drawLoc, drawQat, Vector3.one);
+                _drawLoc = drawLoc;
+            }            
+            DrawPlatform(_drawMat, false);
         }
 
         /// <summary>
@@ -218,7 +226,7 @@ namespace CombatExtended
         }
 
         private List<Pair<Material, Mesh>> _graphicCache;
-        private List<Pair<Material, Mesh>> _graphicFlipCache;
+        private List<Pair<Material, Mesh>> _graphicFlipCache;       
 
         /// <summary>
         /// Used to render the actual weapon.
@@ -228,7 +236,7 @@ namespace CombatExtended
         /// <param name="layer">Layer</param>
         public void DrawPlatform(Matrix4x4 matrix, bool flip = false, int layer = 0)
         {
-            if (_graphicCache.NullOrEmpty() || _graphicFlipCache.NullOrEmpty())
+            if (_graphicCache == null)
                 UpdateDrawCache();
             List<Pair<Material, Mesh>> cache = !flip ? _graphicCache : _graphicFlipCache;
             for (int i = 0; i < cache.Count; i++)
