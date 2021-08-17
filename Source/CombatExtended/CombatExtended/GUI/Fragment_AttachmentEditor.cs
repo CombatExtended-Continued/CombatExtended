@@ -22,7 +22,7 @@ namespace CombatExtended
         private static List<StatDef> positiveStats = null;
         private static List<StatDef> negativeStats = null;
 
-        private AttachmentDef hoveringOver = null;
+        private AttachmentLink hoveringOver = null;
         private List<ThingDefCountClass> cost = new List<ThingDefCountClass>();
         private List<string> tags = new List<string>();
 
@@ -272,7 +272,7 @@ namespace CombatExtended
                         }
                         if (Mouse.IsOver(rect.ExpandedBy(2)))
                         {
-                            hoveringOver = attachment;
+                            hoveringOver = link;
                             TooltipHandler.TipRegion(rect, attachment.description.CapitalizeFirst());
                         }
                     }, useMargins: true, hightlightIfMouseOver: true);

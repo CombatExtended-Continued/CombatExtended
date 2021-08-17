@@ -228,7 +228,7 @@ namespace CombatExtended
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(dropRect, dropForbidden ? "DropThingLocked".Translate() : "DropThing".Translate());
                 if (Widgets.ButtonImage(dropRect, TexButton.Drop, color, mouseoverColor) && !dropForbidden)
-                {
+                {                   
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     InterfaceDrop(thing);
                 }
@@ -272,7 +272,14 @@ namespace CombatExtended
             }
             if (thing.def.DrawMatSingle != null && thing.def.DrawMatSingle.mainTexture != null)
             {
-                Widgets.ThingIcon(new Rect(4f, y, _thingIconSize, _thingIconSize), thing, 1f);
+                if (thing is WeaponPlatform weapon)
+                {
+                    RocketGUI.GUIUtility.DrawWeaponWithAttachments(new Rect(4f, y, _thingIconSize, _thingIconSize), weapon);
+                }
+                else
+                {
+                    Widgets.ThingIcon(new Rect(4f, y, _thingIconSize, _thingIconSize), thing, 1f);
+                }
             }
             Text.Anchor = TextAnchor.MiddleLeft;
             GUI.color = ThingLabelColor;

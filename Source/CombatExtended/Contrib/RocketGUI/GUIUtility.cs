@@ -139,34 +139,24 @@ namespace CombatExtended.RocketGUI
 
         private static readonly Color _hColor = new Color(0.2f, 0.2f, 0.2f, 1.0f);
 
-        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, HashSet<AttachmentLink> attachments, List<WeaponPlatformDef.WeaponGraphicPart> parts = null, AttachmentDef highlight = null)
+        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, IEnumerable<AttachmentLink> attachments, IEnumerable<WeaponPlatformDef.WeaponGraphicPart> parts = null, AttachmentLink highlight = null)
         {
             ExecuteSafeGUIAction(() =>
             {
-                Color color = GUI.color;                
-                Texture2D texture;
+                Color color = GUI.color;                                
                 Texture2D weaponTex = platform.UIWeaponTex;                
                 foreach (AttachmentLink link in attachments)
-                {
-                    AttachmentDef attachment = link.attachment;
-                    if (attachment.outlineGraphicData == null)
-                        continue;
-                    texture = link.UIOutlineTex;
-                    Rect rect = inRect;
-                    if (link.HasDrawOffset)
-                    {
-                        rect.x -= rect.width * link.drawOffset.x;
-                        rect.y -= rect.height * link.drawOffset.y;
-                    }
-                    rect.xMin = rect.xMax - rect.width * link.drawScale.x;
-                    rect.yMin = rect.yMax - rect.height * link.drawScale.y;
-                    GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);
+                {                    
+                    if (link.HasOutline && (highlight == null || link.CompatibleWith(highlight)))
+                        DrawTex(inRect, link, link.UIOutlineTex);
                 }
+                if (highlight?.HasOutline ?? false)
+                    DrawTex(inRect, highlight, highlight.UIOutlineTex);
                 if (parts != null)
                 {
                     foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
                     {
-                        if (part.HasOutline)
+                        if (part.HasOutline && (highlight == null || part.slotTags.All(s => !highlight.attachment.slotTags.Contains(s))))
                             GUI.DrawTexture(inRect, part.UIOutlineTex, ScaleMode.StretchToFill);
                     }
                 }
@@ -177,31 +167,36 @@ namespace CombatExtended.RocketGUI
                 {
                     foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
                     {
-                        if (part.HasPartMat)
+                        if (part.HasPartMat && (highlight == null || part.slotTags.All(s => !highlight.attachment.slotTags.Contains(s))))
                             GUI.DrawTexture(inRect, part.UIPartTex, ScaleMode.StretchToFill);
                     }
                 }
                 foreach (AttachmentLink link in attachments)
-                {
-                    AttachmentDef attachment = link.attachment;
-                    if (attachment.attachmentGraphicData == null)
-                        continue;
-                    texture = link.UIAttachmentTex;
-                    if (attachment == highlight)
-                        GUI.color = color;
-                    Rect rect = inRect;                    
-                    if (link.HasDrawOffset)
-                    {
-                        rect.x -= rect.width * link.drawOffset.x;
-                        rect.y -= rect.height * link.drawOffset.y;
-                    }
-                    rect.xMin = rect.xMax - rect.width * link.drawScale.x;
-                    rect.yMin = rect.yMax - rect.height * link.drawScale.y;
-                    GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);                    
-                    if (attachment == highlight)
-                        GUI.color = _hColor;
+                {                    
+                    if (link.HasAttachmentMat && (highlight == null || link.CompatibleWith(highlight)))
+                        DrawTex(inRect, link, link.UIAttachmentTex);
                 }
+                GUI.color = color;
+                if (highlight?.HasAttachmentMat ?? false)
+                    DrawTex(inRect, highlight, highlight.UIAttachmentTex);
             });
+
+            void DrawTex(Rect rect, AttachmentLink link, Texture2D texture)
+            {                
+                if (link.HasDrawOffset)
+                {
+                    rect.x -= rect.width * link.drawOffset.x;
+                    rect.y -= rect.height * link.drawOffset.y;
+                }
+                rect.xMin = rect.xMax - rect.width * link.drawScale.x;
+                rect.yMin = rect.yMax - rect.height * link.drawScale.y;
+                GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);                
+            }
+        }
+
+        public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatform weapon, AttachmentLink highlight = null)
+        {
+            DrawWeaponWithAttachments(inRect, weapon.Platform, weapon.CurLinks, weapon.VisibleDefaultParts, highlight);
         }
 
         public static void DropDownMenu<T>(Func<T, string> labelLambda, Action<T> selectedLambda, T[] options)
