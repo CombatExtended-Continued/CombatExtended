@@ -56,8 +56,12 @@
 					<StuffPower_Armor_Sharp>0.12</StuffPower_Armor_Sharp>
 				</value>
 			</li>
-            <li Class="PatchOperationReplace">
+			<!--MO and CE both add blunt armor to this def, so it ends up as a duplicate node-->
+            <li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases/StuffPower_Armor_Blunt</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases</xpath>
 				<value>
 					<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
 				</value>
@@ -109,8 +113,12 @@
 					<StuffPower_Armor_Sharp>0.14</StuffPower_Armor_Sharp>
 				</value>
 			</li>
-            <li Class="PatchOperationReplace">
+			<!--MO and CE both add blunt armor to this def, so it ends up as a duplicate node-->
+            <li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Blunt</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases</xpath>
 				<value>
 					<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
 				</value>
