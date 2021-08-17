@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using RimWorld;
+using Verse;
 
 namespace CombatExtended
 {
@@ -8,11 +11,21 @@ namespace CombatExtended
     {
         public StatPart_Attachments()
         {
-        }
+        }       
 
         public override string ExplanationPart(StatRequest req)
         {
-            return "";
+            WeaponPlatform platform;
+            if (!req.HasThing || !(req.Thing?.def is WeaponPlatformDef))
+            {
+                return "";
+            }
+            platform = (WeaponPlatform)req.Thing;
+            if (platform.Platform?.attachmentLinks == null)
+            {
+                return "";
+            }
+            return this.parentStat.ExplainAttachmentsStat(platform.CurLinks);
         }
 
         public override void TransformValue(StatRequest req, ref float val)

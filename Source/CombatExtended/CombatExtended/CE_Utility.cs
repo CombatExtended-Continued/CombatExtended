@@ -68,6 +68,55 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Used to obtain the explaination for stat values for weapons with attachments.
+        /// </summary>
+        /// <param name="stat">StatDef</param>
+        /// <param name="links">AttachmentLinks</param>
+        /// <returns>Explaination</returns>
+        public static string ExplainAttachmentsStat(this StatDef stat, IEnumerable<AttachmentLink> links)
+        {
+            if (links == null || links.Count() == 0)
+                return null;
+            StringBuilder sb = new StringBuilder();
+            bool anyOffsets = false;
+            bool anyFactors = false;
+            foreach(AttachmentLink link in links)
+            {                
+                StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                // stop since we found an override modifier.
+                sb.AppendLine("Replaced with " + link.attachment.LabelCap + ": " + modifier.value);
+                break;
+            }
+            foreach (AttachmentLink link in links)
+            {
+                StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value == 0)
+                    continue;
+                if (!anyOffsets)
+                {
+                    sb.AppendLine("Attachment offsets:");
+                    anyOffsets = true;
+                }
+                sb.AppendLine("    " + link.attachment.LabelCap + ": " + stat.Worker.ValueToString(modifier.value, finalized: false, ToStringNumberSense.Offset));
+            }
+            foreach (AttachmentLink link in links)
+            {                                
+                StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value == 0 || modifier.value == 1)
+                    continue;
+                if (!anyFactors)
+                {
+                    sb.AppendLine("Attachment factors:");
+                    anyFactors = true;
+                }
+                sb.AppendLine("    " + link.attachment.LabelCap + ": " + stat.Worker.ValueToString(modifier.value, finalized: false, ToStringNumberSense.Factor));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// A comibination of StatWorker.FinalizeValue and GetStatValue but with the ability to get stats without attachments affecting the calculations or using a custom list of stats.
         /// This version can be used with only the weapon def.
         /// </summary>

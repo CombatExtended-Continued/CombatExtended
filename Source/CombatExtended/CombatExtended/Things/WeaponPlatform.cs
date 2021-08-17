@@ -47,7 +47,7 @@ namespace CombatExtended
                     UpdateConfiguration();
                 return _curLinks;
             }
-        }
+        }       
 
         /// <summary>
         /// Wether the target config match the current loadout
@@ -210,7 +210,7 @@ namespace CombatExtended
         /// Used to update the internel config lists
         /// </summary>
         public void UpdateConfiguration()
-        {
+        {            
             _removalList.Clear();
             _additionList.Clear();
             /*
