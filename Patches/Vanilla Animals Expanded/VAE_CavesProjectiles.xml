@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded — Caves</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/ThingDef[defName="VAECaves_RangedSilk"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		</value>
+	</li>
+
+	<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.6</AimingAccuracy>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/verbs</xpath>
+		<value>
+			<verbs>
+			<li Class="CombatExtended.VerbPropertiesCE">
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>VAECaves_RangedSilk</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<burstShotCount>1</burstShotCount>
+				<minRange>2</minRange>
+				<range>25</range>
+				<soundCast>VAE_Throw</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<label>ranged silk</label>
+				<commonality>0.8</commonality>
+			</li>
+			</verbs>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="VAE_OpenWound"]/injuryProps/painPerSeverity</xpath>
+		<value>
+			<painPerSeverity>0.0175</painPerSeverity>
+		</value>
+	</li>
+
+	<!-- =============== Now defining Projectiles in CE Procedure(Please do not remove sharp penetration value >:(   ) ============= -->
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="VAECaves_RangedSilk"]/projectile</xpath>
+		<value>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<flyOverhead>false</flyOverhead>
+			<explosionRadius>3</explosionRadius >
+			<damageDef>VAE_CocoonRanged</damageDef>
+			<damageAmountBase>5</damageAmountBase>
+			<speed>15</speed>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>60</armorPenetrationBlunt>
+			<soundExplode>Hive_Spawn</soundExplode>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<postExplosionSpawnThingDef>VAECaves_Filth_Webs</postExplosionSpawnThingDef>
+			<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+			<postExplosionSpawnChance>1</postExplosionSpawnChance>
+		</projectile>
+		</value>
+	</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
