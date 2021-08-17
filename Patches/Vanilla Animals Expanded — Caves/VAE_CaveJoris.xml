@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Caves</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === BEARS=== -->
+
+		<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="VAECaves_CaveBear"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+
+        		<li Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="VAECaves_CaveBear"]/combatPower</xpath>
+			<value>
+				<combatPower>200</combatPower>
+			</value>
+		</li>
+
+	        <li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VAECaves_CaveBear"]/statBases</xpath>
+			<value>
+			<MeleeDodgeChance>0.09</MeleeDodgeChance>
+			<MeleeCritChance>0.41</MeleeCritChance>
+			<MeleeParryChance>0.17</MeleeParryChance>
+			</value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+		             <xpath>Defs/ThingDef[defName="VAECaves_CaveBear"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>2.25</baseBodySize>
+		</value>
+	</li>
+
+
+        <li Class="PatchOperationReplace">
+		             <xpath>Defs/ThingDef[defName="VAECaves_CaveBear"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>2.5</baseHealthScale>
+		</value>
+	</li>
+
+        <li Class="PatchOperationReplace">
+                                            <xpath>/Defs/ThingDef[defName="VAECaves_CaveBear"]/tools</xpath>
+          <value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.48</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.48</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>39</power>
+					<cooldownTime>1.95</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>21</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<armorPenetrationBlunt>15</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>2.44</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+				</li>
+			</tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

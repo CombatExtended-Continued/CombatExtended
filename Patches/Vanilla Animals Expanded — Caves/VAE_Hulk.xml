@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Vanilla Animals Expanded — Caves</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]/statBases</xpath>
+				<value>
+					<statBases>
+						<MoveSpeed>4.0</MoveSpeed>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+						<ComfyTemperatureMin>-40</ComfyTemperatureMin>
+						<MarketValue>1000</MarketValue>
+						<LeatherAmount>0</LeatherAmount>
+						<ToxicSensitivity>0</ToxicSensitivity>
+						<ComfyTemperatureMax>60</ComfyTemperatureMax>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.75</MeleeCritChance>
+						<MeleeParryChance>0.5</MeleeParryChance>
+					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>arm</label>
+							<capacities>
+								<li>VAE_HulkAttack</li>
+							</capacities>
+							<power>21</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>VAE_Arms</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>two arm slam</label>
+							<capacities>
+								<li>VAE_HulkDualAttack</li>
+							</capacities>
+							<power>38</power>
+							<cooldownTime>2.4</cooldownTime>
+							<linkedBodyPartsGroup>VAE_Arms</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>25</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>60</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>38</power>
+							<cooldownTime>2.48</cooldownTime>
+							<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Vanilla Animals Expanded — Caves</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>2</baseBodySize>
+					</value>
+				</li>
+
+			<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>2.4</baseHealthScale>
+					</value>
+				</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/statBases</xpath>
+				<value>
+		<statBases>
+			<MoveSpeed>5.8</MoveSpeed>
+			<ComfyTemperatureMin>-40</ComfyTemperatureMin>			
+			<Flammability>0</Flammability>
+			<MarketValue>2400</MarketValue>
+			<ArmorRating_Blunt>.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>.45</ArmorRating_Sharp>
+			<ArmorRating_Heat>1.5</ArmorRating_Heat>
+			<FilthRate>8</FilthRate>
+			<CaravanRidingSpeedFactor>1.8</CaravanRidingSpeedFactor>
+			<MeleeDodgeChance>0.4</MeleeDodgeChance>
+			<MeleeCritChance>0.33</MeleeCritChance>
+			<MeleeParryChance>0.25</MeleeParryChance>
+		</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="AA_DecayDrake"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li><li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.24</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.7</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li><li>Cut</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.24</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>0.7</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>razorfangs</label>
+							<capacities>
+								<li>Bite</li><li>Stab</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>2.1</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<chanceFactor>0.75</chanceFactor>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>tail</label>
+							<capacities>
+								<li>VAE_ToxicSting</li>
+							</capacities>
+							<power>19</power>
+							<cooldownTime>1.24</cooldownTime>
+							<linkedBodyPartsGroup>VAE_AttackTail</linkedBodyPartsGroup>
+							<chanceFactor>1</chanceFactor>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>
