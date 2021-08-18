@@ -61,66 +61,87 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]</xpath>
-			<value>
-				<equippedStatOffsets>
-					<MeleeCritChance>0.2</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-					<MeleeDodgeChance>0.13</MeleeDodgeChance>
-				</equippedStatOffsets>
-			</value>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDeff[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/equippedStatOffsets</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDeff[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDeff[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.2</MeleeCritChance>
+						<MeleeParryChance>1</MeleeParryChance>
+						<MeleeDodgeChance>0.13</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</match>
 		</li>
 
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases</xpath>
-			<value>
-				<Bulk>0.07</Bulk>
-				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
-			</value>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/Bulk</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases</xpath>
+				<value>
+					<statBases>
+						<Bulk>0.07</Bulk>
+						<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+						<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+						<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+						<MarketValue>1.2</MarketValue>
+						<MaxHitPoints>150</MaxHitPoints>
+						<Mass>0.4</Mass>
+						<Flammability>0.6</Flammability>
+						<DeteriorationRate>1</DeteriorationRate>
+						<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+						<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+					</statBases>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases</xpath>
+				<value>
+					<statBases>
+						<Bulk>0.07</Bulk>
+						<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+						<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+						<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+						<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+						<MarketValue>1.2</MarketValue>
+						<MaxHitPoints>150</MaxHitPoints>
+						<Mass>0.4</Mass>
+						<Flammability>0.6</Flammability>
+						<DeteriorationRate>1</DeteriorationRate>
+						<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+						<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+					</statBases>
+				</value>
+			</match>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Sharp</xpath>
-			<value>
-				<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Blunt</xpath>
-			<value>
-				<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/StuffPower_Armor_Heat</xpath>
-			<value>
-				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/SharpDamageMultiplier</xpath>
-			<value>
-				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/statBases/BluntDamageMultiplier</xpath>
-			<value>
-				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/stuffProps/statFactors</xpath>
-			<value>
-				<Mass>0.3</Mass>
-				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
-			</value>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"/stuffProps/statFactors/Mass</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>0.3</Mass>
+					<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"/stuffProps/Mass</xpath>
+				<value>
+					<Mass>0.3</Mass>
+				</value>
+			</match>
 		</li>
 
         <!-- === Misc. Raw Fish === -->
