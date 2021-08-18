@@ -200,6 +200,15 @@ namespace CombatExtended
             this.UpdateConfiguration();
         }
 
+        public override IEnumerable<InspectTabBase> GetInspectTabs()
+        {
+            List<InspectTabBase> tabs = base.GetInspectTabs()?.ToList() ?? new List<InspectTabBase>();
+            // check if our tab is not in the inspectTabs
+            if (!tabs.Any(t => t is ITab_AttachmentView))
+                tabs.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
+            return tabs;
+        }
+
         private Matrix4x4 _drawMat;
         private Vector3 _drawLoc;
 

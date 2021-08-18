@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RimWorld;
@@ -54,11 +55,8 @@ namespace CombatExtended
                 def.ValidateStats();
 
             // Prepare weaponPlatforms
-            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)
-            {
-                def.inspectorTabs.Add(typeof(ITab_AttachmentView));
-                def.PrepareStats();
-            }
+            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
+                def.PrepareStats();            
         }
 
         /// <summary>

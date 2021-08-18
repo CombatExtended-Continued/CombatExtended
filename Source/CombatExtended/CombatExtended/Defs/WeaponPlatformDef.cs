@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RimWorld;
@@ -102,13 +103,22 @@ namespace CombatExtended
         }
 
         public override void PostLoad()
-        {
-            base.PostLoad();
+        {            
             if (defaultGraphicParts == null)
                 defaultGraphicParts = new List<WeaponGraphicPart>();
             if (attachmentLinks == null)
                 attachmentLinks = new List<AttachmentLink>();
-        }
+
+            base.PostLoad();
+            // Add the inspect tab for attachments
+            if (inspectorTabs == null)
+                inspectorTabs = new List<Type>();
+            inspectorTabs.Add(typeof(ITab_AttachmentView));
+
+            if (inspectorTabsResolved == null)
+                inspectorTabsResolved = new List<InspectTabBase>();            
+            inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
+        }        
 
         /// <summary>
         /// Compatibility cache
