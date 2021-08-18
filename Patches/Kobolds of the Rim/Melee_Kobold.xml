@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Kobolds of the Rim</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+    <!-- Bone -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Kobold_Bone"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>4</power>
+            <cooldownTime>1.78</cooldownTime>
+            <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>3.01</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Bone"]/statBases</xpath>
+      <value>
+            <Bulk>3.75</Bulk>
+            <MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Bone"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.58</MeleeCritChance>
+          <MeleeParryChance>0.14</MeleeParryChance>
+          <MeleeDodgeChance>0.16</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Bone"]/weaponTags</xpath>
+      <value>
+        <li>CE_OneHandedWeapon</li>
+      </value>
+    </li>
+
+    <!-- Bone Dagger -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneDagger"]/tools</xpath>
+      <value>
+          <tools>
+              <li Class="CombatExtended.ToolCE">
+                  <label>handle</label>
+                  <capacities>
+                      <li>Blunt</li>
+                  </capacities>
+                  <power>4</power>
+                  <cooldownTime>1.2</cooldownTime>
+                  <armorPenetration>0.071</armorPenetration>
+                  <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                  <label>point</label>
+                  <capacities>
+                      <li>Kobold_StabToxic</li>
+                  </capacities>
+                  <power>9.5</power>
+                  <cooldownTime>1.2</cooldownTime>
+                  <chanceFactor>1.33</chanceFactor>
+                  <armorPenetration>0.208</armorPenetration>
+                  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+          </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneDagger"]/statBases</xpath>
+      <value>
+            <Bulk>0.15</Bulk>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneDagger"]</xpath>
+      <value>
+          <equippedStatOffsets>
+              <MeleeCritChance>0.1</MeleeCritChance>
+              <MeleeParryChance>0.1</MeleeParryChance>
+              <MeleeDodgeChance>0.05</MeleeDodgeChance>
+          </equippedStatOffsets>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneDagger"]/weaponTags</xpath>
+      <value>
+              <li>CE_OneHandedWeapon</li>
+      </value>
+    </li>
+
+    <!-- Ceremonial Dagger -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Kobold_Dagger"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>1</power>
+            <cooldownTime>1.26</cooldownTime>
+            <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>blade</label>
+            <capacities>
+              <li>Kobold_CutToxic</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>1.18</cooldownTime>
+            <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.32</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>point</label>
+            <capacities>
+              <li>Kobold_StabToxic</li>
+            </capacities>
+            <power>11</power>
+            <cooldownTime>1.26</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.42</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Dagger"]/statBases</xpath>
+      <value>
+            <Bulk>1</Bulk>
+        <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Dagger"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.5</MeleeCritChance>
+          <MeleeParryChance>0.15</MeleeParryChance>
+          <MeleeDodgeChance>0.05</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <!-- Bone Sword -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneSword"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>handle</label>
+            <capacities>
+              <li>Poke</li>
+            </capacities>
+            <power>2</power>
+            <cooldownTime>1.44</cooldownTime>
+            <armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>point</label>
+            <capacities>
+              <li>Stab</li>
+            </capacities>
+            <power>27</power>
+            <cooldownTime>1.44</cooldownTime>
+            <armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.48</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>edge</label>
+            <capacities>
+              <li>Cut</li>
+            </capacities>
+            <power>20</power>
+            <cooldownTime>1.34</cooldownTime>
+            <chanceFactor>1.33</chanceFactor>
+            <armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+            <armorPenetrationSharp>0.43</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneSword"]/statBases</xpath>
+      <value>
+        <Bulk>3.5</Bulk>
+        <MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_BoneSword"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.2</MeleeCritChance>
+          <MeleeParryChance>0.35</MeleeParryChance>
+          <MeleeDodgeChance>0.2</MeleeDodgeChance>	
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+    <!-- Bone Spear -->
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Kobold_Spear"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>shaft</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>7</power>
+            <cooldownTime>1.35</cooldownTime>
+            <chanceFactor>0.15</chanceFactor>
+            <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>head</label>
+            <capacities>
+              <li>Kobold_StabToxic</li>
+            </capacities>
+            <power>18</power>
+            <cooldownTime>1.19</cooldownTime>
+            <chanceFactor>1.00</chanceFactor>
+            <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+            <armorPenetrationSharp>1.5</armorPenetrationSharp>
+            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Spear"]/statBases</xpath>
+      <value>
+          <Bulk>10</Bulk>
+          <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Kobold_Spear"]</xpath>
+      <value>
+        <equippedStatOffsets>
+          <MeleeCritChance>0.17</MeleeCritChance>
+          <MeleeParryChance>1.45</MeleeParryChance>
+          <MeleeDodgeChance>0.9</MeleeDodgeChance>
+        </equippedStatOffsets>
+      </value>
+    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
