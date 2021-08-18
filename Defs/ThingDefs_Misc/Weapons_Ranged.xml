@@ -467,7 +467,6 @@
         <statOffsets>
           <ShotSpread>0.05</ShotSpread>
         </statOffsets>
-        <drawOffset>(-0.05, 0.05)</drawOffset>
       </li>
       <li>
         <attachment>CE_AT_Testak_SC</attachment>
@@ -564,128 +563,15 @@
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
   
-  <CombatExtended.WeaponPlatformDef ParentName="BaseMakeableGun">
-    <defName>CE_TestSniper</defName>
-    <drawerType>RealtimeOnly</drawerType>
-    <thingClass>CombatExtended.WeaponPlatform</thingClass>
-    <label>M24A3</label>
-    <description>Yeet.</description>
-    <graphicData>
-      <texPath>Things/Weapons/Sniper/m24</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <statBases>
-      <Mass>3.26</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-      <SightsEfficiency>0.7</SightsEfficiency>
-      <ShotSpread>0.07</ShotSpread>
-      <SwayFactor>1.33</SwayFactor>
-      <Bulk>10.03</Bulk>
-      <WorkToMake>30000</WorkToMake>
-    </statBases>
-    <costList>
-      <Steel>40</Steel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-      <WoodLog>10</WoodLog>
-    </costList>
-    <weaponTags>
-      <li>CE_AI_SR</li>
-    </weaponTags>
-    <verbs>
-      <li Class="CombatExtended.VerbPropertiesCE">
-        <recoilAmount>1.53</recoilAmount>
-        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
-        <warmupTime>1.5</warmupTime>
-        <range>55</range>
-        <soundCast>Shot_SniperRifle</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <comps>
-      <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>5</magazineSize>
-        <reloadTime>4</reloadTime>
-        <ammoSet>AmmoSet_338Lapua</ammoSet>
-      </li>
-      <li Class="CombatExtended.CompProperties_FireModes">
-        <aiAimMode>AimedShot</aiAimMode>
-      </li>
-    </comps>
-    <recipeMaker>
-      <researchPrerequisite>CE_Launchers</researchPrerequisite>
-    </recipeMaker>
-    <tools>
-      <li Class="CombatExtended.ToolCE">
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>8</power>
-        <cooldownTime>1.55</cooldownTime>
-        <chanceFactor>1.5</chanceFactor>
-        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-      </li>
-    </tools>
-    <attachmentLinks>
-      <li>
-        <attachment>CE_AT_Sniper_Holo</attachment>
-      </li>
-      <li>
-        <attachment>CE_AT_Sniper_Scope</attachment>
-      </li>
-    </attachmentLinks>
-    <modExtensions>
-      <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>1.2,1.2</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
-      </li>
-    </modExtensions>
-  </CombatExtended.WeaponPlatformDef>
-  
-  <CombatExtended.AttachmentDef ParentName="AttachmentSightBase">
-    <defName>CE_AT_Sniper_Holo</defName>
-    <label>scope</label>
-    <statMultipliers>
-      <SightsEfficiency>1</SightsEfficiency>
-    </statMultipliers>
-    <attachmentGraphicData>
-      <texPath>Things/Weapons/Sniper/holo</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </attachmentGraphicData>
-    <outlineGraphicData>
-      <texPath>Things/Weapons/Sniper/holo_outline</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </outlineGraphicData>
-  </CombatExtended.AttachmentDef>
-  
-  <CombatExtended.AttachmentDef ParentName="AttachmentSightBase">
-    <defName>CE_AT_Sniper_Scope</defName>
-    <label>x4 scope</label>
-    <statMultipliers>
-      <SightsEfficiency>2.5</SightsEfficiency>
-    </statMultipliers>
-    <attachmentGraphicData>
-      <texPath>Things/Weapons/Sniper/scope</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </attachmentGraphicData>
-    <outlineGraphicData>
-      <texPath>Things/Weapons/Sniper/scope_outline</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </outlineGraphicData>
-  </CombatExtended.AttachmentDef>
   
   <CombatExtended.WeaponPlatformDef ParentName="BaseMakeableGun">
     <defName>CE_TestShotgun</defName>
     <thingClass>CombatExtended.WeaponPlatform</thingClass>
-    <label>Modular shotgun</label>
+    <drawerType>RealtimeOnly</drawerType>
+    <label>Mossberg 500</label>
     <description>Yeet.</description>
     <graphicData>
-      <texPath>Things/Weapons/PumpShotgun/Shotgun</texPath>
+      <texPath>Things/Weapons/PumpShotgun/Regular/Reciever</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Shotgun</soundInteract>
@@ -760,7 +646,52 @@
         <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
       </li>
     </tools>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Color/Stock-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Outline/Stock-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+       <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Color/Muzzle-2</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Outline/Muzzle-2</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Muzzle</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Color/Handguard-4</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/PumpShotgun/Outline/Handguard-4</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Underbarrel</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
     <attachmentLinks>
+      <li><attachment>Attachment_PumpShotgun_Stock1</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_Stock2</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_Stock3</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_Stock4</attachment></li>
       <li><attachment>Attachment_PumpShotgun_SightOne</attachment></li>
       <li><attachment>Attachment_PumpShotgun_SightTwo</attachment></li>
       <li><attachment>Attachment_PumpShotgun_SightThree</attachment></li>
