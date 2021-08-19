@@ -160,12 +160,9 @@ namespace CombatExtended
         private bool TryRefundIngredient(AttachmentDef attachmentDef)
         {
             foreach(ThingDefCountClass countClass in attachmentDef.costList)
-            {
-                int refund = (int)Mathf.Floor(countClass.count * 0.8f);
-                if (refund == 1)
-                    continue;
+            {                             
                 Thing ingredient = ThingMaker.MakeThing(countClass.thingDef, countClass.thingDef.defaultStuff);                
-                ingredient.stackCount = refund;
+                ingredient.stackCount = countClass.count;
                 // find the best cell for placing this ingredient
                 if (!GenPlace.TryFindPlaceSpotNear(pawn.Position, pawn.Rotation, pawn.Map, ingredient, true, out IntVec3 spot))
                     return false;
