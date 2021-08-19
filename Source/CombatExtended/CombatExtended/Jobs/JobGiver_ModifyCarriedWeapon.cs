@@ -26,8 +26,12 @@ namespace CombatExtended
             if (!(pawn.health?.capacities.CapableOf(PawnCapacityDefOf.Manipulation) ?? false))
                 return -1;
             // the more attachments need to be installed the higher the priority 
-            if (pawn?.equipment?.Primary is WeaponPlatform platform && !platform.ConfigApplied)
-                return 20f + (platform.AdditionList?.Count ?? 0) * 8f + + (platform.RemovalList?.Count ?? 0) * 8f;
+            if (pawn?.equipment?.Primary is WeaponPlatform platform)
+            {
+                platform.TrySyncPlatformLoadout(pawn);
+                if (!platform.ConfigApplied)
+                    return 20f + (platform.AdditionList?.Count ?? 0) * 8f + (platform.RemovalList?.Count ?? 0) * 8f;
+            }
             return -1f;
         }        
 
@@ -45,6 +49,6 @@ namespace CombatExtended
             if (pawn.equipment?.Primary is WeaponPlatform platform && !platform.ConfigApplied)
                 return WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(pawn, platform: platform);
             return null;
-        }        
+        }       
     }
 }

@@ -26,7 +26,7 @@ namespace CombatExtended
         public List<AttachmentDef> TargetConfig
         {
             get
-            {
+            {                
                 return _targetConfig.ToList();
             }
             set
@@ -79,8 +79,11 @@ namespace CombatExtended
         {
             get
             {
-                if (CompEquippable == null || CompEquippable.PrimaryVerb == null || CompEquippable.PrimaryVerb.caster == null
-                    || ((CompEquippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
+                if (false
+                    || CompEquippable == null
+                    || CompEquippable.PrimaryVerb == null
+                    || CompEquippable.PrimaryVerb.caster == null
+                    || ((CompEquippable?.parent?.ParentHolder as Pawn_EquipmentTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
                     return null;                
                 return CompEquippable.PrimaryVerb.CasterPawn;
             }

@@ -68,6 +68,39 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Used to setup the weapon from the current loadout
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static bool TrySyncPlatformLoadout(this WeaponPlatform platform, Pawn pawn)
+        {            
+            Loadout loadout = pawn.GetLoadout();
+            if (loadout == null)
+                return false;
+            LoadoutSlot slot = loadout.Slots.FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
+            // if no slot mention this or it allows everything return false
+            if (slot == null || slot.allowAllAttachments)
+                return false;
+            bool update = false;
+            // check if the current setup include everything we need.
+            foreach (AttachmentDef def in slot.attachments)
+            {
+                if (!platform.TargetConfig.Any(a => a == def))
+                {
+                    update = true;
+                    break;
+                }
+            }
+            if (update)
+            {
+                // sync the loadout with the weapon.
+                platform.TargetConfig = slot.attachments;                
+                platform.UpdateConfiguration();
+            }
+            return update;
+        }
+
+        /// <summary>
         /// Used to obtain the explaination for stat values for weapons with attachments.
         /// </summary>
         /// <param name="stat">StatDef</param>
