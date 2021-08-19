@@ -134,20 +134,18 @@ namespace CombatExtended
         /// <returns>Wether modification is finished ok</returns>
         private bool TryModifyWeapon()
         {
-            Thing attachment = Weapon.attachments.FirstOrDefault(t => t.def == AttachmentDef);            
-            if (attachment != null)
+            AttachmentLink link = Weapon.attachments.FirstOrDefault(l => l.attachment == AttachmentDef);            
+            if (link != null)
             {
-                if (!TryRefundIngredient(attachment.def as AttachmentDef))
-                    Log.Warning($"CE: Refunding attachment cost failed {attachment.def.label}");
-                attachment.Destroy();
-                Weapon.attachments.Remove(attachment);
+                if (!TryRefundIngredient(link.attachment))
+                    Log.Warning($"CE: Refunding attachment cost failed {link.attachment.label}");                
+                Weapon.attachments.Remove(link);
                 Weapon.UpdateConfiguration();
                 return true;
             }
             else if (TryConsumeIngredient())
-            {
-                attachment = ThingMaker.MakeThing(AttachmentDef);
-                Weapon.attachments.TryAdd(attachment);
+            {                
+                Weapon.attachments.Add(Weapon.Platform.attachmentLinks.First(l => l.attachment == AttachmentDef));
                 Weapon.UpdateConfiguration();
                 return true;
             }
@@ -162,12 +160,9 @@ namespace CombatExtended
         private bool TryRefundIngredient(AttachmentDef attachmentDef)
         {
             foreach(ThingDefCountClass countClass in attachmentDef.costList)
-            {
-                int refund = (int)Mathf.Floor(countClass.count * 0.8f);
-                if (refund == 1)
-                    continue;
+            {                             
                 Thing ingredient = ThingMaker.MakeThing(countClass.thingDef, countClass.thingDef.defaultStuff);                
-                ingredient.stackCount = refund;
+                ingredient.stackCount = countClass.count;
                 // find the best cell for placing this ingredient
                 if (!GenPlace.TryFindPlaceSpotNear(pawn.Position, pawn.Rotation, pawn.Map, ingredient, true, out IntVec3 spot))
                     return false;

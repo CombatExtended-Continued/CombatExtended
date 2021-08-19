@@ -131,14 +131,14 @@ namespace CombatExtended
             this.tags.SortBy(x => x);
             foreach (AttachmentLink link in weapon.Platform.attachmentLinks.Where(l => weapon.TargetConfig.Any(a => a == l.attachment)))
             {
-                if(weapon.attachments.Any(a => a.def.index == link.attachment.index))
+                if(weapon.attachments.Any(l => l.attachment.index == link.attachment.index))
                     this.attachedByAt[link] = true;                
                 this.AddAttachment(link, update: false);
             }
             List<AttachmentDef> tempConfig = weapon.TargetConfig;
             foreach (AttachmentLink link in weapon.Platform.attachmentLinks)
             {
-                if (weapon.attachments.Any(a => a.def == link.attachment))
+                if (weapon.attachments.Any(l => l.attachment == link.attachment))
                 {
                     this.attachedByAt[link] = true;
                     if (!tempConfig.Contains(link.attachment))

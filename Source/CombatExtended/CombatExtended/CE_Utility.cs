@@ -160,8 +160,8 @@ namespace CombatExtended
         /// <returns>Wether you can attach without conflicts</returns>
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
         {            
-            foreach(Thing thing in platform.attachments) { 
-                if (!platform.Platform.AttachmentsCompatible((thing.def as AttachmentDef), attachment))
+            foreach(AttachmentLink link in platform.attachments) { 
+                if (!platform.Platform.AttachmentsCompatible(link.attachment, attachment))
                     return false;
             }
             return true;

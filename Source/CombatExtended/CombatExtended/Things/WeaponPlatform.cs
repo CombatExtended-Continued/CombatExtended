@@ -9,9 +9,9 @@ using Verse.AI;
 
 namespace CombatExtended
 {
-    public class WeaponPlatform : ThingWithComps, IThingHolder
+    public class WeaponPlatform : ThingWithComps
     {        
-        public ThingOwner<Thing> attachments;
+        public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();
 
         private Quaternion drawQat;
         private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
@@ -44,8 +44,8 @@ namespace CombatExtended
         {
             get
             {
-                if(_curLinks == null || _curLinks.Count() != attachments.Count)
-                    UpdateConfiguration();
+                if (_curLinks == null || _curLinks.Length != attachments.Count)
+                    _curLinks = attachments.ToArray();
                 return _curLinks;
             }
         }       
@@ -145,30 +145,28 @@ namespace CombatExtended
         }
 
         public WeaponPlatform()
-        {            
-            this.attachments = new ThingOwner<Thing>(this);            
-        }
-
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
-        }
-
-        public ThingOwner GetDirectlyHeldThings()
-        {
-            return this.attachments;
-        }
+        {                        
+        }        
 
         public override void ExposeData()
         {
-            base.ExposeData();           
+            base.ExposeData();                      
+            // start - scribe the current attachments
+            List<AttachmentDef> defs = this.attachments.Select(l => l.attachment).ToList();            
+            Scribe_Collections.Look(ref defs, "attachments", LookMode.Def);
+            if(Scribe.mode != LoadSaveMode.Saving && defs != null)
+            {
+                attachments.Clear();
+                attachments.AddRange(defs.Select(a => Platform.attachmentLinks.First(l => l.attachment == a)));
+            }
+            // scribe the remaining content
             Scribe_Collections.Look(ref _additionList, "additionList", LookMode.Def);
             if (_additionList == null)
                 _additionList = new List<AttachmentDef>();
             Scribe_Collections.Look(ref _removalList, "removalList", LookMode.Def);
             if (_removalList == null)
                 _removalList = new List<AttachmentDef>();
-            Scribe_Deep.Look(ref this.attachments, "attachments", this);
+            // scribe the current config
             Scribe_Collections.Look(ref this._targetConfig, "targetConfig", LookMode.Def);
             if (this._targetConfig == null)
                 this._targetConfig = new List<AttachmentDef>();
@@ -265,13 +263,13 @@ namespace CombatExtended
             /*
              * <=========   attachments =========> 
              */
-            _curLinks = attachments.Select(t => LinkByDef[t.def as AttachmentDef]).ToArray();
+            _curLinks = attachments.Select(t => LinkByDef[t.attachment]).ToArray();
 
             foreach (AttachmentLink link in Platform.attachmentLinks)
             {
                 AttachmentDef def = link.attachment;
                 bool inConfig = _targetConfig.Any(d => d.index == def.index);
-                bool inContainer = attachments.Any(thing => thing.def.index == def.index);
+                bool inContainer = attachments.Any(l => l.attachment.index == def.index);
                 if (inConfig && !inContainer)                
                     _additionList.Add(def);                    
                 else if (!inConfig && inContainer)

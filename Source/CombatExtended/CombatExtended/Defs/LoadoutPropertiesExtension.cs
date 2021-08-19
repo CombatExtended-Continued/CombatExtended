@@ -144,12 +144,8 @@ namespace CombatExtended
             }
             // Add the selected attachments to the weapons
             weapon.TargetConfig = selectedAttachments.Select(l => l.attachment).ToList();
-
-            foreach (AttachmentLink link in selectedAttachments)
-            {
-                Thing attachment = ThingMaker.MakeThing(link.attachment);
-                weapon.attachments.TryAddOrTransfer(attachment);
-            }
+            weapon.attachments.Clear();            
+            weapon.attachments.AddRange(selectedAttachments);            
             // Recalcuate internal states.
             weapon.UpdateConfiguration();
         }
