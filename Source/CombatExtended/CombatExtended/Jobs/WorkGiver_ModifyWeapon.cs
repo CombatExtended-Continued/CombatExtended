@@ -153,7 +153,7 @@ namespace CombatExtended
         /// <returns></returns>
         private static Job TryCreateModifyJob(Pawn pawn, WeaponPlatform weapon, AttachmentDef attachmentDef, Thing bench,  IBillGiver billGiver, List<ThingCount> chosenIngThings, out Job haulOffJob)
         {
-            haulOffJob = WorkGiverUtility.HaulStuffOffBillGiverJob(pawn, billGiver, null);
+            haulOffJob = WorkGiverUtility.HaulStuffOffBillGiverJob(pawn, billGiver, weapon);
             JobCE job = new JobCE();
             job.def = CE_JobDefOf.ModifyWeapon;
             job.targetA = bench;

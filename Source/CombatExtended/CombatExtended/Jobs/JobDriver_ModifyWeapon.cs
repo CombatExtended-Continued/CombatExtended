@@ -96,13 +96,7 @@ namespace CombatExtended
             modifyToil.initAction = () =>
             {                
                 if (TryModifyWeapon())
-                {
-                    if (!Weapon.ConfigApplied)
-                    {
-                        Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(pawn, Weapon);
-                        if (job != null)
-                            pawn.jobs.StartJob(job);
-                    }
+                {                    
                     this.EndJobWith(JobCondition.Succeeded);                    
                     return;
                 }
