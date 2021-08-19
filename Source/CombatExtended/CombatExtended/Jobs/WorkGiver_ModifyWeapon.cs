@@ -107,7 +107,10 @@ namespace CombatExtended
             Building bench = pawn.Map.listerBuildings.AllBuildingsColonistOfDef(CE_BuildingDefOf.GunsmithingBench)
                                      .FirstOrFallback(b => pawn.CanReserveAndReach(b, PathEndMode.InteractionCell, Danger.Deadly, 1, 1), null);
             if (bench == null)
+            {
+                JobFailReason.Is("CE_MissinGunsmithingBench".Translate());
                 return null;
+            }
             List<ThingCount> chosenIngThings = new List<ThingCount>();
 
             IBillGiver billGiver = bench as IBillGiver;
@@ -116,7 +119,10 @@ namespace CombatExtended
                 attachmentDef = platform.RemovalList.RandomElement();
             // Attempt to crafta new attachment 
             else if (!TryFindTargetAndIngredients(pawn, bench, platform, out attachmentDef, out chosenIngThings))
+            {
+                JobFailReason.Is("MissingMaterials".Translate());
                 return null;
+            }
             Job haulOffJob = null;
             Job modifyJob = TryCreateModifyJob(pawn, platform, attachmentDef, bench, billGiver, chosenIngThings, out haulOffJob);
             
