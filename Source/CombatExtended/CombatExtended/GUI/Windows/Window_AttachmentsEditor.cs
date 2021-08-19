@@ -20,7 +20,7 @@ namespace CombatExtended
         {
             get
             {
-                return new Vector2(1000, 575);
+                return new Vector2(1000, 675);
             }
         }        
 
@@ -51,9 +51,9 @@ namespace CombatExtended
             });
             inRect.yMin += 40;
             Rect rect = inRect;
-            rect.height = 450;
+            rect.height = 550;
             editor.DoContents(rect);
-            inRect.yMin += 450 + 5;           
+            inRect.yMin += 550 + 5;           
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
                 Text.Font = GameFont.Small;
@@ -97,7 +97,7 @@ namespace CombatExtended
             }
             if (weapon.Wielder != null)
             {
-                Job job = weapon.Wielder.thinker.GetMainTreeThinkNode<JobGiver_ModifyWeapon>().TryGiveJob(weapon.Wielder);
+                Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(weapon.Wielder, weapon);
                 if (job != null)
                     weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptOptional);
             }

@@ -2,76 +2,141 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
 namespace CombatExtended
 {
-    public class JobGiver_ModifyWeapon : JobGiver_UpdateLoadout
+    public class WorkGiver_ModifyWeapon : WorkGiver_Scanner
     {
-        private const int PRIORITY_COOLDOWN = 15000;
+        private const int SCAN_COOLDOWN = 300;
+        private const int MAX_SCAN_RADIUS = 150;
 
-        private static Dictionary<int, int> _lastCheckedAt = new Dictionary<int, int>();
-        
-        public override float GetPriority(Pawn pawn)
+        /// <summary>
+        /// Return the priority for a potential weapon to modify.
+        /// </summary>
+        /// <param name="pawn">Worker pawn</param>
+        /// <param name="t">Target thing</param>
+        /// <returns></returns>
+        public override float GetPriority(Pawn pawn, TargetInfo t)
         {
-            // throttle how often this job is given
-            if (true
-                && _lastCheckedAt.TryGetValue(pawn.thingIDNumber, out int ticks)
-                && GenTicks.TicksGame - ticks < PRIORITY_COOLDOWN)
-                return -1f;
-            // do common sense checks
-            if (false
-                || !pawn.RaceProps.Humanlike
-                || !pawn.IsColonist
-                || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
-                || pawn.WorkTagIsDisabled(WorkTags.Crafting))
-                return -1f;
-            // if the weapon has been chaned recently 
-            if (pawn.equipment?.Primary is WeaponPlatform platform && !platform.ConfigApplied)
-            {
-                _lastCheckedAt[pawn.thingIDNumber] = GenTicks.TicksGame;
-                return 22f;
-            }
-            return -1f;
+            WeaponPlatform weapon = t.Thing as WeaponPlatform;            
+            if (weapon == null)
+                return 0f;                       
+            if (weapon == pawn.equipment?.Primary)
+                return 35f;
+            // give it higher priority if the weapon is very close.
+            return 15f + 15f * Mathf.Clamp01(1f - pawn.Position.DistanceTo(t.Cell) / MAX_SCAN_RADIUS);
         }
 
-        public override Job TryGiveJob(Pawn pawn)
-        {
-            if (false
-                || pawn.equipment == null
-                || pawn.equipment.Primary == null
-                || !(pawn.equipment.Primary is WeaponPlatform))
-                return null;
-            WeaponPlatform platform = pawn.equipment?.Primary as WeaponPlatform;
-            // abort if the weapon is already configured and doesn't require any changes.
-            if (platform.ConfigApplied)
-                return null;
+        private static Dictionary<int, int> _throttleByPawn = new Dictionary<int, int>();
 
+        /// <summary>
+        /// Return wether we should skip this job for this pawn.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="forced">Forced</param>
+        /// <returns>Wether to skip</returns>
+        public override bool ShouldSkip(Pawn pawn, bool forced = false)
+        {
+            // try to throttle the scanning
+            if (_throttleByPawn.TryGetValue(pawn.thingIDNumber, out int ticks) && GenTicks.TicksGame - ticks < SCAN_COOLDOWN)
+                return true;
+            _throttleByPawn[pawn.thingIDNumber] = GenTicks.TicksGame;
+            // check race and faction first.            
+            if (!pawn.RaceProps.Humanlike)
+                return true;            
+            if ((!pawn.IsColonist && !pawn.IsSlaveOfColony) || pawn.IsPrisoner)
+                return true;
+            // check if the pawn map has any gunsmithing benches. 
+            if (ShouldSkipMap(pawn.Map))
+                return true;
+            // skip for pawns incapable of crafting, etc..
+            if (pawn.WorkTagIsDisabled(WorkTags.Crafting))
+                return true;
+            if (!(pawn.health?.capacities?.CapableOf(PawnCapacityDefOf.Manipulation) ?? false))
+                return true;
+            return base.ShouldSkip(pawn, forced);
+        }        
+
+        /// <summary>
+        /// Return potential weapon that could need modifications.
+        /// </summary>
+        /// <param name="pawn">The pawn to perform the work</param>
+        /// <returns>Weapons that the pawn could modify</returns>
+        public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
+        {            
+            // check the primary weapon for potential modifications
+            if (pawn.equipment?.Primary is WeaponPlatform primary && !primary.ConfigApplied)            
+                yield return primary;            
+            foreach (Thing thing in Utilities.GenClosest.WeaponsInRange(pawn.Position, pawn.Map, MAX_SCAN_RADIUS)
+                                                        .Where(t => ShouldYield(t, pawn)))
+                yield return thing;
+
+            static bool ShouldYield(Thing thing, Pawn pawn)
+            {
+                return thing is WeaponPlatform weapon
+                    && !weapon.ConfigApplied
+                    && !weapon.IsForbidden(pawn.factionInt)
+                    && pawn.CanReserve(weapon, 1, 1)
+                    && pawn.CanReach(weapon, PathEndMode.OnCell, Danger.Deadly);                    
+            }
+        }
+
+        /// <summary>
+        /// Return a job on the provided thing.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <param name="t">Thing</param>
+        /// <param name="forced">Wether the job is forced</param>
+        /// <returns>Job</returns>
+        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+        {
+            return TryGetModifyWeaponJob(pawn, t as WeaponPlatform);
+        }
+
+        public static Job TryGetModifyWeaponJob(Pawn pawn, WeaponPlatform platform)
+        {
+            if (!platform.Spawned && pawn.equipment?.Primary != platform)
+                return null;
+            if (platform.Spawned && (!pawn.CanReserve(platform, 1, 1) || !pawn.CanReach(platform, PathEndMode.OnCell, Danger.Deadly)))
+                return null;
             AttachmentDef attachmentDef;
             // get the crafting bench we are going to use for crafting
             Building bench = pawn.Map.listerBuildings.AllBuildingsColonistOfDef(CE_BuildingDefOf.GunsmithingBench)
-                                     .FirstOrFallback(b => pawn.CanReach(b, PathEndMode.InteractionCell, Danger.Unspecified, false), null);
+                                     .FirstOrFallback(b => pawn.CanReserveAndReach(b, PathEndMode.InteractionCell, Danger.Deadly, 1, 1), null);
             if (bench == null)
-                return null;            
+                return null;
             List<ThingCount> chosenIngThings = new List<ThingCount>();
-            
+
             IBillGiver billGiver = bench as IBillGiver;
             // First try removing the stuff that require removal
-            if (platform.RemovalList.Count != 0)                            
+            if (platform.RemovalList.Count != 0)
                 attachmentDef = platform.RemovalList.RandomElement();
             // Attempt to crafta new attachment 
             else if (!TryFindTargetAndIngredients(pawn, bench, platform, out attachmentDef, out chosenIngThings))
                 return null;
             Job haulOffJob = null;
             Job modifyJob = TryCreateModifyJob(pawn, platform, attachmentDef, bench, billGiver, chosenIngThings, out haulOffJob);
+            
             // if the job used for clearing the workbench is not null return it and enqueue the crafting job
-            if(haulOffJob != null)
+            if (haulOffJob != null)
             {
                 pawn.jobs.jobQueue.EnqueueFirst(modifyJob);
                 return haulOffJob;
             }
             return modifyJob;
+        }
+
+        /// <summary>
+        /// Return wether we should skip this map due to it not having any gunsimthing benches.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <returns>Wether any benches exists in this map</returns>
+        private static bool ShouldSkipMap(Map map)
+        {
+            return map != null && map.listerThings.ThingsOfDef(CE_BuildingDefOf.GunsmithingBench).Count == 0;
         }
 
         /// <summary>
@@ -96,6 +161,11 @@ namespace CombatExtended
             job.targetQueueA = new List<LocalTargetInfo>() { weapon };
             job.targetQueueB = new List<LocalTargetInfo>(chosenIngThings.Count);
             job.countQueue = new List<int>(chosenIngThings.Count);
+            if (weapon.Spawned && !(bench as IBillGiver).IngredientStackCells.Contains(weapon.Position))
+            {
+                job.targetQueueB.Add(weapon);
+                job.countQueue.Add(1);
+            }
             for (int i = 0; i < chosenIngThings.Count; i++)
             {                
                 job.targetQueueB.Add(chosenIngThings[i].Thing);

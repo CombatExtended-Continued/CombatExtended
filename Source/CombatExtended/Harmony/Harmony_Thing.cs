@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
                 var ammoThing = ThingMaker.MakeThing(ammoUser.CurrentAmmo, null);
                 ammoThing.stackCount = ammoUser.CurMagCount;
                 __result = __result.AddItem(ammoThing);
-            }
+            }            
         }
     }
 
@@ -69,7 +69,7 @@ namespace CombatExtended.HarmonyCE
         //
         // if(this.Spawned)
         // {
-        //      ThingsTracker.GetTracker(Map).Notify_PositionChanged(this);
+        //      ThingsTracker.GetTracker(Map)?.Notify_PositionChanged(this);
         // }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
@@ -77,6 +77,7 @@ namespace CombatExtended.HarmonyCE
             var codes = instructions.ToList();
             var finished = false;
             var l1 = generator.DefineLabel();
+            var l2 = generator.DefineLabel();
             for (int i = 0; i < codes.Count; i++)
             {
                 if (!finished)
@@ -92,8 +93,13 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.PropertyGetter(typeof(Thing), nameof(Thing.Map)));
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingsTracker), nameof(ThingsTracker.GetTracker)));
+                        yield return new CodeInstruction(OpCodes.Dup);
+                        yield return new CodeInstruction(OpCodes.Brfalse_S, l2);
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingsTracker), nameof(ThingsTracker.Notify_PositionChanged)));
+
+                        yield return new CodeInstruction(OpCodes.Br_S, l1);
+                        yield return new CodeInstruction(OpCodes.Pop) { labels = new List<Label>() { l2} };
 
                         codes[i + 1].labels.Add(l1);
                         continue;

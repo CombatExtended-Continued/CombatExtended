@@ -47,12 +47,12 @@ namespace CombatExtended.Utilities
 
         private ThingsTrackingModel[][] trackers;
         private ThingsTrackingModel pawnsTracker;
-        private ThingsTrackingModel weaponsTracker;
+        private ThingsTrackingModel weaponsTracker;        
         private ThingsTrackingModel apparelTracker;
         private ThingsTrackingModel ammoTracker;
         private ThingsTrackingModel medicineTracker;
         private ThingsTrackingModel flaresTracker;
-        private ThingsTrackingModel attachmentTracker;
+        private ThingsTrackingModel attachmentTracker;        
 
         public ThingsTracker(Map map) : base(map)
         {
@@ -62,7 +62,7 @@ namespace CombatExtended.Utilities
             apparelTracker = new ThingsTrackingModel(null, map, this);
             medicineTracker = new ThingsTrackingModel(null, map, this);
             flaresTracker = new ThingsTrackingModel(null, map, this);
-            attachmentTracker = new ThingsTrackingModel(null, map, this); ;
+            attachmentTracker = new ThingsTrackingModel(null, map, this); ;            
 
             trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1][];
             for (int i = 0; i < trackers.Length; i++)
@@ -81,7 +81,7 @@ namespace CombatExtended.Utilities
             foreach (var def in DefDatabase<AmmoDef>.AllDefs)
                 trackers[def.index][1] = ammoTracker;
             foreach (var def in DefDatabase<AttachmentDef>.AllDefs)
-                trackers[def.index][1] = attachmentTracker;
+                trackers[def.index][1] = attachmentTracker;            
 
             if (validDefs != null)
                 return;
@@ -91,6 +91,8 @@ namespace CombatExtended.Utilities
             {
                 if (def.thingClass == typeof(Flare))
                     validDefs[def.index] = true;
+                else if (def.thingClass == typeof(WeaponPlatform))
+                    validDefs[def.index] = true;
                 else if (def.category == ThingCategory.Mote)
                     validDefs[def.index] = false;
                 else if (def.category == ThingCategory.Filth)
@@ -98,8 +100,16 @@ namespace CombatExtended.Utilities
                 else if (def.category == ThingCategory.Building)
                     validDefs[def.index] = false;
                 else if (def.category == ThingCategory.Gas)
+                    validDefs[def.index] = false;                
+                else if (def.category == ThingCategory.Ethereal)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Projectile)
                     validDefs[def.index] = false;
                 else if (def.category == ThingCategory.Plant)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.PsychicEmitter)
+                    validDefs[def.index] = false;
+                else if (def.category == ThingCategory.Attachment)
                     validDefs[def.index] = false;
                 else
                     validDefs[def.index] = true;

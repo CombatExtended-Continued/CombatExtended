@@ -48,10 +48,18 @@ namespace CombatExtended
              * Taken from vanilla's JobDriver_DoBill 
              */
             Thing thing = job.GetTarget(TargetIndex.A).Thing;
+            if (Weapon.Spawned && !pawn.Reserve(thing, job, 1, 1, null, errorOnFailed))
+                return false;
             if (!pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed))
                 return false;
             if (thing != null && thing.def.hasInteractionCell && !pawn.ReserveSittableOrSpot(thing.InteractionCell, job, errorOnFailed))
                 return false;
+            // reserve all the ingredients
+            for (int i =0; i < job.targetQueueB.Count; i++)
+            {
+                if (!pawn.Reserve(job.targetQueueB[i], job, 1, job.countQueue[i], null, errorOnFailed))
+                    return false;
+            }            
             pawn.ReserveAsManyAsPossible(job.GetTargetQueue(TargetIndex.B), job);
             return true;
         }
@@ -60,19 +68,18 @@ namespace CombatExtended
         {
             /*
              * Inspired by vanilla's JobDriver_DoBill 
-             */
-            this.FailOn(() => EquipedWeapon != Weapon);
+             */            
             this.AddEndCondition(delegate
             {
                 Thing thing = GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
                 return (!(thing is Building) || thing.Spawned) ? JobCondition.Ongoing : JobCondition.Incompletable;
             });
-            this.FailOnBurningImmobile(TargetIndex.A);
-            this.AddFinishAction(TryContinueModifyingJob);
+            this.FailOn(() => Weapon.Destroyed);
+            this.FailOnDestroyedOrNull(TargetIndex.A);            
+            this.FailOnBurningImmobile(TargetIndex.A);            
             // go to the crafting spot
-            Toil gotoBillGiver = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
+            Toil gotoBillGiver = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);           
 
-            // skip hauling if there is nothing to haul
             yield return Toils_Jump.JumpIf(gotoBillGiver, () => job.GetTargetQueue(TargetIndex.B).NullOrEmpty());
             foreach (Toil t in CollectIngredientsToils())
                 yield return t;
@@ -83,17 +90,23 @@ namespace CombatExtended
             waitToil.defaultDuration = 30;
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
-            // modify the actual weapon
+            // modify the actual weapon            
             Toil modifyToil = new Toil();
-            modifyToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            modifyToil.defaultCompleteMode = ToilCompleteMode.Instant;            
             modifyToil.initAction = () =>
-            {
+            {                
                 if (TryModifyWeapon())
                 {
-                    this.EndJobWith(JobCondition.Succeeded);
+                    if (!Weapon.ConfigApplied)
+                    {
+                        Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(pawn, Weapon);
+                        if (job != null)
+                            pawn.jobs.StartJob(job);
+                    }
+                    this.EndJobWith(JobCondition.Succeeded);                    
                     return;
                 }
-                this.EndJobWith(JobCondition.Incompletable);
+                this.EndJobWith(JobCondition.Incompletable);                                
             };
             yield return modifyToil;
         }
@@ -106,6 +119,11 @@ namespace CombatExtended
         {
             Toil extract = Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.B);
             yield return extract;
+            // don't haul if the location is ok
+            yield return Toils_Jump.JumpIf(extract, () =>
+            {
+                return (GunsmithingTable as IBillGiver).IngredientStackCells.Contains(job.GetTarget(TargetIndex.B).Thing.Position);
+            });
             Toil getToHaulTarget = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch).FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
             yield return getToHaulTarget;
             yield return Toils_Haul.StartCarryThing(TargetIndex.B, putRemainderInQueue: true, false, true);
@@ -206,19 +224,6 @@ namespace CombatExtended
                 thing.Destroy(DestroyMode.Vanish);
             
             return true;
-        }
-
-        /// <summary>
-        /// Attempt to start a new Modify weapon job if any other modifications are available
-        /// </summary>
-        private void TryContinueModifyingJob()
-        {
-            if (pawn.IsColonist && !pawn.Dead && !pawn.Downed && Weapon == EquipedWeapon && !Weapon.ConfigApplied)
-            {
-                Job job = pawn.thinker.GetMainTreeThinkNode<JobGiver_ModifyWeapon>().TryGiveJob(pawn);
-                if (job != null)
-                    pawn.jobs.jobQueue.EnqueueFirst(job);
-            }
-        }
+        }      
     }
 }

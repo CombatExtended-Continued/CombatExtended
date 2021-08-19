@@ -4,6 +4,7 @@ using CombatExtended.RocketGUI;
 using UnityEngine;
 using GUIUtility = CombatExtended.RocketGUI.GUIUtility;
 using Verse;
+using System.Linq;
 
 namespace CombatExtended
 {
@@ -53,8 +54,20 @@ namespace CombatExtended
             collapsible.Begin(inRect);            
             collapsible.Label(Weapon.def.DescriptionDetailed);            
             Rect weaponRect = inRect;
-            collapsible.Lambda(100, (rect) => { weaponRect = rect; });            
-            collapsible.Label("CE_Attachments".Translate(), Color.gray, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft);
+            collapsible.Lambda(100, (rect) => { weaponRect = rect; });
+            collapsible.Lambda(20, (rect)=>
+            {
+                Text.Font = GameFont.Small;                               
+                Text.Anchor = TextAnchor.LowerRight;
+                bool windowOpen = Find.WindowStack.IsOpen<Window_AttachmentsEditor>();
+                GUI.color = windowOpen ? Color.gray : Mouse.IsOver(rect) ? Color.white : Color.cyan;
+                Widgets.Label(rect, "CE_AttachmentsEdit".Translate());
+                if (!windowOpen && Widgets.ButtonInvisible(rect))                
+                    Find.WindowStack.Add(new Window_AttachmentsEditor(Weapon));                
+                Text.Anchor = TextAnchor.LowerLeft;
+                GUI.color = Color.gray;
+                Widgets.Label(rect, "CE_Attachments".Translate());
+            }, useMargins: true);            
             collapsible.Line(1);
             collapsible.Gap(1);
             AttachmentLink[] links = Weapon.CurLinks;
@@ -74,6 +87,44 @@ namespace CombatExtended
                     if (Mouse.IsOver(rect))
                         highlighted = link;
                 }, useMargins: true);                
+            }
+            collapsible.Gap(4);
+            collapsible.Label("CE_AttachmentsAdditions".Translate(), Color.gray, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft);
+            collapsible.Line(1);            
+            foreach(AttachmentDef attachment in Weapon.AdditionList)
+            {                
+                collapsible.Lambda(28, (rect) =>
+                {
+                    Widgets.DefLabelWithIcon(rect, attachment);
+                    Widgets.InfoCardButton(rect.RightPartPixels(rect.height).ContractedBy(1), attachment);
+                    GUIUtility.ExecuteSafeGUIAction(() =>
+                    {
+                        GUI.color = Color.gray;
+                        Text.Anchor = TextAnchor.MiddleRight;
+                        Widgets.Label(rect.LeftPartPixels(rect.width - rect.height - 5), attachment.slotTags[0]);
+                    });
+                    if (Mouse.IsOver(rect))
+                        highlighted = Weapon.Platform.attachmentLinks.First(l => l.attachment == attachment);
+                }, useMargins: true);
+            }
+            collapsible.Gap(4);
+            collapsible.Label("CE_AttachmentsRemovals".Translate(), Color.gray, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft);
+            collapsible.Line(1);
+            foreach (AttachmentDef attachment in Weapon.RemovalList)
+            {
+                collapsible.Lambda(28, (rect) =>
+                {
+                    Widgets.DefLabelWithIcon(rect, attachment);
+                    Widgets.InfoCardButton(rect.RightPartPixels(rect.height).ContractedBy(1), attachment);
+                    GUIUtility.ExecuteSafeGUIAction(() =>
+                    {
+                        GUI.color = Color.gray;
+                        Text.Anchor = TextAnchor.MiddleRight;
+                        Widgets.Label(rect.LeftPartPixels(rect.width - rect.height - 5), attachment.slotTags[0]);
+                    });
+                    if (Mouse.IsOver(rect))
+                        highlighted = Weapon.Platform.attachmentLinks.First(l => l.attachment == attachment);
+                }, useMargins: true);
             }
             weaponRect.width = Mathf.Min(weaponRect.height, weaponRect.width);
             weaponRect = weaponRect.CenteredOnXIn(inRect);
