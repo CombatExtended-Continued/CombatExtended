@@ -355,19 +355,33 @@ namespace CombatExtended.HarmonyCE
         {
             public static Rot4 south = Rot4.South;
 
+            private static Thing equipment;
+
+            private static Pawn pawn;
+
+            private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
+
+            private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
+
+            public static void Prefix(PawnRenderer __instance, Thing eq)
+            {
+                pawn = __instance.pawn;
+                equipment = eq;
+            }
 
             private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {
+            {              
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();
+                Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
-
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                Graphics.DrawMesh(mesh, matrix, mat, layer);
+                if(eq is WeaponPlatform platform)                
+                    platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
+                else
+                    Graphics.DrawMesh(mesh, matrix, mat, layer);
             }
 
             /*

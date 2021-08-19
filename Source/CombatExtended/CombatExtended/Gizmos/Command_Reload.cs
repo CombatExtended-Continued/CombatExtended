@@ -54,7 +54,7 @@ namespace CombatExtended
                     Find.WindowStack.Add(MakeAmmoMenu());
                 }
             }
-            else if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.Props.magazineSize)
+            else if (compAmmo.SelectedAmmo != compAmmo.CurrentAmmo || compAmmo.CurMagCount < compAmmo.MagSize)
             {
                 base.ProcessInput(ev);
             }
@@ -134,7 +134,7 @@ namespace CombatExtended
 
                             if (user.SelectedAmmo == ammoDef)
                             {
-                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null && user.CurMagCount < user.Props.magazineSize)
+                                if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null && user.CurMagCount < user.MagSize)
                                     del += other.action;
                             }
                             else

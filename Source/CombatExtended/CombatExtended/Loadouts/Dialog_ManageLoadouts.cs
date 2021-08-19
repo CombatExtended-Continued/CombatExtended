@@ -24,6 +24,8 @@ namespace CombatExtended
     {
         #region Fields
 
+        private static int[] _dropOptions2 = new int[] { 0, 1 };
+
         private static Texture2D
             //_arrowBottom = ContentFinder<Texture2D>.Get("UI/Icons/arrowBottom"),
             //_arrowDown = ContentFinder<Texture2D>.Get("UI/Icons/arrowDown"),
@@ -39,6 +41,7 @@ namespace CombatExtended
             _iconGeneric = ContentFinder<Texture2D>.Get("UI/Icons/generic"),
             _iconAll = ContentFinder<Texture2D>.Get("UI/Icons/all"),
             _iconAmmoAdd = ContentFinder<Texture2D>.Get("UI/Icons/ammoAdd"),
+            _iconEditAttachments = ContentFinder<Texture2D>.Get("UI/Icons/gear"),
             _iconSearch = ContentFinder<Texture2D>.Get("UI/Icons/search"),
             _iconMove = ContentFinder<Texture2D>.Get("UI/Icons/move"),
             _iconPickupDrop = ContentFinder<Texture2D>.Get("UI/Icons/loadoutPickupDrop"),
@@ -471,7 +474,50 @@ namespace CombatExtended
                 row.yMin + (row.height - _iconSize) / 2f,
                 _iconSize, _iconSize);
 
+            Rect editAttachmentsRect = new Rect(
+                countModeRect.xMin - _iconSize - _margin,
+                row.yMin + (row.height - _iconSize) / 2f,
+                _iconSize, _iconSize);
+
             Rect deleteRect = new Rect(countRect.xMax + _margin, row.yMin + (row.height - _iconSize) / 2f, _iconSize, _iconSize);
+
+            // prepare attachment config
+            if (slot.isWeaponPlatform && Widgets.ButtonImage(editAttachmentsRect, _iconEditAttachments))
+            {
+                RocketGUI.GUIUtility.DropDownMenu<int>((i) =>
+                {
+                    if(i == 0)
+                        return "CE_AttachmentsEditLoadout".Translate();
+                    if (i == 1)
+                        return "CE_AttachmentsClearLoadout".Translate();
+                    throw new NotImplementedException();
+                },
+                (i)=>
+                {
+                    if(i == 0)
+                    {
+                        if (Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
+                        {
+                            Find.WindowStack.TryRemove(typeof(Window_AttachmentsEditor), true);
+                        }
+                        else
+                        {
+                            Find.WindowStack.Add(new Window_AttachmentsEditor(slot.weaponPlatformDef, slot.attachmentLinks, (links) =>
+                            {
+                                if (links != null)
+                                {
+                                    slot.attachments.Clear();
+                                    slot.attachments.AddRange(links.Select(l => l.attachment));
+                                }
+                            }));
+                        }
+                    }
+                    if(i == 1)
+                    {
+                        slot.attachments.Clear();
+                    }
+                }, _dropOptions2);               
+            }
 
             // dragging on dragHandle
             if (slotDraggable)

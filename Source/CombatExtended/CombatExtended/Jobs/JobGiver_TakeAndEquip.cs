@@ -90,8 +90,8 @@ namespace CombatExtended
                     magazineSize.max = loadoutPropertiesExtension.primaryMagazineCount.max;
                 }
 
-                magazineSize.min *= primaryAmmoUser.Props.magazineSize;
-                magazineSize.max *= primaryAmmoUser.Props.magazineSize;
+                magazineSize.min *= primaryAmmoUser.MagSize;
+                magazineSize.max *= primaryAmmoUser.MagSize;
 
                 // Number of things in inventory that could be put in the weapon
                 int viableAmmoCarried = 0;
@@ -109,7 +109,7 @@ namespace CombatExtended
                 if (viableAmmoBulk < potentialAmmoBulk)
                 {
                     // There's less ammo [nr] than fits a clip [nr]
-                    if (primaryAmmoUser.Props.magazineSize == 0 || viableAmmoCarried < magazineSize.min)
+                    if (primaryAmmoUser.MagSize == 0 || viableAmmoCarried < magazineSize.min)
                     {
                         return Unload(pawn) ? WorkPriority.Unloading : WorkPriority.LowAmmo;
                     }
@@ -375,7 +375,7 @@ namespace CombatExtended
 
                                     if (thingAmmoList.Count > 0 && thingDefAmmoList.Count > 0)
                                     {
-                                        int desiredStackSize = thing.TryGetComp<CompAmmoUser>().Props.magazineSize * 2;
+                                        int desiredStackSize = thing.TryGetComp<CompAmmoUser>().MagSize * 2;
                                         Thing th = thingAmmoList.FirstOrDefault(x => thingDefAmmoList.Contains(x.def) && x.stackCount > desiredStackSize);
                                         if (th != null)
                                         {

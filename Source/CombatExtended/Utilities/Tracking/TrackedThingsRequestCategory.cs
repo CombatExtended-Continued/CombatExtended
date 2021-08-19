@@ -30,6 +30,11 @@
         /// <summary>
         /// Defs that have ThingDef.IsMedicine return true 
         /// </summary>
-        Flares = 32
+        Flares = 32,
+
+        /// <summary>
+        /// Defs that have ThingDef.IsMedicine return true 
+        /// </summary>
+        Attachments = 64
     }
 }

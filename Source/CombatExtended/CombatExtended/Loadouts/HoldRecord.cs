@@ -45,9 +45,9 @@ namespace CombatExtended
 		/// <summary>
 		/// If the item hasn't been picked up is it still valid to remember?
 		/// </summary>
-		public bool isTimeValid	{ get { return !pickedUp && ((GenTicks.TicksAbs - _tickJobIssued) <= INVALIDTICKS); } }
+		public virtual bool isTimeValid	{ get { return !pickedUp && ((GenTicks.TicksAbs - _tickJobIssued) <= INVALIDTICKS); } }
 		
-		public ThingDef thingDef { get { return this._def; } }
+		public virtual ThingDef thingDef { get { return this._def; } }
 		
 		#endregion
 		
@@ -69,7 +69,7 @@ namespace CombatExtended
         /// <summary>
         /// RimWorld Load/Save handler.
         /// </summary>
-        public void ExposeData()
+        public virtual void ExposeData()
         {
             Scribe_Defs.Look(ref _def, "ThingDef");
             Scribe_Values.Look(ref count, "count");

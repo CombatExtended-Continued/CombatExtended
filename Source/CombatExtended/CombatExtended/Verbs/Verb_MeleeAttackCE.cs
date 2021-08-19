@@ -30,7 +30,7 @@ namespace CombatExtended
         private const float HitXP = 200;    // Vanilla is 250
         private const float DodgeXP = 50;
         private const float ParryXP = 50;
-        private const float CritXP = 100;
+        private const float CritXP = 100;        
 
         /* Base stats
          * 
@@ -49,16 +49,49 @@ namespace CombatExtended
 
         #region Properties
 
+        public ToolCE ToolCE => (tool as ToolCE);
+
         public static Verb_MeleeAttackCE LastAttackVerb { get; private set; }   // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
 
         public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
         public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
+
+        public bool Enabled
+        {
+            get
+            {
+                /*
+                 * Required in order to disable verbs that are dependent on attachments.
+                 */
+                if (ToolCE?.requiredAttachment != null && CasterIsPawn && CasterPawn?.equipment?.Primary is WeaponPlatform weapon)
+                {
+                    AttachmentLink[] links = weapon.CurLinks;
+                    for (int i = 0; i < links.Length; i++)
+                    {
+                        if (links[i].attachment == ToolCE.requiredAttachment)
+                            return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
+        }
 
         bool isCrit;
 
         #endregion
 
         #region Methods
+
+        public override bool Available()
+        {            
+            return Enabled && base.Available();
+        }
+
+        public override bool IsUsableOn(Thing target)
+        {            
+            return Enabled && base.IsUsableOn(target);
+        }       
 
         /// <summary>
         /// Performs the actual melee attack part. Awards XP, calculates and applies whether an attack connected and the outcome.

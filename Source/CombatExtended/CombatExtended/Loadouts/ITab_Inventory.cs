@@ -21,6 +21,7 @@ namespace CombatExtended
         private const float _thingLeftX = 36f;
         private const float _thingRowHeight = 28f;
         private const float _topPadding = 20f;
+        private static Texture2D _iconEditAttachments;
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
@@ -35,7 +36,7 @@ namespace CombatExtended
 
         public ITab_Inventory() : base()
         {
-            size = new Vector2(480f, 550f);
+            size = new Vector2(480f, 550f);            
         }
 
 
@@ -81,8 +82,15 @@ namespace CombatExtended
 
         #region Methods
 
+        public override void OnOpen()
+        {            
+            _iconEditAttachments ??= ContentFinder<Texture2D>.Get("UI/Icons/gear");
+
+            base.OnOpen();
+        }
+
         public override void FillTab()
-        {
+        {            
             // get the inventory comp
             CompInventory comp = SelPawn.TryGetComp<CompInventory>();
 
@@ -228,7 +236,7 @@ namespace CombatExtended
                 Rect dropRect = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(dropRect, dropForbidden ? "DropThingLocked".Translate() : "DropThing".Translate());
                 if (Widgets.ButtonImage(dropRect, TexButton.Drop, color, mouseoverColor) && !dropForbidden)
-                {
+                {                   
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     InterfaceDrop(thing);
                 }
@@ -245,6 +253,19 @@ namespace CombatExtended
                         SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                         InterfaceIngest(thing);
                     }
+                    rect.width -= 24f;
+                }
+            }
+            if (thing == SelPawn.equipment?.Primary && thing is WeaponPlatform platform)
+            {
+                Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
+                TooltipHandler.TipRegion(rect3, "CE_EditWeapon".Translate());
+                if (Widgets.ButtonImage(rect3, _iconEditAttachments))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
+                    if (!Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
+                        Find.WindowStack.Add(new Window_AttachmentsEditor(platform));
+                    this.CloseTab();
                 }
                 rect.width -= 24f;
             }
@@ -259,7 +280,14 @@ namespace CombatExtended
             }
             if (thing.def.DrawMatSingle != null && thing.def.DrawMatSingle.mainTexture != null)
             {
-                Widgets.ThingIcon(new Rect(4f, y, _thingIconSize, _thingIconSize), thing, 1f);
+                if (thing is WeaponPlatform weapon)
+                {
+                    RocketGUI.GUIUtility.DrawWeaponWithAttachments(new Rect(4f, y, _thingIconSize, _thingIconSize), weapon);
+                }
+                else
+                {
+                    Widgets.ThingIcon(new Rect(4f, y, _thingIconSize, _thingIconSize), thing, 1f);
+                }
             }
             Text.Anchor = TextAnchor.MiddleLeft;
             GUI.color = ThingLabelColor;
