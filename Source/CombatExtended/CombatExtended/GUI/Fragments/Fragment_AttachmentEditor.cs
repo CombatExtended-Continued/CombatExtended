@@ -109,7 +109,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="weapon"></param>
         public Fragment_AttachmentEditor(WeaponPlatform weapon)
-        {
+        {                        
             this.InitializeFragment();
             this.links = weapon.Platform.attachmentLinks;
             this.weapon = weapon;

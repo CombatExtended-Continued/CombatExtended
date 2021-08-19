@@ -21,10 +21,11 @@ namespace CombatExtended
     {
         #region Fields
         
-        private const int _defaultCount = 1;
-        private int _count;
+        private const int _defaultCount = 1;        
+        private int _count;        
         private Def _def;
         private Type _type; // to help with save/load.
+        private List<AttachmentDef> _attachments = new List<AttachmentDef>();
         private LoadoutCountType _countType = LoadoutCountType.pickupDrop; // default mode for new loadout slots.
 
         #endregion Fields
@@ -76,16 +77,39 @@ namespace CombatExtended
 
         public int count { get { return _count; } set { _count = value; } }
         public LoadoutCountType countType { get { return _countType; } set { _countType = value; } }
+        public bool allowAllAttachments { get { return attachments.Count == 0; } }
         public ThingDef thingDef { get { return (_def is ThingDef) ? (ThingDef)_def : null; } }
+        public WeaponPlatformDef weaponPlatformDef { get { return (_def is WeaponPlatformDef) ? (WeaponPlatformDef)_def : null; } }
+        public List<AttachmentDef> attachments { get { return _attachments; } }        
         public LoadoutGenericDef genericDef { get { return (_def is LoadoutGenericDef) ? (LoadoutGenericDef)_def : null; } }
-        
+        public bool isWeaponPlatform { get { return _def is WeaponPlatformDef; } }
+        public List<AttachmentLink> attachmentLinks { get { return weaponPlatformDef.attachmentLinks.Where(l => attachments.Contains(l.attachment)).ToList(); } }
+
         // hand out some properties/fields of internal def for when user doesn't need to know specific/generic.
         public string label { get { return _def.label; } }
         public string LabelCap { get { return _def.LabelCap; } }
         
         // hide where the bulk/mass came from.  Higher level doesn't care as long as it has a number.
-        public float bulk { get { return (thingDef != null ? thingDef.GetStatValueAbstract(CE_StatDefOf.Bulk) : genericDef.bulk); } }
-        public float mass { get { return (thingDef != null ? thingDef.GetStatValueAbstract(StatDefOf.Mass) : genericDef.mass); } }
+        public float bulk
+        {
+            get
+            {
+                float val = (thingDef != null ? thingDef.GetStatValueAbstract(CE_StatDefOf.Bulk) : genericDef.bulk);
+                // add the offsets from attachments
+                if (isWeaponPlatform) CE_StatDefOf.Bulk.TransformValue(attachmentLinks, ref val);                
+                return val;
+            }
+        }
+        public float mass
+        {
+            get
+            {
+                float val = (thingDef != null ? thingDef.GetStatValueAbstract(StatDefOf.Mass) : genericDef.mass);
+                // add the offsets from attachments
+                if (isWeaponPlatform) StatDefOf.Mass.TransformValue(attachmentLinks, ref val);
+                return val;
+            }
+        }
         
         //public ThingDef def { get { return _def; } set { _def = value; } }
 
@@ -101,6 +125,9 @@ namespace CombatExtended
         {
             Scribe_Values.Look( ref _count, "count", _defaultCount );
             Scribe_Values.Look(ref _type, "DefType");
+            Scribe_Collections.Look(ref _attachments, "Attachments", LookMode.Def);
+            if (_attachments == null)
+                _attachments = new List<AttachmentDef>();
             ThingDef td = thingDef;
             LoadoutGenericDef gd = genericDef;
             if (_type == typeof(ThingDef))
@@ -124,6 +151,11 @@ namespace CombatExtended
         public bool isSameDef(LoadoutSlot slot)
         {
         	Def def = (slot.thingDef as Def) ?? (slot.genericDef as Def);
+            if (isWeaponPlatform && slot.isWeaponPlatform && _def == def)
+            {
+                int count = slot.attachments.Intersect(attachments).Count();
+                return count == slot.attachments.Count && count == attachments.Count;
+            }
         	return _def == def;
         }
         
@@ -138,6 +170,9 @@ namespace CombatExtended
         	{
         		LoadoutSlot slot = new LoadoutSlot(genericDef, _count);
         		slot.countType = _countType;
+                // add the current attachments
+                if (isWeaponPlatform)
+                    slot.attachments.AddRange(attachments);
         		return slot;
         	} // else if (thingDef != null)
         	return new LoadoutSlot(thingDef, _count);

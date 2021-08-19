@@ -250,8 +250,10 @@ namespace CombatExtended
         public static Job GetUpdateLoadoutJob(Pawn pawn)
         {
             // Get inventory
-            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();            
             if (inventory == null) return null;
+            if (pawn.equipment?.Primary is WeaponPlatform platform)
+                platform.TrySyncPlatformLoadout(pawn);
 
             Loadout loadout = pawn.GetLoadout();
             if (loadout != null)

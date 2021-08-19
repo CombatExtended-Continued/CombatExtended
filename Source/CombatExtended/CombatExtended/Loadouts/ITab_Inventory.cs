@@ -21,6 +21,7 @@ namespace CombatExtended
         private const float _thingLeftX = 36f;
         private const float _thingRowHeight = 28f;
         private const float _topPadding = 20f;
+        private static Texture2D _iconEditAttachments;
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
@@ -35,7 +36,7 @@ namespace CombatExtended
 
         public ITab_Inventory() : base()
         {
-            size = new Vector2(480f, 550f);
+            size = new Vector2(480f, 550f);            
         }
 
 
@@ -81,8 +82,15 @@ namespace CombatExtended
 
         #region Methods
 
+        public override void OnOpen()
+        {            
+            _iconEditAttachments ??= ContentFinder<Texture2D>.Get("UI/Icons/gear");
+
+            base.OnOpen();
+        }
+
         public override void FillTab()
-        {
+        {            
             // get the inventory comp
             CompInventory comp = SelPawn.TryGetComp<CompInventory>();
 
@@ -252,7 +260,7 @@ namespace CombatExtended
             {
                 Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(rect3, "CE_EditWeapon".Translate());
-                if (Widgets.ButtonImage(rect3, TexButton.OpenDebugActionsMenu))
+                if (Widgets.ButtonImage(rect3, _iconEditAttachments))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                     if (!Find.WindowStack.IsOpen<Window_AttachmentsEditor>())

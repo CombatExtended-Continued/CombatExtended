@@ -15,6 +15,7 @@ namespace CombatExtended
         private readonly WeaponPlatform weapon;
         private readonly WeaponPlatformDef weaponDef;
         private readonly Fragment_AttachmentEditor editor;
+        private readonly Action<List<AttachmentLink>> applyAction;
 
         public override Vector2 InitialSize
         {
@@ -36,7 +37,20 @@ namespace CombatExtended
             this.doCloseX = false;
             this.draggable = true;
         }
-     
+
+        public Window_AttachmentsEditor(WeaponPlatformDef weaponDef, List<AttachmentLink> attachments, Action<List<AttachmentLink>> applyAction)
+        {           
+            this.applyAction = applyAction;
+            this.weaponDef = weaponDef;
+            this.editor = new Fragment_AttachmentEditor(weaponDef, attachments?.ToList());            
+            this.layer = WindowLayer.Dialog;
+            this.resizer = new WindowResizer();
+            this.forcePause = true;
+            this.doCloseButton = false;
+            this.doCloseX = false;
+            this.draggable = true;
+        }
+
         public override void DoWindowContents(Rect inRect)
         {
             GUIUtility.ExecuteSafeGUIAction(() =>
@@ -82,21 +96,27 @@ namespace CombatExtended
         {            
             List<AttachmentLink> selected = editor.CurConfig;
             // Set the weapons config
-            weapon.TargetConfig = selected.Select(l => l.attachment).ToList();
-            weapon.UpdateConfiguration();
-            // if god mode is on insta apply everything
-            if (Prefs.DevMode && DebugSettings.godMode)
+            if (weapon != null)
             {
-                weapon.attachments.Clear();                
-                weapon.attachments.AddRange(selected);                
+                weapon.TargetConfig = selected.Select(l => l.attachment).ToList();
                 weapon.UpdateConfiguration();
+
+                if (weapon.Wielder != null)
+                {
+                    Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(weapon.Wielder, weapon);
+                    if (job != null)
+                        weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptOptional);
+                }
+                // if god mode is on insta apply everything
+                if (Prefs.DevMode && DebugSettings.godMode)
+                {
+                    weapon.attachments.Clear();
+                    weapon.attachments.AddRange(selected);
+                    weapon.UpdateConfiguration();
+                }
             }
-            if (weapon.Wielder != null)
-            {
-                Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(weapon.Wielder, weapon);
-                if (job != null)
-                    weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptOptional);
-            }
+            if(applyAction != null)            
+               applyAction(selected);            
         }
     }
 }
