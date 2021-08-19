@@ -16,15 +16,9 @@ namespace CombatExtended
 
         private int age = 0;
         private Pawn parentPawnInt = null;
-        private const int CLEANUPTICKINTERVAL = 2100;
-        private const int LOADOUTUPDATELEXPIRY = 4000;
-        private const int LOADOUTUPDATELINTERVAL = 4500;
+        private const int CLEANUPTICKINTERVAL = 2100;        
         private float currentWeightCached;
-        private float currentBulkCached;
-        private int updatingLoadoutCooldownTick = -1;
-        private int updatingLoadoutAge = -1;
-        private int apparelHash = -1;
-        private bool updatingLoadout = false;
+        private float currentBulkCached;                        
         private List<Thing> ammoListCached = new List<Thing>();
         private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
@@ -39,29 +33,7 @@ namespace CombatExtended
             {
                 return (CompProperties_Inventory)props;
             }
-        }
-        public bool ForcedLoadoutUpdate
-        {
-            get
-            {
-                return GenTicks.TicksGame - updatingLoadoutAge < LOADOUTUPDATELEXPIRY && updatingLoadout;
-            }
-            set
-            {
-                if (value && !ForcedLoadoutUpdate)
-                {
-                    updatingLoadoutAge = GenTicks.TicksGame;
-                }
-                updatingLoadout = value;
-            }
-        }
-        public bool SkipUpdateLoadout
-        {
-            get
-            {
-                return GenTicks.TicksGame < updatingLoadoutCooldownTick;
-            }
-        }
+        }       
         public float currentWeight
         {
             get
@@ -151,27 +123,7 @@ namespace CombatExtended
                         yield return weapon;
                 }
             }
-        }
-        public bool ApparelChanged
-        {
-            get
-            {
-                return apparelHash != ApparelSetHash;
-            }
-        }
-        public int ApparelSetHash
-        {
-            get
-            {
-                int hash = 1;
-                unchecked
-                {
-                    foreach (Thing apparel in parentPawn.apparel.WornApparel)
-                        hash = (apparelHash * 16777619) ^ ((apparel.thingIDNumber * 31) ^ 378551);
-                }
-                return hash;
-            }
-        }
+        }       
         public ThingOwner container
         {
             get
@@ -190,21 +142,7 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.Look(ref apparelHash, "apparelHash", -1);
-            Scribe_Values.Look(ref updatingLoadoutCooldownTick, "updatingLoadoutCooldownTick", 0);
-            Scribe_Values.Look(ref updatingLoadout, "updatingLoadout", false);
-            Scribe_Values.Look(ref updatingLoadoutAge, "updatingLoadoutAge", -1);
-        }
-
-        public void Notify_LoadoutUpdated()
-        {
-            updatingLoadoutCooldownTick = GenTicks.TicksGame + LOADOUTUPDATELINTERVAL;
-        }
-
+ 
         /// <summary>
         /// WARNING this is very slow. Return the available weight.
         /// </summary>
@@ -377,15 +315,7 @@ namespace CombatExtended
             float amountByBulk = thingBulk <= 0 ? 1 : (availableBulk + eqBulk) / thingBulk;
             count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, 1));
             return count > 0;
-        }
-        
-        /// Update apparel hash
-        /// </summary>
-        /// <returns>The new hash</returns>
-        public int UpdateApparelSetHash()
-        {
-            return this.apparelHash = ApparelSetHash;
-        }
+        }            
 
         /// <summary>
         /// Determines if and how many of an item currently fit into the inventory with regards to weight/bulk constraints.

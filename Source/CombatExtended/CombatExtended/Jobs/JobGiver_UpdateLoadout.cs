@@ -22,9 +22,16 @@ namespace CombatExtended
 
         #region Constants  
 
+        private const int TicksThrottleCooldown = 1800;
         private const int ProximitySearchRadius = 20;
         private const int MaximumSearchRadius = 80;
         private const int TicksBeforeDropRaw = 40000;
+
+        #endregion
+
+        #region Fields
+
+        private static Dictionary<int, int> _throttle = new Dictionary<int, int>();
 
         #endregion
 
@@ -41,13 +48,9 @@ namespace CombatExtended
             {
                 return 0f;
             }
-            else if (comp.ForcedLoadoutUpdate)
+            if(!_throttle.TryGetValue(pawn.thingIDNumber, out int ticks) || GenTicks.TicksGame - ticks > TicksThrottleCooldown)
             {
-                return 35f;
-            }
-            else if (comp.SkipUpdateLoadout)
-            {
-                return 0f;
+                return 30f;
             }
             if (pawn.HasExcessThing())
             {
@@ -293,8 +296,7 @@ namespace CombatExtended
                         && !(pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
                         && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         && (!pawn.IsItemQuestLocked(pawn.equipment?.Primary))
-                        && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def
-                                                                                                           || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
+                        && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
                                                                                                                && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                     {
                         doEquip = true;
@@ -307,37 +309,29 @@ namespace CombatExtended
                             return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
                         Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
+                        job.MakeDriver(pawn);
                         job.count = Mathf.Min(closestThing.stackCount, count);
                         return job;
                     }
                     else
                     {
                         Job job = JobMaker.MakeJob(CE_JobDefOf.TakeFromOther, closestThing, carriedBy, doEquip ? pawn : null);
+                        job.MakeDriver(pawn);
                         job.count = doEquip ? 1 : Mathf.Min(closestThing.stackCount, count);
                         return job;
                     }
                 }
-            }
-            if (inventory.ApparelChanged)
-            {
-                return pawn.thinker.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
-            }
-            return null;
+            }            
+            return pawn.thinker?.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
         }
+      
 
         public override Job TryGiveJob(Pawn pawn)
         {
-            CompInventory inventory = pawn.TryGetComp<CompInventory>();
             Job job = GetUpdateLoadoutJob(pawn);
-            if (inventory != null)
-            {
-                inventory.Notify_LoadoutUpdated();
-                inventory.ForcedLoadoutUpdate = job != null;
-                if (job != null)
-                    inventory.UpdateApparelSetHash();
-            }
+            _throttle[pawn.thingIDNumber] = job == null ? GenTicks.TicksGame : (GenTicks.TicksGame - TicksThrottleCooldown - 1);           
             return job;
-        }
+        }        
 
         #endregion
     }
