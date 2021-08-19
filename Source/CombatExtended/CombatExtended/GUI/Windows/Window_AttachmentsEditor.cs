@@ -87,12 +87,8 @@ namespace CombatExtended
             // if god mode is on insta apply everything
             if (Prefs.DevMode && DebugSettings.godMode)
             {
-                weapon.attachments.ClearAndDestroyContents();
-                foreach (AttachmentLink link in selected)
-                {
-                    Thing attachment = ThingMaker.MakeThing(link.attachment);
-                    weapon.attachments.TryAdd(attachment);
-                }
+                weapon.attachments.Clear();                
+                weapon.attachments.AddRange(selected);                
                 weapon.UpdateConfiguration();
             }
             if (weapon.Wielder != null)
