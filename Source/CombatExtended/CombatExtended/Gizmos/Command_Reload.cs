@@ -12,8 +12,18 @@ namespace CombatExtended
 {
     public class Command_Reload : Command_Action
     {
-        List<Command_Reload> others;
+        public List<Command_Reload> others;
         public CompAmmoUser compAmmo;
+
+        public override bool Visible
+        {
+            get
+            {
+                if (compAmmo?.parent?.Spawned ?? true)
+                    return false;
+                return base.Visible;
+            }
+        }
 
         public override bool GroupsWith(Gizmo other)
         {
