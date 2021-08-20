@@ -98,6 +98,9 @@ namespace CombatExtended
 
         public static Job TryGetModifyWeaponJob(Pawn pawn, WeaponPlatform platform)
         {
+            // TODO remove this when content gets added
+            if (CE_BuildingDefOf.GunsmithingBench == null)
+                return null;
             if (!platform.Spawned && pawn.equipment?.Primary != platform)
                 return null;
             if (platform.Spawned && (!pawn.CanReserve(platform, 1, 1) || !pawn.CanReach(platform, PathEndMode.OnCell, Danger.Deadly)))
