@@ -371,16 +371,13 @@
           <li>Muzzle</li>
         </slotTags>
       </li>
-    </defaultGraphicParts>      
+    </defaultGraphicParts>
     <attachmentLinks>
       <li>
         <attachment>CE_AT_scope</attachment>
-        <drawOffset>(0.017,-0.004)</drawOffset>        
       </li>
       <li>
-        <drawScale>(0.5, 1.0)</drawScale>
         <attachment>CE_AT_Supperssor</attachment>
-        <drawOffset>(0.2, 0.05)</drawOffset>
       </li>
       <li>
         <attachment>CE_AT_HandGaurd</attachment>
@@ -477,11 +474,11 @@
     </attachmentLinks>
   </CombatExtended.WeaponPlatformDef>
    
-  <CombatExtended.AttachmentDef ParentName="AttachmentUnderbarrelBase">
+  <CombatExtended.AttachmentDef ParentName="CE_UnderbarrelT2Base">
     <defName>CE_AT_Testak_GR</defName>
     <label>Grenade launcher</label>
     <statMultipliers>
-      <ShotSpread>1.2</ShotSpread>      
+      <ShotSpread>1.2</ShotSpread>
     </statMultipliers>
     <statReplacers>
       <MagazineCapacity>10</MagazineCapacity>
@@ -492,7 +489,7 @@
     </attachmentGraphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef ParentName="AttachmentSightBase">
+  <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CE_AT_Testak_SC</defName>
     <label>8x scope</label>
     <statMultipliers>
@@ -504,7 +501,7 @@
     </attachmentGraphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef ParentName="AttachmentSightBase">
+  <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CE_AT_scope</defName>
     <label>scope</label>
     <statMultipliers>
@@ -520,11 +517,11 @@
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef ParentName="AttachmentMuzzleBase">
+  <CombatExtended.AttachmentDef ParentName="CE_MuzzleT2Base">
     <defName>CE_AT_Supperssor</defName>
     <label>Supperssor</label>
     <statMultipliers>
-      <MuzzleFlash>0.55</MuzzleFlash>      
+      <MuzzleFlash>0.55</MuzzleFlash>
     </statMultipliers>
     <statOffsets>
       <TicksBetweenBurstShots>30</TicksBetweenBurstShots>
@@ -540,12 +537,12 @@
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
 
-  <CombatExtended.AttachmentDef ParentName="AttachmentUnderbarrelBase">
+  <CombatExtended.AttachmentDef ParentName="CE_UnderbarrelT2Base">
     <defName>CE_AT_HandGaurd</defName>
-    <statMultipliers>      
+    <statMultipliers>
       <ShotSpread>0.7</ShotSpread>
     </statMultipliers>
-    <statOffsets>      
+    <statOffsets>
       <BurstShotCount>100</BurstShotCount>
     </statOffsets>
     <statReplacers>
@@ -562,153 +559,5 @@
       <graphicClass>Graphic_Single</graphicClass>
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
-  
-  
-  <CombatExtended.WeaponPlatformDef ParentName="BaseMakeableGun">
-    <defName>CE_TestShotgun</defName>
-    <thingClass>CombatExtended.WeaponPlatform</thingClass>
-    <drawerType>RealtimeOnly</drawerType>
-    <label>Mossberg 500</label>
-    <description>Yeet.</description>
-    <graphicData>
-      <texPath>Things/Weapons/PumpShotgun/Regular/Reciever</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <soundInteract>Interact_Shotgun</soundInteract>
-    <statBases>
-      <Mass>3.00</Mass>
-      <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
-      <ShotSpread>0.14</ShotSpread>
-      <SwayFactor>1.20</SwayFactor>
-      <Bulk>9.0</Bulk>
-      <SightsEfficiency>0.7</SightsEfficiency>
-      <WorkToMake>9500</WorkToMake>
-    </statBases>
-    <costList>
-      <Steel>40</Steel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-      <WoodLog>10</WoodLog>
-    </costList>
-    <weaponTags>
-      <li>CE_AI_BROOM</li>
-    </weaponTags>
-    <verbs>
-      <li Class="CombatExtended.VerbPropertiesCE">
-        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
-        <warmupTime>0.6</warmupTime>
-        <range>16</range>
-        <soundCast>Shot_Shotgun</soundCast>
-        <soundCastTail>GunTail_Heavy</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-      </li>
-    </verbs>
-    <comps>
-      <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>5</magazineSize>
-        <reloadOneAtATime>true</reloadOneAtATime>
-        <reloadTime>0.85</reloadTime>
-        <ammoSet>AmmoSet_12Gauge</ammoSet>
-      </li>
-      <li Class="CombatExtended.CompProperties_FireModes"/>
-    </comps>
-    <tools>
-      <li Class="CombatExtended.ToolCE">
-        <label>stock</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>8</power>
-        <cooldownTime>1.55</cooldownTime>
-        <chanceFactor>1.5</chanceFactor>
-        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-      </li>
-      <li Class="CombatExtended.ToolCE">
-        <label>barrel</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>5</power>
-        <cooldownTime>2.02</cooldownTime>
-        <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-      </li>
-      <li Class="CombatExtended.ToolCE">
-        <label>muzzle</label>
-        <capacities>
-          <li>Poke</li>
-        </capacities>
-        <power>8</power>
-        <cooldownTime>1.55</cooldownTime>
-        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-        <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-      </li>
-    </tools>
-    <defaultGraphicParts>
-      <li>
-        <partGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Color/Stock-1</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </partGraphicData>
-        <outlineGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Outline/Stock-1</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </outlineGraphicData>
-        <slotTags>
-          <li>Stock</li>
-        </slotTags>
-      </li>
-       <li>
-        <partGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Color/Muzzle-2</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </partGraphicData>
-        <outlineGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Outline/Muzzle-2</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </outlineGraphicData>
-        <slotTags>
-          <li>Muzzle</li>
-        </slotTags>
-      </li>
-      <li>
-        <partGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Color/Handguard-4</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </partGraphicData>
-        <outlineGraphicData>
-          <texPath>Things/Weapons/PumpShotgun/Outline/Handguard-4</texPath>
-          <graphicClass>Graphic_Single</graphicClass>
-        </outlineGraphicData>
-        <slotTags>
-          <li>Underbarrel</li>
-        </slotTags>
-      </li>
-    </defaultGraphicParts>
-    <attachmentLinks>
-      <li><attachment>Attachment_PumpShotgun_StockOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockFour</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightFour</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardFour</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_MuzzleOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_MuzzleTwo</attachment></li>
-    </attachmentLinks>
-    <modExtensions>
-      <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>1.03,1.25</DrawSize>
-        <DrawOffset>0.05,0.0</DrawOffset>
-      </li>
-    </modExtensions>
-  </CombatExtended.WeaponPlatformDef>
   
 </Defs>

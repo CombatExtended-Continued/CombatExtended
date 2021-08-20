@@ -211,6 +211,8 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_PumpShotgun</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
+    <texPath>Things/Weapons/Shotgun/Regular/Reciever</texPath>
     <statBases>
       <Mass>3.00</Mass>
       <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
@@ -241,11 +243,54 @@
       <reloadTime>0.85</reloadTime>
       <ammoSet>AmmoSet_12Gauge</ammoSet>
     </AmmoUser>
-    <FireModes />
+    <FireModes/>
     <weaponTags>
       <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/Shotgun/Color/Stock-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/Shotgun/Outline/Stock-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/Shotgun/Color/Handguard-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/Shotgun/Outline/Handguard-1</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Underbarrel</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li><attachment>Attachment_PumpShotgun_StockOne</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_StockTwo</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_StockThree</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_StockFour</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_SightOne</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_SightTwo</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_SightThree</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_SightFour</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_HandguardOne</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_HandguardTwo</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_HandguardThree</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_MuzzleOne</attachment></li>
+      <li><attachment>Attachment_PumpShotgun_MuzzleTwo</attachment></li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -292,7 +337,7 @@
       <reloadTime>4</reloadTime>
       <ammoSet>AmmoSet_12Gauge</ammoSet>
     </AmmoUser>
-    <FireModes />
+    <FireModes/>
     <weaponTags>
       <li>CE_AI_BROOM</li>
     </weaponTags>
@@ -954,7 +999,7 @@
       <li Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]</xpath>
         <value>
-          <comps />
+          <comps/>
         </value>
       </li>
     </operations>
@@ -1058,7 +1103,7 @@
       <li Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[defName="Bullet_Rocket"]</xpath>
         <value>
-          <comps />
+          <comps/>
         </value>
       </li>
     </operations>
@@ -1305,7 +1350,7 @@
     </weaponTags>
   </Operation>
 
-    <Operation Class="PatchOperationReplace">
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Gun_ThumpCannon"]/tools</xpath>
     <value>
       <tools>
