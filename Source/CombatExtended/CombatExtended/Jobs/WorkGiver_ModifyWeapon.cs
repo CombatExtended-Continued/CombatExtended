@@ -92,7 +92,7 @@ namespace CombatExtended
         /// <param name="forced">Wether the job is forced</param>
         /// <returns>Job</returns>
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
-        {
+        {            
             return TryGetModifyWeaponJob(pawn, t as WeaponPlatform);
         }
 
