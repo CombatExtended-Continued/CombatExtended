@@ -190,15 +190,40 @@ namespace CombatExtended
                 findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
             Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
 
-            // look for a thing near the pawn.
-            curThing = GenClosest.ClosestThingReachable(
-                pawn.Position,
-                pawn.Map,
-                req,
-                PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
-                ProximitySearchRadius,
-                search);
+            if (curSlot.isWeaponPlatform && !curSlot.allowAllAttachments)
+            {
+                // try to find the weapon with the maximum amount of attachments preinstalled
+                WeaponPlatform bestWeapon = null;
+                float bestWeight = int.MaxValue;
+                // search for weapon platforms
+                foreach (WeaponPlatform weapon in Utilities.GenClosest.ThingsByDefInRange(pawn.Position, pawn.Map, curSlot.thingDef, 30))
+                {
+                    if (search(weapon) && pawn.CanReach(weapon, PathEndMode.Touch, Danger.Some))
+                    {
+                        // we weight our result by weighting by the amount of attachment we need to remove
+                        float count = weapon.attachments.Count(l => curSlot.attachments.Contains(l.attachment));
+                        float cost = (weapon.attachments.Count - count) + (curSlot.attachments.Count - count);                        
+                        if (cost < bestWeight)
+                        {
+                            bestWeight = cost;
+                            bestWeapon = weapon;
+                        }                        
+                    }
+                }
+                curThing = bestWeapon;                
+            }
+            else
+            {                
+                // look for a thing near the pawn.
+                curThing = GenClosest.ClosestThingReachable(
+                    pawn.Position,
+                    pawn.Map,
+                    req,
+                    PathEndMode.ClosestTouch,
+                    TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
+                    ProximitySearchRadius,
+                    search);
+            }
             if (curThing != null) curPriority = ItemPriority.Proximity;
             else
             {

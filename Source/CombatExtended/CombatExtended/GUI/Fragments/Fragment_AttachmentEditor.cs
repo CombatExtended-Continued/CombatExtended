@@ -76,7 +76,7 @@ namespace CombatExtended
         public Fragment_AttachmentEditor(WeaponPlatformDef weaponDef, List<AttachmentLink> config)
         {
             this.InitializeFragment();
-            this.links = weaponDef.attachmentLinks;
+            this.links = weaponDef.attachmentLinks.Where(l => l.attachment.researchPrerequisites?.All(r => r.IsFinished) ?? true).ToList();
             this.weapon = null;
             this.weaponDef = weaponDef;
 
@@ -111,7 +111,7 @@ namespace CombatExtended
         public Fragment_AttachmentEditor(WeaponPlatform weapon)
         {                        
             this.InitializeFragment();
-            this.links = weapon.Platform.attachmentLinks;
+            this.links = weapon.Platform.attachmentLinks.Where(l => l.attachment.researchPrerequisites?.All(r => r.IsFinished) ?? true).ToList();
             this.weapon = weapon;
             this.weaponDef = weapon.Platform;
             
