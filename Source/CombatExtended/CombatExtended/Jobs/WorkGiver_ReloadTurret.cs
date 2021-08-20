@@ -73,13 +73,13 @@ namespace CombatExtended
             var priority = GetThingPriority(pawn, t, forced);
             CELogger.Message($"Priority check completed. Got {priority}");
 
-	    var ammo = turret.GetAmmo();
+	        var ammo = turret.GetAmmo();
             CELogger.Message($"Turret uses ammo? {ammo?.UseAmmo}");
             if (!turret.GetReloadable())
             {
                 return false;
             }
-            CELogger.Message($"Total magazine size: {ammo.Props.magazineSize}. Needed: {ammo.MissingToFullMagazine}");
+            CELogger.Message($"Total magazine size: {ammo.MagSize}. Needed: {ammo.MissingToFullMagazine}");
 
             return JobGiverUtils_Reload.CanReload(pawn, turret, forced);
         }

@@ -64,7 +64,7 @@ namespace CombatExtended
                     {
                         Log.ErrorOnce(parent.LabelCap + " has CompFireModes but no CompEquippable", 50020);
                     }
-                }
+                }                
                 return verbInt;
             }
         }
@@ -141,10 +141,11 @@ namespace CombatExtended
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
         }
 
-        private void InitAvailableFireModes()
+        public void InitAvailableFireModes()
         {
+            availableFireModes.Clear();
             // Calculate available fire modes
-            if (Verb.verbProps.burstShotCount > 1 || Props.noSingleShot)
+            if (parent.GetStatValue(CE_StatDefOf.BurstShotCount) > 1 || Props.noSingleShot)
             {
                 availableFireModes.Add(FireMode.AutoFire);
             }

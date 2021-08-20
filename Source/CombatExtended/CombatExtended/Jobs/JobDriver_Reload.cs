@@ -151,8 +151,8 @@ namespace CombatExtended
             //Toil of do-nothing		
             Toil waitToil = new Toil() { actor = pawn }; // actor was always null in testing...
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
-            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+            waitToil.defaultCompleteMode = ToilCompleteMode.Delay;            
+            waitToil.defaultDuration = Mathf.CeilToInt(weapon.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             yield return waitToil.WithProgressBarToilDelay(indReloader);
 
             //Actual reloader
@@ -163,7 +163,7 @@ namespace CombatExtended
             // If reloading one shot at a time and if possible to reload, jump back to do-nothing toil
             System.Func<bool> jumpCondition =
                 () => compReloader.Props.reloadOneAtATime &&
-                      compReloader.CurMagCount < compReloader.Props.magazineSize &&
+                      compReloader.CurMagCount < compReloader.MagSize &&
                       (!compReloader.UseAmmo || compReloader.TryFindAmmoInInventory(out initAmmo));
             Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             yield return jumpToil;

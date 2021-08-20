@@ -26,10 +26,16 @@ namespace CombatExtended.HarmonyCE
         /// </summary>
         public static void Patch()
         {
-            Type[] targetTypes = { typeof(PawnColumnWorker_Outfit), typeof(PawnColumnWorker_DrugPolicy), typeof(PawnColumnWorker_FoodRestriction) };
+            Type[] targetTypes = {
+                typeof(PawnColumnWorker_Outfit),
+                typeof(PawnColumnWorker_DrugPolicy),
+                typeof(PawnColumnWorker_FoodRestriction)
+            };
             string[] targetNames = new string[] { "GetMinWidth", "GetOptimalWidth" };
-            HarmonyMethod[] transpilers = new HarmonyMethod[] { new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "MinWidth"),
-                                                                new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "OptWidth")};
+            HarmonyMethod[] transpilers = new HarmonyMethod[] {
+                new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "MinWidth"),
+                new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "OptWidth")
+            };
 
             for (int i = 0; i < targetTypes.Length; i++)
             {

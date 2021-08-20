@@ -26,6 +26,220 @@ namespace CombatExtended
 
         #endregion
 
+        #region Attachments
+
+        /// <summary>
+        /// A comibination of StatWorker.FinalizeValue and GetStatValue but with the ability to get stats without attachments affecting the calculations or using a custom list of stats
+        /// </summary>
+        /// <param name="platform"></param>
+        /// <param name="stat"></param>
+        /// <param name="applyPostProcess"></param>
+        /// <returns></returns>
+        public static float GetWeaponStatWith(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
+        {
+            StatRequest req = StatRequest.For(platform);
+            float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);           
+            if (stat.parts != null)
+            {
+                for (int i = 0; i < stat.parts.Count; i++)
+                {
+                    if(!(stat.parts[i] is StatPart_Attachments))
+                        stat.parts[i].TransformValue(req, ref val);
+                }
+                if(links != null)
+                    stat.TransformValue(links, ref val);
+            }
+            if (applyPostProcess && stat.postProcessCurve != null)            
+                val = stat.postProcessCurve.Evaluate(val);            
+            if (applyPostProcess && stat.postProcessStatFactors != null)
+            {
+                for (int j = 0; j < stat.postProcessStatFactors.Count; j++)                
+                    val *= req.Thing.GetStatValue(stat.postProcessStatFactors[j]);                
+            }
+            if (Find.Scenario != null)            
+                val *= Find.Scenario.GetStatFactor(stat);            
+            if (Mathf.Abs(val) > stat.roundToFiveOver)            
+                val = Mathf.Round(val / 5f) * 5f;            
+            if (stat.roundValue)            
+                val = Mathf.RoundToInt(val);            
+            if (applyPostProcess)            
+                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);            
+            return val;
+        }
+
+        /// <summary>
+        /// Used to setup the weapon from the current loadout
+        /// </summary>
+        /// <param name="pawn"></param>
+        /// <returns></returns>
+        public static bool TrySyncPlatformLoadout(this WeaponPlatform platform, Pawn pawn)
+        {            
+            Loadout loadout = pawn.GetLoadout();
+            if (loadout == null)
+                return false;
+            LoadoutSlot slot = loadout.Slots.FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
+            // if no slot mention this or it allows everything return false
+            if (slot == null || slot.allowAllAttachments)
+                return false;
+            bool update = false;
+            // check if the current setup include everything we need.
+            foreach (AttachmentDef def in slot.attachments)
+            {
+                if (!platform.TargetConfig.Any(a => a == def))
+                {
+                    update = true;
+                    break;
+                }
+            }
+            if (update)
+            {
+                // sync the loadout with the weapon.
+                platform.TargetConfig = slot.attachments;                
+                platform.UpdateConfiguration();
+            }
+            return update;
+        }
+
+        /// <summary>
+        /// Used to obtain the explaination for stat values for weapons with attachments.
+        /// </summary>
+        /// <param name="stat">StatDef</param>
+        /// <param name="links">AttachmentLinks</param>
+        /// <returns>Explaination</returns>
+        public static string ExplainAttachmentsStat(this StatDef stat, IEnumerable<AttachmentLink> links)
+        {
+            if (links == null || links.Count() == 0)
+                return null;
+            StringBuilder sb = new StringBuilder();
+            bool anyOffsets = false;
+            bool anyFactors = false;
+            foreach(AttachmentLink link in links)
+            {                
+                StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                // stop since we found an override modifier.
+                sb.AppendLine("Replaced with " + link.attachment.LabelCap + ": " + modifier.value);
+                break;
+            }
+            foreach (AttachmentLink link in links)
+            {
+                StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value == 0)
+                    continue;
+                if (!anyOffsets)
+                {
+                    sb.AppendLine("Attachment offsets:");
+                    anyOffsets = true;
+                }
+                sb.AppendLine("    " + link.attachment.LabelCap + ": " + stat.Worker.ValueToString(modifier.value, finalized: false, ToStringNumberSense.Offset));
+            }
+            foreach (AttachmentLink link in links)
+            {                                
+                StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value == 0 || modifier.value == 1)
+                    continue;
+                if (!anyFactors)
+                {
+                    sb.AppendLine("Attachment factors:");
+                    anyFactors = true;
+                }
+                sb.AppendLine("    " + link.attachment.LabelCap + ": " + stat.Worker.ValueToString(modifier.value, finalized: false, ToStringNumberSense.Factor));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// A comibination of StatWorker.FinalizeValue and GetStatValue but with the ability to get stats without attachments affecting the calculations or using a custom list of stats.
+        /// This version can be used with only the weapon def.
+        /// </summary>
+        /// <param name="platform"></param>
+        /// <param name="stat"></param>
+        /// <param name="applyPostProcess"></param>
+        /// <returns></returns>
+        public static float GetWeaponStatAbstractWith(this WeaponPlatformDef platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
+        {            
+            platform.statBases.FirstOrFallback(s => s.stat == stat);            
+            StatModifier statBase = platform.statBases.FirstOrFallback(s => s.stat == stat);
+            float val = statBase != null ? statBase.value : stat.defaultBaseValue;            
+            if (stat.parts != null)
+            {                
+                for (int i = 0; i < stat.parts.Count; i++)
+                {
+                    if(stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
+                        stat.parts[i].TransformValue(new StatRequest() { qualityCategoryInt = QualityCategory.Normal}, ref val);                                            
+                }
+                if (links != null)
+                    stat.TransformValue(links, ref val);
+            }
+            if (applyPostProcess && stat.postProcessCurve != null)
+                val = stat.postProcessCurve.Evaluate(val);           
+            if (Find.Scenario != null)
+                val *= Find.Scenario.GetStatFactor(stat);
+            if (Mathf.Abs(val) > stat.roundToFiveOver)
+                val = Mathf.Round(val / 5f) * 5f;
+            if (stat.roundValue)
+                val = Mathf.RoundToInt(val);
+            if (applyPostProcess)
+                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);
+            return val;
+        }
+
+        /// <summary>
+        /// Return wether you attach an attachment to a weapon with having to remove stuff.
+        /// </summary>
+        /// <param name="attachment">Attachment</param>
+        /// <param name="platform">Weapon</param>
+        /// <returns>Wether you can attach without conflicts</returns>
+        public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
+        {            
+            foreach(AttachmentLink link in platform.attachments) { 
+                if (!platform.Platform.AttachmentsCompatible(link.attachment, attachment))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Used to tranform a stat for a given attachment link list. It will first check for overriden stats then apply offsets and multipliers.        
+        /// </summary>
+        /// <param name="stat">StatDef</param>
+        /// <param name="links">The current attachment links</param>
+        /// <param name="val">Val</param>        
+        public static void TransformValue(this StatDef stat, List<AttachmentLink> links,ref float val)
+        {
+            if (links == null || links.Count == 0)
+                return;
+            for (int i = 0; i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];
+                StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                // stop since we found an override modifier.
+                val = modifier.value;                
+                return;
+            }
+            for (int i = 0;i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];               
+                StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null)
+                    continue;
+                val += modifier.value;
+            }
+            for (int i = 0; i < links.Count; i++)
+            {
+                AttachmentLink link = links[i];                
+                StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
+                if (modifier == null || modifier.value <= 0)
+                    continue;
+                val *= modifier.value;
+            }            
+        }
+
+        #endregion
+
         #region Blitting
         private const int blitMaxDimensions = 64;
 

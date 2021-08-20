@@ -100,17 +100,9 @@ namespace CombatExtended
                 Rect forceEquipNow = loadoutRect.RightPartPixels(equipNowWidth + 12);
                 if (Widgets.ButtonText(forceEquipNow, "CE_UpdateLoadoutNow".Translate()))
                 {
-                    Job job = JobGiver_UpdateLoadout.GetUpdateLoadoutJob(pawn);
-                    CompInventory inventory = pawn.TryGetComp<CompInventory>();
-                    if (inventory != null)
-                    {
-                        inventory.ForcedLoadoutUpdate = job != null;
-                    }
-                    if (job != null)
-                    {
-                        pawn.jobs.StopAll(false, true);
-                        pawn.jobs.StartJob(job, JobCondition.InterruptForced, tag: JobTag.ChangingApparel);
-                    }
+                    Job job = pawn.thinker?.GetMainTreeThinkNode<JobGiver_UpdateLoadout>()?.TryGiveJob(pawn);
+                    if (job != null)                
+                        pawn.jobs.StartJob(job, JobCondition.InterruptForced);                    
                 }
             }
 
