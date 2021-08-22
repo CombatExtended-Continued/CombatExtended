@@ -14,30 +14,63 @@
 		<xpath>Defs</xpath>
 		<value>
 
-  <DamageDef ParentName="Bomb">
+  <DamageDef>
     <defName>ME_Blacked</defName>
     <label>Blackholed</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
     <deathMessage>{0} is consumed by the void.</deathMessage>
-    <defaultDamage>150</defaultDamage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>50</minDamageToFragment>
+    <defaultDamage>200</defaultDamage>
     <defaultStoppingPower>3.0</defaultStoppingPower>
     <defaultArmorPenetration>120000</defaultArmorPenetration>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-    <buildingDamageFactor>3</buildingDamageFactor>
-    <plantDamageFactor>3</plantDamageFactor>
-    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>-5</explosionHeatEnergyPerCell>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
   </DamageDef>
 
-  <DamageDef ParentName="Bomb">
+  <DamageDef>
     <defName>ME_BigKill</defName>
+    <label>Carnage</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <externalViolence>true</externalViolence>
+    <isExplosive>true</isExplosive>
     <deathMessage>{0} is carnaged.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Sharp</armorCategory>
+    <minDamageToFragment>20</minDamageToFragment>
     <defaultDamage>43</defaultDamage>
     <defaultStoppingPower>1.0</defaultStoppingPower>
     <defaultArmorPenetration>150</defaultArmorPenetration>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-    <buildingDamageFactor>3</buildingDamageFactor>
-    <plantDamageFactor>3</plantDamageFactor>
-    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+    <plantDamageFactor>4</plantDamageFactor>
+    <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
+    <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
+    <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
+    <soundExplosion>Explosion_Bomb</soundExplosion>
+    <combatLogRules>Damage_Bomb</combatLogRules>
   </DamageDef>
+    	</value>
+  	</li>
 
   	<li Class='PatchOperationReplace'>
     	<xpath>/Defs/ThingDef[defName='REN7_Rocket_BlackHole']/projectile</xpath>
