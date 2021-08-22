@@ -204,19 +204,19 @@ namespace CombatExtended
 
             isAOEArray[def.index] = isAOEArray[def.index]
                 || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
-                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
-                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
+                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive) && v.verbClass != typeof(Verb_ShootUseAttachment)) ?? false)
+                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse) && v.verbClass != typeof(Verb_ShootUseAttachment)) ?? false)
                 || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
 
-            float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
+            float ticksBetweenBurstShots = def.verbs.First(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null).ticksBetweenBurstShots;
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots });
 
-            float burstShotCount = def.verbs.Max(v => v.burstShotCount);
+            float burstShotCount = def.verbs.First(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null).burstShotCount;
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.BurstShotCount, value = burstShotCount });
 
-            float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);            
+            float recoil = (def.verbs.First(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null) as VerbPropertiesCE).recoilAmount;            
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.Recoil, value = recoil });
                         

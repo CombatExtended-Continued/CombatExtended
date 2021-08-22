@@ -10,12 +10,16 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps
-    {        
+    {
+        private const int VERB_EXPIRE_TICKS = 600;
+        
         public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();
 
+        private Verb altVerb;       
+        private int altVerbExpireAt = -1;        
         private Quaternion drawQat;
         private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
-
+        
         private List<AttachmentDef> _additionList = new List<AttachmentDef>();
         private List<AttachmentDef> _removalList = new List<AttachmentDef>();
         private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();
@@ -59,18 +63,7 @@ namespace CombatExtended
             {                                
                 return _additionList.Count == 0 && _removalList.Count == 0;
             }
-        }
-
-        private CompEquippable _compEquippable;
-        public CompEquippable CompEquippable
-        {
-            get
-            {
-                if (_compEquippable == null)
-                    _compEquippable = GetComp<CompEquippable>();
-                return _compEquippable;
-            }
-        }
+        }      
 
         /// <summary>
         /// The wielder pawn
@@ -80,12 +73,12 @@ namespace CombatExtended
             get
             {
                 if (false
-                    || CompEquippable == null
-                    || CompEquippable.PrimaryVerb == null
-                    || CompEquippable.PrimaryVerb.caster == null
-                    || ((CompEquippable?.parent?.ParentHolder as Pawn_EquipmentTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
+                    || Equippable == null
+                    || Equippable.PrimaryVerb == null
+                    || Equippable.PrimaryVerb.caster == null
+                    || ((Equippable?.parent?.ParentHolder as Pawn_InteractionsTracker)?.pawn is Pawn holderPawn && holderPawn != Equippable?.PrimaryVerb?.CasterPawn))                
                     return null;                
-                return CompEquippable.PrimaryVerb.CasterPawn;
+                return Equippable.PrimaryVerb.CasterPawn;
             }
         }
 
@@ -111,6 +104,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the current visible WeaponGraphicParts.
+        /// </summary>
         public List<WeaponPlatformDef.WeaponGraphicPart> VisibleDefaultParts
         {
             get
@@ -132,6 +128,17 @@ namespace CombatExtended
             }
         }
 
+        private CompEquippable _equippable;
+        public CompEquippable Equippable
+        {
+            get
+            {
+                if (_equippable == null)
+                    _equippable = GetComp<CompEquippable>();
+                return _equippable;
+            }
+        }
+
         private Dictionary<AttachmentDef, AttachmentLink> _LinkByDef = new Dictionary<AttachmentDef, AttachmentLink>();
         public Dictionary<AttachmentDef, AttachmentLink> LinkByDef
         {
@@ -144,6 +151,59 @@ namespace CombatExtended
                         _LinkByDef.Add(link.attachment, link);
                 }
                 return _LinkByDef;
+            }
+        }
+
+        /// <summary>
+        /// Return the original Primary verb of this weapon
+        /// </summary>
+        public Verb PrimaryVerb
+        {
+            get
+            {
+                VerbTracker tracker = Equippable.verbTracker;
+                if (tracker.verbs == null)
+                {
+                    tracker.InitVerbsFromZero();
+                }
+                for (int i = 0; i < tracker.verbs.Count; i++)
+                {
+                    if (tracker.verbs[i].verbProps.isPrimary)
+                    {
+                        return tracker.verbs[i];
+                    }
+                }
+                return null;
+            }
+        }
+       
+
+        /// <summary>
+        /// Return the current selected verb or the default verb for this weapon.
+        /// </summary>
+        public Verb SelectedVerb
+        {
+            get
+            {               
+                Verb verb = altVerb;
+                if (verb == null)
+                    return PrimaryVerb;
+                if (GenTicks.TicksGame > altVerbExpireAt)
+                    return verb = null;
+                return verb;
+            }
+            set
+            {
+                if (value == PrimaryVerb)
+                {
+                    altVerb = null;
+                    altVerbExpireAt = -1;
+                }
+                else
+                {                    
+                    altVerb = value;
+                    altVerbExpireAt = GenTicks.TicksGame + VERB_EXPIRE_TICKS;
+                }
             }
         }
 
@@ -174,7 +234,7 @@ namespace CombatExtended
             if (this._targetConfig == null)
                 this._targetConfig = new List<AttachmentDef>();
             if (Scribe.mode != LoadSaveMode.Saving)
-                UpdateConfiguration();
+                UpdateConfiguration();            
         }
 
         /// <summary>

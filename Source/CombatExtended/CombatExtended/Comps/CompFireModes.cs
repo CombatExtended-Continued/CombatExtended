@@ -48,11 +48,16 @@ namespace CombatExtended
             }
         }
 
+
         // Fire mode variables
         private Verb Verb
         {
             get
             {
+                if(parent is WeaponPlatform platform)
+                {
+
+                }
                 if (verbInt == null)
                 {
                     CompEquippable compEquippable = parent.TryGetComp<CompEquippable>();
@@ -68,6 +73,7 @@ namespace CombatExtended
                 return verbInt;
             }
         }
+
         public Thing Caster
         {
             get

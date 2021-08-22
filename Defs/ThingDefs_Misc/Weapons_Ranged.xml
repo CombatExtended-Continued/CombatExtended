@@ -429,6 +429,22 @@
         <soundCastTail>GunTail_Medium</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootUseAttachment</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <warmupTime>1.1</warmupTime>
+        <range>44</range>
+        <minRange>5</minRange>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <muzzleFlashScale>14</muzzleFlashScale>
+        <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+        <requiresAttachment>CE_AT_Testak_GR</requiresAttachment>
+      </li>     
     </verbs>
     <comps>
       <li Class="CombatExtended.CompProperties_AmmoUser">
@@ -476,13 +492,7 @@
    
   <CombatExtended.AttachmentDef ParentName="CE_UnderbarrelT2Base">
     <defName>CE_AT_Testak_GR</defName>
-    <label>Grenade launcher</label>
-    <statMultipliers>
-      <ShotSpread>1.2</ShotSpread>
-    </statMultipliers>
-    <statReplacers>
-      <MagazineCapacity>10</MagazineCapacity>
-    </statReplacers>
+    <label>Grenade launcher</label>        
     <attachmentGraphicData>
       <texPath>Things/Weapons/Testak/Testak_GL</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -491,10 +501,7 @@
 
   <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CE_AT_Testak_SC</defName>
-    <label>8x scope</label>
-    <statMultipliers>
-      <SightsEfficiency>2.0</SightsEfficiency>
-    </statMultipliers>
+    <label>8x scope</label>    
     <attachmentGraphicData>
       <texPath>Things/Weapons/Testak/Testak_SC</texPath>
       <graphicClass>Graphic_Single</graphicClass>
