@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationFindMod">
+  <Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Kit's Gunpowder Weapons</li>
 		</mods>
-	</Operation>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
 
-		<Operation Class="PatchOperationRemove">
+		<li Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[			
 			defName = "KIT_Turret_Organ" or
 			defName = "KIT_Turret_12Pounder"or
 			defName = "KIT_Turret_Bombard"			
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-		</Operation>
+		</li>
 
-		<Operation Class="PatchOperationReplace">
+		<li Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[
 			defName = "KIT_Turret_Organ" or
 			defName = "KIT_Turret_12Pounder" or
@@ -24,9 +25,9 @@
         <value>
           <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
         </value>
-		</Operation>
+		</li>
 
-        <Operation Class="PatchOperationReplace">
+        <li Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[	
 			defName = "KIT_Turret_Organ" or
 			defName = "KIT_Turret_12Pounder"or
@@ -35,19 +36,19 @@
         <value>
           <fillPercent>0.85</fillPercent>
         </value>
-      </Operation>
+      </li>
 	  
-	  <Operation Class="PatchOperationRemove">
+	  <li Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[			
 			defName = "KIT_Turret_Bombard"			
 		]/placeWorkers/li["PlaceWorker_ShowTurretRadius"]</xpath>
-		</Operation>
+		</li>
 
 		<!-- ========== 12 Pounder ========== -->
-		<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>KIT_Gun_12Pounder</defName>
 		  <statBases>
-		    <SightsEfficiency>1.50</SightsEfficiency>
+		    <SightsEfficiency>1.00</SightsEfficiency>
 		    <ShotSpread>0.4</ShotSpread>
 		    <SwayFactor>1</SwayFactor>
 		    <Bulk>18</Bulk>
@@ -73,17 +74,17 @@
 		    <noSnapshot>true</noSnapshot>
 		    <noSingleShot>false</noSingleShot>
 		  </FireModes>
-		</Operation>
+		</li>
 
-		<Operation Class="PatchOperationAdd">
+		<li Class="PatchOperationAdd">
 		  <xpath>/Defs/ThingDef[defName = "KIT_Gun_12Pounder"]/weaponTags</xpath>
 		  <value>
 		    <li>TurretGun</li>
 		  </value>
-		</Operation>
+		</li>
 
 		<!-- Organ Gun -->
-		<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>KIT_Gun_Organ</defName>
 		  <statBases>
 		    <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -109,8 +110,8 @@
 		    </targetParams>
 		  </Properties>
 		  <AmmoUser>
-		    <magazineSize>100</magazineSize>
-		    <reloadTime>5.5</reloadTime>
+		    <magazineSize>20</magazineSize>
+		    <reloadTime>9.6</reloadTime>
 		    <ammoSet>AmmoSet_FastMusketBall</ammoSet>
 		  </AmmoUser>
 		  <FireModes>
@@ -120,11 +121,11 @@
 		  <weaponTags Inherit="false">
 		    <li>TurretGun</li>
 		  </weaponTags>
-		</Operation>
+		</li>
 
 		<!-- ========== Bombard - Weapon ========== -->			
 
-		<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>KIT_Gun_Bombard</defName>
 			<Properties>
 				<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
@@ -150,9 +151,9 @@
 				<reloadTime>7.5</reloadTime>
 				<ammoSet>AmmoSet_LargeCannonBall</ammoSet>
 			</AmmoUser>
-		</Operation>
+		</li>
 
-		<Operation Class="PatchOperationAdd">
+		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName = "KIT_Gun_Bombard"]/comps</xpath>
 			<value>
 				<li Class="CombatExtended.CompProperties_Charges">
@@ -164,13 +165,16 @@
 					</chargeSpeeds>
 				</li>
 			</value>
-		</Operation>
+		</li>
 			
-		<Operation Class="PatchOperationAdd">
+		<li Class="PatchOperationAdd">
 		  <xpath>/Defs/ThingDef[defName = "KIT_Gun_Bombard"]/weaponTags</xpath>
 		  <value>
 		    <li>TurretGun</li>
 		  </value>
-		</Operation>
+		</li>
 
-</Patch>    
+		</operations>
+		</match>	
+  </Operation>
+</Patch> 

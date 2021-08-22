@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationSequence">
+  <Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Kit's Gunpowder Weapons</li>
+	</mods>
+		
+	<match Class="PatchOperationSequence">
 	<operations>
-	  <li Class="PatchOperationFindMod">
-		<mods>
-			<li>Kit's Gunpowder Weapons</li>
-		</mods>
-			
-		<match Class="PatchOperationSequence">
-		<operations>
 
-		<li Class="PatchOperationAdd">
-			<xpath>Defs</xpath>
-			<value>
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
 	
 	<!-- ==================== ThingCategories ========================== -->
 	
@@ -108,7 +106,7 @@
 	</ThingDef>
 
 	<!-- ==== Cannon Ball ==== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="90mmCannonShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CannonBallBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<description>A head-sized ball of metal.</description>
 		<thingCategories>
 			<li>CannonBall</li>
@@ -126,7 +124,7 @@
 		</statBases>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CannonBallBase">
 		<defName>Ammo_CannonBall_Steel</defName>
 		<label>Cannon Ball</label>
 		<graphicData>
@@ -134,7 +132,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>.35</MarketValue>
+			<MarketValue>3.5</MarketValue>
 		</statBases>
 		<ammoClass>CannonBall</ammoClass>
 		<detonateProjectile>Bullet_CannonBall_Steel</detonateProjectile>
@@ -170,7 +168,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>.5</MarketValue>
+			<MarketValue>0.5</MarketValue>
 			<Mass>16</Mass>
 			<Bulk>12</Bulk>
 		</statBases>
@@ -262,19 +260,19 @@
 			<armorPenetrationBlunt>110</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-			<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>12</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>1.5</explosiveRadius>
-				<explosionSound>MortarBomb_Explode</explosionSound>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Large>2</Fragment_Large>
-					<Fragment_Small>12</Fragment_Small>
-				</fragments>
-		  </li>
+		<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>12</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</li>
+		<li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>2</Fragment_Large>
+				<Fragment_Small>12</Fragment_Small>
+			</fragments>
+		</li>
 		</comps>
 	</ThingDef>
 	
@@ -421,7 +419,5 @@
 			
 		</operations>
 		</match>	
-	  </li>
-	</operations>	
   </Operation>
 </Patch>
