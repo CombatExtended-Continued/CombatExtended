@@ -13,6 +13,8 @@
 				defName="Bast_Web" or
 				defName="Bast_AlluviumGoo" or
 				defName="Bast_CritterSpike" or
+				defName="Bast_BlisteringWind" or
+				defName="Bast_LightningBolt" or
 				defName="Bast_SnippingSnailAcid"]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
@@ -22,7 +24,7 @@
 				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Bast_Scire" or
-				defName="Bast_Alluvium"  or defName="Bast_Snipping_Snail"]/statBases</xpath>
+				defName="Bast_Alluvium"  or defName="Bast_Snipping_Snail" or defName="Bast_Soul_Eater" or defName="Bast_LightningBolt"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.7</AimingAccuracy>
 					</value>
@@ -36,13 +38,28 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="Bast_Bastyon" or defName="Bast_Blazing_Felidae"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="Bast_Bastyon" or defName="Bast_Blazing_Felidae" or defName="Bast_Svarog"]/statBases</xpath>
 					<value>
-						<AimingAccuracy>6.7</AimingAccuracy>
+						<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+						<AimingAccuracy>1</AimingAccuracy>
 					</value>
 				</li>
 
 				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_LightningBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<damageDef>Bast_Electric</damageDef>
+						<damageAmountBase>8</damageAmountBase>
+						<stoppingPower>0.5</stoppingPower>
+						<speed>30</speed>
+						<armorPenetrationSharp>50</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Bast_SnippingSnailAcid"]/projectile</xpath>
