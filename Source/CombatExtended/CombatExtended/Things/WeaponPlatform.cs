@@ -345,6 +345,18 @@ namespace CombatExtended
                     _graphicFlipCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshFlipTop));
                 }
             }
-        }        
+        }
+
+        /// <summary>
+        /// return the edit gzimo if this weapon is in storage and not on some pawn
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (var g in base.GetGizmos())
+                yield return g;
+            if (this.Spawned)
+                yield return new GizmoEditAttachments() { weapon = this };
+        }
     }
 }

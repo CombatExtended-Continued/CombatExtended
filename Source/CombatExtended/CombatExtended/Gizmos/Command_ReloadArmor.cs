@@ -13,6 +13,16 @@ namespace CombatExtended
     {
         public CompReloadable compReloadable;
 
+        public override bool Visible
+        {
+            get
+            {
+                if (compReloadable?.parent?.Spawned ?? true)
+                    return false;
+                return base.Visible;
+            }
+        }
+
         public override bool GroupsWith(Gizmo other)
         {
             var order = other as Command_ReloadArmor;
@@ -38,7 +48,7 @@ namespace CombatExtended
         {
             get
             {
-		yield break;
+		        yield break;
             }
         }
 
