@@ -26,6 +26,27 @@ namespace CombatExtended
 
         #endregion
 
+        #region Reloadable
+
+        /// <summary>
+        /// Return IReloadables contained in a Thing.
+        /// </summary>
+        /// <param name="thing"></param>
+        /// <returns>Collection of reloadables</returns>
+        public static IEnumerable<IReloadable> GetReloadables(this Thing thing)
+        {
+            CompAmmoUser compAmmo =  thing.TryGetComp<CompAmmoUser>();
+            if (compAmmo != null)
+                yield return compAmmo;
+            if(thing is WeaponPlatform platform && !platform.verbManager.ammoUsers.NullOrEmpty())
+            {
+                for (int i = 0; i < platform.verbManager.ammoUsers.Count; i++)
+                    yield return platform.verbManager.ammoUsers[i];
+            }
+        }
+
+        #endregion
+
         #region Attachments
 
         /// <summary>

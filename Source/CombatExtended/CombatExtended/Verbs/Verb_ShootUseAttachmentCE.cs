@@ -108,14 +108,22 @@ namespace CombatExtended
         /// <returns>Wether available or not</returns>
         public override bool Available()
         {            
-            if (AmmoUser != null && !AmmoUser.HasMagazine)
+            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
             {
-                // if the pawn have ammo, start a reload job for this attachment.
-                if (AmmoUser.HasAmmo)
-                    AmmoUser.TryStartReload();
-                else
+                if (AmmoUser.MagazineEmpty)
+                {
+                    // if the pawn have ammo, start a reload job for this attachment.
+                    if (AmmoUser.HasAmmo)
+                        AmmoUser.TryStartReload();
+                    else
+                        AmmoUser.Notify_OutOfAmmo();
+                    return false;
+                }
+                else if (!AmmoUser.HasAmmo)
+                {
                     AmmoUser.Notify_OutOfAmmo();
-                return false;
+                    return false;
+                }
             }
             return Enabled && base.Available();
         }
@@ -132,13 +140,17 @@ namespace CombatExtended
         public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false)
         {
             // check reloading before starting
-            if (AmmoUser != null)
+            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
             {
-                if (!AmmoUser.HasMagazine)
-                {
-                    AmmoUser.TryStartReload();
-                    return false;
+                if (AmmoUser.HasMagazine) {
+                    if (AmmoUser.MagazineEmpty)
+                    {
+                        AmmoUser.TryStartReload();
+                        return false;
+                    }
                 }
+                else if (!AmmoUser.HasAmmo)                
+                    return false;                
             }
             return base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire);
         }
@@ -149,7 +161,7 @@ namespace CombatExtended
         /// <returns>Wether launching the projectiles was successful</returns>
         public override bool TryCastShot()
         {
-            if (AmmoUser != null)
+            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
             {
                 // try reduce the magazine projectile count
                 if (!AmmoUser.TryReduceAmmoCount(VerbPropsCE.ammoConsumedPerShotCount))                
@@ -162,9 +174,9 @@ namespace CombatExtended
                 // try start reloading if this attachment uses ammo
                 if (AmmoUser != null)
                 {
-                    if (!AmmoUser.HasMagazine && AmmoUser.HasAmmo)
+                    if (AmmoUser.MagazineEmpty && AmmoUser.HasAmmo)
                         AmmoUser.TryStartReload();
-                    else if (!AmmoUser.HasMagazine)
+                    else if (AmmoUser.MagazineEmpty)
                         AmmoUser.Notify_OutOfAmmo();
                 }
                 // draw empty casing

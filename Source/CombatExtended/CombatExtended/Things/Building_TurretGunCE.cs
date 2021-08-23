@@ -136,8 +136,8 @@ namespace CombatExtended
             }
         }
 
-        public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
-        public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
+        public bool EmptyMagazine => CompAmmo?.MagazineEmpty ?? false;
+        public bool FullMagazine => CompAmmo?.MagazineFull ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
@@ -563,11 +563,8 @@ namespace CombatExtended
             // Ammo gizmos
             if (CompAmmo != null && (PlayerControlled || Prefs.DevMode))
             {
-                foreach (Command com in CompAmmo.CompGetGizmosExtra())
-                {
-                    if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
-                        (com as GizmoAmmoStatus).prefix = "DEV: ";
-
+                foreach (Gizmo com in CompAmmo.CompGetGizmosExtra())
+                {                    
                     yield return com;
                 }
             }
