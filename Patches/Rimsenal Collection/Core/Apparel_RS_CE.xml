@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8 "?>
 
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-    <mods>
+		
+	<mods>
 		<li>Rimsenal - Core</li>
     </mods>
 		<match Class="PatchOperationSequence">
@@ -41,6 +42,161 @@
 				</value>
 			</li>
 
+			<!-- ========== modular security armor =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>6</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>25</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/equippedStatOffsets</xpath>
+				<value>
+						<CarryWeight>30</CarryWeight>
+						<CarryBulk>12</CarryBulk>
+
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+
+						<!-- ========== MBPSKit(ArmourMaterial) =========== -->
+
+						
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Plasteel</xpath>
+							<match Class="PatchOperationSequence">
+							<operations>
+
+								<li Class="PatchOperationRemove">
+									<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Plasteel</xpath>
+								</li>
+							</operations>
+							</match>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Steel</xpath>
+							<match Class="PatchOperationSequence">
+							<operations>
+
+								<li Class="PatchOperationRemove">
+								<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Steel</xpath>
+								</li>
+							</operations>
+							</match>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Uranium</xpath>
+							<match Class="PatchOperationSequence">
+							<operations>
+
+								<li Class="PatchOperationRemove">
+									<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/Uranium</xpath>
+								</li>		
+							</operations>
+							</match>
+						</li>
+
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/DevilstrandCloth</xpath>
+							<match Class="PatchOperationSequence">
+							<operations>
+
+								<li Class="PatchOperationRemove">
+									<xpath>/Defs/thingDef[defName="MBPSKit"]/costList/DevilstrandCloth</xpath>
+								</li>
+							</operations>
+							</match>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/thingDef[defName="MBPSKit"]/costList</xpath>
+							<value>
+								<Plasteel>80</Plasteel>
+								<DevilstrandCloth>35</DevilstrandCloth>
+								<Steel>130</Steel>	
+							</value>
+						</li>
+
+
+
+
+			<!-- ========== securityhelmet =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>3</Bulk>
+					<WornBulk>1</WornBulk>
+					<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityHelmet"]/statBases/Mass</xpath>
+				<value>
+					<Mass>3</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityHelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityHelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>20</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_SecurityHelmet"]/apparel/layers</xpath>
+				<value>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
 			<!-- ========== Pioneer Armor =========== -->
 
 			<li Class="PatchOperationAdd">
@@ -71,27 +227,14 @@
 					<ArmorRating_Blunt>27</ArmorRating_Blunt>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/costList/Plasteel</xpath>
-				<value>
-					<Plasteel>80</Plasteel>
-					<DevilstrandCloth>35</DevilstrandCloth>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/costList/Steel</xpath>
-				<value>
-					<Steel>130</Steel>
-				</value>
-			</li>
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_PioneerArmor"]/equippedStatOffsets</xpath>
 				<value>
-					<CarryWeight>45</CarryWeight>
-					<CarryBulk>15</CarryBulk>
+		
+						<CarryWeight>60</CarryWeight>
+						<CarryBulk>15</CarryBulk>
+
 				</value>
 			</li>
 
@@ -102,6 +245,8 @@
 					<li>Feet</li>
 				</value>
 			</li>
+
+
 
 
 			<!-- ========== Pioneer Helmet =========== -->
@@ -135,15 +280,15 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/costList</xpath>
 				<value>
-					<Plasteel>25</Plasteel>
-					<DevilstrandCloth>10</DevilstrandCloth>
+					<costList>
+						<Plasteel>25</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</costList>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_PioneerH"]/apparel/layers</xpath>
 				<value>
@@ -153,22 +298,233 @@
 				</value>
 			</li>
 			
+
+			<!-- ========== NomadArmor =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/statBases</xpath>
+				<value>
+					<Bulk>35</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>35</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/equippedStatOffsets</xpath>
+				<value>
+		
+						<CarryWeight>40</CarryWeight>
+						<CarryBulk>15</CarryBulk>
+
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<!-- ========== NomadHelmet =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+					<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/statBases/Mass</xpath>
+				<value>
+					<Mass>3</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_NomadH"]/apparel/layers</xpath>
+				<value>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
+
+			<!-- ========== MedicArmor =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/statBases</xpath>
+				<value>
+					<Bulk>35</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>35</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/equippedStatOffsets</xpath>
+				<value>
+		
+						<CarryWeight>50</CarryWeight>
+						<CarryBulk>15</CarryBulk>
+
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+
+			<!-- ========== MedicHelmet =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+					<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/statBases/Mass</xpath>
+				<value>
+					<Mass>3</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>24</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_MedicH"]/apparel/layers</xpath>
+				<value>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+					<li>MiddleHead</li>
+				</value>
+			</li>
+
 			<!-- ========== Drop Suit =========== -->
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/statBases/Mass</xpath>
 				<value>
 					<Mass>60</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/statBases</xpath>
+				<value>
 					<Bulk>90</Bulk>
 					<WornBulk>18</WornBulk>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_Dropsuit"]/costList</xpath>
 				<value>
-					<Plasteel>180</Plasteel>
-					<DevilstrandCloth>40</DevilstrandCloth>
+					<costList>
+						<Plasteel>130</Plasteel>
+						<DevilstrandCloth>40</DevilstrandCloth>
+						<Steel>40</Steel>
+						<Chemfuel>40</Chemfuel>
+						<ComponentSpacer>5</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
 			
@@ -202,18 +558,32 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_Dropsuit"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+					<value>
+						<maxCharges>6</maxCharges>
+					</value>
+			</li>
+
 			<!-- ========== Dropsuit Helmet =========== -->
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>5</Bulk>
+					
 					<Mass>5</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
 					<WornBulk>1</WornBulk>
 					<NightVisionEfficiency_Apparel>0.65</NightVisionEfficiency_Apparel> 
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
@@ -234,15 +604,18 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/costList</xpath>
 				<value>
-					<Plasteel>60</Plasteel>
-					<DevilstrandCloth>20</DevilstrandCloth>
+					<costList>
+						<Plasteel>60</Plasteel>
+						<DevilstrandCloth>20</DevilstrandCloth>
+						<Steel>20</Steel>
+						<ComponentSpacer>2</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_DropsuitH"]/apparel/layers</xpath>
 				<value>
@@ -251,14 +624,21 @@
 					<li>MiddleHead</li>
 				</value>
 			</li>
-			
+
 			<!-- ========== Nervesuit =========== -->
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/statBases/Mass</xpath>
 				<value>
-					<Bulk>75</Bulk>
+					
 					<Mass>20</Mass>
+					
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/statBases</xpath>
+				<value>
+					<Bulk>75</Bulk>
 					<WornBulk>10</WornBulk>
 				</value>
 			</li>
@@ -276,12 +656,16 @@
 					<CarryBulk>10</CarryBulk>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_Strikesuit"]/costList</xpath>
 				<value>
-					<Plasteel>120</Plasteel>
-					<DevilstrandCloth>40</DevilstrandCloth>
+					<costList>
+						<Plasteel>120</Plasteel>
+						<DevilstrandCloth>40</DevilstrandCloth>
+						<Steel>80</Steel>
+						<ComponentSpacer>6</ComponentSpacer>
+						<Chemfuel>150</Chemfuel>
+					</costList>
 				</value>
 			</li>
 			
@@ -310,7 +694,6 @@
 					<NightVisionEfficiency_Apparel>0.9</NightVisionEfficiency_Apparel> 
 				</value>
 			</li>
-
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
@@ -332,15 +715,18 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/costList</xpath>
 				<value>
-					<Plasteel>35</Plasteel>
-					<DevilstrandCloth>10</DevilstrandCloth>
+					<costList>
+						<Plasteel>35</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+						<Steel>15</Steel>
+						<ComponentSpacer>2</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_StrikesuitH"]/apparel/layers</xpath>
 				<value>
@@ -356,11 +742,15 @@
 				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases/Mass</xpath>
 				<value>
 					<Mass>100</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases</xpath>
+				<value>
 					<Bulk>120</Bulk>
 					<WornBulk>30</WornBulk>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
@@ -373,30 +763,25 @@
 					<ArmorRating_Blunt>70</ArmorRating_Blunt>
 				</value>
 			</li>
-			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/costList</xpath>
+				<value>
+					<costList>
+						<Plasteel>225</Plasteel>
+						<DevilstrandCloth>60</DevilstrandCloth>
+						<Uranium>70</Uranium>
+						<Steel>40</Steel>
+						<ComponentSpacer>3</ComponentSpacer>
+					</costList>
+				</value>
+			</li>
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/equippedStatOffsets</xpath>
 				<value>
-					<CarryWeight>95</CarryWeight>
+					<CarryWeight>110</CarryWeight>
 					<CarryBulk>5</CarryBulk>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/costList/Plasteel</xpath>
-				<value>
-					<Plasteel>225</Plasteel>
-					<DevilstrandCloth>60</DevilstrandCloth>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>70</Uranium>
-				</value>
-			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_AssaultArmor"]/apparel/bodyPartGroups</xpath>
 				<value>
@@ -404,7 +789,6 @@
 					<li>Feet</li>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationConditional">
 				<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/verbs</xpath>
 				<match Class="PatchOperationSequence">
@@ -419,7 +803,6 @@
 								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<onlyManualCast>True</onlyManualCast>
-								<warmupTime>1.5</warmupTime>
 								<range>40</range>
 								<minRange>5</minRange>
 								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
@@ -437,7 +820,6 @@
 						</verbs>
 					</value>
 				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/thingDef[defName="Apparel_AssaultArmor"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
 					<value>
@@ -462,6 +844,11 @@
 				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/statBases/Mass</xpath>
 				<value>
 					<Mass>10</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/statBases</xpath>
+				<value>
 					<Bulk>20</Bulk>
 					<WornBulk>10</WornBulk>
 					<NightVisionEfficiency_Apparel>0.3</NightVisionEfficiency_Apparel> 
@@ -486,13 +873,16 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_AssaultArmorH"]/costList</xpath>
 				<value>
-					<Plasteel>70</Plasteel>
-					<Uranium>15</Uranium>
-					<DevilstrandCloth>30</DevilstrandCloth>
+					<costList>
+						<Plasteel>70</Plasteel>
+						<Uranium>10</Uranium>
+						<DevilstrandCloth>30</DevilstrandCloth>
+						<Steel>10</Steel>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
 			
@@ -511,6 +901,13 @@
 				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases/Mass</xpath>
 				<value>
 					<Mass>70</Mass>
+					
+					
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/statBases</xpath>
+				<value>
 					<Bulk>80</Bulk>
 					<WornBulk>20</WornBulk>
 				</value>
@@ -542,15 +939,17 @@
 					<ReloadSpeed>0.5</ReloadSpeed>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/costList</xpath>
 				<value>
-					<Plasteel>175</Plasteel>
-					<DevilstrandCloth>50</DevilstrandCloth>
+					<costList>
+						<Plasteel>175</Plasteel>
+						<Uranium>15</Uranium>
+						<DevilstrandCloth>50</DevilstrandCloth>
+						<ComponentSpacer>4</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_FSArmor"]/apparel/bodyPartGroups</xpath>
 				<value>
@@ -564,6 +963,11 @@
 				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases/Mass</xpath>
 				<value>
 					<Mass>5</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases</xpath>
+				<value>
 					<Bulk>7</Bulk>
 					<WornBulk>5</WornBulk>
 					<NightVisionEfficiency_Apparel>1</NightVisionEfficiency_Apparel> 
@@ -572,13 +976,13 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					<ArmorRating_Sharp>22</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>35</ArmorRating_Blunt>
+					<ArmorRating_Blunt>33</ArmorRating_Blunt>
 				</value>
 			</li>
 
@@ -588,15 +992,17 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/costList</xpath>
 				<value>
-					<Plasteel>55</Plasteel>
-					<DevilstrandCloth>20</DevilstrandCloth>
+					<costList>
+						<Plasteel>55</Plasteel>
+						<DevilstrandCloth>20</DevilstrandCloth>
+						<Steel>20</Steel>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_FSArmorH"]/apparel/layers</xpath>
 				<value>
@@ -606,12 +1012,195 @@
 				</value>
 			</li>
 			
+
+			<!-- ========== ArtilleryArmour(KorpsRaven) =========== -->
+
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/statBases</xpath>
+				<value>
+					<Bulk>115</Bulk>
+					<WornBulk>45</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/statBases/Mass</xpath>
+				<value>
+					<Mass>115</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>27</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>50</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+					<MoveSpeed>-1</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/equippedStatOffsets</xpath>
+				<value>
+		
+						<CarryWeight>160</CarryWeight>
+						<CarryBulk>70</CarryBulk>
+
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Plasteel</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationRemove">
+						<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Plasteel</xpath>
+					</li>
+				</operations>
+				</match>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Steel</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationRemove">
+						<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Steel</xpath>
+					</li>
+				</operations>
+				</match>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Uranium</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationRemove">
+						<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/Uranium</xpath>
+				</li>		
+				</operations>
+				</match>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/DevilstrandCloth</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/thingDef[defName="Apparel_Korp"]/costList/DevilstrandCloth</xpath>
+				</li>
+				</operations>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_Korp"]/costList</xpath>
+				<value>
+     					<Plasteel>250</Plasteel>
+     				 	<Uranium>120</Uranium>
+				 	<DevilstrandCloth>100</DevilstrandCloth>
+					<Steel>15</Steel>	
+				</value>
+			</li>
+			 
+			<li Class="PatchOperationAdd">
+   			 	<xpath>/Defs/thingDef[defName="Apparel_Korp"]/comps</xpath>
+  				  <value>
+       					 <li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+				  		  <li>30</li>
+						  <li>50</li>
+				 		  <li>70</li>
+						  <li>90</li>
+						</chargeSpeeds>
+       					 </li>
+  				  </value>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/thingDef[defName="Apparel_Korp"]/verbs</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+				
+						<li Class="PatchOperationReplace">
+						<xpath>/Defs/thingDef[defName="Apparel_Korp"]/verbs</xpath>
+						<value>
+							<verbs>
+      				 			<li Class="CombatExtended.VerbPropertiesCE">
+								<label>launch crow feeder</label>
+										<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<onlyManualCast>True</onlyManualCast>
+										<warmupTime>4</warmupTime>
+										<range>75</range>
+										<!--<forcedMissRadius>5.5</forcedMissRadius> *(causing error)-->
+										<minRange>5</minRange>
+										<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+										<soundCast>Shot_IncendiaryLauncher</soundCast>
+										<soundCastTail>GunTail_Medium</soundCastTail>
+										<muzzleFlashScale>14</muzzleFlashScale>
+										<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+										<targetParams>
+											<canTargetLocations>true</canTargetLocations>
+										</targetParams>
+										<requireLineOfSight>false</requireLineOfSight>
+										<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+										<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+								</li>
+  							  </verbs>
+						</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+					<value>
+						<ammoDef>Shell_60mmMortar_HE</ammoDef>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/thingDef[defName="Apparel_Korp"]/comps/li[@Class="CompProperties_Reloadable"]/baseReloadTicks</xpath>
+					<value>
+						<baseReloadTicks>350</baseReloadTicks>
+					</value>
+				</li>
+				</operations>
+				</match>
+			</li>
+
 			<!-- ========== Reflactor Carapace =========== -->
 
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases/Mass</xpath>
 				<value>
 					<Mass>60</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/statBases</xpath>
+				<value>
 					<Bulk>100</Bulk>
 					<WornBulk>20</WornBulk>
 				</value>
@@ -641,22 +1230,18 @@
 					<CarryBulk>10</CarryBulk>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/costList</xpath>
 				<value>
-					<Plasteel>160</Plasteel>
-					<DevilstrandCloth>75</DevilstrandCloth>
+					<costList>
+						<Plasteel>160</Plasteel>
+						<DevilstrandCloth>75</DevilstrandCloth>
+						<Uranium>60</Uranium>
+						<ComponentSpacer>4</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>60</Uranium>
-				</value>
-			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmor"]/apparel/bodyPartGroups</xpath>
 				<value>
@@ -671,9 +1256,14 @@
 				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases/Mass</xpath>
 				<value>
 					<Mass>5.2</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/statBases</xpath>
+				<value>
 					<Bulk>6</Bulk>
 					<WornBulk>1.5</WornBulk>
-					<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel> 
+					<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -694,7 +1284,6 @@
 					<ArmorRating_Blunt>37.5</ArmorRating_Blunt>
 				</value>
 			</li>
-
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]</xpath>
 				<value>
@@ -703,22 +1292,17 @@
 					</equippedStatOffsets>	
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/costList</xpath>
 				<value>
-					<Plasteel>60</Plasteel>
-					<DevilstrandCloth>30</DevilstrandCloth>
+					<costList>
+						<Plasteel>60</Plasteel>
+						<DevilstrandCloth>30</DevilstrandCloth>
+						<Uranium>20</Uranium>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>20</Uranium>
-				</value>
-			</li>
-			
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_ReflactorArmorH"]/apparel/layers</xpath>
 				<value>
@@ -734,6 +1318,12 @@
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/Mass</xpath>
 				<value>
 					<Mass>65</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases</xpath>
+				<value>
 					<Bulk>100</Bulk>
 					<WornBulk>15</WornBulk>
 				</value>
@@ -741,7 +1331,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -765,19 +1355,17 @@
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/costList</xpath>
 				<value>
-					<Plasteel>145</Plasteel>
-					<DevilstrandCloth>50</DevilstrandCloth>
+					<costList>
+						<Plasteel>145</Plasteel>
+						<DevilstrandCloth>50</DevilstrandCloth>
+						<Uranium>65</Uranium>
+						<ComponentSpacer>4</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>65</Uranium>
-				</value>
-			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapace"]/apparel/bodyPartGroups</xpath>
 				<value>
@@ -792,6 +1380,11 @@
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases/Mass</xpath>
 				<value>
 					<Mass>6</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases</xpath>
+				<value>
 					<Bulk>6</Bulk>
 					<WornBulk>1</WornBulk>
 					<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel> 
@@ -800,7 +1393,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -822,22 +1415,18 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/costList</xpath>
 				<value>
-					<Plasteel>50</Plasteel>
-					<DevilstrandCloth>10</DevilstrandCloth>
+					<costList>
+						<Plasteel>50</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+						<Uranium>25</Uranium>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>25</Uranium>
-				</value>
-			</li>
-			
+		
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/thingDef[defName="Apparel_HazardCarapaceH"]/apparel/layers</xpath>
 				<value>
@@ -853,6 +1442,11 @@
 				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/Mass</xpath>
 				<value>
 					<Mass>60</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases</xpath>
+				<value>
 					<Bulk>65</Bulk>
 					<WornBulk>20</WornBulk>
 				</value>
@@ -860,7 +1454,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					<ArmorRating_Sharp>15</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -877,19 +1471,15 @@
 					<CarryBulk>20</CarryBulk>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/costList</xpath>
 				<value>
-					<Plasteel>145</Plasteel>
-					<DevilstrandCloth>50</DevilstrandCloth>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_CloseCombatArmor"]/costList/Uranium</xpath>
-				<value>
-					<Uranium>110</Uranium>
+					<costList>
+						<Plasteel>145</Plasteel>
+						<DevilstrandCloth>50</DevilstrandCloth>
+						<Uranium>110</Uranium>
+						<ComponentSpacer>4</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
 			
@@ -917,6 +1507,11 @@
 				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases/Mass</xpath>
 				<value>
 					<Mass>5</Mass>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/statBases</xpath>
+				<value>
 					<Bulk>5</Bulk>
 					<WornBulk>1</WornBulk>
 				</value>
@@ -940,12 +1535,14 @@
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>
-			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/costList/Plasteel</xpath>
+				<xpath>Defs/thingDef[defName="Apparel_CloseCombatHelmet"]/costList</xpath>
 				<value>
-					<Plasteel>65</Plasteel>
-					<DevilstrandCloth>20</DevilstrandCloth>
+					<costList>
+						<Plasteel>65</Plasteel>
+						<DevilstrandCloth>20</DevilstrandCloth>
+						<ComponentSpacer>1</ComponentSpacer>
+					</costList>
 				</value>
 			</li>
 			
