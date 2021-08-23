@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Skeletons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/statBases</xpath>
+			  <value>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+          			<Suppressability>0.8</Suppressability>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/statBases/ArmorRating_Sharp</xpath>
+			  <value>
+      				<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/statBases/ArmorRating_Blunt</xpath>
+			  <value>
+      				<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/statBases/ArmorRating_Heat</xpath>
+			  <value>
+      				<ArmorRating_Heat>0.4</ArmorRating_Heat>
+			  </value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/tools</xpath> 
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.3</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.3</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>3.6</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]</xpath>
+			<value>
+             	<comps />
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Skeleton_"]/comps</xpath>
+			<value>
+				<li>
+				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
