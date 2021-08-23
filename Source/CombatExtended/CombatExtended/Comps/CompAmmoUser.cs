@@ -13,7 +13,7 @@ using CombatExtended.AI;
 
 namespace CombatExtended
 {
-    public class CompAmmoUser : CompRangedGizmoGiver
+    public class CompAmmoUser : CompRangedGizmoGiver, IReloadable
     {
         #region Fields
 
@@ -154,7 +154,7 @@ namespace CombatExtended
             }
         }
 
-        public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
+        public bool MagazineEmpty => HasMagazine && CurMagCount == 0;
         public int MissingToFullMagazine
         {
             get
@@ -165,7 +165,7 @@ namespace CombatExtended
             }
         }
 
-        public bool FullMagazine
+        public bool MagazineFull
         {
             get
             {
@@ -221,6 +221,26 @@ namespace CombatExtended
                 }
             }
         }
+        public IEnumerable<AmmoDef> AvailableAmmoDefs
+        {
+            get
+            {
+                if (CompInventory != null)
+                {
+                    CompInventory.UpdateInventory();
+                    return AmmoSet.ammoTypes.Select(l => l.ammo).Where(a => CompInventory.ammoList.Any(at => at.def == a));
+                }
+                return AmmoSet.ammoTypes.Select(l => l.ammo);
+            }
+        }
+
+        public AmmoSetDef AmmoSet
+        {
+            get
+            {
+                return Props.ammoSet;
+            }
+        }        
 
         #endregion Properties
 
@@ -665,8 +685,8 @@ namespace CombatExtended
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+        {            
+            GizmoAmmoBar ammoStatusGizmo = turret == null ? new GizmoAmmoBar { weapon = this.parent } : new GizmoAmmoBar { overrideUser = this };
             yield return ammoStatusGizmo;
             var mannableComp = turret?.GetMannable();
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
@@ -706,6 +726,13 @@ namespace CombatExtended
         {
             string ammoSet = UseAmmo && Controller.settings.ShowCaliberOnGuns ? " (" + (string)Props.ammoSet.LabelCap + ") " : "";
             return label + ammoSet;
+        }
+
+        bool IReloadable.TryStartReload()
+        {
+            TryStartReload();
+
+            return true;
         }
 
         /*

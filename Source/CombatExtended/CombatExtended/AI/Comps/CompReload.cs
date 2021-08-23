@@ -19,7 +19,7 @@ namespace CombatExtended.AI
             {
                 if (useAttachment.AmmoUser == null)
                     return true;
-                if (useAttachment.AmmoUser.HasMagazine)
+                if (!useAttachment.AmmoUser.MagazineEmpty)
                     return true;
                 if (useAttachment.AmmoUser.HasAmmo && SelPawn.jobs.curJob?.def != CE_JobDefOf.ReloadWeaponAttachment)                
                     useAttachment.AmmoUser.TryStartReload();

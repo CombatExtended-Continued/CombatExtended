@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
@@ -6,7 +7,7 @@ using Verse.AI;
 
 namespace CombatExtended
 {
-    public class Attachment_AmmoUser : IExposable
+    public class Attachment_AmmoUser : IExposable, IReloadable
     {
         private int curMagCountInt = 0;
         private AmmoDef currentAmmoInt = null;
@@ -107,7 +108,7 @@ namespace CombatExtended
             set
             {
                 selectedAmmo = value;
-                if (!HasMagazine && CurrentAmmo != value)                
+                if (!HasMagazine && currentAmmoInt != value)                
                     currentAmmoInt = value;                
             }
         }
@@ -128,7 +129,17 @@ namespace CombatExtended
         {
             get
             {
-                return CurMagCount > 0;
+                return MagSize > 0;
+            }
+        }
+        /// <summary>
+        /// Return the magazine size
+        /// </summary>
+        public int MagSize
+        {
+            get
+            {
+                return AmmoProps.magazineSize;
             }
         }
         /// <summary>
@@ -168,7 +179,7 @@ namespace CombatExtended
         {
             get
             {
-                return HasMagazine || HasAmmo;
+                return (HasMagazine && !MagazineEmpty) || (HasAmmo && !HasMagazine);
             }
         }
         /// <summary>
@@ -178,7 +189,27 @@ namespace CombatExtended
         {
             get
             {
-                return HasMagazine && Holder != null;
+                return !MagazineEmpty && Holder != null;
+            }
+        }
+        /// <summary>
+        /// return the ammoSet used by this reloadable.
+        /// </summary>
+        public AmmoSetDef AmmoSet
+        {
+            get
+            {
+                return AmmoProps.ammoSet;
+            }
+        }
+        /// <summary>
+        /// Return available ammo
+        /// </summary>
+        public IEnumerable<AmmoDef> AvailableAmmoDefs
+        {
+            get
+            {
+                return AmmoSet.ammoTypes.Select(l => l.ammo).Where(a => CompInventory.ammoList.Any(at => at.def == a));
             }
         }
 
@@ -200,7 +231,8 @@ namespace CombatExtended
         /// </summary>
         public bool TryReduceAmmoCount(int ammoConsumedPerShot = 1)
         {
-            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;                      
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
+            
             // If magazine is empty, return false
             if (curMagCountInt <= 0)
             {
@@ -209,7 +241,7 @@ namespace CombatExtended
             }
             // Reduce ammo count and update inventory
             CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
-            if (!HasAmmo && !HasMagazine)
+            if (!HasAmmo && MagazineEmpty)
                 Notify_OutOfAmmo();
             else if (curMagCountInt == 0)
                 TryStartReload();            
@@ -271,16 +303,19 @@ namespace CombatExtended
                 return false;
             bool success = false;
             // if the current magazine is not empty and has a different ammo type, unload the current mag.
-            if(ammoThing.def != currentAmmoInt && HasMagazine)            
+            if(ammoThing.def != currentAmmoInt && !MagazineEmpty)            
                 UnloadAmmo();
             // we check reloadOneAtATime if we are reloading one projectile at a time
-            currentAmmoInt = selectedAmmo;           
+            currentAmmoInt = ammoThing.def as AmmoDef;
+            if (currentAmmoInt != SelectedAmmo)
+                SelectedAmmo = currentAmmoInt;            
             int num = AmmoProps.reloadOneAtATime ? 1 : Math.Min(ammoThing.stackCount, AmmoProps.magazineSize - curMagCountInt);
             curMagCountInt += num;
             ammoThing.stackCount -= num;
             // delete ammo if successfull and no ammo left
             if (ammoThing.stackCount <= 0)
                 ammoThing.Destroy();
+            CompInventory?.UpdateInventory();
             return !MagazineFull && AmmoProps.reloadOneAtATime && success && !ammoThing.Destroyed && ammoThing.stackCount > 0;
         }
 
@@ -291,9 +326,10 @@ namespace CombatExtended
         {
             Thing ammo = ThingMaker.MakeThing(CurrentAmmo);
             ammo.stackCount = CurMagCount;
+            currentAmmoInt = null;
             curMagCountInt = 0;
             // add ammo to pawn inventory
-            CompInventory.container.TryAddOrTransfer(ammo, canMergeWithExistingStacks: true);
+            CompInventory.container.TryAddOrTransfer(ammo, CurMagCount, canMergeWithExistingStacks: true);
             CompInventory.UpdateInventory();
         }
 
