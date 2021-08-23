@@ -80,11 +80,11 @@ namespace CombatExtended
                     rect.y += rect.height;
                 }
             });
-            GUIUtility.ExecuteSafeGUIAction(() =>
-            {
-                GUI.color = borderColor;
-                Widgets.DrawBox(inRect, 1);
-            });
+            //GUIUtility.ExecuteSafeGUIAction(() =>
+            //{
+            //    GUI.color = borderColor;
+            //    Widgets.DrawBox(inRect, 1);
+            //});
             return Mouse.IsOver(inRect) ? new GizmoResult(GizmoState.Mouseover) : new GizmoResult(GizmoState.Clear);
         }
 
