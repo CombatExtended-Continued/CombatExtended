@@ -16,6 +16,7 @@ namespace CombatExtended
 
         // lower priority = less likely to be done.  Need to give this a priority below JobGiver_Update Loadout's high priority setting.
         const float reloadPriority = 9.1f; // in JobGiver_UpdateLoadout, 9.2 is high priority, 3 is lower priority.
+        const float reloadAttachmentPriority = 7.0f;
 
         #endregion Fields
 
@@ -33,13 +34,14 @@ namespace CombatExtended
             // this MUST not even try to do anything if the inventory state isn't in a good state.
             // There are 3 states that JobGiver_UpdateLoadout can end in and I need to know which of those 3 states are active.
 
-            // would be nice to communicate with JobGiver_UpdateLoadout but it will suffice to set our priority below theirs.
-
-            ThingWithComps ignore1;
-            AmmoDef ignore2;
-            if (!pawn.Drafted && DoReloadCheck(pawn, out ignore1, out ignore2))
-                return reloadPriority;
-
+            // would be nice to communicate with JobGiver_UpdateLoadout but it will suffice to set our priority below theirs.            
+            if (!pawn.Drafted)
+            {
+                if (DoReloadCheck(pawn, out _, out _))
+                    return reloadPriority;
+                if (DoAttachmentReloadChecks(pawn))
+                    return reloadAttachmentPriority;
+            }
             return 0.0f;
         }
 
@@ -67,12 +69,58 @@ namespace CombatExtended
                 // Get the reload job from the comp.
                 reloadJob = comp.TryMakeReloadJob();
             }
-            return reloadJob;
+            // Try to reload any attachments            
+            return reloadJob ?? TryReloadAttachments(pawn);
         }
 
         #endregion
 
         #region Methods
+
+
+        /// <summary>
+        /// Attempt to get a reload job for attachments.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <returns>Attachment reload job</returns>
+        private Job TryReloadAttachments(Pawn pawn)
+        {
+            if (pawn?.equipment?.Primary == null)
+                return null;
+            WeaponPlatform platform = pawn.equipment.Primary as WeaponPlatform;
+            if (platform == null)
+                return null;
+            if (platform.verbManager?.ammoUsers?.NullOrEmpty() ?? true)
+                return null;
+            foreach(Attachment_AmmoUser ammoUser in platform.verbManager.ammoUsers)
+            {
+                if (ammoUser.HasAmmo && !ammoUser.MagazineFull)                
+                    return ammoUser.TryGetReloadingJob();                                    
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Return wether an attachment reload job can be started.
+        /// </summary>
+        /// <param name="pawn">Pawn</param>
+        /// <returns>wether any attachments need reloading</returns>
+        private bool DoAttachmentReloadChecks(Pawn pawn)
+        {
+            if (pawn?.equipment?.Primary == null)
+                return false;
+            WeaponPlatform platform = pawn.equipment.Primary as WeaponPlatform;
+            if (platform == null)
+                return false;
+            if (platform.verbManager?.ammoUsers?.NullOrEmpty() ?? true)
+                return false;
+            foreach (Attachment_AmmoUser ammoUser in platform.verbManager.ammoUsers)
+            {
+                if (ammoUser.HasAmmo && ammoUser.CurMagCount == 0)
+                    return true;
+            }
+            return false;
+        }
 
         /* Rough Algorithm
 		 * Need Things so the collection of ammo users that use magazines.  Also need a collection of ammo (ThingDef is OK here).

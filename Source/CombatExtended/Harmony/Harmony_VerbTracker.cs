@@ -3,6 +3,7 @@ using Verse;
 using HarmonyLib;
 using System.Reflection.Emit;
 using System.Reflection;
+using System.Linq;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -103,6 +104,62 @@ namespace CombatExtended.HarmonyCE
 
                     yield return instruction;
                 }
+            }
+        }
+
+        /* 
+         * This patch is used to see if we need to hide a verb command (attach gizmo) for verbs that are not active
+         * 
+         * the patch will insert the call here in VerbTracker.GetVerbsCommands
+         * 
+         * for (int i = 0; i < verbs.Count; i++)
+         * {
+         *      Verb verb = verbs[i];
+         *      if (verb.verbProps.hasStandardCommand && <code inserted here>ShouldGetCommand(verb)</code inserted here>)
+         *      {
+         *          yield return CreateVerbTargetCommand(ownerThing, verb);
+         *      }
+         * }         
+         */
+        [HarmonyPatch]
+        public class Harmony_VerbTracker_GetVerbsCommands
+        {
+            private static FieldInfo fHasStandardCommand = AccessTools.Field(typeof(VerbProperties), nameof(VerbProperties.hasStandardCommand));
+
+            public static MethodBase TargetMethod()
+            {
+                foreach (var t in typeof(VerbTracker).GetNestedTypes(AccessTools.all))
+                    Log.Message(t.Name);
+                return AccessTools.Method(typeof(VerbTracker).GetNestedTypes(AccessTools.all).First(t => t.Name.Contains("GetVerbsCommands")), "MoveNext");
+            }
+
+            public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+            {
+                List<CodeInstruction> codes = instructions.ToList();
+                bool finished = false;
+                for(int i =0;i < codes.Count; i++)
+                {
+                    yield return codes[i];
+
+                    if (!finished && i > 1)
+                    {
+                        if(codes[i - 1].opcode == OpCodes.Ldfld && codes[i - 1].OperandIs(fHasStandardCommand))
+                        {
+                            object l1 = codes[i].operand;                            
+                            finished = true;                            
+                            yield return new CodeInstruction(OpCodes.Ldloc_2);
+                            yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_VerbTracker_GetVerbsCommands), nameof(ShouldGetCommand)));
+                            yield return new CodeInstruction(OpCodes.Brfalse_S, l1);
+                        }
+                    }                    
+                }
+            }
+
+            private static bool ShouldGetCommand(Verb verb)
+            {
+                if(verb is Verb_ShootUseAttachment useAttachment)                
+                    return useAttachment.Enabled;                
+                return true;
             }
         }
 

@@ -160,7 +160,7 @@ namespace CombatExtended
         /// <summary>
         /// Used to to cache the stat modifiers in links so we don't have to search for what is overriden
         /// </summary>
-        public void PrepareStats()
+        public void Prepare()
         {
             if (attachmentLinks == null)
             {
@@ -238,6 +238,14 @@ namespace CombatExtended
                 }
                 // offset the textures
                 link.PrepareTexture(this);
+
+                // add the verb form the attachment to the main weapon
+                if (link.attachment.attachmentVerb != null)
+                {
+                    VerbPropertiesCE verb = link.attachment.attachmentVerb.verb;
+                    verb.requiresAttachment = link.attachment;                    
+                    verbs.Add(verb);
+                }
             }
         }
     }

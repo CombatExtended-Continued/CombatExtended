@@ -53,6 +53,7 @@ namespace CombatExtended
                 return 0;
             }
         }
+
         public int MagSize
         {
             get
@@ -60,6 +61,7 @@ namespace CombatExtended
                 return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
             }
         }
+
         public int CurMagCount
         {
             get

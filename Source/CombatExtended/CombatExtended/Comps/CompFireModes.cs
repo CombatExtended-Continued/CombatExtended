@@ -53,11 +53,7 @@ namespace CombatExtended
         private Verb Verb
         {
             get
-            {
-                if(parent is WeaponPlatform platform)
-                {
-
-                }
+            {                
                 if (verbInt == null)
                 {
                     CompEquippable compEquippable = parent.TryGetComp<CompEquippable>();
