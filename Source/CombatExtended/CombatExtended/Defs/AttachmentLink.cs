@@ -34,14 +34,21 @@ namespace CombatExtended
             }
         }
 
+
+        /// <summary>
+        /// Wether the attachmnet uses an outline
+        /// </summary>
         public bool HasOutline
         {
             get
             {
-                return attachment.outlineGraphicData != null;
+                return HasAttachmentMat && attachment.outlineGraphicData != null;
             }
         }
 
+        /// <summary>
+        /// Wether the attachmnet has any graphic data
+        /// </summary>
         public bool HasAttachmentMat
         {
             get
@@ -50,6 +57,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the actual attachment mat.
+        /// </summary>
         public Material AttachmentMat
         {
             get
@@ -58,6 +68,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the attachment outline.
+        /// </summary>
         public Material OutlineMat
         {
             get
@@ -66,6 +79,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the drawOffset.
+        /// </summary>
         public bool HasDrawOffset
         {
             get

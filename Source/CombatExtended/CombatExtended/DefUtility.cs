@@ -56,7 +56,7 @@ namespace CombatExtended
 
             // Prepare weaponPlatforms
             foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
-                def.PrepareStats();            
+                def.Prepare();            
         }
 
         /// <summary>
@@ -204,22 +204,28 @@ namespace CombatExtended
 
             isAOEArray[def.index] = isAOEArray[def.index]
                 || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
-                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
-                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
+                || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive) && v.verbClass != typeof(Verb_ShootUseAttachment)) ?? false)
+                || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse) && v.verbClass != typeof(Verb_ShootUseAttachment)) ?? false)
                 || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
 
-            float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
+            //
+            //float ticksBetweenBurstShots = def.verbs.FirstOrFallback(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null)?.ticksBetweenBurstShots ?? -1;
+            float ticksBetweenBurstShots = def.verbs[0]?.ticksBetweenBurstShots ?? -1;
+            if (ticksBetweenBurstShots != -1 && !def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots });
 
-            float burstShotCount = def.verbs.Max(v => v.burstShotCount);
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
+            //
+            //float burstShotCount = def.verbs.FirstOrFallback(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null)?.burstShotCount ?? -1;
+            float burstShotCount = def.verbs[0]?.burstShotCount ?? -1;
+            if (burstShotCount != -1 && !def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.BurstShotCount, value = burstShotCount });
 
-            float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);            
-            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
+            //
+            //float recoil = (def.verbs.FirstOrFallback(v => v is VerbPropertiesCE propCE && propCE.requiresAttachment == null) as VerbPropertiesCE)?.recoilAmount ?? -1;
+            float recoil = (def.verbs[0] as VerbPropertiesCE)?.recoilAmount ?? -1;
+            if (recoil != -1 && !def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.Recoil, value = recoil });
-                        
+
             float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
                 def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.ReloadTime, value = reloadTime });            

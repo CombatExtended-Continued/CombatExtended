@@ -474,57 +474,46 @@ namespace CombatExtended
                         }
                     }
                 }
-                /*
-                if (!pawn.Faction.IsPlayer && pawn.apparel != null && priority == WorkPriority.Apparel)
+                if(pawn.equipment?.Primary is WeaponPlatform platform && !platform.verbManager.ammoUsers.NullOrEmpty())
                 {
-                    if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Torso))
+                    foreach (Attachment_AmmoUser ammoUser in platform.verbManager.ammoUsers)
                     {
-                        Apparel apparel = this.FindGarmentCoveringPart(pawn, BodyPartGroupDefOf.Torso);
-                        if (apparel != null)
+                        if (ammoUser.HasAmmoOrMagazine)
+                            continue;
+                        AmmoDef selectedAmmo = ammoUser.SelectedAmmo;
+                        Thing ammoThing = GenClosest.ClosestThingReachable(pawn.Position,
+                            pawn.Map, ThingRequest.ForDef(selectedAmmo),
+                            PathEndMode.Touch, TraverseParms.For(pawn),
+                            maxDistance: 50,
+                            (t) => pawn.CanReserve(t, 1, t.stackCount, null, false) && !t.IsForbidden(pawn));
+                        if(ammoThing != null && inventory.CanFitInInventory(ammoThing, out int count))
                         {
-                            int numToapparel = 0;
-                            if (inventory.CanFitInInventory(apparel, out numToapparel))
-                            {
-                                return JobMaker.MakeJob(JobDefOf.Wear, apparel)
-                                {
-                                    ignoreForbidden = true
-                                };
-                            }
+                            if (count > 15)
+                                count = 15;
+                            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, ammoThing);
+                            job.count = Mathf.RoundToInt(count * 0.8f);
+                            return job;
                         }
-                    }
-                    if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.Legs))
-                    {
-                        Apparel apparel2 = this.FindGarmentCoveringPart(pawn, BodyPartGroupDefOf.Legs);
-                        if (apparel2 != null)
+                        foreach (AmmoLink link in ammoUser.AmmoProps.ammoSet.ammoTypes)
                         {
-                            int numToapparel2 = 0;
-                            if (inventory.CanFitInInventory(apparel2, out numToapparel2))
+                            if (link.ammo == selectedAmmo)
+                                continue;
+                            ammoThing = GenClosest.ClosestThingReachable(pawn.Position,
+                                pawn.Map, ThingRequest.ForDef(link.ammo),
+                                PathEndMode.Touch, TraverseParms.For(pawn),
+                                maxDistance: 50,
+                                (t) => pawn.CanReserve(t, 1, t.stackCount, null, false) && !t.IsForbidden(pawn));
+                            if (ammoThing != null && inventory.CanFitInInventory(ammoThing, out count))
                             {
-                                return JobMaker.MakeJob(JobDefOf.Wear, apparel2)
-                                {
-                                    ignoreForbidden = true
-                                };
-                            }
-                        }
-                    }
-                    if (!pawn.apparel.BodyPartGroupIsCovered(BodyPartGroupDefOf.FullHead))
-                    {
-                        Apparel apparel3 = this.FindGarmentCoveringPart(pawn, BodyPartGroupDefOf.FullHead);
-                        if (apparel3 != null)
-                        {
-                            int numToapparel3 = 0;
-                            if (inventory.CanFitInInventory(apparel3, out numToapparel3))
-                            {
-                                return JobMaker.MakeJob(JobDefOf.Wear, apparel3)
-                                {
-                                    ignoreForbidden = true,
-                                    locomotionUrgency = LocomotionUrgency.Sprint
-                                };
+                                if (count > 15)
+                                    count = 15;
+                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, ammoThing);
+                                job.count = Mathf.RoundToInt(count * 0.8f);
+                                return job;
                             }
                         }
                     }
                 }
-                */
                 return null;
             }
             return null;

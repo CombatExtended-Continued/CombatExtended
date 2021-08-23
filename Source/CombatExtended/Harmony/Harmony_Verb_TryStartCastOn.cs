@@ -71,7 +71,7 @@ namespace CombatExtended.HarmonyCE
                 return true; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
 
             // we got work to do at this point.
-            // Try starting the reload job.
+            // Try starting the reload job.            
             gun.TryStartReload();
             return false;
         }

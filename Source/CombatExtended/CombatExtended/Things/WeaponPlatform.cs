@@ -10,15 +10,16 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps
-    {        
-        public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();
+    {
+        public WeaponPlatform_VerbManager verbManager;
+        public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();        
 
         private Quaternion drawQat;
         private List<WeaponPlatformDef.WeaponGraphicPart> _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
-
+        
         private List<AttachmentDef> _additionList = new List<AttachmentDef>();
         private List<AttachmentDef> _removalList = new List<AttachmentDef>();
-        private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();
+        private List<AttachmentDef> _targetConfig = new List<AttachmentDef>();        
 
         /// <summary>
         /// The config that this weapon should have. Used for billing.
@@ -59,18 +60,7 @@ namespace CombatExtended
             {                                
                 return _additionList.Count == 0 && _removalList.Count == 0;
             }
-        }
-
-        private CompEquippable _compEquippable;
-        public CompEquippable CompEquippable
-        {
-            get
-            {
-                if (_compEquippable == null)
-                    _compEquippable = GetComp<CompEquippable>();
-                return _compEquippable;
-            }
-        }
+        }      
 
         /// <summary>
         /// The wielder pawn
@@ -80,12 +70,12 @@ namespace CombatExtended
             get
             {
                 if (false
-                    || CompEquippable == null
-                    || CompEquippable.PrimaryVerb == null
-                    || CompEquippable.PrimaryVerb.caster == null
-                    || ((CompEquippable?.parent?.ParentHolder as Pawn_EquipmentTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
+                    || Equippable == null
+                    || Equippable.PrimaryVerb == null
+                    || Equippable.PrimaryVerb.caster == null
+                    || ((Equippable?.parent?.ParentHolder as Pawn_InventoryTracker)?.pawn is Pawn holderPawn && holderPawn != Equippable?.PrimaryVerb?.CasterPawn))                
                     return null;                
-                return CompEquippable.PrimaryVerb.CasterPawn;
+                return Equippable.PrimaryVerb.CasterPawn;
             }
         }
 
@@ -111,6 +101,9 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the current visible WeaponGraphicParts.
+        /// </summary>
         public List<WeaponPlatformDef.WeaponGraphicPart> VisibleDefaultParts
         {
             get
@@ -132,6 +125,17 @@ namespace CombatExtended
             }
         }
 
+        private CompEquippable _equippable;
+        public CompEquippable Equippable
+        {
+            get
+            {
+                if (_equippable == null)
+                    _equippable = GetComp<CompEquippable>();
+                return _equippable;
+            }
+        }
+
         private Dictionary<AttachmentDef, AttachmentLink> _LinkByDef = new Dictionary<AttachmentDef, AttachmentLink>();
         public Dictionary<AttachmentDef, AttachmentLink> LinkByDef
         {
@@ -147,8 +151,35 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Return the original Primary verb of this weapon
+        /// </summary>
+        public Verb PrimaryVerb
+        {
+            get
+            {               
+                return verbManager.PrimaryVerb;
+            }
+        }
+       
+        /// <summary>
+        /// Return the current selected verb or the default verb for this weapon.
+        /// </summary>
+        public Verb SelectedVerb
+        {
+            get
+            {
+                return verbManager.SelectedVerb;
+            }
+            set
+            {
+                verbManager.SelectedVerb = value;
+            }
+        }
+
         public WeaponPlatform()
-        {                        
+        {
+            this.verbManager = new WeaponPlatform_VerbManager(this);
         }        
 
         public override void ExposeData()
@@ -175,6 +206,9 @@ namespace CombatExtended
                 this._targetConfig = new List<AttachmentDef>();
             if (Scribe.mode != LoadSaveMode.Saving)
                 UpdateConfiguration();
+            // scribe verb data
+            this.verbManager.ExposeData();
+            this.verbManager.InitializeAmmoManagers();
         }
 
         /// <summary>
@@ -264,7 +298,7 @@ namespace CombatExtended
             _removalList.Clear();
             _additionList.Clear();
             /*
-             * <=========   attachments =========> 
+             * <=========    attachments    =========> 
              */
             _curLinks = attachments.Select(t => LinkByDef[t.attachment]).ToArray();
 
@@ -279,7 +313,7 @@ namespace CombatExtended
                     _removalList.Add(def);                                    
             }
             /*
-             * <========= default parts =========> 
+             * <=========   default parts   =========> 
              */
             _defaultPart.Clear();
             foreach (WeaponPlatformDef.WeaponGraphicPart part in Platform.defaultGraphicParts)
@@ -291,10 +325,14 @@ namespace CombatExtended
                     _defaultPart.Add(part);
             }
             /*
-             * <========= graphic cache =========> 
+             * <=========   graphic cache   =========> 
              */
             _graphicCache = null;
             _graphicFlipCache = null;
+            /*
+             * <========= update ammo stuff =========> 
+             */
+            verbManager.InitializeAmmoManagers();
         }               
 
         /// <summary>

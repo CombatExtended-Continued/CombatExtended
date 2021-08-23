@@ -147,7 +147,7 @@ namespace CombatExtended
             }
         }
 
-        public CompChangeableProjectile CompChangeable
+        public  CompChangeableProjectile CompChangeable
         {
             get
             {
@@ -183,7 +183,7 @@ namespace CombatExtended
             }
         }
 
-        public float RecoilAmount
+        public virtual float RecoilAmount
         {
             get
             {

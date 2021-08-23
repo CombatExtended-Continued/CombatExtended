@@ -18,6 +18,10 @@ namespace CombatExtended
         /// Used for AI loadout generation
         /// </summary>
         public List<string> attachmentTags;
+        /// <summary>
+        /// Contain the configuration of any verb attached to this attachment
+        /// </summary>
+        public AttachmentVerb attachmentVerb;
 
         #endregion 
 

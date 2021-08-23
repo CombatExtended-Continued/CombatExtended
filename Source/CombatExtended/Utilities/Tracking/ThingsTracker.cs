@@ -235,10 +235,10 @@ namespace CombatExtended.Utilities
         public static bool IsValidTrackableThing(Thing thing) => IsValidTrackableDef(thing.def);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsValidTrackableDef(ThingDef def) => validDefs[def.index];
+        public static bool IsValidTrackableDef(ThingDef def) => def?.index >= 0 && def.index < validDefs.Length && validDefs[def.index];
 
         public void Notify_Spawned(Thing thing)
-        {
+        {            
             if (!IsValidTrackableThing(thing))
                 return;
             Register(thing);

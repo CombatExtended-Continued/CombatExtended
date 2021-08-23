@@ -14,6 +14,19 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
+            // try to reload attachment
+            if(verb is Verb_ShootUseAttachment useAttachment && verb.EquipmentSource is WeaponPlatform weapon)
+            {
+                if (useAttachment.AmmoUser == null)
+                    return true;
+                if (useAttachment.AmmoUser.HasMagazine)
+                    return true;
+                if (useAttachment.AmmoUser.HasAmmo && SelPawn.jobs.curJob?.def != CE_JobDefOf.ReloadWeaponAttachment)                
+                    useAttachment.AmmoUser.TryStartReload();
+                else // no ammo has been found so we need to switch to the primary weapon verb.
+                    weapon.verbManager.SelectedVerb = null;
+                return false;
+            }
             // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
             CompAmmoUser gun = verb.EquipmentSource.TryGetComp<CompAmmoUser>();
 
