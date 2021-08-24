@@ -107,25 +107,15 @@ namespace CombatExtended
         /// </summary>
         /// <returns>Wether available or not</returns>
         public override bool Available()
-        {            
-            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
+        {
+            if (!base.Available() || !Enabled)
+                return false;
+            if (WarmingUp && !(AmmoUser?.CanBeFiredNow ?? false))
             {
-                if (AmmoUser.MagazineEmpty)
-                {
-                    // if the pawn have ammo, start a reload job for this attachment.
-                    if (AmmoUser.HasAmmo)
-                        AmmoUser.TryStartReload();
-                    else
-                        AmmoUser.Notify_OutOfAmmo();
-                    return false;
-                }
-                else if (!AmmoUser.HasAmmo)
-                {
-                    AmmoUser.Notify_OutOfAmmo();
-                    return false;
-                }
+                AmmoUser.TryStartReload();
+                return false;
             }
-            return Enabled && base.Available();
+            return true;            
         }
 
         /// <summary>
@@ -139,20 +129,8 @@ namespace CombatExtended
         /// <returns></returns>
         public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false)
         {
-            // check reloading before starting
-            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
-            {
-                if (AmmoUser.HasMagazine) {
-                    if (AmmoUser.MagazineEmpty)
-                    {
-                        AmmoUser.TryStartReload();
-                        return false;
-                    }
-                }
-                else if (!AmmoUser.HasAmmo)                
-                    return false;                
-            }
-            return base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire);
+            // check reloading before starting            
+            return TryCheckAmmo() && base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire);
         }
 
         /// <summary>
@@ -161,8 +139,8 @@ namespace CombatExtended
         /// <returns>Wether launching the projectiles was successful</returns>
         public override bool TryCastShot()
         {
-            if (AmmoUser != null && AmmoUser.HasAmmoOrMagazine)
-            {
+            if (AmmoUser != null)
+            {                
                 // try reduce the magazine projectile count
                 if (!AmmoUser.TryReduceAmmoCount(VerbPropsCE.ammoConsumedPerShotCount))                
                     return false;                
@@ -171,20 +149,38 @@ namespace CombatExtended
             {
                 if (ShooterPawn != null)                
                     ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
-                // try start reloading if this attachment uses ammo
-                if (AmmoUser != null)
-                {
-                    if (AmmoUser.MagazineEmpty && AmmoUser.HasAmmo)
-                        AmmoUser.TryStartReload();
-                    else if (AmmoUser.MagazineEmpty)
-                        AmmoUser.Notify_OutOfAmmo();
-                }
+                
                 // draw empty casing
-                if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)                
-                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));                
-                return true;
+                if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
+                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
+                
+                // try start reloading if this attachment uses ammo
+                return TryCheckAmmo();
             }
             return false;
+        }
+
+        /// <summary>
+        /// Check for magazine and ammo level. Will attemp to start reload on fail.
+        /// Will check using AmmoUser.
+        /// </summary>
+        /// <returns>Wether the current verb has all ammo conditions met.</returns>
+        public bool TryCheckAmmo()
+        {            
+            if (AmmoUser != null && AmmoUser.MagazineEmpty)
+            {
+                if (AmmoUser.HasAmmo)
+                {
+                    AmmoUser.TryStartReload();
+                    return false;
+                }
+                else
+                {
+                    AmmoUser.Notify_OutOfAmmo();                           
+                    return false;
+                }
+            }                           
+            return true;
         }
     }
 }

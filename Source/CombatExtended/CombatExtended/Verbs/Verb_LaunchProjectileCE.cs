@@ -198,7 +198,7 @@ namespace CombatExtended
             }
         }
 
-        private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
+        protected bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
         private LightingTracker _lightingTracker = null;
         protected LightingTracker LightingTracker
