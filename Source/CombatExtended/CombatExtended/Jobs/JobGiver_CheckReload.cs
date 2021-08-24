@@ -85,7 +85,7 @@ namespace CombatExtended
         /// <returns>Attachment reload job</returns>
         private Job TryReloadAttachments(Pawn pawn)
         {
-            if (pawn?.equipment?.Primary == null)
+            if (pawn?.equipment?.Primary == null || pawn.stances?.curStance is Stance_Warmup)
                 return null;
             WeaponPlatform platform = pawn.equipment.Primary as WeaponPlatform;
             if (platform == null)
