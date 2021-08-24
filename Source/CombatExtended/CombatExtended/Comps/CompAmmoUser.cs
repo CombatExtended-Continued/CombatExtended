@@ -221,26 +221,42 @@ namespace CombatExtended
                 }
             }
         }
-        public IEnumerable<AmmoDef> AvailableAmmoDefs
+        public IEnumerable<ThingDefCount> AvailableAmmoDefs
         {
             get
             {
-                if (CompInventory != null)
+                if (CompInventory == null)
                 {
-                    CompInventory.UpdateInventory();
-                    return AmmoSet.ammoTypes.Select(l => l.ammo).Where(a => CompInventory.ammoList.Any(at => at.def == a));
+                    foreach (ThingDefCount item in AmmoSet.ammoTypes.Select(l => new ThingDefCount(l.ammo, 0)))
+                        yield return item;
                 }
-                return AmmoSet.ammoTypes.Select(l => l.ammo);
+                else
+                {
+                    foreach (AmmoLink link in AmmoSet.ammoTypes)
+                    {
+                        AmmoDef ammo = link.ammo;
+
+                        int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
+                        if (count > 0)
+                            yield return new ThingDefCount(ammo, count);
+                    }
+                }
             }
         }
-
         public AmmoSetDef AmmoSet
         {
             get
             {
                 return Props.ammoSet;
             }
-        }        
+        }       
+        public bool Equiped
+        {
+            get
+            {
+                return turret == null && Holder?.equipment?.Primary == parent && CompInventory != null;
+            }
+        }           
 
         #endregion Properties
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
+using Verse;
 
 namespace CombatExtended
 {
@@ -74,15 +76,28 @@ namespace CombatExtended
         /// <summary>
         /// Return available ammo
         /// </summary>
-        public abstract IEnumerable<AmmoDef> AvailableAmmoDefs
+        public abstract IEnumerable<ThingDefCount> AvailableAmmoDefs
         {
             get;
         }
-
+        /// <summary>
+        /// Indicate to GUI wether this should have unloading actions
+        /// </summary>
+        public abstract bool Equiped
+        {
+            get;
+        }       
         /// <summary>
         /// Try to start a reload job using the selected ammo and if no selected ammo is available use any ammo
         /// </summary>
         /// <returns>Wether was able to start a reload job</returns>
-        public abstract bool TryStartReload();        
+        public abstract bool TryStartReload();
+        
+        /// <summary>
+        /// Try unload the weapon and either carry the ammo or drop it.
+        /// </summary>
+        /// <param name="dropUnloadedAmmo">Wether to drop the ammo on the ground after unloading.</param>
+        /// <returns>Wether weapon was unloaded or not.</returns>
+        public abstract bool TryUnload(bool forceUnload = false);
     }
 }
