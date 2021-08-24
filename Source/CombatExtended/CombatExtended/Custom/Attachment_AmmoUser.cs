@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -93,7 +94,11 @@ namespace CombatExtended
             }
             set
             {
-                curMagCountInt = (int)Mathf.Clamp(value, 0, AmmoProps.magazineSize);
+                curMagCountInt = value;
+                if (value < 0)
+                    curMagCountInt = 0;
+                if (value > MagSize)
+                    curMagCountInt = MagSize;
             }
         }
         /// <summary>
@@ -108,7 +113,7 @@ namespace CombatExtended
             set
             {
                 selectedAmmo = value;
-                if (!HasMagazine && currentAmmoInt != value)                
+                if (MagazineEmpty && currentAmmoInt != value)                
                     currentAmmoInt = value;                
             }
         }
@@ -121,17 +126,7 @@ namespace CombatExtended
             {
                 return currentAmmoInt;
             }
-        }
-        /// <summary>
-        /// Return wether magazine is empty.
-        /// </summary>
-        public bool HasMagazine
-        {
-            get
-            {
-                return MagSize > 0;
-            }
-        }
+        }        
         /// <summary>
         /// Return the magazine size
         /// </summary>
@@ -168,20 +163,10 @@ namespace CombatExtended
         public bool HasAmmo
         {
             get
-            {                
-                return CompInventory?.ammoList.Any(t => AmmoProps.ammoSet.ammoTypes.Any(a => a.ammo == t.def)) ?? false;
+            {               
+                return CompInventory?.container.Any(t => AmmoProps.ammoSet.ammoTypes.Any(a => a.ammo == t.def)) ?? false;
             }
-        }
-        /// <summary>
-        /// Return wether the parent pawn and this weapon have usable ammo
-        /// </summary>
-        public bool HasAmmoOrMagazine
-        {
-            get
-            {
-                return (HasMagazine && !MagazineEmpty) || (HasAmmo && !HasMagazine);
-            }
-        }
+        }        
         /// <summary>
         /// Return wether this is capable of firing now
         /// </summary>
@@ -189,7 +174,7 @@ namespace CombatExtended
         {
             get
             {
-                return !MagazineEmpty && Holder != null;
+                return !MagazineEmpty;
             }
         }
         /// <summary>
@@ -234,17 +219,23 @@ namespace CombatExtended
             ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
             
             // If magazine is empty, return false
-            if (curMagCountInt <= 0)
-            {
-                CurMagCount = 0;
+            if (MagazineEmpty)
+            {                
+                if (!HasAmmo)                                                    
+                    Notify_OutOfAmmo();
+                else
+                    TryStartReload();
                 return false;
             }
             // Reduce ammo count and update inventory
             CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
-            if (!HasAmmo && MagazineEmpty)
-                Notify_OutOfAmmo();
-            else if (curMagCountInt == 0)
-                TryStartReload();            
+            if (MagazineEmpty)
+            {                
+                if (!HasAmmo)                
+                    Notify_OutOfAmmo();                                    
+                else                
+                    TryStartReload();                
+            }
             return true;
         }
 
@@ -289,7 +280,8 @@ namespace CombatExtended
         /// </summary>
         public void Notify_OutOfAmmo()
         {
-            verbManager.SelectedVerb = null;
+            if(verbManager.SelectedVerb?.verbProps == this.VerbProps)
+                verbManager.SelectedVerb = null;                        
         }
 
         /// <summary>
@@ -302,19 +294,22 @@ namespace CombatExtended
             if (ammoThing?.Destroyed ?? true)
                 return false;
             bool success = false;
+
             // if the current magazine is not empty and has a different ammo type, unload the current mag.
             if(ammoThing.def != currentAmmoInt && !MagazineEmpty)            
                 UnloadAmmo();
+
             // we check reloadOneAtATime if we are reloading one projectile at a time
-            currentAmmoInt = ammoThing.def as AmmoDef;
-            if (currentAmmoInt != SelectedAmmo)
-                SelectedAmmo = currentAmmoInt;            
+            currentAmmoInt = ammoThing.def as AmmoDef;            
+            selectedAmmo = currentAmmoInt;            
             int num = AmmoProps.reloadOneAtATime ? 1 : Math.Min(ammoThing.stackCount, AmmoProps.magazineSize - curMagCountInt);
             curMagCountInt += num;
             ammoThing.stackCount -= num;
+
             // delete ammo if successfull and no ammo left
             if (ammoThing.stackCount <= 0)
                 ammoThing.Destroy();
+
             CompInventory?.UpdateInventory();
             return !MagazineFull && AmmoProps.reloadOneAtATime && success && !ammoThing.Destroyed && ammoThing.stackCount > 0;
         }

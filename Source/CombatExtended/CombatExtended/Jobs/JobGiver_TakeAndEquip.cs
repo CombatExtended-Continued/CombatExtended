@@ -478,7 +478,7 @@ namespace CombatExtended
                 {
                     foreach (Attachment_AmmoUser ammoUser in platform.verbManager.ammoUsers)
                     {
-                        if (ammoUser.HasAmmoOrMagazine)
+                        if (ammoUser.HasAmmo || !ammoUser.MagazineEmpty)
                             continue;
                         AmmoDef selectedAmmo = ammoUser.SelectedAmmo;
                         Thing ammoThing = GenClosest.ClosestThingReachable(pawn.Position,

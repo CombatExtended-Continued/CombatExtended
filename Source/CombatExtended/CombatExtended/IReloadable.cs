@@ -35,14 +35,7 @@ namespace CombatExtended
         public abstract AmmoDef CurrentAmmo
         {
             get;
-        }
-        /// <summary>
-        /// Return wether magazine is empty.
-        /// </summary>
-        public abstract bool HasMagazine
-        {
-            get;
-        }
+        }       
         /// <summary>
         /// Return the magazine size.
         /// </summary>

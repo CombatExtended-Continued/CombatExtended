@@ -7,7 +7,7 @@ namespace CombatExtended
 {
     public class WeaponPlatform_VerbManager
     {
-        private const int VERB_EXPIRE_TICKS = 5000;
+        private const int VERB_EXPIRE_TICKS = 12000;
 
         private int altVerbIndex = -1;        
         private int altVerbExpireAt = -1;
