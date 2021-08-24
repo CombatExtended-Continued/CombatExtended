@@ -83,7 +83,7 @@ namespace CombatExtended
         /// <summary>
         /// Indicate to GUI wether this should have unloading actions
         /// </summary>
-        public abstract bool Equiped
+        public abstract bool IsEquippedGun
         {
             get;
         }       
