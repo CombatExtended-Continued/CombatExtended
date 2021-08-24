@@ -95,10 +95,8 @@ namespace CombatExtended
             set
             {
                 curMagCountInt = value;
-                if (value < 0)
-                    curMagCountInt = 0;
-                if (value > MagSize)
-                    curMagCountInt = MagSize;
+                if (value < 0) curMagCountInt = 0;
+                if (value > MagSize) curMagCountInt = MagSize;
             }
         }
         /// <summary>
@@ -190,11 +188,18 @@ namespace CombatExtended
         /// <summary>
         /// Return available ammo
         /// </summary>
-        public IEnumerable<AmmoDef> AvailableAmmoDefs
+        public IEnumerable<ThingDefCount> AvailableAmmoDefs
         {
             get
             {
-                return AmmoSet.ammoTypes.Select(l => l.ammo).Where(a => CompInventory.ammoList.Any(at => at.def == a));
+                foreach(AmmoLink link in AmmoSet.ammoTypes)
+                {
+                    AmmoDef ammo = link.ammo;
+
+                    int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
+                    if (count > 0)
+                        yield return new ThingDefCount(ammo, count);
+                }               
             }
         }
 
@@ -221,22 +226,61 @@ namespace CombatExtended
             // If magazine is empty, return false
             if (MagazineEmpty)
             {                
-                if (!HasAmmo)                                                    
-                    Notify_OutOfAmmo();
-                else
-                    TryStartReload();
+                if (!HasAmmo) Notify_OutOfAmmo();
+                else TryStartReload();
+
                 return false;
             }
             // Reduce ammo count and update inventory
-            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
+            CurMagCount = (CurMagCount - ammoConsumedPerShot < 0) ? 0 : CurMagCount - ammoConsumedPerShot;
             if (MagazineEmpty)
             {                
-                if (!HasAmmo)                
-                    Notify_OutOfAmmo();                                    
-                else                
-                    TryStartReload();                
+                if (!HasAmmo) Notify_OutOfAmmo();                                    
+                else TryStartReload();                
             }
             return true;
+        }
+
+        /// <summary>
+        /// Try to unload the weapon and either carry the ammo or drop it.
+        /// </summary>
+        /// <param name="dropUnloadedAmmo">Wether to drop the ammo on the ground after unloading.</param>
+        /// <returns>Wether weapon was unloaded or not.</returns>
+        public bool TryUnload(bool forceUnload = false)
+        {
+            if (CurrentAmmo == null || curMagCountInt == 0)
+            {
+                if (!MagazineEmpty) Log.Warning($"CE: attachment_AmmoUser failed to unload weapon with currentAmmo = null {sourceAttachment} {Holder}");
+                if (forceUnload) curMagCountInt = 0;                
+                return curMagCountInt == 0;
+            }                       
+            int dropCount, carryCount;
+
+            float ammoWeight = currentAmmoInt.GetStatValueAbstract(StatDefOf.Mass);
+            float ammoBulk = currentAmmoInt.GetStatValueAbstract(CE_StatDefOf.Bulk);
+
+            float availableWeight = CompInventory.GetAvailableWeight(true);
+            float availableBulk = CompInventory.GetAvailableBulk(false);
+
+            carryCount = (int) Mathf.Min(availableWeight / ammoWeight, availableBulk / ammoBulk, curMagCountInt);
+            dropCount = curMagCountInt - carryCount;           
+          
+            if (carryCount != 0)
+            {
+                Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+                ammoThing.stackCount = carryCount;
+                if (CompInventory.container.TryAddOrTransfer(ammoThing, canMergeWithExistingStacks: true))
+                    CurMagCount -= carryCount;
+            }
+            if (dropCount != 0)
+            {
+                Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+                ammoThing.stackCount = dropCount;
+                if (GenThing.TryDropAndSetForbidden(ammoThing, Holder.Position, Holder.Map, ThingPlaceMode.Near, out _, false))
+                    CurMagCount -= dropCount;
+            }
+            if (forceUnload) curMagCountInt = 0;
+            return curMagCountInt == 0;
         }
 
         /// <summary>
@@ -244,17 +288,17 @@ namespace CombatExtended
         /// </summary>
         /// <returns>Wether a reload job was started</returns>
         public bool TryStartReload()
-        {
+        {                        
             if ((Holder?.jobs?.curJob?.def == CE_JobDefOf.ReloadWeaponAttachment)
                 || (Holder?.jobs?.curDriver is JobDriver_ReloadAttachment)
                 || (Holder?.jobs?.jobQueue?.jobs.Any(j => j.job?.def == CE_JobDefOf.ReloadWeaponAttachment) ?? false))            
-                return false;                        
+                return false;            
             Job job = TryGetReloadingJob();
             if(job == null)
             {
                 Notify_OutOfAmmo();
                 return false;
-            }
+            }            
             Holder.jobs.StartJob(job, JobCondition.InterruptForced, null, Holder.jobs?.curJob?.def != CE_JobDefOf.ReloadWeaponAttachment);
             return true;
         }
@@ -297,7 +341,7 @@ namespace CombatExtended
 
             // if the current magazine is not empty and has a different ammo type, unload the current mag.
             if(ammoThing.def != currentAmmoInt && !MagazineEmpty)            
-                UnloadAmmo();
+                TryUnload();
 
             // we check reloadOneAtATime if we are reloading one projectile at a time
             currentAmmoInt = ammoThing.def as AmmoDef;            
@@ -312,21 +356,7 @@ namespace CombatExtended
 
             CompInventory?.UpdateInventory();
             return !MagazineFull && AmmoProps.reloadOneAtATime && success && !ammoThing.Destroyed && ammoThing.stackCount > 0;
-        }
-
-        /// <summary>
-        /// Unload current ammo.
-        /// </summary>
-        public void UnloadAmmo()
-        {
-            Thing ammo = ThingMaker.MakeThing(CurrentAmmo);
-            ammo.stackCount = CurMagCount;
-            currentAmmoInt = null;
-            curMagCountInt = 0;
-            // add ammo to pawn inventory
-            CompInventory.container.TryAddOrTransfer(ammo, CurMagCount, canMergeWithExistingStacks: true);
-            CompInventory.UpdateInventory();
-        }
+        }        
 
         /// <summary>
         /// Returns ammo thing from the magazine.

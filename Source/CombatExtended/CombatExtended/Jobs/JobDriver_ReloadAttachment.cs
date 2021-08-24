@@ -52,6 +52,7 @@ namespace CombatExtended
             this.FailOn(() => !Reloader.HasAmmo || (Ammo?.Destroyed ?? true));            
             Toil reload = new Toil();
             // the actual wait time.
+            reload.initAction = () => Reloader.TryUnload();
             reload.defaultDuration = Mathf.CeilToInt(Reloader.AmmoProps.reloadTime / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed)) * 60;
             reload.defaultCompleteMode = ToilCompleteMode.Delay;            
             yield return reload.WithProgressBarToilDelay(TargetIndex.A);

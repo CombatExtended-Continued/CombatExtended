@@ -221,16 +221,18 @@ namespace CombatExtended
                 }
             }
         }
-        public IEnumerable<AmmoDef> AvailableAmmoDefs
+        public IEnumerable<ThingDefCount> AvailableAmmoDefs
         {
             get
             {
-                if (CompInventory != null)
+                foreach (AmmoLink link in AmmoSet.ammoTypes)
                 {
-                    CompInventory.UpdateInventory();
-                    return AmmoSet.ammoTypes.Select(l => l.ammo).Where(a => CompInventory.ammoList.Any(at => at.def == a));
+                    AmmoDef ammo = link.ammo;
+
+                    int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
+                    if (count > 0)
+                        yield return new ThingDefCount(ammo, count);
                 }
-                return AmmoSet.ammoTypes.Select(l => l.ammo);
             }
         }
 

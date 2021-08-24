@@ -113,7 +113,7 @@ namespace CombatExtended
                         Text.Font = GameFont.Small;
                         GUI.color = Color.white;
                         StringBuilder builder = new StringBuilder();
-                        builder.Append($"{ammoDef.label.CapitalizeFirst()}\n<color=orange>{ammoDef.ammoClass.LabelCap}</color>");
+                        builder.Append($"{ammoDef.label.CapitalizeFirst()}\n<color=orange>{ammoDef.ammoClass.LabelCap}</color> - ({element.reloadable.CurMagCount}/{element.reloadable.MagSize})");
                         builder.Append("\n\n<color=gray>");
                         builder.Append("CE_AmmoBar_Reload".Translate());
                         builder.Append("</color>");
@@ -153,41 +153,88 @@ namespace CombatExtended
                     Widgets.Label(barRect, $"{element.reloadable.CurMagCount}/{element.reloadable.MagSize}");
                 }
             });
-        }
+        }        
 
-        private static readonly List<int> _dumy = new List<int>() { 0};
+        private static readonly List<ThingDefCount> _dumy = new List<ThingDefCount>(0);
 
         private void DoFloatMenuOption(AmmoBarElement bar, AmmoDef curretDef)
-        {                        
-            IEnumerable<AmmoDef> avialable = bar.reloadable.AvailableAmmoDefs?.Where(a => a != bar.reloadable.CurrentAmmo) ?? null;
-            if (!avialable.EnumerableNullOrEmpty())
+        {
+            StringBuilder builder = new StringBuilder();
+            List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+            // add ammo selection options.
+            foreach (ThingDefCount countClass in bar.reloadable.AvailableAmmoDefs ?? _dumy)
             {
-                GUIUtility.DropDownMenu((ammo) =>
+                AmmoDef ammo = countClass.thingDef as AmmoDef;
+                // create label                
+                builder.Append(ammo.ammoClass.LabelCap);
+                if (countClass.count > 0)
                 {
-                    return ammo.ammoClass.label;
-                },
-                (ammo) =>
+                    builder.Append(" x");
+                    builder.Append(countClass.count);                    
+                }
+                // create action
+                Action selectionAction = () =>
                 {
-                    if (bar.reloadable.AvailableAmmoDefs.Contains(ammo))
-                    {
-                        bar.reloadable.SelectedAmmo = ammo;
-                        if (Controller.settings.AutoReloadOnChangeAmmo)
-                            bar.reloadable.TryStartReload();
-                    }
-                }, avialable);
+                    bar.reloadable.SelectedAmmo = ammo;
+                    if (Controller.settings.AutoReloadOnChangeAmmo)
+                        bar.reloadable.TryStartReload();
+                };
+                // create float menu option.
+                FloatMenuOption option = new FloatMenuOption(builder.ToString(), selectionAction, shownItemForIcon: ammo);                
+                option.Disabled = ammo == bar.reloadable.CurrentAmmo;
+                if(!option.Disabled) option.Priority = MenuOptionPriority.Low;
+                options.Add(option);
+                // cleanup
+                builder.Clear();
             }
-            else
+            // add headers
+            if (options.Count == 0)
             {
-                GUIUtility.DropDownMenu((ammo) =>
+                // create label
+                string label = (!bar.reloadable.HasAmmo && bar.reloadable.MagazineEmpty)
+                    ? ("CE_AmmoBar_Out".Translate($"{curretDef.label} - {curretDef.ammoClass.LabelCap}")) : !bar.reloadable.MagazineEmpty
+                    ? ("CE_AmmoBar_Selected".Translate(curretDef.ammoClass.LabelCap)) : null;
+                if (label != null)
                 {
-                    if(!bar.reloadable.HasAmmo)
-                        return "CE_AmmoBar_Out".Translate($"{curretDef.label} - {curretDef.ammoClass.LabelCap}");
-                    return "CE_AmmoBar_Selected".Translate(curretDef.ammoClass.LabelCap);
-                },
-                (_) =>
-                {                   
-                }, _dumy);
+                    // create float menu option.
+                    FloatMenuOption option = new FloatMenuOption(label, () => { });                    
+                    option.Disabled = true;
+                    options.Add(option);
+                }
             }
+            if (!bar.reloadable.MagazineFull && bar.reloadable.HasAmmo)
+            {
+                // create label
+                string label = "CE_ReloadLabel".Translate();
+                // create action
+                Action selectionAction = () =>
+                {                                        
+                    bar.reloadable.TryStartReload();
+                };
+                // create float menu option.
+                FloatMenuOption option = new FloatMenuOption(label, selectionAction);                
+                option.Priority = MenuOptionPriority.High;
+                option.orderInPriority = 0;
+                options.Add(option);
+            }
+            if (!bar.reloadable.MagazineEmpty)
+            {                
+                // create label
+                string label = "CE_UnloadLabel".Translate();
+                // create action
+                Action selectionAction = () =>
+                {
+                    bar.reloadable.TryUnload(forceUnload: false);
+                };
+                // create float menu option.
+                FloatMenuOption option = new FloatMenuOption(label, selectionAction);                
+                option.Priority = MenuOptionPriority.High;
+                option.orderInPriority = 1;
+                options.Add(option);
+            }
+            // spawn the actual menu
+            Find.WindowStack.Add(new FloatMenu(options, title: "CE_AmmoBar_Title".Translate()));
         }
     }
 }
