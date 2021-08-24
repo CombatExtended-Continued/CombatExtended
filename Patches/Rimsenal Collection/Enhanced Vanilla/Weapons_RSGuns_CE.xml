@@ -4,14 +4,14 @@
 
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>Rimsenal - Enhanced Vanilla Pack</li>
+		<li>Rimsenal - Enhanced Vanilla Pack</li><li>Rimsenal - Augmented Vanilla Pack</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		 <operations>	
 
 			<!-- ========== Longgun Melee Tools =========== -->
 			  <li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle" or defName="Gun_RSCarbine" or defName="Gun_RSAMRifle" or defName="Gun_AutomaticRifle" or defName="Gun_Repeater" or defName="Gun_MilitiaRifle"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="Gun_RSBattleRifle" or defName="Gun_RSCarbine" or defName="Gun_RSAMRifle" or defName="Gun_AutomaticRifle" or defName="Gun_Repeater" or defName="Gun_MilitiaRifle" or defName="Gun_MarksmanRifle"]/tools</xpath>
 				<value>
 				  <tools>
 					<li Class="CombatExtended.ToolCE">
@@ -458,6 +458,49 @@
 						</li>
 					</tools>
 				</value>
+			</li>
+			
+			<!-- ========== Marksman Rifle : NATO SVD=========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_MarksmanRifle</defName>
+				<statBases>
+				  <WorkToMake>23000</WorkToMake>
+				  <SightsEfficiency>2.24</SightsEfficiency>
+				  <ShotSpread>0.04</ShotSpread>
+				  <SwayFactor>1.70</SwayFactor>
+				  <Bulk>12.25</Bulk>
+				  <Mass>4.30</Mass>
+				  <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+				</statBases>
+				<costList>
+				  <Steel>60</Steel>
+				  <ComponentIndustrial>4</ComponentIndustrial>
+				  <WoodLog>10</WoodLog>
+				</costList>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+				  <warmupTime>1.3</warmupTime>
+				  <range>75</range>
+				  <soundCast>Shot_SniperRifle</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>10</magazineSize>
+				  <reloadTime>4</reloadTime>
+				  <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+				  <li>CE_AI_SR</li>
+				</weaponTags>
+				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 		</operations>
 		</match>
