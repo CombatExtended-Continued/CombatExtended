@@ -27,19 +27,16 @@ namespace CombatExtended
         public Thing weapon;
         public CompAmmoUser overrideUser = null;
         
-        private int sigCounter = 0;
+        private int sigCounter = 0;        
         private readonly List<AmmoBarElement> bars = new List<AmmoBarElement>();                                
 
         public override float GetWidth(float maxWidth)
         {
             return Mathf.Min(120, maxWidth);
-        }
-
-        private Event evt;
+        }        
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
-        {
-            evt = Event.current;
+        {            
             Rect inRect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), Height);            
             // main background            
             GUI.DrawTexture(inRect, CE_GizmoTex.BGTex);
@@ -93,7 +90,7 @@ namespace CombatExtended
 
                 bool clicked = false;
                 // process event
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && element.reloadable.Equiped)
                 {
                     clicked = true;
                     if (element.reloadable.HasAmmo && !element.reloadable.MagazineFull)
@@ -158,7 +155,7 @@ namespace CombatExtended
         private static readonly List<ThingDefCount> _dumy = new List<ThingDefCount>(0);
 
         private void DoFloatMenuOption(AmmoBarElement bar, AmmoDef curretDef)
-        {
+        {            
             StringBuilder builder = new StringBuilder();
             List<FloatMenuOption> options = new List<FloatMenuOption>();
 
@@ -177,7 +174,7 @@ namespace CombatExtended
                 Action selectionAction = () =>
                 {
                     bar.reloadable.SelectedAmmo = ammo;
-                    if (Controller.settings.AutoReloadOnChangeAmmo)
+                    if (Controller.settings.AutoReloadOnChangeAmmo && bar.reloadable.Equiped)
                         bar.reloadable.TryStartReload();
                 };
                 // create float menu option.
@@ -203,35 +200,39 @@ namespace CombatExtended
                     options.Add(option);
                 }
             }
-            if (!bar.reloadable.MagazineFull && bar.reloadable.HasAmmo)
+            // check if this is an equiped weapon
+            if (bar.reloadable.Equiped)
             {
-                // create label
-                string label = "CE_ReloadLabel".Translate();
-                // create action
-                Action selectionAction = () =>
-                {                                        
-                    bar.reloadable.TryStartReload();
-                };
-                // create float menu option.
-                FloatMenuOption option = new FloatMenuOption(label, selectionAction);                
-                option.Priority = MenuOptionPriority.High;
-                option.orderInPriority = 0;
-                options.Add(option);
-            }
-            if (!bar.reloadable.MagazineEmpty)
-            {                
-                // create label
-                string label = "CE_UnloadLabel".Translate();
-                // create action
-                Action selectionAction = () =>
+                if (!bar.reloadable.MagazineFull && bar.reloadable.HasAmmo)
                 {
-                    bar.reloadable.TryUnload(forceUnload: false);
-                };
-                // create float menu option.
-                FloatMenuOption option = new FloatMenuOption(label, selectionAction);                
-                option.Priority = MenuOptionPriority.High;
-                option.orderInPriority = 1;
-                options.Add(option);
+                    // create label
+                    string label = "CE_ReloadLabel".Translate();
+                    // create action
+                    Action selectionAction = () =>
+                    {
+                        bar.reloadable.TryStartReload();
+                    };
+                    // create float menu option.
+                    FloatMenuOption option = new FloatMenuOption(label, selectionAction);
+                    option.Priority = MenuOptionPriority.High;
+                    option.orderInPriority = 0;
+                    options.Add(option);
+                }
+                if (!bar.reloadable.MagazineEmpty)
+                {
+                    // create label
+                    string label = "CE_UnloadLabel".Translate();
+                    // create action
+                    Action selectionAction = () =>
+                    {
+                        bar.reloadable.TryUnload(forceUnload: false);
+                    };
+                    // create float menu option.
+                    FloatMenuOption option = new FloatMenuOption(label, selectionAction);
+                    option.Priority = MenuOptionPriority.High;
+                    option.orderInPriority = 1;
+                    options.Add(option);
+                }
             }
             // spawn the actual menu
             Find.WindowStack.Add(new FloatMenu(options, title: "CE_AmmoBar_Title".Translate()));

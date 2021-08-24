@@ -42,7 +42,7 @@ namespace CombatExtended
         public VerbPropertiesCE VerbProps
         {
             get
-            {
+            {                
                 return sourceAttachment.attachmentVerb?.verb ?? null;
             }
         }
@@ -186,20 +186,38 @@ namespace CombatExtended
             }
         }
         /// <summary>
+        /// For GUI only. Indicate to GUI wether this should have unloading actions
+        /// </summary>
+        public bool Equiped
+        {
+            get
+            {
+                return !verbManager.weapon.Spawned && verbManager.Equippable.Holder?.equipment?.Primary == verbManager.weapon && CompInventory != null;
+            }
+        }      
+        /// <summary>
         /// Return available ammo
         /// </summary>
         public IEnumerable<ThingDefCount> AvailableAmmoDefs
         {
             get
             {
-                foreach(AmmoLink link in AmmoSet.ammoTypes)
+                if (CompInventory == null)
                 {
-                    AmmoDef ammo = link.ammo;
+                    foreach (ThingDefCount item in AmmoSet.ammoTypes.Select(l => new ThingDefCount(l.ammo, 0)))
+                        yield return item;
+                }
+                else
+                {
+                    foreach (AmmoLink link in AmmoSet.ammoTypes)
+                    {
+                        AmmoDef ammo = link.ammo;
 
-                    int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
-                    if (count > 0)
-                        yield return new ThingDefCount(ammo, count);
-                }               
+                        int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
+                        if (count > 0)
+                            yield return new ThingDefCount(ammo, count);
+                    }
+                }
             }
         }
 

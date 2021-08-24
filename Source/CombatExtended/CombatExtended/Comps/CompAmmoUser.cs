@@ -225,24 +225,38 @@ namespace CombatExtended
         {
             get
             {
-                foreach (AmmoLink link in AmmoSet.ammoTypes)
+                if (CompInventory == null)
                 {
-                    AmmoDef ammo = link.ammo;
+                    foreach (ThingDefCount item in AmmoSet.ammoTypes.Select(l => new ThingDefCount(l.ammo, 0)))
+                        yield return item;
+                }
+                else
+                {
+                    foreach (AmmoLink link in AmmoSet.ammoTypes)
+                    {
+                        AmmoDef ammo = link.ammo;
 
-                    int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
-                    if (count > 0)
-                        yield return new ThingDefCount(ammo, count);
+                        int count = CompInventory.container.Where(at => at.def == ammo).Sum(at => at.stackCount);
+                        if (count > 0)
+                            yield return new ThingDefCount(ammo, count);
+                    }
                 }
             }
         }
-
         public AmmoSetDef AmmoSet
         {
             get
             {
                 return Props.ammoSet;
             }
-        }        
+        }       
+        public bool Equiped
+        {
+            get
+            {
+                return turret == null && Holder?.equipment?.Primary == parent && CompInventory != null;
+            }
+        }           
 
         #endregion Properties
 

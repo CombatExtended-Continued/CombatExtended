@@ -80,7 +80,13 @@ namespace CombatExtended
         {
             get;
         }
-
+        /// <summary>
+        /// Indicate to GUI wether this should have unloading actions
+        /// </summary>
+        public abstract bool Equiped
+        {
+            get;
+        }       
         /// <summary>
         /// Try to start a reload job using the selected ammo and if no selected ammo is available use any ammo
         /// </summary>
