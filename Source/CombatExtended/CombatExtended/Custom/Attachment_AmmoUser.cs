@@ -184,17 +184,7 @@ namespace CombatExtended
             {
                 return AmmoProps.ammoSet;
             }
-        }
-        /// <summary>
-        /// For GUI only. Indicate to GUI wether this should have unloading actions
-        /// </summary>
-        public bool Equiped
-        {
-            get
-            {
-                return !verbManager.weapon.Spawned && verbManager.Equippable.Holder?.equipment?.Primary == verbManager.weapon && CompInventory != null;
-            }
-        }      
+        }            
         /// <summary>
         /// Return available ammo
         /// </summary>

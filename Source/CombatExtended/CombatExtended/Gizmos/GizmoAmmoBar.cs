@@ -90,7 +90,7 @@ namespace CombatExtended
 
                 bool clicked = false;
                 // process event
-                if (Input.GetMouseButtonUp(0) && element.reloadable.Equiped)
+                if (Input.GetMouseButtonUp(0) && element.reloadable.IsEquippedGun)
                 {
                     clicked = true;
                     if (element.reloadable.HasAmmo && !element.reloadable.MagazineFull)
@@ -174,7 +174,7 @@ namespace CombatExtended
                 Action selectionAction = () =>
                 {
                     bar.reloadable.SelectedAmmo = ammo;
-                    if (Controller.settings.AutoReloadOnChangeAmmo && bar.reloadable.Equiped)
+                    if (Controller.settings.AutoReloadOnChangeAmmo && bar.reloadable.IsEquippedGun)
                         bar.reloadable.TryStartReload();
                 };
                 // create float menu option.
@@ -201,7 +201,7 @@ namespace CombatExtended
                 }
             }
             // check if this is an equiped weapon
-            if (bar.reloadable.Equiped)
+            if (bar.reloadable.IsEquippedGun)
             {
                 if (!bar.reloadable.MagazineFull && bar.reloadable.HasAmmo)
                 {
@@ -216,6 +216,7 @@ namespace CombatExtended
                     FloatMenuOption option = new FloatMenuOption(label, selectionAction);
                     option.Priority = MenuOptionPriority.High;
                     option.orderInPriority = 0;
+                    option.itemIcon = CE_GizmoTex.ReloadTex;
                     options.Add(option);
                 }
                 if (!bar.reloadable.MagazineEmpty)
@@ -231,6 +232,7 @@ namespace CombatExtended
                     FloatMenuOption option = new FloatMenuOption(label, selectionAction);
                     option.Priority = MenuOptionPriority.High;
                     option.orderInPriority = 1;
+                    option.itemIcon = CE_GizmoTex.UnloadTex;
                     options.Add(option);
                 }
             }

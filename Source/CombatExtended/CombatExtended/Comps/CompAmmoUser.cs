@@ -249,15 +249,7 @@ namespace CombatExtended
             {
                 return Props.ammoSet;
             }
-        }       
-        public bool Equiped
-        {
-            get
-            {
-                return turret == null && Holder?.equipment?.Primary == parent && CompInventory != null;
-            }
-        }           
-
+        }              
         #endregion Properties
 
         #region Methods
@@ -702,16 +694,11 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {            
-            GizmoAmmoBar ammoStatusGizmo = turret == null ? new GizmoAmmoBar { weapon = this.parent } : new GizmoAmmoBar { overrideUser = this };
-            yield return ammoStatusGizmo;
-            var mannableComp = turret?.GetMannable();
+            GizmoAmmoBar ammoBar = turret == null ? new GizmoAmmoBar { weapon = this.parent } : new GizmoAmmoBar { overrideUser = this };
+            yield return ammoBar;
+            CompMannable mannableComp = turret?.GetMannable();                         
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
-                Action action = null;
-                if (IsEquippedGun) action = TryStartReload;
-                else if (mannableComp != null) action = turret.TryForceReload;
-
-                // Check for teaching opportunities
                 string tag;
                 if (turret == null)
                 {
@@ -724,17 +711,6 @@ namespace CombatExtended
                     else tag = "CE_ReloadManned";    // Teach about reloading manned turrets
                 }
                 LessonAutoActivator.TeachOpportunity(ConceptDef.Named(tag), turret, OpportunityType.GoodToKnow);
-
-                Command_Reload reloadCommandGizmo = new Command_Reload
-                {
-                    compAmmo = this,
-                    action = action,
-                    defaultLabel = HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
-                    defaultDesc = "CE_ReloadDesc".Translate(),
-                    icon = CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : selectedAmmo.IconTexture(),
-                    tutorTag = tag
-                };
-                yield return reloadCommandGizmo;
             }
         }
 
