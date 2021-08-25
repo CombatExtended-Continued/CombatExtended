@@ -1,4 +1,7 @@
 ﻿using System;
+using UnityEngine;
+using Verse;
+
 namespace CombatExtended
 {
     /// <summary>
@@ -25,5 +28,14 @@ namespace CombatExtended
         /// Ammo config.
         /// </summary>
         public AttachmentVerb_AmmoUserProperties ammo;
+        /// <summary>
+        /// Path to UI icon
+        /// </summary>
+        public string iconPath;
+        /// <summary>
+        /// The icon texture
+        /// </summary>
+        [Unsaved(true)]
+        public Texture2D iconTex;       
     }
 }

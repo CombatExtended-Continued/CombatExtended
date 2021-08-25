@@ -34,7 +34,14 @@ namespace CombatExtended.HarmonyCE
 					float dy = rect.height * 0.15f / 2f;
 					rect.yMin += dy;
 					rect.yMax -= dy;
-					RocketGUI.GUIUtility.DrawWeaponWithAttachments(rect, platform, null, color, buttonMat);
+					if (command.verb is Verb_ShootUseAttachment useAttachment)
+					{
+						GenUI.DrawTextureWithMaterial(rect, useAttachment.Attachment.attachmentVerb.iconTex, buttonMat);						
+					}
+					else
+					{						
+						RocketGUI.GUIUtility.DrawWeaponWithAttachments(rect, platform, null, color, buttonMat);						
+					}
 				});
 				return false;
             }
