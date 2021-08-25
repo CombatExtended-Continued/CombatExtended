@@ -12,10 +12,6 @@
       <Mass>1</Mass>
       <Bulk>1</Bulk>
     </statBases>
-    <costList>
-      <ComponentIndustrial>2</ComponentIndustrial>
-      <Steel>20</Steel>
-    </costList>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -33,27 +29,23 @@
 
   <!-- ==================== Makeshift ==================== -->
   
-  <CombatExtended.AttachmentDef Name="CE_StockT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+  <CombatExtended.AttachmentDef Name="CE_AccessoryT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AccessoryMakeshift>1</CE_AccessoryMakeshift>
+    </costList>
     <slotTags>
-      <li>Stock</li>
+      <li>Accessory</li>
     </slotTags>
     <graphicData>
-      <texPath>Things/Attachments/StockT1</texPath>
+      <texPath>Things/Attachments/AccessoryT1</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
-
-  <CombatExtended.AttachmentDef Name="CE_SightT1Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Sight</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/SightT1</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-
+  
   <CombatExtended.AttachmentDef Name="CE_AmmoT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AmmoMakeshift>1</CE_AmmoMakeshift>
+    </costList>
     <slotTags>
       <li>Ammo</li>
     </slotTags>
@@ -64,6 +56,9 @@
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_MuzzleT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_MuzzleMakeshift>1</CE_MuzzleMakeshift>
+    </costList>
     <slotTags>
       <li>Muzzle</li>
     </slotTags>
@@ -72,8 +67,37 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_SightT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_SightMakeshift>1</CE_SightMakeshift>
+    </costList>
+    <slotTags>
+      <li>Sight</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/SightT1</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_StockT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_StockMakeshift>1</CE_StockMakeshift>
+    </costList>
+    <slotTags>
+      <li>Stock</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/StockT1</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_UnderbarrelT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_UnderbarrelMakeshift>1</CE_UnderbarrelMakeshift>
+    </costList>
     <slotTags>
       <li>Underbarrel</li>
     </slotTags>
@@ -83,39 +107,25 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
   
-  <CombatExtended.AttachmentDef Name="CE_AccessoryT1Base" ParentName="CE_AttachmentBase" Abstract="true">
+  <!-- ==================== Industrial ==================== -->
+  
+  <CombatExtended.AttachmentDef Name="CE_AccessoryT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AccessoryIndustrial>1</CE_AccessoryIndustrial>
+    </costList>
     <slotTags>
       <li>Accessory</li>
     </slotTags>
     <graphicData>
-      <texPath>Things/Attachments/AccessoryT1</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-  
-  <!-- ==================== Industrial ==================== -->
-  
-  <CombatExtended.AttachmentDef Name="CE_StockT2Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Stock</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/StockT2</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-
-  <CombatExtended.AttachmentDef Name="CE_SightT2Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Sight</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/SightT2</texPath>
+      <texPath>Things/Attachments/AccessoryT2</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_AmmoT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AmmoIndustrial>1</CE_AmmoIndustrial>
+    </costList>
     <slotTags>
       <li>Ammo</li>
     </slotTags>
@@ -126,6 +136,9 @@
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_MuzzleT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_MuzzleIndustrial>1</CE_MuzzleIndustrial>
+    </costList>
     <slotTags>
       <li>Muzzle</li>
     </slotTags>
@@ -134,8 +147,37 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_SightT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_SightIndustrial>1</CE_SightIndustrial>
+    </costList>
+    <slotTags>
+      <li>Sight</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/SightT2</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
+
+  <CombatExtended.AttachmentDef Name="CE_StockT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_StockIndustrial>1</CE_StockIndustrial>
+    </costList>
+    <slotTags>
+      <li>Stock</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/StockT2</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_UnderbarrelT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_UnderbarrelIndustrial>1</CE_UnderbarrelIndustrial>
+    </costList>
     <slotTags>
       <li>Underbarrel</li>
     </slotTags>
@@ -145,39 +187,25 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
   
-  <CombatExtended.AttachmentDef Name="CE_AccessoryT2Base" ParentName="CE_AttachmentBase" Abstract="true">
+  <!-- ==================== Spacer ==================== -->
+  
+  <CombatExtended.AttachmentDef Name="CE_AccessoryT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AccessorySpacer>1</CE_AccessorySpacer>
+    </costList>
     <slotTags>
       <li>Accessory</li>
     </slotTags>
     <graphicData>
-      <texPath>Things/Attachments/AccessoryT2</texPath>
+      <texPath>Things/Attachments/AccessoryT3</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
   
-  <!-- ==================== Spacer ==================== -->
-  
-  <CombatExtended.AttachmentDef Name="CE_StockT3Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Stock</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/StockT3</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-
-  <CombatExtended.AttachmentDef Name="CE_SightT3Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Sight</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/SightT3</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-
   <CombatExtended.AttachmentDef Name="CE_AmmoT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AmmoSpacer>1</CE_AmmoSpacer>
+    </costList>
     <slotTags>
       <li>Ammo</li>
     </slotTags>
@@ -188,6 +216,9 @@
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_MuzzleT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_MuzzleSpacer>1</CE_MuzzleSpacer>
+    </costList>
     <slotTags>
       <li>Muzzle</li>
     </slotTags>
@@ -196,8 +227,37 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_SightT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_SightSpacer>1</CE_SightSpacer>
+    </costList>
+    <slotTags>
+      <li>Sight</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/SightT3</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_StockT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_StockSpacer>1</CE_StockSpacer>
+    </costList>
+    <slotTags>
+      <li>Stock</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/StockT3</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_UnderbarrelT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_UnderbarrelSpacer>1</CE_UnderbarrelSpacer>
+    </costList>
     <slotTags>
       <li>Underbarrel</li>
     </slotTags>
@@ -207,24 +267,14 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
   
-  <CombatExtended.AttachmentDef Name="CE_AccessoryT3Base" ParentName="CE_AttachmentBase" Abstract="true">
+  <!-- ==================== Mechanoid ==================== -->
+  
+  <CombatExtended.AttachmentDef Name="CE_AccessoryT4Base" ParentName="CE_AttachmentBase" Abstract="true">
     <slotTags>
       <li>Accessory</li>
     </slotTags>
     <graphicData>
       <texPath>Things/Attachments/AccessoryT3</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-  
-  <!-- ==================== Mechanoid ==================== -->
-
-  <CombatExtended.AttachmentDef Name="CE_SightT4Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Sight</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/SightT3</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
@@ -235,6 +285,16 @@
     </slotTags>
     <graphicData>
       <texPath>Things/Attachments/MuzzleT3</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_SightT4Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <slotTags>
+      <li>Sight</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/SightT3</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
@@ -249,39 +309,25 @@
     </graphicData>
   </CombatExtended.AttachmentDef>
   
-  <CombatExtended.AttachmentDef Name="CE_AccessoryT4Base" ParentName="CE_AttachmentBase" Abstract="true">
+  <!-- ==================== Ultratech ==================== -->
+  
+  <CombatExtended.AttachmentDef Name="CE_AccessoryT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AccessoryUltratech>1</CE_AccessoryUltratech>
+    </costList>
     <slotTags>
       <li>Accessory</li>
     </slotTags>
     <graphicData>
-      <texPath>Things/Attachments/AccessoryT3</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-  
-  <!-- ==================== Ultratech ==================== -->
-  
-  <CombatExtended.AttachmentDef Name="CE_StockT5Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Stock</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/StockT5</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-
-  <CombatExtended.AttachmentDef Name="CE_SightT5Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Sight</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/SightT5</texPath>
+      <texPath>Things/Attachments/AccessoryT5</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_AmmoT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_AmmoUltratech>1</CE_AmmoUltratech>
+    </costList>
     <slotTags>
       <li>Ammo</li>
     </slotTags>
@@ -292,6 +338,9 @@
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_MuzzleT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_MuzzleUltratech>1</CE_MuzzleUltratech>
+    </costList>
     <slotTags>
       <li>Muzzle</li>
     </slotTags>
@@ -300,23 +349,42 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_SightT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_SightUltratech>1</CE_SightUltratech>
+    </costList>
+    <slotTags>
+      <li>Sight</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/SightT5</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
+  
+  <CombatExtended.AttachmentDef Name="CE_StockT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_StockUltratech>1</CE_StockUltratech>
+    </costList>
+    <slotTags>
+      <li>Stock</li>
+    </slotTags>
+    <graphicData>
+      <texPath>Things/Attachments/StockT5</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_UnderbarrelT5Base" ParentName="CE_AttachmentBase" Abstract="true">
+    <costList>
+      <CE_UnderbarrelUltratech>1</CE_UnderbarrelUltratech>
+    </costList>
     <slotTags>
       <li>Underbarrel</li>
     </slotTags>
     <graphicData>
       <texPath>Things/Attachments/UnderbarrelT5</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-  </CombatExtended.AttachmentDef>
-  
-  <CombatExtended.AttachmentDef Name="CE_AccessoryT5Base" ParentName="CE_AttachmentBase" Abstract="true">
-    <slotTags>
-      <li>Accessory</li>
-    </slotTags>
-    <graphicData>
-      <texPath>Things/Attachments/AccessoryT5</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
   </CombatExtended.AttachmentDef>
