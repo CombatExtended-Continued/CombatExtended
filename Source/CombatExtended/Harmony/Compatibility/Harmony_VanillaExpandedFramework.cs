@@ -7,7 +7,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
 {
     public static class Harmony_VanillaExpandedFramework
     {
-        [HarmonyPatch]
+        // Disabled since VEF added their own patch at the same time
+        // [HarmonyPatch]
         public class Harmony_Patch_PawnRenderer
         {
             /*

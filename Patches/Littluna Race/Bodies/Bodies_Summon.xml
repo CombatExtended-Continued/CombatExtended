@@ -3,7 +3,7 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>[1.3]Nearmare Race</li>
+      <li>[1.3]Littluna Race</li>
     </mods>
 
     <match Class="PatchOperationSequence">
@@ -11,14 +11,16 @@
         <!-- === Nearmare Summon === -->
         <li Class="PatchOperationAdd">
           <xpath>
-            /Defs/BodyDef[defName="HAR_NM_M_Body"]//*[
+            /Defs/BodyDef[defName="HAR_LL_M_Body"]//*[
             def="Body" or
             def="Tail" or
             def="Neck" or
             def="Nose" or
             def="Leg" or
 			customLabel="rear left paw" or
-			customLabel="rear right paw"]
+			customLabel="rear right paw" or
+            def="Eye" or
+            def="Ear"]
           </xpath>
 
           <value>
@@ -28,13 +30,16 @@
 
         <li Class="PatchOperationAdd">
           <xpath>
-            /Defs/BodyDef[defName="HAR_NM_M_Body"]//*[
+            /Defs/BodyDef[defName="HAR_LL_M_Body"]//*[
             def="Body" or
             def="Tail" or
             def="Neck" or
             def="Head" or
             def="Leg" or
-            def="Paw"]/groups
+            def="Paw" or
+            def="Eye" or
+            def="Ear" or
+            def="AnimalJaw"]/groups
           </xpath>
 
           <value>

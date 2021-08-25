@@ -4,20 +4,20 @@
 	<operations>
 	  <li Class="PatchOperationFindMod">
 			
-		<mods><li>[1.3]Idhale Race</li></mods>
+		<mods><li>[1.3]Littluna Race</li></mods>
 			
 		<match Class="PatchOperationSequence">
 		<operations>
 		
             <li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <xpath>/Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
                     <value>
                         <li>CombatExtended.ITab_Inventory</li>
                     </value>
 			</li>
 
             <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/comps</xpath>
+                    <xpath>/Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
                     <value>
                         <li Class="CombatExtended.CompProperties_Inventory" />
 						<li Class="CombatExtended.CompProperties_TacticalManager" />
@@ -25,7 +25,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="HAR_Idhale_BaseNRPawn"]/comps</xpath>
+				<xpath>/Defs/ThingDef[@Name="HAR_Littluna_BaseNRPawn"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -35,7 +35,7 @@
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -45,30 +45,15 @@
 
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]/statBases</xpath>
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/statBases</xpath>
 				  <value>
 					<Suppressability>1</Suppressability>
 					<SmokeSensitivity>1.2</SmokeSensitivity>
-					<ArmorRating_Electric>10</ArmorRating_Electric>
 				  </value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>1000</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>100000</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]/tools</xpath> 
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -77,9 +62,9 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>1</power>
-							<cooldownTime>1.26</cooldownTime>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.005</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>right fist</label>
@@ -87,27 +72,27 @@
 								<li>Blunt</li>
 							</capacities>
 							<power>1</power>
-							<cooldownTime>1.26</cooldownTime>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.005</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.162</armorPenetrationBlunt>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>head</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>1</power>
+							<power>2</power>
 							<cooldownTime>4.49</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>0.005</armorPenetrationBlunt>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Idhale"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Littluna"]/alienRace/raceRestriction/whiteApparelList</xpath>
 				  <value>
 					<li>Apparel_TacVest</li>
 					<li>Apparel_Backpack</li>
