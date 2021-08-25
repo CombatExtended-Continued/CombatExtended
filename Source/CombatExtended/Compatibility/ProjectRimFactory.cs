@@ -34,7 +34,7 @@ namespace CombatExtended.Compatibility
         static object FindCompAmmoUser(Building building)
         {
             var compAmmoUser = (building as Building_TurretGunCE).CompAmmo;
-            if (!compAmmoUser.FullMagazine) return compAmmoUser;
+            if (!compAmmoUser.MagazineFull) return compAmmoUser;
             return null;
         }
     }

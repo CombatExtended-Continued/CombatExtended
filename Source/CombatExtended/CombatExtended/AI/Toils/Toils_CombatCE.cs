@@ -49,7 +49,7 @@ namespace CombatExtended.AI
                         driver.EndJobWith(JobCondition.Incompletable);
                         return;
                     }
-                    if (!compAmmo.EmptyMagazine && !compAmmo.TryUnload())
+                    if (!compAmmo.MagazineEmpty && !compAmmo.TryUnload())
                     {
                         driver.EndJobWith(JobCondition.Incompletable);
                         return;

@@ -23,7 +23,7 @@ namespace CombatExtended
 	    
 
             if (!((turret as Building_TurretGunCE)?.Active ?? true)) return 1f;
-            if (turret.GetAmmo()?.EmptyMagazine ?? false) return 9f;
+            if (turret.GetAmmo()?.MagazineEmpty ?? false) return 9f;
             if (turret.GetMannable()==null) return 5f;
             return 1f;
         }

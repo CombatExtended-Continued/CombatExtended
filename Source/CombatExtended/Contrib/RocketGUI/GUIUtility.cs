@@ -15,7 +15,7 @@ namespace CombatExtended.RocketGUI
             StashGUIState();
             Exception exception = null;
             try
-            {
+            {                
                 function.Invoke();
             }
             catch (Exception er)
@@ -219,7 +219,7 @@ namespace CombatExtended.RocketGUI
 
             ExecuteSafeGUIAction(() =>
             {
-                Text.Font = GameFont.Small;
+                Text.Font = GameFont.Small;                
                 FloatMenuUtility.MakeMenu(options,
                     (option) =>
                     {

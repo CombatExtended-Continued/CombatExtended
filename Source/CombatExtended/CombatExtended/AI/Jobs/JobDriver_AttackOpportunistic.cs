@@ -62,7 +62,7 @@ namespace CombatExtended.AI
             if (JobWeapon.stackCount == 1)
             {
                 CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
-                if (compAmmo != null && compAmmo.UseAmmo && (compAmmo.EmptyMagazine || JobAmmo != null))
+                if (compAmmo != null && compAmmo.UseAmmo && (compAmmo.MagazineEmpty || JobAmmo != null))
                     yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A, JobAmmo);
             }
             // Start the attack
