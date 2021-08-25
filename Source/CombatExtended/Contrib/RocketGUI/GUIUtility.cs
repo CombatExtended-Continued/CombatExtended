@@ -15,7 +15,7 @@ namespace CombatExtended.RocketGUI
             StashGUIState();
             Exception exception = null;
             try
-            {
+            {                
                 function.Invoke();
             }
             catch (Exception er)

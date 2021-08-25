@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -48,7 +49,13 @@ namespace CombatExtended
 
         [Unsaved(allowLoading = false)]
         public bool statsValidated = false;
-        
+
+        public override void ResolveIcon()
+        {
+            base.ResolveIcon();
+            if(attachmentVerb != null) attachmentVerb.iconTex = attachmentVerb.iconTex == null ? BaseContent.BadTex : ContentFinder<Texture2D>.Get(attachmentVerb.iconPath);           
+        }
+
         /// <summary>
         /// Used to validate and sync the important stats that are not going to be require adding a stat part for or
         /// for those in stat bases.
