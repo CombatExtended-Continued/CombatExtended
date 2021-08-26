@@ -19,6 +19,16 @@
 			<Ammo_9x19mmPara_HP>Bullet_9x19mmPara_HP</Ammo_9x19mmPara_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_9x19mmParaSD</defName>
+		<label>9x19mm Para Subsonic</label>
+		<ammoTypes>
+			<Ammo_9x19mmPara_FMJ>Bullet_9x19mmParaSD_FMJ</Ammo_9x19mmPara_FMJ>
+			<Ammo_9x19mmPara_AP>Bullet_9x19mmParaSD_AP</Ammo_9x19mmPara_AP>
+			<Ammo_9x19mmPara_HP>Bullet_9x19mmParaSD_HP</Ammo_9x19mmPara_HP>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
@@ -92,6 +102,18 @@
 			<dropsCasings>true</dropsCasings>
 		</projectile>
 	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base9x19mmParaSDBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>56</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaBullet">
 		<defName>Bullet_9x19mmPara_FMJ</defName>
@@ -123,6 +145,37 @@
 			<!--<armorPenetrationBase>0.16</armorPenetrationBase>-->
 			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+	
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaSDBullet">
+		<defName>Bullet_9x19mmParaSD_FMJ</defName>
+		<label>9mm Para bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>11</damageAmountBase>
+			<armorPenetrationSharp>3.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaSDBullet">
+		<defName>Bullet_9x19mmParaSD_AP</defName>
+		<label>9mm Para bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>7</damageAmountBase>
+			<armorPenetrationSharp>7</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.66</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base9x19mmParaSDBullet">
+		<defName>Bullet_9x19mmParaSD_HP</defName>
+		<label>9mm Para bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>13</damageAmountBase>
+			<armorPenetrationSharp>1.75</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.66</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
