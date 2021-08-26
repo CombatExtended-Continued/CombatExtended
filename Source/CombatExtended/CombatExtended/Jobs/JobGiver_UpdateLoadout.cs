@@ -348,14 +348,23 @@ namespace CombatExtended
                         return job;
                     }
                 }
-            }            
+            }
             return pawn.thinker?.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
         }
       
 
         public override Job TryGiveJob(Pawn pawn)
         {
+            // add some sanity checks.
+            if (!pawn.IsColonist || pawn.IsPrisoner)
+                return null;
+            if (!pawn.RaceProps.Humanlike || pawn.inventory == null)
+                return null;            
+            if (pawn.guest != null && !(pawn.IsColonist || pawn.IsSlave))
+                return null;
+            // try issue the job.
             Job job = GetUpdateLoadoutJob(pawn);
+            // adjust the throttle.
             _throttle[pawn.thingIDNumber] = job == null ? GenTicks.TicksGame : (GenTicks.TicksGame - TicksThrottleCooldown - 1);           
             return job;
         }        
