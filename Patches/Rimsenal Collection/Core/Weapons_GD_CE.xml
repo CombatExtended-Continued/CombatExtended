@@ -10,7 +10,7 @@
 			<!-- ==========  Cost Change =========== -->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MRSKitR"]/recipeMaker/researchPrerequisite</xpath>
+				<xpath>Defs/thingDef[defName="MRSKitR"]/recipeMaker/researchPrerequisite</xpath>
 				<value>
 				  <researchPrerequisite>PrecisionRifling</researchPrerequisite>
 				</value>
@@ -235,6 +235,7 @@
 					<soundCast>ShotLynx</soundCast>
 					<soundCastTail>GunTail_Light</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>15</magazineSize>
@@ -277,7 +278,7 @@
 						<defaultProjectile>Bullet_473x33mmGDPistol_FMJ</defaultProjectile>
 						<warmupTime>0.6</warmupTime>
 						<burstShotCount>5</burstShotCount>
-						<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
 						<range>12</range>
 						<soundCast>ShotLynx</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
@@ -414,6 +415,11 @@
 					<SwayFactor>1.04</SwayFactor>
 					<Bulk>6.4</Bulk>
 				</statBases>
+				<costList>
+					<Steel>40</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+					<Chemfuel>10</Chemfuel>
+				</costList>
 				<Properties>
 					<recoilAmount>1.56</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -501,6 +507,7 @@
 					<soundCast>ShotGRM</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>45</magazineSize>
@@ -543,6 +550,7 @@
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
+					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>150</magazineSize>
@@ -626,13 +634,18 @@
 					<SwayFactor>1.15</SwayFactor>
 					<Bulk>6.0</Bulk>
 				</statBases>
+				<costList>
+				  <Steel>45</Steel>
+				  <ComponentIndustrial>4</ComponentIndustrial>
+				  <Chemfuel>10</Chemfuel>
+				</costList>
 				<Properties>
 					<recoilAmount>2.58</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_25x40mmGrenade_HE</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>40</range>
+					<range>45</range>
 					<minRange>2</minRange>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
@@ -650,6 +663,7 @@
 					<aiUseBurstMode>False</aiUseBurstMode>
 					<aiAimMode>SuppressFire</aiAimMode>
 				</FireModes>
+				<researchPrerequisite>CE_Launchers</researchPrerequisite>
 			</li>
 
 			<li Class="PatchOperationRemove">
