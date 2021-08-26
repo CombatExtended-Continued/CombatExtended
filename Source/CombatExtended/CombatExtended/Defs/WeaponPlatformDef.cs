@@ -113,11 +113,12 @@ namespace CombatExtended
             // Add the inspect tab for attachments
             if (inspectorTabs == null)
                 inspectorTabs = new List<Type>();
-            inspectorTabs.Add(typeof(ITab_AttachmentView));
-
-            if (inspectorTabsResolved == null)
-                inspectorTabsResolved = new List<InspectTabBase>();            
-            inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
+            // TODO do this in a better way 
+            // inspectorTabs.Add(typeof(ITab_AttachmentView));
+            //
+            // if (inspectorTabsResolved == null)
+            //    inspectorTabsResolved = new List<InspectTabBase>();
+            // inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
         }        
 
         /// <summary>

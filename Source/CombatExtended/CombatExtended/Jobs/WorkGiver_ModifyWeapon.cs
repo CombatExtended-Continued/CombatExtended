@@ -23,7 +23,7 @@ namespace CombatExtended
         {
             WeaponPlatform weapon = t.Thing as WeaponPlatform;            
             if (weapon == null)
-                return 0f;                       
+                return 0f;            
             if (weapon == pawn.equipment?.Primary)
                 return 35f;
             // give it higher priority if the weapon is very close.
