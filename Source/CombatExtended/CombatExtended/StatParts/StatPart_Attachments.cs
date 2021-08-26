@@ -35,8 +35,8 @@ namespace CombatExtended
             {                
                 return;
             }            
-            platform = (WeaponPlatform)req.Thing;
-            if (platform.Platform?.attachmentLinks == null)
+            platform = req.Thing as WeaponPlatform;
+            if (platform == null || platform.Platform.attachmentLinks == null)
             {
                 return;
             }

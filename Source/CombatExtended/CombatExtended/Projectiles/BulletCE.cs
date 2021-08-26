@@ -28,12 +28,12 @@ namespace CombatExtended
         public virtual float PenetrationAmount
         {
             get
-            {
+            {                
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
                 var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
                 return isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
             }
-        }
+        }        
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
@@ -51,7 +51,7 @@ namespace CombatExtended
                 Find.BattleLog.Add(logEntry);
         }
 
-        public override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing, bool destroyOnImpact = true)
         {
             bool cookOff = (launcher is AmmoThing);
 
@@ -125,7 +125,7 @@ namespace CombatExtended
                 }
                 finally
                 {
-                    base.Impact(hitThing);
+                    base.Impact(hitThing, destroyOnImpact);
                 }
             }
             else
@@ -141,7 +141,7 @@ namespace CombatExtended
                         FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
                 }
-                base.Impact(null);
+                base.Impact(null, destroyOnImpact);
             }
             NotifyImpact(hitThing, map, Position);
         }
@@ -198,6 +198,5 @@ namespace CombatExtended
             bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
             return bullet;
         }
-
     }
 }

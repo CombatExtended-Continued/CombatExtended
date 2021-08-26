@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using CombatExtended.AI;
 using MonoMod.Utils;
 using RimWorld;
@@ -9,11 +10,63 @@ using Verse;
 using Verse.AI;
 
 namespace CombatExtended
-{
+{    
     public class CompTacticalManager : ThingComp
-    {
-        private Job curJob = null;
-        private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();
+    {        
+        private const int LASTATTACKTARGET_MAXTICKS = 240;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct TargetingRecord : IExposable
+        {
+            private WeakReference refPawn;
+            private int createdAt;
+            private bool isHostile;
+
+            public bool IsValid
+            {
+                get => refPawn.SafeGetIsAlive()
+                    && refPawn.SafeGetTarget() is Pawn pawn
+                    && pawn.Spawned
+                    && GenTicks.TicksGame - createdAt < LASTATTACKTARGET_MAXTICKS                    
+                    && !pawn.Destroyed
+                    && !pawn.Downed
+                    && !pawn.Dead;
+            }
+
+            public bool IsHostile
+            {
+                get => isHostile;
+            }
+
+            public Pawn Pawn
+            {
+                get => (Pawn) refPawn.SafeGetTarget();
+            }
+
+            public TargetingRecord(Pawn targeter, Pawn target)
+            {
+                this.refPawn = new WeakReference(targeter);
+                this.createdAt = GenTicks.TicksGame;
+                this.isHostile = targeter.Faction == null || target.Faction == null || target.Faction.HostileTo(targeter.Faction); 
+            }
+
+            public void Renew()
+            {
+                this.createdAt = GenTicks.TicksGame;
+            }
+
+            public void ExposeData()
+            {
+                Pawn pawn = (Pawn)(refPawn?.SafeGetTarget() ?? null);
+                Scribe_References.Look(ref pawn, "pawn");
+                if(Scribe.mode != LoadSaveMode.Saving)
+                    this.refPawn = new WeakReference(pawn);
+                Scribe_Values.Look(ref createdAt, "createdAt", -1);
+                Scribe_Values.Look(ref isHostile, "isHostile", true);
+            }
+        }
+        
+        private List<TargetingRecord> targetedBy = new List<TargetingRecord>();        
 
         private Pawn _pawn = null;
         public Pawn SelPawn
@@ -55,60 +108,20 @@ namespace CombatExtended
                 return _compInventory;
             }
         }
-
-        private int _targetedByTick = -1;
-        private List<Pawn> _targetedByCache = new List<Pawn>();
-        public List<Pawn> TargetedBy
+        
+        public IEnumerable<Pawn> TargetedBy
         {
             get
             {
-                if (_targetedByTick != GenTicks.TicksGame || _targetedByTick == -1)
-                {
-                    _targetedByTick = GenTicks.TicksGame;
-                    _targetedByCache.Clear();
-
-                    Job job;
-                    for (int i = 0; i < targetedBy.Count; i++)
-                    {
-                        try
-                        {
-                            Verse.WeakReference<Pawn> reference = targetedBy[i];
-                            Pawn pawn;
-                            if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
-                            {
-                                if (job.AnyTargetIs(parent))
-                                    _targetedByCache.Add(pawn);
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
-                return _targetedByCache;
+                return targetedBy.Where(t => t.IsValid).Select(t => t.Pawn);
             }
         }
-
-        private int _targetedByEnemyTick = -1;
-        private List<Pawn> _targetedByEnemyCache = new List<Pawn>();
-        public List<Pawn> TargetedByEnemy
+       
+        public IEnumerable<Pawn> TargetedByEnemy
         {
             get
-            {
-                if (_targetedByEnemyTick != GenTicks.TicksGame || _targetedByEnemyTick == -1)
-                {
-                    _targetedByEnemyTick = GenTicks.TicksGame;
-                    _targetedByEnemyCache.Clear();
-
-                    List<Pawn> pawns = TargetedBy;
-                    for (int i = 0; i < pawns.Count; i++)
-                    {
-                        Pawn pawn = pawns[i];
-                        if (pawn.HostileTo(parent))
-                            _targetedByEnemyCache.Add(pawn);
-                    }
-                }
-                return _targetedByEnemyCache;
+            {                
+                return targetedBy.Where(t => t.IsValid && (t.Pawn.Faction == null || SelPawn.Faction == null || SelPawn.Faction.HostileTo(t.Pawn.Faction))).Select(t => t.Pawn);
             }
         }
 
@@ -119,80 +132,16 @@ namespace CombatExtended
                 return (SelPawn.Faction?.IsPlayer ?? false) && SelPawn.Drafted;
             }
         }
-
-        private readonly TargetIndex[] _targetIndices = new TargetIndex[]
-        {
-            TargetIndex.A,
-            TargetIndex.B,
-            TargetIndex.C,
-        };
-
+        
         public override void CompTick()
         {
-            base.CompTick();
-            if (parent.IsHashIntervalTick(120))
+            if (parent.IsHashIntervalTick(30))
             {
-                /*
-                 * Clear the cache if it's very outdated to allow GC to take over
-                 */
-                if (_targetedByTick != -1 && GenTicks.TicksGame - _targetedByTick > 300)
-                {
-                    _targetedByCache.Clear();
-                    _targetedByEnemyCache.Clear();
-                    _targetedByTick = -1;
-                    _targetedByEnemyTick = -1;
-                }
-                Job job;
-                /*
-                 * Start scaning for possilbe current targets
-                 */
-                if (parent.Spawned
-                    && curJob != (job = SelPawn.jobs?.curJob)
-                    && job != null && job.def.alwaysShowWeapon == false)
-                {
-                    if (SelPawn.mindState?.enemyTarget is Pawn target && target.Spawned)
-                        target.GetTacticalManager()?.Notify_BeingTargetedBy(target);
-                    /*
-                     * Scan the current job to check for potential target pawns
-                     */
-                    HashSet<Pawn> targets = new HashSet<Pawn>();
-                    for (int i = 0; i < _targetIndices.Length; i++)
-                    {
-                        LocalTargetInfo info = job.GetTarget(_targetIndices[i]);
-
-                        if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                            targets.Add(pawn);
-                    }
-                    if (job.targetQueueA != null)
-                    {
-                        for (int i = 0; i < job.targetQueueA.Count; i++)
-                        {
-                            LocalTargetInfo info = job.targetQueueA[i];
-
-                            if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                                targets.Add(pawn);
-                        }
-                    }
-                    if (job.targetQueueB != null)
-                    {
-                        for (int i = 0; i < job.targetQueueB.Count; i++)
-                        {
-                            LocalTargetInfo info = job.targetQueueB[i];
-
-                            if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                                targets.Add(pawn);
-                        }
-                    }
-
-                    // Notify others of this pawn targeting them
-                    foreach (Pawn other in targets)
-                    {
-                        if (other.thingIDNumber != parent.thingIDNumber)
-                            other.GetTacticalManager()?.Notify_BeingTargetedBy(other);
-                    }
-                    targets.Clear();
-                }
-            }
+                if (GenTicks.TicksGame - SelPawn.LastAttackTargetTick < LASTATTACKTARGET_MAXTICKS && SelPawn.LastAttackedTarget.Pawn is Pawn other)
+                    other.GetTacticalManager()?.Notify_BeingTargetedBy(SelPawn);
+            }            
+            base.CompTick();
+            if (parent.IsHashIntervalTick(60)) targetedBy.RemoveAll(r => !r.IsValid);
         }
 
         private int _counter = 0;
@@ -204,15 +153,20 @@ namespace CombatExtended
             if (_counter++ % 2 == 0) TickRarer();
         }
 
-
         public void Notify_BeingTargetedBy(Pawn pawn)
         {
+            bool renewed = false;
             for (int i = 0; i < targetedBy.Count; i++)
             {
-                if (targetedBy[i].Target == pawn)
-                    return;
+                TargetingRecord record = targetedBy[i];
+                if (record.Pawn == pawn)
+                {
+                    record.Renew();
+                    renewed = true;
+                    break;
+                }
             }
-            targetedBy.Add(new Verse.WeakReference<Pawn>(pawn));
+            if (!renewed) targetedBy.Add(new TargetingRecord(pawn, SelPawn));            
         }
 
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
@@ -275,6 +229,10 @@ namespace CombatExtended
             base.PostExposeData();
             try
             {
+                // scribe targeting records
+                targetedBy.RemoveAll(t => !t.IsValid);
+                Scribe_Collections.Look(ref targetedBy, "targetedBy", LookMode.Deep);
+                // scribe AI comps
                 Scribe_Collections.Look(ref _tacticalComps, "tacticalComps", LookMode.Deep);
             }
             catch (Exception er)
@@ -283,6 +241,7 @@ namespace CombatExtended
             }
             finally
             {
+                this.targetedBy ??= new List<TargetingRecord>();
                 this.ValidateComps();
             }
         }

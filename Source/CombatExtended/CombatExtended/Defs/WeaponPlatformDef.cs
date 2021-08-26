@@ -109,6 +109,7 @@ namespace CombatExtended
             if (attachmentLinks == null)
                 attachmentLinks = new List<AttachmentLink>();
 
+            this.thingClass = typeof(WeaponPlatform);
             base.PostLoad();
             // Add the inspect tab for attachments
             if (inspectorTabs == null)

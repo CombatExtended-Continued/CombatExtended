@@ -70,6 +70,7 @@ namespace CombatExtended
             }
         }
 
+        public Thing thingToIgnore;
         public ThingDef equipmentDef;
         public Thing launcher;
         public LocalTargetInfo intendedTarget;
@@ -136,6 +137,16 @@ namespace CombatExtended
                     startingTicksToImpactInt = GetFlightTime() * (float)GenTicks.TicksPerRealSecond;
                 }
                 return startingTicksToImpactInt;
+            }
+        }
+        /// <summary>
+        /// The projectile CE properties.
+        /// </summary>
+        public ProjectilePropertiesCE Props
+        {
+            get
+            {
+                return (ProjectilePropertiesCE)def.projectile;
             }
         }
 
@@ -396,7 +407,7 @@ namespace CombatExtended
             Scribe_References.Look<Thing>(ref launcher, "launcher");
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
-
+            Scribe_References.Look(ref thingToIgnore, "thingToIgnore");            
             //Here be new variables
             Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
             Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
@@ -498,12 +509,12 @@ namespace CombatExtended
                     landed = true;
                     LastPos = destination;
                     ExactPosition = destination;
-                    Position = ExactPosition.ToIntVec3();
+
+                    if(ExactPosition.ToIntVec3().InBounds(Map))                       
+                        Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
-
                     lbce.Impact(thing, muzzle);
-
                     return;
 
                 }
@@ -728,7 +739,8 @@ namespace CombatExtended
 
             foreach (var thing in mainThingList.Distinct().OrderBy(x => (x.DrawPos - LastPos).sqrMagnitude))
             {
-                if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
+                if ((thing == launcher || thing == mount || thingToIgnore == thing) && !canTargetSelf) continue;
+                if (thing is Corpse corpse && thingToIgnore == corpse.InnerPawn) continue;
 
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
@@ -791,9 +803,9 @@ namespace CombatExtended
         /// </summary>
         /// <param name="thing">What to impact</param>
         /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing)
+        protected virtual bool TryCollideWith(Thing thing)
         {
-            if (thing == launcher && !canTargetSelf)
+            if ((thing == launcher && !canTargetSelf) || thingToIgnore == thing)
             {
                 return false;
             }
@@ -822,12 +834,31 @@ namespace CombatExtended
             if (!point.InBounds(Map))
                 Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
 
-            ExactPosition = point;
-            landed = true;
-
+            var destroy = true;
+            var pos = ExactPosition;
+            // try to overpenetrate            
+            if (launcher != null && Rand.Chance(Props.overPenetrationChance) && pos.y > 0)
+            {                
+                destroy = false;
+                thingToIgnore = thing;
+                origin = new Vector2(pos.x, pos.z);                
+                shotHeight = pos.y * Rand.Range(0.8f, 1.1f);
+                shotAngle += Rand.Range(-0.075f, 0.075f) * shotAngle;                
+                shotRotation += Rand.Range(-0.095f, 0.095f) * shotRotation;
+                originInt = new IntVec3(0, -1000, 0);
+                intTicksToImpact = -1;
+                ticksToImpact = IntTicksToImpact;
+                destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+                destinationInt.z = 0f;
+            }
+            else
+            {
+                ExactPosition = point;
+                landed = true;
+            }
             if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
 
-            Impact(thing);
+            Impact(thing, destroy);
             return true;
         }
         #endregion
@@ -878,7 +909,7 @@ namespace CombatExtended
             if (!ExactPosition.InBounds(Map))
             {
                 Position = LastPos.ToIntVec3();
-                Destroy();
+                if(!Destroyed) Destroy();
                 return;
             }
             if (CheckForCollisionBetween())
@@ -952,9 +983,35 @@ namespace CombatExtended
                 Comps_PostDraw();
             }
         }
+
+        // incase the projectile tries to despawn out of the map.
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            ClampPositionToMap(); 
+            base.DeSpawn(mode);
+        }
+
+        // incase the projectile tries to destroy out of the map.
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            ClampPositionToMap();
+            base.Destroy(mode);            
+        }
+
+        private void ClampPositionToMap()
+        {
+            if (this.Spawned && !this.Position.InBounds(Map))
+            {
+                positionInt.x = (int)Mathf.Clamp(positionInt.x, 1, Map.cellIndices.mapSizeX - 1);
+                positionInt.y = 1;
+                positionInt.z = (int)Mathf.Clamp(positionInt.z, 1, Map.cellIndices.mapSizeZ - 1);
+            }
+        }
+
         #endregion
 
-        #region Impact
+        #region Impact       
+
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
@@ -1004,9 +1061,9 @@ namespace CombatExtended
             ExactPosition = ExactPosition;
             landed = true;
             Impact(null);
-        }
+        }                   
 
-        public virtual void Impact(Thing hitThing)
+        public virtual void Impact(Thing hitThing, bool destroyOnImpact = true)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {
@@ -1047,7 +1104,7 @@ namespace CombatExtended
 
             if (!explodePos.ToIntVec3().IsValid)
             {
-                Destroy();
+                if(destroyOnImpact) Destroy();
                 return;
             }
 
@@ -1096,7 +1153,7 @@ namespace CombatExtended
                     ApplySuppression(thing);
             }
 
-            Destroy();
+            if(destroyOnImpact) Destroy();
         }
         #endregion
 
