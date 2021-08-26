@@ -76,6 +76,7 @@ Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
 Area Rugs	|
+Aspero Race |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
