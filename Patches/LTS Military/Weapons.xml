@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[LTS]Military</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        
+        <!-- ========== Tools ========== -->
+  
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LTS_KPist" or defName="LTS_MP5SD" or defName="LTS_Glock"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.54</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+  
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="LTS_UMP" or 
+              defName="LTS_PSG" or 
+              defName="LTS_AKIV" or 
+              defName="LTS_AKV" or
+              defName="LTS_G36Rifle" or
+              defName="LTS_KSP" or 
+              defName="LTS_PKM"
+            ]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>2.02</cooldownTime>
+                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.55</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LTS_AT" or defName="LTS_grg"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- ========== KPIST ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_KPist</defName>
+          <statBases>
+            <Mass>3.35</Mass>
+            <Bulk>5.50</Bulk>
+            <ShotSpread>0.14</ShotSpread>
+            <SwayFactor>1.14</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.95</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <range>35</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <soundCast>SMG_Fire</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>4.3</reloadTime>
+            <ammoSet>AmmoSet_45ACP</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_SMG</li>
+            <li>CE_AI_BROOM</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== UMP45 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_UMP</defName>
+          <statBases>
+            <Mass>2.50</Mass>
+            <Bulk>4.50</Bulk>
+            <ShotSpread>0.14</ShotSpread>
+            <SwayFactor>0.94</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.08</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <range>25</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <soundCast>HeavySMG_Fire</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>25</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_45ACP</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_SMG</li>
+            <li>CE_AI_BROOM</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== MP5SD ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_MP5SD</defName>
+          <statBases>
+            <Mass>3.10</Mass>
+            <Bulk>7.90</Bulk>
+            <ShotSpread>0.16</ShotSpread>
+            <SwayFactor>1.10</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.21</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+            <warmupTime>0.6</warmupTime>
+            <range>30</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <soundCast>Silenced_Fire</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>5</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_SMG</li>
+            <li>CE_AI_BROOM</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== PSG90 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_PSG</defName>
+          <statBases>
+            <Mass>6.5</Mass>
+            <Bulk>11.80</Bulk>
+            <ShotSpread>0.04</ShotSpread>
+            <SwayFactor>1.83</SwayFactor>
+            <SightsEfficiency>2.8</SightsEfficiency>
+            <RangedWeapon_Cooldown>1.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_300WinchesterMagnum_FMJ</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <range>80</range>
+            <soundCast>DMR_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>5</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_300WinchesterMagnum</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_SNIPER</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== AK4 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_AKIV</defName>
+          <statBases>
+            <Mass>4.10</Mass>
+            <Bulk>10.45</Bulk>
+            <ShotSpread>0.08</ShotSpread>
+            <SwayFactor>1.46</SwayFactor>
+            <SightsEfficiency>1.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.07</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+            <warmupTime>1.1</warmupTime>
+            <range>58</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <soundCast>AssaultRifle_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>20</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AR</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== AK5 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_AKV</defName>
+          <statBases>
+            <Mass>3.90</Mass>
+            <Bulk>7.60</Bulk>
+            <ShotSpread>0.08</ShotSpread>
+            <SwayFactor>1.40</SwayFactor>
+            <SightsEfficiency>1.5</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.38</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+            <warmupTime>1.1</warmupTime>
+            <range>58</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <soundCast>AssaultRifle_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AR</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== G36 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_G36Rifle</defName>
+          <statBases>
+            <Mass>3.63</Mass>
+            <Bulk>7.58</Bulk>
+            <ShotSpread>0.07</ShotSpread>
+            <SwayFactor>1.37</SwayFactor>
+            <SightsEfficiency>1.10</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.38</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+            <warmupTime>1</warmupTime>
+            <range>58</range>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <soundCast>Rifle_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>30</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AR</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== Glock 19 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_Glock</defName>
+          <statBases>
+            <Mass>0.78</Mass>
+            <Bulk>1.86</Bulk>
+            <ShotSpread>0.17</ShotSpread>
+            <SwayFactor>0.88</SwayFactor>
+            <SightsEfficiency>0.70</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+            <warmupTime>0.4</warmupTime>
+            <range>12</range>
+            <burstShotCount>3</burstShotCount>
+            <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+            <soundCast>Handgun_Fire</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <recoilPattern>Regular</recoilPattern>
+            <recoilAmount>2.74</recoilAmount>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>17</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_BROOM</li>
+            <li>CE_Sidearm</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== KSP58 ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_KSP</defName>
+          <statBases>
+            <Mass>11.80</Mass>
+            <Bulk>15.63</Bulk>
+            <ShotSpread>0.04</ShotSpread>
+            <SwayFactor>1.71</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.21</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+            <warmupTime>1.1</warmupTime>
+            <range>75</range>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <soundCast>LMG_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>100</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aiUseBurstMode>False</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_LMG</li>
+          </weaponTags>
+        </li>
+  
+        <!-- ========== PKM ========== -->
+  
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_PKM</defName>
+          <statBases>
+            <Mass>7.50</Mass>
+            <Bulk>14.92</Bulk>
+            <ShotSpread>0.05</ShotSpread>
+            <SwayFactor>1.36</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.45</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+            <warmupTime>1.1</warmupTime>
+            <range>62</range>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <soundCast>LMG_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>100</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aiUseBurstMode>False</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_LMG</li>
+          </weaponTags>
+        </li>
+        
+        <!-- ========== AT4 ========== -->
+        
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_AT</defName>
+          <statBases>
+            <Mass>6.7</Mass>
+            <Bulk>16.50</Bulk>
+            <ShotSpread>0.2</ShotSpread>
+            <SwayFactor>2.27</SwayFactor>
+            <SightsEfficiency>1.00</SightsEfficiency>
+            <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_84mmAT4_HEAT</defaultProjectile>
+            <warmupTime>1.9</warmupTime>
+            <range>40</range>
+            <soundCast>Recoilless_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>14</muzzleFlashScale>
+            <onlyManualCast>true</onlyManualCast>
+            <stopBurstWithoutLos>false</stopBurstWithoutLos>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AOE</li>
+          </weaponTags>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+    
+        <!-- ========== GRG ========== -->
+        
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_grg</defName>
+          <statBases>
+            <Mass>10</Mass>
+            <Bulk>11.3</Bulk>
+            <ShotSpread>0.2</ShotSpread>
+            <SwayFactor>2.58</SwayFactor>
+            <SightsEfficiency>1.00</SightsEfficiency>
+            <RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_84x246mmR_HEAT</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <range>55</range>
+            <soundCast>Recoilless_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>14</muzzleFlashScale>
+            <onlyManualCast>true</onlyManualCast>
+            <stopBurstWithoutLos>false</stopBurstWithoutLos>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>8.6</reloadTime>
+            <ammoSet>AmmoSet_84x246mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>false</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AOE</li>
+          </weaponTags>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+    
+        <!-- ========== M59 ========== -->
+        
+        <!-- = Projectile = -->
+        
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/projectile</xpath>
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <explosionRadius>2</explosionRadius>
+              <damageDef>Bomb</damageDef>
+              <damageAmountBase>60</damageAmountBase>
+              <explosionDelay>100</explosionDelay>
+              <dropsCasings>true</dropsCasings>
+              <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+              <speed>5</speed>
+            </projectile>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]</xpath>
+              <value>
+                <comps/>
+              </value>
+            </li>
+          </operations>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>40</Fragment_Small>
+              </fragments>
+            </li>
+          </value>
+        </li>
+      
+        <!-- = Grenade = -->
+      
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]</xpath>
+          <attribute>ParentName</attribute>
+          <value>BaseWeapon</value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/recipeMaker</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/costList</xpath>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]</xpath>
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+      
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+      
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]</xpath>
+              <value>
+                <comps/>
+              </value>
+            </li>
+          </operations>
+        </li>
+      
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>60</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>2</explosiveRadius>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>40</Fragment_Small>
+              </fragments>
+            </li>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>40</Fragment_Small>
+              </fragments>
+            </li>
+          </value>
+        </li>
+      
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>LTS_Handgranat</defName>
+          <statBases>
+            <Mass>0.82</Mass>
+            <Bulk>0.36</Bulk>
+            <MarketValue>12.22</MarketValue>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.65</SightsEfficiency>
+          </statBases>
+          <Properties>
+            <label>throw grenade</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <range>13.0</range>
+            <minRange>2</minRange>
+            <warmupTime>0.8</warmupTime>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+            <soundCast>ThrowGrenade</soundCast>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+            <defaultProjectile>Proj_Handgranat</defaultProjectile>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+          </Properties>
+          <weaponTags>
+            <li>CE_AI_AOE</li>
+            <li>CE_AI_Grenade</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+        
+        <!-- = Recipe = -->
+        
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <RecipeDef ParentName="GrenadeRecipeBase">
+              <defName>LTS_Handgranat</defName>
+              <label>make M59 grenades x10</label>
+              <description>Craft 10 M59 grenades.</description>
+              <jobString>Making M59 grenades.</jobString>
+              <workAmount>3800</workAmount>
+              <ingredients>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>8</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>FSX</li>
+                    </thingDefs>
+                  </filter>
+                  <count>4</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                  <count>2</count>
+                </li>
+              </ingredients>
+              <fixedIngredientFilter>
+                <thingDefs>
+                  <li>Steel</li>
+                  <li>FSX</li>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </fixedIngredientFilter>
+              <products>
+                <LTS_Handgranat>10</LTS_Handgranat>
+              </products>
+            </RecipeDef>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

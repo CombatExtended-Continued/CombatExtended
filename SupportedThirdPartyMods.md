@@ -24,6 +24,7 @@ Mod |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
+[LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
@@ -173,6 +174,7 @@ Magical Menagerie	|
 Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
+Martens - Nature's Most Adorable Assassins  |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
