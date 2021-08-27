@@ -666,7 +666,8 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-
+                if (projectile is BulletCE bullet)
+                    bullet.ammoClass = compAmmo?.CurrentAmmo?.ammoClass ?? null;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;

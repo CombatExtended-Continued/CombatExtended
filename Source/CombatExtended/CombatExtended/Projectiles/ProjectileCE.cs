@@ -29,7 +29,7 @@ namespace CombatExtended
         #region Origin destination
         public Vector2 origin;
 
-        private IntVec3 originInt = new IntVec3(0, -1000, 0);
+        protected IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
         {
             get
