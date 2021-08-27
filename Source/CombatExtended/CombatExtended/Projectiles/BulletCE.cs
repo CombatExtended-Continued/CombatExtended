@@ -120,25 +120,25 @@ namespace CombatExtended
                         );
                         this.shotSpeed *= damageFactor;
                     }
-                    if(hitThing.def.category != ThingCategory.Plant)
-                    {
+                    if(hitThing.def.category != ThingCategory.Plant && thingToIgnore == null)
+                    {                        
                         if (result.deflected && Rand.Chance(Props.ricochetChance))
-                        {
+                        {                            
                             destroy = false;                            
                             Ricochet(
                                 hitThing,
-                                this.shotRotation + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2),
-                                this.shotAngle + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2),
-                                this.shotHeight + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2) * 0.15f * this.shotHeight
+                                this.shotRotation + Rand.Range(-90f, 90f),
+                                this.shotAngle + Rand.Range(-Mathf.PI / 4f, Mathf.PI / 4f),
+                                this.shotHeight + Rand.Range(-0.15f, 0.15f) * this.shotHeight
                             );
-                            this.shotSpeed *= (Rand.Range(0.4f, 0.9f) + damageFactor) / 2f;
+                            this.shotSpeed *= (Rand.Range(0.4f, 0.9f) + damageFactor) / 2f;                           
                         }
-                        if (thingToIgnore == null && this.shotSpeed > this.def.projectile.speed * 0.6f && Rand.Chance(Props.fragmentationChance) && (hitThing.def.Fillage != FillCategory.Full || hitThing is Pawn))
+                        if (result.deflected && Rand.Chance(Props.fragmentationChance))
                         {
                             // ricochet self to be used as ref.
-                            Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-Mathf.PI / 6, Mathf.PI / 6) * 0.09f, this.shotAngle + Rand.Range(-1f, 1f) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1f, 1f) * 0.15f * this.shotHeight);
+                            destroy = true;
                             // now launch the rest of our fragments.
-                            int count = (int)((float)Rand.Range(Props.fragmentRange.start - 1f, Props.fragmentRange.end - 1f) * this.shotSpeed / def.projectile.speed * damageFactor);
+                            int count = (int)((float)Rand.Range(Props.fragmentRange.start, Props.fragmentRange.end) * this.shotSpeed / def.projectile.speed * damageFactor);
                             while (count-- > 0)
                             {
                                 BulletCE bullet = ThingMaker.MakeThing(def) as BulletCE;
@@ -149,11 +149,11 @@ namespace CombatExtended
                                 bullet.Launch(
                                     this.launcher,
                                     this.origin,
-                                    this.shotAngle + Rand.Range(-1f, 1f) * 0.15f * this.shotAngle,
-                                    this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.25f,
+                                    this.shotAngle + Rand.Range(-Mathf.PI / 4f, Mathf.PI / 4f),
+                                    this.shotRotation + Rand.Range(-90f, 90f),
                                     this.shotHeight + Rand.Range(-1f, 1f) * 0.15f * this.shotHeight,
                                     this.shotSpeed * Rand.Range(0.4f, 0.8f)
-                               );
+                               );                                
                             }
                         }
                     }
