@@ -124,21 +124,19 @@ namespace CombatExtended
                     {
                         if (result.deflected && Rand.Chance(Props.ricochetChance))
                         {
-                            destroy = false;
-                            float rotShot = shotRotation + Mathf.PI / 2f  * (Rand.Chance(0.5f) ? -1 : 1);
-                            float angShot = shotAngle + Mathf.PI / 2f * (Rand.Chance(0.5f) ? -1 : 1);
+                            destroy = false;                            
                             Ricochet(
                                 hitThing,
-                                rotShot + rotShot * Rand.Range(-1, 1) * 0.07f,
-                                angShot + angShot * Rand.Range(-1, 1) * 0.07f,
-                                this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
+                                this.shotRotation + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2),
+                                this.shotAngle + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2),
+                                this.shotHeight + Rand.Range(-Mathf.PI / 2, Mathf.PI / 2) * 0.15f * this.shotHeight
                             );
                             this.shotSpeed *= (Rand.Range(0.4f, 0.9f) + damageFactor) / 2f;
                         }
                         if (thingToIgnore == null && this.shotSpeed > this.def.projectile.speed * 0.6f && Rand.Chance(Props.fragmentationChance) && (hitThing.def.Fillage != FillCategory.Full || hitThing is Pawn))
                         {
                             // ricochet self to be used as ref.
-                            Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f, this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight);
+                            Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-Mathf.PI / 6, Mathf.PI / 6) * 0.09f, this.shotAngle + Rand.Range(-1f, 1f) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1f, 1f) * 0.15f * this.shotHeight);
                             // now launch the rest of our fragments.
                             int count = (int)((float)Rand.Range(Props.fragmentRange.start - 1f, Props.fragmentRange.end - 1f) * this.shotSpeed / def.projectile.speed * damageFactor);
                             while (count-- > 0)
@@ -151,9 +149,9 @@ namespace CombatExtended
                                 bullet.Launch(
                                     this.launcher,
                                     this.origin,
-                                    this.shotAngle + Rand.Range(-1, 1) * 0.15f * this.shotAngle,
+                                    this.shotAngle + Rand.Range(-1f, 1f) * 0.15f * this.shotAngle,
                                     this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.25f,
-                                    this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight,
+                                    this.shotHeight + Rand.Range(-1f, 1f) * 0.15f * this.shotHeight,
                                     this.shotSpeed * Rand.Range(0.4f, 0.8f)
                                );
                             }
