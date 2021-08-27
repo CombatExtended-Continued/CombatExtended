@@ -108,8 +108,8 @@ namespace CombatExtended
                 {                    
                     // Apply primary damage
                     DamageWorker.DamageResult result = hitThing.TakeDamage(dinfo);
-                    result.AssociateWithLog(logEntry);                   
-                    if (result.wounded && Rand.Chance(Props.overPenetrationChance))
+                    float damageFactor = result.totalDamageDealt / damageAmountBase;
+                    if (damageFactor >= 0.5f && result.wounded && Rand.Chance(Props.overPenetrationChance))
                     {
                         destroy = false;
                         Ricochet(
@@ -117,44 +117,49 @@ namespace CombatExtended
                             this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f,
                             this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle,
                             this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
-                       );
-                        this.shotSpeed *= Rand.Range(0.4f, 0.9f);
-                    }
-                    if (result.deflected && Rand.Chance(Props.ricochetChance))
-                    {
-                        destroy = false;
-                        float angle = shotRotation + Mathf.PI / 2f  * (Rand.Chance(0.5f) ? -1 : 1);
-                        Ricochet(
-                            hitThing,
-                            angle + angle * Rand.Range(-1, 1) * 0.07f,
-                            this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle,
-                            this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
                         );
-                        this.shotSpeed *= Rand.Range(0.4f, 0.9f);
-                    }                    
-                    if (thingToIgnore == null && this.shotSpeed > this.def.projectile.speed * 0.6f && Rand.Chance(Props.fragmentationChance))
+                        this.shotSpeed *= damageFactor;
+                    }
+                    if(hitThing.def.category != ThingCategory.Plant)
                     {
-                        // ricochet self to be used as ref.
-                        Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f, this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight);
-                        // now launch the rest of our fragments.
-                        int count = (int)((float)Rand.Range(Props.fragmentRange.start - 1f, Props.fragmentRange.end - 1f) * this.shotSpeed / def.projectile.speed);                        
-                        while (count-- > 0)
-                        {                            
-                            BulletCE bullet = ThingMaker.MakeThing(def) as BulletCE;
-                            GenSpawn.Spawn(bullet, ExactPosition.ToIntVec3(), map);
-                            bullet.thingToIgnore = hitThing;
-                            bullet.launcher = this.launcher;
-                            bullet.equipmentDef = this.equipmentDef;
-                            bullet.Launch(
-                                this.launcher,
-                                this.origin,
-                                this.shotAngle + Rand.Range(-1, 1) * 0.15f * this.shotAngle,
-                                this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.25f,
-                                this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight,
-                                this.shotSpeed * Rand.Range(0.4f, 0.8f)
-                           );
+                        if (result.deflected && Rand.Chance(Props.ricochetChance))
+                        {
+                            destroy = false;
+                            float rotShot = shotRotation + Mathf.PI / 2f  * (Rand.Chance(0.5f) ? -1 : 1);
+                            float angShot = shotAngle + Mathf.PI / 2f * (Rand.Chance(0.5f) ? -1 : 1);
+                            Ricochet(
+                                hitThing,
+                                rotShot + rotShot * Rand.Range(-1, 1) * 0.07f,
+                                angShot + angShot * Rand.Range(-1, 1) * 0.07f,
+                                this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
+                            );
+                            this.shotSpeed *= (Rand.Range(0.4f, 0.9f) + damageFactor) / 2f;
+                        }
+                        if (thingToIgnore == null && this.shotSpeed > this.def.projectile.speed * 0.6f && Rand.Chance(Props.fragmentationChance) && (hitThing.def.Fillage != FillCategory.Full || hitThing is Pawn))
+                        {
+                            // ricochet self to be used as ref.
+                            Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f, this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight);
+                            // now launch the rest of our fragments.
+                            int count = (int)((float)Rand.Range(Props.fragmentRange.start - 1f, Props.fragmentRange.end - 1f) * this.shotSpeed / def.projectile.speed * damageFactor);
+                            while (count-- > 0)
+                            {
+                                BulletCE bullet = ThingMaker.MakeThing(def) as BulletCE;
+                                GenSpawn.Spawn(bullet, ExactPosition.ToIntVec3(), map);
+                                bullet.thingToIgnore = hitThing;
+                                bullet.launcher = this.launcher;
+                                bullet.equipmentDef = this.equipmentDef;
+                                bullet.Launch(
+                                    this.launcher,
+                                    this.origin,
+                                    this.shotAngle + Rand.Range(-1, 1) * 0.15f * this.shotAngle,
+                                    this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.25f,
+                                    this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight,
+                                    this.shotSpeed * Rand.Range(0.4f, 0.8f)
+                               );
+                            }
                         }
                     }
+                    result.AssociateWithLog(logEntry);
                     if (!(hitThing is Pawn pawn))
                     {
                         // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
