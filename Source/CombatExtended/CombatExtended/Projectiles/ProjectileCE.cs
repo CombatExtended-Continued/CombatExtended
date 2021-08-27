@@ -545,7 +545,7 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.shotSpeed = shotSpeed == -1 ? def.projectile.speed : shotSpeed;
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }
@@ -833,33 +833,26 @@ namespace CombatExtended
             var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(Map))
                 Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
-
-            var destroy = true;
-            var pos = ExactPosition;
-            // try to overpenetrate            
-            if (launcher != null && Rand.Chance(Props.overPenetrationChance) && pos.y > 0)
-            {                
-                destroy = false;
-                thingToIgnore = thing;
-                origin = new Vector2(pos.x, pos.z);                
-                shotHeight = pos.y * Rand.Range(0.8f, 1.1f);
-                shotAngle += Rand.Range(-0.075f, 0.075f) * shotAngle;                
-                shotRotation += Rand.Range(-0.095f, 0.095f) * shotRotation;
-                originInt = new IntVec3(0, -1000, 0);
-                intTicksToImpact = -1;
-                ticksToImpact = IntTicksToImpact;
-                destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
-                destinationInt.z = 0f;
-            }
-            else
-            {
-                ExactPosition = point;
-                landed = true;
-            }
+                                          
             if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
 
-            Impact(thing, destroy);
+            Impact(thing, true);            
             return true;
+        }
+
+        public void Ricochet(Thing hitThing, float shotRotation, float shotAngle, float shotHeight = -1f)
+        {
+            var pos = ExactPosition;
+            thingToIgnore = hitThing;            
+            origin = new Vector2(pos.x, pos.z);
+            this.shotHeight = shotHeight < 0 ? pos.y * Rand.Range(0.8f, 1.1f) : shotHeight;
+            this.shotAngle = shotAngle;
+            this.shotRotation = shotRotation;
+            originInt = new IntVec3(0, -1000, 0);
+            intTicksToImpact = -1;
+            ticksToImpact = IntTicksToImpact;
+            destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            destinationInt.z = 0f;
         }
         #endregion
 
