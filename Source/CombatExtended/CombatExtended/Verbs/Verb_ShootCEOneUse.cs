@@ -40,9 +40,17 @@ namespace CombatExtended
             var inventory = ShooterPawn?.TryGetComp<CompInventory>();
             if (this.EquipmentSource != null && !this.EquipmentSource.Destroyed)
             {
-                this.EquipmentSource.Destroy(DestroyMode.Vanish);
+                if (this.EquipmentSource.stackCount > 1)
+                {
+                    this.EquipmentSource.stackCount--;
+                }
+                else
+                {
+                    this.EquipmentSource.Destroy(DestroyMode.Vanish);
+                }
             }
-            if (inventory != null && ShooterPawn?.jobs.curJob.def != CE_JobDefOf.OpportunisticAttack)
+            
+            if (ShooterPawn?.equipment.Primary == null && inventory != null && ShooterPawn?.jobs.curJob.def != CE_JobDefOf.OpportunisticAttack)
             {
                 var newGun = inventory.rangedWeaponList.FirstOrDefault(t => t.def == EquipmentSource.def);
                 if (newGun != null)
