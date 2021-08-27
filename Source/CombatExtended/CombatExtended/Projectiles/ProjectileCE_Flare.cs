@@ -47,7 +47,7 @@ namespace CombatExtended
             }
         }
 
-        public override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing, bool destroyOnImpact = true)
         {
             landed = true;
             Flare flare;
@@ -56,7 +56,7 @@ namespace CombatExtended
             flare.StartingAltitude = Height;
             flare.Position = Position;
             flare.SpawnSetup(Map, false);
-            base.Impact(null);
+            base.Impact(null, destroyOnImpact);
         }
 
         public override void ExposeData()

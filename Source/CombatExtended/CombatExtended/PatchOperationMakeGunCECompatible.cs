@@ -93,7 +93,7 @@ namespace CombatExtended
             }            
             element.SetAttribute("Class", "CombatExtended.WeaponPlatformDef"); // change node def type
             
-            GetOrCreateNode(xml, xmlNode, "thingClass", out XmlElement thingClassElement); // change thingClass
+            GetOrCreateNode(xml, xmlNode, "thingClass", out XmlElement thingClassElement); // change thingClass                                                                                           
             if (!thingClassElement.InnerText.StartsWith("CombatExtended"))
             {
                 thingClassElement.InnerText = "CombatExtended.WeaponPlatform";

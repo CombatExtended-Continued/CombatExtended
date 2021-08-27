@@ -21,19 +21,19 @@ namespace CombatExtended
         {
             get
             {
-                return def.projectile.GetDamageAmount(1);
+                return def.projectile.GetDamageAmount(shotSpeed / def.projectile.speed);
             }
         }
 
         public virtual float PenetrationAmount
         {
             get
-            {
+            {                
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
                 var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                return isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt;
+                return (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt) * Mathf.Pow(shotSpeed / def.projectile.speed, 2);
             }
-        }
+        }        
 
         private void LogImpact(Thing hitThing, out LogEntry_DamageResult logEntry)
         {
@@ -51,7 +51,7 @@ namespace CombatExtended
                 Find.BattleLog.Add(logEntry);
         }
 
-        public override void Impact(Thing hitThing)
+        public override void Impact(Thing hitThing, bool destroyOnImpact = true)
         {
             bool cookOff = (launcher is AmmoThing);
 
@@ -62,7 +62,11 @@ namespace CombatExtended
             {
                 LogImpact(hitThing, out logEntry);
             }
-
+            if (this.shotSpeed < def.projectile.speed * 0.5f)
+            {
+                base.Impact(hitThing, true);
+                return;
+            }
             if (hitThing != null)
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
@@ -97,24 +101,73 @@ namespace CombatExtended
                             hitPawn,
                             CookOff
                             );
-                    Find.BattleLog.Add(logEntry);
+                    Find.BattleLog.Add(logEntry);                    
                 }
-
+                bool destroy = true;                
                 try
-                {
+                {                    
                     // Apply primary damage
-                    hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
-
-                    // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
-                    // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
-                    if (!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
+                    DamageWorker.DamageResult result = hitThing.TakeDamage(dinfo);
+                    result.AssociateWithLog(logEntry);                   
+                    if (result.wounded && Rand.Chance(Props.overPenetrationChance))
                     {
-                        foreach (SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                        destroy = false;
+                        Ricochet(
+                            hitThing,
+                            this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f,
+                            this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle,
+                            this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
+                       );
+                        this.shotSpeed *= Rand.Range(0.4f, 0.9f);
+                    }
+                    if (result.deflected && Rand.Chance(Props.ricochetChance))
+                    {
+                        destroy = false;
+                        float angle = shotRotation + Mathf.PI / 2f  * (Rand.Chance(0.5f) ? -1 : 1);
+                        Ricochet(
+                            hitThing,
+                            angle + angle * Rand.Range(-1, 1) * 0.07f,
+                            this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle,
+                            this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight
+                        );
+                        this.shotSpeed *= Rand.Range(0.4f, 0.9f);
+                    }                    
+                    if (thingToIgnore == null && this.shotSpeed > this.def.projectile.speed * 0.6f && Rand.Chance(Props.fragmentationChance))
+                    {
+                        // ricochet self to be used as ref.
+                        Ricochet(hitThing, this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.09f, this.shotAngle + Rand.Range(-1, 1) * 0.09f * this.shotAngle, this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight);
+                        // now launch the rest of our fragments.
+                        int count = (int)((float)Rand.Range(Props.fragmentRange.start - 1f, Props.fragmentRange.end - 1f) * this.shotSpeed / def.projectile.speed);                        
+                        while (count-- > 0)
+                        {                            
+                            BulletCE bullet = ThingMaker.MakeThing(def) as BulletCE;
+                            GenSpawn.Spawn(bullet, ExactPosition.ToIntVec3(), map);
+                            bullet.thingToIgnore = hitThing;
+                            bullet.launcher = this.launcher;
+                            bullet.equipmentDef = this.equipmentDef;
+                            bullet.Launch(
+                                this.launcher,
+                                this.origin,
+                                this.shotAngle + Rand.Range(-1, 1) * 0.15f * this.shotAngle,
+                                this.shotRotation + this.shotRotation * Rand.Range(-1, 1) * 0.25f,
+                                this.shotHeight + Rand.Range(-1, 1) * 0.15f * this.shotHeight,
+                                this.shotSpeed * Rand.Range(0.4f, 0.8f)
+                           );
+                        }
+                    }
+                    if (!(hitThing is Pawn pawn))
+                    {
+                        // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
+                        // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
+                        if (projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
                         {
-                            if (hitThing.Destroyed || !Rand.Chance(cur.chance)) break;
+                            foreach (SecondaryDamage cur in projectilePropsCE.secondaryDamage)
+                            {
+                                if (hitThing.Destroyed || !Rand.Chance(cur.chance)) break;
 
-                            var secDinfo = cur.GetDinfo(dinfo);
-                            hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
+                                var secDinfo = cur.GetDinfo(dinfo);
+                                hitThing.TakeDamage(secDinfo).AssociateWithLog(logEntry);
+                            }
                         }
                     }
                 }
@@ -125,7 +178,7 @@ namespace CombatExtended
                 }
                 finally
                 {
-                    base.Impact(hitThing);
+                    base.Impact(hitThing, destroy);
                 }
             }
             else
@@ -141,7 +194,7 @@ namespace CombatExtended
                         FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
                 }
-                base.Impact(null);
+                base.Impact(null, destroyOnImpact);
             }
             NotifyImpact(hitThing, map, Position);
         }
@@ -198,6 +251,5 @@ namespace CombatExtended
             bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
             return bullet;
         }
-
     }
 }
