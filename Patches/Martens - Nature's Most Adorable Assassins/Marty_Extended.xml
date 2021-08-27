@@ -8,280 +8,294 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-        <!-- ===Marts=== -->
+	<!-- === Marts === -->
 
-		<li Class="PatchOperationAddModExtension">
-		<xpath>/Defs/ThingDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_RimMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_MegaMart"
-					or defName="ZGF_Boommarten"
-					or defName="ZGF_YellowMart"]</xpath>
-			<value>
-				<li Class="CombatExtended.RacePropertiesExtensionCE">
-					<bodyShape>QuadrupedLow</bodyShape>
-				</li>
-			</value>
-		</li>
+	<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[
+		defName="ZGF_BeechMart" or 
+		defName="ZGF_JapaneseMart" or
+		defName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_RimMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_Boommarten" or
+		defName="ZGF_YellowMart"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</li>
 
+	<li Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="ZGF_MegaMart"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
 
-        		<li Class="PatchOperationReplace">
-			<xpath>Defs/PawnKindDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_RimMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_Boommarten"
-					or defName="ZGF_YellowMart"]/combatPower</xpath>
-			<value>
-				<combatPower>30</combatPower>
-			</value>
-		</li>
+	<li Class="PatchOperationReplace">
+	<xpath>Defs/PawnKindDef[
+		defName="ZGF_BeechMart" or
+		defName="ZGF_JapaneseMart" or
+		defName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_RimMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_Boommarten" or
+		defName="ZGF_YellowMart"]/combatPower</xpath>
+		<value>
+			<combatPower>30</combatPower>
+		</value>
+	</li>
 
-        		<li Class="PatchOperationReplace">
-			<xpath>Defs/PawnKindDef[defName="ZGF_MegaMart"]/combatPower</xpath>
-			<value>
-				<combatPower>180</combatPower>
-			</value>
-		</li>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="ZGF_MegaMart"]/combatPower</xpath>
+		<value>
+			<combatPower>180</combatPower>
+		</value>
+	</li>
 
-        <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_RimMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_Boommarten"
-					or defName="ZGF_YellowMart"]/statBases/MeleeDodgeChance</xpath>
-			<value>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="ZGF_BeechMart" or 
+		defName="ZGF_JapaneseMart" or
+		defName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_RimMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_Boommarten" or
+		defName="ZGF_YellowMart"]/statBases/MeleeDodgeChance</xpath>
+		<value>
 			<MeleeDodgeChance>0.5</MeleeDodgeChance>
 			<MeleeCritChance>0.03</MeleeCritChance>
 			<MeleeParryChance>0.02</MeleeParryChance>
-			</value>
-		</li>
+		</value>
+	</li>
 
-        <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/statBases/MeleeDodgeChance</xpath>
-			<value>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/statBases/MeleeDodgeChance</xpath>
+		<value>
 			<MeleeDodgeChance>0.27</MeleeDodgeChance>
 			<MeleeCritChance>0.5</MeleeCritChance>
 			<MeleeParryChance>0.15</MeleeParryChance>
-			</value>
-		</li>
+		</value>
+	</li>
 
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_Boommarten"]/race/baseBodySize</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="ZGF_BeechMart" or 
+		defName="ZGF_JapaneseMart" or
+		defName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_Boommarten"]/race/baseBodySize</xpath>
 		<value>
 			<baseBodySize>0.35</baseBodySize>
 		</value>
 	</li>
 
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_Boommarten"]/race/baseHealthScale</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+		defName="ZGF_BeechMart" or 
+		defName="ZGF_JapaneseMart" or
+		defName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_Boommarten"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.4</baseHealthScale>
 		</value>
 	</li>
 
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_RimMart"or defName="ZGF_YellowMart"]/race/baseBodySize</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ZGF_RimMart"or defName="ZGF_YellowMart"]/race/baseBodySize</xpath>
 		<value>
 			<baseBodySize>0.65</baseBodySize>
 		</value>
 	</li>
 
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_RimMart"or defName="ZGF_YellowMart"]/race/baseHealthScale</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ZGF_RimMart"or defName="ZGF_YellowMart"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>0.65</baseHealthScale>
 		</value>
 	</li>
 
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/race/baseBodySize</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/race/baseBodySize</xpath>
 		<value>
 			<baseBodySize>2.4</baseBodySize>
 		</value>
 	</li>
 
-
-        <li Class="PatchOperationReplace">
-		             <xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/race/baseHealthScale</xpath>
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ZGF_MegaMart"]/race/baseHealthScale</xpath>
 		<value>
 			<baseHealthScale>2.5</baseHealthScale>
 		</value>
 	</li>
 
-        <li Class="PatchOperationReplace">
-                                            <xpath>/Defs/ThingDef[defName="ZGF_BeechMart" 
-					or defName="ZGF_JapaneseMart"
-					or defName="ZGF_NilgiriMart"
-					or defName="ZGF_PineMart"
-					or defName="ZGF_Sable"
-					or defName="ZGF_Boommarten"]/tools</xpath>
-          <value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>left claw</label>
-					<capacities>
-						<li>Scratch</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>1.32</cooldownTime>
-					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.06</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>right claw</label>
-					<capacities>
-						<li>Scratch</li>
-					</capacities>
-					<power>3</power>
-					<cooldownTime>1.32</cooldownTime>
-					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.06</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Bite</li>
-					</capacities>
-					<power>4</power>
-					<cooldownTime>1.8</cooldownTime>
-					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.14</armorPenetrationSharp>
-					<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>2</cooldownTime>
-					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
-				</li>
-			</tools>
-          </value>
-        </li>
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/ThingDef[
+		defName="ZGF_BeechMart" or
+		defName="ZGF_JapaneseMart" or
+		efName="ZGF_NilgiriMart" or
+		defName="ZGF_PineMart" or
+		defName="ZGF_Sable" or
+		defName="ZGF_RimMart" or
+		defName="ZGF_Boommarten"
+	]/tools</xpath>
+	<value>
+	<tools>
+		<li Class="CombatExtended.ToolCE">
+			<label>left claw</label>
+			<capacities>
+				<li>Scratch</li>
+			</capacities>
+			<power>3</power>
+			<cooldownTime>1.32</cooldownTime>
+			<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+			<surpriseAttack>
+				<extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>21</amount>
+					</li>
+				</extraMeleeDamages>
+			</surpriseAttack>
+			<armorPenetrationSharp>0.06</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+		</li>
+		<li Class="CombatExtended.ToolCE">
+			<label>right claw</label>
+			<capacities>
+				<li>Scratch</li>
+			</capacities>
+			<power>3</power>
+			<cooldownTime>1.32</cooldownTime>
+			<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+			<surpriseAttack>
+				<extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>21</amount>
+					</li>
+				</extraMeleeDamages>
+			</surpriseAttack>
+			<armorPenetrationSharp>0.06</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+		</li>
+		<li Class="CombatExtended.ToolCE">
+			<capacities>
+				<li>Bite</li>
+			</capacities>
+			<power>4</power>
+			<cooldownTime>1.8</cooldownTime>
+			<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+			<surpriseAttack>
+				<extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>21</amount>
+					</li>
+				</extraMeleeDamages>
+			</surpriseAttack>
+			<armorPenetrationSharp>0.14</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+		</li>
+		<li Class="CombatExtended.ToolCE">
+			<label>head</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>1</power>
+			<cooldownTime>2</cooldownTime>
+			<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+			<chanceFactor>0.2</chanceFactor>
+			<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+		</li>
+	</tools>
+	</value>
+	</li>
 
 
-        <li Class="PatchOperationReplace">
-                                            <xpath>/Defs/ThingDef[defName="ZGF_MegaMart"]/tools</xpath>
-          <value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>left claw</label>
-					<capacities>
-						<li>Scratch</li><li>Cut</li>
-					</capacities>
-					<power>24</power>
-					<cooldownTime>1.18</cooldownTime>
-					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.66</armorPenetrationSharp>
-					<armorPenetrationBlunt>8</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>right claw</label>
-					<capacities>
-						<li>Scratch</li><li>Cut</li>
-					</capacities>
-					<power>24</power>
-					<cooldownTime>1.18</cooldownTime>
-					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>0.66</armorPenetrationSharp>
-					<armorPenetrationBlunt>8</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Bite</li><li>Stab</li>
-					</capacities>
-					<power>43</power>
-					<cooldownTime>2</cooldownTime>
-					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<surpriseAttack>
-						<extraMeleeDamages>
-							<li>
-								<def>Stun</def>
-								<amount>21</amount>
-							</li>
-						</extraMeleeDamages>
-					</surpriseAttack>
-					<armorPenetrationSharp>2.25</armorPenetrationSharp>
-					<armorPenetrationBlunt>12</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>12</power>
-					<cooldownTime>2</cooldownTime>
-					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>6</armorPenetrationBlunt>
-				</li>
-			</tools>
-          </value>
-        </li>
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/ThingDef[defName="ZGF_MegaMart"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left claw</label>
+				<capacities>
+					<li>Scratch</li><li>Cut</li>
+				</capacities>
+				<power>24</power>
+				<cooldownTime>1.18</cooldownTime>
+				<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>21</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				<armorPenetrationSharp>0.66</armorPenetrationSharp>
+				<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right claw</label>
+				<capacities>
+					<li>Scratch</li><li>Cut</li>
+				</capacities>
+				<power>24</power>
+				<cooldownTime>1.18</cooldownTime>
+				<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>21</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				<armorPenetrationSharp>0.66</armorPenetrationSharp>
+				<armorPenetrationBlunt>8</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<capacities>
+					<li>Bite</li><li>Stab</li>
+				</capacities>
+				<power>43</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+							<def>Stun</def>
+							<amount>21</amount>
+						</li>
+					</extraMeleeDamages>
+				</surpriseAttack>
+				<armorPenetrationSharp>2.25</armorPenetrationSharp>
+				<armorPenetrationBlunt>12</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>6</armorPenetrationBlunt>
+			</li>
+		</tools>
+		</value>
+	</li>
 
       </operations>
     </match>
