@@ -70,7 +70,7 @@ namespace CombatExtended.Lasers
         public Vector3 Origin => new Vector3(base.origin.x,0, base.origin.y);
 
 
-        public override void Impact(Thing hitThing, bool destroyOnImpact= true)
+        public override void Impact(Thing hitThing)
         {
             LaserGunDef defWeapon = equipmentDef as LaserGunDef;
             Vector3 dir = (destination - Origin).normalized;

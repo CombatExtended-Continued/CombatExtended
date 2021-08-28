@@ -28,7 +28,7 @@ namespace CombatExtended
                 }
             }
         }
-        public override void Impact(Thing hitThing, bool destroyOnImpact = true)
+        public override void Impact(Thing hitThing)
         {
             // Snap to target so we hit multi-tile pawns with our explosion
             if (hitThing is Pawn)
@@ -41,7 +41,7 @@ namespace CombatExtended
             if (def.projectile.explosionDelay == 0)
             {
                 //Explosions are all handled in base
-                base.Impact(null, destroyOnImpact);
+                base.Impact(null);
                 return;
             }
             landed = true;

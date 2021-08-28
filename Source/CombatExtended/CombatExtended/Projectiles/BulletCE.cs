@@ -51,7 +51,7 @@ namespace CombatExtended
                 Find.BattleLog.Add(logEntry);
         }
 
-        public override void Impact(Thing hitThing, bool destroyOnImpact = true)
+        public override void Impact(Thing hitThing)
         {
             bool cookOff = (launcher is AmmoThing);
 
@@ -125,7 +125,7 @@ namespace CombatExtended
                 }
                 finally
                 {
-                    base.Impact(hitThing, destroyOnImpact);
+                    base.Impact(hitThing);
                 }
             }
             else
@@ -141,7 +141,7 @@ namespace CombatExtended
                         FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
                 }
-                base.Impact(null, destroyOnImpact);
+                base.Impact(null);
             }
             NotifyImpact(hitThing, map, Position);
         }
