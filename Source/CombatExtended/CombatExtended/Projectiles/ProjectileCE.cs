@@ -29,7 +29,7 @@ namespace CombatExtended
         #region Origin destination
         public Vector2 origin;
 
-        private IntVec3 originInt = new IntVec3(0, -1000, 0);
+        protected IntVec3 originInt = new IntVec3(0, -1000, 0);
         public IntVec3 OriginIV3
         {
             get
@@ -545,7 +545,7 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.shotSpeed = shotSpeed == -1 ? def.projectile.speed : shotSpeed;
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }
@@ -842,6 +842,21 @@ namespace CombatExtended
 
             Impact(thing);
             return true;
+        }
+
+        public void Ricochet(Thing hitThing, float shotRotation, float shotAngle, float shotHeight = -1f)
+        {
+            var pos = ExactPosition;
+            thingToIgnore = hitThing;            
+            origin = new Vector2(pos.x, pos.z);
+            this.shotHeight = shotHeight < 0 ? pos.y * Rand.Range(0.8f, 1.1f) : shotHeight;
+            this.shotAngle = shotAngle;
+            this.shotRotation = shotRotation;
+            originInt = new IntVec3(0, -1000, 0);
+            intTicksToImpact = -1;
+            ticksToImpact = IntTicksToImpact;
+            destinationInt = origin + Vector2.up.RotatedBy(shotRotation) * DistanceTraveled;
+            destinationInt.z = 0f;
         }
         #endregion
 
