@@ -23,7 +23,7 @@ namespace CombatExtended
         {
             get
             {
-                return def.projectile.GetDamageAmount(shotSpeed / def.projectile.speed);
+                return def.projectile.GetDamageAmount(1);
             }
         }        
 
@@ -33,7 +33,7 @@ namespace CombatExtended
             {                
                 var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
                 var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                return (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt) * Mathf.Pow(shotSpeed / def.projectile.speed, 2);
+                return (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
             }
         }        
 
