@@ -17,6 +17,27 @@
                 </li>	
 		
             <!--Give Shields-->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[
+						defName="DankPyon_Medieval_Mercenary" or
+						defName="DankPyon_Medieval_MercenaryHeavy"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>350</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>KiteShield</li>
+								<li>HeaterShield</li>
+								<li>Buckler</li>
+							</shieldTags>
+							<shieldChance>0.35</shieldChance>
+						</li>
+					</value>
+				</li>
+
 				<li Class="PatchOperationAddModExtension">
 					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Footman"]</xpath>
 					<value>
@@ -30,7 +51,7 @@
 								<li>HeaterShield</li>
                                 <li>Buckler</li>
 							</shieldTags>
-							<shieldChance>0.9</shieldChance>
+							<shieldChance>0.65</shieldChance>
 						</li>
 					</value>
 				</li>
@@ -47,7 +68,7 @@
 								<li>HeaterShield</li>
 								<li>KiteShield</li>
 							</shieldTags>
-							<shieldChance>0.7</shieldChance>
+							<shieldChance>0.5</shieldChance>
 						</li>
 					</value>
 				</li>
@@ -77,7 +98,29 @@
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
 								<min>12</min>
-								<max>20</max>
+								<max>15</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>150</min>
+									<max>250</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Bowman"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>15</min>
+								<max>30</max>
 							</primaryMagazineCount>
 							<forcedSidearm>
 								<sidearmMoney>
@@ -94,7 +137,9 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/PawnKindDef[defName="DankPyon_Medieval_Arbalester"]</xpath>
+					<xpath>/Defs/PawnKindDef[
+						defName="DankPyon_Medieval_Arbalester" or
+						defName="DankPyon_Medieval_Bowman"]</xpath>
 					<value>
 						<apparelRequired>
 							<li>Apparel_TribalBackpack</li>
@@ -106,4 +151,3 @@
 		</match>  
 	</Operation>
 </Patch>
-
