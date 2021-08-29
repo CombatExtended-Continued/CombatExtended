@@ -55,7 +55,7 @@ namespace CombatExtended
             if (compAmmo.UseAmmo && (compAmmo.CompInventory != null || compAmmo.turret != null) || action == null)
             {
                 bool currentlyMannedTurret = compAmmo.turret?.GetMannable()?.MannedNow ?? false;
-                if (Controller.settings.RightClickAmmoSelect && action != null && (compAmmo.turret == null || currentlyMannedTurret))
+                if (action != null && (compAmmo.turret == null || currentlyMannedTurret))
                 {
                     base.ProcessInput(ev);
                 }
@@ -79,14 +79,11 @@ namespace CombatExtended
         public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
         {
             get
-            {
-                if (Controller.settings.RightClickAmmoSelect)
+            {                
+                foreach (var option in BuildAmmoOptions())
                 {
-                    foreach (var option in BuildAmmoOptions())
-                    {
-                        yield return option;
-                    }
-                }
+                    yield return option;
+                }               
             }
         }
 

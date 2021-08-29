@@ -35,8 +35,7 @@ namespace CombatExtended
         public bool ShowTutorialPopup = true;
 
         // Ammo settings
-        private bool enableAmmoSystem = true;
-        private bool rightClickAmmoSelect = false;
+        private bool enableAmmoSystem = true;        
         private bool autoReloadOnChangeAmmo = true;
         private bool autoTakeAmmo = true;
         private bool showCaliberOnGuns = true;
@@ -44,8 +43,7 @@ namespace CombatExtended
         private bool realisticCookOff = false;
         private bool enableSimplifiedAmmo = false;
 
-        public bool EnableAmmoSystem => enableAmmoSystem;
-        public bool RightClickAmmoSelect => rightClickAmmoSelect;
+        public bool EnableAmmoSystem => enableAmmoSystem;        
         public bool AutoReloadOnChangeAmmo => autoReloadOnChangeAmmo;
         public bool AutoTakeAmmo => autoTakeAmmo;
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
@@ -105,8 +103,7 @@ namespace CombatExtended
 #endif
 
             // Ammo settings
-            Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
-            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
+            Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);            
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
             Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
@@ -197,8 +194,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_EnableAmmoSystem_Title".Translate(), ref enableAmmoSystem, "CE_Settings_EnableAmmoSystem_Desc".Translate());
             list.GapLine();
             if (enableAmmoSystem)
-            {
-                list.CheckboxLabeled("CE_Settings_RightClickAmmoSelect_Title".Translate(), ref rightClickAmmoSelect, "CE_Settings_RightClickAmmoSelect_Desc".Translate());
+            {                
                 list.CheckboxLabeled("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate(), ref autoReloadOnChangeAmmo, "CE_Settings_AutoReloadOnChangeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
@@ -209,7 +205,7 @@ namespace CombatExtended
             else
             {
                 GUI.contentColor = Color.gray;
-                list.Label("CE_Settings_RightClickAmmoSelect_Title".Translate());
+                
                 list.Label("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate());
                 list.Label("CE_Settings_AutoTakeAmmo_Title".Translate());
                 list.Label("CE_Settings_ShowCaliberOnGuns_Title".Translate());
