@@ -370,12 +370,16 @@ namespace CombatExtended
                         TooltipHandler.TipRegion(rect, stat.description);
                         Text.Font = GameFont.Small;
                         Text.Anchor = TextAnchor.UpperLeft;
-                        Widgets.LabelFit(rect.LeftPart(0.85f), stat.label.CapitalizeFirst());
+                        Widgets.LabelFit(rect.LeftPart(0.80f), stat.label.CapitalizeFirst());
                         GUI.color = GetStatColor(stat);
-                        Widgets.Label(rect.RightPart(0.15f), $" {((float)Math.Round(statBases[stat] + stats[stat], 2)).ToStringByStyle(stat.toStringStyle)}");
+                        Rect rightRect = rect.RightPart(0.20f);
+                        rightRect.xMax += rightRect.width * 2;
+                        Widgets.Label(rightRect, $" {((float)Math.Round(statBases[stat] + stats[stat], 2)).ToStringByStyle(stat.toStringStyle)}");
                         GUI.color = Color.white;
                         Text.Anchor = TextAnchor.UpperRight;
-                        Widgets.Label(rect.LeftPart(0.85f), $"{((float)Math.Round(statBases[stat], 2)).ToStringByStyle(stat.toStringStyle)} |");
+                        Rect leftRect = rect.LeftPart(0.80f);
+                        leftRect.xMin += leftRect.width / 2f;
+                        Widgets.Label(leftRect, $"{((float)Math.Round(statBases[stat], 2)).ToStringByStyle(stat.toStringStyle)} |");
                     }, useMargins: true, hightlightIfMouseOver: true);
                 });
             }
