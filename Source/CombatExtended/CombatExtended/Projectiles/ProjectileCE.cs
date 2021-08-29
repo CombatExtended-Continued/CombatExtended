@@ -833,10 +833,14 @@ namespace CombatExtended
             var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(Map))
                 Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
-                                          
+                        
+            // try to overpenetrate                       
+            ExactPosition = point;
+            landed = true;
+            
             if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
 
-            Impact(thing, true);            
+            Impact(thing);
             return true;
         }
 
@@ -1056,7 +1060,7 @@ namespace CombatExtended
             Impact(null);
         }                   
 
-        public virtual void Impact(Thing hitThing, bool destroyOnImpact = true)
+        public virtual void Impact(Thing hitThing)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {
@@ -1097,7 +1101,7 @@ namespace CombatExtended
 
             if (!explodePos.ToIntVec3().IsValid)
             {
-                if(destroyOnImpact) Destroy();
+                Destroy();
                 return;
             }
 
@@ -1146,7 +1150,7 @@ namespace CombatExtended
                     ApplySuppression(thing);
             }
 
-            if(destroyOnImpact) Destroy();
+            Destroy();
         }
         #endregion
 

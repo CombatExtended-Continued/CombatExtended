@@ -24,11 +24,6 @@ namespace CombatExtended
         public float armorPenetrationBlunt;
 
         public float empShieldBreakChance = 1f;
-        public float Gravity => CE_Utility.GravityConst * gravityFactor;
-        
-        public float overPenetrationChance = 0.8f;
-        public RangeInt fragmentRange = new RangeInt(1, 4);
-        public float fragmentationChance = 0.8f;
-        public float ricochetChance = 0.8f;
+        public float Gravity => CE_Utility.GravityConst * gravityFactor;        
     }
 }
