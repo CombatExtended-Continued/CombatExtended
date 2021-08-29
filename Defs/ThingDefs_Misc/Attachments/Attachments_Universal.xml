@@ -89,7 +89,7 @@
     <label>Suppressor</label>
     <statMultipliers>
       <MuzzleFlash>0.70</MuzzleFlash>
-      <TicksBetweenBurstShots>2</TicksBetweenBurstShots>
+      <TicksBetweenBurstShots>1.2</TicksBetweenBurstShots>
     </statMultipliers>
     <statOffsets>
       <HuntingStealth>0.10</HuntingStealth>
@@ -110,25 +110,25 @@
   <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CEA_ID_Sight_2xACOG</defName>
     <label>2x ACOG</label>
-    <statOffsets>
+    <statMultipliers>
       <SightsEfficiency>2</SightsEfficiency>
-    </statOffsets>
+    </statMultipliers>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CEA_ID_Sight_4xACOG</defName>
     <label>4x ACOG</label>
-    <statOffsets>
+    <statMultipliers>
       <SightsEfficiency>3.5</SightsEfficiency>
-    </statOffsets>
+    </statMultipliers>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef ParentName="CE_SightT2Base">
     <defName>CEA_ID_Sight_Reflex</defName>
     <label>Reflex</label>
-    <statReplacers>
-      <SightsEfficiency>1.5</SightsEfficiency>
-    </statReplacers>
+    <statMultipliers>
+      <SightsEfficiency>1.3</SightsEfficiency>
+    </statMultipliers>
   </CombatExtended.AttachmentDef>
 
   <!-- ====== Stock ====== -->
@@ -138,7 +138,7 @@
     <label>Heavy Stock</label>
     <statMultipliers>
       <Mass>1.15</Mass>
-      <SwayFactor>1.1</SwayFactor>
+      <SwayFactor>0.9</SwayFactor>
       <Recoil>0.75</Recoil>
     </statMultipliers>
   </CombatExtended.AttachmentDef>
@@ -167,7 +167,6 @@
     <defName>CEA_ID_Underbarrel_ForegripAngled</defName>
     <label>Angled Foregrip</label>
     <statMultipliers>
-      <WarmupTime>0.99</WarmupTime>
       <SwayFactor>0.9</SwayFactor>
     </statMultipliers>
   </CombatExtended.AttachmentDef>
@@ -186,6 +185,9 @@
     <statMultipliers>
       <Bulk>1.2</Bulk>
     </statMultipliers>
+    <slotTags>
+      <li>Bayonet</li>
+    </slotTags>
     <attachmentVerb>
       <verb Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootUseAttachment</verbClass>
@@ -216,6 +218,9 @@
     <statMultipliers>
       <Bulk>1.2</Bulk>
     </statMultipliers>
+    <slotTags>
+      <li>Bayonet</li>
+    </slotTags>
     <attachmentVerb>
       <verb Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootUseAttachment</verbClass>
@@ -253,11 +258,59 @@
 
   <!-- ====== Accessory ====== -->
   <!-- ====== Ammo ====== -->
+
   <!-- ====== Bayonet ====== -->
+  <CombatExtended.AttachmentDef ParentName="CE_BayonetT4Base">
+    <defName>CEA_ME_Bayonet_Scyther</defName>
+    <label>Scyther</label>
+  </CombatExtended.AttachmentDef>
+
   <!-- ====== Muzzle ====== -->
+
   <!-- ====== Sight ====== -->
+
+  <CombatExtended.AttachmentDef ParentName="CE_SightT4Base">
+    <defName>CEA_ME_Sight_LancerSight</defName>
+    <label>Lancer Sight</label>
+    <statReplacers>
+      <SightsEfficiency>2</SightsEfficiency>
+      <NightVisionEfficiency_Weapon>0.3</NightVisionEfficiency_Weapon>
+    </statReplacers>
+  </CombatExtended.AttachmentDef>
+
   <!-- ====== Stock ====== -->
+
   <!-- ====== Underbarrel ====== -->
+
+  <CombatExtended.AttachmentDef ParentName="CE_UnderbarrelT4Base">
+    <defName>CEA_ME_Underbarrel_GrenadeLauncher</defName>
+    <label>Pikeman Grenade Launcher</label>
+    <statMultipliers>
+      <Bulk>1.1</Bulk>
+    </statMultipliers>
+    <attachmentVerb>     
+      <verb Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootUseAttachment</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_50mmGS50Grenade_HE</defaultProjectile>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <warmupTime>1.1</warmupTime>
+        <range>44</range>
+        <minRange>5</minRange>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>  
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>                    
+      </verb> 
+      <ammo>
+        <magazineSize>1</magazineSize>
+        <reloadTime>2.5</reloadTime>
+        <ammoSet>AmmoSet_50mmGS50Grenade</ammoSet>
+      </ammo>
+    </attachmentVerb>  
+  </CombatExtended.AttachmentDef>
 
   <!-- ==================== Ultratech ==================== -->
 
