@@ -141,9 +141,10 @@ namespace CombatExtended
                     Find.BattleLog.Add(logEntry);                    
                 }                              
                 try
-                {                    
+                {
                     // Apply primary damage
-                    hitThing.TakeDamage(dinfo).AssociateWithLog(logEntry);
+                    DamageWorker.DamageResult damageResult = hitThing.TakeDamage(dinfo);
+                    damageResult.AssociateWithLog(logEntry);
                                         
                     if (!(hitThing is Pawn))
                     {
