@@ -13,18 +13,12 @@ namespace CombatExtended
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
             DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.Name);
-
-            this.parts = new List<BodyPartModifier>();
-
-            XmlNodeList nodeList = xmlRoot.SelectNodes("parts");
-            if (nodeList != null)
+            parts ??= new List<BodyPartModifier>();
+            foreach (XmlNode node in xmlRoot.ChildNodes)
             {
-                foreach (XmlNode node in nodeList)
-                {
-                    BodyPartModifier modifier = new BodyPartModifier();
-                    modifier.LoadDataFromXmlCustom(node);
-                    this.parts.Add(modifier);
-                }
+                BodyPartModifier modifier = new BodyPartModifier();
+                modifier.LoadDataFromXmlCustom(node);                    
+                parts.Add(modifier);               
             }
         }
     }    
