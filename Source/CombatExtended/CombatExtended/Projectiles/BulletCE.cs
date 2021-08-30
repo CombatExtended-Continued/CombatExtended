@@ -13,27 +13,68 @@ using CombatExtended.AI;
 namespace CombatExtended
 {
     public class BulletCE : ProjectileCE
-    {
+    {        
         private static RulePackDef cookOffDamageEvent = null;
 
+        public float mass = 1.0f;
         public AmmoCategoryDef ammoClass;        
 
-        public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
+        public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));        
         public virtual float DamageAmount
         {
             get
             {
-                return def.projectile.GetDamageAmount(1);
+                float speedFactor = shotSpeed / def.projectile.speed;                
+                /*
+                 * Calculate damage
+                 */
+                float damage;
+                if (def.projectile.damageDef.armorCategory != DamageArmorCategoryDefOf.Sharp)
+                {
+                    // Get blunt damage using this equation
+                    //
+                    // blunt damage = Mathf.Pow(Props.armorPenetrationBlunt * 10000, 1 / 3f) / 10
+                    damage = Props.armorPenetrationBlunt;
+                    damage = damage * mass * (speedFactor * speedFactor);
+                    damage = Mathf.Pow(damage * 10000, 1f / 3f) / 10;
+                }
+                else
+                {
+                    float KE = Props.armorPenetrationBlunt;
+                    float ammoTypeFactor = Mathf.Pow(Props.GetDamageAmount(1) / 0.579f, 1 / 0.346f) / KE;
+                    // Get Shap damage using this eqaution
+                    //
+                    // sharp damage = 0.579*((0.5 * m * v^2) * ammo_type_factor)^(0.346)
+                    damage = 0.579f * Mathf.Pow((KE * mass * (speedFactor * speedFactor)) * ammoTypeFactor, 0.346f);
+                }
+                return damage;
             }
         }        
-
         public virtual float PenetrationAmount
         {
             get
-            {                
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
-                return (isSharpDmg ? projectilePropsCE.armorPenetrationSharp : projectilePropsCE.armorPenetrationBlunt);
+            {
+                float speedFactor = shotSpeed / def.projectile.speed;                
+                /*
+                 * Calculate armor penetration
+                 */
+                float penetration;
+                if (def.projectile.damageDef.armorCategory != DamageArmorCategoryDefOf.Sharp)
+                {
+                    // Get blunt PenetrationAmount using this equation
+                    //
+                    // Blunt PenetrationAmount = (kinetic energy) = 0.5 * m * v^2
+                    penetration = Props.armorPenetrationBlunt;
+                    penetration = penetration * mass * (speedFactor * speedFactor);
+                }
+                else
+                {
+                    // Get Sharpe PenetrationAmount using this equation
+                    //
+                    // Sharpe penetration = YOLO * shotSpeedFactor ^ 3                    
+                    penetration = Props.armorPenetrationSharp * speedFactor * speedFactor * speedFactor;
+                }
+                return penetration;
             }
         }        
 
@@ -68,8 +109,7 @@ namespace CombatExtended
             {
                 // launcher being the pawn equipping the weapon, not the weapon itself
                 float damageAmountBase = DamageAmount;
-                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;
-                var isSharpDmg = def.projectile.damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp;
+                var projectilePropsCE = (ProjectilePropertiesCE)def.projectile;                
                 var penetration = PenetrationAmount;
                 var damDefCE = def.projectile.damageDef.GetModExtension<DamageDefExtensionCE>() ?? new DamageDefExtensionCE();
                 var dinfo = new DamageInfo(
