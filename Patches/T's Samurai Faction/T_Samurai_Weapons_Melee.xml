@@ -103,7 +103,7 @@
                             <cooldownTime>1.8</cooldownTime>
                             <chanceFactor>0.90</chanceFactor>
                             <armorPenetrationBlunt>5</armorPenetrationBlunt>
-                            <armorPenetrationSharp>2.65</armorPenetrationSharp>
+                            <armorPenetrationSharp>2.5</armorPenetrationSharp>
                             <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
                         </li>
                     </tools>
@@ -114,8 +114,24 @@
             <li Class="PatchOperationAdd">
                 <xpath>Defs/ThingDef[defName="TSF_Katana"]/statBases</xpath>
                 <value>
-                    <Bulk>7</Bulk>
+                    <Bulk>6</Bulk>
                     <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/statBases/Mass</xpath>
+                <value>
+                    <Mass>1.3</Mass>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/weaponTags</xpath>
+                <value>
+                    <weaponTags>
+                        <li>SamuraiMeleeSidearm</li>
+                    </weaponTags>
                 </value>
             </li>
 
@@ -177,10 +193,17 @@
             <li Class="PatchOperationAdd">
                 <xpath>/Defs/ThingDef[defName="TSF_Odachi"]/statBases</xpath>
                 <value>
-                  <Bulk>12</Bulk>
+                  <Bulk>10</Bulk>
                   <MeleeCounterParryBonus>0.70</MeleeCounterParryBonus>
                 </value>
-              </li>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Odachi"]/statBases/Mass</xpath>
+                <value>
+                    <Mass>2.6</Mass>
+                </value>
+            </li>
 
               <li Class="PatchOperationAdd">
               <xpath>/Defs/ThingDef[defName="TSF_Odachi"]</xpath>

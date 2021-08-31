@@ -80,7 +80,7 @@
             </Properties>
             <AmmoUser>
               <magazineSize>1</magazineSize>
-              <reloadTime>6.5</reloadTime>
+              <reloadTime>7</reloadTime>
               <ammoSet>AmmoSet_SlowMusketBall</ammoSet>
             </AmmoUser>
             <FireModes>
@@ -122,7 +122,7 @@
             </Properties>
             <AmmoUser>
               <magazineSize>1</magazineSize>
-              <reloadTime>7</reloadTime>
+              <reloadTime>7.5</reloadTime>
               <ammoSet>AmmoSet_FastMusketBall</ammoSet>
             </AmmoUser>
             <FireModes>
@@ -141,14 +141,14 @@
               <Mass>7.5</Mass>
               <Bulk>12.9</Bulk>
               <SwayFactor>1.92</SwayFactor>
-              <ShotSpread>1</ShotSpread>
-              <SightsEfficiency>0.7</SightsEfficiency>
+              <ShotSpread>0.8</ShotSpread>
+              <SightsEfficiency>0.8</SightsEfficiency>
               <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
             </statBases>
             <Properties>
               <verbClass>CombatExtended.Verb_ShootCE</verbClass>
               <hasStandardCommand>True</hasStandardCommand>
-              <defaultProjectile>Bullet_MortarGrenade</defaultProjectile>
+              <defaultProjectile>Bullet_TSF_MortarGrenade</defaultProjectile>
               <warmupTime>1.6</warmupTime>
               <range>37</range>
               <soundCast>Shot_IncendiaryLauncher</soundCast>
@@ -160,8 +160,8 @@
             </Properties>
             <AmmoUser>
               <magazineSize>1</magazineSize>
-              <reloadTime>9</reloadTime>
-              <ammoSet>AmmoSet_MortarGrenade</ammoSet>
+              <reloadTime>8</reloadTime>
+              <ammoSet>AmmoSet_TSF_MortarGrenade</ammoSet>
             </AmmoUser>
             <FireModes>
               <aiAimMode>AimedShot</aiAimMode>
@@ -216,7 +216,21 @@
             </value>
           </li>
 
-        <!--Shuriken-->
+<!--Shuriken (removed because I can't make it not hurt internal organs too often)-->
+
+<!--disable this disabler part in case of fix for above problem
+          <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[
+              defName="TSF_Star_Thrown" or
+              defName="TSF_Shuriken"]</xpath>
+          </li>
+          
+          <li Class="PatchOperationRemove">
+            <xpath>/Defs/PawnKindDef[
+              @Name="TSF_Ninjabase"]/weaponTags</xpath>
+          </li>
+
+-->
     
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
@@ -224,19 +238,21 @@
             <value>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
                 <damageDef>Cut</damageDef>
-                <damageAmountBase>6</damageAmountBase>
+                <damageAmountBase>5</damageAmountBase>
                 <flyOverhead>false</flyOverhead>
                 <speed>30</speed>
                 <gravityFactor>2</gravityFactor>
-                <armorPenetrationSharp>0.5</armorPenetrationSharp>
-                <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.16</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
                 <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
                 <preExplosionSpawnThingDef>TSF_Shuriken</preExplosionSpawnThingDef>
               </projectile>
             </value>
           </li>
 
+
           <!-- == Weapon == -->
+
           <li Class="PatchOperationAttributeSet">
             <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
             <attribute>ParentName</attribute>
@@ -283,7 +299,7 @@
           <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
             <defName>TSF_Shuriken</defName>
             <statBases>
-              <SightsEfficiency>0.5</SightsEfficiency>
+              <SightsEfficiency>0.4</SightsEfficiency>
               <Bulk>0.20</Bulk>
               <Mass>0.30</Mass>
               <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
@@ -294,7 +310,7 @@
               <hasStandardCommand>True</hasStandardCommand>
               <defaultProjectile>TSF_Star_Thrown</defaultProjectile>
               <warmupTime>0.6</warmupTime>
-              <range>9</range>
+              <range>8</range>
               <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
               <burstShotCount>3</burstShotCount>
               <onlyManualCast>true</onlyManualCast>
@@ -330,15 +346,14 @@
             </value>
           </li>
 
-          <!-- == Recipe == -->
           <li Class="PatchOperationAdd">
             <xpath>Defs</xpath>
             <value>
               <RecipeDef ParentName="GrenadeRecipeBase">
                 <defName>MakeTSF_Shuriken</defName>
-                <label>make throwing knives x10</label>
-                <description>Craft 10 throwing knives.</description>
-                <jobString>Making throwing knives.</jobString>
+                <label>make shurikens x10</label>
+                <description>Craft 10 shurikens.</description>
+                <jobString>Making shurikens.</jobString>
                 <ingredients>
                   <li>
                     <filter>
@@ -354,6 +369,7 @@
                     <li>Steel</li>
                   </thingDefs>
                 </fixedIngredientFilter>
+                <workAmount>500</workAmount>
                 <products>
                   <TSF_Shuriken>10</TSF_Shuriken>
                 </products>
@@ -364,6 +380,7 @@
               </RecipeDef>
             </value>
           </li>
+
         </operations>
       </match>
   </Operation>

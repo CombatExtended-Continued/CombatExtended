@@ -6,45 +6,34 @@
 		<mods>
 			<li>T's Samurai Faction</li>
 		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>Kit's Gunpowder Weapons</li>
-			</mods>
-			<match />
-			<nomatch Class="PatchOperationAdd">
-				<xpath>Defs</xpath>
-				<value>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
 
 				<ThingCategoryDef>
-					<defName>MortarGrenade</defName>
+					<defName>TSF_MortarGrenade</defName>
 					<label>Mortar Grenade</label>
 					<parent>AmmoGrenades</parent>
 					<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 				</ThingCategoryDef>
 
 				<!-- ==================== AmmoSet ========================== -->
+
 				<CombatExtended.AmmoSetDef>
-					<defName>AmmoSet_MortarGrenade</defName>
+					<defName>AmmoSet_TSF_MortarGrenade</defName>
 					<label>Mortar Grenades</label>
 					<ammoTypes>
-						<Ammo_MortarGrenade>Bullet_MortarGrenade</Ammo_MortarGrenade>      
+						<Ammo_TSF_MortarGrenade>Bullet_TSF_MortarGrenade</Ammo_TSF_MortarGrenade>      
 					</ammoTypes>
 				</CombatExtended.AmmoSetDef>
 
 				<!-- ==================== Ammo ========================== -->
 				
-				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase" Abstract="True">
+				<ThingDef Class="CombatExtended.AmmoDef" Name="TSF_HandMortarBombBase" ParentName="AmmoBase" Abstract="True">
 					<description>Low velocity grenade fired from a hand mortar.</description>
-					<defName>Ammo_MortarGrenade</defName>
-					<label>Mortar Grenades</label>
-					<graphicData>
-						<texPath>ThirdParty/Kit's Weapons/Ammo/HandMortar/MortarGrenade</texPath>
-						<graphicClass>Graphic_Single</graphicClass>
-					</graphicData>
 					<statBases>
-						<Mass Inherit="False">0.5</Mass>
-						<Bulk>0.43</Bulk>
-						<MarketValue>5</MarketValue>
+						<Mass>0.8</Mass>
+						<Bulk>0.5</Bulk>
 					</statBases>
 					<tradeTags>
 						<li>CE_AutoEnableTrade</li>
@@ -52,17 +41,31 @@
 						<li>CE_AutoEnableCrafting_ElectricSmithy</li>
 					</tradeTags>
 					<thingCategories>
-						<li>MortarGrenade</li>
+						<li>TSF_MortarGrenade</li>
 					</thingCategories>
-					<stackLimit>200</stackLimit>
+					<stackLimit>100</stackLimit>
 					<cookOffFlashScale>20</cookOffFlashScale>
+				</ThingDef>
+				
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="TSF_HandMortarBombBase">
+					<defName>Ammo_TSF_MortarGrenade</defName>
+					<label>Mortar Grenades</label>
+					<graphicData>
+						<texPath>Things/Item/Equipment/Utility/TSFSmokeBomb/SmokeBomb</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>2.96</MarketValue>
+					</statBases>
 					<ammoClass>ExplosiveShell</ammoClass>
-					<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
+					<detonateProjectile>Bullet_TSF_MortarGrenade</detonateProjectile>
 				</ThingDef>
 
 				<!-- ================== Projectiles ================== -->
+
+
 				<ThingDef ParentName="Base40x46mmGrenadeBullet">
-					<defName>Bullet_MortarGrenade</defName>
+					<defName>Bullet_TSF_MortarGrenade</defName>
 					<label>Mortar Grenade</label>
 					<graphicData>
 						<texPath>Things/Projectile/Bullet_Big</texPath>
@@ -71,15 +74,14 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<explosionRadius>1</explosionRadius>
 						<damageDef>Bomb</damageDef>
-						<damageAmountBase>20</damageAmountBase>
+						<damageAmountBase>65</damageAmountBase>
 						<speed>24</speed>
-						<gravityFactor>2</gravityFactor>
 						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 					</projectile>
 					<comps>
 						<li Class="CombatExtended.CompProperties_Fragments">
 						<fragments>
-							<Fragment_Small>12</Fragment_Small>
+							<Fragment_Large>12</Fragment_Large>
 						</fragments>
 						</li>
 					</comps>
@@ -88,8 +90,8 @@
 				<!-- ==================== Recipes ========================== -->
 			
 				<RecipeDef ParentName="AmmoRecipeBase">
-				<defName>MakeAmmo_MortarGrenade</defName>
-				<label>Make Mortar Grenade x10</label>
+				<defName>MakeAmmo_TSF_MortarGrenade</defName>
+				<label>Make Mortar Grenade x6</label>
 				<description>Craft 6 Mortar Grenades</description>
 				<jobString>Making Mortar Grenades</jobString>
 				<ingredients>
@@ -99,7 +101,7 @@
 						<li>Steel</li>
 						</thingDefs>
 					</filter>
-					<count>16</count>
+					<count>15</count>
 					</li>
 					<li>
 					<filter>
@@ -117,13 +119,12 @@
 					</thingDefs>
 				</fixedIngredientFilter>
 				<products>
-					<Ammo_MortarGrenade>8</Ammo_MortarGrenade>
+					<Ammo_TSF_MortarGrenade>6</Ammo_TSF_MortarGrenade>
 				</products>
-				<workAmount>8500</workAmount>
+				<workAmount>8000</workAmount>
 				</RecipeDef>
-		
-				</value>
-			</nomatch>
+				
+			</value>
 		</match>
     </Operation>
 
