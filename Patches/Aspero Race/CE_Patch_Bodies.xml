@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aspero</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd"> <!-- Horns should be armored very well -->
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Horn"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd"> <!-- Tail should be armored the same as the rest of the body-->
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def = "Tail"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+<!-- The rest is identical to default humanoid, but since Aspero use a custom body the armor tags needs to be set seperately -->
+			<li Class="PatchOperationAdd"> 
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def = "Neck"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Jaw"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Nose"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Ear"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def = "Shoulder"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Shoulder"]/parts/li[def = "Arm"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Shoulder"]/parts/li[def = "Arm"]/parts/li[def = "Hand"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Shoulder"]/parts/li[def = "Arm"]/parts/li[def = "Hand"]/parts/li[def = "Finger"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def = "Leg"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Leg"]/parts/li[def = "Foot"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName = "Aspero_Body"]/corePart/parts/li[def="Leg"]/parts/li[def = "Foot"]/parts/li[def = "Toe"]/groups</xpath>
+				<value>
+				  <li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>
