@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH2] Rimmu-Nation² - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ==================== Weapons research prerequisite patches ==================== -->
+
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RNGun_RPG7_RocketLauncher" or defName="RNGun_M79_GrenadeLauncher"]/recipeMaker/researchPrerequisite</xpath>
+				<value>
+					<researchPrerequisite>CE_Launchers</researchPrerequisite>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RNGun_HK69A1_GrenadeLauncher"]/recipeMaker</xpath>
+				<value>
+					<researchPrerequisite>CE_Launchers</researchPrerequisite>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RNGun_M72LAW_RocketLauncher"]/recipeMaker/skillRequirements</xpath>
+				<value>
+					<researchPrerequisite>CE_Launchers</researchPrerequisite>
+	      				<skillRequirements>
+       						 <Crafting>6</Crafting>
+      					</skillRequirements>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RNGun_M72LAW_RocketLauncher"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>50</Steel>
+						<ComponentIndustrial>3</ComponentIndustrial>
+						<FSX>3</FSX>
+					</costList>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
