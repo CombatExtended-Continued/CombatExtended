@@ -43,6 +43,7 @@ Mod |
 [RH] Faction: Umbra Company	|
 [RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RH2] Rimmu-Nation² - Weapons	|
 [Ry]Rimcraft	|
 [Ry]Rimcraft Allied Races	|
 [Ry]Rimcraft Animals	|
