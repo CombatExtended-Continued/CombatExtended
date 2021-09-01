@@ -4,21 +4,17 @@
   <!-- ========== Ladies Hat, Top Hat ========== -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_HatLadies" or defName="Apparel_HatTop"]</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_HatLadies" or defName="Apparel_HatTop"]/statBases</xpath>
     <value>
-		<statBases>
 		  <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
-		</statBases>		  
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_HatLadies" or defName="Apparel_HatTop"]/apparel</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_HatLadies" or defName="Apparel_HatTop"]/apparel/layers</xpath>
     <value>
-		<layers Inherit="false">
-			<li>MiddleHead</li>
-		</layers>
-    </value>
+		<li>MiddleHead</li>
+	</value>
   </Operation>
 
   <!-- ========== Beret ========== -->
@@ -30,13 +26,11 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
+  <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_Beret"]/apparel/layers</xpath>
     <value>
-		<layers Inherit="false">
-			<li>MiddleHead</li>
-		</layers>
-    </value>
+		<li>MiddleHead</li>
+	</value>
   </Operation>
 
   <!-- ========== Coronet, Crown ========== -->
@@ -48,11 +42,11 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown" or defName="Apparel_CrownStellic"]/apparel/layers/li[.="Overhead"]</xpath>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_Coronet" or defName="Apparel_Crown" or defName="Apparel_CrownStellic"]/apparel/layers</xpath>
     <value>
-      <li>MiddleHead</li>
-    </value>
+		<li>MiddleHead</li>
+	</value>
   </Operation>
 
   <!-- ========== Psychic Helmet ========== -->
@@ -71,11 +65,11 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_PsyfocusHelmet"]/apparel/layers/li[.="Overhead"]</xpath>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_PsyfocusHelmet"]/apparel/layers</xpath>
     <value>
-      <li>MiddleHead</li>
-    </value>
+		<li>MiddleHead</li>
+	</value>
   </Operation>
 
   <!-- ========== Psychic Skullcap ========== -->
@@ -94,8 +88,8 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_EltexSkullcap"]/apparel/layers/li[.="Overhead"]</xpath>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_EltexSkullcap"]/apparel/layers</xpath>
     <value>
       <li>MiddleHead</li>
     </value>
