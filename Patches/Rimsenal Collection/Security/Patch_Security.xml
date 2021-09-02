@@ -504,7 +504,8 @@
 					@Name="ShardSentry" or 
 					@Name="SuvTurret" or
 					@Name="WaveEmitter" or
-					defName="RSDummy"
+					defName="RSDummy" or
+					defName="Turret_Smartmine"
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -514,7 +515,8 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="Turret_ShardSentry" or 
-					defName="Turret_SuvTurret"
+					defName="Turret_SuvTurret" or
+					defName="Turret_Smartmine"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
  
@@ -523,7 +525,8 @@
 					defName="Turret_ShardSentry" or 
 					defName="Turret_SuvTurret" or
 					defName="Turret_WaveEmitter" or
-					defName="RSDummy"
+					defName="RSDummy" or
+					defName="Turret_Smartmine"
 				]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
@@ -637,31 +640,6 @@
 				<weaponTags>
 					<li>TurretGun</li>
 				</weaponTags>
-			</li>
-			
-			<!--========== Common to all Sentry Turrets ========== -->
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[
-					defName="Turret_Smartmine"
-				]/thingClass</xpath>
-				<value>
-					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-				</value>
-			</li>
-
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[
-					defName="Turret_Smartmine"
-				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-			</li>
- 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[
-					defName="Turret_Smartmine"
-				]/statBases</xpath>
-				<value>
-					<AimingAccuracy>1.0</AimingAccuracy>
-				</value>
 			</li>
 
 		</operations>
