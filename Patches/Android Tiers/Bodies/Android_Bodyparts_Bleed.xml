@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+					<li>[1.0] Android tiers</li>
+					<li>Android tiers</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="MHeart"]/bleedRate</xpath>
+    <value>
+	<bleedRate>10</bleedRate>
+    </value>
+      </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="MLeftLung" or defName="MRightLung" or defName="MGenerator"]/bleedRate</xpath>
+    <value>
+	<bleedRate>5</bleedRate>
+    </value>
+      </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="MLeftKidney" or defName="MRightKidney" or defName="MLiver" or defName="MStomach" or defName="MRightServo"]/bleedRate</xpath>
+    <value>
+	<bleedRate>2.5</bleedRate>
+    </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
