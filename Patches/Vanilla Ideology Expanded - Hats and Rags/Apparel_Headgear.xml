@@ -1,583 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Defs>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Ideology Expanded - Hats and Rags</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+          defName="VIEHAR_Apparel_Beads" or
+          defName="VIEHAR_Apparel_BishopHat" or
+          defName="VIEHAR_Apparel_BrimlessHat" or
+          defName="VIEHAR_Apparel_CommisarHat" or
+          defName="VIEHAR_Apparel_DeerSkull" or
+          defName="VIEHAR_Apparel_Fez" or
+          defName="VIEHAR_Apparel_Headbag" or
+          defName="VIEHAR_Apparel_Headscarf" or
+          defName="VIEHAR_Apparel_HorseMask" or
+          defName="VIEHAR_Apparel_MilitaryCap" or
+          defName="VIEHAR_Apparel_WideHat"
+          ]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+          </value>
+        </li>
 
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_Beads</defName>
-    <label>beads</label>
-    <description>Large beads made of any variety of material used to signify devotion to one's beliefs.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Beads/Beads</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories>
-      <li>Woody</li>
-      <li>Stony</li>
-	  <li>Metallic</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>160</MaxHitPoints>
-      <WorkToMake>2600</WorkToMake>
-      <Mass>0.5</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>Neck</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/Beads/Beads</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-      <hatRenderedFrontOfFace>true</hatRenderedFrontOfFace>
-      <hatRenderedAboveBody>true</hatRenderedAboveBody>
-      <hatRenderedBehindHead>true</hatRenderedBehindHead>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <recipeMaker>
-      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <effectWorking>Sculpt</effectWorking>
-      <soundWorking>Recipe_Sculpt</soundWorking>
-      <recipeUsers>
-        <li>CraftingSpot</li>
-		<li>FueledSmithy</li>
-		<li>ElectricSmithy</li>
-      </recipeUsers>
-      <unfinishedThingDef>UnfinishedSculpture</unfinishedThingDef>
-    </recipeMaker>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_BishopHat</defName>
-    <label>bishop hat</label>
-    <description>A tall, regal ceremonial headdress meant to adorn the head of leaders of Christian faith.</description>
-    <techLevel>Neolithic</techLevel>
-    <graphicData>
-      <texPath>Things/Apparel/BishopHat/BishopHat</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <stuffCategories>
-      <li>Fabric</li>
-    </stuffCategories>
-    <costStuffCount>20</costStuffCount>
-    <statBases>
-      <WorkToMake>1400</WorkToMake>
-      <MaxHitPoints>80</MaxHitPoints>
-      <Mass>0.08</Mass>
-      <StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>1.5</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/BishopHat/BishopHat</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-	  <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_BrimlessHat</defName>
-    <label>brimless hat</label>
-    <description>A small, plain hat meant to rest gently on one’s head. Those who wear it often claim it radiates a certain angelic overtone.</description>
-    <graphicData>
-      <texPath>Things/Apparel/BrimlessHat/BrimlessHat</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>25</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1500</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/BrimlessHat/BrimlessHat</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_CommisarHat</defName>
-    <label>commissar hat</label>
-    <description>A distinguished, brimmed hat adorned with a badge of bravery, meant to inspire cooperation in one's subordinates at any cost.</description>
-    <graphicData>
-      <texPath>Things/Apparel/CommisarHat/CommisarHat</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1500</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <equippedStatOffsets>
-      <SuppressionPower>0.1</SuppressionPower>
-    </equippedStatOffsets>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/CommisarHat/CommisarHat</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-	  <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_DeerSkull</defName>
-    <label>deer skull</label>
-    <description>A simple hood with a forward facing mounted animal skull on the front. This piece is commonly seen worn by those of tribal persuasion and those close to nature.</description>
-    <graphicData>
-      <texPath>Things/Apparel/DeerSkull/DeerSkull</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.7</drawSize>
-	  <shaderType>CutoutComplex</shaderType>
-    </graphicData>
-    <costStuffCount>40</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>2000</WorkToMake>
-      <Mass>0.3</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.3</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.25</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/DeerSkull/DeerSkull</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-	  <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-	  <useWornGraphicMask>true</useWornGraphicMask>
-    </apparel>
-    <recipeMaker>
-      <recipeUsers>
-        <li>CraftingSpot</li>
-      </recipeUsers>
-    </recipeMaker>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_Fez</defName>
-    <label>fez</label>
-    <description>A flat-topped conical hat decorated with a black tassel, often worn by desert nobility.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Fez/Fez</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>25</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1400</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.5</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/Fez/Fez</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_Headbag</defName>
-    <label>headbag</label>
-    <description>A cult-like hood meant to be worn for anonymity and collectivism during rituals or worn as a sign of great humility.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Headrag/Headrag</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>35</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1250</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.05</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/Headrag/Headrag</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-		<li>Soldier</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <recipeMaker>
-      <recipeUsers>
-        <li>CraftingSpot</li>
-      </recipeUsers>
-    </recipeMaker>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_Headscarf</defName>
-    <label>headscarf</label>
-    <description>A warm, floppy hat which covers one's ears, often worn by those belonging to alpinian tribes.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Headscarf/Headscarf</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>35</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1600</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.15</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.5</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/Headscarf/Headscarf</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_HorseMask</defName>
-    <label>horse mask</label>
-    <description>A jovial hat that mimics the appearance of an equestrian, party animals far and wide know it to be an epitome of comical relief.</description>
-    <graphicData>
-      <texPath>Things/Apparel/HorseMask/HorseMask</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>40</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>2000</WorkToMake>
-      <Mass>0.3</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.2</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.2</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>FullHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/HorseMask/HorseMask</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-	  <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_MilitaryCap</defName>
-    <label>military cap</label>
-    <description>A standard rank-and-file military cap meant to be worn during non-combat procedures, though brave officers are known to wear them during combat as well.</description>
-    <graphicData>
-      <texPath>Things/Apparel/MilitaryCap/MilitaryCap</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>30</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1500</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/MilitaryCap/MilitaryCap</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_Skullcap</defName>
-    <label>skullcap</label>
-    <description>A small, extremely plain hat meant to cover only the crown of one's head. Often worn continuously by the pious and devout alike.</description>
-    <graphicData>
-      <texPath>Things/Apparel/Skullcap/Skullcap</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>15</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1200</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.05</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/Skullcap/Skullcap</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>true</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_SpikedSkullcap</defName>
-    <label>spiked skullcap</label>
-    <description>A halo-shaped headpiece meant to accentuate the wearer as being that of profane standing. Often worn by those who find salvation in suffering.</description>
-    <graphicData>
-      <texPath>Things/Apparel/SpikedSkullcap/SpikedSkullcap</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>40</costStuffCount>
-    <stuffCategories>
-      <li>Woody</li>
-	  <li>Metallic</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>160</MaxHitPoints>
-      <WorkToMake>3200</WorkToMake>
-      <Mass>1.0</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/SpikedSkullcap/SpikedSkullcap</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <recipeMaker>
-      <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      <workSkill>Crafting</workSkill>
-      <effectWorking>Smith</effectWorking>
-      <soundWorking>Recipe_Smith</soundWorking>
-      <recipeUsers>
-		<li>FueledSmithy</li>
-		<li>ElectricSmithy</li>
-      </recipeUsers>
-      <unfinishedThingDef>UnfinishedSculpture</unfinishedThingDef>
-    </recipeMaker>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-  <ThingDef ParentName="HatMakeableBase">
-    <defName>VIEHAR_Apparel_WideHat</defName>
-    <label>wide hat</label>
-    <description>A very wide-brimmed and rustic hat meant to be worn by sheriffs and lawbringers of far off steamworlds.</description>
-    <graphicData>
-      <texPath>Things/Apparel/WideHat/WideHat</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.8</drawSize>
-    </graphicData>
-    <costStuffCount>35</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
-    <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToMake>1500</WorkToMake>
-      <Mass>0.1</Mass>
-      <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>0.3</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.8</EquipDelay>
-    </statBases>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <wornGraphicPath>Things/Apparel/WideHat/WideHat</wornGraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <defaultOutfitTags>
-        <li>Worker</li>
-      </defaultOutfitTags>
-	  <countsAsClothingForNudity>false</countsAsClothingForNudity>
-	  <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_StandardApparel" />
-  </ThingDef>
-  
-</Defs>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[ 
+          defName="VIEHAR_Apparel_Skullcap" or
+          defName="VIEHAR_Apparel_SpikedSkullcap"                  
+          ]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[ 
+          defName="VIEHAR_Apparel_DeerSkull" or
+          defName="VIEHAR_Apparel_Headbag" or
+          defName="VIEHAR_Apparel_HorseMask" or
+          defName="VIEHAR_Apparel_MilitaryCap"                    
+          ]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <Suppressability>-0.25</Suppressability>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_CommisarHat"]/equippedStatOffsets</xpath>
+          <value>
+            <Suppressability>-0.25</Suppressability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[
+          defName="VIEHAR_Apparel_BishopHat" or
+          defName="VIEHAR_Apparel_BrimlessHat" or
+          defName="VIEHAR_Apparel_CommisarHat" or
+          defName="VIEHAR_Apparel_DeerSkull" or 
+          defName="VIEHAR_Apparel_Fez" or 
+          defName="VIEHAR_Apparel_Headbag" or
+          defName="VIEHAR_Apparel_Headscarf" or
+          defName="VIEHAR_Apparel_HorseMask" or 
+          defName="VIEHAR_Apparel_MilitaryCap" or
+          defName="VIEHAR_Apparel_Skullcap" or 
+          defName="VIEHAR_Apparel_SpikedSkullcap" or 
+          defName="VIEHAR_Apparel_WideHat"
+          ]/apparel/layers</xpath>
+          <value>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Beads"]/apparel/layers</xpath>
+          <value>
+            <layers>
+		          <li>StrappedHead</li>
+	          </layers>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>
