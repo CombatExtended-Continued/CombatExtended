@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Security</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>AmmoBGM71</defName>
+					<label>BGM-71 Missile</label>
+					<parent>AmmoRockets</parent>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_BGM71</defName>
+					<label>BGM-71D Missiles</label>
+					<ammoTypes>
+						<Ammo_BGM71_HEAT>Bullet_BGM71_HEAT</Ammo_BGM71_HEAT>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="BGM71Base" ParentName="HeavyAmmoBase" Abstract="True">
+					<description>152mm Anti-tank guided missiles, typically reserved for destroying armoured targets due to its rarity, but can be used for engaging soft targets should a mysterious foreign benefactor supply you with thousands of these free of charge.</description>
+					<statBases>
+						<MaxHitPoints>250</MaxHitPoints>
+					</statBases>
+					<tradeTags>
+      						<li>CE_AutoEnableTrade_Sellable</li>
+						<li>CE_AutoEnableCrafting_TableMachining</li>
+					</tradeTags>
+					<thingCategories>
+						<li>AmmoBGM71</li>
+					</thingCategories>
+					<stackLimit>10</stackLimit>
+					<cookOffFlashScale>30</cookOffFlashScale>
+					<cookOffSound>MortarBomb_Explode</cookOffSound>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="BGM71Base">
+					<defName>Ammo_BGM71_HEAT</defName>
+					<label>BGM-71D Missile (HEAT)</label>
+					<graphicData>
+      						<texPath>Things/Building/Security/TOW_MissileLauncher/BGM-71_TOW</texPath>
+      						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>248.27</MarketValue>
+						<Mass>21.5</Mass>
+						<Bulk>36.17</Bulk>
+					</statBases>
+					<ammoClass>RocketHEAT</ammoClass>
+					<detonateProjectile>Bullet_BGM71_HEAT</detonateProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+					<defName>Bullet_BGM71_HEAT</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>BGM-71D Missile (HEAT)</label>
+					<graphicData>
+						<texPath>Things/Building/Security/TOW_MissileLauncher/TOW_2B</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+      						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>56</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>360</damageAmountBase>
+						<armorPenetrationSharp>900</armorPenetrationSharp>
+						<armorPenetrationBlunt>151.584</armorPenetrationBlunt>
+						<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+					</projectile>
+					<comps>
+		  				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>300</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>2.5</explosiveRadius>
+							<explosionSound>MortarBomb_Explode</explosionSound>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  				</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>16</Fragment_Large>
+								<Fragment_Small>50</Fragment_Small>
+							</fragments>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_BGM71_HEAT</defName>
+					<label>make BGM-71 HEAT Missile</label>
+					<description>Craft 5 BGM-71 HEAT Missiles.</description>
+					<jobString>Making BGM-71 HEAT Missiles.</jobString>
+					<workAmount>44600</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>247</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>12</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>24</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_BGM71_HEAT>5</Ammo_BGM71_HEAT>
+					</products>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>
