@@ -24,6 +24,7 @@ Mod |
 [JDS] The Forge - NCR Armory	|
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
+[LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
@@ -76,6 +77,7 @@ Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
 Area Rugs	|
+Aspero Race |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
@@ -173,6 +175,7 @@ Magical Menagerie	|
 Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
+Martens - Nature's Most Adorable Assassins  |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Megafauna	|
@@ -236,6 +239,7 @@ RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Shek	|
+Rim-Skeletons	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |

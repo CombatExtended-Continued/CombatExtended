@@ -13,6 +13,7 @@
 		<li Class="PatchOperationAdd">
 		<xpath>Defs</xpath>
 		<value>
+
   <DamageDef>
     <defName>ME_Blacked</defName>
     <label>Blackholed</label>
@@ -25,15 +26,16 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
-    <minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>120</defaultDamage>
-    <defaultStoppingPower>1.0</defaultStoppingPower>
+    <minDamageToFragment>50</minDamageToFragment>
+    <defaultDamage>200</defaultDamage>
+    <defaultStoppingPower>3.0</defaultStoppingPower>
     <defaultArmorPenetration>120000</defaultArmorPenetration>
-    <buildingDamageFactor>3</buildingDamageFactor>
-    <plantDamageFactor>3</plantDamageFactor>
+    <buildingDamageFactor>4</buildingDamageFactor>
+    <buildingDamageFactorPassable>2</buildingDamageFactorPassable>
+    <plantDamageFactor>4</plantDamageFactor>
     <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
-    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionHeatEnergyPerCell>-5</explosionHeatEnergyPerCell>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
     <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
     <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
     <soundExplosion>Explosion_Bomb</soundExplosion>
@@ -42,7 +44,7 @@
 
   <DamageDef>
     <defName>ME_BigKill</defName>
-    <label>Blackholed</label>
+    <label>Carnage</label>
     <workerClass>DamageWorker_AddInjury</workerClass>
     <externalViolence>true</externalViolence>
     <isExplosive>true</isExplosive>
@@ -52,29 +54,30 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
-    <minDamageToFragment>15</minDamageToFragment>
-    <defaultDamage>38</defaultDamage>
+    <minDamageToFragment>20</minDamageToFragment>
+    <defaultDamage>43</defaultDamage>
     <defaultStoppingPower>1.0</defaultStoppingPower>
-    <defaultArmorPenetration>120000</defaultArmorPenetration>
+    <defaultArmorPenetration>150</defaultArmorPenetration>
     <buildingDamageFactor>4</buildingDamageFactor>
+    <buildingDamageFactorPassable>2</buildingDamageFactorPassable>
     <plantDamageFactor>4</plantDamageFactor>
     <explosionAffectOutsidePartsOnly>false</explosionAffectOutsidePartsOnly>
-    <explosionHeatEnergyPerCell>1</explosionHeatEnergyPerCell>
-    <explosionCellMote>Mote_BlastDry</explosionCellMote>
+    <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
+    <explosionCellFleck>BlastDry</explosionCellFleck>
     <explosionColorCenter>(1, 0.5, 0.3)</explosionColorCenter>
     <explosionColorEdge>(0.6, 0.5, 0.4)</explosionColorEdge>
     <soundExplosion>Explosion_Bomb</soundExplosion>
     <combatLogRules>Damage_Bomb</combatLogRules>
   </DamageDef>
-		</value>
-		</li>
+    	</value>
+  	</li>
 
   	<li Class='PatchOperationReplace'>
     	<xpath>/Defs/ThingDef[defName='REN7_Rocket_BlackHole']/projectile</xpath>
     	<value>
     	<projectile>
       		<damageDef>ME_Blacked</damageDef>
-      		<explosionRadius>9.9</explosionRadius>
+      		<explosionRadius>9.5</explosionRadius>
       		<flyOverhead>true</flyOverhead>
       		<speed>27</speed>
     	</projectile>
@@ -86,7 +89,7 @@
     	<value>
     	<projectile>
       	<damageDef>ME_BigKill</damageDef>
-      	<speed>70</speed>
+      	<speed>60</speed>
       	<explosionRadius>2</explosionRadius>
     	</projectile>
     	</value>

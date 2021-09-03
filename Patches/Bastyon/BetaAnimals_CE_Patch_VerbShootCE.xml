@@ -51,7 +51,7 @@
 					</value>
 					</li>
 
-					<!-- Barbslinger -->
+					<!-- Grey spider -->
 
 					<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Bast_Gray_Terror"]/verbs</xpath>
@@ -75,7 +75,7 @@
 						</value>
 					</li>
 
-				<!-- Animalisk -->
+				<!-- Scire -->
 
 					<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Bast_Scire"]/verbs</xpath>
@@ -118,6 +118,74 @@
 								</li>
 							</verbs>
 						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_Soul_Eater"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bast_BlisteringWind</defaultProjectile>
+							<warmupTime>3</warmupTime>
+							<burstShotCount>4</burstShotCount>
+							<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+							<minRange>1.9</minRange>
+							<range>12</range>
+							<soundCast>Bast_BlisteringWind</soundCast>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<label>blistering wind</label>
+							<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bast_LightningBolt</defaultProjectile>
+				<warmupTime>3</warmupTime>
+				<burstShotCount>3</burstShotCount>
+				<minRange>1.1</minRange>
+				<range>36</range>
+				<soundCast>Thunder_OnMap</soundCast>
+				<muzzleFlashScale>0</muzzleFlashScale>
+				<label>lightning bolt</label>
+				<commonality>.5</commonality>
+							</li>
+						</verbs>
+					</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Bast_Svarog"]/verbs</xpath>
+					<value>
+        				<verbs>
+						<li>
+							<verbClass>Verb_Shoot</verbClass>
+							<accuracyTouch>1</accuracyTouch>
+							<accuracyShort>1</accuracyShort>
+							<accuracyMedium>.85</accuracyMedium>
+							<accuracyLong>.75</accuracyLong>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bast_SvarogFireStream</defaultProjectile>
+							<warmupTime>3.5</warmupTime>
+							<burstShotCount>2</burstShotCount>
+							<minRange>3</minRange>
+							<range>12</range>
+							<soundCast>Bast_FireStream</soundCast>
+							<muzzleFlashScale>0</muzzleFlashScale>
+							<label>searing fire</label>
+							<commonality>1</commonality>
+						</li>
+					</verbs>
+					</value>
 					</li>
 
 				</operations>

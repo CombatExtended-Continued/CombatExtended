@@ -20,9 +20,10 @@
 					</capacities>
 					<power>25</power>
 					<cooldownTime>0.71</cooldownTime>
-					<armorPenetrationSharp>1.25</armorPenetrationSharp>
+					<armorPenetrationSharp>7.5</armorPenetrationSharp>
 					<armorPenetrationBlunt>6.25</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</value>
@@ -39,9 +40,10 @@
 					</capacities>
 					<power>29</power>
 					<cooldownTime>0.59</cooldownTime>
-					<armorPenetrationSharp>1.8</armorPenetrationSharp>
+					<armorPenetrationSharp>21.6</armorPenetrationSharp>
 					<armorPenetrationBlunt>9</armorPenetrationBlunt>
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</value>
@@ -76,6 +78,12 @@
 					<power>2</power>
 					<cooldownTime>1.84</cooldownTime>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>12.5</amount>
+						</li>
+					</extraMeleeDamages>
 					</li>
 				</tools>
 			</value>
@@ -209,6 +217,67 @@
 			<xpath>Defs/HediffDef[defName="FSFImplantTorsoRespirator"]/stages/li/statOffsets</xpath>
 			<value>
 				<SmokeSensitivity>-1.0</SmokeSensitivity>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FSFAdvBionicEye"]/statBases</xpath>
+			<value>
+				<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicEye"]</xpath>
+			<value>
+				<stages>
+					<li>
+					<statOffsets>
+						<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+					</statOffsets>
+					</li>
+				</stages>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicTaserJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>FSFEffectTaser</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.84</cooldownTime>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					<extraMeleeDamages>
+						<li>
+							<def>EMP</def>
+							<amount>12.5</amount>
+						</li>
+					</extraMeleeDamages>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicBreachArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.48</cooldownTime>
+					<armorPenetrationBlunt>60</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
 			</value>
 		</li>
 		

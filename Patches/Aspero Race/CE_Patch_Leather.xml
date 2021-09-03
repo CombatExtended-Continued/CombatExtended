@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aspero</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_Aspero"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.10</StuffPower_Armor_Sharp> <!-- Vanilla lizard is 0.81 aspero is 1 CE lizard is 0.08, so 0.1 seems to make sense. -->
+				</value>
+			</li>
+			<li Class="PatchOperationadd"> <!-- add instead of replace since aspero used leather base for blunt and didn't define a value itself -->
+				<xpath>Defs/ThingDef[defName="Leather_Aspero"]/statBases</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt> <!-- If I understand the CE xmls right this should be the same as human leather -->
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Leather_Aspero"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.050</StuffPower_Armor_Heat> <!-- I don't see a lot comparable CE examples for this value. Compared to other materials ingame instead and decided to go with with 5% -->
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>
+				
