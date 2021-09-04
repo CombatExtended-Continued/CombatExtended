@@ -57,8 +57,8 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RN2Gun_M60Mounted_MG"]/statBases</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RN2Gun_M60Mounted_MG"]/statBases/WorkToBuild</xpath>
 					<value>
 						<WorkToBuild>40000</WorkToBuild>
 					</value>
@@ -84,7 +84,7 @@
 						<range>75</range>
 						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 						<burstShotCount>10</burstShotCount>
-						<soundCast>ShotM2</soundCast>
+						<soundCast>RNShot_M2Browning</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<targetParams>
 							<canTargetLocations>true</canTargetLocations>
@@ -114,8 +114,8 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="RN2Gun_M2Browning_MG"]/statBases</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RN2Gun_M2Browning_MG"]/statBases/WorkToBuild</xpath>
 					<value>
 						<WorkToBuild>60500</WorkToBuild>
 					</value>
@@ -175,7 +175,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RN2Gun_M134Minigun_MG"]/statBases/WorkToBuild</xpath>
 					<value>
-						<WorkToBuild>54000</WorkToBuild>
+						<WorkToBuild>52500</WorkToBuild>
 					</value>
 				</li>
 
@@ -233,7 +233,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RN2Gun_MK19_GL"]/statBases/WorkToBuild</xpath>
 					<value>
-						<WorkToBuild>56000</WorkToBuild>
+						<WorkToBuild>62500</WorkToBuild>
 					</value>
 				</li>
 
@@ -290,7 +290,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="RN2Gun_TOW_Launcher"]/statBases/WorkToBuild</xpath>
 					<value>
-						<WorkToBuild>57500</WorkToBuild>
+						<WorkToBuild>60000</WorkToBuild>
 					</value>
 				</li>
 
@@ -334,8 +334,8 @@
 					</weaponTags>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="RN2Turret_SentryGun"]/specialDisplayRadius</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RN2Turret_SentryGun"]</xpath>
 					<value>
 						<specialDisplayRadius>65</specialDisplayRadius>
 					</value>
@@ -348,19 +348,19 @@
 					</value>
 				</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "RN2Turret_SentryGun"]/comps/li[@Class="CompProperties_Power"]</xpath>
-			<value>
-				<li Class="CompProperties_Power">
-					<compClass>CompPowerTrader</compClass>
-					<basePowerConsumption>1400</basePowerConsumption>
-				</li>	
-			</value>
-		</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "RN2Turret_SentryGun"]/comps/li[@Class="CompProperties_Power"]</xpath>
+					<value>
+						<li Class="CompProperties_Power">
+							<compClass>CompPowerTrader</compClass>
+							<basePowerConsumption>1400</basePowerConsumption>
+						</li>	
+					</value>
+				</li>
 
 				<!-- == Shared patches == -->
 
-        				<li Class="PatchOperationReplace">
+      				<li Class="PatchOperationReplace">
         				<xpath>Defs/ThingDef[defName = "RN2Turret_SentryGun" or
 						defName = "RN2Gun_M60Mounted_MG" or
 						defName = "RN2Gun_M134Minigun_MG" or
