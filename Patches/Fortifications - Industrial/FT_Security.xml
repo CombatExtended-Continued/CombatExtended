@@ -8,237 +8,158 @@
     <match Class="PatchOperationSequence">
       <operations>
         
-        <!-- === Common === -->
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest"]/thingClass</xpath>
-          <value>
-            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding"]/fillPercent</xpath>
-          <value>
-            <fillPercent>0.85</fillPercent>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or defName="FT_TurretAA" or defName="FT_TurretAT"]/building/turretBurstCooldownTime</xpath>
-          <value>
-            <turretBurstCooldownTime>1</turretBurstCooldownTime>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT"]/comps/li[@Class="CompProperties_Explosive"] |
-            /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT" or @Name="FT_MGNest"]/comps/li[@Class="CompProperties_Refuelable"] |
-            /Defs/ThingDef[defName="FT_Bullet_AAShell" or defName="FT_Bullet_ATShell"]
-          </xpath>
-        </li>
-        
-        <!-- === Turrets === -->
-        
-        <!-- Anti Air -->
-        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-          <defName>FT_Gun_TurretAA</defName>
-          <statBases>
-            <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
-            <SightsEfficiency>2.18</SightsEfficiency>
-            <ShotSpread>0.01</ShotSpread>
-            <SwayFactor>3.07</SwayFactor>
-          </statBases>
-          <Properties>
-            <recoilAmount>1.78</recoilAmount>
-            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_20x138mmB_FMJ</defaultProjectile>
-            <warmupTime>4</warmupTime>
-            <range>72</range>
-            <burstShotCount>5</burstShotCount>
-            <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-            <soundCast>Shot_Autocannon</soundCast>
-            <soundCastTail>GunTail_Heavy</soundCastTail>
-            <muzzleFlashScale>12</muzzleFlashScale>
-            <targetParams>
-              <canTargetLocations>true</canTargetLocations>
-            </targetParams>
-            <recoilPattern>Mounted</recoilPattern>
-          </Properties>
-          <AmmoUser>
-            <magazineSize>40</magazineSize>
-            <reloadTime>3</reloadTime>
-            <ammoSet>AmmoSet_20x138mmB</ammoSet>
-          </AmmoUser>
-          <FireModes>
-            <aiAimMode>SuppressFire</aiAimMode>
-            <noSingleShot>true</noSingleShot>
-          </FireModes>
-          <weaponTags>
-            <li>TurretGun</li>
-          </weaponTags>
-        </li>
-        
-        <!-- Anti Tank -->
-        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-          <defName>FT_Gun_TurretAT</defName>
-          <statBases>
-            <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
-            <SightsEfficiency>2.18</SightsEfficiency>
-            <ShotSpread>0.01</ShotSpread>
-            <SwayFactor>3.07</SwayFactor>
-          </statBases>
-          <Properties>
-            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_37x223mmR_HE</defaultProjectile>
-            <warmupTime>1.5</warmupTime>
-            <range>78</range>
-            <soundCast>FT_CannonLaunchA</soundCast>
-            <soundCastTail>GunTail_Heavy</soundCastTail>
-            <muzzleFlashScale>12</muzzleFlashScale>
-            <targetParams>
-              <canTargetLocations>true</canTargetLocations>
-            </targetParams>
-            <recoilPattern>Mounted</recoilPattern>
-          </Properties>
-          <AmmoUser>
-            <magazineSize>1</magazineSize>
-            <reloadTime>6</reloadTime>
-            <ammoSet>AmmoSet_37x223mmR</ammoSet>
-          </AmmoUser>
-          <FireModes>
-            <aiAimMode>AimedShot</aiAimMode>
-          </FireModes>
-          <weaponTags>
-            <li>TurretGun</li>
-          </weaponTags>
-        </li>
-        
-        <!-- === Mortar === -->
-        
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[defName="FT_Turret_Mortar"]/comps |
-            /Defs/ThingDef[defName="FT_Turret_Mortar"]/building/buildingTags/li[text()="Artillery_BaseDestroyer"] |
-            /Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags/li[text()="Artillery_BaseDestroyer"] |
-            /Defs/ThingDef[defName="FT_Artillery_Mortar"]/building |
-            /Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]
-          </xpath>
-        </li>
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/label</xpath>
-          <value>
-            <label>60mm mortar</label>
-          </value>
-        </li>
-         
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]</xpath>
-          <value>
-            <statBases>
-              <SightsEfficiency>0.5</SightsEfficiency>
-            </statBases>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps</xpath>
-          <value>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
-            <li Class="CombatExtended.CompProperties_AmmoUser">
-              <magazineSize>1</magazineSize>
-              <reloadTime>5</reloadTime>
-              <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
-            </li>
-          </value>
-        </li>
-  
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/verbs</xpath>
-          <value>
-            <verbs>
-              <li Class="CombatExtended.VerbPropertiesCE">
-                <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-                <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-                <hasStandardCommand>true</hasStandardCommand>
-                <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-                <warmupTime>3.5</warmupTime>
-                <minRange>8</minRange>
-                <range>500</range>
-                <burstShotCount>1</burstShotCount>
-                <soundCast>Mortar_LaunchA</soundCast>
-                <muzzleFlashScale>16</muzzleFlashScale>
-                <circularError>1</circularError>
-                <indirectFirePenalty>0.2</indirectFirePenalty>
-                <targetParams>
-                  <canTargetLocations>true</canTargetLocations>
-                </targetParams>
-              </li>
-            </verbs>
-          </value>
-        </li>
-        
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags</xpath>
-          <value>
-            <li>TurretGun</li>
-          </value>
-        </li>
-        
-        <!-- === MG Nests === -->
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="FT_MGNest"]/fillPercent</xpath>
-          <value>
-            <fillPercent>0.75</fillPercent>
-          </value>
-        </li>
-        
-        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-          <defName>FT_Gun_MG</defName>
-          <statBases>
-            <SightsEfficiency>1</SightsEfficiency>
-            <ShotSpread>0.01</ShotSpread>
-            <SwayFactor>0.98</SwayFactor>
-            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-          </statBases>
-          <Properties>
-            <recoilAmount>1.16</recoilAmount>
-            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-            <warmupTime>1.2</warmupTime>
-            <range>50</range>
-            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-            <burstShotCount>10</burstShotCount>
-            <soundCast>GunShotA</soundCast>
-            <soundCastTail>GunTail_Medium</soundCastTail>
-            <muzzleFlashScale>9</muzzleFlashScale>
-            <recoilPattern>Mounted</recoilPattern>
-          </Properties>
-          <AmmoUser>
-            <magazineSize>200</magazineSize>
-            <reloadTime>7.8</reloadTime>
-            <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-          </AmmoUser>
-          <FireModes>
-            <aiAimMode>AimedShot</aiAimMode>
-          </FireModes>
-          <weaponTags>
-            <li>TurretGun</li>
-          </weaponTags>
-        </li>
+      <!-- === Common === -->
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest"]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding"]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or defName="FT_TurretAA" or defName="FT_TurretAT"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>1</turretBurstCooldownTime>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationRemove">
+        <xpath>
+          /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT"]/comps/li[@Class="CompProperties_Explosive"] |
+          /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT" or @Name="FT_MGNest"]/comps/li[@Class="CompProperties_Refuelable"] |
+          /Defs/ThingDef[defName="FT_Bullet_AAShell" or defName="FT_Bullet_ATShell"]
+        </xpath>
+      </li>
+      
+      <!-- === Turrets === -->
+      
+      <!-- Anti Air -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>FT_Gun_TurretAA</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+          <SightsEfficiency>2.18</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>3.07</SwayFactor>
+        </statBases>
+        <Properties>
+          <recoilAmount>1.78</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_20x138mmB_FMJ</defaultProjectile>
+          <warmupTime>4</warmupTime>
+          <range>72</range>
+          <burstShotCount>5</burstShotCount>
+          <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+          <soundCast>Shot_Autocannon</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>12</muzzleFlashScale>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>40</magazineSize>
+          <reloadTime>3</reloadTime>
+          <ammoSet>AmmoSet_20x138mmB</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>SuppressFire</aiAimMode>
+          <noSingleShot>true</noSingleShot>
+        </FireModes>
+        <weaponTags>
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+      
+      <!-- Anti Tank -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>FT_Gun_TurretAT</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+          <SightsEfficiency>2.18</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>3.07</SwayFactor>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_37x223mmR_HE</defaultProjectile>
+          <warmupTime>1.5</warmupTime>
+          <range>78</range>
+          <soundCast>FT_CannonLaunchA</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>12</muzzleFlashScale>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>1</magazineSize>
+          <reloadTime>6</reloadTime>
+          <ammoSet>AmmoSet_37x223mmR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
+      
+      <!-- === MG Nests === -->
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name="FT_MGNest"]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.75</fillPercent>
+        </value>
+      </li>
+      
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>FT_Gun_MG</defName>
+        <statBases>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>0.98</SwayFactor>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <recoilAmount>1.16</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+          <warmupTime>1.2</warmupTime>
+          <range>50</range>
+          <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+          <burstShotCount>10</burstShotCount>
+          <soundCast>GunShotA</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>200</magazineSize>
+          <reloadTime>7.8</reloadTime>
+          <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>TurretGun</li>
+        </weaponTags>
+      </li>
         
       </operations>
     </match>
