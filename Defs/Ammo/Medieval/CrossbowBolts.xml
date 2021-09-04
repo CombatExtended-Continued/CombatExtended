@@ -197,7 +197,7 @@
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.5</armorPenetrationSharp>
-      			<speed>20</speed>	
+      <speed>20</speed>	
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
@@ -206,16 +206,19 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Flame</defName>
 		<label>crossbow bolt (flame)</label>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>       
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Flame</damageDef>
-			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationBlunt>3.28</armorPenetrationBlunt>
-			<armorPenetrationSharp>1.5</armorPenetrationSharp>
-      			<speed>15</speed>	
+      <explosionRadius>0.2</explosionRadius>
+      <damageDef>Flame</damageDef>
+      <damageAmountBase>1</damageAmountBase>
+      <postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      <explosionChanceToStartFire>1</explosionChanceToStartFire>
+      <speed>20</speed>	
 		</projectile>
 	</ThingDef>
 
