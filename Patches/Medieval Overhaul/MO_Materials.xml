@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">	
+	    <operations>
+
+	<!-- Remove and Adjust - Rox Horn and Ballista Bolt -->    
+		<!-- Ballista Bolt -->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="DankPyon_BallistaBolt"]</xpath>
+		</li>
+
+		<!-- Rox Horn-->
+<!--
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="DankPyon_RoxHorn"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>ResourceBase</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="DankPyon_RoxHorn"]/tools</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_RoxHorn"]/statBases/Mass</xpath>
+			<value>
+			<Mass>30</Mass>
+			<Bulk>20</Bulk>
+			</value>
+		</li>
+-->
+	<!--Basegame rebalance-->    
+		<!--Thrumbo Fur-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.60</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Thrumbo"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.20</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Cloth-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Cloth"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Cloth"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+	<!--Leathers-->
+		<!--Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Plain"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Plain"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.055</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+		<!--Thick Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.12</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<!--MO and CE both add blunt armor to this def, so it ends up as a duplicate node-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases/StuffPower_Armor_Blunt</xpath>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Leather_Bear"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.08</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+		<!--Soft Fur-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Light"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.03</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Light"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.02</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+		<!--Heavy Fur-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Bluefur"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.09</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Bluefur"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.06</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+		<!--Scale Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Lizard"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Lizard"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.06</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Thick Scale Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.14</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<!--MO and CE both add blunt armor to this def, so it ends up as a duplicate node-->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases/StuffPower_Armor_Blunt</xpath>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Leather_Rhinoceros"]/statBases</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Bird Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Bird"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Bird"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Human Leather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Human"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Human"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Patchleather-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Patch"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Leather_Patch"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.055</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<!--Rawhide-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Leather_Rawhide"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.08</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Leather_Rawhide"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.055</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+	<!--Iron, Woods-->
+		<!--Iron-->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/statBases</xpath>
+			<value>
+				<Bulk>0.03</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/stuffProps/categories</xpath>
+			<value>
+				<li>Metallic_Weapon</li>
+				<li>Steeled</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.85</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>1.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="DankPyon_IronIngot"]/statBases/StuffPower_Armor_Heat</xpath>
+		</li>
+
+		<!-- Bone -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases</xpath>
+			<value>
+				<Bulk>0.07</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases/SharpDamageMultiplier</xpath>
+			<value>
+				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/statBases/BluntDamageMultiplier</xpath>
+			<value>
+				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_Bone"]/stuffProps/statFactors</xpath>
+			<value>
+				<Mass>0.3</Mass>
+				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+			</value>
+		</li>
+
+		<!-- Dark Wood -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases</xpath>
+			<value>
+				<Bulk>0.07</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases/SharpDamageMultiplier</xpath>
+			<value>
+				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/statBases/BluntDamageMultiplier</xpath>
+			<value>
+				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DarkWoodLog"]/stuffProps/statFactors</xpath>
+			<value>
+				<Mass>0.3</Mass>
+				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+			</value>
+		</li>
+
+		<!-- Elven Wood -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases</xpath>
+			<value>
+				<Bulk>0.07</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases/SharpDamageMultiplier</xpath>
+			<value>
+				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/statBases/BluntDamageMultiplier</xpath>
+			<value>
+				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_ElvenWoodLog"]/stuffProps/statFactors</xpath>
+			<value>
+				<Mass>0.3</Mass>
+				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+			</value>
+		</li>
+
+		<!-- Dryad Wood -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases</xpath>
+			<value>
+				<Bulk>0.07</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases/SharpDamageMultiplier</xpath>
+			<value>
+				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/statBases/BluntDamageMultiplier</xpath>
+			<value>
+				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_DryadWoodLog"]/stuffProps/statFactors</xpath>
+			<value>
+				<Mass>0.3</Mass>
+				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+			</value>
+		</li>
+
+		<!-- Ancient Wood -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.2</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<MeleeDodgeChance>0.13</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases</xpath>
+			<value>
+				<Bulk>0.07</Bulk>
+				<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.15</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases/SharpDamageMultiplier</xpath>
+			<value>
+				<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/statBases/BluntDamageMultiplier</xpath>
+			<value>
+				<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="DankPyon_AncientWoodLog"]/stuffProps/statFactors</xpath>
+			<value>
+				<Mass>0.3</Mass>
+				<MeleePenetrationFactor>0.3</MeleePenetrationFactor>
+			</value>
+		</li>
+
+		<!--This thing was also a bit annoying-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_TanningLiquor"]/stackLimit</xpath>
+			<value>
+				<stackLimit>75</stackLimit>
+			</value>
+		</li>	
+	
+        </operations>
+	</match>
+  </Operation>
+
+</Patch>
