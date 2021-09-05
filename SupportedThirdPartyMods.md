@@ -15,6 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
+[Fuu] Uncompromising Tribal Faction |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] EFT Apparel |
@@ -79,6 +80,7 @@ Arachne Race	|
 Arasaka Corporation [1.3]	|
 Area Rugs	|
 Aspero Race |
+Astoriel Legacy |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
@@ -179,6 +181,7 @@ Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
+Medieval Overhaul   |
 Megafauna	|
 Midworld Expanded: Flak Armor  |
 Mincho, The Mint Choco Slime  |
