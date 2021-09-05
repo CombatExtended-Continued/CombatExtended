@@ -7,101 +7,103 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
-        
 
-	<!-- Patch base -->
+    <!-- === Remove RH2 60mm Mortar Shell === -->
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[defName="RN2Shell_60mmShell_HighExplosive"]</xpath>
+    </li>	
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "RN2_BaseArtilleryBuilding"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-		</value>
-	</li>
+    <!-- === Patch Base === -->
 
-	 <li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "RN2_BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
-		<value>
-			<turretBurstCooldownTime>2.0</turretBurstCooldownTime>
-			<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
-		</value>
-	</li>
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[@Name = "RN2_BaseArtilleryBuilding"]/thingClass</xpath>
+      <value>
+        <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+      </value>
+    </li>
 
-         <!-- === Mortar === -->
-         
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]</xpath>
-          <value>
-            <statBases>
-              <SightsEfficiency>0.5</SightsEfficiency>
-            </statBases>
-          </value>
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[@Name = "RN2_BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>2.0</turretBurstCooldownTime>
+        <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+      </value>
+    </li>
+
+    <!-- === Mortar === -->
+      
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]</xpath>
+      <value>
+        <statBases>
+          <SightsEfficiency>0.5</SightsEfficiency>
+        </statBases>
+      </value>
+    </li>
+    
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/comps</xpath>
+      <value>
+        <li Class="CombatExtended.CompProperties_Charges">
+          <chargeSpeeds>
+            <li>30</li>
+            <li>50</li>
+            <li>70</li>
+            <li>90</li>
+          </chargeSpeeds>
         </li>
-        
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/comps</xpath>
-          <value>
-    	<comps>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
-            <li Class="CombatExtended.CompProperties_AmmoUser">
-              <magazineSize>1</magazineSize>
-              <reloadTime>3.8</reloadTime>
-              <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
-            </li>
-    	</comps>
-          </value>
+        <li Class="CombatExtended.CompProperties_AmmoUser">
+          <magazineSize>1</magazineSize>
+          <reloadTime>3.8</reloadTime>
+          <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
         </li>
-  
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/verbs</xpath>
-          <value>
-            <verbs>
-              <li Class="CombatExtended.VerbPropertiesCE">
-                <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
-                <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-                <hasStandardCommand>true</hasStandardCommand>
-                <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-                <warmupTime>4.0</warmupTime>
-                <minRange>16</minRange>
-                <range>500</range>
-                <burstShotCount>1</burstShotCount>
-                <soundCast>RNShot_M224Mortar</soundCast>
-                <muzzleFlashScale>16</muzzleFlashScale>
-                <circularError>1</circularError>
-                <indirectFirePenalty>0.2</indirectFirePenalty>
-                <targetParams>
-                  <canTargetLocations>true</canTargetLocations>
-                </targetParams>
-              </li>
-            </verbs>
-          </value>
-        </li>
+      </value>
+    </li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/weaponTags</xpath>
-          <value>
-    	<weaponTags>
-      		<li>TurretGun</li>
-    	</weaponTags>
-          </value>
-        </li>
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/verbs</xpath>
+      <value>
+        <verbs>
+          <li Class="CombatExtended.VerbPropertiesCE">
+            <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+            <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+            <warmupTime>4.0</warmupTime>
+            <minRange>16</minRange>
+            <range>500</range>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>RNShot_M224Mortar</soundCast>
+            <muzzleFlashScale>16</muzzleFlashScale>
+            <circularError>1</circularError>
+            <indirectFirePenalty>0.2</indirectFirePenalty>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </li>
+        </verbs>
+      </value>
+    </li>
 
-                 <!-- === Turret === -->
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="RN2Artillery_M2Mortar"]/weaponTags</xpath>
+      <value>
+        <weaponTags>
+            <li>TurretGun</li>
+        </weaponTags>
+      </value>
+    </li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RN2Turret_M2Mortar"]</xpath>
-		<value>
-    			<tradeTags>
-				<li>CE_Turret</li>
-    			</tradeTags>
-		</value>
-	</li>
+  <!-- === Turret === -->
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="RN2Turret_M2Mortar"]</xpath>
+      <value>
+            <tradeTags>
+          <li>CE_Turret</li>
+            </tradeTags>
+      </value>
+    </li>
         
       </operations>
     </match>
