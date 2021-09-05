@@ -11,6 +11,164 @@
 				</mods>
 				<match Class="PatchOperationSequence">
 					<operations>
+
+
+				<!-- Changing coverage of the bodyDef (should've done this sooner, but eh) -->
+				<!-- why yes dear explorer of this file, i did just literally copy and paste the ShekBody bodytype patches -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Ribcage"]/coverage</xpath>
+					<value>
+						<coverage>0.012</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Pelvis"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Stomach"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Heart"]/coverage</xpath>
+					<value>
+						<coverage>0.04</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Lung"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Kidney"]/coverage</xpath>
+					<value>
+						<coverage>0.03</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Liver"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Neck"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]/parts/li[def="Brain"]/coverage</xpath>
+					<value>
+						<coverage>0.9</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Eye"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Ear"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/coverage</xpath>
+					<value>
+						<coverage>0.08</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Shoulder"]/coverage</xpath>
+					<value>
+						<coverage>0.085</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Clavicle"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Humerus"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Radius"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Leg"]/coverage</xpath>
+					<value>
+						<coverage>0.1</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="ReviaRaceTail"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Leg"]/parts/li[def="Femur"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="ReviaRaceBody"]/corePart/parts/li[def="Leg"]/parts/li[def="Tibia"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="ReviaRaceBody"]//*[
+          def="Torso" or 
+          def="Neck" or 
+          def="Head" or 
+          def="Jaw" or 
+          def="Ear" or
+          def="Nose" or
+          def="Shoulder" or
+          def="Arm" or
+          def="Hand" or
+          def="Finger" or
+          def="Foot" or
+	  def="Toe" or
+          def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="ReviaRaceBody"]//*[
+          def="Jaw" or 
+          def="Nose" or
+          def="Eye"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
 					
 						<!--Arm Groups-->
 					

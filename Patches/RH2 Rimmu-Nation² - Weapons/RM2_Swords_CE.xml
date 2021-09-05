@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>[RH2] Rimmu-Nation² - Weapons</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<!-- === One-handed Tags === -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "RNMeleeWeapon_Maximus_Spatha"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+	<!-- === Katana === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Mizutori_Katana" or defName="RNMeleeWeapon_Fudoshin_Katana" or defName="RNMeleeWeapon_Yanmaodao_Saber"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.88</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>1.28</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>2.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.65</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Mizutori_Katana" or defName="RNMeleeWeapon_Fudoshin_Katana" or defName="RNMeleeWeapon_Yanmaodao_Saber"]/statBases</xpath>
+		<value>
+      		<Bulk>7.85</Bulk>
+      		<MeleeCounterParryBonus>1.38</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Mizutori_Katana" or defName="RNMeleeWeapon_Fudoshin_Katana" or defName="RNMeleeWeapon_Yanmaodao_Saber"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.86</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- === I Hanjo === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Hanzo_Katana"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>19</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<armorPenetrationSharp>2</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>1.28</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>2.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Hanzo_Katana"]/statBases</xpath>
+		<value>
+      		<Bulk>7.85</Bulk>
+      		<MeleeCounterParryBonus>1.56</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Hanzo_Katana"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.44</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- === Spatha === -->
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Maximus_Spatha"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.18</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.339</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.39</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.339</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>0.717</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.36</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Maximus_Spatha"]/statBases</xpath>
+		<value>
+      		<Bulk>5</Bulk>
+      		<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Maximus_Spatha"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.30</MeleeCritChance>
+				<MeleeParryChance>0.35</MeleeParryChance>
+				<MeleeDodgeChance>0.18</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
