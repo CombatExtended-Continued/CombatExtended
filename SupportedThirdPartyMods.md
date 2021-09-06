@@ -104,6 +104,7 @@ Dragonian Race	|
 Dragon's Descent    |
 Dragons!	|
 ED-Shields	|
+Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Critter Collection |
