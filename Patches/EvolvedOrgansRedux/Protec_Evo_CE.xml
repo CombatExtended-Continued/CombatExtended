@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>EvolvedOrgansRedux</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Skull_CranialPlating"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+					<ArmorRating_Heat>0.10</ArmorRating_Heat>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Torso_MultilayeredDermalPlating"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+                    					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+					<ArmorRating_Heat>0.20</ArmorRating_Heat>
+					<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+          					<ComfyTemperatureMax>10</ComfyTemperatureMax>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Skin_FlameRetardantSkin"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+					<ArmorRating_Heat>0.20</ArmorRating_Heat>
+          					<ComfyTemperatureMax>50</ComfyTemperatureMax>
+					<Flammability>-.6</Flammability>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Skin_VariableInsulationSkin"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+					<ArmorRating_Heat>0.10</ArmorRating_Heat>
+          					<ComfyTemperatureMin>-35</ComfyTemperatureMin>
+          					<ComfyTemperatureMax>30</ComfyTemperatureMax>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Ribcage_CalciumAlloyRibcage"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+                    					<ArmorRating_Blunt>2</ArmorRating_Blunt>
+					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+					<ArmorRating_Heat>0.20</ArmorRating_Heat>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Protection_Neck_ReinforcedNeckMuscles"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ArmorRating_Blunt>4</ArmorRating_Blunt>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</statOffsets>
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

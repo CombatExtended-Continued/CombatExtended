@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>EvolvedOrgansRedux</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Brain_ButchersNails"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeHitChance>1</MeleeHitChance>
+					<MentalBreakThreshold>0.05</MentalBreakThreshold>
+					<NegotiationAbility>-1.5</NegotiationAbility>
+          					<SocialImpact>-1.5</SocialImpact>
+					<AimingDelayFactor>-0.15</AimingDelayFactor>
+					<Suppressability>-0.4</Suppressability>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Brain_ReptilianFrontalCortex"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeHitChance>0.5</MeleeHitChance>
+					<NegotiationAbility>-0.1</NegotiationAbility>
+					<SocialImpact>-0.2</SocialImpact>
+					<MentalBreakThreshold>0.1</MentalBreakThreshold>
+					<AimingDelayFactor>-0.1</AimingDelayFactor>
+					<Suppressability>-0.2</Suppressability>
+					<EVOR_MinMeleeSkill>20</EVOR_MinMeleeSkill>
+					<EVOR_MeleePassion>2</EVOR_MeleePassion>
+					<EVOR_MinShootingSkill>20</EVOR_MinShootingSkill>
+					<EVOR_ShootingPassion>2</EVOR_ShootingPassion>
+					<EVOR_DisableWorkType_Intellectual>-1</EVOR_DisableWorkType_Intellectual>
+					<EVOR_DisableWorkType_Caring>-1</EVOR_DisableWorkType_Caring>
+					<EVOR_DisableWorkType_Social>-1</EVOR_DisableWorkType_Social>
+					<EVOR_DisableWorkType_ManualSkilled>-1</EVOR_DisableWorkType_ManualSkilled>
+				</statOffsets>
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

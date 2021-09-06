@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>EvolvedOrgansRedux</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_ExtradextrousArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_RendingClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.23</cooldownTime>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>28</power>
+					<cooldownTime>1.29</cooldownTime>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_HighPressurePincer"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>pinchy</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>2.3</cooldownTime>
+					<armorPenetrationBlunt>14</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>pinchy</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>2.1</cooldownTime>
+					<armorPenetrationBlunt>20</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_SonicImpactMace"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<chanceFactor>10</chanceFactor>
+					<capacities>
+						<li>Blunt</li><li>EVOR_Cap_Sonic</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>9</armorPenetrationBlunt>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>35</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_VenopillarArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>ScratchToxic</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationSharp>1.0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_FrostMantisHook"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>EVOR_Frostbite</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_SalamanderWhip"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>EVOR_Burn</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_OssifiedBoneSaber"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Stab</li>
+						<li>Cut</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>0.88</cooldownTime>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_TriPlacedLimb"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.9</cooldownTime>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Tail_VenomousStinger"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>ScratchToxic</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.11</cooldownTime>
+					<armorPenetrationSharp>1.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Appendage_WeightedTail"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+                    					<MeleeDodgeChance>0.25</MeleeDodgeChance>
+				</statOffsets>
+			</value>
+			</li>
+			<!-- Add night vision to eyes when it comes out-->
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Arasaka_Eye_AC"]/statBases</xpath>
+			<value>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Arasaka_Eye_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+				</statOffsets>
+			</value>
+			</li>
+
+			<!-- Reduce surpression for cyberdeck Does increased consciousness increase Suppressability?-->
+
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKI_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.075</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKII_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.15</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKIII_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.25</Suppressability>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="Arasaka_MKIV_AC"]/stages/li[1]/statOffsets</xpath>
+			<value>
+					      <Suppressability>-0.5</Suppressability>
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
