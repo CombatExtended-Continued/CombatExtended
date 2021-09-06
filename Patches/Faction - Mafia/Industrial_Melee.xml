@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Faction : Mafia</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Mafia Knife === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="indus_couteau_poissoir"]/statBases</xpath>
+          <value>
+            <Bulk>0.25</Bulk>
+            <MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="indus_couteau_poissoir"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.10</MeleeCritChance>
+              <MeleeParryChance>0.30</MeleeParryChance>
+              <MeleeDodgeChance>0.010</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="indus_couteau_poissoir"]/weaponTags</xpath>
+          <value>
+            <li>CE_Sidearm_Melee</li>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="indus_couteau_poissoir"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.06</cooldownTime>
+                <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>            
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>0.99</cooldownTime>
+                <armorPenetrationBlunt>0.38</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.20</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>1.06</cooldownTime>
+                <chanceFactor>1.88</chanceFactor>
+                <armorPenetrationBlunt>0.42</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.76</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
