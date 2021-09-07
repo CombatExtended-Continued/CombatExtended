@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>EvolvedOrgansRedux</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Royalty</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+   			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Torso_MucousGland"]/stages/li[1]/statOffsets/MeleeDodgeChance</xpath>
+			<value>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+			</value>
+			</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>

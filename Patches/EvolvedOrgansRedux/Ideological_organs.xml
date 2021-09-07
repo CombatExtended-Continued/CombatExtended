@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>EvolvedOrgansRedux</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Ideology</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="EVOR_Item_Eye_EyeOfTheVoid"]</xpath>
+			<value>
+				<statBases>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+				</statBases>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Eye_EyeOfTheVoid"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeHitChanceOutdoorsDarkOffset>0.3</MeleeHitChanceOutdoorsDarkOffset>
+					<MeleeHitChanceIndoorsDarkOffset>0.3</MeleeHitChanceIndoorsDarkOffset>
+					<MeleeDodgeChanceOutdoorsDarkOffset>0.15</MeleeDodgeChanceOutdoorsDarkOffset>
+					<MeleeDodgeChanceIndoorsDarkOffset>0.15</MeleeDodgeChanceIndoorsDarkOffset>
+					<NightVisionEfficiency_Implant>0.4</NightVisionEfficiency_Implant>
+				</statOffsets>
+			</value>
+			</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
