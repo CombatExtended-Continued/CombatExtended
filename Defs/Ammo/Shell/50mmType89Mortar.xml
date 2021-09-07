@@ -49,13 +49,15 @@
     <ammoClass>GrenadeHE</ammoClass>
     <comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>38</damageAmountBase>
+			<damageAmountBase>40</damageAmountBase>
 			<explosiveDamageType>Bomb</explosiveDamageType>
 			<explosiveRadius>2</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-          <Fragment_Shell>250</Fragment_Shell>
+          			<Fragment_Large>3</Fragment_Large>
+          			<Fragment_Small>28</Fragment_Small>
 			</fragments>
 		  </li>
     </comps>
@@ -69,7 +71,7 @@
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <speed>35</speed>
+		  <speed>0</speed>
           <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
           <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
           <soundAmbient>MortarRound_Ambient</soundAmbient>
@@ -86,19 +88,17 @@
 	</graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>112</damageAmountBase>
-      <explosionRadius>1</explosionRadius>
-	  <soundExplode>MortarBomb_Explode</soundExplode>
+      <damageAmountBase>40</damageAmountBase>
+      <explosionRadius>2</explosionRadius>
+	<soundExplode>MortarBomb_Explode</soundExplode>
+	<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
 		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>75</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>2</explosiveRadius>
-		  </li>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-          <Fragment_Shell>250</Fragment_Shell>
+          			<Fragment_Large>3</Fragment_Large>
+          			<Fragment_Small>28</Fragment_Small>
 			</fragments>
 		  </li>
 		</comps>
