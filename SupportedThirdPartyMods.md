@@ -157,6 +157,7 @@ Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
 High Caliber	|
 Hive Armory |
+Hive Rifle |
 Idhale Race	|
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
