@@ -263,6 +263,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
+Slime Rancher	|
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
