@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Hive Rifle</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="InsectJelly"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+		</value>
+	</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Hiverifle</defName>
+					<label>Hive spit</label>
+					<ammoTypes>
+						<InsectJelly>Bullet_HiveSpit</InsectJelly>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ================== Projectiles ================== -->
+  				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+    				<defName>Bullet_HiveSpit</defName>
+    				<label>Hive rifle spit</label>
+    				<graphicData>
+      					<texPath>Things/hivebullet</texPath>
+      					<graphicClass>Graphic_Single</graphicClass>
+	  				<drawSize>1.2</drawSize>
+    				</graphicData>
+    				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      					<damageAmountBase>10</damageAmountBase>
+      					<speed>120</speed>
+      					<secondaryDamage>
+        						<li>
+          						<def>Hive_Rifle_Damage</def>
+          						<amount>10</amount>
+        						</li>
+      					</secondaryDamage>
+      				<armorPenetrationSharp>15</armorPenetrationSharp>
+      				<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+    				</projectile>
+  				</ThingDef>
+
+
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

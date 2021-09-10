@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Insectoids</li>
+					</mods>
+		<match Class="PatchOperationFindMod">
+					<mods>
+						<li>Hive Rifle</li>
+					</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="VFEI_RoyalInsectJelly"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+		</value>
+	</li>
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+  <DamageDef ParentName="Bullet">
+    <defName>RoyalHive_Bullet</defName>
+    <additionalHediffs>
+      <li>
+        <hediff>VFEI_RoyalJellyTolerance</hediff>
+        <severityPerDamageDealt>0.005</severityPerDamageDealt>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+				<!-- ================== Projectiles ================== -->
+  				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base6x24mmChargedBullet">
+    				<defName>Bullet_RoyalHiveSpit</defName>
+    				<label>Royal Hive spit</label>
+				<graphicData>
+      					<texPath>Things/hivebullet</texPath>
+      					<graphicClass>Graphic_Single</graphicClass>
+	  				<drawSize>1.35</drawSize>
+    				</graphicData>
+    				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+      					<damageDef>RoyalHive_Bullet</damageDef>
+      					<damageAmountBase>16</damageAmountBase>
+      						<speed>120</speed>
+      					<secondaryDamage>
+        						<li>
+          						<def>Hive_Rifle_Damage</def>
+          						<amount>16</amount>
+        						</li>
+      					</secondaryDamage>
+      				<armorPenetrationSharp>24</armorPenetrationSharp>
+      				<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+    				</projectile>
+  				</ThingDef>
+
+
+		</value>
+		</li>
+
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="AmmoSet_Hiverifle"]/ammoTypes</xpath>
+			<value>
+				<VFEI_RoyalInsectJelly>Bullet_RoyalHiveSpit</VFEI_RoyalInsectJelly>
+			</value>
+		</li>
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>
