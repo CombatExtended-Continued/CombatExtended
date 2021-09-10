@@ -39,7 +39,7 @@ namespace CombatExtended
             {
                 //Call GenExplosionCE for main explosion
                 GenExplosionCE.DoExplosion(posIV, map, Props.explosiveRadius, Props.explosiveDamageType, instigator,
-                    GenMath.RoundRandom(Props.damageAmountBase), Props.damageAmountBase * 0.1f,
+                    GenMath.RoundRandom(Props.damageAmountBase), Props.damageAmountBase * 0.25f,
                     Props.explosionSound, null, parent.def, null,
                     Props.postExplosionSpawnThingDef, Props.postExplosionSpawnChance, Props.postExplosionSpawnThingCount,
                     Props.applyDamageToExplosionCellsNeighbors, Props.preExplosionSpawnThingDef, Props.preExplosionSpawnChance,
