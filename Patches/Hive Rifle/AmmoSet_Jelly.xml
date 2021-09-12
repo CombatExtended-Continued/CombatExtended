@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Hive Rifle</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- These operations must be in one file and sequential to ensure their target exists. -->
+
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_Hiverifle</defName>
+				<label>Hive spit</label>
+				<ammoTypes>
+					<InsectJelly>Bullet_HiveSpit</InsectJelly>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+		</value>
+		</li>
+
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Alpha Animals</li>
+			</mods>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AmmoSet_Hiverifle"]/ammoTypes</xpath>
+				<value>
+					<AA_BlackInsectJelly>Bullet_BlackHiveSpit</AA_BlackInsectJelly>
+				</value>
+			</match>
+		</li>
+
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Vanilla Factions Expanded - Insectoids</li>
+			</mods>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="AmmoSet_Hiverifle"]/ammoTypes</xpath>
+				<value>
+					<VFEI_RoyalInsectJelly>Bullet_RoyalHiveSpit</VFEI_RoyalInsectJelly>
+				</value>
+			</match>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

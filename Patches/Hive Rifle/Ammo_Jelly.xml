@@ -5,8 +5,15 @@
 		<mods>
 			<li>Hive Rifle</li>
 		</mods>
+
 		<match Class="PatchOperationSequence">
 		<operations>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="InsectJelly"]</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.AmmoDef</value>
+		</li>
 
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName="InsectJelly"]</xpath>
@@ -14,23 +21,25 @@
 				<thingClass>CombatExtended.AmmoThing</thingClass>
 			</value>
 		</li>
-<!--
-		<li Class="PatchOperationAttributeAdd">
-			<xpath>/Defs/ThingDef[defName="InsectJelly"]</xpath>
-			<attribute>Class</attribute>
-			<value>CombatExtended.AmmoThing</value>
-		</li>
--->
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName="InsectJelly"]</xpath>
 			<value>
-				<ammoClass>Charged</ammoClass>
+				<ammoClass>Jelly</ammoClass>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
 		<xpath>Defs</xpath>
 		<value>
+
+		<CombatExtended.AmmoCategoryDef>
+			<defName>Jelly</defName>
+			<label>insect jelly</label>
+			<labelShort>jelly</labelShort>
+			<description>Jelly produced by insects, converted into lethal and toxic projectiles.</description>
+		</CombatExtended.AmmoCategoryDef>
+
 		<!-- ==================== AmmoSet ========================== -->
 
 		<CombatExtended.AmmoSetDef>
@@ -51,16 +60,16 @@
 			<drawSize>1.2</drawSize>
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>10</damageAmountBase>
-			<speed>120</speed>
-			<secondaryDamage>
-			<li>
-				<def>Hive_Rifle_Damage</def>
-				<amount>10</amount>
-			</li>
-			</secondaryDamage>
-			<armorPenetrationSharp>15</armorPenetrationSharp>
-			<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
+				<damageAmountBase>10</damageAmountBase>
+				<speed>120</speed>
+				<secondaryDamage>
+				<li>
+					<def>Hive_Rifle_Damage</def>
+					<amount>10</amount>
+				</li>
+				</secondaryDamage>
+				<armorPenetrationSharp>15</armorPenetrationSharp>
+				<armorPenetrationBlunt>25.6</armorPenetrationBlunt>
 			</projectile>
 		</ThingDef>
 
