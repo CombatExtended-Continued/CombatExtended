@@ -85,6 +85,7 @@ Astoriel Legacy |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
+Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
