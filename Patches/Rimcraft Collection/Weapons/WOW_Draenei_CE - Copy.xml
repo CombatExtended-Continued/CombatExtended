@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--T1 Mace-->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Gavel"]/tools</xpath>
+					<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.08</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>6.45</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Gavel"]/statBases</xpath>
+					<value>
+    						<Bulk>4</Bulk>
+    						<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Gavel"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.56</MeleeCritChance>
+							<MeleeParryChance>0.24</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Draenei_Gavel"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!--T2 Mace-->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Mace"]/tools</xpath>
+					<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>2</cooldownTime>
+							<chanceFactor>1.33</chanceFactor>
+							<armorPenetrationBlunt>7.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Mace"]/statBases</xpath>
+					<value>
+    						<Bulk>4</Bulk>
+    						<MeleeCounterParryBonus>0.3</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Mace"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.66</MeleeCritChance>
+							<MeleeParryChance>0.33</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="WoWM_Draenei_Mace"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Definitely a T2 warhammer -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Hammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.87</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								<chanceFactor>0.1</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>2.36</cooldownTime>
+								<armorPenetrationBlunt>15.76</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Hammer"]/statBases</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Hammer"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>2.8</MeleeCritChance>
+							<MeleeParryChance>0.24</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!-- Definitely a T3 warhammer -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_GreatHammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>1.87</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								<chanceFactor>0.1</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>34</power>
+								<cooldownTime>2.78</cooldownTime>
+								<armorPenetrationBlunt>20.76</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_GreatHammer"]/statBases</xpath>
+					<value>
+						<Bulk>9</Bulk>
+						<MeleeCounterParryBonus>0.3</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_GreatHammer"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>2.8</MeleeCritChance>
+							<MeleeParryChance>0.24</MeleeParryChance>
+							<MeleeDodgeChance>0.33</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<!--T3 Claymore -->	
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Claymore"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>1.99</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>31</power>
+								<cooldownTime>1.99</cooldownTime>
+								<armorPenetrationBlunt>1.55</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>48</power>
+								<cooldownTime>2.4</cooldownTime>
+								<armorPenetrationBlunt>5.488</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.6</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Claymore"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoWM_Draenei_Claymore"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.33</MeleeCritChance>
+							<MeleeParryChance>0.64</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Ry]Rimcraft Factions</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Archer -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="WoW_BloodElf_Guardian"
+								or defName="WoW_BloodElf_Farstrider"
+								or defName="WoW_Draenei_Peacekeeper"
+								or defName="WoW_Draenei_Vindictator"
+								or defName="WoW_Dwarf_Guard"
+								or defName="WoW_Dwarf_Mountaineer"
+								or defName="WoW_Dwarf_Officer"
+								or defName="WoW_Forsaken_Plaguebringer"
+								or defName="WoW_Forsaken_DarkrangerNE"
+								or defName="WoW_Forsaken_DarkrangerHE"
+								or defName="WoW_Gnome_Engineer"
+								or defName="WoW_Gnome_Tinker"
+								or defName="WoW_Goblin_Tinker"
+								or defName="WoW_HighElf_Scout"
+								or defName="WoW_HighElf_Ranger"
+								or defName="WoW_Human_Private"
+								or defName="WoW_Human_Sergeant"
+								or defName="WoW_Human_Marshal"
+								or defName="WoW_NightElf_Archer"
+								or defName="WoW_Human_Sergeant"
+								or defName="WoW_Human_Marshal"
+								or defName="WoW_NightElf_Archer"
+								or defName="WoW_NightElf_Hunter"
+								or defName="WoW_NightElf_Watcher"
+								or defName="WoW_Troll_ThroatSlicer"
+								or defName="WoW_Troll_HeadHunter"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>20</min>
+								<max>40</max>
+							</primaryMagazineCount>
+						<sidearms>
+								<li>
+            							<generateChance>0.5</generateChance>
+            							<sidearmMoney>
+              							<min>20</min>
+              							<max>120</max>
+            							</sidearmMoney>
+            							<weaponTags>
+              								<li>CE_Sidearm_Melee</li>
+            							</weaponTags>
+								</li>
+						</sidearms>
+						</li>
+					</value>
+				</li>
+
+				<!-- Warrior shield -->
+				<!--<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="FR_MinotaurTribes_Fighter" or defName="FR_MinotaurTribes_Warrior"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>200</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.75</shieldChance>
+						</li>
+					</value>
+				</li>-->
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

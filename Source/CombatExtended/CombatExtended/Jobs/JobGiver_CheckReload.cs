@@ -121,7 +121,7 @@ namespace CombatExtended
                 tmpComp = gun.TryGetComp<CompAmmoUser>();
                 AmmoDef ammoType = tmpComp.CurrentAmmo;
                 int ammoAmount = tmpComp.CurMagCount;
-                int magazineSize = tmpComp.Props.magazineSize;
+                int magazineSize = tmpComp.MagSize;
 
                 // Is the gun loaded with ammo not in a Loadout/HoldTracker?
                 if (tmpComp.UseAmmo && pawnHasLoadout && !TrackingSatisfied(pawn, ammoType, magazineSize))

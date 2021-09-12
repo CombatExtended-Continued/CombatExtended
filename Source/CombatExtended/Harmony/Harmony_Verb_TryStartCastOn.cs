@@ -61,7 +61,11 @@ namespace CombatExtended.HarmonyCE
                 return true;
             // If this verb is owned by a pawn that has the tactical manager
             if (__instance.CasterIsPawn)
-                return __instance.CasterPawn.GetTacticalManager().TryStartCastChecks(__instance, castTarg, destTarg);
+            {
+                var manager = __instance.CasterPawn.GetTacticalManager();
+                if(manager != null)
+                    return manager.TryStartCastChecks(__instance, castTarg, destTarg);                
+            }
 
             // Legacy setup
             //

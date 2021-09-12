@@ -21,5 +21,6 @@ namespace CombatExtended
         public static JobDef EquipFromInventory;
         public static JobDef OpportunisticAttack;
         public static JobDef TendSelf;
+        public static JobDef ModifyWeapon;
     }
 }

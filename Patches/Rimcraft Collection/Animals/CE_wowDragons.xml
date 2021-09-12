@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[Ry]Rimcraft Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoW_Animal_Dragonhawk"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.66</MeleeDodgeChance>
+						<MeleeCritChance>0.25</MeleeCritChance>
+						<MeleeParryChance>0.27</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoW_Animal_Dragonhawk"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>23</power>
+								<cooldownTime>1.45</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+            								<surpriseAttack>
+               									<extraMeleeDamages>
+                  										<li>
+                     											<def>Stun</def>
+                     											<amount>14</amount>
+                  										</li>
+               									</extraMeleeDamages>
+            								</surpriseAttack>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+            								<label>beak</label>
+								<capacities>
+									<li>Bite</li><li>Stab</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.85</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+            								<surpriseAttack>
+               									<extraMeleeDamages>
+                  										<li>
+                     											<def>Stun</def>
+                     											<amount>14</amount>
+                  										</li>
+               									</extraMeleeDamages>
+            								</surpriseAttack>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+            								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="WoW_Animal_FairyDragon"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						<MeleeCritChance>0.16</MeleeCritChance>
+						<MeleeParryChance>0.3</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="WoW_Animal_FairyDragon"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>claws</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1</cooldownTime>
+								<linkedBodyPartsGroup>Feet</linkedBodyPartsGroup>
+            								<surpriseAttack>
+               									<extraMeleeDamages>
+                  										<li>
+                     											<def>Stun</def>
+                     											<amount>10</amount>
+                  										</li>
+               									</extraMeleeDamages>
+            								</surpriseAttack>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+            								<label>beak</label>
+								<capacities>
+									<li>Bite</li><li>Stab</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.65</cooldownTime>
+								<linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+            								<surpriseAttack>
+               									<extraMeleeDamages>
+                  										<li>
+                     											<def>Stun</def>
+                     											<amount>10</amount>
+                  										</li>
+               									</extraMeleeDamages>
+            								</surpriseAttack>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+            								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

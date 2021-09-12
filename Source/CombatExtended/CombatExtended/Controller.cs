@@ -13,11 +13,14 @@ namespace CombatExtended
     public class Controller : Mod
     {
         public static Settings settings;
+        public static Controller instant;
+        public static ModContentPack content;
 
         public Controller(ModContentPack content) : base(content)
         {
-
-            settings = GetSettings<Settings>();
+            Controller.instant = this;
+            Controller.content = content;
+            Controller.settings = GetSettings<Settings>();
 
             // Apply Harmony patches
             HarmonyBase.InitPatches();

@@ -36,7 +36,7 @@ namespace CombatExtended
         public override int ShotsPerBurst
         {
             get
-            {
+            {                
                 return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
             }
         }
@@ -127,13 +127,20 @@ namespace CombatExtended
         }
 
         public int ShotsPerBurstFor(FireMode mode)
-        {
+        {            
             if (CompFireModes != null)
             {
                 if (mode == FireMode.SingleFire) return 1;
                 if (mode == FireMode.BurstFire && CompFireModes.Props.aimedBurstShotCount > 0) return CompFireModes.Props.aimedBurstShotCount;
             }
-            return VerbPropsCE.burstShotCount;
+            float burstShotCount = VerbPropsCE.burstShotCount;
+            if (EquipmentSource != null)
+            {
+                float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                if (modified > 0)
+                    burstShotCount = modified;
+            }
+            return (int)burstShotCount;
         }
 
         /// <summary>
@@ -200,7 +207,7 @@ namespace CombatExtended
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
-            report.maxRange = verbProps.range;
+            report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?

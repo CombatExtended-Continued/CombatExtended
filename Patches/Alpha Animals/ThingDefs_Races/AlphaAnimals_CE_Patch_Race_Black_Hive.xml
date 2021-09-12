@@ -15,36 +15,6 @@
 				</value>
 			</li>
 
-	<li Class="PatchOperationConditional">
-	 <xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]/comps</xpath>
-          		<nomatch Class="PatchOperationAdd">
-            			<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede"]</xpath>
-            			<value>
-              				<comps />
-            			</value>
-		</nomatch>
-	</li>
-
-	<li Class="PatchOperationConditional">
-	 <xpath>/Defs/ThingDef[defName="AA_BlackSpider"]/comps</xpath>
-          		<nomatch Class="PatchOperationAdd">
-            			<xpath>/Defs/ThingDef[defName="AA_BlackSpider"]</xpath>
-            			<value>
-              				<comps />
-            			</value>
-		</nomatch>
-	</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="AA_BlackSpider" or defName="AA_BlackSpelopede"]/comps</xpath>
-			<value>
-				<li>
-				  <compClass>CombatExtended.CompPawnGizmo</compClass>
-				</li>
-				<li Class="CombatExtended.CompProperties_Suppressable" />
-			</value>
-		</li>
-
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="AA_BlackScarab"]</xpath>
 				<value>

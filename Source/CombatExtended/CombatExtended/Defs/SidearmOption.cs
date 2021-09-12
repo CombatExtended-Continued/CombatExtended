@@ -14,5 +14,6 @@ namespace CombatExtended
         public FloatRange magazineCount = FloatRange.Zero;
         public List<string> weaponTags;
         public float generateChance = 1;
+        public AttachmentOption attachments;
     }
 }

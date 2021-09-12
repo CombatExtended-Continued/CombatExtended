@@ -53,6 +53,13 @@ namespace CombatExtended
                 return 0;
             }
         }
+        public int MagSize
+        {
+            get
+            {
+                return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
+            }
+        }
         public int CurMagCount
         {
             get
@@ -136,7 +143,7 @@ namespace CombatExtended
                 return CompInventory != null && CompInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Any(a => a.ammo == x.def));
             }
         }
-        public bool HasMagazine => Props.magazineSize > 0;
+        public bool HasMagazine => MagSize > 0;
         public AmmoDef CurrentAmmo
         {
             get
@@ -151,8 +158,8 @@ namespace CombatExtended
             get
             {
                 if (!HasMagazine) { return 0; }
-                if (SelectedAmmo == CurrentAmmo) { return Props.magazineSize - CurMagCount; }
-                return Props.magazineSize;
+                if (SelectedAmmo == CurrentAmmo) { return MagSize - CurMagCount; }
+                return MagSize;
             }
         }
 
@@ -162,11 +169,11 @@ namespace CombatExtended
             {
                 if (UseAmmo)
                 {
-                    return HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= Props.magazineSize;
+                    return HasMagazine && SelectedAmmo == CurrentAmmo && CurMagCount >= MagSize;
                 }
-                return CurMagCount >= Props.magazineSize;
+                return CurMagCount >= MagSize;
             }
-        }
+        }        
 
         public ThingDef CurAmmoProjectile => Props.ammoSet?.ammoTypes?.FirstOrDefault(x => x.ammo == CurrentAmmo)?.projectile ?? parent.def.Verbs.FirstOrDefault().defaultProjectile;
         public CompInventory CompInventory
@@ -195,7 +202,7 @@ namespace CombatExtended
                 else return parent.MapHeld;
             }
         }
-        public bool ShouldThrowMote => Props.throwMote && Props.magazineSize > 1;
+        public bool ShouldThrowMote => Props.throwMote && MagSize > 1;
 
         public AmmoDef SelectedAmmo
         {
@@ -222,7 +229,7 @@ namespace CombatExtended
             base.Initialize(vprops);
 
             //spawnUnloaded checks have all been moved to methods calling ResetAmmoCount.
-            //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : Props.magazineSize;
+            //curMagCountInt = Props.spawnUnloaded && UseAmmo ? 0 : MagSize;
 
             // Initialize ammo with default if none is set
             if (UseAmmo)
@@ -389,7 +396,7 @@ namespace CombatExtended
                 }
             }
 
-            if (Props.reloadOneAtATime && UseAmmo && selectedAmmo == CurrentAmmo && CurMagCount == Props.magazineSize)
+            if (Props.reloadOneAtATime && UseAmmo && selectedAmmo == CurrentAmmo && CurMagCount == MagSize)
             {
                 //Because reloadOneAtATime weapons don't dump their mag at the start of a reload, have to stop the reloading process here if the mag was already full
                 return;
@@ -498,6 +505,10 @@ namespace CombatExtended
 
         public bool TryPickupAmmo()
         {
+            if (!Holder.RaceProps.Humanlike)
+                return false;
+            if (Holder.MentalState != null)
+                return false;
             IEnumerable<AmmoDef> supportedAmmo = Props.ammoSet.ammoTypes.Select(a => a.ammo);
             foreach (Thing thing in Holder.Position.AmmoInRange(Holder.Map, 6).Where(t => t is AmmoThing ammo
                                         && supportedAmmo.Contains(ammo.AmmoDef)
@@ -558,7 +569,7 @@ namespace CombatExtended
                 currentAmmoInt = (AmmoDef)ammoThing.def;
 
                 // If there's more ammo in inventory than the weapon can hold, or if there's greater than 1 bullet in inventory if reloading one at a time
-                if ((Props.reloadOneAtATime ? 1 : Props.magazineSize) < ammoThing.stackCount)
+                if ((Props.reloadOneAtATime ? 1 : MagSize) < ammoThing.stackCount)
                 {
                     if (Props.reloadOneAtATime)
                     {
@@ -567,8 +578,8 @@ namespace CombatExtended
                     }
                     else
                     {
-                        newMagCount = Props.magazineSize;
-                        ammoThing.stackCount -= Props.magazineSize;
+                        newMagCount = MagSize;
+                        ammoThing.stackCount -= MagSize;
                     }
                 }
 
@@ -593,7 +604,7 @@ namespace CombatExtended
             }
             else
             {
-                newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : Props.magazineSize;
+                newMagCount = (Props.reloadOneAtATime) ? (curMagCountInt + 1) : MagSize;
             }
             CurMagCount = newMagCount;
             if (turret != null) turret.SetReloading(false);
@@ -612,7 +623,7 @@ namespace CombatExtended
                 currentAmmoInt = newAmmo;
                 selectedAmmo = newAmmo;
             }
-            CurMagCount = Props.magazineSize;
+            CurMagCount = MagSize;
         }
 
         public bool TryFindAmmoInInventory(out Thing ammoThing)
@@ -699,7 +710,7 @@ namespace CombatExtended
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(Props.magazineSize, ToStringStyle.Integer));
+            stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(MagSize, ToStringStyle.Integer));
             stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((Props.reloadTime), ToStringStyle.FloatTwo) + " s");
             if (UseAmmo)
             {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Equipment</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			 <!-- Howdah and Bridle -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryWeight>25</CarryWeight>
+							<CarryBulk>15</CarryBulk>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>4</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>15</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
