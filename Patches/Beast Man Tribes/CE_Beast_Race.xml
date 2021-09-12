@@ -9,16 +9,18 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="BearMan"
-								 or defName="CamelMan"
-								 or defName="ElephantMan"
-								 or defName="ElkMan"
-								 or defName="FoxMan"
-								 or defName="GazelleMan"
-								 or defName="LynxMan"
-								 or defName="PigMan"
-								 or defName="RaccoonMan"
-								 or defName="WolfMan"]</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="BearMan" or
+				defName="CamelMan" or
+				defName="ElephantMan" or
+				defName="ElkMan" or
+				defName="FoxMan" or
+				defName="GazelleMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan" or
+				defName="WolfMan"
+				]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -26,15 +28,39 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="BearMan" or
+				defName="CamelMan" or
+				defName="ElephantMan" or
+				defName="ElkMan" or
+				defName="FoxMan" or
+				defName="GazelleMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan" or
+				defName="WolfMan"
+				]</xpath>
+				<value>
+				<comps>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+					<li Class="CombatExtended.CompProperties_Suppressable"/>
+				</comps>
+				</value>
+			</li>
+
 			<!-- Bears -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="BearMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="BearMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -54,63 +80,63 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="BearMan"]/tools</xpath> 
 				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left fist</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.45</cooldownTime>
-							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right fist</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.45</cooldownTime>
-							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>teeth</label>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<power>11</power>
-							<cooldownTime>2.4</cooldownTime>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.4</armorPenetrationSharp>
-							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-        							<chanceFactor>0.2</chanceFactor>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>Head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>4.0</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-						</li>
-					</tools>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.45</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.45</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>2.4</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.4</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+						<chanceFactor>0.2</chanceFactor>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>Head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>4.0</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					</li>
+				</tools>
 				</value>
 			</li>
 
 			<!-- Camels -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="CamelMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="CamelMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -167,14 +193,14 @@
 			</li>
 
 			<!-- Elephant -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ElephantMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ElephantMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -230,15 +256,15 @@
 				</value>
 			</li>
 
-			<!-- ELKS -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ElkMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+			<!-- Elks -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ElkMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -249,7 +275,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="CamelMan"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ElkMan"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
 					<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
 				</value>
@@ -295,14 +321,15 @@
 			</li>
 
 			<!-- Gazelle -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="GazelleMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1.25</MeleeDodgeChance>
-						<MeleeCritChance>0.85</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="GazelleMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1.25</MeleeDodgeChance>
+					<MeleeCritChance>0.85</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -359,32 +386,51 @@
 			</li>
 
 			<!-- Fox and Lynxes, Pigs and Raccoon -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FoxMan" or defName="LynxMan" or defName="PigMan" or defName="RaccoonMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1.2</MeleeDodgeChance>
-						<MeleeCritChance>0.9</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="FoxMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan"
+				]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1.2</MeleeDodgeChance>
+					<MeleeCritChance>0.9</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FoxMan" or defName="LynxMan" or defName="PigMan" or defName="RaccoonMan"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="FoxMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FoxMan" or defName="LynxMan" or defName="PigMan" or defName="RaccoonMan"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="FoxMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan"
+				]/statBases/ArmorRating_Blunt</xpath>
 				<value>
 					<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="FoxMan" or defName="LynxMan" or defName="PigMan" or defName="RaccoonMan"]/tools</xpath> 
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[
+				defName="FoxMan" or
+				defName="LynxMan" or
+				defName="PigMan" or
+				defName="RaccoonMan"				
+				]/tools</xpath> 
 				<value>
 					<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -434,15 +480,15 @@
 				</value>
 			</li>
 
-			<!-- Woof -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="WolfMan"]/statBases/Mass</xpath>
-					<value>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>1</MeleeCritChance>
-						<MeleeParryChance>1</MeleeParryChance>
-						<Suppressability>1</Suppressability>
-					</value>
+			<!-- Wolf -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="WolfMan"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+					<Suppressability>1</Suppressability>
+				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -510,27 +556,6 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="BearMan"
-								 or defName="CamelMan"
-								 or defName="ElephantMan"
-								 or defName="ElkMan"
-								 or defName="FoxMan"
-								 or defName="GazelleMan"
-								 or defName="LynxMan"
-								 or defName="PigMan"
-								 or defName="RaccoonMan"
-								 or defName="WolfMan"]</xpath>
-				<value>
-    					<comps>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
-						</li>
-							<li Class="CombatExtended.CompProperties_Suppressable"/>
-    					</comps>
-				</value>
-			</li>
-
 			</operations>		
 		</match>
 	</Operation>
