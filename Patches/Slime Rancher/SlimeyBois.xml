@@ -9,12 +9,14 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="GreenSlime"
-						or defName="PuddleSlime"
-						or defName="FireSlime"
-						or defName="BoomSlime"
-						or defName="TarrSlime"
-						or defName="QuicksilverSlime"]</xpath>
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="FireSlime" or
+				defName="BoomSlime" or
+				defName="TarrSlime" or
+				defName="QuicksilverSlime"
+				]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Quadruped</bodyShape>
@@ -23,10 +25,12 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="GreenSlime"
-						or defName="PuddleSlime"
-						or defName="FireSlime"
-						or defName="BoomSlime"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="FireSlime" or
+				defName="BoomSlime"
+				]/statBases</xpath>
 				<value>
 					<MeleeDodgeChance>0.1</MeleeDodgeChance>
 					<MeleeCritChance>0.07</MeleeCritChance>
@@ -53,9 +57,11 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="GreenSlime"
-						or defName="PuddleSlime"
-						or defName="BoomSlime"]/tools</xpath>
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="BoomSlime"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -65,17 +71,17 @@
 							</capacities>
 							<power>2</power>
 							<cooldownTime>2</cooldownTime>
-        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
-        							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
-        							<surpriseAttack>
-          							<extraMeleeDamages>
-            								<li>
-              								<def>Stun</def>
-              								<amount>2</amount>
-            								</li>
-          								</extraMeleeDamages>
-        							</surpriseAttack>
+							<surpriseAttack>
+							<extraMeleeDamages>
+							<li>
+							<def>Stun</def>
+							<amount>2</amount>
+							</li>
+							</extraMeleeDamages>
+							</surpriseAttack>
 						</li>
 					</tools>
 				</value>
@@ -92,18 +98,18 @@
 							</capacities>
 							<power>1</power>
 							<cooldownTime>2</cooldownTime>
-        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
-        							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-        							<surpriseAttack>
-          							<extraMeleeDamages>
-            								<li>
-              								<def>Flame</def>
-              								<amount>1</amount>
+							<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+								<def>Flame</def>
+								<amount>1</amount>
 								<chance>0.33</chance>
-            								</li>
-          								</extraMeleeDamages>
-        							</surpriseAttack>
+								</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
 						</li>
 					</tools>
 				</value>

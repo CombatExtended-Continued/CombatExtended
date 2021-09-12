@@ -11,50 +11,52 @@
 		<xpath>Defs</xpath>
 		<value>
 
-	<!-- ==================== Recipes ========================== -->
+	    <!-- ==================== Recipes ========================== -->
 
-    <RecipeDef>
-        <defName>PressFirePlortCE</defName>
-        <label>press fire plort</label>
-        <description>Concentrate fire plorts into highly flammable compounds.</description>
-        <jobString>Pressing fire plort</jobString>
-        <workAmount>100</workAmount>
-        <products>
-            <Prometheum>1</Prometheum>
-        </products>
-        <ingredients>
-        <li>
-            <filter>
-            <thingDefs>
-                <li>FirePlort</li>
-            </thingDefs>
-            </filter>
-            <count>3</count>
-        </li>
-        </ingredients>
-        <fixedIngredientFilter>
-            <thingDefs>
-                <li>FirePlort</li>
-            </thingDefs>
-        </fixedIngredientFilter>
-    </RecipeDef>
+        <RecipeDef>
+            <defName>PressFirePlortCE</defName>
+            <label>press fire plort</label>
+            <description>Concentrate fire plorts into highly flammable compounds.</description>
+            <jobString>Pressing fire plort</jobString>
+            <workAmount>100</workAmount>
+            <products>
+                <Prometheum>1</Prometheum>
+            </products>
+            <ingredients>
+            <li>
+                <filter>
+                <thingDefs>
+                    <li>FirePlort</li>
+                </thingDefs>
+                </filter>
+                <count>3</count>
+            </li>
+            </ingredients>
+            <fixedIngredientFilter>
+                <thingDefs>
+                    <li>FirePlort</li>
+                </thingDefs>
+            </fixedIngredientFilter>
+        </RecipeDef>
 
 		</value>
 		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="PressBoomPlort"]/products</xpath>
-				<value>
-      					<FSX>5</FSX>
-				</value>
-			</li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/RecipeDef[defName="PressBoomPlort"]/products</xpath>
+            <value>
+            <products>
+                <FSX>5</FSX>
+             </products>    
+            </value>
+        </li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/RecipeDef[defName="PlortPress"]/recipes</xpath>
-				<value>
-      					<li>PressFirePlortCE</li>
-				</value>
-			</li>
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="PlortPress"]/recipes</xpath>
+            <value>
+                <li>PressFirePlortCE</li>
+            </value>
+        </li>
 
 		</operations>
 		</match>
