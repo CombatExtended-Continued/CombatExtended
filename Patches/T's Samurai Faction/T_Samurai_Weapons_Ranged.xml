@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationFindMod">
+  <mods>
+    <li>T's Samurai Faction</li>
+  </mods>
+      <match Class="PatchOperationSequence">
+      <operations>
+    
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+            defName="TSF_Tanegashima_Short" or
+            defName="TSF_Tanegashima_Matchlock" or
+            defName="TSF_Hand_Mortar"
+            ]/tools</xpath>
+          <value>
+          <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>stock</label>
+            <capacities>
+            <li>Blunt</li>
+            </capacities>
+            <power>8</power>
+            <cooldownTime>1.55</cooldownTime>
+            <chanceFactor>1.5</chanceFactor>
+            <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>barrel</label>
+            <capacities>
+            <li>Blunt</li>
+            </capacities>
+            <power>5</power>
+            <cooldownTime>2.02</cooldownTime>
+            <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+          </li>
+          <li Class="CombatExtended.ToolCE">
+            <label>muzzle</label>
+            <capacities>
+            <li>Poke</li>
+            </capacities>
+            <power>8</power>
+            <cooldownTime>1.55</cooldownTime>
+            <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+          </li>
+          </tools>
+          </value>
+        </li>
+
+        <!-- Short Gun -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>TSF_Tanegashima_Short</defName>
+            <statBases>
+              <WorkToMake>12000</WorkToMake>
+              <Bulk>4.75</Bulk>
+              <Mass>2.5</Mass>
+              <SwayFactor>1.22</SwayFactor>
+              <ShotSpread>0.30</ShotSpread>
+              <SightsEfficiency>0.7</SightsEfficiency>
+              <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+              <Steel>35</Steel>
+              <WoodLog>8</WoodLog>
+              <ComponentIndustrial>1</ComponentIndustrial>
+            </costList>
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <hasStandardCommand>True</hasStandardCommand>
+              <defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+              <warmupTime>1.1</warmupTime>
+              <range>24</range>
+              <soundCast>Shot_Musket</soundCast>
+              <soundCastTail>GunTail_Light</soundCastTail>
+              <muzzleFlashScale>9</muzzleFlashScale>
+            </Properties>
+            <AmmoUser>
+              <magazineSize>1</magazineSize>
+              <reloadTime>7</reloadTime>
+              <ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+            </AmmoUser>
+            <FireModes>
+              <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+              <li>NeolithicRangedChief</li>
+              <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+          </li>
+
+        <!-- Long Gun -->
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>TSF_Tanegashima_Matchlock</defName>
+            <statBases>
+              <WorkToMake>20000</WorkToMake>
+              <Mass>4.8</Mass>
+              <Bulk>14.9</Bulk>
+              <SwayFactor>1.92</SwayFactor>
+              <ShotSpread>0.25</ShotSpread>
+              <SightsEfficiency>1</SightsEfficiency>
+              <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+              <Steel>65</Steel>
+              <WoodLog>15</WoodLog>
+              <ComponentIndustrial>1</ComponentIndustrial>
+            </costList>
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <hasStandardCommand>True</hasStandardCommand>
+              <defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+              <warmupTime>1.3</warmupTime>
+              <range>40</range>
+              <soundCast>Shot_Musket</soundCast>
+              <soundCastTail>GunTail_Medium</soundCastTail>
+              <muzzleFlashScale>12</muzzleFlashScale>
+            </Properties>
+            <AmmoUser>
+              <magazineSize>1</magazineSize>
+              <reloadTime>7.5</reloadTime>
+              <ammoSet>AmmoSet_FastMusketBall</ammoSet>
+            </AmmoUser>
+            <FireModes>
+              <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+              <li>NeolithicRangedChief</li>
+            </weaponTags>
+          </li>
+
+        <!--Hand Mortar-->
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>TSF_Hand_Mortar</defName>
+            <statBases>
+              <Mass>7.5</Mass>
+              <Bulk>12.9</Bulk>
+              <SwayFactor>1.92</SwayFactor>
+              <ShotSpread>0.8</ShotSpread>
+              <SightsEfficiency>0.8</SightsEfficiency>
+              <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+            </statBases>
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <hasStandardCommand>True</hasStandardCommand>
+              <defaultProjectile>Bullet_TSF_MortarGrenade</defaultProjectile>
+              <warmupTime>1.6</warmupTime>
+              <range>37</range>
+              <soundCast>Shot_IncendiaryLauncher</soundCast>
+              <soundCastTail>GunTail_Medium</soundCastTail>
+              <muzzleFlashScale>12</muzzleFlashScale>
+              <targetParams>
+                <canTargetLocations>True</canTargetLocations>
+              </targetParams>		  
+            </Properties>
+            <AmmoUser>
+              <magazineSize>1</magazineSize>
+              <reloadTime>8</reloadTime>
+              <ammoSet>AmmoSet_TSF_MortarGrenade</ammoSet>
+            </AmmoUser>
+            <FireModes>
+              <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+          </li>
+
+            <!-- ========== Yumi ========== -->
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>TSF_Yumi</defName>
+            <statBases>
+              <SightsEfficiency>0.6</SightsEfficiency>
+              <ShotSpread>1</ShotSpread>
+              <SwayFactor>2</SwayFactor>
+              <Bulk>8.00</Bulk>
+              <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+            </statBases>
+            <costList>
+              <WoodLog>15</WoodLog>
+            </costList>
+            <Properties>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
+              <warmupTime>1.2</warmupTime>
+              <range>32</range>
+              <soundCast>Bow_Recurve</soundCast>
+            </Properties>
+            <AmmoUser>
+              <ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+            </AmmoUser>
+            <FireModes/>
+            <weaponTags>
+              <li>CE_Bow</li>
+            </weaponTags>
+            <researchPrerequisite>RecurveBow</researchPrerequisite>
+            <AllowWithRunAndGun>false</AllowWithRunAndGun>
+          </li>
+
+          <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="TSF_Yumi"]/tools</xpath>
+            <value>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                      <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+            <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+              </tools>
+            </value>
+          </li>
+
+<!--Shuriken (removed because I can't make it not hurt internal organs too often)-->
+
+<!--disable this disabler part in case of fix for above problem
+          <li Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[
+              defName="TSF_Star_Thrown" or
+              defName="TSF_Shuriken"]</xpath>
+          </li>
+          
+          <li Class="PatchOperationRemove">
+            <xpath>/Defs/PawnKindDef[
+              @Name="TSF_Ninjabase"]/weaponTags</xpath>
+          </li>
+
+-->
+    
+        <!-- == Projectile == -->
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="TSF_Star_Thrown"]/projectile</xpath>
+            <value>
+              <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                <damageDef>Cut</damageDef>
+                <damageAmountBase>5</damageAmountBase>
+                <flyOverhead>false</flyOverhead>
+                <speed>30</speed>
+                <gravityFactor>2</gravityFactor>
+                <armorPenetrationSharp>0.16</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+                <preExplosionSpawnThingDef>TSF_Shuriken</preExplosionSpawnThingDef>
+              </projectile>
+            </value>
+          </li>
+
+
+          <!-- == Weapon == -->
+
+          <li Class="PatchOperationAttributeSet">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <attribute>ParentName</attribute>
+            <value>BaseWeapon</value>
+          </li>
+          
+          <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath> 
+            <value>
+              <thingCategories>
+                <li>WeaponsRanged</li>
+              </thingCategories>
+            </value>
+          </li>
+  
+          <li Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/recipeMaker</xpath>
+          </li>
+  
+          <li Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/costStuffCount</xpath>
+          </li>
+  
+          <li Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/stuffCategories</xpath>
+          </li>
+  
+  
+          <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <value>
+              <thingClass>CombatExtended.AmmoThing</thingClass>
+              <stackLimit>75</stackLimit>
+              <resourceReadoutPriority>First</resourceReadoutPriority>
+            </value>
+          </li>
+  
+          <li Class="PatchOperationAttributeSet">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]</xpath>
+            <attribute>Class</attribute>
+            <value>CombatExtended.AmmoDef</value>
+          </li>
+  
+          <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>TSF_Shuriken</defName>
+            <statBases>
+              <SightsEfficiency>0.4</SightsEfficiency>
+              <Bulk>0.20</Bulk>
+              <Mass>0.30</Mass>
+              <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+            </statBases>
+            <Properties>
+              <label>Throw shuriken</label>
+              <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+              <hasStandardCommand>True</hasStandardCommand>
+              <defaultProjectile>TSF_Star_Thrown</defaultProjectile>
+              <warmupTime>0.6</warmupTime>
+              <range>8</range>
+              <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+              <burstShotCount>3</burstShotCount>
+              <onlyManualCast>true</onlyManualCast>
+              <stopBurstWithoutLos>false</stopBurstWithoutLos>
+              <soundCast>Interact_BeatFire</soundCast>
+              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+              <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+              </targetParams>
+            </Properties>
+            <weaponTags>
+              <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+          </li>
+  
+          <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="TSF_Shuriken"]/tools</xpath>
+            <value>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>point</label>
+                  <capacities>
+                    <li>Stab</li>
+                  </capacities>
+                  <power>5</power>
+                  <cooldownTime>1.26</cooldownTime>
+                  <chanceFactor>1.33</chanceFactor>
+                  <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+                  <armorPenetrationSharp>0.3</armorPenetrationSharp>
+                  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                </li>
+              </tools>
+            </value>
+          </li>
+
+          <li Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+              <RecipeDef ParentName="GrenadeRecipeBase">
+                <defName>MakeTSF_Shuriken</defName>
+                <label>make shurikens x10</label>
+                <description>Craft 10 shurikens.</description>
+                <jobString>Making shurikens.</jobString>
+                <ingredients>
+                  <li>
+                    <filter>
+                      <thingDefs>
+                        <li>Steel</li>
+                      </thingDefs>
+                    </filter>
+                    <count>10</count>
+                  </li>
+                </ingredients>
+                <fixedIngredientFilter>
+                  <thingDefs>
+                    <li>Steel</li>
+                  </thingDefs>
+                </fixedIngredientFilter>
+                <workAmount>500</workAmount>
+                <products>
+                  <TSF_Shuriken>10</TSF_Shuriken>
+                </products>
+                <recipeUsers>
+                  <li>FueledSmithy</li>
+                  <li>ElectricSmithy</li>
+                </recipeUsers>
+              </RecipeDef>
+            </value>
+          </li>
+
+        </operations>
+      </match>
+  </Operation>
+</Patch>

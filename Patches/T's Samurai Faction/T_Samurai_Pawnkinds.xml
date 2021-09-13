@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>T's Samurai Faction</li>
+        </mods>
+		<match Class="PatchOperationSequence">
+            <operations>
+			
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_TownGaurd" or
+						defName="TSF_AshigaruYumi"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>20</min>
+								<max>30</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+									<li>SamuraiMeleeBasic</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="TSF_AshigaruMortar"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>8</min>
+								<max>12</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>SamuraiMeleeSidearm</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_SamuraiWarriorYumi" or
+						defName="TSF_Noble"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>25</min>
+								<max>35</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>SamuraiMeleeSidearm</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_AshigaruMatchlock" or
+						defName="TSF_SamuraiWarriorMatchlock" or
+						defName="TSF_NinjaMatchlock"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>15</min>
+								<max>20</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>SamuraiMeleeSidearm</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_TownGaurd" or
+						@Name="TSF_AshigaruBase" or
+						defName="TSF_SamuraiWarriorYumi" or
+						defName="TSF_SamuraiWarriorMatchlock" or
+						defName="TSF_Noble" or
+						@Name="TSF_Ninjabase"]/apparelRequired</xpath>
+					<value>
+						<li>Apparel_TribalBackpack</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/PawnKindDef[
+						@Name="TSF_Ninjabase"]/weaponMoney</xpath>
+					<value>
+						<weaponMoney>250~600</weaponMoney>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_TownGaurd" or
+						defName="TSF_Peasant" or
+						@Name="TSF_Ninjabase" or
+						@Name="TSF_AshigaruBase"]/itemQuality</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/PawnKindDef[
+						defName="TSF_SamuraiDaimyo" or
+						defName="TSF_Noble"]/itemQuality</xpath>
+					<value>
+						<itemQuality>Excellent</itemQuality>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ScenarioDef[defName="WanderingRonin"]/scenario/parts</xpath>
+					<value>
+						<li Class="ScenPart_StartingThing_Defined">
+							<def>StartingThing_Defined</def>
+							<thingDef>Ammo_Arrow_Steel</thingDef>
+							<count>80</count>
+						</li>
+					</value>
+				</li>
+			
+			</operations>
+		</match>  
+	</Operation>
+
+</Patch>
