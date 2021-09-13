@@ -8,6 +8,20 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
+      <!--=== Material===-->
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[
+        defName="VFE_MeleeWeapon_Seax" or
+        defName="VFE_MeleeWeapon_BeardedAxe" or
+        defName="VFE_MeleeWeapon_DaneAxe"]/stuffCategories</xpath>
+        <value>
+            <stuffCategories>
+                <li>Metallic</li>
+            </stuffCategories>
+        </value>
+    </li>
+
       <!-- === Seax === -->
 
       <li Class="PatchOperationReplace">
@@ -99,11 +113,11 @@
               <capacities>
                 <li>Cut</li>
               </capacities>
-              <power>23</power>
-              <cooldownTime>2.3</cooldownTime>
+              <power>24</power>
+              <cooldownTime>3.49</cooldownTime>
               <chanceFactor>0.30</chanceFactor>
-              <armorPenetrationBlunt>4</armorPenetrationBlunt>
-              <armorPenetrationSharp>0.78</armorPenetrationSharp>
+              <armorPenetrationBlunt>3</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.6</armorPenetrationSharp>
               <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
             </li>
           </tools>
@@ -217,12 +231,12 @@
 				<xpath>Defs/ThingDef[defName="VFE_ThrowingAxe"]/statBases</xpath>
 				<value>
 					<statBases>
-						<SightsEfficiency>0.5</SightsEfficiency>
-            					<ShotSpread>1.5</ShotSpread>
-			      			<SwayFactor>2.5</SwayFactor>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<ShotSpread>0.6</ShotSpread>
+						<SwayFactor>2</SwayFactor>
 						<Bulk>1.25</Bulk>
 						<Mass>0.75</Mass>
-						<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
 					</statBases>
 					<stackLimit>25</stackLimit>				
 				</value>
@@ -236,8 +250,8 @@
 						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Vikings_ThrowingAxe_Thrown</defaultProjectile>
-						<warmupTime>1.0</warmupTime>
-						<range>10</range>
+						<warmupTime>1.5</warmupTime>
+						<range>16</range>
 						<soundCast>Interact_BeatFire</soundCast>
 					</li>
 				</verbs>
@@ -264,10 +278,10 @@
 									<li>Cut</li>
 								</capacities>
 								<power>18</power>
-								<cooldownTime>2.18</cooldownTime>
+								<cooldownTime>2.62</cooldownTime>
 								<chanceFactor>1.5</chanceFactor>
 								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.62</armorPenetrationSharp>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
 								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
 							</li>
 						</tools>
@@ -312,7 +326,7 @@
             <ShotSpread>1.5</ShotSpread>
             <SwayFactor>2.5</SwayFactor>
             <Bulk>3</Bulk>
-            <Mass>1.75</Mass>
+            <Mass>1.5</Mass>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 					</statBases>
 					<stackLimit>25</stackLimit>				
@@ -328,7 +342,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Vikings_Harpoon_Thrown</defaultProjectile>
 						<warmupTime>0.8</warmupTime>
-						<range>12</range>
+						<range>9</range>
 						<soundCast>Interact_BeatFire</soundCast>
 					</li>
 				</verbs>
@@ -381,10 +395,10 @@
           <projectile Class="CombatExtended.ProjectilePropertiesCE">
             <damageDef>Cut</damageDef>			
             <damageAmountBase>16</damageAmountBase>
-            <speed>12</speed>
-            <armorPenetrationSharp>1.5</armorPenetrationSharp>
-            <armorPenetrationBlunt>3</armorPenetrationBlunt>
-            <preExplosionSpawnChance>0.60</preExplosionSpawnChance>
+            <speed>22</speed>
+            <armorPenetrationSharp>1.4</armorPenetrationSharp>
+            <armorPenetrationBlunt>27</armorPenetrationBlunt>
+            <preExplosionSpawnChance>0.50</preExplosionSpawnChance>
             <preExplosionSpawnThingDef>VFE_ThrowingAxe</preExplosionSpawnThingDef>				
           </projectile>
         </ThingDef>
@@ -393,8 +407,8 @@
           <defName>Vikings_Harpoon_Thrown</defName>
           <label>thrown harpoon</label>
           <projectile Class="CombatExtended.ProjectilePropertiesCE">
-            <damageAmountBase>13</damageAmountBase>
-            <speed>8</speed>
+            <damageAmountBase>16</damageAmountBase>
+            <speed>15</speed>
             <armorPenetrationBlunt>4.54</armorPenetrationBlunt>
             <armorPenetrationSharp>1.8</armorPenetrationSharp>
             <secondaryDamage>

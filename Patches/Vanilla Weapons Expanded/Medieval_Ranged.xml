@@ -162,7 +162,7 @@
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
-            <warmupTime>1.66</warmupTime>
+            <warmupTime>1.2</warmupTime>
             <range>12</range>
             <soundCast>VWE_Shot_Musket</soundCast>
             <soundCastTail>GunTail_Light</soundCastTail>
@@ -215,8 +215,8 @@
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
-            <warmupTime>2.5</warmupTime>
-            <range>45</range>
+            <warmupTime>1.6</warmupTime>
+            <range>40</range>
             <soundCast>VWE_Shot_Musket</soundCast>
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>12</muzzleFlashScale>
@@ -242,11 +242,11 @@
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>RangedStab</damageDef>
-              <damageAmountBase>11</damageAmountBase>
+              <damageAmountBase>14</damageAmountBase>
               <flyOverhead>false</flyOverhead>
-              <speed>12</speed>
-               <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-               <armorPenetrationSharp>0.4</armorPenetrationSharp>
+              <speed>22</speed>
+              <gravityFactor>1.5</gravityFactor>
+              <armorPenetrationBase>0.18</armorPenetrationBase>
               <preExplosionSpawnChance>0.80</preExplosionSpawnChance>
               <preExplosionSpawnThingDef>VWE_Throwing_Knives</preExplosionSpawnThingDef>
             </projectile>
@@ -310,19 +310,17 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Throwing_Knives</defName>
           <statBases>
-            <SightsEfficiency>0.5</SightsEfficiency>
-            <ShotSpread>1.5</ShotSpread>
-	    <SwayFactor>2</SwayFactor>
+            <SightsEfficiency>1</SightsEfficiency>
             <Bulk>0.35</Bulk>
             <Mass>0.15</Mass>
-            <RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
           </statBases>
           <Properties>
             <label>Throw knife</label>
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>VWE_FlyingBlade</defaultProjectile>
-            <warmupTime>0.66</warmupTime>
+            <warmupTime>1</warmupTime>
             <range>10</range>
             <soundCast>ThrowGrenade</soundCast>
              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
