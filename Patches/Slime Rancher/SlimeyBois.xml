@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Slime Rancher</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="FireSlime" or
+				defName="BoomSlime" or
+				defName="TarrSlime" or
+				defName="QuicksilverSlime"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="FireSlime" or
+				defName="BoomSlime"
+				]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.1</MeleeDodgeChance>
+					<MeleeCritChance>0.07</MeleeCritChance>
+					<MeleeParryChance>0.00</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="QuicksilverSlime"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>0.07</MeleeCritChance>
+					<MeleeParryChance>0.00</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="TarrSlime"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.1</MeleeDodgeChance>
+					<MeleeCritChance>0.33</MeleeCritChance>
+					<MeleeParryChance>0.00</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="GreenSlime" or
+				defName="PuddleSlime" or
+				defName="BoomSlime"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>body</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+							<surpriseAttack>
+							<extraMeleeDamages>
+							<li>
+							<def>Stun</def>
+							<amount>2</amount>
+							</li>
+							</extraMeleeDamages>
+							</surpriseAttack>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="FireSlime"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>body</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+							<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+								<def>Flame</def>
+								<amount>1</amount>
+								<chance>0.33</chance>
+								</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="TarrSlime"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>body</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>2</cooldownTime>
+        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+        							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
+        							<surpriseAttack>
+          							<extraMeleeDamages>
+            								<li>
+              								<def>Stun</def>
+              								<amount>2</amount>
+            								</li>
+          								</extraMeleeDamages>
+        							</surpriseAttack>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>razorfangs</label>
+							<capacities>
+								<li>Bite</li><li>Stab</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>1</cooldownTime>
+        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+        							<chanceFactor>0.9</chanceFactor>
+        							<surpriseAttack>
+          							<extraMeleeDamages>
+            								<li>
+              								<def>Stun</def>
+              								<amount>14</amount>
+            								</li>
+          								</extraMeleeDamages>
+        							</surpriseAttack>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="QuicksilverSlime"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>body</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>0.1</cooldownTime>
+        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+        							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+        							<surpriseAttack>
+          							<extraMeleeDamages>
+            								<li>
+              								<def>Flame</def>
+              								<amount>1</amount>
+								<chance>0.33</chance>
+            								</li>
+          								</extraMeleeDamages>
+        							</surpriseAttack>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Slice</label>
+							<capacities>
+								<li>Scratch</li><li>Cut</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>0.4</cooldownTime>
+        							<linkedBodyPartsGroup>Slimebody</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+        							<chanceFactor>0.9</chanceFactor>
+        							<surpriseAttack>
+          							<extraMeleeDamages>
+            								<li>
+              								<def>Stun</def>
+              								<amount>1</amount>
+            								</li>
+          								</extraMeleeDamages>
+        							</surpriseAttack>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

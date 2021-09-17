@@ -53,6 +53,12 @@ namespace CombatExtended.Utilities
             return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Weapons, cell, range).Select(t => t as ThingWithComps);
         }
 
+        public static IEnumerable<Thing> AttachmentsInRange(this IntVec3 cell, Map map, float range)
+        {
+            ThingsTracker tracker = map.GetThingTracker();
+            return tracker.ThingsInRangeOf(TrackedThingsRequestCategory.Attachments, cell, range).Select(t => t as Thing);
+        }
+
         public static IEnumerable<ThingWithComps> FlaresInRange(this IntVec3 cell, Map map, float range)
         {
             ThingsTracker tracker = map.GetThingTracker();

@@ -47,11 +47,11 @@ namespace CombatExtended
             if (compAmmo.HasMagazine)
             {
                 Rect barRect = inRect.BottomHalf();
-                Widgets.FillableBar(barRect, (float)compAmmo.CurMagCount / compAmmo.Props.magazineSize);
+                Widgets.FillableBar(barRect, (float)compAmmo.CurMagCount / compAmmo.MagSize);
 
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(barRect, compAmmo.CurMagCount + " / " + compAmmo.Props.magazineSize);
+                Widgets.Label(barRect, compAmmo.CurMagCount + " / " + compAmmo.MagSize);
                 Text.Anchor = TextAnchor.UpperLeft;
             }
 

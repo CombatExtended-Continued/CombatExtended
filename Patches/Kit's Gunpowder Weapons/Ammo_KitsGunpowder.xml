@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <Operation Class="PatchOperationSequence">
+  <Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Kit's Gunpowder Weapons</li>
+	</mods>
+		
+	<match Class="PatchOperationSequence">
 	<operations>
-	  <li Class="PatchOperationFindMod">
-		<mods>
-			<li>Kit's Gunpowder Weapons</li>
-		</mods>
-			
-		<match Class="PatchOperationSequence">
-		<operations>
 
-		<li Class="PatchOperationAdd">
-			<xpath>Defs</xpath>
-			<value>
-
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+	
+	<!-- ==================== ThingCategories ========================== -->
+	
 	<ThingCategoryDef>
 		<defName>MortarGrenade</defName>
 		<label>Mortar Grenade</label>
 		<parent>AmmoGrenades</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
-
+	
+	<ThingCategoryDef>
+		<defName>CannonBall</defName>
+		<label>Cannon Ball</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+	</ThingCategoryDef>
+	
+	<ThingCategoryDef>
+		<defName>LargeCannonBall</defName>
+		<label>Large Cannon Ball</label>
+		<parent>AmmoShells</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
+	</ThingCategoryDef>
+	
 	<!-- ==================== AmmoSet ========================== -->
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_BlunderShot</defName>
-		<label>Blunder Shot</label>
-		<ammoTypes>
-			<Ammo_MusketBall>Bullet_BlunderShot_Ball</Ammo_MusketBall>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_MortarGrenade</defName>
@@ -38,9 +44,35 @@
 			<Ammo_MortarGrenade>Bullet_MortarGrenade</Ammo_MortarGrenade>      
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_BlunderShot</defName>
+		<label>Blunder Shot</label>
+		<ammoTypes>
+			<Ammo_MusketBall>Bullet_BlunderShot_Ball</Ammo_MusketBall>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_CannonBall</defName>
+		<label>Cannon Ball</label>
+		<ammoTypes>
+			<Ammo_CannonBall_Steel>Bullet_CannonBall_Steel</Ammo_CannonBall_Steel>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+	
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_LargeCannonBall</defName>
+		<label>Large Cannon Ball</label>
+		<ammoTypes>
+			<Shell_LargeCannonBall_Steel>Bullet_LargeCannonBall_Steel</Shell_LargeCannonBall_Steel>
+		</ammoTypes>
+		<isMortarAmmoSet>true</isMortarAmmoSet>
+	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 	
+	<!-- ==== Mortar Grenade ==== -->
 	<ThingDef Class="CombatExtended.AmmoDef" Name="HandMortarBombBase" ParentName="AmmoBase" Abstract="True">
 		<description>Low velocity grenade fired from a hand mortar.</description>
 		<statBases>
@@ -73,8 +105,92 @@
 		<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
 	</ThingDef>
 
+	<!-- ==== Cannon Ball ==== -->
+	<ThingDef Class="CombatExtended.AmmoDef" Name="CannonBallBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>A head-sized ball of metal.</description>
+		<thingCategories>
+			<li>CannonBall</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>450</MaxHitPoints>
+			<Mass>12</Mass>
+			<Bulk>10</Bulk>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CannonBallBase">
+		<defName>Ammo_CannonBall_Steel</defName>
+		<label>Cannon Ball</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Round</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>3.5</MarketValue>
+		</statBases>
+		<ammoClass>CannonBall</ammoClass>
+		<detonateProjectile>Bullet_CannonBall_Steel</detonateProjectile>
+	</ThingDef>
+	
+	<!-- ==== Large Steel Cannon Ball	==== -->
+	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
+		<description>A large ball with the sole purpose of hitting the ground so hard that it causes shrapnel.</description>
+		<statBases>
+			<MaxHitPoints>550</MaxHitPoints>
+		</statBases>
+		<thingCategories>
+			<li>LargeCannonBall</li>
+		</thingCategories>
+		<stackLimit>25</stackLimit>
+		<isMortarAmmo>true</isMortarAmmo>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting_FueledSmithy</li>
+			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
+		</tradeTags>
+	</ThingDef>
+	
+	<!-- Need to override mortar shell because of hardcoded vanilla references -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+		<defName>Shell_LargeCannonBall_Steel</defName>
+		<label>Large Cannon Ball</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Round</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.5</MarketValue>
+			<Mass>16</Mass>
+			<Bulk>12</Bulk>
+		</statBases>
+		<ammoClass>CannonBall</ammoClass>
+		<detonateProjectile>Bullet_LargeCannonBall_Steel</detonateProjectile>
+		<comps>
+			<!-- Vanilla values -->
+			<li Class="CompProperties_Explosive">
+			<explosiveRadius>4</explosiveRadius>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+			<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explodeOnKilled>True</explodeOnKilled>
+			<wickTicks>30~60</wickTicks>
+		  </li>
+		</comps>
+	</ThingDef>
+	
 	<!-- ================== Projectiles ================== -->
 
+	<!-- ==== Blunder Shot ==== -->
 	<ThingDef ParentName="Base12GaugeBullet">
 		<defName>Bullet_BlunderShot_Ball</defName>
 		<label>lead ball</label>
@@ -91,7 +207,8 @@
 			<speed>64</speed>
 		</projectile>
 	</ThingDef>
-
+	
+	<!-- ==== Mortar Grenade ==== -->
 	<ThingDef ParentName="Base40x46mmGrenadeBullet">
 		<defName>Bullet_MortarGrenade</defName>
 		<label>Mortar Grenade</label>
@@ -114,42 +231,187 @@
 			</li>
 		</comps>
 	</ThingDef>
+	
+	<!-- ==== Cannon Ball ==== -->
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Base90mmCannonShell" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>280</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+		</projectile>
+	</ThingDef>
 
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
+		<defName>Bullet_CannonBall_Steel</defName>
+		<label>Cannon Ball</label>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>60.8</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>110</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+		<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>12</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</li>
+		<li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>2</Fragment_Large>
+				<Fragment_Small>12</Fragment_Small>
+			</fragments>
+		</li>
+		</comps>
+	</ThingDef>
+	
+	<!-- ==== Large Steel Cannon Ball ==== -->
+	<ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>0</speed>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+			<flyOverhead>true</flyOverhead>
+			<dropsCasings>false</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+			<gravityFactor>5</gravityFactor>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base81mmMortarShell">
+		<defName>Bullet_LargeCannonBall_Steel</defName>
+		<label>Large Cannon Ball</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Mortar/Illumination</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>Bomb</damageDef>
+		  <damageAmountBase>56</damageAmountBase>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>128</armorPenetrationBlunt>
+		  <explosionRadius>2.5</explosionRadius>
+		  <flyOverhead>true</flyOverhead>
+		  <soundExplode>MortarBomb_Explode</soundExplode>
+		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <ai_IsIncendiary>false</ai_IsIncendiary>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>4</Fragment_Large>
+				<Fragment_Small>15</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+	
 	<!-- ==================== Recipes ========================== -->
-  
+	
+	<!-- ==== Mortar Grenade ==== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
-	<defName>MakeAmmo_MortarGrenade</defName>
-	<label>Make Mortar Grenade x5</label>
-	<description>Craft 5 Mortar Grenades</description>
-	<jobString>Making Mortar Grenades</jobString>
-	<ingredients>
-		<li>
-		<filter>
+		<defName>MakeAmmo_MortarGrenade</defName>
+		<label>Make Mortar Grenade x5</label>
+		<description>Craft 5 Mortar Grenades</description>
+		<jobString>Making Mortar Grenades</jobString>
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>15</count>
+			</li>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>FSX</li>
+				</thingDefs>
+			</filter>
+			<count>10</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
 			<thingDefs>
 			<li>Steel</li>
-			</thingDefs>
-		</filter>
-		<count>15</count>
-		</li>
-		<li>
-		<filter>
-			<thingDefs>
 			<li>FSX</li>
 			</thingDefs>
-		</filter>
-		<count>10</count>
-		</li>
-	</ingredients>
-	<fixedIngredientFilter>
-		<thingDefs>
-		<li>Steel</li>
-		<li>FSX</li>
-		</thingDefs>
-	</fixedIngredientFilter>
-	<products>
-		<Ammo_MortarGrenade>5</Ammo_MortarGrenade>
-	</products>
-	<workAmount>8500</workAmount>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MortarGrenade>5</Ammo_MortarGrenade>
+		</products>
+		<workAmount>8500</workAmount>
+	</RecipeDef>
+	
+	<!-- ==== Cannon Ball ==== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_CannonBall_Steel</defName>
+		<label>Make Steel Cannon Balls x5</label>
+		<description>Craft 5 Steel Cannon Balls</description>
+		<jobString>Making Steel Cannon Balls</jobString>
+		<workAmount>24000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_CannonBall_Steel>5</Ammo_CannonBall_Steel>
+		</products>
+	</RecipeDef>
+	
+	<!-- ==== Large Steel Cannon Ball ==== -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeShell_LargeCannonBall_Steel</defName>
+		<label>Make Steel Large Cannon Balls x5</label>
+		<description>Craft 5 Steel Large Cannon Balls</description>
+		<jobString>Making Steel Large Cannon Balls</jobString>
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>100</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Shell_LargeCannonBall_Steel>5</Shell_LargeCannonBall_Steel>
+		</products>
+		<workAmount>28000</workAmount>
 	</RecipeDef>
 	
 			</value>
@@ -157,7 +419,5 @@
 			
 		</operations>
 		</match>	
-	  </li>
-	</operations>	
   </Operation>
 </Patch>

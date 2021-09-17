@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
+
+				<!-- Machetey WARRIOR -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Spetsnaz_Machete"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.24</armorPenetrationSharp>
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.17</cooldownTime>
+								<armorPenetrationBlunt>1.512</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Spetsnaz_Machete"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Spetsnaz_Machete"]/equippedStatOffsets</xpath>
+					<value>
+							<MeleeCritChance>0.29</MeleeCritChance>
+							<MeleeParryChance>0.35</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Spetsnaz_Machete"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_TOPS_Machete" or defName="RNMeleeWeapon_GerberGator_Machete"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.24</armorPenetrationSharp>
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.33</cooldownTime>
+								<armorPenetrationBlunt>1.512</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_TOPS_Machete" or defName="RNMeleeWeapon_GerberGator_Machete"]/statBases</xpath>
+					<value>
+						<Bulk>4.5</Bulk>
+						<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_TOPS_Machete" or defName="RNMeleeWeapon_GerberGator_Machete"]/equippedStatOffsets</xpath>
+					<value>
+							<MeleeCritChance>0.29</MeleeCritChance>
+							<MeleeParryChance>0.4</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_TOPS_Machete" or defName="RNMeleeWeapon_GerberGator_Machete"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<!-- Kukri -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Kukri_Machete"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.35</armorPenetrationBlunt>
+								<chanceFactor>0.15</chanceFactor>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.37</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.24</armorPenetrationSharp>
+								<chanceFactor>0.25</chanceFactor>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>27</power>
+								<cooldownTime>1.27</cooldownTime>
+								<armorPenetrationBlunt>1.512</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.55</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Kukri_Machete"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNMeleeWeapon_Kukri_Machete"]/equippedStatOffsets</xpath>
+					<value>
+							<MeleeCritChance>0.29</MeleeCritChance>
+							<MeleeParryChance>0.35</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Kukri_Machete"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

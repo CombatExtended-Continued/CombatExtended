@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH2] Rimmu-Nation² - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RN_SOFLAM_AirSupport"]/verbs</xpath>
+					<value>
+    <verbs>
+      <li>
+        <verbClass>Verb_Bombardment</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <warmupTime>3</warmupTime>
+        <ai_AvoidFriendlyFireRadius>20</ai_AvoidFriendlyFireRadius>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <range>69.9</range>
+        <burstShotCount>1</burstShotCount>
+        <soundAiming>OrbitalTargeter_Aiming</soundAiming>
+        <soundCast>OrbitalTargeter_Fire</soundCast>
+        <onlyManualCast>true</onlyManualCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

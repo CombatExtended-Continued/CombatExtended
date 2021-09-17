@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Kobolds of the Rim</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- ========== Give ammo to pawns with bows ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>
+          /Defs/PawnKindDef[defName="LTS_KoboldSkirmisher" or defName="LTS_KoboldWarlord"]
+        </xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>12</min>
+              <max>20</max>
+            </primaryMagazineCount>
+          </li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

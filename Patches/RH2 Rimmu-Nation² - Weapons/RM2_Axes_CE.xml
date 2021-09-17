@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH2] Rimmu-Nation² - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- RimmuNaysh Y'all -->			
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_USMC_Tomahawk" 
+				or defName="RNMeleeWeapon_Gerber_Tomahawk" 
+				or defName="RNMeleeWeapon_Roughneck_Handaxe"
+				or defName="RNMeleeWeapon_GerberSurvival_Axe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.64</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.72</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+				</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_USMC_Tomahawk" 
+				or defName="RNMeleeWeapon_Gerber_Tomahawk" 
+				or defName="RNMeleeWeapon_Roughneck_Handaxe"
+				or defName="RNMeleeWeapon_GerberSurvival_Axe"]/statBases</xpath>
+		<value>
+      		<Bulk>4</Bulk>
+      		<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_USMC_Tomahawk" 
+				or defName="RNMeleeWeapon_Gerber_Tomahawk" 
+				or defName="RNMeleeWeapon_Roughneck_Handaxe"
+				or defName="RNMeleeWeapon_GerberSurvival_Axe"]/equippedStatOffsets</xpath>
+		<value>
+				<MeleeCritChance>0.10</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>	
+		</value>	
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_USMC_Tomahawk" 
+				or defName="RNMeleeWeapon_Gerber_Tomahawk" 
+				or defName="RNMeleeWeapon_Roughneck_Handaxe"
+				or defName="RNMeleeWeapon_GerberSurvival_Axe"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+				<!-- Shitty ax -->	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Fire_Axe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>22</power>
+					<cooldownTime>2.1</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.64</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_DMMFly_IceAxe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.7</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.48</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.08</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Felling_Axe"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>24</power>
+					<cooldownTime>2.5</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>4</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.7</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Fire_Axe" or defName="RNMeleeWeapon_Felling_Axe"or defName="RNMeleeWeapon_DMMFly_IceAxe"]/statBases</xpath>
+		<value>
+      		<Bulk>4</Bulk>
+      		<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Fire_Axe" or defName="RNMeleeWeapon_Felling_Axe"or defName="RNMeleeWeapon_DMMFly_IceAxe"]/equippedStatOffsets</xpath>
+		<value>
+				<MeleeCritChance>0.10</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.20</MeleeDodgeChance>	
+		</value>	
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Fire_Axe" or defName="RNMeleeWeapon_Felling_Axe"or defName="RNMeleeWeapon_DMMFly_IceAxe"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

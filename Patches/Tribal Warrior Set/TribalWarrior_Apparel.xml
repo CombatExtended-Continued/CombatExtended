@@ -47,7 +47,7 @@
 		<!-- Pelt Cap / Pelt Mantle -->
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Gunmar_Apparel_PeltMantle" or defName="Gunmar_Apparel_SunshadePeltMantle"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName="Gunmar_Apparel_PeltMantle" or defName="Gunmar_Apparel_SunshadePeltMantle" or defName = "Gunmar_Apparel_WovenMantle"]/statBases</xpath>
 			<value>
 				<Bulk>3</Bulk>
 				<WornBulk>1</WornBulk>
@@ -64,7 +64,7 @@
 		<!-- Sunshade Pelt Cap -->
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName = "Gunmar_Apparel_SunshadePeltCap"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName = "Gunmar_Apparel_SunshadePeltCap" or defName = "Gunmar_Apparel_WovenCap"]/statBases</xpath>
 			<value>
 				<Bulk>1</Bulk>
 				<WornBulk>1</WornBulk>
@@ -72,7 +72,7 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName= "Gunmar_Apparel_SunshadePeltCap"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_PeltCap" or defName= "Gunmar_Apparel_SunshadePeltCap" or defName = "Gunmar_Apparel_WovenCap"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>1.25</StuffEffectMultiplierArmor>
 			</value>
@@ -93,6 +93,69 @@
 			<value>
 				<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
 			</value>
+		</li>
+
+		<!-- Wraps -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName = "Gunmar_Apparel_WovenHandWraps" or defName = "Gunmar_Apparel_WovenLeggings" or defName = "Gunmar_Apparel_WovenFootWraps"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName= "Gunmar_Apparel_WovenHandWraps" or defName = "Gunmar_Apparel_WovenLeggings" or defName = "Gunmar_Apparel_WovenFootWraps"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- War Bow -->
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Gunmar_War_Bow</defName>
+			<statBases>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<ShotSpread>1</ShotSpread>
+				<SwayFactor>2</SwayFactor>
+				<Bulk>5.00</Bulk>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>33</range>
+				<soundCast>Bow_Large</soundCast>
+			</Properties>
+			<AmmoUser>
+				<ammoSet>AmmoSet_GreatArrow</ammoSet>
+			</AmmoUser>
+			<FireModes />
+			<weaponTags>
+				<li>CE_Bow</li>
+			</weaponTags>
+			<researchPrerequisite>Greatbow</researchPrerequisite>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gunmar_War_Bow"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.6</cooldownTime>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
 		</li>
 
 		</operations>

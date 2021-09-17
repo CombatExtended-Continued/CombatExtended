@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+    <!--Rox-->
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="DankPyon_Rox"]/statBases</xpath>
+        <value>
+            <MeleeDodgeChance>0.06</MeleeDodgeChance>
+            <MeleeCritChance>0.41</MeleeCritChance>
+            <MeleeParryChance>0.48</MeleeParryChance>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Rox"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>horn</label>
+                    <capacities>
+                        <li>Stab</li>
+                    </capacities>
+                    <power>30</power>
+                    <cooldownTime>2.52</cooldownTime>
+                    <chanceFactor>0.4</chanceFactor>
+                    <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+                    <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                    <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>left foot</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>22</power>
+                    <cooldownTime>2.13</cooldownTime>
+                    <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+                    <armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>right foot</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>22</power>
+                    <cooldownTime>2.13</cooldownTime>
+                    <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+                    <armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Bite</li>
+                    </capacities>
+                    <power>19</power>
+                    <cooldownTime>1.62</cooldownTime>
+                    <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                    <armorPenetrationSharp>0.09</armorPenetrationSharp>
+                    <armorPenetrationBlunt>2.016</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>11</power>
+                    <cooldownTime>2.52</cooldownTime>
+                    <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                    <chanceFactor>0.2</chanceFactor>
+                    <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </li>
+
+    <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="DankPyon_Rox"]</xpath>
+        <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+                <bodyShape>Quadruped</bodyShape>
+            </li>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Rox"]/race/baseHealthScale</xpath>
+        <value>
+            <baseHealthScale>5</baseHealthScale>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/PawnKindDef[defName="DankPyon_Rox"]/combatPower</xpath>
+        <value>
+            <combatPower>375</combatPower>
+        </value>
+    </li>
+
+    <!--Direwolf-->
+    <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="DankPyon_Direwolf"]</xpath>
+        <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+                <bodyShape>Quadruped</bodyShape>
+            </li>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Direwolf"]/statBases/MoveSpeed</xpath>
+        <value>
+            <MoveSpeed>7</MoveSpeed>
+        </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="DankPyon_Direwolf"]/statBases</xpath>
+        <value>
+            <ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+            <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+            <MeleeDodgeChance>0.21</MeleeDodgeChance>
+            <MeleeCritChance>0.20</MeleeCritChance>
+            <MeleeParryChance>0.09</MeleeParryChance>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Direwolf"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>left claw</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>11</power>
+                    <cooldownTime>1.19</cooldownTime>
+                    <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+                    <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>right claw</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>11</power>
+                    <cooldownTime>1.19</cooldownTime>
+                    <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+                    <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Bite</li>
+                    </capacities>
+                    <power>24</power>
+                    <cooldownTime>1.46</cooldownTime>
+                    <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <chanceFactor>2</chanceFactor>
+                    <armorPenetrationSharp>1.6</armorPenetrationSharp>
+                    <armorPenetrationBlunt>8.863</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>4</power>
+                    <cooldownTime>3.2</cooldownTime>
+                    <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                    <chanceFactor>0.2</chanceFactor>
+                    <armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Direwolf"]/race/baseHealthScale</xpath>
+        <value>
+            <baseHealthScale>5</baseHealthScale>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/PawnKindDef[defName="DankPyon_Direwolf"]/combatPower</xpath>
+        <value>
+            <combatPower>140</combatPower>
+        </value>
+    </li>
+
+    <!--Hyena-->
+    <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="DankPyon_Hyena"]</xpath>
+        <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+                <bodyShape>Quadruped</bodyShape>
+            </li>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Hyena"]/statBases/MoveSpeed</xpath>
+        <value>
+            <MoveSpeed>6.25</MoveSpeed>
+            <MeleeDodgeChance>0.26</MeleeDodgeChance>
+            <MeleeCritChance>0.09</MeleeCritChance>
+            <MeleeParryChance>0.05</MeleeParryChance>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Hyena"]/tools</xpath>
+        <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>left claw</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>6</power>
+                    <cooldownTime>0.8</cooldownTime>
+                    <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+                    <armorPenetrationSharp>0.07</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>right claw</label>
+                    <capacities>
+                        <li>Scratch</li>
+                    </capacities>
+                    <power>6</power>
+                    <cooldownTime>0.8</cooldownTime>
+                    <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+                    <armorPenetrationSharp>0.07</armorPenetrationSharp>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Bite</li>
+                    </capacities>
+                    <power>21</power>
+                    <cooldownTime>1.73</cooldownTime>
+                    <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                    <surpriseAttack>
+                        <extraMeleeDamages>
+                            <li>
+                                <def>Stun</def>
+                                <amount>20</amount>
+                            </li>
+                        </extraMeleeDamages>
+                    </surpriseAttack>
+                    <armorPenetrationSharp>0.55</armorPenetrationSharp>
+                    <armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>head</label>
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>1</power>
+                    <cooldownTime>1.26</cooldownTime>
+                    <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                    <chanceFactor>0.2</chanceFactor>
+                    <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+                </li>
+            </tools>
+        </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="DankPyon_Hyena"]/race/baseHealthScale</xpath>
+        <value>
+            <baseHealthScale>0.85</baseHealthScale>
+        </value>
+    </li>       
+
+    <li Class="PatchOperationReplace">
+        <xpath>Defs/PawnKindDef[defName="DankPyon_Hyena"]/combatPower</xpath>
+        <value>
+            <combatPower>80</combatPower>
+        </value>
+    </li>
+
+      </operations>
+	</match>
+  </Operation>
+
+</Patch>
