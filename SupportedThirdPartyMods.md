@@ -182,6 +182,7 @@ Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
+Mechanite Plague    |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Medieval Overhaul   |
