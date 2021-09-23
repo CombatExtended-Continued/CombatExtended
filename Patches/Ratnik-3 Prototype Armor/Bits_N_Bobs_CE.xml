@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ratnik-3 Prototype Armor </li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Camo === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Helix-Camo"]/statBases/WorkToMake</xpath>
+          <value>
+	  <WorkToMake>5000</WorkToMake>
+            <Bulk>2</Bulk>
+            <Flammability>0.6</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Helix-Camo"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Helix-Camo"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>0.06</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Helix-Camo"]/costList/Cloth</xpath>
+          <value>
+              	<Cloth>50</Cloth>
+          </value>
+        </li>
+
+        <!-- === Helmet === -->
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/WorkToMake</xpath>
+    <value>
+	  <WorkToMake>8000</WorkToMake>
+      	<Bulk>4</Bulk>
+    </value>
+        </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>8</ArmorRating_Sharp>
+    </value>
+        </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>12</ArmorRating_Blunt>
+        </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/ArmorRating_Heat</xpath>
+    <value>
+      <ArmorRating_Heat>0.54</ArmorRating_Heat>
+        </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/MaxHitPoints</xpath>
+    <value>
+      <MaxHitPoints>75</MaxHitPoints>
+    </value>
+        </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/costList</xpath>
+    <value>
+      <costList>
+        <Steel>30</Steel>
+        <DevilstrandCloth>15</DevilstrandCloth>
+      </costList>
+    </value>
+        </li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]</xpath>
+    <value>
+    <apparel>
+	  <bodyPartGroups>
+		<li>FullHead</li>
+	  </bodyPartGroups>
+	  <layers>
+		<li>MiddleHead</li>
+		<li>Overhead</li>
+	  </layers>
+	  <defaultOutfitTags>
+		<li>Soldier</li>
+	  </defaultOutfitTags>
+	  <useDeflectMetalEffect>true</useDeflectMetalEffect>
+    </apparel>
+    </value>
+   </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/statBases/WorkToMake</xpath>
+          <value>
+	  <WorkToMake>12500</WorkToMake>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>120</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/statBases</xpath>
+          <value>
+            <Bulk>6</Bulk>
+            <WornBulk>2</WornBulk>
+            <Flammability>0.6</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>8</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>12</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/costList</xpath>
+          <value>
+            <costList>
+              <Plasteel>50</Plasteel>
+        <DevilstrandCloth>15</DevilstrandCloth>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]</xpath>
+          <value>
+            <equippedStatOffsets>
+			<AimingAccuracy>-0.25</AimingAccuracy>
+            			<MeleeHitChance>-1</MeleeHitChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

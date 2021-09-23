@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Ratnik-3 Prototype Armor </li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Helmet === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/statBases/WorkToMake</xpath>
+          <value>
+	  <WorkToMake>12000</WorkToMake>
+            <Bulk>4</Bulk>
+            <WornBulk>1</WornBulk>
+            <Flammability>0.25</Flammability>
+           <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel> 
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>100</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>10</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>18</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <ToxicSensitivity>-0.33</ToxicSensitivity>
+              <SmokeSensitivity>-0.66</SmokeSensitivity>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Helmet"]/costList</xpath>
+          <value>
+            <costList>
+              	<Steel>20</Steel>
+      	<Plasteel>25</Plasteel>
+              	<DevilstrandCloth>15</DevilstrandCloth>
+              	<ComponentIndustrial>5</ComponentIndustrial>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="Ratnik_HelmetBase"]/apparel/layers</xpath>
+          <value>
+            <li>OnHead</li>
+            <li>StrappedHead</li>
+            <li>MiddleHead</li>
+          </value>
+        </li>
+
+        <!-- === Armor === -->
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/WorkToMake</xpath>
+          <value>
+	  <WorkToMake>41000</WorkToMake>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/MaxHitPoints</xpath>
+          <value>
+            <MaxHitPoints>270</MaxHitPoints>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/Mass</xpath>
+          <value>
+            <Mass>24</Mass>
+            <Bulk>40</Bulk>
+            <WornBulk>5</WornBulk>
+            <Flammability>0.3</Flammability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>15</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>24</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/statBases/ArmorRating_Heat</xpath>
+          <value>
+            <ArmorRating_Heat>0.46</ArmorRating_Heat>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/costList</xpath>
+          <value>
+            <costList>
+      	<Plasteel>80</Plasteel>
+              <Steel>100</Steel>
+              <DevilstrandCloth>30</DevilstrandCloth>
+              <ComponentIndustrial>8</ComponentIndustrial>
+      	<ComponentSpacer>1</ComponentSpacer>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Apparel_Ratnik-3_Armor"]/equippedStatOffsets</xpath>
+          <value>
+            <equippedStatOffsets>
+              <CarryWeight>25</CarryWeight>
+              <CarryBulk>20</CarryBulk>
+              <ToxicSensitivity>-0.30</ToxicSensitivity>
+              <MoveSpeed>0.1</MoveSpeed>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
