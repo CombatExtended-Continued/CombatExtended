@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Bandana === -->
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparel_ColdWar_Bandana"
+		or defName="RNApparel_Shemagh_Bandana"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNApparel_Shemagh_511BlazeWrap"]/costStuffCount</xpath>
+		<value>
+			<costStuffCount>20</costStuffCount>
+		</value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RNApparel_ColdWar_Bandana"
+		or defName="RNApparel_Shemagh_Bandana"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
+		<Bulk>0.5</Bulk>
+    </value>
+ </li>
+
+ <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="RNApparel_Shemagh_511BlazeWrap"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+		  <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>	
+		<Bulk>0.5</Bulk>
+    </value>
+ </li>
+
+				<!-- === Balaclava === -->
+
+ 				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RNApparel_Balaclava_EXF"
+							or defName="RNApparel_Balaclava_511M"
+							or defName="RNApparel_Balaclava_AikuerSkull"
+							or defName="RNApparel_Balaclava_Highlander"
+							or defName="RNApparel_Balaclava_CheekiBreeki"]/costStuffCount</xpath>
+					<value>
+							<costStuffCount>20</costStuffCount>
+					</value>
+ 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_EXF"
+							or defName="RNApparel_Balaclava_511M"
+							or defName="RNApparel_Balaclava_AikuerSkull"
+							or defName="RNApparel_Balaclava_Highlander"
+							or defName="RNApparel_Balaclava_CheekiBreeki"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>0.5</Bulk>
+						<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+			<!--	<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_EXF"
+							or defName="RNApparel_Balaclava_511M"
+							or defName="RNApparel_Balaclava_AikuerSkull"
+							or defName="RNApparel_Balaclava_Highlander"
+							or defName="RNApparel_Balaclava_CheekiBreeki"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>OnHead</li>
+						</layers>
+					</value>
+				</li>
+-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_EXF"
+							or defName="RNApparel_Balaclava_511M"
+							or defName="RNApparel_Balaclava_AikuerSkull"
+							or defName="RNApparel_Balaclava_Highlander"
+							or defName="RNApparel_Balaclava_CheekiBreeki"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>UpperHead</li>
+							<li>Teeth</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
