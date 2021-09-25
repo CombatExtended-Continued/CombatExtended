@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+
+	<!-- ========== Set Aerodrone targeting to map-wide ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/RoyalTitlePermitDef[workerClass="RoyalTitlePermitWorker_CallAid" or workerClass="RoyalTitlePermitWorker_OrbitalStrike"]/royalAid</xpath>
+		<value>
+			<targetingRequireLOS>false</targetingRequireLOS>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RoyalTitlePermitDef[workerClass="RoyalTitlePermitWorker_CallAid" or workerClass="RoyalTitlePermitWorker_OrbitalStrike"]/royalAid/targetingRange</xpath>
+		<value>
+			<targetingRange>1000</targetingRange>
+		</value>
+	</Operation>
+
 	<!-- ========== Very Short Range Psycasts ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -113,4 +130,3 @@
 	</Operation>
 
 </Patch>
-
