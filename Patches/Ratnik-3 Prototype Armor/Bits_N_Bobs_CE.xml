@@ -3,7 +3,7 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Ratnik-3 Prototype Armor</li>
+      <li>Ratnik-3 Prototype Armor </li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
@@ -60,12 +60,14 @@
     <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/ArmorRating_Blunt</xpath>
     <value>
       <ArmorRating_Blunt>12</ArmorRating_Blunt>
+    </value>
         </li>
 
   <li Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/statBases/ArmorRating_Heat</xpath>
     <value>
       <ArmorRating_Heat>0.54</ArmorRating_Heat>
+    </value>
         </li>
 
   <li Class="PatchOperationReplace">
@@ -86,11 +88,10 @@
         </li>
 
   <li Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_6b47_Helmet_Black"]/apparel</xpath>
     <value>
-    <apparel>
 	  <bodyPartGroups>
-		<li>FullHead</li>
+		<li>UpperHead</li>
 	  </bodyPartGroups>
 	  <layers>
 		<li>MiddleHead</li>
@@ -100,7 +101,6 @@
 		<li>Soldier</li>
 	  </defaultOutfitTags>
 	  <useDeflectMetalEffect>true</useDeflectMetalEffect>
-    </apparel>
     </value>
    </li>
 
@@ -145,19 +145,17 @@
           <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/costList</xpath>
           <value>
             <costList>
-              <Plasteel>50</Plasteel>
-        <DevilstrandCloth>15</DevilstrandCloth>
+                <Plasteel>50</Plasteel>
+        	<DevilstrandCloth>15</DevilstrandCloth>
             </costList>
           </value>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]</xpath>
+          <xpath>/Defs/ThingDef[defName="Apparel_Altyn_Helmet_Black"]/equippedStatOffsets</xpath>
           <value>
-            <equippedStatOffsets>
 			<AimingAccuracy>-0.25</AimingAccuracy>
-            			<MeleeHitChance>-1</MeleeHitChance>
-            </equippedStatOffsets>
+            		<MeleeHitChance>-1</MeleeHitChance>
           </value>
         </li>
 
