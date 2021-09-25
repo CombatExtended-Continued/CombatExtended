@@ -126,7 +126,7 @@ namespace CombatExtended
 
                     if (app != null
                         && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
+                        && !TryPenetrateArmor(dinfo.Def, app.GetModifiedStat(dinfo.Def.armorCategory.armorRatingStat, hitPart.def), ref penAmount, ref dmgAmount, app))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
@@ -196,7 +196,7 @@ namespace CombatExtended
             // Return damage info.
             dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
             return dinfo;
-        }
+        }        
 
         /// <summary>
         /// Calculates armor for penetrating damage types (Blunt, Sharp). Applies damage reduction based on armor penetration to armor ratio and calculates damage accordingly, with the difference being applied to the armor Thing. Also calculates whether a Sharp attack is deflected.

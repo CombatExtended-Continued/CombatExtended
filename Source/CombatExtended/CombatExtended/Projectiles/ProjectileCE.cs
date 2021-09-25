@@ -545,7 +545,7 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-            this.shotSpeed = shotSpeed == -1 ? def.projectile.speed : shotSpeed;
+            this.shotSpeed = shotSpeed <= 0 ? def.projectile.speed : shotSpeed;
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }

@@ -462,6 +462,37 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Get modified stat value for an apparel with body part.
+        /// </summary>
+        /// <param name="apparel">Apparel</param>
+        /// <param name="stat">StatDef</param>
+        /// <param name="bodyPart">Modifier body part</param>
+        /// <returns>Modified stat value for provided apparel</returns>
+        public static float GetModifiedStat(this Apparel apparel, StatDef stat, BodyPartDef bodyPart)
+        {
+            var val = apparel.GetStatValue(stat);
+            var statExtension = apparel.def.GetModExtension<ApparelStatExtension>();
+            if (statExtension?.modifiers.NullOrEmpty() ?? true)
+                return val;
+            for (int i = 0; i < statExtension.modifiers.Count; i++)
+            {               
+                var partModifier = statExtension.modifiers[i];
+                if (partModifier.stat != stat || partModifier.parts.NullOrEmpty())
+                    continue;
+                for(int j = 0;j < partModifier.parts.Count; j++)
+                {                    
+                    BodyPartModifier bodyModifier = partModifier.parts[j];
+                    if(bodyModifier.part == bodyPart)                                            
+                        return val * bodyModifier.value;                    
+                }
+                // since we didn't find our target body part we should break.
+                break;
+            }
+            return val;
+        }
+
+
+        /// <summary>
         /// Extension method to determine whether a pawn has equipped a shield
         /// </summary>
         /// <returns>True if the pawn has a shield equipped</returns>
