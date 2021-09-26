@@ -236,6 +236,7 @@ Race to the Rim |
 Radworld    |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
+Ratnik-3 Prototype Armor    |
 Redcoat Apparel	|
 Revia Race |
 Rim Contractors Arsenal	|
