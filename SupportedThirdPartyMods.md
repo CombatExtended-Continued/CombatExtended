@@ -138,6 +138,8 @@ FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
+Forgotten Realms - Lizardfolk	|
+Forgotten Realms - Minotaur	|
 Forsakens	|
 Forsakens Fauna |  
 Fortifications - Industrial |
