@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="O21_OR_AmbanSniperRifle"]</xpath>
+				<match Class="PatchOperationSequence">
+					<operations>
+						
+					  <li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[
+						defName="O21_OR_WESTAR18Blaster" or
+						defName="O21_OR_WESTAR34Blaster" or
+						defName="O21_OR_WESTAR35Blaster" or
+						defName="O21_OR_IB94BlasterPistol"
+						]/tools</xpath>
+						<value>
+						  <tools>
+							<li Class="CombatExtended.ToolCE">
+							  <label>grip</label>
+							  <capacities>
+								<li>Blunt</li>
+							  </capacities>
+							  <power>2</power>
+							  <cooldownTime>1.54</cooldownTime>
+							  <chanceFactor>1.5</chanceFactor>
+							  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+							  <label>muzzle</label>
+							  <capacities>
+								<li>Poke</li>
+							  </capacities>
+							  <power>2</power>
+							  <cooldownTime>1.54</cooldownTime>
+							  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						  </tools>
+						</value>
+					  </li>
+
+				  <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[		
+					defName="O21_OR_AmbanSniperRifle" or
+					defName="O21_OR_EE3BlasterCarbine" or
+					defName="O21_OR_GALAAR15Blaster"
+					]/tools</xpath>
+					<value>
+					  <tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>stock</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <chanceFactor>1.5</chanceFactor>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>5</power>
+						  <cooldownTime>2.02</cooldownTime>
+						  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						  <label>muzzle</label>
+						  <capacities>
+							<li>Poke</li>
+						  </capacities>
+						  <power>8</power>
+						  <cooldownTime>1.55</cooldownTime>
+						  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					  </tools>
+					</value>
+				  </li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_WESTAR18Blaster</defName>
+							<statBases>
+								<SightsEfficiency>1.0</SightsEfficiency>
+								<ShotSpread>0.18</ShotSpread>
+								<SwayFactor>0.87</SwayFactor>
+								<Bulk>1.75</Bulk>
+								<Mass>1.5</Mass>
+								<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.48</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.25</warmupTime>
+								<range>25</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes />
+							<AmmoUser>
+								<magazineSize>15</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_WESTAR34Blaster</defName>
+							<statBases>
+								<SightsEfficiency>1.0</SightsEfficiency>
+								<ShotSpread>0.18</ShotSpread>
+								<SwayFactor>0.87</SwayFactor>
+								<Bulk>1.75</Bulk>
+								<Mass>1.5</Mass>
+								<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.48</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.25</warmupTime>
+								<range>25</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes />
+							<AmmoUser>
+								<magazineSize>15</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_WESTAR35Blaster</defName>
+							<statBases>
+								<SightsEfficiency>1.0</SightsEfficiency>
+								<ShotSpread>0.18</ShotSpread>
+								<SwayFactor>0.87</SwayFactor>
+								<Bulk>1.75</Bulk>
+								<Mass>1.5</Mass>
+								<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.48</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.25</warmupTime>
+								<range>25</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes />
+							<AmmoUser>
+								<magazineSize>15</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_IB94BlasterPistol</defName>
+							<statBases>
+								<SightsEfficiency>1.0</SightsEfficiency>
+								<ShotSpread>0.18</ShotSpread>
+								<SwayFactor>0.87</SwayFactor>
+								<Bulk>1.75</Bulk>
+								<Mass>1.5</Mass>
+								<RangedWeapon_Cooldown>.4</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.48</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.25</warmupTime>
+								<range>25</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes />
+							<AmmoUser>
+								<magazineSize>15</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_AmbanSniperRifle</defName>
+							<statBases>
+								<SightsEfficiency>1.5</SightsEfficiency>
+								<ShotSpread>0.14</ShotSpread>
+								<SwayFactor>1.34</SwayFactor>
+								<Bulk>12.25</Bulk>
+								<Mass>5</Mass>
+								<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.48</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.6</warmupTime>
+								<range>60</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+							</FireModes>
+							<AmmoUser>
+								<magazineSize>15</magazineSize>
+								<reloadTime>3</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_GALAAR15Blaster</defName>
+							<statBases>
+								<SightsEfficiency>1.0</SightsEfficiency>
+								<ShotSpread>0.14</ShotSpread>
+								<SwayFactor>1.01</SwayFactor>
+								<Bulk>6.35</Bulk>
+								<Mass>3.5</Mass>
+								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.53</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.8</warmupTime>
+								<burstShotCount>3</burstShotCount>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<range>40</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes>
+								<aimedBurstShotCount>2</aimedBurstShotCount>
+								<aiUseBurstMode>FALSE</aiUseBurstMode>
+								<aiAimMode>AimedShot</aiAimMode>
+							</FireModes>
+							<AmmoUser>
+								<magazineSize>24</magazineSize>
+								<reloadTime>4</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+						<defName>O21_OR_EE3BlasterCarbine</defName>
+							<statBases>
+								<SightsEfficiency>1.5</SightsEfficiency>
+								<ShotSpread>0.14</ShotSpread>
+								<SwayFactor>1.01</SwayFactor>
+								<Bulk>6.35</Bulk>
+								<Mass>3.5</Mass>
+								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+							</statBases>
+							<Properties>
+								<recoilAmount>1.53</recoilAmount>
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Red</defaultProjectile>
+								<warmupTime>0.8</warmupTime>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+								<range>40</range>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+							</Properties>
+							<FireModes>
+								<aiAimMode>AimedShot</aiAimMode>
+							</FireModes>
+							<AmmoUser>
+								<magazineSize>20</magazineSize>
+								<reloadTime>4.5</reloadTime>
+								<ammoSet>AmmoSet_PlasmaGasCartridgeRed</ammoSet>
+							</AmmoUser>
+					</li>
+					
+					
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="O21_OR_MandalorianSaber"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>2</power>
+									<cooldownTime>0.96</cooldownTime>
+									<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>23.4</power>
+									<cooldownTime>0.96</cooldownTime>
+									<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+									<armorPenetrationSharp>20.4</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>17.55</power>
+									<cooldownTime>1.34</cooldownTime>
+									<chanceFactor>0.93</chanceFactor>
+									<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+									<armorPenetrationSharp>18</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="O21_OR_MandalorianSaber"]/statBases</xpath>
+						<value>
+							<Bulk>3.5</Bulk>
+							<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>				
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="O21_OR_MandalorianSaber"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.2</MeleeCritChance>
+								<MeleeParryChance>0.1</MeleeParryChance>
+								<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+							</equippedStatOffsets>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="O21_OR_MandalorianSaber"]/weaponTags</xpath>
+					<value>
+						<li>CE_Sidearm</li>
+						<li>CE_OneHandedWeapon</li>
+					</value>
+					</li>
+					
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="O21_OR_MunitkatHalberd"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>handle</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>2</power>
+									<cooldownTime>1.44</cooldownTime>
+									<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+									<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>point</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>37</power>
+									<cooldownTime>2.54</cooldownTime>
+									<armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+									<armorPenetrationSharp>17</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>edge</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>30</power>
+									<cooldownTime>2.34</cooldownTime>
+									<chanceFactor>1.33</chanceFactor>
+									<armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+									<armorPenetrationSharp>15</armorPenetrationSharp>
+									<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+								</li>
+							</tools>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="O21_OR_MunitkatHalberd"]/statBases</xpath>
+						<value>
+							<Bulk>3.5</Bulk>
+							<MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>				
+						</value>
+					</li>
+					
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="O21_OR_MunitkatHalberd"]</xpath>
+						<value>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.4</MeleeCritChance>
+								<MeleeParryChance>0.35</MeleeParryChance>
+								<MeleeDodgeChance>0.2</MeleeDodgeChance>	
+							</equippedStatOffsets>
+						</value>
+					</li>
+					
+					
+					</operations>
+				</match>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
