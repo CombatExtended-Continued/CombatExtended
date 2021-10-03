@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/TraitDef[defName="DankPyon_Fighter" or defName="DankPyon_Veteran"]/degreeDatas/li/statOffsets</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/TraitDef[defName="DankPyon_Fighter"]/degreeDatas/li</xpath>
+            <value>
+              <statOffsets>
+                <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+                <AimingDelayFactor>-0.15</AimingDelayFactor>
+                <MeleeHitChance>3</MeleeHitChance>
+                <MeleeCritChance>0.15</MeleeCritChance>
+                <MeleeParryChance>0.15</MeleeParryChance>
+                <MeleeDodgeChance>0.3</MeleeDodgeChance>
+                <PawnTrapSpringChance>0.2</PawnTrapSpringChance>
+                <MentalBreakThreshold>-0.1</MentalBreakThreshold>
+                <PainShockThreshold>0.10</PainShockThreshold>
+                <Suppressability>-0.15</Suppressability>
+              </statOffsets>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/TraitDef[defName="DankPyon_Veteran"]/degreeDatas/li</xpath>
+          <value>
+            <statOffsets>
+              <ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+              <AimingDelayFactor>-0.15</AimingDelayFactor>
+              <MeleeHitChance>4</MeleeHitChance>
+              <MeleeCritChance>0.25</MeleeCritChance>
+              <MeleeParryChance>0.25</MeleeParryChance>
+              <MeleeDodgeChance>0.5</MeleeDodgeChance>
+              <PawnTrapSpringChance>0.1</PawnTrapSpringChance>
+              <MentalBreakThreshold>-0.2</MentalBreakThreshold>
+              <PainShockThreshold>0.10</PainShockThreshold>
+              <Suppressability>-0.25</Suppressability>
+            </statOffsets>
+          </value>
+      </li>
+          
+      </operations>
+	</match>
+	</Operation>
+
+</Patch>

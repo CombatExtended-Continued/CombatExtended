@@ -16,7 +16,11 @@ namespace CombatExtended.AI
 
         public static CompTacticalManager GetTacticalManager(this Pawn pawn)
         {
-            return _compTactical.TryGetValue(pawn, out var comp) ? comp : _compTactical[pawn] = pawn.TryGetComp<CompTacticalManager>();
+            if (_compTactical.TryGetValue(pawn, out var comp))
+                return comp;
+            comp = pawn.TryGetComp<CompTacticalManager>();
+            if (comp != null) _compTactical[pawn] = comp;
+            return comp;
         }
 
         public static bool HiddingBehindCover(this Pawn pawn, LocalTargetInfo targetFacing)

@@ -43,22 +43,6 @@
 				</value>
 			</li>
 
-      <!-- It's technically not necessary to patch ReviaRaceBase because it's not actually used (I'm not sure if that's intentional or not),
-           but patching it will prevent issues in the event that it ever is. -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[@Name="ReviaRaceBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-				<value>
-					<li>CombatExtended.ITab_Inventory</li>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="ReviaRaceBase"]/comps</xpath>
-				<value>
-					<li Class="CombatExtended.CompProperties_Inventory" />
-				</value>
-			</li>
-
       <!--
       Juanfrank
       https://github.com/Juanfrank/Revia4Nalesh-and-someoneinapt/
@@ -124,7 +108,7 @@
 					<MeleeParryChance>1.15</MeleeParryChance>
 					<Suppressability>1</Suppressability>
 					<SmokeSensitivity>0.85</SmokeSensitivity>
-					<CarryBulk>30</CarryBulk>
+					<CarryBulk>25</CarryBulk>
 					<CarryWeight>40</CarryWeight>
 				  </value>
 			</li>
@@ -150,6 +134,50 @@
       <li Class="PatchOperationReplace">
         <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ReviaRaceAlien"]/tools</xpath>
         <value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Bite</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.75</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.180</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.350</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
         </value>
       </li>  
       

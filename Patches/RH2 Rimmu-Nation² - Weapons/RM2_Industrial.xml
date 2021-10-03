@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- You can find the spreadsheet here https://drive.google.com/open?id=1JZAjvzealI189OofkxwUCif3yA4-u6yP3DilsmIEQJA -->
+
+				<!-- Chainsaw -->			
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RHMelee_ECHO_Chainsaw"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+			  						<li>RHMelee_GenericChainsawStab</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>0.5</cooldownTime>
+								<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>RHMelee_GenericChainsawSlash</li>
+								</capacities>
+								<power>15</power>
+								<cooldownTime>0.6</cooldownTime>
+								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RHMelee_ECHO_Chainsaw"]/statBases</xpath>
+					<value>
+						<Bulk>10</Bulk>
+						<MeleeCounterParryBonus>0.20</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RHMelee_ECHO_Chainsaw"]/equippedStatOffsets</xpath>
+					<value>
+							<MeleeCritChance>0.33</MeleeCritChance>
+							<MeleeParryChance>0.2</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					</value>
+				</li>
+
+					<!-- Bat -->	
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/tools</xpath>
+		<value>
+			<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.46</cooldownTime>
+								<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>2</cooldownTime>
+								<armorPenetrationBlunt>6.0</armorPenetrationBlunt>
+								<chanceFactor>2</chanceFactor>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/tools</xpath>
+		<value>
+			<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.46</cooldownTime>
+								<armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.8</cooldownTime>
+								<armorPenetrationBlunt>6.0</armorPenetrationBlunt>
+								<chanceFactor>2</chanceFactor>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat"]/statBases</xpath>
+		<value>
+      			<Bulk>7.5</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_BrooklynSmasher_Bat"]/statBases</xpath>
+		<value>
+      			<Bulk>7.5</Bulk>
+			<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RNMeleeWeapon_Baseball_Bat" 
+				or defName="RNMeleeWeapon_BrooklynSmasher_Bat"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.15</MeleeParryChance>
+				<MeleeDodgeChance>0.05</MeleeDodgeChance>	
+			</equippedStatOffsets>	
+		</value>	
+	</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
