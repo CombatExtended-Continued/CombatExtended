@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>AmmoRPG29</defName>
+					<label>RPG29 Rocket</label>
+					<parent>AmmoRockets</parent>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_RPG29</defName>
+					<label>RPG29 Missiles</label>
+					<ammoTypes>
+						<Ammo_RPG29_HEAT>Bullet_RPG29_HEAT</Ammo_RPG29_HEAT>
+						<Ammo_RPG29_Thermobaric>Bullet_RPG29_Thermobaric</Ammo_RPG29_Thermobaric>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="RPG29Base" ParentName="HeavyAmmoBase" Abstract="True">
+					<description>Rocket propelled grenades for use in RPG-29.</description>
+					<statBases>
+						<MaxHitPoints>200</MaxHitPoints>
+					</statBases>
+					<tradeTags>
+      						<li>CE_AutoEnableTrade_Sellable</li>
+						<li>CE_AutoEnableCrafting_TableMachining</li>
+					</tradeTags>
+					<thingCategories>
+						<li>AmmoRPG29</li>
+					</thingCategories>
+					<stackLimit>20</stackLimit>
+					<cookOffFlashScale>30</cookOffFlashScale>
+					<cookOffSound>MortarBomb_Explode</cookOffSound>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG29Base">
+					<defName>Ammo_RPG29_HEAT</defName>
+					<label>PG-29V grenade (HEAT)</label>
+					<graphicData>
+						<texPath>Things/Ammo/RPG/RPG32_Thermobaric</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<drawSize>1.65</drawSize>
+					</graphicData>
+					<statBases>
+						<MarketValue>100</MarketValue>
+						<Mass>6.7</Mass>
+						<Bulk>9.17</Bulk>
+					</statBases>
+					<ammoClass>RocketHEAT</ammoClass>
+					<detonateProjectile>Bullet_RPG29_HEAT</detonateProjectile>
+				</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG29GrenadeBase">
+    <defName>Ammo_RPG29Grenade_Thermobaric</defName>
+    <label>TPG-29V grenade (Thermobaric)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>123.58</MarketValue>
+      <Mass>6.7</Mass>
+      <Bulk>9.99</Bulk>
+    </statBases>
+    <ammoClass>RocketThermobaric</ammoClass>
+	<detonateProjectile>Bullet_RPG29Grenade_Thermobaric</detonateProjectile>
+  </ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+					<defName>Bullet_RPG29_HEAT</defName>
+					<label>PG-29V (HEAT)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Rocket29M</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+      						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>64</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>380</damageAmountBase>
+						<armorPenetrationSharp>750</armorPenetrationSharp>
+						<armorPenetrationBlunt>151.584</armorPenetrationBlunt>
+						<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+					</projectile>
+					<comps>
+		  				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>200</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.5</explosiveRadius>
+							<explosionSound>MortarBomb_Explode</explosionSound>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  				</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>4</Fragment_Large>
+		  						<Fragment_Small>60</Fragment_Small>
+							</fragments>
+						</li>
+					</comps>
+				</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+    <defName>Bullet_RPG29Grenade_Thermobaric</defName>
+    <label>TPG-29V grenade (Thermobaric)</label>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/RPG/Thermobaric</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>5.5</explosionRadius>
+      <damageDef>Thermobaric</damageDef>
+      <damageAmountBase>300</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <ai_IsIncendiary>true</ai_IsIncendiary>
+    </projectile>
+  </ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_RPG29_HEAT</defName>
+					<label>make RPG29 HEAT Missile</label>
+					<description>Craft 5 RPG29 HEAT Missiles.</description>
+					<jobString>Making RPG29 HEAT Missiles.</jobString>
+					<workAmount>13000</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>40</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>5</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>13</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_RPG29_HEAT>5</Ammo_RPG29_HEAT>
+					</products>
+				</RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_RPG29Grenade_Thermobaric</defName>
+    <label>make RPG-29 thermobaric grenades x5</label>
+    <description>Craft 5 RPG-29 thermobaric grenades.</description>
+    <jobString>Making RPG-29 thermobaric grenades.</jobString>
+    <workAmount>23400</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>54</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>38</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RPG29Grenade_Thermobaric>5</Ammo_RPG29Grenade_Thermobaric>
+    </products>
+  </RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>
