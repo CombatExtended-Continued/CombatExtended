@@ -85,6 +85,7 @@ Astoriel Legacy |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
+Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
@@ -117,6 +118,7 @@ Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Mountain Animals |
+EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
 Expanded Materials - Plastics |
@@ -136,6 +138,8 @@ FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
+Forgotten Realms - Lizardfolk	|
+Forgotten Realms - Minotaur	|
 Forsakens	|
 Forsakens Fauna |  
 Fortifications - Industrial |
@@ -234,6 +238,7 @@ Race to the Rim |
 Radworld    |
 Rah's Bionics and Surgery Expansion	|
 Rakkle The Rattle Snake Race Mod  |
+Ratnik-3 Prototype Armor    |
 Redcoat Apparel	|
 Revia Race |
 Rim Contractors Arsenal	|
@@ -263,6 +268,7 @@ Sergals, Gnolls, Lions and Frogs	|
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
+Slime Rancher	|
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
