@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="O21_OR_ChissRifle"]</xpath>
+				<match Class="PatchOperationSequence">
+				<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[	
+				defName="O21_OR_ChissRifle" or
+				defName="O21_OR_ChissCarbine"
+				]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="O21_OR_ChissPistol"
+				]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>grip</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>2</power>
+					  <cooldownTime>1.54</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>O21_OR_ChissRifle</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.01</SwayFactor>
+						<Bulk>6.35</Bulk>
+						<Mass>3.5</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.53</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_OR_Blaster_Blue_Chiss</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<range>40</range>
+						<soundCast>O21_Shot_BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				    <AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
+				    </AmmoUser>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>O21_OR_ChissPistol</defName>
+					<statBases>
+						<SightsEfficiency>0.7</SightsEfficiency>
+						<ShotSpread>0.18</ShotSpread>
+						<SwayFactor>0.87</SwayFactor>
+						<Bulk>1.75</Bulk>
+						<Mass>1.5</Mass>
+						<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_OR_Blaster_Blue_Chiss</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<range>25</range>
+						<soundCast>O21_Shot_BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<FireModes />
+				    <AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>3</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
+				    </AmmoUser>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>O21_OR_ChissCarbine</defName>
+					<statBases>
+						<SightsEfficiency>1.0</SightsEfficiency>
+						<ShotSpread>0.14</ShotSpread>
+						<SwayFactor>1.34</SwayFactor>
+						<Bulk>7.20</Bulk>
+						<Mass>3.5</Mass>
+						<RangedWeapon_Cooldown>.5</RangedWeapon_Cooldown>
+					</statBases>
+					<Properties>
+						<recoilAmount>1.22</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_OR_Blaster_Blue_Chiss</defaultProjectile>
+						<warmupTime>0.6</warmupTime>
+						<burstShotCount>5</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<range>30</range>
+						<soundCast>O21_Shot_BlasterBolt</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<FireModes>
+						<aimedBurstShotCount>2</aimedBurstShotCount>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+				    <AmmoUser>
+						<magazineSize>24</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_PlasmaGasCartridgeChiss</ammoSet>
+				    </AmmoUser>
+			</li>
+			
+				</operations>
+				</match>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

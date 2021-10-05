@@ -160,7 +160,7 @@
 	</ThingDef>
 	
 	<!-- Need to override mortar shell because of hardcoded vanilla references -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+	<ThingDef ParentName="81mmMortarShellBaseCraftableBase">
 		<defName>Shell_LargeCannonBall_Steel</defName>
 		<label>Large Cannon Ball</label>
 		<graphicData>
@@ -277,23 +277,6 @@
 	</ThingDef>
 	
 	<!-- ==== Large Steel Cannon Ball ==== -->
-	<ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>0</speed>
-			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-			<soundAmbient>MortarRound_Ambient</soundAmbient>
-			<flyOverhead>true</flyOverhead>
-			<dropsCasings>false</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
-			<gravityFactor>5</gravityFactor>
-		</projectile>
-	</ThingDef>
-
 	<ThingDef ParentName="Base81mmMortarShell">
 		<defName>Bullet_LargeCannonBall_Steel</defName>
 		<label>Large Cannon Ball</label>
