@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Forgelings race</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Forge_ForgeDagger"]/statBases</xpath>
+		<value>
+		<statBases>
+			<WorkToMake>25500</WorkToMake>
+			<Mass>0.6</Mass>
+      			<Bulk>5</Bulk>
+      			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</statBases>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName = "Forge_ForgeDagger"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.9</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Forge_ForgeDagger"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.27</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>20</power>
+					<cooldownTime>1.33</cooldownTime>
+        				<extraMeleeDamages>
+          				<li>
+            					<def>Flame</def>
+            					<amount>6</amount>
+         				</li>
+        				</extraMeleeDamages>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.459</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>27</power>
+					<cooldownTime>1.4</cooldownTime>
+        				<extraMeleeDamages>
+          				<li>
+            					<def>Flame</def>
+            					<amount>8</amount>
+         				</li>
+        				</extraMeleeDamages>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>0.674</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.0</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
