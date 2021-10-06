@@ -32,7 +32,7 @@ namespace CombatExtended.HarmonyCE
             {
                 if (__instance.ShieldState == ShieldState.Active)
                 {
-                    Traverse.Create(__instance).Method("Break").GetValue();
+                    __instance.Break();
                     ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
                 if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)
