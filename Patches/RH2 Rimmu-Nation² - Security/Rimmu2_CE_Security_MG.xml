@@ -417,13 +417,22 @@
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[
 			defName="RN2Gun_M2Browning_MG" or
-			defName="RN2Gun_TOW_Launcher" or
 			defName="RN2Gun_M134Minigun_MG" or
 			defName="RN2Gun_MK19_GL"
 		]/researchPrerequisites</xpath>
 			<value>
 				<researchPrerequisites>
 					<li>CE_TurretHeavyWeapons</li>
+				</researchPrerequisites>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RN2Gun_TOW_Launcher"]/researchPrerequisites</xpath>
+			<value>
+				<researchPrerequisites>
+					<li>CE_TurretHeavyWeapons</li>
+					<li>CE_Launchers</li>
 				</researchPrerequisites>
 			</value>
 		</li>
