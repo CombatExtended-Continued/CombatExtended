@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	<!--
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 		<li>[LF] Red Dawn</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-
+		-->
 			<!-- ========== RPG18 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG18D</defName>
 				<statBases>
       					<MarketValue>35.72</MarketValue>
@@ -29,7 +30,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG18</defaultProjectile>
+					<defaultProjectile>Bullet_RPG18Grenade_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>31</range>
         					<minRange>2</minRange>
@@ -52,11 +53,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 			<!-- ========== RPG22 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG22D</defName>
 				<statBases>
       					<MarketValue>35.72</MarketValue>
@@ -76,7 +77,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG22</defaultProjectile>
+					<defaultProjectile>Bullet_RPG22Grenade_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>32</range>
         					<minRange>2</minRange>
@@ -99,11 +100,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 			<!-- ========== RPG26 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG26D</defName>
 				<statBases>
       					<MarketValue>35.72</MarketValue>
@@ -123,7 +124,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG26</defaultProjectile>
+					<defaultProjectile>Bullet_RPG26Grenade_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>32</range>
         					<minRange>2</minRange>
@@ -146,11 +147,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 			<!-- ========== RPG27 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG27D</defName>
 				<statBases>
       					<MarketValue>35.72</MarketValue>
@@ -170,7 +171,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG27</defaultProjectile>
+					<defaultProjectile>Bullet_RPG27Grenade_HEAT</defaultProjectile>
 					<warmupTime>2.05</warmupTime>
 					<range>31</range>
         					<minRange>2</minRange>
@@ -193,13 +194,13 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 
 			<!-- ========== RPG-7 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>RNGun_RPG7_RocketLauncher</defName>
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RPG7v</defName>
 				<statBases>
 					<Mass>7.00</Mass>
 					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
@@ -245,11 +246,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 
 			<!-- ========== RPG-16 ========== -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG16v</defName>
 				<statBases>
 					<Mass>9.40</Mass>
@@ -297,11 +298,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 			<!-- ========== RPG-29 ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_RPG29v</defName>
 				<statBases>
 					<Mass>12.10</Mass>
@@ -349,11 +350,11 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
-			</li>
+			</Operation>
 
 			<!-- == Shared patches for firearm melee tools == -->
 
-			<li Class="PatchOperationReplace">
+			<Operation Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					defName="Gun_RPG18D" or
 					defName="Gun_RPG16v" or
@@ -377,9 +378,10 @@
 						</li>
 					</tools>
 				</value>
-			</li>
-
+			</Operation>
+<!--
 		</operations>
 		</match>
 	</Operation>
+-->
 </Patch>
