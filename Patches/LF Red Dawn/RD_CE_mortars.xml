@@ -1,144 +1,142 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-  <!--
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>[LF] Red Dawn</li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
-      -->
-    <!-- === Remove 82mm Mortar Shell === -->
-    <Operation Class="PatchOperationRemove">
-      <xpath>Defs/ThingDef[
-        defName="Shell_Sov82mm_HE"]</xpath>
-    </Operation>	
+        <!-- === Remove 82mm Mortar Shell === -->
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[
+            defName="Shell_Sov82mm_HE"]</xpath>
+          </li>	
 
-    <Operation Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="Turret_Podnos"]</xpath>
-      <value>
-        <ThingDef ParentName="TurretMannedBase">
-          <defName>Turret_Podnos</defName>
-          <label>2B14 Podnos</label>
-          <description>The 2B14 Podnos is a Soviet 82 mm mortar. The 2B14 was designed in early 1980s as a light indirect fire weapon for the use of airborne and other light infantry forces. Despite the intent to field the 2B14 with light infantry units, the 2B14 appears to have been fielded with regular motor rifle units as well at a scale of six per battalion.</description>
-          <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
-          <graphicData>
-            <texPath>Things/Defense/Podnos_Base</texPath>
-            <graphicClass>Graphic_Multi</graphicClass>
-            <drawSize>(2,2)</drawSize>
-            <damageData>
-              <rect>(0.38,0.2,0.56375,0.8)</rect>
-              <cornerTL>Damage/Corner</cornerTL>
-            </damageData>
-            <shadowData>
-              <offset>(0,0,0)</offset>
-              <volume>(2,1.5,2)</volume>
-            </shadowData>
-          </graphicData>
-          <uiIconPath>Things/Defense/MenuIcon_Podnos</uiIconPath>
-          <uiIconScale>0.9</uiIconScale>
-          <statBases>
-            <MaxHitPoints>270</MaxHitPoints>
-            <WorkToBuild>4500</WorkToBuild>
-            <Mass>42</Mass>
-            <Bulk>83</Bulk>
-          </statBases>
-          <costList>
-            <Steel>150</Steel>
-            <ComponentIndustrial>6</ComponentIndustrial>
-          </costList>
-          <tradeTags>
-            <li>CE_Turret</li>
-          </tradeTags>
-          <specialDisplayRadius>8</specialDisplayRadius>
-          <building>
-            <turretGunDef>Artillery_PodnosGun</turretGunDef>
-            <turretTopDrawSize>3</turretTopDrawSize>
-            <ai_combatDangerous>true</ai_combatDangerous>
-            <turretBurstCooldownTime>5</turretBurstCooldownTime>
-            <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
-          </building>
-          <placeWorkers>
-            <li>PlaceWorker_NotUnderRoof</li>
-            <li>PlaceWorker_TurretTop</li>
-            <li>PlaceWorker_ShowTurretRadius</li>
-          </placeWorkers>
-          <interactionCellOffset>(0,0,-2)</interactionCellOffset>
-          <size>(2,2)</size> 
-          <researchPrerequisites>
-            <li>CE_TurretHeavyWeapons</li>
-          </researchPrerequisites>  
-          <minifiedDef>MinifiedThing</minifiedDef>
-          <designationCategory>Security</designationCategory>
-        </ThingDef>			
-      </value>
-    </Operation>
-  
-    <Operation Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="Artillery_PodnosGun"]</xpath>
-      <value>
-        <ThingDef ParentName="BaseTurretGun">
-          <defName>Artillery_PodnosGun</defName>
-          <label>82mm mortar</label>
-          <description>.</description>
-          <graphicData>
-            <texPath>Things/Defense/Sov_Gun_Podnos</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <drawSize>(2,2)</drawSize>
-            <drawRotated>true</drawRotated>
-          </graphicData>
-          <soundInteract>Artillery_ShellLoaded</soundInteract>
-          <statBases>
-            <MarketValue>5500</MarketValue>
-            <SightsEfficiency>0.50</SightsEfficiency>
-            <ShotSpread>0.03</ShotSpread>
-            <SwayFactor>0.08</SwayFactor>
-            <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
-          </statBases>
-          <weaponTags>
-            <li>TurretGun</li>
-            <li>Artillery_BaseDestroyer</li>
-          </weaponTags>
-          <verbs>
-            <li Class="CombatExtended.VerbPropertiesCE">
-            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-            <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-                <hasStandardCommand>true</hasStandardCommand>
-                <requireLineOfSight>false</requireLineOfSight>
-            <defaultProjectile>Bullet_82mmMortarShell_HE</defaultProjectile>
-            <warmupTime>3</warmupTime>
-            <minRange>20</minRange>
-            <range>500</range>
-            <burstShotCount />
-            <soundCast>SovMortarFire</soundCast>
-            <soundCastTail>GunTail_Heavy</soundCastTail>
-            <muzzleFlashScale>20</muzzleFlashScale>
-            <indirectFirePenalty>0.2</indirectFirePenalty>
-            <targetParams>
-              <canTargetLocations>true</canTargetLocations>
-            </targetParams>
-            <recoilPattern>Mounted</recoilPattern>
-            </li>
-          </verbs>
-          <comps>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
-            <li Class="CombatExtended.CompProperties_AmmoUser">
-              <magazineSize>1</magazineSize>
-              <reloadOneAtATime>true</reloadOneAtATime>
-              <reloadTime>5</reloadTime>
-              <ammoSet>AmmoSet_82mmMortarShell</ammoSet>
-            </li>
-          </comps>
-          </ThingDef>
-      </value>
-    </Operation>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Turret_Podnos"]</xpath>
+          <value>
+            <ThingDef ParentName="TurretMannedBase">
+              <defName>Turret_Podnos</defName>
+              <label>2B14 Podnos</label>
+              <description>The 2B14 Podnos is a Soviet 82 mm mortar. The 2B14 was designed in early 1980s as a light indirect fire weapon for the use of airborne and other light infantry forces. Despite the intent to field the 2B14 with light infantry units, the 2B14 appears to have been fielded with regular motor rifle units as well at a scale of six per battalion.</description>
+              <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+              <graphicData>
+                <texPath>Things/Defense/Podnos_Base</texPath>
+                <graphicClass>Graphic_Multi</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.38,0.2,0.56375,0.8)</rect>
+                  <cornerTL>Damage/Corner</cornerTL>
+                </damageData>
+                <shadowData>
+                  <offset>(0,0,0)</offset>
+                  <volume>(2,1.5,2)</volume>
+                </shadowData>
+              </graphicData>
+              <uiIconPath>Things/Defense/MenuIcon_Podnos</uiIconPath>
+              <uiIconScale>0.9</uiIconScale>
+              <statBases>
+                <MaxHitPoints>270</MaxHitPoints>
+                <WorkToBuild>4500</WorkToBuild>
+                <Mass>42</Mass>
+                <Bulk>83</Bulk>
+              </statBases>
+              <costList>
+                <Steel>150</Steel>
+                <ComponentIndustrial>6</ComponentIndustrial>
+              </costList>
+              <tradeTags>
+                <li>CE_Turret</li>
+              </tradeTags>
+              <specialDisplayRadius>8</specialDisplayRadius>
+              <building>
+                <turretGunDef>Artillery_PodnosGun</turretGunDef>
+                <turretTopDrawSize>3</turretTopDrawSize>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretBurstCooldownTime>5</turretBurstCooldownTime>
+                <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_NotUnderRoof</li>
+                <li>PlaceWorker_TurretTop</li>
+                <li>PlaceWorker_ShowTurretRadius</li>
+              </placeWorkers>
+              <interactionCellOffset>(0,0,-2)</interactionCellOffset>
+              <size>(2,2)</size> 
+              <researchPrerequisites>
+                <li>CE_TurretHeavyWeapons</li>
+              </researchPrerequisites>  
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <designationCategory>Security</designationCategory>
+            </ThingDef>			
+          </value>
+        </li>
+      
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Artillery_PodnosGun"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseTurretGun">
+              <defName>Artillery_PodnosGun</defName>
+              <label>82mm mortar</label>
+              <description>.</description>
+              <graphicData>
+                <texPath>Things/Defense/Sov_Gun_Podnos</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <drawRotated>true</drawRotated>
+              </graphicData>
+              <soundInteract>Artillery_ShellLoaded</soundInteract>
+              <statBases>
+                <MarketValue>5500</MarketValue>
+                <SightsEfficiency>0.50</SightsEfficiency>
+                <ShotSpread>0.03</ShotSpread>
+                <SwayFactor>0.08</SwayFactor>
+                <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+                <li>Artillery_BaseDestroyer</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+                    <hasStandardCommand>true</hasStandardCommand>
+                    <requireLineOfSight>false</requireLineOfSight>
+                <defaultProjectile>Bullet_82mmMortarShell_HE</defaultProjectile>
+                <warmupTime>3</warmupTime>
+                <minRange>20</minRange>
+                <range>500</range>
+                <burstShotCount />
+                <soundCast>SovMortarFire</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>20</muzzleFlashScale>
+                <indirectFirePenalty>0.2</indirectFirePenalty>
+                <targetParams>
+                  <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+                <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_Charges">
+                  <chargeSpeeds>
+                    <li>30</li>
+                    <li>50</li>
+                    <li>70</li>
+                    <li>90</li>
+                  </chargeSpeeds>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>1</magazineSize>
+                  <reloadOneAtATime>true</reloadOneAtATime>
+                  <reloadTime>5</reloadTime>
+                  <ammoSet>AmmoSet_82mmMortarShell</ammoSet>
+                </li>
+              </comps>
+              </ThingDef>
+          </value>
+        </li>
    
     <!-- === Patch Base === 
     <Operation Class="PatchOperationReplace">
@@ -230,9 +228,8 @@
       </value>
     </Operation>
  -->
-<!--
+
       </operations>
     </match>
   </Operation>
--->
 </Patch>
