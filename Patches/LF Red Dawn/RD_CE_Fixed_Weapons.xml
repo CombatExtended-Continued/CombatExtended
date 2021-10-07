@@ -36,8 +36,8 @@
 				<recoilPattern>Mounted</recoilPattern>
 			</Properties>
 			<AmmoUser>
-				<magazineSize>100</magazineSize>
-				<reloadTime>7.8</reloadTime>
+				<magazineSize>50</magazineSize>
+				<reloadTime>5.8</reloadTime>
 				<ammoSet>AmmoSet_127x108mm</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -58,9 +58,14 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"]/statBases</xpath>
 			<value>
-				<WorkToBuild>59000</WorkToBuild>
+				<statBases>
+					<MaxHitPoints>150</MaxHitPoints>
+					<WorkToBuild>60000</WorkToBuild> 
+					<Mass>52</Mass>
+					<Beauty>-20</Beauty>
+				</statBases>
 			</value>
 		</li>
 
@@ -115,9 +120,14 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Sov_Turret_NSV"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="Sov_Turret_NSV"]/statBases</xpath>
 			<value>
-				<WorkToBuild>60500</WorkToBuild>
+				<statBases>
+					<MaxHitPoints>150</MaxHitPoints>
+					<WorkToBuild>60000</WorkToBuild> 
+					<Mass>41</Mass>
+					<Beauty>-20</Beauty>
+				</statBases>
 			</value>
 		</li>
 
@@ -133,7 +143,7 @@
 				<Bulk>12.90</Bulk>
 			</statBases>
 			<Properties>
-				<recoilAmount>1.67</recoilAmount>
+				<recoilAmount>1.57</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_30x29mmGrenade_HE</defaultProjectile>
@@ -151,7 +161,7 @@
 				<recoilPattern>Mounted</recoilPattern>
 			</Properties>
 			<AmmoUser>
-				<magazineSize>48</magazineSize>
+				<magazineSize>29</magazineSize>
 				<reloadTime>7.8</reloadTime>
 				<ammoSet>AmmoSet_30x29mmGrenade</ammoSet>
 			</AmmoUser>
@@ -173,9 +183,14 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RD_Turret_AGS"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RD_Turret_AGS"]/statBases</xpath>
 			<value>
-				<WorkToBuild>40000</WorkToBuild>
+				<statBases>
+					<MaxHitPoints>150</MaxHitPoints>
+					<WorkToBuild>41000</WorkToBuild> 
+					<Mass>31</Mass>
+					<Beauty>-20</Beauty>
+				</statBases>
 			</value>
 		</li>
 
@@ -187,16 +202,16 @@
 				<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 				<SightsEfficiency>4.0</SightsEfficiency>
 				<ShotSpread>0.01</ShotSpread>
-				<SwayFactor>1.75</SwayFactor>
+				<SwayFactor>1.87</SwayFactor>
 				<Bulk>12.90</Bulk>
 			</statBases>
 			<Properties>
 				<recoilAmount>1</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Bullet_BGM71_HEAT</defaultProjectile>
-				<warmupTime>3.75</warmupTime>
-					<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<defaultProjectile>Bullet_9M113_HEAT</defaultProjectile>
+				<warmupTime>3.80</warmupTime>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
 				<range>100</range>
 				<minRange>6</minRange>
 				<soundCast>KonkursFire</soundCast>
@@ -209,8 +224,8 @@
 			</Properties>
 			<AmmoUser>
 				<magazineSize>1</magazineSize>
-				<reloadTime>7.9</reloadTime>
-				<ammoSet>AmmoSet_BGM71</ammoSet>
+				<reloadTime>8.9</reloadTime>
+				<ammoSet>AmmoSet_Konkur</ammoSet>
 			</AmmoUser>
 			<FireModes>
 				<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -228,46 +243,49 @@
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Turret_KonkursATGM"]/statBases/WorkToBuild</xpath>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Turret_KonkursATGM"]</xpath>
 			<value>
-				<WorkToBuild>52000</WorkToBuild>
+				<statBases>
+					<MaxHitPoints>120</MaxHitPoints>
+					<WorkToBuild>55000</WorkToBuild> 
+					<Mass>22.5</Mass>
+					<Beauty>-20</Beauty>
+				</statBases>
 			</value>
 		</li>
-
 
 		<!-- ========== SPG ========== -->
 
 		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Artillery_KonkursGun</defName>
+			<defName>Artillery_SPG9Gun</defName>
 			<statBases>
-				<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
-				<SightsEfficiency>4.0</SightsEfficiency>
-				<ShotSpread>0.01</ShotSpread>
-				<SwayFactor>1.75</SwayFactor>
+				<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+				<SightsEfficiency>2.50</SightsEfficiency>
+				<ShotSpread>0.06</ShotSpread>
+				<SwayFactor>1.68</SwayFactor>
 				<Bulk>12.90</Bulk>
 			</statBases>
 			<Properties>
-				<recoilAmount>1</recoilAmount>
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>Bullet_BGM71_HEAT</defaultProjectile>
-				<warmupTime>3.75</warmupTime>
-					<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
-				<range>100</range>
-				<minRange>6</minRange>
-				<soundCast>KonkursFire</soundCast>
+				<defaultProjectile>Bullet_SPG9Grenade_HEAT</defaultProjectile>
+				<warmupTime>3.0</warmupTime>
+				<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				<range>75</range>
+				<minRange>4.9</minRange>
+				<soundCast>SPGFire</soundCast>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>
 				</targetParams>
-				<muzzleFlashScale>16</muzzleFlashScale>
+				<muzzleFlashScale>18</muzzleFlashScale>
 				<recoilPattern>Mounted</recoilPattern>
 			</Properties>
 			<AmmoUser>
 				<magazineSize>1</magazineSize>
-				<reloadTime>7.9</reloadTime>
-				<ammoSet>AmmoSet_BGM71</ammoSet>
+				<reloadTime>8.9</reloadTime>
+				<ammoSet>AmmoSet_SPG9Grenade</ammoSet>
 			</AmmoUser>
 			<FireModes>
 				<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -279,37 +297,48 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Turret_KonkursATGM"]/specialDisplayRadius</xpath>
+			<xpath>Defs/ThingDef[defName="Turret_SPG9AT"]/specialDisplayRadius</xpath>
 			<value>
-				<specialDisplayRadius>100</specialDisplayRadius>
+				<specialDisplayRadius>75</specialDisplayRadius>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="Turret_KonkursATGM"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[@Name="Base_SPG9AT"]/statBases</xpath>
 			<value>
-				<WorkToBuild>52000</WorkToBuild>
+			<statBases>
+				<MaxHitPoints>175</MaxHitPoints>
+				<Flammability>0.4</Flammability>
+				<WorkToBuild>32000</WorkToBuild>
+				<Mass>59.5</Mass>
+				<Beauty>-10</Beauty>
+			</statBases>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="Base_SPG9AT"]/costList</xpath>
+			<value>
+				<costList>
+					<Steel>200</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
 			</value>
 		</li>
 
 		<!-- == Shared patches == -->
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName = "RN2Turret_SentryGun" or
-				defName = "RN2Gun_M60Mounted_MG" or
-				defName = "RN2Gun_MK19_GL" or
-				defName = "Turret_KonkursATGM" or
-				defName = "RN2Gun_M2Browning_MG"]/fillPercent</xpath>
-					<value>
-						<fillPercent>0.85</fillPercent>
-					</value>
-			</li>
+    		<!-- === Remove Shells === -->
+    		<li Class="PatchOperationRemove">
+      			<xpath>Defs/ThingDef[defName="Shell_SACLOS_HE" or defName="Shell_SPG_HE"]</xpath>
+    		</li>	
 
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"
 						or defName="Sov_Turret_NSV"
 						or defName="RD_Turret_AGS"
-						or defName="Turret_KonkursATGM"]/statBases</xpath>
+						or defName="Turret_KonkursATGM"
+						or defName="Turret_SPG9AT"]/statBases</xpath>
 			<value>
 				<ShootingAccuracyTurret>2.0</ShootingAccuracyTurret>
 			</value>
@@ -319,7 +348,8 @@
 			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"
 						or defName="Sov_Turret_NSV"
 						or defName="RD_Turret_AGS"
-						or defName="Turret_KonkursATGM"]/thingClass</xpath>
+						or @Name="Base_KonkursAT"
+						or @Name="Base_SPG9AT"]/thingClass</xpath>
 			<value>
 				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 			</value>
@@ -329,15 +359,13 @@
 			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"
 						or defName="Sov_Turret_NSV"
 						or defName="RD_Turret_AGS"
-						or defName="Turret_KonkursATGM"
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 		</li>
 
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[defName="Sov_Turret_DShK"
 						or defName="Sov_Turret_NSV"
-						or defName="RD_Turret_AGS"
-		]/researchPrerequisites</xpath>
+						or defName="RD_Turret_AGS"]/researchPrerequisites</xpath>
 			<value>
 				<researchPrerequisites>
 					<li>CE_TurretHeavyWeapons</li>
@@ -346,14 +374,45 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[
-			defName="Turret_KonkursATGM"
-		]/researchPrerequisites</xpath>
+			<xpath>Defs/ThingDef[@Name="Base_KonkursAT"]/researchPrerequisites</xpath>
 			<value>
 				<researchPrerequisites>
 					<li>CE_TurretHeavyWeapons</li>
 					<li>CE_Launchers</li>
 				</researchPrerequisites>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="Base_SPG9AT"]/researchPrerequisites</xpath>
+			<value>
+				<researchPrerequisites>
+					<li>CE_Launchers</li>
+				</researchPrerequisites>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Sov_Gun_DShK"
+						or defName="Sov_Gun_NSV"
+						or defName="Sov_Gun_AGS"
+						or @Name="Base_KonkursAT_Weapon"
+						or @Name="Base_PodnosMortar_Weapon"
+						or @Name="Base_SPG9AT_Weapon"]/menuHidden</xpath>
+			<value>
+    				<modExtensions>
+      				<li Class="CombatExtended.ThingDefExtensionCE">
+        					<MenuHidden>True</MenuHidden>
+     			 	</li>
+    				</modExtensions>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="Base_KonkursAT"
+					or @Name="Base_SPG9AT"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.85</fillPercent>
 			</value>
 		</li>
 
