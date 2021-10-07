@@ -325,5 +325,6 @@ WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
 Xenn Race	|
 Xenohumans - Anthromorphs |
+Xenohumans Expanded |
 Xenoorca Race	|
 Zombieland	|
