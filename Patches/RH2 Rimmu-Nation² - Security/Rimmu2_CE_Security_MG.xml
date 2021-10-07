@@ -58,9 +58,15 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Gun_M60Mounted_MG"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Gun_M60Mounted_MG"]/statBases</xpath>
 			<value>
-				<WorkToBuild>40000</WorkToBuild>
+    				<statBases>
+					<Mass>12</Mass>
+      					<MaxHitPoints>120</MaxHitPoints>
+      					<Flammability>0.5</Flammability>
+      					<WorkToBuild>40000</WorkToBuild>
+      					<Beauty>-20</Beauty>
+    				</statBases>
 			</value>
 		</li>
 
@@ -115,9 +121,15 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Gun_M2Browning_MG"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Gun_M2Browning_MG"]/statBases</xpath>
 			<value>
-				<WorkToBuild>60500</WorkToBuild>
+    				<statBases>
+					<Mass>58</Mass>
+      					<MaxHitPoints>150</MaxHitPoints>
+      					<Flammability>0.5</Flammability>
+      					<WorkToBuild>60000</WorkToBuild>
+      					<Beauty>-30</Beauty>
+    				</statBases>
 			</value>
 		</li>
 
@@ -173,9 +185,15 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Gun_M134Minigun_MG"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Gun_M134Minigun_MG"]/statBases</xpath>
 			<value>
-				<WorkToBuild>52500</WorkToBuild>
+    				<statBases>
+					<Mass>39</Mass>
+      					<MaxHitPoints>150</MaxHitPoints>
+      					<Flammability>0.5</Flammability>
+      					<WorkToBuild>65000</WorkToBuild>
+      					<Beauty>-30</Beauty>
+    				</statBases>
 			</value>
 		</li>
 
@@ -231,9 +249,15 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Gun_MK19_GL"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Gun_MK19_GL"]/statBases</xpath>
 			<value>
-				<WorkToBuild>62500</WorkToBuild>
+    				<statBases>
+					<Mass>35.2</Mass>
+      					<MaxHitPoints>150</MaxHitPoints>
+      					<Flammability>0.5</Flammability>
+      					<WorkToBuild>62000</WorkToBuild>
+      					<Beauty>-30</Beauty>
+    				</statBases>
 			</value>
 		</li>
 
@@ -268,7 +292,7 @@
 			</Properties>
 			<AmmoUser>
 				<magazineSize>1</magazineSize>
-				<reloadTime>9.8</reloadTime>
+				<reloadTime>9.9</reloadTime>
 				<ammoSet>AmmoSet_BGM71</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -286,11 +310,17 @@
 				<specialDisplayRadius>120</specialDisplayRadius>
 			</value>
 		</li>
-
+				
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Gun_TOW_Launcher"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Gun_TOW_Launcher"]/statBases</xpath>
 			<value>
-				<WorkToBuild>60000</WorkToBuild>
+    				<statBases>
+					<Mass>41</Mass>
+      					<MaxHitPoints>150</MaxHitPoints>
+      					<Flammability>0.5</Flammability>
+      					<WorkToBuild>60000</WorkToBuild>
+      					<Beauty>-20</Beauty>
+    				</statBases>
 			</value>
 		</li>
 
@@ -310,7 +340,7 @@
 				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
-				<warmupTime>2.2</warmupTime>
+				<warmupTime>2.1</warmupTime>
 				<range>65</range>
 				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
 				<burstShotCount>300</burstShotCount>
@@ -342,9 +372,17 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="RN2Turret_SentryGun"]/statBases/WorkToBuild</xpath>
+			<xpath>Defs/ThingDef[defName="RN2Turret_SentryGun"]/statBases</xpath>
 			<value>
-				<WorkToBuild>75500</WorkToBuild>
+    				<statBases>
+      				<MaxHitPoints>150</MaxHitPoints>
+      				<Flammability>0.7</Flammability>
+      				<WorkToBuild>75500</WorkToBuild>
+      				<Mass>50</Mass>
+      				<Beauty>-20</Beauty>
+				<AimingAccuracy>0.30</AimingAccuracy>
+      				<ShootingAccuracyTurret>0.6</ShootingAccuracyTurret>
+    				</statBases>
 			</value>
 		</li>
 
@@ -353,8 +391,15 @@
 			<value>
 				<li Class="CompProperties_Power">
 					<compClass>CompPowerTrader</compClass>
-					<basePowerConsumption>1400</basePowerConsumption>
+					<basePowerConsumption>900</basePowerConsumption>
 				</li>	
+			</value>
+		</li>
+				
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "RN2Turret_SentryGun"]/building/turretBurstCooldownTime]</xpath>
+			<value>
+				<turretBurstCooldownTime>0.56</turretBurstCooldownTime>
 			</value>
 		</li>
 
@@ -380,14 +425,6 @@
 						or defName="RN2Gun_TOW_Launcher"]/statBases</xpath>
 			<value>
 				<ShootingAccuracyTurret>2.0</ShootingAccuracyTurret>
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="RN2Turret_SentryGun"]/statBases/ShootingAccuracyTurret</xpath>
-			<value>
-				<AimingAccuracy>0.25</AimingAccuracy>
-				<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
 			</value>
 		</li>
 
