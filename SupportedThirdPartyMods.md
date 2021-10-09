@@ -139,6 +139,7 @@ FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
 Flak Dusters	|
+Forgelings race	|
 Forgotten Realms - Lizardfolk	|
 Forgotten Realms - Minotaur	|
 Forsakens	|
