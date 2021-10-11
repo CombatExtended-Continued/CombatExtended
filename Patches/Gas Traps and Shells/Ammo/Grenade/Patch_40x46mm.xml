@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+		<!-- ==================== AmmoSet ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
+		<value>
+			<Ammo_40x46mmGrenade_Toxic>Bullet_40x46mmGrenade_Toxic</Ammo_40x46mmGrenade_Toxic>
+			<Ammo_40x46mmGrenade_Rage>Bullet_40x46mmGrenade_Rage</Ammo_40x46mmGrenade_Rage>
+			<Ammo_40x46mmGrenade_TearGas>Bullet_40x46mmGrenade_TearGas</Ammo_40x46mmGrenade_TearGas>
+			<Ammo_40x46mmGrenade_Sleep>Bullet_40x46mmGrenade_Sleep</Ammo_40x46mmGrenade_Sleep>
+			<Ammo_40x46mmGrenade_Fear>Bullet_40x46mmGrenade_Fear</Ammo_40x46mmGrenade_Fear>
+			<Ammo_40x46mmGrenade_Acid>Bullet_40x46mmGrenade_Acid</Ammo_40x46mmGrenade_Acid>
+			<Ammo_40x46mmGrenade_MechVirus>Bullet_40x46mmGrenade_MechVirus</Ammo_40x46mmGrenade_MechVirus>
+			<Ammo_40x46mmGrenade_AntiBug>Bullet_40x46mmGrenade_AntiBug</Ammo_40x46mmGrenade_AntiBug>
+		</value>
+		</li>
+		
+		<!-- ==================== Ammo ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_Toxic</defName>
+			<label>40x46mm grenade (Toxic)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/Toxic</texPath>	
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>							
+			</statBases>
+			<ammoClass>Toxic</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+				</li>
+			</comps>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_Rage</defName>
+			<label>40x46mm grenade (Rage)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/Rage</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>Rage</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+				</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_TearGas</defName>
+			<label>40x46mm grenade (Tear gas)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/TearGas</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>TearGas</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+				</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_Sleep</defName>
+			<label>40x46mm grenade (Sleep)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/Sleep</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>Sleep</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+			</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_Fear</defName>
+			<label>40x46mm grenade (Fear)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/Fear</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>Fear</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+			</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_Acid</defName>
+			<label>40x46mm grenade (Acid)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/Acid</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>Acid</ammoClass>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+			</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_MechVirus</defName>
+			<label>40x46mm grenade (Nanomachines)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/MechVirus</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>4.25</MarketValue>								
+			</statBases>
+			<ammoClass>MechVirus</ammoClass>
+			<generateAllowChance>0</generateAllowChance>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>MechanoidVirusGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+			</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+			<defName>Ammo_40x46mmGrenade_AntiBug</defName>
+			<label>40x46mm grenade (Insecticide)</label>
+			<graphicData>
+				<texPath>Things/Ammo/GrenadeLauncher/AntiBug</texPath>			
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.25</MarketValue>								
+			</statBases>
+			<ammoClass>AntiBug</ammoClass>
+			<generateAllowChance>0</generateAllowChance>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>1</Fragment_Large>
+				</fragments>
+				</li>
+				<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.5</explosiveRadius>
+				<postExplosionSpawnThingDef>AntiBugGas</postExplosionSpawnThingDef>
+				<postExplosionSpawnChance>1</postExplosionSpawnChance>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<explodeOnKilled>True</explodeOnKilled>
+				<wickTicks>30~60</wickTicks>
+			</li>
+			</comps>
+			
+			</ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Projectiles ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_Toxic</defName>
+			<label>40x46mm grenade (Toxic)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_Rage</defName>
+			<label>40x46mm grenade (Rage)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_TearGas</defName>
+			<label>40x46mm grenade (Tear gas)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_Sleep</defName>
+			<label>40x46mm grenade (Sleep)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_Fear</defName>
+			<label>40x46mm grenade (Fear)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_Acid</defName>
+			<label>40x46mm grenade (Acid)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_MechVirus</defName>
+			<label>40x46mm grenade (Nanomachines)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>MechanoidVirusGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+			<defName>Bullet_40x46mmGrenade_AntiBug</defName>
+			<label>40x46mm grenade (Insecticide)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>2.5</explosionRadius>
+				<damageDef>Smoke</damageDef>
+				<postExplosionSpawnThingDef>AntiBugGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			</projectile>
+			</ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Recipes ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_Toxic</defName>
+			<label>make 40x46mm toxic gas grenades x100</label>
+			<description>Craft 100 40x46mm toxic gas grenades.</description>
+			<jobString>Making 40x46mm toxic gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_ToxicGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_ToxicGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_Toxic>100</Ammo_40x46mmGrenade_Toxic>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_Rage</defName>
+			<label>make 40x46mm rage gas grenades x100</label>
+			<description>Craft 100 40x46mm rage gas grenades.</description>
+			<jobString>Making 40x46mm rage gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_RageGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_RageGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_Rage>100</Ammo_40x46mmGrenade_Rage>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_TearGas</defName>
+			<label>make 40x46mm tear gas grenades x100</label>
+			<description>Craft 100 40x46mm tear gas grenades.</description>
+			<jobString>Making 40x46mm tear gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_TearGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_TearGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_TearGas>100</Ammo_40x46mmGrenade_TearGas>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_Sleep</defName>
+			<label>make 40x46mm sleep gas grenades x100</label>
+			<description>Craft 100 40x46mm sleep gas grenades.</description>
+			<jobString>Making 40x46mm sleep gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_SleepGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_SleepGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_Sleep>100</Ammo_40x46mmGrenade_Sleep>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_Fear</defName>
+			<label>make 40x46mm fear gas grenades x100</label>
+			<description>Craft 100 40x46mm fear gas grenades.</description>
+			<jobString>Making 40x46mm fear gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_FearGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_FearGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_Fear>100</Ammo_40x46mmGrenade_Fear>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_Acid</defName>
+			<label>make 40x46mm corrosive gas grenades x100</label>
+			<description>Craft 100 40x46mm corrosive gas grenades.</description>
+			<jobString>Making 40x46mm corrosive gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_AcidGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_AcidGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_Acid>100</Ammo_40x46mmGrenade_Acid>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_MechVirus</defName>
+			<label>make 40x46mm nanomachines grenades x100</label>
+			<description>Craft 100 40x46mm nanomachines grenades.</description>
+			<jobString>Making 40x46mm nanomachines grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_MechVirusGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+					<count>4</count>
+				</li> 
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_MechVirusGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_MechVirus>100</Ammo_40x46mmGrenade_MechVirus>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_40x46mmGrenade_AntiBug</defName>
+			<label>make 40x46mm insecticide grenades x100</label>
+			<description>Craft 100 40x46mm insecticide grenades.</description>
+			<jobString>Making 40x46mm insecticide grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>74</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_AntibugGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li> 
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_AntibugGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_40x46mmGrenade_AntiBug>100</Ammo_40x46mmGrenade_AntiBug>
+			</products>
+			<workAmount>9800</workAmount>
+			</RecipeDef>
+		</value>
+		</li>
+		
+		</operations>
+	</match>
+</Operation>
+</Patch>

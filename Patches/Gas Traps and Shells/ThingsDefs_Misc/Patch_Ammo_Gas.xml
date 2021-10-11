@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+		<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoCategoryDef>
+					<defName>MechVirus</defName>
+					<label>Nanomachines</label>
+					<labelShort>Nano</labelShort>
+					<description>This shell contains nanomachines designed to latch onto and wreck havoc on the systems of mechanoids. Ineffective against organic life.</description>
+					</CombatExtended.AmmoCategoryDef>				
+				</value>
+		</li>
+		
+				<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<CombatExtended.AmmoCategoryDef>
+					<defName>AntiBug</defName>
+					<label>Insecticide</label>
+					<labelShort>Anti-Bug</labelShort>
+					<description>This shell is filled with a special aerosol specially designed to kill insectoids.</description>
+					</CombatExtended.AmmoCategoryDef>				
+				</value>
+		</li>
+		
+		</operations>
+	</match>
+</Operation>
+</Patch>		

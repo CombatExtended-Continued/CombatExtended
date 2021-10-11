@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+			
+			<!-- Change gas colors to better fit gaz type/texture colors... -->
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="MechanoidVirusGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.6,0.7,0.7,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="AntiBugGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.7,0.6,0.0,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="ToxicGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.2,0.4,0.2,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="SleepGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.4,0.3,0.9,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="RageGas"]/graphicData/color</xpath>
+			<value>
+				<color>(1.0,0.3,0.4,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="AcidGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.6,0.8,0.1,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FearGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.7,0.3,0.3,0.3)</color>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="TearGas"]/graphicData/color</xpath>
+			<value>
+				<color>(0.6,0.2,0.9,0.3)</color>
+			</value>
+			</li>
+			
+			<!-- Change damage type of certain shells, to be used in sieges -->
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasToxic"]/projectile/damageDef</xpath>
+			<value>
+				<damageDef>Bomb</damageDef>
+			</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasAcid"]/projectile/damageDef</xpath>
+			<value>
+				<damageDef>Bomb</damageDef>
+			</value>
+			</li>
+			
+			<!-- Change shell textures -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasToxic"]/graphicData/texPath</xpath>
+				<value>
+				<texPath>Things/Ammo/Mortar/Toxic</texPath>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasRage"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/Rage</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasTear"]/graphicData/texPath</xpath>
+				<value>
+			<texPath>Things/Ammo/Mortar/TearGas</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasFear"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/Fear</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasSleep"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/Sleep</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasAcid"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/Acid</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_MechVirus"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/MechVirus</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Ammo/Mortar/AntiBug</texPath>
+			</value>
+			</li>
+			
+			<!-- Change projectile textures -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Bullet_Shell_GasToxic"]/graphicData/texPath</xpath>
+				<value>
+				<texPath>Things/Projectile/Mortar/Toxic</texPath>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasRage"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/Rage</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasTear"]/graphicData/texPath</xpath>
+				<value>
+			<texPath>Things/Projectile/Mortar/TearGas</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasFear"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/Fear</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasSleep"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/Sleep</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasAcid"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/Acid</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_MechVirus"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/MechVirus</texPath>
+			</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Shell_GasAntiBug"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/Mortar/AntiBug</texPath>
+			</value>
+			</li>
+			
+			<!-- Change shell names to better fit Combat Extended -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasToxic"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Toxic)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasRage"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Rage)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasTear"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Tear gas)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasSleep"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Sleep)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasFear"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Fear)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasAcid"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Acid)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_MechVirus"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Nanomachines)</label>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]/label</xpath>
+				<value>
+				<label>81mm mortar shell (Insecticide)</label>
+				</value>
+			</li>
+			
+		
+		</operations>
+	</match>
+</Operation>
+</Patch>		
