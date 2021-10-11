@@ -61,9 +61,16 @@ namespace CombatExtended
 
         public override void Tick()
         {
-	    if (density > DensityDissipationThreshold && Rand.Range(0,10) != 5)   //very low density smoke clouds eventually dissipate on their own
+	    if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
                 destroyTick++;
+		if (Rand.Range(0,10) == 5) {
+		  float d = density * 0.01f;
+		  density -= d;
+		  if (d > 0.01 * MaxDensity || (Random.Range(0, (int)(0.01*MaxDensity)) < d)) {
+		    FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
+		  }
+		}
             }
 
             if ((GenTicks.TicksGame + updateTickOffset) % UpdateIntervalTicks == 0)
