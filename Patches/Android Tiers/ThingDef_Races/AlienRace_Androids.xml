@@ -110,6 +110,12 @@
 				    <li Class="CombatExtended.CompProperties_Inventory" />
 				  </value>
 				</li>
+				  
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier" or defName="Android2Tier"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>BasePawnSimple</value>
+				</li>
 				
 				<li Class="PatchOperationAddModExtension">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier" or 
@@ -312,7 +318,7 @@
 				<li Class="PatchOperationAdd">
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]/statBases</xpath>
 				  <value>
-					<NightVisionEfficiency>0.2</NightVisionEfficiency>
+					<NightVisionEfficiency>0.25</NightVisionEfficiency>
 				    	<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1.1</MeleeCritChance>
 					<MeleeParryChance>1.1</MeleeParryChance>
@@ -381,10 +387,11 @@
 				  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]/statBases</xpath>
 				  <value>
 					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+					<AimingAccuracy>1.1</AimingAccuracy>
 				    	<MeleeDodgeChance>1.2</MeleeDodgeChance>
 					<MeleeCritChance>1.2</MeleeCritChance>
 					<MeleeParryChance>1.2</MeleeParryChance>
-					<Suppressability>0.3</Suppressability>
+					<Suppressability>0.33</Suppressability>
 					<SmokeSensitivity>0</SmokeSensitivity>
 				  </value>
 				</li>

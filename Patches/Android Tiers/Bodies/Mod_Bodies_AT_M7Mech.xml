@@ -13,6 +13,55 @@
 				<match Class="PatchOperationSequence">
 					<operations>
 					<!--Android4Tier-->
+
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/BodyDef[defName = "AndroidM7Mech"]/corePart/parts/li[def = "LeftMechanicalShoulder"]/parts/li[def = "LeftMechanicalArm"]/parts</xpath>
+    <value>
+      <li>
+        <def>MechanicalUpperActuator</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+      <li>
+        <def>MechanicalUpperPiston</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+    </value>
+  </li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/BodyDef[defName = "AndroidM7Mech"]/corePart/parts/li[def = "RightMechanicalShoulder"]/parts/li[def = "RightMechanicalArm"]/parts</xpath>
+    <value>
+      <li>
+        <def>MechanicalUpperActuator</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+      <li>
+        <def>MechanicalUpperPiston</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+    </value>
+  </li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/BodyDef[defName = "AndroidM7Mech"]/corePart/parts/li[def="RightMechanicalLeg" or def="LeftMechanicalLeg"]/parts</xpath>
+    <value>
+      <li>
+        <def>MechanicalLowerActuator</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+      <li>
+        <def>MechanicalLowerPiston</def>
+        <coverage>0.12</coverage>
+        <depth>Inside</depth>
+      </li>
+    </value>
+  </li>
+
 					<li Class="PatchOperationAdd">
 						<xpath>/Defs/BodyDef[defName="AndroidM7Mech"]/corePart/groups</xpath>
 						<value>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using CombatExtended.Utilities;
 using RimWorld;
 using RimWorld.BaseGen;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended.AI
@@ -14,7 +16,11 @@ namespace CombatExtended.AI
 
         public static CompTacticalManager GetTacticalManager(this Pawn pawn)
         {
-            return _compTactical.TryGetValue(pawn, out var comp) ? comp : _compTactical[pawn] = pawn.TryGetComp<CompTacticalManager>();
+            if (_compTactical.TryGetValue(pawn, out var comp))
+                return comp;
+            comp = pawn.TryGetComp<CompTacticalManager>();
+            if (comp != null) _compTactical[pawn] = comp;
+            return comp;
         }
 
         public static bool HiddingBehindCover(this Pawn pawn, LocalTargetInfo targetFacing)
@@ -32,6 +38,33 @@ namespace CombatExtended.AI
                     return true;
             }
             return false;
+        }
+
+        public static float CoverScoreFor(this Map map, IntVec3 startPos, IntVec3 endPos)
+        {
+            float dx = (endPos.x - startPos.x);
+            float dz = (endPos.z - startPos.z);
+            float d = Mathf.Max(Mathf.Abs(dx), Mathf.Abs(dz));
+            float score = 0f;
+            if (d == 0)
+                return 0f;
+            dx /= d;
+            dz /= d;
+            int i = 1;
+            while (i < 4 && startPos.x + dx * i <= endPos.x && startPos.z + dz * i <= endPos.z)
+            {
+                Thing cover = (startPos + new IntVec3((int)(dx * i), 0, (int)(dz * i))).GetCover(map);
+                if (cover != null)
+                {
+                    if (cover.def.Fillage == FillCategory.Partial)
+                        score += 0.99999f;
+                    else if (cover.def.Fillage == FillCategory.Full)
+                        score += 0.33333f;
+                }
+                map.debugDrawer.FlashCell((startPos + new IntVec3((int)(dx * i), 0, (int)(dz * i))), 1.0f);
+                i++;
+            }
+            return score;
         }
 
         public static void TrySetFireMode(this CompFireModes fireModes, FireMode mode)

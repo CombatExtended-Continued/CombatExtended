@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Animals Expanded — Caves</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="VAE_Arachnid"]//*[
+          def="Body" or
+            def="VAE_Thorax" or
+            def="Pronotum" or
+            def="InsectNostril" or
+            def="Eye" or
+            def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_Arachnid"]//*[
+          def="InsectMouth" or 
+          def="InsectNostril" or 
+          def="Eye"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_Arachnid"]//*[
+          def="Body" or
+          def="VAE_Thorax" or
+          def="Pronotum" or
+          def="InsectHead" or
+          def="InsectNostril" or
+          def="InsectMouth" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="VAE_WyvernBody"]//*[
+          def="Body" or
+            def="VAE_Wing" or
+            def="Neck" or
+            def="Nose" or
+            def="Ear" or
+            def="Eye" or
+            def="Leg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_WyvernBody"]//*[
+          def="AnimalJaw" or 
+          def="Nose" or 
+          def="Eye"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_WyvernBody"]//*[
+          def="Body" or
+          def="VAE_Wing" or
+          def="Neck" or
+          def="Head" or
+          def="Ear" or
+          def="Nose" or
+          def="Paw" or
+          def="AnimalJaw" or
+          def="Leg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="VAE_InsectoidHulkBody"]//*[
+          def="Shell" or
+            def="Elytra" or
+            def="Pronotum" or
+            def="InsectNostril" or
+            def="Antenna" or
+            def="Eye" or
+            def="InsectLeg"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_InsectoidHulkBody"]//*[
+          def="InsectMouth" or 
+          def="InsectNostril" or 
+          def="Eye"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="VAE_InsectoidHulkBody"]//*[
+          def="Body" or
+          def="Elytra" or
+          def="Pronotum" or
+          def="InsectHead" or
+          def="InsectNostril" or
+          def="HeadClaw" or
+          def="InsectMouth" or
+          def="VAE_InsectArm" or
+          def="InsectLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

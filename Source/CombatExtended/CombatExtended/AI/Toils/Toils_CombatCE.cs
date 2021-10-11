@@ -32,8 +32,8 @@ namespace CombatExtended.AI
                     driver.EndJobWith(JobCondition.Incompletable);
                     return;
                 }
-                startTick = GenTicks.TicksGame;
-                reloadingTime = Mathf.CeilToInt(compAmmo.Props.reloadTime.SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
+                startTick = GenTicks.TicksGame;                
+                reloadingTime = Mathf.CeilToInt(compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             });
             waitToil.tickAction = () =>
             {

@@ -8,19 +8,17 @@
 			<operations>
 
 				<!-- ========== Forsaken Black Hydra ========== -->
-
-				<!-- (CE implementation based on BFG 9000 from CP DOOM mod, with infinite ammo as per item description in original Forsakens mod) -->
  
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>ForsakenHydra</defName>
 					<statBases>
 						<Mass>10.00</Mass>
-						<RangedWeapon_Cooldown>6.00</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>1.20</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.00</SightsEfficiency>
 						<ShotSpread>0.01</ShotSpread>
-						<SwayFactor>0.88</SwayFactor>
+						<SwayFactor>2</SwayFactor>
 						<Bulk>13.00</Bulk>
-						<WorkToMake>72500</WorkToMake>
+						<WorkToMake>80000</WorkToMake>
 					</statBases>
 					<costList>
 						<Silver>100</Silver>
@@ -31,8 +29,8 @@
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_HydraBlast</defaultProjectile>
-						<warmupTime>10.00</warmupTime>
-						<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+						<warmupTime>3</warmupTime>
+						<ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
 						<range>62</range>
 						<soundCast>ChargeLance_Fire</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -43,7 +41,10 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 					</Properties>
-
+    					<AmmoUser>
+      						<magazineSize>1</magazineSize>
+      						<reloadTime>6</reloadTime>
+   					 </AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
@@ -88,16 +89,23 @@
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>HydraBlast</damageDef>
-								<damageAmountBase>141</damageAmountBase>
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>50</damageAmountBase>
 								<armorPenetrationSharp>76</armorPenetrationSharp>
 								<armorPenetrationBlunt>42.273</armorPenetrationBlunt>
-								<speed>75</speed>
-								<explosionRadius>3</explosionRadius>
-								<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-								<preExplosionSpawnChance>1</preExplosionSpawnChance>
+								<speed>90</speed>
 								<ai_IsIncendiary>true</ai_IsIncendiary>
 							</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>120</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>3</explosiveRadius>
+      			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+		  </li>
+		</comps>
 						</ThingDef>
 					</value>
 				</li>

@@ -49,7 +49,7 @@ namespace CombatExtended
             
             int num = GenRadial.NumCellsInRadius(20f);
             int num2 = ammoComp.CurMagCount;
-            int num3 = Mathf.CeilToInt((float)ammoComp.Props.magazineSize / 6f);
+            int num3 = Mathf.CeilToInt((float)ammoComp.MagSize / 6f);
             
             for (int i = 0; i < num; i++)
             {
@@ -95,7 +95,7 @@ namespace CombatExtended
             {
                 if (EnoughAmmoAround(turret)) continue;
                 if (turret.CompAmmo != null && turret.CompAmmo.CurrentAmmo != null)
-                    DropSupplies(turret.CompAmmo.CurrentAmmo, Mathf.CeilToInt(0.5f * (float)turret.CompAmmo.Props.magazineSize), turret.Position);
+                    DropSupplies(turret.CompAmmo.CurrentAmmo, Mathf.CeilToInt(0.5f * (float)turret.CompAmmo.MagSize), turret.Position);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RimWorld;
@@ -48,6 +49,14 @@ namespace CombatExtended
             // Process all weapons
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
                 ProcessWeapons(def);
+
+            // Prepare attachments
+            foreach (AttachmentDef def in DefDatabase<AttachmentDef>.AllDefs)
+                def.ValidateStats();
+
+            // Prepare weaponPlatforms
+            foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
+                def.PrepareStats();            
         }
 
         /// <summary>
@@ -194,11 +203,26 @@ namespace CombatExtended
                 isAOEArray[def.index] = isAOEArray[props.ammoSet.index];
 
             isAOEArray[def.index] = isAOEArray[def.index]
-                || (def.weaponTags?.Contains("CE_AI_Grenade") ?? false)
-                || (def.weaponTags?.Contains("CE_AI_Launcher") ?? false)
+                || (def.weaponTags?.Contains("CE_AI_AOE") ?? false)
                 || (def.verbs?.Any(v => v.defaultProjectile?.thingClass == typeof(ProjectileCE_Explosive)) ?? false)
                 || (def.verbs?.Any(v => v.verbClass == typeof(Verb_ShootCEOneUse)) ?? false)
                 || (def.comps?.Any(c => c.compClass == typeof(CompExplosive) || c.compClass == typeof(CompExplosiveCE)) ?? false);
+
+            float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots });
+
+            float burstShotCount = def.verbs.Max(v => v.burstShotCount);
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.BurstShotCount, value = burstShotCount });
+
+            float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);            
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.Recoil, value = recoil });
+                        
+            float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
+                def.statBases.Add(new StatModifier() { stat = CE_StatDefOf.ReloadTime, value = reloadTime });            
         }
 
         /// <summary>

@@ -285,7 +285,7 @@
 					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
 					<SightsEfficiency>3</SightsEfficiency>
 					<ShotSpread>0.02</ShotSpread>
-					<SwayFactor>1.89</SwayFactor>
+					<SwayFactor>1.25</SwayFactor>
 					<Bulk>20</Bulk>
 				</statBases>
 				<Properties>
@@ -299,6 +299,9 @@
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>12</muzzleFlashScale>
 					<recoilPattern>Mounted</recoilPattern>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
 				</Properties>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
@@ -349,6 +352,9 @@
 						<soundCast>RS_ShotJI</soundCast>
 						<muzzleFlashScale>16</muzzleFlashScale>
 						<recoilPattern>Mounted</recoilPattern>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
 					  </li>
 					</verbs>
 					<comps>
@@ -404,6 +410,56 @@
 					<li>TurretGun</li>
 				</weaponTags>
 			</li>
+			
+			<!-- ========== Cannon ========== -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName = "Turret_RSCannon"]/inspectorTabs</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Turret_RSCannon"					
+				]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>5</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Artillery_RSCannon</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+					<SightsEfficiency>3</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.89</SwayFactor>
+					<Bulk>20</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.13</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ATGM_HE</defaultProjectile>
+					<warmupTime>5</warmupTime>
+					<range>62</range>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>5</reloadTime>
+					<ammoSet>AmmoSet_81mmMortarShellRimsenal</ammoSet>
+				</AmmoUser>
+				<FireModes>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
 		
 			<!-- ========== Common to all Defensive Turrets ========== -->
 			<li Class="PatchOperationReplace">
@@ -412,7 +468,8 @@
 					@Name="NestMissile" or
 					@Name="NestHMG" or
 					@Name="NestAGS" or
-					@Name="NestMMG"					
+					@Name="NestMMG"	or
+					defName="Turret_RSCannon"					
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -423,7 +480,8 @@
 				<xpath>Defs/ThingDef[
 					defName="Turret_NestHMG" or
 					defName="Turret_NestAGS" or				
-					defName="RocketTurret"
+					defName="RocketTurret"or				
+					defName="Turret_RSCannon"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
  
@@ -431,7 +489,8 @@
 				<xpath>Defs/ThingDef[
 					defName="Turret_NestHMG" or
 					defName="Turret_NestAGS" or
-					defName="Turret_NestMMG"		
+					defName="Turret_NestMMG" or
+					defName="Turret_RSCannon"		
 				]/statBases</xpath>
 				<value>
 					<AimingAccuracy>0.5</AimingAccuracy>
@@ -445,7 +504,8 @@
 					@Name="ShardSentry" or 
 					@Name="SuvTurret" or
 					@Name="WaveEmitter" or
-					defName="RSDummy"
+					defName="RSDummy" or
+					defName="Turret_Smartmine"
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -455,7 +515,8 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[
 					defName="Turret_ShardSentry" or 
-					defName="Turret_SuvTurret"
+					defName="Turret_SuvTurret" or
+					defName="Turret_Smartmine"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
  
@@ -464,7 +525,8 @@
 					defName="Turret_ShardSentry" or 
 					defName="Turret_SuvTurret" or
 					defName="Turret_WaveEmitter" or
-					defName="RSDummy"
+					defName="RSDummy" or
+					defName="Turret_Smartmine"
 				]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
@@ -482,7 +544,8 @@
 					@Name="ShardSentry" or
 					@Name="SuvTurret" or
 					@Name="WaveEmitter" or
-					defName="RSDummy"
+					defName="RSDummy" or
+					defName="Turret_RSCannon"
 				]/fillPercent</xpath>
 				<value>
 			            <fillPercent>0.85</fillPercent>
@@ -542,6 +605,41 @@
 						<preExplosionSpawnChance>1</preExplosionSpawnChance>						
 					</li>
 				</value>
+			</li>
+			
+			<!-- ========== Smart Mine ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_Smartmine</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.25</ShotSpread>
+					<SwayFactor>0</SwayFactor>
+					<Bulk>10</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_RifleYP</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>5</range>
+					<soundCast>Mortar_LaunchA</soundCast>
+					<muzzleFlashScale>20</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>12</reloadTime>
+					<ammoSet>AmmoSet_81mmMortarShellRimsenal</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<weaponTags>
+					<li>TurretGun</li>
+				</weaponTags>
 			</li>
 
 		</operations>

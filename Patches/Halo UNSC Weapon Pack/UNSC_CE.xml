@@ -140,13 +140,13 @@
 					<SwayFactor>2</SwayFactor>
 					<ShotSpread>0.01</ShotSpread>
 					<SightsEfficiency>2.25</SightsEfficiency>
-					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+					<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
 				</statBases>
 				<costList>
 				  <Steel>100</Steel>
           <Chemfuel>60</Chemfuel>
           <Plasteel>100</Plasteel>
-				  <ComponentSpacer>5</ComponentSpacer>
+				  <ComponentSpacer>6</ComponentSpacer>
 				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -160,7 +160,7 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>4</magazineSize>
-					<reloadTime>8.0</reloadTime>
+					<reloadTime>7.8</reloadTime>
 					<ammoSet>AmmoSet_SpartanLaserInf</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -184,8 +184,8 @@
 					<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
 		  		<secondaryDamage>
 					<li>
-			  		<def>Flame_Secondary</def>
-			  			<amount>200</amount>
+			  		<def>Burn</def>
+			  			<amount>100</amount>
 					</li>
 		  		</secondaryDamage>
 				</projectile>
@@ -229,7 +229,7 @@
 					<Bulk>1</Bulk>
 				</statBases>
 				<tradeTags>
-					<li>CE_AutoEnableTrade</li>
+					<li>CE_AutoEnableTrade_Sellable</li>
 					<li>CE_AutoEnableCrafting_FabricationBench</li>
 				</tradeTags>
 				<thingCategories>
@@ -246,7 +246,7 @@
 				<graphicClass>Graphic_StackCount</graphicClass>
 				</graphicData>
 				<statBases>
-					<MarketValue>4.69</MarketValue>
+					<MarketValue>10.69</MarketValue>
 				</statBases>
 				<ammoClass>Charged</ammoClass>
 			</ThingDef>
@@ -255,8 +255,8 @@
 
 			<RecipeDef ParentName="ChargeAmmoRecipeBase">
 				<defName>MakeAmmo_HeavyLaserChargePack</defName>
-				<label>make laser charge pack x40</label>
-				<description>Craft 40 laser charge pack.</description>
+				<label>make laser charge pack x10</label>
+				<description>Craft 10 laser charge pack.</description>
 				<jobString>Making laser charge pack.</jobString>
 				<ingredients>
 				<li>
@@ -265,7 +265,7 @@
 						<li>Plasteel</li>
 					</thingDefs>
 					</filter>
-					<count>8</count>
+					<count>10</count>
 				</li>
 				<li>
 					<filter>
@@ -273,7 +273,7 @@
 						<li>Steel</li>
 					</thingDefs>
 					</filter>
-					<count>4</count>
+					<count>10</count>
 				</li>	  
 				<li>
 					<filter>
@@ -281,7 +281,7 @@
 						<li>ComponentIndustrial</li>
 					</thingDefs>
 					</filter>
-					<count>8</count>
+					<count>6</count>
 				</li>
 				</ingredients>
 				<fixedIngredientFilter>
@@ -292,7 +292,7 @@
 				</thingDefs>
 				</fixedIngredientFilter>
 				<products>
-					<Ammo_HeavyLaserChargePack>40</Ammo_HeavyLaserChargePack>
+					<Ammo_HeavyLaserChargePack>10</Ammo_HeavyLaserChargePack>
 				</products>
 				<workAmount>8400</workAmount>
 			</RecipeDef>
@@ -409,7 +409,7 @@
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
       <recoilPattern>Mounted</recoilPattern>
-      <recoilAmount>1.31</recoilAmount>
+      <recoilAmount>1.33</recoilAmount>
     </Properties>
     <costList>
       <Steel>90</Steel>
@@ -659,11 +659,11 @@
 				<hasStandardCommand>True</hasStandardCommand>
 				<defaultProjectile>Bullet_16x65mm_HE</defaultProjectile>
 				<burstShotCount>1</burstShotCount>
-				<warmupTime>1.35</warmupTime>
+				<warmupTime>1.45</warmupTime>
 				<range>78</range>
         				<minRange>1.5</minRange>
 				<soundCast>Shot_Halo_Railgun</soundCast>
-				<soundCastTail>GunTail_Medium</soundCastTail>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>12</muzzleFlashScale>
 				<targetParams>
 					<canTargetLocations>true</canTargetLocations>

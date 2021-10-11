@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
+using System.Net.Mail;
 
 namespace CombatExtended
 {
@@ -59,6 +60,21 @@ namespace CombatExtended
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
 
+        public override int ShotsPerBurst
+        {
+            get
+            {
+                float shotsPerBurst = base.ShotsPerBurst;
+                if (EquipmentSource != null)
+                {
+                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
+                    if (modified > 0)
+                        shotsPerBurst = modified;
+                }
+                return (int) shotsPerBurst;
+            }
+        }
+
         public CompCharges CompCharges
         {
             get
@@ -104,7 +120,7 @@ namespace CombatExtended
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
 
         // Ammo variables
-        public CompAmmoUser CompAmmo
+        public virtual CompAmmoUser CompAmmo
         {
             get
             {
@@ -115,7 +131,7 @@ namespace CombatExtended
                 return compAmmo;
             }
         }
-        public ThingDef Projectile
+        public virtual ThingDef Projectile
         {
             get
             {
@@ -143,7 +159,7 @@ namespace CombatExtended
             }
         }
 
-        public CompFireModes CompFireModes
+        public virtual CompFireModes CompFireModes
         {
             get
             {
@@ -167,6 +183,21 @@ namespace CombatExtended
             }
         }
 
+        public float RecoilAmount
+        {
+            get
+            {
+                float recoil = VerbPropsCE.recoilAmount;
+                if(EquipmentSource != null)
+                {
+                    float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
+                    if (modified > 0)
+                        recoil = modified;
+                }
+                return recoil;
+            }
+        }
+
         private bool IsAttacking => ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
 
         private LightingTracker _lightingTracker = null;
@@ -174,7 +205,7 @@ namespace CombatExtended
         {
             get
             {
-                if (_lightingTracker == null)
+                if (_lightingTracker == null || _lightingTracker.map == null || _lightingTracker.map.Index < 0)
                 {
                     _lightingTracker = caster.Map.GetLightingTracker();
                 }
@@ -351,7 +382,7 @@ namespace CombatExtended
         /// <param name="angle">The ref float to have vertical recoil in radians added to.</param>
         private void GetRecoilVec(ref float rotation, ref float angle)
         {
-            var recoil = VerbPropsCE.recoilAmount;
+            var recoil = RecoilAmount;
             float maxX = recoil * 0.5f;
             float minX = -maxX;
             float maxY = recoil;
@@ -384,7 +415,7 @@ namespace CombatExtended
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
-            report.maxRange = verbProps.range;
+            report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
@@ -574,7 +605,7 @@ namespace CombatExtended
             if (!TryFindCEShootLineFromTo(root, targ, out shootLine))
             {
                 float lengthHorizontalSquared = (root - targ.Cell).LengthHorizontalSquared;
-                if (lengthHorizontalSquared > verbProps.range * verbProps.range)
+                if (lengthHorizontalSquared > EffectiveRange * EffectiveRange)
                 {
                     report = "Out of range";
                 }
@@ -732,14 +763,14 @@ namespace CombatExtended
                 resultingLine = default(ShootLine);
                 return false;
             }
-            if (verbProps.range <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
+            if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
-            if (num > verbProps.range * verbProps.range || num < verbProps.minRange * verbProps.minRange)
+            if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
                 return false;
@@ -795,12 +826,38 @@ namespace CombatExtended
                 goodDest = IntVec3.Invalid;
                 return false;
             }
+            // DISABLED: reason is testing a better alternative..
+            //if (ShooterPawn != null && !Caster.Faction.IsPlayerSafe() && IntercepterBlockingTarget(shotSource, targ.CenterVector3))
+            //{
+            //    goodDest = IntVec3.Invalid;
+            //    return false;
+            //}
             if (CanHitCellFromCellIgnoringRange(shotSource, targ.Cell, targ.Thing))
             {
                 goodDest = targ.Cell;
                 return true;
             }
             goodDest = IntVec3.Invalid;
+            return false;
+        }
+
+        private bool IntercepterBlockingTarget(Vector3 source, Vector3 target)
+        {
+            List<Thing> list = Caster.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Thing thing = list[i];
+                CompProjectileInterceptor interceptor = thing.TryGetComp<CompProjectileInterceptor>();
+                if (!interceptor.Active)
+                    continue;
+                float d1 = Vector3.Distance(source, thing.Position.ToVector3());
+                if (d1 < interceptor.Props.radius + 1)
+                    continue;
+                if (Vector3.Distance(target, thing.Position.ToVector3()) < interceptor.Props.radius)
+                    return true;
+                if (thing.Position.ToVector3().DistanceToSegment(source, target, out _) < interceptor.Props.radius)
+                    return true;
+            }
             return false;
         }
 

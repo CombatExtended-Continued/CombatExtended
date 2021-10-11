@@ -91,6 +91,10 @@ namespace CombatExtended.AI
             return null;
         }
 
+        public virtual void TickRarer()
+        {
+        }
+
         public virtual bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             return true;
@@ -105,6 +109,10 @@ namespace CombatExtended.AI
         }
 
         public virtual void PostExposeData()
+        {
+        }
+
+        public virtual void Notify_BulletImpactNearBy()
         {
         }
 

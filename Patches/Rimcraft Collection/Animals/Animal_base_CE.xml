@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[Ry]Rimcraft Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWDirewolf" 
+						  or @Name="BaseWoWElekk"
+						or @Name="BaseWoWForsakenhorse"
+						or @Name="BaseWoWHorse"
+						or @Name="BaseWoWKodo"
+						or @Name="BaseWoWNightsaber"
+						or @Name="BaseWoWRam"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWDragonhawk" 
+						  or @Name="BaseWoWFairyDragon"
+						or @Name="BaseWoWHawkstrider"
+						or @Name="BaseWoWMurloc"
+						or @Name="BaseWoWRaptor"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWDirewolf" or @Name="BaseWoWNightsaber" or @Name="BaseWoWRaptor"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>2</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWDragonhawk" or @Name="BaseWoWHawkstrider"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1.6</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWFairyDragon"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>0.9</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWElekk"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>3.6</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWKodo"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>5</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWForsakenhorse" or @Name="BaseWoWHorse"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>1.6</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWForsakenhorse" or @Name="BaseWoWHorse"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1.6</baseHealthScale>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWMurloc"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>1</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="BaseWoWMurloc"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>1</baseHealthScale>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

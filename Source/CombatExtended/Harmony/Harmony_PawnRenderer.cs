@@ -49,6 +49,9 @@ namespace CombatExtended.HarmonyCE
          * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>               
          */
 
+        // dubwise apparel tweak loaded check
+        private static bool quickFast_Loaded = AccessTools.Method("QuickFast.bs:hairScale_Changed") != null;
+
         /// <summary>
         /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
         /// </summary>                
@@ -99,13 +102,13 @@ namespace CombatExtended.HarmonyCE
          * Should Allow headgear to render since most CE gear has full head coverage.
          */
         [HarmonyPatch(typeof(PawnRenderer), "DrawBodyApparel")]
-        private static class Harmony_PawnRenderer_DrawBodyApparel
+        public static class Harmony_PawnRenderer_DrawBodyApparel
         {
             private static MethodBase mDrawMeshNowOrLater = AccessTools.Method(typeof(GenDraw), nameof(GenDraw.DrawMeshNowOrLater), parameters: new[] { typeof(Mesh), typeof(Vector3), typeof(Quaternion), typeof(Material), typeof(bool) });
 
             private static FieldInfo fShell = AccessTools.Field(typeof(ApparelLayerDefOf), nameof(ApparelLayerDefOf.Shell));
 
-            private static bool IsVisibleLayer(ApparelLayerDef def)
+            public static bool IsVisibleLayer(ApparelLayerDef def)
             {
                 // If it's invisible skip everything
                 if (!def.IsVisibleLayer())
@@ -210,9 +213,21 @@ namespace CombatExtended.HarmonyCE
         }
 
         [HarmonyPatch(typeof(PawnRenderer), "DrawHeadHair")]
-        private static class Harmony_PawnRenderer_DrawHeadHair
+        public static class Harmony_PawnRenderer_DrawHeadHair
         {
             private static Rot4 north = Rot4.North;
+            
+
+            // skip this if dubs apparel tweak is loaded
+            private static bool Prepare()
+            {
+                if (quickFast_Loaded)
+                {
+                    Log.Message("CE: Dubwise apparel tweak detected!");
+                    return false;
+                }
+                return true;
+            }
 
             private static MethodBase mOverrideMaterialIfNeeded = AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded");
 
@@ -254,7 +269,8 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Matrix4x4 matrix = new Matrix4x4();
-                            hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
+                            if(!quickFast_Loaded)
+                                hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
                             headwearPos.y += interval;
                             matrix.SetTRS(headwearPos, quaternion, customScale);
                             GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
@@ -355,19 +371,33 @@ namespace CombatExtended.HarmonyCE
         {
             public static Rot4 south = Rot4.South;
 
+            private static Thing equipment;
+
+            private static Pawn pawn;
+
+            private static readonly Matrix4x4 TBot5 = Matrix4x4.Translate(new Vector3(0, -0.006f, 0));
+
+            private static readonly Matrix4x4 TBot3 = Matrix4x4.Translate(new Vector3(0, -0.004f, 0));
+
+            public static void Prefix(PawnRenderer __instance, Thing eq)
+            {
+                pawn = __instance.pawn;
+                equipment = eq;
+            }
 
             private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {
+            {              
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();
+                Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
-
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
-
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
-                Graphics.DrawMesh(mesh, matrix, mat, layer);
+                if(eq is WeaponPlatform platform)                
+                    platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
+                else
+                    Graphics.DrawMesh(mesh, matrix, mat, layer);
             }
 
             /*

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <operations>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName = "DankPyon_Turret_Trebuchet"]/thingClass</xpath>
+                <value>
+                    <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_Turret_Trebuchet"]/building</xpath>
+                <value>
+                    <spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+                </value>
+            </li>
+            
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="DankPyon_Artillery_Trebuchet"]/statBases</xpath>
+                <value>
+                <SightsEfficiency>0.5</SightsEfficiency>
+                </value>
+            </li>
+
+            <!--<li Class="PatchOperationRemove">
+                <xpath>/Defs/ThingDef[defName="DankPyon_Artillery_Trebuchet"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+                
+            </li>-->
+
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName = "DankPyon_Artillery_Trebuchet"]/comps</xpath>
+                <value>
+                <li Class="CombatExtended.CompProperties_Charges">
+                    <chargeSpeeds>
+                    <li>30</li>
+                    <li>50</li>
+                    <li>70</li>
+                    <li>90</li>
+                    </chargeSpeeds>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                    <magazineSize>1</magazineSize>
+                    <reloadTime>14</reloadTime>
+                    <ammoSet>AmmoSet_Catapult</ammoSet>
+                </li>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[defName = "DankPyon_Artillery_Trebuchet"]/verbs</xpath>
+                <value>
+                    <verbs>
+                    <li Class="CombatExtended.VerbPropertiesCE">
+                        <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+                        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+                        <hasStandardCommand>true</hasStandardCommand>
+                        <defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
+                        <warmupTime>4</warmupTime>
+                        <minRange>30</minRange>
+                        <range>500</range>
+                        <burstShotCount>1</burstShotCount>
+                        <soundCast>Bow_Recurve</soundCast>
+                        <muzzleFlashScale>0</muzzleFlashScale>
+                        <indirectFirePenalty>0.2</indirectFirePenalty>
+                        <targetParams>
+                        <canTargetLocations>true</canTargetLocations>
+                        </targetParams>
+                    </li>
+                    </verbs>
+                </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "DankPyon_Artillery_Trebuchet"]/weaponTags</xpath>
+            <value>
+                <li>TurretGun</li>
+            </value>
+            </li>
+        </operations>
+    </match>
+</Operation>
+
+</Patch>
