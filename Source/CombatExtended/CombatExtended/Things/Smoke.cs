@@ -61,7 +61,7 @@ namespace CombatExtended
 
         public override void Tick()
         {
-            if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
+	    if (density > DensityDissipationThreshold && Rand.Range(0,10) != 5)   //very low density smoke clouds eventually dissipate on their own
             {
                 destroyTick++;
             }
