@@ -14,36 +14,34 @@ namespace CombatExtended.Compatibility
 {
     public class Verb_ShootCEKEK : Verb_ShootCE
     {
-	public override int ShotsPerBurst
+	public override int ShotsPerBurstFor(FireMode mode)
 	{
-	    get
+	    if (base.CompFireModes != null)
 	    {
-		if (base.CompFireModes != null)
+		if (mode == FireMode.SingleFire)
 		{
-		    if (base.CompFireModes.CurrentFireMode == FireMode.SingleFire)
-		    {
 
-			int lint = Rand.Range(0, 2);
-			if (lint != 0)
-			{
-			    return lint;
-			}
+		    int lint = Rand.Range(0, 2);
+		    if (lint != 0)
+		    {
+			return lint;
+		    }
 			
-			if (Rand.Range(0, 1000) == 1000)
-			{
-			    GenExplosionCE.DoExplosion(caster.Position, caster.Map, 2f, DamageDefOf.Bomb, null, 5, 0f, SoundDefOf.Psycast_Skip_Exit, null, null, null, null, 0, 0, true, null, 0f, 0, 0f, false);
-			}
-			return 0;
+		    if (Rand.Range(0, 1000) == 1000)
+		    {
+			GenExplosionCE.DoExplosion(caster.Position, caster.Map, 2f, DamageDefOf.Bomb, null, 5, 0f, SoundDefOf.Psycast_Skip_Exit, null, null, null, null, 0, 0, true, null, 0f, 0, 0f, false);
+		    }
+		    return 0;
 			
 
-		    }
-		    if (base.CompFireModes.CurrentFireMode == FireMode.BurstFire)
-		    {
-			return Rand.Range(0, base.CompFireModes.Props.aimedBurstShotCount + 1);
-		    }
 		}
-		return Rand.Range(0, base.VerbPropsCE.burstShotCount + 1);
+		if (mode == FireMode.BurstFire)
+		{
+		    return Rand.Range(0, base.CompFireModes.Props.aimedBurstShotCount + 1);
+		}
 	    }
+	    return Rand.Range(0, base.VerbPropsCE.burstShotCount + 1);
+	    
 	}
     }
     public class RandomDamage : ThingComp
