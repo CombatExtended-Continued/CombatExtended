@@ -66,9 +66,9 @@ namespace CombatExtended
             {
                 destroyTick++;
 		if (Rand.Range(0,10) == 5) {
-		  float d = density * 0.01f;
+		  float d = density * 0.0001f;
 		  density -= d;
-		  if (d > 0.01 * MaxDensity || (Random.Range(0, (int)(0.01*MaxDensity)) < d)) {
+		  if (Random.Range(0, (int)(0.01*MaxDensity)) < d) {
 		    FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
 		  }
 		}
