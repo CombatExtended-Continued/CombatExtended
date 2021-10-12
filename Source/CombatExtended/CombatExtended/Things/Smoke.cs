@@ -147,13 +147,11 @@ namespace CombatExtended
 		if (!awake)
 		{
 		    severityRate /= 2;
-		    if (severity > 0.1)
+		    if (curSeverity > 0.1)
 		    {
 			RestUtility.WakeUp(pawn);
 		    }
 		}
-
-		
 
 		if (severityRate > 0 && severityDelta > 0)
 		{
