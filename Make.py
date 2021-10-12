@@ -192,6 +192,13 @@ def parse_publicize(csproj):
             output = target.rsplit('.',1)[0] + '_publicized.dll'
 
             publicized_libraries.append(PublicizeTarget(target, output))
+    if not publicized_libraries:
+        publicize_task = [i.attributes['Include'].value for i in csproj.getElementsByTagName("Publicize")
+                          if 'Include' in i.attributes]
+        for pub in publicize_task:
+            publicized_libraries.append(PublicizeTarget(pub+'.dll', pub+'_publicized.dll'))
+            
+    
     return publicized_libraries
 
 def parse_csproj(csproj_path, verbose):
