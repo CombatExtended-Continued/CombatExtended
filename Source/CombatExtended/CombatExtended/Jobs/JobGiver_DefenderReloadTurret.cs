@@ -38,18 +38,15 @@ namespace CombatExtended
                 if (!JobGiverUtils_Reload.CanReload(pawn, turret, forced: false, emergency: true)) { return false; }
                 return turret.ShouldReload(ammoReloadThreshold);
             };
-            Thing hopefullyTurret = GenClosest.ClosestThingReachable(pawn.Position,
-                                             pawn.Map,
-                                             ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial),
-                                             PathEndMode.Touch,
-                                             TraverseParms.For(pawn),
-                                             100f,
-                                             _isTurretThatNeedsReloadingNow);
 
-            var actuallyTurret = hopefullyTurret as Building_TurretGunCE;
-            if (actuallyTurret == null) { return null; }
-            return actuallyTurret;
+            var hopefullyTurret = pawn.Map.GetComponent<TurretTracker>().ClosestTurret(
+                pawn.Position,
+                PathEndMode.Touch,
+                TraverseParms.For(pawn),
+                100f,
+                _isTurretThatNeedsReloadingNow);
 
+            return hopefullyTurret as Building_TurretGunCE;
         }
 
     
