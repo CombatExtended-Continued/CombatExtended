@@ -11,9 +11,9 @@
 
   <!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
-		<defName>Bullet_RPG18_HEAT</defName>
-		<label>RPG18 grenade</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+		<defName>Bullet_RPG18Grenade_HEAT</defName>
+		<label>RPG16grenade</label>
 		<graphicData>
 			<texPath>Things/Projectile/RPG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -45,8 +45,8 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
-		<defName>Bullet_RPG22_HEAT</defName>
-		<label>RPG22 grenade</label>
+		<defName>Bullet_RPG22Grenade_HEAT</defName>
+		<label>RPG16grenade</label>
 		<graphicData>
 			<texPath>Things/Projectile/RPG</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -78,8 +78,8 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
-		<defName>Bullet_RPG26_HEAT</defName>
-		<label>RPG26 grenade</label>
+		<defName>Bullet_RPG26Grenade_HEAT</defName>
+		<label>RPG16grenade</label>
 		<graphicData>
 			<texPath>Things/Projectile/RocketS</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -111,7 +111,7 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
-		<defName>Bullet_RPG27_HEAT</defName>
+		<defName>Bullet_RPG27Grenade_HEAT</defName>
 		<label>RPG27 grenade</label>
 		<graphicData>
 			<texPath>Things/Projectile/RocketS</texPath>
@@ -145,12 +145,12 @@
 
   <!-- ==================== Recipes ========================== -->
 
-   <RecipeDef ParentName="GrenadeRecipeBase">
-    <defName>MakeGun_RPG18D</defName>
-    <label>make M72 LAW x5</label>
-    <description>Craft 5 RPG18 launchers.</description>
-    <jobString>Making RPG 18 LAW launchers.</jobString>
-    <workAmount>6200</workAmount>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_RPG16Grenade_HEAT</defName>
+    <label>make RPG-16 HEAT grenades x5</label>
+    <description>Craft 5 RPG-16 HEAT grenades.</description>
+    <jobString>Making RPG-16 HEAT grenades.</jobString>
+    <workAmount>9200</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -158,7 +158,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>28</count>
       </li>
       <li>
         <filter>
@@ -166,7 +166,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>6</count>
+        <count>9</count>
       </li>
       <li>
         <filter>
@@ -174,7 +174,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>5</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -185,17 +185,16 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Gun_RPG18D>5</Gun_RPG18D>
+      <Ammo_RPG16Grenade_HEAT>5</Ammo_RPG16Grenade_HEAT>
     </products>
-    <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
-  <RecipeDef ParentName="GrenadeRecipeBase">
-    <defName>MakeGun_RPG22D</defName>
-    <label>make RPG22 x5</label>
-    <description>Craft 5 RPG22 launchers.</description>
-    <jobString>Making RPG22 launchers.</jobString>
-    <workAmount>6200</workAmount>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_RPG16Grenade_Frag</defName>
+    <label>make RPG-16 frag grenades x5</label>
+    <description>Craft 5 RPG-16 frag grenades.</description>
+    <jobString>Making RPG-16 frag grenades.</jobString>
+    <workAmount>5400</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -203,7 +202,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>22</count>
       </li>
       <li>
         <filter>
@@ -211,7 +210,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>6</count>
+        <count>2</count>
       </li>
       <li>
         <filter>
@@ -219,7 +218,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>5</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -230,101 +229,10 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Gun_RPG22D>5</Gun_RPG22D>
+      <Ammo_RPG16Grenade_Frag>5</Ammo_RPG16Grenade_Frag>
     </products>
-    <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
-  <RecipeDef ParentName="GrenadeRecipeBase">
-    <defName>MakeGun_RPG26D</defName>
-    <label>make RPG26 x5</label>
-    <description>Craft 5 RPG26 launchers.</description>
-    <jobString>Making RPG26 launchers.</jobString>
-    <workAmount>6200</workAmount>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>2</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Gun_RPG26D>5</Gun_RPG26D>
-    </products>
-    <researchPrerequisite>CE_Launchers</researchPrerequisite>
-  </RecipeDef>
-
-
-  <RecipeDef ParentName="GrenadeRecipeBase">
-    <defName>MakeGun_RPG27D</defName>
-    <label>make RPG27 x5</label>
-    <description>Craft 5 RPG27 launchers.</description>
-    <jobString>Making RPG27 launchers.</jobString>
-    <workAmount>6200</workAmount>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>26</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>6</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>2</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Gun_RPG27D>5</Gun_RPG27D>
-    </products>
-    <researchPrerequisite>CE_Launchers</researchPrerequisite>
-  </RecipeDef>
 
 			</value>
 		</match>
