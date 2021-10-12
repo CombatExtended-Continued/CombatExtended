@@ -126,7 +126,10 @@ namespace CombatExtended
 		    breathing = 0.01f;
 		}
 		var targetSeverity = sensitivity / breathing * baseTargetSeverity;
-		
+		if (targetSeverity > 1.5f)
+		{
+		    targetSeverity = 1.5f;
+		}
 
 		var severityDelta = targetSeverity - curSeverity;
 		
@@ -135,11 +138,23 @@ namespace CombatExtended
 		
 		
 		var severityRate = baseSeverityRate * sensitivity / breathing * Mathf.Pow(severityDelta, 1.5f);
-		if (downed || !awake)
-		{
-		    severityRate /= 10;
-		}
 		
+		if (downed)
+		{
+		    severityRate /= 100;
+		}
+
+		if (!awake)
+		{
+		    severityRate /= 2;
+		    if (severity > 0.1)
+		    {
+			RestUtility.WakeUp(pawn);
+		    }
+		}
+
+		
+
 		if (severityRate > 0 && severityDelta > 0)
 		{
 		    HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severityRate);
