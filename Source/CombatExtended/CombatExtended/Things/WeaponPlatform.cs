@@ -294,7 +294,22 @@ namespace CombatExtended
         /// Used to update the internel config lists
         /// </summary>
         public void UpdateConfiguration()
-        {            
+        {
+            /*
+             * <=========    Gun safety     =========> 
+             * 
+             * If any changes are being made, make sure to check for ammo related issues.
+             */
+            CompAmmoUser ammoUser = this.TryGetComp<CompAmmoUser>();
+
+            if((!_removalList.NullOrEmpty() || !_additionList.NullOrEmpty()) && ammoUser != null && ammoUser.UseAmmo && ammoUser.HasMagazine && ammoUser.MagSize < ammoUser.CurMagCount)
+            {
+                ammoUser.CurMagCount = ammoUser.MagSize;
+                Log.Warning("CE: Had to reset curMagCount since it had a value bigger than mag size");
+            }
+            /*
+             * <=========    rebuilding     =========> 
+             */
             _removalList.Clear();
             _additionList.Clear();
             /*

@@ -454,12 +454,11 @@ namespace CombatExtended
         /// Failure to unload occurs if the weapon doesn't use a magazine.
         /// </remarks>
         public bool TryUnload(bool forceUnload = false)
-        {
-            Thing outThing;
-            return TryUnload(out outThing, forceUnload);
+        {            
+            return TryUnload(out Thing _, forceUnload);
         }
 
-        public bool TryUnload(out Thing droppedAmmo, bool forceUnload = false)
+        public bool TryUnload(out Thing droppedAmmo, bool forceUnload = false, IntVec3? position = null)
         {
             droppedAmmo = null;
             if (!HasMagazine || (Holder == null && turret == null))
@@ -478,18 +477,20 @@ namespace CombatExtended
             // Add remaining ammo back to inventory
             Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
             ammoThing.stackCount = curMagCountInt;
-            bool doDrop = false;
 
-            if (CompInventory != null)
+            bool doDrop;
+            
+            if (position == null && CompInventory != null)
                 doDrop = (curMagCountInt != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount)); // TryAdd should report how many ammoThing.stackCount it stored.
             else
                 doDrop = true; // Inventory was null so no place to shift the ammo besides the ground.
+            
 
             if (doDrop)
             {
                 // NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
                 //Thing outThing;
-                if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
+                if (!GenThing.TryDropAndSetForbidden(ammoThing, position ?? Position , Map, ThingPlaceMode.Near, out droppedAmmo, turret?.Faction != Faction.OfPlayer))
                 {
                     Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                                              "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));

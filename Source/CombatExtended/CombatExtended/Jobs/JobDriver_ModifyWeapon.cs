@@ -94,7 +94,13 @@ namespace CombatExtended
             Toil modifyToil = new Toil();
             modifyToil.defaultCompleteMode = ToilCompleteMode.Instant;            
             modifyToil.initAction = () =>
-            {                
+            {
+                CompAmmoUser compAmmo = Weapon.TryGetComp<CompAmmoUser>();
+                if (compAmmo != null && compAmmo.HasMagazine && compAmmo.UseAmmo && !compAmmo.MagazineEmpty && !compAmmo.TryUnload(out _, forceUnload: true, pawn.Position))
+                {
+                    Log.Warning("CE: Failed to unload ammo from weapon before modifying it");
+                    Log.TryOpenLogWindow();
+                }
                 if (TryModifyWeapon())
                 {                    
                     this.EndJobWith(JobCondition.Succeeded);                    
