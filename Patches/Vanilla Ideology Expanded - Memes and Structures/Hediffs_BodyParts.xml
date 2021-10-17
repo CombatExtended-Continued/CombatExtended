@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Ideology Expanded - Memes and Structures</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/HediffDef[defName="VME_FleshcraftedArmHediff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+        <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>fist</label> <!-- Same as natural fist. -->
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+            </tools>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>
