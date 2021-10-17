@@ -55,10 +55,10 @@ namespace CombatExtended
         public CE_DebugTooltipHelper(Game game)
         {          
         }
-      
-        public override void GameComponentTick()
+               
+        public override void GameComponentUpdate()
         {
-            base.GameComponentTick();
+            base.GameComponentUpdate();
             if (!Controller.settings.DebuggingMode || !Input.anyKey || Find.CurrentMap == null || Current.ProgramState != ProgramState.Playing)
             {
                 return;
