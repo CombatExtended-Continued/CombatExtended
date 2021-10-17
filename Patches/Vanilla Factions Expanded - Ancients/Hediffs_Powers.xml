@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Ancients</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/HediffDef[defName="VFEA_PlasteelClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>plasteel claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>26</power>
+              <cooldownTime>1.35</cooldownTime>
+              <armorPenetrationSharp>1.45</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+              <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+              <soundMeleeHit>Pawn_Melee_PowerClaw_Hit</soundMeleeHit>
+              <soundMeleeMiss>Pawn_Melee_PowerClaw_Miss</soundMeleeMiss>              
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
