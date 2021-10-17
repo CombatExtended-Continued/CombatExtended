@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    
+    <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rimedieval - Medieval Royalty</li>
+		</mods>
+        <match Class="PatchOperationSequence">
+        <operations>
+
+        <!-- Varangian Armor -->
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="BZT_VarangianArmor"]/statBases/ArmorRating_Sharp</xpath>
+            <value>
+                <ArmorRating_Sharp>2.75</ArmorRating_Sharp>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="BZT_VarangianArmor"]/statBases/ArmorRating_Blunt</xpath>
+            <value>
+                <ArmorRating_Blunt>4.25</ArmorRating_Blunt>
+            </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName="BZT_VarangianArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="BZT_VarangianArmor"]/equippedStatOffsets</xpath>
+            <value>
+                <MeleeDodgeChance>-0.20</MeleeDodgeChance>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="BZT_VarangianArmor"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <li>Hands</li>
+                <li>Feet</li>
+            </value>
+        </li>
+
+		<!-- Varangian Helmet -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="BZN_VarangianHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="BZN_VarangianHelmet"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1.5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="BZN_VarangianHelmet"]/equippedStatOffsets</xpath>
+			<value>
+                <equippedStatOffsets>
+                    <AimingAccuracy>-0.4</AimingAccuracy>
+                    <MeleeHitChance>-2</MeleeHitChance>
+                    <PainShockThreshold>0.15</PainShockThreshold>
+                    <SocialImpact>0.35</SocialImpact>
+                </equippedStatOffsets>
+			</value>
+		</li>        
+
+		<!-- Footman / Scout Armor -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>1.65</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/statBases</xpath>
+			<value>
+				<Bulk>25</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="BZT_ScoutArmor" or defName="BZT_FootmanArmor"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Footman / Scout Helmet -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1.5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="BZN_ScoutHelmet" or defName="BZN_FootmanHelmet"]/equippedStatOffsets</xpath>
+			<value>
+                <equippedStatOffsets>
+                    <AimingAccuracy>-0.3</AimingAccuracy>
+                    <MeleeHitChance>-1.5</MeleeHitChance>
+                    <PainShockThreshold>0.10</PainShockThreshold>
+                    <SocialImpact>0.3</SocialImpact>
+                </equippedStatOffsets>
+			</value>
+		</li>    
+
+
+    </operations>
+    </match>
+</Operation>
+
+</Patch>
