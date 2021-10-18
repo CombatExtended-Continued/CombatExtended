@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 		<li>[LF] Red Dawn</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
+		
 			<!-- ========== RPG18 ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -28,7 +30,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG18Grenade_HEAT</defaultProjectile>
+					<defaultProjectile>Bullet_RPG18_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>31</range>
         					<minRange>2</minRange>
@@ -41,7 +43,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -75,7 +77,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG22Grenade_HEAT</defaultProjectile>
+					<defaultProjectile>Bullet_RPG22_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>32</range>
         					<minRange>2</minRange>
@@ -88,7 +90,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -122,7 +124,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG26Grenade_HEAT</defaultProjectile>
+					<defaultProjectile>Bullet_RPG26_HEAT</defaultProjectile>
 					<warmupTime>1.9</warmupTime>
 					<range>32</range>
         					<minRange>2</minRange>
@@ -135,7 +137,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -146,7 +148,7 @@
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
-
+	
 			<!-- ========== RPG27 ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -169,7 +171,7 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG27Grenade_HEAT</defaultProjectile>
+					<defaultProjectile>Bullet_RPG27_HEAT</defaultProjectile>
 					<warmupTime>2.05</warmupTime>
 					<range>31</range>
         					<minRange>2</minRange>
@@ -182,7 +184,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -229,7 +231,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
 					<reloadTime>8.6</reloadTime>
@@ -281,7 +283,7 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_Launchers</researchPrerequisite>
+
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
 					<reloadTime>8.6</reloadTime>
@@ -319,10 +321,10 @@
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_RPG29Grenade_HEAT</defaultProjectile>
+					<defaultProjectile>Bullet_RPG29_HEAT</defaultProjectile>
 					<warmupTime>3</warmupTime>
         					<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-					<range>55</range>
+					<range>52</range>
         					<minRange>3</minRange>
 					<soundCast>RPGALTFire</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -333,11 +335,11 @@
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 				</Properties>
-				<researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
 					<reloadTime>8.9</reloadTime>
-					<ammoSet>AmmoSet_RPG29Grenade</ammoSet>
+					<ammoSet>AmmoSet_RPG29</ammoSet>
 				</AmmoUser>
 
 				<FireModes>
@@ -348,6 +350,35 @@
 				<!-- No additional CE weaponTags needed -->
 
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Gun_RPG18D" or
+					defName="Gun_RPG16v" or
+					defName="Gun_RPG22D" or
+					defName="Gun_RPG26D" or
+					defName="Gun_RPG27D" or
+					defName="Gun_RPG16v" or
+					defName="Gun_RPG29v"]/recipeMaker</xpath>
+				<value>
+					<researchPrerequisite>CE_Launchers</researchPrerequisite>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_RPG18D" or
+					defName="Gun_RPG16v" or
+					defName="Gun_RPG22D" or
+					defName="Gun_RPG26D" or
+					defName="Gun_RPG27D" or
+					defName="Gun_RPG16v" or
+					defName="Gun_RPG29v"]/weaponTags</xpath>
+				<value>
+    				<weaponTags>
+      					<li>GunHeavy</li>
+      					<li>CE_AI_AOE</li>
+    				</weaponTags>	
+				</value>
 			</li>
 
 			<!-- == Shared patches for firearm melee tools == -->
@@ -377,7 +408,9 @@
 					</tools>
 				</value>
 			</li>
+
 		</operations>
 		</match>
 	</Operation>
+
 </Patch>
