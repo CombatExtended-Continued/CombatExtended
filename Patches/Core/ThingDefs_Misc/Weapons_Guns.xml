@@ -2,14 +2,7 @@
 <Patch>
   
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
-    <value>
-	    <relicChance>0</relicChance>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[@Name="BaseWeaponTurret"]</xpath>
+    <xpath>Defs/ThingDef[defName="Gun_ChargeLance" or @Name="BaseWeaponTurret"]</xpath>
     <value>
 	    <relicChance>0</relicChance>
     </value>
@@ -49,14 +42,14 @@
   <Operation Class="PatchOperationReplace">
     <xpath>
       Defs/ThingDef[
-        defName="Gun_PumpShotgun" or 
-        defName="Gun_ChainShotgun" or 
-        defName="Gun_BoltActionRifle" or 
-        defName="Gun_AssaultRifle" or 
-        defName="Gun_SniperRifle" or 
-        defName="Gun_HeavySMG" or 
-        defName="Gun_IncendiaryLauncher" or 
-        defName="Gun_LMG" or 
+        defName="Gun_PumpShotgun" or
+        defName="Gun_ChainShotgun" or
+        defName="Gun_BoltActionRifle" or
+        defName="Gun_AssaultRifle" or
+        defName="Gun_SniperRifle" or
+        defName="Gun_HeavySMG" or
+        defName="Gun_IncendiaryLauncher" or
+        defName="Gun_LMG" or
         defName="Gun_ChargeRifle"
       ]/tools
     </xpath>
@@ -291,19 +284,20 @@
       </li>
     </defaultGraphicParts>
     <attachmentLinks>
-      <li><attachment>Attachment_PumpShotgun_StockOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_StockFour</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_SightFour</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardTwo</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_HandguardThree</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_MuzzleOne</attachment></li>
-      <li><attachment>Attachment_PumpShotgun_MuzzleTwo</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_Choke</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_StockOne</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_StockTwo</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_StockThree</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_StockFour</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_SightOne</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_SightTwo</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_SightThree</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_SightFour</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_HandguardOne</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_HandguardTwo</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_HandguardThree</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_MuzzleOne</attachment></li>
+      <li><attachment>CE_Attachment_PumpShotgun_MuzzleTwo</attachment></li>
     </attachmentLinks>
   </Operation>
 
@@ -469,44 +463,44 @@
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
     <attachmentLinks>
-      <li><attachment>CEA_MS_Stock_Wooden</attachment></li>
-      <li><attachment>CEA_ID_Accessory_Flashlight</attachment></li>
-      <li><attachment>CEA_ID_Ammo_MagStacked</attachment></li>
-      <li><attachment>CEA_ID_Ammo_Mag50Rnd</attachment></li>
-      <li><attachment>CEA_ID_Ammo_Mag100Rnd</attachment></li>
-      <li><attachment>CEA_ID_Bayonet_Modern</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_Compensator</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_FlashHider</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_Suppressor</attachment></li>
+      <li><attachment>CE_Attachment_Accessory_Flashlight</attachment></li>
+      <li><attachment>CE_Attachment_Bayonet_Modern</attachment></li>
+      <li><attachment>CE_Attachment_Bayonet_Mechanoid</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_FlashHider</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_Compensator</attachment></li>
       <li>
-        <attachment>CEA_ID_Sight_Reflex</attachment>
-        <drawOffset>(0.114,0.138)</drawOffset>
+        <attachment>CE_Attachment_Optic_Reflex</attachment>
+        <drawOffset>(0.012,0.144)</drawOffset>
+        <drawScale>(0.7,0.7)</drawScale>
       </li>
-      <li><attachment>CEA_ID_Sight_NVScope</attachment></li>
+      <li><attachment>CE_Attachment_Optic_NVScope</attachment></li>
       <li>
-        <attachment>CEA_ID_Sight_2xACOG</attachment>
+        <attachment>CE_Attachment_Optic_2xACOG</attachment>
         <drawOffset>(0.161,0.225)</drawOffset>
-        <drawScale>(0.848, 0.848)</drawScale>
+        <drawScale>(0.848,0.848)</drawScale>
       </li>
       <li>
-        <attachment>CEA_ID_Sight_4xACOG</attachment>
+        <attachment>CE_Attachment_Optic_4xACOG</attachment>
         <drawOffset>(0.161,0.225)</drawOffset>
-        <drawScale>(0.848, 0.848)</drawScale>
+        <drawScale>(0.848,0.848)</drawScale>
       </li>
-      <li><attachment>CEA_ID_Stock_Heavy</attachment></li>
-      <li><attachment>CEA_ID_Stock_Folding</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_Bipod</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_ForegripAngled</attachment></li>
       <li>
-        <attachment>CEA_ID_Underbarrel_ForegripVertical</attachment>
-        <drawOffset>(-0.072,0.012)</drawOffset>
-        <drawScale>(0.9, 0.9)</drawScale>
+        <attachment>CE_Attachment_Optic_LancerScope</attachment>
       </li>
-      <li><attachment>CEA_ID_Underbarrel_GrenadeLauncher</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_Shotgun</attachment></li>
-      <li><attachment>CEA_ME_Bayonet_Scyther</attachment></li>
-      <li><attachment>CEA_ME_Sight_LancerSight</attachment></li>
-      <li><attachment>CEA_ME_Underbarrel_PikemanLauncher</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_Bipod</attachment></li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_AngleGrip</attachment>
+        <drawOffset>(0.012,0.144)</drawOffset>
+        <drawScale>(0.7,0.7)</drawScale>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_VerticalGrip</attachment>
+        <drawOffset>(-0.066,0.024)</drawOffset>
+        <drawScale>(0.9,0.9)</drawScale>
+      </li>
+      <li><attachment>CE_Attachment_Underbarrel_M320GrenadeLauncher</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_M26Shotgun</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_PikemanLauncher</attachment></li>
     </attachmentLinks>
   </Operation>
 
@@ -634,6 +628,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_HeavySMG</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>2.50</Mass>
       <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
@@ -675,6 +670,76 @@
       <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+    <texPath>Things/Weapons/HeavySMG/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/HeavySMG/OpticBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/HeavySMG/OpticBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Optic</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/HeavySMG/StockBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/HeavySMG/StockBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/HeavySMG/MagazineBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/HeavySMG/MagazineBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li><attachment>CE_Attachment_UMP_Accessory_Flashlight</attachment></li>
+      <li><attachment>CE_Attachment_UMP_Ammo_DrumMag</attachment></li>
+      <li><attachment>CE_Attachment_UMP_Stock_Makeshift</attachment></li>
+      <li><attachment>CE_Attachment_UMP_Stock_Light</attachment></li>
+      <li><attachment>CE_Attachment_UMP_Stock_Heavy</attachment></li>
+      <li><attachment>CE_Attachment_UMP_Stock_Modern</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_FlashHider</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_Compensator</attachment></li>
+      <li><attachment>CE_Attachment_Optic_MakeshiftScope</attachment></li>
+      <li>
+        <attachment>CE_Attachment_Optic_Reflex</attachment>
+        <drawScale>(0.8,0.8)</drawScale>
+        <drawOffset>(0.084,0.207)</drawOffset>
+      </li>
+      <li><attachment>CE_Attachment_Optic_2xACOG</attachment></li>
+      <li><attachment>CE_Attachment_Optic_4xACOG</attachment></li>
+      <li><attachment>CE_Attachment_Optic_NVScope</attachment></li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_AngleGrip</attachment>
+        <drawScale>(0.9,0.9)</drawScale>
+        <drawOffset>(-0.272,-0.027)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_VerticalGrip</attachment>
+        <drawOffset>(-0.356,-0.096)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -858,42 +923,45 @@
     </weaponTags>
     <researchPrerequisite>ChargedShot</researchPrerequisite>
     <attachmentLinks>
-      <li><attachment>CEA_MS_Stock_Wooden</attachment></li>
-      <li><attachment>CEA_ID_Accessory_Flashlight</attachment></li>
-      <li><attachment>CEA_ID_Ammo_MagStacked</attachment></li>
-      <li><attachment>CEA_ID_Ammo_Mag50Rnd</attachment></li>
-      <li><attachment>CEA_ID_Ammo_Mag100Rnd</attachment></li>
-      <li><attachment>CEA_ID_Bayonet_Modern</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_Compensator</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_FlashHider</attachment></li>
-      <li><attachment>CEA_ID_Muzzle_Suppressor</attachment></li>
+      <li><attachment>CE_Attachment_Accessory_Flashlight</attachment></li>
+      <li><attachment>CE_Attachment_Bayonet_Modern</attachment></li>
+      <li><attachment>CE_Attachment_Bayonet_Mechanoid</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_FlashHider</attachment></li>
+      <li><attachment>CE_Attachment_Muzzle_Compensator</attachment></li>
       <li>
-        <attachment>CEA_ID_Sight_Reflex</attachment>
-        <drawOffset>(0.102,0.108)</drawOffset>
+        <attachment>CE_Attachment_Optic_Reflex</attachment>
+        <drawOffset>(0.102,0.18)</drawOffset>
+        <drawScale>(0.88,0.88)</drawScale>
       </li>
-      <li><attachment>CEA_ID_Sight_NVScope</attachment></li>
       <li>
-        <attachment>CEA_ID_Sight_2xACOG</attachment>
+        <attachment>CE_Attachment_Optic_2xACOG</attachment>
         <drawOffset>(0.042,0.114)</drawOffset>
       </li>
       <li>
-        <attachment>CEA_ID_Sight_4xACOG</attachment>
+        <attachment>CE_Attachment_Optic_4xACOG</attachment>
         <drawOffset>(0.042,0.114)</drawOffset>
       </li>
-      <li><attachment>CEA_ID_Stock_Heavy</attachment></li>
-      <li><attachment>CEA_ID_Stock_Folding</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_Bipod</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_ForegripAngled</attachment></li>
+      <li><attachment>CE_Attachment_Optic_NVScope</attachment></li>
       <li>
-        <attachment>CEA_ID_Underbarrel_ForegripVertical</attachment>
+        <attachment>CE_Attachment_Optic_LancerScope</attachment>
+        <drawOffset>(0.048,0.114)</drawOffset>
+      </li>
+      <li><attachment>CE_Attachment_Stock_Heavy</attachment></li>
+      <li><attachment>CE_Attachment_Stock_Light</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_Bipod</attachment></li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_AngleGrip</attachment>
+        <drawOffset>(-0.102,0.054)</drawOffset>
+        <drawScale>(0.803,0.803)</drawScale>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_VerticalGrip</attachment>
         <drawOffset>(-0.138,0)</drawOffset>
-        <drawScale>(0.86, 0.86)</drawScale>
+        <drawScale>(0.86,0.86)</drawScale>
       </li>
-      <li><attachment>CEA_ID_Underbarrel_GrenadeLauncher</attachment></li>
-      <li><attachment>CEA_ID_Underbarrel_Shotgun</attachment></li>
-      <li><attachment>CEA_ME_Bayonet_Scyther</attachment></li>
-      <li><attachment>CEA_ME_Sight_LancerSight</attachment></li>
-      <li><attachment>CEA_ME_Underbarrel_PikemanLauncher</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_M320GrenadeLauncher</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_M26Shotgun</attachment></li>
+      <li><attachment>CE_Attachment_Underbarrel_PikemanLauncher</attachment></li>
     </attachmentLinks>
   </Operation>
 
