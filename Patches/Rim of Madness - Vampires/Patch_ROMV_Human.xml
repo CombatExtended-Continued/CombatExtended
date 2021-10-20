@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Rim of Madness - Vampires</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="ROMV_Fangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>fangs</label>
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+		   </li>
+		
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="ROMV_FeralClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>feral claw</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>14</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+							<armorPenetrationSharp>12.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>18.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+		   </li>
+		
+		  <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ROMV_ThingBaseAbyssalArm"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tentacle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+		   </li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ROMV_ThingBaseBloodMist"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>viscera</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+		</li>
+		   
+		  <li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[@Name="ROMV_ThingBaseMist"]/verbs</xpath>
+		  </li>
+		  
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="ROMV_ThingBaseMist"]</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>viscera</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>15</armorPenetrationSharp>
+							<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+		</li>
+		
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_Generations_Caine" or defName="ROM_Generations_TheThree"]/stages/li</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-10</Suppressability>
+						<NightVisionEfficiency>5</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_Generations_Antediluvian" or defName="ROM_Generations_Methuselah" or defName="ROM_Generations_Elder"]/stages/li</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-2</Suppressability>
+						<NightVisionEfficiency>2</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_Generations_Ancillae"]/stages/li</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-1</Suppressability>
+						<NightVisionEfficiency>1</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_Generations_Neonate"]/stages/li</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.8</Suppressability>
+						<NightVisionEfficiency>1</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_Generations_Thinblood"]/stages/li</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.5</Suppressability>
+						<NightVisionEfficiency>0.6</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_GhoulHediff"]/stages/li[1]</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.2</Suppressability>
+						<NightVisionEfficiency>0.15</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_GhoulHediff"]/stages/li[2]</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.4</Suppressability>
+						<NightVisionEfficiency>0.3</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_GhoulHediff"]/stages/li[3]</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.6</Suppressability>
+						<NightVisionEfficiency>0.5</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="ROM_GhoulHediff"]/stages/li[4]</xpath>
+				<value>
+					<statOffsets>
+						<Suppressability>-0.8</Suppressability>
+						<NightVisionEfficiency>0.6</NightVisionEfficiency>
+					</statOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName='Human']/tools</xpath>
+				<value>
+					<li Class="CombatExtended.ToolCE">
+						<label>bite</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>1.65</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.06</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.08</armorPenetrationBlunt>
+					</li>
+				</value>
+			</li>
+			
+			
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
