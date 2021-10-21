@@ -555,8 +555,8 @@ namespace CombatExtended
             }
         }
 
-        public bool AttackGlobalTarget(GlobalTargetInfo targetInfo)
-        {
+        public bool TryAttackGlobalTarget(GlobalTargetInfo targetInfo)
+        {            
             int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
             if (distanceToTarget > MaxWorldRange)
             {
@@ -566,7 +566,33 @@ namespace CombatExtended
             {
                 return false;
             }            
+            Map map = Current.Game.FindMap(targetInfo.Tile);
+            //if (map != null)
+            //{
+            //    IntVec3 selectedCell = IntVec3.Invalid;
+            //    AttackGlobalTarget(selectedCell, map);
+            //}
+            AttackGlobalTarget(targetInfo);
+            //if(map == null)
+            //{
+            //    MapParent mapParent = Find.WorldObjects.MapParentAt(targetInfo.Tile);
+            //    if(mapParent == null)
+            //    {
+            //        return false;
+            //    }
+            //    map = MapGenerator.GenerateMap(Find.World.info.initialMapSize, mapParent, mapParent.MapGeneratorDef, mapParent.ExtraGenStepDefs);                
+            //}
+            //Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
+            //CameraJumper.TryJumpInternal(new IntVec3((int)(map.cellIndices.mapSizeX / 2), 0, (int)(map.cellIndices.mapSizeZ / 2)), map);            
             return true;
+        }
+
+        private void AttackGlobalTarget(GlobalTargetInfo targetInf)
+        {
+        }
+
+        private void AttackGlobalTarget(IntVec3 cell, Map map)
+        {
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
