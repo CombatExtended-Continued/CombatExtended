@@ -587,11 +587,11 @@ namespace CombatExtended
             return true;
         }
 
-        private void AttackGlobalTarget(GlobalTargetInfo targetInf)
+        public virtual void AttackGlobalTarget(GlobalTargetInfo targetInf)
         {
         }
 
-        private void AttackGlobalTarget(IntVec3 cell, Map map)
+        public virtual void AttackGlobalTarget(IntVec3 cell, Map map)
         {
         }
 
