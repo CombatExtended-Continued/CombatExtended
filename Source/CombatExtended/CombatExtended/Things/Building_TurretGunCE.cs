@@ -10,6 +10,7 @@ using Verse.Sound;
 using UnityEngine;
 using CombatExtended.CombatExtended.LoggerUtils;
 using CombatExtended.CombatExtended.Jobs.Utils;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -135,7 +136,7 @@ namespace CombatExtended
                 return compFireModes;
             }
         }
-
+        public int MaxWorldRange => 100;
         public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
         public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
@@ -554,6 +555,20 @@ namespace CombatExtended
             }
         }
 
+        public bool AttackGlobalTarget(GlobalTargetInfo targetInfo)
+        {
+            int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
+            if (distanceToTarget > MaxWorldRange)
+            {
+                return false;
+            }
+            if (!Active)
+            {
+                return false;
+            }            
+            return true;
+        }
+
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
         {
             foreach (Gizmo gizmo in base.GetGizmos())
@@ -569,8 +584,20 @@ namespace CombatExtended
                         (com as GizmoAmmoStatus).prefix = "DEV: ";
 
                     yield return com;
-                }
-            }
+                }                
+            }            
+            if (IsMortar && Active && Faction.IsPlayerSafe())
+            {
+                Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
+                {
+                    defaultLabel = "dude",
+                    defaultDesc = "man",
+                    turret = this,
+                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
+                    hotKey = KeyBindingDefOf.Misc4
+                };
+                yield return wt;
+            }            
             // Don't show CONTROL gizmos on enemy turrets (even with dev mode enabled)
             if (PlayerControlled)
             {
