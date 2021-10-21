@@ -589,6 +589,16 @@ namespace CombatExtended
 
         public virtual void AttackGlobalTarget(GlobalTargetInfo targetInf)
         {
+            TravelingShell travelingShell = (TravelingShell) WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+            int startingTile = Map.Tile;
+            int destinationTile = targetInf.Tile;
+            travelingShell.Tile = startingTile;
+            travelingShell.TryTravel(startingTile, destinationTile, 0.1f);
+            if(Faction != null)
+            {
+                travelingShell.SetFaction(Faction);
+            }
+            Find.WorldObjects.Add(travelingShell);
         }
 
         public virtual void AttackGlobalTarget(IntVec3 cell, Map map)
