@@ -16,14 +16,14 @@ namespace CombatExtended.Compatibility
         static PawnKindPatcher()
         {
            
-            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefs.ToList().FindAll(i => i.modExtensions?.Any(tt => !(tt is LoadoutPropertiesExtension)) ?? true && i.RaceProps.Animal == false);
+            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => i.modExtensions?.Any(tt => !(tt is LoadoutPropertiesExtension)) ?? true && i.RaceProps.Animal == false);
             foreach (PawnKindDef thin in stuff)
             {
 
 
                 thin.modExtensions = new List<DefModExtension>();
                 thin.modExtensions.Add(new LoadoutPropertiesExtension { primaryMagazineCount = new FloatRange { min = 2, max = 5 } });
-                LoadoutPropertiesExtension aadada = thin.modExtensions.Find(tt => tt is LoadoutPropertiesExtension) as LoadoutPropertiesExtension;
+                
 
             }
         }
