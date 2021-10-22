@@ -76,6 +76,7 @@ Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Animal Equipment	|
+Anthro Race |
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
