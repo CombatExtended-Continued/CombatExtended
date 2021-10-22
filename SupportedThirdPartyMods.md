@@ -155,6 +155,7 @@ Kit's VFE Weapons |
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
+Littluna Race |
 Logann Race	|
 Magical Menagerie	|
 Magic Wands |
@@ -247,6 +248,7 @@ Spartan Foundry	|
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
+Solark Race |
 Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
