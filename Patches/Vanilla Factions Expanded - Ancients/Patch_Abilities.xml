@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Ancients</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Super Jump -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/VFECore.Abilities.AbilityDef[defName="VFEA_SuperJump"]/range</xpath>
+        <value>
+          <range>20</range>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/VFECore.Abilities.AbilityDef[defName="VFEA_SuperJump"]/description</xpath>
+        <value>
+          <description>Jump over a medium distance (20 cells) within line of sight to close the distance to the enemy.</description>
+        </value>
+      </li>
+
+      <!-- Weapon Expert --> 
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="WeaponExpert"]/statFactors</xpath>
+        <value>
+        <statFactors>
+          <ReloadSpeed>3</ReloadSpeed>
+          <ShootingAccuracyPawn>6</ShootingAccuracyPawn>
+        </statFactors>  
+        </value>
+      </li>
+
+      <!-- Marksmanship -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="Marksmanship"]</xpath>
+        <value>
+        <statFactors>
+          <ShootingAccuracyPawn>20</ShootingAccuracyPawn> 
+        </statFactors>  
+        </value>
+      </li>
+
+      <!-- Assassin -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="Assassin"]</xpath>
+        <value>
+        <statOffsets>
+          <MeleeCritChance>100</MeleeCritChance>
+        </statOffsets>  
+        </value>
+      </li>
+
+      <!-- Super Strength -->   
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="SuperStrength"]</xpath>
+        <value>
+        <statFactors>
+          <CarryWeight>2</CarryWeight>
+          <CarryBulk>2</CarryBulk>
+        </statFactors>  
+        </value>
+      </li>
+
+      <!-- Darkvision -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="Darkvision"]</xpath>
+        <value>
+        <statOffsets>
+          <NightVisionEfficiency>1</NightVisionEfficiency>
+        </statOffsets>  
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>
