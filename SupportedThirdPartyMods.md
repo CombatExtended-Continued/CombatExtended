@@ -95,6 +95,7 @@ Censored Armory  |
 Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
+Comigo's Fancy Floating Turrets |
 Cupro's Alloys	|
 CutePenguin	|
 CyberNet	|
