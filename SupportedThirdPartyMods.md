@@ -241,6 +241,7 @@ Racc Race	|
 Race to the Rim |
 Radworld    |
 Rah's Bionics and Surgery Expansion	|
+Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Ratnik-3 Prototype Armor    |
 Redcoat Apparel	|
