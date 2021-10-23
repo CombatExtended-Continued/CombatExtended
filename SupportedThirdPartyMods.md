@@ -249,6 +249,7 @@ Revia Race |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
+Rim of Madness - Werewolves	|
 Rim-Effect: Core	|
 Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
