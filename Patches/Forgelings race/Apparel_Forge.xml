@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Forgelings race</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- === Crusader Helmet === -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+        <value>
+          <StuffEffectMultiplierArmor>3.0</StuffEffectMultiplierArmor>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]/recipeMaker</xpath>
+        <value>
+          <skillRequirements>
+              <Crafting>8</Crafting>
+          </skillRequirements>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]/costStuffCount</xpath>
+        <value>
+    	    <costStuffCount>60</costStuffCount>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]/statBases/WorkToMake</xpath>
+        <value>
+         <WorkToMake>6400</WorkToMake>
+          <Bulk>5</Bulk>
+          <WornBulk>1</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]</xpath>
+        <value>
+      	<equippedStatOffsets>
+          <AimingAccuracy>-0.4</AimingAccuracy>
+          <MeleeHitChance>-2</MeleeHitChance>
+      	</equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Forge_Apparel_Helmet"]/apparel/layers</xpath>
+        <value>
+            <li>StrappedHead</li>
+        </value>
+      </li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Forge_Apparel_Helmet"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+
+      <!-- === Crusader Armour === -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_CruciblePlate"]/statBases/StuffEffectMultiplierArmor</xpath>
+        <value>
+          <StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+          <Bulk>100</Bulk>
+          <WornBulk>12</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_CruciblePlate"]/costStuffCount</xpath>
+        <value>
+    	    <costStuffCount>200</costStuffCount>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Forge_Apparel_CruciblePlate"]/equippedStatOffsets/MoveSpeed</xpath>
+        <value>
+          <MeleeDodgeChance>-0.15</MeleeDodgeChance>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Forge_Apparel_CruciblePlate"]/apparel/bodyPartGroups</xpath>
+        <value>
+          <li>Hands</li>
+          <li>Feet</li>
+        </value>
+      </li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Forge_Apparel_CruciblePlate"]/stuffCategories</xpath>
+				<value>
+					<stuffCategories>
+						<li>Steeled</li>
+					</stuffCategories>
+				</value>
+			</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
