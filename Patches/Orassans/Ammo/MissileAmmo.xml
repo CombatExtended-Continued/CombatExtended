@@ -43,7 +43,7 @@
 		<statBases>
 			<MaxHitPoints>250</MaxHitPoints>
 			<Mass>15</Mass>
-			<Bulk>15</Bulk>
+			<Bulk>10</Bulk>
 		</statBases>
 		<cookOffFlashScale>35</cookOffFlashScale>
 		<cookOffSound>MortarBomb_Explode</cookOffSound>
@@ -89,12 +89,12 @@
 			<Bulk>10.8</Bulk>
 			<Mass>4</Mass>
 		</statBases>
-		<ammoClass>RocketHEAT</ammoClass>
+		<ammoClass>Sabot</ammoClass>
 		<detonateProjectile>Bullet_OrassanMissileShell_APSabot</detonateProjectile>
 	</ThingDef>
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseOrassanMissileShell" ParentName="Base120mmCannonShell" Abstract="true">
+	<ThingDef Name="BaseOrassanMissileShell" ParentName="Base120mmCannonShell" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -106,7 +106,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOrassanMissileShell">
+	<ThingDef ParentName="BaseOrassanMissileShell">
 		<defName>Bullet_OrassanMissileShell_HEAT</defName>
 		<label>Orassan Missile shell (HEAT)</label>
 		<graphicData>
@@ -136,7 +136,7 @@
 		</comps>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOrassanMissileShell">
+	<ThingDef ParentName="BaseOrassanMissileShell">
 		<defName>Bullet_OrassanMissileShell_APSabot</defName>
 		<label>Orassan Missile shell (AP Sabot)</label>
 		<graphicData>
@@ -166,7 +166,7 @@
 		</comps>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseOrassanMissileShell">
+	<ThingDef ParentName="BaseOrassanMissileShell">
 		<defName>Bullet_OrassanMissileShell_HE</defName>
 		<label>Orassan Missile shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
