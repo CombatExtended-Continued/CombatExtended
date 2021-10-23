@@ -26,28 +26,32 @@ namespace CombatExtended
         protected virtual Vector3 End
         {
             get => _end.HasValue ? _end.Value : (_end = Find.WorldGrid.GetTileCenter(destinationTile)).Value;
-        }      
+        }        
+
+        public virtual float TilesPerTick
+        {
+            get => 0.2f;
+        }        
 
         public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
-        public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);
+        public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);        
 
         public TravelingThing()
         {            
         }
 
-        public virtual bool TryTravel(int startingTile, int destinationTile, float tilesPerTick)
-        {
+        public virtual bool TryTravel(int startingTile, int destinationTile)
+        {            
             this.startingTile = this.Tile = startingTile;
             this.destinationTile = destinationTile;
-            this.tilesPerTick = tilesPerTick;            
+            this.tilesPerTick = TilesPerTick;            
             
             Vector3 start = Find.WorldGrid.GetTileCenter(startingTile);
-            Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);
+            Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);               
 
             this.distance = GenMath.SphericalDistance(start.normalized, end.normalized);
             this.distanceInTiles = (int) Find.World.grid.ApproxDistanceInTiles(this.distance);
-
-            Log.Message($"distanceInTiles:{distanceInTiles} distance:{distance}");
+            
             return true;
         }
         

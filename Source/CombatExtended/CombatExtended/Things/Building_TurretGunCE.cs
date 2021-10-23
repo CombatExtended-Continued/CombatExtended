@@ -51,14 +51,15 @@ namespace CombatExtended
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
         private bool everSpawned = false;
-
+        public GlobalShellingInfo currentShellingInfo;
+        
         #endregion
 
         #region Properties
         // Core properties
         public bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
         public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
-        public override LocalTargetInfo CurrentTarget => currentTargetInt;
+        public override LocalTargetInfo CurrentTarget => currentTargetInt;        
         private bool WarmingUp => burstWarmupTicksLeft > 0;
         public override Verb AttackVerb => Gun == null ? null : GunCompEq.verbTracker.PrimaryVerb;
         public bool IsMannable => mannableComp != null;
@@ -136,7 +137,7 @@ namespace CombatExtended
                 return compFireModes;
             }
         }
-        public int MaxWorldRange => 100;
+        public float MaxWorldRange => compAmmo?.CurrentAmmo.travelingProjectileProp.range ?? -1f;
         public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
         public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
@@ -225,6 +226,7 @@ namespace CombatExtended
             base.ExposeData();
 
             // New variables
+            Scribe_Deep.Look(ref currentShellingInfo, "currentShellingInfo");
             Scribe_Deep.Look(ref gunInt, "gunInt");
             InitGun();
             Scribe_Values.Look(ref isReloading, "isReloading", false);
@@ -447,7 +449,14 @@ namespace CombatExtended
         public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
-            AttackVerb.TryStartCastOn(CurrentTarget, false, true);
+            if (AttackVerb is Verb_LaunchProjectileCE verbCE && currentShellingInfo.IsValid)
+            {
+                verbCE.TryStartShellingTile(currentShellingInfo);
+            }
+            else
+            {
+                AttackVerb.TryStartCastOn(CurrentTarget, false, true);
+            }
             OnAttackedTarget(CurrentTarget);
         }
 
@@ -555,7 +564,7 @@ namespace CombatExtended
             }
         }
 
-        public bool TryAttackGlobalTarget(GlobalTargetInfo targetInfo)
+        public bool TryAttackWorldTarget(GlobalTargetInfo targetInfo)
         {            
             int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
             if (distanceToTarget > MaxWorldRange)
@@ -572,7 +581,7 @@ namespace CombatExtended
             //    IntVec3 selectedCell = IntVec3.Invalid;
             //    AttackGlobalTarget(selectedCell, map);
             //}
-            AttackGlobalTarget(targetInfo);
+            OrderAttackWorldTile(targetInfo);
             //if(map == null)
             //{
             //    MapParent mapParent = Find.WorldObjects.MapParentAt(targetInfo.Tile);
@@ -587,22 +596,28 @@ namespace CombatExtended
             return true;
         }
 
-        public virtual void AttackGlobalTarget(GlobalTargetInfo targetInf)
-        {
-            TravelingShell travelingShell = (TravelingShell) WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+        public virtual void OrderAttackWorldTile(GlobalTargetInfo targetInf)
+        {            
             int startingTile = Map.Tile;
             int destinationTile = targetInf.Tile;
-            travelingShell.Tile = startingTile;
-            travelingShell.TryTravel(startingTile, destinationTile, 0.1f);
-            if(Faction != null)
-            {
-                travelingShell.SetFaction(Faction);
-            }
-            Find.WorldObjects.Add(travelingShell);
-        }
+            
+            Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
+            Vector3 shotPos = DrawPos.Yto0();
+            Vector3 mapSize = Map.Size.ToVector3();            
+            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
 
-        public virtual void AttackGlobalTarget(IntVec3 cell, Map map)
-        {
+            Ray ray = new Ray(shotPos, direction);
+            Bounds mapBounds = new Bounds(mapSize.Yto0() / 2f, mapSize);
+
+            mapBounds.IntersectRay(ray, out float dist);
+            Vector3 exitCell = ray.GetPoint(dist);
+            exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
+            exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
+            exitCell.y = 0;
+            
+            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, exitCell.ToIntVec3(), null);                                    
+            this.forcedTarget = exitCell.ToIntVec3();
+            this.TryStartShootSomething(false);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
@@ -621,17 +636,17 @@ namespace CombatExtended
 
                     yield return com;
                 }                
-            }            
-            if (IsMortar && Active && Faction.IsPlayerSafe())
-            {
+            }
+            if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && compAmmo.CurrentAmmo.travelingProjectileProp != null)
+            {                
                 Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
                 {
-                    defaultLabel = "dude",
-                    defaultDesc = "man",
+                    defaultLabel = "Attack map tile",
+                    defaultDesc = "Attack a map tile wether a settelment or not.",
                     turret = this,
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
                     hotKey = KeyBindingDefOf.Misc4
-                };
+                };                
                 yield return wt;
             }            
             // Don't show CONTROL gizmos on enemy turrets (even with dev mode enabled)
@@ -708,18 +723,24 @@ namespace CombatExtended
 
         private void ResetForcedTarget()                // Core method
         {
+            this.currentShellingInfo = GlobalShellingInfo.Invalid; // addition to this core method
+
             this.forcedTarget = LocalTargetInfo.Invalid;
-            this.burstWarmupTicksLeft = 0;
+            this.burstWarmupTicksLeft = 0;            
             if (this.burstCooldownTicksLeft <= 0)
             {
-                this.TryStartShootSomething(false);
+                this.TryStartShootSomething(false);                
+            }
+            if(this.AttackVerb is Verb_LaunchProjectileCE verbCE)
+            {
+                verbCE.shellingInfo = GlobalShellingInfo.Invalid;
             }
         }
 
         private void ResetCurrentTarget()               // Core method
-        {
-            this.currentTargetInt = LocalTargetInfo.Invalid;
-            this.burstWarmupTicksLeft = 0;
+        {            
+            this.currentTargetInt = LocalTargetInfo.Invalid;                        
+            this.burstWarmupTicksLeft = 0;            
         }
 
         //MakeGun not added -- MakeGun-like code is run whenever Gun is called

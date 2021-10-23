@@ -9,6 +9,7 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -69,9 +70,17 @@ namespace CombatExtended
                 return intendedTarget.Thing;
             }
         }
+        public bool ShellingWorldTile
+        {
+            get
+            {
+                return shellingInfo.IsValid;
+            }
+        }
 
         public ThingDef equipmentDef;
         public Thing launcher;
+        public GlobalShellingInfo shellingInfo;
         public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
@@ -406,6 +415,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
 
+            Scribe_Deep.Look(ref shellingInfo, "travelingShellInfo");
             // To insure saves don't get affected..
             Thing target = null;
             if (Scribe.mode != LoadSaveMode.Saving)
@@ -535,6 +545,10 @@ namespace CombatExtended
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            if (ShellingWorldTile)
+            {
+                this.shotSpeed *= 5f;                
+            }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }
@@ -631,6 +645,10 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
+            if (ShellingWorldTile)
+            {
+                return false;
+            }
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -877,7 +895,22 @@ namespace CombatExtended
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
-                Position = LastPos.ToIntVec3();
+                if (!ShellingWorldTile)
+                {
+                    Position = LastPos.ToIntVec3();                    
+                }
+                else
+                {
+                    TravelingShell travelingShell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+                    travelingShell.shellingInfo = shellingInfo;
+                    travelingShell.shellDef = def;
+                    travelingShell.TryTravel(shellingInfo.sourceTile, shellingInfo.targetTile);
+                    if (Faction != null)
+                    {
+                        travelingShell.SetFaction(Faction);
+                    }                    
+                    Find.WorldObjects.Add(travelingShell);
+                }
                 Destroy();
                 return;
             }
@@ -958,6 +991,10 @@ namespace CombatExtended
         //Modified collision with downed pawns
         private void ImpactSomething()
         {
+            if (ShellingWorldTile)
+            {
+                return;
+            }
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
                 this.Destroy();

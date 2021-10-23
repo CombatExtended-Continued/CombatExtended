@@ -52,7 +52,7 @@ namespace CombatExtended
                 return;
             }
             int tile = turret.Map.Tile;
-            int radius = turret.MaxWorldRange;
+            int radius = (int) turret.MaxWorldRange;
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
             {
                 if(others != null)
@@ -63,25 +63,25 @@ namespace CombatExtended
                         if (t.Active)
                         {
                             started = true;
-                            t.AttackGlobalTarget(targetInfo);
+                            t.OrderAttackWorldTile(targetInfo);
                         }
                     }
                     return started;
                 }
                 else if(turret.Active)
                 {
-                    turret.AttackGlobalTarget(targetInfo);
+                    turret.OrderAttackWorldTile(targetInfo);
                     return true;
                 }
                 return false;
-            }, true, closeWorldTabWhenFinished: false, onUpdate: ()=>
+            }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
             {
                 if (others != null)
                 {
                     foreach (var t in SelectedTurrets)
                     {
                         if (t.MaxWorldRange != radius)                        
-                            GenDraw.DrawWorldRadiusRing(tile, t.MaxWorldRange);                        
+                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);                        
                     }
                 }
                 GenDraw.DrawWorldRadiusRing(tile, radius);                

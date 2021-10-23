@@ -30,7 +30,8 @@ namespace CombatExtended
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
 
-        // Angle in Vector2(degrees, radians)
+        public GlobalShellingInfo shellingInfo = GlobalShellingInfo.Invalid;
+        // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
         protected Vector2 sourceLoc = new Vector2(0, 0);
 
@@ -41,7 +42,7 @@ namespace CombatExtended
         public CompAmmoUser compAmmo = null;
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
-        public CompReloadable compReloadable = null;
+        public CompReloadable compReloadable = null;        
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -56,9 +57,22 @@ namespace CombatExtended
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
 
-        // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
+        // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
         public Thing Shooter => ShooterPawn ?? caster;
+        public bool TargetingWorldTile => shellingInfo.IsValid;
+
+        public override float EffectiveRange
+        {
+            get
+            {
+                if (shellingInfo.IsValid)
+                {
+                    return 1e4f;
+                }
+                return base.EffectiveRange;
+            }
+        }
 
         public override int ShotsPerBurst
         {
@@ -91,15 +105,19 @@ namespace CombatExtended
             get
             {
                 if (CompCharges != null)
-                {
+                {                    
                     if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
                     {
                         shotSpeed = bracket.x;
                     }
+                    if (TargetingWorldTile)
+                    {
+                        shotSpeed *= 5f;                        
+                    }
                 }
                 else
                 {
-                    shotSpeed = Projectile.projectile.speed;
+                    shotSpeed = Projectile.projectile.speed;                    
                 }
                 return shotSpeed;
             }
@@ -550,11 +568,15 @@ namespace CombatExtended
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
             report = "";
+            if (shellingInfo.IsValid)
+            {
+                return true;
+            }
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";
                 return false;
-            }
+            }            
             // Check target self
             if (targ.Thing != null && targ.Thing == caster)
             {
@@ -662,10 +684,20 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
-                projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
+                
+                if (shellingInfo.IsValid)
+                {
+                    projectile.shellingInfo = shellingInfo;
+                    projectile.minCollisionDistance = targetDistance * 2f;                    
+                }
+                else
+                {
+                    projectile.shellingInfo = GlobalShellingInfo.Invalid;                    
+                    projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
+                }
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
-                projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+                projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);                
 
                 if (instant)
                 {
@@ -685,7 +717,7 @@ namespace CombatExtended
 
                 }
                 else
-                {
+                {                    
                     projectile.Launch(
                                       Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                                       sourceLoc,
@@ -717,6 +749,17 @@ namespace CombatExtended
             }
             return true;
         }
+
+        public virtual bool TryStartShellingTile(GlobalShellingInfo info)
+        {
+            this.shellingInfo = info;
+            //Caster.Position - 
+            if (TryStartCastOn(info.sourceMapExitCell, false, true, false))
+            {
+                return true;
+            }
+            return false;
+        }      
 
         private float GetMinCollisionDistance(float targetDistance)
         {
@@ -770,6 +813,11 @@ namespace CombatExtended
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
+            if (shellingInfo.IsValid)
+            {
+                resultingLine = new ShootLine(root, targ.Cell);
+                return true;
+            }
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
                 resultingLine = new ShootLine(root, targ.Cell);

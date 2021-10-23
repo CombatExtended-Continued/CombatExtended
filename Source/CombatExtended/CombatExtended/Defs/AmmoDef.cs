@@ -14,13 +14,16 @@ namespace CombatExtended
         public int defaultAmmoCount = 1;
         public float cookOffSpeed = 1f;
         public float cookOffFlashScale = 1;
+        public float worldTilesPerTick = 0.2f;
         public bool menuHidden;
         public ThingDef cookOffProjectile = null;
         public SoundDef cookOffSound = null;
         public SoundDef cookOffTailSound = null;
         public ThingDef detonateProjectile = null;
-        // mortar ammo should still availabe when the ammo system is off
+        
+        // mortar ammo should still availabe when the ammo system is off        
         public bool isMortarAmmo = false;
+        public TravelingShellProperties travelingProjectileProp;
 
         public List<string> ammoTags;
 
