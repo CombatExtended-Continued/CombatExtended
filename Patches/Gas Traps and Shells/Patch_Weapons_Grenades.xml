@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+		<!-- ==================== Toxic Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeToxic</defName>
+			<label>toxic gas grenade</label>
+			<graphicData>
+			  <texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+			  <color>(70,183,79)</color>
+			  <shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeToxic</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>toxic gas grenade</label>
+			<description>Releases a large cloud of a potent nerve agent harmful to most complex forms of organic life.</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(70,183,79)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_OneHandedWeapon</li>
+			  <li>CE_AI_Grenade</li>
+			  <li>GrenadeSmoke</li>
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw toxic gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeToxic</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Rage Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeRage</defName>
+			<label>rage gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(200,112,112)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeRage</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>rage gas grenade</label>
+			<description>Releases a large cloud of a specialized airbone agent that induces a blind, uncontrollable rage..</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(200,112,112)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_AI_Nonlethal</li>
+			  <li>GrenadeSmoke</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw rage gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeRage</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Tear Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeTearGas</defName>
+			<label>tear gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+			  <color>(181,151,185)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeTearGas</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>tear gas grenade</label>
+			<description>Releases a large cloud of a specialized airbone agent that attacks the sensitive membranes of the eyes and nose, making it difficult to see or breathe..</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(181,151,185)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_AI_Nonlethal</li>
+			  <li>GrenadeSmoke</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw tear gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeTearGas</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Sleep Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeSleep</defName>
+			<label>sleep gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<color>(113,154,208)</color>
+				<shaderType>CutoutComplex</shaderType>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeSleep</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>sleep gas grenade</label>
+			<description>Releases a large cloud of powerful sedatives, capable of knocking unconscious anyone exposed to it.</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(113,154,208)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_AI_Nonlethal</li>
+			  <li>GrenadeSmoke</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw sleep gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeSleep</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Fear Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeFear</defName>
+			<label>fear gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+			  <color>(185,142,132)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeFear</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>fear gas grenade</label>
+			<description>Releases a large cloud of a specialized airbone agent that induces an extremely strong feeling of dread and terror.</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(185,142,132)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_AI_Nonlethal</li>
+			  <li>GrenadeSmoke</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw fear gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeFear</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Corrosive Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeAcid</defName>
+			<label>corrosive gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			  <color>(179,178,119)</color>
+			  <shaderType>CutoutComplex</shaderType>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeAcid</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>corrosive gas grenade</label>
+			<description>Releases a large cloud of an extremely strong acid, capable of quickly burning flesh and metal alike.</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(179,178,119)</color>
+				<shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>CE_OneHandedWeapon</li>
+			  <li>CE_AI_Grenade</li>
+			  <li>GrenadeSmoke</li>			  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw corrosive gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeAcid</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Nanomachine canister ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeMechVirus</defName>
+			<label>nanomachine canister</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+				<color>(220,220,220)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>MechanoidVirusGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeMechVirus</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>nanomachine canister</label>
+			<description>Releases a large cloud of nanomachines designed to latch onto and wreck havoc on the systems of mechanoids. Ineffective against organic life.</description>
+			<graphicData>
+			  <texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+			  <color>(220,220,220)</color>
+			  <shaderType>CutoutComplex</shaderType>
+			  <graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>GrenadeMech</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw nanomachine canister</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeMechVirus</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>MechanoidVirusGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		<!-- ==================== Insecticide Gas Grenade ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		  <ThingDef ParentName="BaseGrenadeProjectile">
+			<defName>Proj_GrenadeAntiBug</defName>
+			<label>insecticide gas grenade</label>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/gas_grenade_projectile</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>CutoutComplex</shaderType>
+			  <color>(70,183,79)</color>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			  <explosionRadius>4</explosionRadius>
+			  <damageDef>Smoke</damageDef>
+			  <explosionDelay>30</explosionDelay>
+			  <dropsCasings>true</dropsCasings>
+			  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+			  <postExplosionSpawnThingDef>AntiBugGas</postExplosionSpawnThingDef>
+			  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  <speed>10</speed>
+			</projectile>
+		  </ThingDef>
+		  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGrenadeEquipment">
+			<defName>Weapon_GrenadeAntiBug</defName>
+			<equipmentType>Primary</equipmentType>
+			<label>insecticide gas grenade</label>
+			<description>Releases a large cloud of a special aerosol designed to kill insectoids.</description>
+			<graphicData>
+				<texPath>ThirdParty/GasTraps/HandGrenade</texPath>
+				<color>(70,183,79)</color>
+				<shaderType>CutoutComplex</shaderType>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<soundInteract>Interact_Grenade</soundInteract>
+			<techLevel>Industrial</techLevel>
+			<statBases>
+			  <Mass>0.539</Mass>
+			  <Bulk>1.05</Bulk>
+			  <MarketValue>10.15</MarketValue>
+			  <SightsEfficiency>0.65</SightsEfficiency>
+			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			</statBases>
+			<weaponTags>
+			  <li>GrenadeAntiBug</li>	  
+			</weaponTags>
+			<thingCategories>
+			  <li>Grenades</li>
+			</thingCategories>
+			<verbs>
+			  <li Class="CombatExtended.VerbPropertiesCE">
+				<label>throw insecticide gas grenade</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<range>10</range>
+				<warmupTime>1.8</warmupTime>
+				<noiseRadius>4</noiseRadius>
+				<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+				<soundCast>ThrowGrenade</soundCast>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<defaultProjectile>Proj_GrenadeAntiBug</defaultProjectile>
+				<onlyManualCast>true</onlyManualCast>
+				<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			  </li>
+			</verbs>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>4</damageAmountBase>
+				<explosiveDamageType>Smoke</explosiveDamageType>
+				<postExplosionSpawnThingDef>AntiBugGas</postExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			  </li>
+			</comps>
+		  </ThingDef>
+		</value>
+		</li>
+		
+		</operations>
+	</match>
+</Operation>
+</Patch>
