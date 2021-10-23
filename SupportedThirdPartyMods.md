@@ -76,6 +76,7 @@ Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Animal Equipment	|
+Anthro Race |
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
@@ -95,6 +96,7 @@ Censored Armory  |
 Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
+Comigo's Fancy Floating Turrets |
 Cupro's Alloys	|
 CutePenguin	|
 CyberNet	|
@@ -239,12 +241,14 @@ Racc Race	|
 Race to the Rim |
 Radworld    |
 Rah's Bionics and Surgery Expansion	|
+Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Ratnik-3 Prototype Armor    |
 Redcoat Apparel	|
 Revia Race |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
+Rim of Madness - Vampires	|
 Rim of Madness - Werewolves	|
 Rim-Effect: Core	|
 Rim-Effect: Extended Cut	|
