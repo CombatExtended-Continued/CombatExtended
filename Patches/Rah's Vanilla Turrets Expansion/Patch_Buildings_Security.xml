@@ -43,7 +43,7 @@
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>SuppressFire</aiAimMode>
+					<aiAimMode>AimedShot</aiAimMode>
 					<aimedBurstShotCount>5</aimedBurstShotCount>
 				</FireModes>
 			</li>
@@ -78,21 +78,20 @@
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<onlyManualCast>true</onlyManualCast>
 					<stopBurstWithoutLos>false</stopBurstWithoutLos>
-					<muzzleFlashScale>30</muzzleFlashScale>
+					<muzzleFlashScale>30</muzzleFlashScale>			
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
 					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>5</magazineSize>
+					<magazineSize>3</magazineSize>
 					<reloadTime>8.6</reloadTime>
 					<ammoSet>AmmoSet_83mmSMAW</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<noSnapshot>true</noSnapshot>
 				</FireModes>
 			</li>
 
@@ -100,6 +99,16 @@
 				<xpath>Defs/ThingDef[defName="RocketComplex"]/specialDisplayRadius</xpath>
 				<value>
 					<specialDisplayRadius>48</specialDisplayRadius>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RocketComplex"]/costList</xpath>
+				<value>
+					<costList>
+					  <Steel>200</Steel>
+					  <ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
 				</value>
 			</li>
 
@@ -133,6 +142,12 @@
 					<reloadTime>15.6</reloadTime>
 					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>					
+				</FireModes>				
 			</li>
 
 			<li Class="PatchOperationReplace">
@@ -176,8 +191,6 @@
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
 					<aimedBurstShotCount>10</aimedBurstShotCount>
-					<noSnapshot>true</noSnapshot>
-					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>
 
@@ -225,7 +238,6 @@
 				<FireModes>
 					<aiUseBurstMode>TRUE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
@@ -276,7 +288,6 @@
 					<aiUseBurstMode>TRUE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>
 
@@ -319,7 +330,8 @@
 					<ammoSet>AmmoSet_145x114mm</ammoSet>
 				</AmmoUser>
 				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>				
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>				
 				</FireModes>
 			</li>
 
@@ -405,9 +417,9 @@
 					<ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
 				</AmmoUser>
 				<FireModes>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>
@@ -416,6 +428,17 @@
 				<xpath>Defs/ThingDef[defName="BlastTurretGun"]/specialDisplayRadius</xpath>
 				<value>
 					<specialDisplayRadius>40</specialDisplayRadius>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BlastTurretGun"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>200</Steel>
+						<Plasteel>20</Plasteel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
 				</value>
 			</li>
 
@@ -454,7 +477,6 @@
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>
 
@@ -462,6 +484,17 @@
 				<xpath>Defs/ThingDef[defName="BlastTurretGunManned"]/specialDisplayRadius</xpath>
 				<value>
 					<specialDisplayRadius>40</specialDisplayRadius>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="BlastTurretGunManned"]/costList</xpath>
+				<value>
+					<costList>
+						<Steel>200</Steel>
+						<Plasteel>20</Plasteel>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
 				</value>
 			</li>
 
@@ -499,7 +532,6 @@
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>20</aimedBurstShotCount>
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
@@ -617,10 +649,10 @@
 				<value>
 					<li Class="CombatExtended.CompProperties_Charges">
 						<chargeSpeeds>
-							<li>30</li>
-							<li>50</li>
-							<li>70</li>
-							<li>90</li>
+						<li>30</li>
+						<li>50</li>
+						<li>70</li>
+						<li>90</li>
 						</chargeSpeeds>
 					</li>
 				</value>
@@ -676,6 +708,7 @@
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
 				</FireModes>
 				<weaponTags>
 					<li>TurretGun</li>
@@ -740,11 +773,7 @@
 					defName="Turret_DevastatorMortarBomb"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
-<!--
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="GunComplex"]/thingCategories/li[text()="BuildingsSecurity"]</xpath>
-			</li>
--->
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[
 					defName="GunComplex" or
