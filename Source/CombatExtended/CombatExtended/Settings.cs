@@ -23,6 +23,8 @@ namespace CombatExtended
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
 
+	private bool showExtraTooltips = false;
+
         public bool ShowCasings => showCasings;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
@@ -31,6 +33,7 @@ namespace CombatExtended
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
         public bool ShowTacticalVests => showTacticalVests;
+	public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowTutorialPopup = true;
 
@@ -93,6 +96,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
 
+	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
+
 #if DEBUG
             // Debug settings
             Scribe_Values.Look(ref debuggingMode, "debuggingMode", false);
@@ -137,6 +142,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
+	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.

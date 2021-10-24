@@ -59,7 +59,7 @@ namespace CombatExtended
         public override void GameComponentUpdate()
         {
             base.GameComponentUpdate();
-            if (!Controller.settings.DebuggingMode || !Input.anyKey || Find.CurrentMap == null || Current.ProgramState != ProgramState.Playing)
+            if (!Controller.settings.ShowExtraTooltips || !Input.anyKey || Find.CurrentMap == null || Current.ProgramState != ProgramState.Playing)
             {
                 return;
             }
@@ -97,7 +97,16 @@ namespace CombatExtended
                 Pair<Func<Map, IntVec3, string>, KeyCode> callback = mapCallbacks[i];                
                 if (Input.GetKey(callback.Second == KeyCode.None ? KeyCode.LeftShift : callback.Second))
                 {
-                    string message = callback.First(Find.CurrentMap, mouseCell);
+		    string message;
+		    try
+		    {
+			message = callback.First(Find.CurrentMap, mouseCell);
+		    }
+		    catch (Exception e)
+		    {
+			Log.Error(e.ToString());
+			message = "Debug Callback failed (see log for details)";
+		    }
                     if (!message.NullOrEmpty())
                     {
                         DoTipSignal(mouseRect, message);
