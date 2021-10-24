@@ -63,14 +63,14 @@ namespace CombatExtended
                         if (t.Active)
                         {
                             started = true;
-                            t.OrderAttackWorldTile(targetInfo);
+                            t.TryAttackWorldTarget(targetInfo);
                         }
                     }
                     return started;
                 }
                 else if(turret.Active)
                 {
-                    turret.OrderAttackWorldTile(targetInfo);
+                    turret.TryAttackWorldTarget(targetInfo);
                     return true;
                 }
                 return false;

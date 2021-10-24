@@ -105,8 +105,7 @@ namespace CombatExtended
                     return cell;
                 }
             }
-            stopwatch.Stop();
-            Log.Message($"{stopwatch.ElapsedMilliseconds} MS");
+            stopwatch.Stop();            
             return IntVec3.Invalid;
         }       
 
@@ -124,7 +123,7 @@ namespace CombatExtended
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);            
-            projectile.Launch(null, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
+            projectile.Launch(shellingInfo.caster, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
         }
     }
 }

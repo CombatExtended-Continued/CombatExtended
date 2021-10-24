@@ -575,28 +575,36 @@ namespace CombatExtended
             {
                 return false;
             }            
-            Map map = Current.Game.FindMap(targetInfo.Tile);
-            //if (map != null)
-            //{
-            //    IntVec3 selectedCell = IntVec3.Invalid;
-            //    AttackGlobalTarget(selectedCell, map);
-            //}
-            OrderAttackWorldTile(targetInfo);
-            //if(map == null)
-            //{
-            //    MapParent mapParent = Find.WorldObjects.MapParentAt(targetInfo.Tile);
-            //    if(mapParent == null)
-            //    {
-            //        return false;
-            //    }
-            //    map = MapGenerator.GenerateMap(Find.World.info.initialMapSize, mapParent, mapParent.MapGeneratorDef, mapParent.ExtraGenStepDefs);                
-            //}
-            //Find.TickManager.Notify_GeneratedPotentiallyHostileMap();
-            //CameraJumper.TryJumpInternal(new IntVec3((int)(map.cellIndices.mapSizeX / 2), 0, (int)(map.cellIndices.mapSizeZ / 2)), map);            
+            Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
+            Log.Message($"map:{map}");
+            if (map != null)
+            {
+                IntVec3 selectedCell = IntVec3.Invalid;
+                Find.WorldTargeter.StopTargeting();
+                CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map);
+                Find.Targeter.BeginTargeting(new TargetingParameters()
+                {
+                    canTargetLocations = true,
+                    canTargetBuildings = true,
+                    canTargetHumans = true
+                }, (target)=>
+                {
+                    OrderAttackWorldTile(targetInfo, target.Cell);
+                }, highlightAction: (target)=>
+                {
+                    // TODO                    
+                }, targetValidator: (target) =>
+                {
+                    RoofDef roof = map.roofGrid.RoofAt(target.Cell);
+                    return roof == null || roof == RoofDefOf.RoofConstructed;
+                });                                                
+                return false;
+            }            
+            OrderAttackWorldTile(targetInfo);                      
             return true;
         }
 
-        public virtual void OrderAttackWorldTile(GlobalTargetInfo targetInf)
+        public virtual void OrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
         {            
             int startingTile = Map.Tile;
             int destinationTile = targetInf.Tile;
@@ -615,8 +623,10 @@ namespace CombatExtended
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
             exitCell.y = 0;
             
-            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, direction, exitCell.ToIntVec3(), null);                                    
-            this.forcedTarget = exitCell.ToIntVec3();
+            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, direction, exitCell.ToIntVec3(), null);
+            this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;
+            this.currentShellingInfo.caster = mannableComp?.ManningPawn ?? null;
+            this.forcedTarget = exitCell.ToIntVec3();            
             this.TryStartShootSomething(false);
         }
 
