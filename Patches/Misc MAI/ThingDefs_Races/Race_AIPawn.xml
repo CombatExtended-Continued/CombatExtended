@@ -8,24 +8,7 @@
 			
 		<match Class="PatchOperationSequence">
 		<operations>
-		
-            <li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="BaseAIPawn_MiscMAI"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-                    <value>
-                        <li>CombatExtended.ITab_Inventory</li>
-                    </value>
-			</li>
 
-            <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="BaseAIPawn_MiscMAI"]/comps</xpath>
-                    <value>
-                        <li Class="CombatExtended.CompProperties_Inventory" />
-						<li>
-						<compClass>CombatExtended.CompPawnGizmo</compClass>
-						</li>
-                    </value>
-			</li>
-			
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[@Name="BaseAIPawn_MiscMAI"]</xpath>
 				<value>
@@ -110,7 +93,7 @@
 					<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 				</value>
 			</li>
-			
+
 			<!-- ========== Add loadout update behavior ========== -->
 
 			<li Class="PatchOperationAdd">
@@ -123,13 +106,13 @@
 
 			<!-- ========== Add additional inventory behavior ========== -->
 
-			<li Class="PatchOperationInsert">
-				<xpath>Defs/ThinkTreeDef[defName="AIPawnConstant"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow"]/subNodes/li[@Class="JobGiver_FleePotentialExplosion"]</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThinkTreeDef[defName="AIPawnConstant"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow"]/subNodes</xpath>
 				<value>
 					<li Class="CombatExtended.JobGiver_TakeAndEquip"/>
 				</value>
 			</li>
-			
+
 		</operations>
 		</match>	
 	  </li>
