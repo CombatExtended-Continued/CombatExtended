@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Rimedieval - Medieval Royalty</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+  <!-- ========== Flamethrower ========== -->
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BZT_Gun_Firethrower</defName>
+    <statBases>
+      <RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.15</ShotSpread>
+      <SwayFactor>1.8</SwayFactor>
+      <Bulk>12</Bulk>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>BZT_Proj_FirepotBomb_Fired</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>20</range>
+      <burstShotCount>0</burstShotCount>
+      <soundCast>Shot_IncendiaryLauncher</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+      </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>5</reloadTime>
+      <ammoSet>AmmoSet_MedievalFlamethrower</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+  </li>
+
+	<!-- ========== Firepot Bomb ========== -->
+
+	<!-- Projectile -->
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="BZT_Proj_FirepotBomb"]/projectile</xpath>
+		<value>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>0.5</explosionRadius>
+				<damageDef>Flame</damageDef>
+				<damageAmountBase>10</damageAmountBase>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<speed>12</speed>
+				<ai_IsIncendiary>true</ai_IsIncendiary>
+			</projectile>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="BZT_Proj_FirepotBomb"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+		</value>
+	</li>
+
+	<!-- Grenade -->
+	<li Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]/graphicData</xpath>
+		<value>
+      <graphicData>
+        <texPath>Things/Item/Equipment/WeaponRanged/FirepotBomb</texPath>
+        <graphicClass>Graphic_Single</graphicClass>
+      </graphicData> 
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]</xpath>
+		<value>
+			<thingClass>CombatExtended.AmmoThing</thingClass>
+			<stackLimit>50</stackLimit>
+			<resourceReadoutPriority>First</resourceReadoutPriority>
+			<ammoClass>IncendiaryFuel</ammoClass>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAttributeSet">
+		<xpath>/Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]/comps</xpath>
+		<value>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>1</damageAmountBase>
+			<explosiveDamageType>Flame</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		  </li>
+		</value>
+	</li>
+
+	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>BZT_Weapon_FirepotBomb</defName>
+		<statBases>
+			<Mass>0.6</Mass>
+			<Bulk>1.8</Bulk>
+			<MarketValue>3</MarketValue>
+			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.65</SightsEfficiency>
+		</statBases>
+		<Properties>
+			<label>throw firebomb</label>
+			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<range>12</range>
+			<minRange>3</minRange>
+			<warmupTime>1.8</warmupTime>
+			<noiseRadius>4</noiseRadius>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<soundCast>ThrowMolotovCocktail</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<defaultProjectile>BZT_Proj_FirepotBomb</defaultProjectile>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="BZT_Weapon_FirepotBomb"]</xpath>
+    <value>
+      <recipeMaker />
+    </value>
+  </li>
+
+  <li Class="PatchOperationAdd">
+    <xpath>Defs</xpath>
+    <value>
+      <RecipeDef ParentName="GrenadeRecipeBase">
+        <defName>MakeFirePotBomb</defName>
+        <label>make firepot bombs x10</label>
+        <description>Craft 10 fire bombs.</description>
+        <jobString>Making fire bombs.</jobString>
+        <workAmount>1600</workAmount>
+        <recipeUsers>
+          <li>CraftingSpot</li>
+        </recipeUsers>
+        <ingredients>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>Steel</li>
+              </thingDefs>
+            </filter>
+            <count>10</count>
+          </li>
+          <li>
+            <filter>
+              <thingDefs>
+                <li>Chemfuel</li>
+              </thingDefs>
+            </filter>
+            <count>20</count>
+          </li>
+        </ingredients>
+        <fixedIngredientFilter>
+          <thingDefs>
+            <li>Steel</li>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+          <BZT_Weapon_FirepotBomb>10</BZT_Weapon_FirepotBomb>
+        </products>
+      </RecipeDef>
+    </value>
+  </li>
+
+ 		</operations>
+		</match>
+	</Operation>
+</Patch>

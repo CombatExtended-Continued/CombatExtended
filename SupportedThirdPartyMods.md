@@ -254,6 +254,7 @@ Rim of Madness - Werewolves	|
 Rim-Effect: Core	|
 Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
+Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
