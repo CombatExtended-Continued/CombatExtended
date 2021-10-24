@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>[1.3]Solark Race</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!--========= Stuffable =========-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Tops_a" or
+				defName="HAR_SA_Tops_b" or
+				defName="HAR_SA_Tops_c"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>0</WornBulk>
+				</value>
+			</li>
+			
+			<!--Middle PA-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Armor_a"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					<Bulk>80</Bulk>
+					<WornBulk>10</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Armor_a"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Armor_a"
+				]/statBases/Mass</xpath>
+				<value>
+					<Mass>60</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Armor_a"
+				]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+					<CarryWeight>80</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="HAR_SA_Armor_Base"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[@Name="HAR_SA_Armor_Base"]/costList/ComponentSpacer</xpath>
+				<value>
+					<ComponentSpacer>3</ComponentSpacer>
+					<DevilstrandCloth>50</DevilstrandCloth>
+				</value>
+			</li>
+			
+			<!--Shell-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Shell_a" or
+				defName="HAR_SA_Shell_b"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+					<Bulk>10</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Shell_c"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Shell_c"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>10</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<!--Overhead-->
+			
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Heads_a" or
+				defName="HAR_SA_Heads_b" or
+				defName="HAR_SA_Heads_c"
+				]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<!--Overhead Armor-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Heads_d"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Heads_d"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40.5</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="HAR_SA_Heads_d"
+				]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+					<AimingAccuracy>0.15</AimingAccuracy>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="HAR_SA_Heads_d"]/costList</xpath>
+				<value>
+					<DevilstrandCloth>20</DevilstrandCloth>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
