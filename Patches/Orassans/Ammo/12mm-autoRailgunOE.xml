@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Orassans</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+	<ThingCategoryDef>
+		<defName>Ammo12mmautoRailgunOE</defName>
+		<label>12mm auto Railgun (OE)</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRailgunPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_12mmautoRailgunOE</defName>
+		<label>12mm auto Railgun (OE)</label>
+		<ammoTypes>
+			<Ammo_12mmautoRailgun_SabotOE>Bullet_12mmautoRailgun_SabotOE</Ammo_12mmautoRailgun_SabotOE>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+		<defName>Ammo_12mmautoRailgun_SabotOE</defName>
+		<label>12mm auto Railgun cartridge (Sabot:OE)</label>
+		<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for high calibar handguns.</description>
+		<statBases>
+			<Mass>0.012</Mass>
+			<Bulk>0.016</Bulk>
+			<MarketValue>0.16</MarketValue>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+      		<li>CE_AutoEnableCrafting_FabricationBench</li>
+			<li>CE_AutoEnableCrafting_TableMachining</li>
+			<!-- Railgun ammo isn't handloaded because it contains no propellant, and the sabots must be precision-machined anyway -->
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo12mmautoRailgunOE</li>
+		</thingCategories>
+		<graphicData>
+			<texPath>Things/Ammo/Railgun/Pistol</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<ammoClass>RailgunSabot</ammoClass>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="Base50AEBullet">
+		<defName>Bullet_12mmautoRailgun_SabotOE</defName>
+		<label>12mm auto Railgun bullet (Sabot:OE)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>28</damageAmountBase>
+			<armorPenetrationSharp>22</armorPenetrationSharp>
+			<armorPenetrationBlunt>110.80</armorPenetrationBlunt>
+			<speed>320</speed>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_12mmautoRailgun_SabotOE</defName>
+		<label>make 12mm auto Railgun cartridge (Sabot:OE) x500</label>
+		<description>Craft 500 12mm auto Railgun (Sabot:OE) cartridges.</description>
+		<jobString>Making 12mm auto Railgun (Sabot:OE) cartridges.</jobString>
+		<workAmount>1000</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Uranium</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_12mmautoRailgun_SabotOE>500</Ammo_12mmautoRailgun_SabotOE>
+		</products>
+	</RecipeDef>
+      </value>
+    </match>
+  </Operation>
+</Patch>
