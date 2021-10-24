@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
-	<Operation Class="PatchOperationFindMod">
+<Operation Class="PatchOperationFindMod">
     <mods>
+        <li>Combat Extended</li>
 		<li>Gas Traps And Shells</li>
     </mods>
-		<match Class="PatchOperationSequence">
-		 <operations>
-			<!-- Add Shell Recipes -->
-			<li Class="PatchOperationAdd">
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+		<!-- Add Shell Recipes -->
+
+		<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
 					  <RecipeDef ParentName="AmmoRecipeBase">
@@ -36,17 +39,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>PsychoidLeaves</li>
+								<li>Canister_ToxicGas</li>
 							  </thingDefs>
 							</filter>
-							<count>15</count>
+							<count>1</count>
 						  </li>
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>PsychoidLeaves</li>
+							<li>Canister_ToxicGas</li>
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -79,26 +82,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>Flake</li>
+								<li>Canister_RageGas</li>
 							  </thingDefs>
 							</filter>
-							<count>5</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>Beer</li>
-							  </thingDefs>
-							</filter>
-							<count>3</count>
+							<count>1</count>
 						  </li>	  
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>Flake</li>
-							<li>Beer</li>		
+							<li>Canister_RageGas</li>	
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -131,26 +125,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>Neutroamine</li>
+								<li>Canister_TearGas</li>
 							  </thingDefs>
 							</filter>
-							<count>2</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>SmokeleafLeaves</li>
-							  </thingDefs>
-							</filter>
-							<count>10</count>
+							<count>1</count>
 						  </li>	  
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>Neutroamine</li>
-							<li>SmokeleafLeaves</li>		
+							<li>Canister_TearGas</li>
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -183,26 +168,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>Beer</li>
+								<li>Canister_SleepGas</li>
 							  </thingDefs>
 							</filter>
-							<count>3</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>SmokeleafLeaves</li>
-							  </thingDefs>
-							</filter>
-							<count>15</count>
+							<count>1</count>
 						  </li>	  
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>Beer</li>
-							<li>SmokeleafLeaves</li>		
+							<li>Canister_SleepGas</li>	
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -235,26 +211,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>Neutroamine</li>
+								<li>Canister_FearGas</li>
 							  </thingDefs>
 							</filter>
-							<count>3</count>
-						  </li>
-						  <li>
-							<filter>
-							  <thingDefs>
-								<li>PsychoidLeaves</li>
-							  </thingDefs>
-							</filter>
-							<count>15</count>
-						  </li>	  
+							<count>1</count>
+						  </li> 
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>Neutroamine</li>
-							<li>PsychoidLeaves</li>		
+							<li>Canister_FearGas</li>
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -264,9 +231,9 @@
 
 					  <RecipeDef ParentName="AmmoRecipeBase">
 						<defName>MakeShell_GasAcid</defName>
-						<label>make 81mm toxic acid mortar shells x5</label>
-						<description>Craft 5 81mm toxic acid mortar shells.</description>
-						<jobString>Making 81mm toxic acid mortar shells.</jobString>
+						<label>make 81mm corrosive acid mortar shells x5</label>
+						<description>Craft 5 81mm corrosive acid mortar shells.</description>
+						<jobString>Making 81mm corrosive acid mortar shells.</jobString>
 						<ingredients>
 						  <li>
 							<filter>
@@ -287,17 +254,17 @@
 						  <li>
 							<filter>
 							  <thingDefs>
-								<li>Neutroamine</li>
+								<li>Canister_AcidGas</li>
 							  </thingDefs>
 							</filter>
-							<count>8</count>
+							<count>1</count>
 						  </li>
 						</ingredients>
 						<fixedIngredientFilter>
 						  <thingDefs>
 							<li>Steel</li>
 							<li>ComponentIndustrial</li>
-							<li>PsychoidLeaves</li>
+							<li>Canister_AcidGas</li>
 						  </thingDefs>
 						</fixedIngredientFilter>
 						<products>
@@ -306,121 +273,365 @@
 					  </RecipeDef>			
 				</value>
 			</li>
-		
-			<!-- Add Shells to AmmoSet -->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+
+		<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
 				<value>
+				<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_MechVirus</defName>
+						<label>make 81mm nanomachines mortar shells x5</label>
+						<description>Craft 5 81mm nanomachines mortar shells.</description>
+						<jobString>Making 81mm nanomachines mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>2</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_MechVirusGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_MechVirusGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_MechVirus>5</Shell_MechVirus>
+						</products>
+					  </RecipeDef>
+				</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_GasAntiBug</defName>
+						<label>make 81mm insecticide mortar shells x5</label>
+						<description>Craft 5 81mm insecticide mortar shells.</description>
+						<jobString>Making 81mm insecticide mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_AntibugGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_AntibugGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_GasAntiBug>5</Shell_GasAntiBug>
+						</products>
+					  </RecipeDef>
+				</value>
+		</li>
+		
+		<!-- Add Shells to AmmoSet -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+			<value>
+				<Shell_MechVirus>Bullet_Shell_MechVirus</Shell_MechVirus>
+				<Shell_GasAntiBug>Bullet_Shell_GasAntiBug</Shell_GasAntiBug>
 				<Shell_GasToxic>Bullet_Shell_GasToxic</Shell_GasToxic>
 				<Shell_GasRage>Bullet_Shell_GasRage</Shell_GasRage>
 				<Shell_GasTear>Bullet_Shell_GasTear</Shell_GasTear>	
 				<Shell_GasSleep>Bullet_Shell_GasSleep</Shell_GasSleep>			
 				<Shell_GasFear>Bullet_Shell_GasFear</Shell_GasFear>			
-				<Shell_GasAcid>Bullet_Shell_GasAcid</Shell_GasAcid>				
-				</value>
-			</li>
-			
-			<!-- Add CE Ammo.Def to Shells & Ammo-->
-			<li Class="PatchOperationAttributeAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasToxic" or
-				defName="Shell_GasRage" or
-				defName="Shell_GasTear" or
-				defName="Shell_GasSleep" or
-				defName="Shell_GasFear" or
-				defName="Shell_GasAcid" or
-				defName="Bullet_Shell_GasToxic" or
-				defName="Bullet_Shell_GasRage" or
-				defName="Bullet_Shell_GasTear" or
-				defName="Bullet_Shell_GasSleep" or
-				defName="Bullet_Shell_GasFear" or
-				defName="Bullet_Shell_GasAcid"
-				]</xpath>
+				<Shell_GasAcid>Bullet_Shell_GasAcid</Shell_GasAcid>							
+			</value>
+		</li>
+		
+		<!-- Add CE Ammo.Def to Shells & Ammo-->
+		
+		<li Class="PatchOperationAttributeAdd">
+				<xpath>Defs/ThingDef[
+					defName="Shell_GasToxic" or
+					defName="Shell_GasRage" or
+					defName="Shell_GasTear" or
+					defName="Shell_GasSleep" or
+					defName="Shell_GasFear" or
+					defName="Shell_GasAcid" or
+					defName="Shell_GasAntiBug" or 
+					defName="Shell_MechVirus"  or 
+					defName="Bullet_Shell_GasToxic" or
+					defName="Bullet_Shell_GasRage" or
+					defName="Bullet_Shell_GasTear" or
+					defName="Bullet_Shell_GasSleep" or
+					defName="Bullet_Shell_GasFear" or
+					defName="Bullet_Shell_GasAcid" or
+					defName="Bullet_Shell_MechVirus" or 
+					defName="Bullet_Shell_GasAntiBug"]</xpath>
 				<attribute>Class</attribute>
 				<value>CombatExtended.AmmoDef</value>
-			</li>
-
+		</li>
+			
 			<!-- Add New Shell Base-->
-			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="Shell_GasToxic" or
-				defName="Shell_GasRage" or
-				defName="Shell_GasTear" or
-				defName="Shell_GasSleep" or
-				defName="Shell_GasFear" or
-				defName="Shell_GasAcid"
-				]</xpath>
+			
+		<li Class="PatchOperationAttributeSet">
+				<xpath>Defs/ThingDef[
+					defName="Shell_GasToxic" or
+					defName="Shell_GasRage" or
+					defName="Shell_GasTear" or
+					defName="Shell_GasSleep" or
+					defName="Shell_GasFear" or
+					defName="Shell_GasAcid" or
+					defName="Shell_GasAntiBug" or 
+					defName="Shell_MechVirus"]</xpath>
 				<attribute>ParentName</attribute>
 				<value>81mmMortarShellBaseCraftableBase</value>
-			</li>
+		</li>
 
 			<!-- Remove Stuff -->
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Shell_GasToxic" or
-				defName="Shell_GasRage" or
-				defName="Shell_GasTear" or
-				defName="Shell_GasSleep" or
-				defName="Shell_GasFear" or
-				defName="Shell_GasAcid"
-				]/projectileWhenLoaded</xpath>
-			</li>
+			
+		<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+					defName="Shell_GasToxic" or
+					defName="Shell_GasRage" or
+					defName="Shell_GasTear" or
+					defName="Shell_GasSleep" or
+					defName="Shell_GasFear" or
+					defName="Shell_GasAcid" or
+					defName="Shell_GasAntiBug" or 
+					defName="Shell_MechVirus"]/projectileWhenLoaded</xpath>
+		</li>
 
 			<!-- Add Shell Mass-->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasToxic" or
-				defName="Shell_GasRage" or
-				defName="Shell_GasTear" or
-				defName="Shell_GasSleep" or
-				defName="Shell_GasFear" or
-				defName="Shell_GasAcid"
-				]</xpath>
+			
+		<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="Shell_GasToxic" or
+					defName="Shell_GasRage" or
+					defName="Shell_GasTear" or
+					defName="Shell_GasSleep" or
+					defName="Shell_GasFear" or
+					defName="Shell_GasAcid" or
+					defName="Shell_GasAntiBug" or 
+					defName="Shell_MechVirus"]</xpath>
 				<value>
 				<statBases>
 					<Mass>4.3</Mass>
 					<Bulk>5</Bulk>	
 				</statBases>					
 				</value>
-			</li>
-
+		</li>
+		
 			<!-- Add Shell Ammo Type-->
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasToxic"]</xpath>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasToxic"]</xpath>
+			<value>
+				<ammoClass>GasToxic</ammoClass>				
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasRage"]</xpath>
+			<value>
+				<ammoClass>GasRage</ammoClass>				
+			</value>
+		</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasTear"]</xpath>
+			<value>
+				<ammoClass>GasTear</ammoClass>				
+			</value>
+		</li>			
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasFear"]</xpath>
+			<value>
+				<ammoClass>GasFear</ammoClass>				
+			</value>
+		</li>	
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasSleep"]</xpath>
+			<value>
+				<ammoClass>GasSleep</ammoClass>				
+			</value>
+		</li>	
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Shell_GasAcid"]</xpath>
+			<value>
+				<ammoClass>GasAcid</ammoClass>				
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Shell_MechVirus"]</xpath>
 				<value>
-					<ammoClass>GasToxic</ammoClass>				
+					<ammoClass>MechVirus</ammoClass>				
 				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasRage"]</xpath>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]</xpath>
 				<value>
-					<ammoClass>GasRage</ammoClass>				
+					<ammoClass>AntiBug</ammoClass>				
 				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasTear"]</xpath>
-				<value>
-					<ammoClass>GasTear</ammoClass>				
-				</value>
-			</li>			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasFear"]</xpath>
-				<value>
-					<ammoClass>GasFear</ammoClass>				
-				</value>
-			</li>	
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasSleep"]</xpath>
-				<value>
-					<ammoClass>GasSleep</ammoClass>				
-				</value>
-			</li>	
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Shell_GasAcid"]</xpath>
-				<value>
-					<ammoClass>GasAcid</ammoClass>				
-				</value>
-			</li>	
-			
-			<!-- Add CE Explosives Comps to Shells -->			
+		</li>
+		
+		<!-- Add CE Explosives Comps to Shells -->
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Shell_GasToxic"]/comps</xpath>
+				<value>
+				<comps>				
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>				  
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasRage"]/comps</xpath>
+				<value>
+				<comps>				
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>	  
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasTear"]/comps</xpath>
+				<value>
+				<comps>
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>	 
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasSleep"]/comps</xpath>
+				<value>
+				<comps>
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>  
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasFear"]/comps</xpath>
+				<value>
+				<comps>
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>  
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_GasAcid"]/comps</xpath>
+				<value>
+				<comps>
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>5.9</explosiveRadius>
+					<explosiveDamageType>Smoke</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+					<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+					<wickTicks>
+					<min>10</min>
+					<max>30</max>
+					</wickTicks>
+				</li>
+				</comps>  
+				</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Shell_MechVirus"]/comps</xpath>
 				<value>
 				<comps>				
 				  <li Class="CompProperties_Explosive">
@@ -428,7 +639,7 @@
 					<explosiveDamageType>Smoke</explosiveDamageType>
 					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
 					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnThingDef>MechanoidVirusGas</postExplosionSpawnThingDef>
 					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
 					<wickTicks>
 					  <min>10</min>
@@ -438,8 +649,9 @@
 				</comps>				  
 				</value>
 			</li>
+			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_GasRage"]/comps</xpath>
+				<xpath>Defs/ThingDef[defName="Shell_GasAntiBug"]/comps</xpath>
 				<value>
 				<comps>				
 				  <li Class="CompProperties_Explosive">
@@ -447,134 +659,63 @@
 					<explosiveDamageType>Smoke</explosiveDamageType>
 					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
 					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+					<postExplosionSpawnThingDef>AntiBugGas</postExplosionSpawnThingDef>
 					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
 					<wickTicks>
 					  <min>10</min>
 					  <max>30</max>
 					</wickTicks>
 				  </li>
-				</comps>	  
+				</comps>				  
 				</value>
 			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_GasTear"]/comps</xpath>
-				<value>
-				<comps>
-				  <li Class="CompProperties_Explosive">
-					<explosiveRadius>5.9</explosiveRadius>
-					<explosiveDamageType>Smoke</explosiveDamageType>
-					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
-					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
-					<wickTicks>
-					  <min>10</min>
-					  <max>30</max>
-					</wickTicks>
-				  </li>
-				</comps>	 
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_GasSleep"]/comps</xpath>
-				<value>
-				<comps>
-				  <li Class="CompProperties_Explosive">
-					<explosiveRadius>5.9</explosiveRadius>
-					<explosiveDamageType>Smoke</explosiveDamageType>
-					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
-					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
-					<wickTicks>
-					  <min>10</min>
-					  <max>30</max>
-					</wickTicks>
-				  </li>
-				</comps>  
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_GasFear"]/comps</xpath>
-				<value>
-				<comps>
-				  <li Class="CompProperties_Explosive">
-					<explosiveRadius>5.9</explosiveRadius>
-					<explosiveDamageType>Smoke</explosiveDamageType>
-					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
-					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
-					<wickTicks>
-					  <min>10</min>
-					  <max>30</max>
-					</wickTicks>
-				  </li>
-				</comps>  
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Shell_GasAcid"]/comps</xpath>
-				<value>
-				<comps>
-				  <li Class="CompProperties_Explosive">
-					<explosiveRadius>5.9</explosiveRadius>
-					<explosiveDamageType>Smoke</explosiveDamageType>
-					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
-					<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
-					<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
-					<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
-					<wickTicks>
-					  <min>10</min>
-					  <max>30</max>
-					</wickTicks>
-				  </li>
-				</comps>  
-				</value>
-			</li>
-
 			
 			<!-- Add New Bullet Base-->
 			<li Class="PatchOperationAttributeSet">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_GasToxic" or
-				defName="Bullet_Shell_GasRage" or
-				defName="Bullet_Shell_GasTear" or
-				defName="Bullet_Shell_GasSleep" or
-				defName="Bullet_Shell_GasFear" or
-				defName="Bullet_Shell_GasAcid"
-				]</xpath>
+				<xpath>Defs/ThingDef[
+					defName="Bullet_Shell_GasToxic" or
+					defName="Bullet_Shell_GasRage" or
+					defName="Bullet_Shell_GasTear" or
+					defName="Bullet_Shell_GasSleep" or
+					defName="Bullet_Shell_GasFear" or
+					defName="Bullet_Shell_GasAcid" or
+					defName="Bullet_Shell_MechVirus" or 
+					defName="Bullet_Shell_GasAntiBug"]</xpath>
 				<attribute>ParentName</attribute>
 				<value>Base81mmMortarShell</value>
 			</li>
 			
 			<!-- Projectiles -->		
 			<li Class="PatchOperationAttributeAdd">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_GasToxic" or
-				defName="Bullet_Shell_GasRage" or
-				defName="Bullet_Shell_GasTear" or
-				defName="Bullet_Shell_GasSleep" or
-				defName="Bullet_Shell_GasFear" or
-				defName="Bullet_Shell_GasAcid"
-				]/projectile</xpath>
+				<xpath>Defs/ThingDef[
+					defName="Bullet_Shell_GasToxic" or
+					defName="Bullet_Shell_GasRage" or
+					defName="Bullet_Shell_GasTear" or
+					defName="Bullet_Shell_GasSleep" or
+					defName="Bullet_Shell_GasFear" or
+					defName="Bullet_Shell_GasAcid" or
+					defName="Bullet_Shell_MechVirus" or 
+					defName="Bullet_Shell_GasAntiBug"]/projectile</xpath>
 				<attribute>Class</attribute>
 				<value>CombatExtended.ProjectilePropertiesCE</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Bullet_Shell_GasToxic" or
-				defName="Bullet_Shell_GasRage" or
-				defName="Bullet_Shell_GasTear" or
-				defName="Bullet_Shell_GasSleep" or
-				defName="Bullet_Shell_GasFear" or
-				defName="Bullet_Shell_GasAcid"
-				]/thingClass</xpath>
+				<xpath>Defs/ThingDef[
+					defName="Bullet_Shell_GasToxic" or
+					defName="Bullet_Shell_GasRage" or
+					defName="Bullet_Shell_GasTear" or
+					defName="Bullet_Shell_GasSleep" or
+					defName="Bullet_Shell_GasFear" or
+					defName="Bullet_Shell_GasAcid" or
+					defName="Bullet_Shell_MechVirus" or 
+					defName="Bullet_Shell_GasAntiBug"]/thingClass</xpath>
 				<value>
-				    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 				</value>
 			</li>
-
-		</operations>
-		</match>
-	</Operation>
+			
+			</operations>
+	</match>
+</Operation>
 </Patch>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+			<!-- Add Shells to AmmoSet -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_60mmMortarShell"]/ammoTypes</xpath>
+				<value>
+				<Shell_60mmMortar_ToxicGas>Bullet_60mmMortarShell_60mmMortar_ToxicGas</Shell_60mmMortar_ToxicGas>
+				<Shell_60mmMortar_RageGas>Bullet_60mmMortarShell_60mmMortar_RageGas</Shell_60mmMortar_RageGas>
+				<Shell_60mmMortar_TearGas>Bullet_60mmMortarShell_60mmMortar_TearGas</Shell_60mmMortar_TearGas>	
+				<Shell_60mmMortar_SleepGas>Bullet_60mmMortarShell_60mmMortar_SleepGas</Shell_60mmMortar_SleepGas>			
+				<Shell_60mmMortar_FearGas>Bullet_60mmMortarShell_60mmMortar_FearGas</Shell_60mmMortar_FearGas>			
+				<Shell_60mmMortar_AcidGas>Bullet_60mmMortarShell_60mmMortar_AcidGas</Shell_60mmMortar_AcidGas>				
+				</value>
+			</li>
+			
+			<!-- Ammo -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_ToxicGas</defName>
+					<label>60mm mortar shell (Toxic)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<color>(70,183,79)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>Toxic</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_ToxicGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_RageGas</defName>
+					<label>60mm mortar shell (Rage)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<shaderType>CutoutComplex</shaderType>
+						<color>(200,112,112)</color>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>Rage</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_RageGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_TearGas</defName>
+					<label>60mm mortar shell (Tear)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<color>(181,151,185)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>TearGas</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_TearGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_SleepGas</defName>
+					<label>60mm mortar shell (Sleep)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<color>(113,154,208)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>Sleep</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_SleepGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_FearGas</defName>
+					<label>60mm mortar shell (Fear)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<color>(185,142,132)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>Fear</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_FearGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
+					<defName>Shell_60mmMortar_AcidGas</defName>
+					<label>60mm mortar shell (Acid)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/Mortar</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<color>(179,178,119)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<statBases>
+						<MarketValue>22.20</MarketValue>
+						<Mass>4.1</Mass>
+						<Bulk>10.01</Bulk>
+					</statBases>
+					<ammoClass>Acid</ammoClass>
+					<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_AcidGas</detonateProjectile>
+					<comps>
+						<!-- Vanilla values -->
+					  <li Class="CompProperties_Explosive">
+						<explosiveRadius>4.5</explosiveRadius>
+						<explosiveDamageType>Bomb</explosiveDamageType>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+						<preExplosionSpawnChance>1</preExplosionSpawnChance>
+							<explodeOnKilled>True</explodeOnKilled>
+						<wickTicks>30~60</wickTicks>
+					  </li>
+					</comps>
+				  </ThingDef>
+				</value>
+			</li>
+			
+			<!-- Projectile -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_ToxicGas</defName>
+					<label>60mm mortar shell (Toxic)</label>
+					<graphicData>
+					  <texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					  <color>(70,183,79)</color>
+					  <shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>ToxicGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_RageGas</defName>
+					<label>60mm mortar shell (Rage)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<color>(200,112,112)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>RageGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_TearGas</defName>
+					<label>60mm mortar shell (Tear)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<color>(181,151,185)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>TearGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_SleepGas</defName>
+					<label>60mm mortar shell (Sleep)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<color>(113,154,208)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>SleepGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_FearGas</defName>
+					<label>60mm mortar shell (Fear)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<color>(185,142,132)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>FearGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarShell_60mmMortar_AcidGas</defName>
+					<label>60mm mortar shell (Acid)</label>
+					<graphicData>
+						<texPath>ThirdParty/GasTraps/gas_mortar_projectile</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<color>(179,178,119)</color>
+						<shaderType>CutoutComplex</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <damageDef>Bomb</damageDef>
+					  <damageAmountBase>5</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>AcidGas</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+				</value>
+			</li>
+			
+			<!-- Recipes -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+				
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_ToxicGas</defName>
+						<label>make 60mm toxic gas mortar shells x5</label>
+						<description>Craft 5 60mm toxic gas mortar shells.</description>
+						<jobString>Making 60mm toxic gas mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_ToxicGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_ToxicGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_ToxicGas>5</Shell_60mmMortar_ToxicGas>
+						</products>
+					  </RecipeDef>
+
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_RageGas</defName>
+						<label>make 60mm rage gas mortar shells x5</label>
+						<description>Craft 5 60mm rage gas mortar shells.</description>
+						<jobString>Making 60mm rage gas mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_RageGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>	  
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_RageGas</li>	
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_RageGas>5</Shell_60mmMortar_RageGas>
+						</products>
+					  </RecipeDef>
+
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_TearGas</defName>
+						<label>make 60mm tear gas mortar shells x5</label>
+						<description>Craft 5 60mm tear gas mortar shells.</description>
+						<jobString>Making 60mm tear gas mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_TearGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>	  
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_TearGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_TearGas>5</Shell_60mmMortar_TearGas>
+						</products>
+					  </RecipeDef>
+
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_SleepGas</defName>
+						<label>make 60mm sleep gas mortar shells x5</label>
+						<description>Craft 5 60mm sleep gas mortar shells.</description>
+						<jobString>Making 60mm sleep gas mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_SleepGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>	  
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_SleepGas</li>	
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_SleepGas>5</Shell_60mmMortar_SleepGas>
+						</products>
+					  </RecipeDef>
+
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_FearGas</defName>
+						<label>make 60mm fear gas mortar shells x5</label>
+						<description>Craft 5 60mm fear gas mortar shells.</description>
+						<jobString>Making 60mm fear gas mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_FearGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li> 
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_FearGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_FearGas>5</Shell_60mmMortar_FearGas>
+						</products>
+					  </RecipeDef>
+
+					  <RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeShell_60mmMortar_AcidGas</defName>
+						<label>make 60mm corrosive acid mortar shells x5</label>
+						<description>Craft 5 60mm corrosive acid mortar shells.</description>
+						<jobString>Making 60mm corrosive acid mortar shells.</jobString>
+						<ingredients>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Steel</li>
+							  </thingDefs>
+							</filter>
+							<count>20</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>ComponentIndustrial</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						  <li>
+							<filter>
+							  <thingDefs>
+								<li>Canister_AcidGas</li>
+							  </thingDefs>
+							</filter>
+							<count>1</count>
+						  </li>
+						</ingredients>
+						<fixedIngredientFilter>
+						  <thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>Canister_AcidGas</li>
+						  </thingDefs>
+						</fixedIngredientFilter>
+						<products>
+						  <Shell_60mmMortar_AcidGas>5</Shell_60mmMortar_AcidGas>
+						</products>
+					  </RecipeDef>
+					  
+				</value>
+			</li>
+			
+			</operations>
+	</match>
+</Operation>
+</Patch>
