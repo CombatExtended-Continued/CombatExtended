@@ -30,7 +30,7 @@ namespace CombatExtended
 
         public virtual float TilesPerTick
         {
-            get => 0.2f;
+            get => 0.03f;
         }        
 
         public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
@@ -54,7 +54,7 @@ namespace CombatExtended
             
             return true;
         }
-        
+               
         protected abstract void Arrived();
 
         public override void Tick()
@@ -63,6 +63,7 @@ namespace CombatExtended
             distanceTraveled += this.tilesPerTick;
             if(TraveledPtc >= 1.0f)
             {
+                Tile = destinationTile;
                 Arrived();
                 Destroy();
             }

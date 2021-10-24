@@ -615,7 +615,7 @@ namespace CombatExtended
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
             exitCell.y = 0;
             
-            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, exitCell.ToIntVec3(), null);                                    
+            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, direction, exitCell.ToIntVec3(), null);                                    
             this.forcedTarget = exitCell.ToIntVec3();
             this.TryStartShootSomething(false);
         }
