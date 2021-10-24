@@ -13,7 +13,7 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(ref bool __result, Verb verb)
         {
-            __result = verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
             return false;
         }
     }
