@@ -37,6 +37,7 @@ def parseArgs(argv):
     argParser.add_argument("--verbose", "-v", action="count", default=0, help="Increase verbosity, specify more times for more verbosity")
     argParser.add_argument("--download-libs", action="store_true", default=False, help=f"Automatically download referenced packages to {tdir}/downloads and unpack them to $reference")
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
+    argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -263,6 +264,8 @@ def main(argv=sys.argv):
 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    if options.debug:
+        args.append('-define:DEBUG')
     if verbose > 2:
         print(libraries)
     if verbose > 6:
