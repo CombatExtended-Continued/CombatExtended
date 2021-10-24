@@ -11,7 +11,7 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.AllowVerbCast))]
     internal static class ShieldBelt_PatchAllowVerbCast
     {
-        internal static bool Prefix(ref bool __result, Verb verb)
+        internal static bool Prefix(ref bool __result, Verb verb, ShieldBelt __instance)
         {
             __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
             return false;
