@@ -312,6 +312,7 @@ Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Ideology Expanded - Hats and Rags |
+Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
