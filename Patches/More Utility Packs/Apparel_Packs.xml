@@ -8,67 +8,173 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-		<!-- Robot Rig -->
+		<!-- Change Layer -->
+
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/statBases</xpath>
+			<xpath>/Defs/ThingDef[
+			defName="SGC_Apparel_RoboticRig" or
+			defName="SGC_Apparel_TraumaKit" or
+			defName="SGC_Apparel_SurvivalPack" or
+			defName="SGC_Apparel_RescueFrame" or
+			defName="SGC_Apparel_FieldMortar"			
+			]/apparel/layers</xpath>
+			<value>
+				<li>Backpack</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[
+			defName="SGC_Apparel_Forklift" or
+			defName="SGC_Apparel_SurvivalPack"		
+			]/apparel/layers</xpath>
+			<value>
+				<li>Backpack</li>
+			</value>
+		</li>
+
+		<!-- Robot Rig -->		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/statBases</xpath>
 			<value>
 				<Bulk>10</Bulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/equippedStatOffsets</xpath>
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/equippedStatOffsets</xpath>
 			<value>
 				<CarryBulk>15</CarryBulk>
 				<CarryWeight>25</CarryWeight>
 			</value>
 		</li>
 
-		<!-- Medical Bag -->
+		<!-- Medical Bag -->	
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/statBases</xpath>
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/statBases</xpath>
 			<value>
 				<Bulk>8</Bulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/equippedStatOffsets</xpath>
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/equippedStatOffsets</xpath>
 			<value>
 				<CarryBulk>20</CarryBulk>
 			</value>
 		</li>
 
 		<!-- Survival Pack -->
+	
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_SurvivalPack"]/statBases</xpath>
 			<value>
 				<Bulk>10</Bulk>
 			</value>
 		</li>
 
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets/CarryingCapacity</xpath>
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_SurvivalPack"]/equippedStatOffsets</xpath>
 			<value>
-				<CarryBulk>30</CarryBulk>
+				<CarryBulk>25</CarryBulk>
 			</value>
 		</li>
 
 		<!-- Rescue Frame -->
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases</xpath>
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases</xpath>
 			<value>
 				<Bulk>12</Bulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/equippedStatOffsets</xpath>
+			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/equippedStatOffsets</xpath>
 			<value>
 				<CarryBulk>10</CarryBulk>
 				<CarryWeight>20</CarryWeight>
 			</value>
 		</li>
+
+		<!-- Forklift Rig -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_Forklift"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_Forklift"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryBulk>15</CarryBulk>
+				<CarryWeight>100</CarryWeight>
+			</value>
+		</li>
+
+		<!-- Mortar Pack -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+          <value>
+            <ammoDef>Shell_60mmMortar_HE</ammoDef>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+          <value>
+            <maxCharges>3</maxCharges>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+          <value>
+            <ammoCountPerCharge>1</ammoCountPerCharge>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/verbs</xpath>
+          <value>
+            <verbs>
+              <li Class="CombatExtended.VerbPropertiesCE">
+                <label>launch 60mm shell</label>
+                <verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <onlyManualCast>True</onlyManualCast>
+                <warmupTime>2</warmupTime>
+                <range>40</range>
+                <minRange>5</minRange>
+                <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        		<soundCast>Mortar_LaunchA</soundCast>
+                <soundCastTail>GunTail_Medium</soundCastTail>
+                <muzzleFlashScale>14</muzzleFlashScale>
+                <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+                <targetParams>
+                  <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+                <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+                <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+                <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+              </li>
+            </verbs>
+          </value>
+        </li>
 
 		</operations>
 		</match>
