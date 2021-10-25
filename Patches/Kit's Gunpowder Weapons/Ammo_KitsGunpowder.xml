@@ -139,28 +139,8 @@
 	</ThingDef>
 	
 	<!-- ==== Large Steel Cannon Ball	==== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
-		<description>A large ball with the sole purpose of hitting the ground so hard that it causes shrapnel.</description>
-		<statBases>
-			<MaxHitPoints>550</MaxHitPoints>
-		</statBases>
-		<thingCategories>
-			<li>LargeCannonBall</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
-		<isMortarAmmo>true</isMortarAmmo>
-	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FueledSmithy</li>
-			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
-		</tradeTags>
-	</ThingDef>
-	
-	<!-- Need to override mortar shell because of hardcoded vanilla references -->
-	<ThingDef ParentName="81mmMortarShellBaseCraftableBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
 		<defName>Shell_LargeCannonBall_Steel</defName>
 		<label>Large Cannon Ball</label>
 		<graphicData>
