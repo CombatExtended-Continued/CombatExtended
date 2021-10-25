@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -55,6 +57,10 @@ namespace CombatExtended
             int radius = (int) turret.MaxWorldRange;
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
             {
+                if (!targetInfo.HasWorldObject)
+                {
+                    return false;
+                }
                 if(others != null)
                 {
                     bool started = false;
@@ -69,9 +75,8 @@ namespace CombatExtended
                     return started;
                 }
                 else if(turret.Active)
-                {
-                    turret.TryAttackWorldTarget(targetInfo);
-                    return true;
+                {                    
+                    return turret.TryAttackWorldTarget(targetInfo);
                 }
                 return false;
             }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
@@ -91,9 +96,23 @@ namespace CombatExtended
                 if (turret.MaxWorldRange > 0 && distanceToTarget > turret.MaxWorldRange)
                 {
                     GUI.color = ColorLibrary.RedReadable;
-                    return "ArtilleryTarget_DestinationBeyondMaximumRange".Translate();
+                    return "CE_ArtilleryTarget_DestinationBeyondMaximumRange".Translate();
                 }
-                return "ClickToSeeAvailableOrders_Empty".Translate();
+                if (!targetInfo.HasWorldObject || targetInfo.WorldObject is Caravan)
+                {
+                    GUI.color = ColorLibrary.RedReadable;
+                    return "CE_ArtilleryTarget_InvalidTarget".Translate();
+                }
+                string extra = "";
+                if(targetInfo.WorldObject is Settlement settlement)
+                {
+                    extra = $": {settlement.Name}";
+                    if(settlement.Faction != null && !settlement.Faction.name.NullOrEmpty())
+                    {
+                        extra += $" ({settlement.Faction.name})";
+                    }
+                }
+                return "CE_ArtilleryTarget_ClickToOrderAttack".Translate() + extra;
             });
             base.ProcessInput(ev);
         }

@@ -575,8 +575,7 @@ namespace CombatExtended
             {
                 return false;
             }            
-            Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;
-            Log.Message($"map:{map}");
+            Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;            
             if (map != null)
             {
                 IntVec3 selectedCell = IntVec3.Invalid;
@@ -592,7 +591,7 @@ namespace CombatExtended
                     OrderAttackWorldTile(targetInfo, target.Cell);
                 }, highlightAction: (target)=>
                 {
-                    // TODO                    
+                    GenDraw.DrawTargetHighlight(target);
                 }, targetValidator: (target) =>
                 {
                     RoofDef roof = map.roofGrid.RoofAt(target.Cell);
@@ -624,14 +623,13 @@ namespace CombatExtended
             exitCell.y = 0;
             
             this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, direction, exitCell.ToIntVec3(), null);
-            this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;
-            this.currentShellingInfo.caster = mannableComp?.ManningPawn ?? null;
+            this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;            
             this.forcedTarget = exitCell.ToIntVec3();            
             this.TryStartShootSomething(false);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
-        {
+         {
             foreach (Gizmo gizmo in base.GetGizmos())
             {
                 yield return gizmo;
@@ -651,8 +649,8 @@ namespace CombatExtended
             {                
                 Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
                 {
-                    defaultLabel = "Attack map tile",
-                    defaultDesc = "Attack a map tile wether a settelment or not.",
+                    defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
+                    defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
                     turret = this,
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
                     hotKey = KeyBindingDefOf.Misc4

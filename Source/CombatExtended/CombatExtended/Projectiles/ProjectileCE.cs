@@ -905,9 +905,10 @@ namespace CombatExtended
                     travelingShell.shellingInfo = shellingInfo;
                     travelingShell.shellDef = def;
                     travelingShell.TryTravel(shellingInfo.sourceTile, shellingInfo.targetTile);
-                    if (Faction != null)
+                    Faction faction = shellingInfo.caster?.Faction ?? shellingInfo.shooter?.Faction;                    
+                    if (faction != null)
                     {
-                        travelingShell.SetFaction(Faction);
+                        travelingShell.SetFaction(faction);
                     }                    
                     Find.WorldObjects.Add(travelingShell);
                 }

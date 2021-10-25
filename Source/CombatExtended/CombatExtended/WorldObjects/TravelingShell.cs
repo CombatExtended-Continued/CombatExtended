@@ -12,7 +12,7 @@ namespace CombatExtended
     public class TravelingShell : TravelingThing
     {
         public ThingDef shellDef;        
-        public GlobalShellingInfo shellingInfo;
+        public GlobalShellingInfo shellingInfo;        
 
         public override float TilesPerTick
         {
@@ -31,37 +31,35 @@ namespace CombatExtended
         }
 
         protected override void Arrived()
-        {
+        {            
             int tile = Tile;
             Settlement settlement = Find.World.worldObjects.SettlementAt(tile);
-            if(settlement != null && settlement.Faction != null && settlement.Faction.def != FactionDefOf.Mechanoid && !settlement.Faction.IsPlayerSafe())
+            Faction faction = this.shellingInfo.caster?.Faction ?? this.shellingInfo.shooter?.Faction;
+            
+            if (faction != null && settlement?.Faction != faction && !settlement.Faction.IsPlayerSafe())
             {
-                var relation = settlement.Faction.RelationWith(Faction);
-                var change = relation.baseGoodwill;                
-                if(relation.baseGoodwill > 0)
+                FactionRelation relation = settlement.Faction.RelationWith(faction, true);
+                if(relation == null)
                 {
-                    change = Mathf.Clamp(relation.baseGoodwill * relation.baseGoodwill + 25, -100, 100);
-                }
-                settlement.Faction.TryAffectGoodwillWith(Faction, (int) (-1f * change), canSendMessage: true, canSendHostilityLetter: true, HistoryEventDefOf.AttackedSettlement);
-                relation.baseGoodwill -= 20;
+                    settlement.Faction.TryMakeInitialRelationsWith(faction);
+                    relation = settlement.Faction.RelationWith(faction, false);
+                }                                                               
+                settlement.Faction.TryAffectGoodwillWith(faction, -70, canSendMessage: true, canSendHostilityLetter: true, HistoryEventDefOf.AttackedSettlement);                    
             }
             Site site = Find.World.worldObjects.SiteAt(tile);
             if(site != null)
             {
                 // damage site
             }
-            MapParent mapParent = Find.World.worldObjects.MapParentAt(tile);
-            if(mapParent != null)
-            {                
-                if (Find.Maps.Any(m => m.uniqueID == mapParent.Map.uniqueID)) // shell the map now
-                {
-                    SpawnShell(mapParent.Map);
-                }
-                else // queue map damage
-                {
+            MapParent mapParent = Find.World.worldObjects.MapParentAt(tile);            
+            if (mapParent != null && mapParent.HasMap)
+            {
+                SpawnShell(mapParent.Map);
+            }
+            else // queue map damage
+            {
 
-                }
-            }            
+            }
         }       
 
         private void SpawnShell(Map map)
@@ -109,21 +107,22 @@ namespace CombatExtended
             return IntVec3.Invalid;
         }       
 
-        private void Launch(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20)
-        {
-            float shotHeight = 100;
+        private void Launch(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
+        {            
             IntVec3 targetCell = target.Cell;           
             Vector2 source = new Vector2(sourceCell.x, sourceCell.z);
             Vector2 destination = new Vector2(targetCell.x, targetCell.z);
-            Vector2 w = (destination - source);            
+            Vector2 w = (destination - source);
+
             ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
             float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
             ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
-            float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);                        
+            float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);
+            
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
-            projectile.SpawnSetup(map, false);            
-            projectile.Launch(shellingInfo.caster, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
+            projectile.SpawnSetup(map, false);
+            projectile.Launch(shellingInfo.shooter ?? CE_Utility.TryGetTurretOperator(shellingInfo.caster) ?? shellingInfo.caster, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
         }
     }
 }
