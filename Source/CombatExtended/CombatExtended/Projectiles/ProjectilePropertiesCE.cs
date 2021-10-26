@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class ProjectilePropertiesCE : ProjectileProperties
     {
+        public TravelingShellProperties shellingProps;
+
         // public float armorPenetration = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
@@ -24,6 +26,6 @@ namespace CombatExtended
         public float armorPenetrationBlunt;
 
         public float empShieldBreakChance = 1f;
-        public float Gravity => CE_Utility.GravityConst * gravityFactor;
+        public float Gravity => CE_Utility.GravityConst * gravityFactor;        
     }
 }

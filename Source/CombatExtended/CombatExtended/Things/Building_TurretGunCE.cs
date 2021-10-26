@@ -137,7 +137,8 @@ namespace CombatExtended
                 return compFireModes;
             }
         }
-        public float MaxWorldRange => compAmmo?.CurrentAmmo.travelingProjectileProp.range ?? -1f;
+        private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE) compAmmo?.CurAmmoProjectile?.projectile ?? null;
+        public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
         public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
         public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
@@ -225,7 +226,7 @@ namespace CombatExtended
         {
             base.ExposeData();
 
-            // New variables
+            // New variables            
             Scribe_Deep.Look(ref currentShellingInfo, "currentShellingInfo");
             Scribe_Deep.Look(ref gunInt, "gunInt");
             InitGun();
@@ -622,7 +623,7 @@ namespace CombatExtended
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
             exitCell.y = 0;
             
-            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, compAmmo.CurrentAmmo.travelingProjectileProp.tilesPerTick, direction, exitCell.ToIntVec3(), null);
+            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, ProjectileProps.shellingProps.tilesPerTick, direction, exitCell.ToIntVec3(), null);
             this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;            
             this.forcedTarget = exitCell.ToIntVec3();            
             this.TryStartShootSomething(false);
@@ -645,7 +646,7 @@ namespace CombatExtended
                     yield return com;
                 }                
             }
-            if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && compAmmo.CurrentAmmo.travelingProjectileProp != null)
+            if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
             {                
                 Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
                 {

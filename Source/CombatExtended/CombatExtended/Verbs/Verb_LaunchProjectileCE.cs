@@ -753,8 +753,8 @@ namespace CombatExtended
         public virtual bool TryStartShellingTile(GlobalShellingInfo info)
         {
             this.shellingInfo = info;
-            this.shellingInfo.caster ??= caster;
-            this.shellingInfo.shooter ??= ShooterPawn;
+            this.shellingInfo.Caster ??= caster;
+            this.shellingInfo.Shooter ??= ShooterPawn;
             if (TryStartCastOn(info.sourceMapExitCell, false, true, false))
             {
                 return true;

@@ -15,7 +15,7 @@ namespace CombatExtended
 
         private int distanceInTiles;
         private float distance;
-        private float distanceTraveled;        
+        private float distanceTraveled;
 
         private Vector3? _start;
         protected virtual Vector3 Start
@@ -31,7 +31,7 @@ namespace CombatExtended
         public virtual float TilesPerTick
         {
             get => 0.03f;
-        }        
+        }       
 
         public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
         public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);        
@@ -58,19 +58,28 @@ namespace CombatExtended
         protected abstract void Arrived();
 
         public override void Tick()
-        {                                  
-            base.Tick();
-            distanceTraveled += this.tilesPerTick;
-            if(TraveledPtc >= 1.0f)
+        {
+            try
             {
-                Tile = destinationTile;
-                Arrived();
+                base.Tick();
+                distanceTraveled += this.tilesPerTick;
+                if (TraveledPtc >= 1.0f)
+                {
+                    Tile = destinationTile;
+                    Arrived();
+                    Destroy();
+                }
+            }catch(Exception er)
+            {
+                Log.Error($"CE: TravelingThing {this} threw an exception {er}");
+                Log.Warning($"CE: TravelingThing {this} is being destroyed to prevent further errors");
                 Destroy();
             }
         }        
 
         public override void ExposeData()
         {
+            base.ExposeData();
             Scribe_Values.Look(ref startingTile, "startingTile");
             Scribe_Values.Look(ref destinationTile, "destinationTile");
             Scribe_Values.Look(ref tilesPerTick, "tilesPerTick");

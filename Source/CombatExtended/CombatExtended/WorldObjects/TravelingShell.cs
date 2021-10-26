@@ -11,13 +11,33 @@ namespace CombatExtended
 {
     public class TravelingShell : TravelingThing
     {
-        public ThingDef shellDef;        
-        public GlobalShellingInfo shellingInfo;        
+        public ThingDef shellDef;
+        public GlobalShellingInfo shellingInfo;
 
         public override float TilesPerTick
         {
             get => shellingInfo.tilesPerTick;
         }
+
+        public override bool ExpandingIconFlipHorizontal
+        {
+            get => GenWorldUI.WorldToUIPosition(Start).x > GenWorldUI.WorldToUIPosition(End).x;
+        }
+
+        public override float ExpandingIconRotation
+        {
+            get
+            {
+                Vector2 start = GenWorldUI.WorldToUIPosition(Start);
+                Vector2 end = GenWorldUI.WorldToUIPosition(End);
+                float angle = Mathf.Atan2(end.y - start.y, end.x - start.x) * 57.29578f;
+                if (angle > 180f)
+                {
+                    angle -= 180f;
+                }
+                return angle + 90f;
+            }
+        }                
 
         public TravelingShell()
         {                        
@@ -25,16 +45,16 @@ namespace CombatExtended
 
         public override void ExposeData()
         {
-            Scribe_Deep.Look(ref shellingInfo, "shellInfo");
-            Scribe_Defs.Look(ref shellDef, "shellDef");
             base.ExposeData();
-        }
+            Scribe_Deep.Look(ref shellingInfo, "shellInfo");
+            Scribe_Defs.Look(ref shellDef, "shellDef");            
+        }       
 
         protected override void Arrived()
         {            
             int tile = Tile;
             Settlement settlement = Find.World.worldObjects.SettlementAt(tile);
-            Faction faction = this.shellingInfo.caster?.Faction ?? this.shellingInfo.shooter?.Faction;
+            Faction faction = this.shellingInfo.Caster?.Faction ?? this.shellingInfo.Shooter?.Faction;
             
             if (faction != null && settlement?.Faction != faction && !settlement.Faction.IsPlayerSafe())
             {
@@ -58,7 +78,10 @@ namespace CombatExtended
             }
             else // queue map damage
             {
-
+                WorldObjects.HealthComp healthComp = mapParent.GetComponent<WorldObjects.HealthComp>();
+                ProjectilePropertiesCE props = (ProjectilePropertiesCE)shellDef.projectile;
+                //
+                //healthComp.ApplyDamage(props.shellingProps.damage_Tile, props.shellingProps.damage_Map, canStun: true);
             }
         }       
 
@@ -86,7 +109,7 @@ namespace CombatExtended
             Launch(
                 sourceCell,
                 targetCell,
-                map,                                                             
+                map: map,                                                             
                 shotSpeed: 120f);
         }        
 
@@ -115,14 +138,14 @@ namespace CombatExtended
             Vector2 w = (destination - source);
 
             ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(shellDef);
-            float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
             ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
+            float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;            
             float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);
             
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
-            projectile.Launch(shellingInfo.shooter ?? CE_Utility.TryGetTurretOperator(shellingInfo.caster) ?? shellingInfo.caster, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
-        }
+            projectile.Launch(shellingInfo.Shooter ?? CE_Utility.TryGetTurretOperator(shellingInfo.Caster) ?? shellingInfo.Caster, source, shotAngle, shotRotation, shotHeight, shotSpeed);                    
+        }       
     }
 }
