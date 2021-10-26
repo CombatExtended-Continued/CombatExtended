@@ -451,10 +451,6 @@ namespace CombatExtended
                 }
 
                 Vector3 tp = ray.GetPoint(i);
-                if (tp.y > CollisionVertical.WallCollisionHeight)
-                {
-                    break;
-                }
                 if (tp.y < 0)
                 {
                     destination = tp;
