@@ -192,7 +192,8 @@ namespace CombatExtended.Utilities
             {
 		mid = (top + bottom) / 2;
                 midPosition = sortedThings[mid].thing.Position;
-		if (midPosition.x > minX || midPosition.x < maxX)
+
+		if (midPosition.x > minX && midPosition.x < maxX)
 		{
 		    break;
 		}
@@ -215,7 +216,9 @@ namespace CombatExtended.Utilities
                 Thing t = sortedThings[index++].thing;
                 IntVec3 curPosition = t.Position;
                 if (curPosition.x + range < minX || curPosition.x - range > maxX)
+		{
                     break;
+		}
 
 		IntVec3 relativePosition = curPosition - origin;
 		float dot = relativePosition.x * direction.x + relativePosition.y * direction.y + relativePosition.z * direction.z;
@@ -236,7 +239,7 @@ namespace CombatExtended.Utilities
 						 (int)(origin.z + dot * direction.z));
 		if (projection.DistanceToSquared(curPosition) > rangeSq)
 		{
-		    break;
+		    continue;
 		}
 		yield return t;
             }
@@ -267,7 +270,7 @@ namespace CombatExtended.Utilities
 						 (int)(origin.z + dot * direction.z));
 		if (projection.DistanceToSquared(curPosition) > rangeSq)
 		{
-		    break;
+		    continue;
 		}
 		yield return t;
             }
