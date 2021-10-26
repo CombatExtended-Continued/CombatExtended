@@ -157,6 +157,122 @@ namespace CombatExtended.Utilities
             }
         }
 
+	public IEnumerable<Thing> ThingsNearSegment(IntVec3 origin, IntVec3 destination, float range, bool behind)
+	{
+	    float rangeSq = range * range;
+	    float minX;
+	    float maxX;
+	    if (origin.x > destination.x) {
+		minX = destination.x - range;
+		maxX = origin.x + range;
+	    }
+	    else {
+		minX = origin.x - range;
+		maxX = destination.x + range;
+	    }
+
+	    int bottom = 0;
+            int index;
+            int top = count;
+            int mid = (top + bottom) / 2;
+            int limiter = 0;
+            IntVec3 midPosition;
+	    IntVec3 direction = destination - origin;
+	    float lengthSq = direction.x * direction.x + direction.y * direction.y + direction.z * direction.z;
+	    if (lengthSq == 0)
+	    {
+		foreach (Thing t in ThingsInRangeOf(origin, range))
+		{
+		    yield return t;
+		}
+		yield break;
+	    }
+
+	    while (top != bottom && limiter++ < 20)
+            {
+		mid = (top + bottom) / 2;
+                midPosition = sortedThings[mid].thing.Position;
+		if (midPosition.x > minX || midPosition.x < maxX)
+		{
+		    break;
+		}
+		if (midPosition.x > maxX)
+		{
+		    top = mid - 1;
+		}
+		else if (midPosition.x < minX)
+		{
+		    bottom = mid + 1;
+		}
+		else
+		{
+		    break;
+		}
+	    }
+	    index = mid;
+            while (index < count)
+            {
+                Thing t = sortedThings[index++].thing;
+                IntVec3 curPosition = t.Position;
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)
+                    break;
+
+		IntVec3 relativePosition = curPosition - origin;
+		float dot = relativePosition.x * direction.x + relativePosition.y * direction.y + relativePosition.z * direction.z;
+		if (dot > 1)
+		{
+		    dot = 1;
+		}
+		if (dot < 0)
+		{
+		    dot = 0;
+		    if (!behind)
+		    {
+			continue;
+		    }
+		}
+		IntVec3 projection = new IntVec3((int)(origin.x + dot * direction.x),
+						 (int)(origin.y + dot * direction.y),
+						 (int)(origin.z + dot * direction.z));
+		if (projection.DistanceToSquared(curPosition) > rangeSq)
+		{
+		    break;
+		}
+		yield return t;
+            }
+            index = mid - 1;
+            while (index >= 0)
+            {
+                Thing t = sortedThings[index--].thing;
+                IntVec3 curPosition = t.Position;
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)
+                    break;
+
+		IntVec3 relativePosition = curPosition - origin;
+		float dot = relativePosition.x * direction.x + relativePosition.y * direction.y + relativePosition.z * direction.z;
+		if (dot > 1)
+		{
+		    dot = 1;
+		}
+		if (dot < 0)
+		{
+		    dot = 0;
+		    if (!behind)
+		    {
+			continue;
+		    }
+		}
+		IntVec3 projection = new IntVec3((int)(origin.x + dot * direction.x),
+						 (int)(origin.y + dot * direction.y),
+						 (int)(origin.z + dot * direction.z));
+		if (projection.DistanceToSquared(curPosition) > rangeSq)
+		{
+		    break;
+		}
+		yield return t;
+            }
+	}
+
         public IEnumerable<Thing> ThingsInRangeOf(IntVec3 cell, float range)
         {
             int bottom = 0;

@@ -9,6 +9,7 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -497,6 +498,7 @@ namespace CombatExtended
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
+		    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
 
                     lbce.Impact(thing, muzzle);
 
@@ -508,10 +510,19 @@ namespace CombatExtended
             if (lbce != null)
             {
                 lbce.SpawnBeam(muzzle, destination);
+		RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
                 Destroy(DestroyMode.Vanish);
                 return;
             }
         }
+
+	private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+	{
+	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
+	    {
+		ApplySuppression(pawn);
+	    }
+	}
 
 
         #region Launch
