@@ -275,6 +275,7 @@ namespace CombatExtended.Utilities
 
         public IEnumerable<Thing> ThingsInRangeOf(IntVec3 cell, float range)
         {
+	    float rangeSq = range * range;
             int bottom = 0;
             int index;
             int top = count;
@@ -285,7 +286,7 @@ namespace CombatExtended.Utilities
             {
                 mid = (top + bottom) / 2;
                 midPosition = sortedThings[mid].thing.Position;
-                if (midPosition.DistanceTo(cell) <= range)
+                if (midPosition.DistanceToSquared(cell) <= range)
                     break;
                 if (midPosition.x > cell.x)
                     top = mid - 1;
@@ -299,24 +300,22 @@ namespace CombatExtended.Utilities
             index = mid;
             while (index < count)
             {
-                Thing t = sortedThings[index].thing;
+                Thing t = sortedThings[index++].thing;
                 IntVec3 curPosition = t.Position;
                 if (Mathf.Abs(curPosition.x - cell.x) > range)
                     break;
-                if (curPosition.DistanceTo(cell) <= range)
+                if (curPosition.DistanceToSquared(cell) <= rangeSq)
                     yield return t;
-                index++;
             }
             index = mid - 1;
             while (index >= 0)
             {
-                Thing t = sortedThings[index].thing;
+                Thing t = sortedThings[index--].thing;
                 IntVec3 curPosition = t.Position;
                 if (Mathf.Abs(curPosition.x - cell.x) > range)
                     break;
-                if (curPosition.DistanceTo(cell) <= range)
+                if (curPosition.DistanceToSquared(cell) <= rangeSq)
                     yield return t;
-                index--;
             }
         }
 
