@@ -1,54 +1,92 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Verse;
 
 namespace CombatExtended
 {
-    public static class CE_Scriber
-    {        
-        public static void Reference<T>(T scribedThing, string name, ref ThingDef def, ref int id, ref string idString) where T : Thing
-        {
-            def = null;
-            id = -1;
-            idString = "";            
-            if (Scribe.mode == LoadSaveMode.Saving)
-            {
-                def = scribedThing.def;
-                id = scribedThing.thingIDNumber;
-                idString = scribedThing.ThingID;
+    public static class CE_Scriber 
+    {
+        private static List<ScribingAction> queuedLate = new List<ScribingAction>();
 
-                Scribe_Defs.Look(ref def, "CE_" + name + "_Def");
-                Scribe_Values.Look(ref idString, "CE_" + name + "_IdString");
-                Scribe_Values.Look(ref id, "CE_" + name + "_Id");
+        private struct ScribingAction
+        {
+            public readonly Object owner;
+            public readonly Action scribingAction;
+            public readonly Action postLoadAction;
+
+            public ScribingAction(Object owner, Action action, Action postLoadAction)
+            {
+                this.scribingAction = action;
+                this.postLoadAction = postLoadAction;
+                this.owner = owner;
+            }            
+        }        
+
+        public static void Late(Object owner, Action scribingAction, Action postLoadAction = null)
+        {
+            if (Scribe.mode != LoadSaveMode.Saving)
+            {
+                ScribingAction r = new ScribingAction(owner, scribingAction, postLoadAction);
+                queuedLate.Add(r);
             }
             else
-            {                
-                Scribe_Defs.Look(ref def, "CE_" + name + "_Def");
-                Scribe_Values.Look(ref idString, "CE_" + name + "_IdString", "");
-                Scribe_Values.Look(ref id, "CE_" + name + "_Id", -1);
-                if(id == -1 || idString == "")
-                {                    
-                    return;
-                }          
+            {
+                try
+                {
+                    scribingAction.Invoke();
+                }
+                catch(Exception er)
+                {
+                    Log.Error($"CE: Error while scribing {owner} (Late) {er}");
+                }
             }
         }
 
-        public static T FindReference<T>(ThingDef def, int id, string idString) where T : Thing
+        public static void ExecuteLateScribe()
         {
-            foreach(Map map in Find.Maps)
+            if (Scribe.mode == LoadSaveMode.Inactive || Scribe.mode == LoadSaveMode.Saving)
             {
-                var things = map.listerThings.ThingsOfDef(def);
-                if (things.NullOrEmpty())
+                throw new Exception("CE:(1) Late scribing is broken!");
+            }
+            for (int i = 0; i < queuedLate.Count; i++)
+            {
+                if (queuedLate[i].scribingAction != null)
                 {
-                    continue;
-                }
-                var match = things.FirstOrDefault(t => t.thingIDNumber == id || t.ThingID == idString);
-                if(match != null)
-                {
-                    return (T)match;
+                    try
+                    {
+                        queuedLate[i].scribingAction.Invoke();
+                    }
+                    catch(Exception er)
+                    {
+                        Log.Error($"CE: Error while scribing {queuedLate[i].owner} (ExecuteLateScribe) {er}");
+                    }
                 }
             }
-            return default(T);
+        }
+
+        public static void Reset()
+        {
+            if (Scribe.mode != LoadSaveMode.Inactive)
+            {
+                throw new Exception("CE:(2) Late scribing is broken!");
+            }
+            for (int i = 0; i < queuedLate.Count; i++)
+            {
+                if (queuedLate[i].postLoadAction != null)
+                {
+                    try
+                    {
+                        queuedLate[i].postLoadAction.Invoke();
+                    }
+                    catch(Exception er)
+                    {
+                        Log.Error($"CE: Error while scribing {queuedLate[i].owner} (reset) {er}");
+                    }
+                }
+            }
+            queuedLate.Clear();
         }
     }
 }
