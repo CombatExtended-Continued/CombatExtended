@@ -66,8 +66,8 @@ namespace CombatExtended
         public bool PlayerControlled => (Faction == Faction.OfPlayer || MannedByColonist) && !MannedByNonColonist;
         private bool CanSetForcedTarget => mannableComp != null && PlayerControlled;
         private bool CanToggleHoldFire => PlayerControlled;
-        private bool IsMortar => def.building.IsMortar;
-        private bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
+        public bool IsMortar => def.building.IsMortar;
+        public bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell
         private bool MannedByColonist => mannableComp != null && mannableComp.ManningPawn != null
             && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
@@ -565,42 +565,27 @@ namespace CombatExtended
             }
         }
 
-        public bool TryAttackWorldTarget(GlobalTargetInfo targetInfo)
-        {            
+        public bool TryAttackWorldTarget(GlobalTargetInfo targetInfo, LocalTargetInfo localTarget)
+        {
+            ResetCurrentTarget();
+            ResetForcedTarget();
             int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(Map.Tile, targetInfo.Tile, true, maxDist: (int)(this.MaxWorldRange * 1.5f));
             if (distanceToTarget > MaxWorldRange)
-            {
+            {                
                 return false;
             }
             if (!Active)
             {
                 return false;
-            }            
-            Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;            
-            if (map != null)
+            }
+            if (localTarget.IsValid)
             {
-                IntVec3 selectedCell = IntVec3.Invalid;
-                Find.WorldTargeter.StopTargeting();
-                CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map);
-                Find.Targeter.BeginTargeting(new TargetingParameters()
-                {
-                    canTargetLocations = true,
-                    canTargetBuildings = true,
-                    canTargetHumans = true
-                }, (target)=>
-                {
-                    OrderAttackWorldTile(targetInfo, target.Cell);
-                }, highlightAction: (target)=>
-                {
-                    GenDraw.DrawTargetHighlight(target);
-                }, targetValidator: (target) =>
-                {
-                    RoofDef roof = map.roofGrid.RoofAt(target.Cell);
-                    return roof == null || roof == RoofDefOf.RoofConstructed;
-                });                                                
-                return false;
+                OrderAttackWorldTile(targetInfo, localTarget.Cell);
+            }
+            else
+            {
+                OrderAttackWorldTile(targetInfo, null);
             }            
-            OrderAttackWorldTile(targetInfo);                      
             return true;
         }
 
@@ -626,7 +611,7 @@ namespace CombatExtended
             this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, ProjectileProps.shellingProps.tilesPerTick, direction, exitCell.ToIntVec3(), null);
             this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;            
             this.forcedTarget = exitCell.ToIntVec3();            
-            this.TryStartShootSomething(false);
+            this.TryStartShootSomething(true);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
@@ -654,7 +639,7 @@ namespace CombatExtended
                     defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
                     turret = this,
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
-                    hotKey = KeyBindingDefOf.Misc4
+                    hotKey = KeyBindingDefOf.Misc5
                 };                
                 yield return wt;
             }            

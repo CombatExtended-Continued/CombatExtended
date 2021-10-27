@@ -8,7 +8,7 @@ namespace CombatExtended.WorldObjects
     {
         public WorldObjectCompProperties_Health()
         {
-            this.compClass = typeof(HealthComp);
+            this.compClass = typeof(ShellingComp);
         }
     }
 }

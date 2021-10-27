@@ -13,19 +13,9 @@ namespace CombatExtended
         public Building_TurretGunCE turret;        
         public List<Command_ArtilleryTarget> others = null;
 
-        public IEnumerable<Building_TurretGunCE> SelectedTurrets
-        {
-            get
-            {
-                return others?.Select(o => o.turret) ?? null;
-            }
-        }
+        public IEnumerable<Building_TurretGunCE> SelectedTurrets => others?.Select(o => o.turret) ?? new List<Building_TurretGunCE>() { turret };
 
-        public override bool GroupsWith(Gizmo other)
-        {
-            var order = other as Command_ArtilleryTarget;
-            return order != null && (order.turret?.Active ?? false) && order.turret.def.building.IsMortar;
-        }
+        public override bool GroupsWith(Gizmo other) => other is Command_ArtilleryTarget;
 
         public override void MergeWith(Gizmo other)
         {
@@ -54,31 +44,39 @@ namespace CombatExtended
                 return;
             }
             int tile = turret.Map.Tile;
-            int radius = (int) turret.MaxWorldRange;
+            int radius = (int) turret.MaxWorldRange;            
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
-            {
-                if (!targetInfo.HasWorldObject)
+            {                
+                if (!targetInfo.HasWorldObject || targetInfo.Tile == tile)
                 {
                     return false;
                 }
-                if(others != null)
+                IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;
+                Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;                
+                if (map != null)
                 {
-                    bool started = false;
-                    foreach(var t in SelectedTurrets)
+                    IntVec3 selectedCell = IntVec3.Invalid;
+                    Find.WorldTargeter.StopTargeting();
+                    CameraJumper.TryJumpInternal(new IntVec3((int)map.Size.x / 2, 0, (int)map.Size.z / 2), map);
+                    Find.Targeter.BeginTargeting(new TargetingParameters()
                     {
-                        if (t.Active)
-                        {
-                            started = true;
-                            t.TryAttackWorldTarget(targetInfo);
-                        }
-                    }
-                    return started;
-                }
-                else if(turret.Active)
-                {                    
-                    return turret.TryAttackWorldTarget(targetInfo);
-                }
-                return false;
+                        canTargetLocations = true,
+                        canTargetBuildings = true,
+                        canTargetHumans = true
+                    }, (target)=>
+                    {
+                        TryAttack(turrets, targetInfo, target);
+                    }, highlightAction: (target)=>
+                    {
+                        GenDraw.DrawTargetHighlight(target);
+                    }, targetValidator: (target) =>
+                    {
+                        RoofDef roof = map.roofGrid.RoofAt(target.Cell);
+                        return roof == null || roof == RoofDefOf.RoofConstructed;
+                    });                                                
+                    return false;
+                }            
+                return TryAttack(turrets, targetInfo, LocalTargetInfo.Invalid);
             }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
             {
                 if (others != null)
@@ -115,6 +113,19 @@ namespace CombatExtended
                 return "CE_ArtilleryTarget_ClickToOrderAttack".Translate() + extra;
             });
             base.ProcessInput(ev);
+        }
+
+        private bool TryAttack(IEnumerable<Building_TurretGunCE> turrets, GlobalTargetInfo targetInfo, LocalTargetInfo localTargetInfo)
+        {           
+            bool attackStarted = false;
+            foreach (var t in turrets)
+            {
+                if (t.Active && t.TryAttackWorldTarget(targetInfo, localTargetInfo))
+                {
+                    attackStarted = attackStarted || true;
+                }
+            }
+            return attackStarted;                       
         }
     }
 }

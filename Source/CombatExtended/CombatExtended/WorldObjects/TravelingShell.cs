@@ -53,35 +53,28 @@ namespace CombatExtended
         protected override void Arrived()
         {            
             int tile = Tile;
-            Settlement settlement = Find.World.worldObjects.SettlementAt(tile);
+            MapParent mapParent = Find.World.worldObjects.MapParentAt(tile);
+            if(mapParent == null)
+            {
+                return;
+            }
+            WorldObjects.ShellingComp shellingComp = mapParent.GetComponent<WorldObjects.ShellingComp>();
+            if(shellingComp == null)
+            {
+                return;
+            }            
             Faction faction = this.shellingInfo.Caster?.Faction ?? this.shellingInfo.Shooter?.Faction;
-            
-            if (faction != null && settlement?.Faction != faction && !settlement.Faction.IsPlayerSafe())
+            if(faction != null) // check the projectile faction
             {
-                FactionRelation relation = settlement.Faction.RelationWith(faction, true);
-                if(relation == null)
-                {
-                    settlement.Faction.TryMakeInitialRelationsWith(faction);
-                    relation = settlement.Faction.RelationWith(faction, false);
-                }                                                               
-                settlement.Faction.TryAffectGoodwillWith(faction, -70, canSendMessage: true, canSendHostilityLetter: true, HistoryEventDefOf.AttackedSettlement);                    
-            }
-            Site site = Find.World.worldObjects.SiteAt(tile);
-            if(site != null)
-            {
-                // damage site
-            }
-            MapParent mapParent = Find.World.worldObjects.MapParentAt(tile);            
-            if (mapParent != null && mapParent.HasMap)
+                shellingComp.Notify_ShelledBy(faction, shellingInfo.sourceTile);
+            }                                            
+            if (mapParent != null && mapParent.HasMap) // spawn the actual mortar shell
             {
                 SpawnShell(mapParent.Map);
             }
             else // queue map damage
-            {
-                WorldObjects.HealthComp healthComp = mapParent.GetComponent<WorldObjects.HealthComp>();
-                ProjectilePropertiesCE props = (ProjectilePropertiesCE)shellDef.projectile;
-                //
-                //healthComp.ApplyDamage(props.shellingProps.damage_Tile, props.shellingProps.damage_Map, canStun: true);
+            {                               
+                shellingComp.ApplyDamage(((ProjectilePropertiesCE)shellDef.projectile).shellingProps, faction, shellingInfo.sourceTile);
             }
         }       
 

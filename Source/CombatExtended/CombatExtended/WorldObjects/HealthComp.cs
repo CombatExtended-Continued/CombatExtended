@@ -9,208 +9,208 @@ using Verse;
 
 namespace CombatExtended.WorldObjects
 {
-    public class HealthComp : WorldObjectComp
-    {
-        private const int RECONSTRUCTION_DAYS = 11;
-        private const int RECONSTRUCTION_LIMIT = 3;
-        private const int RECORD_EXIPRY = 120000;
+    //public class HealthComp : WorldObjectComp
+    //{
+    //    private const int RECONSTRUCTION_DAYS = 11;
+    //    private const int RECONSTRUCTION_LIMIT = 3;
+    //    private const int RECORD_EXIPRY = 120000;
 
-        private const float RECONSTRUCTION_STARTING_HEALTH = 0.5f;        
-        private const float HEALTH_GAIN_TICK = 0.1f/ 60000f;
-        private const float HEALTH_GAIN_TICKRARE = 240 * HEALTH_GAIN_TICK;
+    //    private const float RECONSTRUCTION_STARTING_HEALTH = 0.5f;
+    //    private const float HEALTH_GAIN_TICK = 0.1f / 60000f;
+    //    private const float HEALTH_GAIN_TICKRARE = 240 * HEALTH_GAIN_TICK;
 
-        public struct DamageRecord : IExposable
-        {
-            public float tileAmount;
-            public float mapAmout;
-            public int createdAt;
+    //    public struct DamageRecord : IExposable
+    //    {
+    //        public float tileAmount;
+    //        public float mapAmout;
+    //        public int createdAt;
 
-            public int Age => createdAt != 0 ? GenTicks.TicksGame - createdAt : 0;          
+    //        public int Age => createdAt != 0 ? GenTicks.TicksGame - createdAt : 0;
 
-            public void ExposeData()
-            {
-                Scribe_Values.Look(ref tileAmount, "tile");
-                Scribe_Values.Look(ref mapAmout, "mapAmout");
-                Scribe_Values.Look(ref createdAt, "createdAt");
-            }
-        }
+    //        public void ExposeData()
+    //        {
+    //            Scribe_Values.Look(ref tileAmount, "tile");
+    //            Scribe_Values.Look(ref mapAmout, "mapAmout");
+    //            Scribe_Values.Look(ref createdAt, "createdAt");
+    //        }
+    //    }
 
-        private float _health = 1.0f;
+    //    private float _health = 1.0f;
 
-        private int lastDamagedTick = -1;
-        private int stunTicksLeft = 0;        
-        private int reconstructionCounter = 0;
-        private int reconstructionTicksLeft = 0;        
+    //    private int lastDamagedTick = -1;
+    //    private int stunTicksLeft = 0;
+    //    private int reconstructionCounter = 0;
+    //    private int reconstructionTicksLeft = 0;
 
-        private List<DamageRecord> records = new List<DamageRecord>();
-        
-        public float Health
-        {
-            get => Mathf.Clamp01(_health);
-            private set => _health = Mathf.Clamp01(value);
-        }
+    //    private List<DamageRecord> records = new List<DamageRecord>();
 
-        public bool FullHeath
-        {
-            get => Health == 1.0f;
-        }
+    //    public float Health
+    //    {
+    //        get => Mathf.Clamp01(_health);
+    //        private set => _health = Mathf.Clamp01(value);
+    //    }
 
-        public bool Damaged
-        {
-            get => !FullHeath;
-        }
+    //    public bool FullHeath
+    //    {
+    //        get => Health == 1.0f;
+    //    }
 
-        public bool Leveled
-        {
-            get => reconstructionTicksLeft > 0;
-        }
+    //    public bool Damaged
+    //    {
+    //        get => !FullHeath;
+    //    }
 
-        public float MapDamage
-        {
-            get => records.Sum(m => m.mapAmout);
-        }
+    //    public bool Leveled
+    //    {
+    //        get => reconstructionTicksLeft > 0;
+    //    }
 
-        public HealthComp()
-        {            
-        }
+    //    public float MapDamage
+    //    {
+    //        get => records.Sum(m => m.mapAmout);
+    //    }
 
-        public override void CompTick()
-        {
-            base.CompTick();            
-            //if (Leveled)
-            //{
-            //    reconstructionTicksLeft--;
-            //    if(reconstructionTicksLeft <= 0)
-            //    {
-            //        Health = RECONSTRUCTION_STARTING_HEALTH;
-            //        reconstructionCounter--;
-            //        records.Clear();
-            //    }
-            //    return;
-            //}
-            //if (GenTicks.TicksGame % 240 == 0 && Damaged)
-            //{
-            //    Health += HEALTH_GAIN_TICKRARE;
-            //}
-            //if (GenTicks.TicksGame % 30000 == 0 && records.Count > 0)
-            //{
-            //    records.RemoveAll((r) =>
-            //    {
-            //        if(r.Age > RECORD_EXIPRY)
-            //        {
-            //            Health += r.tileAmount * 0.5f;
-            //            return true;
-            //        }
-            //        return false;
-            //    });                
-            //}            
-        }
+    //    public HealthComp()
+    //    {
+    //    }
 
-        public IEnumerable<DamageRecord> GetHealthRecords() => records;
+    //    public override void CompTick()
+    //    {
+    //        base.CompTick();
+    //        //if (Leveled)
+    //        //{
+    //        //    reconstructionTicksLeft--;
+    //        //    if(reconstructionTicksLeft <= 0)
+    //        //    {
+    //        //        Health = RECONSTRUCTION_STARTING_HEALTH;
+    //        //        reconstructionCounter--;
+    //        //        records.Clear();
+    //        //    }
+    //        //    return;
+    //        //}
+    //        //if (GenTicks.TicksGame % 240 == 0 && Damaged)
+    //        //{
+    //        //    Health += HEALTH_GAIN_TICKRARE;
+    //        //}
+    //        //if (GenTicks.TicksGame % 30000 == 0 && records.Count > 0)
+    //        //{
+    //        //    records.RemoveAll((r) =>
+    //        //    {
+    //        //        if(r.Age > RECORD_EXIPRY)
+    //        //        {
+    //        //            Health += r.tileAmount * 0.5f;
+    //        //            return true;
+    //        //        }
+    //        //        return false;
+    //        //    });                
+    //        //}            
+    //    }
 
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            //Scribe_Values.Look(ref this._health, "health", 1.0f);
-            //Scribe_Values.Look(ref this.stunTicksLeft, "health");
-            //Scribe_Values.Look(ref this.lastDamagedTick, "health");
-            //Scribe_Values.Look(ref this.reconstructionTicksLeft, "reconstructionTicksLeft", 0);
-            //Scribe_Values.Look(ref this.reconstructionCounter, "reconstructionCounter", 0);
-            //Scribe_Collections.Look(ref this.records, "records", LookMode.Deep);
-            //this.records ??= new List<DamageRecord>();
-        }
+    //    public IEnumerable<DamageRecord> GetHealthRecords() => records;
 
-        public override string GetDescriptionPart()
-        {
-            return base.GetDescriptionPart() + $"\n\tHealth: {Health * 100}%";
-        }
+    //    public override void PostExposeData()
+    //    {
+    //        base.PostExposeData();
+    //        //Scribe_Values.Look(ref this._health, "health", 1.0f);
+    //        //Scribe_Values.Look(ref this.stunTicksLeft, "health");
+    //        //Scribe_Values.Look(ref this.lastDamagedTick, "health");
+    //        //Scribe_Values.Look(ref this.reconstructionTicksLeft, "reconstructionTicksLeft", 0);
+    //        //Scribe_Values.Look(ref this.reconstructionCounter, "reconstructionCounter", 0);
+    //        //Scribe_Collections.Look(ref this.records, "records", LookMode.Deep);
+    //        //this.records ??= new List<DamageRecord>();
+    //    }
 
-        public void ApplyDamage(float tileAmount, float mapAmount, bool canStun = false)
-        {            
-            //if(parent is DestroyedSettlement || parent.Faction.IsPlayerSafe())
-            //{
-            //    return; 
-            //}
-            //lastDamagedTick = GenTicks.TicksGame;
-            //DamageRecord record = new DamageRecord();
-            //record.createdAt = GenTicks.TicksGame;
-            //record.mapAmout = mapAmount;            
-            //if (Leveled)
-            //{                                
-            //    record.tileAmount = tileAmount * 0.5f;                
-            //    records.Add(record);
-            //    reconstructionTicksLeft += (int)(10000 * tileAmount);
-            //}
-            //else
-            //{
-            //    Health -= tileAmount;                
-            //    record.tileAmount = tileAmount;                
-            //    records.Add(record);
-            //    if (Health <= 0.0f)
-            //    {
-            //        reconstructionTicksLeft = RECONSTRUCTION_DAYS * 60000;
-            //        Level();
-            //    }
-            //}            
-        }        
+    //    public override string GetDescriptionPart()
+    //    {
+    //        return base.GetDescriptionPart() + $"\n\tHealth: {Health * 100}%";
+    //    }
 
-        public void Level()
-        {
-            //if(parent is Settlement settlement)
-            //{
-            //    this.ReplaceParent(WorldObjectDefOf.DestroyedSettlement);
+    //    public void ApplyDamage(float tileAmount, float mapAmount, bool canStun = false)
+    //    {
+    //        //if(parent is DestroyedSettlement || parent.Faction.IsPlayerSafe())
+    //        //{
+    //        //    return; 
+    //        //}
+    //        //lastDamagedTick = GenTicks.TicksGame;
+    //        //DamageRecord record = new DamageRecord();
+    //        //record.createdAt = GenTicks.TicksGame;
+    //        //record.mapAmout = mapAmount;            
+    //        //if (Leveled)
+    //        //{                                
+    //        //    record.tileAmount = tileAmount * 0.5f;                
+    //        //    records.Add(record);
+    //        //    reconstructionTicksLeft += (int)(10000 * tileAmount);
+    //        //}
+    //        //else
+    //        //{
+    //        //    Health -= tileAmount;                
+    //        //    record.tileAmount = tileAmount;                
+    //        //    records.Add(record);
+    //        //    if (Health <= 0.0f)
+    //        //    {
+    //        //        reconstructionTicksLeft = RECONSTRUCTION_DAYS * 60000;
+    //        //        Level();
+    //        //    }
+    //        //}            
+    //    }
 
-            //    foreach (Faction allFaction in Find.FactionManager.AllFactions)
-            //    {
-            //        if (!allFaction.Hidden && !allFaction.IsPlayer && allFaction != parent.Faction && allFaction.HostileTo(parent.Faction))
-            //        {
-            //            FactionRelationKind playerRelationKind = allFaction.PlayerRelationKind;
-            //            Faction.OfPlayer.TryAffectGoodwillWith(allFaction, 20, canSendMessage: false, canSendHostilityLetter: false, HistoryEventDefOf.DestroyedEnemyBase);
-            //        }
-            //    }
-            //}
-            //else if(parent is Site site)
-            //{
-                
-            //}
-        }
+    //    public void Level()
+    //    {
+    //        //if(parent is Settlement settlement)
+    //        //{
+    //        //    this.ReplaceParent(WorldObjectDefOf.DestroyedSettlement);
 
-        public void Restore()
-        {
-            if (parent is DestroyedSettlement destroyedSettlement)
-            {
-                this.ReplaceParent(WorldObjectDefOf.Settlement);
-            }
-        }
+    //        //    foreach (Faction allFaction in Find.FactionManager.AllFactions)
+    //        //    {
+    //        //        if (!allFaction.Hidden && !allFaction.IsPlayer && allFaction != parent.Faction && allFaction.HostileTo(parent.Faction))
+    //        //        {
+    //        //            FactionRelationKind playerRelationKind = allFaction.PlayerRelationKind;
+    //        //            Faction.OfPlayer.TryAffectGoodwillWith(allFaction, 20, canSendMessage: false, canSendHostilityLetter: false, HistoryEventDefOf.DestroyedEnemyBase);
+    //        //        }
+    //        //    }
+    //        //}
+    //        //else if(parent is Site site)
+    //        //{
 
-        private void ReplaceParent(WorldObjectDef worldObjectDef) 
-        {
-            WorldObject worldObject = (WorldObject)WorldObjectMaker.MakeWorldObject(worldObjectDef);
-            worldObject.Tile = parent.Tile;
-            worldObject.SetFaction(parent.Faction);
-            var other = worldObject.GetComponent<HealthComp>();
+    //        //}
+    //    }
 
-            Find.WorldObjects.Add(worldObject);
-            other.records = records;
-            other.reconstructionCounter = reconstructionCounter;
-            other.reconstructionTicksLeft = reconstructionTicksLeft;
-            other.stunTicksLeft = stunTicksLeft;
-            other.lastDamagedTick = lastDamagedTick;
-            other.Health = this.Health;
+    //    public void Restore()
+    //    {
+    //        if (parent is DestroyedSettlement destroyedSettlement)
+    //        {
+    //            this.ReplaceParent(WorldObjectDefOf.Settlement);
+    //        }
+    //    }
 
-            TimedDetectionRaids component = parent.GetComponent<TimedDetectionRaids>();
-            if (component != null)
-            {
-                component.CopyFrom(parent.GetComponent<TimedDetectionRaids>());
-                component.SetNotifiedSilently();
-            }
+    //    private void ReplaceParent(WorldObjectDef worldObjectDef)
+    //    {
+    //        WorldObject worldObject = (WorldObject)WorldObjectMaker.MakeWorldObject(worldObjectDef);
+    //        worldObject.Tile = parent.Tile;
+    //        worldObject.SetFaction(parent.Faction);
+    //        var other = worldObject.GetComponent<HealthComp>();
 
-            parent.Destroy();            
-            if (parent is MapParent mapParent && mapParent.HasMap)
-            {
-                mapParent.Map.info.parent = worldObject as MapParent;
-            }                       
-        }
-    }
+    //        Find.WorldObjects.Add(worldObject);
+    //        other.records = records;
+    //        other.reconstructionCounter = reconstructionCounter;
+    //        other.reconstructionTicksLeft = reconstructionTicksLeft;
+    //        other.stunTicksLeft = stunTicksLeft;
+    //        other.lastDamagedTick = lastDamagedTick;
+    //        other.Health = this.Health;
+
+    //        TimedDetectionRaids component = parent.GetComponent<TimedDetectionRaids>();
+    //        if (component != null)
+    //        {
+    //            component.CopyFrom(parent.GetComponent<TimedDetectionRaids>());
+    //            component.SetNotifiedSilently();
+    //        }
+
+    //        parent.Destroy();
+    //        if (parent is MapParent mapParent && mapParent.HasMap)
+    //        {
+    //            mapParent.Map.info.parent = worldObject as MapParent;
+    //        }
+    //    }
+    //}
 }
 
