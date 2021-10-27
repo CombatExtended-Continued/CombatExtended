@@ -37,9 +37,9 @@ namespace CombatExtended
                 int id = _casterId;
                 foreach (Map map in Find.Maps)
                 {
-                    if(map.listerThings.listsByDef.TryGetValue(_casterDef, out var things))
+                    if(map.listerThings.listsByDef.TryGetValue(_casterDef, out var things) && things != null)
                     {
-                        _caster = things.First(t => t.thingIDNumber == id);
+                        _caster = things.FirstOrFallback(t => t.thingIDNumber == id, null);
                         if(_caster != null)
                         {
                             return _caster;
@@ -65,9 +65,9 @@ namespace CombatExtended
                 int id = _casterId;
                 foreach (Map map in Find.Maps)
                 {
-                    if (map.listerThings.listsByDef.TryGetValue(_shooterDef, out var things))
+                    if (map.listerThings.listsByDef.TryGetValue(_shooterDef, out var things) && things != null)
                     {
-                        _shooter = things.First(t => t.thingIDNumber == id) as Pawn;
+                        _shooter = things.FirstOrFallback(t => t.thingIDNumber == id, null) as Pawn;
                         if (_shooter != null)
                         {
                             return _shooter;
