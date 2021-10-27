@@ -289,7 +289,7 @@ namespace CombatExtended.Utilities
             {
                 mid = (top + bottom) / 2;
                 midPosition = sortedThings[mid].thing.Position;
-                if (midPosition.DistanceToSquared(cell) <= range)
+                if (midPosition.DistanceToSquared(cell) <= rangeSq)
                     break;
                 if (midPosition.x > cell.x)
                     top = mid - 1;
