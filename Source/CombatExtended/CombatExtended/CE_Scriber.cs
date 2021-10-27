@@ -45,11 +45,7 @@ namespace CombatExtended
         }
 
         public static void ExecuteLateScribe()
-        {
-            if (Scribe.mode == LoadSaveMode.Inactive || Scribe.mode == LoadSaveMode.Saving)
-            {
-                throw new Exception("CE:(1) Late scribing is broken!");
-            }
+        {            
             for (int i = 0; i < queuedLate.Count; i++)
             {
                 if (queuedLate[i].scribingAction != null)
@@ -67,11 +63,7 @@ namespace CombatExtended
         }
 
         public static void Reset()
-        {
-            if (Scribe.mode != LoadSaveMode.Inactive)
-            {
-                throw new Exception("CE:(2) Late scribing is broken!");
-            }
+        {           
             for (int i = 0; i < queuedLate.Count; i++)
             {
                 if (queuedLate[i].postLoadAction != null)
