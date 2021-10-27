@@ -129,20 +129,20 @@ namespace CombatExtended
             Vector2 source = new Vector2(sourceCell.x, sourceCell.z);
             Vector2 destination = new Vector2(targetCell.x, targetCell.z);
 
-            Pawn shooter = shellingInfo.Shooter;
-            ProjectilePropertiesCE props = shellDef.projectile as ProjectilePropertiesCE;
-            float distanceFactor = Mathf.Max(Find.WorldGrid.TraversalDistanceBetween(shellingInfo.sourceTile, shellingInfo.targetTile, true, maxDist:(int)(props.shellingProps.range * 1.2f)) / props.shellingProps.range, 0.50f);
+            //Pawn shooter = shellingInfo.Shooter;
+            //ProjectilePropertiesCE props = shellDef.projectile as ProjectilePropertiesCE;
+            ////float distanceFactor = Mathf.Max(Find.WorldGrid.TraversalDistanceBetween(shellingInfo.sourceTile, shellingInfo.targetTile, true, maxDist:(int)(props.shellingProps.range * 1.2f)) / props.shellingProps.range, 0.50f);
             Vector2 shiftVec = new Vector2();
-            if (shooter != null)
+            //if (shooter != null)
+            //{
+            //    float shootingLevel = shooter.skills.GetSkill(SkillDefOf.Shooting).Level;
+            //    shiftVec.x = distanceFactor * Rand.Range(-destination.x, map.Size.x - destination.x - 1) / shootingLevel;
+            //    shiftVec.y = distanceFactor * Rand.Range(-destination.y, map.Size.z - destination.y - 1) / shootingLevel;
+            //}
+            //else
             {
-                float shootingLevel = shooter.skills.GetSkill(SkillDefOf.Shooting).Level;
-                shiftVec.x = distanceFactor * Rand.Range(-destination.x, map.Size.x - destination.x - 1) / shootingLevel;
-                shiftVec.y = distanceFactor * Rand.Range(-destination.y, map.Size.z - destination.y - 1) / shootingLevel;
-            }
-            else
-            {
-                shiftVec.x = distanceFactor * Rand.Range(-destination.x, map.Size.x - destination.x - 1) / 2f;
-                shiftVec.y = distanceFactor * Rand.Range(-destination.y, map.Size.z - destination.y - 1) / 2f;
+                shiftVec.x = Rand.Range(-destination.x, map.Size.x - destination.x - 1) / 12f;
+                shiftVec.y = Rand.Range(-destination.y, map.Size.z - destination.y - 1) / 12f;
             }
             destination += shiftVec;
             Vector2 w = (destination - source);
