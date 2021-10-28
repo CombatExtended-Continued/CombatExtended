@@ -2,20 +2,14 @@
 <Patch>
 	
 	<Operation Class="PatchOperationFindMod">
-		
 		<mods>
 			<li>FFGermanShepherd</li>
-		</mods>
-		
-		<match Class="PatchOperationSequence">
-			
+		</mods>	
+		<match Class="PatchOperationSequence">			
 			<operations>
 				<!-- === Quadruped === -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>
-						/Defs/ThingDef[defName="GermanShepherd"]
-					</xpath>
-					
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Quadruped</bodyShape>
@@ -24,8 +18,7 @@
 				</li>
 				
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[ defName="GermanShepherd"]/statBases</xpath>
-					
+					<xpath>/Defs/ThingDefdefName="GermanShepherd"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.23</MeleeDodgeChance>
 						<MeleeCritChance>0.06</MeleeCritChance>
@@ -34,8 +27,7 @@
 				</li>
 				
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[ defName="GermanShepherd"]/race/baseBodySize</xpath>
-					
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]/race/baseBodySize</xpath>
 					<value>
 						<baseBodySize>0.65</baseBodySize>
 					</value>
@@ -43,23 +35,20 @@
 				
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[ defName="GermanShepherd"]/race/baseHealthScale</xpath>
-					
 					<value>
 						<baseHealthScale>0.65</baseHealthScale>
 					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/PawnKindDef[ defName="GermanShepherd"]/combatPower</xpath>
-					
+					<xpath>/Defs/PawnKindDef[defName="GermanShepherd"]/combatPower</xpath>
 					<value>
 						<combatPower>60</combatPower>
 					</value>
 				</li>
 				
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[ defName="GermanShepherd"]/tools</xpath>
-					
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -108,6 +97,7 @@
 						</tools>
 					</value>
 				</li>
+				
 			</operations>
 		</match>
 	</Operation>

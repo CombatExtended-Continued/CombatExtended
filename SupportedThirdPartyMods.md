@@ -140,6 +140,7 @@ FCP Minuteman Equipment Teaser	|
 FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
+FFGermanShepherd    |
 Flak Dusters	|
 Forgelings race	|
 Forgotten Realms - Lizardfolk	|
