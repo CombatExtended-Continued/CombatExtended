@@ -16,11 +16,10 @@ namespace CombatExtended.HarmonyCE
     {
         public static bool Prefix(Hediff_MissingPart __instance, ref bool __result)
         {
-            var hediff = Traverse.Create(__instance);
             __result = Current.ProgramState != ProgramState.Entry
                 && __instance.IsFresh
                 && !__instance.Part.def.IsSolid(__instance.Part, __instance.pawn.health.hediffSet.hediffs) 
-                && !hediff.Property("ParentIsMissing").GetValue<bool>()
+                && !__instance.ParentIsMissing
                 && __instance.lastInjury != HediffDefOf.SurgicalCut;
             return false;
         }

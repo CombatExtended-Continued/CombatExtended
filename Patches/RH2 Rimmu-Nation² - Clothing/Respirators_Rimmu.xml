@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[
+        defName = "RNApparel_Gasmask_P1944WWI"
+        or defName = "RNApparel_Gasmask_S6NBC"
+        or defName = "RNApparel_Gasmask_S10NBC"
+        or defName = "RNApparel_Gasmask_GP5Soviet"
+        or defName = "RNApparel_Gasmask_M1Yugoslavian"
+        or defName = "RNApparel_Gasmask_MSAMillenium"
+        ]/statBases</xpath>
+        <value>
+          <Bulk>3</Bulk>
+          <WornBulk>1</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "RNApparel_Gasmask_P1944WWI"
+        or defName = "RNApparel_Gasmask_S6NBC"
+        or defName = "RNApparel_Gasmask_S10NBC"
+        or defName = "RNApparel_Gasmask_GP5Soviet"
+        or defName = "RNApparel_Gasmask_M1Yugoslavian"
+        or defName = "RNApparel_Gasmask_MSAMillenium"
+        ]/equippedStatOffsets</xpath>
+        <value>
+        <equippedStatOffsets>
+          <ToxicSensitivity>-0.5</ToxicSensitivity>
+          <SmokeSensitivity>-1</SmokeSensitivity>
+        </equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "RNApparel_Gasmask_P1944WWI"
+        or defName = "RNApparel_Gasmask_S6NBC"
+        or defName = "RNApparel_Gasmask_S10NBC"
+        or defName = "RNApparel_Gasmask_GP5Soviet"
+        or defName = "RNApparel_Gasmask_M1Yugoslavian"
+        or defName = "RNApparel_Gasmask_MSAMillenium"
+        ]/apparel/layers</xpath>
+        <value>
+        <layers>
+            <li>StrappedHead</li>
+        </layers>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[
+        defName = "RNApparel_Gasmask_P1944WWI"
+        or defName = "RNApparel_Gasmask_S6NBC"
+        or defName = "RNApparel_Gasmask_S10NBC"
+        or defName = "RNApparel_Gasmask_M1Yugoslavian"
+        or defName = "RNApparel_Gasmask_MSAMillenium"
+        ]</xpath>
+        <value>
+          <li Class="CombatExtended.ApparelHediffExtension">
+            <hediff>WearingGasMask</hediff>
+          </li>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>false</HideHair>
+              <HideBeard>true</HideBeard>
+            </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName = "RNApparel_Gasmask_GP5Soviet"]</xpath>
+        <value>
+          <li Class="CombatExtended.ApparelHediffExtension">
+            <hediff>WearingGasMask</hediff>
+          </li>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>true</HideHair>
+              <HideBeard>true</HideBeard>
+            </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+          defName = "RNApparel_Gasmask_P1944WWI"
+          or defName = "RNApparel_Gasmask_S6NBC"
+          or defName = "RNApparel_Gasmask_S10NBC"
+          or defName = "RNApparel_Gasmask_GP5Soviet"
+          or defName = "RNApparel_Gasmask_M1Yugoslavian"
+          or defName = "RNApparel_Gasmask_MSAMillenium"
+          ]/statBases/StuffEffectMultiplierArmor</xpath>
+          <value>
+            <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>	
+          </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[
+        defName = "RNApparel_Gasmask_P1944WWI"
+        or defName = "RNApparel_Gasmask_S6NBC"
+        or defName = "RNApparel_Gasmask_S10NBC"
+        or defName = "RNApparel_Gasmask_GP5Soviet"
+        or defName = "RNApparel_Gasmask_M1Yugoslavian"
+        or defName = "RNApparel_Gasmask_MSAMillenium"]</xpath>
+        <value>
+        <recipeMaker>
+          <skillRequirements>
+            <Crafting>8</Crafting>
+          </skillRequirements>
+          <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+          <recipeUsers>
+            <li>TableMachining</li>
+          </recipeUsers>
+      </recipeMaker>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+          defName = "RNApparel_Gasmask_P1944WWI"
+          or defName = "RNApparel_Gasmask_S6NBC"
+          or defName = "RNApparel_Gasmask_S10NBC"
+          or defName = "RNApparel_Gasmask_GP5Soviet"
+          or defName = "RNApparel_Gasmask_M1Yugoslavian"
+          or defName = "RNApparel_Gasmask_MSAMillenium"
+          ]/costList</xpath>
+          <value>
+        <costList>
+            <ComponentIndustrial>2</ComponentIndustrial>
+            <Chemfuel>10</Chemfuel>
+            </costList>
+          </value>
+      </li>
+ 
+			</operations>
+		</match>
+	</Operation>
+</Patch>

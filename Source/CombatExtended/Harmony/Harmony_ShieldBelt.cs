@@ -1,88 +1,20 @@
 ﻿using HarmonyLib;
 using Verse;
 using RimWorld;
-using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
 
-
+    /// <summary>
+    /// Prevent using ranged verbs other than binoculars (artillery spotting) for shield belt users.
+    /// </summary>
     [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.AllowVerbCast))]
     internal static class ShieldBelt_PatchAllowVerbCast
     {
-        internal static void Postfix(ref bool __result, Verb verb)
+        internal static bool Prefix(ref bool __result, Verb verb, ShieldBelt __instance)
         {
-            var mark = verb as Verb_MarkForArtillery;
-            if (mark != null)
-            {
-                __result = true;
-                return;
-            }
-
-            if (!Controller.settings.TurretsBreakShields)
-            {
-                if (verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile)
-                {
-                    Pawn casterPawn = verb.caster as Pawn;
-                    if (casterPawn == null)
-                    {
-                        __result = true;
-                        return;
-                    }
-                    if (verb.caster is Building_Turret)
-                    {
-                        __result = true;
-                        return;
-                    }
-                }
-            }
-
-            //Original:
-            //          return !(verb is Verb_LaunchProjectile) || ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
-
-            //Preferred form:
-            //          return !(verb is Verb_LaunchProjectile || verb is Verb_LaunchProjectileCE) || ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
-
-            /*
-             *  A   B   C   D       E
-             *  0   0   0   1       1
-             *  0   0   1   1       0
-             *  0   1   0   1       1
-             *  0   1   1   1       1
-             *  1   0   0   0       0
-             *  1   0   1   0       0
-             *  1   1   0   1       1
-             *  1   1   1   1       1
-             *
-             * A = verb is Verb_LaunchProjectile
-             * B = ReachabilityImmediate(..)
-             * C = verb is Verb_LaunchProjectile_CE
-             * D = (!A) || B
-             * E = (!A && !C) || B
-             *
-             * We know A, C and D. Can we get E?
-             *
-             *  A   C   D       E
-             *  0   0   1       1
-             *  0   1   1       0
-             *  0   0   1       1
-             *  0   1   1       1   ==> Duplicate of line 2, but a different result
-             *  1   0   0       0
-             *  1   1   0       0
-             *  1   0   1       1
-             *  1   1   1       1
-             *
-             *  This can only be distinguished if we know B, in which case the solution is B.
-             *  And interestingly, the result is correct otherwise! See how D == E for all entries except for line 2.
-             */
-
-            //if (A=0 && C=1 && D=1) E=B;
-            //if (!(verb is Verb_LaunchProjectile) && (verb is Verb_LaunchProjectileCE) && __result)
-            //{
-            //    __result = ReachabilityImmediate.CanReachImmediate(root, targ, map, PathEndMode.Touch, null);
-            //}
-
-            //NOTE. The method could maybe be transpiled or something fancy
+            __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            return false;
         }
     }
 
@@ -100,7 +32,7 @@ namespace CombatExtended.HarmonyCE
             {
                 if (__instance.ShieldState == ShieldState.Active)
                 {
-                    Traverse.Create(__instance).Method("Break").GetValue();
+                    __instance.Break();
                     ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
                 if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)

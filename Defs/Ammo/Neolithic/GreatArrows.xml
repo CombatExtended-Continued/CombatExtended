@@ -120,14 +120,14 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseGreatArrowProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseGreatArrowProjectile" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Arrow</damageDef>
-			<speed>14</speed>
+			<speed>22</speed>
 		</projectile>
 	</ThingDef>
 	
@@ -136,7 +136,7 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Stone</defName>
 		<label>great arrow (stone)</label>
 		<graphicData>
@@ -152,7 +152,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Steel</defName>
 		<label>great arrow (steel)</label>
 		<graphicData>
@@ -160,7 +160,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>17</speed>
+			<speed>26</speed>
 			<damageAmountBase>10</damageAmountBase>
 			<armorPenetrationBlunt>2.340</armorPenetrationBlunt>
 			<armorPenetrationSharp>2</armorPenetrationSharp>
@@ -169,7 +169,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Plasteel</defName>
 		<label>great arrow (plasteel)</label>
 		<graphicData>
@@ -177,7 +177,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>20</speed>
+			<speed>30</speed>
 			<damageAmountBase>9</damageAmountBase>
 			<armorPenetrationBlunt>2.140</armorPenetrationBlunt>
 			<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -186,7 +186,7 @@
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Venom</defName>
 		<label>great arrow (venom)</label>
 		<graphicData>
@@ -194,7 +194,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>17</speed>
+			<speed>28</speed>
 			<damageDef>Arrow</damageDef>
 			<damageAmountBase>10</damageAmountBase>
 			<secondaryDamage>
@@ -210,7 +210,7 @@
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseGreatArrowProjectile">
+	<ThingDef ParentName="BaseGreatArrowProjectile">
 		<defName>Projectile_GreatArrow_Flame</defName>
 		<label>great arrow (flame)</label>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
@@ -220,11 +220,10 @@
 		</graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>0.2</explosionRadius>
-      <damageDef>Flame</damageDef>
-      <damageAmountBase>1</damageAmountBase>
-      <postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-      <preExplosionSpawnChance>1</preExplosionSpawnChance>
-      <explosionChanceToStartFire>1</explosionChanceToStartFire>
+      <damageDef>ArrowFire</damageDef>
+      <damageAmountBase>3</damageAmountBase>
+      <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>0.16</preExplosionSpawnChance>
     </projectile>
 	</ThingDef>
   

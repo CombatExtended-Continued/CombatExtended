@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Xenohumans Expanded</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="Town_GuardKindAlienBase" or @Name="Town_TraderKindAlienBase" or @Name="PirateKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>3</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.1</generateChance>
+								<sidearmMoney>
+									<min>50</min>
+									<max>100</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+          							<li>
+              								<generateChance>0.075</generateChance>
+              								<sidearmMoney>
+                									<min>10</min>
+                									<max>100</max>
+              								</sidearmMoney>
+              								<weaponTags>
+                									<li>CE_FlareLauncher</li>
+              								</weaponTags>
+              								<magazineCount>
+                								<min>0</min>
+                								<max>1</max>
+              								</magazineCount>
+          							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="VillagerBaseKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>1</min>
+							<max>3</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.05</generateChance>
+								<sidearmMoney>
+									<min>50</min>
+									<max>100</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+          							<li>
+              								<generateChance>0.04</generateChance>
+              								<sidearmMoney>
+                									<min>10</min>
+                									<max>100</max>
+              								</sidearmMoney>
+              								<weaponTags>
+                									<li>CE_FlareLauncher</li>
+              								</weaponTags>
+              								<magazineCount>
+                								<min>0</min>
+                								<max>1</max>
+              								</magazineCount>
+          							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="Mercenary_GunnerKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>4</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.25</generateChance>
+								<sidearmMoney>
+									<min>100</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+         							 <li>
+           								 <generateChance>0.125</generateChance>
+            								<sidearmMoney>
+             									 <min>10</min>
+              									<max>100</max>
+            								</sidearmMoney>
+           								 <weaponTags>
+              									<li>GrenadeSmoke</li>
+      									<li>GrenadeDestructive</li>
+            								</weaponTags>
+            								<magazineCount>
+              								<min>0</min>
+              								<max>1</max>
+           								 </magazineCount>
+          							</li>
+          							<li>
+              								<generateChance>0.075</generateChance>
+              								<sidearmMoney>
+                									<min>10</min>
+                									<max>100</max>
+              								</sidearmMoney>
+              								<weaponTags>
+                									<li>CE_FlareLauncher</li>
+              								</weaponTags>
+              								<magazineCount>
+                								<min>1</min>
+                								<max>1</max>
+              								</magazineCount>
+          							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="Mercenary_SniperKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>5</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="Mercenary_HeavyKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>2</min>
+							<max>4</max>
+						</primaryMagazineCount>
+        						<forcedSidearm>
+         							 <sidearmMoney>
+            							<min>150</min>
+            							<max>350</max>
+          							</sidearmMoney>
+          						<weaponTags>
+            							<li>CE_SMG</li>
+          						</weaponTags>
+          						<magazineCount>
+            						<min>0</min>
+            						<max>1</max>
+          						</magazineCount>
+       						 </forcedSidearm>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[@Name="Mercenary_EliteKindAlienBase"]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>5</max>
+						</primaryMagazineCount>
+						<sidearms>
+							<li>
+								<generateChance>0.25</generateChance>
+								<sidearmMoney>
+									<min>100</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>CE_Sidearm_Melee</li>
+								</weaponTags>
+							</li>
+         							 <li>
+           								 <generateChance>0.2</generateChance>
+            								<sidearmMoney>
+             									 <min>10</min>
+              									<max>150</max>
+            								</sidearmMoney>
+           								 <weaponTags>
+              									<li>GrenadeSmoke</li>
+      									<li>GrenadeDestructive</li>
+            								</weaponTags>
+            								<magazineCount>
+              								<min>0</min>
+              								<max>1</max>
+           								 </magazineCount>
+          							</li>
+          							<li>
+              								<generateChance>0.075</generateChance>
+              								<sidearmMoney>
+                									<min>10</min>
+                									<max>100</max>
+              								</sidearmMoney>
+              								<weaponTags>
+                									<li>CE_FlareLauncher</li>
+              								</weaponTags>
+              								<magazineCount>
+                								<min>1</min>
+                								<max>1</max>
+              								</magazineCount>
+          							</li>
+						</sidearms>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+    				<xpath>Defs/PawnKindDef[@Name="Tribal_WarriorKindAlienBase"]</xpath>
+    				<value>
+      					<li Class="CombatExtended.LoadoutPropertiesExtension">
+        					<shieldMoney>
+          						<min>100</min>
+          						<max>150</max>
+        					</shieldMoney>
+        					<shieldTags>
+          						<li>TribalShield</li>
+        					</shieldTags>
+        					<shieldChance>0.9</shieldChance>
+      					</li>
+    				</value>
+ 			</li>
+
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[@Name="Tribal_HunterKindAlienBase"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>20</min>
+          <max>40</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>130</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>240</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>          
+        </sidearms>
+      </li>
+    </value>
+  </li>
+
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[@Name="Tribal_HeavyArcherKindAlienBase"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>20</min>
+          <max>40</max>
+        </primaryMagazineCount>
+        <shieldMoney>
+          <min>100</min>
+          <max>160</max>
+        </shieldMoney>
+        <shieldTags>
+          <li>TribalShield</li>
+        </shieldTags>
+        <shieldChance>0.6</shieldChance>
+        <sidearms>
+          <li>
+            <sidearmMoney>
+              <min>80</min>
+              <max>300</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>CE_Sidearm_Tribal</li>
+            </weaponTags>
+          </li>
+        </sidearms>
+      </li>
+    </value>
+  </li>
+
+			<li Class="PatchOperationAddModExtension">
+    				<xpath>Defs/PawnKindDef[@Name="Tribal_BerserkerKindAlienBase"]</xpath>
+    				<value>
+      					<li Class="CombatExtended.LoadoutPropertiesExtension">
+        					<shieldMoney>
+          						<min>120</min>
+          						<max>160</max>
+        					</shieldMoney>
+        					<shieldTags>
+          						<li>TribalShield</li>
+        					</shieldTags>
+        					<shieldChance>0.9</shieldChance>
+      					</li>
+    				</value>
+ 			</li>
+            <!-- ======= Combat Power ======= -->
+
+            <!-- Trooper -->
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[
+            @Name="Tribal_PenitentKindAlienBase"
+            ]/combatPower</xpath>
+				<value>
+					<combatPower>16</combatPower>
+				</value>
+			</li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[@Name="Tribal_ArcherKindAlienBase"]/combatPower</xpath>
+				<value>
+					<combatPower>20</combatPower>
+				</value>
+	</li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[@Name="Tribal_WarriorKindAlienBase"]/combatPower</xpath>
+				<value>
+					<combatPower>24</combatPower>
+				</value>
+	</li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[@Name="Tribal_HunterKindAlienBase"]/combatPower</xpath>
+				<value>
+					<combatPower>30</combatPower>
+				</value>
+	</li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[@Name="Tribal_BerserkerKindAlienBase"]/combatPower</xpath>
+				<value>
+					<combatPower>50</combatPower>
+				</value>
+	</li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[@Name="Tribal_HeavyArcherKindAlienBase"]/combatPower</xpath>
+				<value>
+					<combatPower>45</combatPower>
+				</value>
+	</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

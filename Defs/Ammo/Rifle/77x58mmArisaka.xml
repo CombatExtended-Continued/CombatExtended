@@ -82,52 +82,52 @@
 		<cookOffProjectile>Bullet_77x58mmArisaka_HP</cookOffProjectile>
 	</ThingDef>
 	
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
-    <defName>Ammo_77x58mmArisaka_Incendiary</defName>
-    <label>7.7x58mm Arisaka cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.16</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_77x58mmArisaka_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_Incendiary</defName>
+		<label>7.7x58mm Arisaka cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.16</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
-    <defName>Ammo_77x58mmArisaka_HE</defName>
-    <label>7.7x58mm Arisaka cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.27</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_77x58mmArisaka_HE</cookOffProjectile>
-  </ThingDef>
- 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
-    <defName>Ammo_77x58mmArisaka_Sabot</defName>
-    <label>7.7x58mm Arisaka cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.15</MarketValue>
-	  <Mass>0.023</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_77x58mmArisaka_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_HE</defName>
+		<label>7.7x58mm Arisaka cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.27</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="77x58mmArisakaBase">
+		<defName>Ammo_77x58mmArisaka_Sabot</defName>
+		<label>7.7x58mm Arisaka cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+			<Mass>0.023</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_77x58mmArisaka_Sabot</cookOffProjectile>
+	</ThingDef>
 	
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base77x58mmArisakaBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -139,7 +139,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	<ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_FMJ</defName>
 		<label>7.7mm Arisaka bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -150,7 +150,7 @@
 	</ThingDef>
 
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	<ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_AP</defName>
 		<label>7.7x58mm Arisaka bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -160,7 +160,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	<ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_HP</defName>
 		<label>7.7x58mm Arisaka bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -170,7 +170,7 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	  <ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_Incendiary</defName>
 		<label>7.7x58mm Arisaka bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -186,7 +186,7 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	  <ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_HE</defName>
 		<label>7.7x58mm Arisaka bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -202,7 +202,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base77x58mmArisakaBullet">
+	  <ThingDef ParentName="Base75x54mmFrenchBullet">
 		<defName>Bullet_77x58mmArisaka_Sabot</defName>
 		<label>7.7x58mm Arisaka bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">

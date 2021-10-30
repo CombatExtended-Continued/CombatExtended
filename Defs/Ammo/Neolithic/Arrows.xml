@@ -134,14 +134,14 @@
 
   <!-- ================== Projectiles (short bow) ================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseArrowProjectile" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="BaseArrowProjectile" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Arrow</damageDef>
-      <speed>16</speed>
+      <speed>24</speed>
     </projectile>
   </ThingDef>
 
@@ -150,7 +150,7 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
+  <ThingDef ParentName="BaseArrowProjectile">
     <defName>Projectile_Arrow_Stone</defName>
     <label>arrow (stone)</label>
     <graphicData>
@@ -158,7 +158,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>16</speed>
+      <speed>24</speed>
       <damageAmountBase>6</damageAmountBase>
       <armorPenetrationSharp>0.2</armorPenetrationSharp>
       <armorPenetrationBlunt>0.88</armorPenetrationBlunt>
@@ -167,7 +167,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
+  <ThingDef ParentName="BaseArrowProjectile">
     <defName>Projectile_Arrow_Steel</defName>
     <label>arrow (steel)</label>
     <graphicData>
@@ -175,7 +175,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>24</speed>
+      <speed>36</speed>
       <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
       <armorPenetrationBlunt>3.02</armorPenetrationBlunt>
@@ -184,7 +184,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
+  <ThingDef ParentName="BaseArrowProjectile">
     <defName>Projectile_Arrow_Plasteel</defName>
     <label>arrow (plasteel)</label>
     <graphicData>
@@ -192,7 +192,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>26</speed>
+      <speed>36</speed>
       <damageAmountBase>6</damageAmountBase>
       <armorPenetrationSharp>1</armorPenetrationSharp>
       <armorPenetrationBlunt>1.660</armorPenetrationBlunt>
@@ -201,7 +201,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
+  <ThingDef ParentName="BaseArrowProjectile">
     <defName>Projectile_Arrow_Venom</defName>
     <label>arrow (venom)</label>
     <graphicData>
@@ -209,7 +209,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>24</speed>
+      <speed>36</speed>
 		<damageDef>Arrow</damageDef>
 		<damageAmountBase>7</damageAmountBase>
 		<secondaryDamage>
@@ -225,7 +225,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
+  <ThingDef ParentName="BaseArrowProjectile">
     <defName>Projectile_Arrow_Flame</defName>
     <label>arrow (flame)</label>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
@@ -235,17 +235,16 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>0.1</explosionRadius>
-      <damageDef>Flame</damageDef>
-      <damageAmountBase>1</damageAmountBase>
-      <postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-      <preExplosionSpawnChance>1</preExplosionSpawnChance>
-      <explosionChanceToStartFire>1</explosionChanceToStartFire>
+	  <damageDef>ArrowFire</damageDef>
+	  <damageAmountBase>2</damageAmountBase>
+	  <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+	  <preExplosionSpawnChance>0.16</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
   <!-- ================== Projectiles (Recurve Bow) ================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseStreamlinedArrowProjectile" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="BaseStreamlinedArrowProjectile" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/Arrow_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -256,7 +255,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
     <defName>Projectile_StreamlinedArrow_Stone</defName>
     <label>streamlined arrow (stone)</label>
     <graphicData>
@@ -264,7 +263,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>22</speed>
+      <speed>33</speed>
       <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
       <armorPenetrationBlunt>1.740</armorPenetrationBlunt>
@@ -273,7 +272,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
     <defName>Projectile_StreamlinedArrow_Steel</defName>
     <label>streamlined arrow (steel)</label>
     <graphicData>
@@ -281,7 +280,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>33</speed>
+      <speed>38</speed>
       <damageAmountBase>9</damageAmountBase>
       <armorPenetrationSharp>1.0</armorPenetrationSharp>
       <armorPenetrationBlunt>5.9</armorPenetrationBlunt>
@@ -290,7 +289,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
     <defName>Projectile_StreamlinedArrow_Plasteel</defName>
     <label>streamlined arrow (plasteel)</label>
     <graphicData>
@@ -298,7 +297,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>37</speed>
+      <speed>38</speed>
       <damageAmountBase>8</damageAmountBase>
       <armorPenetrationSharp>1.5</armorPenetrationSharp>
       <armorPenetrationBlunt>3.260</armorPenetrationBlunt>
@@ -307,7 +306,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
     <defName>Projectile_StreamlinedArrow_Venom</defName>
     <label>streamlined arrow (venom)</label>
     <graphicData>
@@ -315,7 +314,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>33</speed>
+      <speed>38</speed>
 	  <damageDef>Arrow</damageDef>
       <damageAmountBase>9</damageAmountBase>
 		<secondaryDamage>
@@ -331,7 +330,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseStreamlinedArrowProjectile">
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
     <defName>Projectile_StreamlinedArrow_Flame</defName>
     <label>streamlined arrow (flame)</label>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>        
@@ -341,11 +340,10 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>0.1</explosionRadius>
-      <damageDef>Flame</damageDef>
-      <damageAmountBase>1</damageAmountBase>
-      <postExplosionSpawnThingDef>Filth_Fuel</postExplosionSpawnThingDef>
-      <preExplosionSpawnChance>1</preExplosionSpawnChance>
-      <explosionChanceToStartFire>1</explosionChanceToStartFire>
+	  <damageDef>ArrowFire</damageDef>
+	  <damageAmountBase>2</damageAmountBase>
+	  <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+	  <preExplosionSpawnChance>0.16</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 

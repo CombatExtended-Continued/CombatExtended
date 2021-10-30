@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="RNApparel_Overcoat_Generic"
+			or defName="RNApparel_SuitJacket_Generic"
+			or defName="RNApparel_SuitJacket_Generic"
+			]/costStuffCount</xpath>
+			<value>
+				<costStuffCount>50</costStuffCount>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="RNApparel_Overcoat_Generic"
+			or defName="RNApparel_SuitJacket_Generic"
+			or defName="RNApparel_SuitJacket_Generic"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>	
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

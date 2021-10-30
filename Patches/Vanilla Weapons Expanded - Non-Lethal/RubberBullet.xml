@@ -34,7 +34,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="45ACPBase">
 		<defName>Ammo_43cal_NL</defName>
 		<label>.43 caliber rubber bullet</label>
-    <description>Gas-powered pistol cartridge firing rubberized projectiles. Painful, but generally non-lethal.</description>
+    	<description>Gas-powered pistol cartridge firing rubberized projectiles. Painful, but generally non-lethal.</description>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -45,10 +45,9 @@
 		<ammoClass>RubberBullet</ammoClass>
 	</ThingDef>
 
-
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base45ACPBullet">
+	<ThingDef ParentName="Base45ACPBullet">
 		<defName>Bullet_43cal_NL</defName>
 		<label>rubber bullet</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -75,14 +74,14 @@
 		<description>Craft 200 .43 rubber bullet cartridges.</description>
 		<jobString>Making .43 rubber bullet cartridges.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>16</count>
-			</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>16</count>
+		</li>
       <li>
         <filter>
           <thingDefs>

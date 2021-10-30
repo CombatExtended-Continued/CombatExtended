@@ -15,6 +15,7 @@ namespace CombatExtended
         private const float MinSpreadDensity = 1.0f;    //ensures smoke clouds don't spread to infinitely small densities. Should be lower than DensityDissipationThreshold to avoid clouds stuck indoors.
         private const float MaxDensity = 12800f;
         private const float BugConfusePercent = 0.15f;  // Percent of MaxDensity where bugs go into confused wander
+        private const float LethalAirPPM = 10000f;       // Level of PPM where target severity hits 100% (about 2x the WHO/FDA immediately-dangerous-to-everyone threshold).
 
         private float density;
         private int updateTickOffset;   //Random offset (it looks jarring when smoke clouds all update on the same tick)
@@ -44,7 +45,7 @@ namespace CombatExtended
         {
             get
             {
-                return base.LabelNoCount + " (" + Mathf.RoundToInt(density) + " ppm)";
+                return base.LabelNoCount + " (" + Mathf.RoundToInt(density / 10f) + " ppm)";
             }
         }
 
@@ -61,9 +62,19 @@ namespace CombatExtended
 
         public override void Tick()
         {
-            if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
+	    if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
                 destroyTick++;
+		if (Rand.Range(0,10) == 5) {
+		  float d = density * 0.0001f;
+		  if (density > 300) {
+		      if (Random.Range(0, (int)(MaxDensity)) < d) {
+			  FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
+		      }
+		  }
+		  density -= d;
+		  
+		}
             }
 
             if ((GenTicks.TicksGame + updateTickOffset) % UpdateIntervalTicks == 0)
@@ -93,6 +104,8 @@ namespace CombatExtended
                 return;
 
             var pawns = Position.GetThingList(Map).Where(t => t is Pawn).ToList();
+	    var baseTargetSeverity = Mathf.Pow(density / LethalAirPPM, 1.25f);
+	    var baseSeverityRate = InhalationPerSec * density / MaxDensity;
 
             foreach (Pawn pawn in pawns)
             {
@@ -103,8 +116,47 @@ namespace CombatExtended
                     continue;
                 }
                 pawn.TryGetComp<CompTacticalManager>()?.GetTacticalComp<CompGasMask>()?.Notify_ShouldEquipGasMask();
-                var severity = InhalationPerSec * Mathf.Pow(density / MaxDensity, 2) * pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
-                HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severity);
+		var sensitivity = pawn.GetStatValue(CE_StatDefOf.SmokeSensitivity);
+		var breathing = PawnCapacityUtility.CalculateCapacityLevel(pawn.health.hediffSet, PawnCapacityDefOf.Breathing);
+                float curSeverity = pawn.health.hediffSet.GetFirstHediffOfDef(CE_HediffDefOf.SmokeInhalation, false)?.Severity ?? 0f;
+		
+
+		if (breathing < 0.01f)
+		{
+		    breathing = 0.01f;
+		}
+		var targetSeverity = sensitivity / breathing * baseTargetSeverity;
+		if (targetSeverity > 1.5f)
+		{
+		    targetSeverity = 1.5f;
+		}
+
+		var severityDelta = targetSeverity - curSeverity;
+		
+		bool downed = pawn.Downed;
+		bool awake = pawn.Awake();
+		
+		
+		var severityRate = baseSeverityRate * sensitivity / breathing * Mathf.Pow(severityDelta, 1.5f);
+		
+		if (downed)
+		{
+		    severityRate /= 100;
+		}
+
+		if (!awake)
+		{
+		    severityRate /= 2;
+		    if (curSeverity > 0.1)
+		    {
+			RestUtility.WakeUp(pawn);
+		    }
+		}
+
+		if (severityRate > 0 && severityDelta > 0)
+		{
+		    HealthUtility.AdjustSeverity(pawn, CE_HediffDefOf.SmokeInhalation, severityRate);
+		}
             }
         }
 
