@@ -18,8 +18,9 @@ namespace CombatExtended
 
         public Controller(ModContentPack content) : base(content)
         {
+            AssetBundleHelper.Initialize(content);
             Controller.instant = this;
-            Controller.content = content;
+            Controller.content = content;            
             Controller.settings = GetSettings<Settings>();
 
             // Apply Harmony patches
