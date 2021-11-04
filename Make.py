@@ -166,6 +166,7 @@ def parse_sources(csproj, base_dir, verbose):
 
 def parse_publicize(csproj):
     publicized_libraries = []
+    removed_libraries = []
     publicize_task = [i for i in csproj.getElementsByTagName("Target")
                           if 'Name' in i.attributes and i.attributes['Name'].value.startswith('Publi')]
     variables = {}
@@ -198,9 +199,9 @@ def parse_publicize(csproj):
                           if 'Include' in i.attributes]
         for pub in publicize_task:
             publicized_libraries.append(PublicizeTarget(pub+'.dll', pub+'_publicized.dll'))
-            
+            removed_libraries.append(pub+'.dll')
     
-    return publicized_libraries
+    return publicized_libraries, removed_libraries
 
 def parse_csproj(csproj_path, verbose):
     
@@ -216,7 +217,8 @@ def parse_csproj(csproj_path, verbose):
 
         sources = parse_sources(csproj, base_dir, verbose)
 
-        publicized_libraries = parse_publicize(csproj)
+        publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
+        removed_libraries.extend(removed_libraries_2)
 
         
 
