@@ -256,4 +256,42 @@
     </colorGenerator>
   </ThingDef>
 
+  <ThingDef ParentName="ApparelCarryGearBase">
+    <defName>Apparel_ExoFrame</defName>
+    <label>powered exoframe</label>
+    <description>A powered exoframe with articulated joints, commonly used in industrial settings by workers handling heavy parts.\n\nIncreases lifting capacity, but is quite bulky to wear.</description>
+    <graphicData>
+      <texPath>Things/Apparel/Exoframe/CE_Exoframe</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToMake>40000</WorkToMake>
+      <Mass>15</Mass>
+      <Bulk>35</Bulk>
+      <WornBulk>10</WornBulk>
+      <EquipDelay>5.5</EquipDelay>
+      <ArmorRating_Blunt>2.00</ArmorRating_Blunt>
+	    <ArmorRating_Sharp>0.40</ArmorRating_Sharp>  
+    </statBases>
+    <equippedStatOffsets>
+      <CarryWeight>50</CarryWeight>
+    </equippedStatOffsets>
+    <costList>
+      <Plasteel>60</Plasteel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>    
+    <apparel>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <bodyPartGroups>
+        <li>Shoulders</li>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Shell</li>
+      </layers>
+      <wornGraphicPath>Things/Apparel/Exoframe/CE_Exoframe</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+
 </Defs>
