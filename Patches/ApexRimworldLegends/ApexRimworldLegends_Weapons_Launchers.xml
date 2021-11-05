@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Quad Rocket Launcher -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_MechanoidRocketLauncher</defName>
+          <statBases>
+            <WorkToMake>75000</WorkToMake>
+            <Bulk>18</Bulk>
+            <Mass>8</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.15</ShotSpread>
+            <SwayFactor>1.8</SwayFactor>
+            <RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>3.45</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_M74_Incendiary</defaultProjectile>
+            <burstShotCount>8</burstShotCount>
+            <ticksBetweenBurstShots>16</ticksBetweenBurstShots>
+            <warmupTime>3.33</warmupTime>
+            <range>27</range>
+            <minRange>5</minRange>
+            <soundCast>InfernoCannon_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>8</magazineSize>
+            <reloadTime>15</reloadTime>
+            <ammoSet>AmmoSet_M74</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_Launcher</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MechanoidRocketLauncher"]/label</xpath>
+          <value>
+            <label>Rocket Launcher</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MechanoidRocketLauncher"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- R-6P Softball -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_GrenadeLauncher</defName>
+          <statBases>
+            <WorkToMake>16000</WorkToMake>
+            <Bulk>5.65</Bulk>
+            <Mass>5.3</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.18</ShotSpread>
+            <SwayFactor>1.31</SwayFactor>
+            <RangedWeapon_Cooldown>2.67</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.93</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+            <burstShotCount>1</burstShotCount>
+            <warmupTime>2.5</warmupTime>
+            <range>40</range>
+            <minRange>4</minRange>
+            <soundCast>Shot_IncendiaryLauncher</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>14</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>6</magazineSize>
+            <reloadTime>5.1</reloadTime>
+            <ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_Launcher</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_GrenadeLauncher"]/label</xpath>
+          <value>
+            <label>R-6P Softball</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_GrenadeLauncher"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

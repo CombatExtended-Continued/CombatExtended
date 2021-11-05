@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Argonians of Blackmarsh (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+  <li Class="PatchOperationReplace">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[@Name="BaseArgoPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+    <value>
+      <li>CombatExtended.ITab_Inventory</li>
+    </value>
+  </li>
+  <li Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[@Name="BaseArgoPawn"]/comps</xpath>
+    <value>
+      <li Class="CombatExtended.CompProperties_Inventory" />
+    </value>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <success>Always</success>
+    <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
+    <value>
+      <li Class="CombatExtended.RacePropertiesExtensionCE">
+        <bodyShape>Humanoid</bodyShape>
+      </li>
+    </value>
+  </li>
+  <li Class="PatchOperationReplace">
+    <success>Always</success>
+    <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>left fist</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.6</cooldownTime>
+          <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+          <surpriseAttack>
+            <extraMeleeDamages>
+              <li>
+                <def>Stun</def>
+                <amount>22</amount>
+              </li>
+            </extraMeleeDamages>
+          </surpriseAttack>
+          <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>right fist</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.6</cooldownTime>
+          <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+          <surpriseAttack>
+            <extraMeleeDamages>
+              <li>
+                <def>Stun</def>
+                <amount>22</amount>
+              </li>
+            </extraMeleeDamages>
+          </surpriseAttack>
+          <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>1.9</cooldownTime>
+          <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+          <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+          <chanceFactor>0.2</chanceFactor>
+        </li>
+      </tools>
+    </value>
+  </li>
+  <li Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
+        <value>
+          <comps />
+        </value>
+      </li>
+    </operations>
+  </li>
+  <li Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
+    <value>
+      <li>
+        <compClass>CombatExtended.CompPawnGizmo</compClass>
+      </li>
+      <li Class="CombatExtended.CompProperties_Suppressable" />
+    </value>
+  </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

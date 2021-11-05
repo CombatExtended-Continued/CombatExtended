@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Mastiff -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeShotgun</defName>
+          <statBases>
+            <WorkToMake>48000</WorkToMake>
+            <Bulk>9</Bulk>
+            <Mass>3.5</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.14</ShotSpread>
+            <SwayFactor>1.25</SwayFactor>
+            <RangedWeapon_Cooldown>1.58</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.39</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_12GaugeCharged_Slug</defaultProjectile>
+            <warmupTime>1.36</warmupTime>
+            <range>24</range>
+            <soundCast>Shot_Shotgun</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>4</magazineSize>
+            <reloadTime>6</reloadTime>
+            <ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_AssaultWeapon</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeShotgun"]/label</xpath>
+          <value>
+            <label>M1901 Mastiff</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeShotgun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- Peacekeeper -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_LeverActionShotgun</defName>
+          <statBases>
+            <WorkToMake>13000</WorkToMake>
+            <Bulk>4.2</Bulk>
+            <Mass>2.3</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.14</ShotSpread>
+            <SwayFactor>1.20</SwayFactor>
+            <RangedWeapon_Cooldown>0.91</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.56</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+            <warmupTime>0.9</warmupTime>
+            <range>20</range>
+            <soundCast>Shot_Shotgun</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>6</magazineSize>
+            <reloadTime>10</reloadTime>
+            <ammoSet>AmmoSet_12Gauge</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_AssaultWeapon</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_LeverActionShotgun"]/label</xpath>
+          <value>
+            <label>Peacepeeker</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName = "ARL_LeverActionShotgun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- EVA-8 Auto -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_SemiAutomaticShotgun</defName>
+          <statBases>
+            <WorkToMake>33000</WorkToMake>
+            <Bulk>4.6</Bulk>
+            <Mass>4.6</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.15</ShotSpread>
+            <SwayFactor>1.26</SwayFactor>
+            <RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.12</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+            <warmupTime>1.2</warmupTime>
+            <range>17</range>
+            <soundCast>Shot_Shotgun</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>8</magazineSize>
+            <reloadTime>2.75</reloadTime>
+            <ammoSet>AmmoSet_12Gauge</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>IndustrialGunAdvanced</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_SemiAutomaticShotgun"]/label</xpath>
+          <value>
+            <label>Eva-8 Auto</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_SemiAutomaticShotgun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

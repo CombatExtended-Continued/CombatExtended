@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Frontline - Trenches (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/tradeTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]</xpath>
+              <value>
+                <tradeTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/tradeTags</xpath>
+          <value>
+            <li>CE_Turret</li>
+          </value>
+        </li>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>TR_Gun_Mortar</defName>
+          <statBases>
+            <DeteriorationRate>0</DeteriorationRate>
+            <Flammability>0</Flammability>
+            <MarketValue>2500</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.05</ShotSpread>
+            <SwayFactor>0.4</SwayFactor>
+            <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+            <MaxHitPoints>400</MaxHitPoints>
+            <Bulk>20.00</Bulk>
+          </statBases>
+          <Properties>
+            <recoilAmount>2</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_TRMortarGrenade_HE</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <range>65</range>
+            <minRange>3</minRange>
+            <ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>TR_Mortar_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>16</muzzleFlashScale>
+            <recoilPattern>Mounted</recoilPattern>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>0.5</reloadTime>
+            <ammoSet>AmmoSet_TRMortarGrenade</ammoSet>
+          </AmmoUser>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- Longbow DMR -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_MarksmanRifle</defName>
+          <statBases>
+            <WorkToMake>55000</WorkToMake>
+            <Bulk>12.25</Bulk>
+            <Mass>4.3</Mass>
+            <SightsEfficiency>3.5</SightsEfficiency>
+            <ShotSpread>0.04</ShotSpread>
+            <SwayFactor>1.70</SwayFactor>
+            <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.36</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+            <warmupTime>3</warmupTime>
+            <range>86</range>
+            <soundCast>Shot_SniperRifle</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>5</magazineSize>
+            <reloadTime>2.82</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>SniperRifle</li>
+            <li>CE_AI_Rifle</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MarksmanRifle"]/label</xpath>
+          <value>
+            <label>D-101 Longbow DMR</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MarksmanRifle"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>Barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- Triple Take -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeSniperRifle</defName>
+          <statBases>
+            <WorkToMake>48000</WorkToMake>
+            <Bulk>12.24</Bulk>
+            <Mass>4.3</Mass>
+            <SightsEfficiency>2</SightsEfficiency>
+            <ShotSpread>0.02</ShotSpread>
+            <SwayFactor>1.92</SwayFactor>
+            <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.11</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_5656Spencer_FMJ</defaultProjectile>
+            <burstShotCount>3</burstShotCount>
+            <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+            <warmupTime>3.5</warmupTime>
+            <range>65</range>
+            <soundCast>Shot_SniperRifle</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>15</magazineSize>
+            <reloadTime>3.2</reloadTime>
+            <ammoSet>AmmoSet_5656Spencer</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SniperRifle</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeSniperRifle"]/label</xpath>
+          <value>
+            <label>Triple Take</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeSniperRifle"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- G7 Scout -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_SemiautomaticRifle</defName>
+          <statBases>
+            <WorkToMake>23500</WorkToMake>
+            <Bulk>9.8</Bulk>
+            <Mass>3.0</Mass>
+            <SightsEfficiency>1.66</SightsEfficiency>
+            <ShotSpread>0.07</ShotSpread>
+            <SwayFactor>1.31</SwayFactor>
+            <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.96</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
+            <warmupTime>0.90</warmupTime>
+            <range>56</range>
+            <soundCast>Shot_SniperRifle</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>4.0</reloadTime>
+            <ammoSet>AmmoSet_338Lapua</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SniperRifle</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_SemiautomaticRifle"]/label</xpath>
+          <value>
+            <label>G7 Scout</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_SemiautomaticRifle"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- Kraber -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_MechanoidSniperRifle</defName>
+          <statBases>
+            <WorkToMake>100000</WorkToMake>
+            <Bulk>14.6</Bulk>
+            <Mass>13.53</Mass>
+            <SightsEfficiency>3</SightsEfficiency>
+            <ShotSpread>0.01</ShotSpread>
+            <SwayFactor>2.23</SwayFactor>
+            <RangedWeapon_Cooldown>3.13</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>3.21</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+            <warmupTime>3.5</warmupTime>
+            <range>120</range>
+            <soundCast>ARL_Shot_MechanoidSniperRifle</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>4</magazineSize>
+            <reloadTime>3.6</reloadTime>
+            <ammoSet>AmmoSet_50BMG</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SniperRifle</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MechanoidSniperRifle"]/label</xpath>
+          <value>
+            <label>.50 Kraber AM-R</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_MechanoidSniperRifle"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.116</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Wall Mounted Turrets (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Normal</success>
+      <operations>
+        <!-- ========== All turrets ========== -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="WallRiotControlTurret"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/fillPercent</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]/statBases/Mass</xpath>
+          <value>
+            <Mass>15</Mass>
+          </value>
+        </li>
+        <!-- Add trade tags -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="WallTurret" or defName="WallRocketTurret" or defName="WallTurretMiniGun" or defName="WallFlameTurret"]</xpath>
+          <value>
+            <tradeTags>
+              <li>CE_Turret</li>
+            </tradeTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
