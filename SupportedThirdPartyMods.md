@@ -67,6 +67,7 @@ Alpha Ships |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
+Ancient Human   |
 Android Tiers	|
 Android TX Series   |
 Androids	|
