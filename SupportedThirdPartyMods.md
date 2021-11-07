@@ -82,7 +82,6 @@ Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
-Area Rugs	|
 Aspero Race |
 Astoriel Legacy |
 Autocleaner	|
