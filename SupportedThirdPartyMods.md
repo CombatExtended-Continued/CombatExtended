@@ -73,6 +73,7 @@ Android TX Series   |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
+Anima Animals - Community Pack  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
