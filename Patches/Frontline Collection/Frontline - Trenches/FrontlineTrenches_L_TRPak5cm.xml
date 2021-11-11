@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Frontline - Trenches (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="TR_Base_Pak"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="TR_Base_Pak"]/tradeTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="TR_Base_Pak"]</xpath>
+              <value>
+                <tradeTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="TR_Base_Pak"]/tradeTags</xpath>
+          <value>
+            <li>CE_Turret</li>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="TR_Base_Pak"]/fillPercent</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>TR_Gun_Pak</defName>
+          <statBases>
+            <DeteriorationRate>0</DeteriorationRate>
+            <Flammability>0</Flammability>
+            <MarketValue>2500</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.05</ShotSpread>
+            <SwayFactor>0.2</SwayFactor>
+            <RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+            <MaxHitPoints>600</MaxHitPoints>
+            <Bulk>15.00</Bulk>
+          </statBases>
+          <Properties>
+            <recoilAmount>2</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_TRPAKShell_HEAT</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <range>2000</range>
+            <minRange>3</minRange>
+            <ticksBetweenBurstShots>25</ticksBetweenBurstShots>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>TR_Pak_Fire</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>16</muzzleFlashScale>
+            <recoilPattern>Mounted</recoilPattern>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_TRPAKShell</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

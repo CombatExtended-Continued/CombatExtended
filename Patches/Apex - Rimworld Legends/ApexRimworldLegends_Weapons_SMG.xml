@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Alternator -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_LightSMG</defName>
+          <statBases>
+            <WorkToMake>11500</WorkToMake>
+            <Bulk>2.5</Bulk>
+            <Mass>0.85</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.16</ShotSpread>
+            <SwayFactor>0.85</SwayFactor>
+            <RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.22</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_41Rimfire_FMJ</defaultProjectile>
+            <burstShotCount>6</burstShotCount>
+            <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+            <warmupTime>0.5</warmupTime>
+            <range>20</range>
+            <soundCast>Shot_MachinePistol</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>18</magazineSize>
+            <reloadTime>3.2</reloadTime>
+            <ammoSet>AmmoSet_41Rimfire</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_Sidearm</li>
+            <li>CE_SMG</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_LightSMG"]/label</xpath>
+          <value>
+            <label>Alternator SMG</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_LightSMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- R-99 SMG -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_CompactSMG</defName>
+          <statBases>
+            <WorkToMake>24000</WorkToMake>
+            <Bulk>3.5</Bulk>
+            <Mass>3.5</Mass>
+            <SightsEfficiency>1.2</SightsEfficiency>
+            <ShotSpread>1.03</ShotSpread>
+            <SwayFactor>1.5</SwayFactor>
+            <RangedWeapon_Cooldown>1.33</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.55</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+            <burstShotCount>4</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+            <warmupTime>1</warmupTime>
+            <range>35</range>
+            <soundCast>Shot_HeavySMG</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>18</magazineSize>
+            <reloadTime>1.80</reloadTime>
+            <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_Sidearm</li>
+            <li>CE_SMG</li>
+            <li>CE_OneHandedWeapon</li>
+            <li>IndustrialGunAdvanced</li>
+          </weaponTags>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_CompactSMG"]/label</xpath>
+          <value>
+            <label>R-99 SMG</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_CompactSMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- Prowler Burst PDW -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeSMG</defName>
+          <statBases>
+            <WorkToMake>29000</WorkToMake>
+            <Bulk>3.68</Bulk>
+            <Mass>2.5</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.16</ShotSpread>
+            <SwayFactor>0.85</SwayFactor>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.41</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+            <burstShotCount>3</burstShotCount>
+            <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+            <warmupTime>0.9</warmupTime>
+            <range>26</range>
+            <soundCast>Shot_ChargeRifle</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>21</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_Sidearm</li>
+            <li>CE_SMG</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeSMG"]/label</xpath>
+          <value>
+            <label>Prowler Burst PDW</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="ARL_ChargeSMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>

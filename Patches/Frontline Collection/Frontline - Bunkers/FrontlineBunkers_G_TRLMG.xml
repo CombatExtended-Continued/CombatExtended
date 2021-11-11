@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Frontline - Bunkers (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="BK_Base_LMG"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="BK_Base_LMG"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+        </li>
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="BK_Base_LMG"]/tradeTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="BK_Base_LMG"]</xpath>
+              <value>
+                <tradeTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="BK_Base_LMG"]/tradeTags</xpath>
+          <value>
+            <li>CE_Turret</li>
+          </value>
+        </li>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>BK_Gun_LMG</defName>
+          <statBases>
+            <MarketValue>800</MarketValue>
+            <RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
+            <Mass>20</Mass>
+            <Bulk>10.00</Bulk>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.7</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+            <warmupTime>3</warmupTime>
+            <range>75</range>
+            <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+            <burstShotCount>12</burstShotCount>
+            <soundCast>BK_LMG_Fire</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>20</muzzleFlashScale>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>100</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+          </AmmoUser>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

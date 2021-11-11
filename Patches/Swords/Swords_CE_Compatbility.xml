@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Mod Support for Combat Extended -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Swords (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Cloud Sword -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_CloudSword"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>0.05</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>cleave</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>maw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>1.25</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>tornado</label>
+                <capacities>
+                  <li>LS_DarkClouds</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>0.5</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>storm</label>
+                <capacities>
+                  <li>LS_GatheringStorm</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>3.5</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>trinity</label>
+                <capacities>
+                  <li>LS_GatheringStorm</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>3.5</cooldownTime>
+                <armorPenetrationBlunt>55</armorPenetrationBlunt>
+                <armorPenetrationSharp>85</armorPenetrationSharp>
+                <chanceFactor>1.5</chanceFactor>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>assault</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>3.5</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>flashback</label>
+                <capacities>
+                  <li>LS_DarkClouds</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>3.5</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+                <chanceFactor>1.5</chanceFactor>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>strife</label>
+                <capacities>
+                  <li>LS_DarkClouds</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>3.5</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_CloudSword"]/statBases</xpath>
+          <value>
+            <Bulk>9</Bulk>
+            <MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_CloudSword"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.75</MeleeParryChance>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_CloudSword"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Swords (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Nightfall -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Nightfall"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.05</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>cleave</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>maw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>21</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.25</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>vanish</label>
+                <capacities>
+                  <li>LS_BlackWidow</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.75</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>venom</label>
+                <capacities>
+                  <li>LS_BlackWidow</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>2</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>shadows</label>
+                <capacities>
+                  <li>LS_DarkVeil</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>2</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>impale</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>40</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>void</label>
+                <capacities>
+                  <li>LS_DarkVeil</li>
+                </capacities>
+                <power>40</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Nightfall"]/statBases</xpath>
+          <value>
+            <Bulk>10</Bulk>
+            <MeleeCounterParryBonus>1.75</MeleeCounterParryBonus>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Nightfall"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.5</MeleeParryChance>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Nightfall"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Swords (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Executioner -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Executioner"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.05</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>cleave</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>18</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>maw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>freeze</label>
+                <capacities>
+                  <li>LS_FrozenHeart</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>wind</label>
+                <capacities>
+                  <li>LS_FrozenHeart</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>3.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>55</armorPenetrationBlunt>
+                <armorPenetrationSharp>85</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>slide</label>
+                <capacities>
+                  <li>LS_FrozenHeart</li>
+                </capacities>
+                <power>32</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>55</armorPenetrationBlunt>
+                <armorPenetrationSharp>85</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>28</power>
+                <cooldownTime>2.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>throatcutter</label>
+                <capacities>
+                  <li>LS_ExecutionersCalling</li>
+                </capacities>
+                <power>36</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.25</chanceFactor>
+                <armorPenetrationBlunt>55</armorPenetrationBlunt>
+                <armorPenetrationSharp>85</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>behead</label>
+                <capacities>
+                  <li>LS_ExecutionersCalling</li>
+                </capacities>
+                <power>36</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.1</chanceFactor>
+                <armorPenetrationBlunt>55</armorPenetrationBlunt>
+                <armorPenetrationSharp>85</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Executioner"]/statBases</xpath>
+          <value>
+            <Bulk>8</Bulk>
+            <MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Executioner"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.33</MeleeCritChance>
+            <MeleeParryChance>0.33</MeleeParryChance>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Executioner"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Swords (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Deathbringer -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Deathbringer"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.05</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>cleave</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>28</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>maw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>20</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>strike</label>
+                <capacities>
+                  <li>LS_BloodLust</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>dismantle</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>27</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>counter</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>32</power>
+                <cooldownTime>3.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>riposte</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>32</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blood rain</label>
+                <capacities>
+                  <li>LS_BloodLust</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>3.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Deathbringer"]/statBases</xpath>
+          <value>
+            <Bulk>8</Bulk>
+            <MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_Deathbringer"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.5</MeleeCritChance>
+            <MeleeParryChance>0.33</MeleeParryChance>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_Deathbringer"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Swords (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Red Queen -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_RedQueen"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>0.05</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>cleave</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>28</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>maw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>20</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>strike</label>
+                <capacities>
+                  <li>LS_BloodLust</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>dismantle</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>27</power>
+                <cooldownTime>4.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>counter</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>32</power>
+                <cooldownTime>3.0</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>35</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>30</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>25</armorPenetrationBlunt>
+                <armorPenetrationSharp>45</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>riposte</label>
+                <capacities>
+                  <li>LS_MoonLight</li>
+                </capacities>
+                <power>32</power>
+                <cooldownTime>4.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blood rain</label>
+                <capacities>
+                  <li>LS_BloodLust</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>3.0</cooldownTime>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>65</armorPenetrationSharp>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_RedQueen"]/statBases</xpath>
+          <value>
+            <Bulk>6</Bulk>
+            <MeleeCounterParryBonus>1.15</MeleeCounterParryBonus>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="LS_RedQueen"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.33</MeleeParryChance>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="LS_RedQueen"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_OneHandedWeapon</li>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

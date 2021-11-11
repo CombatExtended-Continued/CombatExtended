@@ -1,0 +1,1828 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+  <!-- ======= Checks for Combat Extended ======= -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Cybernetic Warfare and Special Weapons (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/DamageDef[defName="CW_ElectroBurn"]/soundExplosion</xpath>
+          <value>
+            <soundExplosion>CW_PowerSpark</soundExplosion>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/DamageDef[defName="CW_ElectroCharge"]/soundExplosion</xpath>
+          <value>
+            <soundExplosion>CW_ContinousSpark</soundExplosion>
+          </value>
+        </li>
+
+        <!-- Gun Blade -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_GunBlade"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+              <defName>CW_GunBlade</defName>
+              <label>gun blade</label>
+              <description>An ergonomic handgun with a comfortable blade extension. This attempt tries to counterattack the lack of close combat capacities of its weapon type, based on an old gun design by a well-known weaponsmith.</description>
+              <graphicData>
+                <texPath>Things/WeaponMelee/GunBlade</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.3</drawSize>
+              </graphicData>
+              <techLevel>Spacer</techLevel>
+              <generateCommonality>0.05</generateCommonality>
+              <soundInteract>Interact_Autopistol</soundInteract>
+              <recipeMaker>
+                <recipeUsers Inherit="False">
+                  <li>TableMachining</li>
+                </recipeUsers>
+                <researchPrerequisite>CW_FrameworkWeaponry</researchPrerequisite>
+                <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+                <skillRequirements>
+                  <Crafting>11</Crafting>
+                </skillRequirements>
+              </recipeMaker>
+              <costList>
+                <Uranium>50</Uranium>
+                <Plasteel>75</Plasteel>
+                <ComponentIndustrial>2</ComponentIndustrial>
+              </costList>
+              <weaponTags Inherit="False">
+                <li>CE_Sidearm</li>
+                <li>CE_AI_Pistol</li>
+                <li>CE_OneHandedWeapon</li>
+              </weaponTags>
+              <statBases>
+                <MarketValue>1200</MarketValue>
+                <Flammability>0.6</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-2</Beauty>
+                <EquipDelay>2</EquipDelay>
+                <WorkToMake>45000</WorkToMake>
+                <Mass>2.5</Mass>
+                <Bulk>3</Bulk>
+                <SightsEfficiency>0.9</SightsEfficiency>
+                <ShotSpread>0.25</ShotSpread>
+                <SwayFactor>0.45</SwayFactor>
+                <RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+              </statBases>
+              <equippedStatOffsets>
+                <MeleeHitChance>0.05</MeleeHitChance>
+              </equippedStatOffsets>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>handle</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>8</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>point</label>
+                  <capacities>
+                    <li>Stab</li>
+                  </capacities>
+                  <power>18</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.5</cooldownTime>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>blade</label>
+                  <capacities>
+                    <li>Cut</li>
+                  </capacities>
+                  <power>25</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.5</cooldownTime>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+                  <warmupTime>2</warmupTime>
+                  <range>25.9</range>
+                  <burstShotCount>7</burstShotCount>
+                  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                  <soundCast>Shot_Revolver</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>21</magazineSize>
+                  <reloadTime>1.5</reloadTime>
+                  <ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                  <aiAimMode>AimedShot</aiAimMode>
+                </li>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Disruptor -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_Disruptor"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_Disruptor</defName>
+              <label>Disruptor</label>
+              <description>A heavy handgun with an electron orb generator to disrupt single targets. The adjustable power system was originally made for non lethal strikes and knocks out any humanoid on a single hit. Standard overseer equipment on Jailplanets.\n\nThis upgraded version has access to four different fire modes.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/Disruptor</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.5</drawSize>
+              </graphicData>
+              <generateCommonality>0.1</generateCommonality>
+              <soundInteract>CW_BatteryRecharge</soundInteract>
+              <techLevel>Spacer</techLevel>
+              <recipeMaker>
+                <researchPrerequisite>CW_CyberneticWarfare</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>16</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+              </recipeMaker>
+              <statBases>
+                <MarketValue>1450</MarketValue>
+                <Flammability>0.5</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-1</Beauty>
+                <EquipDelay>2</EquipDelay>
+                <WorkToMake>32500</WorkToMake>
+                <Mass>5.25</Mass>
+                <Bulk>6</Bulk>
+                <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+                <SightsEfficiency>0.98</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.25</SwayFactor>
+              </statBases>
+              <costList>
+                <Plasteel>25</Plasteel>
+                <Uranium>75</Uranium>
+                <ComponentSpacer>8</ComponentSpacer>
+              </costList>
+              <weaponTags Inherit="False">
+                <li>AdvancedGun</li>
+                <li>CE_Sidearm</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_LaunchProjectileCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_PlasmaCellHeavy</defaultProjectile>
+                  <warmupTime>0.5</warmupTime>
+                  <range>39.9</range>
+                  <minRange>1.5</minRange>
+                  <soundCast>CW_ElectricPulse</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>11</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>Blade</label>
+                  <capacities>
+                    <li>Cut</li>
+                  </capacities>
+                  <power>21</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                </li>
+              </tools>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>50</magazineSize>
+                  <reloadTime>1.5</reloadTime>
+                  <ammoSet>AmmoSet_PlasmaCellHeavy</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                </li>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Napalm Blaster -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_NapalmBlaster"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_NapalmBlaster</defName>
+              <label>napalm blaster</label>
+              <description>A heavy flamethrower with a napalm tank attached to it. This mechanical incendiary device was developed to project a long, controllable stream of liquid fire.\n\nThe heat level can be conveniently adjusted by a builtin pyromancy controller.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/NapalmBlaster</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.5</drawSize>
+              </graphicData>
+              <soundInteract>CW_PlasmaBoil</soundInteract>
+              <generateCommonality>0.1</generateCommonality>
+              <techLevel>Spacer</techLevel>
+              <statBases>
+                <MarketValue>1000</MarketValue>
+                <Flammability>0.6</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-2</Beauty>
+                <EquipDelay>4</EquipDelay>
+                <WorkToMake>37500</WorkToMake>
+                <Mass>10</Mass>
+                <Bulk>12</Bulk>
+                <SightsEfficiency>0.25</SightsEfficiency>
+                <ShotSpread>1.5</ShotSpread>
+                <SwayFactor>0.1</SwayFactor>
+                <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+              </statBases>
+              <recipeMaker>
+                <researchPrerequisite>CW_CyberneticWarfare</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>12</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+              </recipeMaker>
+              <costList>
+                <Plasteel>25</Plasteel>
+                <Steel>75</Steel>
+                <ComponentIndustrial>8</ComponentIndustrial>
+              </costList>
+              <weaponTags Inherit="False">
+                <li>CE_AI_AssaultWeapon</li>
+                <li>CE_Sidearm</li>
+              </weaponTags>
+              <tradeTags>
+                <li>Exotic</li>
+              </tradeTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+                  <warmupTime>2.5</warmupTime>
+                  <range>14.9</range>
+                  <minRange>1.5</minRange>
+                  <burstShotCount>28</burstShotCount>
+                  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                  <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <soundCast>CW_NapalmFlame</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                  <muzzleFlashScale>14</muzzleFlashScale>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>9</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.7</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>8</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.7</cooldownTime>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>muzzle</label>
+                  <capacities>
+                    <li>Poke</li>
+                  </capacities>
+                  <power>8</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.7</cooldownTime>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <comps>
+                <!-- <li Class="CombatExtended.CompProperties_AmmoUser">
+									<magazineSize>28</magazineSize>
+									<reloadTime>3.5</reloadTime>
+									<ammoSet>AmmoSet_Flamethrower</ammoSet>
+								</li>
+								<li Class="CombatExtended.CompProperties_FireModes">
+									<aiUseBurstMode>FALSE</aiUseBurstMode>
+								</li> -->
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Dual Eraser -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_DualEraser"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_DualEraser</defName>
+              <label>dual eraser</label>
+              <description>A pair of rapid fire machine pistols in form of two compact twin erasers with huge magazines for dual wielding purposes. The immense firepower like its multi shot comes at the price of low precision. Found on high criminal Urbworlds, where narrow alleys are present. Can be mounted on cybernetics for faster reloads on close up targets.\n\nMade for Akimbo.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/DoubleDualErasers</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.3</drawSize>
+              </graphicData>
+              <soundInteract>Interact_SMG</soundInteract>
+              <generateCommonality>0.05</generateCommonality>
+              <techLevel>Spacer</techLevel>
+              <recipeMaker>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+                <researchPrerequisite>CW_CyberneticWarfare</researchPrerequisite>
+                <unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+                <skillRequirements>
+                  <Crafting>15</Crafting>
+                </skillRequirements>
+              </recipeMaker>
+              <statBases>
+                <MarketValue>1200</MarketValue>
+                <Flammability>0.6</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-2</Beauty>
+                <EquipDelay>3</EquipDelay>
+                <WorkToMake>36000</WorkToMake>
+                <Mass>3</Mass>
+                <Bulk>4.5</Bulk>
+                <SightsEfficiency>0.5</SightsEfficiency>
+                <ShotSpread>0.75</ShotSpread>
+                <SwayFactor>0.95</SwayFactor>
+                <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+              </statBases>
+              <costList>
+                <Plasteel>50</Plasteel>
+                <Steel>150</Steel>
+                <ComponentIndustrial>8</ComponentIndustrial>
+              </costList>
+              <equippedStatOffsets>
+                <AimingDelayFactor>-0.10</AimingDelayFactor>
+              </equippedStatOffsets>
+              <weaponTags Inherit="False">
+                <li>CE_Sidearm</li>
+                <li>CE_SMG</li>
+                <li>CE_OneHandedWeapon</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
+                  <warmupTime>0.6</warmupTime>
+                  <range>19.9</range>
+                  <burstShotCount>24</burstShotCount>
+                  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+                  <soundCast>Shot_MachinePistol</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>10</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.5</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.5</cooldownTime>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>muzzle</label>
+                  <capacities>
+                    <li>Poke</li>
+                  </capacities>
+                  <power>9</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.5</cooldownTime>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>24</magazineSize>
+                  <reloadTime>0.5</reloadTime>
+                  <ammoSet>AmmoSet_44Magnum</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <aimedBurstShotCount>12</aimedBurstShotCount>
+                </li>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Accelerator -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_Accelerator"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_Accelerator</defName>
+              <label>accelerator</label>
+              <description>A heavy cybernetic weapon system. The inner coils of this monstrum are switched on and off in a precisely timed sequence, causing the hybrid projectiles to be accelerated quickly along the barrel via magnetic forces. Swaps between ammunition on toggle.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/Accelerator</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.5</drawSize>
+              </graphicData>
+              <soundInteract>CW_LoadingSystem</soundInteract>
+              <!-- Interact_ChargeRifle -->
+              <generateCommonality>0.05</generateCommonality>
+              <techLevel>Spacer</techLevel>
+              <recipeMaker>
+                <researchPrerequisite>CW_CyberneticWarfare</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>14</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+              </recipeMaker>
+              <statBases>
+                <MarketValue>1500</MarketValue>
+                <Flammability>0.6</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-2</Beauty>
+                <EquipDelay>3</EquipDelay>
+                <WorkToMake>50000</WorkToMake>
+                <Mass>4.6</Mass>
+                <Bulk>5</Bulk>
+                <SightsEfficiency>1.5</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.50</SwayFactor>
+                <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+              </statBases>
+              <costList>
+                <Uranium>70</Uranium>
+                <Plasteel>50</Plasteel>
+                <ComponentSpacer>3</ComponentSpacer>
+              </costList>
+              <weaponTags Inherit="False">
+                <li>CE_Sidearm</li>
+                <li>CE_AI_Rifle</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_6x24mmCharged_Ion</defaultProjectile>
+                  <warmupTime>3.5</warmupTime>
+                  <range>49.9</range>
+                  <minRange>1.5</minRange>
+                  <burstShotCount>12</burstShotCount>
+                  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                  <soundCast>CW_GaussProjectile</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.9</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>10</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.9</cooldownTime>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>muzzle</label>
+                  <capacities>
+                    <li>Poke</li>
+                  </capacities>
+                  <power>8</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.9</cooldownTime>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>36</magazineSize>
+                  <reloadTime>1.5</reloadTime>
+                  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <aimedBurstShotCount>8</aimedBurstShotCount>
+                </li>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Plasma Gun -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_PlasmaGun"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_PlasmaGun</defName>
+              <label>Plasma gun</label>
+              <description>A heavy cybernetic weapon system. The coils of this monstrum are switched on and off in a precisely timed sequence, causing the micro explosion projectiles to be accelerated quickly along the barrel via magnetic forces. Designed to destroy light vehicles and aircraft with its superior firepower.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/PlasmaGun</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.4</drawSize>
+              </graphicData>
+              <soundInteract>CW_PlasmaBoil</soundInteract>
+              <generateCommonality>0.05</generateCommonality>
+              <techLevel>Ultra</techLevel>
+              <recipeMaker>
+                <researchPrerequisite>CW_FrameworkWeaponry</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>13</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+              </recipeMaker>
+              <statBases>
+                <MarketValue>1750</MarketValue>
+                <Flammability>0.25</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-1</Beauty>
+                <EquipDelay>2</EquipDelay>
+                <WorkToMake>50000</WorkToMake>
+                <Mass>4.65</Mass>
+                <Bulk>5</Bulk>
+                <SightsEfficiency>1.25</SightsEfficiency>
+                <ShotSpread>0.33</ShotSpread>
+                <SwayFactor>0.66</SwayFactor>
+                <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+              </statBases>
+              <costList>
+                <Plasteel>25</Plasteel>
+                <Uranium>75</Uranium>
+                <ComponentSpacer>8</ComponentSpacer>
+              </costList>
+              <thingSetMakerTags>
+                <li>RewardSpecial</li>
+              </thingSetMakerTags>
+              <weaponTags Inherit="False">
+                <li>CE_Sidearm</li>
+                <li>AdvancedGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+                  <warmupTime>3</warmupTime>
+                  <range>35.9</range>
+                  <burstShotCount>12</burstShotCount>
+                  <soundCast>CW_FuturisticWeapon</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>blade</label>
+                  <capacities>
+                    <li>Cut</li>
+                  </capacities>
+                  <power>17</power>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <cooldownTime>1.6</cooldownTime>
+                </li>
+              </tools>
+              <comps>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>50</magazineSize>
+                  <reloadTime>1.5</reloadTime>
+                  <ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- Coil Gun -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_CoilGun"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_CoilGun</defName>
+              <label>coil gun</label>
+              <description>A heavy projectile accelerator consisting of one coil used as electromagnet in the configuration of a linear motor that accelerates a ferromagnetic or conducting projectile to high velocity, resulting in uncomparable armor penetration. Designed to destroy light vehicles and aircraft with its superior firepower.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/CoilGun</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.5</drawSize>
+              </graphicData>
+              <soundInteract>CW_BatteryRecharge</soundInteract>
+              <generateCommonality>0.05</generateCommonality>
+              <techLevel>Ultra</techLevel>
+              <recipeMaker>
+                <researchPrerequisite>CW_FrameworkWeaponry</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>13</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>FabricationBench</li>
+                </recipeUsers>
+              </recipeMaker>
+              <statBases>
+                <MarketValue>1750</MarketValue>
+                <Flammability>0.25</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-1</Beauty>
+                <EquipDelay>2</EquipDelay>
+                <WorkToMake>50000</WorkToMake>
+                <Mass>5.75</Mass>
+                <Bulk>6</Bulk>
+                <SightsEfficiency>0.99</SightsEfficiency>
+                <ShotSpread>0.01</ShotSpread>
+                <SwayFactor>0.01</SwayFactor>
+                <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+              </statBases>
+              <costList>
+                <Plasteel>25</Plasteel>
+                <Uranium>75</Uranium>
+                <ComponentSpacer>8</ComponentSpacer>
+              </costList>
+              <thingSetMakerTags>
+                <li>RewardSpecial</li>
+              </thingSetMakerTags>
+              <weaponTags Inherit="False">
+                <li>CE_Sidearm</li>
+                <li>CE_AI_Rifle</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_LaunchProjectileCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+                  <warmupTime>0.5</warmupTime>
+                  <range>59.9</range>
+                  <minRange>1.5</minRange>
+                  <burstShotCount>3</burstShotCount>
+                  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                  <soundCast>CW_RailGun</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>14</power>
+                  <cooldownTime>1.8</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>10</power>
+                  <cooldownTime>1.8</cooldownTime>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>muzzle</label>
+                  <capacities>
+                    <li>Poke</li>
+                  </capacities>
+                  <power>8</power>
+                  <cooldownTime>1.8</cooldownTime>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <comps>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>6</magazineSize>
+                  <reloadTime>0.5</reloadTime>
+                  <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <!-- SuppressFire -->
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                </li>
+              </comps>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- ====================  ==================== -->
+        <!-- =========== Ranged Weapon Stats ========== -->
+        <!-- ============ RangedIndustrial ============ -->
+        <!-- PatchOperationMakeGunCECompatible # Riot Breaker -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_RiotBreaker"]/statBases</xpath>
+          <value>
+            <SightsEfficiency>0.65</SightsEfficiency>
+            <ShotSpread>0.16</ShotSpread>
+            <SwayFactor>0.85</SwayFactor>
+            <Bulk>9</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_RiotBreaker"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm</li>
+              <li>CE_AI_AssaultWeapon</li>
+            </weaponTags>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="CW_RiotBreaker"]/verbs/li</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.VerbPropertiesCE</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_RiotBreaker"]/verbs/li/verbClass</xpath>
+          <!-- verb -->
+          <value>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_RiotBreaker"]/verbs/li/defaultProjectile</xpath>
+          <!-- verb -->
+          <value>
+            <defaultProjectile>Bullet_20Gauge_Beanbag</defaultProjectile>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="CW_RiotBreaker"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>9</magazineSize>
+              <reloadTime>1.5</reloadTime>
+              <ammoSet>AmmoSet_20Gauge</ammoSet>
+            </li>
+            <li Class="CombatExtended.CompProperties_FireModes">
+              <aiUseBurstMode>FALSE</aiUseBurstMode>
+            </li>
+          </value>
+        </li>
+
+        <!-- Riot Breaker # Tools -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="CW_RiotBreaker"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>2</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>11</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- PatchOperationMakeGunCECompatible # Ballistic Shredder -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/statBases</xpath>
+          <value>
+            <SightsEfficiency>0.75</SightsEfficiency>
+            <ShotSpread>0.19</ShotSpread>
+            <SwayFactor>1.06</SwayFactor>
+            <Bulk>6</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_AI_SMG</li>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/verbs/li</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.VerbPropertiesCE</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/verbs/li/verbClass</xpath>
+          <value>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/verbs/li/defaultProjectile</xpath>
+          <value>
+            <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>20</magazineSize>
+              <reloadTime>2.25</reloadTime>
+              <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+            </li>
+            <li Class="CombatExtended.CompProperties_FireModes">
+              <aimedBurstShotCount>3</aimedBurstShotCount>
+              <aiAimMode>AimedShot</aiAimMode>
+            </li>
+          </value>
+        </li>
+
+        <!-- Ballistic Shredder # Tools -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticShredder"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- PatchOperationMakeGunCECompatible # Ballistic Combat Gun -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/statBases</xpath>
+          <value>
+            <SightsEfficiency>0.85</SightsEfficiency>
+            <ShotSpread>0.55</ShotSpread>
+            <SwayFactor>1.46</SwayFactor>
+            <Bulk>5</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_AI_SMG</li>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/verbs/li</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.VerbPropertiesCE</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/verbs/li/verbClass</xpath>
+          <value>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/verbs/li/defaultProjectile</xpath>
+          <value>
+            <defaultProjectile>Bullet_45Colt_FMJ</defaultProjectile>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>32</magazineSize>
+              <reloadTime>0.5</reloadTime>
+              <ammoSet>AmmoSet_45Colt</ammoSet>
+            </li>
+            <li Class="CombatExtended.CompProperties_FireModes">
+              <aimedBurstShotCount>3</aimedBurstShotCount>
+              <aiAimMode>AimedShot</aiAimMode>
+            </li>
+          </value>
+        </li>
+
+        <!-- Ballistic Combat Gun # Tools -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticCombatGun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- PatchOperationMakeGunCECompatible # Ballistic Enforcer -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_BallisticEnforcer"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseHumanMakeableGun">
+              <defName>CW_BallisticEnforcer</defName>
+              <label>ballistic enforcer</label>
+              <description>An energy assisted assault rifle for field operations. This version is integrated with a computing system to increase its firepower and accuracy. The energy infused projectiles are fired in small bursts to prevent overheating.</description>
+              <graphicData>
+                <texPath>Things/WeaponRanged/BallisticEnforcer</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>1.5</drawSize>
+              </graphicData>
+              <generateCommonality>0.1</generateCommonality>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <techLevel>Industrial</techLevel>
+              <recipeMaker>
+                <researchPrerequisite>CW_Ballistik</researchPrerequisite>
+                <skillRequirements>
+                  <Crafting>9</Crafting>
+                </skillRequirements>
+                <recipeUsers Inherit="False">
+                  <li>TableMachining</li>
+                </recipeUsers>
+              </recipeMaker>
+              <thingCategories Inherit="False">
+                <li>CW_CyborgWeaponry</li>
+              </thingCategories>
+              <statBases>
+                <WorkToMake>40000</WorkToMake>
+                <SightsEfficiency>0.85</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.16</SwayFactor>
+                <Bulk>5</Bulk>
+                <Mass>3.8</Mass>
+                <MarketValue>900</MarketValue>
+                <Flammability>0.5</Flammability>
+                <DeteriorationRate>0.2</DeteriorationRate>
+                <Beauty>-1</Beauty>
+                <EquipDelay>3</EquipDelay>
+                <RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
+              </statBases>
+              <costList>
+                <Steel>50</Steel>
+                <Plasteel>75</Plasteel>
+                <ComponentIndustrial>9</ComponentIndustrial>
+              </costList>
+              <weaponTags Inherit="False">
+                <li>IndustrialGunAdvanced</li>
+                <li>CE_Sidearm</li>
+                <li>CE_AI_Rifle</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>True</hasStandardCommand>
+                  <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+                  <warmupTime>1.8</warmupTime>
+                  <range>39.9</range>
+                  <burstShotCount>3</burstShotCount>
+                  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                  <soundCast>Shot_SniperRifle</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                </li>
+              </verbs>
+              <comps>
+                <li>
+                  <compClass>CompOversizedWeapon.CompOversizedWeapon</compClass>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>15</magazineSize>
+                  <reloadTime>1.75</reloadTime>
+                  <ammoSet>AmmoSet_50BMG</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                  <aiAimMode>AimedShot</aiAimMode>
+                </li>
+              </comps>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>grip</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>10</power>
+                  <cooldownTime>1.9</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>barrel</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>12</power>
+                  <cooldownTime>1.9</cooldownTime>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>muzzle</label>
+                  <capacities>
+                    <li>Poke</li>
+                  </capacities>
+                  <power>9</power>
+                  <cooldownTime>1.9</cooldownTime>
+                  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+              </tools>
+            </ThingDef>
+          </value>
+        </li>
+
+        <!-- =============== RangedUltra ============== -->
+        <!-- PatchOperationMakeGunCECompatible # Havoc Launcher -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/statBases</xpath>
+          <value>
+            <SightsEfficiency>0.85</SightsEfficiency>
+            <ShotSpread>0.55</ShotSpread>
+            <SwayFactor>1.25</SwayFactor>
+            <Bulk>8</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/verbs/li</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.VerbPropertiesCE</value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/verbs/li/verbClass</xpath>
+          <!-- verb -->
+          <value>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <!-- Verb_LaunchProjectileCE -->
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/verbs/li/defaultProjectile</xpath>
+          <value>
+            <defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+            <!-- Bullet_RPG7Grenade_HEAT -->
+          </value>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/verbs/li/forcedMissRadius</xpath>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>24</magazineSize>
+              <reloadTime>3.5</reloadTime>
+              <ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+              <!-- AmmoSet_RPG7Grenade -->
+            </li>
+            <li Class="CombatExtended.CompProperties_FireModes">
+              <aiUseBurstMode>FALSE</aiUseBurstMode>
+            </li>
+          </value>
+        </li>
+
+        <!-- Havoc Launcher # Tools -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_HavocLauncher"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>16</power>
+                <cooldownTime>2.3</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>2.3</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>2.3</cooldownTime>
+                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- PatchOperationMakeGunCECompatible # Recon Bolter -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_ReconBolter"]/statBases</xpath>
+          <value>
+            <SightsEfficiency>1.75</SightsEfficiency>
+            <ShotSpread>0.02</ShotSpread>
+            <SwayFactor>1.5</SwayFactor>
+            <Bulk>3</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_ReconBolter"]/weaponTags</xpath>
+          <value>
+            <weaponTags>
+              <li>CE_Sidearm</li>
+            </weaponTags>
+          </value>
+        </li>
+
+        <!-- <li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="CW_ReconBolter"]/verbs/li</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.VerbPropertiesCE</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CW_ReconBolter"]/verb/li/verbClass</xpath>
+					<value>
+						<verbClass>CombatExtended.Verb_LaunchProjectileCE</verbClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="CW_ReconBolter"]/verb/li/defaultProjectile</xpath>
+					<value>
+						<defaultProjectile>Bullet_30x64mmFuel_Thermobaric</defaultProjectile> 
+					</value>
+				</li> 
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CW_ReconBolter"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>4</magazineSize>
+							<reloadTime>3.5</reloadTime>
+							<ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiUseBurstMode>FALSE</aiUseBurstMode>
+						</li>
+					</value>
+				</li> -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Bullet_ReconBolter"]/projectile</xpath>
+          <value>
+            <armorPenetrationBase>5.5</armorPenetrationBase>
+          </value>
+        </li>
+
+        <!-- Recon Bolter # Tools -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_ReconBolter"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>13</power>
+                <cooldownTime>2.4</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>2.4</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>2.4</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- =========== Melee Weapon Stats =========== -->
+        <!-- =============== MeleeSpacer ============== -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_PowerFist"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>Pummel</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <armorPenetrationBlunt>70</armorPenetrationBlunt>
+                <cooldownTime>0.25</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>Crush</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9.3</power>
+                <armorPenetrationBlunt>150</armorPenetrationBlunt>
+                <cooldownTime>0.25</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>Knockback</label>
+                <capacities>
+                  <li>BluntKnockback</li>
+                </capacities>
+                <power>11.3</power>
+                <armorPenetrationBlunt>90</armorPenetrationBlunt>
+                <cooldownTime>0.25</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_PowerFist"]/statBases</xpath>
+          <value>
+            <Bulk>3</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_PowerFist"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.75</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="CW_PowerFist"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="CW_PowerFist"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_PowerFist"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>energy burst</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                <armorPenetrationSharp>50</armorPenetrationSharp>
+                <cooldownTime>0.25</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>14</power>
+                <cooldownTime>0.25</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>50</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>claw</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>10</power>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>50</armorPenetrationSharp>
+                <cooldownTime>0.25</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>sidestep stab</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>12</power>
+                <armorPenetrationBlunt>15</armorPenetrationBlunt>
+                <armorPenetrationSharp>40</armorPenetrationSharp>
+                <cooldownTime>0.25</cooldownTime>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.25</MeleeCritChance>
+              <MeleeParryChance>0.75</MeleeParryChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_EnergySword"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+                <cooldownTime>1</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>1</cooldownTime>
+                <armorPenetrationBlunt>11.250</armorPenetrationBlunt>
+                <armorPenetrationSharp>90</armorPenetrationSharp>
+                <armorPenetration>0.33</armorPenetration>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>edge</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>23</power>
+                <cooldownTime>1</cooldownTime>
+                <armorPenetrationBlunt>45</armorPenetrationBlunt>
+                <armorPenetrationSharp>80</armorPenetrationSharp>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetration>0.33</armorPenetration>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergySword"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergySword"]/equippedStatOffsets</xpath>
+          <value>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.5</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="CW_EnergySword"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="CW_EnergySword"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_EnergySword"]/weaponTags</xpath>
+          <value>
+            <li>CE_Sidearm_Melee</li>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_ChainSword"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_ChainSword"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.5</MeleeCritChance>
+              <MeleeParryChance>0.25</MeleeParryChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="CW_ChainSword"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="CW_ChainSword"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="CW_ChainSword"]/weaponTags</xpath>
+          <value>
+            <li>CE_Sidearm_Melee</li>
+          </value>
+        </li>
+        <!-- <li Class="PatchOperationReplace"> -->
+        <!-- <xpath>Defs/ThingDef[defName="CW_ChainSword"]/tools</xpath> -->
+        <!-- <value> -->
+        <!-- <tools> -->
+        <!-- <li Class="CombatExtended.ToolCE"> -->
+        <!-- <label>handle</label> -->
+        <!-- <capacities> -->
+        <!-- <li>Blunt</li> -->
+        <!-- </capacities> -->
+        <!-- <power>11</power> -->
+        <!-- <cooldownTime>3</cooldownTime> -->
+        <!-- </li> -->
+        <!-- <li Class="CombatExtended.ToolCE"> -->
+        <!-- <label>blade</label> -->
+        <!-- <capacities> -->
+        <!-- <li>Stab</li> -->
+        <!-- </capacities> -->
+        <!-- <power>25</power> -->
+        <!-- <armorPenetration>0.75</armorPenetration> -->
+        <!-- <cooldownTime>2</cooldownTime> -->
+        <!-- </li> -->
+        <!-- <li Class="CombatExtended.ToolCE"> -->
+        <!-- <label>edge</label> -->
+        <!-- <capacities> -->
+        <!-- <li>Cut</li> -->
+        <!-- </capacities> -->
+        <!-- <power>36</power> -->
+        <!-- <armorPenetration>0.75</armorPenetration> -->
+        <!-- <cooldownTime>1</cooldownTime> -->
+        <!-- <chanceFactor>1.33</chanceFactor> -->
+        <!-- </li> -->
+        <!-- </tools> -->
+        <!-- </value> -->
+        <!-- </li> -->
+        <!-- ============ Hediff Verb Stats =========== -->
+
+        <!-- =============== AllHediffs =============== -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="CW_ChainSword"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>Uppercut</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <armorPenetrationBlunt>0.500</armorPenetrationBlunt>
+                <cooldownTime>0.5</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>Shocker</label>
+                <capacities>
+                  <li>CW_Shock</li>
+                </capacities>
+                <power>5</power>
+                <armorPenetrationBlunt>7.250</armorPenetrationBlunt>
+                <armorPenetrationSharp>75</armorPenetrationSharp>
+                <cooldownTime>0.5</cooldownTime>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>Punch</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>7</power>
+                <armorPenetrationBlunt>35</armorPenetrationBlunt>
+                <armorPenetrationSharp>70</armorPenetrationSharp>
+                <cooldownTime>0.5</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+              </li>
+            </tools>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>

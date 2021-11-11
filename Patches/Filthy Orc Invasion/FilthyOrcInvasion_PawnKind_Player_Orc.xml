@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Filthy Orc Invasion (Continued)</li>
+    </mods>
+    <match Class="PatchOperationAddModExtension">
+      <xpath>/Defs/PawnKindDef[defName="OrcPlayer"]</xpath>
+      <value>
+        <li Class="CombatExtended.LoadoutPropertiesExtension">
+          <primaryMagazineCount>
+            <min>4</min>
+            <max>5</max>
+          </primaryMagazineCount>
+          <forcedSidearm>
+            <sidearmMoney>
+              <min>80</min>
+              <max>500</max>
+            </sidearmMoney>
+            <weaponTags>
+              <li>GiantMelee</li>
+              <li>GiantRanged</li>
+              <li>CE_Sidearm_Melee</li>
+            </weaponTags>
+          </forcedSidearm>
+        </li>
+      </value>
+    </match>
+  </Operation>
+</Patch>

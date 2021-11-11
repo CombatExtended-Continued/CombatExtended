@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Mod Support for Combat Extended -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Advanced Mortar (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+<!--
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName = "Ad_Artillery_Mortar"]/statBases</xpath>
+          <value>
+            <statBases>
+              <SightsEfficiency>0.7</SightsEfficiency>
+            </statBases>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName = "Ad_Artillery_Mortar"]/comps</xpath>
+          <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>3</magazineSize>
+              <reloadTime>5</reloadTime>
+              <ammoSet>AmmoSet_81mmMortarShell</ammoSet>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName = "Ad_Artillery_Mortar"]/weaponTags</xpath>
+          <value>
+            <li>TurretGun</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName = "Ad_Artillery_Mortar"]/verbs</xpath>
+          <value>
+            <verbs>
+              <li Class="CombatExtended.VerbPropertiesCE">
+                <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+                <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+                <warmupTime>4.0</warmupTime>
+                <minRange>32</minRange>
+                <range>800</range>
+                <burstShotCount>3</burstShotCount>
+                <soundCast>Mortar_LaunchA</soundCast>
+                <muzzleFlashScale>16</muzzleFlashScale>
+                <circularError>1</circularError>
+                <indirectFirePenalty>0.2</indirectFirePenalty>
+                <targetParams>
+                  <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+              </li>
+            </verbs>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="Ad_Artillery_Mortar"]/label</xpath>
+          <value>
+            <label>81mm improved mortar</label>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="Ad_Turret_Mortar"]/comps</xpath>
+        </li>
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="Ad_Turret_Mortar"]/tradeTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="Ad_Turret_Mortar"]</xpath>
+              <value>
+                <tradeTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Ad_Turret_Mortar"]/tradeTags</xpath>
+          <value>
+            <li>CE_Turret</li>
+          </value>
+        </li>
+-->        
+      </operations>
+    </match>
+  </Operation>
+</Patch>
