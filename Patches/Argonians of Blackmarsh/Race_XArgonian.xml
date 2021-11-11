@@ -6,25 +6,9 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
-<!--
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name="BaseArgoPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-        <value>
-          <li>CombatExtended.ITab_Inventory</li>
-        </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <success>Always</success>
-        <xpath>Defs/ThingDef[@Name="BaseArgoPawn"]/comps</xpath>
-        <value>
-          <li Class="CombatExtended.CompProperties_Inventory" />
-        </value>
-      </li>
 
       <li Class="PatchOperationAddModExtension">
-        <success>Always</success>
-        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
         <value>
           <li Class="CombatExtended.RacePropertiesExtensionCE">
             <bodyShape>Humanoid</bodyShape>
@@ -33,8 +17,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-        <success>Always</success>
-        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/tools</xpath>
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/tools</xpath>
         <value>
           <tools>
             <li Class="CombatExtended.ToolCE">
@@ -89,14 +72,13 @@
       </li>
 
       <li Class="PatchOperationSequence">
-        <success>Always</success>
         <operations>
           <li Class="PatchOperationTest">
-            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
             <success>Invert</success>
           </li>
           <li Class="PatchOperationAdd">
-            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]</xpath>
             <value>
               <comps />
             </value>
@@ -105,8 +87,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <success>Always</success>
-        <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
+        <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Argonian"]/comps</xpath>
         <value>
           <li>
             <compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -114,7 +95,7 @@
           <li Class="CombatExtended.CompProperties_Suppressable" />
         </value>
       </li>
--->  
+
       </operations>
     </match>
   </Operation>
