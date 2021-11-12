@@ -9,15 +9,15 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/DamageDef[defName="CW_ElectroBurn"]/soundExplosion</xpath>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/DamageDef[defName="CW_ElectroBurn"]</xpath>
           <value>
             <soundExplosion>CW_PowerSpark</soundExplosion>
           </value>
         </li>
         
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/DamageDef[defName="CW_ElectroCharge"]/soundExplosion</xpath>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/DamageDef[defName="CW_ElectroCharge"]</xpath>
           <value>
             <soundExplosion>CW_ContinousSpark</soundExplosion>
           </value>
@@ -903,7 +903,7 @@
           <xpath>/Defs/ThingDef[defName="CW_RiotBreaker"]/comps</xpath>
           <value>
             <li Class="CombatExtended.CompProperties_AmmoUser">
-              <magazineSize>9</magazineSize>
+              <magazineSize>12</magazineSize>
               <reloadTime>1.5</reloadTime>
               <ammoSet>AmmoSet_20Gauge</ammoSet>
             </li>
@@ -1747,6 +1747,7 @@
             <li>CE_Sidearm_Melee</li>
           </value>
         </li>
+
         <!-- <li Class="PatchOperationReplace"> -->
         <!-- <xpath>Defs/ThingDef[defName="CW_ChainSword"]/tools</xpath> -->
         <!-- <value> -->
