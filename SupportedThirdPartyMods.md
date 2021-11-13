@@ -161,6 +161,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|

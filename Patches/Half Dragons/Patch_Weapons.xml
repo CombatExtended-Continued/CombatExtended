@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Half dragons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+      <!-- Base -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="BaseDragonMeleeWeapon"]</xpath>
+        <value>
+          <equippedStatOffsets>
+            <MeleeCritChance>0.24</MeleeCritChance>
+            <MeleeParryChance>1.45</MeleeParryChance>
+            <MeleeDodgeChance>0.9</MeleeDodgeChance>
+          </equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="BaseDragonMeleeWeapon"]/statBases</xpath>
+        <value>
+            <Bulk>10</Bulk>
+            <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+        </value>
+      </li>
+
+      <!-- Double Lance -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="HD_averagelance"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>shaft</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>1.35</cooldownTime>
+              <chanceFactor>0.15</chanceFactor>
+              <armorPenetrationBlunt>2.05</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.85</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>2.125</armorPenetrationBlunt>
+              <armorPenetrationSharp>1.55</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>16</power>
+              <cooldownTime>1</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>2.95</armorPenetrationBlunt>
+              <armorPenetrationSharp>4.5</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- Piercer Lance --> 
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="HD_averagelance"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>shaft</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>7</power>
+              <cooldownTime>1.35</cooldownTime>
+              <chanceFactor>0.15</chanceFactor>
+              <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>3.25</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+              <armorPenetrationSharp>1.70</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>14</power>
+              <cooldownTime>1.16</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>2.95</armorPenetrationBlunt>
+              <armorPenetrationSharp>8.5</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- Average Lance -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="HD_averagelance"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>shaft</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>7</power>
+              <cooldownTime>1.35</cooldownTime>
+              <chanceFactor>0.15</chanceFactor>
+              <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>21</power>
+              <cooldownTime>3.33</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>4.25</armorPenetrationBlunt>
+              <armorPenetrationSharp>2.25</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>1.19</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+              <armorPenetrationSharp>5.5</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>		
