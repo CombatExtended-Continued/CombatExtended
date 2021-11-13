@@ -16,7 +16,7 @@ namespace CombatExtended.Compatibility
         static PawnKindPatcher()
         {
            
-            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => i.modExtensions?.Any(tt => !(tt is LoadoutPropertiesExtension)) ?? true && i.RaceProps.Animal == false);
+            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => i.modExtensions?.Any(tt => !(tt is LoadoutPropertiesExtension)) ?? true && i.RaceProps.Animal == false && i.race.comps.Any(t => t is CompProperties_Inventory));
             foreach (PawnKindDef thin in stuff)
             {
 
