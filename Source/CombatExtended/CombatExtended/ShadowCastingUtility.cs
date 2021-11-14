@@ -15,7 +15,11 @@ namespace CombatExtended
     /// https://www.albertford.com/shadowcasting/
     /// </summary>
     public static partial class ShadowCastingUtility
-    {        
+    {
+        private const int VISIBILITY_CARRY_MAX = 5;
+
+        private static int carryLimit = VISIBILITY_CARRY_MAX;
+
         private static readonly Func<IntVec3, IntVec3>[] _transformationFuncs;        
         private static readonly Func<IntVec3, IntVec3>[] _transformationInverseFuncs;
         private static readonly Func<Vector3, Vector3>[] _transformationFuncsV3;
@@ -106,7 +110,7 @@ namespace CombatExtended
             public float startSlope;
             public float endSlope;
 
-            public int carry;            
+            public int visibilityCarry;            
             public int depth;
             public int quartor;
             public int maxDepth;            
@@ -135,7 +139,7 @@ namespace CombatExtended
                 row.depth = this.depth + 1;
                 row.maxDepth = maxDepth;
                 row.quartor = this.quartor;
-                row.carry = carry;
+                row.visibilityCarry = visibilityCarry;
                 return row;
             }
 
@@ -147,7 +151,7 @@ namespace CombatExtended
                     row.startSlope = -1;
                     row.endSlope = 1;
                     row.depth = 1;
-                    row.carry = 0;
+                    row.visibilityCarry = 1;
                     return row;
                 }
             }
@@ -185,7 +189,7 @@ namespace CombatExtended
                 VisibleRow nextRow;                
                 VisibleRow row = rowQueue.Pop();
                                 
-                if (row.depth > row.maxDepth || row.carry <= 1e-5f)
+                if (row.depth > row.maxDepth || row.visibilityCarry <= 1e-5f)
                 {
                     continue;
                 }
@@ -201,9 +205,9 @@ namespace CombatExtended
                     
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {                        
-                        setAction(cell, row.carry);
+                        setAction(cell, row.visibilityCarry);
                     }
-                    if(isCover && row.carry == 1)
+                    if(isCover && row.visibilityCarry >= carryLimit)
                     {
                         isCover = false;
                         isWall = true;
@@ -218,7 +222,7 @@ namespace CombatExtended
                                 nextRow.endSlope = GetSlope(offset);
                                 if (lastIsCover)
                                 {
-                                    nextRow.carry += 1;
+                                    nextRow.visibilityCarry += 1;
                                 }
                                 rowQueue.Add(nextRow);
                                 row.startSlope = GetSlope(offset);
@@ -234,7 +238,7 @@ namespace CombatExtended
                             nextRow.endSlope = GetSlope(offset);
                             if (lastIsCover)
                             {
-                                nextRow.carry += 1;
+                                nextRow.visibilityCarry += 1;
                             }
                             rowQueue.Add(nextRow);
                         }                        
@@ -249,7 +253,7 @@ namespace CombatExtended
                     nextRow = row.Next();
                     if (lastIsCover)
                     {
-                        nextRow.carry += 1;
+                        nextRow.visibilityCarry += 1;
                     }
                     rowQueue.Add(nextRow);                    
                 }
@@ -279,7 +283,7 @@ namespace CombatExtended
 
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {
-                        setAction(cell, -1);
+                        setAction(cell, 1);
                     }
                     if (IsValid(lastCell)) // check so it's a valid offsets
                     {                        
@@ -317,7 +321,7 @@ namespace CombatExtended
             VisibleRow arc = VisibleRow.First;
             arc.startSlope = startSlope;
             arc.endSlope = endSlope;
-            arc.carry = 0;
+            arc.visibilityCarry = 1;
             arc.maxDepth = maxDepth;
             arc.quartor = quartor;
             castAction(arc);
