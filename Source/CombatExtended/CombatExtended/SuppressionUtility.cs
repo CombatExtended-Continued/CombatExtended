@@ -15,7 +15,7 @@ namespace CombatExtended
 
         private static LightingTracker lightingTracker;
 
-        private static DangerTracker dangerTracker;
+        private static DangerTracker dangerTracker;        
 
         private static List<CompProjectileInterceptor> interceptors;
 
@@ -55,19 +55,16 @@ namespace CombatExtended
             }
             float distToSuppressor = (pawn.Position - comp.SuppressorLoc).LengthHorizontal;
             IntVec3 coverPosition;
-
             //Try to find cover position to move up to
             if (!GetCoverPositionFrom(pawn, comp.SuppressorLoc, maxCoverDist, out coverPosition))
             {
                 return null;
             }
-
             //Sanity check
             if (pawn.Position.Equals(coverPosition))
             {
                 return null;
             }
-
             //Tell pawn to move to position
             var job = JobMaker.MakeJob(CE_JobDefOf.RunForCover, coverPosition);
             job.locomotionUrgency = LocomotionUrgency.Sprint;
@@ -82,8 +79,8 @@ namespace CombatExtended
             interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
+            
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
-
             if (bestRating <= 0)
             {
                 // Go through each cell in radius around the pawn
@@ -118,14 +115,14 @@ namespace CombatExtended
                 return -1;
             }
 
-            float cellRating = 0;
+            float cellRating = 0;           
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
                 cellRating += 4f;
             }
             else
-            {
+            {                
                 //Check if cell has cover in desired direction
                 Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
                 IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();

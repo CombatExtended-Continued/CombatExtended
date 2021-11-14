@@ -31,17 +31,7 @@ namespace CombatExtended
 
         public override void MapComponentTick()
         {
-            base.MapComponentTick();
-            //
-            //if (!Find.Selector.SelectedPawns.NullOrEmpty())
-            //{
-            //    var pawn = Find.Selector.SelectedPawns.First();
-            //    var target = UI.MouseMapPosition().ToIntVec3();
-            //    if (target.InBounds(map))
-            //    {
-            //        map.CastWeighted(pawn.Position, target, 20);
-            //    }
-            //}
+            base.MapComponentTick();                     
         }
 
         public void Reset()
@@ -57,11 +47,7 @@ namespace CombatExtended
             if (i < 0 || j < 0 || i >= this.sizeX || j >= this.sizeZ)
             {
                 return;
-            }            
-            //if (DebugSettings.godMode && (this.lastTick = GenTicks.TicksGame) % 10 == 0)
-            //{
-            //    map.debugDrawer.FlashCell(new IntVec3(i, 0, j), visibility, $"{visibility}", duration: 10);
-            //}            
+            }       
             this.sigGrid[i][j] = signature;
             this.visGrid[i][j] = visibility;
         }
