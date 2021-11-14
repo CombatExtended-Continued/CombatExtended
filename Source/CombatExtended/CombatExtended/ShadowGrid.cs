@@ -38,7 +38,7 @@ namespace CombatExtended
                 Reset();
                 var pawn = Find.Selector.SelectedPawns.First();
                 var direction = UI.MouseCell().ToVector3() - pawn.Position.ToVector3();                
-                ShadowCastingUtility.CastWeighted(map, pawn.Position, direction, (cell, carry) => Set(cell, (float) 1f / carry), direction.magnitude, 10, 10, out _);
+                ShadowCastingUtility.CastVisibility(map, pawn.Position, direction, (cell) => Set(cell, 0.5f), direction.magnitude, 10, out _);
             }            
         }
 
