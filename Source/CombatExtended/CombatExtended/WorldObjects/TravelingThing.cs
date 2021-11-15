@@ -38,10 +38,15 @@ namespace CombatExtended
 
         public TravelingThing()
         {            
-        }
+        }        
 
         public virtual bool TryTravel(int startingTile, int destinationTile)
-        {            
+        {
+            if(startingTile <= -1 || destinationTile <= -1 || startingTile == destinationTile)
+            {
+                Log.Warning($"CE: TryTravel in thing {this} got {startingTile} {destinationTile}");
+                return false;
+            }
             this.startingTile = this.Tile = startingTile;
             this.destinationTile = destinationTile;
             this.tilesPerTick = TilesPerTick;            
@@ -50,8 +55,7 @@ namespace CombatExtended
             Vector3 end = Find.WorldGrid.GetTileCenter(destinationTile);               
 
             this.distance = GenMath.SphericalDistance(start.normalized, end.normalized);
-            this.distanceInTiles = (int) Find.World.grid.ApproxDistanceInTiles(this.distance);
-            
+            this.distanceInTiles = (int) Find.World.grid.ApproxDistanceInTiles(this.distance);            
             return true;
         }
                

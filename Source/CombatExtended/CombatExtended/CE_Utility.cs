@@ -421,6 +421,24 @@ namespace CombatExtended
             return Mathf.Abs((destination.y - origin.y) * target.x - (destination.x - origin.x) * target.y + destination.x * origin.y - destination.y * origin.x) / (destination - origin).magnitude;
         }
 
+        public static float DistanceBetweenTiles(int firstTile, int endTile, int maxCells = 500)
+        {
+            return Find.WorldGrid.TraversalDistanceBetween(firstTile, endTile, true, maxDist: maxCells);
+        }
+
+        public static IntVec3 ExitCell(this Ray ray, Map map)
+        {
+            Vector3 mapSize = map.Size.ToVector3();
+            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);            
+            Bounds mapBounds = new Bounds(mapSize.Yto0() / 2f, mapSize);
+            mapBounds.IntersectRay(ray, out float dist);
+            Vector3 exitCell = ray.GetPoint(dist);
+            exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
+            exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
+            exitCell.y = 0;
+            return exitCell.ToIntVec3();
+        }
+
         /// <summary>
         /// Attempts to find a turret operator. Accepts any Thing as input and does a sanity check to make sure it is an actual turret.
         /// </summary>

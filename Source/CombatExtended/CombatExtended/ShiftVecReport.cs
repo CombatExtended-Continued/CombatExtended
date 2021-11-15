@@ -5,12 +5,15 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
     public class ShiftVecReport
     {
         public LocalTargetInfo target = null;
+        public GlobalTargetInfo globalTarget = GlobalTargetInfo.Invalid;
+
         public Pawn targetPawn
         {
             get
@@ -162,6 +165,10 @@ namespace CombatExtended
 
         public Vector2 GetRandLeadVec()
         {
+            if (globalTarget.IsValid)
+            {
+                return Vector2.zero;
+            }
             Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {

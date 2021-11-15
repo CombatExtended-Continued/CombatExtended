@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
 using System.Net.Mail;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -29,14 +30,13 @@ namespace CombatExtended
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
-
-        public GlobalShellingInfo shellingInfo = GlobalShellingInfo.Invalid;
+        
         // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
         protected Vector2 sourceLoc = new Vector2(0, 0);
 
-        private float shotAngle = 0f;   // Shot angle off the ground in radians.
-        private float shotRotation = 0f;    // Angle rotation towards target.
+        protected float shotAngle = 0f;   // Shot angle off the ground in radians.
+        protected float shotRotation = 0f;    // Angle rotation towards target.
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
@@ -59,17 +59,12 @@ namespace CombatExtended
 
         // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
-        public Thing Shooter => ShooterPawn ?? caster;
-        public bool TargetingWorldTile => shellingInfo.IsValid;
+        public Thing Shooter => ShooterPawn ?? caster;       
 
         public override float EffectiveRange
         {
             get
-            {
-                if (shellingInfo.IsValid)
-                {
-                    return 1e4f;
-                }
+            {               
                 return base.EffectiveRange;
             }
         }
@@ -109,11 +104,7 @@ namespace CombatExtended
                     if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
                     {
                         shotSpeed = bracket.x;
-                    }
-                    if (TargetingWorldTile)
-                    {
-                        shotSpeed *= 5f;                        
-                    }
+                    }                    
                 }
                 else
                 {
@@ -453,6 +444,44 @@ namespace CombatExtended
             return report;
         }
 
+        public virtual ShiftVecReport ShiftVecReportFor(GlobalTargetInfo target)
+        {
+            if (!target.IsValid || !target.Cell.IsValid || target.Map == null)
+            {
+                return null;
+            }
+            ProjectilePropertiesCE properties = (Projectile.projectile as ProjectilePropertiesCE);            
+            if(properties.shellingProps == null)
+            {
+                Log.Error($"CE: Tried to ShiftVecReportFor for a global target for a projectile {Projectile.defName} that doesn't have shellingInfo!");
+                return null;
+            }            
+            // multiplie by 250 to emulate cells
+            int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(target.Tile, caster.Map.Tile, true);
+
+            LocalTargetInfo localTarget = new LocalTargetInfo();
+            localTarget.cellInt = target.Cell;
+            localTarget.thingInt = target.Thing;
+            
+            IntVec3 targetCell = target.Cell;            
+            ShiftVecReport report = new ShiftVecReport();
+
+            report.target = localTarget;
+            report.aimingAccuracy = AimingAccuracy;
+            report.sightsEfficiency = SightsEfficiency;            
+            report.shotDist = distanceToTarget * 5;
+            report.maxRange = properties.shellingProps.range * 5; // multiplie by 250 to emulate cells
+            report.lightingShift = Rand.Range(0f, 1f);            
+            report.weatherShift = Rand.Range(0f, 1f);
+            report.shotSpeed = ShotSpeed * 2.5f;
+            report.swayDegrees = SwayAmplitude;
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            report.cover = null;
+            report.smokeDensity = 0;
+            return report;
+        }
+
         public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
         {
             /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
@@ -567,11 +596,7 @@ namespace CombatExtended
 
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
-            report = "";
-            if (shellingInfo.IsValid)
-            {
-                return true;
-            }
+            report = "";            
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";
@@ -685,16 +710,7 @@ namespace CombatExtended
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
                 
-                if (shellingInfo.IsValid)
-                {
-                    projectile.shellingInfo = shellingInfo;
-                    projectile.minCollisionDistance = targetDistance * 2f;                    
-                }
-                else
-                {
-                    projectile.shellingInfo = GlobalShellingInfo.Invalid;                    
-                    projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
-                }
+                projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);                
@@ -748,19 +764,7 @@ namespace CombatExtended
                 }
             }
             return true;
-        }
-
-        public virtual bool TryStartShellingTile(GlobalShellingInfo info)
-        {
-            this.shellingInfo = info;
-            this.shellingInfo.Caster ??= caster;
-            this.shellingInfo.Shooter ??= ShooterPawn;
-            if (TryStartCastOn(info.sourceMapExitCell, false, true, false))
-            {
-                return true;
-            }
-            return false;
-        }      
+        }        
 
         private float GetMinCollisionDistance(float targetDistance)
         {
@@ -800,7 +804,7 @@ namespace CombatExtended
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
-        public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
             if (targ.HasThing && targ.Thing.Map != caster.Map)
             {
@@ -813,12 +817,7 @@ namespace CombatExtended
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
-            float num = cellRect.ClosestDistSquaredTo(root);
-            if (shellingInfo.IsValid)
-            {
-                resultingLine = new ShootLine(root, targ.Cell);
-                return true;
-            }
+            float num = cellRect.ClosestDistSquaredTo(root);            
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
                 resultingLine = new ShootLine(root, targ.Cell);

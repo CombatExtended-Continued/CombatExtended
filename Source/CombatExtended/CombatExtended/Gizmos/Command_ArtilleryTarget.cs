@@ -65,6 +65,10 @@ namespace CombatExtended
                         canTargetHumans = true
                     }, (target)=>
                     {
+                        targetInfo.mapInt = map;
+                        targetInfo.tileInt = map.Tile;
+                        targetInfo.cellInt = target.cellInt;
+                        targetInfo.thingInt = target.thingInt;                        
                         TryAttack(turrets, targetInfo, target);
                     }, highlightAction: (target)=>
                     {
@@ -75,7 +79,7 @@ namespace CombatExtended
                         return roof == null || roof == RoofDefOf.RoofConstructed;
                     });                                                
                     return false;
-                }            
+                }                
                 return TryAttack(turrets, targetInfo, LocalTargetInfo.Invalid);
             }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
             {

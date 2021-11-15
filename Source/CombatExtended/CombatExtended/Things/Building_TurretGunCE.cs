@@ -51,7 +51,7 @@ namespace CombatExtended
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
         private bool everSpawned = false;
-        public GlobalShellingInfo currentShellingInfo;
+        private GlobalTargetInfo globalTargetInfo;
         
         #endregion
 
@@ -219,15 +219,13 @@ namespace CombatExtended
             Map.GetComponent<TurretTracker>().Unregister(this);
             base.DeSpawn(mode);
             ResetCurrentTarget();
-        }
-
+        }        
 
         public override void ExposeData()           // Added new variables, removed bool loaded (not used in CE)
         {
             base.ExposeData();
 
-            // New variables            
-            Scribe_Deep.Look(ref currentShellingInfo, "currentShellingInfo");
+            // New variables                        
             Scribe_Deep.Look(ref gunInt, "gunInt");
             InitGun();
             Scribe_Values.Look(ref isReloading, "isReloading", false);
@@ -239,6 +237,11 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
+
+            CE_Scriber.Late(this, (id) =>
+            {
+                Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo_" + id);                
+            });
             BackCompatibility.PostExposeData(this);
         }
 
@@ -450,14 +453,27 @@ namespace CombatExtended
         public void BeginBurst()                     // Added handling for ticksUntilAutoReload
         {
             ticksUntilAutoReload = minTicksBeforeAutoReload;
-            if (AttackVerb is Verb_LaunchProjectileCE verbCE && currentShellingInfo.IsValid)
+            if(AttackVerb is Verb_ShootMortarCE shootMortar)
             {
-                verbCE.TryStartShellingTile(currentShellingInfo);
+                if (globalTargetInfo.IsValid)
+                {
+                    GlobalTargetInfo sourceInfo = new GlobalTargetInfo();
+                    sourceInfo.tileInt = Map.Tile;
+                    sourceInfo.cellInt = Position;
+                    sourceInfo.mapInt = Map;
+                    sourceInfo.thingInt = IsMannable ? ((Thing) mannableComp.ManningPawn) : ((Thing) this);                    
+                    shootMortar.TryStartShelling(sourceInfo, globalTargetInfo);
+                }
+                else
+                {
+                    shootMortar.globalTargetInfo = GlobalTargetInfo.Invalid;
+                    shootMortar.TryStartCastOn(CurrentTarget, false, true);
+                }
             }
             else
-            {
+            {                
                 AttackVerb.TryStartCastOn(CurrentTarget, false, true);
-            }
+            }            
             OnAttackedTarget(CurrentTarget);
         }
 
@@ -590,13 +606,13 @@ namespace CombatExtended
         }
 
         public virtual void OrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
-        {            
+        {
             int startingTile = Map.Tile;
             int destinationTile = targetInf.Tile;
             
             Vector3 direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
             Vector3 shotPos = DrawPos.Yto0();
-            Vector3 mapSize = Map.Size.ToVector3();            
+            Vector3 mapSize = Map.Size.ToVector3();
             mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
 
             Ray ray = new Ray(shotPos, direction);
@@ -606,12 +622,15 @@ namespace CombatExtended
             Vector3 exitCell = ray.GetPoint(dist);
             exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
-            exitCell.y = 0;
-            
-            this.currentShellingInfo = new GlobalShellingInfo(startingTile, destinationTile, ProjectileProps.shellingProps.tilesPerTick, direction, exitCell.ToIntVec3(), null);
-            this.currentShellingInfo.targetCell = cell.HasValue ? cell.Value : IntVec3.Invalid;            
-            this.forcedTarget = exitCell.ToIntVec3();            
-            this.TryStartShootSomething(true);
+            exitCell.y = 0;                        
+            if (cell.HasValue)
+            {
+                targetInf.cellInt = cell.Value;
+            }            
+            this.globalTargetInfo = targetInf;            
+            this.forcedTarget = new LocalTargetInfo(exitCell.ToIntVec3());
+            this.currentTargetInt = this.forcedTarget;
+            this.TryStartShootSomething(false);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified
@@ -716,24 +735,19 @@ namespace CombatExtended
         // ExtractShell not added
 
         private void ResetForcedTarget()                // Core method
-        {
-            this.currentShellingInfo = GlobalShellingInfo.Invalid; // addition to this core method
-
+        {           
             this.forcedTarget = LocalTargetInfo.Invalid;
+            this.globalTargetInfo = GlobalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;            
             if (this.burstCooldownTicksLeft <= 0)
             {
                 this.TryStartShootSomething(false);                
-            }
-            if(this.AttackVerb is Verb_LaunchProjectileCE verbCE)
-            {
-                verbCE.shellingInfo = GlobalShellingInfo.Invalid;
-            }
+            }          
         }
 
         private void ResetCurrentTarget()               // Core method
         {            
-            this.currentTargetInt = LocalTargetInfo.Invalid;                        
+            this.currentTargetInt = LocalTargetInfo.Invalid;            
             this.burstWarmupTicksLeft = 0;            
         }
 

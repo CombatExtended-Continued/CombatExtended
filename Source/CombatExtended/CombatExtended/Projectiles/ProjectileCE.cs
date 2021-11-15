@@ -69,23 +69,18 @@ namespace CombatExtended
             {
                 return intendedTarget.Thing;
             }
-        }
-        public bool ShellingWorldTile
-        {
-            get
-            {
-                return shellingInfo.IsValid;
-            }
-        }
+        }        
 
         public ThingDef equipmentDef;
-        public Thing launcher;
-        public GlobalShellingInfo shellingInfo;
+        public Thing launcher;        
         public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+
+        public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
+        public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
 
         #region Vanilla
         public bool landed;
@@ -398,14 +393,18 @@ namespace CombatExtended
             {
                 launcher = null;
             }
+            CE_Scriber.Late(this, (id) =>
+            {
+                Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo_" + id);
+                Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo_" + id);
+                Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget_" + id);
+                Scribe_References.Look<Thing>(ref launcher, "launcher_" + id);
+            });
 
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
-            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
-            Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);            
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
-
             //Here be new variables
             Scribe_Values.Look(ref shotAngle, "shotAngle", 0f, true);
             Scribe_Values.Look(ref shotRotation, "shotRotation", 0f, true);
@@ -414,8 +413,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-
-            Scribe_Deep.Look(ref shellingInfo, "travelingShellInfo");
+           
             // To insure saves don't get affected..
             Thing target = null;
             if (Scribe.mode != LoadSaveMode.Saving)
@@ -544,10 +542,10 @@ namespace CombatExtended
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
-            this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
-            if (ShellingWorldTile)
+            this.shotSpeed = shotSpeed;
+            if (!globalTargetInfo.IsValid)
             {
-                this.shotSpeed *= 5f;                
+                this.shotSpeed = Math.Max(this.shotSpeed, def.projectile.speed);
             }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
@@ -644,11 +642,7 @@ namespace CombatExtended
 
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
-        {
-            if (ShellingWorldTile)
-            {
-                return false;
-            }
+        {            
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -811,6 +805,10 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         private bool TryCollideWith(Thing thing)
         {
+            if (globalTargetInfo.IsValid)
+            {
+                return false;
+            }
             if (thing == launcher && !canTargetSelf)
             {
                 return false;
@@ -895,31 +893,41 @@ namespace CombatExtended
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
-                if (!ShellingWorldTile)
+                if (globalTargetInfo.IsValid)
                 {
-                    Position = LastPos.ToIntVec3();                    
-                }
-                else
-                {
-                    TravelingShell travelingShell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
-                    travelingShell.shellingInfo = shellingInfo;
-                    travelingShell.shellDef = def;
-                    travelingShell.TryTravel(shellingInfo.sourceTile, shellingInfo.targetTile);                    
-                    Faction faction = shellingInfo.Caster?.Faction ?? shellingInfo.Shooter?.Faction;                    
-                    if (faction != null)
+                    TravelingShell shell = (TravelingShell) WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+                    if(launcher?.Faction != null)
                     {
-                        travelingShell.SetFaction(faction);
+                        shell.SetFaction(launcher.Faction);
+                    }
+                    shell.tileInt = Map.Tile;
+                    shell.SpawnSetup();
+                    Find.World.worldObjects.Add(shell);
+                    shell.launcher = launcher;
+                    shell.equipmentDef = equipmentDef;
+                    shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
+                    shell.globalSource.tileInt = Map.Tile;
+                    shell.shellDef = def;
+                    shell.SetFaction(Map.ParentFaction);
+                    shell.globalTarget = globalTargetInfo;
+                    if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
+                    {
+                        Log.Error($"CE: Travling shell {this.def} failed to launch!");
+                        shell.Destroy();
                     }                    
-                    Find.WorldObjects.Add(travelingShell);
                 }
                 Destroy();
                 return;
-            }
+            }            
             if (CheckForCollisionBetween())
             {
                 return;
             }
             Position = ExactPosition.ToIntVec3();
+            if (globalTargetInfo.IsValid)
+            {
+                return;
+            }
             if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
@@ -991,11 +999,7 @@ namespace CombatExtended
         #region Impact
         //Modified collision with downed pawns
         private void ImpactSomething()
-        {
-            if (ShellingWorldTile)
-            {
-                return;
-            }
+        {            
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
                 this.Destroy();
