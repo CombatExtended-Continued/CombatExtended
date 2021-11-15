@@ -224,17 +224,17 @@ namespace CombatExtended
             if(report == null || globalTargetInfo.Map == null || !globalTargetInfo.Cell.IsValid)
             {
                 return;
-            }
-            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * 0.334f);
+            }          
+            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * 0.5f);
             var target = new Vector2(globalTargetInfo.Cell.x, globalTargetInfo.Cell.z);
             var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
             report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
             report.lightingShift = 0.5f; 
                                   
             var estimatedTargDist = report.GetRandDist();
-            var spreadVec  = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist);
+            var spreadVec  = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist) * 2f;
             var ray = new Ray2D(target, -1 * direction);
-            var shiftedTarg  = ray.GetPoint(estimatedTargDist - report.shotDist + spreadVec.x) + report.GetRandCircularVec();
+            var shiftedTarg  = ray.GetPoint(estimatedTargDist - report.shotDist + spreadVec.x + Rand.Range(-10, 10)) + report.GetRandCircularVec() * 2f;
             
             globalTargetInfo.cellInt = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
         }
