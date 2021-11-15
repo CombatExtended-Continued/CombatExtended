@@ -123,7 +123,7 @@ namespace CombatExtended
                 instant = pprop.isInstant;               
             }
 
-            ShiftVecReport reportGlobal = null;
+            ShiftVecReport reportGlobal = ShiftVecReportFor(globalTargetInfo);
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             shiftedGlobalCell = globalTargetInfo.Cell;
             bool pelletMechanicsOnly = false;
@@ -134,15 +134,15 @@ namespace CombatExtended
                 ShiftGlobalTarget(reportGlobal);
                 ShiftTarget(report, pelletMechanicsOnly, instant);
 
-                float shotSpeed = ShotSpeed;
-                if (this.globalTargetInfo.IsValid)
-                {
-                    shotSpeed *= 5;
-                }
+                float shotSpeed = ShotSpeed * 5;
+                //The projectile shouldn't care about the target thing
+                projectile.globalTargetInfo = new GlobalTargetInfo();
+                projectile.globalTargetInfo.cellInt = shiftedGlobalCell;
+                projectile.globalTargetInfo.mapInt = globalTargetInfo.Map;
+                projectile.globalTargetInfo.tileInt = globalTargetInfo.Tile;
                 //New aiming algorithm
-                projectile.globalTargetInfo = globalTargetInfo;                
                 projectile.canTargetSelf = false;                
-                projectile.intendedTarget = currentTarget;
+                projectile.intendedTarget = globalTargetInfo.Thing ?? currentTarget;
                 projectile.globalSourceInfo = globalSourceInfo;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
@@ -223,7 +223,7 @@ namespace CombatExtended
 
         private void ShiftGlobalTarget(ShiftVecReport report)
         {
-            if(report == null || globalTargetInfo.Map == null || !globalTargetInfo.Cell.IsValid)
+            if(report == null || !shiftedGlobalCell.IsValid)
             {
                 return;
             }          
