@@ -11,9 +11,9 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.AllowVerbCast))]
     internal static class ShieldBelt_PatchAllowVerbCast
     {
-        internal static bool Prefix(ref bool __result, Verb verb)
+        internal static bool Prefix(ref bool __result, Verb verb, ShieldBelt __instance)
         {
-            __result = verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
             return false;
         }
     }
@@ -32,7 +32,7 @@ namespace CombatExtended.HarmonyCE
             {
                 if (__instance.ShieldState == ShieldState.Active)
                 {
-                    Traverse.Create(__instance).Method("Break").GetValue();
+                    __instance.Break();
                     ___ticksToReset = SHORT_SHIELD_RECHARGE_TIME;
                 }
                 if (___ticksToReset < SHORT_SHIELD_RECHARGE_TIME)

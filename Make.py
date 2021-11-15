@@ -37,6 +37,7 @@ def parseArgs(argv):
     argParser.add_argument("--verbose", "-v", action="count", default=0, help="Increase verbosity, specify more times for more verbosity")
     argParser.add_argument("--download-libs", action="store_true", default=False, help=f"Automatically download referenced packages to {tdir}/downloads and unpack them to $reference")
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
+    argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -165,6 +166,7 @@ def parse_sources(csproj, base_dir, verbose):
 
 def parse_publicize(csproj):
     publicized_libraries = []
+    removed_libraries = []
     publicize_task = [i for i in csproj.getElementsByTagName("Target")
                           if 'Name' in i.attributes and i.attributes['Name'].value.startswith('Publi')]
     variables = {}
@@ -197,9 +199,9 @@ def parse_publicize(csproj):
                           if 'Include' in i.attributes]
         for pub in publicize_task:
             publicized_libraries.append(PublicizeTarget(pub+'.dll', pub+'_publicized.dll'))
-            
+            removed_libraries.append(pub+'.dll')
     
-    return publicized_libraries
+    return publicized_libraries, removed_libraries
 
 def parse_csproj(csproj_path, verbose):
     
@@ -215,7 +217,8 @@ def parse_csproj(csproj_path, verbose):
 
         sources = parse_sources(csproj, base_dir, verbose)
 
-        publicized_libraries = parse_publicize(csproj)
+        publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
+        removed_libraries.extend(removed_libraries_2)
 
         
 
@@ -263,6 +266,8 @@ def main(argv=sys.argv):
 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    if options.debug:
+        args.append('-define:DEBUG')
     if verbose > 2:
         print(libraries)
     if verbose > 6:

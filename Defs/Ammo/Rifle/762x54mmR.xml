@@ -82,52 +82,52 @@
 		<cookOffProjectile>Bullet_762x54mmR_HP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
-    <defName>Ammo_762x54mmR_Incendiary</defName>
-    <label>7.62x54mmR cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.15</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_762x54mmR_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
+		<defName>Ammo_762x54mmR_Incendiary</defName>
+		<label>7.62x54mmR cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.15</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_762x54mmR_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
-    <defName>Ammo_762x54mmR_HE</defName>
-    <label>7.62x54mmR cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.22</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_762x54mmR_HE</cookOffProjectile>
-  </ThingDef>
- 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
-    <defName>Ammo_762x54mmR_Sabot</defName>
-    <label>7.62x54mmR cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.13</MarketValue>
-	  <Mass>0.022</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_762x54mmR_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
+		<defName>Ammo_762x54mmR_HE</defName>
+		<label>7.62x54mmR cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.22</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_762x54mmR_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x54mmRBase">
+		<defName>Ammo_762x54mmR_Sabot</defName>
+		<label>7.62x54mmR cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.13</MarketValue>
+			<Mass>0.022</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_762x54mmR_Sabot</cookOffProjectile>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base762x54mmRBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base762x54mmRBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -139,7 +139,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+	<ThingDef ParentName="Base762x54mmRBullet">
 		<defName>Bullet_762x54mmR_FMJ</defName>
 		<label>7.62mmR bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -149,7 +149,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+	<ThingDef ParentName="Base762x54mmRBullet">
 		<defName>Bullet_762x54mmR_AP</defName>
 		<label>7.62mmR bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -159,7 +159,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+	<ThingDef ParentName="Base762x54mmRBullet">
 		<defName>Bullet_762x54mmR_HP</defName>
 		<label>7.62mmR bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -169,7 +169,7 @@
 		</projectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+  <ThingDef ParentName="Base762x54mmRBullet">
     <defName>Bullet_762x54mmR_Incendiary</defName>
     <label>7.62mmR bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -185,7 +185,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+  <ThingDef ParentName="Base762x54mmRBullet">
     <defName>Bullet_762x54mmR_HE</defName>
     <label>7.62mmR bullet (HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -201,7 +201,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x54mmRBullet">
+  <ThingDef ParentName="Base762x54mmRBullet">
     <defName>Bullet_762x54mmR_Sabot</defName>
     <label>7.62mmR bullet (Sabot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">

@@ -5,11 +5,11 @@
 		<mods>
 			<li>Xenohumans Expanded</li>
 		</mods>
-		<match Class="PatchOperationSequence">	
+		<match Class="PatchOperationSequence">
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -18,7 +18,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]/statBases</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>1</MeleeDodgeChance>
 						<MeleeCritChance>1</MeleeCritChance>
@@ -27,7 +27,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]/tools</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -70,11 +70,11 @@
 					<success>Always</success>
 					<operations>
 						<li Class="PatchOperationTest">
-							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]/comps</xpath>
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]/comps</xpath>
 							<success>Invert</success>
 						</li>
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]</xpath>
+							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]</xpath>
 							<value>
 								<comps />
 							</value>
@@ -83,7 +83,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="RadWorlderRace"]/comps</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="VatgrownHumanRace"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>

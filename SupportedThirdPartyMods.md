@@ -76,6 +76,7 @@ Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Animal Equipment	|
+Anthro Race |
 Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
@@ -95,6 +96,7 @@ Censored Armory  |
 Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
+Comigo's Fancy Floating Turrets |
 Cupro's Alloys	|
 CutePenguin	|
 CyberNet	|
@@ -138,6 +140,7 @@ FCP Minuteman Equipment Teaser	|
 FCP Raider Armor and Apparel Teaser	|
 Fell Tribes	|
 Ferrex Race	|
+FFGermanShepherd    |
 Flak Dusters	|
 Forgelings race	|
 Forgotten Realms - Lizardfolk	|
@@ -182,12 +185,14 @@ Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
 Leeani Playable Race	|
 Let's Have a Cat!	|
+Littluna Race |
 Logann Race	|
 Magical Menagerie	|
 Magic Wands |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
+Mechanite Plague    |
 Mechanoids Extraordinaire	|
 Medical System Expansion	|
 Medieval Overhaul   |
@@ -239,15 +244,19 @@ Racc Race	|
 Race to the Rim |
 Radworld    |
 Rah's Bionics and Surgery Expansion	|
+Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Ratnik-3 Prototype Armor    |
 Redcoat Apparel	|
 Revia Race |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
+Rim of Madness - Vampires	|
+Rim of Madness - Werewolves	|
 Rim-Effect: Core	|
 Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
+Rimedieval - Medieval Royalty   |
 Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
@@ -277,6 +286,7 @@ Spartan Foundry	|
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
+Solark Race |
 Tactical Extremity Protection [BAL] |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
@@ -305,6 +315,7 @@ Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
 Vanilla Ideology Expanded - Hats and Rags |
+Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |

@@ -229,8 +229,6 @@ namespace CombatExtended.HarmonyCE
                 return true;
             }
 
-            private static MethodBase mOverrideMaterialIfNeeded = AccessTools.Method(typeof(PawnRenderer), "OverrideMaterialIfNeeded");
-
             private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool hideHair)
             {
                 if (flags.FlagSet(PawnRenderFlags.Portrait) && Prefs.HatsOnlyOnMap)
@@ -284,8 +282,7 @@ namespace CombatExtended.HarmonyCE
             {
                 Material mat = record.graphic.MatAt(bodyFacing);
                 if (flags.FlagSet(PawnRenderFlags.Cache)) return mat;
-
-                return (Material)mOverrideMaterialIfNeeded.Invoke(renderer, new object[] { mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait) });
+                return renderer.OverrideMaterialIfNeeded(mat, pawn, flags.FlagSet(PawnRenderFlags.Portrait));
             }
 
             /// <summary>
