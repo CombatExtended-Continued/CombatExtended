@@ -395,12 +395,12 @@ namespace CombatExtended
                 launcher = null;
             }
             CE_Scriber.Late(this, (id) =>
-            {
-                Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo_" + id);
-                Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo_" + id);
-                Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget_" + id);
+            {                
                 Scribe_References.Look<Thing>(ref launcher, "launcher_" + id);
             });
+            Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo");
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
 
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);            

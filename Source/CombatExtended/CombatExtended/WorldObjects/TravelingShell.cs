@@ -57,11 +57,11 @@ namespace CombatExtended
             base.ExposeData();
             Scribe_Defs.Look(ref equipmentDef, "equipmentDef");
             Scribe_Defs.Look(ref shellDef, "ShellDef");
+            Scribe_TargetInfo.Look(ref globalTarget, "globalTarget");
+            Scribe_TargetInfo.Look(ref globalSource, "globalSource");
             CE_Scriber.Late(this, (id) =>
-            {
-                Scribe_TargetInfo.Look(ref globalTarget, "globalTarget_" + id);
-                Scribe_TargetInfo.Look(ref globalSource, "globalSource_" + id);                
-                Scribe_References.Look(ref launcher, "launcher_" + id );
+            {                
+                Scribe_References.Look(ref launcher, "launcher" + id);
             });
         }        
 

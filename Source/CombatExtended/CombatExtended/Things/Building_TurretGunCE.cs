@@ -237,11 +237,8 @@ namespace CombatExtended
             Scribe_TargetInfo.Look(ref this.currentTargetInt, "currentTarget");
             Scribe_Values.Look<bool>(ref this.holdFire, "holdFire", false, false);
             Scribe_Values.Look<bool>(ref this.everSpawned, "everSpawned", false, false);
-
-            CE_Scriber.Late(this, (id) =>
-            {
-                Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo_" + id);                
-            });
+            
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalSourceInfo");          
             BackCompatibility.PostExposeData(this);
         }
 

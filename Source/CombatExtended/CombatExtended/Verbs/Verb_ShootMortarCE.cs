@@ -22,14 +22,18 @@ namespace CombatExtended
         /// </summary>
         public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
 
+        /// <summary>
+        /// The shifter target at the second map
+        /// </summary>
+        private IntVec3 shiftedGlobalCell = IntVec3.Invalid;
+
         // for global target only
         //        
         private int startingTile;
         private int destinationTile;
         private int globalDistance;
         private Vector3 direction;
-        private int numShotsFired;
-        private ShiftVecReport globalVecReport;
+        private int numShotsFired;        
 
         public override void ExposeData()
         {
@@ -39,12 +43,10 @@ namespace CombatExtended
             Scribe_Values.Look(ref globalDistance, "globalDistance");
             Scribe_Values.Look(ref shotRotation, "shotRotation");
             Scribe_Values.Look(ref shotAngle, "shotAngle");
-            CE_Scriber.Late(this.caster, (id) =>
-            {
-                Scribe_TargetInfo.Look(ref globalTargetInfo, "targetInfo_" + id);
-                Scribe_TargetInfo.Look(ref globalSourceInfo, "sourceInfo_" + id);
-                Scribe_TargetInfo.Look(ref mokeTargetInfo, "localTarget_" + id);
-            });
+            Scribe_Values.Look(ref shiftedGlobalCell, "shiftedGlobalCell");
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo");
+            Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
+            Scribe_TargetInfo.Look(ref mokeTargetInfo, "mokeTargetInfo");            
         }        
 
         public bool TryStartShelling(GlobalTargetInfo sourceInfo, GlobalTargetInfo targetInfo)
@@ -121,9 +123,9 @@ namespace CombatExtended
                 instant = pprop.isInstant;               
             }
 
-            ShiftVecReport reportGlobal = this.globalVecReport = ShiftVecReportFor(globalTargetInfo);
-            ShiftVecReport report = ShiftVecReportFor(currentTarget);            
-                      
+            ShiftVecReport reportGlobal = null;
+            ShiftVecReport report = ShiftVecReportFor(currentTarget);
+            shiftedGlobalCell = globalTargetInfo.Cell;
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
             {                
@@ -225,18 +227,19 @@ namespace CombatExtended
             {
                 return;
             }          
-            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * 0.5f);
-            var target = new Vector2(globalTargetInfo.Cell.x, globalTargetInfo.Cell.z);
+            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * 0.33f);
+
+            var target = new Vector2(shiftedGlobalCell.x, shiftedGlobalCell.z);
             var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
             report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
-            report.lightingShift = 0.5f; 
+            report.lightingShift = 0.8f; 
                                   
             var estimatedTargDist = report.GetRandDist();
-            var spreadVec  = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist) * 2f;
+            var spreadVec  = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist);
             var ray = new Ray2D(target, -1 * direction);
-            var shiftedTarg  = ray.GetPoint(estimatedTargDist - report.shotDist + spreadVec.x + Rand.Range(-10, 10)) + report.GetRandCircularVec() * 2f;
-            
-            globalTargetInfo.cellInt = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
+            var shiftedTarg  = ray.GetPoint(estimatedTargDist - report.shotDist + spreadVec.x + Rand.Range(-10, 10)) + report.GetRandCircularVec() * 1.5f;
+
+            shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
         }
     }
 }

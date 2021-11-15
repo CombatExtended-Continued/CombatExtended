@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using RimWorld.Planet;
 using Verse;
 
 namespace CombatExtended
@@ -9,7 +10,9 @@ namespace CombatExtended
     public static class CE_Scriber 
     {
         private static List<ScribingAction> queuedLate = new List<ScribingAction>();
-        private static int idCounter = 13;        
+        private static int idCounter = 13;
+
+        private static string curId;        
 
         private struct ScribingAction
         {
@@ -25,8 +28,8 @@ namespace CombatExtended
                 this.owner = owner;
                 this.id = id;
             }            
-        }        
-
+        }
+       
         public static void Late(Object owner, Action<string> scribingAction, Action<string> postLoadAction = null)
         {
             string loadingId = null;
@@ -41,7 +44,8 @@ namespace CombatExtended
                 queuedLate.Add(r);
             }
             else
-            {                
+            {
+                curId = loadingId;
                 try
                 {                    
                     scribingAction.Invoke(loadingId);
@@ -50,6 +54,7 @@ namespace CombatExtended
                 {
                     Log.Error($"CE: Error while scribing {owner} (Late) {er}");
                 }
+                curId = null;
             }
         }
 
@@ -62,7 +67,9 @@ namespace CombatExtended
                 {
                     try
                     {
+                        curId = queuedLate[i].id;
                         queuedLate[i].scribingAction.Invoke(queuedLate[i].id);
+                        curId = null;
                     }
                     catch(Exception er)
                     {
@@ -80,7 +87,9 @@ namespace CombatExtended
                 {
                     try
                     {
+                        curId = queuedLate[i].id;
                         queuedLate[i].postLoadAction.Invoke(queuedLate[i].id);
+                        curId = null;
                     }
                     catch(Exception er)
                     {
