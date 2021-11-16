@@ -470,15 +470,24 @@ namespace CombatExtended
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;            
             report.shotDist = distanceToTarget * 5;
-            report.maxRange = properties.shellingProps.range * 5; // multiplie by 250 to emulate cells
-            report.lightingShift = Rand.Range(0f, 1f);            
-            report.weatherShift = Rand.Range(0f, 1f);
+            report.maxRange = properties.shellingProps.range * 5; // multiplie by 250 to emulate cells                        
             report.shotSpeed = ShotSpeed * 2.5f;
             report.swayDegrees = SwayAmplitude;
             float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
-            report.cover = null;
-            report.smokeDensity = 0;
+            report.cover = null;            
+            if (target.Map != null)
+            {
+                report.weatherShift = (1f - target.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
+                report.lightingShift = 1f;
+                report.smokeDensity = (target.Cell.GetGas(target.Map)?.def.gas.accuracyPenalty ?? 0f) * 10f;
+            }
+            else
+            {
+                report.smokeDensity = 0;
+                report.weatherShift = 1f;
+                report.lightingShift = 1f;
+            }           
             return report;
         }
 

@@ -27,6 +27,11 @@ namespace CombatExtended
         /// </summary>
         private IntVec3 shiftedGlobalCell = IntVec3.Invalid;
 
+        /// <summary>
+        /// Wether the target is marked
+        /// </summary>
+        private bool targetHasMarker = false;
+
         // for global target only
         //        
         private int startingTile;
@@ -94,8 +99,40 @@ namespace CombatExtended
                 report.lightingShift = 0f;
             }
             return report;
-        }        
-         
+        }
+
+        public override ShiftVecReport ShiftVecReportFor(GlobalTargetInfo target)
+        {
+            ShiftVecReport report = base.ShiftVecReportFor(target);
+            report.circularMissRadius = GetGlobalMissRadiusForDist(report.shotDist);
+            report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
+
+            ArtilleryMarker marker = null;
+            if (target.HasThing && target.Thing.HasAttachment(ThingDef.Named(ArtilleryMarker.MarkerDef)))
+            {
+                marker = (ArtilleryMarker)target.Thing.GetAttachment(ThingDef.Named(ArtilleryMarker.MarkerDef));
+            }
+            else if (target.Cell.InBounds(caster.Map))
+            {
+                marker = (ArtilleryMarker)target.Cell.GetFirstThing(target.Map, ThingDef.Named(ArtilleryMarker.MarkerDef));
+            }            
+            if (marker != null)
+            {
+                this.targetHasMarker = true;
+                report.circularMissRadius *= 0.5f;
+                report.smokeDensity *= 0.5f;
+                report.weatherShift *= 0.25f;
+                report.lightingShift *= 0.25f;                
+                report.aimingAccuracy = marker.aimingAccuracy;
+                report.sightsEfficiency = marker.sightsEfficiency;                
+            }
+            else
+            {
+                this.targetHasMarker = false;
+            }
+            return report;
+        }
+
 
         protected virtual LocalTargetInfo GetLocalTargetFor(GlobalTargetInfo targetInfo)
         {            
@@ -226,19 +263,19 @@ namespace CombatExtended
             if(report == null || !shiftedGlobalCell.IsValid)
             {
                 return;
-            }          
-            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * 0.33f);
-
+            }
+            float minDistFactor = !targetHasMarker ? 0.333f : 0.111f;
+            report.shotDist = Mathf.Max(report.shotDist, report.maxRange * minDistFactor);
+            float shotDist = report.shotDist;
             var target = new Vector2(shiftedGlobalCell.x, shiftedGlobalCell.z);
-            var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;
-            report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
-            report.lightingShift = 0.8f; 
+            var direction = (Find.WorldGrid.GetTileCenter(startingTile) - Find.WorldGrid.GetTileCenter(destinationTile)).normalized;            
                                   
-            var estimatedTargDist = report.GetRandDist();
-            var spreadVec  = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist);
+            var estimatedTargDist = report.GetRandDist();           
+            var spreadVec = UnityEngine.Random.insideUnitCircle * Mathf.Clamp(report.spreadDegrees * Mathf.PI / 360f, -1f, 1f) * (estimatedTargDist - report.shotDist) * 0.5f;
             var ray = new Ray2D(target, -1 * direction);
-            var shiftedTarg  = ray.GetPoint(estimatedTargDist - report.shotDist + spreadVec.x + Rand.Range(-10, 10)) + report.GetRandCircularVec() * 1.5f;
-
+            var missVec = report.GetRandCircularVec();
+            var shiftedTarg  = ray.GetPoint((estimatedTargDist - shotDist) / 2f) + missVec + spreadVec;
+            
             shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
         }
     }
