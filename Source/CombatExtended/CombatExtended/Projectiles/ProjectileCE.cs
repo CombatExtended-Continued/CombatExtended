@@ -914,8 +914,9 @@ namespace CombatExtended
                     shell.equipmentDef = equipmentDef;
                     shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
                     shell.globalSource.tileInt = Map.Tile;
-                    shell.shellDef = def;
-                    shell.SetFaction(Map.ParentFaction);
+                    shell.globalSource.mapInt = Map;
+                    shell.globalSource.worldObjectInt = Map.Parent;
+                    shell.shellDef = def;                    
                     shell.globalTarget = globalTargetInfo;
                     if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
                     {

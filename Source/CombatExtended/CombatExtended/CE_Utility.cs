@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -24,7 +25,7 @@ namespace CombatExtended
             }
         }
 
-        #endregion
+        #endregion        
 
         #region Attachments
 
@@ -837,6 +838,49 @@ namespace CombatExtended
                 dz = point.z - closest.z;
             }
             return Mathf.Sqrt(dx * dx + dz * dz);
+        }
+
+        private static readonly List<PawnKindDef> _validPawnKinds = new List<PawnKindDef>();
+
+        public static Pawn GetRandomWorldPawn(this Faction faction, bool capableOfCombat = true)
+        {
+            Pawn pawn = Find.World.worldPawns.AllPawnsAlive.Where(p => p.Faction == faction && (!capableOfCombat || p.kindDef.isFighter || p.kindDef.isGoodBreacher)).RandomElementWithFallback();
+            if (pawn != null)
+            {
+                return pawn;
+            }
+            Log.Warning($"CE: Couldn't find world pawns for faction {faction}. CE had to create a new one..");
+            _validPawnKinds.Clear();
+            foreach (PawnGroupMaker group in capableOfCombat ? faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == PawnGroupKindDefOf.Combat) : faction.def.pawnGroupMakers)
+            {
+                foreach (PawnGenOption option in group.options)
+                {
+                    _validPawnKinds.Add(option.kind);
+                }
+            }
+            if (faction.def.fixedLeaderKinds != null)
+            {
+                _validPawnKinds.AddRange(faction.def.fixedLeaderKinds);
+            }
+            if (_validPawnKinds.TryRandomElement(out var result))
+            {
+                PawnGenerationRequest request = new PawnGenerationRequest(result, faction, PawnGenerationContext.NonPlayer, -1, faction.def.leaderForceGenerateNewPawn);
+                Gender gender = faction.ideos.PrimaryIdeo.SupremeGender;
+                if (gender != 0)
+                {
+                    request.FixedGender = gender;
+                }
+                pawn = PawnGenerator.GeneratePawn(request);
+                if (pawn.RaceProps.IsFlesh)
+                {
+                    pawn.relations.everSeenByPlayer = true;
+                }
+                if (!Find.WorldPawns.Contains(pawn))
+                {
+                    Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.KeepForever);
+                }
+            }
+            return pawn;
         }
     }
 }

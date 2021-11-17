@@ -83,57 +83,54 @@ namespace CombatExtended
 
         protected override void Arrived()
         {            
-            int tile = Tile;
-            MapParent mapParent = Find.World.worldObjects.MapParentAt(tile);
-            if(mapParent == null)
+            int tile = Tile;               
+            foreach(WorldObject worldObject in Find.World.worldObjects.ObjectsAt(tile))
             {
-                return;
-            }
-            WorldObjects.ShellingComp shellingComp = mapParent.GetComponent<WorldObjects.ShellingComp>();
-            if(shellingComp == null)
-            {
-                return;
-            }
-            Faction faction = Faction;               
-            if(faction != null && mapParent.Faction != null && mapParent.Faction != faction) // check the projectile faction
-            {
-                FactionRelation relation = faction.RelationWith(mapParent.Faction, true);
-                if(relation == null)
+                if (TryShell(worldObject))
                 {
-                    faction.TryMakeInitialRelationsWith(mapParent.Faction);
-                    relation = faction.RelationWith(mapParent.Faction, true); 
+                    break;
                 }
-                faction.TryAffectGoodwillWith(mapParent.Faction, -75, true, true, HistoryEventDefOf.AttackedSettlement, globalTarget);
-            }                                            
-            if (mapParent != null && mapParent.HasMap) // spawn the actual mortar shell
-            {
-                SpawnShell(mapParent.Map);
             }
-            else // queue map damage
-            {                               
-            }
-        }       
+        }
 
-        private void SpawnShell(Map map)
+        private bool TryShell(WorldObject worldObject)
         {
-            IntVec3 targetCell = globalTarget.Cell;
-            if (!globalTarget.Cell.IsValid || !globalTarget.Cell.InBounds(map))
+            bool shelled = false;            
+            if (worldObject is MapParent mapParent && mapParent.HasMap)
             {
-                targetCell = FindRandomImpactCell(map);
-            }            
-            Vector3 direction = (Find.WorldGrid.GetTileCenter(globalSource.Tile) - Find.WorldGrid.GetTileCenter(globalTarget.Tile)).normalized;
-            Vector3 mapSize = map.Size.ToVector3();
-            mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
+                shelled = true;
+                Map map = mapParent.Map;                
+                IntVec3 targetCell = globalTarget.Cell;
+                if (!globalTarget.Cell.IsValid || !globalTarget.Cell.InBounds(map))
+                {
+                    targetCell = FindRandomImpactCell(map);
+                }
+                Vector3 direction = (Find.WorldGrid.GetTileCenter(globalSource.Tile) - Find.WorldGrid.GetTileCenter(globalTarget.Tile)).normalized;
+                Vector3 mapSize = map.Size.ToVector3();
+                mapSize.y = Mathf.Max(mapSize.x, mapSize.z);
 
-            Ray ray = new Ray(targetCell.ToVector3(), -1 * direction);
-            Bounds mapBounds = new Bounds((mapSize / 2f).Yto0(), mapSize);
-            mapBounds.IntersectRay(ray, out float distanceToEdge);
-            IntVec3 sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3();
-            Launch(
-                sourceCell,
-                targetCell,
-                map: map,
-                shotSpeed: 120f);
+                Ray ray = new Ray(targetCell.ToVector3(), -1 * direction);
+                Bounds mapBounds = new Bounds((mapSize / 2f).Yto0(), mapSize);
+                mapBounds.IntersectRay(ray, out float distanceToEdge);
+                IntVec3 sourceCell = ray.GetPoint(distanceToEdge * 0.75f).ToIntVec3();
+                LaunchProjectile(
+                    sourceCell,
+                    targetCell,
+                    map: map,
+                    shotSpeed: 120f);
+            }
+            WorldObjects.HostilityComp hostility = worldObject.GetComponent<WorldObjects.HostilityComp>();
+            WorldObjects.HealthComp healthComp = worldObject.GetComponent<WorldObjects.HealthComp>();
+            if (worldObject.Faction != Faction.OfPlayer && hostility != null && healthComp != null)
+            {
+                hostility.TryHostilityResponse(Faction, new GlobalTargetInfo(StartTile));
+                if (!shelled)
+                {
+                    shelled = true;
+                    healthComp.ApplyDamage((shellDef.projectile as ProjectilePropertiesCE).shellingProps.damage);
+                }
+            }
+            return shelled;
         }
 
         private IntVec3 FindRandomImpactCell(Map map)
@@ -153,7 +150,7 @@ namespace CombatExtended
             return IntVec3.Invalid;
         }       
 
-        private void Launch(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
+        private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
         {
             IntVec3 targetCell = target.Cell;
             Vector2 source = new Vector2(sourceCell.x, sourceCell.z);

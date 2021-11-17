@@ -9,6 +9,73 @@ using Verse;
 
 namespace CombatExtended.WorldObjects
 {
+    public class HealthComp : WorldObjectComp
+    {
+        public const float HEALTH_HEALRATE_DAY = 0.15f;
+
+        private float health = 1.0f;
+        public float Health
+        {
+            get => health;
+            set => health = Mathf.Clamp01(value);
+        }
+
+        public float HealingRatePerTick
+        {
+            get => ((int)parent.Faction.def.techLevel) / 4f * HEALTH_HEALRATE_DAY / 60000f;
+        }
+
+        public float ArmorDamageMultiplier
+        {
+            get =>  4f / Mathf.Max((int)parent.Faction.def.techLevel, 1f);
+        }
+
+        public WorldObjectCompProperties_Health Props
+        {
+            get => props as WorldObjectCompProperties_Health;
+        }
+
+        public HealthComp()
+        {
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref health, "health", 1.0f);
+        }
+
+        public void HealthUpdate(int deltaTicks)
+        {
+            health += HealingRatePerTick * deltaTicks;
+        }
+
+        public void ApplyDamage(float amount)
+        {
+            if (Props.destoyedInstantly)
+            {
+                parent.Destroy();
+                return;
+            }            
+            Health -= ArmorDamageMultiplier * amount;
+            Notify_DamageTaken();
+        }
+
+        public void Notify_DamageTaken()
+        {
+            if(health <= 1e-4)
+            {
+                Destroy();
+                return;
+            }
+        }
+
+        public void Destroy()
+        {
+            parent.Destroy();
+        }
+    }
+
     //public class HealthComp : WorldObjectComp
     //{
     //    private const int RECONSTRUCTION_DAYS = 11;

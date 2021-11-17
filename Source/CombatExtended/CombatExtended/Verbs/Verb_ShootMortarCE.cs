@@ -103,6 +103,10 @@ namespace CombatExtended
 
         public override ShiftVecReport ShiftVecReportFor(GlobalTargetInfo target)
         {
+            if(!target.IsMapTarget)
+            {
+                return null;
+            }
             ShiftVecReport report = base.ShiftVecReportFor(target);
             report.circularMissRadius = GetGlobalMissRadiusForDist(report.shotDist);
             report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;

@@ -11,9 +11,9 @@ namespace CombatExtended
     {        
         private int startingTile;
         private int destinationTile;
-        private float tilesPerTick;        
-
         private int distanceInTiles;
+
+        private float tilesPerTick;                
         private float distance;
         private float distanceTraveled;
 
@@ -31,7 +31,15 @@ namespace CombatExtended
         public virtual float TilesPerTick
         {
             get => 0.03f;
-        }       
+        }
+        public int StartTile
+        {
+            get => startingTile;
+        }
+        public int DestinationTile
+        {
+            get => startingTile;
+        }
 
         public float TraveledPtc => this.distanceTraveled / this.distanceInTiles;
         public override Vector3 DrawPos => Vector3.Slerp(Start, End, TraveledPtc);        

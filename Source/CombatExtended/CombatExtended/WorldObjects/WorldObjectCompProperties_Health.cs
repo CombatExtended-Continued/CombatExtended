@@ -6,9 +6,11 @@ namespace CombatExtended.WorldObjects
 {
     public class WorldObjectCompProperties_Health : WorldObjectCompProperties
     {
+        public bool destoyedInstantly = false;
+
         public WorldObjectCompProperties_Health()
         {
-            this.compClass = typeof(ShellingComp);
+            this.compClass = typeof(HealthComp);
         }
     }
 }

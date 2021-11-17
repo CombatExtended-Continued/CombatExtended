@@ -50,8 +50,8 @@ namespace CombatExtended
                 if (!targetInfo.HasWorldObject || targetInfo.Tile == tile)
                 {
                     return false;
-                }
-                IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;
+                }                
+                IEnumerable<Building_TurretGunCE> turrets = SelectedTurrets;                
                 Map map = Find.World.worldObjects.MapParentAt(targetInfo.Tile)?.Map ?? null;                
                 if (map != null)
                 {
