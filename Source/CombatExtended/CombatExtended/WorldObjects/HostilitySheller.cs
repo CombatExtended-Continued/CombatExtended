@@ -67,7 +67,7 @@ namespace CombatExtended.WorldObjects
             CastShot();
         }
 
-        public bool TryStartShelling(GlobalTargetInfo targetInfo, int points)
+        public bool TryStartShelling(GlobalTargetInfo targetInfo, float points)
         {
             if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty())
             {
@@ -81,10 +81,10 @@ namespace CombatExtended.WorldObjects
             shooter = comp.parent.Faction.GetRandomWorldPawn();            
             target = targetInfo;
             ticksToNextShot = GetTicksToShot();
-            totalShots = GetPointsTotalShots(points);
+            totalShots = GetPointsTotalShots(Mathf.CeilToInt(points));
             startedAt = GenTicks.TicksGame;
             shotsFired = 0;
-            budget = points;
+            budget = Mathf.CeilToInt(points);
             cooldownTicks = -1;            
             return true;
         }

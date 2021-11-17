@@ -127,7 +127,7 @@ namespace CombatExtended
                 if (!shelled)
                 {
                     shelled = true;
-                    healthComp.ApplyDamage((shellDef.projectile as ProjectilePropertiesCE).shellingProps.damage);
+                    healthComp.ApplyDamage((shellDef.projectile as ProjectilePropertiesCE).shellingProps.damage, Faction);
                 }
             }
             return shelled;

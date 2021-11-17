@@ -50,7 +50,16 @@ namespace CombatExtended.WorldObjects
             health += HealingRatePerTick * deltaTicks;
         }
 
-        public void ApplyDamage(float amount)
+        public override void CompTick()
+        {
+            base.CompTick();
+            if((GenTicks.TicksGame + parent.ID) % GenTicks.TickRareInterval == 0)
+            {
+                HealthUpdate(GenTicks.TickRareInterval);
+            }
+        }
+
+        public void ApplyDamage(float amount, Faction attackingFaction)
         {
             if (Props.destoyedInstantly)
             {
@@ -58,10 +67,10 @@ namespace CombatExtended.WorldObjects
                 return;
             }            
             Health -= ArmorDamageMultiplier * amount;
-            Notify_DamageTaken();
+            Notify_DamageTaken(attackingFaction);
         }
 
-        public void Notify_DamageTaken()
+        public void Notify_DamageTaken(Faction attackingFaction)
         {
             if(health <= 1e-4)
             {
@@ -70,9 +79,36 @@ namespace CombatExtended.WorldObjects
             }
         }
 
-        public void Destroy()
+        public void Destroy(Faction attackingFaction = null)
         {
-            parent.Destroy();
+            int tile = parent.Tile;
+            Faction faction = parent.Faction;
+            if (parent is Settlement settlement)
+            {                
+                parent.Destroy();
+                DestroyedSettlement destroyedSettlement = (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
+                destroyedSettlement.tileInt = tile;
+                if (faction != null)
+                {
+                    destroyedSettlement.SetFaction(faction);
+                }
+                destroyedSettlement.SpawnSetup();
+                Find.World.worldObjects.Add(destroyedSettlement);                               
+            }            
+            else
+            {                
+                parent.Destroy();
+            }           
+            if (faction != null && faction.def.humanlikeFaction &&  attackingFaction != null && attackingFaction != faction) // check the projectile faction
+            {
+                FactionRelation relation = faction.RelationWith(attackingFaction, true);
+                if (relation == null)
+                {
+                    faction.TryMakeInitialRelationsWith(attackingFaction);
+                    relation = faction.RelationWith(attackingFaction, true);
+                }
+                faction.TryAffectGoodwillWith(attackingFaction, -100, true, true, HistoryEventDefOf.DestroyedEnemyBase, null);
+            }
         }
     }
 

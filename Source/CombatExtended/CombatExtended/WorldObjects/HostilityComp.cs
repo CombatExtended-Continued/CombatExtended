@@ -12,6 +12,8 @@ namespace CombatExtended.WorldObjects
 {
     public class HostilityComp : WorldObjectComp
     {
+        private int lastRaidTick = -1;
+
         public HostilitySheller sheller;
         public HostilityRaider raider;
 
@@ -73,6 +75,7 @@ namespace CombatExtended.WorldObjects
         public override void PostExposeData()
         {
             base.PostExposeData();
+            Scribe_Values.Look(ref lastRaidTick, "lastRaidTick", -1);
             Scribe_Deep.Look(ref sheller, "sheller");
             Scribe_Deep.Look(ref raider, "raider");
             if (Scribe.mode != LoadSaveMode.Saving)
@@ -94,6 +97,7 @@ namespace CombatExtended.WorldObjects
         {
             base.CompTick();                        
             sheller.Tick();
+            raider.Tick();
         }
 
         public void TryHostilityResponse(Faction attackingFaction, GlobalTargetInfo sourceInfo)
@@ -105,9 +109,40 @@ namespace CombatExtended.WorldObjects
             {
                 return;
             }
-            if (!sheller.Shooting)
+            Map attackerMap = sourceInfo.Map;
+            if(attackerMap == null)
             {
-                sheller.TryStartShelling(sourceInfo, (int)Rand.Range(10000, 20000));
+                MapParent attackerMapParent = Find.World.worldObjects.MapParentAt(sourceInfo.Tile);
+                if(attackerMapParent != null && attackerMapParent.HasMap && attackerMapParent.Map != null && Find.Maps.Contains(attackerMapParent.Map))
+                {
+                    attackerMap = attackerMapParent.Map;
+                }               
+            }            
+            float revengePoints;
+            if (attackerMap != null)
+            {
+                revengePoints = StorytellerUtility.DefaultThreatPointsNow(attackerMap) * Mathf.Max((int)parent.Faction.def.techLevel - 4, 1) / 2f;
+                revengePoints = Mathf.Max(500, revengePoints);
+            }
+            else
+            {
+                revengePoints = Rand.Range(500f, 500 * Mathf.Max((int)parent.Faction.def.techLevel - 2, 2));
+#if DEBUG
+                Log.Warning("CE: Had to use random values for revengePoints");
+#endif
+            }            
+            if (!sheller.Shooting && Rand.Chance(ShellingPropability))
+            {                
+                sheller.TryStartShelling(sourceInfo, revengePoints);
+            }
+            if (attackerMap != null)
+            {
+                int raidMTBTicks = (int)(RaidMTBDays * 60000);
+                int ticksSinceRaided = lastRaidTick != -1 ? GenTicks.TicksGame - lastRaidTick : raidMTBTicks + 16;                
+                if (ticksSinceRaided != raidMTBTicks && ticksSinceRaided > raidMTBTicks / 2f && Rand.Chance(RaidPropability / Mathf.Max(raidMTBTicks - ticksSinceRaided, 1) * 2.0f) && raider.TryRaid(attackerMap, revengePoints))
+                {
+                    lastRaidTick = GenTicks.TicksGame;                    
+                }
             }
         }
 
