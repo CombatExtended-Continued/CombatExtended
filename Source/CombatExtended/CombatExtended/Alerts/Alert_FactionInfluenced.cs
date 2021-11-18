@@ -44,7 +44,7 @@ namespace CombatExtended
             foreach (Faction faction in Find.World.factionManager.AllFactions)
             {
                 FactionStrengthTracker tracker = faction.GetStrengthTracker();
-                if(tracker != null && (tracker.RaidPointsMultiplier != 1.0f || !tracker.CanRaid))
+                if(tracker != null && (tracker.StrengthPointsMultiplier != 1.0f || !tracker.CanRaid))
                 {
                     if(i > 0)
                     {

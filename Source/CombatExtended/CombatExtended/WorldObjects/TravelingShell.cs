@@ -124,7 +124,10 @@ namespace CombatExtended
             WorldObjects.HealthComp healthComp = worldObject.GetComponent<WorldObjects.HealthComp>();
             if (worldObject.Faction != Faction.OfPlayer && hostility != null && healthComp != null)
             {
-                hostility.TryHostilityResponse(Faction, new GlobalTargetInfo(StartTile));
+                if (worldObject.Faction != null)
+                {
+                    hostility.TryHostilityResponse(Faction, new GlobalTargetInfo(StartTile));
+                }
                 if (!shelled)
                 {
                     shelled = true;

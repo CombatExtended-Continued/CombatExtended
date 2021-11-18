@@ -19,7 +19,7 @@ namespace CombatExtended.HarmonyCE
                 FactionStrengthTracker tracker = parms.faction.GetStrengthTracker();
                 if (tracker != null)
                 {
-                    parms.points *= tracker.RaidPointsMultiplier;
+                    parms.points *= tracker.StrengthPointsMultiplier;
                 }
             }
         }

@@ -55,7 +55,7 @@ namespace CombatExtended
                 {
                     return GetRandomImpectCell(map.areaManager.Home.innerGrid);                    
                 }
-                else if (Rand.Chance(0.03f) && map.zoneManager.zoneGrid.Length > 0)
+                else if (Rand.Chance(0.05f) && map.zoneManager.zoneGrid.Length > 0)
                 {
                     IEnumerable<Zone> zones = map.zoneManager.zoneGrid.Where(z => z != null && z.cells?.Count > 0);
                     if (!zones.EnumerableNullOrEmpty())
@@ -66,7 +66,7 @@ namespace CombatExtended
             }
             else if(projectileDamageDef == CE_DamageDefOf.PrometheumFlame)
             {
-                if (Rand.Chance(0.03f))
+                if (Rand.Chance(0.05f))
                 {
                     foreach(var zone in map.zoneManager.zoneGrid.InRandomOrder())
                     {

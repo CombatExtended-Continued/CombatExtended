@@ -19,7 +19,7 @@ namespace CombatExtended.WorldObjects
         public HostilityRaider raider;
 
         #region Cache
-        
+
         private int _configTick = -1;
         private float _shellingPropability;
         private float _raidMTBDays;
@@ -110,6 +110,10 @@ namespace CombatExtended.WorldObjects
             {
                 return;
             }
+            if (parent.Faction == null || parent.Faction.IsPlayer || parent.Faction.defeated)
+            {
+                return;
+            }
             Map attackerMap = sourceInfo.Map;
             if(attackerMap == null)
             {
@@ -148,10 +152,10 @@ namespace CombatExtended.WorldObjects
             if (attackerMap != null)
             {
                 int raidMTBTicks = (int)(RaidMTBDays * 60000);
-                int ticksSinceRaided = lastRaidTick != -1 ? GenTicks.TicksGame - lastRaidTick : raidMTBTicks + 16;                
-                if (ticksSinceRaided != raidMTBTicks && ticksSinceRaided > raidMTBTicks / 2f && Rand.Chance(RaidPropability / Mathf.Max(raidMTBTicks - ticksSinceRaided, 1) * 2.0f) && raider.TryRaid(attackerMap, revengePoints))
+                int ticksSinceRaided = lastRaidTick != -1 ? GenTicks.TicksGame - lastRaidTick : raidMTBTicks + 16;
+                if (ticksSinceRaided != raidMTBTicks && ticksSinceRaided > raidMTBTicks / 2f && Rand.Chance(RaidPropability / Mathf.Max(raidMTBTicks - ticksSinceRaided, 1)) && raider.TryRaid(attackerMap, revengePoints))
                 {
-                    lastRaidTick = GenTicks.TicksGame;                    
+                    lastRaidTick = GenTicks.TicksGame;
                 }
             }
         }

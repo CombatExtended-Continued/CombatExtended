@@ -11,11 +11,13 @@ namespace CombatExtended.WorldObjects
 {
     public class HostilitySheller : IExposable
     {
+        private const float SHELLING_FACTOR = 1f;
+
         public const int SHELLER_EXPIRYTICKS = 15000;
         public const int SHELLER_MINCOOLDOWNTICKS = 7500;        
-        public const int SHELLER_MIN_TICKSBETWEENSHOTS = 50;
-        public const int SHELLER_MAX_TICKSBETWEENSHOTS = 240;
-        public const int SHELLER_MIN_PROJECTILEPOINTS = 250;
+        public const int SHELLER_MIN_TICKSBETWEENSHOTS = 30;
+        public const int SHELLER_MAX_TICKSBETWEENSHOTS = 80;
+        public const int SHELLER_MIN_PROJECTILEPOINTS = 100;
 
         private int cooldownTicks = 0;
         private int startedAt;
@@ -68,7 +70,7 @@ namespace CombatExtended.WorldObjects
         }
 
         public bool TryStartShelling(GlobalTargetInfo targetInfo, float points)
-        {
+        {            
             if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty())
             {
                 return false;
@@ -81,16 +83,17 @@ namespace CombatExtended.WorldObjects
             shooter = comp.parent.Faction.GetRandomWorldPawn();            
             target = targetInfo;
             ticksToNextShot = GetTicksToShot();
-            totalShots = GetPointsTotalShots(Mathf.CeilToInt(points));
-            startedAt = GenTicks.TicksGame;
-            shotsFired = 0;            
-            budget = (int)(Mathf.CeilToInt(points));
+            budget = (int)(Mathf.CeilToInt(points) * SHELLING_FACTOR);
             FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
             if (tracker != null)
             {
-                budget = (int)(budget * comp.parent.Faction.GetStrengthTracker().RaidPointsMultiplier);
+                budget = (int)(budget * Mathf.Max(tracker.StrengthPointsMultiplier, 0.5f));
             }
-            cooldownTicks = -1;            
+            totalShots = GetPointsTotalShots(Mathf.CeilToInt(points));
+            startedAt = GenTicks.TicksGame;
+            shotsFired = 0;                                   
+            cooldownTicks = -1;
+            Log.Message($"budget: {budget}, totalshots: {totalShots}");
             return true;
         }
 
@@ -106,14 +109,14 @@ namespace CombatExtended.WorldObjects
         }        
 
         private void CastShot()
-        {            
-            shotsFired++;
+        {                        
             float shotsRemainingMinPoints = (totalShots - shotsFired) * SHELLER_MIN_PROJECTILEPOINTS;
             float distance = Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true);
             ShellingResponseDef.ShellingResponsePart_Projectile responseProjectile = AvailableProjectiles
-                .Where(p => (budget - p.points) > shotsRemainingMinPoints && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range <= distance * 1.5f)
+                .Where(p => (budget - p.points) > shotsRemainingMinPoints && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= distance * 0.5f)
                 .RandomElementByWeightWithFallback(p => p.weight, null);
 
+            shotsFired++;
             if (responseProjectile == null)
             {
                 Stop();                
@@ -133,7 +136,7 @@ namespace CombatExtended.WorldObjects
         }
 
         private void LaunchProjectile(ThingDef projectileDef)
-        {
+        {            
             TravelingShell shell = (TravelingShell)WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
             if (comp.parent.Faction != null)
             {

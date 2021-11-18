@@ -12,7 +12,7 @@ namespace CombatExtended.WorldObjects
     /// </summary>
     public class WorldObjectTrackerCE : WorldComponent
     {
-        public const int THROTTLED_TICK_INTERVAL = 30;
+        public const int THROTTLED_TICK_INTERVAL = 15;
 
         private class TrackedObject
         {            

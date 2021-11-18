@@ -45,6 +45,7 @@ namespace CombatExtended
         public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
         // New fields
+        private bool targetingWorldMap = false;
         private CompAmmoUser compAmmo = null;
         private CompFireModes compFireModes = null;
         private CompChangeableProjectile compChangeable = null;
@@ -351,7 +352,7 @@ namespace CombatExtended
             {
                 ResetCurrentTarget();
                 return;
-            }
+            }            
             //Copied and modified from Verb_LaunchProjectileCE.Available
             if (!isReloading && (Projectile == null || (CompAmmo != null && !CompAmmo.CanBeFiredNow)))
             {
@@ -374,6 +375,11 @@ namespace CombatExtended
             if (AttackVerb.verbProps.warmupTime > 0f)
             {
                 burstWarmupTicksLeft = AttackVerb.verbProps.warmupTime.SecondsToTicks();
+                return;
+            }
+            if (targetingWorldMap && (!globalTargetInfo.IsValid || globalTargetInfo.WorldObject is DestroyedSettlement))
+            {
+                ResetCurrentTarget();
                 return;
             }
             if (canBeginBurstImmediately)
@@ -454,6 +460,7 @@ namespace CombatExtended
             {
                 if (globalTargetInfo.IsValid)
                 {
+                    targetingWorldMap = true;
                     GlobalTargetInfo sourceInfo = new GlobalTargetInfo();
                     sourceInfo.tileInt = Map.Tile;
                     sourceInfo.cellInt = Position;
@@ -732,7 +739,8 @@ namespace CombatExtended
         // ExtractShell not added
 
         private void ResetForcedTarget()                // Core method
-        {           
+        {
+            this.targetingWorldMap = false;
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.globalTargetInfo = GlobalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;            

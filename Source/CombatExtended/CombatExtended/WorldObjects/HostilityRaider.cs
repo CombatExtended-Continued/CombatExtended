@@ -27,50 +27,49 @@ namespace CombatExtended.WorldObjects
                 ticksToRaid -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
                 return;
             }
-            //if (targetInfo.IsValid)
-            //{
-            //    DoRaid();
-            //}
-            //points = -1;
-            //targetInfo = GlobalTargetInfo.Invalid;
+            if (targetInfo.IsValid)
+            {
+                DoRaid();
+            }
+            points = -1;
+            targetInfo = GlobalTargetInfo.Invalid;
+            ticksToRaid = -1;
         }
 
         public bool TryRaid(Map targetMap, float points)
         {
-            if (!comp.parent.Faction.GetStrengthTracker().CanRaid && Rand.Chance(0.5f))
+            FactionStrengthTracker tracker =  comp.parent.Faction.GetStrengthTracker();
+            if (tracker != null && !tracker.CanRaid)
             {
                 return false;
             }
-            //if (points <= 0)
-            //{
-            //    return false;
-            //}            
-            //this.points = points;
-            //targetInfo = new GlobalTargetInfo();
-            //targetInfo.tileInt = targetMap.Tile;
-            //targetInfo.mapInt = targetMap;
-            //targetInfo.cellInt = new IntVec3(1, 1, 1); // for scribing
-            //ticksToRaid = Rand.Range(3000, 30000);            
+            if (points <= 0)
+            {
+                return false;
+            }
+            this.points = points;
+            targetInfo = new GlobalTargetInfo(IntVec3.Zero, targetMap);
+            targetInfo.tileInt = targetMap.Tile;                        
+            ticksToRaid = Rand.Range(3000, 30000);            
             return true;
         }
 
         private void DoRaid()
-        {            
+        {
             StorytellerComp storytellerComp = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain);
-            IncidentDef incidentDef = IncidentDefOf.RaidEnemy;
-            IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, targetInfo.Map);
-            List<RaidStrategyDef> source = DefDatabase<RaidStrategyDef>.AllDefs.Where((RaidStrategyDef s) => s.Worker.CanUseWith(parms, PawnGroupKindDefOf.Combat)).ToList();
-
+            IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
             parms.faction = comp.parent.Faction;
             parms.points = points;
+            IncidentDef incidentDef = IncidentDefOf.RaidEnemy;            
+            List<RaidStrategyDef> source = DefDatabase<RaidStrategyDef>.AllDefs.Where((RaidStrategyDef s) => s.Worker.CanUseWith(parms, PawnGroupKindDefOf.Combat)).ToList();                            
             parms.raidStrategy = source.RandomElement();
             incidentDef.Worker.TryExecute(parms);
         }
 
         public void ExposeData()
         {            
-            Scribe_TargetInfo.Look(ref targetInfo, "raid_targetInfo");
-            Scribe_Values.Look(ref points, "raid_points");
+            Scribe_TargetInfo.Look(ref targetInfo, "targetInfo");
+            Scribe_Values.Look(ref points, "points");
             Scribe_Values.Look(ref ticksToRaid, "ticksToRaid");
         }
     }
