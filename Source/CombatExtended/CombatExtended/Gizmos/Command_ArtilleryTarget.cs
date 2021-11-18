@@ -88,7 +88,7 @@ namespace CombatExtended
                     foreach (var t in SelectedTurrets)
                     {
                         if (t.MaxWorldRange != radius)                        
-                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);                        
+                            GenDraw.DrawWorldRadiusRing(tile, (int)(t.MaxWorldRange / 2f));                        
                     }
                 }
                 GenDraw.DrawWorldRadiusRing(tile, radius);                

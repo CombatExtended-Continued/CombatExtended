@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using CombatExtended.WorldObjects;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -131,24 +132,7 @@ namespace CombatExtended
                 }
             }
             return shelled;
-        }
-
-        private IntVec3 FindRandomImpactCell(Map map)
-        {            
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            while (stopwatch.ElapsedTicks / Stopwatch.Frequency < 0.01f)
-            {
-                IntVec3 cell = new IntVec3(Rand.Range(5, map.cellIndices.mapSizeX - 5), 0, Rand.Range(5, map.cellIndices.mapSizeZ - 5));
-                RoofDef roof = map.roofGrid.RoofAt(cell);
-                if (roof == null || roof == RoofDefOf.RoofConstructed)
-                {
-                    return cell;
-                }
-            }
-            stopwatch.Stop();            
-            return IntVec3.Invalid;
-        }       
+        }        
 
         private void LaunchProjectile(IntVec3 sourceCell, LocalTargetInfo target, Map map, float shotSpeed = 20, float shotHeight = 100)
         {
@@ -166,6 +150,8 @@ namespace CombatExtended
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
             projectile.Launch(launcher, source, shotAngle, shotRotation, shotHeight, shotSpeed);
-        }       
+        }
+
+        private IntVec3 FindRandomImpactCell(Map map) => ShellingUtility.FindRandomImpactCell(map, shellDef);
     }
 }

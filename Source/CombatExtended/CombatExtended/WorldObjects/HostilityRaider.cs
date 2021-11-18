@@ -20,16 +20,16 @@ namespace CombatExtended.WorldObjects
         {
         }
 
-        public void Tick()
+        public void ThrottledTick()
         {
-            //if(ticksToRaid > 0 || points < 0)
+            if (ticksToRaid > 0 || points < 0)
+            {
+                ticksToRaid -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
+                return;
+            }
+            //if (targetInfo.IsValid)
             //{
-            //    ticksToRaid--;
-            //    return;
-            //}           
-            //if(targetInfo.IsValid)
-            //{
-            //    DoRaid();                                
+            //    DoRaid();
             //}
             //points = -1;
             //targetInfo = GlobalTargetInfo.Invalid;
