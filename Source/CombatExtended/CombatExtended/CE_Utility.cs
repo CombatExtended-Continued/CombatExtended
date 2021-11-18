@@ -882,5 +882,7 @@ namespace CombatExtended
             }
             return pawn;
         }
+
+        public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
     }
 }

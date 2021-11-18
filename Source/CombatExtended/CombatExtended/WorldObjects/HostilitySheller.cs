@@ -83,8 +83,13 @@ namespace CombatExtended.WorldObjects
             ticksToNextShot = GetTicksToShot();
             totalShots = GetPointsTotalShots(Mathf.CeilToInt(points));
             startedAt = GenTicks.TicksGame;
-            shotsFired = 0;
-            budget = Mathf.CeilToInt(points);
+            shotsFired = 0;            
+            budget = (int)(Mathf.CeilToInt(points));
+            FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
+            if (tracker != null)
+            {
+                budget = (int)(budget * comp.parent.Faction.GetStrengthTracker().RaidPointsMultiplier);
+            }
             cooldownTicks = -1;            
             return true;
         }

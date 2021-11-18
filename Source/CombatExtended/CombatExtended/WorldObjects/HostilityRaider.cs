@@ -37,6 +37,10 @@ namespace CombatExtended.WorldObjects
 
         public bool TryRaid(Map targetMap, float points)
         {
+            if (!comp.parent.Faction.GetStrengthTracker().CanRaid && Rand.Chance(0.5f))
+            {
+                return false;
+            }
             //if (points <= 0)
             //{
             //    return false;

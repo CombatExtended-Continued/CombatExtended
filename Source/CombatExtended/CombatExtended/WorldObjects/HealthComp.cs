@@ -77,6 +77,7 @@ namespace CombatExtended.WorldObjects
         {
             int tile = parent.Tile;
             Faction faction = parent.Faction;
+            FactionStrengthTracker tracker = faction.GetStrengthTracker();
             if (parent is Settlement settlement)
             {                
                 parent.Destroy();
@@ -87,11 +88,19 @@ namespace CombatExtended.WorldObjects
                     destroyedSettlement.SetFaction(faction);
                 }
                 destroyedSettlement.SpawnSetup();
-                Find.World.worldObjects.Add(destroyedSettlement);                               
+                Find.World.worldObjects.Add(destroyedSettlement);
+                if (tracker != null)
+                {
+                    tracker.Notify_SettlementDestroyed();                 
+                }
             }            
             else
-            {                
-                parent.Destroy();
+            {
+                if(tracker != null && parent is Site)
+                {
+                    tracker.Notify_SiteDestroyed();                    
+                }
+                parent.Destroy();                
             }           
             if (faction != null && faction.def.humanlikeFaction &&  attackingFaction != null && attackingFaction != faction) // check the projectile faction
             {

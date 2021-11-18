@@ -44,7 +44,7 @@ namespace CombatExtended
                 return;
             }
             int tile = turret.Map.Tile;
-            int radius = (int) turret.MaxWorldRange / 2;            
+            int radius = (int) turret.MaxWorldRange;            
             Find.WorldTargeter.BeginTargeting((targetInfo) =>
             {                
                 if (!targetInfo.HasWorldObject || targetInfo.Tile == tile)
@@ -88,7 +88,7 @@ namespace CombatExtended
                     foreach (var t in SelectedTurrets)
                     {
                         if (t.MaxWorldRange != radius)                        
-                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange / 2);                        
+                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);                        
                     }
                 }
                 GenDraw.DrawWorldRadiusRing(tile, radius);                

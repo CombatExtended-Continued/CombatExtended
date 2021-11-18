@@ -6,8 +6,9 @@ using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using CombatExtended.WorldObjects;
 
-namespace CombatExtended.WorldObjects
+namespace CombatExtended
 {
     public static class ShellingUtility
     {
