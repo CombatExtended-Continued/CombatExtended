@@ -60,7 +60,7 @@ namespace CombatExtended.WorldObjects
             string factionName = $"<color=red>{comp.parent.Faction.Name}</color>";
             string objectName = $"<color=blue>{comp.parent.Label}</color>";
             StorytellerComp storytellerComp = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain);
-            IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
+            IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);            
             parms.faction = comp.parent.Faction;
             parms.points = points;
             parms.customLetterDef = CE_LetterDefOf.CE_ThreatBig;            
