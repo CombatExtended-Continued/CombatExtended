@@ -9,8 +9,9 @@ using Verse;
 namespace CombatExtended
 {
     public class Command_ArtilleryTarget : Command
-    {        
-        public Building_TurretGunCE turret;        
+    {     
+        public Building_TurretGunCE turret;
+
         public List<Command_ArtilleryTarget> others = null;
 
         public IEnumerable<Building_TurretGunCE> SelectedTurrets => others?.Select(o => o.turret) ?? new List<Building_TurretGunCE>() { turret };
@@ -79,7 +80,34 @@ namespace CombatExtended
                         return roof == null || roof == RoofDefOf.RoofConstructed;
                     });                                                
                     return false;
-                }                
+                }
+                if(targetInfo.WorldObject.Faction != null)
+                {
+                    Faction targetFaction = targetInfo.WorldObject.Faction;
+                    FactionRelation relation = targetFaction.RelationWith(turret.Faction, true);
+                    if(relation == null)
+                    {
+                        targetFaction.TryMakeInitialRelationsWith(turret.Faction);
+                    }
+                    if (!targetFaction.HostileTo(turret.Faction))
+                    {
+                        Find.WindowStack.Add(
+                            new Dialog_MessageBox(
+                                "CE_ArtilleryTarget_AttackingAllies".Translate().Formatted(targetInfo.WorldObject.Label, targetFaction.Name),
+                                "CE_Yes".Translate(),
+                                delegate
+                                {
+                                    TryAttack(turrets, targetInfo, LocalTargetInfo.Invalid);
+                                    Find.WorldTargeter.StopTargeting();
+                                },
+                                "CE_No".Translate(),
+                                delegate
+                                {
+                                    Find.WorldTargeter.StopTargeting();
+                                }, buttonADestructive: true));
+                        return false;
+                    }
+                }
                 return TryAttack(turrets, targetInfo, LocalTargetInfo.Invalid);
             }, true, closeWorldTabWhenFinished: true, onUpdate: ()=>
             {
@@ -87,34 +115,55 @@ namespace CombatExtended
                 {
                     foreach (var t in SelectedTurrets)
                     {
-                        if (t.MaxWorldRange != radius)                        
-                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);                        
+                        if (t.MaxWorldRange != radius)
+                        {
+                            GenDraw.DrawWorldRadiusRing(tile, (int)t.MaxWorldRange);
+                        }                        
                     }
                 }
                 GenDraw.DrawWorldRadiusRing(tile, radius);                
             }, extraLabelGetter: (targetInfo) =>
             {
-                int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(tile, targetInfo.Tile, true, maxDist: (int) (turret.MaxWorldRange * 1.5f));
+                int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(tile, targetInfo.Tile, true);
+                string distanceMessage = null;
+                if (others != null)
+                {
+                    int inRangeCount = 0;
+                    int count = 0;
+                    foreach (var t in SelectedTurrets)
+                    {
+                        count++;
+                        if(t.MaxWorldRange >= distanceToTarget)
+                        {
+                            inRangeCount++;
+                        }
+                    }
+                    distanceMessage = "CE_ArtilleryTarget_Distance_Selections".Translate().Formatted(distanceToTarget, inRangeCount, count);
+                }
+                else
+                {
+                    distanceMessage = "CE_ArtilleryTarget_Distance".Translate().Formatted(distanceToTarget, radius);
+                }
                 if (turret.MaxWorldRange > 0 && distanceToTarget > turret.MaxWorldRange)
                 {
                     GUI.color = ColorLibrary.RedReadable;
-                    return "CE_ArtilleryTarget_DestinationBeyondMaximumRange".Translate();
+                    return distanceMessage + "\n" + "CE_ArtilleryTarget_DestinationBeyondMaximumRange".Translate();
                 }
                 if (!targetInfo.HasWorldObject || targetInfo.WorldObject is Caravan)
                 {
                     GUI.color = ColorLibrary.RedReadable;
-                    return "CE_ArtilleryTarget_InvalidTarget".Translate();
+                    return distanceMessage + "\n" + "CE_ArtilleryTarget_InvalidTarget".Translate();
                 }
                 string extra = "";
                 if(targetInfo.WorldObject is Settlement settlement)
                 {
-                    extra = $": {settlement.Name}";
+                    extra = $" {settlement.Name}";
                     if(settlement.Faction != null && !settlement.Faction.name.NullOrEmpty())
                     {
                         extra += $" ({settlement.Faction.name})";
                     }
                 }
-                return "CE_ArtilleryTarget_ClickToOrderAttack".Translate() + extra;
+                return distanceMessage + "\n" + "CE_ArtilleryTarget_ClickToOrderAttack".Translate() + extra;
             });
             base.ProcessInput(ev);
         }

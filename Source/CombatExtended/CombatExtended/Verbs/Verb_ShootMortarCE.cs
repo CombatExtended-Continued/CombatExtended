@@ -282,5 +282,31 @@ namespace CombatExtended
             
             shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
         }
+
+        //private void CanHitFlyOverRoofTarget(IntVec3 source, IntVec3 destination)
+        //{
+        //    ShootLine shootLine = new ShootLine(source, destination);
+        //    Map map = caster.Map;
+        //    foreach (IntVec3 point in shootLine.Points())
+        //    {
+        //        RoofDef roofDef = point.GetRoof(map);
+        //        if (roofDef != null && roofDef != RoofDefOf.RoofConstructed)
+        //        {
+        //            if (caster.Faction.IsPlayerSafe())
+        //            {
+        //                if (caster is Pawn pawn)
+        //                {
+        //                    Messages.Message("CE_ArtilleryTarget_InvalidTarget_BlockedMountain_Pawn".Translate(), MessageTypeDefOf.RejectInput);
+        //                }
+        //                else
+        //                {
+        //                    Messages.Message("CE_ArtilleryTarget_InvalidTarget_BlockedMountain".Translate(), MessageTypeDefOf.RejectInput);
+        //                }
+        //            }
+        //            ResetCurrentTarget();
+        //            ResetForcedTarget();
+        //        }
+        //    }
+        //}
     }
 }

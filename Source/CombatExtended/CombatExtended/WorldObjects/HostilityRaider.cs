@@ -51,17 +51,22 @@ namespace CombatExtended.WorldObjects
             this.points = points;
             targetInfo = new GlobalTargetInfo(IntVec3.Zero, targetMap);
             targetInfo.tileInt = targetMap.Tile;                        
-            ticksToRaid = Rand.Range(3000, 30000);            
+            ticksToRaid = Rand.Range(3000, 15000);            
             return true;
         }
 
         private void DoRaid()
         {
+            string factionName = $"<color=red>{comp.parent.Faction.Name}</color>";
+            string objectName = $"<color=blue>{comp.parent.Label}</color>";
             StorytellerComp storytellerComp = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain);
             IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
             parms.faction = comp.parent.Faction;
             parms.points = points;
-            if(comp.parent.Faction.def.techLevel >= TechLevel.Industrial)
+            parms.customLetterDef = CE_LetterDefOf.CE_ThreatBig;            
+            parms.customLetterLabel = "CE_Message_CounterRaid_Label".Translate(factionName);
+            parms.customLetterText = "CE_Message_CounterRaid_Desc".Translate(factionName, objectName);
+            if (comp.parent.Faction.def.techLevel >= TechLevel.Industrial)
             {
                 if(Rand.Chance(Mathf.Min(points / 5000, 0.5f)))
                 {

@@ -79,7 +79,24 @@ namespace CombatExtended.WorldObjects
             Faction faction = parent.Faction;
             FactionStrengthTracker tracker = faction.GetStrengthTracker();
             if (parent is Settlement settlement)
-            {                
+            {
+                string message;
+                if (faction == null)
+                {
+                    message = "CE_Message_SettlementDestroyed_Description".Translate().Formatted(parent.Label);
+                }
+                else
+                {
+                    if (attackingFaction != null)
+                    {
+                        message = "CE_Message_SettlementDestroyed_Description_Responsibility".Translate(attackingFaction.Name, parent.Label, faction.Name);
+                    }
+                    else
+                    {
+                        message = "CE_Message_SettlementDestroyed_Faction_Description".Translate().Formatted(parent.Label, faction.Name);
+                    }
+                }
+                Find.LetterStack.ReceiveLetter("CE_Message_SettlementDestroyed_Label".Translate(), message, LetterDefOf.NeutralEvent);
                 parent.Destroy();
                 DestroyedSettlement destroyedSettlement = (DestroyedSettlement)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.DestroyedSettlement);
                 destroyedSettlement.tileInt = tile;
@@ -91,12 +108,22 @@ namespace CombatExtended.WorldObjects
                 Find.World.worldObjects.Add(destroyedSettlement);
                 if (tracker != null)
                 {
-                    tracker.Notify_SettlementDestroyed();                 
+                    tracker.Notify_SettlementDestroyed();                    
                 }
             }            
             else
             {
-                if(tracker != null && parent is Site)
+                string message = null;
+                if (faction == null)
+                {
+                    message = "CE_Message_SiteDestroyed".Translate().Formatted(parent.Label);
+                }
+                else
+                {
+                    message = "CE_Message_SiteDestroyed_Faction".Translate().Formatted(parent.Label, faction.Name);                    
+                }
+                Messages.Message(message, MessageTypeDefOf.SituationResolved);
+                if (tracker != null && parent is Site)
                 {
                     tracker.Notify_SiteDestroyed();                    
                 }
@@ -111,7 +138,7 @@ namespace CombatExtended.WorldObjects
                     relation = faction.RelationWith(attackingFaction, true);
                 }
                 faction.TryAffectGoodwillWith(attackingFaction, -100, true, true, HistoryEventDefOf.DestroyedEnemyBase, null);
-            }
+            }                        
         }
     }
 }

@@ -148,11 +148,12 @@ namespace CombatExtended
             ProjectilePropertiesCE pprops = projectile.def.projectile as ProjectilePropertiesCE;
             float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
             float shotAngle = ProjectileCE.GetShotAngle(shotSpeed, (destination - source).magnitude, -shotHeight, false, pprops.Gravity);
-
+            
             projectile.canTargetSelf = false;
             projectile.Position = sourceCell;
             projectile.SpawnSetup(map, false);
             projectile.Launch(launcher, source, shotAngle, shotRotation, shotHeight, shotSpeed);
+            projectile.cameraShakingInit = Rand.Range(0f, 2f);
         }
 
         private IntVec3 FindRandomImpactCell(Map map) => ShellingUtility.FindRandomImpactCell(map, shellDef);

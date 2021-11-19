@@ -600,16 +600,16 @@ namespace CombatExtended
             }
             if (localTarget.IsValid)
             {
-                OrderAttackWorldTile(targetInfo, localTarget.Cell);
+                TryOrderAttackWorldTile(targetInfo, localTarget.Cell);
             }
             else
             {
-                OrderAttackWorldTile(targetInfo, null);
+                TryOrderAttackWorldTile(targetInfo, null);
             }            
             return true;
         }
 
-        public virtual void OrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
+        public virtual void TryOrderAttackWorldTile(GlobalTargetInfo targetInf, IntVec3? cell = null)
         {
             int startingTile = Map.Tile;
             int destinationTile = targetInf.Tile;
@@ -626,15 +626,16 @@ namespace CombatExtended
             Vector3 exitCell = ray.GetPoint(dist);
             exitCell.x = Mathf.Clamp(exitCell.x, 0, mapSize.x - 1);
             exitCell.z = Mathf.Clamp(exitCell.z, 0, mapSize.z - 1);
-            exitCell.y = 0;                        
+            exitCell.y = 0;            
+
             if (cell.HasValue)
             {
                 targetInf.cellInt = cell.Value;
-            }            
+            }
             this.globalTargetInfo = targetInf;            
             this.forcedTarget = new LocalTargetInfo(exitCell.ToIntVec3());
             this.currentTargetInt = this.forcedTarget;
-            this.TryStartShootSomething(false);
+            this.TryStartShootSomething(false);            
         }
 
         public override IEnumerable<Gizmo> GetGizmos()              // Modified

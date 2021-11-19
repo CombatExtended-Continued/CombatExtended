@@ -13,17 +13,26 @@ namespace CombatExtended.WorldObjects
     {
         private const float SHELLING_FACTOR = 4f;
 
+        public const int SHELLER_MINCOOLDOWNTICKS = 300;
+        public const int SHELLER_MAXCOOLDOWNTICKS = 1200;
+        public const int SHELLER_MAXCOOLDOWNTICKS_TECHMULMAX = 3;
+        public const int SHELLER_MESSAGE_TICKSCOOLDOWN = 5000;
         public const int SHELLER_EXPIRYTICKS = 15000;            
         public const int SHELLER_MIN_TICKSBETWEENSHOTS = 30;
-        public const int SHELLER_MAX_TICKSBETWEENSHOTS = 80;
+        public const int SHELLER_MAX_TICKSBETWEENSHOTS = 240;
         public const int SHELLER_MIN_PROJECTILEPOINTS = 100;
         
+        private int lastMessageSentAt = -1;
         private int startedAt;        
         private int ticksToNextShot = 0;        
         private int shotsFired = 0;
         private int budget = 0;
         private Pawn shooter;
-        private GlobalTargetInfo target;       
+        private Faction targetFaction;
+        private GlobalTargetInfo target;
+
+        // TODO fix cooldown
+         private int cooldownTicks = -1;
 
         public HostilityComp comp;
        
@@ -42,13 +51,19 @@ namespace CombatExtended.WorldObjects
             Scribe_Values.Look(ref startedAt, "startedAt", -1);
             Scribe_Values.Look(ref shotsFired, "shotsFired", 0);            
             Scribe_Values.Look(ref ticksToNextShot, "ticksToNextShot", 0);
-            // TODO fix cooldown
-            // Scribe_Values.Look(ref cooldownTicks, "cooldownTicks", 0);
+            Scribe_References.Look(ref targetFaction, "targetFaction");
+            //TODO fix cooldown
+            Scribe_Values.Look(ref cooldownTicks, "cooldownTicks", 0);
             Scribe_TargetInfo.Look(ref target, "target");
         }
 
         public void ThrottledTick()
-        {            
+        {
+            if(cooldownTicks > 0)
+            {
+                cooldownTicks -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
+                return;
+            }
             if(!Shooting)
             {
                 return;
@@ -61,15 +76,20 @@ namespace CombatExtended.WorldObjects
             CastShot();
         }
 
-        public bool TryStartShelling(GlobalTargetInfo targetInfo, float points)
+        public bool TryStartShelling(GlobalTargetInfo targetInfo, float points, Faction targetFaction = null)
         {            
-            if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty())
+            if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty() || (target.Tile != -1 && targetInfo.Tile != target.Tile))
             {
                 return false;
-            }            
+            }
+            if (targetFaction != null && targetFaction.IsPlayer)
+            {
+                TrySendWarning();
+            }
+            this.targetFaction = targetFaction;            
             shooter = comp.parent.Faction.GetRandomWorldPawn();            
             target = targetInfo;
-            ticksToNextShot = GetTicksToShot();
+            ticksToNextShot = GetTicksToCooldown();
             budget = (int)(Mathf.CeilToInt(points) * SHELLING_FACTOR);
             FactionStrengthTracker tracker = comp.parent.Faction.GetStrengthTracker();
             if (tracker != null)
@@ -77,9 +97,7 @@ namespace CombatExtended.WorldObjects
                 budget = (int)(budget * Mathf.Max(tracker.StrengthPointsMultiplier, 0.5f));
             }            
             startedAt = GenTicks.TicksGame;
-            shotsFired = 0;
-            // TODO fix cooldown
-            // cooldownTicks = -1;            
+            shotsFired = 0;            
             return true;
         }
 
@@ -89,7 +107,7 @@ namespace CombatExtended.WorldObjects
             ticksToNextShot = 0;
             startedAt = -1;
             budget = -1;
-            target = GlobalTargetInfo.Invalid;
+            target = GlobalTargetInfo.Invalid;            
             shooter = null;
         }        
 
@@ -103,9 +121,8 @@ namespace CombatExtended.WorldObjects
             shotsFired++;
             if (responseProjectile == null)
             {
-                Stop();
-                // TODO fix cooldown
-                //cooldownTicks = GetTicksToCooldown();
+                Stop();                
+                cooldownTicks = GetTicksToCooldown();
                 return;
             }
             budget -= (int)responseProjectile.points;
@@ -113,12 +130,15 @@ namespace CombatExtended.WorldObjects
             LaunchProjectile(responseProjectile.projectile);
             if (budget <= AvailableProjectiles.Min(p => p.points))
             {
-                Stop();
-                // TODO fix cooldown
-                //cooldownTicks = GetTicksToCooldown();
+                Stop();                
+                cooldownTicks = GetTicksToCooldown();
                 return;
             }
             ticksToNextShot = GetTicksToShot();
+            if (targetFaction != null && targetFaction.IsPlayer)
+            {
+                TrySendWarning();
+            }
         }
 
         private void LaunchProjectile(ThingDef projectileDef)
@@ -157,10 +177,19 @@ namespace CombatExtended.WorldObjects
             return Rand.Range((int)minProjectiles, (int)avgProjectiles);
         }
 
-        // TODO fix cooldown
-        // private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS, Mathf.Max(7 - (int)comp.parent.Faction.def.techLevel, 4) * SHELLER_MINCOOLDOWNTICKS);
 
-        private int GetTicksToShot() => Rand.Range(SHELLER_MIN_TICKSBETWEENSHOTS, SHELLER_MAX_TICKSBETWEENSHOTS);
+        private void TrySendWarning()
+        {
+            if (GenTicks.TicksGame - lastMessageSentAt > SHELLER_MESSAGE_TICKSCOOLDOWN || lastMessageSentAt == -1)
+            {
+                lastMessageSentAt = GenTicks.TicksGame;                
+                Messages.Message("CE_Message_CounterShelling".Translate(comp.parent.Label, comp.parent.Faction.Name), MessageTypeDefOf.ThreatBig);
+            }
+        }
+        
+        private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS, Mathf.Clamp(7 - (int)comp.parent.Faction.def.techLevel, 1, SHELLER_MAXCOOLDOWNTICKS_TECHMULMAX) * SHELLER_MAXCOOLDOWNTICKS);
+
+        private int GetTicksToShot() => Rand.Range(SHELLER_MIN_TICKSBETWEENSHOTS, SHELLER_MAX_TICKSBETWEENSHOTS);        
     }
 }
 

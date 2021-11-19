@@ -70,8 +70,9 @@ namespace CombatExtended
             {
                 return intendedTarget.Thing;
             }
-        }        
+        }
 
+        public float cameraShakingInit = -1f;
         public ThingDef equipmentDef;
         public Thing launcher;        
         public LocalTargetInfo intendedTarget;
@@ -1058,6 +1059,10 @@ namespace CombatExtended
 
         public virtual void Impact(Thing hitThing)
         {
+            if(cameraShakingInit > 0f && Find.CameraDriver != null)
+            {
+                Find.CameraDriver.shaker.DoShake(cameraShakingInit);
+            }
             if (def.HasModExtension<EffectProjectileExtension>())
             {
                 def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
