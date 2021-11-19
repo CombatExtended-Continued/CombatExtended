@@ -11,7 +11,7 @@ namespace CombatExtended.WorldObjects
 {
     public class HostilitySheller : IExposable
     {
-        private const float SHELLING_FACTOR = 4f;
+        private const float SHELLING_FACTOR = 3.5f;
 
         public const int SHELLER_MINCOOLDOWNTICKS = 300;
         public const int SHELLER_MAXCOOLDOWNTICKS = 1200;
@@ -32,7 +32,7 @@ namespace CombatExtended.WorldObjects
         private GlobalTargetInfo target;
 
         // TODO fix cooldown
-         private int cooldownTicks = -1;
+        private int cooldownTicks = -1;
 
         public HostilityComp comp;
        
@@ -78,7 +78,7 @@ namespace CombatExtended.WorldObjects
 
         public bool TryStartShelling(GlobalTargetInfo targetInfo, float points, Faction targetFaction = null)
         {            
-            if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty() || (target.Tile != -1 && targetInfo.Tile != target.Tile))
+            if (Shooting || targetInfo.Tile < 0 || points <= 0 || comp.AvailableProjectiles.NullOrEmpty())
             {
                 return false;
             }
