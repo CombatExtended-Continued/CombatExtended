@@ -11,7 +11,7 @@ namespace CombatExtended.WorldObjects
 {
     public class HostilitySheller : IExposable
     {
-        private const float SHELLING_FACTOR = 1f;
+        private const float SHELLING_FACTOR = 4f;
 
         public const int SHELLER_EXPIRYTICKS = 15000;
         public const int SHELLER_MINCOOLDOWNTICKS = 7500;        
@@ -20,10 +20,9 @@ namespace CombatExtended.WorldObjects
         public const int SHELLER_MIN_PROJECTILEPOINTS = 100;
 
         private int cooldownTicks = 0;
-        private int startedAt;
-        private int ticksToNextShot = 0;
+        private int startedAt;        
+        private int ticksToNextShot = 0;        
         private int shotsFired = 0;
-        private int totalShots = 0;
         private int budget = 0;
         private Pawn shooter;
         private GlobalTargetInfo target;       
@@ -36,15 +35,14 @@ namespace CombatExtended.WorldObjects
         }
         public bool Shooting
         {
-            get => totalShots > 0 && totalShots > shotsFired && budget > 0 && GenTicks.TicksGame - startedAt < SHELLER_EXPIRYTICKS;
+            get => budget > 0 && GenTicks.TicksGame - startedAt < SHELLER_EXPIRYTICKS;
         }        
 
         public void ExposeData()
         {            
             Scribe_Values.Look(ref budget, "budget", 0);
             Scribe_Values.Look(ref startedAt, "startedAt", -1);
-            Scribe_Values.Look(ref shotsFired, "shotsFired", 0);
-            Scribe_Values.Look(ref totalShots, "totalShots", 0);
+            Scribe_Values.Look(ref shotsFired, "shotsFired", 0);            
             Scribe_Values.Look(ref ticksToNextShot, "ticksToNextShot", 0);
             Scribe_Values.Look(ref cooldownTicks, "cooldownTicks", 0);
             Scribe_TargetInfo.Look(ref target, "target");
@@ -52,7 +50,7 @@ namespace CombatExtended.WorldObjects
 
         public void ThrottledTick()
         {
-            if(cooldownTicks > 0)
+            if(cooldownTicks > 0 && !Shooting)
             {
                 cooldownTicks -= WorldObjectTrackerCE.THROTTLED_TICK_INTERVAL;
                 return;
@@ -77,7 +75,7 @@ namespace CombatExtended.WorldObjects
             }
             if (cooldownTicks > 0)
             {
-                cooldownTicks = (int) (cooldownTicks *  Mathf.Min(5000 / points, 0.5f)); // so if you keep attacking them they finish the cooldown faster
+                cooldownTicks = (int)(cooldownTicks * 0.5f - SHELLER_MINCOOLDOWNTICKS); // so if you keep attacking them they finish the cooldown faster
                 return false;
             }
             shooter = comp.parent.Faction.GetRandomWorldPawn();            
@@ -88,19 +86,17 @@ namespace CombatExtended.WorldObjects
             if (tracker != null)
             {
                 budget = (int)(budget * Mathf.Max(tracker.StrengthPointsMultiplier, 0.5f));
-            }
-            totalShots = GetPointsTotalShots(Mathf.CeilToInt(points));
+            }            
             startedAt = GenTicks.TicksGame;
             shotsFired = 0;                                   
             cooldownTicks = -1;
-            Log.Message($"budget: {budget}, totalshots: {totalShots}");
+            Log.Message($"budget: {budget}, totalshots: {shotsFired}");
             return true;
         }
 
         public void Stop()
         {
-            shotsFired = 0;
-            totalShots = 0;
+            shotsFired = 0;            
             ticksToNextShot = 0;
             startedAt = -1;
             budget = 0;
@@ -110,10 +106,10 @@ namespace CombatExtended.WorldObjects
 
         private void CastShot()
         {                        
-            float shotsRemainingMinPoints = (totalShots - shotsFired) * SHELLER_MIN_PROJECTILEPOINTS;
-            float distance = Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true);
+            //float shotsRemainingMinPoints = (totalShots - shotsFired) * SHELLER_MIN_PROJECTILEPOINTS;
+            //float distance = Find.WorldGrid.TraversalDistanceBetween(target.Tile, comp.parent.Tile, true);
             ShellingResponseDef.ShellingResponsePart_Projectile responseProjectile = AvailableProjectiles
-                .Where(p => (budget - p.points) > shotsRemainingMinPoints && p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= distance * 0.5f)
+                .Where(p => (budget - p.points) > 0) // p.projectile.projectile is ProjectilePropertiesCE propEC && propEC.shellingProps.range >= distance * 0.5f
                 .RandomElementByWeightWithFallback(p => p.weight, null);
 
             shotsFired++;
@@ -126,7 +122,7 @@ namespace CombatExtended.WorldObjects
             budget -= (int)responseProjectile.points;
 
             LaunchProjectile(responseProjectile.projectile);
-            if (shotsFired >= totalShots && budget <= SHELLER_MIN_PROJECTILEPOINTS / 2)
+            if (budget <= AvailableProjectiles.Min(p => p.points))
             {
                 Stop();
                 cooldownTicks = GetTicksToCooldown();
@@ -161,8 +157,14 @@ namespace CombatExtended.WorldObjects
 
         private int GetPointsTotalShots(int points)
         {
-            float weightSum = AvailableProjectiles.Sum(p => p.weight);
-            return (int)(points / Rand.Range(SHELLER_MIN_PROJECTILEPOINTS, Mathf.Max(AvailableProjectiles.Sum(p => p.points * p.weight / weightSum), SHELLER_MIN_PROJECTILEPOINTS * 2f)));
+            float minProjectiles = points / AvailableProjectiles.Min(p => p.points);
+            float avgProjectiles = AvailableProjectiles.Sum(p => points / p.points) / AvailableProjectiles.Count;
+            if(avgProjectiles - minProjectiles + SHELLER_MIN_PROJECTILEPOINTS < 0)
+            {
+                avgProjectiles = minProjectiles;
+                minProjectiles = minProjectiles / 2 + 1;
+            }
+            return Rand.Range((int)minProjectiles, (int)avgProjectiles);
         }
 
         private int GetTicksToCooldown() => Rand.Range(SHELLER_MINCOOLDOWNTICKS, Mathf.Max(7 - (int)comp.parent.Faction.def.techLevel, 4) * SHELLER_MINCOOLDOWNTICKS);
