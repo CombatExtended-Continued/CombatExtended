@@ -4,6 +4,7 @@ using System.Linq;
 using CombatExtended.WorldObjects;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended.WorldObjects
@@ -60,6 +61,21 @@ namespace CombatExtended.WorldObjects
             IncidentParms parms = storytellerComp.GenerateParms(IncidentCategoryDefOf.ThreatBig, Find.CurrentMap);
             parms.faction = comp.parent.Faction;
             parms.points = points;
+            if(comp.parent.Faction.def.techLevel >= TechLevel.Industrial)
+            {
+                if(Rand.Chance(Mathf.Min(points / 5000, 0.5f)))
+                {
+                    parms.raidArrivalMode =  PawnsArrivalModeDefOf.CenterDrop;
+                }
+                else
+                {
+                    parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeDrop;
+                }
+            }
+            else
+            {
+                parms.raidArrivalMode = PawnsArrivalModeDefOf.EdgeWalkIn;
+            }            
             IncidentDef incidentDef = IncidentDefOf.RaidEnemy;            
             List<RaidStrategyDef> source = DefDatabase<RaidStrategyDef>.AllDefs.Where((RaidStrategyDef s) => s.Worker.CanUseWith(parms, PawnGroupKindDefOf.Combat)).ToList();                            
             parms.raidStrategy = source.RandomElement();
