@@ -19,6 +19,12 @@ namespace CombatExtended
         /// </summary>
         internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
 
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isFlamableArray = new FlagArray(ushort.MaxValue);
+
         // <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
@@ -56,7 +62,11 @@ namespace CombatExtended
 
             // Prepare weaponPlatforms
             foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
-                def.PrepareStats();            
+                def.PrepareStats();
+
+            // Prepare things
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
+                ProcessThing(def);
         }
 
         /// <summary>
@@ -91,6 +101,18 @@ namespace CombatExtended
         public static bool IsMenuHidden(this ThingDef def)
         {
             return isMenuHiddenArray[def.index];
+        }
+
+
+        /// <summary>
+        /// Check is this ThingDef is MenuHidden. This replace the old removed menuHidden field.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <returns>Is menu hidden</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFlamable(this ThingDef def)
+        {
+            return isFlamableArray[def.index];
         }
 
         /// <summary>
@@ -151,6 +173,16 @@ namespace CombatExtended
              */
             if (layer != null)
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
+        }
+
+        /// <summary>
+        /// Process general attributes of things
+        /// </summary>
+        /// <param name="def">Thing def</param>        
+        private static void ProcessThing(ThingDef def)
+        {
+            if (def.useHitPoints)            
+                isFlamableArray[def.index] = def.IsFlamable();            
         }
 
         /// <summary>
