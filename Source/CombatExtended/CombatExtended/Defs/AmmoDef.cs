@@ -10,6 +10,10 @@ namespace CombatExtended
 {
     public class AmmoDef : ThingDef
     {
+        /// <summary>
+        /// Multiplier for recoil
+        /// </summary>
+        public float RecoilMult = 1f;
         public AmmoCategoryDef ammoClass;
         public int defaultAmmoCount = 1;
         public float cookOffSpeed = 1f;
