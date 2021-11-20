@@ -12,14 +12,14 @@ namespace CombatExtended
 
         private const float MAP_SHELLMINDAMAGE = 180;
         private const float MAP_SHELLMAXDAMAGE = 800;
-        private const float MAP_SHELLMINRADIUS = 4f;
+        private const float MAP_SHELLMINRADIUS = 6f;
         private const float MAP_SHELLMAXRADIUS = 20f;
         private const float MAP_BURNCHANCE = 0.3334f;
 
-        private const int MAP_MINSITECOUNT = 5;
+        private const int MAP_MINSITECOUNT = 6;
         private const int MAP_GENLIMITER = 50;
 
-        private const int SHADOW_CARRYLIMIT = 10;
+        private const int SHADOW_CARRYLIMIT = 5;
         private const float SITE_MINDIST = 2;
       
         private struct DamagedSite
@@ -100,8 +100,8 @@ namespace CombatExtended
                     return;
                 }                                
                 List<Thing> things = cell.GetThingList(map);
-                bool filthMade = false;
-                int damageCell = (int)(damageBase * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);                                         
+                var filthMade = false;
+                var damageCell = (int)(damageBase * (SHADOW_CARRYLIMIT - carry) / SHADOW_CARRYLIMIT);                                         
                 for (int i = 0;i < things.Count; i++)
                 {
                     Thing thing = things[i];
@@ -109,7 +109,7 @@ namespace CombatExtended
                     {
                         continue;
                     }                                                         
-                    thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 4 : 2);
+                    thing.hitPointsInt -= damageCell * (thing.IsPlant() ? 3 : 1);
                     if (thing.hitPointsInt > 0)
                     {
                         if (!filthMade && Rand.Chance(0.5f))
@@ -117,7 +117,7 @@ namespace CombatExtended
                             ScatterDebrisUtility.ScatterFilthAroundThing(thing, map, ThingDefOf.Filth_RubbleBuilding);
                             filthMade = true;
                         }
-                        if (thing.def.BaseFlammability > 0.01f && Rand.Chance(0.1f))
+                        if (Rand.Chance(0.1f))
                         {                            
                             FireUtility.TryStartFireIn(cell, map, Rand.Range(0.5f, 1.5f));
                         }
@@ -150,6 +150,10 @@ namespace CombatExtended
                 }
                 map.snowGrid.SetDepth(cell, 0);
                 map.roofGrid.SetRoof(cell, null);
+                if(Rand.Chance(0.33f) && map.terrainGrid.CanRemoveTopLayerAt(cell))
+                {
+                    map.terrainGrid.RemoveTopLayer(cell, false);
+                }
             };            
             processor(origin, 0);
             ShadowCastingUtility.CastWeighted(map, origin, processor, radius, SHADOW_CARRYLIMIT, out int count);            
