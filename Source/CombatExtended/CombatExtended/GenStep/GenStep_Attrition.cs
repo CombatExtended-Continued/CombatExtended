@@ -45,14 +45,12 @@ namespace CombatExtended
         {
             this.map = map;            
             damagedSites.Clear();                               
-            healthComp = this.map.Parent?.GetComponent<WorldObjects.HealthComp>() ?? null;
-            float health = healthComp?.Health ?? 2.0f;
-            health = 0.1f;
-            if (health < 0.999f)
-            {
+            healthComp = this.map.Parent?.GetComponent<WorldObjects.HealthComp>() ?? null;           
+            if (healthComp != null && healthComp.Health < 0.98f)
+            {                           
                 try
                 {
-                    siteCount = (int)((1 - health) / WORLD_SHELLDAMAGE);
+                    siteCount = (int)((1 - healthComp.Health) / WORLD_SHELLDAMAGE);
                     if (siteCount > 0)
                     {
                         siteCount = Mathf.Max(siteCount, MAP_MINSITECOUNT);                        
@@ -77,15 +75,14 @@ namespace CombatExtended
                                 radius = GetRandomRadius();
                                 damagedSites.Add(site);
                             }                            
-                        }
-                        
+                        }                        
                     }
                 }
                 catch (Exception er)
                 {
                     Log.Error($"CE: GenStep_Attrition Failed with error {er}");
                 }
-            }            
+            }                      
             this.map = null;
             this.damagedSites.Clear();
             this.healthComp = null;
@@ -149,8 +146,8 @@ namespace CombatExtended
                     }
                 }
                 map.snowGrid.SetDepth(cell, 0);
-                map.roofGrid.SetRoof(cell, null);
-                if(Rand.Chance(0.33f) && map.terrainGrid.CanRemoveTopLayerAt(cell))
+                map.roofGrid.SetRoof(cell, null);                
+                if (Rand.Chance(0.33f) && map.terrainGrid.CanRemoveTopLayerAt(cell))
                 {
                     map.terrainGrid.RemoveTopLayer(cell, false);
                 }
