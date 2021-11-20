@@ -14,11 +14,13 @@ namespace CombatExtended.WorldObjects
     //
     public class HostilityRaider : IExposable
     {
-        public HostilityComp comp;
-
         private int ticksToRaid = -1;
-        private IncidentParms parms;        
+
+        private IncidentParms parms;
+
         private float points = -1;
+
+        public HostilityComp comp;        
 
         public HostilityRaider()
         {
@@ -41,6 +43,8 @@ namespace CombatExtended.WorldObjects
             ticksToRaid = -1;
         }
 
+        // TODO
+        // Move this to a queue based system
         public bool TryRaid(Map targetMap, float points)
         {
             FactionStrengthTracker tracker =  comp.parent.Faction.GetStrengthTracker();
