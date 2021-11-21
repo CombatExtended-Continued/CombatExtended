@@ -17,6 +17,11 @@ namespace CombatExtended
         /// <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
+        internal static FlagArray isRadioArray = new FlagArray(ushort.MaxValue);
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
         internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
 
 
@@ -162,6 +167,16 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Return wether this ThingDef is an apparel radio pack
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>If this ThingDef is an apparel radio pack</returns>
+        public static bool IsRadioPack(this ThingDef def)
+        {
+            return isRadioArray[def.index];
+        }
+
+        /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
         /// <param name="def">Apparel def</param>        
@@ -173,6 +188,21 @@ namespace CombatExtended
              */
             if (layer != null)
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
+            /*
+             * cache ApparelDefExtension fields
+             */
+            if (def.HasModExtension<ApparelDefExtension>())
+            {
+                ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
+                /*
+                 * wether this apparel is a radio pack
+                 */
+                isRadioArray[def.index] = extension.isRadioPack;
+                if (extension.isRadioPack)
+                {
+                    Log.Message($"{def}");
+                }
+            }
         }
 
         /// <summary>

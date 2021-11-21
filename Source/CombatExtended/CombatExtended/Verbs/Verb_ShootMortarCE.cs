@@ -4,6 +4,8 @@ using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using CombatExtended.Utilities;
+using System.Collections.Generic;
 
 namespace CombatExtended
 {
@@ -107,11 +109,11 @@ namespace CombatExtended
             {
                 return null;
             }
-            ShiftVecReport report = base.ShiftVecReportFor(target);            
+            ShiftVecReport report = base.ShiftVecReportFor(target);
             report.circularMissRadius = GetGlobalMissRadiusForDist(report.shotDist);
             report.weatherShift = (1f - globalTargetInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - globalSourceInfo.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
-
-            ArtilleryMarker marker = null;
+            
+             ArtilleryMarker marker = null;
             if (target.HasThing && target.Thing.HasAttachment(ThingDef.Named(ArtilleryMarker.MarkerDef)))
             {
                 marker = (ArtilleryMarker)target.Thing.GetAttachment(ThingDef.Named(ArtilleryMarker.MarkerDef));
@@ -136,7 +138,6 @@ namespace CombatExtended
             }
             return report;
         }
-
 
         protected virtual LocalTargetInfo GetLocalTargetFor(GlobalTargetInfo targetInfo)
         {            
@@ -281,32 +282,6 @@ namespace CombatExtended
             var shiftedTarg  = ray.GetPoint((estimatedTargDist - shotDist)) + missVec + spreadVec;
             
             shiftedGlobalCell = new IntVec3((int)shiftedTarg.x, 0, (int)shiftedTarg.y);            
-        }
-
-        //private void CanHitFlyOverRoofTarget(IntVec3 source, IntVec3 destination)
-        //{
-        //    ShootLine shootLine = new ShootLine(source, destination);
-        //    Map map = caster.Map;
-        //    foreach (IntVec3 point in shootLine.Points())
-        //    {
-        //        RoofDef roofDef = point.GetRoof(map);
-        //        if (roofDef != null && roofDef != RoofDefOf.RoofConstructed)
-        //        {
-        //            if (caster.Faction.IsPlayerSafe())
-        //            {
-        //                if (caster is Pawn pawn)
-        //                {
-        //                    Messages.Message("CE_ArtilleryTarget_InvalidTarget_BlockedMountain_Pawn".Translate(), MessageTypeDefOf.RejectInput);
-        //                }
-        //                else
-        //                {
-        //                    Messages.Message("CE_ArtilleryTarget_InvalidTarget_BlockedMountain".Translate(), MessageTypeDefOf.RejectInput);
-        //                }
-        //            }
-        //            ResetCurrentTarget();
-        //            ResetForcedTarget();
-        //        }
-        //    }
-        //}
+        }               
     }
 }

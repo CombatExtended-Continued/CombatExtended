@@ -52,7 +52,7 @@ namespace CombatExtended
         public bool isReloading = false;
         private int ticksUntilAutoReload = 0;
         private bool everSpawned = false;
-        private GlobalTargetInfo globalTargetInfo;
+        private GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
         
         #endregion
 
@@ -249,7 +249,11 @@ namespace CombatExtended
         }
 
         public override void OrderAttack(LocalTargetInfo targ)      // Core method
-        {
+        {            
+            if (globalTargetInfo.IsValid)
+            {
+                this.ResetForcedTarget();                
+            }
             if (!targ.IsValid)
             {
                 if (this.forcedTarget.IsValid)
@@ -257,7 +261,7 @@ namespace CombatExtended
                     this.ResetForcedTarget();
                 }
                 return;
-            }
+            }            
             if ((targ.Cell - base.Position).LengthHorizontal < this.GunCompEq.PrimaryVerb.verbProps.minRange)
             {
                 Messages.Message("MessageTargetBelowMinimumRange".Translate(), this, MessageTypeDefOf.RejectInput);
@@ -267,7 +271,7 @@ namespace CombatExtended
             {
                 Messages.Message("MessageTargetBeyondMaximumRange".Translate(), this, MessageTypeDefOf.RejectInput);
                 return;
-            }
+            }            
             if (this.forcedTarget != targ)
             {
                 this.forcedTarget = targ;
