@@ -18,17 +18,21 @@ namespace CombatExtended
 		public override void TransformValue(StatRequest req, ref float val)
 		{
 			var varA = req.Thing.TryGetComp<bipodcomp>();
-			if (varA != null)
+			if (Controller.settings.bipodMechanics)
 			{
-				if (varA.IsSetUpRn == true)
+				if (varA != null)
 				{
-					val *= varA.Props.recoilmulton;
-				}
-				else
-				{
-					val *= varA.Props.recoilmultoff;
+					if (varA.IsSetUpRn == true)
+					{
+						val *= varA.Props.recoilmulton;
+					}
+					else
+					{
+						val *= varA.Props.recoilmultoff;
+					}
 				}
 			}
+			
 		}
 
 		public override string ExplanationPart(StatRequest req)
@@ -38,11 +42,55 @@ namespace CombatExtended
 			{
 				if (varA.IsSetUpRn == true)
 				{
-					return "Bipod is set up - " + varA.Props.recoilmulton.ToString().Colorize(Color.blue);
+					return "Bipod IS set up - " + varA.Props.recoilmulton.ToString().Colorize(Color.blue);
 				}
 				else
 				{
 					return "Bipod is NOT set up - " + varA.Props.recoilmultoff.ToString().Colorize(Color.blue);
+				}
+			}
+			else
+			{
+				return "";
+			}
+		}
+	}
+
+
+	public class Bipod_Sway_StatPart : StatPart
+	{
+		public override void TransformValue(StatRequest req, ref float val)
+		{
+			var varA = req.Thing.TryGetComp<bipodcomp>();
+			if (Controller.settings.bipodMechanics)
+			{
+				if (varA != null)
+				{
+					if (varA.IsSetUpRn == true)
+					{
+						val *= varA.Props.swaymult;
+					}
+					else
+					{
+						val *= varA.Props.warmuppenalty;
+					}
+				}
+			}
+
+		}
+
+		public override string ExplanationPart(StatRequest req)
+		{
+			var varA = req.Thing.TryGetComp<bipodcomp>();
+			if (varA != null)
+			{
+				if (varA.IsSetUpRn == true)
+				{
+					return "Bipod IS set up - " + varA.Props.swaymult.ToString().Colorize(Color.blue);
+				}
+				else
+				{
+					return "Bipod is NOT set up - " + varA.Props.swaypenalty.ToString().Colorize(Color.blue);
 				}
 			}
 			else
