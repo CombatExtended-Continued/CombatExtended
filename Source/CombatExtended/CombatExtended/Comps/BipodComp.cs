@@ -14,7 +14,32 @@ namespace CombatExtended
 {
 	public class bipodcomp : CompRangedGizmoGiver
 	{
-		public bool ShouldSetUp;
+		public bool ShouldSetUpint = false;
+		public bool ShouldSetUp
+		{
+			get
+			{
+				bool result = false;
+				if (Controller.settings.autosetup)
+				{
+					var varA = this.parent.TryGetComp<CompFireModes>();
+					if (varA.CurrentAimMode != AimMode.Snapshot)
+					{
+						return true;
+					}
+				}
+				else
+				{
+					return ShouldSetUpint;
+				}
+
+				return result;
+			}
+			set
+			{
+
+			}
+		}
 
 		public bool IsSetUpRn;
 
@@ -25,33 +50,69 @@ namespace CombatExtended
 		}
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
-			if (this.ParentHolder is Pawn_EquipmentTracker)
+			if (Controller.settings.bipodMechanics)
 			{
-				Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
-				if (dad.Drafted)
+				if (Controller.settings.autosetup)
 				{
-					if (!ShouldSetUp)
+					if (this.ParentHolder is Pawn_EquipmentTracker)
 					{
-						yield return new Command_Action
+						Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
+						if (dad.Drafted)
 						{
-							action = delegate { ShouldSetUp = true; },
-							defaultLabel = "Set up bipod",
-							icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
-						};
+							if (IsSetUpRn)
+							{
+								yield return new Command_Action
+								{
+									action = delegate {},
+									defaultLabel = "Bipod IS set up",
+									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
+								};
+							}
+							else
+							{
+								yield return new Command_Action
+								{
+									action = delegate { },
+									defaultLabel = "Bipod IS NOT set up",
+									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
+								};
+							}
+						}
 					}
-					else
+				}
+				else
+				{
+					if (this.ParentHolder is Pawn_EquipmentTracker)
 					{
-						yield return new Command_Action
+						Pawn dad = ((Pawn_EquipmentTracker)this.ParentHolder).pawn;
+						if (dad.Drafted)
 						{
-							action = delegate { ShouldSetUp = false; },
-							defaultLabel = "Close bipod",
-							icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
-						};
+							if (!ShouldSetUpint)
+							{
+								yield return new Command_Action
+								{
+									action = delegate { ShouldSetUpint = true; },
+									defaultLabel = "Set up bipod",
+									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
+								};
+							}
+							else
+							{
+								yield return new Command_Action
+								{
+									action = delegate { ShouldSetUpint = false; },
+									defaultLabel = "Close bipod",
+									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
+								};
+
+							}
+						}
 
 					}
 				}
-
+				
 			}
+			
 
 
 		}
