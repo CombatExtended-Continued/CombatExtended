@@ -38,52 +38,56 @@ namespace CombatExtended
 
 		public override void VerbTickCE()
 		{
-			if (CasterPawn.Drafted)
+			if (Controller.settings.bipodMechanics)
 			{
-				if (!(CasterPawn.ParentHolder is Map))
+				if (CasterPawn.Drafted)
 				{
-					return;
-				}
-				if (CasterPawn != null)
-				{
-					if (!CasterPawn.pather.Moving && EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn)
+					if (!(CasterPawn.ParentHolder is Map))
 					{
-						if (!WereChangesApplied1)
+						return;
+					}
+					if (CasterPawn != null)
+					{
+						if (!CasterPawn.pather.Moving && EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn)
 						{
-							VerbPropertiesCE VerbPropsClone = (VerbPropertiesCE)this.verbProps.MemberwiseClone();
-							VerbPropsClone.warmupTime = verpbrops.warmupTime * bipodcomp.Props.warmupmult;
-							VerbPropsClone.range += EquipmentSource.TryGetComp<bipodcomp>().Props.additionalrange;
-							this.verbProps = VerbPropsClone;
-							WereChangesApplied1 = true;
+							if (!WereChangesApplied1)
+							{
+								VerbPropertiesCE VerbPropsClone = (VerbPropertiesCE)this.verbProps.MemberwiseClone();
+								VerbPropsClone.warmupTime = verpbrops.warmupTime * bipodcomp.Props.warmupmult;
+								VerbPropsClone.range += EquipmentSource.TryGetComp<bipodcomp>().Props.additionalrange;
+								this.verbProps = VerbPropsClone;
+								WereChangesApplied1 = true;
+							}
+
+
 						}
-
-
-					}
-					if (!CasterPawn.pather.Moving && !EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn)
-					{
-						if (!WereChangesApplied2)
+						if (!CasterPawn.pather.Moving && !EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn)
 						{
-							VerbPropertiesCE VerbPropsClone = (VerbPropertiesCE)this.verbProps.MemberwiseClone();
-							VerbPropsClone.warmupTime = verpbrops.warmupTime * bipodcomp.Props.warmuppenalty;
-							VerbPropsClone.range = verpbrops.range;
-							this.verbProps = VerbPropsClone;
-							WereChangesApplied2 = true;
-						}
+							if (!WereChangesApplied2)
+							{
+								VerbPropertiesCE VerbPropsClone = (VerbPropertiesCE)this.verbProps.MemberwiseClone();
+								VerbPropsClone.warmupTime = verpbrops.warmupTime * bipodcomp.Props.warmuppenalty;
+								VerbPropsClone.range = verpbrops.range;
+								this.verbProps = VerbPropsClone;
+								WereChangesApplied2 = true;
+							}
 
-					}
-					if (!CasterPawn.pather.Moving && EquipmentSource.TryGetComp<bipodcomp>().ShouldSetUp && CasterPawn.CurJob.def != BipodDefsOfs.JobDef_SetUpBipod && !bipodcomp.IsSetUpRn)
-					{
-						EquipmentSource.TryGetComp<bipodcomp>().SetUpStart(CasterPawn);
-					}
-					if (CasterPawn.pather.Moving)
-					{
-						WereChangesApplied1 = false;
-						WereChangesApplied2 = false;
-						EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn = false;
-						this.verbProps = EquipmentSource.def.Verbs.Find(tt33 => tt33.verbClass == typeof(Verb_ShootWithBipod)).MemberwiseClone();
+						}
+						if (!CasterPawn.pather.Moving && EquipmentSource.TryGetComp<bipodcomp>().ShouldSetUp && CasterPawn.CurJob.def != BipodDefsOfs.JobDef_SetUpBipod && !bipodcomp.IsSetUpRn)
+						{
+							EquipmentSource.TryGetComp<bipodcomp>().SetUpStart(CasterPawn);
+						}
+						if (CasterPawn.pather.Moving)
+						{
+							WereChangesApplied1 = false;
+							WereChangesApplied2 = false;
+							EquipmentSource.TryGetComp<bipodcomp>().IsSetUpRn = false;
+							this.verbProps = EquipmentSource.def.Verbs.Find(tt33 => tt33.verbClass == typeof(Verb_ShootWithBipod)).MemberwiseClone();
+						}
 					}
 				}
 			}
+			
 
 
 
