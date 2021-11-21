@@ -223,10 +223,11 @@ namespace CombatExtended
                 {
                     map.terrainGrid.RemoveTopLayer(cell, false);
                 }
-                if (Rand.Chance(0.05f))
-                {
-                    FireUtility.TryStartFireIn(cell, map, Rand.Range(0.5f, 1.5f));
-                }
+                //
+                // if (Rand.Chance(0.05f))
+                // {
+                //     FireUtility.TryStartFireIn(cell, map, Rand.Range(0.5f, 1.5f));
+                // }
             };
             processor(center, 0);
             ShadowCastingUtility.CastWeighted(map, center, processor, request.radius, SHADOW_CARRYLIMIT, out int count);            
