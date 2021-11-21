@@ -7,6 +7,11 @@ namespace CombatExtended
     public static class AmmoUtility
     {
         /// <summary>
+        /// Multiplier used to scale the armor penetration of a given projectile's explosion
+        /// </summary>
+        private const float ExplosiveArmorPenetrationMultiplier = 0.25f;
+
+        /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
         ///     display in info-box
         /// </summary>
@@ -56,7 +61,7 @@ namespace CombatExtended
                     && props.damageDef != DamageDefOf.Extinguish
                     && props.damageDef != DamageDefOf.Smoke)
                 {
-                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + GenExplosionCE.GetExplosionAP(props) + " " + "CE_MPa".Translate());
+                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.GetExplosionArmorPenetration() + " " + "CE_MPa".Translate());
                 }
             }
             else
@@ -103,6 +108,16 @@ namespace CombatExtended
 
             return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// Determine the armor penetration value of a given projectile type's explosion.
+        /// </summary>
+        public static float GetExplosionArmorPenetration(this ProjectileProperties props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
+
+        /// <summary>
+        /// Determine the armor penetration value of a given explosive type's explosion.
+        /// </summary>
+        public static float GetExplosionArmorPenetration(this CompProperties_ExplosiveCE props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
 
         public static bool IsShell(ThingDef def)
         {
