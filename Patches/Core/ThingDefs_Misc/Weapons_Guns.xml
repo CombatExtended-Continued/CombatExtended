@@ -112,6 +112,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_Revolver</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>1.39</Mass>
       <RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
@@ -149,6 +150,53 @@
       <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <texPath>Things/Weapons/Revolver/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/Revolver/BaseGrip</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/Revolver/BaseGripO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Grip</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/Revolver/BaseBarrel</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/Revolver/BaseBarrelO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Barrel</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_Redhawk_Grip_Modern</attachment>
+        <drawOffset>(0.165,-0.036)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Redhawk_Barrel_Extended</attachment>
+        <drawOffset>(-0.160,0.079)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Redhawk_Barrel_Long</attachment>
+        <drawOffset>(-0.286,0.079)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Redhawk_Stock_Heavy</attachment>
+        <drawOffset>(0.392,-0.036)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -156,7 +204,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.00,1.00</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -209,7 +257,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>0.93,0.93</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -306,7 +354,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.03,1.25</DrawSize>
-        <DrawOffset>0.05,0.0</DrawOffset>
+        <drawOffset>0.05,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -315,6 +363,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_ChainShotgun</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>3.50</Mass>
       <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
@@ -350,6 +399,66 @@
       <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
+    <texPath>Things/Weapons/ChainShotgun/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/ChainShotgun/BaseStock</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/ChainShotgun/BaseStockO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/ChainShotgun/BaseMag</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/ChainShotgun/BaseMagO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/ChainShotgun/BaseBarrel</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/ChainShotgun/BaseBarrelO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Barrel</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_Saiga_Ammo_DrumMag</attachment>
+        <drawOffset>(0.039,-0.060)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Saiga_Barrel_Short</attachment>
+        <drawOffset>(-0.315,0.059)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Saiga_Stock_Heavy</attachment>
+        <drawOffset>(0.366,-0.012)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Saiga_Stock_Modern</attachment>
+        <drawOffset>(0.333,0.003)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -357,7 +466,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.04,1.23</DrawSize>
-        <DrawOffset>0.05,-0.05</DrawOffset>
+        <drawOffset>0.05,-0.05</drawOffset>
       </li>
     </value>
   </Operation>
@@ -366,6 +475,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_BoltActionRifle</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>4.19</Mass>
       <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
@@ -403,6 +513,78 @@
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+    <texPath>Things/Weapons/BoltActionRifle/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/BoltActionRifle/StockBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/BoltActionRifle/StockBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/BoltActionRifle/BarrelBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/BoltActionRifle/BarrelBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Barrel</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/BoltActionRifle/OpticBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/BoltActionRifle/OpticBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Optic</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/BoltActionRifle/MagazineBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/BoltActionRifle/MagazineBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_BAR_Ammo_MagExtended</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_BAR_Stock_Makeshift</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_BAR_Stock_Light</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_BAR_Stock_Heavy</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_BAR_Stock_Modern</attachment>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -410,7 +592,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.34,1.34</DrawSize>
-        <DrawOffset>0.12,-0.10</DrawOffset>
+        <drawOffset>0.12,-0.10</drawOffset>
       </li>
     </value>
   </Operation>
@@ -509,7 +691,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.16,1.25</DrawSize>
-        <DrawOffset>0.05,-0.07</DrawOffset>
+        <drawOffset>0.05,-0.07</drawOffset>
       </li>
     </value>
   </Operation>
@@ -518,6 +700,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_SniperRifle</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>7.30</Mass>
       <RangedWeapon_Cooldown>1.36</RangedWeapon_Cooldown>
@@ -555,6 +738,81 @@
     </weaponTags>
     <researchPrerequisite>PrecisionRifling</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+    <texPath>Things/Weapons/SniperRifle/Base</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/SniperRifle/StockBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/SniperRifle/StockBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/SniperRifle/OpticBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/SniperRifle/OpticBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Optic</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/SniperRifle/BarrelBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/SniperRifle/BarrelBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Barrel</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_SR_Ammo_Magazine</attachment>
+        <drawOffset>(0.066,-0.064)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Barrel_Short</attachment>
+        <drawOffset>(-0.110,0.017)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Barrel_Long</attachment>
+        <drawOffset>(-0.289,0.017)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Stock_Makeshift</attachment>
+        <drawOffset>(0.09,-0.024)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Stock_Light</attachment>
+        <drawOffset>(0.093,-0.036)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Stock_Heavy</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_SR_Stock_Modern</attachment>
+        <drawOffset>(0.104,-0.018)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_Underbarrel_Bipod</attachment>
+        <drawOffset>(-0.248,-0.048)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -562,7 +820,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.25,1.45</DrawSize>
-        <DrawOffset>0.15,-0.05</DrawOffset>
+        <drawOffset>0.15,-0.05</drawOffset>
       </li>
     </value>
   </Operation>
@@ -571,6 +829,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_MachinePistol</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>2.84</Mass>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
@@ -612,6 +871,74 @@
       <li>CE_OneHandedWeapon</li>
     </weaponTags>
     <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+    <texPath>Things/Weapons/MachinePistol/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/MachinePistol/BaseStock</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/MachinePistol/BaseStockO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/MachinePistol/BaseGrip</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/MachinePistol/BaseGripO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Grip</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/MachinePistol/BaseMag</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+          <texPath>Things/Weapons/MachinePistol/BaseMagO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_MP_Ammo_DrumMag</attachment>
+        <drawOffset>(-0.114,-0.140)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_MP_Barrel_Combo</attachment>
+        <drawOffset>(-0.411,0.005)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_MP_Grip_Makeshift</attachment>
+        <drawOffset>(-0.101,0.012)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_MP_Optic_Reflex</attachment>
+        <drawOffset>(-0.102,0.191)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_MP_Stock_Stock</attachment>
+        <drawOffset>(0.117,0.114)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_MP_Stock_Heavy</attachment>
+        <drawOffset>(0.220,0.042)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -619,7 +946,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>0.84,0.84</DrawSize>
-        <DrawOffset>-0.10,-0.07</DrawOffset>
+        <drawOffset>-0.10,-0.07</drawOffset>
       </li>
     </value>
   </Operation>
@@ -747,7 +1074,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>0.85,0.85</DrawSize>
-        <DrawOffset>0.00,-0.03</DrawOffset>
+        <drawOffset>0.00,-0.03</drawOffset>
       </li>
     </value>
   </Operation>
@@ -756,6 +1083,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_IncendiaryLauncher</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>8</Mass>
       <RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
@@ -800,6 +1128,74 @@
     </weaponTags>
     <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+    <texPath>Things/Weapons/IncendiaryLauncher/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/IncendiaryLauncher/StockBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/IncendiaryLauncher/StockBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/IncendiaryLauncher/OpticBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/IncendiaryLauncher/OpticBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Optic</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/IncendiaryLauncher/MagazineBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_IL_Optic_Makeshift</attachment>
+        <drawOffset>(0.155,0.128)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Optic_Scope</attachment>
+        <drawOffset>(0.108,0.144)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Grip_Makeshift</attachment>
+        <drawOffset>(-0.302,-0.140)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Grip_Vertical</attachment>
+        <drawOffset>(-0.287,-0.130)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Stock_Makeshift</attachment>
+        <drawOffset>(0.272,-0.056)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Stock_Light</attachment>
+        <drawOffset>(0.261,-0.06)</drawOffset>
+      </li>
+      <li>
+        <attachment>CE_Attachment_IL_Stock_Heavy</attachment>
+        <drawOffset>(0.304,-0.066)</drawOffset>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -807,7 +1203,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.16,1.16</DrawSize>
-        <DrawOffset>0.1,-0.05</DrawOffset>
+        <drawOffset>0.1,-0.05</drawOffset>
       </li>
     </value>
   </Operation>
@@ -816,6 +1212,7 @@
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_LMG</defName>
+    <isWeaponPlatform>true</isWeaponPlatform>
     <statBases>
       <Mass>9.12</Mass>
       <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
@@ -863,6 +1260,78 @@
     </weaponTags>
     <researchPrerequisite>GasOperation</researchPrerequisite>
     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+    <texPath>Things/Weapons/LMG/Reciever</texPath>
+    <defaultGraphicParts>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/LMG/StockBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/LMG/StockBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Stock</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/LMG/BarrelBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/LMG/BarrelBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Barrel</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+          <texPath>Things/Weapons/LMG/OpticBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/LMG/OpticBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Optic</li>
+        </slotTags>
+      </li>
+      <li>
+        <partGraphicData>
+         <texPath>Things/Weapons/LMG/MagazineBase</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </partGraphicData>
+        <outlineGraphicData>
+         <texPath>Things/Weapons/LMG/MagazineBaseO</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </outlineGraphicData>
+        <slotTags>
+          <li>Ammo</li>
+        </slotTags>
+      </li>
+    </defaultGraphicParts>
+    <attachmentLinks>
+      <li>
+        <attachment>CE_Attachment_LMG_Ammo_Belt</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_LMG_Stock_Makeshift</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_LMG_Stock_Light</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_LMG_Stock_Heavy</attachment>
+      </li>
+      <li>
+        <attachment>CE_Attachment_LMG_Stock_Modern</attachment>
+      </li>
+    </attachmentLinks>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -870,7 +1339,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.35,1.18</DrawSize>
-        <DrawOffset>0.13,-0.03</DrawOffset>
+        <drawOffset>0.13,-0.03</drawOffset>
       </li>
     </value>
   </Operation>
@@ -970,7 +1439,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.03,1.03</DrawSize>
-        <DrawOffset>0.05,0.0</DrawOffset>
+        <drawOffset>0.05,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1228,7 +1697,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.45,1.60</DrawSize>
-        <DrawOffset>-0.05,-0.05</DrawOffset>
+        <drawOffset>-0.05,-0.05</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1335,7 +1804,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.16,1.16</DrawSize>
-        <DrawOffset>-0.30,-0.10</DrawOffset>
+        <drawOffset>-0.30,-0.10</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1402,7 +1871,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.65,1.65</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1469,7 +1938,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.95,1.95</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1536,7 +2005,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.95,1.95</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
     </value>
   </Operation>
@@ -1600,7 +2069,7 @@
     <value>
       <li Class="CombatExtended.GunDrawExtension">
         <DrawSize>1.35,1.50</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <drawOffset>0.0,0.0</drawOffset>
       </li>
       <li Class="CombatExtended.ThingDefExtensionCE">
         <MenuHidden>True</MenuHidden>
