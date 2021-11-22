@@ -104,7 +104,7 @@
 			  <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
 			  <SightsEfficiency>1</SightsEfficiency>
 			  <ShotSpread>0.08</ShotSpread>
-			  <SwayFactor>1.33</SwayFactor>
+			  <SwayFactor>1.1</SwayFactor>
 			  <Bulk>1.00</Bulk>
 			</statBases>
 			<Properties>
@@ -144,7 +144,7 @@
 			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 			  <SightsEfficiency>1.1</SightsEfficiency>
 			  <ShotSpread>0.03</ShotSpread>
-			  <SwayFactor>1.56</SwayFactor>
+			  <SwayFactor>1.36</SwayFactor>
 			  <Bulk>1.00</Bulk>
 			</statBases>
 			<Properties>
@@ -202,6 +202,9 @@
     			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[@Name="RE_AmmoBelts"]/recipeMaker</xpath>
 			</li>
+    			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="RE_AmmoBelts"]/tradeTags</xpath>
+			</li>
 
 			<!-- Implant Hediffs -->
     			<li Class="PatchOperationAdd">
@@ -236,9 +239,12 @@
                			<description>A small capsule with a VI system, increasing the combat abilities of the user. Decreases the aiming time of the user.</description>
  		</value>
  		</li>
-		<li Class="PatchOperationReplace">
-		<xpath>Defs/HediffDef[defName="RE_OmniToolHediff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+
+<!--		<li Class="PatchOperationAdd">
+		<xpath>Defs/HediffDef[defName="RE_OmniToolHediff"]</xpath>
 		<value>
+    		<comps>
+      		<li Class="HediffCompProperties_VerbGiver">
 			<tools>
 				<li Class="CombatExtended.ToolCE">
 					<label>Stab</label>
@@ -263,9 +269,11 @@
 					<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 				</li>
 			</tools>
+      		</li>
+    		</comps>
 		</value>
 	</li>
-
+-->
 			</operations>
 		</match>
 	</Operation>

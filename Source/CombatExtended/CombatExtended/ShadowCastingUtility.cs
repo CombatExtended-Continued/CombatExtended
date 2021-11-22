@@ -8,9 +8,17 @@ using System.Collections.Generic;
 
 namespace CombatExtended
 {
+    /// <summary>
+    /// TL;DR Cast shadows.
+    /// 
+    /// The algorithem used is a modified version of   
+    /// https://www.albertford.com/shadowcasting/
+    /// </summary>
     public static partial class ShadowCastingUtility
     {
-        private const int VISIBILITY_LEVELS = 4;
+        private const int VISIBILITY_CARRY_MAX = 5;
+
+        private static int carryLimit = VISIBILITY_CARRY_MAX;
 
         private static readonly Func<IntVec3, IntVec3>[] _transformationFuncs;        
         private static readonly Func<IntVec3, IntVec3>[] _transformationInverseFuncs;
@@ -22,8 +30,8 @@ namespace CombatExtended
 
         private static IntVec3 source;
         private static List<VisibleRow> rowQueue = new List<VisibleRow>();
-        private static Map map;
-        private static ShadowGrid grid;
+        private static Map map;        
+        private static Action<IntVec3, int> setAction;
 
         static ShadowCastingUtility()
         {
@@ -102,7 +110,7 @@ namespace CombatExtended
             public float startSlope;
             public float endSlope;
 
-            public int visibilityLevel;            
+            public int visibilityCarry;            
             public int depth;
             public int quartor;
             public int maxDepth;            
@@ -131,7 +139,7 @@ namespace CombatExtended
                 row.depth = this.depth + 1;
                 row.maxDepth = maxDepth;
                 row.quartor = this.quartor;
-                row.visibilityLevel = visibilityLevel;
+                row.visibilityCarry = visibilityCarry;
                 return row;
             }
 
@@ -143,7 +151,7 @@ namespace CombatExtended
                     row.startSlope = -1;
                     row.endSlope = 1;
                     row.depth = 1;
-                    row.visibilityLevel = VISIBILITY_LEVELS;
+                    row.visibilityCarry = 1;
                     return row;
                 }
             }
@@ -181,7 +189,7 @@ namespace CombatExtended
                 VisibleRow nextRow;                
                 VisibleRow row = rowQueue.Pop();
                                 
-                if (row.depth > row.maxDepth || row.visibilityLevel <= 1e-5f)
+                if (row.depth > row.maxDepth || row.visibilityCarry <= 1e-5f)
                 {
                     continue;
                 }
@@ -197,14 +205,14 @@ namespace CombatExtended
                     
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {                        
-                        grid.Set(cell, row.visibilityLevel / VISIBILITY_LEVELS);
+                        setAction(cell, row.visibilityCarry);
                     }
-                    if(isCover && row.visibilityLevel == 1)
+                    if(isCover && row.visibilityCarry >= carryLimit)
                     {
                         isCover = false;
                         isWall = true;
                     }
-                    if (lastCell.y >= 0) // check so it's a valid offsets
+                    if (IsValid(lastCell)) // check so it's a valid offsets
                     {
                         if (lastIsWall == isWall)
                         {
@@ -214,7 +222,7 @@ namespace CombatExtended
                                 nextRow.endSlope = GetSlope(offset);
                                 if (lastIsCover)
                                 {
-                                    nextRow.visibilityLevel = (int)Mathf.Max(row.visibilityLevel - 1f, 0);
+                                    nextRow.visibilityCarry += 1;
                                 }
                                 rowQueue.Add(nextRow);
                                 row.startSlope = GetSlope(offset);
@@ -230,7 +238,7 @@ namespace CombatExtended
                             nextRow.endSlope = GetSlope(offset);
                             if (lastIsCover)
                             {
-                                nextRow.visibilityLevel = (int)Mathf.Max(row.visibilityLevel - 1f, 0);
+                                nextRow.visibilityCarry += 1;
                             }
                             rowQueue.Add(nextRow);
                         }                        
@@ -245,7 +253,7 @@ namespace CombatExtended
                     nextRow = row.Next();
                     if (lastIsCover)
                     {
-                        nextRow.visibilityLevel = (int)Mathf.Max(row.visibilityLevel - 1f, 0);
+                        nextRow.visibilityCarry += 1;
                     }
                     rowQueue.Add(nextRow);                    
                 }
@@ -275,9 +283,9 @@ namespace CombatExtended
 
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {
-                        grid.Set(cell, 1.0f);
+                        setAction(cell, 1);
                     }
-                    if (lastCell.y >= 0) // check so it's a valid offsets
+                    if (IsValid(lastCell)) // check so it's a valid offsets
                     {                        
                         if (!isWall && lastIsWall)
                         {
@@ -305,7 +313,7 @@ namespace CombatExtended
         private static void TryCastWeighted(float startSlope, float endSlope, int quartor, int maxDepth) => TryCast(TryWeightedScan, startSlope, endSlope, quartor, maxDepth);
 
         private static void TryCast(Action<VisibleRow> castAction, float startSlope, float endSlope, int quartor, int maxDepth)
-        {
+        {            
             if (endSlope > 1.0f || startSlope < -1 || startSlope > endSlope)
             {
                 throw new InvalidOperationException($"CE: Scan quartor {quartor} endSlope and start slop must be between (-1, 1) but got start:{startSlope}\tend:{endSlope}");
@@ -313,7 +321,7 @@ namespace CombatExtended
             VisibleRow arc = VisibleRow.First;
             arc.startSlope = startSlope;
             arc.endSlope = endSlope;
-            arc.visibilityLevel = VISIBILITY_LEVELS;
+            arc.visibilityCarry = 1;
             arc.maxDepth = maxDepth;
             arc.quartor = quartor;
             castAction(arc);

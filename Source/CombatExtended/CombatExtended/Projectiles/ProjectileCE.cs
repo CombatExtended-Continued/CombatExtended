@@ -9,6 +9,8 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
+using RimWorld.Planet;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -71,13 +73,17 @@ namespace CombatExtended
         }
 
         public Thing thingToIgnore;
+        public float cameraShakingInit = -1f;
         public ThingDef equipmentDef;
-        public Thing launcher;
+        public Thing launcher;        
         public LocalTargetInfo intendedTarget;
         public float minCollisionDistance;
         public bool canTargetSelf;
         public bool castShadow = true;
         public bool logMisses = true;
+
+        public GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
+        public GlobalTargetInfo globalSourceInfo = GlobalTargetInfo.Invalid;
 
         #region Vanilla
         public bool landed;
@@ -400,11 +406,16 @@ namespace CombatExtended
             {
                 launcher = null;
             }
+            CE_Scriber.Late(this, (id) =>
+            {                
+                Scribe_References.Look<Thing>(ref launcher, "launcher_" + id);
+            });
+            Scribe_TargetInfo.Look(ref globalSourceInfo, "globalSourceInfo");
+            Scribe_TargetInfo.Look(ref globalTargetInfo, "globalTargetInfo");
+            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
 
             Scribe_Values.Look<Vector2>(ref origin, "origin", default(Vector2), true);
-            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
-            Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
-            Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);            
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
             Scribe_References.Look(ref thingToIgnore, "thingToIgnore");            
@@ -416,7 +427,7 @@ namespace CombatExtended
             Scribe_Values.Look<bool>(ref canTargetSelf, "canTargetSelf");
             Scribe_Values.Look<bool>(ref logMisses, "logMisses", true);
             Scribe_Values.Look<bool>(ref castShadow, "castShadow", true);
-
+           
             // To insure saves don't get affected..
             Thing target = null;
             if (Scribe.mode != LoadSaveMode.Saving)
@@ -462,10 +473,6 @@ namespace CombatExtended
                 }
 
                 Vector3 tp = ray.GetPoint(i);
-                if (tp.y > CollisionVertical.WallCollisionHeight)
-                {
-                    break;
-                }
                 if (tp.y < 0)
                 {
                     destination = tp;
@@ -512,6 +519,7 @@ namespace CombatExtended
 
                     if(ExactPosition.ToIntVec3().InBounds(Map))                       
                         Position = ExactPosition.ToIntVec3();
+                    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
 
                     lbce.SpawnBeam(muzzle, destination);
                     lbce.Impact(thing, muzzle);
@@ -523,10 +531,19 @@ namespace CombatExtended
             if (lbce != null)
             {
                 lbce.SpawnBeam(muzzle, destination);
+		RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
                 Destroy(DestroyMode.Vanish);
                 return;
             }
         }
+
+	private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+	{
+	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
+	    {
+		ApplySuppression(pawn);
+	    }
+	}
 
 
         #region Launch
@@ -546,6 +563,10 @@ namespace CombatExtended
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = shotSpeed <= 0 ? def.projectile.speed : shotSpeed;
+            if (!globalTargetInfo.IsValid)
+            {
+                this.shotSpeed = Math.Max(this.shotSpeed, def.projectile.speed);
+            }
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
         }
@@ -641,7 +662,7 @@ namespace CombatExtended
 
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
-        {
+        {            
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -805,6 +826,10 @@ namespace CombatExtended
         /// <returns>True if impact occured, false otherwise</returns>
         protected virtual bool TryCollideWith(Thing thing)
         {
+            if (globalTargetInfo.IsValid)
+            {
+                return false;
+            }
             if ((thing == launcher && !canTargetSelf) || thingToIgnore == thing)
             {
                 return false;
@@ -905,15 +930,42 @@ namespace CombatExtended
             ticksToImpact--;
             if (!ExactPosition.InBounds(Map))
             {
-                Position = LastPos.ToIntVec3();
-                if(!Destroyed) Destroy();
+                if (globalTargetInfo.IsValid)
+                {
+                    TravelingShell shell = (TravelingShell) WorldObjectMaker.MakeWorldObject(CE_WorldObjectDefOf.TravelingShell);
+                    if(launcher?.Faction != null)
+                    {
+                        shell.SetFaction(launcher.Faction);
+                    }
+                    shell.tileInt = Map.Tile;
+                    shell.SpawnSetup();
+                    Find.World.worldObjects.Add(shell);
+                    shell.launcher = launcher;
+                    shell.equipmentDef = equipmentDef;
+                    shell.globalSource = new GlobalTargetInfo(OriginIV3, Map);
+                    shell.globalSource.tileInt = Map.Tile;
+                    shell.globalSource.mapInt = Map;
+                    shell.globalSource.worldObjectInt = Map.Parent;
+                    shell.shellDef = def;                    
+                    shell.globalTarget = globalTargetInfo;
+                    if (!shell.TryTravel(Map.Tile, globalTargetInfo.Tile))
+                    {
+                        Log.Error($"CE: Travling shell {this.def} failed to launch!");
+                        shell.Destroy();
+                    }                    
+                }
+                Destroy();
                 return;
-            }
+            }            
             if (CheckForCollisionBetween())
             {
                 return;
             }
             Position = ExactPosition.ToIntVec3();
+            if (globalTargetInfo.IsValid)
+            {
+                return;
+            }
             if (ticksToImpact == 60 && Find.TickManager.CurTimeSpeed == TimeSpeed.Normal && def.projectile.soundImpactAnticipate != null)
             {
                 def.projectile.soundImpactAnticipate.PlayOneShot(this);
@@ -1011,7 +1063,7 @@ namespace CombatExtended
 
         //Modified collision with downed pawns
         private void ImpactSomething()
-        {
+        {            
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
                 this.Destroy();
@@ -1062,6 +1114,10 @@ namespace CombatExtended
 
         public virtual void Impact(Thing hitThing)
         {
+            if(cameraShakingInit > 0f && Find.CameraDriver != null)
+            {
+                Find.CameraDriver.shaker.DoShake(cameraShakingInit);
+            }
             if (def.HasModExtension<EffectProjectileExtension>())
             {
                 def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
@@ -1125,7 +1181,7 @@ namespace CombatExtended
                 if (def.projectile.explosionRadius > 0)
                 {
                     GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
-                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), GenExplosionCE.GetExplosionAP(def.projectile),
+                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetExplosionArmorPenetration(),
                         def.projectile.soundExplode, equipmentDef,
                         def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
                         def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,

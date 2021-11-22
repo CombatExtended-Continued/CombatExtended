@@ -57,7 +57,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base155mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base155mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -68,13 +68,17 @@
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<flyOverhead>true</flyOverhead>
-			<dropsCasings>true</dropsCasings>
+			<dropsCasings>false</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
 			<gravityFactor>5</gravityFactor>
+			<shellingProps>
+				<tilesPerTick>0.12</tilesPerTick>
+				<range>48</range>
+			</shellingProps>			
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base155mmHowitzerShell">
+	<ThingDef ParentName="Base155mmHowitzerShell">
 		<defName>Bullet_155mmHowitzerShell_HE</defName>
 		<label>155mm Howitzer shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -85,15 +89,18 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>452</damageAmountBase>
-			<explosionRadius>5</explosionRadius>
+			<explosionRadius>10.5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>        
+				<damage>0.09</damage>
+			  </shellingProps>			
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
 					<Fragment_Large>40</Fragment_Large>
-					<Fragment_Small>80</Fragment_Small>
+					<Fragment_Small>60</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>

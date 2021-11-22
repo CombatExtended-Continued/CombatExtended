@@ -242,10 +242,11 @@
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>RangedStab</damageDef>
-              <damageAmountBase>14</damageAmountBase>
+              <damageAmountBase>11</damageAmountBase>
               <flyOverhead>false</flyOverhead>
-              <speed>16</speed>
-              <armorPenetrationBase>0.18</armorPenetrationBase>
+              <speed>12</speed>
+               <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+               <armorPenetrationSharp>0.4</armorPenetrationSharp>
               <preExplosionSpawnChance>0.80</preExplosionSpawnChance>
               <preExplosionSpawnThingDef>VWE_Throwing_Knives</preExplosionSpawnThingDef>
             </projectile>
@@ -309,17 +310,19 @@
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VWE_Throwing_Knives</defName>
           <statBases>
-            <SightsEfficiency>1</SightsEfficiency>
+            <SightsEfficiency>0.5</SightsEfficiency>
+            <ShotSpread>1.5</ShotSpread>
+	    <SwayFactor>2</SwayFactor>
             <Bulk>0.35</Bulk>
             <Mass>0.15</Mass>
-            <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+            <RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
           </statBases>
           <Properties>
             <label>Throw knife</label>
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>VWE_FlyingBlade</defaultProjectile>
-            <warmupTime>1</warmupTime>
+            <warmupTime>0.66</warmupTime>
             <range>10</range>
             <soundCast>ThrowGrenade</soundCast>
              <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>

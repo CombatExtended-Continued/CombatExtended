@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class ProjectilePropertiesCE : ProjectileProperties
     {
+        public TravelingShellProperties shellingProps;
+
         // public float armorPenetration = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;

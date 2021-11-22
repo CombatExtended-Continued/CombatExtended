@@ -208,7 +208,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
-            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
+            report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
@@ -254,46 +254,51 @@ namespace CombatExtended
             }
             if (base.TryCastShot())
             {
-                //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
-                if (ShooterPawn != null)
-                {
-                    ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
-                }
-                //Drop casings
-                if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
-                {
-                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
-                }
-                // This needs to here for weapons without magazine to ensure their last shot plays sounds
-                if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
-                {
-                    if (!CompAmmo.Notify_ShotFired())
-                    {
-                        if (VerbPropsCE.muzzleFlashScale > 0.01f)
-                        {
-                            FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
-                        }
-                        if (VerbPropsCE.soundCast != null)
-                        {
-                            VerbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
-                        }
-                        if (VerbPropsCE.soundCastTail != null)
-                        {
-                            VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
-                        }
-                        if (ShooterPawn != null)
-                        {
-                            if (ShooterPawn.thinker != null)
-                            {
-                                ShooterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
-                            }
-                        }
-                    }
-                    return CompAmmo.Notify_PostShotFired();
-                }
-                return true;
+                return OnCastSuccessful();
             }
             return false;
+        }
+
+        protected virtual bool OnCastSuccessful()
+        {
+            //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
+            if (ShooterPawn != null)
+            {
+                ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
+            }
+            //Drop casings
+            if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
+            {
+                CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
+            }
+            // This needs to here for weapons without magazine to ensure their last shot plays sounds
+            if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+            {
+                if (!CompAmmo.Notify_ShotFired())
+                {
+                    if (VerbPropsCE.muzzleFlashScale > 0.01f)
+                    {
+                        FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
+                    }
+                    if (VerbPropsCE.soundCast != null)
+                    {
+                        VerbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+                    }
+                    if (VerbPropsCE.soundCastTail != null)
+                    {
+                        VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
+                    }
+                    if (ShooterPawn != null)
+                    {
+                        if (ShooterPawn.thinker != null)
+                        {
+                            ShooterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
+                        }
+                    }
+                }
+                return CompAmmo.Notify_PostShotFired();
+            }
+            return true;
         }
         #endregion
     }

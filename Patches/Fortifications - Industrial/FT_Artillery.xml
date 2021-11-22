@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Fortifications - Industrial</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        
+      <!-- === Mortar === -->
+      
+      <li Class="PatchOperationRemove">
+        <xpath>
+          /Defs/ThingDef[defName="FT_Turret_Mortar"]/comps |
+          /Defs/ThingDef[defName="FT_Turret_Mortar"]/building/buildingTags/li[text()="Artillery_BaseDestroyer"] |
+          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags/li[text()="Artillery_BaseDestroyer"] |
+          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/building |
+          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]
+        </xpath>
+      </li>
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/label</xpath>
+        <value>
+          <label>60mm mortar</label>
+        </value>
+      </li>
+        
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]</xpath>
+        <value>
+          <statBases>
+            <SightsEfficiency>0.5</SightsEfficiency>
+          </statBases>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps</xpath>
+        <value>
+          <li Class="CombatExtended.CompProperties_Charges">
+            <chargeSpeeds>
+              <li>30</li>
+              <li>50</li>
+              <li>70</li>
+              <li>90</li>
+            </chargeSpeeds>
+          </li>
+          <li Class="CombatExtended.CompProperties_AmmoUser">
+            <magazineSize>1</magazineSize>
+            <reloadTime>5</reloadTime>
+            <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+          </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/verbs</xpath>
+        <value>
+          <verbs>
+            <li Class="CombatExtended.VerbPropertiesCE">
+              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+              <warmupTime>3.5</warmupTime>
+              <minRange>8</minRange>
+              <range>500</range>
+              <burstShotCount>1</burstShotCount>
+              <soundCast>Mortar_LaunchA</soundCast>
+              <muzzleFlashScale>16</muzzleFlashScale>
+              <circularError>1</circularError>
+              <indirectFirePenalty>0.2</indirectFirePenalty>
+              <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+              </targetParams>
+            </li>
+          </verbs>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags</xpath>
+        <value>
+          <li>TurretGun</li>
+        </value>
+      </li>
+        
+      <!-- === Multi-Mortar / Nebelwerfer === -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretHexMortar"]</xpath>
+			<value>
+			<statBases>
+				<SightsEfficiency>0.8</SightsEfficiency>
+			</statBases>	
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretHexMortar"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>6</magazineSize>
+					<reloadTime>8.5</reloadTime>
+					<ammoSet>AmmoSet_15cmNebelwerfer</ammoSet>
+				</li>
+				<li Class="CombatExtended.CompProperties_FireModes">
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>			
+				</li>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretHexMortar"]/verbs</xpath>
+			<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<requireLineOfSight>false</requireLineOfSight>
+						<defaultProjectile>Bullet_15cmNebelwerfer_HE</defaultProjectile>
+						<warmupTime>10</warmupTime>
+						<minRange>40</minRange>
+						<range>1000</range>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+						<soundCast>FT_NebelShot</soundCast>
+						<muzzleFlashScale>39</muzzleFlashScale>
+						<circularError>1.1</circularError>
+						<indirectFirePenalty>0.3</indirectFirePenalty>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+				</verbs>
+			</value>
+		</li>
+
+		<!-- Patch base -->
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>5</turretBurstCooldownTime>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/building</xpath>
+			<value>
+				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/inspectorTabs</xpath>
+		</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

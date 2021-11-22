@@ -66,8 +66,8 @@ namespace CombatExtended
                 if (pawn != null)
                 {
                     //Get morale
-                    float hardBreakThreshold = pawn.mindState?.mentalBreaker?.BreakThresholdMajor ?? 0;
-                    float currentMood = pawn.needs?.mood?.CurLevel ?? 0.5f;
+                    float hardBreakThreshold = BreakThresholdMajorCached(pawn);
+                    float currentMood = CurrentMoodCached(pawn);
                     threshold = Mathf.Sqrt(Mathf.Max(0, currentMood - hardBreakThreshold)) * maxSuppression * 0.125f;
                 }
                 else
@@ -76,6 +76,30 @@ namespace CombatExtended
                 }
                 return threshold;
             }
+        }
+
+        private float breakThresholdMajorCached;
+        private int breakThresholdMajorTickCheck;
+        private float BreakThresholdMajorCached(Pawn pawn)
+        {
+            if (breakThresholdMajorTickCheck == 0 || Find.TickManager.TicksGame > (breakThresholdMajorTickCheck + 30))
+            {
+                breakThresholdMajorCached = pawn.mindState?.mentalBreaker?.BreakThresholdMajor ?? 0;
+                breakThresholdMajorTickCheck = Find.TickManager.TicksGame;
+            }
+            return breakThresholdMajorCached;
+        }
+
+        private float currentMoodCached;
+        private int currentMoodTickCheck;
+        private float CurrentMoodCached(Pawn pawn)
+        {
+            if (currentMoodTickCheck == 0 || Find.TickManager.TicksGame > (currentMoodTickCheck + 30))
+            {
+                currentMoodCached = pawn.needs?.mood?.CurLevel ?? 0.5f;
+                currentMoodTickCheck = Find.TickManager.TicksGame;
+            }
+            return currentMoodCached;
         }
 
         private CompInventory _compInventory = null;

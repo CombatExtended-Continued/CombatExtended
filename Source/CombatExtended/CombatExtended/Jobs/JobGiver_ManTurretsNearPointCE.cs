@@ -15,16 +15,16 @@ namespace CombatExtended
         /// <remarks>Overriden to avoid invalid type cast exception.</remarks>
         public override Job TryGiveJob(Pawn pawn)
         {
-            var thing = GenClosest.ClosestThingReachable(
+            var thing = pawn.Map.GetComponent<TurretTracker>().ClosestTurret(
                 GetRoot(pawn),
-                pawn.Map,
-                ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), PathEndMode.InteractionCell, TraverseParms.For(pawn),
+                PathEndMode.InteractionCell,
+                TraverseParms.For(pawn),
                 maxDistFromPoint,
                 t => t.def.hasInteractionCell &&
                      t.def.HasComp(typeof(CompMannable)) &&
                      pawn.CanReserve(t) &&
                      FindAmmoForTurret(pawn, t) != null);
-
+            
             if (thing == null)
             {
                 return null;
@@ -39,7 +39,7 @@ namespace CombatExtended
         /// <remarks>Copied from <see cref="JobDriver_ManTurret.FindAmmoForTurret" />.</remarks>
         private static Thing FindAmmoForTurret(Pawn pawn, Thing turret)
         {
-	    var compAmmo = (turret as Building_Turret)?.GetAmmo();
+	        var compAmmo = (turret as Building_Turret)?.GetAmmo();
             if (compAmmo == null || !compAmmo.UseAmmo)
             {
                 return null;

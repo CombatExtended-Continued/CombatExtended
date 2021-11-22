@@ -47,11 +47,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>
 						/Defs/ThingDef[
-							defName = "Gun_OrassanShotgun" or
-							defName = "Gun_OrassanRifle" or
-							defName = "Gun_OrassanLMG" or
-							defName = "Gun_OrassanSniper" or
-							defName = "Gun_OrassanDMR"
+						defName = "Gun_OrassanShotgun" or
+						defName = "Gun_OrassanRifle" or
+						defName = "Gun_OrassanLMG" or
+						defName = "Gun_OrassanSniper" or
+						defName = "Gun_OrassanDMR" or
+						defName = "Gun_OrassanGMG" or
+						defName = "Gun_OrassanBattleRifle"
 						]/tools
 					</xpath>
 					<value>
@@ -129,7 +131,7 @@
 						<recoilAmount>2.40</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_6mmRailgun_SabotOE</defaultProjectile>
 						<warmupTime>0.55</warmupTime>
 						<range>10</range>
 						<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
@@ -140,13 +142,15 @@
 					<AmmoUser>
 						<magazineSize>10</magazineSize>
 						<reloadTime>2</reloadTime>
-						<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_6mmRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>CE_OneHandedWeapon</li>
+						<li>CE_Sidearm</li>
 					</weaponTags>
 				</li>
 
@@ -165,7 +169,7 @@
 						<recoilAmount>10</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_12mmautoRailgun_SabotOE</defaultProjectile>
 						<warmupTime>0.40</warmupTime>
 						<range>18</range>
 						<soundCast>OTFalcon</soundCast>
@@ -175,11 +179,12 @@
 					<AmmoUser>
 						<magazineSize>5</magazineSize>
 						<reloadTime>3</reloadTime>
-						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_12mmautoRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
@@ -199,24 +204,29 @@
 						<recoilAmount>1.41</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_6mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_12mmsubsonicRailgun_SabotOE</defaultProjectile>
 						<warmupTime>0.55</warmupTime>
+						<burstShotCount>6</burstShotCount>
+						<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
 						<range>17</range>
-						<soundCast>Opistol</soundCast>
+						<soundCast>OSMG</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
 						<magazineSize>30</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_6mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_12mmsubsonicRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
-						<aimedBurstShotCount>4</aimedBurstShotCount>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>true</aiUseBurstMode>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<weaponTags>
-						<li>CE_OneHandedWeapon</li>
+						<li>AdvancedGun</li>
+						<li>CE_BROOM</li>
+						<li>CE_SMG</li>
 					</weaponTags>
 				</li>
 
@@ -235,7 +245,7 @@
 						<recoilAmount>2.1</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_Railgun_Buck</defaultProjectile>
+						<defaultProjectile>Bullet_Railgun_BuckOE</defaultProjectile>
 						<warmupTime>0.7</warmupTime>
 						<range>25</range>
 						<soundCast>OShotgun</soundCast>
@@ -246,12 +256,13 @@
 						<magazineSize>10</magazineSize>
 						<reloadTime>2</reloadTime>
 						<reloadOneAtATime>true</reloadOneAtATime>
-						<ammoSet>AmmoSet_RailShell</ammoSet>
+						<ammoSet>AmmoSet_RailShellOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 					</FireModes>
 					<weaponTags>
 						<li>AdvancedGun</li>
+						<li>CE_AI_BROOM</li>
 					</weaponTags>
 				</li>
 
@@ -278,7 +289,7 @@
 						<recoilAmount>1.2</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_8mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_8mmRailgun_SabotOE</defaultProjectile>
 						<warmupTime>1</warmupTime>
 						<range>58</range>
 						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
@@ -288,9 +299,9 @@
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>30</magazineSize>
+						<magazineSize>40</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_8mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_8mmRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aimedBurstShotCount>3</aimedBurstShotCount>
@@ -298,6 +309,55 @@
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>CE_AI_AR</li>
+					</weaponTags>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanBattleRifle</defName>
+					<statBases>
+						<Mass>3.2</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.1</ShotSpread>
+						<SwayFactor>1.22</SwayFactor>
+						<Bulk>8.30</Bulk>
+						<WorkToMake>62000</WorkToMake>
+					</statBases>
+					<costList>
+						<Uranium>5</Uranium>
+						<Steel>100</Steel>
+						<Plasteel>120</Plasteel>
+						<ComponentSpacer>1</ComponentSpacer>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.6</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_10mmRailgun_SabotOE</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>58</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>6</burstShotCount>
+						<soundCast>OTFalcon</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>30</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_10mmRailgunOE</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aimedBurstShotCount>3</aimedBurstShotCount>
+						<aiUseBurstMode>true</aiUseBurstMode>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>CE_AI_AR</li>
 					</weaponTags>
 				</li>
 
@@ -325,12 +385,12 @@
 						<recoilAmount>1.16</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_8mmRailgun_SabotOE</defaultProjectile>
 						<warmupTime>1.2</warmupTime>
 						<range>62</range>
 						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 						<burstShotCount>10</burstShotCount>
-						<soundCast>ORifle</soundCast>
+						<soundCast>OLMG</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
 						<targetParams>
@@ -341,7 +401,7 @@
 					<AmmoUser>
 						<magazineSize>90</magazineSize>
 						<reloadTime>5</reloadTime>
-						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_8mmRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -349,7 +409,62 @@
 						<aimedBurstShotCount>5</aimedBurstShotCount>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>CE_MachineGun</li>
+						<li>CE_AI_LMG</li>
+					</weaponTags>
+				</li>
+				
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanGMG</defName>
+					<statBases>
+						<Mass>2.7</Mass>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<ShotSpread>0.07</ShotSpread>
+						<SwayFactor>1.17</SwayFactor>
+						<Bulk>8.00</Bulk>
+						<WorkToMake>62000</WorkToMake>
+						<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
+					</statBases>
+					<costList>
+						<Uranium>5</Uranium>
+						<Steel>100</Steel>
+						<Plasteel>100</Plasteel>
+						<ComponentSpacer>1</ComponentSpacer>
+						<ComponentIndustrial>5</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>1.16</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_10mmRailgun_SabotOE</defaultProjectile>
+						<warmupTime>1.2</warmupTime>
+						<range>62</range>
+						<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+						<burstShotCount>10</burstShotCount>
+						<soundCast>OLMG</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<recoilPattern>Mounted</recoilPattern>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>90</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_10mmRailgunOE</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<aimedBurstShotCount>5</aimedBurstShotCount>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>CE_MachineGun</li>
+						<li>CE_AI_LMG</li>
 					</weaponTags>
 				</li>
 
@@ -368,9 +483,9 @@
 					<Properties>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_12mmRailgun_SabotOE</defaultProjectile>
 						<warmupTime>2</warmupTime>
-						<range>80</range>
+						<range>90</range>
 						<soundCast>OSniper</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
@@ -378,13 +493,15 @@
 					<AmmoUser>
 						<magazineSize>10</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_12mmRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>OrassanSniper</li>
+						<li>CE_AI_SR</li>
 					</weaponTags>
 				</li>
 
@@ -404,9 +521,9 @@
 						<recoilAmount>1.60</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+						<defaultProjectile>Bullet_10mmRailgun_SabotOE</defaultProjectile>
 						<warmupTime>1</warmupTime>
-						<range>64</range>
+						<range>74</range>
 						<soundCast>OTFalcon</soundCast>
 						<soundCastTail>GunTail_Heavy</soundCastTail>
 						<muzzleFlashScale>9</muzzleFlashScale>
@@ -414,13 +531,15 @@
 					<AmmoUser>
 						<magazineSize>10</magazineSize>
 						<reloadTime>4</reloadTime>
-						<ammoSet>AmmoSet_12mmRailgun</ammoSet>
+						<ammoSet>AmmoSet_10mmRailgunOE</ammoSet>
 					</AmmoUser>
 					<FireModes>
 						<aiAimMode>AimedShot</aiAimMode>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>OrassanSniper</li>
+						<li>CE_AI_SR</li>
 					</weaponTags>
 				</li>
 
@@ -463,7 +582,9 @@
 					<FireModes>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>OrassanCryo</li>
+						<li>CE_AI_AOE</li>
 					</weaponTags>
 				</li>
 
@@ -512,7 +633,10 @@
 					<FireModes>
 					</FireModes>
 					<weaponTags>
+						<li>AdvancedGun</li>
 						<li>OrassanMissile</li>
+						<li>CE_AI_Launcher</li>
+						<li>CE_AI_AOE</li>
 					</weaponTags>
 				</li>
 
@@ -572,6 +696,143 @@
 					<value>
 						<Bulk>7</Bulk>
 						<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]/statBases</xpath>
+					<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]</xpath>
+					<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.15</MeleeCritChance>
+						<MeleeParryChance>0.35</MeleeParryChance>
+						<MeleeDodgeChance>0.02</MeleeDodgeChance>
+					</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]/weaponTags</xpath>
+					<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]/tools</xpath>
+					<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>            
+						<li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>.85</cooldownTime>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.8</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>0.85</cooldownTime>
+						<chanceFactor>1.88</chanceFactor>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.8</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Catberryjuice"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>2.22</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>neck</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>3.33</cooldownTime>
+								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Catberryjuice"]/statBases</xpath>
+					<value>
+						<MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Catberryjuice"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.1</MeleeCritChance>
+							<MeleeParryChance>0.33</MeleeParryChance>
+							<MeleeDodgeChance>0.07</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Catberryjuice"]/weaponTags</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Catberryjuice"]</xpath>
+							<value>
+								<weaponTags />
+							</value>
+						</li>
+					</operations>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Catberryjuice"]/weaponTags</xpath>
+					<value>
+						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
 

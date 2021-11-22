@@ -41,7 +41,7 @@
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>30</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
-	<isMortarAmmo>true</isMortarAmmo>
+	  <isMortarAmmo>true</isMortarAmmo>          
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBaseCraftableBase" ParentName="81mmMortarShellBase" Abstract="True">
@@ -64,7 +64,7 @@
       <Mass>5.27</Mass>
       <Bulk>8.17</Bulk>
     </statBases>
-    <ammoClass>GrenadeHE</ammoClass>
+    <ammoClass>GrenadeHE</ammoClass>     
 	<detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
     <comps>
 		<!-- Vanilla values -->
@@ -259,10 +259,14 @@
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
-      <dropsCasings>true</dropsCasings>
+      <dropsCasings>false</dropsCasings>
       <casingMoteDefname>Mote_BigShell</casingMoteDefname>
-	  <gravityFactor>5</gravityFactor>
-    </projectile>
+	    <gravityFactor>5</gravityFactor>
+      <shellingProps>
+        <tilesPerTick>0.06</tilesPerTick>
+        <range>12</range>
+      </shellingProps>
+    </projectile>    
   </ThingDef>
 
   <ThingDef ParentName="Base81mmMortarShell">
@@ -282,6 +286,9 @@
       <soundExplode>MortarBomb_Explode</soundExplode>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <ai_IsIncendiary>true</ai_IsIncendiary>
+      <shellingProps>        
+        <damage>0.025</damage>
+      </shellingProps>
     </projectile>
     <comps>
 	  <li Class="CombatExtended.CompProperties_Fragments">
@@ -305,11 +312,14 @@
       <damageAmountBase>0</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
-      <explosionRadius>9.5</explosionRadius>
+      <explosionRadius>6.5</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
+      <shellingProps>        
+        <damage>0.015</damage>
+      </shellingProps>
     </projectile>
   </ThingDef>
 
@@ -398,6 +408,9 @@
       <soundExplode>Explosion_GiantBomb</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <shellingProps>        
+        <damage>0.35</damage>
+      </shellingProps>
     </projectile>
   </ThingDef>
 
