@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
 using System.Net.Mail;
+using RimWorld.Planet;
 
 namespace CombatExtended
 {
@@ -29,19 +30,19 @@ namespace CombatExtended
         // Targeting factors
         private float estimatedTargDist = -1;           // Stores estimate target distance for each burst, so each burst shot uses the same
         private int numShotsFired = 0;                  // Stores how many shots were fired for purposes of recoil
-
-        // Angle in Vector2(degrees, radians)
+        
+        // Angle in Vector2(degrees, radians)        
         protected Vector2 newTargetLoc = new Vector2(0, 0);
         protected Vector2 sourceLoc = new Vector2(0, 0);
 
-        private float shotAngle = 0f;   // Shot angle off the ground in radians.
-        private float shotRotation = 0f;    // Angle rotation towards target.
+        protected float shotAngle = 0f;   // Shot angle off the ground in radians.
+        protected float shotRotation = 0f;    // Angle rotation towards target.
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
         public CompFireModes compFireModes = null;
         public CompChangeableProjectile compChangeable = null;
-        public CompReloadable compReloadable = null;
+        public CompReloadable compReloadable = null;        
         private float shotSpeed = -1;
 
         private float rotationDegrees = 0f;
@@ -56,9 +57,17 @@ namespace CombatExtended
         public VerbPropertiesCE VerbPropsCE => verbProps as VerbPropertiesCE;
         public ProjectilePropertiesCE projectilePropsCE => Projectile.projectile as ProjectilePropertiesCE;
 
-        // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists
+        // Returns either the pawn aiming the weapon or in case of turret guns the turret operator or null if neither exists        
         public Pawn ShooterPawn => CasterPawn ?? CE_Utility.TryGetTurretOperator(caster);
-        public Thing Shooter => ShooterPawn ?? caster;
+        public Thing Shooter => ShooterPawn ?? caster;       
+
+        public override float EffectiveRange
+        {
+            get
+            {               
+                return base.EffectiveRange;
+            }
+        }
 
         public override int ShotsPerBurst
         {
@@ -91,15 +100,15 @@ namespace CombatExtended
             get
             {
                 if (CompCharges != null)
-                {
+                {                    
                     if (CompCharges.GetChargeBracket((currentTarget.Cell - caster.Position).LengthHorizontal, ShotHeight, projectilePropsCE.Gravity, out var bracket))
                     {
                         shotSpeed = bracket.x;
-                    }
+                    }                    
                 }
                 else
                 {
-                    shotSpeed = Projectile.projectile.speed;
+                    shotSpeed = Projectile.projectile.speed;                    
                 }
                 return shotSpeed;
             }
@@ -435,6 +444,53 @@ namespace CombatExtended
             return report;
         }
 
+        public virtual ShiftVecReport ShiftVecReportFor(GlobalTargetInfo target)
+        {
+            if (!target.IsValid || !target.Cell.IsValid || target.Map == null)
+            {
+                return null;
+            }
+            ProjectilePropertiesCE properties = (Projectile.projectile as ProjectilePropertiesCE);            
+            if(properties.shellingProps == null)
+            {
+                Log.Error($"CE: Tried to ShiftVecReportFor for a global target for a projectile {Projectile.defName} that doesn't have shellingInfo!");
+                return null;
+            }            
+            // multiplie by 250 to emulate cells
+            int distanceToTarget = Find.WorldGrid.TraversalDistanceBetween(target.Tile, caster.Map.Tile, true);
+
+            LocalTargetInfo localTarget = new LocalTargetInfo();
+            localTarget.cellInt = target.Cell;
+            localTarget.thingInt = target.Thing;
+            
+            IntVec3 targetCell = target.Cell;            
+            ShiftVecReport report = new ShiftVecReport();
+
+            report.target = localTarget;
+            report.aimingAccuracy = AimingAccuracy;
+            report.sightsEfficiency = SightsEfficiency;            
+            report.shotDist = distanceToTarget * 5;
+            report.maxRange = properties.shellingProps.range * 5; // multiplie by 250 to emulate cells                        
+            report.shotSpeed = ShotSpeed * 2.5f;
+            report.swayDegrees = SwayAmplitude;
+            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
+            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
+            report.cover = null;            
+            if (target.Map != null)
+            {
+                report.weatherShift = (1f - target.Map.weatherManager.CurWeatherAccuracyMultiplier) * 1.5f + (1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier) * 0.5f;
+                report.lightingShift = 1f;
+                report.smokeDensity = (target.Cell.GetGas(target.Map)?.def.gas.accuracyPenalty ?? 0f) * 10f;
+            }
+            else
+            {
+                report.smokeDensity = 0;
+                report.weatherShift = 1f;
+                report.lightingShift = 1f;
+            }           
+            return report;
+        }
+
         public float AdjustShotHeight(Thing caster, LocalTargetInfo target, ref float shotHeight)
         {
             /* TODO:  This really should determine how much the shooter needs to rise up for a *good* shot.  
@@ -549,12 +605,12 @@ namespace CombatExtended
 
         public virtual bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ, out string report)
         {
-            report = "";
+            report = "";            
             if (caster?.Map == null || !targ.Cell.InBounds(caster.Map) || !root.InBounds(caster.Map))
             {
                 report = "Out of bounds";
                 return false;
-            }
+            }            
             // Check target self
             if (targ.Thing != null && targ.Thing == caster)
             {
@@ -662,6 +718,7 @@ namespace CombatExtended
                 projectile.canTargetSelf = false;
 
                 var targetDistance = (sourceLoc - currentTarget.Cell.ToIntVec2.ToVector2Shifted()).magnitude;
+                
                 projectile.minCollisionDistance = GetMinCollisionDistance(targetDistance);
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
@@ -686,7 +743,7 @@ namespace CombatExtended
 
                 }
                 else
-                {
+                {                    
                     projectile.Launch(
                                       Shooter,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
                                       sourceLoc,
@@ -717,7 +774,7 @@ namespace CombatExtended
                 }
             }
             return true;
-        }
+        }        
 
         private float GetMinCollisionDistance(float targetDistance)
         {
@@ -757,7 +814,7 @@ namespace CombatExtended
 
         private new List<IntVec3> tempLeanShootSources = new List<IntVec3>();
 
-        public bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
+        public virtual bool TryFindCEShootLineFromTo(IntVec3 root, LocalTargetInfo targ, out ShootLine resultingLine)
         {
             if (targ.HasThing && targ.Thing.Map != caster.Map)
             {
@@ -770,7 +827,7 @@ namespace CombatExtended
                 return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
-            float num = cellRect.ClosestDistSquaredTo(root);
+            float num = cellRect.ClosestDistSquaredTo(root);            
             if (num > EffectiveRange * EffectiveRange || num < verbProps.minRange * verbProps.minRange)
             {
                 resultingLine = new ShootLine(root, targ.Cell);

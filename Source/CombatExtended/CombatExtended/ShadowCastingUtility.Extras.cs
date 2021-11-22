@@ -14,52 +14,137 @@ namespace CombatExtended
         private static readonly IntVec3 _offsetV = new IntVec3(0, 0, 1);
 
         private static IntVec3 GetBaseOffset(int quartor) => (quartor == 0 || quartor == 2) ? _offsetV : _offsetH;
+
         private static int GetNextQuartor(int quartor) => (quartor + 1) % 4;
         private static int GetPreviousQuartor(int quartor) => (quartor - 1) < 0 ? 3 : (quartor - 1);
 
-        public static void CastWeighted(this Map map, IntVec3 source, int maxRadius, bool reset = true) => Cast(map, TryCastWeighted, source, maxRadius, reset);
-        public static void CastVisibility(this Map map, IntVec3 source, int maxRadius, bool reset = true) => Cast(map, TryCastVisibility, source, maxRadius, reset);
+        /// <summary>
+        /// Evaluate all cells around the source for visibility (float value).
+        /// Note: this is a slower but more accurate version of CastVisibility.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="radius">Radius</param>        
+        public static void CastWeighted(Map map, IntVec3 source, Action<IntVec3, int> setAction, int radius) => Cast(map, TryCastWeighted, setAction, source, radius);
+        /// <summary>
+        /// Evaluate all cells around the source for visibility (float value).
+        /// Note: this is a slower but more accurate version of CastVisibility.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="maxRadius">Radius</param>
+        /// <param name="cellCount">number of cells sat (the action called in)</param>
+        public static void CastWeighted(Map map, IntVec3 source, Action<IntVec3, int> action, int radius, int carryLimit, out int cellCount)
+        {
+            ShadowCastingUtility.carryLimit = carryLimit;
+            CastWeighted(map, source, action, radius);
+            cellCount = cellsScanned;
+            ShadowCastingUtility.carryLimit = VISIBILITY_CARRY_MAX;
+        }
 
-        private static void Cast(Map map, Action<float, float, int, int> castingAction, IntVec3 source, int maxRadius, bool reset)
+        /// <summary>
+        /// Evaluate all cells around the source for visibility (on/off).
+        /// Note: this is a faster but less accurate version of CastVisibility.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="radius">Radius</param>        
+        public static void CastVisibility(Map map, IntVec3 source, Action<IntVec3> action, int radius) => Cast(map, TryCastVisibility, (cell, _) => action(cell), source, radius);
+        /// <summary>
+        /// Evaluate all cells around the source for visibility (on/off).
+        /// Note: this is a faster but less accurate version of CastVisibility.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="radius">Radius</param>        
+        /// <param name="cellCount">number of cells sat</param>
+        public static void CastVisibility(Map map, IntVec3 source, Action<IntVec3> action, int radius, out int cellCount)
+        {
+            CastVisibility(map, source, action, radius);
+            cellCount = ShadowCastingUtility.cellsScanned;
+        }       
+
+        private static void Cast(Map map, Action<float, float, int, int> castingAction, Action<IntVec3, int> action, IntVec3 source, int radius)
         {
             ShadowCastingUtility.map = map;
-            ShadowCastingUtility.grid = map.GetComponent<ShadowGrid>();
-            if (reset)
-            {
-                ShadowCastingUtility.grid.Reset();
-            }
             ShadowCastingUtility.source = source;
-            int maxDepth = (int)(maxRadius * 1.43f);
+            ShadowCastingUtility.setAction = action;
+            ShadowCastingUtility.cellsScanned = 0;
+            int maxDepth = (int)(radius * 1.43f);
             for (int i = 0; i < 4; i++)
             {
                 castingAction(-1, 1, i, maxDepth);
             }
             ShadowCastingUtility.map = null;
-            ShadowCastingUtility.grid = null;
             ShadowCastingUtility.source = IntVec3.Invalid;
         }
 
-        public static void CastWeighted(this Map map, IntVec3 source, IntVec3 target, float baseWidth = 5, bool reset = true) => Cast(map, TryCastWeighted, source, target, baseWidth, reset);
-        public static void CastVisibility(this Map map, IntVec3 source, IntVec3 target, float baseWidth = 5, bool reset = true) => Cast(map, TryCastVisibility, source, target, baseWidth, reset);        
+        /// <summary>
+        /// Evaluate visible cells from the source in the direction of target. Will result in storing the cover visiblity (on/off) for each each cell in the ShadowGrid
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="direction">Direction</param>
+        /// <param name="baseWidth">What is the maximum amount of cells (width) to be scanned</param>        
+        public static void CastVisibility(Map map, IntVec3 source, Vector3 direction, Action<IntVec3> action, float radius, float baseWidth) => Cast(map, TryCastVisibility, (cell, _) => action(cell), source, (source.ToVector3() + direction.normalized * radius).ToIntVec3(), baseWidth);
+        /// <summary>
+        /// Evaluate visible cells from the source in the direction of target. Will result in storing the cover visiblity (on/off) for each each cell in the ShadowGrid
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="direction">Direction</param>
+        /// <param name="baseWidth">What is the maximum amount of cells (width) to be scanned</param>
+        /// <param name="cellCount">number of cells sat (the action called in)</param>
+        public static void CastVisibility(Map map, IntVec3 source, Vector3 direction, Action<IntVec3> action, float radius, float baseWidth, out int cellCount)
+        {
+            CastVisibility(map, source, direction, action, radius, baseWidth);
+            cellCount = ShadowCastingUtility.cellsScanned;
+        }
 
-        private static void Cast(Map map, Action<float, float, int, int> castingAction, IntVec3 source, IntVec3 target, float baseWidth, bool reset)
+        /// <summary>
+        /// Evaluate visible cells from the source in the direction of target. Will result in storing the cover visiblity (float value) scoring for each each cell in the ShadowGrid
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="direction">Direction</param>
+        /// <param name="action">Set action (x, z, current_ray_value)</param> 
+        /// <param name="baseWidth">What is the maximum amount of cells (width) to be scanned</param>          
+        public static void CastWeighted(Map map, IntVec3 source, Vector3 direction, Action<IntVec3, int> action, float radius, float baseWidth) => Cast(map, TryCastWeighted, action, source, (source.ToVector3() + direction.normalized * radius).ToIntVec3(), baseWidth);
+        /// <summary>
+        /// Evaluate visible cells from the source in the direction of target. Will result in storing the cover visiblity (float value) scoring for each each cell in the ShadowGrid
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="source">Source cell</param>
+        /// <param name="direction">Direction</param>
+        /// <param name="action">Set action (x, z, current_ray_value)</param>
+        /// <param name="baseWidth">What is the maximum amount of cells (width) to be scanned</param>
+        /// <param name="cellCount">number of cells sat (the action called in)</param>
+        /// <param name="carryLimit">How many layers of cover before it's no longer visible</param>  
+        public static void CastWeighted(Map map, IntVec3 source, Vector3 direction, Action<IntVec3, int> action, float radius, float baseWidth, int carryLimit, out int cellCount)
+        {
+            ShadowCastingUtility.carryLimit = carryLimit;
+            CastWeighted(map, source, direction, action, radius, baseWidth);            
+            cellCount = cellsScanned;
+            ShadowCastingUtility.carryLimit = VISIBILITY_CARRY_MAX;
+        }          
+
+        private static void Cast(Map map, Action<float, float, int, int> castingAction, Action<IntVec3, int> setAction, IntVec3 source, IntVec3 target, float baseWidth)
         {
             if (target.DistanceTo(source) < 2)
             {
                 return;
-            }
-            ShadowCastingUtility.map = map;
-            ShadowCastingUtility.grid = map.GetComponent<ShadowGrid>();
-            ShadowCastingUtility.source = source;
-            if (reset)
-            {
-                ShadowCastingUtility.grid.Reset();
             }            
-            int maxDepth = (int) (source.DistanceTo(target) * 1.45f);
+            ShadowCastingUtility.map = map;            
+            ShadowCastingUtility.source = source;
+            ShadowCastingUtility.setAction = setAction;
+            ShadowCastingUtility.cellsScanned = 0;
+            //
+            // get which quartor the target is in.
             int quartor = GetQurator(target - source);            
             Vector3 relTarget = _transformationInverseFuncsV3[quartor]((target - source).ToVector3());
             Vector3 relStart = relTarget + new Vector3(0, 0, -baseWidth / 2f);
             Vector3 relEnd = relTarget + new Vector3(0, 0, baseWidth / 2f);
+            int maxDepth = (int)(source.DistanceTo(target));
             float startSlope = GetSlope(relStart);
             float endSlope = GetSlope(relEnd);                       
             if(startSlope < -1)
@@ -75,10 +160,9 @@ namespace CombatExtended
                 endSlope = 1;
             }
             castingAction(startSlope, endSlope, quartor, maxDepth);
-            ShadowCastingUtility.map = null;
-            ShadowCastingUtility.grid = null;
+            ShadowCastingUtility.map = null;            
             ShadowCastingUtility.source = IntVec3.Invalid;
-        }
+        }        
     }
 }
 

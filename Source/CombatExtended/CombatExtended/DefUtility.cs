@@ -17,7 +17,18 @@ namespace CombatExtended
         /// <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
         /// </summary>
+        internal static FlagArray isRadioArray = new FlagArray(ushort.MaxValue);
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
         internal static FlagArray isAOEArray = new FlagArray(ushort.MaxValue);
+
+
+        /// <summary>
+        /// A bitmap that store flags. The real size of this one is 2048 byte.
+        /// </summary>
+        internal static FlagArray isFlamableArray = new FlagArray(ushort.MaxValue);
 
         // <summary>
         /// A bitmap that store flags. The real size of this one is 2048 byte.
@@ -56,7 +67,10 @@ namespace CombatExtended
 
             // Prepare weaponPlatforms
             foreach (WeaponPlatformDef def in DefDatabase<WeaponPlatformDef>.AllDefs)                            
-                def.Prepare();            
+                def.Prepare();
+
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs)
+                ProcessThing(def);       
         }
 
         /// <summary>
@@ -91,6 +105,18 @@ namespace CombatExtended
         public static bool IsMenuHidden(this ThingDef def)
         {
             return isMenuHiddenArray[def.index];
+        }
+
+
+        /// <summary>
+        /// Check is this ThingDef is MenuHidden. This replace the old removed menuHidden field.
+        /// </summary>
+        /// <param name="def">Thing def</param>
+        /// <returns>Is menu hidden</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFlamable(this ThingDef def)
+        {
+            return isFlamableArray[def.index];
         }
 
         /// <summary>
@@ -140,6 +166,16 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Return wether this ThingDef is an apparel radio pack
+        /// </summary>
+        /// <param name="def"></param>
+        /// <returns>If this ThingDef is an apparel radio pack</returns>
+        public static bool IsRadioPack(this ThingDef def)
+        {
+            return isRadioArray[def.index];
+        }
+
+        /// <summary>
         /// Prepare apparel def by caching isVisibleLayer.
         /// </summary>
         /// <param name="def">Apparel def</param>        
@@ -151,6 +187,31 @@ namespace CombatExtended
              */
             if (layer != null)
                 isVisibleLayerArray[def.index] = isVisibleLayerArray[layer.index];
+            /*
+             * cache ApparelDefExtension fields
+             */
+            if (def.HasModExtension<ApparelDefExtension>())
+            {
+                ApparelDefExtension extension = def.GetModExtension<ApparelDefExtension>();
+                /*
+                 * wether this apparel is a radio pack
+                 */
+                isRadioArray[def.index] = extension.isRadioPack;
+                if (extension.isRadioPack)
+                {
+                    Log.Message($"{def}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Process general attributes of things
+        /// </summary>
+        /// <param name="def">Thing def</param>        
+        private static void ProcessThing(ThingDef def)
+        {
+            if (def.useHitPoints)            
+                isFlamableArray[def.index] = def.IsFlamable();            
         }
 
         /// <summary>

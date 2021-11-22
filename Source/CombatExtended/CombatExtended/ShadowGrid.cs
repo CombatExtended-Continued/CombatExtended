@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Numerics;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -32,15 +33,12 @@ namespace CombatExtended
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-            //
             //if (!Find.Selector.SelectedPawns.NullOrEmpty())
             //{
+            //    Reset();
             //    var pawn = Find.Selector.SelectedPawns.First();
-            //    var target = UI.MouseMapPosition().ToIntVec3();
-            //    if (target.InBounds(map))
-            //    {
-            //        map.CastWeighted(pawn.Position, target, 20);
-            //    }
+            //    var direction = UI.MouseCell().ToVector3() - pawn.Position.ToVector3();
+            //    ShadowCastingUtility.CastVisibility(map, pawn.Position, direction, (cell) => Set(cell, 0.5f), direction.magnitude, 10, out _);
             //}
         }
 
@@ -48,41 +46,34 @@ namespace CombatExtended
         {
             this.signature++;
             this.lastTick = GenTicks.TicksGame;
-        }        
-
-        public void Set(IntVec3 cell, float visibility) => Set(cell.x, cell.z, visibility);
-
-        public void Set(int i, int j, float visibility)
+        }
+        
+        public void Set(int i, int j, float visibility) => Set(new IntVec3(i, 0, j), visibility);
+        public void Set(IntVec3 cell, float visibility)
         {
-            if (i < 0 || j < 0 || i >= this.sizeX || j >= this.sizeZ)
+            if (!cell.InBounds(map))
             {
                 return;
-            }            
-            //if (DebugSettings.godMode && (this.lastTick = GenTicks.TicksGame) % 10 == 0)
+            }
+            this.sigGrid[cell.x][cell.z] = signature;
+            this.visGrid[cell.x][cell.z] = visibility;
+            //if (DebugSettings.godMode)
             //{
-            //    map.debugDrawer.FlashCell(new IntVec3(i, 0, j), visibility, $"{visibility}", duration: 10);
-            //}            
-            this.sigGrid[i][j] = signature;
-            this.visGrid[i][j] = visibility;
+            //    map.debugDrawer.FlashCell(cell, Mathf.Clamp(visibility / 2f, 0.01f, 0.5f), visibility.ToString("#.##"), 2);
+            //}
         }
 
-        public bool TryGet(IntVec3 cell, out float visibility) => TryGet(cell.x, cell.z, out visibility);
-
-        public bool TryGet(int i, int j, out float visibility)
-        {
-            if(i < 0 || j < 0 || i >= this.sizeX || j >= this.sizeZ)
+        public bool TryGet(int i, int j, out float visibility) => TryGet(new IntVec3(i, 0, j), out visibility);
+        public bool TryGet(IntVec3 cell, out float visibility)
+        {            
+            if (!cell.InBounds(map) || this.sigGrid[cell.x][cell.z] != signature)
             {
                 visibility = 0f;
                 return false;
             }
-            if (this.sigGrid[i][j] != signature)
-            {
-                visibility = 0f;
-                return false;
-            }
-            visibility = this.visGrid[i][j];
+            visibility = this.visGrid[cell.x][cell.z];
             return true;
-        }
+        }                
     }
 }
 

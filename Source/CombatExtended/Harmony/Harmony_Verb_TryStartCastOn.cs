@@ -51,7 +51,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 yield return code;
             }
-        }
+        }       
 
         // Functions like a prefix.  If this has something to do return false. if nothing to do return true.
         static bool CheckReload(Verb __instance, LocalTargetInfo castTarg, LocalTargetInfo destTarg)

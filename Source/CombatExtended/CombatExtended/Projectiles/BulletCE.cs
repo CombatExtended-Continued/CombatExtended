@@ -143,10 +143,15 @@ namespace CombatExtended
                 try
                 {
                     // Apply primary damage
-                    DamageWorker.DamageResult damageResult = hitThing.TakeDamage(dinfo);
-                    damageResult.AssociateWithLog(logEntry);
-                                        
-                    if (!(hitThing is Pawn))
+                    DamageWorker.DamageResult damageResult = hitThing.TakeDamage(dinfo);                                                        
+                    // to prevent associating errors related to grammer
+                    if (launcher != null)
+                    {
+                        damageResult.AssociateWithLog(logEntry);
+                    }
+                    // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
+                    // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
+                    if (!(hitThing is Pawn) && projectilePropsCE != null && !projectilePropsCE.secondaryDamage.NullOrEmpty())
                     {
                         // Apply secondary to non-pawns (pawn secondary damage is handled in the damage worker)
                         // The !(hitThing is Pawn) already excludes non-pawn cookoff projectiles from being logged, as logEntry == null
