@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Security</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- C4 -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "RN2Explosive_C4Charge"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>2</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+				<FSX>6</FSX>
+			</costList>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RN2Explosive_C4Charge"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>5.5</explosiveRadius>
+				<wickTicks>
+				  <min>5</min>
+				  <max>30</max>
+				</wickTicks>
+			</li>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "RN2Explosive_C4IED"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>2</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+				<FSX>9</FSX>
+			</costList>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RN2Explosive_C4IED"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>7.5</explosiveRadius>
+				<wickTicks>
+				  <min>5</min>
+				  <max>30</max>
+				</wickTicks>
+			</li>
+		</value>
+		</li>
+
+		<!-- 155mm IED -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "RN2Explosive_155mmIED"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>40</Steel>
+				<ComponentIndustrial>2</ComponentIndustrial>
+				<FSX>8</FSX>
+			</costList>
+		</value>
+		</li>
+
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RN2Explosive_155mmIED"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>6.5</explosiveRadius>
+				<wickTicks>
+				  <min>5</min>
+				  <max>30</max>
+				</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>80</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+		</li>
+
+		<!-- Claymore -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "RN2Explosive_M18Claymore"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>30</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+				<FSX>4</FSX>
+			</costList>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RN2Explosive_M18Claymore"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3</explosiveRadius>
+				<wickTicks>
+				  <min>5</min>
+				  <max>30</max>
+				</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="RN2Explosive_M18Claymore"]/comps/li[@Class="ChickenExplosives.CompProperties_ProjectileSprayer"]</xpath>
+		</li>
+
+		<!--  Mines -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "RN2Explosive_YM1B_APMine"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>20</Steel>
+				<ComponentIndustrial>1</ComponentIndustrial>
+				<FSX>2</FSX>
+			</costList>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RN2Explosive_YM1B_APMine"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>3.5</explosiveRadius>
+				<startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+				<wickTicks>5</wickTicks>
+				<startWickOnDamageTaken>
+				<li>Bullet</li>
+				<li>Arrow</li>
+				<li>ArrowHighVelocity</li>
+				</startWickOnDamageTaken>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>4</Fragment_Large>
+					<Fragment_Small>40</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    

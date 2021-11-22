@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aspero</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd"> <!-- This thing is basically a big slower, stupider, iguana so using the CE Iguana as a base -->
+				<xpath>Defs/ThingDef[defName="Grei_MeatDrake"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.04</MeleeDodgeChance>
+					<MeleeCritChance>0.02</MeleeCritChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Grei_MeatDrake"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.03</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claws</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.03</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>2.2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.03</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>5</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Grei_MeatDrake"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Serpentine</bodyShape>
+					</li>
+				</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

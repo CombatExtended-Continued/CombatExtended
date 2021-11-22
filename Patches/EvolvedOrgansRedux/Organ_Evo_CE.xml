@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>EvolvedOrgansRedux</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+    			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="EVOR_Item_Eye_MultispectrumEye"]</xpath>
+			<value>
+				<statBases>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+				</statBases>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Eye_MultispectrumEye"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<AimingDelayFactor>-0.10</AimingDelayFactor>
+					<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+					<NightVisionEfficiency_Implant>0.3</NightVisionEfficiency_Implant>
+				</statOffsets>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Ear_MultifrequencyEar"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeDodgeChance>0.18</MeleeDodgeChance>
+				</statOffsets>
+			</value>
+			</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Jaw_DistendableJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Stab</li><li>Bite</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="EVOR_Hediff_Jaw_VenomousFangs"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>EVOR_Cap_Toxic</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.4</cooldownTime>
+					<armorPenetrationSharp>0.6</armorPenetrationSharp>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+		</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

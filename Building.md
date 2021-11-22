@@ -12,7 +12,7 @@ and tell Make.py where to find it.
 
 The invocation used by CI is about as simple as it gets.
 `python Make.py --all-libs --download-libs` (for RW < 1.3), or
-`python Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer=$PWD/AssemblyPublicizer` (for RW >= 1.3)
+`python Make.py --download-libs --all-libs --publicizer=$PWD/AssemblyPublicizer` (for RW >= 1.3)
 
 ## Windows
 

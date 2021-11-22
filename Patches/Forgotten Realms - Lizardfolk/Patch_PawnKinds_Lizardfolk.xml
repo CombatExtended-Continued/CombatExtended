@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forgotten Realms - Lizardfolk</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Tribal -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Peasant" or defName="FR_CrocoTribes_Peasant"]/combatPower</xpath>
+					<value>
+						<combatPower>25</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Fighter" or defName="FR_SquamataTribes_Fighter"]/combatPower</xpath>
+					<value>
+						<combatPower>30</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Warrior" or defName="FR_CrocoTribes_Warrior"]/combatPower</xpath>
+					<value>
+						<combatPower>40</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FR_CrocoTribes_Bowman" or defName="FR_SquamataTribes_Bowman"]/combatPower</xpath>
+					<value>
+						<combatPower>40</combatPower>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="FR_SquamataTribes_Champion" or defName="FR_SquamataTribes_Chief" or defName="FR_CrocoTribes_Champion" or defName="FR_CrocoTribes_Chief"]/combatPower</xpath>
+					<value>
+						<combatPower>70</combatPower>
+					</value>
+				</li>
+
+				<!-- Hive_Archer -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="FR_CrocoTribes_Bowman" or defName="FR_SquamataTribes_Bowman"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>20</min>
+								<max>40</max>
+							</primaryMagazineCount>
+							<shieldMoney>
+								<min>100</min>
+								<max>140</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.5</shieldChance>
+							<sidearms>
+								<li>
+									<sidearmMoney>
+										<min>40</min>
+										<max>80</max>
+									</sidearmMoney>
+									<weaponTags>
+										<li>CE_Sidearm_Tribal</li>
+									</weaponTags>
+								</li>
+							</sidearms>
+						</li>
+					</value>
+				</li>
+
+				<!-- Hiver_Warrior -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[defName="FR_SquamataTribes_Warrior" or defName="FR_CrocoTribes_Warrior" or defName="FR_CrocoTribes_Fighter" or defName="FR_SquamataTribes_Fighter"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<shieldMoney>
+								<min>100</min>
+								<max>200</max>
+							</shieldMoney>
+							<shieldTags>
+								<li>TribalShield</li>
+							</shieldTags>
+							<shieldChance>0.75</shieldChance>
+						</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

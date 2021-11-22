@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aspero</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="SimpleAsperoTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					   <label>tail</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>0.5</power>
+						<cooldownTime>2</cooldownTime>
+						<chanceFactor>0.05</chanceFactor>
+						<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+			</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="CombatAsperoTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>spiked tail</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>2</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.42</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+			</li>
+			<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="BionicAsperoTail"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>transforming tail</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>1</cooldownTime>
+						<chanceFactor>0.3</chanceFactor>
+						<armorPenetrationBlunt>0.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1</armorPenetrationSharp>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					    <label>transforming tail</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>4</cooldownTime>
+						<chanceFactor>0.3</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+			</li>
+		</operations>
+		</match>
+	</Operation>
+</Patch>

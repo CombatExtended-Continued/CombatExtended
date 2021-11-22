@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+        <operations>
+
+            <!--Make ammos craftable with the anvil-->
+	        <li Class="PatchOperationAdd">
+		        <xpath>Defs/ThingDef[@Name="AmmoGreatArrowBase" or @Name="AmmoArrowBase" or @Name="AmmoCrossbowBoltBase"]/tradeTags</xpath>
+		        <value>
+			        <li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
+                    <li>CE_AutoEnableCrafting_DankPyon_Workbench</li>
+		        </value>
+	        </li>
+
+            <!--Crossbow Ammos-->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs</xpath>
+                <value>
+                    <CombatExtended.AmmoSetDef>
+                        <defName>AmmoSet_DankPyonCrossbowBolt</defName>
+                        <label>crossbow bolts</label>
+                        <ammoTypes>
+                            <Ammo_CrossbowBolt_Stone>Projectile_DankPyonCrossbowBolt_Stone</Ammo_CrossbowBolt_Stone>
+                            <Ammo_CrossbowBolt_Steel>Projectile_DankPyonCrossbowBolt_Steel</Ammo_CrossbowBolt_Steel>
+                            <Ammo_CrossbowBolt_Venom>Projectile_DankPyonCrossbowBolt_Venom</Ammo_CrossbowBolt_Venom>
+                           <!-- <Ammo_CrossbowBolt_Flame>Projectile_DankPyonCrossbowBolt_Flame</Ammo_CrossbowBolt_Flame> -->     
+                        </ammoTypes>
+                    </CombatExtended.AmmoSetDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_DankPyonCrossbowBolt_Stone</defName>
+                        <label>normal crossbow bolt (stone)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageAmountBase>8</damageAmountBase>
+                            <armorPenetrationBlunt>1.4</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.70</armorPenetrationSharp>			
+                            <preExplosionSpawnChance>0.1</preExplosionSpawnChance>
+                            <speed>35</speed>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_DankPyonCrossbowBolt_Steel</defName>
+                        <label>normal crossbow bolt (steel)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageAmountBase>12</damageAmountBase> <!-- -2 -->
+                            <armorPenetrationBlunt>6</armorPenetrationBlunt> <!-- -0.5 -->
+                            <armorPenetrationSharp>2.65</armorPenetrationSharp> <!-- -0.2 -->
+                            <speed>35</speed>			
+                            <preExplosionSpawnChance>0.333</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_DankPyonCrossbowBolt_Venom</defName>
+                        <label>normal crossbow bolt (venom)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageDef>ArrowVenom</damageDef>
+                            <damageAmountBase>10</damageAmountBase>
+                            <armorPenetrationBlunt>6</armorPenetrationBlunt>
+                            <armorPenetrationSharp>2.3</armorPenetrationSharp>
+                            <secondaryDamage>
+				                <li>
+				                    <def>ArrowVenom</def>
+				                    <amount>3</amount>
+				                </li>
+			                </secondaryDamage>
+                            <speed>35</speed>	
+                            <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <!--  Flame bolt ????        
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_DankPyonCrossbowBolt_Flame</defName>
+                        <label>normal crossbow bolt (flame)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageDef>Flame</damageDef>
+                            <damageAmountBase>4</damageAmountBase>
+                            <armorPenetrationBlunt>3</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.4</armorPenetrationSharp>
+                            <speed>35</speed>	
+                        </projectile>
+                    </ThingDef>-->
+                </value>
+            </li>
+
+            <!--Heavy Crossbow Ammos-->
+
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs</xpath>
+                <value>
+                    <CombatExtended.AmmoSetDef>
+                        <defName>AmmoSet_ArbalestBolt</defName>
+                        <label>crossbow bolts</label>
+                        <ammoTypes>
+                            <Ammo_CrossbowBolt_Stone>Projectile_ArbalestBolt_Stone</Ammo_CrossbowBolt_Stone>
+                            <Ammo_CrossbowBolt_Steel>Projectile_ArbalestBolt_Steel</Ammo_CrossbowBolt_Steel>
+                            <Ammo_CrossbowBolt_Venom>Projectile_ArbalestBolt_Venom</Ammo_CrossbowBolt_Venom>
+                           <!-- <Ammo_CrossbowBolt_Flame>Projectile_ArbalestBolt_Flame</Ammo_CrossbowBolt_Flame> -->     
+                        </ammoTypes>
+                    </CombatExtended.AmmoSetDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_ArbalestBolt_Stone</defName>
+                        <label>crossbow bolt (stone)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageAmountBase>13</damageAmountBase>
+                            <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.85</armorPenetrationSharp>			
+                            <preExplosionSpawnChance>0.1</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Stone</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_ArbalestBolt_Steel</defName>
+                        <label>crossbow bolt (steel)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageAmountBase>20</damageAmountBase>
+                            <armorPenetrationBlunt>8</armorPenetrationBlunt>
+                            <armorPenetrationSharp>3</armorPenetrationSharp>
+                            <speed>35</speed>			
+                            <preExplosionSpawnChance>0.333</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_ArbalestBolt_Venom</defName>
+                        <label>crossbow bolt (venom)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageDef>ArrowVenom</damageDef>
+                            <damageAmountBase>15</damageAmountBase>
+                            <armorPenetrationBlunt>6.5</armorPenetrationBlunt>
+                            <armorPenetrationSharp>2.5</armorPenetrationSharp>
+                            <secondaryDamage>
+				                <li>
+				                    <def>ArrowVenom</def>
+				                    <amount>4</amount>
+				                </li>
+			                </secondaryDamage>
+                            <speed>35</speed>
+                            <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <!--Flame bolt ?????
+                    <ThingDef ParentName="BaseCrossbowBoltProjectile">
+                        <defName>Projectile_ArbalestBolt_Flame</defName>
+                        <label>crossbow bolt (flame)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <damageDef>Flame</damageDef>
+                            <damageAmountBase>5</damageAmountBase>
+                            <armorPenetrationBlunt>3.28</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                            <speed>18</speed>	
+                        </projectile>
+                    </ThingDef>-->
+                </value>
+            </li>
+
+
+            <!-- Hunting Bow Ammos (base streamline arrows | recurve bow) -->
+            <li Class="PatchOperationAdd">  
+                <xpath>/Defs</xpath>
+                <value>
+                    <CombatExtended.AmmoSetDef>
+                        <defName>AmmoSet_HuntingArrow</defName>
+                        <label>arrows</label>
+                        <ammoTypes>
+                            <Ammo_Arrow_Stone>Projectile_HuntingArrow_Stone</Ammo_Arrow_Stone>
+                            <Ammo_Arrow_Steel>Projectile_HuntingArrow_Steel</Ammo_Arrow_Steel>
+	                        <Ammo_Arrow_Venom>Projectile_HuntingArrow_Venom</Ammo_Arrow_Venom>
+	                        <Ammo_Arrow_Flame>Projectile_HuntingArrow_Flame</Ammo_Arrow_Flame>
+                        </ammoTypes>
+                    </CombatExtended.AmmoSetDef>
+
+                    <ThingDef ParentName="BaseStreamlinedArrowProjectile">
+                        <defName>Projectile_HuntingArrow_Stone</defName>
+                        <label>streamlined hunting arrow (stone)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+                            <damageAmountBase>9</damageAmountBase>
+                            <armorPenetrationSharp>0.6</armorPenetrationSharp>
+                            <armorPenetrationBlunt>1.9</armorPenetrationBlunt>
+                            <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_Arrow_Stone</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+
+                    <ThingDef ParentName="BaseStreamlinedArrowProjectile">
+                        <defName>Projectile_HuntingArrow_Steel</defName>
+                        <label>streamlined hunting arrow (steel)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+                            <damageAmountBase>12</damageAmountBase> <!-- + 1 -->
+                            <armorPenetrationSharp>1.5</armorPenetrationSharp> <!-- + 0.1 -->
+                            <armorPenetrationBlunt>6.4</armorPenetrationBlunt> <!-- + 0.5 -->
+                            <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+  
+                    <ThingDef ParentName="BaseStreamlinedArrowProjectile">
+                        <defName>Projectile_HuntingArrow_Venom</defName>
+                        <label>streamlined hunting arrow (venom)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+	                        <damageDef>Arrow</damageDef>
+                            <damageAmountBase>10</damageAmountBase>
+		                    <secondaryDamage>
+			                    <li>
+			                        <def>ArrowVenom</def>
+			                        <amount>2</amount>
+			                    </li>
+		                    </secondaryDamage>		  
+                            <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                            <armorPenetrationBlunt>6.4</armorPenetrationBlunt>
+                            <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+                            <preExplosionSpawnThingDef>Ammo_Arrow_Steel</preExplosionSpawnThingDef>
+                        </projectile>
+                    </ThingDef>
+  
+                    <ThingDef ParentName="BaseStreamlinedArrowProjectile">
+                        <defName>Projectile_HuntingArrow_Flame</defName>
+                        <label>streamlined hunting arrow (flame)</label>
+                        <graphicData>
+                            <texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+                            <graphicClass>Graphic_Single</graphicClass>
+                        </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+                            <damageDef>Arrow</damageDef>
+                            <damageAmountBase>4</damageAmountBase>
+                            <armorPenetrationSharp>0.6</armorPenetrationSharp>
+                            <armorPenetrationBlunt>3.4</armorPenetrationBlunt>
+                        <secondaryDamage>
+                            <li>
+                                <def>Flame</def>
+                                <amount>1</amount>
+                                <chance>0.33</chance>
+                            </li>
+                        </secondaryDamage>
+                        </projectile>
+                    </ThingDef>
+                </value>
+            </li>
+
+
+            <!-- War Bow Ammos (base great arrows | great bow) -->
+            
+            <li Class="PatchOperationAdd">  
+                <xpath>/Defs</xpath>
+                <value>
+ 
+                    <CombatExtended.AmmoSetDef>
+                        <defName>AmmoSet_WarArrow</defName>
+                        <label>great arrows</label>
+                        <ammoTypes>
+                            <Ammo_GreatArrow_Stone>Projectile_WarArrow_Stone</Ammo_GreatArrow_Stone>
+                            <Ammo_GreatArrow_Steel>Projectile_WarArrow_Steel</Ammo_GreatArrow_Steel>
+	                        <Ammo_GreatArrow_Venom>Projectile_WarArrow_Venom</Ammo_GreatArrow_Venom>
+	                        <Ammo_GreatArrow_Flame>Projectile_WarArrow_Flame</Ammo_GreatArrow_Flame>
+                        </ammoTypes>
+                    </CombatExtended.AmmoSetDef>
+
+     	            <ThingDef ParentName="BaseGreatArrowProjectile">
+	    	            <defName>Projectile_WarArrow_Stone</defName>
+		                <label>great war arrow (stone)</label>
+		                <graphicData>
+			                <texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+			                <graphicClass>Graphic_Single</graphicClass>
+		                </graphicData>
+		                <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			                <speed>33</speed>
+			                <damageAmountBase>10</damageAmountBase>
+			                <armorPenetrationBlunt>7</armorPenetrationBlunt>
+			                <armorPenetrationSharp>1.1</armorPenetrationSharp>
+			                <preExplosionSpawnChance>0.2</preExplosionSpawnChance>	<!-- 12.5 arrows per resource -->
+			                <preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+		                </projectile>
+	                </ThingDef>
+
+	                <ThingDef ParentName="BaseGreatArrowProjectile">
+		                <defName>Projectile_WarArrow_Steel</defName>
+		                <label>great war arrow (steel)</label>
+		                <graphicData>
+			                <texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+			                <graphicClass>Graphic_Single</graphicClass>
+		                </graphicData>
+		                <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+			                <damageAmountBase>14</damageAmountBase> <!-- + 1 -->
+			                <armorPenetrationBlunt>7</armorPenetrationBlunt> <!-- + 0.5 -->
+			                <armorPenetrationSharp>2</armorPenetrationSharp> <!-- + 0.2 -->
+			                <preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			                <preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		                </projectile>
+	                </ThingDef>
+	
+	                <ThingDef ParentName="BaseGreatArrowProjectile">
+		                <defName>Projectile_WarArrow_Venom</defName>
+		                <label>great war arrow (venom)</label>
+		                <graphicData>
+			                <texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+			                <graphicClass>Graphic_Single</graphicClass>
+		                </graphicData>
+		                <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+			                <damageDef>Arrow</damageDef>
+			                <damageAmountBase>12</damageAmountBase>
+			                <secondaryDamage>
+				                <li>
+				                    <def>ArrowVenom</def>
+				                    <amount>3</amount>
+				                </li>
+			                </secondaryDamage>			
+			                <armorPenetrationBlunt>8</armorPenetrationBlunt>
+			                <armorPenetrationSharp>2.2</armorPenetrationSharp>
+			                <preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+			                <preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+		                </projectile>
+	                </ThingDef>
+	
+	                <ThingDef ParentName="BaseGreatArrowProjectile">
+		                <defName>Projectile_WarArrow_Flame</defName>
+		                <label>great war arrow (flame)</label>
+		                <graphicData>
+			                <texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+			                <graphicClass>Graphic_Single</graphicClass>
+		                </graphicData>
+                        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                            <speed>33</speed>
+                            <damageDef>Arrow</damageDef>
+                            <damageAmountBase>4</damageAmountBase>
+                            <armorPenetrationBlunt>1.48</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.1</armorPenetrationSharp>
+                            <secondaryDamage>
+                                <li>
+                                    <def>Flame</def>
+                                    <amount>1</amount>
+                                    <chance>0.33</chance>
+                                </li>
+                            </secondaryDamage>
+                        </projectile>
+	                </ThingDef>
+
+                </value>
+            </li>
+
+        </operations>
+	</match>
+    </Operation>
+</Patch>

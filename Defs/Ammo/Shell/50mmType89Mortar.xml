@@ -49,13 +49,15 @@
     <ammoClass>GrenadeHE</ammoClass>
     <comps>
 		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>38</damageAmountBase>
+			<damageAmountBase>42</damageAmountBase>
 			<explosiveDamageType>Bomb</explosiveDamageType>
 			<explosiveRadius>2</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-          <Fragment_Shell>250</Fragment_Shell>
+          <Fragment_Large>3</Fragment_Large>
+          <Fragment_Small>12</Fragment_Small>
 			</fragments>
 		  </li>
     </comps>
@@ -63,21 +65,21 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base50mmType89MortarShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base50mmType89MortarShell" ParentName="BaseBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <speed>35</speed>
-          <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-          <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-          <soundAmbient>MortarRound_Ambient</soundAmbient>
-          <flyOverhead>true</flyOverhead>
+		  <speed>0</speed>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <flyOverhead>true</flyOverhead>
 		</projectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50mmType89MortarShell">
+  <ThingDef ParentName="Base50mmType89MortarShell">
     <defName>Bullet_50mmType89MortarShell_HE</defName>
     <label>50mm type 89 mortar shell (HE)</label>
     <graphicData>
@@ -86,19 +88,17 @@
 	</graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>112</damageAmountBase>
-      <explosionRadius>1</explosionRadius>
-	  <soundExplode>MortarBomb_Explode</soundExplode>
+      <damageAmountBase>42</damageAmountBase>
+      <explosionRadius>2</explosionRadius>
+      <soundExplode>MortarBomb_Explode</soundExplode>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
 		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>75</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>2</explosiveRadius>
-		  </li>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-          <Fragment_Shell>250</Fragment_Shell>
+        <Fragment_Large>3</Fragment_Large>
+        <Fragment_Small>12</Fragment_Small>
 			</fragments>
 		  </li>
 		</comps>
@@ -111,6 +111,7 @@
     <label>make 50mm type 89 HE mortar shells x5</label>
     <description>Craft 5 50mm type 89 HE mortar shells.</description>
     <jobString>Making 50mm type 89 HE mortar shells.</jobString>
+    <workAmount>3000</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -118,7 +119,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>10</count>
       </li>
       <li>
         <filter>
@@ -126,7 +127,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>2</count>
       </li>
       <li>
         <filter>

@@ -201,7 +201,7 @@
 					<defaultProjectile>Bullet_CrucibleRifle</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
 					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+					<ticksBetweenBurstShots>25</ticksBetweenBurstShots>
 					<range>55</range>
 					<soundCast>RS_ShotCR</soundCast>
 					<muzzleFlashScale>12</muzzleFlashScale>
@@ -231,7 +231,7 @@
 					<defaultProjectile>Bullet_CrucibleRifle</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
 					<burstShotCount>6</burstShotCount>
-					<ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+					<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 					<range>55</range>
 					<soundCast>RS_ShotCR</soundCast>
 					<muzzleFlashScale>12</muzzleFlashScale>
@@ -270,7 +270,10 @@
 				<weaponTags>
 					<li>CE_OneHandedWeapon</li>
 				</weaponTags>
-				<FireModes />
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
 			</li>
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -296,14 +299,19 @@
 					<soundCast>RS_ShotCP</soundCast>
 					<muzzleFlashScale>12</muzzleFlashScale>
 				</Properties>
-				<FireModes />
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+				</FireModes>
 			</li>			
 			
 			<!-- ==========  AD Heat Cannon  =========== -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_HeatProjector</defName>
 				<statBases>
-					<WorkToMake>70500</WorkToMake>
 					<SightsEfficiency>1.0</SightsEfficiency>
 					<ShotSpread>0.24</ShotSpread>
 					<SwayFactor>1.48</SwayFactor>
@@ -328,14 +336,13 @@
 				</Properties>
 				<FireModes>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
 				</FireModes>
 			</li>
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_FedHeatCannon</defName>
 				<statBases>
-					<WorkToMake>70500</WorkToMake>
 					<SightsEfficiency>1.0</SightsEfficiency>
 					<ShotSpread>0.24</ShotSpread>
 					<SwayFactor>1.48</SwayFactor>
@@ -360,7 +367,7 @@
 				</Properties>
 				<FireModes>
 					<aimedBurstShotCount>3</aimedBurstShotCount>
-					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
 				</FireModes>
 			</li>
 			
@@ -368,7 +375,6 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_CruciblePresicionRifle</defName>
 				<statBases>
-					<WorkToMake>60500</WorkToMake>
 					<SightsEfficiency>2.60</SightsEfficiency>
 					<ShotSpread>0.09</ShotSpread>
 					<SwayFactor>1.46</SwayFactor>
@@ -394,7 +400,6 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_FedSniperRifle</defName>
 				<statBases>
-					<WorkToMake>60500</WorkToMake>
 					<SightsEfficiency>2.60</SightsEfficiency>
 					<ShotSpread>0.09</ShotSpread>
 					<SwayFactor>1.46</SwayFactor>
@@ -421,9 +426,8 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_PlasmaCaliver</defName>
 				<statBases>
-					<WorkToMake>80500</WorkToMake>
 					<SightsEfficiency>1.0</SightsEfficiency>
-					<ShotSpread>0.5</ShotSpread>
+					<ShotSpread>0.25</ShotSpread>
 					<SwayFactor>1.96</SwayFactor>
 					<Bulk>18.20</Bulk>
 					<Mass>10.00</Mass>
@@ -434,7 +438,7 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_PlasmaCaster</defaultProjectile>
-					<warmupTime>4.25</warmupTime>
+					<warmupTime>3.25</warmupTime>
 					<minRange>3</minRange>
 					<burstShotCount>3</burstShotCount>
 					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
@@ -452,9 +456,8 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AD_FedPlasmaCaster</defName>
 				<statBases>
-					<WorkToMake>80500</WorkToMake>
 					<SightsEfficiency>1.0</SightsEfficiency>
-					<ShotSpread>0.5</ShotSpread>
+					<ShotSpread>0.25</ShotSpread>
 					<SwayFactor>1.96</SwayFactor>
 					<Bulk>18.20</Bulk>
 					<Mass>10.00</Mass>
@@ -497,9 +500,9 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_CrucibleCarbine</defaultProjectile>
-					<warmupTime>1.1</warmupTime>
-					<burstShotCount>3</burstShotCount>
-					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+					<warmupTime>1</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>22</ticksBetweenBurstShots>
 					<range>32</range>
 					<soundCast>RS_ShotCR</soundCast>
 					<muzzleFlashScale>10</muzzleFlashScale>

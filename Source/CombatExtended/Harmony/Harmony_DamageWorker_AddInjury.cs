@@ -108,22 +108,8 @@ namespace CombatExtended.HarmonyCE
     static class Patch_CheckDuplicateDamageToOuterParts
     {
         public static float lastHitPartHealth = 0;
-	static MethodInfo FinalizeAndAddInjury = null;
 
-	static Patch_CheckDuplicateDamageToOuterParts()
-	{
-	    FinalizeAndAddInjury = typeof(DamageWorker_AddInjury).GetMethod("FinalizeAndAddInjury",
-									    BindingFlags.Instance | BindingFlags.NonPublic,
-									    null,
-									    new Type[] {
-										typeof(Pawn),
-										typeof(Hediff_Injury),
-										typeof(DamageInfo),
-										typeof(DamageWorker.DamageResult) },
-									    null);
-	}
-	
-	[HarmonyPrefix]
+    [HarmonyPrefix]
 	static bool Prefix(DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn, float totalDamage, DamageWorker.DamageResult result)
 	{
 	    var hitPart = dinfo.HitPart;
@@ -151,7 +137,7 @@ namespace CombatExtended.HarmonyCE
 			{
 			    hediff_Injury.Severity = 1f;
 			}
-			FinalizeAndAddInjury.Invoke(__instance, new object[]{pawn, hediff_Injury, dinfo, result});
+            __instance.FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, result);
 		    }
 		}
 	    }

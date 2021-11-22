@@ -114,7 +114,7 @@ namespace CombatExtended
             }
         }
 
-        public float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(caster), 4.5f);
+        public float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(Shooter), 4.5f);
         public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
@@ -416,7 +416,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
-            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
+            report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {
