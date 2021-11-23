@@ -87,7 +87,7 @@ namespace CombatExtended
         #region Vanilla
         public bool landed;
         public int ticksToImpact;
-        private Sustainer ambientSustainer;
+        protected Sustainer ambientSustainer;
         #endregion
 
         private float suppressionAmount;
@@ -102,7 +102,7 @@ namespace CombatExtended
         /// 
         /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
-        public float Height
+        public virtual float Height
         {
             get
             {
@@ -215,7 +215,7 @@ namespace CombatExtended
             }
         }
 
-        public Vector2 DrawPosV2
+        public virtual Vector2 DrawPosV2
         {
             get
             {
@@ -233,7 +233,7 @@ namespace CombatExtended
         }
 
         private Vector3 lastExactPos = new Vector3(-1000, 0, 0);
-        private Vector3 LastPos
+        protected Vector3 LastPos
         {
             set
             {
@@ -287,7 +287,7 @@ namespace CombatExtended
         /// <summary>
         /// Based on equations of motion
         /// </summary>
-        public Quaternion DrawRotation
+        public virtual Quaternion DrawRotation
         {
             get
             {
@@ -649,7 +649,7 @@ namespace CombatExtended
         }
 
         //Removed minimum collision distance
-        private bool CheckForCollisionBetween()
+        protected virtual bool CheckForCollisionBetween()
         {            
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
@@ -972,6 +972,34 @@ namespace CombatExtended
         }
 
         /// <summary>
+        /// Called for spawning the projectile.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="respawningAfterLoad">Respawning after load</param>
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            if(def.projectile?.flyOverhead ?? false)
+            {
+                map.GetComponent<FlyOverProjectileTracker>().Register(this);
+            }
+            base.SpawnSetup(map, respawningAfterLoad);            
+        }
+
+        /// <summary>
+        /// Called for desspawning the projectile.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <param name="respawningAfterLoad">Respawning after load</param>
+        public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)
+        {
+            if (def.projectile?.flyOverhead ?? false)
+            {
+                Map.GetComponent<FlyOverProjectileTracker>().Unregister(this);
+            }
+            base.DeSpawn(mode);            
+        }
+
+        /// <summary>
         /// Draws projectile if at least a tick away from caster (or always if no caster)
         /// </summary>
         public override void Draw()
@@ -1155,13 +1183,13 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Ballistics
+        #region Ballistics       
         /// <summary>
         /// Calculated rounding to three decimales the output of h0 + v * sin(a0) * t - g/2 * t^2 with {h0 -> shotHeight, v -> shotSpeed, a0 -> shotAngle, t -> ticks/GenTicks.TicksPerRealSecond, g -> GravityFactor}. Called roughly each tick for impact checks and for drawing.
         /// </summary>
         /// <param name="ticks">Integer ticks, since the only time value which is not an integer (accessed by StartingTicksToImpact) has height zero by definition.</param>
         /// <returns>Projectile height at time ticks in ticks.</returns>
-        private float GetHeightAtTicks(int ticks)
+        public float GetHeightAtTicks(int ticks)
         {
             var seconds = ((float)ticks) / GenTicks.TicksPerRealSecond;
             return (float)Math.Round(shotHeight + shotSpeed * Mathf.Sin(shotAngle) * seconds - (GravityFactor * seconds * seconds) / 2f, 3);

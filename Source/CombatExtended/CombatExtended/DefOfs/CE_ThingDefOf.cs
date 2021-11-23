@@ -10,6 +10,8 @@ namespace CombatExtended
     [DefOf]
     public static class CE_ThingDefOf
     {
+        public static ThingDef CIWS_Fake;
+
         public static ThingDef Mote_FlareSmoke;
 
         public static ThingDef Mote_FlareGlow;

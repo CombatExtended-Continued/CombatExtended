@@ -10,16 +10,21 @@ namespace CombatExtended
     public class TurretTracker : MapComponent
     {
         public HashSet<Building_Turret> Turrets = new HashSet<Building_Turret>();
+        public HashSet<Building_CiwsGunCE> Ciwss = new HashSet<Building_CiwsGunCE>();
 
         public TurretTracker(Map map) : base(map)
         {
         }
 
         public void Register(Building_Turret t)
-        {
+        {            
             if (!Turrets.Contains(t))
             {
                 Turrets.Add(t);
+                if(t is Building_CiwsGunCE ciws && !Ciwss.Contains(ciws))
+                {
+                    Ciwss.Add(ciws);
+                }
             }
         }
 
@@ -28,6 +33,10 @@ namespace CombatExtended
             if (Turrets.Contains(t))
             {
                 Turrets.Remove(t);
+                if (t is Building_CiwsGunCE ciws && Ciwss.Contains(ciws))
+                {
+                    Ciwss.Remove(ciws);
+                }
             }
         }
 

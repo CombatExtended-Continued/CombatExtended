@@ -648,6 +648,14 @@ namespace CombatExtended
             {
                 yield return gizmo;
             }
+            foreach (Gizmo gizmo in GetTurretGizmos())
+            {
+                yield return gizmo;
+            }
+        }
+
+        protected virtual IEnumerable<Gizmo> GetTurretGizmos()
+        {
             // Ammo gizmos
             if (CompAmmo != null && (PlayerControlled || Prefs.DevMode))
             {
@@ -657,23 +665,23 @@ namespace CombatExtended
                         (com as GizmoAmmoStatus).prefix = "DEV: ";
 
                     yield return com;
-                }                
-            }
-            if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
-            {                
-                Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
-                {
-                    defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
-                    defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
-                    turret = this,
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
-                    hotKey = KeyBindingDefOf.Misc5
-                };                
-                yield return wt;
-            }            
+                }
+            }       
             // Don't show CONTROL gizmos on enemy turrets (even with dev mode enabled)
             if (PlayerControlled)
             {
+                if (IsMortar && Active && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
+                {
+                    Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
+                    {
+                        defaultLabel = "CE_ArtilleryTargetLabel".Translate(),
+                        defaultDesc = "CE_ArtilleryTargetDesc".Translate(),
+                        turret = this,
+                        icon = ContentFinder<Texture2D>.Get("UI/Commands/Attack", true),
+                        hotKey = KeyBindingDefOf.Misc5
+                    };
+                    yield return wt;
+                }
                 // Fire mode gizmos
                 if (CompFireModes != null)
                 {
