@@ -11,6 +11,7 @@ namespace CombatExtended.HarmonyCE
         internal static void Postfix(Pawn_ApparelTracker __instance, Apparel apparel)
         {
             var isRadioPack = apparel.def.GetModExtension<ApparelDefExtension>()?.isRadioPack ?? false;
+
             if (isRadioPack && (__instance.pawn.equipment?.equipment?.Any ?? false))
             {
                 foreach(Verb verb in __instance.pawn.equipment.AllEquipmentVerbs)
