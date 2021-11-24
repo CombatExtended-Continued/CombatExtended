@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Ancients</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Remove refuelable property -->
+		<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName = "VFEA_Turret_AncientSecurityTurret" or		
+			defName = "VFEA_Turret_AncientPointDefense"
+		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[
+			defName = "VFEA_Turret_AncientSecurityTurret" or		
+			@Name = "AncientPointDefenseTurretBase"	        		
+		]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+		</li>
+
+    <!-- Make turrets taller -->
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/fillPercent</xpath>
+      <value>
+        <fillPercent>0.85</fillPercent>
+      </value>
+    </li>
+
+	  <li Class="PatchOperationAdd">
+	  	<xpath>Defs/ThingDef[
+			defName = "VFEA_Turret_AncientSecurityTurret" or		
+			defName = "VFEA_Turret_AncientPointDefense"		  
+		]/statBases</xpath>
+	  	<value>
+	  		<AimingAccuracy>0.75</AimingAccuracy>
+	  	</value>
+	  </li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[
+			defName = "VFEA_Turret_AncientSecurityTurret" or		
+			defName = "VFEA_Turret_AncientPointDefense"		  
+		]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>1.1</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[
+			defName = "VFEA_Turret_AncientSecurityTurret" or		
+			defName = "VFEA_Turret_AncientPointDefense"	 
+      ]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+      </value>
+    </li>
+
+    <li Class="PatchOperationRemove">
+      <xpath>Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret" or defName="VFEA_Turret_AncientPointDefense"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VFEA_Turret_AncientSecurityTurret"]/fillPercent</xpath>
+      <value>
+        <fillPercent>0.85</fillPercent>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEA_Turret_AncientPointDefense"]</xpath>
+      <value>
+        <fillPercent>0.95</fillPercent>
+      </value>
+    </li>
+
+    <!-- Ancient Security Turret -->
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEA_Gun_AncientSecurityTurret</defName>
+      <statBases>
+        <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        <SightsEfficiency>1</SightsEfficiency>
+        <ShotSpread>0.05</ShotSpread>
+        <SwayFactor>0.78</SwayFactor>
+        <Bulk>10.00</Bulk>
+      </statBases>
+      <Properties>
+        <recoilAmount>0.71</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+        <warmupTime>1.2</warmupTime>
+        <range>54</range>
+        <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
+        <soundCast>GunShotA</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <recoilPattern>Mounted</recoilPattern>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>300</magazineSize>
+        <reloadTime>9.5</reloadTime>
+        <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+        <noSnapshot>true</noSnapshot>
+        <noSingleShot>true</noSingleShot>
+      </FireModes>
+    </li>
+
+    <!-- Ancient Point Defense Gun -->
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFEA_Gun_AncientPointDefenseTurret</defName>
+      <statBases>
+        <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        <SightsEfficiency>1</SightsEfficiency>
+        <ShotSpread>0.09</ShotSpread>
+        <SwayFactor>1.32</SwayFactor>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>True</hasStandardCommand>
+        <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+        <warmupTime>2.3</warmupTime>
+        <range>62</range>
+        <burstShotCount>25</burstShotCount>
+        <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+        <soundCast>Shot_Minigun</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <recoilPattern>Mounted</recoilPattern>
+        <targetParams>
+          <canTargetLocations>True</canTargetLocations>
+        </targetParams>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>500</magazineSize>
+        <reloadTime>9.2</reloadTime>
+        <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+      </AmmoUser>
+      <weaponTags Inherit="false">
+        <li>TurretGun</li>
+      </weaponTags>
+      <FireModes>
+        <aiAimMode>SuppressFire</aiAimMode>
+        <noSnapshot>true</noSnapshot>
+        <noSingleShot>true</noSingleShot>
+      </FireModes>      
+    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    
