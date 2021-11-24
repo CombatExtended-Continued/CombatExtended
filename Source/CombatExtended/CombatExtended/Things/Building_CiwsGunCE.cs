@@ -107,7 +107,7 @@ namespace CombatExtended
                         if (TryFindBurstParameters())
                         {
                             BurstNow();
-                            if (shotsRequired - shotsFired < 0)
+                            if (Rand.Chance((shotsFired + 1) / (shotsRequired + 1)))
                             {
                                 FleckMaker.ThrowFireGlow(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
                                 FleckMaker.ThrowSmoke(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
