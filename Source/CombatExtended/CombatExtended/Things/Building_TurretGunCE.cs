@@ -22,12 +22,12 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class Building_TurretGunCE : Building_Turret
     {
-        private const int minTicksBeforeAutoReload = 1800;              // This much time must pass before haulers will try to automatically reload an auto-turret
-        private const int ticksBetweenAmmoChecks = 300;                 // Test nearby ammo every 5 seconds if there's many ammo changes
-        private const int ticksBetweenSlowAmmoChecks = 3600;               // Test nearby ammo every minute if there's no ammo changes
+        protected const int minTicksBeforeAutoReload = 1800;              // This much time must pass before haulers will try to automatically reload an auto-turret
+        protected const int ticksBetweenAmmoChecks = 300;                 // Test nearby ammo every 5 seconds if there's many ammo changes
+        protected const int ticksBetweenSlowAmmoChecks = 3600;               // Test nearby ammo every minute if there's no ammo changes
         public bool isSlow = false;
 
-        private int TicksBetweenAmmoChecks => isSlow ? ticksBetweenSlowAmmoChecks : ticksBetweenAmmoChecks;
+        protected int TicksBetweenAmmoChecks => isSlow ? ticksBetweenSlowAmmoChecks : ticksBetweenAmmoChecks;
 
         #region Fields
 
@@ -49,11 +49,11 @@ namespace CombatExtended
         private CompAmmoUser compAmmo = null;
         private CompFireModes compFireModes = null;
         private CompChangeableProjectile compChangeable = null;
-        public bool isReloading = false;
-        private int ticksUntilAutoReload = 0;
+        public bool isReloading = false;        
         private bool everSpawned = false;
         private GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
-        
+        protected int ticksUntilAutoReload = 0;
+
         #endregion
 
         #region Properties
@@ -181,21 +181,6 @@ namespace CombatExtended
                 if (mannableComp != null)
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
             }
-
-            // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
-            //     return;
-
-            // //"Subscribe" turret to GenClosestAmmo
-            // foreach (var ammo in CompAmmo.Props.ammoSet.ammoTypes.Select(x => x.ammo))
-            // {
-            //     if (!GenClosestAmmo.listeners.ContainsKey(ammo))
-            //         GenClosestAmmo.listeners.Add(ammo, new List<Building_TurretGunCE>() { this });
-            //     else
-            //         GenClosestAmmo.listeners[ammo].Add(this);
-
-            //     if (!GenClosestAmmo.latestAmmoUpdate.ContainsKey(ammo))
-            //         GenClosestAmmo.latestAmmoUpdate.Add(ammo, 0);
-            // }
         }
 
         //PostMake not added -- MakeGun-like code is run whenever Gun is called
@@ -751,7 +736,7 @@ namespace CombatExtended
 
         // ExtractShell not added
 
-        private void ResetForcedTarget()                // Core method
+        protected void ResetForcedTarget()                // Core method
         {
             this.targetingWorldMap = false;
             this.forcedTarget = LocalTargetInfo.Invalid;
@@ -763,7 +748,7 @@ namespace CombatExtended
             }          
         }
 
-        private void ResetCurrentTarget()               // Core method
+        protected void ResetCurrentTarget()               // Core method
         {            
             this.currentTargetInt = LocalTargetInfo.Invalid;            
             this.burstWarmupTicksLeft = 0;            

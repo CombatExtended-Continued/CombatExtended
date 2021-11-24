@@ -90,6 +90,7 @@ namespace CombatExtended
         protected Sustainer ambientSustainer;
         #endregion
 
+        private TrailerProjectileExtension trailerExtension;
         private float suppressionAmount;
         public Thing mount; // GiddyUp compatibility, ignore collisions with pawns the launcher is mounting
         public float AccuracyFactor;
@@ -534,7 +535,8 @@ namespace CombatExtended
 	}
 
 
-        #region Launch
+        #region Launch        
+
         /// <summary>
         /// Physics-enabled Launch() method.
         /// </summary>
@@ -952,23 +954,22 @@ namespace CombatExtended
                 ambientSustainer.Maintain();
             }
 
-            if (def.HasModExtension<TrailerProjectileExtension>())
-            {
-                var trailer = def.GetModExtension<TrailerProjectileExtension>();
-                if (trailer != null)
+            if (trailerExtension != null)
+            {                
+                if (trailerExtension != null)
                 {
-                    if (ticksToImpact % trailer.trailerMoteInterval == 0)
+                    if (ticksToImpact % trailerExtension.trailerMoteInterval == 0)
                     {
-                        for (int i = 0; i < trailer.motesThrown; i++)
+                        for (int i = 0; i < trailerExtension.motesThrown; i++)
                         {
-                            TrailThrower.ThrowSmoke(DrawPos, trailer.trailMoteSize, Map, trailer.trailMoteDef);
+                            TrailThrower.ThrowSmoke(DrawPos, trailerExtension.trailMoteSize, Map, trailerExtension.trailMoteDef);
                         }
                     }
                 }
             }
-            float distToOrigin = originInt.DistanceTo(positionInt);
-            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
-                DangerTracker?.Notify_BulletAt(Position, distToOrigin);
+            float distToOriginSquared = originInt.DistanceToSquared(positionInt);
+            if (shotHeight < CollisionVertical.WallCollisionHeight * CollisionVertical.WallCollisionHeight && distToOriginSquared > 9)
+                DangerTracker?.Notify_BulletAt(Position, Mathf.Sqrt(distToOriginSquared));
         }
 
         /// <summary>
@@ -981,6 +982,10 @@ namespace CombatExtended
             if(def.projectile?.flyOverhead ?? false)
             {
                 map.GetComponent<FlyOverProjectileTracker>().Register(this);
+            }
+            if (def.HasModExtension<TrailerProjectileExtension>())
+            {
+                trailerExtension = def.GetModExtension<TrailerProjectileExtension>();
             }
             base.SpawnSetup(map, respawningAfterLoad);            
         }
