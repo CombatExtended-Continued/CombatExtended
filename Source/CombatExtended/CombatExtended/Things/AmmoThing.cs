@@ -120,7 +120,7 @@ namespace CombatExtended
                     if (detProps != null)
                     {
                         GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
-                            this, detProps.GetDamageAmount(1), GenExplosionCE.GetExplosionAP(detProps),
+                            this, detProps.GetDamageAmount(1), detProps.GetExplosionArmorPenetration(),
                             detProps.soundExplode,
                             null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,

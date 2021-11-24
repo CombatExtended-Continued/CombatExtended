@@ -68,12 +68,14 @@ Alpha Ships |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
+Ancient Human   |
 Android Tiers	|
 Android Tiers SM7 Overhaul  |
 Android TX Series   |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
+Anima Animals - Community Pack  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
@@ -84,7 +86,6 @@ Apex - Rimworld Legends |
 Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
-Area Rugs	|
 Argonians of Blackmarsh |
 Arrow Please    |
 Aspero Race |
@@ -171,6 +172,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
@@ -269,6 +271,7 @@ Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
 Rim of Madness - Werewolves	|
 Rim-Effect: Core	|
+Rim-Effect: Drell	|
 Rim-Effect: Extended Cut	|
 Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
@@ -325,6 +328,7 @@ Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
+Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
