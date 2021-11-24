@@ -548,27 +548,28 @@
 					<defName>Gun_CryoLauncher</defName>
 					<statBases>
 						<Bulk>5.2</Bulk>
-						<Mass>3.0</Mass>
+						<Mass>3.5</Mass>
 						<SwayFactor>0.9</SwayFactor>
-						<ShotSpread>0.9</ShotSpread>
+						<ShotSpread>0.1</ShotSpread>
 						<SightsEfficiency>2</SightsEfficiency>
-						<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+						<RangedWeapon_Cooldown>.35</RangedWeapon_Cooldown>
 						<WorkToMake>32000</WorkToMake>
+						<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
 					</statBases>
 					<costList>
 						<Plasteel>50</Plasteel>
 						<Uranium>20</Uranium>
 						<Steel>75</Steel>
 						<ComponentSpacer>4</ComponentSpacer>
-						<ComponentIndustrial>10</ComponentIndustrial>
+						<ComponentIndustrial>4</ComponentIndustrial>
 					</costList>
 					<Properties>
 						<recoilAmount>0.0</recoilAmount>
 						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_CryBolt</defaultProjectile>
-						<warmupTime>2</warmupTime>
-						<range>44</range>
+						<defaultProjectile>Bullet_40x90mmGrenadeOE_HE</defaultProjectile>
+						<warmupTime>.9</warmupTime>
+						<range>54</range>
 						<minRange>5</minRange>
 						<soundCast>OLaunchers</soundCast>
 						<soundCastTail>GunTail_Medium</soundCastTail>
@@ -578,8 +579,16 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 						<muzzleFlashScale>14</muzzleFlashScale>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 					</Properties>
+					<AmmoUser>
+						<magazineSize>10</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_40x90mmGrenadeOE</ammoSet>
+					</AmmoUser>
 					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
 					</FireModes>
 					<weaponTags>
 						<li>AdvancedGun</li>
@@ -606,7 +615,7 @@
 						<Uranium>20</Uranium>
 						<Steel>75</Steel>
 						<ComponentSpacer>4</ComponentSpacer>
-						<ComponentIndustrial>10</ComponentIndustrial>
+						<ComponentIndustrial>6</ComponentIndustrial>
 					</costList>
 					<Properties>
 						<recoilAmount>0.0</recoilAmount>
@@ -624,6 +633,8 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 						<muzzleFlashScale>14</muzzleFlashScale>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 					</Properties>
 					<AmmoUser>
 						<magazineSize>1</magazineSize>

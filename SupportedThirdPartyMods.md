@@ -67,11 +67,13 @@ Alpha Ships |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
+Ancient Human   |
 Android Tiers	|
 Android TX Series   |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
+Anima Animals - Community Pack  |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
@@ -81,7 +83,6 @@ Anty the War Ant Race |
 Apparello 2	|
 Arachne Race	|
 Arasaka Corporation [1.3]	|
-Area Rugs	|
 Aspero Race |
 Astoriel Legacy |
 Autocleaner	|
@@ -160,6 +161,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
