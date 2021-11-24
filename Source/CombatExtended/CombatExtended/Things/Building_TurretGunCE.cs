@@ -145,6 +145,7 @@ namespace CombatExtended
         public bool AutoReloadableMagazine => AutoReloadableNow && CompAmmo.CurMagCount <= Mathf.CeilToInt(CompAmmo.MagSize / 6);
         public bool AutoReloadableNow => (mannableComp == null || (!mannableComp.MannedNow && ticksUntilAutoReload == 0)) && Reloadable;    //suppress manned turret auto-reload for a short time after spawning
         public bool Reloadable => CompAmmo?.HasMagazine ?? false;
+
         public CompMannable MannableComp => mannableComp;
         #endregion
 
@@ -328,9 +329,9 @@ namespace CombatExtended
             {
                 this.ResetCurrentTarget();
             }
-        }
+        }        
 
-        public void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
+        public virtual void TryStartShootSomething(bool canBeginBurstImmediately)    // Added ammo check and use verb warmup time instead of turret's
         {
             // Check for ammo first
             if (!Spawned

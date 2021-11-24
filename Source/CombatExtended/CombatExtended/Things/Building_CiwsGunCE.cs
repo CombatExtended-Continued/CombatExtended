@@ -13,6 +13,7 @@ using CombatExtended.CombatExtended.Jobs.Utils;
 using RimWorld.Planet;
 using System.Xml;
 using CombatExtended.AI;
+using RimWorld.BaseGen;
 
 namespace CombatExtended
 {
@@ -46,6 +47,11 @@ namespace CombatExtended
             get => ciwsTarget != null && ciwsTarget.IsValid && !ciwsTarget.ThingDestroyed ? ciwsTarget : base.CurrentTarget;
         }
 
+        private bool IsCiwsTargetValid
+        {
+            get => ciwsTarget != null && ciwsTarget.IsValid && ciwsTarget.HasThing && ciwsTarget.Thing.Spawned && !ciwsTarget.ThingDestroyed;
+        }
+
         public Building_CiwsGunCE() : base()
         {            
         }
@@ -77,69 +83,77 @@ namespace CombatExtended
             {
                 if (!this.stunner.Stunned && CompAmmo.CanBeFiredNow)
                 {
-                    if (ciwsTarget == null || !ciwsTarget.IsValid || (ciwsTarget.Thing?.Destroyed ?? true) || !ciwsTarget.Thing.Spawned)
+                    if (!IsCiwsTargetValid)
                     {
                         if(ticksSinceLastSearched++ > TICKSBETWEENSEARCH)
                         { 
                             ticksSinceLastSearched = 0;
                             if (TryFindProjectileTarget())
-                            {
-                                shotsFired = 0;
-                                shotsRequired = Rand.Range(MINSHOTSREQUIRED, MAXSHOTSREQUIRED);
+                            {                                
+                                shotsFired = 0;                                
+                                shotsRequired = Rand.Range(MINSHOTSREQUIRED, MAXSHOTSREQUIRED);                                
                             }
                         }                 
-                    }
-                    else if (ciwsTarget != null)
-                    {                        
-                        forcedTarget = null;
-                        if (currentTargetInt != null || currentTargetInt.IsValid)
-                        {
-                            ResetCurrentTarget();
-                            forcedTarget = null;
-                        }
+                    }                   
+                    if(IsCiwsTargetValid) 
+                    {
+                        ResetCurrentTarget();
+                        currentTargetInt = null;
                         if (forcedTarget != null || forcedTarget.IsValid)
                         {
                             ResetForcedTarget();
-                            currentTargetInt = null;
-                        }
-                        if (ciwsTarget.Thing == null || !ciwsTarget.Thing.Spawned)
-                        {
-                            Reset();
-                        }
-                        else if(TryFindBurstParameters())
+                            forcedTarget = null;
+                        }                                        
+                        if (TryFindBurstParameters())
                         {
                             BurstNow();
-                            if(shotsRequired - shotsFired < 0)
+                            if (shotsRequired - shotsFired < 0)
                             {
                                 FleckMaker.ThrowFireGlow(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
                                 FleckMaker.ThrowSmoke(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
-                                
+
                                 ciwsTarget.Thing.DeSpawn(DestroyMode.Vanish);
                                 ciwsTarget.Thing.Destroy();
                                 Reset();
                                 ResetCurrentTarget();
                             }
-                        }
-                    }
-                    this.top.TurretTopTick();
+                        }                       
+                    }                    
                 }                
             }
-            if (ciwsTarget == null || !ciwsTarget.IsValid)
+            if (IsCiwsTargetValid)
             {
-                base.Tick();
+                if (GunCompEq.PrimaryVerb.state == VerbState.Bursting)
+                {
+                    top.TurretTopTick();
+                }
             }
-        }       
+            else if(ciwsTarget != null)
+            {
+                Reset();
+            }
+            base.Tick();
+        }
+
+        public override void TryStartShootSomething(bool canBeginBurstImmediately)
+        {
+            if (!IsCiwsTargetValid)
+            {
+                base.TryStartShootSomething(canBeginBurstImmediately);
+            }          
+        }
 
         private bool TryFindProjectileTarget()
         {
-            FlyOverProjectileTracker tracker = Map.GetComponent<FlyOverProjectileTracker>();
+            float rangeSquared = AttackVerb.EffectiveRange * AttackVerb.EffectiveRange;
+            FlyOverProjectileTracker tracker = Map.GetComponent<FlyOverProjectileTracker>();            
             Func<ProjectileCE, bool> validatorCE = (projectile) =>
             {                
-                return projectile.launcher?.Faction != Faction && projectile.ExactPosition.y > MINCIWSHEIGHT;
+                return projectile.Spawned && projectile.launcher?.Faction != Faction && projectile.ExactPosition.y > MINCIWSHEIGHT && projectile.Position.DistanceToSquared(Position) < rangeSquared;
             };
             Func<Projectile, bool> validator = (projectile) =>
             {                
-                return projectile.launcher?.Faction != Faction && projectile.ArcHeightFactor * GenMath.InverseParabola(projectile.DistanceCoveredFraction) > MINCIWSHEIGHT;
+                return projectile.Spawned && projectile.launcher?.Faction != Faction && projectile.ArcHeightFactor * GenMath.InverseParabola(projectile.DistanceCoveredFraction) > MINCIWSHEIGHT && projectile.Position.DistanceToSquared(Position) < rangeSquared;
             };
             if (tracker.ProjectilesCE.Where(validatorCE).TryRandomElement(out ProjectileCE projectileCE) && !projectileCE.Destroyed)
             {
