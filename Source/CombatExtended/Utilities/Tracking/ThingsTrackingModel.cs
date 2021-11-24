@@ -157,8 +157,178 @@ namespace CombatExtended.Utilities
             }
         }
 
+
+	/* Find all things near a given line segment.  For rays, the destination vector should be where the
+	   ray intersects the edge of the map.  If behind is true, Things behind the origin (the ray moves away)
+	   are excluded.
+	 */
+	public IEnumerable<Thing> ThingsNearSegment(IntVec3 origin, IntVec3 destination, float range, bool behind)
+	{
+	    float rangeSq = range * range;
+	    float minX;
+	    float maxX;
+	    // Find the band of cells (1-D) the line segment spans.  The band is widened on both sides by range.
+	    // ...<--range---x_min-----x_max---range-->...
+	    // ...minX-----------------------------maxX...
+	    if (origin.x > destination.x) {
+		minX = destination.x - range;
+		maxX = origin.x + range;
+	    }
+	    else {
+		minX = origin.x - range;
+		maxX = destination.x + range;
+	    }
+
+	    int bottom = 0;
+            int index;
+            int top = count;
+            int mid = (top + bottom) / 2;
+            int limiter = 0;
+            IntVec3 midPosition;
+	    IntVec3 direction = destination - origin;
+	    float lengthSq = direction.x * direction.x + direction.y * direction.y + direction.z * direction.z;
+	    if (lengthSq == 0) // origin and destination cell are the same, so just return all things within range radius of origin.
+	    {
+		foreach (Thing t in ThingsInRangeOf(origin, range))
+		{
+		    yield return t;
+		}
+		yield break;
+	    }
+
+	    while (top != bottom && limiter++ < 20) // try to find a good starting point for iterating nearby pawns
+            {
+		mid = (top + bottom) / 2;
+                midPosition = sortedThings[mid].thing.Position;
+
+		// Range of interest: ...minX-----------------------------maxX...
+		// Possibility 1:     mP                                          false, true
+		// Possibility 2:                                             mP  true, false
+		// Possibility 3:                       mP                        true, true
+		// Break when mP falls in the range
+		if (midPosition.x > minX && midPosition.x < maxX)
+		{
+		    break;
+		}
+		if (midPosition.x > maxX)
+		{
+		    top = mid - 1;
+		}
+		else if (midPosition.x < minX)
+		{
+		    bottom = mid + 1;
+		}
+		else
+		{
+		    break;
+		}
+	    }
+
+	    // mid is our best guess at a pawn that might be in the range.  
+	    
+	    index = mid;
+            while (index < count) // take all the pawns from index to the right edge of the map
+            {
+                Thing t = sortedThings[index++].thing;
+                IntVec3 curPosition = t.Position;
+		// if we're outside the range of interest, we're done checking to the right.
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)  
+		{
+                    break;
+		}
+
+		IntVec3 relativePosition = curPosition - origin;
+		
+		// Calculate the dot product of the relativePosition (rp) vector with itself (the square of its magnitude)
+		float rp_rp_dot = relativePosition.x * relativePosition.x + relativePosition.y * relativePosition.y + relativePosition.z * relativePosition.z;
+
+		// Calculate the dot product of the direction vector and the relative displacement vector.  
+		float rp_direction_dot = relativePosition.x * direction.x + relativePosition.y * direction.y + relativePosition.z * direction.z;
+
+		// Calculate the ratio of the two dot products;
+		float dot = rp_direction_dot / rp_rp_dot;
+		if (dot > 1) // curPosition is beyond the end of the line segment.
+		{
+		    if (destination.DistanceToSquared(curPosition) <= rangeSq)
+		    {
+			yield return t;
+			
+		    }
+		    continue;
+		}
+		if (dot < 0) // curPosition is behind the origin
+		{
+		    
+		    if (behind && origin.DistanceToSquared(curPosition) <= rangeSq)
+		    {
+			yield return t;
+		    }
+		    continue;
+		    
+		}
+		// dot ∈ (0,1) so curPosition is between the origin and destination
+		IntVec3 projection = new IntVec3((int)(origin.x + dot * direction.x),
+						 (int)(origin.y + dot * direction.y),
+						 (int)(origin.z + dot * direction.z));
+		if (projection.DistanceToSquared(curPosition) <= rangeSq)
+		{
+		    yield return t;
+		}
+            }
+            index = mid - 1;
+            while (index >= 0) // Same as above, but moving right.
+            {
+                Thing t = sortedThings[index--].thing;
+		IntVec3 curPosition = t.Position;
+                // if we're outside the range of interest, we're done checking to the right.
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)  
+		{
+                    break;
+		}
+
+		IntVec3 relativePosition = curPosition - origin;
+		
+		// Calculate the dot product of the relativePosition (rp) vector with itself (the square of its magnitude)
+		float rp_rp_dot = relativePosition.x * relativePosition.x + relativePosition.y * relativePosition.y + relativePosition.z * relativePosition.z;
+
+		// Calculate the dot product of the direction vector and the relative displacement vector.  
+		float rp_direction_dot = relativePosition.x * direction.x + relativePosition.y * direction.y + relativePosition.z * direction.z;
+
+		// Calculate the ratio of the two dot products;
+		float dot = rp_direction_dot / rp_rp_dot;
+		if (dot > 1) // curPosition is beyond the end of the line segment.
+		{
+		    if (destination.DistanceToSquared(curPosition) <= rangeSq)
+		    {
+			yield return t;
+			
+		    }
+		    continue;
+		}
+		if (dot < 0) // curPosition is behind the origin
+		{
+		    
+		    if (behind && origin.DistanceToSquared(curPosition) <= rangeSq)
+		    {
+			yield return t;
+		    }
+		    continue;
+		    
+		}
+		// dot ∈ (0,1) so curPosition is between the origin and destination
+		IntVec3 projection = new IntVec3((int)(origin.x + dot * direction.x),
+						 (int)(origin.y + dot * direction.y),
+						 (int)(origin.z + dot * direction.z));
+		if (projection.DistanceToSquared(curPosition) <= rangeSq)
+		{
+		    yield return t;
+		}
+            }
+	}
+
         public IEnumerable<Thing> ThingsInRangeOf(IntVec3 cell, float range)
         {
+	    float rangeSq = range * range;
             int bottom = 0;
             int index;
             int top = count;
@@ -169,7 +339,7 @@ namespace CombatExtended.Utilities
             {
                 mid = (top + bottom) / 2;
                 midPosition = sortedThings[mid].thing.Position;
-                if (midPosition.DistanceTo(cell) <= range)
+                if (midPosition.DistanceToSquared(cell) <= rangeSq)
                     break;
                 if (midPosition.x > cell.x)
                     top = mid - 1;
@@ -183,24 +353,22 @@ namespace CombatExtended.Utilities
             index = mid;
             while (index < count)
             {
-                Thing t = sortedThings[index].thing;
+                Thing t = sortedThings[index++].thing;
                 IntVec3 curPosition = t.Position;
                 if (Mathf.Abs(curPosition.x - cell.x) > range)
                     break;
-                if (curPosition.DistanceTo(cell) <= range)
+                if (curPosition.DistanceToSquared(cell) <= rangeSq)
                     yield return t;
-                index++;
             }
             index = mid - 1;
             while (index >= 0)
             {
-                Thing t = sortedThings[index].thing;
+                Thing t = sortedThings[index--].thing;
                 IntVec3 curPosition = t.Position;
                 if (Mathf.Abs(curPosition.x - cell.x) > range)
                     break;
-                if (curPosition.DistanceTo(cell) <= range)
+                if (curPosition.DistanceToSquared(cell) <= rangeSq)
                     yield return t;
-                index--;
             }
         }
 

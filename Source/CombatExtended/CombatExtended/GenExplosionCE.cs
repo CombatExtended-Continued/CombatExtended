@@ -151,9 +151,5 @@ namespace CombatExtended
                 }
             }
         }
-        public static float GetExplosionAP(ProjectileProperties props)
-        {
-            return props.GetDamageAmount(1) * 0.1f;
-        }
     }
 }
