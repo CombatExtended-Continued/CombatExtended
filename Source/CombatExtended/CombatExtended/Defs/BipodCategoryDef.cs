@@ -25,6 +25,10 @@ namespace CombatExtended
 
         public float warmup_mult_NOT_setup = 1f;
 
+        public float swaymult = 1f;
+
+        public float swaypenalty = 1f;
+
         public Color log_color = Color.blue;
     }
 }
