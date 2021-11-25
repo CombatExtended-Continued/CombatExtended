@@ -20,7 +20,7 @@ namespace CombatExtended
 			get
 			{
 				bool result = false;
-				if (Controller.settings.autosetup)
+				if (Controller.settings.AutoSetUp)
 				{
 					var varA = this.parent.TryGetComp<CompFireModes>();
 					if (varA.CurrentAimMode != AimMode.Snapshot)
@@ -50,9 +50,9 @@ namespace CombatExtended
 		}
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
-			if (Controller.settings.bipodMechanics)
+			if (Controller.settings.AutoSetUp)
 			{
-				if (Controller.settings.autosetup)
+				if (Controller.settings.AutoSetUp)
 				{
 					if (this.ParentHolder is Pawn_EquipmentTracker)
 					{
