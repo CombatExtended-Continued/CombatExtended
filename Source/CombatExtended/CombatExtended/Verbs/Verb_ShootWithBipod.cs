@@ -38,7 +38,7 @@ namespace CombatExtended
 
 		public override void VerbTickCE()
 		{
-			if (Controller.settings.bipodMechanics)
+			if (Controller.settings.BipodMechanics)
 			{
 				if (CasterPawn.Drafted)
 				{
