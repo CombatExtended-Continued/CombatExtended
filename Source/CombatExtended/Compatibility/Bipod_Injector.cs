@@ -36,7 +36,7 @@ namespace CombatExtended.Compatibility
 						{
 							dar.verbClass = typeof(Verb_ShootWithBipod);
 							def.Verbs.Clear();
-							def.comps.Add(new CompProperties_BipodComp { additionalrange = bipod_def.ad_Range, recoilmulton = bipod_def.recoil_mult_setup, recoilmultoff = bipod_def.recoil_mult_NOT_setup, TicksToSetUp = bipod_def.setuptime, warmupmult = bipod_def.warmup_mult_setup, warmuppenalty = bipod_def.warmup_mult_NOT_setup });
+							def.comps.Add(new CompProperties_BipodComp { swaymult = bipod_def.swaymult, swaypenalty = bipod_def.swaypenalty, additionalrange = bipod_def.ad_Range, recoilmulton = bipod_def.recoil_mult_setup, recoilmultoff = bipod_def.recoil_mult_NOT_setup, TicksToSetUp = bipod_def.setuptime, warmupmult = bipod_def.warmup_mult_setup, warmuppenalty = bipod_def.warmup_mult_NOT_setup });
 							def.Verbs.Add(dar);
 							Log.Message("sucessfully added bipod (" + bipod_def.label + ") to: " + def.label.Colorize(bipod_def.log_color));
 						}
