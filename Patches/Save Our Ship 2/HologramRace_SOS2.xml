@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Save Our Ship 2</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/ThingDef[defName="SoSHologramRace"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="SoSHologramRace"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>1</MeleeDodgeChance>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<SmokeSensitivity>0</SmokeSensitivity>
+				<Suppressability>0</Suppressability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="SoSHologramRace"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>4.49</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+			<xpath>/Defs/ThingDef[defName="SoSHologramRace"]/comps</xpath>
+			<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="SoSHologramRace"]</xpath>
+			<value>
+				<comps />
+			</value>
+			</li>
+		</operations>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="SoSHologramRace"]/comps</xpath>
+			<value>
+				<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+			</value>
+		</li>
+
+		<!-- === Hologram Laser === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>HologramLaser</defName>
+			<statBases>
+				<Bulk>0.01</Bulk>
+				<SwayFactor>1.17</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>1</SightsEfficiency>
+				<RangedWeapon_Cooldown>2.6</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Laser_Hologram</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>16</range>
+				<soundCast>ShipCombatLaser</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>4</muzzleFlashScale>
+			</Properties>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- === Archo Hologram Blast === -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>HologramLaserArchotech</defName>
+			<statBases>
+				<Bulk>0.01</Bulk>
+				<SwayFactor>1.17</SwayFactor>
+				<ShotSpread>0.06</ShotSpread>
+				<SightsEfficiency>1</SightsEfficiency>
+				<RangedWeapon_Cooldown>2.85</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_Archoblast</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>26</range>
+				<soundCast>ShipCombatLaser</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>0</muzzleFlashScale>
+			</Properties>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
