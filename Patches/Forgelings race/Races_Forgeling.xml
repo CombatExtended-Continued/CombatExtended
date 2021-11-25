@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Forgelings race</li>
+		</mods>
+		<match Class="PatchOperationSequence">	
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/statBases/ArmorRating_Heat</xpath>
+				<value>
+					<ArmorRating_Heat>0.8</ArmorRating_Heat>
+					<ToxicSensitivity>0.6</ToxicSensitivity>
+					<SmokeSensitivity>0.5</SmokeSensitivity>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>1</MeleeCritChance>
+					<MeleeParryChance>1</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>3</amount>
+								<chance>0.4</chance>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>1.96</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right fist</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>3</amount>
+								<chance>0.4</chance>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>1.96</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>9</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>3</amount>
+								<chance>0.6</chance>
+							</li>
+							</extraMeleeDamages>
+							<cooldownTime>4.59</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>5.825</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+				<success>Always</success>
+				<operations>
+					<li Class="PatchOperationTest">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/comps</xpath>
+						<success>Invert</success>
+					</li>
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</li>
+				</operations>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Forge_Forgeling_Race"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

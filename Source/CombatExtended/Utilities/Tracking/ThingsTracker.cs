@@ -162,6 +162,13 @@ namespace CombatExtended.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range) => ThingsInRangeOf(thing.def, thing.Position, range);
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public IEnumerable<Thing> ThingsNearSegment(TrackedThingsRequestCategory category, IntVec3 origin, IntVec3 destination, float range, bool behind=false)
+        {
+            ThingsTrackingModel tracker = GetModelFor(category);
+            return tracker.ThingsNearSegment(origin, destination, range, behind);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> ThingsInRangeOf(TrackedThingsRequestCategory category, IntVec3 cell, float range)
         {

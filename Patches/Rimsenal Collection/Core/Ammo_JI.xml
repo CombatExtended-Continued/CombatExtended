@@ -11,9 +11,9 @@
 			<xpath>Defs</xpath>
 			<value>
 
-	<!-- ==================== JI Molten Fragmentation ========================== -->
+	<!-- ==================== JI Molten Fragmentation (Old) ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseFragment">
+	<ThingDef ParentName="BaseFragment">
 		<defName>Fragment_Molten</defName>
 		<label>molten splatter</label>
 		<graphicData>
@@ -29,8 +29,8 @@
 			<gravityFactor>25</gravityFactor>
 		</projectile>
 	</ThingDef>
-
-	<!-- ==================== JI Rocket Shells ========================== -->
+	
+	<!-- ==================== JI Rocket Shells (Old/Security) ========================== -->
 
     <ThingCategoryDef>
       <defName>AmmoJIRockets</defName>
@@ -174,13 +174,90 @@
 	</products>	
 	</RecipeDef>	
 
+	<!-- ==================== JI Siege Shells ========================== -->
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_JISiege</defName>
+		<label>Siege Cannon</label>
+		<ammoTypes>
+		<Ammo_JI_Alloy>Bullet_JISiegeRound</Ammo_JI_Alloy>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef ParentName="BaseRPG7Grenade">
+		<defName>Bullet_JISiegeRound</defName>
+		<label>grendel shell</label>
+		<graphicData>
+			<texPath>Things/Projectile/SCM</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>			
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>80</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>80</damageAmountBase>
+			<armorPenetrationBlunt>51200</armorPenetrationBlunt>
+			<armorPenetrationSharp>100</armorPenetrationSharp>			
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>20</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>0.5</explosiveRadius>
+			<explosionSound>Explosion_GiantBomb</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragSpeedFactor>0.5</fragSpeedFactor>
+			<fragments>
+			  <Fragment_Large>325</Fragment_Large>
+			</fragments>
+		  </li>	
+		</comps>
+	</ThingDef>
+	
+  <ThingDef ParentName="Base81mmMortarShell">
+	<defName>Bullet_JICrowFeeder</defName>
+	<label>crow feeder</label>
+	<graphicData>
+	  <texPath>Things/Projectile/SCM</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>TransparentPostLight</shaderType>	
+	</graphicData>
+	<projectile Class="CombatExtended.ProjectilePropertiesCE">
+	  <damageDef>Bomb</damageDef>
+	  <damageAmountBase>20</damageAmountBase>
+	  <armorPenetrationSharp>0</armorPenetrationSharp>
+	  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+	  <explosionRadius>0.5</explosionRadius>
+	  <flyOverhead>true</flyOverhead>
+	  <soundExplode>MortarBomb_Explode</soundExplode>
+	  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  <ai_IsIncendiary>false</ai_IsIncendiary>
+	  <speed>35</speed>
+	  <gravityFactor>10</gravityFactor>
+	</projectile>
+	<comps>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragSpeedFactor>0.5</fragSpeedFactor>
+		<fragments>
+			<Fragment_Large>325</Fragment_Large>
+		</fragments>
+	  </li>
+	</comps>
+  </ThingDef>
+
 	<!-- ==================== JI Alloy ========================== -->
 
 	<ThingCategoryDef>
 		<defName>AmmoAlloy</defName>
 		<label>Semi-molten Alloy Round</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
+		<iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -196,10 +273,10 @@
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseJIAlloy" ParentName="SmallAmmoBase" Abstract="True">
-		<description>A dense, strong alloy with extremely high thermal conductivity, specially manufactured for use by Jotun Interstellar molten weaponry.</description>
+		<description>A ultra dense, strong alloy with extremely high thermal conductivity, specially manufactured for use by Jotun Interstellar weaponry.</description>
 		<statBases>
-		<Mass>0.03</Mass>
-		<Bulk>0.03</Bulk>
+		<Mass>0.075</Mass>
+		<Bulk>0.01</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -212,13 +289,13 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseJIAlloy">
 		<defName>Ammo_JI_Alloy</defName>
-		<label>High-density alloy</label>
+		<label>Ultra-density alloy</label>
 		<graphicData>
 			<texPath>ThirdParty/Rimsenal/JI/JI_Molten</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.10</MarketValue>
+			<MarketValue>3</MarketValue>
 		</statBases>
 		<ammoClass>Slag</ammoClass>
 	</ThingDef>
@@ -236,56 +313,61 @@
 			<damageDef>Bullet</damageDef>
 			<speed>120</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>7</damageAmountBase>
-				  <secondaryDamage>
-					<li>
-					  <def>Flame_Secondary</def>
-					  <amount>3</amount>
-					</li>
-				  </secondaryDamage>			
-			<armorPenetrationBlunt>4</armorPenetrationBlunt>
-			<armorPenetrationSharp>8</armorPenetrationSharp>
-			<pelletCount>6</pelletCount>			
+			<damageAmountBase>10</damageAmountBase>			
+			<armorPenetrationBlunt>60</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<pelletCount>10</pelletCount>			
 			<spreadMult>25</spreadMult>				
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-			  <Fragment_Molten>2</Fragment_Molten>
-			</fragments>
-		  </li>
-		</comps>			
+		</projectile>			
 	</ThingDef>
 
 	<!-- ==================== Recipe: JI Alloy ========================== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_JI_Alloy</defName>
-		<label>make alloy x500</label>
-		<description>Craft 500 alloy.</description>
-		<jobString>Making alloy.</jobString>
+		<label>make alloy x250</label>
+		<description>Craft 250 ultra dense alloy.</description>
+		<jobString>Making ultra dense alloy.</jobString>
 		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>30</count>
-			</li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Plasteel</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>Steel</li>
+			  </thingDefs>
+			</filter>
+			<count>10</count>
+		  </li>	  
+		  <li>
+			<filter>
+			  <thingDefs>
+				<li>ComponentIndustrial</li>
+			  </thingDefs>
+			</filter>
+			<count>18</count>
+		  </li>
 		</ingredients>
 		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
+		  <thingDefs>
+			<li>Plasteel</li>
+			<li>Steel</li>		
+			<li>ComponentIndustrial</li>
+		  </thingDefs>
 		</fixedIngredientFilter>
 		<researchPrerequisite>MoltenTech</researchPrerequisite>
 		<recipeUsers Inherit="False">
 			<li>JITable</li>
 		</recipeUsers>		
 		<products>
-			<Ammo_JI_Alloy>500</Ammo_JI_Alloy>
+			<Ammo_JI_Alloy>250</Ammo_JI_Alloy>
 		</products>
-		<workAmount>3000</workAmount>	
+		<workAmount>19000</workAmount>	
 	</RecipeDef>
 	
 	<!-- ==================== JI Molten Slug ========================== -->
@@ -294,7 +376,7 @@
 		<defName>AmmoMoltenSlug</defName>
 		<label>Semi-molten alloy</label>
 		<parent>AmmoRifles</parent>
-    <iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
+		<iconPath>ThirdParty/Rimsenal/JI/JI_Molten/MoltenCartridge_c</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -318,25 +400,12 @@
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>120</speed>
+			<speed>140</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>16</damageAmountBase>
-				  <secondaryDamage>
-					<li>
-					  <def>Flame_Secondary</def>
-					  <amount>6</amount>
-					</li>
-				  </secondaryDamage>			
-			<armorPenetrationBlunt>60</armorPenetrationBlunt>
-			<armorPenetrationSharp>15</armorPenetrationSharp>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-			  <Fragment_Molten>3</Fragment_Molten>
-			</fragments>
-		  </li>
-		</comps>			
+			<damageAmountBase>28</damageAmountBase>			
+			<armorPenetrationBlunt>490</armorPenetrationBlunt>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+		</projectile>			
 	</ThingDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -362,20 +431,14 @@
 			<damageDef>Bullet</damageDef>
 			<speed>200</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>25</damageAmountBase>
-				  <secondaryDamage>
-					<li>
-					  <def>Flame_Secondary</def>
-					  <amount>7</amount>
-					</li>
-				  </secondaryDamage>			
-			<armorPenetrationBlunt>300</armorPenetrationBlunt>
-			<armorPenetrationSharp>65</armorPenetrationSharp>
+			<damageAmountBase>128</damageAmountBase>		
+			<armorPenetrationBlunt>20000</armorPenetrationBlunt>
+			<armorPenetrationSharp>200</armorPenetrationSharp>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-			  <Fragment_Molten>6</Fragment_Molten>
+			  <Fragment_Large>6</Fragment_Large>
 			</fragments>
 		  </li>
 		</comps>		
@@ -406,25 +469,12 @@
 		</graphicData>		
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>120</speed>
+			<speed>140</speed>
 			<dropsCasings>false</dropsCasings>		
-			<damageAmountBase>9</damageAmountBase>
-				  <secondaryDamage>
-					<li>
-					  <def>Flame_Secondary</def>
-					  <amount>3</amount>
-					</li>
-				  </secondaryDamage>			
-			<armorPenetrationBlunt>40</armorPenetrationBlunt>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-			  <Fragment_Molten>1</Fragment_Molten>
-			</fragments>
-		  </li>
-		</comps>			
+			<damageAmountBase>22</damageAmountBase>		
+			<armorPenetrationBlunt>245</armorPenetrationBlunt>
+			<armorPenetrationSharp>15</armorPenetrationSharp>
+		</projectile>			
 	</ThingDef>
 
 

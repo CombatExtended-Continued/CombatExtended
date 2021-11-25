@@ -26,7 +26,7 @@
 
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
-              <speed>35</speed>
+              <speed>12</speed>
               <flyOverhead>false</flyOverhead>
               <damageDef>Cut</damageDef>
               <damageAmountBase>16</damageAmountBase>
@@ -91,7 +91,6 @@
         
         <li Class="PatchOperationSequence">
           <success>Always</success>
-
           <operations>
             <li Class="PatchOperationTest">
               <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]/comps</xpath>
@@ -112,9 +111,11 @@
 
           <statBases>
             <Mass>1.2</Mass>
-            <Bulk>3.7</Bulk>
+            <Bulk>3.3</Bulk>
             <SightsEfficiency>0.45</SightsEfficiency>
-            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+            <ShotSpread>1.5</ShotSpread>
+			      <SwayFactor>2.5</SwayFactor>
+            <RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
           </statBases>
 
           <Properties>
@@ -122,7 +123,7 @@
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>VFES_Tomahawk_Thrown</defaultProjectile>
-            <warmupTime>1.1</warmupTime>
+            <warmupTime>1.0</warmupTime>
             <range>10</range>
             <soundCast>Interact_BeatFire</soundCast>
           </Properties>

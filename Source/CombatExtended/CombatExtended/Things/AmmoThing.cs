@@ -16,7 +16,7 @@ namespace CombatExtended
         #region Properties
 
         public AmmoDef AmmoDef => def as AmmoDef;
-        public bool IsCookingOff => numToCookOff > 0;
+        public bool IsCookingOff => numToCookOff > 0 && this.CanCookOffOrDetonate();
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace CombatExtended
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PreApplyDamage(ref dinfo, out absorbed);
-            if (!absorbed && Spawned && dinfo.Def.ExternalViolenceFor(this))
+            if (!absorbed && Spawned && this.CanCookOffOrDetonate() && dinfo.Def.ExternalViolenceFor(this))
             {
                 if (HitPoints - dinfo.Amount > 0)
                 {
@@ -120,7 +120,7 @@ namespace CombatExtended
                     if (detProps != null)
                     {
                         GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
-                            this, detProps.GetDamageAmount(1), GenExplosionCE.GetExplosionAP(detProps),
+                            this, detProps.GetDamageAmount(1), detProps.GetExplosionArmorPenetration(),
                             detProps.soundExplode,
                             null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
                             detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,
@@ -171,6 +171,12 @@ namespace CombatExtended
             //Such that save-reloading doesn't stop ammo cookoff
             Scribe_Values.Look(ref numToCookOff, "numToCookOff", 0);
         }
+
+        /// <summary>
+        /// Determine whether this ammunition type can cook off in some way.
+        /// </summary>
+        private bool CanCookOffOrDetonate() => AmmoDef?.cookOffProjectile != null || AmmoDef?.detonateProjectile != null;
+
         #endregion
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Aspero</li>
+		</mods>
+	  <match Class="PatchOperationAddModExtension"> <!-- tried to do off the pawnkind base but that didn't work soooo.....-->
+		<xpath>/Defs/PawnKindDef[@Name="AsperoPawnkindBase" or DefName="AsperoCivilian" or DefName="AsperoMilitia" or DefName="AsperoTrader" or DefName="AsperoOverseer" or DefName="AsperoSoldier" or DefName="AsperoESoldier" or DefName="AsperoSniper" or DefName="AsperoMeleeSoldier" or DefName="AsperoEMeleeSoldier"]</xpath>
+		<value>
+		  <li Class="CombatExtended.LoadoutPropertiesExtension">
+			<primaryMagazineCount>
+			  <min>1</min>
+			  <max>4</max>
+			</primaryMagazineCount>
+			<shieldMoney>
+			  <min>500</min>
+			  <max>1400</max>
+			</shieldMoney>
+			<shieldTags>
+			  <li>OutlanderShield</li>
+			</shieldTags>
+			<shieldChance>0.3</shieldChance>
+			<sidearms>
+			  <li>
+				<generateChance>0.5</generateChance>
+				<sidearmMoney>
+				  <min>60</min>
+				  <max>150</max>
+				</sidearmMoney>
+				<weaponTags>
+				  <li>CE_Sidearm_Melee</li>
+				</weaponTags>
+			  </li>
+			</sidearms>
+		  </li>
+		</value>
+	  </match>
+	</Operation>
+</Patch>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>EvolvedOrgansRedux</li>
+		</mods>
+		
+		<match Class="PatchOperationSequence">
+			<operations>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Brain_ButchersNails"]/stages/li[1]/statOffsets</xpath>
+			<value>
+				<statOffsets>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeHitChance>1</MeleeHitChance>
+					<MentalBreakThreshold>0.05</MentalBreakThreshold>
+					<NegotiationAbility>-1.5</NegotiationAbility>
+          					<SocialImpact>-1.5</SocialImpact>
+					<AimingDelayFactor>-0.15</AimingDelayFactor>
+					<Suppressability>-0.4</Suppressability>
+				</statOffsets>
+			</value>
+			</li>
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Brain_ReptilianFrontalCortex"]/stages/li[1]/statOffsets/MeleeDodgeChance</xpath>
+			<value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			</value>
+			</li>
+
+    			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EVOR_Hediff_Brain_ReptilianFrontalCortex"]/stages/li[1]/statOffsets/MeleeHitChance</xpath>
+			<value>
+					<MeleeHitChance>0.5</MeleeHitChance>
+			</value>
+			</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

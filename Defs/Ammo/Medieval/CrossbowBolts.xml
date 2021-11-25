@@ -36,6 +36,7 @@
     </thingCategories>
     <stackLimit>4000</stackLimit>
     <tradeTags>
+      <li>CE_PreIndustrialAmmo</li>
       <li>CE_AutoEnableTrade</li>
       <li>CE_AutoEnableCrafting_FueledSmithy</li>
       <li>CE_AutoEnableCrafting_ElectricSmithy</li>
@@ -118,14 +119,14 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCrossbowBoltProjectile" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Arrow_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Arrow</damageDef>
-			<speed>10</speed>
+			<speed>23</speed>
 		</projectile>
 	</ThingDef>
 
@@ -134,7 +135,7 @@
 			x = preExplosionSpawnChance,
 			r = resource cost. -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Stone</defName>
 		<label>crossbow bolt (stone)</label>
 		<graphicData>
@@ -150,7 +151,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Steel</defName>
 		<label>crossbow bolt (steel)</label>
 		<graphicData>
@@ -161,13 +162,13 @@
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.5</armorPenetrationSharp>
-			<speed>17</speed>			
+			<speed>30</speed>			
 			<preExplosionSpawnChance>0.333</preExplosionSpawnChance>	<!-- 14.99 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Plasteel</defName>
 		<label>crossbow bolt (plasteel)</label>
 		<graphicData>
@@ -176,15 +177,15 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBlunt>8.12</armorPenetrationBlunt>
+			<armorPenetrationBlunt>5.12</armorPenetrationBlunt>
 			<armorPenetrationSharp>3.5</armorPenetrationSharp>
-			<speed>19</speed>				
+			<speed>36</speed>				
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 bolts per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Plasteel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Venom</defName>
 		<label>crossbow bolt (venom)</label>
 		<graphicData>
@@ -196,25 +197,27 @@
 			<damageAmountBase>11</damageAmountBase>
 			<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 			<armorPenetrationSharp>2.5</armorPenetrationSharp>
-      <speed>17</speed>	
+      <speed>30</speed>	
 			<preExplosionSpawnChance>0.6</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
 			<preExplosionSpawnThingDef>Ammo_CrossbowBolt_Steel</preExplosionSpawnThingDef>
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseCrossbowBoltProjectile">
+	<ThingDef ParentName="BaseCrossbowBoltProjectile">
 		<defName>Projectile_CrossbowBolt_Flame</defName>
 		<label>crossbow bolt (flame)</label>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>       
 		<graphicData>
 			<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Flame</damageDef>
-			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationBlunt>3.28</armorPenetrationBlunt>
-			<armorPenetrationSharp>1.5</armorPenetrationSharp>
-      <speed>17</speed>	
+      <explosionRadius>0.2</explosionRadius>
+	    <damageDef>ArrowFire</damageDef>
+	    <damageAmountBase>3</damageAmountBase>
+	    <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+	    <preExplosionSpawnChance>0.16</preExplosionSpawnChance>
+      <speed>20</speed>	
 		</projectile>
 	</ThingDef>
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanite Plague</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+			
+	<!-- =========== Apparel =========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MP_Apparel_PlagueBandolier"]/statBases</xpath>
+		<value>
+			<Bulk>3</Bulk>
+			<WornBulk>2</WornBulk>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="MP_Apparel_PlagueBandolier"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<CarryBulk>10</CarryBulk>
+			</equippedStatOffsets>
+		</value>
+	</li>
+	
+	<!-- =========== Mortars & IED =========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+		<value>
+			<MP_Plague_Shell_81mm>MP_Bullet_81mmMortarShell_Plague</MP_Plague_Shell_81mm>
+		</value>
+	</li>
+	
+	<li Class="PatchOperationRemove"> <!-- -->
+		<xpath>Defs/ThingDef[defName="MP_Shell_Plague"]</xpath>
+	</li>
+	
+	<li Class="PatchOperationReplace">
+	<xpath>Defs/ThingDef[defName="MP_TrapIED_PlagueSharpnel"]/costList</xpath>
+		<value>
+			<costList>
+				<MP_Plague_Shell_81mm>2</MP_Plague_Shell_81mm>
+			</costList>
+		</value>
+	</li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

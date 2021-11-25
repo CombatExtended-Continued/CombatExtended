@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanite Plague</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+	<!-- =========== Burster =========== -->
+	<li Class="PatchOperationAddModExtension">
+	<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]</xpath>
+	<value>
+		<li Class="CombatExtended.RacePropertiesExtensionCE">
+			<bodyShape>QuadrupedLow</bodyShape>
+		</li>
+	</value>
+	</li>
+
+	<!-- Armor values for the creature. -->
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]</xpath>
+		<value>
+			<statBases>
+				<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				<ArmorRating_Sharp>2</ArmorRating_Sharp>
+				<MeleeDodgeChance>0.22</MeleeDodgeChance>
+				<MeleeCritChance>0.05</MeleeCritChance>
+				<MeleeParryChance>0.04</MeleeParryChance>
+			</statBases>
+		</value>
+	</li>
+	
+	<!-- Define attacks. -->
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>fangs</label>
+				<capacities>
+					<li>MP_BiteInfect</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>0.83</cooldownTime>
+				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				<armorPenetrationBlunt>0.768</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.77</armorPenetrationSharp>
+			</li>  
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>3.57</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				</li>
+		</tools>
+	</value>
+	</li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

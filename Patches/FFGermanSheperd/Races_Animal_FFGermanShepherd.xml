@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>FFGermanShepherd</li>
+		</mods>	
+		<match Class="PatchOperationSequence">			
+			<operations>
+				<!-- === Quadruped === -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDefdefName="GermanShepherd"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.23</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.06</MeleeParryChance>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]/race/baseBodySize</xpath>
+					<value>
+						<baseBodySize>0.65</baseBodySize>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[ defName="GermanShepherd"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>0.65</baseHealthScale>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/PawnKindDef[defName="GermanShepherd"]/combatPower</xpath>
+					<value>
+						<combatPower>60</combatPower>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="GermanShepherd"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.7</cooldownTime>
+								<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.05</armorPenetrationSharp>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>0.7</cooldownTime>
+								<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.05</armorPenetrationSharp>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>1.50</cooldownTime>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.15</armorPenetrationSharp>
+								<armorPenetrationBlunt>3.410</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>1.20</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.3</chanceFactor>
+								<armorPenetrationBlunt>0.280</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+	
+</Patch>

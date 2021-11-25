@@ -144,6 +144,71 @@
 		</value>
 		</li>
 
+		<!-- Goliath -->
+		<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Goliath"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.10</MeleeDodgeChance>
+				<MeleeCritChance>0.05</MeleeCritChance>
+				<MeleeParryChance>0.09</MeleeParryChance>
+				<PainShockThreshold>0.90</PainShockThreshold>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Goliath"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Goliath"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+      			<ArmorRating_Blunt>10</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Goliath"]/tools</xpath> 
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>grafted blade</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>18</power>
+				<cooldownTime>2.2</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationSharp>0.65</armorPenetrationSharp>
+				<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>1.9</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>6</power>
+				<cooldownTime>4.80</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+			</li>
+		</tools>
+		</value>
+		</li>
+
 		<!-- Tesla -->
 		<li Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[defName="DarkDescent_Tesla"]/statBases</xpath>
@@ -267,6 +332,219 @@
 			</li>
 		</tools>
 		</value>
+		</li>
+
+		<!-- Engineer -->
+		<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Engineer"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.10</MeleeDodgeChance>
+				<MeleeCritChance>0.05</MeleeCritChance>
+				<MeleeParryChance>0.03</MeleeParryChance>
+				<PainShockThreshold>0.80</PainShockThreshold>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Engineer"]/tools</xpath> 
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+						<def>Stun</def>
+						<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+					</surpriseAttack>						
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.406</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.4</cooldownTime>
+					<surpriseAttack>
+					<extraMeleeDamages>
+						<li>
+						<def>Stun</def>
+						<amount>14</amount>
+						</li>
+					</extraMeleeDamages>
+					</surpriseAttack>					
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.406</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>4.60</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.825</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+		</li>
+
+		<!-- Harvester -->
+		<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Harvester"]/statBases</xpath>
+			<value>
+				<MeleeDodgeChance>0.10</MeleeDodgeChance>
+				<MeleeCritChance>0.05</MeleeCritChance>
+				<MeleeParryChance>0.03</MeleeParryChance>
+				<PainShockThreshold>0.80</PainShockThreshold>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="DarkDescent_Harvester"]/tools</xpath> 
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hand</label>
+					<capacities>
+						<li>DarkDescent_HarvesterScratch</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.9</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.50</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.203</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hand</label>
+					<capacities>
+						<li>DarkDescent_HarvesterScratch</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.9</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.50</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.203</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>4.60</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.825</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
+			</li>
+
+		<!-- Hound -->
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/ThingDef[defName="DarkDescent_Hound"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="DarkDescent_Hound"]/statBases/MoveSpeed</xpath>
+			<value>
+				<MoveSpeed>6.25</MoveSpeed>
+				<MeleeDodgeChance>0.26</MeleeDodgeChance>
+				<MeleeCritChance>0.09</MeleeCritChance>
+				<MeleeParryChance>0.05</MeleeParryChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="DarkDescent_Hound"]/tools</xpath>
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.07</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right claw</label>
+					<capacities>
+						<li>Scratch</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>0.8</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.07</armorPenetrationSharp>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>ToxicBite</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.73</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<surpriseAttack>
+						<extraMeleeDamages>
+							<li>
+								<def>Stun</def>
+								<amount>20</amount>
+							</li>
+						</extraMeleeDamages>
+					</surpriseAttack>
+					<armorPenetrationSharp>0.55</armorPenetrationSharp>
+					<armorPenetrationBlunt>4.225</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
 		</li>
 
 		</operations>

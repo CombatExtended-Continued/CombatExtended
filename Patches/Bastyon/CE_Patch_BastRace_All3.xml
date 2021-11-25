@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Bastyon</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+       			<!-- === Cervus === -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Bast_Gleaming_Cervus"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Gleaming_Cervus"]/statBases/MoveSpeed</xpath>
+				<value>
+				<MoveSpeed>6.9</MoveSpeed>
+				<MeleeDodgeChance>0.4</MeleeDodgeChance>
+				<MeleeCritChance>0.17</MeleeCritChance>
+				<MeleeParryChance>0.4</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Gleaming_Cervus"]/tools</xpath>
+				<value>
+					<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hoof</label>
+					<capacities>
+						<li>Blunt</li><li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right hoof</label>
+					<capacities>
+						<li>Blunt</li><li>Poke</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>BiteBlunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.66</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.750</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.97</cooldownTime>
+					<restrictedGender>Female</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>daunting antlers</label>
+					<capacities>
+						<li>Poke</li><li>Scratch</li><li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				</li>
+					</tools>
+				</value>
+			</li> 
+
+        			<!-- === Bunnies === -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Bast_Vorpal_Bunny" 
+							or defName="Bast_Vorpal_Bunny_Befouled" 
+							or defName="Bast_Vorpal_Bunny_Enduring" 
+							or defName="Bast_Vorpal_Bunny_Enraged"
+							or defName="Bast_Vorpal_Bunny_Gilded" 
+							or defName="Bast_Vorpal_Bunny_Iridescent"
+							or defName="Bast_Vorpal_Bunny_Pragmatic"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+        			<!-- === Giving them non stupid stats === -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Vorpal_Bunny" 
+							or defName="Bast_Vorpal_Bunny_Befouled" 
+							or defName="Bast_Vorpal_Bunny_Enduring" 
+							or defName="Bast_Vorpal_Bunny_Enraged"
+							or defName="Bast_Vorpal_Bunny_Gilded" 
+							or defName="Bast_Vorpal_Bunny_Iridescent"
+							or defName="Bast_Vorpal_Bunny_Pragmatic"]/statBases</xpath>
+				<value>
+        					<statBases>
+            					<MoveSpeed>6.00</MoveSpeed>
+            					<ComfyTemperatureMin>0</ComfyTemperatureMin>
+            					<ComfyTemperatureMax>35</ComfyTemperatureMax>
+            					<MarketValue>250</MarketValue>
+            					<MeatAmount>30</MeatAmount>
+					<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					<MeleeCritChance>0.07</MeleeCritChance>
+					<MeleeParryChance>0.00</MeleeParryChance>
+        					</statBases>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Vorpal_Bunny" 
+							or defName="Bast_Vorpal_Bunny_Befouled" 
+							or defName="Bast_Vorpal_Bunny_Enduring" 
+							or defName="Bast_Vorpal_Bunny_Enraged"
+							or defName="Bast_Vorpal_Bunny_Gilded" 
+							or defName="Bast_Vorpal_Bunny_Iridescent"
+							or defName="Bast_Vorpal_Bunny_Pragmatic"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>Head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li> 
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Vorpal_Bunny" 
+							or defName="Bast_Vorpal_Bunny_Befouled" 
+							or defName="Bast_Vorpal_Bunny_Enduring" 
+							or defName="Bast_Vorpal_Bunny_Enraged"
+							or defName="Bast_Vorpal_Bunny_Gilded" 
+							or defName="Bast_Vorpal_Bunny_Iridescent"
+							or defName="Bast_Vorpal_Bunny_Pragmatic"]/race/baseHealthScale</xpath>
+				<value>
+					<baseHealthScale>0.5</baseHealthScale>
+				</value>
+			</li> 
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="Bast_Vorpal_Bunny" 
+							or defName="Bast_Vorpal_Bunny_Befouled" 
+							or defName="Bast_Vorpal_Bunny_Enduring" 
+							or defName="Bast_Vorpal_Bunny_Enraged"
+							or defName="Bast_Vorpal_Bunny_Gilded" 
+							or defName="Bast_Vorpal_Bunny_Iridescent"
+							or defName="Bast_Vorpal_Bunny_Pragmatic"]/combatPower</xpath>
+				<value>
+					<combatPower>20</combatPower>
+				</value>
+			</li> 
+
+
+       			<!-- === Svarog === -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Bast_Svarog"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Svarog"]/statBases/MoveSpeed</xpath>
+				<value>
+				<MoveSpeed>3</MoveSpeed>
+				<MeleeDodgeChance>1</MeleeDodgeChance>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.4</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Svarog"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Svarog"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>10</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Svarog"]/tools</xpath>
+				<value>
+					<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left smoldering fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.5</cooldownTime>
+					<extraMeleeDamages>
+						<li>
+						<def>Flame</def>
+						<amount>8</amount>
+						<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>	
+					<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right smoldering fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.5</cooldownTime>
+					<extraMeleeDamages>
+						<li>
+						<def>Flame</def>
+						<amount>8</amount>
+						<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+					</tools>
+				</value>
+			</li> 
+
+       			<!-- === Lightning === -->
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]/statBases/MoveSpeed</xpath>
+				<value>
+				<MoveSpeed>3</MoveSpeed>
+				<MeleeDodgeChance>1</MeleeDodgeChance>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>0.4</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>10</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Bast_Lightning_Elemental"]/tools</xpath>
+				<value>
+					<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left galvanized fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.5</cooldownTime>
+					<extraMeleeDamages>
+						<li>
+						<def>Bast_Electric</def>
+						<amount>8</amount>
+						<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>	
+					<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right galvanized fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>14</power>
+					<cooldownTime>1.5</cooldownTime>
+					<extraMeleeDamages>
+						<li>
+						<def>Bast_Electric</def>
+						<amount>8</amount>
+						<chance>0.75</chance>
+						</li>
+					</extraMeleeDamages>
+					<linkedBodyPartsGroup>Hands</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+					</tools>
+				</value>
+			</li> 
+
+			
+			</operations>
+		</match>
+	</Operation>
+</Patch>

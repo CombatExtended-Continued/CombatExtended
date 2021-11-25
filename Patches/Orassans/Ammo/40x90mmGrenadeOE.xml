@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Orassans</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+  <ThingCategoryDef>
+    <defName>Ammo40x90mmGrenadesOE</defName>
+    <label>40x90mm Grenade OE</label>
+    <parent>AmmoGrenades</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_40x90mmGrenadeOE</defName>
+    <label>40x90mm Grenades OE</label>
+    <ammoTypes>
+      <Ammo_40x90mmGrenadeOE_HE>Bullet_40x90mmGrenadeOE_HE</Ammo_40x90mmGrenadeOE_HE>
+      <Ammo_40x90mmGrenadeOE_HEAT>Bullet_40x90mmGrenadeOE_HEAT</Ammo_40x90mmGrenadeOE_HEAT>
+      <Ammo_40x90mmGrenadeOE_Thermobaric>Bullet_40x90mmGrenadeOE_Thermobaric</Ammo_40x90mmGrenadeOE_Thermobaric>
+      <Ammo_40x90mmGrenadeOE_EMP>Bullet_40x90mmGrenadeOE_EMP</Ammo_40x90mmGrenadeOE_EMP>
+      <Ammo_40x90mmGrenadeOE_Cryo>Bullet_40x90mmGrenadeOE_Cryo</Ammo_40x90mmGrenadeOE_Cryo>	      
+      <Ammo_40x90mmGrenadeOE_Smoke>Bullet_40x90mmGrenadeOE_Smoke</Ammo_40x90mmGrenadeOE_Smoke>	 
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x90mmGrenadeBaseOE" ParentName="AmmoBase" Abstract="True">
+    <description>Low velocity caseless grenade fired from handheld railgun grenade launchers.</description>
+    <statBases>
+      <Mass>0.320</Mass>
+      <Bulk>0.40</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo40x90mmGrenadesOE</li>
+    </thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffFlashScale>100</cookOffFlashScale>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_HE</defName>
+    <label>40x90mm grenade OE (HE)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Grenade/HELL</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.5</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_HE</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_HEAT</defName>
+    <label>40x90mm grenade OE (HEAT)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Grenade/HEAT</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.9</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHEAT</ammoClass>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_HEAT</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_Thermobaric</defName>
+    <label>40x90mm grenade OE (Thermobaric)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Grenade/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>5.25</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeThermobaric</ammoClass>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_Thermobaric</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_EMP</defName>
+    <label>40x90mm grenade OE (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>4.5</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeEMP</ammoClass>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_EMP</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_Cryo</defName>
+    <label>40x90mm grenade OE (Cryo)</label>
+    <graphicData>
+      <texPath>ThirdParty/Orassans/Ammo/Grenade/Cryo</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>4.5</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeCryo</ammoClass>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_Cryo</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x90mmGrenadeBaseOE">
+    <defName>Ammo_40x90mmGrenadeOE_Smoke</defName>
+    <label>40x90mm grenade OE (Smoke)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/SMK</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.25</MarketValue>
+    </statBases>
+    <ammoClass>Smoke</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+	<detonateProjectile>Bullet_40x90mmGrenadeOE_Smoke</detonateProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Name="Base40x90mmGrenadeOEBullet" ParentName="BaseBullet" Abstract="true">
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>26</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_HE</defName>
+    <label>40x90mm grenade OE (HE)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2.0</explosionRadius>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>45</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>16</Fragment_Small>
+          <Fragment_Large>5</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_HEAT</defName>
+    <label>40x90mm grenade OE (HEAT)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>42</speed>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>65</damageAmountBase>
+      <armorPenetrationSharp>75</armorPenetrationSharp>
+      <armorPenetrationBlunt>32.950</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+        <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosiveRadius>1.5</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <damageAmountBase>32</damageAmountBase>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        </li>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>9</Fragment_Small>
+          <Fragment_Large>5</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_Thermobaric</defName>
+    <label>40x90mm grenade OE (Thermobaric)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>3.5</explosionRadius>
+      <damageDef>Thermobaric</damageDef>
+      <damageAmountBase>85</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <ai_IsIncendiary>true</ai_IsIncendiary>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>26</Fragment_Small>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_EMP</defName>
+    <label>40x90mm grenade OE (EMP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2.5</explosionRadius>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_Cryo</defName>
+    <label>40x90mm grenade OE (Cryo)</label>
+         <projectile Class="CombatExtended.ProjectilePropertiesCE">
+           <speed>34</speed>
+           <damageDef>OFrostbite</damageDef>
+           <damageAmountBase>20</damageAmountBase>
+           <armorPenetrationSharp>0</armorPenetrationSharp>
+           <armorPenetrationBlunt>0</armorPenetrationBlunt>
+           <explosionRadius>4.0</explosionRadius>
+           <postExplosionSpawnThingDef>Filth_Snow</postExplosionSpawnThingDef>
+           <postExplosionSpawnChance>1</postExplosionSpawnChance>
+           <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+           <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+         </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>12</Fragment_Small>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x90mmGrenadeOEBullet">
+    <defName>Bullet_40x90mmGrenadeOE_Smoke</defName>
+    <label>40x90mm grenade OE (Smoke)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>5</explosionRadius>
+      <damageDef>Smoke</damageDef>
+      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>8</damageAmountBase>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explosiveRadius>0.75</explosiveRadius>
+      </li>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Large>2</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_HE</defName>
+    <label>make 40x90mm OE HE grenades x100</label>
+    <description>Craft 100 40x90mm OE HE grenades.</description>
+    <jobString>Making 40x90mm OE HE grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_HE>100</Ammo_40x90mmGrenadeOE_HE>
+    </products>
+    <workAmount>11000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_HEAT</defName>
+    <label>make 40x90mm OE HEAT grenades x100</label>
+    <description>Craft 100 40x90mm OE HEAT grenades.</description>
+    <jobString>Making 40x90mm OE HEAT grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_HEAT>100</Ammo_40x90mmGrenadeOE_HEAT>
+    </products>
+    <workAmount>11000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_Thermobaric</defName>
+    <label>make 40x90mm OE Thermobaric grenades x100</label>
+    <description>Craft 100 40x90mm OE Thermobaric grenades.</description>
+    <jobString>Making 40x90mm OE Thermobaric grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>55</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_Thermobaric>100</Ammo_40x90mmGrenadeOE_Thermobaric>
+    </products>
+    <workAmount>13000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_EMP</defName>
+    <label>make 40x90mm OE EMP grenades x100</label>
+    <description>Craft 100 40x90mm OE EMP grenades.</description>
+    <jobString>Making 40x90mm OE EMP grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_EMP>100</Ammo_40x90mmGrenadeOE_EMP>
+    </products>
+    <workAmount>12000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_Cryo</defName>
+    <label>make 40x90mm OE Cryo grenades x100</label>
+    <description>Craft 100 40x90mm OE Cryo grenades.</description>
+    <jobString>Making 40x90mm OE Cryo grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>45</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>12</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_Cryo>100</Ammo_40x90mmGrenadeOE_Cryo>
+    </products>
+    <workAmount>13000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_40x90mmGrenadeOE_Smoke</defName>
+    <label>make 40x90mm OE Smoke grenades x100</label>
+    <description>Craft 100 40x90mm OE Smoke grenades.</description>
+    <jobString>Making 40x90mm OE Smoke grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>45</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x90mmGrenadeOE_Smoke>100</Ammo_40x90mmGrenadeOE_Smoke>
+    </products>
+    <workAmount>7500</workAmount>
+  </RecipeDef>
+
+      </value>
+    </match>
+  </Operation>
+</Patch>

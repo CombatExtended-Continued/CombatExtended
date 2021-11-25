@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- ========== Minified Thing ========== -->
-
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="MinifiedThing"]</xpath>
-		<attribute>Name</attribute>
-		<value>MinifiedBase</value>
-	</Operation>
-  
-  <Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="MinifiedTree"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>MinifiedBase</value>
-	</Operation>
-
   <!-- ========== Resource RawPlant ========== -->
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="OrganicProductBase"]/statBases</xpath>
     <value>
-      <Bulk>0.2</Bulk>
+      <Bulk>0.05</Bulk>
+    </value>
+  </Operation>
+
+  <!-- ============= Chemfuel and Neutroamine =========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Chemfuel" or defName="Neutroamine"]/statBases</xpath>
+    <value>
+      <Bulk>0.05</Bulk>
     </value>
   </Operation>
 
@@ -106,4 +101,3 @@
     </operations>
   </Operation>
 </Patch>
-

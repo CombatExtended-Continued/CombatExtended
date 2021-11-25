@@ -82,52 +82,52 @@
 		<cookOffProjectile>Bullet_473x33mmCaseless_HP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
-    <defName>Ammo_473x33mmCaseless_Incendiary</defName>
-    <label>4.73x33mm Caseless cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.06</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_473x33mmCaseless_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+		<defName>Ammo_473x33mmCaseless_Incendiary</defName>
+		<label>4.73x33mm Caseless cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.06</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_473x33mmCaseless_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
-    <defName>Ammo_473x33mmCaseless_HE</defName>
-    <label>4.73x33mm Caseless cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.09</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_473x33mmCaseless_HE</cookOffProjectile>
-  </ThingDef>
- 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
-    <defName>Ammo_473x33mmCaseless_Sabot</defName>
-    <label>4.73x33mm Caseless cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.05</MarketValue>
-	  <Mass>0.008</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_473x33mmCaseless_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+		<defName>Ammo_473x33mmCaseless_HE</defName>
+		<label>4.73x33mm Caseless cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_473x33mmCaseless_HE</cookOffProjectile>
+	</ThingDef>
 	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="473x33mmCaselessBase">
+		<defName>Ammo_473x33mmCaseless_Sabot</defName>
+		<label>4.73x33mm Caseless cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.05</MarketValue>
+			<Mass>0.008</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_473x33mmCaseless_Sabot</cookOffProjectile>
+	</ThingDef>
+		
 	<!-- ================== Projectiles ================== -->
 	
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base473x33mmCaselessBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base473x33mmCaselessBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -138,7 +138,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	<ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_FMJ</defName>
 		<label>4.73mm Caseless bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -148,7 +148,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	<ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_AP</defName>
 		<label>4.73mm Caseless bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -158,7 +158,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	<ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_HP</defName>
 		<label>4.73mm Caseless bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -168,7 +168,7 @@
 		</projectile>
 	</ThingDef>
  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	  <ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_Incendiary</defName>
 		<label>4.73mm Caseless bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -184,7 +184,7 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	  <ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_HE</defName>
 		<label>4.73mm Caseless bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -200,7 +200,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base473x33mmCaselessBullet">
+	  <ThingDef ParentName="Base473x33mmCaselessBullet">
 		<defName>Bullet_473x33mmCaseless_Sabot</defName>
 		<label>4.73mm Caseless bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">

@@ -20,7 +20,7 @@ jobs:
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
-        git pull --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
+        git pull --no-ff --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         mkdir -p Assemblies
@@ -29,7 +29,7 @@ jobs:
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
     - name: build
       run: |
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicize Assembly-CSharp.dll,UnityEngine.CoreModule.dll --publicizer $PWD/AssemblyPublicizer
+        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
     - name: package
       run: |
         mkdir CombatExtended

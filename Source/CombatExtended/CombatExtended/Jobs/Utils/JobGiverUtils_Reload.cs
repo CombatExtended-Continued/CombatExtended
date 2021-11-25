@@ -149,6 +149,12 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
         {
 			Predicate<Thing> validator = (Thing potentialAmmo) =>
 			{
+				// Don't try to reload a turret with ammo that's currently cooking off, that would be bad
+				if (potentialAmmo is AmmoThing ammoThing && ammoThing.IsCookingOff)
+                {
+					return false;
+                }
+
 				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
 				{
 					return false;
