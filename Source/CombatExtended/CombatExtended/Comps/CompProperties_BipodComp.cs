@@ -26,6 +26,10 @@ namespace CombatExtended
 
 		public float warmuppenalty = 2f;
 
+		public float swaymult = 1f;
+
+		public float swaypenalty = 1f;
+
 		public int TicksToSetUp = 60;
 
 
