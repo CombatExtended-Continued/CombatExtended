@@ -208,7 +208,17 @@
 	</Operation>
 
 	<!-- ========== Autocannon turret ========== -->
-
+	
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]</xpath>
+		<value>
+			<li Class="CombatExtended.TurretDefExtensionCE">
+				<ciwsMinShotsRequired>15</ciwsMinShotsRequired>
+				<ciwsMaxShotsRequired>60</ciwsMaxShotsRequired>
+			</li>
+		</value>
+	</Operation>
+	
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 	</Operation>

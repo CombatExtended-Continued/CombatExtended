@@ -26,20 +26,19 @@ namespace CombatExtended
         private const int MAXSPREADDEGREE = 2;
         private const int TICKSBETWEENSEARCH = 10;
         private const float MINCIWSHEIGHT = 5f;
-
-        private int shotsFired = 0;
-        private int shotsRequired = 0;
-        private int ticksSinceLastSearched = 0;        
+        
+        private int ciwsShotsFired = 0;
+        private int ciwsShotsRequired = 0;
+        private int ciwsTicksSinceLastSearched = 0;
+        private int ciwsTicksToNextShot = 0;
         private LocalTargetInfo ciwsTarget = null;
 
         #region Aming
-
         private float shotRotation;
         private float shotAngle;
         private Vector2 origin;
         private Vector2 destination;
-        private float destinationHeight;
-
+        private float destinationHeight;        
         #endregion
 
         public override LocalTargetInfo CurrentTarget
@@ -52,6 +51,18 @@ namespace CombatExtended
             get => ciwsTarget != null && ciwsTarget.IsValid && ciwsTarget.HasThing && ciwsTarget.Thing.Spawned && !ciwsTarget.ThingDestroyed;
         }
 
+        private int _minShots = -1;
+        private int MinCiwsShotsRequired
+        {
+            get => _minShots != -1 ? _minShots : (_minShots = def.HasModExtension<TurretDefExtensionCE>() ? def.GetModExtension<TurretDefExtensionCE>().ciwsMinShotsRequired : 40);
+        }
+
+        private int _maxShots = -1;
+        private int MaxCiwsShotsRequired
+        {
+            get => _maxShots != -1 ? _maxShots : (_maxShots = def.HasModExtension<TurretDefExtensionCE>() ? def.GetModExtension<TurretDefExtensionCE>().ciwsMaxShotsRequired : 80);
+        }     
+
         public Building_CiwsGunCE() : base()
         {            
         }
@@ -59,10 +70,11 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref shotsFired, "Ciws_shotsFired");
-            Scribe_Values.Look(ref shotsRequired, "Ciws_shotsRequired");
-            Scribe_Values.Look(ref ticksSinceLastSearched, "Ciws_ticksSinceLastSearched");
+            Scribe_Values.Look(ref ciwsShotsFired, "Ciws_shotsFired");
+            Scribe_Values.Look(ref ciwsShotsRequired, "Ciws_shotsRequired");
+            Scribe_Values.Look(ref ciwsTicksSinceLastSearched, "Ciws_ticksSinceLastSearched");
             Scribe_TargetInfo.Look(ref ciwsTarget, "Ciws_target");
+            Scribe_Values.Look(ref ciwsTicksToNextShot, "Ciws_ticksToNextShot");            
             // scribe for the inspector tool
 #if DEBUG
             bool temp;
@@ -85,13 +97,13 @@ namespace CombatExtended
                 {
                     if (!IsCiwsTargetValid)
                     {
-                        if(ticksSinceLastSearched++ > TICKSBETWEENSEARCH)
+                        if(ciwsTicksSinceLastSearched++ > TICKSBETWEENSEARCH)
                         { 
-                            ticksSinceLastSearched = 0;
+                            ciwsTicksSinceLastSearched = 0;
                             if (TryFindProjectileTarget())
-                            {                                
-                                shotsFired = 0;                                
-                                shotsRequired = Rand.Range(MINSHOTSREQUIRED, MAXSHOTSREQUIRED);                                
+                            {
+                                ciwsTicksToNextShot = 0;
+                                ciwsShotsFired = 0;                                                                
                             }
                         }                 
                     }                   
@@ -105,10 +117,10 @@ namespace CombatExtended
                             forcedTarget = null;
                         }                                        
                         if (TryFindBurstParameters())
-                        {
+                        {                            
                             BurstNow();
-                            if (Rand.Chance((shotsFired + 1) / (shotsRequired + 1)))
-                            {
+                            if (Rand.Chance(1f / ciwsShotsRequired))
+                            {                                
                                 FleckMaker.ThrowFireGlow(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
                                 FleckMaker.ThrowSmoke(ciwsTarget.Thing.DrawPos, Map, Rand.Range(1f, 10f));
 
@@ -158,11 +170,13 @@ namespace CombatExtended
             if (tracker.ProjectilesCE.Where(validatorCE).TryRandomElement(out ProjectileCE projectileCE) && !projectileCE.Destroyed)
             {
                 ciwsTarget = new LocalTargetInfo(projectileCE);
+                ciwsShotsRequired = GetShotsRequired(CompAmmo?.CurAmmoProjectile?.projectile.speed ?? 300f, projectileCE.shotSpeed, MinCiwsShotsRequired, MaxCiwsShotsRequired);
                 return true;
             }
             if (tracker.Projectiles.Where(validator).TryRandomElement(out Projectile projectile) && !projectile.Destroyed)
             {
                 ciwsTarget = new LocalTargetInfo(projectile);
+                ciwsShotsRequired = GetShotsRequired(CompAmmo?.CurAmmoProjectile?.projectile.speed ?? 300f, projectile.def.projectile.speed, MinCiwsShotsRequired, MaxCiwsShotsRequired);
                 return true;
             }
             return false;
@@ -199,11 +213,19 @@ namespace CombatExtended
 
         private void BurstNow()
         {
-            ticksUntilAutoReload = minTicksBeforeAutoReload;                                                    
-            int count = Rand.Range(1,3);
+            ticksUntilAutoReload = minTicksBeforeAutoReload;           
+            if (ciwsShotsFired > 0 && GenTicks.TicksGame % 15 == 0)
+            {
+                FleckMaker.ThrowSmoke(new Vector3(origin.x, 0, origin.y), Map, Rand.Range(1f, 3f));
+            }
+            if (ciwsTicksToNextShot-- > 0)
+            {
+                return;
+            }
+            int count = AttackVerb.verbProps.ticksBetweenBurstShots > 0 ? 1 : 2;    
             while (count-- > 0 && CompAmmo.TryReduceAmmoCount(1))
             {
-                shotsFired += 1;
+                ciwsShotsFired += 1;
                 if (AttackVerb.verbProps.muzzleFlashScale > 0.01f)
                 {
                     FleckMaker.Static(Position, Map, FleckDefOf.ShotFlash, AttackVerb.verbProps.muzzleFlashScale);
@@ -223,20 +245,22 @@ namespace CombatExtended
                 projectile.SpawnSetup(Map, false);
                 projectile.Launch(this, origin, shotAngle, shotRotation, 1.0f, Rand.Range(Mathf.Max(projectile.def.projectile.speed * 2, 400), 600), null);
             }
-            if (GenTicks.TicksGame % 15 == 0)
-            {
-                FleckMaker.ThrowSmoke(new Vector3(origin.x, 0, origin.y), Map, Rand.Range(1f, 3f));
-            }
-        }
+            ciwsTicksToNextShot = AttackVerb.verbProps.ticksBetweenBurstShots / 2;
+        }        
 
         private void Reset()
         {
             ResetCurrentTarget();
             ciwsTarget = null;
-            ticksSinceLastSearched = TICKSBETWEENSEARCH;
-            shotsFired = 0;
-            shotsRequired = 0;            
-        }        
+            ciwsTicksSinceLastSearched = TICKSBETWEENSEARCH;
+            ciwsShotsFired = 0;
+            ciwsShotsRequired = 0;            
+        }
+
+        private static int GetShotsRequired(float projectileSpeed, float targetSpeed, int minShots, int maxShots)
+        {            
+            return (int)Mathf.Lerp((float)minShots, (float)maxShots, Rand.Range(0, 1f) * targetSpeed / Mathf.Max(projectileSpeed, targetSpeed * 0.5f));
+        }
     }
 }
 
