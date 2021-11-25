@@ -14,8 +14,8 @@ namespace CombatExtended
         #region Settings
 
         // General settings
-        public bool bipodMechanics = false;
-        public bool autosetup = true;
+        private bool bipodMechanics = false;
+        private bool autosetup = true;
         private bool showCasings = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
@@ -25,9 +25,13 @@ namespace CombatExtended
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
 
-	private bool showExtraTooltips = false;
+	    private bool showExtraTooltips = false;
 
         public bool ShowCasings => showCasings;
+
+        public bool BipodMechanics => bipodMechanics;
+
+        public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
         public bool SmokeEffects => smokeEffects;
@@ -89,8 +93,6 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
-            Scribe_Values.Look(ref autosetup, "autosetup", true);
             Scribe_Values.Look(ref showCasings, "showCasings", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
@@ -125,6 +127,10 @@ namespace CombatExtended
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
+            //Bipod settings
+            Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
+            Scribe_Values.Look(ref autosetup, "autosetup", true);
+
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -139,8 +145,6 @@ namespace CombatExtended
             list.Label("CE_Settings_HeaderGeneral".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
-            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
@@ -231,6 +235,12 @@ namespace CombatExtended
                 GUI.contentColor = Color.white;
             }
 
+            Text.Font = GameFont.Medium;
+            list.Label("CE_Settings_BipodSettings".Translate());
+            Text.Font = GameFont.Small;
+            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+
             list.End();
 
             // Update ammo if setting changes
@@ -245,6 +255,7 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
+       
         }
 
         #endregion
