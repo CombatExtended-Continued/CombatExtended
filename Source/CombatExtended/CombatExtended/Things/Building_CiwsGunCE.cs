@@ -65,7 +65,7 @@ namespace CombatExtended
 
         public Building_CiwsGunCE() : base()
         {            
-        }
+        }     
 
         public override void ExposeData()
         {

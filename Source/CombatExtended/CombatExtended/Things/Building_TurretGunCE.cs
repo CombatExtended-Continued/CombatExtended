@@ -49,6 +49,7 @@ namespace CombatExtended
         private CompAmmoUser compAmmo = null;
         private CompFireModes compFireModes = null;
         private CompChangeableProjectile compChangeable = null;
+        private IAnimator animator;
         public bool isReloading = false;        
         private bool everSpawned = false;
         private GlobalTargetInfo globalTargetInfo = GlobalTargetInfo.Invalid;
@@ -159,6 +160,12 @@ namespace CombatExtended
         public override void SpawnSetup(Map map, bool respawningAfterLoad)      //Add mannableComp, ticksUntilAutoReload, register to GenClosestAmmo
         {
             base.SpawnSetup(map, respawningAfterLoad);
+            if (def.HasModExtension<TurretDefExtensionCE>())
+            {
+                AnimatedPart part = def.GetModExtension<TurretDefExtensionCE>().animatedPart;
+                if(part != null)                
+                    animator = (IAnimator)Activator.CreateInstance(part.animatorClass, new object[] {this, part});                
+            }
             Map.GetComponent<TurretTracker>().Register(this);
 
             dormantComp = GetComp<CompCanBeDormant>();
@@ -275,6 +282,7 @@ namespace CombatExtended
         public override void Tick()     //Autoreload code and IsReloading check
         {
             base.Tick();
+            
             if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
 
             if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
@@ -297,7 +305,10 @@ namespace CombatExtended
             {
                 ResetForcedTarget();
             }
-            if (Active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
+            bool active = Active;
+            if (animator != null && active)            
+                animator.Tick();            
+            if (active && (this.mannableComp == null || this.mannableComp.MannedNow) && base.Spawned && !(isReloading && WarmingUp))
             {
                 this.GunCompEq.verbTracker.VerbsTick();
                 if (!this.stunner.Stunned && this.GunCompEq.PrimaryVerb.state != VerbState.Bursting)
@@ -320,7 +331,7 @@ namespace CombatExtended
                         {
                             this.TryStartShootSomething(true);
                         }
-                    }
+                    }                    
                     this.top.TurretTopTick();
                     return;
                 }
@@ -536,8 +547,10 @@ namespace CombatExtended
 
         public override void Draw()
         {
-            top.DrawTurret(Vector3.zero, 0f);
+            top.DrawTurret(Vector3.zero, 0f);            
             base.Draw();
+            if (animator != null)
+                animator.DrawAt(DrawPos + Vector3.up);
         }
 
         public override void DrawExtraSelectionOverlays()           // Draw at range less than 1.42 tiles
