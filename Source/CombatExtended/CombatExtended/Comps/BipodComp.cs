@@ -50,7 +50,7 @@ namespace CombatExtended
 		}
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
-			if (Controller.settings.AutoSetUp)
+			if (Controller.settings.BipodMechanics)
 			{
 				if (Controller.settings.AutoSetUp)
 				{
