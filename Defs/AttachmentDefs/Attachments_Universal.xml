@@ -8,9 +8,9 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_Makeshift" ParentName="CE_OpticMakeshiftBase">
     <defName>CE_Attachment_Optic_MakeshiftScope</defName>
     <label>Makeshift Scope</label>
-    <description>Placeholder.</description>
+    <description>A crude optical sight, marginally better than ironsights.</description>
     <statMultipliers>
-      <SightsEfficiency>1.1</SightsEfficiency>
+      <SightsEfficiency>1.05</SightsEfficiency>
     </statMultipliers>
     <attachmentGraphicData>
       <texPath>Things/Attachments/Optic/ScopeMakeshift</texPath>
@@ -27,10 +27,11 @@
   <CombatExtended.AttachmentDef Name="CE_Atttachment_Stock_Makeshift" ParentName="CE_StockIndustrialBase">
     <defName>CE_Attachment_Stock_Makeshift</defName>
     <label>Makeshift Stock</label>
-    <description>Placeholder.</description>
+    <description>A crude stock made of wire and wood. Lightweight, but not very sturdy.</description>
     <statMultipliers>
       <Mass>0.75</Mass>
       <SwayFactor>1.1</SwayFactor>
+      <Recoil>1.15</Recoil>
     </statMultipliers>
   </CombatExtended.AttachmentDef>
 
@@ -41,7 +42,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Accessory_Flashlight" ParentName="CE_AccessoryIndustrialBase">
     <defName>CE_Attachment_Accessory_Flashlight</defName>
     <label>Flashlight</label>
-    <description>Helps you see in the dark.</description>
+    <description>A mounted flashlight. Not as useful as night vision in the dark, but better than nothing.</description>
     <statOffsets>
       <NightVisionEfficiency_Weapon>0.10</NightVisionEfficiency_Weapon>
     </statOffsets>
@@ -51,8 +52,8 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Bayonet_Modern" ParentName="CE_BayonetIndustrialBase">
     <defName>CE_Attachment_Bayonet_Modern</defName>
-    <label>Modern</label>
-    <description>Placeholder.</description>
+    <label>Modern Bayonet</label>
+    <description>A sharp, steel bayonet. Simple, but effective.</description>
   </CombatExtended.AttachmentDef>
 
   <!-- ====== Muzzle ====== -->
@@ -60,7 +61,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Muzzle_FlashHider" ParentName="CE_MuzzleIndustrialBase">
     <defName>CE_Attachment_Muzzle_FlashHider</defName>
     <label>Flash Hider</label>
-    <description>Placeholder.</description>
+    <description>An attachment fitted to the end of the barrel to conceal the muzzle flash, masking the shooter's position when firing in the dark.</description>
     <statMultipliers>
       <MuzzleFlash>0.5</MuzzleFlash>
     </statMultipliers>
@@ -69,7 +70,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Muzzle_Suppressor" ParentName="CE_MuzzleIndustrialBase">
     <defName>CE_Attachment_Muzzle_Compensator</defName>
     <label>Compensator</label>
-    <description>Placeholder.</description>
+    <description>A attachment fitted to the end of the barrel that directs escaping gases to counter muzzle climb from recoil.</description>
     <statMultipliers>
       <SwayFactor>0.95</SwayFactor>
     </statMultipliers>
@@ -78,7 +79,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Muzzle_Choke" ParentName="CE_MuzzleIndustrialBase">
     <defName>CE_Attachment_Muzzle_Choke</defName>
     <label>Choke</label>
-    <description>A choke for shotguns, reduces spread.</description>
+    <description>A choke for shotguns, reducing the spread and producing a tighter shot pattern.</description>
     <statMultipliers>
       <SwayFactor>0.5</SwayFactor>
       <BurstShotCount>0.5</BurstShotCount>
@@ -91,9 +92,9 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_Reflex" ParentName="CE_OpticIndustrialBase">
     <defName>CE_Attachment_Optic_Reflex</defName>
     <label>Reflex</label>
-    <description>Reflex sight with thin frame providing an unobstructed view.</description>
+    <description>A low-profile reflex sight that provides an unobstructed view for close quarters fighting.</description>
     <statMultipliers>
-      <SightsEfficiency>1.3</SightsEfficiency>
+      <SightsEfficiency>1.1</SightsEfficiency>
     </statMultipliers>
     <attachmentGraphicData>
       <texPath>Things/Attachments/Optic/Reflex</texPath>
@@ -108,7 +109,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_2xACOG" ParentName="CE_OpticIndustrialBase">
     <defName>CE_Attachment_Optic_2xACOG</defName>
     <label>2x ACOG</label>
-    <description>ACOG scope for searching enemies at medium range.</description>
+    <description>ACOG scope for engaging targets at medium range.</description>
     <statMultipliers>
       <SightsEfficiency>2</SightsEfficiency>
     </statMultipliers>
@@ -125,7 +126,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_4xACOG" ParentName="CE_OpticIndustrialBase">
     <defName>CE_Attachment_Optic_4xACOG</defName>
     <label>4x ACOG</label>
-    <description>ACOG scope for searching enemies at medium range.</description>
+    <description>ACOG scope for engaging enemies at medium range.</description>
     <statMultipliers>
       <SightsEfficiency>3.5</SightsEfficiency>
     </statMultipliers>
@@ -142,12 +143,12 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_NVScope" ParentName="CE_OpticIndustrialBase">
     <defName>CE_Attachment_Optic_NVScope</defName>
     <label>Night Vision Scope</label>
-    <description>Placeholder.</description>
+    <description>A night vision scope, allowing superior targeting in the dark.</description>
     <statMultipliers>
       <Bulk>1.10</Bulk>
     </statMultipliers>
     <statReplacers>
-      <NightVisionEfficiency_Weapon>0.15</NightVisionEfficiency_Weapon>
+      <NightVisionEfficiency_Weapon>0.40</NightVisionEfficiency_Weapon>
     </statReplacers>
   </CombatExtended.AttachmentDef>
 
@@ -155,18 +156,18 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Stock_Light" ParentName="CE_StockIndustrialBase">
     <defName>CE_Attachment_Stock_Light</defName>
-    <label>Light Stock</label>
-    <description>Placeholder.</description>
+    <label>Folding Stock</label>
+    <description>A lightweight stock, reducing the weapon's overall mass at the cost of greater recoil.</description>
     <statMultipliers>
       <Mass>0.75</Mass>
-      <SwayFactor>1.1</SwayFactor>
+      <Recoil>1.1</Recoil>
     </statMultipliers>
   </CombatExtended.AttachmentDef>
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Stock_Heavy" ParentName="CE_StockIndustrialBase">
     <defName>CE_Attachment_Stock_Heavy</defName>
     <label>Heavy Stock</label>
-    <description>Placeholder.</description>
+    <description>A heavy stock, providing improved controllability at the expense of added weight.</description>
     <statMultipliers>
       <Mass>1.15</Mass>
       <SwayFactor>0.9</SwayFactor>
@@ -179,7 +180,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_Bipod" ParentName="CE_UnderbarrelIndustrialBase">
     <defName>CE_Attachment_Underbarrel_Bipod</defName>
     <label>Bipod</label>
-    <description>Placeholder.</description>
+    <description>A bipod, providing a solid firing position at the cost of additional set up time.</description>
     <statMultipliers>
       <Recoil>0.85</Recoil>
       <SwayFactor>0.85</SwayFactor>
@@ -196,8 +197,8 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_AngleGrip" ParentName="CE_UnderbarrelIndustrialBase">
     <defName>CE_Attachment_Underbarrel_AngleGrip</defName>
-    <label>Angle Foregrip</label>
-    <description>Placeholder.</description>
+    <label>Angled Foregrip</label>
+    <description>An angled foregrip, providing additional handling speed and control when engaging targets.</description>
     <statMultipliers>
       <SwayFactor>0.9</SwayFactor>
     </statMultipliers>
@@ -214,7 +215,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_VerticalGrip" ParentName="CE_UnderbarrelIndustrialBase">
     <defName>CE_Attachment_Underbarrel_VerticalGrip</defName>
     <label>Vertical Foregrip</label>
-    <description>Placeholder.</description>
+    <description>A vertical foregrip, providing excellent control over sway and muzzle climb when firing.</description>
     <statMultipliers>
       <SwayFactor>0.75</SwayFactor>
     </statMultipliers>
@@ -230,8 +231,8 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_M320GrenadeLauncher" ParentName="CE_UnderbarrelIndustrialBase">
     <defName>CE_Attachment_Underbarrel_M320GrenadeLauncher</defName>
-    <label>M320 Grenade Launcher</label>
-    <description>Placeholder.</description>
+    <label>40mm Grenade Launcher</label>
+    <description>An underslung grenade launcher capable of firing 40mm grenades, providing enhanced firepower.</description>
     <slotTags>
       <li>Bayonet</li> <!-- Can't be used with bayonets -->
     </slotTags>
@@ -265,7 +266,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_M26Shotgun" ParentName="CE_UnderbarrelIndustrialBase">
     <defName>CE_Attachment_Underbarrel_M26Shotgun</defName>
     <label>M26 Shotgun</label>
-    <description>Placeholder.</description>
+    <description>A short-barreled, undermounted shotgun. While limited in range, it offers devestating firepower in close quarters.</description>
     <slotTags>
       <li>Bayonet</li> <!-- Can't be used with bayonets -->
     </slotTags>
@@ -302,7 +303,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Bayonet_Spacer" ParentName="CE_BayonetMechanoidBase">
     <defName>CE_Attachment_Bayonet_Spacer</defName>
     <label>Spacer</label>
-    <description>Placeholder.</description>
+    <description>An advanced bayonet, featuring a mono-molecular cutting edge capable of effortless slicing through thick armor.</description>
   </CombatExtended.AttachmentDef>
 
   <!-- ====== Optic ====== -->
@@ -310,10 +311,10 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_SmartNV" ParentName="CE_OpticSpacerBase">
     <defName>CE_Attachment_Optic_SmartNV</defName>
     <label>Hybrid Sight</label>
-    <description>Placeholder.</description>
+    <description>An advanced multi-spectrum targetting sight, capable of spotting and tracking targets in any conditions.</description>
     <statReplacers>
       <SightsEfficiency>2</SightsEfficiency>
-      <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+      <NightVisionEfficiency_Weapon>0.8</NightVisionEfficiency_Weapon>
     </statReplacers>
     <attachmentGraphicData>
       <texPath>Things/Attachments/Optic/Hybrid</texPath>
@@ -329,8 +330,8 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Stock_Modern" ParentName="CE_StockSpacerBase">
     <defName>CE_Attachment_Stock_Modern</defName>
-    <label>Modern Stock</label>
-    <description>Placeholder.</description>
+    <label>Advanced Stock</label>
+    <description>An advanced stock with built-in recoil dampeners and gyroscopic compensators, making for exceptional weapon handling characteristics.</description>
     <statMultipliers>
       <Mass>0.95</Mass>
       <SwayFactor>0.9</SwayFactor>
@@ -344,8 +345,8 @@
 
   <CombatExtended.AttachmentDef Name="CE_Attachment_Bayonet_Mechanoid" ParentName="CE_BayonetMechanoidBase">
     <defName>CE_Attachment_Bayonet_Mechanoid</defName>
-    <label>Mechanoid</label>
-    <description>Placeholder.</description>
+    <label>Scyther Bayonet</label>
+    <description>A fearsome bayonet made from the blades of a destroyed Scyther mechanoid.</description>
     <attachmentGraphicData>
       <texPath>Things/Attachments/Bayonet/Mechanoid</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -361,10 +362,10 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Optic_LancerScope" ParentName="CE_OpticMechanoidBase">
     <defName>CE_Attachment_Optic_LancerScope</defName>
     <label>Lancer Scope</label>
-    <description>Placeholder.</description>
+    <description>An advanced scope crafted from the targetting and tracking system of a destroyed Lancer mechanoid.</description>
     <statReplacers>
       <SightsEfficiency>2</SightsEfficiency>
-      <NightVisionEfficiency_Weapon>0.3</NightVisionEfficiency_Weapon>
+      <NightVisionEfficiency_Weapon>0.80</NightVisionEfficiency_Weapon>
     </statReplacers>
     <attachmentGraphicData>
       <texPath>Things/Attachments/Optic/ScopeMechanoid</texPath>
@@ -381,7 +382,7 @@
   <CombatExtended.AttachmentDef Name="CE_Attachment_Underbarrel_PikemanLauncher" ParentName="CE_UnderbarrelMechanoidBase">
     <defName>CE_Attachment_Underbarrel_PikemanLauncher</defName>
     <label>Pikeman Grenade Launcher</label>
-    <description>Placeholder.</description>
+    <description>A formidable underslung launcher made from parts salvaged from a destroyed Pikeman mechanoid.</description>
     <slotTags>
       <li>Bayonet</li> <!-- Can't be used with bayonets -->
     </slotTags>
