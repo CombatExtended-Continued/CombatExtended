@@ -18,7 +18,7 @@ namespace CombatExtended
 		public override void TransformValue(StatRequest req, ref float val)
 		{
 			var varA = req.Thing.TryGetComp<bipodcomp>();
-			if (Controller.settings.bipodMechanics)
+			if (Controller.settings.BipodMechanics)
 			{
 				if (varA != null)
 				{
@@ -62,7 +62,7 @@ namespace CombatExtended
 		public override void TransformValue(StatRequest req, ref float val)
 		{
 			var varA = req.Thing.TryGetComp<bipodcomp>();
-			if (Controller.settings.bipodMechanics)
+			if (Controller.settings.BipodMechanics)
 			{
 				if (varA != null)
 				{
