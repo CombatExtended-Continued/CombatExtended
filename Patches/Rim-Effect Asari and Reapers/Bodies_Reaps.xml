@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Changing coverage of the bodyDef (should've done this sooner, but eh) -->
+				<!-- why yes dear explorer of this file, i did just literally copy and paste the RE_Asari bodytype patches -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Ribcage"]/coverage</xpath>
+					<value>
+						<coverage>0.012</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Pelvis"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Stomach"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Heart"]/coverage</xpath>
+					<value>
+						<coverage>0.04</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Lung"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Kidney"]/coverage</xpath>
+					<value>
+						<coverage>0.03</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Liver"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Neck"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]/parts/li[def="Brain"]/coverage</xpath>
+					<value>
+						<coverage>0.9</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Eye"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Ear"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/coverage</xpath>
+					<value>
+						<coverage>0.08</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Shoulder"]/coverage</xpath>
+					<value>
+						<coverage>0.085</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Clavicle"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Humerus"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Radius"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Leg"]/coverage</xpath>
+					<value>
+						<coverage>0.1</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Leg"]/parts/li[def="Femur"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/BodyDef[defName="RE_Asari"]/corePart/parts/li[def="Leg"]/parts/li[def="Tibia"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="RE_HuskTorso" or defName="RE_HuskBody"]/hitPoints</xpath>
+    <value>
+      <hitPoints>50</hitPoints>
+    </value>
+      </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/BodyPartDef[defName="RE_HuskLeg"]/hitPoints</xpath>
+    <value>
+      <hitPoints>40</hitPoints>
+    </value>
+      </li>
+
+
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_RachniLike"]//*[
+          def="MechanicalThoraxCanManipulate" or 
+          def="Pronotum" or 
+          def="RE_HuskHead" or 
+          def="MechanicalLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_RachniLike"]//*[
+          def="SightSensor"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Swarmer"]//*[
+          def="Shell" or 
+          def="Pronotum" or 
+          def="RE_HuskHead" or 
+          def="MechanicalLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Swarmer"]//*[
+          def="SightSensor"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Banshee" or defName="RE_Husk" or defName="RE_Marauder" or defName="RE_Brute"]//*[
+          def="RE_HuskTorso" or 
+          def="RE_HuskNeck" or 
+          def="RE_HuskHead" or 
+          def="RE_HuskShoulder" or 
+          def="RE_HuskArm" or 
+          def="RE_HuskHand" or 
+          def="RE_HuskFoot" or 
+          def="RE_HuskLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Banshee" or defName="RE_Husk" or defName="RE_Marauder or defName="RE_Brute"]//*[
+          def="SightSensor" or def="Nose" or def="Jaw"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Colossus"]//*[
+          def="RE_HuskBodyCanManipulate" or 
+          def="RE_HuskNeck" or 
+          def="RE_HuskHead" or 
+          def="Nose" or 
+          def="Horn" or 
+          def="Hoof" or 
+          def="RE_HuskLeg"]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Colossus"]//*[
+          def="SightSensor" or def="Nose"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

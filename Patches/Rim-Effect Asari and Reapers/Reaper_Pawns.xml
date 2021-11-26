@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Core</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RE_Husk_Cannibal" or
+					defName="RE_Husk_Ravager" or
+					defName="RE_Husk_Marauder"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>6</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RE_Husk_Goliath" or
+					defName="RE_Husk_Colossus"
+					]</xpath>
+				<value>	
+					<li Class="CombatExtended.LoadoutPropertiesExtension">	
+						<primaryMagazineCount>
+							<min>19</min>
+							<max>20</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+            <!-- ======= Combat Power ======= -->
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Banshee" or defName="RE_Husk_Brute"]/combatPower</xpath>
+				<value>
+					<combatPower>360</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Ravager"]/combatPower</xpath>
+				<value>
+					<combatPower>180</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Cannibal"]/combatPower</xpath>
+				<value>
+					<combatPower>75</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Husk" or defName="RE_Husk_Swarmer"]/combatPower</xpath>
+				<value>
+					<combatPower>15</combatPower>
+				</value>
+            </li>		
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
