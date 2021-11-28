@@ -136,16 +136,24 @@ namespace CombatExtended
                 Thing cover = coverCell.GetCover(pawn.Map);
                 cellRating += GetCoverRating(cover) * 2;
             }
-            if (turretTracker.GetVisibleToTurret(cell))
+            float visibilityRating = 0;
+            if (turretTracker != null && turretTracker.GetVisibleToTurret(cell))
             {
-                cellRating -= 6f;
+                visibilityRating += 6f;
             }
             if (sightGrid != null)
             {
-                cellRating -= sightGrid[cell] * 2f;
+                visibilityRating += Mathf.Min(sightGrid[cell] * 3f, 20f);
             }
-            // Avoid bullets and other danger source
-            cellRating -= dangerTracker.DangerAt(cell) * 4;
+            if (visibilityRating > 0f)
+            {
+                // Avoid bullets and other danger source
+                cellRating -= visibilityRating;
+                cellRating -= dangerTracker.DangerAt(cell) * 4;
+                // Only apply this at night for performance reasons.
+                if(lightingTracker.IsNight)
+                    cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 3f;
+            }
 
             // better cover rating system
             float coverLOSRating = 0;
@@ -163,8 +171,7 @@ namespace CombatExtended
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
-            {
-                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) / 2f;
+            {                
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))

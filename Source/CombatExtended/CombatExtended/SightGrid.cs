@@ -46,7 +46,7 @@ namespace CombatExtended
                     if (val == 0)
                         return 1f;
                     else
-                        return Mathf.Clamp(0f, Mathf.CeilToInt(val / 900f), 10f);
+                        return Mathf.Clamp(Mathf.CeilToInt(val / 900f), 0f, 10f);
                 }
                 return 0;
             }

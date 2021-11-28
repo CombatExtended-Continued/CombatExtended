@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -19,46 +20,48 @@ namespace CombatExtended.HarmonyCE
         private static DangerTracker dangerTracker;
         private static TurretTracker turretTracker;
         private static SightGrid sightGrid;                
-        private static bool crouching;
+        private static bool crouching;        
 
         internal static bool Prefix(PathFinder __instance, ref PawnPath __result, IntVec3 start, LocalTargetInfo dest, TraverseParms traverseParms, PathEndMode peMode)
-        {            
-            map = __instance.map;
-            pawn = traverseParms.pawn;
-            dangerTracker = __instance.map.GetDangerTracker();
-            
-            if (!lightingTracker.IsNight)
-                lightingTracker = null;                               
-            if (map.ParentFaction != pawn?.Faction)
-                turretTracker = map.GetComponent<TurretTracker>();
-            if (pawn?.Faction != null)            
-                map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
-
-            // Run normal if we're not being suppressed, running for cover, crouch-walking or not actually moving to another cell
-            CompSuppressable comp = pawn?.TryGetComp<CompSuppressable>();
-            if (comp == null
-                || !comp.isSuppressed
-                || comp.IsCrouchWalking
-                || pawn.CurJob?.def == CE_JobDefOf.RunForCover
-                || start == dest.Cell && peMode == PathEndMode.OnCell)
+        {
+            if (traverseParms.pawn != null && traverseParms.pawn.Faction != null && traverseParms.pawn.RaceProps.Humanlike && traverseParms.pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
-                crouching = comp?.IsCrouchWalking ?? false;
+                map = __instance.map;
+                pawn = traverseParms.pawn;
+                dangerTracker = map.GetDangerTracker();
+                lightingTracker = map.GetLightingTracker();
+
+                if (!lightingTracker.IsNight)
+                    lightingTracker = null;
+                if (map.ParentFaction != pawn?.Faction)
+                    turretTracker = map.GetComponent<TurretTracker>();
+                if (pawn?.Faction != null)
+                    map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
+
+                // Run normal if we're not being suppressed, running for cover, crouch-walking or not actually moving to another cell
+                CompSuppressable comp = pawn?.TryGetComp<CompSuppressable>();
+                if (comp == null
+                    || !comp.isSuppressed
+                    || comp.IsCrouchWalking
+                    || pawn.CurJob?.def == CE_JobDefOf.RunForCover
+                    || start == dest.Cell && peMode == PathEndMode.OnCell)
+                {
+                    crouching = comp?.IsCrouchWalking ?? false;
+                    return true;
+                }
+
+                // Make all destinations unreachable
+                __result = PawnPath.NotFound;
+                return false;
+            }
+            else
+            {
+                Reset();
                 return true;
             }
-
-            // Make all destinations unreachable
-            __result = PawnPath.NotFound;
-            return false;
         }
 
-        public static void Postfix()
-        {
-            turretTracker = null;
-            sightGrid = null;
-            pawn = null;
-            dangerTracker = null;
-            lightingTracker = null;
-        }
+        public static void Postfix() => Reset();
 
         /*
          * Search for the vairable that is initialized by the value from the avoid grid or search for
@@ -89,16 +92,33 @@ namespace CombatExtended.HarmonyCE
 
         private static int GetDangerAt(int index)
         {
-            int value = 0;            
-            if (lightingTracker != null)
-                value += (int)(lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 300);
-            if (turretTracker != null)
-                value += turretTracker.GetVisibleToTurret(index) ? 1000 : 0;
-            if (sightGrid != null)
-                value += (int)Mathf.Max(sightGrid[index] * 800, 3800);
-            if (crouching)
-                value /= 2;                            
-            return value;
+            if (map != null)
+            {
+                int value = 0;                
+                if (turretTracker != null)
+                    value += turretTracker.GetVisibleToTurret(index) ? 50 : 0;
+                if (sightGrid != null)
+                    value += (int)Mathf.Min(sightGrid[index] * 85, 500);
+                if (value > 0)
+                {
+                    if (dangerTracker != null)
+                        value += (int)(dangerTracker.DangerAt(index) * 75f);
+                    if (lightingTracker != null)
+                        value += (int)(lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 45f);
+                }                
+                return Mathf.Min(value, 800);
+            }
+            return 0;
+        }
+
+        private static void Reset()
+        {
+            map = null;
+            turretTracker = null;
+            sightGrid = null;
+            pawn = null;
+            dangerTracker = null;
+            lightingTracker = null;
         }
     }
 }

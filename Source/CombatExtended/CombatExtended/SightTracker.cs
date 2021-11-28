@@ -22,7 +22,8 @@ namespace CombatExtended
             public bool IsFriendly => friendly;
             public bool IsHostile => !friendly;
         }
-        
+
+        private int ticks = 0;
         private SightGrid gridFriendly;
         private SightGrid gridHostile;        
 
@@ -48,12 +49,13 @@ namespace CombatExtended
         public override void MapComponentTick()
         {            
             base.MapComponentTick();
-
-            if ((GenTicks.TicksGame + 13) % 30 == 0)
+            
+            if (ticks == 0 || (GenTicks.TicksGame + 13) % 30 == 0)
                 UpdateGrid(gridHostile, friendlies, ref fIndex);            
-            if ((GenTicks.TicksGame + 7) % 30 == 0)
+            if (ticks == 0 || (GenTicks.TicksGame + 7) % 30 == 0)
                 UpdateGrid(gridFriendly, hostiles, ref hIndex);
 
+            ticks++;
             //if (DebugSettings.godMode && GenTicks.TicksGame % 15 == 0)
             //{
             //    TurretTracker turretTracker = map.GetComponent<TurretTracker>();
@@ -69,7 +71,7 @@ namespace CombatExtended
             //        }
             //    }
             //}
-        }        
+        }
 
         public bool TryGetGrid(Pawn pawn, out SightGrid grid)
         {
@@ -126,18 +128,18 @@ namespace CombatExtended
         }
 
         private void TryCastPawnSight(SightGrid grid, Pawn pawn)
-        {
-            if (pawn.equipment?.equipment == null)
+        {            
+            if (pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.equipment?.equipment == null)
                 return;
             ThingWithComps weapon = pawn.equipment.Primary;
-            if (weapon == null)
-                return;
-            if (!weapon.def.IsRangedWeapon)
-                return;
-            float range = weapon.def.verbs?.Max(v => v.range) ?? -1;
+            if (weapon == null || !weapon.def.IsRangedWeapon)
+                return;      
+            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.666f;
             if (range < 5.0f)
-                return;
-            range = Mathf.Min(range, 50);
+                return;            
+            SkillRecord record = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;            
+            if (record != null)
+                range *= Mathf.Clamp(pawn.skills.GetSkill(SkillDefOf.Shooting).Level / 7.5f, 1.0f, 1.75f);
             grid.Next();
             ShadowCastingUtility.CastVisibility(
                 map,

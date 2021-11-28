@@ -63,8 +63,7 @@ namespace CombatExtended.HarmonyCE
         public static class CastPositionFinder_CastPositionPreference_Patch
         {
             public static void Postfix(IntVec3 c, ref float __result)
-            {                               
-                 __result -= dangerTracker.DangerAt(c) * 4;                                                                                                              
+            {                                                                                                                                                              
                 for (int i = 0; i < interceptors.Count; i++)
                 {
                     CompProjectileInterceptor interceptor = interceptors[i];
@@ -75,18 +74,20 @@ namespace CombatExtended.HarmonyCE
                         else
                             __result += 5f;
                     }
-                }                
-                if (lightingTracker.IsNight)
-                    __result -= lightingTracker.CombatGlowAt(c) * 6;                
-                if(turretTracker != null)
-                {
-                    if (turretTracker.GetVisibleToTurret(c))
-                        __result -= 6f;
                 }
+                float visibilityCost = 0;
+                if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
+                    visibilityCost += 3f;
                 if (sightGrid != null)
-                {                    
-                    __result -= sightGrid[c] * 2;
-                }
+                    visibilityCost += Mathf.Max(sightGrid[c] * 2.5f, 12f);
+
+                if (visibilityCost > 0)
+                {
+                    __result -= visibilityCost;
+                    __result -= dangerTracker.DangerAt(c) * 4;
+                    if (lightingTracker.IsNight)
+                        __result -= lightingTracker.CombatGlowAt(c) * 6;
+                }                
                 if (verb != null && verb.EffectiveRange > 0)
                     __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
             }
