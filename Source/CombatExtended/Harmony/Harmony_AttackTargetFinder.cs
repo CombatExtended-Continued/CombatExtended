@@ -15,7 +15,7 @@ namespace CombatExtended.HarmonyCE
 {
     internal static class Harmony_AttackTargetFinder
     {
-        private static Map map;
+        private static Map map;        
         private static List<CompProjectileInterceptor> interceptors;
 
         [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
@@ -44,7 +44,7 @@ namespace CombatExtended.HarmonyCE
 
             internal static void Prefix(IAttackTargetSearcher searcher)
             {
-                map = searcher.Thing?.Map;
+                map = searcher.Thing?.Map;               
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList() ?? new List<CompProjectileInterceptor>();

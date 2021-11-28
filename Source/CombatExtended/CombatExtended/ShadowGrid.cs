@@ -28,19 +28,7 @@ namespace CombatExtended
                 this.sigGrid[i] = new short[map.Size.z];
                 this.visGrid[i] = new float[map.Size.z];
             }
-        }
-
-        public override void MapComponentTick()
-        {
-            base.MapComponentTick();
-            //if (!Find.Selector.SelectedPawns.NullOrEmpty())
-            //{
-            //    Reset();
-            //    var pawn = Find.Selector.SelectedPawns.First();
-            //    var direction = UI.MouseCell().ToVector3() - pawn.Position.ToVector3();
-            //    ShadowCastingUtility.CastVisibility(map, pawn.Position, direction, (cell) => Set(cell, 0.5f), direction.magnitude, 10, out _);
-            //}
-        }
+        }     
 
         public void Reset()
         {
@@ -56,11 +44,7 @@ namespace CombatExtended
                 return;
             }
             this.sigGrid[cell.x][cell.z] = signature;
-            this.visGrid[cell.x][cell.z] = visibility;
-            //if (DebugSettings.godMode)
-            //{
-            //    map.debugDrawer.FlashCell(cell, Mathf.Clamp(visibility / 2f, 0.01f, 0.5f), visibility.ToString("#.##"), 2);
-            //}
+            this.visGrid[cell.x][cell.z] = visibility;            
         }
 
         public bool TryGet(int i, int j, out float visibility) => TryGet(new IntVec3(i, 0, j), out visibility);

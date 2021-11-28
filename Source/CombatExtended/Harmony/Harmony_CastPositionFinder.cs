@@ -15,8 +15,10 @@ namespace CombatExtended.HarmonyCE
     {
         private static Verb verb;
         private static Pawn pawn;
-        private static Map map;
+        private static Map map;        
         private static IntVec3 target;
+        private static SightGrid sightGrid;
+        private static TurretTracker turretTracker;
         private static DangerTracker dangerTracker;
         private static LightingTracker lightingTracker;
         private static List<CompProjectileInterceptor> interceptors;
@@ -33,16 +35,16 @@ namespace CombatExtended.HarmonyCE
                 interceptors = map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList();
-                if (map != null)
+
+                dangerTracker = map.GetDangerTracker();
+                lightingTracker = map.GetLightingTracker();
+                if(map.ParentFaction != newReq.caster?.Faction)
+                    turretTracker = map.GetComponent<TurretTracker>();
+                if (newReq.caster != null && newReq.caster.Faction != null)
                 {
-                    dangerTracker = map.GetDangerTracker();
-                    lightingTracker = map.GetLightingTracker();
-                }
-                else
-                {
-                    dangerTracker = null;
-                    lightingTracker = null;
-                }
+                    if (!map.GetComponent<SightTracker>().TryGetGrid(newReq.caster, out sightGrid))                        
+                        sightGrid = null;                        
+                }                
             }
 
             public static void Postfix()
@@ -50,8 +52,10 @@ namespace CombatExtended.HarmonyCE
                 pawn = null;
                 verb = null;
                 map = null;
+                sightGrid = null;
                 dangerTracker = null;
                 lightingTracker = null;
+                turretTracker = null;
             }
         }
 
@@ -59,26 +63,32 @@ namespace CombatExtended.HarmonyCE
         public static class CastPositionFinder_CastPositionPreference_Patch
         {
             public static void Postfix(IntVec3 c, ref float __result)
-            {
-                if (dangerTracker != null)
+            {                               
+                 __result -= dangerTracker.DangerAt(c) * 4;                                                                                                              
+                for (int i = 0; i < interceptors.Count; i++)
                 {
-                    __result -= dangerTracker.DangerAt(c) * 4;
-                    for (int i = 0; i < interceptors.Count; i++)
+                    CompProjectileInterceptor interceptor = interceptors[i];
+                    if (interceptor.Active && interceptor.parent.Position.DistanceTo(c) < interceptor.Props.radius)
                     {
-                        CompProjectileInterceptor interceptor = interceptors[i];
-                        if (interceptor.Active && interceptor.parent.Position.DistanceTo(c) < interceptor.Props.radius)
-                        {
-                            if (interceptor.parent.Position.PawnsInRange(map, interceptor.Props.radius).All(p => p.HostileTo(pawn)))
-                                __result -= 15.0f;
-                            else
-                                __result += 5f;
-                        }
+                        if (interceptor.parent.Position.PawnsInRange(map, interceptor.Props.radius).All(p => p.HostileTo(pawn)))
+                            __result -= 15.0f;
+                        else
+                            __result += 5f;
                     }
-                    if (lightingTracker.IsNight)
-                        __result *= 1f - lightingTracker.CombatGlowAt(c) / 2f;
-                    if (verb != null && verb.EffectiveRange > 0)
-                        __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
+                }                
+                if (lightingTracker.IsNight)
+                    __result -= lightingTracker.CombatGlowAt(c) * 6;                
+                if(turretTracker != null)
+                {
+                    if (turretTracker.GetVisibleToTurret(c))
+                        __result -= 6f;
                 }
+                if (sightGrid != null)
+                {                    
+                    __result -= sightGrid[c] * 2;
+                }
+                if (verb != null && verb.EffectiveRange > 0)
+                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
             }
         }
     }

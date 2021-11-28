@@ -14,9 +14,9 @@ namespace CombatExtended
         public const float maxCoverDist = 10f; //Maximum distance to run for cover to
 
         private static LightingTracker lightingTracker;
-
-        private static DangerTracker dangerTracker;        
-
+        private static DangerTracker dangerTracker;
+        private static TurretTracker turretTracker;
+        private static SightGrid sightGrid;
         private static List<CompProjectileInterceptor> interceptors;
 
         public static bool TryRequestHelp(Pawn pawn)
@@ -52,7 +52,7 @@ namespace CombatExtended
             if (comp == null)
             {
                 return null;
-            }
+            }            
             float distToSuppressor = (pawn.Position - comp.SuppressorLoc).LengthHorizontal;
             IntVec3 coverPosition;
             //Try to find cover position to move up to
@@ -79,7 +79,12 @@ namespace CombatExtended
             interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
-            
+            if(pawn.Faction != null)            
+                pawn.Map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);            
+            if (pawn.Faction != pawn.Map.ParentFaction)
+                turretTracker = pawn.Map.GetComponent<TurretTracker>();
+            else
+                turretTracker = null;
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
             if (bestRating <= 0)
             {
@@ -104,6 +109,8 @@ namespace CombatExtended
             }
             coverPosition = bestPos;
             lightingTracker = null;
+            turretTracker = null;
+            sightGrid = null;
             return bestRating >= 0;
         }
 
@@ -115,7 +122,7 @@ namespace CombatExtended
                 return -1;
             }
 
-            float cellRating = 0;           
+            float cellRating = 0;            
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
@@ -129,7 +136,14 @@ namespace CombatExtended
                 Thing cover = coverCell.GetCover(pawn.Map);
                 cellRating += GetCoverRating(cover) * 2;
             }
-
+            if (turretTracker.GetVisibleToTurret(cell))
+            {
+                cellRating -= 6f;
+            }
+            if (sightGrid != null)
+            {
+                cellRating -= sightGrid[cell] * 2f;
+            }
             // Avoid bullets and other danger source
             cellRating -= dangerTracker.DangerAt(cell) * 4;
 
