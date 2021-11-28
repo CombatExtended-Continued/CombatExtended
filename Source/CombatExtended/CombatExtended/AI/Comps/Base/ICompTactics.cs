@@ -1,4 +1,5 @@
 ﻿using System;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -68,6 +69,53 @@ namespace CombatExtended.AI
                 return _AmmoUser_CompAmmoUser = _AmmoUser_ThingWithComps.TryGetComp<CompAmmoUser>();
             }
         }
+
+        private Map _sightGridMap = null;
+        private Faction _sightGridFaction = null;
+        private SightGrid _sightGrid = null;
+        public SightGrid MapSightGrid
+        {
+            get
+            {
+                if (!SelPawn.Spawned || SelPawn.Faction == null)
+                {
+                    _sightGridMap = null;
+                    _sightGrid = null;
+                    return null;
+                }
+                if (_sightGridMap != SelPawn.Map || _sightGridFaction != SelPawn.Faction)
+                {
+                    _sightGridFaction = SelPawn.Faction;
+                    _sightGridMap = SelPawn.Map;
+                    _sightGridMap.GetComponent<SightTracker>().TryGetGrid(SelPawn, out _sightGrid);
+                }
+                return _sightGrid;
+            }
+        }
+
+        private Map _turretTrackerMap = null;
+        private Faction _sturretTrackerFaction = null;
+        private TurretTracker _turretTracker = null;
+        public TurretTracker MapTurretTracker
+        {
+            get
+            {
+                if (!SelPawn.Spawned || SelPawn.Faction == null || SelPawn.Faction == SelPawn.Map.ParentFaction)
+                {
+                    _turretTracker = null;
+                    _turretTrackerMap = null;
+                    return null;
+                }
+                if (_turretTrackerMap != SelPawn.Map || _sturretTrackerFaction != SelPawn.Faction)
+                {
+                    _sturretTrackerFaction = SelPawn.Faction;
+                    _turretTrackerMap = SelPawn.Map;
+                    _turretTracker = _turretTrackerMap.GetComponent<TurretTracker>();
+                }
+                return _turretTracker;
+            }
+        }
+
 
         public Map Map
         {

@@ -11,7 +11,9 @@ namespace CombatExtended
 {
     public class SightTracker : MapComponent
     {
-        private const int BUCKETCOUNT = 30;
+        private const int BUCKETCOUNT = 20;
+        private const int BUCKETINTERVAL = 20;
+        private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
         private struct PawnSightRecord
         {
@@ -37,8 +39,8 @@ namespace CombatExtended
 
         public SightTracker(Map map) : base(map)
         {           
-            gridFriendly = new SightGrid(map, null);
-            gridHostile = new SightGrid(map, null);            
+            gridFriendly = new SightGrid(map, null, SIGHTINTERVAL);
+            gridHostile = new SightGrid(map, null, SIGHTINTERVAL);            
             for (int i = 0; i < BUCKETCOUNT; i++)
             {
                 friendlies[i] = new List<Pawn>(5);
@@ -50,9 +52,9 @@ namespace CombatExtended
         {            
             base.MapComponentTick();
             
-            if (ticks == 0 || (GenTicks.TicksGame + 13) % 30 == 0)
+            if (ticks == 0 || (ticks + 13) % BUCKETINTERVAL == 0)
                 UpdateGrid(gridHostile, friendlies, ref fIndex);            
-            if (ticks == 0 || (GenTicks.TicksGame + 7) % 30 == 0)
+            if (ticks == 0 || (ticks + 7) % BUCKETINTERVAL == 0)
                 UpdateGrid(gridFriendly, hostiles, ref hIndex);
 
             ticks++;
@@ -61,13 +63,13 @@ namespace CombatExtended
             //    TurretTracker turretTracker = map.GetComponent<TurretTracker>();
             //    IntVec3 center = UI.MouseMapPosition().ToIntVec3();
             //    if (center.InBounds(map))
-            //    {                    
-            //        foreach(IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
+            //    {
+            //        foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
             //        {
-            //            if (gridHostile[cell] == 0)
-            //                continue;
-            //            if (cell.InBounds(map))                                                    
-            //                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);                        
+            //            if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
+            //                map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
+            //            //if (gridHostile[cell] == 0) 
+            //            //  map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
             //        }
             //    }
             //}
@@ -146,7 +148,7 @@ namespace CombatExtended
                 pawn.Position,
                 (cell) =>
                 {                    
-                    grid[cell] += 900;
+                    grid[cell] += SIGHTINTERVAL;
                 },
                 Mathf.CeilToInt(range)
             );

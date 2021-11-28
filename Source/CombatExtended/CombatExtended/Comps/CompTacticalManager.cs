@@ -11,9 +11,9 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class CompTacticalManager : ThingComp
-    {
+    {               
         private Job curJob = null;
-        private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();
+        private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();        
 
         private Pawn _pawn = null;
         public Pawn SelPawn
@@ -23,7 +23,7 @@ namespace CombatExtended
                 return _pawn ?? (_pawn = parent as Pawn);
             }
         }
-
+        
         private List<ICompTactics> _tacticalComps = new List<ICompTactics>();
         public List<ICompTactics> TacticalComps
         {
@@ -131,7 +131,7 @@ namespace CombatExtended
         {
             base.CompTick();
             if (parent.IsHashIntervalTick(120))
-            {
+            {                
                 /*
                  * Clear the cache if it's very outdated to allow GC to take over
                  */
@@ -274,7 +274,7 @@ namespace CombatExtended
         {
             base.PostExposeData();
             try
-            {
+            {                
                 Scribe_Collections.Look(ref _tacticalComps, "tacticalComps", LookMode.Deep);
             }
             catch (Exception er)

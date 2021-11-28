@@ -25,7 +25,7 @@ namespace CombatExtended
         public TurretTracker(Map map) : base(map)
         {
             indices = map.cellIndices;
-            grid = new SightGrid(map, null);
+            grid = new SightGrid(map, null, SHADOW_DANGETICKS);
             for (int i = 0; i < BUCKETCOUNT; i++)
                 buckets[i] = new List<Building_TurretGunCE>(4);                                        
         }
@@ -93,8 +93,15 @@ namespace CombatExtended
         public bool GetVisibleToTurret(int index)
         {
             if (index >= 0 && index < indices.NumGridCells)
-                return grid[index] - GenTicks.TicksGame > 0;
+                return grid[index] > 0;
             return false;
+        }
+
+        public int GetTurretsVisibleCount(int index)
+        {
+            if (index >= 0 && index < indices.NumGridCells)
+                return (int) grid[index];
+            return 0;
         }
 
         private void CastTurretShadow(Building_TurretGunCE turret)
@@ -108,7 +115,7 @@ namespace CombatExtended
                     if (cell.InBounds(map))
                         grid[indices.CellToIndex(cell)] += SHADOW_DANGETICKS;
                 },
-                (int) Mathf.Min(turret.AttackVerb.EffectiveRange + 2.5f, 60)
+                (int) Mathf.Min(turret.AttackVerb.EffectiveRange, 60)
             );            
         }        
     }

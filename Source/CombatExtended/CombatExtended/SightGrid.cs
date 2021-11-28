@@ -2,16 +2,32 @@
 using RimWorld;
 using Verse;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 namespace CombatExtended
 {
+    /*
+     * -----------------------------
+     *
+     *
+     * ------ Important note -------
+     * 
+     * when casting update the grid at a regualar intervals for a pawn/Thing or risk exploding value issues.
+     */
     public class SightGrid
     {
-        private const int SHADOW_DANGETICKS = 1100;
+        [StructLayout(LayoutKind.Sequential)]
+        private struct SightRecord
+        {
+            public int sig;            
+            public int value;
+            public int count;
+            public int countPrev;
+        }
 
-        private int sig = 13;
-        private int[] sigs;
-        private int[] grid;
+        private float updateInterval;
+        private int sig = 13;       
+        private SightRecord[] grid;
         private CellIndices indices;
         private Faction faction;
         private Map map;
@@ -21,13 +37,21 @@ namespace CombatExtended
             get => faction;
         }
 
-        public SightGrid(Map map, Faction faction)
+        public SightGrid(Map map, Faction faction, float updateInterval)
         {
-            grid = new int[map.cellIndices.NumGridCells];
-            sigs = new int[map.cellIndices.NumGridCells];
+            grid = new SightRecord[map.cellIndices.NumGridCells];            
+            this.updateInterval = updateInterval;
             this.map = map;
             this.faction = faction;
             indices = map.cellIndices;
+            for (int i = 0; i < grid.Length; i++)
+            {
+                grid[i] = new SightRecord()
+                {
+                    sig = -1,                    
+                    value = 0
+                };
+            }
         }
 
         public float this[IntVec3 cell]
@@ -42,23 +66,39 @@ namespace CombatExtended
             {
                 if (index >= 0 && index < indices.NumGridCells)
                 {
-                    int val = grid[index] - GenTicks.TicksGame;
-                    if (val == 0)
-                        return 1f;
-                    else
-                        return Mathf.Clamp(Mathf.CeilToInt(val / 900f), 0f, 10f);
+                    SightRecord record = grid[index];
+                    if(record.value - GenTicks.TicksGame >= -updateInterval)
+                        return Math.Max(record.count, record.countPrev);
                 }
                 return 0;
             }
             set
             {
-                if (index >= 0 && index < indices.NumGridCells && sigs[index] != sig)
+                if (index >= 0 && index < indices.NumGridCells)
                 {
-                    sigs[index] = sig;
-                    if (grid[index] - GenTicks.TicksGame < 0)
-                        grid[index] = GenTicks.TicksGame + Mathf.CeilToInt(value);
-                    else
-                        grid[index] += Mathf.CeilToInt(value);                    
+                    SightRecord record = grid[index];
+                    if (record.sig != sig)
+                    {
+                        float t = record.value - GenTicks.TicksGame;
+                        if (t > 0.0f)
+                        {
+                            record.count += 1;
+                        }
+                        else if (t >= -updateInterval)
+                        {
+                            record.value = (int)(GenTicks.TicksGame + updateInterval);
+                            record.countPrev = record.count;
+                            record.count = 1;
+                        }
+                        else
+                        {
+                            record.value = (int)(GenTicks.TicksGame + updateInterval);
+                            record.countPrev = 0;
+                            record.count = 1;
+                        }
+                        record.sig = sig;
+                        grid[index] = record;
+                    }
                 }
             }
         }

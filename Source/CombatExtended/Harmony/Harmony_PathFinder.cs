@@ -20,12 +20,14 @@ namespace CombatExtended.HarmonyCE
         private static DangerTracker dangerTracker;
         private static TurretTracker turretTracker;
         private static SightGrid sightGrid;                
-        private static bool crouching;        
-
-        internal static bool Prefix(PathFinder __instance, ref PawnPath __result, IntVec3 start, LocalTargetInfo dest, TraverseParms traverseParms, PathEndMode peMode)
+        private static bool crouching;
+        
+        internal static bool Prefix(PathFinder __instance, ref PawnPath __result, IntVec3 start, LocalTargetInfo dest, TraverseParms traverseParms, PathEndMode peMode, out bool __state)
         {
+            __state = false;
             if (traverseParms.pawn != null && traverseParms.pawn.Faction != null && traverseParms.pawn.RaceProps.Humanlike && traverseParms.pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
+                __state = true;
                 map = __instance.map;
                 pawn = traverseParms.pawn;
                 dangerTracker = map.GetDangerTracker();
@@ -51,6 +53,7 @@ namespace CombatExtended.HarmonyCE
                 }
 
                 // Make all destinations unreachable
+                __state = false;
                 __result = PawnPath.NotFound;
                 return false;
             }
@@ -61,7 +64,26 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
-        public static void Postfix() => Reset();
+        public static void Postfix(PathFinder __instance, PawnPath __result, bool __state)
+        {
+            //if (__state && __result != PawnPath.NotFound && __result != null)
+            //{
+            //    for(int i = 0; i < __result.nodes.Count; i++)
+            //    {                    
+            //    }
+            //}
+            Reset();
+        }
+
+        public static void Reset()
+        {
+            map = null;
+            turretTracker = null;
+            sightGrid = null;
+            pawn = null;
+            dangerTracker = null;
+            lightingTracker = null;
+        }
 
         /*
          * Search for the vairable that is initialized by the value from the avoid grid or search for
@@ -105,20 +127,10 @@ namespace CombatExtended.HarmonyCE
                         value += (int)(dangerTracker.DangerAt(index) * 75f);
                     if (lightingTracker != null)
                         value += (int)(lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 45f);
-                }                
+                }                                             
                 return Mathf.Min(value, 800);
             }
             return 0;
-        }
-
-        private static void Reset()
-        {
-            map = null;
-            turretTracker = null;
-            sightGrid = null;
-            pawn = null;
-            dangerTracker = null;
-            lightingTracker = null;
-        }
+        }       
     }
 }
