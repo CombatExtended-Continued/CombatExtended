@@ -309,13 +309,21 @@
     </value>
   </Operation>
 
-
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]/apparel/layers</xpath>
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>
       <li>MiddleHead</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[@Name="ApparelArmorHelmetReconBase"]</xpath>
+    <value>
+    <li Class="CombatExtended.ApparelDefExtension">
+      <isRadioPack>true</isRadioPack>         
+    </li>
     </value>
   </Operation>
 
