@@ -97,16 +97,16 @@ namespace CombatExtended
                 Pair<Func<Map, IntVec3, string>, KeyCode> callback = mapCallbacks[i];                
                 if (Input.GetKey(callback.Second == KeyCode.None ? KeyCode.LeftShift : callback.Second))
                 {
-		    string message;
-		    try
-		    {
-			message = callback.First(Find.CurrentMap, mouseCell);
-		    }
-		    catch (Exception e)
-		    {
-			Log.Error(e.ToString());
-			message = "Debug Callback failed (see log for details)";
-		    }
+		            string message;
+		            try
+		            {
+			            message = callback.First(Find.CurrentMap, mouseCell);
+		            }
+		            catch (Exception e)
+		            {
+			            Log.Error(e.ToString());
+			            message = "Debug Callback failed (see log for details)";
+		            }
                     if (!message.NullOrEmpty())
                     {
                         DoTipSignal(mouseRect, message);

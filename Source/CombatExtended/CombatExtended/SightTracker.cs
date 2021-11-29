@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CombatExtended.Utilities;
+using Mono.Security.Cryptography;
 using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
@@ -13,12 +14,13 @@ namespace CombatExtended
     public class SightTracker : MapComponent
     {
         private const int BUCKETCOUNT = 15;
-        private const int BUCKETINTERVAL = 20;
+        private const int BUCKETINTERVAL = 20;       
         private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
         private class PawnSightRecord
         {
-            public Pawn pawn;            
+            public Pawn pawn;
+            public bool insect;
             public bool friendly;
             public float lastRange = -1;
             public int lastUpdated = -1;            
@@ -27,19 +29,33 @@ namespace CombatExtended
             public bool IsFriendly => friendly;
             public bool IsHostile => !friendly;
         }
-
-        private int ticks = 0;
+        
+        private int updateNum = 0;        
         private SightGrid gridFriendly;
-        private SightGrid gridHostile;        
+        private SightGrid gridHostile;
+
+        private float performanceRangeFactor = 0.5f;
+        private int pawnsCastedNum;        
 
         private Stopwatch stopwatch = new Stopwatch();
         private int fIndex = 0;
         private List<Pawn>[] friendlies = new List<Pawn>[BUCKETCOUNT];
         private int hIndex = 0;
         private List<Pawn>[] hostiles = new List<Pawn>[BUCKETCOUNT];
+        private int iIndex = 0;
+        private List<Pawn>[] insects = new List<Pawn>[BUCKETCOUNT];
 
         private Dictionary<Pawn, PawnSightRecord> pawnToInfo = new Dictionary<Pawn, PawnSightRecord>(100);
 
+        public SightGrid Friendly
+        {
+            get => gridFriendly;
+        }
+        public SightGrid Hostile
+        {
+            get => gridHostile;
+        }
+    
         public SightTracker(Map map) : base(map)
         {           
             gridFriendly = new SightGrid(map, null, SIGHTINTERVAL);
@@ -48,20 +64,37 @@ namespace CombatExtended
             {
                 friendlies[i] = new List<Pawn>(5);
                 hostiles[i] = new List<Pawn>(5);
+                insects[i] = new List<Pawn>(5);
             }
         }
 
         public override void MapComponentTick()
-        {            
+        {
             base.MapComponentTick();
             
-            if (ticks == 0 || (ticks + 13) % BUCKETINTERVAL == 0)
-                UpdateGrid(gridHostile, friendlies, ref fIndex);
-            if (ticks == 0 || (ticks + 7) % BUCKETINTERVAL == 0)
-                UpdateGrid(gridFriendly, hostiles, ref hIndex);
+            int ticks = GenTicks.TicksGame;
+            if ((ticks + 5) % BUCKETINTERVAL == 0)
+            {                    
+                UpdatePawns(gridHostile, friendlies, ref fIndex);
+                updateNum++;
+            }
+            if ((ticks + 10) % BUCKETINTERVAL == 0)
+            {
+                UpdatePawns(gridFriendly, hostiles, ref hIndex);
+                updateNum++;
+            }
+            if ((ticks + 15) % BUCKETINTERVAL == 0)
+            {
+                UpdateInsects();
+                updateNum++;
+            }
+            if (updateNum % 3 == 0)
+            {
+                performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 100) / 100f * 0.35f;                    
+                pawnsCastedNum = updateNum = 0;                    
+            }
             
-            ticks++;
-            if (Controller.settings.DebugDrawPartialLoSChecks && GenTicks.TicksGame % 15 == 0)
+            if (Controller.settings.DebugDrawLOSShadowGrid && GenTicks.TicksGame % 15 == 0)
             {
                 TurretTracker turretTracker = map.GetComponent<TurretTracker>();
                 IntVec3 center = UI.MouseMapPosition().ToIntVec3();
@@ -88,35 +121,53 @@ namespace CombatExtended
         }
 
         public void Register(Pawn pawn)
-        {                      
-            if (pawn.Faction == null)
-                return;
+        {
             if (pawnToInfo.ContainsKey(pawn))
                 DeRegister(pawn);
-            PawnSightRecord record = new PawnSightRecord()
+            if (pawn.RaceProps.Insect)
             {
-                pawn = pawn,
-                friendly = !pawn.Faction.HostileTo(map.ParentFaction),
-                index = pawn.thingIDNumber % BUCKETCOUNT
-            };
-            pawnToInfo[pawn] = record;            
-            if (record.IsFriendly)
-                friendlies[record.index].Add(pawn);
-            else
-                hostiles[record.index].Add(pawn);
+                PawnSightRecord record = new PawnSightRecord()
+                {
+                    pawn = pawn,
+                    insect = true,
+                    index = pawn.thingIDNumber % BUCKETCOUNT
+                };
+                pawnToInfo[pawn] = record;
+                insects[record.index].Add(pawn);
+            }            
+            else if(pawn.Faction != null && pawn.RaceProps.Humanlike)
+            {                
+                PawnSightRecord record = new PawnSightRecord()
+                {
+                    pawn = pawn,
+                    friendly = !pawn.Faction.HostileTo(map.ParentFaction),
+                    index = pawn.thingIDNumber % BUCKETCOUNT
+                };
+                pawnToInfo[pawn] = record;
+                if (record.IsFriendly)
+                    friendlies[record.index].Add(pawn);
+                else
+                    hostiles[record.index].Add(pawn);
+            }
         }
 
         public void DeRegister(Pawn pawn)
         {
             if(!pawnToInfo.TryGetValue(pawn, out PawnSightRecord record))
                 return;
-            if (record.IsFriendly)            
-                friendlies[record.index].Remove(pawn);
+            if (record.insect)
+                insects[record.index].Remove(pawn);
             else
-                hostiles[record.index].Remove(pawn);
-        }
+            {
+                if (record.IsFriendly)
+                    friendlies[record.index].Remove(pawn);
+                else
+                    hostiles[record.index].Remove(pawn);
+            }
+            pawnToInfo.Remove(pawn);
+        }        
 
-        private void UpdateGrid(SightGrid grid, List<Pawn>[] pool, ref int index)
+        private void UpdatePawns(SightGrid grid, List<Pawn>[] pool, ref int index)
         {                        
             List<Pawn> pawns = pool[index];
             if (pawns.Count != 0)
@@ -126,34 +177,61 @@ namespace CombatExtended
                     Pawn pawn = pawns[i];                    
                     if (!pawn.Spawned || pawn.Downed || pawn.Suspended) 
                         continue;                    
-                    TryCastPawnSight(grid, pawn);                    
+                    if(TryCastPawnSight(grid, pawn))
+                        pawnsCastedNum++; 
                 }
             }
             index = (index + 1) % BUCKETCOUNT;
         }
 
-        private void TryCastPawnSight(SightGrid grid, Pawn pawn)
+        private void UpdateInsects()
         {
+            List<Pawn> pawns = insects[iIndex];
+            if (pawns.Count != 0)
+            {
+                for (int i = 0; i < pawns.Count; i++)
+                {
+                    Pawn pawn = pawns[i];
+                    if (!pawn.Spawned || pawn.Downed || pawn.Suspended)
+                        continue;
+                    if (TryCastInsect(pawn))
+                        pawnsCastedNum++;
+                }
+            }
+            iIndex = (iIndex + 1) % BUCKETCOUNT;
+        }       
+
+        private bool TryCastPawnSight(SightGrid grid, Pawn pawn)
+        {
+            PawnSightRecord sightRecord = pawnToInfo[pawn];
+            if (GenTicks.TicksGame - sightRecord.lastUpdated < SIGHTINTERVAL)
+                return false;
+
             if (pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.equipment?.equipment == null || GenTicks.TicksGame - pawn.needs?.rest?.lastRestTick <= 30)            
-                return;
+                return false;
             
             ThingWithComps weapon = pawn.equipment.Primary;
             if (weapon == null || !weapon.def.IsRangedWeapon)            
-                return;
+                return false;
             
-            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.566f;
-            if (range < 5.0f)            
-                return;
+            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * performanceRangeFactor;
+            if (range < 3.0f)            
+                return false;
             
             SkillRecord record = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;
             if (record != null)            
                 range *= Mathf.Clamp(pawn.skills.GetSkill(SkillDefOf.Shooting).Level / 7.5f, 1.0f, 1.5f);
-            
+
             float t = grid[pawn.Position];
             if (true
                 && (t > 3)
-                && (pawn.Position.PawnsInRange(map, Mathf.Min(t + 2, 7.5f))?.Any(p => pawnToInfo.TryGetValue(p, out PawnSightRecord s) && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL && s.lastRange - range > -10) ?? false))                            
-                return;            
+                && (pawn.Position.PawnsInRange(map, 7)?.Any(p => p != pawn
+                                && pawnToInfo.TryGetValue(p, out PawnSightRecord s)                                
+                                && sightRecord.friendly == s.friendly
+                                && s.insect == false
+                                && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL
+                                && s.lastRange - range > -10) ?? false))
+                return false;
 
             grid.Next();
             ShadowCastingUtility.CastVisibility(
@@ -164,10 +242,38 @@ namespace CombatExtended
                     grid[cell] += SIGHTINTERVAL;
                 },
                 Mathf.CeilToInt(range)
-            );
-            PawnSightRecord sightRecord = pawnToInfo[pawn];
+            );            
             sightRecord.lastUpdated = GenTicks.TicksGame;
-            sightRecord.lastRange = range;            
+            sightRecord.lastRange = range;
+            return true;
+        }
+
+        private bool TryCastInsect(Pawn insect)
+        {
+            float range = 10 * performanceRangeFactor;
+            if (true
+                && (gridFriendly[insect.Position] > 2 || gridHostile[insect.Position] > 2)
+                && (insect.Position.PawnsInRange(map, range)?.Any(p => p != insect
+                        && pawnToInfo.TryGetValue(p, out PawnSightRecord s)
+                        && s.insect                        
+                        && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL) ?? false))
+                return false;
+            gridFriendly.Next();
+            gridHostile.Next();
+            ShadowCastingUtility.CastVisibility(
+                map,
+                insect.Position,
+                (cell) =>
+                {
+                    gridFriendly[cell] += SIGHTINTERVAL;
+                    gridHostile[cell] += SIGHTINTERVAL;
+                },
+                Mathf.CeilToInt(range)
+            );
+            PawnSightRecord sightRecord = pawnToInfo[insect];
+            sightRecord.lastUpdated = GenTicks.TicksGame;
+            sightRecord.lastRange = range;
+            return true;
         }
     }
 }
