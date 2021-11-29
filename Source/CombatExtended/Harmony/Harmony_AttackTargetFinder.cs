@@ -17,6 +17,8 @@ namespace CombatExtended.HarmonyCE
     {
         private static Map map;        
         private static List<CompProjectileInterceptor> interceptors;
+        private static SightGrid sightGrid;
+        private static TurretTracker turretTracker;
 
         [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
         internal static class Harmony_AttackTargetFinder_BestAttackTarget
@@ -44,10 +46,22 @@ namespace CombatExtended.HarmonyCE
 
             internal static void Prefix(IAttackTargetSearcher searcher)
             {
-                map = searcher.Thing?.Map;               
+                map = searcher.Thing?.Map;                
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList() ?? new List<CompProjectileInterceptor>();
+                if(searcher.Thing is Pawn pawn && pawn.Faction != null)
+                {
+                    map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
+                    if (pawn.Faction.HostileTo(map.ParentFaction))
+                        turretTracker = map.GetComponent<TurretTracker>();
+                }                
+            }
+
+            internal static void Postfix()
+            {
+                sightGrid = null;
+                turretTracker = null;
             }
         }
 
@@ -62,6 +76,14 @@ namespace CombatExtended.HarmonyCE
                     if ((pawn.pather?.moving ?? false) && pawn.EdgingCloser(other))
                         __result += (verb.EffectiveRange - distance) / (verb.EffectiveRange + 1f) * 20;
                 }
+                bool closeRange = verb.EffectiveRange < 10f;
+                if (closeRange && target.Thing != null)
+                {
+                    if (sightGrid != null)
+                        __result -= sightGrid[target.Thing.Position] * 5f;
+                    if (turretTracker != null)
+                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position)) * 7f;
+                }
                 LocalTargetInfo currentTarget = target.TargetCurrentlyAimingAt;
                 if (currentTarget.IsValid)
                 {
@@ -71,12 +93,12 @@ namespace CombatExtended.HarmonyCE
                         if (suppressable != null)
                         {
                             if (suppressable.isSuppressed)
-                                __result += 10f;
+                                __result += closeRange ? 20f : 10;
                             if (suppressable.IsHunkering)
-                                __result += 25f;
+                                __result += closeRange ? 35f : 25f;
                         }
                         if (ally.health?.HasHediffsNeedingTend() ?? false)
-                            __result += 10f;
+                            __result += 15f;
                     }
                 }
                 if (searcher.Thing.Map?.GetLightingTracker() is LightingTracker tracker)

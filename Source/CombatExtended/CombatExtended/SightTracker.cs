@@ -61,21 +61,21 @@ namespace CombatExtended
                 UpdateGrid(gridFriendly, hostiles, ref hIndex);
             
             ticks++;
-            //if (DebugSettings.godMode && GenTicks.TicksGame % 15 == 0)
-            //{
-            //    TurretTracker turretTracker = map.GetComponent<TurretTracker>();
-            //    IntVec3 center = UI.MouseMapPosition().ToIntVec3();
-            //    if (center.InBounds(map))
-            //    {
-            //        foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
-            //        {
-            //            //if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
-            //            //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
-            //            if (gridHostile[cell] >= 0)
-            //                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
-            //        }
-            //    }
-            //}
+            if (Controller.settings.DebugDrawPartialLoSChecks && GenTicks.TicksGame % 15 == 0)
+            {
+                TurretTracker turretTracker = map.GetComponent<TurretTracker>();
+                IntVec3 center = UI.MouseMapPosition().ToIntVec3();
+                if (center.InBounds(map))
+                {
+                    foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
+                    {
+                        //if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
+                        //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
+                        if (gridHostile[cell] >= 0)
+                            map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
+                    }
+                }
+            }
         }
 
         public bool TryGetGrid(Pawn pawn, out SightGrid grid)
