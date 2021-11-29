@@ -126,7 +126,7 @@ namespace CombatExtended
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating += 4f;
+                cellRating += 15f;
             }
             else
             {                
@@ -143,7 +143,7 @@ namespace CombatExtended
             }
             if (sightGrid != null)
             {
-                visibilityRating += Mathf.Min(sightGrid[cell] * 3f, 20f);
+                visibilityRating += Mathf.Min(sightGrid[cell] * 8f, 35f);
             }
             if (visibilityRating > 0f)
             {

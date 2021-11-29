@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CombatExtended.Utilities;
 using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
@@ -11,14 +12,16 @@ namespace CombatExtended
 {
     public class SightTracker : MapComponent
     {
-        private const int BUCKETCOUNT = 20;
+        private const int BUCKETCOUNT = 15;
         private const int BUCKETINTERVAL = 20;
         private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
-        private struct PawnSightRecord
+        private class PawnSightRecord
         {
             public Pawn pawn;            
             public bool friendly;
+            public float lastRange = -1;
+            public int lastUpdated = -1;            
             public int index;
 
             public bool IsFriendly => friendly;
@@ -53,10 +56,10 @@ namespace CombatExtended
             base.MapComponentTick();
             
             if (ticks == 0 || (ticks + 13) % BUCKETINTERVAL == 0)
-                UpdateGrid(gridHostile, friendlies, ref fIndex);            
+                UpdateGrid(gridHostile, friendlies, ref fIndex);
             if (ticks == 0 || (ticks + 7) % BUCKETINTERVAL == 0)
                 UpdateGrid(gridFriendly, hostiles, ref hIndex);
-
+            
             ticks++;
             //if (DebugSettings.godMode && GenTicks.TicksGame % 15 == 0)
             //{
@@ -66,10 +69,10 @@ namespace CombatExtended
             //    {
             //        foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
             //        {
-            //            if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
-            //                map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
-            //            //if (gridHostile[cell] == 0) 
-            //            //  map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
+            //            //if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
+            //            //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
+            //            if (gridHostile[cell] >= 0)
+            //                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
             //        }
             //    }
             //}
@@ -120,8 +123,8 @@ namespace CombatExtended
             {
                 for (int i = 0; i < pawns.Count; i++)
                 {
-                    Pawn pawn = pawns[i];
-                    if (!pawn.Spawned || pawn.Downed || pawn.Suspended)
+                    Pawn pawn = pawns[i];                    
+                    if (!pawn.Spawned || pawn.Downed || pawn.Suspended) 
                         continue;                    
                     TryCastPawnSight(grid, pawn);                    
                 }
@@ -130,18 +133,28 @@ namespace CombatExtended
         }
 
         private void TryCastPawnSight(SightGrid grid, Pawn pawn)
-        {            
-            if (pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.equipment?.equipment == null)
+        {
+            if (pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.equipment?.equipment == null || GenTicks.TicksGame - pawn.needs?.rest?.lastRestTick <= 30)            
                 return;
+            
             ThingWithComps weapon = pawn.equipment.Primary;
-            if (weapon == null || !weapon.def.IsRangedWeapon)
-                return;      
-            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.666f;
-            if (range < 5.0f)
+            if (weapon == null || !weapon.def.IsRangedWeapon)            
+                return;
+            
+            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.566f;
+            if (range < 5.0f)            
+                return;
+            
+            SkillRecord record = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;
+            if (record != null)            
+                range *= Mathf.Clamp(pawn.skills.GetSkill(SkillDefOf.Shooting).Level / 7.5f, 1.0f, 1.5f);
+            
+            float t = grid[pawn.Position];
+            if (true
+                && (t > 3)
+                && (pawn.Position.PawnsInRange(map, Mathf.Min(t + 2, 7.5f))?.Any(p => pawnToInfo.TryGetValue(p, out PawnSightRecord s) && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL && s.lastRange - range > -10) ?? false))                            
                 return;            
-            SkillRecord record = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;            
-            if (record != null)
-                range *= Mathf.Clamp(pawn.skills.GetSkill(SkillDefOf.Shooting).Level / 7.5f, 1.0f, 1.75f);
+
             grid.Next();
             ShadowCastingUtility.CastVisibility(
                 map,
@@ -152,6 +165,9 @@ namespace CombatExtended
                 },
                 Mathf.CeilToInt(range)
             );
+            PawnSightRecord sightRecord = pawnToInfo[pawn];
+            sightRecord.lastUpdated = GenTicks.TicksGame;
+            sightRecord.lastRange = range;            
         }
     }
 }
