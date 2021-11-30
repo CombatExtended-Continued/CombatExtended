@@ -58,13 +58,22 @@
         </li>
         
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Beads"]/apparel/layers</xpath>
+          <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Beads" or defName="VIEHAR_Apparel_Headscarf"]/apparel/layers</xpath>
           <value>
             <layers>
-		          <li>StrappedHead</li>
-	          </layers>
+		<li>StrappedHead</li>
+	    </layers>
           </value>
         </li>
+	      
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Headbag" or defName="VIEHAR_Apparel_HorseMask"]/apparel/layers</xpath>
+          <value>
+            <layers>
+		<li>OnHead</li>
+	    </layers>
+          </value>
+        </li>	      
 
       </operations>
     </match>
