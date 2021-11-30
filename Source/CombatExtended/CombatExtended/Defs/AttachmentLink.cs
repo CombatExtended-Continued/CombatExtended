@@ -23,6 +23,8 @@ namespace CombatExtended
         public Mesh meshTop;
         public Mesh meshBot;
 
+        public int drawPriority = 0;
+
         public Mesh meshFlipTop;
         public Mesh meshFlipBot;
 

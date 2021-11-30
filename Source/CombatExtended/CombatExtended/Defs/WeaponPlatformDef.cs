@@ -25,6 +25,10 @@ namespace CombatExtended
             /// It will only render if all of these are unoccupied.
             /// </summary>
             public List<string> slotTags;
+            /// <summary>
+            /// Draw priority.
+            /// </summary>
+            public int drawPriority;
 
             public bool HasOutline
             {

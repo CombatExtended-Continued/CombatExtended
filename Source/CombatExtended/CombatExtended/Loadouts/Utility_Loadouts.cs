@@ -293,12 +293,14 @@ namespace CombatExtended
             loadout.canBeDeleted = true;
 
             LoadoutSlot slot = null;
-
+            
             // grab the pawn's current equipment as a loadoutslot.
             if (pawn.equipment?.Primary != null)
-            {
+            {                
                 slot = new LoadoutSlot(pawn.equipment.Primary.def);
                 loadout.AddSlot(slot);
+                if (pawn.equipment.Primary is WeaponPlatform platform && !platform.attachments.NullOrEmpty())
+                    slot.attachments.AddRange(platform.attachments.Select(l => l.attachment));                                   
             }
 
             // get a list of generics which are drop only.  Assumes that anything that doesn't fit here is a Specific slot later.

@@ -388,6 +388,8 @@ namespace CombatExtended.HarmonyCE
                 Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
+                Quaternion.AngleAxis(0, Vector3.right);
+                Quaternion.AngleAxis(0, Vector3.forward);
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
                 matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);

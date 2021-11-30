@@ -36,7 +36,7 @@ namespace CombatExtended
         public GizmoEditAttachments()
         {
             if (GearTex == null)
-                GearTex = ContentFinder<Texture2D>.Get("UI/Icons/gear");
+                GearTex = ContentFinder<Texture2D>.Get("UI/Buttons/ModifyWeapon");
             this.icon = GearTex;            
         }
 

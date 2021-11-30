@@ -21,13 +21,13 @@ namespace CombatExtended
 
 		static CE_MeshMaker()
         {
-            plane10Top = NewPlaneMesh(Vector2.zero, Vector2.one,  depth: -0.000f);
-            plane10Mid = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.015f);
-            plane10Bot = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.03f);
+            plane10Top = NewPlaneMesh(Vector2.zero, Vector2.one,  depth: 0.00f);
+            plane10Mid = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.01f);
+            plane10Bot = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.02f);
 
-            plane10FlipTop = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.000f, flipped: true);
-            plane10FlipMid = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.015f, flipped: true);
-            plane10FlipBot = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.030f, flipped: true);
+            plane10FlipTop = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.00f, flipped: true);
+            plane10FlipMid = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.01f, flipped: true);
+            plane10FlipBot = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.02f, flipped: true);
         }
 
         public static Mesh NewPlaneMesh(Vector2 offset, Vector2 scale, float depth = 0, bool flipped = false)

@@ -10,7 +10,7 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps
-    {
+    {      
         public WeaponPlatform_VerbManager verbManager;
         public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();        
 
@@ -269,8 +269,8 @@ namespace CombatExtended
             return LinkByDef.TryGetValue(def, out var link) ? link : null;
         }
 
-        private List<Pair<Material, Mesh>> _graphicCache;
-        private List<Pair<Material, Mesh>> _graphicFlipCache;       
+        private List<IOrderableDrawingPart> _graphicCache;
+        private List<IOrderableDrawingPart> _graphicFlipCache;       
 
         /// <summary>
         /// Used to render the actual weapon.
@@ -282,11 +282,11 @@ namespace CombatExtended
         {
             if (_graphicCache == null)
                 UpdateDrawCache();
-            List<Pair<Material, Mesh>> cache = !flip ? _graphicCache : _graphicFlipCache;
+            List<IOrderableDrawingPart> cache = !flip ? _graphicCache : _graphicFlipCache;
             for (int i = 0; i < cache.Count; i++)
             {
-                Pair<Material, Mesh> part = cache[i];
-                Graphics.DrawMesh(part.Second, matrix, part.First, layer);
+                IOrderableDrawingPart part = cache[i];
+                Graphics.DrawMesh(part.mesh, matrix, part.mat, layer);
             }
         }
 
@@ -355,17 +355,17 @@ namespace CombatExtended
         /// </summary>
         public void UpdateDrawCache()
         {
-            _graphicCache ??= new List<Pair<Material, Mesh>>();
+            _graphicCache ??= new List<IOrderableDrawingPart>();
             _graphicCache.Clear();
-            _graphicFlipCache ??= new List<Pair<Material, Mesh>>();
+            _graphicFlipCache ??= new List<IOrderableDrawingPart>();
             _graphicFlipCache.Clear();
             for (int i = 0; i < _defaultPart.Count; i++)
             {
                 WeaponPlatformDef.WeaponGraphicPart part = _defaultPart[i];
                 if (part.HasOutline)
                 {
-                    _graphicCache.Add(new Pair<Material, Mesh>(part.OutlineMat, CE_MeshMaker.plane10Bot));
-                    _graphicFlipCache.Add(new Pair<Material, Mesh>(part.OutlineMat, CE_MeshMaker.plane10FlipBot));
+                    _graphicCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10Bot, part.OutlineMat, part.drawPriority - 1000));
+                    _graphicFlipCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10FlipBot, part.OutlineMat, part.drawPriority - 1000));
                 }
             }
             for (int i = 0; i < _curLinks.Length; i++)
@@ -373,20 +373,20 @@ namespace CombatExtended
                 AttachmentLink link = _curLinks[i];
                 if (link.HasOutline)
                 {
-                    _graphicCache.Add(new Pair<Material, Mesh>(link.OutlineMat, link.meshBot));
-                    _graphicFlipCache.Add(new Pair<Material, Mesh>(link.OutlineMat, link.meshFlipBot));
+                    _graphicCache.Add(new IOrderableDrawingPart(link.meshBot, link.OutlineMat, link.drawPriority - 1000));
+                    _graphicFlipCache.Add(new IOrderableDrawingPart(link.meshFlipBot, link.OutlineMat, link.drawPriority - 1000));
                 }
             }
-            _graphicCache.Add(new Pair<Material, Mesh>(Platform.graphic.MatSingle, CE_MeshMaker.plane10Mid));
-            _graphicFlipCache.Add(new Pair<Material, Mesh>(Platform.graphic.MatSingle, CE_MeshMaker.plane10FlipMid));
+            _graphicCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10Mid, Platform.graphic.MatSingle, 0));
+            _graphicFlipCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10FlipMid, Platform.graphic.MatSingle, 0));
 
             for (int i = 0; i < _defaultPart.Count; i++)
             {
                 WeaponPlatformDef.WeaponGraphicPart part = _defaultPart[i];
                 if (part.HasPartMat)
                 {
-                    _graphicCache.Add(new Pair<Material, Mesh>(part.PartMat, CE_MeshMaker.plane10Top));
-                    _graphicFlipCache.Add(new Pair<Material, Mesh>(part.PartMat, CE_MeshMaker.plane10FlipTop));
+                    _graphicCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10Top, part.PartMat, part.drawPriority + 1000));
+                    _graphicFlipCache.Add(new IOrderableDrawingPart(CE_MeshMaker.plane10FlipTop, part.PartMat, part.drawPriority + 1000));
                 }
             }
             for (int i = 0; i < _curLinks.Length; i++)
@@ -394,10 +394,12 @@ namespace CombatExtended
                 AttachmentLink link = _curLinks[i];
                 if (link.HasAttachmentMat)
                 {
-                    _graphicCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshTop));
-                    _graphicFlipCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshFlipTop));
+                    _graphicCache.Add(new IOrderableDrawingPart(link.meshTop, link.AttachmentMat, link.drawPriority + 1000));
+                    _graphicFlipCache.Add(new IOrderableDrawingPart(link.meshFlipTop, link.AttachmentMat, link.drawPriority + 1000));
                 }
             }
+            _graphicCache.Sort();
+            _graphicFlipCache.Sort();
         }
 
         /// <summary>
