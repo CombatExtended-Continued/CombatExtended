@@ -27,8 +27,8 @@
       <Suppressability>-0.25</Suppressability>
     </value>
   </Operation>
-
-  <Operation Class="PatchOperationReplace">
+  
+	<Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_WarMask"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
@@ -41,6 +41,13 @@
       <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
     </value>
   </Operation>
+  
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_WarVeil" or defName="Apparel_WarMask"]/apparel/layers/li[.="Overhead"]</xpath>
+    <value>
+      <li>StrappedHead</li>
+    </value>
+  </Operation> 
 
   <!-- ========== Simple Helmet ========== -->
 
