@@ -38,7 +38,7 @@ namespace CombatExtended.AI
                     return true;
             }
             return false;
-        }
+        }        
 
         public static float CoverScoreFor(this Map map, IntVec3 startPos, IntVec3 endPos)
         {

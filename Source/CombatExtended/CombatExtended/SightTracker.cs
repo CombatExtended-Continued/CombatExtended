@@ -17,6 +17,9 @@ namespace CombatExtended
         private const int BUCKETINTERVAL = 20;       
         private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
+        private static readonly Vector2 DEBUGDOTOFFSET = new Vector2(-1, -1);
+        private static readonly Vector2 DEBUGDOTSIZE = new Vector2(3, 3);
+
         private class PawnSightRecord
         {
             public Pawn pawn;
@@ -74,7 +77,7 @@ namespace CombatExtended
             
             int ticks = GenTicks.TicksGame;
             if ((ticks + 5) % BUCKETINTERVAL == 0)
-            {                    
+            {
                 UpdatePawns(gridHostile, friendlies, ref fIndex);
                 updateNum++;
             }
@@ -90,22 +93,60 @@ namespace CombatExtended
             }
             if (updateNum % 3 == 0)
             {
-                performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 100) / 100f * 0.35f;                    
-                pawnsCastedNum = updateNum = 0;                    
+                performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 100) / 100f * 0.35f;
+                pawnsCastedNum = updateNum = 0;
             }
-            
+
             if (Controller.settings.DebugDrawLOSShadowGrid && GenTicks.TicksGame % 15 == 0)
             {
                 TurretTracker turretTracker = map.GetComponent<TurretTracker>();
                 IntVec3 center = UI.MouseMapPosition().ToIntVec3();
                 if (center.InBounds(map))
                 {
-                    foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
+                    foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 32, true))
+                    {                                         
+                        if (cell.InBounds(map))
+                        {                         
+                            var value = gridHostile[cell];
+                            if (value > 0)
+                                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(value / 10f, 0f, 0.95f), $"{value}", 15);
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void MapComponentOnGUI()
+        {
+            base.MapComponentOnGUI();
+            if (Controller.settings.DebugDrawLOSShadowGrid)
+            {                
+                TurretTracker turretTracker = map.GetComponent<TurretTracker>();
+                IntVec3 center = UI.MouseMapPosition().ToIntVec3();
+                if (center.InBounds(map))
+                {
+                    foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 32, true))
                     {
                         //if (cell.InBounds(map) && turretTracker.GetVisibleToTurret(cell))
-                        //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);
-                        if (gridHostile[cell] >= 0)
-                            map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(gridHostile[cell] / 10f, 0f, 0.95f), $"{gridHostile[cell]}", 15);
+                        //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);                        
+                        if (cell.InBounds(map) && gridHostile[cell] >= 0)
+                        {
+                            Vector2 direction = gridHostile.GetDirectionAt(cell) / 62f;
+
+                            Vector2 start = UI.MapToUIPosition(cell.ToVector3Shifted());
+                            Vector2 end = UI.MapToUIPosition(cell.ToVector3Shifted() + new Vector3(direction.x, 0, direction.y));
+                            if(Vector2.Distance(start, end) > 1f
+                                && start.x > 0
+                                && start.y > 0
+                                && end.x > 0
+                                && end.y > 0
+                                && start.x < UI.screenWidth
+                                && start.y < UI.screenHeight
+                                && end.x < UI.screenWidth
+                                && end.y < UI.screenHeight)
+                                Widgets.DrawLine(start, end,Color.white, 1);
+                            float value = gridHostile[cell];
+                        }
                     }
                 }
             }
@@ -233,13 +274,13 @@ namespace CombatExtended
                                 && s.lastRange - range > -10) ?? false))
                 return false;
 
-            grid.Next();
+            grid.Next(pawn.Position);
             ShadowCastingUtility.CastVisibility(
                 map,
                 pawn.Position,
                 (cell) =>
-                {                    
-                    grid[cell] += SIGHTINTERVAL;
+                {
+                    grid.Set(cell);
                 },
                 Mathf.CeilToInt(range)
             );            
@@ -258,15 +299,15 @@ namespace CombatExtended
                         && s.insect                        
                         && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL) ?? false))
                 return false;
-            gridFriendly.Next();
-            gridHostile.Next();
+            gridFriendly.Next(insect.Position);
+            gridHostile.Next(insect.Position);
             ShadowCastingUtility.CastVisibility(
                 map,
                 insect.Position,
                 (cell) =>
                 {
-                    gridFriendly[cell] += SIGHTINTERVAL;
-                    gridHostile[cell] += SIGHTINTERVAL;
+                    gridFriendly.Set(cell);
+                    gridHostile.Set(cell);                    
                 },
                 Mathf.CeilToInt(range)
             );

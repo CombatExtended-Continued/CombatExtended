@@ -144,7 +144,7 @@ namespace CombatExtended
             TipSignal tip = new TipSignal();
             tip.text = message;            
             tip.priority = (TooltipPriority)3;
-            TooltipHandler.TipRegion(rect, tip);
+            TooltipHandler.TipRegion(rect, tip);            
             return tip;
         }
     }

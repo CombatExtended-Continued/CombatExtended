@@ -143,12 +143,12 @@ namespace CombatExtended
             }
             if (sightGrid != null)
             {
-                visibilityRating += Mathf.Min(sightGrid[cell] * 8f, 35f);
+                visibilityRating += sightGrid.GetCellSightCoverRating(cell) * 3f;                
             }
             if (visibilityRating > 0f)
             {
                 // Avoid bullets and other danger source
-                cellRating -= visibilityRating;
+                cellRating -= Mathf.Min(visibilityRating, 50f);
                 cellRating -= dangerTracker.DangerAt(cell) * 4;
                 // Only apply this at night for performance reasons.
                 if(lightingTracker.IsNight)
