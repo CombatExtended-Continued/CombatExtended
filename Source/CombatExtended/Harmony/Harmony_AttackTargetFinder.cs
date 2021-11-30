@@ -80,7 +80,7 @@ namespace CombatExtended.HarmonyCE
                 if (closeRange && target.Thing != null)
                 {
                     if (sightGrid != null)
-                        __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position) * 3f;
+                        __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position) * 3;
                     if (turretTracker != null)
                         __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position)) * 7f;
                 }

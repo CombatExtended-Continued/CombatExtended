@@ -77,7 +77,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 float visibilityCost = 0;
                 if (sightGrid != null)
-                    visibilityCost += sightGrid.GetCellSightCoverRating(c);
+                    visibilityCost += sightGrid.GetCellSightCoverRating(c) * 1.5f;
                 if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
                     visibilityCost += 5f;
 
@@ -88,8 +88,8 @@ namespace CombatExtended.HarmonyCE
                     if (lightingTracker.IsNight)
                         __result -= lightingTracker.CombatGlowAt(c) * 6;
                 }                
-                if (verb != null && verb.EffectiveRange > 0)
-                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
+                //if (verb != null && verb.EffectiveRange > 0)
+                //    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
             }
         }
     }

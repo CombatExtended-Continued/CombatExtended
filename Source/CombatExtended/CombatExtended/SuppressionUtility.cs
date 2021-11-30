@@ -143,7 +143,7 @@ namespace CombatExtended
             }
             if (sightGrid != null)
             {
-                visibilityRating += sightGrid.GetCellSightCoverRating(cell) * 3f;                
+                visibilityRating += sightGrid.GetCellSightCoverRating(cell) * 2f;                
             }
             if (visibilityRating > 0f)
             {
