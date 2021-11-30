@@ -77,9 +77,9 @@ namespace CombatExtended.HarmonyCE
                 }
                 float visibilityCost = 0;
                 if (sightGrid != null)
-                    visibilityCost += sightGrid.GetCellSightCoverRating(c) * 2f;
+                    visibilityCost += sightGrid.GetCellSightCoverRating(c);
                 if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
-                    visibilityCost += 10f;
+                    visibilityCost += 5f;
 
                 if (visibilityCost > 0)
                 {
