@@ -87,9 +87,9 @@ namespace CombatExtended.HarmonyCE
                     __result -= dangerTracker.DangerAt(c) * 5;
                     if (lightingTracker.IsNight)
                         __result -= lightingTracker.CombatGlowAt(c) * 6;
-                }                
-                //if (verb != null && verb.EffectiveRange > 0)
-                //    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
+                }
+                if (verb != null && verb.EffectiveRange > 0)
+                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceTo(target) - verb.EffectiveRange * 0.75f) / verb.EffectiveRange * 0.75f, 0.75f, 1.35f);
             }
         }
     }
