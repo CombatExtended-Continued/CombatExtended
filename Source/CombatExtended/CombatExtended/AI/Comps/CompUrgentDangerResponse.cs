@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CombatExtended.Utilities;
+using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -6,41 +11,26 @@ namespace CombatExtended.AI
 {
     public class CompUrgentDangerResponse : ICompTactics
     {
-        private const int COOLDOWN_DANGER_JOB = 1200;
+        private const int MINNORMALIZEDDIR = 25;
+        private const int MINNORMALIZEDDIRSQR = MINNORMALIZEDDIR * MINNORMALIZEDDIR;
 
-        private int danger = 0;        
+        private Job dangerJob = null;
 
         public override int Priority => 1200;
 
         public CompUrgentDangerResponse()
-        {            
-        }
-
-        public override Job TryGiveTacticalJob()
-        {           
-            float reactUrgency = 0;
-            SightGrid sightGrid = MapSightGrid;
-            if (sightGrid != null)
-            {
-                reactUrgency += sightGrid[SelPawn.Position] * 2f;
-            }
-            TurretTracker tracker = MapTurretTracker;
-            if (tracker != null && tracker.GetVisibleToTurret(SelPawn.Position))
-            {
-                reactUrgency += 5f;
-            }
-            if(tracker == null && sightGrid == null)
-            {
-                return null;
-            }                     
-            return null;            
+        {
         }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref danger, "danger");            
-        }      
+            Scribe_References.Look(ref dangerJob, "dangerJob");
+        }
+
+        public override Job TryGiveTacticalJob()
+        {
+            return null;
+        }
     }
 }
-

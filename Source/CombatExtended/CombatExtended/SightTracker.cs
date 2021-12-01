@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CombatExtended.Utilities;
-using Mono.Security.Cryptography;
 using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;

@@ -72,6 +72,27 @@ namespace CombatExtended
             return job;
         }
 
+        public static Job GetRunForCoverJob(Pawn pawn, IntVec3 from)
+        {            
+            float distToSuppressor = (pawn.Position - from).LengthHorizontal;
+            IntVec3 coverPosition;
+            //Try to find cover position to move up to
+            if (!GetCoverPositionFrom(pawn, from, maxCoverDist, out coverPosition))
+            {
+                return null;
+            }
+            //Sanity check
+            if (pawn.Position.Equals(coverPosition))
+            {
+                return null;
+            }
+            //Tell pawn to move to position
+            var job = JobMaker.MakeJob(CE_JobDefOf.RunForCover, coverPosition);
+            job.locomotionUrgency = LocomotionUrgency.Sprint;
+            job.playerForced = true;
+            return job;
+        }
+
         private static bool GetCoverPositionFrom(Pawn pawn, IntVec3 fromPosition, float maxDist, out IntVec3 coverPosition)
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));

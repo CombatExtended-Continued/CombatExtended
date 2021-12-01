@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RimWorld.Planet;
 using Verse;
 using UnityEngine;
+using System.Linq;
 
 namespace CombatExtended
 {
@@ -47,7 +48,7 @@ namespace CombatExtended
                 val = (64 - Mathf.Min(grid.GetDirectionAt(cell).magnitude / (0.5f * enemies), 64)) * enemies / 2f;
                 if (val > 0)
                     val = Mathf.Log(val, 2f);
-            }
+            }            
             return $"<color=red>Hostile</color>\n" +
                    $"Sight rating: {grid.GetCellSightCoverRating(cell)} {val}\n" +
                    $"Has cover: {grid.HasCover(cell)}";

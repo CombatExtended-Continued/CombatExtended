@@ -4,6 +4,7 @@ using Verse;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using Steamworks;
 
 namespace CombatExtended
 {
@@ -29,11 +30,20 @@ namespace CombatExtended
             public Vector2 directionPrev;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct SightCoverRecord
+        {
+            public int expireAt;
+            public bool hasCover;
+            public float value;
+        }
+
         private IntVec3 center;
         private float updateInterval;
         private short sig = 13;
         private CellIndices cellIndices;
-        private SightRecord[] grid;        
+        private SightRecord[] sightArray;
+        private SightCoverRecord[] coverArray;
         private Faction faction;
         private Map map;
         private int mapSizeX;
@@ -49,15 +59,21 @@ namespace CombatExtended
         {
             cellIndices = map.cellIndices;
             mapSizeX = (int)map.Size.x;
-            mapSizeZ = (int)map.Size.z;
-            mapCellNum = mapSizeX * mapSizeZ;
-            grid = new SightRecord[map.cellIndices.NumGridCells];            
+            mapSizeZ = (int)map.Size.z;            
+            mapCellNum = mapSizeX * mapSizeZ;            
+            sightArray = new SightRecord[map.cellIndices.NumGridCells];
+            coverArray = new SightCoverRecord[map.cellIndices.NumGridCells];
             this.updateInterval = updateInterval;
             this.map = map;
             this.faction = faction;            
-            for (int i = 0; i < grid.Length; i++)
+            for (int i = 0; i < sightArray.Length; i++)
             {
-                grid[i] = new SightRecord()
+                coverArray[i] = new SightCoverRecord()
+                {
+                    expireAt = -1,
+                    value = 0f,
+                };
+                sightArray[i] = new SightRecord()
                 {
                     sig = -1,
                     expireAt = 0,
@@ -77,7 +93,7 @@ namespace CombatExtended
             {
                 if (index >= 0 && index < mapCellNum)
                 {
-                    SightRecord record = grid[index];
+                    SightRecord record = sightArray[index];
                     if(record.expireAt - GenTicks.TicksGame >= -updateInterval)
                         return Math.Max(record.count, record.countPrev);
                 }
@@ -90,7 +106,7 @@ namespace CombatExtended
         {
             if (index >= 0 && index < mapCellNum)
             {
-                SightRecord record = grid[index];
+                SightRecord record = sightArray[index];
                 IntVec3 cell = cellIndices.IndexToCell(index);
                 if (record.sig != sig)
                 {
@@ -124,7 +140,7 @@ namespace CombatExtended
                         record.count = 1;
                     }
                     record.sig = sig;
-                    grid[index] = record;
+                    sightArray[index] = record;
                 }
             }
         }
@@ -134,7 +150,7 @@ namespace CombatExtended
         {
             if (index >= 0 && index < mapCellNum)
             {
-                SightRecord record = grid[index];
+                SightRecord record = sightArray[index];
                 if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
                 {
                     if (record.count >= record.countPrev)
@@ -151,7 +167,7 @@ namespace CombatExtended
         {
             if (index >= 0 && index < mapCellNum)
             {
-                SightRecord record = grid[index];
+                SightRecord record = sightArray[index];
                 if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
                 {
                     if (record.count >= record.countPrev)
@@ -175,7 +191,7 @@ namespace CombatExtended
         {
             if (cell.InBounds(map))
             {
-                SightRecord record = grid[cellIndices.CellToIndex(cell)];
+                SightRecord record = sightArray[cellIndices.CellToIndex(cell)];
                 if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
                 {
                     Vector2 direction = record.direction.normalized * -1f;
@@ -193,10 +209,24 @@ namespace CombatExtended
             }
             return false;
         }
-        
-        public float GetCellSightCoverRating(int index) => GetCellSightCoverRating(cellIndices.IndexToCell(index));
-        public float GetCellSightCoverRating(IntVec3 cell)
+
+        public float GetCellSightCoverRating(int index) => GetCellSightCoverRatingInternel(cellIndices.IndexToCell(index), out _);
+        public float GetCellSightCoverRating(IntVec3 cell) => GetCellSightCoverRatingInternel(cell, out _);
+
+        public float GetCellSightCoverRating(int index, out bool hasCover) => GetCellSightCoverRatingInternel(cellIndices.IndexToCell(index), out hasCover);
+        public float GetCellSightCoverRating(IntVec3 cell, out bool hasCover) => GetCellSightCoverRatingInternel(cell, out hasCover);
+
+        private float GetCellSightCoverRatingInternel(IntVec3 cell, out bool hasCover)
         {
+            int i = cellIndices.CellToIndex(cell);
+            SightCoverRecord cache = coverArray[i];
+            if (cache.value - GenTicks.TicksGame >= 0)
+            {
+                hasCover = cache.hasCover;                
+                return cache.value;
+            }
+            cache.expireAt = GenTicks.TicksGame + 90;
+            // ---------------------
             float enemies, val = 0f;
             Vector2 direction = GetDirectionAt(cell, out enemies);
             if (enemies > 0)
@@ -208,12 +238,20 @@ namespace CombatExtended
                 // This is a very fast aproximation of the above equation.
                 int magSqr = (int)(direction.sqrMagnitude / (0.25f * enemies * enemies) * 2f);
                 if (magSqr > sqrtLookup.Length)
+                {
+                    cache.hasCover = hasCover = false;
+                    cache.value = 0f;
+                    coverArray[i] = cache;
                     return 0f;
+                }
                 val = (64f - sqrtLookup[magSqr]) * Mathf.Min(enemies, 10f) / 2f;
                 val = log2Lookup[(int)(val * 10)];
-                if (HasCover(cell))
+                if (hasCover = HasCover(cell))
                     val *= 0.5f;
             }
+            cache.hasCover = hasCover = false;
+            cache.value = val;
+            coverArray[i] = cache;
             return val;
         }
 
