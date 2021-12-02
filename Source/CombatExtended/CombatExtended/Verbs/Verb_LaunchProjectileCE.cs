@@ -973,10 +973,10 @@ namespace CombatExtended
                         if (cover.def.Fillage != FillCategory.Full && cover.AdjacentTo8WayOrInside(caster))
                         {
                             // Sanity check to prevent stuff behind us blocking LoS
-                            var cellTargDist = cell.DistanceTo(targetLoc);
-                            var shotTargDist = shotSource.ToIntVec3().DistanceTo(targetLoc);
+                            var cellTargDistSqr = cell.DistanceToSquared(targetLoc);
+                            var shotTargDistSqr = shotSource.ToIntVec3().DistanceToSquared(targetLoc);
 
-                            if (shotTargDist > cellTargDist)
+                            if (shotTargDistSqr > cellTargDistSqr)
                                 return cover is Pawn || bounds.size.y < shotSource.y;
                         }
 

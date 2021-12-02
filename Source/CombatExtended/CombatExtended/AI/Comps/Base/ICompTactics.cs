@@ -143,6 +143,10 @@ namespace CombatExtended.AI
         {
         }
 
+        public virtual void TickShort()
+        {
+        }
+
         public virtual bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             return true;

@@ -266,7 +266,7 @@ namespace CombatExtended
             if (true
                 && (t > 3)
                 && (pawn.Position.PawnsInRange(map, 7)?.Any(p => p != pawn
-                                && pawnToInfo.TryGetValue(p, out PawnSightRecord s)                                
+                                && pawnToInfo.TryGetValue(p, out PawnSightRecord s)
                                 && sightRecord.friendly == s.friendly
                                 && s.insect == false
                                 && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL

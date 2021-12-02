@@ -12,7 +12,7 @@ namespace CombatExtended
     public class TurretTracker : MapComponent
     {
         private const int BUCKETCOUNT = 30;
-        private const int SHADOW_DANGETICKS = 9000;
+        private const int SHADOW_DANGETICKS = 1800;
         
         private int index = 0;        
         private SightGrid grid;

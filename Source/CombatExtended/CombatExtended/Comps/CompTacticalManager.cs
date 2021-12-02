@@ -130,6 +130,7 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
+            if (parent.IsHashIntervalTick(20)) TickShort();
             if (parent.IsHashIntervalTick(120))
             {                
                 /*
@@ -289,15 +290,32 @@ namespace CombatExtended
 
         private void TickRarer()
         {
-            foreach (ICompTactics comp in TacticalComps)
+            List<ICompTactics> comps = TacticalComps;
+            for (int i = 0; i < comps.Count; i++)
             {
                 try
                 {
-                    comp.TickRarer();
+                    comps[i].TickRarer();
                 }
                 catch (Exception er)
                 {
-                    Log.Error($"CE: Error ticking comp {comp.GetType()} with error {er}");
+                    Log.Error($"CE: Error ticking comp {comps[i].GetType()} with error {er}");
+                }
+            }
+        }
+
+        private void TickShort()
+        {            
+            List<ICompTactics> comps = TacticalComps;
+            for(int i =0;i < comps.Count; i++)
+            {
+                try
+                {
+                    comps[i].TickShort();
+                }
+                catch (Exception er)
+                {
+                    Log.Error($"CE: Error ticking short comp {comps[i].GetType()} with error {er}");
                 }
             }
         }
@@ -308,15 +326,16 @@ namespace CombatExtended
             {
                 return;
             }
-            foreach (ICompTactics comp in TacticalComps)
-            {
-                Job job = comp.TryGiveTacticalJob();
+            List<ICompTactics> comps = TacticalComps;
+            for (int i = 0; i < comps.Count; i++)
+            {                
+                Job job = comps[i].TryGiveTacticalJob();
                 if (job != null)
                 {
                     SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
                     return;
-                }
-            }
+                }          
+            }           
         }
 
         private void ValidateComps()

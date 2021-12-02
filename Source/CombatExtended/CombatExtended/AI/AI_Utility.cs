@@ -106,20 +106,20 @@ namespace CombatExtended.AI
 
         public static bool EdgingCloser(this Pawn pawn, Pawn other)
         {
-            float curDist = other.Position.DistanceTo(pawn.Position);
-            if (other.pather.moving && curDist > other.pather.destination.Cell.DistanceTo(pawn.Position))
+            float curDist = other.Position.DistanceToSquared(pawn.Position);
+            if (other.pather.moving && curDist > other.pather.destination.Cell.DistanceToSquared(pawn.Position))
                 return true;
-            if (pawn.pather.moving && curDist > pawn.pather.destination.Cell.DistanceTo(other.Position))
+            if (pawn.pather.moving && curDist > pawn.pather.destination.Cell.DistanceToSquared(other.Position))
                 return true;
             return false;
         }
 
         public static bool EdgingAway(this Pawn pawn, Pawn other)
         {
-            float curDist = other.Position.DistanceTo(pawn.Position);
-            if (other.pather.moving && curDist < other.pather.destination.Cell.DistanceTo(pawn.Position))
+            float curDist = other.Position.DistanceToSquared(pawn.Position);
+            if (other.pather.moving && curDist < other.pather.destination.Cell.DistanceToSquared(pawn.Position))
                 return true;
-            if (pawn.pather.moving && curDist < pawn.pather.destination.Cell.DistanceTo(other.Position))
+            if (pawn.pather.moving && curDist < pawn.pather.destination.Cell.DistanceToSquared(other.Position))
                 return true;
             return false;
         }
@@ -147,7 +147,7 @@ namespace CombatExtended.AI
             foreach (IntVec3 node in targetPos.HostilesInRange(attacker.Map, attacker.Faction, radius * 1.8f).Select(p => p.Position))
             {
                 IntVec3 centroid = new IntVec3((int)(((float)center.x + node.x) / 2f), (int)(((float)center.y + node.y) / 2f), (int)(((float)center.z + node.z) / 2f));
-                if (verbRange >= centroid.DistanceTo(castPosition) && (predicate?.Invoke(centroid) ?? false))
+                if (verbRange * verbRange >= centroid.DistanceToSquared(castPosition) && (predicate?.Invoke(centroid) ?? false))
                     center = centroid;
             }
             return center;

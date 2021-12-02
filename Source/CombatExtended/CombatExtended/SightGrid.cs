@@ -19,23 +19,23 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class SightGrid
     {
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Auto)]
         private struct SightRecord
         {
-            public short sig;            
             public int expireAt;
+            public short sig;                        
             public short count;
             public short countPrev;
             public Vector2 direction;
-            public Vector2 directionPrev;
+            public Vector2 directionPrev;            
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Explicit, Size = 9)]
         private struct SightCoverRecord
         {
-            public int expireAt;
-            public bool hasCover;
-            public float value;
+            [FieldOffset(0)] public int expireAt;
+            [FieldOffset(4)] public float value;
+            [FieldOffset(8)] public bool hasCover;            
         }
 
         private IntVec3 center;
@@ -196,15 +196,17 @@ namespace CombatExtended
                 {
                     Vector2 direction = record.direction.normalized * -1f;
                     IntVec3 endPos = cell + new Vector3(direction.x * 5, 0, direction.y * 5).ToIntVec3();
-                    foreach (IntVec3 c in GenSight.PointsOnLineOfSight(cell, endPos))
+                    bool result = false;
+                    GenSight.PointsOnLineOfSight(cell, endPos, (cell) =>
                     {
-                        if (c.InBounds(map))
+                        if (!result && cell.InBounds(map))
                         {
-                            Thing cover = c.GetCover(map);                            
+                            Thing cover = cell.GetCover(map);                            
                             if (cover != null && cover.def.Fillage == FillCategory.Partial && cover.def.category != ThingCategory.Plant)
-                                return true;
+                                result = true;
                         }
-                    }
+                    });
+                    return result;
                 }
             }
             return false;
@@ -216,8 +218,14 @@ namespace CombatExtended
         public float GetCellSightCoverRating(int index, out bool hasCover) => GetCellSightCoverRatingInternel(cellIndices.IndexToCell(index), out hasCover);
         public float GetCellSightCoverRating(IntVec3 cell, out bool hasCover) => GetCellSightCoverRatingInternel(cell, out hasCover);
 
+        // TODO remerge this.
         private float GetCellSightCoverRatingInternel(IntVec3 cell, out bool hasCover)
         {
+            if (cell.InBounds(map))
+            {
+                hasCover = false;
+                return 0f;
+            }
             int i = cellIndices.CellToIndex(cell);
             SightCoverRecord cache = coverArray[i];
             if (cache.value - GenTicks.TicksGame >= 0)
@@ -225,7 +233,9 @@ namespace CombatExtended
                 hasCover = cache.hasCover;                
                 return cache.value;
             }
-            cache.expireAt = GenTicks.TicksGame + 90;
+            cache.expireAt = GenTicks.TicksGame + 30;
+            //
+            hasCover = false;
             // ---------------------
             float enemies, val = 0f;
             Vector2 direction = GetDirectionAt(cell, out enemies);
@@ -247,11 +257,11 @@ namespace CombatExtended
                 val = (64f - sqrtLookup[magSqr]) * Mathf.Min(enemies, 10f) / 2f;
                 val = log2Lookup[(int)(val * 10)];
                 if (hasCover = HasCover(cell))
-                    val *= 0.5f;
-            }
-            cache.hasCover = hasCover = false;
+                    val *= 0.667f;               
+            }            
+            cache.hasCover = hasCover;
             cache.value = val;
-            coverArray[i] = cache;
+            coverArray[i] = cache;            
             return val;
         }
 

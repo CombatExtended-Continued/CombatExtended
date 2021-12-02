@@ -19,6 +19,7 @@ namespace CombatExtended.HarmonyCE
         private static List<CompProjectileInterceptor> interceptors;
         private static SightGrid sightGrid;
         private static TurretTracker turretTracker;
+        private static CompTacticalManager manager;        
 
         [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
         internal static class Harmony_AttackTargetFinder_BestAttackTarget
@@ -45,13 +46,14 @@ namespace CombatExtended.HarmonyCE
             }
 
             internal static void Prefix(IAttackTargetSearcher searcher)
-            {
+            {               
                 map = searcher.Thing?.Map;                
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList() ?? new List<CompProjectileInterceptor>();
                 if(searcher.Thing is Pawn pawn && pawn.Faction != null)
                 {
+                    manager = pawn.GetComp<CompTacticalManager>();
                     map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
                     if (pawn.Faction.HostileTo(map.ParentFaction))
                         turretTracker = map.GetComponent<TurretTracker>();
@@ -70,60 +72,53 @@ namespace CombatExtended.HarmonyCE
         {
             public static void Postfix(IAttackTarget target, IAttackTargetSearcher searcher, Verb verb, ref float __result)
             {
-                float distance = target.Thing.Position.DistanceTo(searcher.Thing.Position);
+                float distance = target.Thing.Position.DistanceToSquared(searcher.Thing.Position);
+                if(manager != null)
+                {
+                    List<Pawn> allies = manager.TargetedByEnemy;                    
+                    if (allies.Count(d => d.Position.DistanceToSquared(target.Thing.Position) < 16f) > 3)
+                        __result -= allies.Count() * 2;
+                    else
+                        __result -= allies.Count();
+                }
                 if (target.Thing is Pawn other && searcher.Thing is Pawn pawn)
                 {
                     if ((pawn.pather?.moving ?? false) && pawn.EdgingCloser(other))
-                        __result += (verb.EffectiveRange - distance) / (verb.EffectiveRange + 1f) * 20;
-                }
-                bool closeRange = verb.EffectiveRange < 10f;
-                if (closeRange && target.Thing != null)
-                {
-                    if (sightGrid != null)
-                        __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position) * 3;
+                        __result += (verb.EffectiveRange * verb.EffectiveRange - distance) / (verb.EffectiveRange * verb.EffectiveRange + 1f) * 20;
+                }                
+                if (target.Thing != null)
+                {                    
                     if (turretTracker != null)
-                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position)) * 7f;
+                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position)) * 3f;
+                    if (sightGrid != null)
+                        __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position);                    
                 }
-                LocalTargetInfo currentTarget = target.TargetCurrentlyAimingAt;
-                if (currentTarget.IsValid)
+                if (verb.EffectiveRange >= 25)
                 {
-                    if (currentTarget.HasThing && currentTarget.Thing is Pawn ally && (ally.Faction?.HostileTo(searcher.Thing.Faction) ?? false))
-                    {
-                        CompSuppressable suppressable = ally.TryGetComp<CompSuppressable>();
-                        if (suppressable != null)
-                        {
-                            if (suppressable.isSuppressed)
-                                __result += closeRange ? 20f : 10;
-                            if (suppressable.IsHunkering)
-                                __result += closeRange ? 35f : 25f;
-                        }
-                        if (ally.health?.HasHediffsNeedingTend() ?? false)
-                            __result += 15f;
-                    }
-                }
-                if (searcher.Thing.Map?.GetLightingTracker() is LightingTracker tracker)
-                    __result += tracker.CombatGlowAt(target.Thing.Position) * 5f;
+                    if (searcher.Thing.Map?.GetLightingTracker() is LightingTracker tracker)
+                        __result *= tracker.CombatGlowAt(target.Thing.Position) * 0.5f;
 
-                if (map != null)
-                {
-                    Vector3 srcPos = searcher.Thing.Position.ToVector3();
-                    Vector3 trgPos = target.Thing.Position.ToVector3();
-
-                    for (int i = 0; i < interceptors.Count; i++)
+                    if (map != null)
                     {
-                        CompProjectileInterceptor interceptor = interceptors[i];
-                        if (interceptor.Active)
+                        Vector3 srcPos = searcher.Thing.Position.ToVector3();
+                        Vector3 trgPos = target.Thing.Position.ToVector3();
+
+                        for (int i = 0; i < interceptors.Count; i++)
                         {
-                            if (interceptor.parent.Position.DistanceTo(target.Thing.Position) < interceptor.Props.radius)
+                            CompProjectileInterceptor interceptor = interceptors[i];
+                            if (interceptor.Active)
                             {
-                                if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) < interceptor.Props.radius)
-                                    __result += 30;
-                                else
-                                    __result -= 30f;
+                                if (interceptor.parent.Position.DistanceTo(target.Thing.Position) < interceptor.Props.radius)
+                                {
+                                    if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) < interceptor.Props.radius)
+                                        __result += 60f;
+                                    else
+                                        __result -= 30f;
+                                }
+                                else if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) > interceptor.Props.radius
+                                      && interceptor.parent.Position.ToVector3().DistanceToSegment(srcPos, trgPos, out _) < interceptor.Props.radius)
+                                    __result -= 30;
                             }
-                            else if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) > interceptor.Props.radius
-                                && interceptor.parent.Position.ToVector3().DistanceToSegment(srcPos, trgPos, out _) < interceptor.Props.radius)
-                                __result -= 30;
                         }
                     }
                 }

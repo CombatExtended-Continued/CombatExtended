@@ -160,7 +160,7 @@ namespace CombatExtended
             float visibilityRating = 0;
             if (turretTracker != null && turretTracker.GetVisibleToTurret(cell))
             {
-                visibilityRating += 6f;
+                visibilityRating += 4f;
             }
             if (sightGrid != null)
             {
@@ -170,10 +170,10 @@ namespace CombatExtended
             {
                 // Avoid bullets and other danger source
                 cellRating -= Mathf.Min(visibilityRating, 50f);
-                cellRating -= dangerTracker.DangerAt(cell) * 4;
+                cellRating -= dangerTracker.DangerAt(cell) * 2f;
                 // Only apply this at night for performance reasons.
                 if(lightingTracker.IsNight)
-                    cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 3f;
+                    cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 2f;
             }
 
             // better cover rating system
