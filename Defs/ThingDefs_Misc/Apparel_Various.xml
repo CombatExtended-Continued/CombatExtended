@@ -76,22 +76,21 @@
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_RadioPack</defName>
     <label>radio pack</label>
-    <description>radio radio radio blah blah.</description>
+    <description>A long-range radio, used to call in accurate artillery fire from afar onto targets the wearer can see.</description>
     <graphicData>
       <texPath>Things/Apparel/RadioPack/CE_RadioPack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
-      <WorkToMake>8000</WorkToMake>
+      <WorkToMake>48000</WorkToMake>
       <Mass>1</Mass>
       <Bulk>3</Bulk>
     </statBases>
-    <costStuffCount>40</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-      <li>Leathery</li>
-    </stuffCategories>
+    <costList>
+      <Steel>80</Steel>
+      <ComponentIndustrial>7</ComponentIndustrial>
+    </costList>
     <apparel>      
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfDamaged>false</careIfDamaged>
@@ -102,15 +101,38 @@
       <layers>
         <li>Backpack</li>
       </layers>
-      <tags>
-        <li>IndustrialBasic</li>
-        <li>IndustrialMilitaryBasic</li>
-      </tags>
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
       <wornGraphicData>
-        <renderUtilityAsPack>true</renderUtilityAsPack>
+      <renderUtilityAsPack>true</renderUtilityAsPack>
+        <east>
+          <offset>(0.05,0)</offset>
+          <thin><offset>(0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+          <male><offset>(0.125,0)</offset></male>
+		      <female><offset>(0.125,0)</offset></female>	
+        </east>
+        <west>
+          <offset>(-0.05,0)</offset>
+          <thin><offset>(-0.2,0)</offset></thin>
+          <hulk><offset>(0,0)</offset></hulk>
+          <fat><offset>(0,0)</offset></fat>
+          <male><offset>(-0.125,0)</offset></male>
+		      <female><offset>(-0.125,0)</offset></female>		  
+        </west>
+        <north>
+          <offset>(0,-0.1)</offset> 
+          <thin><offset>(0,0)</offset></thin>
+          <hulk><offset>(0,-0.05)</offset></hulk>
+          <fat><offset>(0,-0.05)</offset></fat>
+        </north>		
+        <male>  <scale>(1,1)</scale></male>
+        <female><scale>(1,1)</scale></female>
+        <thin>  <scale>(1,1)</scale></thin>
+        <hulk>  <scale>(1,1)</scale></hulk>
+        <fat>   <scale>(1,1)</scale></fat>
       </wornGraphicData>
       <wornGraphicPath>Things/Apparel/RadioPack/CE_RadioPack</wornGraphicPath>      
     </apparel>
