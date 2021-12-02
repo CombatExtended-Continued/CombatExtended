@@ -76,20 +76,20 @@
   <ThingDef ParentName="ApparelCarryGearBase">
     <defName>Apparel_RadioPack</defName>
     <label>radio pack</label>
-    <description>A long-range radio, used to call in accurate artillery fire from afar onto targets the wearer can see.</description>
+    <description>A long range radio pack, allowing a spotter to call in accurate, long range fire support from afar.</description>
     <graphicData>
       <texPath>Things/Apparel/RadioPack/CE_RadioPack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
       <MaxHitPoints>120</MaxHitPoints>
-      <WorkToMake>48000</WorkToMake>
-      <Mass>1</Mass>
-      <Bulk>3</Bulk>
+      <WorkToMake>28500</WorkToMake>
+      <Mass>10</Mass>
+      <Bulk>8</Bulk>
     </statBases>
     <costList>
-      <Steel>80</Steel>
-      <ComponentIndustrial>7</ComponentIndustrial>
+      <Steel>120</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
     </costList>
     <apparel>      
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
@@ -136,6 +136,11 @@
       </wornGraphicData>
       <wornGraphicPath>Things/Apparel/RadioPack/CE_RadioPack</wornGraphicPath>      
     </apparel>
+    <modExtensions>
+      <li Class="CombatExtended.ApparelDefExtension">
+        <isRadioPack>true</isRadioPack>         
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </Defs>
