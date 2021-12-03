@@ -86,10 +86,10 @@ namespace CombatExtended.HarmonyCE
                     if ((pawn.pather?.moving ?? false) && pawn.EdgingCloser(other))
                         __result += (verb.EffectiveRange * verb.EffectiveRange - distance) / (verb.EffectiveRange * verb.EffectiveRange + 1f) * 20;
                 }                
-                if (target.Thing != null)
+                if (target.Thing != null && (verb.IsMeleeAttack || verb.EffectiveRange <= 25))
                 {                    
                     if (turretTracker != null)
-                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position)) * 3f;
+                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
                     if (sightGrid != null)
                         __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position);                    
                 }

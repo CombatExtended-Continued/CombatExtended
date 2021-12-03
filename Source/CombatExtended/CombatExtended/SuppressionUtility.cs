@@ -160,11 +160,11 @@ namespace CombatExtended
             float visibilityRating = 0;
             if (turretTracker != null && turretTracker.GetVisibleToTurret(cell))
             {
-                visibilityRating += 4f;
+                visibilityRating += 2f;
             }
             if (sightGrid != null)
             {
-                visibilityRating += sightGrid.GetCellSightCoverRating(cell) * 2f;                
+                visibilityRating += sightGrid.GetCellSightCoverRating(cell);                
             }
             if (visibilityRating > 0f)
             {

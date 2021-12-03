@@ -21,23 +21,31 @@ namespace CombatExtended
 
         private class PawnSightRecord
         {
+            public int index;
+
             public Pawn pawn;
 
             public bool insect;
 
             public bool friendly;
 
-            public int lastUpdated = -1;
+            public bool doingExtras;
 
-            public int index;
+            public int lastUpdated = -1;            
 
             public int extras;
 
             public float lastRange = -1;
 
-            public bool IsFriendly => friendly;
+            public bool IsFriendly
+            {
+                get => friendly;
+            }
 
-            public bool IsHostile => !friendly;
+            public bool IsHostile
+            { 
+                get => !friendly;
+            }
         }
 
         private int updateNum = 0;
@@ -252,6 +260,11 @@ namespace CombatExtended
         private bool TryCastPawnSight(SightGrid grid, Pawn pawn)
         {
             PawnSightRecord sightRecord = pawnToInfo[pawn];
+            if(sightRecord.doingExtras && sightRecord.extras == 0)
+            {
+                sightRecord.doingExtras = false;
+                return false;
+            }
             if (GenTicks.TicksGame - sightRecord.lastUpdated < SIGHTINTERVAL)
                 return false;
 
@@ -276,7 +289,7 @@ namespace CombatExtended
             {
                 PawnSightRecord best = null;
                 int bestExtras = -1;
-                foreach (Pawn p in pawn.Position.PawnsInRange(map, 7))
+                foreach (Pawn p in pawn.Position.PawnsInRange(map, 4))
                 {
                     if (p != pawn && pawnToInfo.TryGetValue(p, out PawnSightRecord s))
                     {
@@ -308,6 +321,7 @@ namespace CombatExtended
                 },
                 Mathf.CeilToInt(range)
             );
+            sightRecord.doingExtras = sightRecord.extras > 0;
             sightRecord.extras = 0;
             sightRecord.lastUpdated = GenTicks.TicksGame;
             sightRecord.lastRange = range;
@@ -317,12 +331,17 @@ namespace CombatExtended
         private bool TryCastInsect(Pawn insect)
         {
             PawnSightRecord sightRecord = pawnToInfo[insect];
+            if (sightRecord.doingExtras && sightRecord.extras == 0)
+            {
+                sightRecord.doingExtras = false;
+                return false;
+            }
             float range = 10 * performanceRangeFactor;
             if (sightRecord.extras == 0)
             {
                 PawnSightRecord best = null;
                 int bestExtras = -1;
-                foreach (Pawn p in insect.Position.PawnsInRange(map, 7))
+                foreach (Pawn p in insect.Position.PawnsInRange(map, 4))
                 {
                     if (p != insect && pawnToInfo.TryGetValue(p, out PawnSightRecord s))
                     {
@@ -354,6 +373,7 @@ namespace CombatExtended
                 },
                 Mathf.CeilToInt(range)
             );
+            sightRecord.doingExtras = sightRecord.extras > 0;
             sightRecord.extras = 0;
             sightRecord.lastUpdated = GenTicks.TicksGame;
             sightRecord.lastRange = range;
