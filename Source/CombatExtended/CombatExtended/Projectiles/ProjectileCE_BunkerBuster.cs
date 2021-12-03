@@ -30,7 +30,7 @@ namespace CombatExtended
                 Log.Message(this.origin.x.ToString());
 
                 Vector3 direction = hitThing.Position.ToVector3() - (new Vector3(this.origin.x, 0, this.origin.y));
-                IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * Math.Min(tiles_penetration, 1)))).ToIntVec3();
+                IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * Math.Max(tiles_penetration, 1)))).ToIntVec3();
 
                 Log.Message(direction.ToString());
 
