@@ -11,8 +11,20 @@ using Verse.AI;
 namespace CombatExtended.AI
 {
     public class CompUrgentDangerResponse : ICompTactics
-    {        
-        private const int CELLSAHEAD = 6;        
+    {
+        private static IntVec3[] offsets;
+
+        static CompUrgentDangerResponse()
+        {
+            offsets = new IntVec3[9];
+            int k = 0;
+            for(int i = -1; i <= 1; i++)            
+                for (int j = -1; j <= 1; j++)
+                    offsets[k++] = new IntVec3(i, 0, j);            
+        }
+
+        private const int CELLSAHEAD = 6;
+
         private const float FOCUSWEIGHT = 0.4f;
         private const float VISIONWEIGHT = 0.4f;
         private const float HEARINGWEIGHT = 0.2f;
@@ -22,6 +34,7 @@ namespace CombatExtended.AI
         
         private int _cooldownTick = -1;
         private IntVec3 _lastCell;
+       
 
         public override int Priority => 1200;
         private float Vision
@@ -106,7 +119,7 @@ namespace CombatExtended.AI
                 _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
                 return;
             }
-            if (path.NodesLeftCount <= CELLSAHEAD * 2)
+            if (path.NodesLeftCount <= CELLSAHEAD + 8)
             {
                 return;
             }
@@ -117,20 +130,27 @@ namespace CombatExtended.AI
                 _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
                 return;
             }
-            List<IntVec3> cells = GenAdjFast.AdjacentCells8Way(path.nodes[path.curNodeIndex - CELLSAHEAD]);
             Map map = Map;
             Pawn enemy = null;
-            for (int i = 0; i < cells.Count; i++)
+            for (int k = 0; k < 6; k += 2)
             {
-                if (cells[i].InBounds(map))
+                IntVec3 center = path.nodes[path.curNodeIndex - CELLSAHEAD - k];
+                IntVec3 cell;
+                for (int i = 0; i < offsets.Length; i++)
                 {
-                    Pawn other = cells[i].GetFirstPawn(map);
-                    if (other?.HostileTo(SelPawn) ?? false)
+                    cell = center + offsets[i];
+                    if (cell.InBounds(map))
                     {
-                        enemy = other;
-                        break;
+                        Pawn other = cell.GetFirstPawn(map);
+                        if ((other?.HostileTo(SelPawn) ?? false) && !other.Downed && !other.WorkTagIsDisabled(WorkTags.Violent))
+                        {
+                            enemy = other;
+                            break;
+                        }
                     }
                 }
+                if (enemy != null)
+                    break;
             }
             if (enemy != null)
             {
@@ -142,7 +162,7 @@ namespace CombatExtended.AI
                 }
                 float range = attackVerb.EffectiveRange;
 
-                if (attackVerb.verbProps.warmupTime < 0.5f && Rand.Chance(focus / 2f))
+                if (attackVerb.verbProps.warmupTime < 0.5f && Rand.Chance(awarness / 2f))
                 {
                     Job job = JobMaker.MakeJob(JobDefOf.Wait_Combat, Rand.Range(300, 500), checkOverrideOnExpiry: true);
                     if (job != null)
@@ -152,7 +172,7 @@ namespace CombatExtended.AI
                     }
                     _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval * 2;
                 }
-                if (attackVerb.verbProps.warmupTime > 0.3f && Rand.Chance(focus / 2f))
+                if (attackVerb.verbProps.warmupTime >= 0.5f && Rand.Chance(awarness / 2f))
                 {
                     Job job = SuppressionUtility.GetRunForCoverJob(pawn, enemy.Position);
                     if (job != null)
@@ -161,7 +181,7 @@ namespace CombatExtended.AI
                         pawn.jobs.StartJob(job, JobCondition.InterruptForced);
                     }
                     _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval * 3;
-                }               
+                }                
             }
         }        
     }
