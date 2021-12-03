@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using UnityEngine;
 using RimWorld;
 
 namespace CombatExtended
@@ -20,78 +21,32 @@ namespace CombatExtended
 
                 int tiles_penetration = props.fuze_delay;
 
-                int x = this.Position.x;
+                tiles_penetration /= (hitThing.HitPoints / 300);
 
-                int z = this.Position.z;
+                Log.Message(tiles_penetration.ToString().Colorize(Color.red));
 
-                if (props.HP_penetration)
-                {
-                    tiles_penetration *= (int)(hitThing.HitPoints / props.HP_penetration_ratio);
+                Log.Message(this.origin.y.ToString());
 
-                }
+                Log.Message(this.origin.x.ToString());
 
-                tiles_penetration = Math.Min(5, tiles_penetration);
+                Vector3 direction = hitThing.Position.ToVector3() - (new Vector3(this.origin.x, 0, this.origin.y));
+                IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * tiles_penetration))).ToIntVec3();
 
-                Log.Message(this.shotRotation.ToString().Colorize(UnityEngine.Color.red));
+                Log.Message(direction.ToString());
 
-                /*if (this.shotRotation > 0f && this.shotRotation < 90f)
-                {
-                    this.rotationInt = Rot4.North;
-                }*/
+                Log.Message(finalPos.ToString());
 
-                if ((this.shotRotation > 0f && this.shotRotation < 92) | (this.shotRotation > -275f && this.shotRotation < -265f))
-                {
-                    this.rotationInt = Rot4.West;
-                }
-
-                if (this.shotRotation > -90f && this.shotRotation < 45f)
-                {
-                    this.rotationInt = Rot4.East;
-                }
-
-                if (this.shotRotation > -50f && this.shotRotation < 0f)
-                {
-                    this.rotationInt = Rot4.North;
-                }
-
-                Log.Message(this.rotationInt.ToString().Colorize(UnityEngine.Color.red));
-
-                if (this.rotationInt == Rot4.East)
-                {
-                    Log.Message("east");
-                    x += tiles_penetration;
-                }
-
-                if (this.rotationInt == Rot4.West)
-                {
-                    Log.Message("west");
-                    x -= tiles_penetration;
-                }
-
-                if (this.rotationInt == Rot4.North)
-                {
-                    Log.Message("north");
-                    z -= tiles_penetration;
-                }
-
-                if (this.rotationInt == Rot4.South)
-                {
-                    Log.Message("south");
-                    z += tiles_penetration;
-                }
-
-                this.Position = new IntVec3(x, 0, z);
-
-                Log.Message(this.Position.ToString());
-
-                GenExplosionCE.DoExplosion(this.Position,
+                GenExplosionCE.DoExplosion(finalPos,
                     this.Map,
                     props.explosionRadius, props.damageDef,
                     this,
                     props.GetDamageAmount(1),
                     (props.GetDamageAmount(1) / 5),
                     damageFalloff: props.explosionDamageFalloff,
-                    applyDamageToExplosionCellsNeighbors: props.applyDamageToExplosionCellsNeighbors
+                    applyDamageToExplosionCellsNeighbors: props.applyDamageToExplosionCellsNeighbors,
+                    preExplosionSpawnThingDef: props.preExplosionSpawnThingDef,
+                    preExplosionSpawnChance: props.preExplosionSpawnChance,
+                    preExplosionSpawnThingCount: props.preExplosionSpawnThingCount
                     );
 
                 this.Destroy();
