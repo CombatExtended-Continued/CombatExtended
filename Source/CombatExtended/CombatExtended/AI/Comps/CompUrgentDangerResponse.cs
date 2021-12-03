@@ -20,8 +20,8 @@ namespace CombatExtended.AI
 
         private bool _disabled = false;
         
-        //private int _cooldownTick = -1;        
-        //private IntVec3 _lastCell;        
+        private int _cooldownTick = -1;
+        private IntVec3 _lastCell;
 
         public override int Priority => 1200;
         private float Vision
@@ -83,53 +83,86 @@ namespace CombatExtended.AI
         public override void TickShort()
         {
             base.TickShort();
-            //if (_disabled || _cooldownTick > GenTicks.TicksGame)
-            //{
-            //    return;
-            //}
-            //Pawn pawn = SelPawn;            
-            //if(_lastCell == pawn.Position)
-            //{
-            //    _lastCell = IntVec3.Invalid;
-            //    _cooldownTick = GenTicks.TicksGame + 30;                
-            //    return;
-            //}
-            //PawnPath path = pawn.pather?.curPath ?? null;
-            //if(path == null || !pawn.pather.moving)
-            //{
-            //    _lastCell = pawn.Position;
-            //    _cooldownTick = GenTicks.TicksGame + 60;                
-            //    return;
-            //}            
-            //if (pawn.Faction == null || pawn.Drafted)
-            //{
-            //    _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
-            //    return;
-            //}            
-            //if (path.NodesLeftCount <= CELLSAHEAD * 2)
-            //{
-            //    return;
-            //}            
-            //float vision = Vision, hearing = Hearing, focus = Focus;
-            //float awarness = vision * VISIONWEIGHT + focus * FOCUSWEIGHT + hearing * HEARINGWEIGHT;
-            //if (awarness < AWARENESSMIN)
-            //{
-            //    _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
-            //    return;
-            //}            
-            //List<IntVec3> cells = GenAdjFast.AdjacentCells8Way(path.nodes[path.curNodeIndex - CELLSAHEAD]);
-            //Map map = Map;
-            //for(int i = 0;i < cells.Count; i++)
-            //{
-            //    if (cells[i].InBounds(map))
-            //    {                    
-            //        Pawn other = cells[i].GetFirstPawn(map);
-            //        if (other?.HostileTo(SelPawn) ?? false && Rand.Chance(awarness))
-            //        {                                                
-            //            break;
-            //        }
-            //    }
-            //}            
+            if (_disabled || _cooldownTick > GenTicks.TicksGame)
+            {
+                return;
+            }
+            Pawn pawn = SelPawn;
+            if (_lastCell == pawn.Position)
+            {
+                _lastCell = IntVec3.Invalid;
+                _cooldownTick = GenTicks.TicksGame + 30;
+                return;
+            }
+            PawnPath path = pawn.pather?.curPath ?? null;
+            if (path == null || !pawn.pather.moving)
+            {
+                _lastCell = pawn.Position;
+                _cooldownTick = GenTicks.TicksGame + 60;
+                return;
+            }
+            if (pawn.Faction == null || pawn.Drafted || (CurrentWeapon?.def.IsMeleeWeapon ?? true))
+            {
+                _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
+                return;
+            }
+            if (path.NodesLeftCount <= CELLSAHEAD * 2)
+            {
+                return;
+            }
+            float vision = Vision, hearing = Hearing, focus = Focus;
+            float awarness = vision * VISIONWEIGHT + focus * FOCUSWEIGHT + hearing * HEARINGWEIGHT;
+            if (awarness < AWARENESSMIN)
+            {
+                _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
+                return;
+            }
+            List<IntVec3> cells = GenAdjFast.AdjacentCells8Way(path.nodes[path.curNodeIndex - CELLSAHEAD]);
+            Map map = Map;
+            Pawn enemy = null;
+            for (int i = 0; i < cells.Count; i++)
+            {
+                if (cells[i].InBounds(map))
+                {
+                    Pawn other = cells[i].GetFirstPawn(map);
+                    if (other?.HostileTo(SelPawn) ?? false)
+                    {
+                        enemy = other;
+                        break;
+                    }
+                }
+            }
+            if (enemy != null)
+            {
+                Verb attackVerb = CurrentWeapon.GetComp<CompEquippable>()?.PrimaryVerb ?? null;
+                if (attackVerb == null || !(CurrentWeaponCompAmmo?.CanBeFiredNow ?? true))
+                {
+                    _cooldownTick = GenTicks.TicksGame + GenTicks.TickLongInterval;
+                    return;
+                }
+                float range = attackVerb.EffectiveRange;
+
+                if (attackVerb.verbProps.warmupTime < 0.5f && Rand.Chance(focus / 2f))
+                {
+                    Job job = JobMaker.MakeJob(JobDefOf.Wait_Combat, Rand.Range(300, 500), checkOverrideOnExpiry: true);
+                    if (job != null)
+                    {
+                        pawn.jobs.StopAll();
+                        pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    }
+                    _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval * 2;
+                }
+                if (attackVerb.verbProps.warmupTime > 0.3f && Rand.Chance(focus / 2f))
+                {
+                    Job job = SuppressionUtility.GetRunForCoverJob(pawn, enemy.Position);
+                    if (job != null)
+                    {
+                        pawn.jobs.StopAll();
+                        pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                    }
+                    _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval * 3;
+                }               
+            }
         }        
     }
 }

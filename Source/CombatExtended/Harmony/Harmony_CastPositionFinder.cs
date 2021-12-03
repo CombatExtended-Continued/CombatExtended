@@ -20,6 +20,7 @@ namespace CombatExtended.HarmonyCE
         private static Pawn pawn;
         private static Map map;        
         private static IntVec3 target;
+        private static float warmupTime;
         private static SightGrid sightGrid;
         private static TurretTracker turretTracker;
         private static DangerTracker dangerTracker;
@@ -35,6 +36,7 @@ namespace CombatExtended.HarmonyCE
                 verb = newReq.verb;
                 range = verb.EffectiveRange;                
                 pawn = newReq.caster;
+                warmupTime = verb?.verbProps.warmupTime ?? 1;
                 map = newReq.caster?.Map;
                 target = newReq.target.Position;
                 interceptors = map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
@@ -85,19 +87,23 @@ namespace CombatExtended.HarmonyCE
                 }
                 float visibilityCost = 0;
                 if (sightGrid != null)
-                    visibilityCost += sightGrid.GetCellSightCoverRating(c) * 0.75f;
+                    visibilityCost += sightGrid.GetCellSightCoverRating(c);
                 if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
                     visibilityCost += 2;
 
                 if (visibilityCost > 0)
                 {
-                    __result *= (10 - visibilityCost) / 10f;
-                    __result *= 1f - dangerTracker.DangerAt(c) / 4f;
+                    __result -= visibilityCost;
+                    __result *= 2f- dangerTracker.DangerAt(c) / 2;
                     if (lightingTracker.IsNight)
                         __result *= 1 - lightingTracker.CombatGlowAt(c) / 2f;
                 }
-                if (verb.EffectiveRange > 0)        
-                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceToSquared(target) - range * range * 0.75f) / (range * range * 0.75f), 0.75f, 1.35f);                
+                if (range > 0)
+                {
+                    float rangeSqr = c.DistanceToSquared(target);
+                    __result -= (warmupTime - c.DistanceToSquared(target) / rangeSqr) * 4f;
+                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceToSquared(target) - rangeSqr * 0.75f) / (rangeSqr * 0.75f), 0.75f, 1.35f);
+                }                
             }
         }
     }
