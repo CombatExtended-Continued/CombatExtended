@@ -27,6 +27,21 @@ namespace CombatExtended
 
         #endregion
 
+        #region Map
+
+        /// <summary>
+        /// Returns wether it's night or not on this map.
+        /// </summary>
+        /// <param name="map">Map</param>
+        /// <returns>Wether It's night time.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]        
+        public static bool IsNightTime(this Map map)
+        {
+            return map.skyManager.CurSkyGlow < 0.5f;
+        }
+
+        #endregion
+
         #region Math
 
         public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f)
@@ -828,6 +843,11 @@ namespace CombatExtended
         #endregion
 
         public static float DistanceToSegment(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
+        {            
+            return Mathf.Sqrt(DistanceToSegmentSquared(point, lineStart, lineEnd, out closest));
+        }
+
+        public static float DistanceToSegmentSquared(this Vector3 point, Vector3 lineStart, Vector3 lineEnd, out Vector3 closest)
         {
             float dx = lineEnd.x - lineStart.x;
             float dz = lineEnd.z - lineStart.z;
@@ -836,7 +856,7 @@ namespace CombatExtended
                 closest = lineStart;
                 dx = point.x - lineStart.x;
                 dz = point.z - lineStart.z;
-                return Mathf.Sqrt(dx * dx + dz * dz);
+                return dx * dx + dz * dz;
             }
             float t = ((point.x - lineStart.x) * dx + (point.z - lineStart.z) * dz) / (dx * dx + dz * dz);
             if (t < 0)
@@ -857,7 +877,7 @@ namespace CombatExtended
                 dx = point.x - closest.x;
                 dz = point.z - closest.z;
             }
-            return Mathf.Sqrt(dx * dx + dz * dz);
+            return dx * dx + dz * dz;
         }
 
         private static readonly List<PawnKindDef> _validPawnKinds = new List<PawnKindDef>();

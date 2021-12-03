@@ -21,15 +21,18 @@ namespace CombatExtended.HarmonyCE
         private static TurretTracker turretTracker;
         private static SightGrid sightGrid;                
         private static bool crouching;
-        
+        private static bool nightTime;
+
         internal static bool Prefix(PathFinder __instance, ref PawnPath __result, IntVec3 start, LocalTargetInfo dest, TraverseParms traverseParms, PathEndMode peMode, out bool __state)
         {
             __state = false;
             if (traverseParms.pawn != null && traverseParms.pawn.Faction != null && traverseParms.pawn.RaceProps.Humanlike && traverseParms.pawn.RaceProps.intelligence == Intelligence.Humanlike)
             {
                 __state = true;
+
                 map = __instance.map;
-                pawn = traverseParms.pawn;
+                pawn = traverseParms.pawn;                
+                nightTime = map.IsNightTime();
                 dangerTracker = map.GetDangerTracker();
                 lightingTracker = map.GetLightingTracker();
 
@@ -116,19 +119,19 @@ namespace CombatExtended.HarmonyCE
         {
             if (map != null)
             {
-                int value = 0;                
+                int value = 0;
                 if (turretTracker != null)
                     value += turretTracker.GetVisibleToTurret(index) ? 50 : 0;
                 if (sightGrid != null)
-                    value += (int)Mathf.Min(sightGrid[index] * 85, 500);
+                    value += (int)Mathf.Min(sightGrid.GetVisibility(index) * 50, 400);
                 if (value > 0)
                 {
                     if (dangerTracker != null)
                         value += (int)(dangerTracker.DangerAt(index) * 75f);
-                    if (lightingTracker != null)
+                    if (nightTime && lightingTracker != null)
                         value += (int)(lightingTracker.CombatGlowAt(map.cellIndices.IndexToCell(index)) * 45f);
                 }                                             
-                return Mathf.Min(value, 800);
+                return Mathf.Min(value, 700);
             }
             return 0;
         }       

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Steamworks;
+using System.Text;
 
 namespace CombatExtended
 {
@@ -26,6 +27,8 @@ namespace CombatExtended
             public short sig;                        
             public short count;
             public short countPrev;
+            public float visibility;
+            public float visibilityPrev;
             public Vector2 direction;
             public Vector2 directionPrev;            
         }
@@ -37,9 +40,11 @@ namespace CombatExtended
             [FieldOffset(4)] public float value;
             [FieldOffset(8)] public bool hasCover;            
         }
-
+        
+        private float range;
         private IntVec3 center;
-        private float updateInterval;
+        private readonly float updateInterval;
+        private readonly int updateIntervalInt;
         private short sig = 13;
         private CellIndices cellIndices;
         private SightRecord[] sightArray;
@@ -49,6 +54,11 @@ namespace CombatExtended
         private int mapSizeX;
         private int mapSizeZ;
         private int mapCellNum;
+
+        private int Cycle
+        {
+            get => GenTicks.TicksGame / updateIntervalInt;
+        }
 
         public Faction Faction
         {
@@ -64,6 +74,7 @@ namespace CombatExtended
             sightArray = new SightRecord[map.cellIndices.NumGridCells];
             coverArray = new SightCoverRecord[map.cellIndices.NumGridCells];
             this.updateInterval = updateInterval;
+            this.updateIntervalInt = (int)updateInterval;
             this.map = map;
             this.faction = faction;            
             for (int i = 0; i < sightArray.Length; i++)
@@ -94,70 +105,106 @@ namespace CombatExtended
                 if (index >= 0 && index < mapCellNum)
                 {
                     SightRecord record = sightArray[index];
-                    if(record.expireAt - GenTicks.TicksGame >= -updateInterval)
+                    if (record.expireAt - Cycle > 0)                        
                         return Math.Max(record.count, record.countPrev);
+                    else if(record.expireAt - Cycle == 0)
+                        return record.count;
                 }
                 return 0;
             }
         }
 
-        public void Set(IntVec3 cell, int num = 1) => Set(cellIndices.CellToIndex(cell), num);
-        public void Set(int index, int num = 1)
+        public void Set(IntVec3 cell, int num, int dist) => Set(cellIndices.CellToIndex(cell), num, dist);
+        public void Set(int index, int num, int dist)
         {
             if (index >= 0 && index < mapCellNum)
             {
-                SightRecord record = sightArray[index];
-                IntVec3 cell = cellIndices.IndexToCell(index);
+                SightRecord record = sightArray[index];                
                 if (record.sig != sig)
                 {
-                    float t = record.expireAt - GenTicks.TicksGame;
-                    if (t > 0.0f)
+                    IntVec3 cell = cellIndices.IndexToCell(index);
+
+                    float t = record.expireAt - Cycle;                    
+                    if (t > 0)
                     {
                         record.count += (short)num;
-                        record.direction.x += (cell.x - center.x) * num;
-                        record.direction.y += (cell.z - center.z) * num;
+                        float visibility = (range - dist) / range * num;
+                        record.visibility += visibility;
+                        record.direction.x += (cell.x - center.x) * visibility;
+                        record.direction.y += (cell.z - center.z) * visibility;                        
                     }
-                    else if (t >= -updateInterval)
+                    else if (t == 0)
                     {
-                        record.expireAt = (int)(GenTicks.TicksGame + updateInterval);
+                        record.expireAt = Cycle + 1;
 
                         record.countPrev = record.count;
                         record.directionPrev = record.direction;
+                        record.visibilityPrev = record.visibility;
 
-                        record.direction.x = (cell.x - center.x) * num;
-                        record.direction.y = (cell.z - center.z) * num;
+                        record.visibility = (range - dist) / range * num;
+                        record.direction.x = (cell.x - center.x) * record.visibility;
+                        record.direction.y = (cell.z - center.z) * record.visibility;
                         record.count = (short)num;
                     }
                     else
                     {
-                        record.expireAt = (int)(GenTicks.TicksGame + updateInterval);
+                        record.expireAt = Cycle + 1;
 
                         record.countPrev = 0;
                         record.directionPrev = Vector2.zero;
+                        record.visibilityPrev = 0;
 
-                        record.direction.x = (cell.x - center.x) * num;
-                        record.direction.y = (cell.z - center.z) * num;
+                        record.visibility = (range - dist) / range * num;
+                        record.direction.x = (cell.x - center.x) * record.visibility;
+                        record.direction.y = (cell.z - center.z) * record.visibility;
                         record.count = (short)num;
                     }
                     record.sig = sig;
                     sightArray[index] = record;
                 }
             }
+        }       
+
+        public float GetVisibility(int index) => GetVisibility(index, out _);
+        public float GetVisibility(IntVec3 cell) => GetVisibility(cellIndices.CellToIndex(cell), out _);
+
+        public float GetVisibility(IntVec3 cell, out int enemies) => GetVisibility(cellIndices.CellToIndex(cell), out enemies);
+        public float GetVisibility(int index, out int enemies)
+        {
+            if (index >= 0 && index < mapCellNum)
+            {
+                SightRecord record = sightArray[index];
+                if (record.expireAt - Cycle > 0)
+                {                   
+                    enemies = record.countPrev;
+                    return Mathf.Max(record.visibilityPrev, record.visibility);                   
+                }
+                else if(record.expireAt - Cycle == 0)
+                {
+                    enemies = record.countPrev;
+                    return record.visibility;
+                }
+            }
+            enemies = 0;
+            return 0f;
         }
 
-        public Vector2 GetDirectionAt(IntVec3 cell) => GetDirectionAt(cellIndices.CellToIndex(cell));        
+        public Vector2 GetDirectionAt(IntVec3 cell) => GetDirectionAt(cellIndices.CellToIndex(cell));
         public Vector2 GetDirectionAt(int index)
         {
             if (index >= 0 && index < mapCellNum)
             {
                 SightRecord record = sightArray[index];
-                if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
+                if (record.expireAt - Cycle > 0)
                 {
-                    if (record.count >= record.countPrev)
+                    if (record.count > record.countPrev)
                         return record.direction;
                     else
                         return record.directionPrev;
                 }
+                else if (record.expireAt - Cycle == 0)
+                    return record.direction;
+
             }
             return Vector2.zero;
         }
@@ -168,9 +215,9 @@ namespace CombatExtended
             if (index >= 0 && index < mapCellNum)
             {
                 SightRecord record = sightArray[index];
-                if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
+                if (record.expireAt - Cycle > 0)
                 {
-                    if (record.count >= record.countPrev)
+                    if (record.count > record.countPrev)
                     {
                         enemies = record.count;
                         return record.direction;
@@ -179,7 +226,12 @@ namespace CombatExtended
                     {
                         enemies = record.countPrev;
                         return record.directionPrev;
-                    }
+                    }                   
+                }
+                else if(record.expireAt - Cycle == 0)
+                {
+                    enemies = record.count;
+                    return record.direction;
                 }
             }
             enemies = 0;
@@ -192,7 +244,7 @@ namespace CombatExtended
             if (cell.InBounds(map))
             {
                 SightRecord record = sightArray[cellIndices.CellToIndex(cell)];
-                if (record.expireAt - GenTicks.TicksGame >= -updateInterval)
+                if (record.expireAt - Cycle >= 0)
                 {
                     Vector2 direction = record.direction.normalized * -1f;
                     IntVec3 endPos = cell + new Vector3(direction.x * 5, 0, direction.y * 5).ToIntVec3();
@@ -225,50 +277,47 @@ namespace CombatExtended
             {
                 hasCover = false;
                 return 0f;
-            }
-            int i = cellIndices.CellToIndex(cell);
-            SightCoverRecord cache = coverArray[i];
-            if (cache.value - GenTicks.TicksGame >= 0)
-            {
-                hasCover = cache.hasCover;                
-                return cache.value;
-            }
-            cache.expireAt = GenTicks.TicksGame + 30;
-            //
-            hasCover = false;
-            // ---------------------
-            float enemies, val = 0f;
-            Vector2 direction = GetDirectionAt(cell, out enemies);
-            if (enemies > 0)
-            {
-                // Mathf.Log(64 - Mathf.Min(grid.GetDirectionAt(cell).magnitude / (0.5f * enemies), 64)) * enemies / 2f, 2f);
-                // Or
-                // Log2({64 - Min[64, direction.Magnitude / (0.25f * enemies)]} * enemies / 2f)
-                //
-                // This is a very fast aproximation of the above equation.
-                int magSqr = (int)(direction.sqrMagnitude / (0.25f * enemies * enemies) / 2f);
-                if (magSqr > sqrtLookup.Length)
-                {
-                    cache.hasCover = hasCover = false;
-                    cache.value = 0f;
-                    coverArray[i] = cache;
-                    return 0f;
-                }
-                val = (64f - sqrtLookup[magSqr]) * Mathf.Min(enemies, 15) / 4f;
-                val = log2Lookup[(int)(val * 10)];
-                if (hasCover = HasCover(cell))
-                    val *= 0.667f;               
-            }            
-            cache.hasCover = hasCover;
-            cache.value = val;
-            coverArray[i] = cache;            
-            return val;
+            }           
+            hasCover = HasCover(cell);
+            if(hasCover)
+                return GetVisibility(cell) * 0.5f;
+            else
+                return GetVisibility(cell);
         }
 
-        public void Next(IntVec3 center)
+        public void Next(IntVec3 center, float range)
         {
             sig += 1;
             this.center = center;
+            this.range = range * 2.0f;
+        }
+
+        private static StringBuilder _builder = new StringBuilder();
+
+        public string GetDebugInfoAt(IntVec3 cell) => GetDebugInfoAt(map.cellIndices.CellToIndex(cell));
+        public string GetDebugInfoAt(int index)
+        {
+            if (index >= 0 && index < mapCellNum)
+            {
+                SightRecord record = sightArray[index];
+                _builder.Clear();
+                _builder.AppendFormat("<color=grey>{0}</color> {1}\n", "Partially expired ", record.expireAt - Cycle == 0);
+                _builder.AppendFormat("<color=grey>{0}</color> {1}", "Expired           ", record.expireAt - Cycle < 0);
+                _builder.AppendLine();
+                _builder.AppendFormat("<color=orange>{0}</color> {1}\n" +
+                    "<color=grey>cur</color>  {2}\t" +
+                    "<color=grey>prev</color> {3}", "Enemies", this[index], record.count, record.countPrev);
+                _builder.AppendLine();
+                _builder.AppendFormat("<color=orange>{0}</color> {1}\n " +
+                    "<color=grey>cur</color>  {2}\t" +
+                    "<color=grey>prev</color> {3}", "Visibility", GetVisibility(index), Math.Round(record.visibility, 2), Math.Round(record.visibilityPrev, 2));
+                _builder.AppendLine();
+                _builder.AppendFormat("<color=orange>{0}</color> {1}\n" +
+                    "<color=grey>cur</color>  {2} " +
+                    "<color=grey>prev</color> {3}", "Direction", GetDirectionAt(index), record.direction, record.direction);
+                return _builder.ToString();
+            }
+            return "<color=red>Out of bounds</color>";
         }
 
         private static float[] log2Lookup = new float[3420];

@@ -153,7 +153,7 @@ namespace CombatExtended
             float radiusSquared = request.radius * request.radius;
             float damageBase = request.damage;
 
-            Action<IntVec3, int> processor = (cell, carry) =>
+            Action<IntVec3, int, int> processor = (cell, carry, dist) =>
             {
                 var distSquared = -1f;
                 if (!cell.InBounds(map) || (distSquared = cell.DistanceToSquared(center)) > radiusSquared)
@@ -229,7 +229,7 @@ namespace CombatExtended
                 //     FireUtility.TryStartFireIn(cell, map, Rand.Range(0.5f, 1.5f));
                 // }
             };
-            processor(center, 0);
+            processor(center, 0, 0);
             ShadowCastingUtility.CastWeighted(map, center, processor, request.radius, SHADOW_CARRYLIMIT, out int count);            
             return count > 0;
         }       

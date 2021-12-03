@@ -14,12 +14,13 @@ using Verse.AI;
 namespace CombatExtended.HarmonyCE
 {
     internal static class Harmony_AttackTargetFinder
-    {
+    {        
         private static Map map;        
         private static List<CompProjectileInterceptor> interceptors;
         private static SightGrid sightGrid;
         private static TurretTracker turretTracker;
-        private static CompTacticalManager manager;        
+        private static CompTacticalManager manager;
+        private static CombatReservationManager combatReservationManager;
 
         [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
         internal static class Harmony_AttackTargetFinder_BestAttackTarget
@@ -47,13 +48,14 @@ namespace CombatExtended.HarmonyCE
 
             internal static void Prefix(IAttackTargetSearcher searcher)
             {               
-                map = searcher.Thing?.Map;                
+                map = searcher.Thing?.Map;
+                combatReservationManager = map.GetComponent<CombatReservationManager>();
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList() ?? new List<CompProjectileInterceptor>();
                 if(searcher.Thing is Pawn pawn && pawn.Faction != null)
                 {
-                    manager = pawn.GetComp<CompTacticalManager>();
+                    manager = pawn.GetComp<CompTacticalManager>();                    
                     map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
                     if (pawn.Faction.HostileTo(map.ParentFaction))
                         turretTracker = map.GetComponent<TurretTracker>();
@@ -70,33 +72,67 @@ namespace CombatExtended.HarmonyCE
         [HarmonyPatch(typeof(AttackTargetFinder), nameof(AttackTargetFinder.GetShootingTargetScore))]
         internal static class Harmony_AttackTargetFinder_GetShootingTargetScore
         {
-            public static void Postfix(IAttackTarget target, IAttackTargetSearcher searcher, Verb verb, ref float __result)
+            internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                float distance = target.Thing.Position.DistanceToSquared(searcher.Thing.Position);
-                if(manager != null)
+                var codes = instructions.ToList();
+                bool finished = false;
+                for (int i = 0; i < instructions.Count(); i++)
                 {
-                    List<Pawn> allies = manager.TargetedByEnemy;                    
-                    if (allies.Count(d => d.Position.DistanceToSquared(target.Thing.Position) < 16f) > 3)
-                        __result -= allies.Count() * 2;
-                    else
-                        __result -= allies.Count();
-                }
+                    if (!finished)
+                    {
+                        if (codes[i].opcode == OpCodes.Ldc_R4)
+                        {
+                            finished = true;
+                            yield return new CodeInstruction(OpCodes.Ldarg_0);
+                            yield return new CodeInstruction(OpCodes.Ldarg_1);
+                            yield return new CodeInstruction(OpCodes.Ldarg_2);
+                            yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_AttackTargetFinder_GetShootingTargetScore), nameof(Harmony_AttackTargetFinder_GetShootingTargetScore.GetShootingTargetBaseScore)));
+                            continue;
+                        }
+                    }
+                    yield return codes[i];
+                }                
+            }
+
+            public static float GetShootingTargetBaseScore(IAttackTarget target, IAttackTargetSearcher searcher, Verb verb)
+            {
+                float result = 60f;
+                float distSqr = target.Thing.Position.DistanceToSquared(searcher.Thing.Position);                
+
+                if (combatReservationManager != null && combatReservationManager.Reserved(target.Thing, out List<Pawn> attackers))
+                {                   
+                    for(int i = 0; i < attackers.Count; i++)
+                    {                        
+                        Pawn attacker = attackers[i];                        
+                        if (attacker.stances?.curStance is Stance_Warmup)
+                            result -= 5f;
+                        if ((attacker.jobs?.curJob?.def.alwaysShowWeapon ?? false)
+                            && attacker.pather != null
+                            && attacker.pather.curPath?.NodesConsumedCount > attacker.pather.curPath?.NodesLeftCount)
+                            result -= 5f;
+                        if (attacker.Position.DistanceToSquared(target.Thing.Position) < 16 && distSqr > 255)
+                            result -= 2.5f;
+                    }
+                    result -= attackers.Count * 2.5f;
+                }                
                 if (target.Thing is Pawn other && searcher.Thing is Pawn pawn)
                 {
                     if ((pawn.pather?.moving ?? false) && pawn.EdgingCloser(other))
-                        __result += (verb.EffectiveRange * verb.EffectiveRange - distance) / (verb.EffectiveRange * verb.EffectiveRange + 1f) * 20;
+                        result += (verb.EffectiveRange * verb.EffectiveRange - distSqr) / (verb.EffectiveRange * verb.EffectiveRange + 1f) * 10;
                 }                
                 if (target.Thing != null && (verb.IsMeleeAttack || verb.EffectiveRange <= 25))
                 {                    
                     if (turretTracker != null)
-                        __result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
+                        result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
                     if (sightGrid != null)
-                        __result -= sightGrid.GetCellSightCoverRating(target.Thing.Position);                    
-                }
+                        result -= sightGrid.GetCellSightCoverRating(target.Thing.Position);
+
+                    result -= Mathf.Clamp(Mathf.Abs(distSqr) / (16f * 16f) * 2f, 0, 15f);
+                }                
                 if (verb.EffectiveRange >= 25)
                 {
                     if (searcher.Thing.Map?.GetLightingTracker() is LightingTracker tracker)
-                        __result *= tracker.CombatGlowAt(target.Thing.Position) * 0.5f;
+                        result *= tracker.CombatGlowAt(target.Thing.Position) * 0.5f;
 
                     if (map != null)
                     {
@@ -106,22 +142,24 @@ namespace CombatExtended.HarmonyCE
                         for (int i = 0; i < interceptors.Count; i++)
                         {
                             CompProjectileInterceptor interceptor = interceptors[i];
+                            float radiusSqr = interceptor.Props.radius * interceptor.Props.radius;
                             if (interceptor.Active)
                             {
-                                if (interceptor.parent.Position.DistanceTo(target.Thing.Position) < interceptor.Props.radius)
+                                if (interceptor.parent.Position.DistanceToSquared(target.Thing.Position) < radiusSqr)
                                 {
-                                    if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) < interceptor.Props.radius)
-                                        __result += 60f;
+                                    if (interceptor.parent.Position.DistanceToSquared(searcher.Thing.Position) < radiusSqr)
+                                        result += 60f;
                                     else
-                                        __result -= 30f;
+                                        result -= 30;
                                 }
-                                else if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) > interceptor.Props.radius
-                                      && interceptor.parent.Position.ToVector3().DistanceToSegment(srcPos, trgPos, out _) < interceptor.Props.radius)
-                                    __result -= 30;
+                                else if (interceptor.parent.Position.DistanceToSquared(searcher.Thing.Position) > radiusSqr
+                                      && interceptor.parent.Position.ToVector3().DistanceToSegmentSquared(srcPos, trgPos, out _) < radiusSqr)
+                                    result -= 30;
                             }
                         }
                     }
                 }
+                return result;
             }
         }
     }

@@ -106,13 +106,13 @@ namespace CombatExtended
 
         private void CastTurretShadow(Building_TurretGunCE turret)
         {
-            grid.Next(turret.Position);
+            grid.Next(turret.Position, turret.AttackVerb.EffectiveRange);
             ShadowCastingUtility.CastVisibility(
                 map,
                 turret.Position,
-                (cell) =>
+                (cell, dist) =>
                 {                    
-                   grid.Set(cell);
+                   grid.Set(cell, 1, dist);
                 },
                 (int) Mathf.Min(turret.AttackVerb.EffectiveRange, 60)
             );            

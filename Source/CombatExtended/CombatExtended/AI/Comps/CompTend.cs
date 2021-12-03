@@ -67,7 +67,7 @@ namespace CombatExtended.AI
                 lastTendJobCheckedAt = GenTicks.TicksGame;
                 return null;
             }
-            if (SelPawn.Position.PawnsInRange(Map, 25).Any(p => p.HostileTo(SelPawn) && !SelPawn.HiddingBehindCover(p)))
+            if (SelPawn.Position.PawnsInRange(Map, 45).Any(p => p.HostileTo(SelPawn) && !SelPawn.HiddingBehindCover(p)))
             {
                 lastTendJobCheckedAt = GenTicks.TicksGame - COOLDOWN_TEND_JOB_CHECK / 2;
                 return SuppressionUtility.GetRunForCoverJob(SelPawn);

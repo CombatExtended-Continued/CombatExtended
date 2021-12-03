@@ -84,25 +84,27 @@ namespace CombatExtended.HarmonyCE
                         else
                             __result += 8;
                     }
-                }
+                }                
                 float visibilityCost = 0;
                 if (sightGrid != null)
                     visibilityCost += sightGrid.GetCellSightCoverRating(c);
                 if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
-                    visibilityCost += 2;
+                    visibilityCost += 4;
 
                 if (visibilityCost > 0)
                 {
                     __result -= visibilityCost;
-                    __result *= 2f- dangerTracker.DangerAt(c) / 2;
+                    __result -= dangerTracker.DangerAt(c);
                     if (lightingTracker.IsNight)
                         __result *= 1 - lightingTracker.CombatGlowAt(c) / 2f;
                 }
                 if (range > 0)
                 {
-                    float rangeSqr = c.DistanceToSquared(target);
-                    __result -= (warmupTime - c.DistanceToSquared(target) / rangeSqr) * 4f;
-                    __result *= Mathf.Clamp(1f - Mathf.Abs(c.DistanceToSquared(target) - rangeSqr * 0.75f) / (rangeSqr * 0.75f), 0.75f, 1.35f);
+                    float rangeSqr = range * range;
+                    //
+                    //__result += (warmupTime - c.DistanceToSquared(target) / rangeSqr) * 4f;
+                    __result -= c.PawnsInRange(map, 8).Count(c => c.Faction == pawn.Faction) * 5;
+                    __result += Mathf.Abs(rangeSqr * 0.75f - c.DistanceToSquared(target)) / (rangeSqr * 0.75f) * 8;
                 }                
             }
         }

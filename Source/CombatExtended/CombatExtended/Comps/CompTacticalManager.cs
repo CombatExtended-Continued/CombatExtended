@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
+using UnityEngine;
 using CombatExtended.AI;
 using MonoMod.Utils;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using UnityEngine.UIElements;
 
 namespace CombatExtended
 {
     public class CompTacticalManager : ThingComp
-    {               
-        private Job curJob = null;
-        private List<Verse.WeakReference<Pawn>> targetedBy = new List<Verse.WeakReference<Pawn>>();        
+    {
+        private Thing lastEnemyTarget;        
 
         private Pawn _pawn = null;
         public Pawn SelPawn
@@ -45,6 +46,19 @@ namespace CombatExtended
                 return _compSuppressable;
             }
         }
+        
+        private CombatReservationManager _reservationManager = null;
+        public CombatReservationManager MapCombatReservationManager
+        {
+            get
+            {
+                if (!parent.Spawned)
+                    return _reservationManager = null;
+                if (_reservationManager == null || _reservationManager.map != parent.Map)
+                    return _reservationManager = SelPawn.Map.GetComponent<CombatReservationManager>();
+                return _reservationManager;
+            }
+        }
 
         private CompInventory _compInventory = null;
         public virtual CompInventory CompInventory
@@ -54,63 +68,7 @@ namespace CombatExtended
                 if (_compInventory == null) _compInventory = SelPawn.TryGetComp<CompInventory>();
                 return _compInventory;
             }
-        }
-
-        private int _targetedByTick = -1;
-        private List<Pawn> _targetedByCache = new List<Pawn>();
-        public List<Pawn> TargetedBy
-        {
-            get
-            {
-                if (_targetedByTick != GenTicks.TicksGame || _targetedByTick == -1)
-                {
-                    _targetedByTick = GenTicks.TicksGame;
-                    _targetedByCache.Clear();
-
-                    Job job;
-                    for (int i = 0; i < targetedBy.Count; i++)
-                    {
-                        try
-                        {
-                            Verse.WeakReference<Pawn> reference = targetedBy[i];
-                            Pawn pawn;
-                            if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
-                            {
-                                if (job.AnyTargetIs(parent))
-                                    _targetedByCache.Add(pawn);
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
-                return _targetedByCache;
-            }
-        }
-
-        private int _targetedByEnemyTick = -1;
-        private List<Pawn> _targetedByEnemyCache = new List<Pawn>();
-        public List<Pawn> TargetedByEnemy
-        {
-            get
-            {
-                if (_targetedByEnemyTick != GenTicks.TicksGame || _targetedByEnemyTick == -1)
-                {
-                    _targetedByEnemyTick = GenTicks.TicksGame;
-                    _targetedByEnemyCache.Clear();
-
-                    List<Pawn> pawns = TargetedBy;
-                    for (int i = 0; i < pawns.Count; i++)
-                    {
-                        Pawn pawn = pawns[i];
-                        if (pawn.HostileTo(parent))
-                            _targetedByEnemyCache.Add(pawn);
-                    }
-                }
-                return _targetedByEnemyCache;
-            }
-        }
+        }        
 
         public bool DraftedColonist
         {
@@ -128,72 +86,19 @@ namespace CombatExtended
         };
 
         public override void CompTick()
-        {
+        {            
             base.CompTick();
             if (parent.IsHashIntervalTick(20)) TickShort();
-            if (parent.IsHashIntervalTick(120))
-            {                
-                /*
-                 * Clear the cache if it's very outdated to allow GC to take over
-                 */
-                if (_targetedByTick != -1 && GenTicks.TicksGame - _targetedByTick > 300)
+            if (parent.IsHashIntervalTick(5) && parent.Spawned)
+            {
+                Thing curTarget = SelPawn.mindState?.enemyTarget ?? null;
+                if (curTarget != lastEnemyTarget)
                 {
-                    _targetedByCache.Clear();
-                    _targetedByEnemyCache.Clear();
-                    _targetedByTick = -1;
-                    _targetedByEnemyTick = -1;
+                    if (curTarget != null)                    
+                        MapCombatReservationManager.Reserve(SelPawn, curTarget);                    
+                    lastEnemyTarget = curTarget;
                 }
-                Job job;
-                /*
-                 * Start scaning for possilbe current targets
-                 */
-                if (parent.Spawned
-                    && curJob != (job = SelPawn.jobs?.curJob)
-                    && job != null && job.def.alwaysShowWeapon == false)
-                {
-                    if (SelPawn.mindState?.enemyTarget is Pawn target && target.Spawned)
-                        target.GetTacticalManager()?.Notify_BeingTargetedBy(target);
-                    /*
-                     * Scan the current job to check for potential target pawns
-                     */
-                    HashSet<Pawn> targets = new HashSet<Pawn>();
-                    for (int i = 0; i < _targetIndices.Length; i++)
-                    {
-                        LocalTargetInfo info = job.GetTarget(_targetIndices[i]);
-
-                        if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                            targets.Add(pawn);
-                    }
-                    if (job.targetQueueA != null)
-                    {
-                        for (int i = 0; i < job.targetQueueA.Count; i++)
-                        {
-                            LocalTargetInfo info = job.targetQueueA[i];
-
-                            if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                                targets.Add(pawn);
-                        }
-                    }
-                    if (job.targetQueueB != null)
-                    {
-                        for (int i = 0; i < job.targetQueueB.Count; i++)
-                        {
-                            LocalTargetInfo info = job.targetQueueB[i];
-
-                            if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
-                                targets.Add(pawn);
-                        }
-                    }
-
-                    // Notify others of this pawn targeting them
-                    foreach (Pawn other in targets)
-                    {
-                        if (other.thingIDNumber != parent.thingIDNumber)
-                            other.GetTacticalManager()?.Notify_BeingTargetedBy(other);
-                    }
-                    targets.Clear();
-                }
-            }
+            }            
         }
 
         private int _counter = 0;
@@ -203,18 +108,7 @@ namespace CombatExtended
             base.CompTickRare();
             TryGiveTacticalJobs();
             if (_counter++ % 2 == 0) TickRarer();
-        }
-
-
-        public void Notify_BeingTargetedBy(Pawn pawn)
-        {
-            for (int i = 0; i < targetedBy.Count; i++)
-            {
-                if (targetedBy[i].Target == pawn)
-                    return;
-            }
-            targetedBy.Add(new Verse.WeakReference<Pawn>(pawn));
-        }
+        }       
 
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
@@ -288,6 +182,17 @@ namespace CombatExtended
             }
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            if(SelPawn.mindState != null)
+            {
+                lastEnemyTarget = SelPawn.mindState.enemyTarget;
+                if (lastEnemyTarget != null)
+                    MapCombatReservationManager.Reserve(SelPawn, lastEnemyTarget);
+            }
+        }
+
         private void TickRarer()
         {
             List<ICompTactics> comps = TacticalComps;
@@ -318,7 +223,30 @@ namespace CombatExtended
                     Log.Error($"CE: Error ticking short comp {comps[i].GetType()} with error {er}");
                 }
             }
-        }
+            if (parent.Spawned)
+            {
+                Job job;
+                Pawn pawn = SelPawn;
+                Thing curEnemyTarget = null;
+                if ((pawn.mindState == null || pawn.mindState.enemyTarget == null) && (job = pawn.jobs.curJob) != null)
+                {
+                    if (job.def == JobDefOf.AttackMelee)
+                    {
+                        curEnemyTarget = job.targetA.Thing;
+                    }
+                    else if (job.def == JobDefOf.AttackStatic)
+                    {
+                        curEnemyTarget = job.targetA.Thing;
+                    }
+                    if (curEnemyTarget != lastEnemyTarget)
+                    {
+                        lastEnemyTarget = curEnemyTarget;
+                        if (curEnemyTarget != null)
+                            MapCombatReservationManager.Reserve(SelPawn, curEnemyTarget);
+                    }
+                }
+            }
+        } 
 
         private void TryGiveTacticalJobs()
         {

@@ -143,7 +143,7 @@ namespace CombatExtended
             builder.Append(message);
             TipSignal tip = new TipSignal();
             tip.text = message;            
-            tip.priority = (TooltipPriority)3;
+            tip.priority = (TooltipPriority)2;            
             TooltipHandler.TipRegion(rect, tip);            
             return tip;
         }

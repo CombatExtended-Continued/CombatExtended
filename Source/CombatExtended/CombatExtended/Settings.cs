@@ -68,6 +68,7 @@ namespace CombatExtended
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
         private bool debugDrawLOSShadowGrid = false;
+        private bool debugDrawTargetedBy = false;
 
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
@@ -80,6 +81,7 @@ namespace CombatExtended
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugDrawLOSShadowGrid => debugDrawLOSShadowGrid && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
+        public bool DebugDrawTargetedBy => debugDrawTargetedBy && debuggingMode;        
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -110,6 +112,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugDrawLOSShadowGrid, "debugDrawLOSShadowGrid", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
+            Scribe_Values.Look(ref debugDrawTargetedBy, "debugDrawTargetedBy", false);
 #endif
 
             // Ammo settings
@@ -189,6 +192,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
                 list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
                 list.CheckboxLabeled("Draw LOS shadow gird", ref debugDrawLOSShadowGrid);
+                list.CheckboxLabeled("Draw enemies targeting selected pawn", ref debugDrawTargetedBy, "Debug targeted by in the reservation manager");
             }
             else
             {

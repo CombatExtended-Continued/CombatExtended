@@ -31,7 +31,7 @@ namespace CombatExtended
         private static IntVec3 source;
         private static List<VisibleRow> rowQueue = new List<VisibleRow>();
         private static Map map;        
-        private static Action<IntVec3, int> setAction;
+        private static Action<IntVec3, int, int> setAction;
 
         static ShadowCastingUtility()
         {
@@ -205,7 +205,7 @@ namespace CombatExtended
                     
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {                        
-                        setAction(cell, row.visibilityCarry);
+                        setAction(cell, row.visibilityCarry, row.depth);
                     }
                     if(isCover && row.visibilityCarry >= carryLimit)
                     {
@@ -283,7 +283,7 @@ namespace CombatExtended
 
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {
-                        setAction(cell, 1);
+                        setAction(cell, 1, row.depth);
                     }
                     if (IsValid(lastCell)) // check so it's a valid offsets
                     {                        

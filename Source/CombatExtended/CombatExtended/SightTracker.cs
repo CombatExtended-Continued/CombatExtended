@@ -7,13 +7,14 @@ using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace CombatExtended
 {
     public class SightTracker : MapComponent
     {
-        private const int BUCKETCOUNT = 15;
-        private const int BUCKETINTERVAL = 20;
+        private const int BUCKETCOUNT = 20;
+        private const int BUCKETINTERVAL = 15;
         private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
         private static readonly Vector2 DEBUGDOTOFFSET = new Vector2(-1, -1);
@@ -24,18 +25,15 @@ namespace CombatExtended
             public int index;
 
             public Pawn pawn;
-
             public bool insect;
+            public bool friendly;            
 
-            public bool friendly;
-
-            public bool doingExtras;
-
-            public int lastUpdated = -1;            
-
-            public int extras;
-
+            public int lastUpdated = -1;
             public float lastRange = -1;
+            
+            public int extras;
+            public int extrasRange;
+            public IntVec3 extraPos;            
 
             public bool IsFriendly
             {
@@ -108,7 +106,7 @@ namespace CombatExtended
             }
             if (updateNum % 3 == 0)
             {
-                performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 100) / 100f * 0.35f;
+                performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 75f) / 75f * 0.35f;
                 pawnsCastedNum = updateNum = 0;
             }
 
@@ -122,9 +120,9 @@ namespace CombatExtended
                     {
                         if (cell.InBounds(map))
                         {
-                            var value = gridHostile[cell];
+                            var value = gridHostile.GetVisibility(cell, out int enemies);
                             if (value > 0)
-                                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(value / 10f, 0f, 0.95f), $"{value}", 15);
+                                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(value, 0f, 0.95f), $"{Math.Round(value, 3)} {enemies}", 15);
                         }
                     }
                 }
@@ -259,12 +257,7 @@ namespace CombatExtended
 
         private bool TryCastPawnSight(SightGrid grid, Pawn pawn)
         {
-            PawnSightRecord sightRecord = pawnToInfo[pawn];
-            if(sightRecord.doingExtras && sightRecord.extras == 0)
-            {
-                sightRecord.doingExtras = false;
-                return false;
-            }
+            PawnSightRecord sightRecord = pawnToInfo[pawn];            
             if (GenTicks.TicksGame - sightRecord.lastUpdated < SIGHTINTERVAL)
                 return false;
 
@@ -275,16 +268,21 @@ namespace CombatExtended
             if (weapon == null || !weapon.def.IsRangedWeapon)
                 return false;
 
-            float range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * performanceRangeFactor;
+            float range;
+            range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * performanceRangeFactor;            
+            range = (range + sightRecord.extrasRange) / (1 + sightRecord.extras);
             if (range < 3.0f)
                 return false;
-
+                
             SkillRecord record = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;
             if (record != null)
-                range *= Mathf.Clamp(pawn.skills.GetSkill(SkillDefOf.Shooting).Level / 7.5f, 1.0f, 1.5f);
-
-            float t = grid[pawn.Position];
-
+            {
+                float skill = pawn.skills.GetSkill(SkillDefOf.Shooting).Level;
+                if (map.IsNightTime())
+                    skill = Mathf.Max(skill - (1 - pawn.GetStatValue(CE_StatDefOf.NightVisionEfficiency)) * 4, 0f);
+                
+                range *= Mathf.Clamp(skill / 7.5f, 0.85f, 1.75f);
+            }                                   
             if (sightRecord.extras == 0)
             {
                 PawnSightRecord best = null;
@@ -306,23 +304,28 @@ namespace CombatExtended
                 }
                 if (best != null)
                 {
-                    best.extras++;
-                    map.debugDrawer.FlashCell(best.pawn.Position);
+                    best.extrasRange += (int) range;
+                    best.extraPos += GetShiftedPosition(pawn);
+                    best.extras++;                    
                     return false;
                 }
             }
-            grid.Next(pawn.Position);
+            IntVec3 shiftedPos = GetShiftedPosition(pawn) + sightRecord.extraPos;
+            shiftedPos = new IntVec3((int)((shiftedPos.x) / (sightRecord.extras + 1f)), 0, (int)((shiftedPos.z) / (sightRecord.extras + 1f)));            
+            grid.Next(shiftedPos, range);
+            grid.Set(shiftedPos, sightRecord.extras + 1, 1);
             ShadowCastingUtility.CastVisibility(
                 map,
-                pawn.Position,
-                (cell) =>
+                shiftedPos,
+                (cell, dist) =>
                 {
-                    grid.Set(cell, sightRecord.extras + 1);
+                    grid.Set(cell, sightRecord.extras + 1, dist);
                 },
                 Mathf.CeilToInt(range)
-            );
-            sightRecord.doingExtras = sightRecord.extras > 0;
+            );            
             sightRecord.extras = 0;
+            sightRecord.extrasRange = 0;
+            sightRecord.extraPos = IntVec3.Zero;
             sightRecord.lastUpdated = GenTicks.TicksGame;
             sightRecord.lastRange = range;
             return true;
@@ -330,13 +333,8 @@ namespace CombatExtended
 
         private bool TryCastInsect(Pawn insect)
         {
-            PawnSightRecord sightRecord = pawnToInfo[insect];
-            if (sightRecord.doingExtras && sightRecord.extras == 0)
-            {
-                sightRecord.doingExtras = false;
-                return false;
-            }
-            float range = 10 * performanceRangeFactor;
+            PawnSightRecord sightRecord = pawnToInfo[insect];            
+            float range = (10 + sightRecord.extrasRange) * performanceRangeFactor / (1 + sightRecord.extras);
             if (sightRecord.extras == 0)
             {
                 PawnSightRecord best = null;
@@ -361,23 +359,41 @@ namespace CombatExtended
                     return false;
                 }
             }
-            gridFriendly.Next(insect.Position);
-            gridHostile.Next(insect.Position);
+            IntVec3 shiftedPos = insect.Position;
+            shiftedPos = new IntVec3((int)((shiftedPos.x + sightRecord.extraPos.x) / (sightRecord.extras + 1f)), 0, (int)((shiftedPos.z + sightRecord.extraPos.z) / (sightRecord.extras + 1f)));            
+            gridFriendly.Next(shiftedPos, range);
+            gridFriendly.Set(shiftedPos, 1 + sightRecord.extras, 1);
+            gridHostile.Next(shiftedPos, range);                        
+            gridHostile.Set(shiftedPos, 1 + sightRecord.extras, 1);
             ShadowCastingUtility.CastVisibility(
                 map,
-                insect.Position,
-                (cell) =>
+                shiftedPos,
+                (cell, dist) =>
                 {
-                    gridFriendly.Set(cell, 1 + sightRecord.extras);
-                    gridHostile.Set(cell, 1 + sightRecord.extras);
+                    gridFriendly.Set(cell, 1 + sightRecord.extras, dist);
+                    gridHostile.Set(cell, 1 + sightRecord.extras, dist);
                 },
                 Mathf.CeilToInt(range)
-            );
-            sightRecord.doingExtras = sightRecord.extras > 0;
+            );            
             sightRecord.extras = 0;
             sightRecord.lastUpdated = GenTicks.TicksGame;
             sightRecord.lastRange = range;
             return true;
+        }
+
+        private static IntVec3 GetShiftedPosition(Pawn pawn)
+        {
+            PawnPath path;
+
+            if (!(pawn.pather?.moving ?? false) || (path = pawn.pather.curPath) == null || path.NodesLeftCount <= 1)
+                return pawn.Position;
+
+            float distanceTraveled = Mathf.Min(pawn.GetStatValue(StatDefOf.MoveSpeed) * SIGHTINTERVAL / 60f, path.NodesLeftCount - 1);
+            //
+            // IntVec3 position = path.Peek(Mathf.FloorToInt(distanceTraveled));
+            // pawn.Map.debugDrawer.FlashCell(pawn.Position, 0.1f, "original");
+            // pawn.Map.debugDrawer.FlashCell(position, 0.9f, "shifted");
+            return path.Peek(Mathf.FloorToInt(distanceTraveled));
         }
     }
 }

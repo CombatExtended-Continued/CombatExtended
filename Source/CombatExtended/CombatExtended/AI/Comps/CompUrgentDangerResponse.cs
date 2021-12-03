@@ -33,8 +33,7 @@ namespace CombatExtended.AI
         private bool _disabled = false;
         
         private int _cooldownTick = -1;
-        private IntVec3 _lastCell;
-       
+        private IntVec3 _lastCell;       
 
         public override int Priority => 1200;
         private float Vision
