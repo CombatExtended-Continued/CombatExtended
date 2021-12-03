@@ -246,7 +246,7 @@ namespace CombatExtended
                 // Log2({64 - Min[64, direction.Magnitude / (0.25f * enemies)]} * enemies / 2f)
                 //
                 // This is a very fast aproximation of the above equation.
-                int magSqr = (int)(direction.sqrMagnitude / (0.25f * enemies * enemies) * 2f);
+                int magSqr = (int)(direction.sqrMagnitude / (0.25f * enemies * enemies) / 2f);
                 if (magSqr > sqrtLookup.Length)
                 {
                     cache.hasCover = hasCover = false;
@@ -254,7 +254,7 @@ namespace CombatExtended
                     coverArray[i] = cache;
                     return 0f;
                 }
-                val = (64f - sqrtLookup[magSqr]) * Mathf.Min(enemies, 10f) / 2f;
+                val = (64f - sqrtLookup[magSqr]) * Mathf.Min(enemies, 15) / 4f;
                 val = log2Lookup[(int)(val * 10)];
                 if (hasCover = HasCover(cell))
                     val *= 0.667f;               
