@@ -11,12 +11,8 @@ using Verse.AI;
 namespace CombatExtended.AI
 {
     public class CompUrgentDangerResponse : ICompTactics
-    {
-        private const int HEADSCANSTART = 4;
-        private const int HEADSCANEND = 6;
-        private const int NODECHECKS = 6;
-        private const int NODESTEP = 5;
-        private const int NODESTEPMIN = 3;
+    {        
+        private const int CELLSAHEAD = 6;        
         private const float FOCUSWEIGHT = 0.4f;
         private const float VISIONWEIGHT = 0.4f;
         private const float HEARINGWEIGHT = 0.2f;
@@ -110,7 +106,7 @@ namespace CombatExtended.AI
                 _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
                 return;
             }            
-            if (path.NodesLeftCount <= NODESTEP + 1 || path.NodesLeftCount <= HEADSCANEND)
+            if (path.NodesLeftCount <= CELLSAHEAD * 2)
             {
                 return;
             }            
@@ -120,62 +116,20 @@ namespace CombatExtended.AI
             {
                 _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
                 return;
-            }
-            //Pawn other;
-            //Map map = pawn.Map;            
-            //Faction faction = pawn.Faction;            
-            
-            //for (int i = HEADSCANSTART; i < HEADSCANEND; i++)
-            //{
-            //    IntVec3 cell = path.nodes[path.curNodeIndex - i];                               
-            //    if((other = cell.GetFirstPawn(map)) != null && !other.Downed && pawn.HostileTo(other))
-            //    {
-            //        TryHostilityResponse(other);
-            //        break;
-            //    }                
-            //}            
-        }
-
-        //private void TryHostilityResponse(Pawn enemy)
-        //{
-        //    Map.debugDrawer.FlashCell(SelPawn.Position, 1.0f, duration: 100);
-
-
-        //    if (SelPawn.WorkTagIsDisabled(WorkTags.Violent))
-        //    {
-        //        return;
-        //    }                                          
-        //    ThingWithComps weapon = CurrentWeapon;
-        //    SightTracker tracker = Map.GetComponent<SightTracker>();
-        //    if (weapon?.def.IsMeleeWeapon ?? false)
-        //    {
-        //        return;
-        //    }
-        //    tracker.TryGetGrid(enemy, out SightGrid gridSelf);
-        //    tracker.TryGetGrid(SelPawn,  out SightGrid gridEnemy);
-        //    if(gridEnemy == null)
-        //    {                
-        //        return;
-        //    }
-        //    float friendlies = gridSelf[enemy.Position];
-        //    float enemies =   gridEnemy[enemy.Position];
-        //    if (friendlies + 2 > enemies && friendlies != 0)
-        //    {
-        //        return;
-        //    }
-        //    if (weapon.def.weaponTags != null && weapon.def.weaponTags.Any(s => s == "CE_AI_BROOM"))
-        //    {
-        //        OrderAttackJob();
-        //    }            
-        //}
-       
-        //private void OrderAttackJob()
-        //{
-        //    Job job = JobMaker.MakeJob(JobDefOf.Wait_Combat);
-        //    if (job != null)
-        //    {
-        //        SelPawn.jobs.StartJob(job, JobCondition.InterruptForced);
-        //    }
-        //}      
+            }            
+            List<IntVec3> cells = GenAdjFast.AdjacentCells8Way(path.nodes[path.curNodeIndex - CELLSAHEAD]);
+            Map map = Map;
+            for(int i = 0;i < cells.Count; i++)
+            {
+                if (cells[i].InBounds(map))
+                {                    
+                    Pawn other = cells[i].GetFirstPawn(map);
+                    if (other?.HostileTo(SelPawn) ?? false && Rand.Chance(awarness))
+                    {                                                
+                        break;
+                    }
+                }
+            }            
+        }        
     }
 }

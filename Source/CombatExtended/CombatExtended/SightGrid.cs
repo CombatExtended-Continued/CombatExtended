@@ -101,8 +101,8 @@ namespace CombatExtended
             }
         }
 
-        public void Set(IntVec3 cell) => Set(cellIndices.CellToIndex(cell));
-        public void Set(int index)
+        public void Set(IntVec3 cell, int num = 1) => Set(cellIndices.CellToIndex(cell), num);
+        public void Set(int index, int num = 1)
         {
             if (index >= 0 && index < mapCellNum)
             {
@@ -113,9 +113,9 @@ namespace CombatExtended
                     float t = record.expireAt - GenTicks.TicksGame;
                     if (t > 0.0f)
                     {
-                        record.count += 1;
-                        record.direction.x += cell.x - center.x;
-                        record.direction.y += cell.z - center.z;
+                        record.count += (short)num;
+                        record.direction.x += (cell.x - center.x) * num;
+                        record.direction.y += (cell.z - center.z) * num;
                     }
                     else if (t >= -updateInterval)
                     {
@@ -124,9 +124,9 @@ namespace CombatExtended
                         record.countPrev = record.count;
                         record.directionPrev = record.direction;
 
-                        record.direction.x = cell.x - center.x;
-                        record.direction.y = cell.z - center.z;
-                        record.count = 1;
+                        record.direction.x = (cell.x - center.x) * num;
+                        record.direction.y = (cell.z - center.z) * num;
+                        record.count = (short)num;
                     }
                     else
                     {
@@ -135,9 +135,9 @@ namespace CombatExtended
                         record.countPrev = 0;
                         record.directionPrev = Vector2.zero;
 
-                        record.direction.x = cell.x - center.x;
-                        record.direction.y = cell.z - center.z;
-                        record.count = 1;
+                        record.direction.x = (cell.x - center.x) * num;
+                        record.direction.y = (cell.z - center.z) * num;
+                        record.count = (short)num;
                     }
                     record.sig = sig;
                     sightArray[index] = record;
@@ -221,7 +221,7 @@ namespace CombatExtended
         // TODO remerge this.
         private float GetCellSightCoverRatingInternel(IntVec3 cell, out bool hasCover)
         {
-            if (cell.InBounds(map))
+            if (!cell.InBounds(map))
             {
                 hasCover = false;
                 return 0f;
