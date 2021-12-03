@@ -19,9 +19,9 @@ namespace CombatExtended
             {
                 var props = (ProjectilePropertiesCE)this.def.projectile;
 
-                int tiles_penetration = props.fuze_delay;
+                float tiles_penetration = props.fuze_delay;
 
-                tiles_penetration /= (hitThing.HitPoints / 300);
+                tiles_penetration /= (hitThing.HitPoints / 300f);
 
                 Log.Message(tiles_penetration.ToString().Colorize(Color.red));
 
@@ -30,7 +30,7 @@ namespace CombatExtended
                 Log.Message(this.origin.x.ToString());
 
                 Vector3 direction = hitThing.Position.ToVector3() - (new Vector3(this.origin.x, 0, this.origin.y));
-                IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * tiles_penetration))).ToIntVec3();
+                IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * Math.Min(tiles_penetration, 1)))).ToIntVec3();
 
                 Log.Message(direction.ToString());
 
