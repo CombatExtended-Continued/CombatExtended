@@ -245,7 +245,7 @@ namespace CombatExtended
                             MapCombatReservationManager.Reserve(SelPawn, curEnemyTarget);
                     }
                 }
-            }
+            }            
         } 
 
         private void TryGiveTacticalJobs()

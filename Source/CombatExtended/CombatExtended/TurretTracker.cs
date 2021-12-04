@@ -25,7 +25,7 @@ namespace CombatExtended
         public TurretTracker(Map map) : base(map)
         {
             indices = map.cellIndices;
-            grid = new SightGrid(map, null, SHADOW_DANGETICKS);
+            grid = new SightGrid(map);
             for (int i = 0; i < BUCKETCOUNT; i++)
                 buckets[i] = new List<Building_TurretGunCE>(4);                                        
         }
@@ -42,7 +42,12 @@ namespace CombatExtended
                     if (turret.Active)
                         CastTurretShadow(turret);
                 }
-                index = (index + 1) % BUCKETCOUNT;
+                index++;
+                if (index >= buckets.Length)
+                {
+                    index = 0;
+                    grid.NextCycle();
+                }
             }
         }
 

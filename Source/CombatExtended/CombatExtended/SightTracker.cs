@@ -22,24 +22,52 @@ namespace CombatExtended
 
         private class PawnSightRecord
         {
-            public int index;
-
+            /// <summary>
+            /// The bucket index of the owner pawn.
+            /// </summary>
+            public int bucketIndex;
+            /// <summary>
+            /// Owner pawn.
+            /// </summary>
             public Pawn pawn;
+            /// <summary>
+            /// Wether the parent pawn is an insect.
+            /// </summary>
             public bool insect;
+            /// <summary>
+            /// Wether the parent pawn's faction is friendly to the parent map.
+            /// </summary>
             public bool friendly;            
-
-            public int lastUpdated = -1;
+            /// <summary>
+            /// The tick at which this pawn was updated.
+            /// </summary>
+            public int lastCycle = -1;
+            /// <summary>
+            /// Last range of value of the owner pawn.
+            /// </summary>
             public float lastRange = -1;
-            
-            public int extras;
-            public int extrasRange;
-            public IntVec3 extraPos;            
-
+            /// <summary>
+            /// Number of other pawns skipping casting by using this pawn.
+            /// </summary>
+            public int carry;
+            /// <summary>
+            /// The sum of ranges of the carried pawns.
+            /// </summary>
+            public int carryRange;
+            /// <summary>
+            /// The sum of positions for the carried pawns.
+            /// </summary>
+            public IntVec3 carryPosition;            
+            /// <summary>
+            /// Returns wether this pawn is friendly to the parent map.
+            /// </summary>
             public bool IsFriendly
             {
                 get => friendly;
             }
-
+            /// <summary>
+            /// Returns wether this pawn is friendly to the parent map.
+            /// </summary>
             public bool IsHostile
             { 
                 get => !friendly;
@@ -74,8 +102,8 @@ namespace CombatExtended
 
         public SightTracker(Map map) : base(map)
         {
-            gridFriendly = new SightGrid(map, null, SIGHTINTERVAL);
-            gridHostile = new SightGrid(map, null, SIGHTINTERVAL);
+            gridFriendly = new SightGrid(map);
+            gridHostile = new SightGrid(map);
             for (int i = 0; i < BUCKETCOUNT; i++)
             {
                 friendlies[i] = new List<Pawn>(5);
@@ -96,7 +124,7 @@ namespace CombatExtended
             }
             if ((ticks + 10) % BUCKETINTERVAL == 0)
             {
-                UpdatePawns(gridFriendly, hostiles, ref hIndex);
+                UpdatePawns(gridFriendly, hostiles, ref hIndex);                
                 updateNum++;
             }
             if ((ticks + 15) % BUCKETINTERVAL == 0)
@@ -107,7 +135,7 @@ namespace CombatExtended
             if (updateNum % 3 == 0)
             {
                 performanceRangeFactor = 0.5f - Mathf.Min(pawnsCastedNum, 75f) / 75f * 0.35f;
-                pawnsCastedNum = updateNum = 0;
+                pawnsCastedNum = updateNum = 0;                
             }
 
             if (Controller.settings.DebugDrawLOSShadowGrid && GenTicks.TicksGame % 15 == 0)
@@ -122,7 +150,7 @@ namespace CombatExtended
                         {
                             var value = gridHostile.GetVisibility(cell, out int enemies);
                             if (value > 0)
-                                map.debugDrawer.FlashCell(cell, (float)Mathf.Clamp(value, 0f, 0.95f), $"{Math.Round(value, 3)} {enemies}", 15);
+                                map.debugDrawer.FlashCell(cell, (float)value/ 10f, $"{Math.Round(value, 3)} {enemies}", 15);
                         }
                     }
                 }
@@ -144,7 +172,7 @@ namespace CombatExtended
                         //    map.debugDrawer.FlashCell(cell, 0.5f, $"{1f}", 15);                        
                         if (cell.InBounds(map) && gridHostile[cell] >= 0)
                         {
-                            Vector2 direction = gridHostile.GetDirectionAt(cell) / 62f;
+                            Vector2 direction = gridHostile.GetDirectionAt(cell).normalized * 0.5f;
 
                             Vector2 start = UI.MapToUIPosition(cell.ToVector3Shifted());
                             Vector2 end = UI.MapToUIPosition(cell.ToVector3Shifted() + new Vector3(direction.x, 0, direction.y));
@@ -184,10 +212,10 @@ namespace CombatExtended
                 {
                     pawn = pawn,
                     insect = true,
-                    index = pawn.thingIDNumber % BUCKETCOUNT
+                    bucketIndex = pawn.thingIDNumber % BUCKETCOUNT
                 };
                 pawnToInfo[pawn] = record;
-                insects[record.index].Add(pawn);
+                insects[record.bucketIndex].Add(pawn);
             }
             else if (pawn.Faction != null && pawn.RaceProps.Humanlike)
             {
@@ -195,13 +223,13 @@ namespace CombatExtended
                 {
                     pawn = pawn,
                     friendly = !pawn.Faction.HostileTo(map.ParentFaction),
-                    index = pawn.thingIDNumber % BUCKETCOUNT
+                    bucketIndex = pawn.thingIDNumber % BUCKETCOUNT
                 };
                 pawnToInfo[pawn] = record;
                 if (record.IsFriendly)
-                    friendlies[record.index].Add(pawn);
+                    friendlies[record.bucketIndex].Add(pawn);
                 else
-                    hostiles[record.index].Add(pawn);
+                    hostiles[record.bucketIndex].Add(pawn);
             }
         }
 
@@ -210,13 +238,13 @@ namespace CombatExtended
             if (!pawnToInfo.TryGetValue(pawn, out PawnSightRecord record))
                 return;
             if (record.insect)
-                insects[record.index].Remove(pawn);
+                insects[record.bucketIndex].Remove(pawn);
             else
             {
                 if (record.IsFriendly)
-                    friendlies[record.index].Remove(pawn);
+                    friendlies[record.bucketIndex].Remove(pawn);
                 else
-                    hostiles[record.index].Remove(pawn);
+                    hostiles[record.bucketIndex].Remove(pawn);
             }
             pawnToInfo.Remove(pawn);
         }
@@ -235,7 +263,12 @@ namespace CombatExtended
                         pawnsCastedNum++;
                 }
             }
-            index = (index + 1) % BUCKETCOUNT;
+            index++;
+            if(index >= pool.Length)
+            {
+                index = 0;
+                grid.NextCycle();
+            }
         }
 
         private void UpdateInsects()
@@ -252,13 +285,13 @@ namespace CombatExtended
                         pawnsCastedNum++;
                 }
             }
-            iIndex = (iIndex + 1) % BUCKETCOUNT;
+            iIndex = (iIndex + 1) % BUCKETCOUNT;            
         }
 
         private bool TryCastPawnSight(SightGrid grid, Pawn pawn)
         {
             PawnSightRecord sightRecord = pawnToInfo[pawn];            
-            if (GenTicks.TicksGame - sightRecord.lastUpdated < SIGHTINTERVAL)
+            if (grid.CycleNum == sightRecord.lastCycle)
                 return false;
 
             if (pawn.WorkTagIsDisabled(WorkTags.Violent) || pawn.equipment?.equipment == null || GenTicks.TicksGame - pawn.needs?.rest?.lastRestTick <= 30)
@@ -270,7 +303,7 @@ namespace CombatExtended
 
             float range;
             range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * performanceRangeFactor;            
-            range = (range + sightRecord.extrasRange) / (1 + sightRecord.extras);
+            range = (range + sightRecord.carryRange) / (1 + sightRecord.carry);
             if (range < 3.0f)
                 return false;
                 
@@ -283,101 +316,106 @@ namespace CombatExtended
                 
                 range *= Mathf.Clamp(skill / 7.5f, 0.85f, 1.75f);
             }                                   
-            if (sightRecord.extras == 0)
+            if (sightRecord.carry == 0)
             {
                 PawnSightRecord best = null;
                 int bestExtras = -1;
-                foreach (Pawn p in pawn.Position.PawnsInRange(map, 4))
+                foreach (Pawn p in pawn.Position.PawnsInRange(map, 8 * (1 - performanceRangeFactor)))
                 {
                     if (p != pawn && pawnToInfo.TryGetValue(p, out PawnSightRecord s))
                     {
                         if (s.friendly == sightRecord.friendly
                             && s.insect == sightRecord.insect
-                            && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL
-                            && s.lastRange - range > -10
-                            && bestExtras < s.extras)
+                            && grid.CycleNum - s.lastCycle == 1
+                            && s.lastRange - range > -15
+                            && bestExtras < s.carry)
                         {
                             best = s;
-                            bestExtras = s.extras;
+                            bestExtras = s.carry;
                         }
                     }
                 }
                 if (best != null)
                 {
-                    best.extrasRange += (int) range;
-                    best.extraPos += GetShiftedPosition(pawn);
-                    best.extras++;                    
+                    best.carryRange += (int) range;
+                    best.carryPosition += GetShiftedPosition(pawn);
+                    best.carry++;
+                    sightRecord.lastCycle = grid.CycleNum;
                     return false;
                 }
             }
-            IntVec3 shiftedPos = GetShiftedPosition(pawn) + sightRecord.extraPos;
-            shiftedPos = new IntVec3((int)((shiftedPos.x) / (sightRecord.extras + 1f)), 0, (int)((shiftedPos.z) / (sightRecord.extras + 1f)));            
+            IntVec3 shiftedPos = GetShiftedPosition(pawn) + sightRecord.carryPosition;
+            shiftedPos = new IntVec3((int)((shiftedPos.x) / (sightRecord.carry + 1f)), 0, (int)((shiftedPos.z) / (sightRecord.carry + 1f)));            
             grid.Next(shiftedPos, range);
-            grid.Set(shiftedPos, sightRecord.extras + 1, 1);
+            grid.Set(shiftedPos, sightRecord.carry + 1, 1);
             ShadowCastingUtility.CastVisibility(
                 map,
                 shiftedPos,
                 (cell, dist) =>
                 {
-                    grid.Set(cell, sightRecord.extras + 1, dist);
+                    grid.Set(cell, sightRecord.carry + 1, dist);
                 },
                 Mathf.CeilToInt(range)
             );            
-            sightRecord.extras = 0;
-            sightRecord.extrasRange = 0;
-            sightRecord.extraPos = IntVec3.Zero;
-            sightRecord.lastUpdated = GenTicks.TicksGame;
+            sightRecord.carry = 0;
+            sightRecord.carryRange = 0;
+            sightRecord.carryPosition = IntVec3.Zero;
+            sightRecord.lastCycle = grid.CycleNum;
             sightRecord.lastRange = range;
             return true;
         }
 
         private bool TryCastInsect(Pawn insect)
         {
-            PawnSightRecord sightRecord = pawnToInfo[insect];            
-            float range = (10 + sightRecord.extrasRange) * performanceRangeFactor / (1 + sightRecord.extras);
-            if (sightRecord.extras == 0)
-            {
-                PawnSightRecord best = null;
-                int bestExtras = -1;
-                foreach (Pawn p in insect.Position.PawnsInRange(map, 4))
-                {
-                    if (p != insect && pawnToInfo.TryGetValue(p, out PawnSightRecord s))
-                    {
-                        if (s.friendly == sightRecord.friendly
-                            && s.insect
-                            && GenTicks.TicksGame - s.lastUpdated < SIGHTINTERVAL
-                            && bestExtras < s.extras)
-                        {
-                            best = s;
-                            bestExtras = s.extras;
-                        }
-                    }
-                }
-                if (best != null)
-                {
-                    best.extras++;
-                    return false;
-                }
-            }
-            IntVec3 shiftedPos = insect.Position;
-            shiftedPos = new IntVec3((int)((shiftedPos.x + sightRecord.extraPos.x) / (sightRecord.extras + 1f)), 0, (int)((shiftedPos.z + sightRecord.extraPos.z) / (sightRecord.extras + 1f)));            
-            gridFriendly.Next(shiftedPos, range);
-            gridFriendly.Set(shiftedPos, 1 + sightRecord.extras, 1);
-            gridHostile.Next(shiftedPos, range);                        
-            gridHostile.Set(shiftedPos, 1 + sightRecord.extras, 1);
-            ShadowCastingUtility.CastVisibility(
-                map,
-                shiftedPos,
-                (cell, dist) =>
-                {
-                    gridFriendly.Set(cell, 1 + sightRecord.extras, dist);
-                    gridHostile.Set(cell, 1 + sightRecord.extras, dist);
-                },
-                Mathf.CeilToInt(range)
-            );            
-            sightRecord.extras = 0;
-            sightRecord.lastUpdated = GenTicks.TicksGame;
-            sightRecord.lastRange = range;
+            //PawnSightRecord sightRecord = pawnToInfo[insect];
+            //if (grid.Cycle == sightRecord.lastCycle)
+            //    return false;
+            //float range = (10 + sightRecord.carryRange) * performanceRangeFactor / (1 + sightRecord.carry);
+            //if (sightRecord.carry == 0)
+            //{
+            //    PawnSightRecord best = null;
+            //    int bestExtras = -1;
+            //    foreach (Pawn p in insect.Position.PawnsInRange(map, 8 * (1 - performanceRangeFactor)))
+            //    {
+            //        if (p != insect && pawnToInfo.TryGetValue(p, out PawnSightRecord s))
+            //        {
+            //            if (s.friendly == sightRecord.friendly
+            //                && s.insect
+            //                && GenTicks.TicksGame - s.lastCycle < SIGHTINTERVAL
+            //                && bestExtras < s.carry)
+            //            {
+            //                best = s;
+            //                bestExtras = s.carry;
+            //            }
+            //        }
+            //    }
+            //    if (best != null)
+            //    {
+            //        best.carry++;
+            //        return false;
+            //    }
+            //}
+            //IntVec3 shiftedPos = insect.Position;
+            //shiftedPos = new IntVec3((int)((shiftedPos.x + sightRecord.carryPosition.x) / (sightRecord.carry + 1f)), 0, (int)((shiftedPos.z + sightRecord.carryPosition.z) / (sightRecord.carry + 1f)));            
+            //gridFriendly.Next(shiftedPos, range);
+            //gridFriendly.Set(shiftedPos, 1 + sightRecord.carry, 1);
+            //gridHostile.Next(shiftedPos, range);                        
+            //gridHostile.Set(shiftedPos, 1 + sightRecord.carry, 1);
+            //ShadowCastingUtility.CastVisibility(
+            //    map,
+            //    shiftedPos,
+            //    (cell, dist) =>
+            //    {
+            //        gridFriendly.Set(cell, 1 + sightRecord.carry, dist);
+            //        gridHostile.Set(cell, 1 + sightRecord.carry, dist);
+            //    },
+            //    Mathf.CeilToInt(range)
+            //);
+            //sightRecord.carry = 0;
+            //sightRecord.carryRange = 0;
+            //sightRecord.carryPosition = IntVec3.Zero;
+            //sightRecord.lastCycle = GenTicks.TicksGame;
+            //sightRecord.lastRange = range;
             return true;
         }
 
