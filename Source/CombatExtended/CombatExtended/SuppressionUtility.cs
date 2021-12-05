@@ -169,7 +169,7 @@ namespace CombatExtended
             if (visibilityRating > 0f)
             {
                 // Avoid bullets and other danger source
-                cellRating -= Mathf.Min(visibilityRating, 50f);
+                cellRating -= Mathf.Min(visibilityRating, 10f);
                 cellRating -= dangerTracker.DangerAt(cell) * 2f;
                 // Only apply this at night for performance reasons.
                 if(lightingTracker.IsNight)

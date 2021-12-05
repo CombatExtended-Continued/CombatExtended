@@ -23,7 +23,7 @@ namespace CombatExtended.AI
                     offsets[k++] = new IntVec3(i, 0, j);            
         }
 
-        private const int CELLSAHEAD = 6;
+        private const int CELLSAHEAD = 3;
 
         private const float FOCUSWEIGHT = 0.4f;
         private const float VISIONWEIGHT = 0.4f;
@@ -118,7 +118,7 @@ namespace CombatExtended.AI
                 _cooldownTick = GenTicks.TicksGame + GenTicks.TickRareInterval;
                 return;
             }
-            if (path.NodesLeftCount <= CELLSAHEAD + 8)
+            if (path.NodesLeftCount <= CELLSAHEAD + 9)
             {
                 return;
             }
@@ -131,7 +131,7 @@ namespace CombatExtended.AI
             }
             Map map = Map;
             Pawn enemy = null;
-            for (int k = 0; k < 6; k += 2)
+            for (int k = 0; k < 8; k += 2)
             {
                 IntVec3 center = path.nodes[path.curNodeIndex - CELLSAHEAD - k];
                 IntVec3 cell;
@@ -139,7 +139,7 @@ namespace CombatExtended.AI
                 {
                     cell = center + offsets[i];
                     if (cell.InBounds(map))
-                    {
+                    {                        
                         Pawn other = cell.GetFirstPawn(map);
                         if ((other?.HostileTo(SelPawn) ?? false) && !other.Downed && !other.WorkTagIsDisabled(WorkTags.Violent))
                         {
@@ -165,7 +165,7 @@ namespace CombatExtended.AI
                 {
                     Job job = JobMaker.MakeJob(JobDefOf.Wait_Combat, Rand.Range(300, 500), checkOverrideOnExpiry: true);
                     if (job != null)
-                    {
+                    {                        
                         pawn.jobs.StopAll();
                         pawn.jobs.StartJob(job, JobCondition.InterruptForced);
                     }
@@ -175,7 +175,7 @@ namespace CombatExtended.AI
                 {
                     Job job = SuppressionUtility.GetRunForCoverJob(pawn, enemy.Position);
                     if (job != null)
-                    {
+                    {                        
                         pawn.jobs.StopAll();
                         pawn.jobs.StartJob(job, JobCondition.InterruptForced);
                     }

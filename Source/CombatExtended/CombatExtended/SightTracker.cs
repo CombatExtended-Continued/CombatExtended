@@ -14,7 +14,7 @@ namespace CombatExtended
     public class SightTracker : MapComponent
     {
         private const int BUCKETCOUNT = 20;
-        private const int BUCKETINTERVAL = 15;
+        private const int BUCKETINTERVAL = 10;
         private const float SIGHTINTERVAL = BUCKETCOUNT * BUCKETINTERVAL;
 
         private static readonly Vector2 DEBUGDOTOFFSET = new Vector2(-1, -1);

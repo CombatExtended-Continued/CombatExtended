@@ -121,9 +121,9 @@ namespace CombatExtended.HarmonyCE
             {
                 int value = 0;
                 if (turretTracker != null)
-                    value += turretTracker.GetVisibleToTurret(index) ? 50 : 0;
+                    value += turretTracker.GetVisibleToTurret(index) ? 75 : 0;
                 if (sightGrid != null)
-                    value += (int)Mathf.Min(sightGrid.GetVisibility(index) * 50, 400);
+                    value += (int)Mathf.Min(sightGrid.GetVisibility(index) * 50, 500);
                 if (value > 0)
                 {
                     if (dangerTracker != null)

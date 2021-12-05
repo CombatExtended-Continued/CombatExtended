@@ -113,7 +113,7 @@ namespace CombatExtended.HarmonyCE
                         if (attacker.Position.DistanceToSquared(target.Thing.Position) < 16 && distSqr > 255)
                             result -= 2.5f;
                     }
-                    result -= attackers.Count * 2.5f;
+                    result += 10 - attackers.Count * 3.5f;
                 }                
                 if (target.Thing is Pawn other && searcher.Thing is Pawn pawn)
                 {
@@ -123,11 +123,11 @@ namespace CombatExtended.HarmonyCE
                 if (target.Thing != null && (verb.IsMeleeAttack || verb.EffectiveRange <= 25))
                 {                    
                     if (turretTracker != null)
-                        result -= turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
+                        result += turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
                     if (sightGrid != null)
-                        result -= sightGrid.GetCellSightCoverRating(target.Thing.Position);
+                        result += 15 - sightGrid.GetCellSightCoverRating(target.Thing.Position);
 
-                    result -= Mathf.Clamp(Mathf.Abs(distSqr) / (16f * 16f) * 2f, 0, 15f);
+                    result += 10 - Mathf.Abs(16f * 16f - distSqr) / (16f * 16f) * 10;
                 }                
                 if (verb.EffectiveRange >= 25)
                 {

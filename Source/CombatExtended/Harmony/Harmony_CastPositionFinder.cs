@@ -85,16 +85,16 @@ namespace CombatExtended.HarmonyCE
                             __result += 8;
                     }
                 }                
-                float visibilityCost = 0;
+                float sightCost = 0;
                 if (sightGrid != null)
-                    visibilityCost += sightGrid.GetCellSightCoverRating(c);
+                    sightCost += 8 - Mathf.Min(sightGrid.GetCellSightCoverRating(c), 8);
                 if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
-                    visibilityCost += 4;
+                    sightCost += -2;
 
-                if (visibilityCost > 0)
+                if (sightCost > 0)
                 {
-                    __result -= visibilityCost;
-                    __result -= dangerTracker.DangerAt(c);
+                    __result += sightCost;
+                    __result += 2 - dangerTracker.DangerAt(c);
                     if (lightingTracker.IsNight)
                         __result *= 1 - lightingTracker.CombatGlowAt(c) / 2f;
                 }
@@ -103,8 +103,8 @@ namespace CombatExtended.HarmonyCE
                     float rangeSqr = range * range;
                     //
                     //__result += (warmupTime - c.DistanceToSquared(target) / rangeSqr) * 4f;
-                    __result -= c.PawnsInRange(map, 8).Count(c => c.Faction == pawn.Faction) * 5;
-                    __result += Mathf.Abs(rangeSqr * 0.75f - c.DistanceToSquared(target)) / (rangeSqr * 0.75f) * 8;
+                    __result -= c.PawnsInRange(map, 8).Count(c => c.Faction == pawn.Faction) * 2.0f;
+                    __result -= Mathf.Abs(rangeSqr * 0.75f - c.DistanceToSquared(target)) / (rangeSqr * 0.75f) * 8;
                 }                
             }
         }

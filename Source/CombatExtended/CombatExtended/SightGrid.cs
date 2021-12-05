@@ -257,12 +257,12 @@ namespace CombatExtended
                 if (record.expireAt - CycleNum > 0)
                 {                   
                     enemies = record.countPrev;
-                    return Mathf.Max((record.visibilityPrev + record.countPrev) / 2f, (record.visibility + record.count) / 2f, 0f);                   
+                    return Mathf.Max((record.visibilityPrev + enemies) / 2f, (record.visibility + enemies) / 2f, 0f);                   
                 }
                 else if(record.expireAt - CycleNum == 0)
                 {
-                    enemies = record.countPrev;
-                    return Mathf.Max((record.visibility + record.count) / 2f, 0f);
+                    enemies = record.count;
+                    return Mathf.Max((record.visibility + enemies) / 2f, 0f);
                 }
             }
             enemies = 0;
@@ -374,7 +374,7 @@ namespace CombatExtended
         {
             sig++;
             this.center = center;
-            this.range = range * 1.3f;
+            this.range = range * 1.5f;
             this.currentCasterFlags = 0;
         }
 
