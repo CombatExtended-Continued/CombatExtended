@@ -19,6 +19,7 @@ namespace CombatExtended
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
+        public Targetting_Mode target_mode = Targetting_Mode.centermass;
 
         #endregion
 
@@ -219,6 +220,29 @@ namespace CombatExtended
             }
         }
 
+        public Texture2D TrueIcon
+        {
+            get
+            {
+                string mode_name = "";
+
+                switch (target_mode)
+                {
+                    case Targetting_Mode.centermass:
+                        mode_name = "center";
+                        break;
+                    case Targetting_Mode.legs_lowertorso:
+                        mode_name = "legs";
+                        break;
+                    case Targetting_Mode.uppertorso_head:
+                        mode_name = "head";
+                        break;
+                }
+
+                return ContentFinder<Texture2D>.Get("UI/Buttons/Targetting/" + mode_name);
+            }
+        }
+
         public IEnumerable<Command> GenerateGizmos()
         {
             Command_Action toggleFireModeGizmo = new Command_Action
@@ -251,6 +275,33 @@ namespace CombatExtended
                 LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimModes, parent, OpportunityType.GoodToKnow);
             }
             yield return toggleAimModeGizmo;
+
+            if (CurrentAimMode == AimMode.AimedShot)
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "switch targeted body part area",
+                    defaultDesc = "",
+                    icon = TrueIcon,
+                    action = delegate
+                    {
+                        switch (target_mode)
+                        {
+                            case Targetting_Mode.centermass:
+                                target_mode = Targetting_Mode.uppertorso_head;
+                                break;
+                            case Targetting_Mode.uppertorso_head:
+                                target_mode = Targetting_Mode.legs_lowertorso;
+                                break;
+                            case Targetting_Mode.legs_lowertorso:
+                                target_mode = Targetting_Mode.centermass;
+                                break;
+                        }
+
+                    }
+                };
+            }
+           
         }
 
         /*
