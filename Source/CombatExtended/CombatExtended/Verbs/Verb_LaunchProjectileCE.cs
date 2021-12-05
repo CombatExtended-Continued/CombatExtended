@@ -348,9 +348,40 @@ namespace CombatExtended
                     }
                     else if (currentTarget.Thing is Pawn)
                     {
-                        // Aim for center of mass on an exposed target
-                        targetRange.min = victimVert.BottomHeight;
-                        targetRange.max = victimVert.MiddleHeight;
+
+                        if (CompFireModes?.CurrentAimMode == AimMode.AimedShot)
+                        {
+                            if (CompFireModes?.target_mode == Targetting_Mode.uppertorso_head)
+                            {
+                                // Aim upper thoraxic to head
+                                targetRange.min = victimVert.MiddleHeight;
+                                targetRange.max = victimVert.Max;
+                            }
+                            else if (CompFireModes?.target_mode == Targetting_Mode.legs_lowertorso)
+                            {
+                                // Aim legs to lower abdomen
+                                targetRange.min = victimVert.Min;
+                                targetRange.max = victimVert.BottomHeight;
+                            }
+                            else
+                            {
+                                // Aim center mass
+                                targetRange.min = victimVert.BottomHeight;
+                                targetRange.max = victimVert.MiddleHeight;
+                            }
+                        }
+                        else
+                        {
+                            // Aim center mass
+                            targetRange.min = victimVert.BottomHeight;
+                            targetRange.max = victimVert.MiddleHeight;
+                        }
+
+
+
+
+
+
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                 }
