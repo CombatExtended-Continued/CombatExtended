@@ -36,7 +36,7 @@ namespace CombatExtended
 
             ThingWithComps weapon = pawn.equipment.Primary;
             if (weapon == null || !weapon.def.IsRangedWeapon)
-                return -1;
+                return 10;
 
             float range;
             range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.5f;

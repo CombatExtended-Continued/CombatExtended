@@ -196,33 +196,36 @@ namespace CombatExtended
             if (range < MinRange)
                 return false;
 
-            if (record.carry == 0)
-            {
-                IThingSightRecord best = null;
-                int bestExtras = -1;
-                foreach(T thing in ThingsInRange(record.thing.Position, 2 * GroupingRange * 0.5f))
-                {
-                    if (thing != record.thing && records.TryGetValue(thing, out IThingSightRecord s))
-                    {
-                        if(grid.CycleNum - s.lastCycle == 1
-                            && s.lastRange - range > -GroupingMaxRangeDelta
-                            && s.carry > bestExtras
-                            && CanGroup(record, s))
-                        {
-                            best = s;
-                            bestExtras = s.carry;
-                        }
-                    }
-                }
-                if (best != null)
-                {
-                    best.carryRange += (int)range;
-                    best.carryPosition += GetShiftedPosition(record);
-                    best.carry++;
-                    record.lastCycle = grid.CycleNum;
-                    return false;
-                }
-            }
+            // no need for this optimization since the heavy lifting is done offthread
+            //
+            // if (record.carry == 0)
+            // {
+            //    IThingSightRecord best = null;
+            //    int bestExtras = -1;
+            //    foreach(T thing in ThingsInRange(record.thing.Position, 2 * GroupingRange * 0.5f))
+            //    {
+            //        if (thing != record.thing && records.TryGetValue(thing, out IThingSightRecord s))
+            //        {
+            //            if(grid.CycleNum - s.lastCycle == 1
+            //                && s.lastRange - range > -GroupingMaxRangeDelta
+            //                && s.carry > bestExtras
+            //                && CanGroup(record, s))
+            //            {
+            //                best = s;
+            //                bestExtras = s.carry;
+            //            }
+            //        }
+            //    }
+            //    if (best != null)
+            //    {
+            //        best.carryRange += (int)range;
+            //        best.carryPosition += GetShiftedPosition(record);
+            //        best.carry++;
+            //        record.lastCycle = grid.CycleNum;
+            //        return false;
+            //    }
+            // }
+
             IntVec3 pos = GetShiftedPosition(record);
             if (!pos.InBounds(map))
             {

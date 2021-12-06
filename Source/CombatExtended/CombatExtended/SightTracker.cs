@@ -16,6 +16,7 @@ namespace CombatExtended
         public SightGridManager_Humanlikes friendlies;
         public SightGridManager_Humanlikes hostiles;
         public SightGridManager_UniversalEnemies mechsInsects;
+        public SightGridUpdater_Turrets turrets;
 
         public SightGrid Friendly => friendlies.grid;
         public SightGrid Hostile => hostiles.grid;
@@ -23,9 +24,12 @@ namespace CombatExtended
         
         public SightTracker(Map map) : base(map)
         {            
-            friendlies = new SightGridManager_Humanlikes(this, 20, 9);
-            hostiles = new SightGridManager_Humanlikes(this, 20, 9);
-            mechsInsects = new SightGridManager_UniversalEnemies(this, 20, 20);
+            friendlies =
+                new SightGridManager_Humanlikes(this, 20, 4);
+            hostiles =
+                new SightGridManager_Humanlikes(this, 20, 4);
+            mechsInsects =
+                new SightGridManager_UniversalEnemies(this, 20, 10);
         }
 
         public override void MapComponentTick()

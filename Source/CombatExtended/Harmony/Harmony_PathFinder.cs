@@ -19,7 +19,8 @@ namespace CombatExtended.HarmonyCE
         private static LightingTracker lightingTracker;
         private static DangerTracker dangerTracker;
         private static TurretTracker turretTracker;
-        private static SightGrid sightGrid;                
+        private static SightGrid eSightGrid;
+        private static SightGrid uSightGrid;
         private static bool crouching;
         private static bool nightTime;
 
@@ -40,8 +41,12 @@ namespace CombatExtended.HarmonyCE
                     lightingTracker = null;
                 if (map.ParentFaction != pawn?.Faction)
                     turretTracker = map.GetComponent<TurretTracker>();
+
+                SightTracker tracker = map.GetSightTracker();
                 if (pawn?.Faction != null)
-                    map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
+                    tracker.TryGetGrid(pawn, out eSightGrid);                                                            
+                if (pawn.RaceProps.IsMechanoid || pawn.RaceProps.Insect)
+                    uSightGrid = tracker.UniversalEnemies;
 
                 // Run normal if we're not being suppressed, running for cover, crouch-walking or not actually moving to another cell
                 CompSuppressable comp = pawn?.TryGetComp<CompSuppressable>();
@@ -82,7 +87,7 @@ namespace CombatExtended.HarmonyCE
         {
             map = null;
             turretTracker = null;
-            sightGrid = null;
+            uSightGrid = null;
             pawn = null;
             dangerTracker = null;
             lightingTracker = null;
@@ -122,8 +127,11 @@ namespace CombatExtended.HarmonyCE
                 int value = 0;
                 if (turretTracker != null)
                     value += turretTracker.GetVisibleToTurret(index) ? 75 : 0;
-                if (sightGrid != null)
-                    value += (int)Mathf.Min(sightGrid.GetVisibility(index) * 50, 500);
+                if (eSightGrid != null)               
+                    value += (int)Mathf.Min(eSightGrid.GetVisibility(index) * 50, 500);
+                if (uSightGrid != null)
+                    value += (int)Mathf.Min(uSightGrid.GetVisibility(index) * 50, 350);
+                
                 if (value > 0)
                 {
                     if (dangerTracker != null)

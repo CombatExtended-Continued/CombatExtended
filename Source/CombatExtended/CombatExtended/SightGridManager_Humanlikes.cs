@@ -27,8 +27,18 @@ namespace CombatExtended
         {
             Pawn pawn = record.thing;
             ThingWithComps weapon = pawn.equipment.Primary;
-            if (weapon == null || !weapon.def.IsRangedWeapon)
+            if (weapon == null) 
                 return -1;
+
+            if(!weapon.def.IsRangedWeapon)
+            {
+                SkillRecord melee = pawn.skills?.GetSkill(SkillDefOf.Melee) ?? null;
+                if (melee != null)
+                {
+                    float skill = melee.Level;
+                    return (int) Mathf.Clamp(skill, 4, 13);
+                }
+            }
 
             float range;
             range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.5f;
@@ -36,10 +46,10 @@ namespace CombatExtended
             if (range < MinRange)
                 return -1;
 
-            SkillRecord skillRecord = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;
+            SkillRecord shooting = pawn.skills?.GetSkill(SkillDefOf.Shooting) ?? null;
             if (record != null)
             {
-                float skill = skillRecord.Level;
+                float skill = shooting.Level;
                 if (map.IsNightTime())
                     skill = Mathf.Max(skill - (1 - pawn.GetStatValue(CE_StatDefOf.NightVisionEfficiency)) * 4, 0f);
                 range *= Mathf.Clamp(skill / 7.5f, 0.85f, 1.75f);
@@ -59,6 +69,7 @@ namespace CombatExtended
             return false;
         }        
 
+        // this is useless atm
         protected override IEnumerable<Pawn> ThingsInRange(IntVec3 position, float range) => position.PawnsInRange(map, range);
     }
 }
