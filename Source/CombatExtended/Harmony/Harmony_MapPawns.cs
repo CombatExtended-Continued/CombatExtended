@@ -15,13 +15,13 @@ namespace CombatExtended.HarmonyCE
         [HarmonyPatch(typeof(MapPawns), nameof(MapPawns.RegisterPawn))]
         public static class Harmony_MapPawns_RegisterPawn
         {
-            public static void Prefix(MapPawns __instance, Pawn p) => __instance.map.GetComponent<SightTracker>().Register(p);
+            public static void Prefix(MapPawns __instance, Pawn p) => __instance.map.GetSightTracker().Register(p);
         }
 
         [HarmonyPatch(typeof(MapPawns), nameof(MapPawns.DeRegisterPawn))]
         public static class Harmony_MapPawns_DeRegisterPawn
         {
-            public static void Prefix(MapPawns __instance, Pawn p) => __instance.map.GetComponent<SightTracker>().DeRegister(p);
+            public static void Prefix(MapPawns __instance, Pawn p) => __instance.map.GetSightTracker().DeRegister(p);
         }
     }
 }

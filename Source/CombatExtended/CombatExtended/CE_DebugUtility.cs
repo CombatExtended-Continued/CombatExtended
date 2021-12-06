@@ -24,23 +24,23 @@ namespace CombatExtended
             return $"Tile index: {tile}";
         }
        
-        [CE_DebugTooltip(CE_DebugTooltipType.Map)]
-        public static string CoverRatingFriendly(Map map, IntVec3 cell)
-        {
-            if (!cell.InBounds(map))
-                return null;
-            SightGrid grid = map.GetComponent<SightTracker>().Friendly;
-            return $"<color=green>Friendly</color>\n" +
-                   $"Sight rating: {grid.GetCellSightCoverRating(cell)}\n" +
-                   $"Has cover: {grid.HasCover(cell)}";
-        }
+        //[CE_DebugTooltip(CE_DebugTooltipType.Map)]
+        //public static string CoverRatingFriendly(Map map, IntVec3 cell)
+        //{
+        //    if (!cell.InBounds(map))
+        //        return null;
+        //    SightGrid grid = map.GetComponent<SightTracker>().Friendly;
+        //    return $"<color=green>Friendly</color>\n" +
+        //           $"Sight rating: {grid.GetCellSightCoverRating(cell)}\n" +
+        //           $"Has cover: {grid.HasCover(cell)}";
+        //}
 
         [CE_DebugTooltip(CE_DebugTooltipType.Map)]
         public static string CoverRatingHostile(Map map, IntVec3 cell)
         {
             if (!cell.InBounds(map))
                 return null;
-            SightGrid grid = map.GetComponent<SightTracker>().Hostile;            
+            SightGrid grid = map.GetComponent<SightTracker>().friendly.grid;
             return $"<color=red>Hostile</color>\n" + grid.GetDebugInfoAt(cell);
         }      
     }

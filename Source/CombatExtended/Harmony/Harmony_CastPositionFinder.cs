@@ -18,10 +18,10 @@ namespace CombatExtended.HarmonyCE
         private static float range;        
         private static Verb verb;
         private static Pawn pawn;
-        private static Map map;        
+        private static Map map;
         private static IntVec3 target;
         private static float warmupTime;
-        private static SightGrid sightGrid;
+        private static SightTracker.SightReader sightReader;
         private static TurretTracker turretTracker;
         private static DangerTracker dangerTracker;
         private static LightingTracker lightingTracker;
@@ -45,13 +45,11 @@ namespace CombatExtended.HarmonyCE
 
                 dangerTracker = map.GetDangerTracker();
                 lightingTracker = map.GetLightingTracker();
+
                 if(map.ParentFaction != newReq.caster?.Faction)
                     turretTracker = map.GetComponent<TurretTracker>();
                 if (newReq.caster != null && newReq.caster.Faction != null)
-                {
-                    if (!map.GetComponent<SightTracker>().TryGetGrid(newReq.caster, out sightGrid))                        
-                        sightGrid = null;                        
-                }                
+                    newReq.caster.GetSightReader(out sightReader);
             }
 
             public static void Postfix()
@@ -59,7 +57,7 @@ namespace CombatExtended.HarmonyCE
                 pawn = null;
                 verb = null;
                 map = null;
-                sightGrid = null;
+                sightReader = null;
                 dangerTracker = null;
                 lightingTracker = null;
                 turretTracker = null;
@@ -86,10 +84,8 @@ namespace CombatExtended.HarmonyCE
                     }
                 }                
                 float sightCost = 0;
-                if (sightGrid != null)
-                    sightCost += 8 - Mathf.Min(sightGrid.GetCellSightCoverRating(c), 8);
-                if (turretTracker != null && turretTracker.GetVisibleToTurret(c))
-                    sightCost += -2;
+                if (sightReader != null)
+                    sightCost += 6 - Mathf.Min(sightReader.GetSightCoverRating(c), 6);                
 
                 if (sightCost > 0)
                 {

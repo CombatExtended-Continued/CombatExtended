@@ -167,6 +167,7 @@ namespace CombatExtended
                     animator = (IAnimator)Activator.CreateInstance(part.animatorClass, new object[] {this, part});                
             }
             Map.GetComponent<TurretTracker>().Register(this);
+            Map.GetComponent<SightTracker>().Register(this);
 
             dormantComp = GetComp<CompCanBeDormant>();
             initiatableComp = GetComp<CompInitiatable>();
@@ -210,7 +211,8 @@ namespace CombatExtended
 
         public override void DeSpawn(DestroyMode mode = DestroyMode.Vanish)    // Added GenClosestAmmo unsubscription
         {
-            Map.GetComponent<TurretTracker>().Unregister(this);
+            Map.GetComponent<SightTracker>().DeRegister(this);
+            Map.GetComponent<TurretTracker>().DeRegister(this);
             base.DeSpawn(mode);
             ResetCurrentTarget();
         }        

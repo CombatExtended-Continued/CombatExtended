@@ -969,6 +969,12 @@ namespace CombatExtended
             return pawn;
         }
 
+        public static bool GetSightReader(this Pawn pawn, out SightTracker.SightReader reader)
+        {
+            SightTracker tracker = pawn.Map.GetComponent<SightTracker>();
+            return tracker.TryGetReader(pawn, out reader);
+        }
+
         public static FactionStrengthTracker GetStrengthTracker(this Faction faction) => Find.World.GetComponent<WorldStrengthTracker>().GetFactionTracker(faction);
     }
 }

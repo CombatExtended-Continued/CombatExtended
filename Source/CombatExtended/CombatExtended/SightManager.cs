@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace CombatExtended
 {
-    public abstract class SightGridManager<T> where T : Thing
+    public abstract class SightTracker<T> where T : Thing
     {        
         protected class IThingSightRecord
         {
@@ -26,33 +26,16 @@ namespace CombatExtended
             /// The tick at which this pawn was updated.
             /// </summary>
             public int lastCycle;
-            /// <summary>
-            /// Last range of the owner thing
-            /// </summary>
-            public int lastRange;
-            /// <summary>
-            /// Number of other pawns skipping casting by using this pawn.
-            /// </summary>
-            public int carry;
-            /// <summary>
-            /// The sum of ranges of the carried pawns.
-            /// </summary>
-            public int carryRange;
-            /// <summary>
-            /// The sum of positions for the carried pawns.
-            /// </summary>
-            public IntVec3 carryPosition;          
         }
 
         public readonly Map map;
-        public readonly SightTracker tracker;
+        public readonly SightTracker parent;
         public readonly SightGrid grid;
         public readonly int bucketCount;
         public readonly int updateInterval;        
 
         private List<IThingSightRecord> tmpRecords = new List<IThingSightRecord>();       
-
-        private int phase;
+        
         private int ticksUntilUpdate;        
         private int curIndex;
         private ThreadStart threadStart;
@@ -61,26 +44,19 @@ namespace CombatExtended
         private readonly Dictionary<T, IThingSightRecord> records = new Dictionary<T, IThingSightRecord>();
         private readonly List<IThingSightRecord>[] pool;
         private readonly List<Action> castingQueue = new List<Action>();
-
-        protected readonly float PerformanceFactorMaxThings = 50;
-        protected readonly float GroupingRange = 4;
-        protected readonly float GroupingMaxRangeDelta = 10;
-        protected readonly float MinRange = 3;      
-
+        
         private bool mapIsAlive = true;
         private bool wait = false;
 
-        public SightGridManager(SightTracker tracker, int bucketCount, int updateInterval)
-        {
-            map = tracker.map;
-            this.tracker = tracker;
-            grid = new SightGrid(map);
-
-            ticksUntilUpdate = updateInterval;
+        public SightTracker(SightTracker tracker, int bucketCount, int updateInterval)
+        {            
+            this.parent = tracker;
             this.updateInterval = updateInterval;
-            this.bucketCount = bucketCount;
-            phase = Rand.Range(1, 17);
-
+            this.bucketCount = bucketCount;            
+            grid = new SightGrid(map = tracker.map);
+            
+            ticksUntilUpdate = updateInterval;
+            
             pool = new List<IThingSightRecord>[this.bucketCount];
             for (int i = 0; i < this.bucketCount; i++)
                 pool[i] = new List<IThingSightRecord>();
@@ -125,9 +101,12 @@ namespace CombatExtended
                 {
                     castingQueue.Add(delegate
                     {
-                        grid.NextCycle();
-                        OnFinishedCycle();
-                        wait = false;
+                        lock (locker)
+                        {
+                            grid.NextCycle();
+                            OnFinishedCycle();
+                            wait = false;
+                        }
                     });
                 }                
                 curIndex = 0;                                                 
@@ -167,14 +146,14 @@ namespace CombatExtended
         }
         
         protected abstract bool Skip(IThingSightRecord record);        
-        protected abstract int GetSightRange(IThingSightRecord record);        
-        protected abstract IEnumerable<T> ThingsInRange(IntVec3 position, float range);
+        protected abstract int GetSightRange(IThingSightRecord record);                
 
-        protected virtual UInt64 GetFlags(IThingSightRecord record) => 0;
-        protected virtual bool CanGroup(IThingSightRecord first, IThingSightRecord second) => true;
+        protected virtual UInt64 GetFlags(IThingSightRecord record) => 0;        
         protected virtual bool Valid(T thing)
         {
             if (thing == null)
+                return false;
+            if (thing.Faction == null)
                 return false;
             if (!thing.Spawned)
                 return false;
@@ -182,10 +161,7 @@ namespace CombatExtended
         }
         protected virtual void OnFinishedCycle()
         {
-        }
-        protected virtual void OnBucketCasted(List<IThingSightRecord> bucket)
-        {
-        }
+        }        
 
         private bool TryCastSight(IThingSightRecord record)
         {
@@ -193,38 +169,8 @@ namespace CombatExtended
                 return false;            
 
             int range = GetSightRange(record);
-            if (range < MinRange)
+            if (range < 3)
                 return false;
-
-            // no need for this optimization since the heavy lifting is done offthread
-            //
-            // if (record.carry == 0)
-            // {
-            //    IThingSightRecord best = null;
-            //    int bestExtras = -1;
-            //    foreach(T thing in ThingsInRange(record.thing.Position, 2 * GroupingRange * 0.5f))
-            //    {
-            //        if (thing != record.thing && records.TryGetValue(thing, out IThingSightRecord s))
-            //        {
-            //            if(grid.CycleNum - s.lastCycle == 1
-            //                && s.lastRange - range > -GroupingMaxRangeDelta
-            //                && s.carry > bestExtras
-            //                && CanGroup(record, s))
-            //            {
-            //                best = s;
-            //                bestExtras = s.carry;
-            //            }
-            //        }
-            //    }
-            //    if (best != null)
-            //    {
-            //        best.carryRange += (int)range;
-            //        best.carryPosition += GetShiftedPosition(record);
-            //        best.carry++;
-            //        record.lastCycle = grid.CycleNum;
-            //        return false;
-            //    }
-            // }
 
             IntVec3 pos = GetShiftedPosition(record);
             if (!pos.InBounds(map))
@@ -232,7 +178,7 @@ namespace CombatExtended
                 Log.Error($"CE: SighGridUpdater {record.thing} position is outside the map's bounds!");
                 return false;
             }
-            int count = record.carry + 1;
+            int count = 1;
             lock (locker)
             {                
                 castingQueue.Add(delegate
@@ -241,25 +187,17 @@ namespace CombatExtended
                     grid.Set(pos, count, 1);
                     ShadowCastingUtility.CastVisibility(map, pos, (cell, dist) => grid.Set(cell, count, dist), range);
                 });                
-            }           
-            record.carry = 0;
-            record.carryRange = 0;
-            record.carryPosition = IntVec3.Zero;
-            record.lastCycle = grid.CycleNum;
-            record.lastRange = range;
+            }                       
+            record.lastCycle = grid.CycleNum;            
             return true;
         }        
 
         private IntVec3 GetShiftedPosition(IThingSightRecord record)
-        {
-            IntVec3 position = record.carryPosition;
+        {            
             if (record.thing is Pawn pawn)
-                position += GetMovingShiftedPosition(pawn);
+                return GetMovingShiftedPosition(pawn);
             else
-                position += record.thing.Position;
-            position.x /= (1 + record.carry);
-            position.z /= (1 + record.carry);
-            return position;
+                return record.thing.Position;            
         }
 
         private IntVec3 GetMovingShiftedPosition(Pawn pawn)

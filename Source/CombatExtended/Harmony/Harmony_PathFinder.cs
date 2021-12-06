@@ -19,8 +19,7 @@ namespace CombatExtended.HarmonyCE
         private static LightingTracker lightingTracker;
         private static DangerTracker dangerTracker;
         private static TurretTracker turretTracker;
-        private static SightGrid eSightGrid;
-        private static SightGrid uSightGrid;
+        private static SightTracker.SightReader sightReader;        
         private static bool crouching;
         private static bool nightTime;
 
@@ -44,9 +43,7 @@ namespace CombatExtended.HarmonyCE
 
                 SightTracker tracker = map.GetSightTracker();
                 if (pawn?.Faction != null)
-                    tracker.TryGetGrid(pawn, out eSightGrid);                                                            
-                if (pawn.RaceProps.IsMechanoid || pawn.RaceProps.Insect)
-                    uSightGrid = tracker.UniversalEnemies;
+                    pawn.GetSightReader(out sightReader);
 
                 // Run normal if we're not being suppressed, running for cover, crouch-walking or not actually moving to another cell
                 CompSuppressable comp = pawn?.TryGetComp<CompSuppressable>();
@@ -86,8 +83,7 @@ namespace CombatExtended.HarmonyCE
         public static void Reset()
         {
             map = null;
-            turretTracker = null;
-            uSightGrid = null;
+            turretTracker = null;            
             pawn = null;
             dangerTracker = null;
             lightingTracker = null;
@@ -124,13 +120,9 @@ namespace CombatExtended.HarmonyCE
         {
             if (map != null)
             {
-                int value = 0;
-                if (turretTracker != null)
-                    value += turretTracker.GetVisibleToTurret(index) ? 75 : 0;
-                if (eSightGrid != null)               
-                    value += (int)Mathf.Min(eSightGrid.GetVisibility(index) * 50, 500);
-                if (uSightGrid != null)
-                    value += (int)Mathf.Min(uSightGrid.GetVisibility(index) * 50, 350);
+                int value = 0;                
+                if (sightReader != null)               
+                    value += (int)Mathf.Min(sightReader.GetVisibility(index) * 50, 500);                
                 
                 if (value > 0)
                 {

@@ -278,7 +278,7 @@ namespace CombatExtended
                         return record.directionPrev / (record.countPrev + 0.01f);
                 }
                 else if (record.expireAt - CycleNum == 0)
-                    return record.direction;
+                    return record.direction / (record.count + 0.01f);
 
             }
             return Vector2.zero;

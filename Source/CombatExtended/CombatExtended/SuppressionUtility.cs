@@ -15,8 +15,7 @@ namespace CombatExtended
 
         private static LightingTracker lightingTracker;
         private static DangerTracker dangerTracker;
-        private static TurretTracker turretTracker;
-        private static SightGrid sightGrid;
+        private static SightTracker.SightReader sightReader;
         private static List<CompProjectileInterceptor> interceptors;
 
         public static bool TryRequestHelp(Pawn pawn)
@@ -76,17 +75,17 @@ namespace CombatExtended
         {            
             float distToSuppressor = (pawn.Position - from).LengthHorizontal;
             IntVec3 coverPosition;
-            //Try to find cover position to move up to
+            // Try to find cover position to move up to
             if (!GetCoverPositionFrom(pawn, from, maxCoverDist, out coverPosition))
             {
                 return null;
             }
-            //Sanity check
+            // Sanity check
             if (pawn.Position.Equals(coverPosition))
             {
                 return null;
             }
-            //Tell pawn to move to position
+            // Tell pawn to move to position
             var job = JobMaker.MakeJob(CE_JobDefOf.RunForCover, coverPosition);
             job.locomotionUrgency = LocomotionUrgency.Sprint;
             job.playerForced = true;
@@ -100,12 +99,7 @@ namespace CombatExtended
             interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
-            if(pawn.Faction != null)            
-                pawn.Map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);            
-            if (pawn.Faction != pawn.Map.ParentFaction)
-                turretTracker = pawn.Map.GetComponent<TurretTracker>();
-            else
-                turretTracker = null;
+            pawn.GetSightReader(out sightReader);          
             float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
             if (bestRating <= 0)
             {
@@ -130,13 +124,13 @@ namespace CombatExtended
             }
             coverPosition = bestPos;
             lightingTracker = null;
-            turretTracker = null;
-            sightGrid = null;
+            sightReader = null;
             return bestRating >= 0;
         }
 
         private static float GetCellCoverRatingForPawn(Pawn pawn, IntVec3 cell, IntVec3 shooterPos)
         {
+            //
             // Check for invalid locations            
             if (!cell.IsValid || !cell.Standable(pawn.Map) || !pawn.CanReserveAndReach(cell, PathEndMode.OnCell, Danger.Deadly) || cell.ContainsStaticFire(pawn.Map))
             {
@@ -147,10 +141,10 @@ namespace CombatExtended
 
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating += 15f;
+                cellRating += 20;
             }
             else
-            {                
+            {
                 //Check if cell has cover in desired direction
                 Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
                 IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
@@ -158,13 +152,11 @@ namespace CombatExtended
                 cellRating += GetCoverRating(cover) * 2;
             }
             float visibilityRating = 0;
-            if (turretTracker != null && turretTracker.GetVisibleToTurret(cell))
+            if (sightReader != null)
             {
-                visibilityRating += 2f;
-            }
-            if (sightGrid != null)
-            {
-                visibilityRating += sightGrid.GetCellSightCoverRating(cell);                
+                visibilityRating += sightReader.GetSightCoverRating(cell);
+                if(sightReader.turrets != null)
+                    visibilityRating += sightReader.turrets[cell] * 2f;
             }
             if (visibilityRating > 0f)
             {
@@ -184,9 +176,9 @@ namespace CombatExtended
                 if (cover == null)
                     continue;
                 if (cover is Gas)
-                    coverLOSRating += 2;
+                    coverLOSRating += 5;
                 else if (cover.def.Fillage == FillCategory.Partial)
-                    coverLOSRating += 4;
+                    coverLOSRating += 12;
             }
             cellRating += Mathf.Min(coverLOSRating, 25);
 

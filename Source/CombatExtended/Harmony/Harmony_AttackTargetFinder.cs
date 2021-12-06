@@ -17,7 +17,7 @@ namespace CombatExtended.HarmonyCE
     {        
         private static Map map;        
         private static List<CompProjectileInterceptor> interceptors;
-        private static SightGrid sightGrid;
+        private static SightTracker.SightReader sightReader;
         private static TurretTracker turretTracker;
         private static CompTacticalManager manager;
         private static CombatReservationManager combatReservationManager;
@@ -56,7 +56,8 @@ namespace CombatExtended.HarmonyCE
                 if(searcher.Thing is Pawn pawn && pawn.Faction != null)
                 {
                     manager = pawn.GetComp<CompTacticalManager>();                    
-                    map.GetComponent<SightTracker>().TryGetGrid(pawn, out sightGrid);
+                    pawn.GetSightReader(out sightReader);
+                    
                     if (pawn.Faction.HostileTo(map.ParentFaction))
                         turretTracker = map.GetComponent<TurretTracker>();
                 }                
@@ -64,7 +65,7 @@ namespace CombatExtended.HarmonyCE
 
             internal static void Postfix()
             {
-                sightGrid = null;
+                sightReader = null;
                 turretTracker = null;
             }
         }
@@ -121,11 +122,9 @@ namespace CombatExtended.HarmonyCE
                         result += (verb.EffectiveRange * verb.EffectiveRange - distSqr) / (verb.EffectiveRange * verb.EffectiveRange + 1f) * 10;
                 }                
                 if (target.Thing != null && (verb.IsMeleeAttack || verb.EffectiveRange <= 25))
-                {                    
-                    if (turretTracker != null)
-                        result += turretTracker.GetTurretsVisibleCount(map.cellIndices.CellToIndex(target.Thing.Position));
-                    if (sightGrid != null)
-                        result += 15 - sightGrid.GetCellSightCoverRating(target.Thing.Position);
+                {                                                                
+                    if (sightReader != null)
+                        result += 15 - sightReader.GetSightCoverRating(target.Thing.Position);
 
                     result += 10 - Mathf.Abs(16f * 16f - distSqr) / (16f * 16f) * 10;
                 }                

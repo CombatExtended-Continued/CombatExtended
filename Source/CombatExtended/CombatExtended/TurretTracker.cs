@@ -13,43 +13,16 @@ namespace CombatExtended
     {
         private const int BUCKETCOUNT = 30;
         private const int SHADOW_DANGETICKS = 1800;
-        
-        private int index = 0;        
-        private SightGrid grid;
-        private CellIndices indices;
-        private List<Building_TurretGunCE>[] buckets = new List<Building_TurretGunCE>[BUCKETCOUNT];
+                   
+        private CellIndices indices;        
         
         public HashSet<Building_Turret> Turrets = new HashSet<Building_Turret>();
         public HashSet<Building_CiwsGunCE> Ciwss = new HashSet<Building_CiwsGunCE>();        
 
         public TurretTracker(Map map) : base(map)
         {
-            indices = map.cellIndices;
-            grid = new SightGrid(map);
-            for (int i = 0; i < BUCKETCOUNT; i++)
-                buckets[i] = new List<Building_TurretGunCE>(4);                                        
-        }
-
-        public override void MapComponentTick()
-        {
-            base.MapComponentTick();            
-            if((GenTicks.TicksGame + 19) % 300 == 0)
-            {                
-                List<Building_TurretGunCE> bucket = buckets[index];
-                for (int i = 0; i < bucket.Count; i++)
-                {
-                    Building_TurretGunCE turret = bucket[i];
-                    if (turret.Active)
-                        CastTurretShadow(turret);
-                }
-                index++;
-                if (index >= buckets.Length)
-                {
-                    index = 0;
-                    grid.NextCycle();
-                }
-            }
-        }
+            indices = map.cellIndices;                                                  
+        }      
 
         public void Register(Building_Turret t)
         {            
@@ -59,15 +32,11 @@ namespace CombatExtended
                 if(t is Building_CiwsGunCE ciws && !Ciwss.Contains(ciws))
                 {
                     Ciwss.Add(ciws);
-                }
-                if(t is Building_TurretGunCE turretCE && !turretCE.IsMortar)
-                {
-                    buckets[turretCE.thingIDNumber % BUCKETCOUNT].Add(turretCE);
-                }
+                }                
             }
         }        
 
-        public void Unregister(Building_Turret t)
+        public void DeRegister(Building_Turret t)
         {
             if (Turrets.Contains(t))
             {
@@ -75,12 +44,7 @@ namespace CombatExtended
                 if (t is Building_CiwsGunCE ciws && Ciwss.Contains(ciws))
                 {
                     Ciwss.Remove(ciws);
-                }
-                if (t is Building_TurretGunCE turretCE && !turretCE.IsMortar)
-                {
-                    for (int i = 0; i < 30; i++)
-                        buckets[i].RemoveAll(t => t == turretCE);
-                }
+                }                
             }
         }      
 
@@ -91,36 +55,6 @@ namespace CombatExtended
             return GenClosest.ClosestThingReachable(
                 position, map, ThingRequest.ForUndefined(), pathEndMode,
                 parms, maxDist, validator, Turrets);
-        }
-
-        public bool GetVisibleToTurret(IntVec3 cell) => GetVisibleToTurret(indices.CellToIndex(cell));
-
-        public bool GetVisibleToTurret(int index)
-        {
-            if (index >= 0 && index < indices.NumGridCells)
-                return grid[index] > 0;
-            return false;
-        }
-
-        public int GetTurretsVisibleCount(int index)
-        {
-            if (index >= 0 && index < indices.NumGridCells)
-                return (int) grid[index];
-            return 0;
-        }
-
-        private void CastTurretShadow(Building_TurretGunCE turret)
-        {
-            grid.Next(turret.Position, turret.AttackVerb.EffectiveRange);
-            ShadowCastingUtility.CastVisibility(
-                map,
-                turret.Position,
-                (cell, dist) =>
-                {                    
-                   grid.Set(cell, 1, dist);
-                },
-                (int) Mathf.Min(turret.AttackVerb.EffectiveRange, 60)
-            );            
-        }        
+        }                   
     }
 }

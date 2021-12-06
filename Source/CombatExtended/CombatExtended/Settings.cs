@@ -68,6 +68,7 @@ namespace CombatExtended
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
         private bool debugDrawLOSShadowGrid = false;
+        private bool debugDrawLOSVectorGrid = false;
         private bool debugDrawTargetedBy = false;
 
         public bool DebuggingMode => debuggingMode;
@@ -80,6 +81,7 @@ namespace CombatExtended
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugDrawLOSShadowGrid => debugDrawLOSShadowGrid && debuggingMode;
+        public bool DebugDrawLOSVectorGrid => debugDrawLOSVectorGrid && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
         public bool DebugDrawTargetedBy => debugDrawTargetedBy && debuggingMode;        
         #endregion
@@ -111,6 +113,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugDrawLOSShadowGrid, "debugDrawLOSShadowGrid", false);
+            Scribe_Values.Look(ref debugDrawLOSVectorGrid, "DebugDrawLOSVectorGrid", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
             Scribe_Values.Look(ref debugDrawTargetedBy, "debugDrawTargetedBy", false);
 #endif
@@ -191,7 +194,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
                 list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
                 list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
-                list.CheckboxLabeled("Draw LOS shadow gird", ref debugDrawLOSShadowGrid);
+                list.CheckboxLabeled("Draw LOS gird", ref debugDrawLOSShadowGrid);
+                list.CheckboxLabeled("Draw LOS vector gird", ref debugDrawLOSVectorGrid);
                 list.CheckboxLabeled("Draw enemies targeting selected pawn", ref debugDrawTargetedBy, "Debug targeted by in the reservation manager");
             }
             else

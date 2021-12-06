@@ -70,26 +70,26 @@ namespace CombatExtended.AI
             }
         }
 
-        private Map _sightGridMap = null;
+        private Map _sightReaderMap = null;
         private Faction _sightGridFaction = null;
-        private SightGrid _sightGrid = null;
-        public SightGrid MapSightGrid
+        private SightTracker.SightReader _sightReader = null;
+        public SightTracker.SightReader MapSightReader
         {
             get
             {
                 if (!SelPawn.Spawned || SelPawn.Faction == null)
                 {
-                    _sightGridMap = null;
-                    _sightGrid = null;
+                    _sightReaderMap = null;
+                    _sightReader = null;
                     return null;
                 }
-                if (_sightGridMap != SelPawn.Map || _sightGridFaction != SelPawn.Faction)
+                if (_sightReaderMap != SelPawn.Map || _sightGridFaction != SelPawn.Faction)
                 {
                     _sightGridFaction = SelPawn.Faction;
-                    _sightGridMap = SelPawn.Map;
-                    _sightGridMap.GetComponent<SightTracker>().TryGetGrid(SelPawn, out _sightGrid);
+                    _sightReaderMap = SelPawn.Map;
+                    SelPawn.GetSightReader(out _sightReader);
                 }
-                return _sightGrid;
+                return _sightReader;
             }
         }
 
