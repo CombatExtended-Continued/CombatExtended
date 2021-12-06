@@ -33,7 +33,7 @@ namespace CombatExtended
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
         public bool ShowTacticalVests => showTacticalVests;
-	public bool ShowExtraTooltips => showExtraTooltips;
+	    public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowTutorialPopup = true;
 

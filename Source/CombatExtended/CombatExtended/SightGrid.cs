@@ -212,8 +212,8 @@ namespace CombatExtended
                         float visibility = (range - dist) / range * num;
 
                         record.visibility += visibility;
-                        record.direction.x += (cell.x - center.x) * visibility;
-                        record.direction.y += (cell.z - center.z) * visibility;
+                        record.direction.x += (cell.x - center.x) * num;
+                        record.direction.y += (cell.z - center.z) * num;
                         record.casterFlags |= currentCasterFlags;
 
                         if(record.count == 4)
@@ -235,8 +235,8 @@ namespace CombatExtended
                         }
                         record.count = (short)num;
                         record.visibility = (range - dist) / range * num;
-                        record.direction.x = (cell.x - center.x) * record.visibility;
-                        record.direction.y = (cell.z - center.z) * record.visibility;                        
+                        record.direction.x = (cell.x - center.x) * num;
+                        record.direction.y = (cell.z - center.z) * num;                        
                         record.casterFlags = currentCasterFlags;
                     }
                     record.sig = sig;
@@ -278,9 +278,9 @@ namespace CombatExtended
                 if (record.expireAt - CycleNum > 0)
                 {
                     if (record.count > record.countPrev)
-                        return record.direction;
+                        return record.direction / (record.count + 0.01f);
                     else
-                        return record.directionPrev;
+                        return record.directionPrev / (record.countPrev + 0.01f);
                 }
                 else if (record.expireAt - CycleNum == 0)
                     return record.direction;
@@ -300,18 +300,18 @@ namespace CombatExtended
                     if (record.count > record.countPrev)
                     {
                         enemies = record.count;
-                        return record.direction;
+                        return record.direction / (enemies + 0.01f);
                     }
                     else
                     {
                         enemies = record.countPrev;
-                        return record.directionPrev;
+                        return record.directionPrev / (enemies + 0.01f);
                     }                   
                 }
                 else if(record.expireAt - CycleNum == 0)
                 {
                     enemies = record.count;
-                    return record.direction;
+                    return record.direction / (enemies + 0.01f);
                 }
             }
             enemies = 0;

@@ -802,7 +802,7 @@ namespace CombatExtended
         }
 
         private static Map[] _mapsDanger = new Map[20];
-        private static DangerTracker[] _DangerTrackers = new DangerTracker[20];
+        private static DangerTracker[] _dangerTrackers = new DangerTracker[20];
 
         public static DangerTracker GetDangerTracker(this Map map)
         {
@@ -815,13 +815,36 @@ namespace CombatExtended
                 Map[] maps = new Map[expandedLength];
                 DangerTracker[] trackers = new DangerTracker[expandedLength];
                 Array.Copy(_mapsDanger, maps, _mapsDanger.Length);
-                Array.Copy(_DangerTrackers, trackers, _DangerTrackers.Length);
+                Array.Copy(_dangerTrackers, trackers, _dangerTrackers.Length);
                 _mapsDanger = maps;
-                _DangerTrackers = trackers;
+                _dangerTrackers = trackers;
             }
             if (_mapsDanger[index] == map)
-                return _DangerTrackers[index];
-            return _DangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
+                return _dangerTrackers[index];
+            return _dangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
+        }
+
+        private static Map[] _mapsSight = new Map[20];
+        private static SightTracker[] _sightTracker = new SightTracker[20];
+
+        public static SightTracker GetSightTracker(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _sightTracker.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsSight.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                SightTracker[] trackers = new SightTracker[expandedLength];
+                Array.Copy(_mapsSight, maps, _mapsSight.Length);
+                Array.Copy(_sightTracker, trackers, _sightTracker.Length);
+                _mapsSight = maps;
+                _sightTracker = trackers;
+            }
+            if (_mapsSight[index] == map)
+                return _sightTracker[index];
+            return _sightTracker[index] = (_mapsSight[index] = map).GetComponent<SightTracker>();
         }
 
         #endregion

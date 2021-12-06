@@ -134,7 +134,7 @@ namespace CombatExtended.HarmonyCE
         [HarmonyPriority(Priority.First)]
         public static void Postfix(Thing __instance)
         {
-            ThingsTracker.GetTracker(__instance.Map)?.Notify_Spawned(__instance);
+            ThingsTracker.GetTracker(__instance.Map)?.Notify_Spawned(__instance);            
         }
     }
 }
