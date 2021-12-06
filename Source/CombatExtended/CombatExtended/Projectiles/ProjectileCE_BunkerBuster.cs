@@ -23,18 +23,8 @@ namespace CombatExtended
 
                 tiles_penetration /= (hitThing.HitPoints / 300f);
 
-                Log.Message(tiles_penetration.ToString().Colorize(Color.red));
-
-                Log.Message(this.origin.y.ToString());
-
-                Log.Message(this.origin.x.ToString());
-
                 Vector3 direction = hitThing.Position.ToVector3() - (new Vector3(this.origin.x, 0, this.origin.y));
                 IntVec3 finalPos = ((new Vector3(hitThing.Position.x, 0, hitThing.Position.z) + (direction.normalized * Math.Max(tiles_penetration, 1)))).ToIntVec3();
-
-                Log.Message(direction.ToString());
-
-                Log.Message(finalPos.ToString());
 
                 GenExplosionCE.DoExplosion(finalPos,
                     this.Map,
@@ -48,6 +38,11 @@ namespace CombatExtended
                     preExplosionSpawnChance: props.preExplosionSpawnChance,
                     preExplosionSpawnThingCount: props.preExplosionSpawnThingCount
                     );
+
+                if (this.TryGetComp<CompFragments>() != null)
+                {
+                    this.TryGetComp<CompFragments>().Throw(finalPos.ToVector3(), this.Map, this);
+                }
 
                 this.Destroy();
 
