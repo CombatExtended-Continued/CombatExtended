@@ -5,6 +5,8 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace CombatExtended
 {
@@ -45,92 +47,91 @@ namespace CombatExtended
         public readonly Map map;
         public readonly SightTracker tracker;
         public readonly SightGrid grid;
-        public readonly int BucketCount;
-        public readonly int MinUpdateInterval;
-        public readonly int MaxUpdateInterval;
+        public readonly int bucketCount;
+        public readonly int updateInterval;        
 
-        private List<IThingSightRecord> tmpRecords = new List<IThingSightRecord>();
-        
+        private List<IThingSightRecord> tmpRecords = new List<IThingSightRecord>();       
+
         private int phase;
-        private int ticksUntilUpdate;
-        private int curUpdateInterval;
+        private int ticksUntilUpdate;        
         private int curIndex;
-        private int curNumThingCasted;
-        private float performanceFactor = 0.5f;
-        private readonly Stopwatch stopwatch = new Stopwatch();        
+        private ThreadStart threadStart;
+        private Thread thread;
+        private object locker = new object();
         private readonly Dictionary<T, IThingSightRecord> records = new Dictionary<T, IThingSightRecord>();
         private readonly List<IThingSightRecord>[] pool;
+        private readonly List<Action> castingQueue = new List<Action>();
 
         protected readonly float PerformanceFactorMaxThings = 50;
         protected readonly float GroupingRange = 4;
         protected readonly float GroupingMaxRangeDelta = 10;
-        protected readonly float MinRange = 3;
+        protected readonly float MinRange = 3;      
 
-        protected virtual float PerformanceFactor
-        {
-            get => performanceFactor;
-        }
+        private bool mapIsAlive = true;
+        private bool wait = false;
 
-        public SightGridManager(SightTracker tracker, int bucketCount = 20, int minUpdateInterval = 10, int maxUpdateInterval = 30)
+        public SightGridManager(SightTracker tracker, int bucketCount, int updateInterval)
         {
             map = tracker.map;
             this.tracker = tracker;
-            grid = new SightGrid(map);            
-            phase = Rand.Range(minUpdateInterval, maxUpdateInterval);
-            MinUpdateInterval = minUpdateInterval;
-            MaxUpdateInterval = maxUpdateInterval;
-            curUpdateInterval = (MaxUpdateInterval + MinUpdateInterval) / 2;
-            ticksUntilUpdate = curUpdateInterval;
-            BucketCount = bucketCount;
-            pool = new List<IThingSightRecord>[BucketCount];
+            grid = new SightGrid(map);
 
-            for (int i = 0; i < BucketCount; i++)
-                pool[i] = new List<IThingSightRecord>();            
-        }        
+            ticksUntilUpdate = updateInterval;
+            this.updateInterval = updateInterval;
+            this.bucketCount = bucketCount;
+            phase = Rand.Range(1, 17);
+
+            pool = new List<IThingSightRecord>[this.bucketCount];
+            for (int i = 0; i < this.bucketCount; i++)
+                pool[i] = new List<IThingSightRecord>();
+
+            threadStart = new ThreadStart(OffMainThreadLoop);
+            thread = new Thread(threadStart);
+            thread.Start();
+        }
 
         public virtual void Tick()
         {
-            if(ticksUntilUpdate-- < 0)
-            {                
-                stopwatch.Reset();
-                stopwatch.Start();
-                tmpRecords.Clear();
-                List<IThingSightRecord> curPool = pool[curIndex];
+            if (ticksUntilUpdate-- > 0 || wait)
+                return;
+            
+            tmpRecords.Clear();
+            List<IThingSightRecord> curPool = pool[curIndex];
 
-                for(int i = 0; i < curPool.Count; i++)
+            for(int i = 0; i < curPool.Count; i++)
+            {
+                IThingSightRecord record = curPool[i];
+                if(!Valid(record.thing))
                 {
-                    IThingSightRecord record = curPool[i];
-                    if(!Valid(record.thing))
-                    {
-                        tmpRecords.Add(record);
-                        continue;
-                    }
-                    // cast sight.
-                    if (TryCastSight(record))                    
-                        curNumThingCasted++;                    
+                    tmpRecords.Add(record);
+                    continue;
                 }
-                if(tmpRecords.Count != 0)
-                {
-                    for (int i = 0; i < tmpRecords.Count; i++)                                            
-                        DeRegister(tmpRecords[i].thing);
-                    // clean up.
-                    tmpRecords.Clear();
-                }
-                OnBucketCasted(curPool);
-                curIndex++;
-                stopwatch.Stop();
-                if (curIndex >= BucketCount)
-                {
-                    performanceFactor = 0.5f - Mathf.Min(curNumThingCasted, PerformanceFactorMaxThings) / PerformanceFactorMaxThings * 0.35f;
-                    curIndex = 0;
-                    curNumThingCasted = 0;                    
-                    grid.NextCycle();
-                    OnFinishedCycle();
-                }                
-                //float tms = (float)stopwatch.ElapsedTicks / Stopwatch.Frequency * 1000;
-                //curUpdateInterval = (int) Mathf.Lerp(MinUpdateInterval, MaxUpdateInterval, tms / 8);
-                ticksUntilUpdate = curUpdateInterval;
+                // cast sight.
+                TryCastSight(record);                                      
             }
+            if(tmpRecords.Count != 0)
+            {
+                for (int i = 0; i < tmpRecords.Count; i++)                                            
+                    DeRegister(tmpRecords[i].thing);
+                // clean up.
+                tmpRecords.Clear();
+            }                        
+            curIndex++;
+            ticksUntilUpdate = updateInterval;
+            if (curIndex >= bucketCount)
+            {
+                wait = true;
+                lock (locker)
+                {
+                    castingQueue.Add(delegate
+                    {
+                        grid.NextCycle();
+                        OnFinishedCycle();
+                        wait = false;
+                    });
+                }                
+                curIndex = 0;                                                 
+            }                                                 
         }
 
         public virtual void Register(T thing)
@@ -139,7 +140,7 @@ namespace CombatExtended
             {
                 record = new IThingSightRecord();
                 record.thing = thing;
-                record.bucketIndex = (thing.thingIDNumber + 19) % BucketCount;                
+                record.bucketIndex = (thing.thingIDNumber + 19) % bucketCount;                
                 records.Add(thing, record);
                 pool[record.bucketIndex].Add(record);
             }
@@ -150,6 +151,18 @@ namespace CombatExtended
             {
                 pool[record.bucketIndex].Remove(record);
                 records.Remove(record.thing);
+            }
+        }
+        public virtual void Notify_MapRemoved()
+        {
+            try
+            {
+                mapIsAlive = false;
+                thread.Join();
+            }
+            catch(Exception er)
+            {
+                Log.Error($"CE: SightGridManager Notify_MapRemoved failed to stop thread with {er}");
             }
         }
         
@@ -187,7 +200,7 @@ namespace CombatExtended
             {
                 IThingSightRecord best = null;
                 int bestExtras = -1;
-                foreach(T thing in ThingsInRange(record.thing.Position, 2 * GroupingRange * (1 - performanceFactor)))
+                foreach(T thing in ThingsInRange(record.thing.Position, 2 * GroupingRange * 0.5f))
                 {
                     if (thing != record.thing && records.TryGetValue(thing, out IThingSightRecord s))
                     {
@@ -217,17 +230,22 @@ namespace CombatExtended
                 return false;
             }
             int count = record.carry + 1;
-            grid.Next(pos, range, GetFlags(record));            
-            grid.Set(pos, count, 1);
-            ShadowCastingUtility.CastVisibility(map, pos, (cell, dist) => grid.Set(cell, count, dist), range);
-
+            lock (locker)
+            {                
+                castingQueue.Add(delegate
+                {
+                    grid.Next(pos, range, GetFlags(record));
+                    grid.Set(pos, count, 1);
+                    ShadowCastingUtility.CastVisibility(map, pos, (cell, dist) => grid.Set(cell, count, dist), range);
+                });                
+            }           
             record.carry = 0;
             record.carryRange = 0;
             record.carryPosition = IntVec3.Zero;
             record.lastCycle = grid.CycleNum;
             record.lastRange = range;
             return true;
-        }
+        }        
 
         private IntVec3 GetShiftedPosition(IThingSightRecord record)
         {
@@ -248,8 +266,34 @@ namespace CombatExtended
             if (!(pawn.pather?.moving ?? false) || (path = pawn.pather.curPath) == null || path.NodesLeftCount <= 1)
                 return pawn.Position;
 
-            float distanceTraveled = Mathf.Min(pawn.GetStatValue(StatDefOf.MoveSpeed) * (curUpdateInterval * BucketCount) / 60f, path.NodesLeftCount - 1);            
+            float distanceTraveled = Mathf.Min(pawn.GetStatValue(StatDefOf.MoveSpeed) * (updateInterval * bucketCount) / 60f, path.NodesLeftCount - 1);            
             return path.Peek(Mathf.FloorToInt(distanceTraveled));            
+        }
+
+        private void OffMainThreadLoop()
+        {
+            Action castAction;
+            int castActionsLeft;
+            while (mapIsAlive)
+            {
+                castAction = null;
+                castActionsLeft = 0;
+                lock (locker)
+                {
+                    if ((castActionsLeft = castingQueue.Count) > 0)
+                    {
+                        castAction = castingQueue[0];
+                        castingQueue.RemoveAt(0);
+                    }
+                }
+                // threading goes brrrrrr
+                if (castAction != null)
+                    castAction.Invoke();
+                // sleep so other threads can do stuff
+                if(castActionsLeft == 0)
+                    Thread.Sleep(1);
+            }
+            Log.Message("CE: SightGridManager thread stopped!");
         }        
     }
 }

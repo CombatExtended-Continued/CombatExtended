@@ -214,12 +214,7 @@ namespace CombatExtended
                         record.visibility += visibility;
                         record.direction.x += (cell.x - center.x) * num;
                         record.direction.y += (cell.z - center.z) * num;
-                        record.casterFlags |= currentCasterFlags;
-
-                        if(record.count == 4)
-                        {
-                            Log.Message($"{cycle} {num}");
-                        }
+                        record.casterFlags |= currentCasterFlags;                       
                     }
                     else
                     {

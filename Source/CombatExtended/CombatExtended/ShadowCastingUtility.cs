@@ -30,7 +30,8 @@ namespace CombatExtended
 
         private static IntVec3 source;
         private static List<VisibleRow> rowQueue = new List<VisibleRow>();
-        private static Map map;        
+        private static Map map;
+        private static WallGrid grid;
         private static Action<IntVec3, int, int> setAction;
 
         static ShadowCastingUtility()
@@ -200,7 +201,7 @@ namespace CombatExtended
                 foreach (Vector3 offset in row.Tiles())
                 {                                        
                     var cell = source + row.Transform(offset.ToIntVec3());
-                    var isWall = !cell.InBounds(map) || !cell.CanBeSeenOver(map);
+                    var isWall = !cell.InBounds(map) || grid[cell];
                     var isCover = !isWall && cell.GetCover(map)?.def.Fillage == FillCategory.Partial;                    
                     
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
@@ -279,7 +280,7 @@ namespace CombatExtended
                 foreach (Vector3 offset in row.Tiles())
                 {
                     var cell = source + row.Transform(offset.ToIntVec3());
-                    var isWall = !cell.InBounds(map) || !cell.CanBeSeenOverFast(map);                    
+                    var isWall = !cell.InBounds(map) || grid[cell];                    
 
                     if (isWall || (offset.z >= row.depth * row.startSlope && offset.z <= row.depth * row.endSlope))
                     {

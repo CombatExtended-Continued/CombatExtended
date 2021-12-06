@@ -13,8 +13,8 @@ namespace CombatExtended
 {
     public class SightGridManager_UniversalEnemies : SightGridManager<Pawn>
     {
-        public SightGridManager_UniversalEnemies(SightTracker tracker, int bucketCount = 20, int minUpdateInterval = 10, int maxUpdateInterval = 30)
-            : base(tracker, bucketCount, minUpdateInterval, maxUpdateInterval)
+        public SightGridManager_UniversalEnemies(SightTracker tracker, int bucketCount = 20, int updateInterval = 10)
+            : base(tracker, bucketCount, updateInterval)
         {
         }
 
@@ -39,7 +39,7 @@ namespace CombatExtended
                 return -1;
 
             float range;
-            range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * PerformanceFactor;
+            range = Mathf.Min(weapon.def.verbs?.Max(v => v.range) ?? -1, 62f) * 0.5f;
             range = (range + record.carryRange) / (1 + record.carry);
             if (range < MinRange)
                 return -1;

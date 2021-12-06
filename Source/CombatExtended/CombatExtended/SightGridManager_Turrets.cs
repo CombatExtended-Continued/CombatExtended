@@ -13,8 +13,8 @@ namespace CombatExtended
 {
     public class SightGridUpdater_Turrets : SightGridManager<Building_TurretGunCE>
     {
-        public SightGridUpdater_Turrets(SightTracker tracker, int bucketCount = 30, int minUpdateInterval = 200, int maxUpdateInterval = 400)
-            : base(tracker, bucketCount, minUpdateInterval, maxUpdateInterval)
+        public SightGridUpdater_Turrets(SightTracker tracker, int bucketCount = 30, int updateInterval = 200)
+            : base(tracker, bucketCount, updateInterval)
         {            
         }             
 

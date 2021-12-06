@@ -847,6 +847,29 @@ namespace CombatExtended
             return _sightTracker[index] = (_mapsSight[index] = map).GetComponent<SightTracker>();
         }
 
+        private static Map[] _mapsWall = new Map[20];
+        private static WallGrid[] _wallGrid = new WallGrid[20];
+
+        public static WallGrid GetWallGrid(this Map map)
+        {
+            int index = map?.Index ?? -1;
+            if (index < 0)
+                return null;
+            if (index >= _wallGrid.Length)
+            {
+                int expandedLength = Mathf.Max(_mapsSight.Length * 2, index + 1);
+                Map[] maps = new Map[expandedLength];
+                WallGrid[] trackers = new WallGrid[expandedLength];
+                Array.Copy(_mapsWall, maps, _mapsWall.Length);
+                Array.Copy(_wallGrid, trackers, _wallGrid.Length);
+                _mapsWall = maps;
+                _wallGrid = trackers;
+            }
+            if (_mapsWall[index] == map)
+                return _wallGrid[index];
+            return _wallGrid[index] = (_mapsWall[index] = map).GetComponent<WallGrid>();
+        }
+
         #endregion
 
         #region Initialization

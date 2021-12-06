@@ -20,28 +20,22 @@ namespace CombatExtended
         public SightGrid Friendly => friendlies.grid;
         public SightGrid Hostile => hostiles.grid;
         public SightGrid UniversalEnemies => mechsInsects.grid;
-
-        private readonly bool[][] wallGrid;
-
+        
         public SightTracker(Map map) : base(map)
-        {
-            wallGrid = new bool[map.cellIndices.mapSizeX][];
-            for(int i = 0;i < map.cellIndices.mapSizeX; i++)
-                wallGrid[i] = new bool[map.cellIndices.mapSizeZ];
-
-            friendlies = new SightGridManager_Humanlikes(map);
-            hostiles = new SightGridManager_Humanlikes(map);
-            mechsInsects = new SightGridManager_UniversalEnemies(map);
+        {            
+            friendlies = new SightGridManager_Humanlikes(this, 20, 9);
+            hostiles = new SightGridManager_Humanlikes(this, 20, 9);
+            mechsInsects = new SightGridManager_UniversalEnemies(this, 20, 20);
         }
 
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-            // 
+            // --------------
             friendlies.Tick();
-            //
+            // --------------
             hostiles.Tick();
-            //
+            // --------------
             mechsInsects.Tick();
 
             if (Controller.settings.DebugDrawLOSShadowGrid && GenTicks.TicksGame % 15 == 0)
@@ -123,19 +117,7 @@ namespace CombatExtended
             }
             else if(pawn.RaceProps.Insect || pawn.RaceProps.IsMechanoid)            
                 mechsInsects.Register(pawn);            
-        }
-
-        public void Notify_WallAdded(IntVec3 cell)
-        {
-            if(cell.InBounds(map))
-                wallGrid[cell.x][cell.z] = true;
-        }
-
-        public void Notify_WallRemoved(IntVec3 cell)
-        {
-            if (cell.InBounds(map))
-                wallGrid[cell.x][cell.z] = false;
-        }
+        }        
 
         public void DeRegister(Pawn pawn)
         {
@@ -145,6 +127,17 @@ namespace CombatExtended
             friendlies.DeRegister(pawn);
             // cleanup universals incase everything else fails.
             mechsInsects.DeRegister(pawn);           
+        }
+
+        public override void MapRemoved()
+        {
+            base.MapRemoved();
+            // TODO redo this
+            hostiles.Notify_MapRemoved();
+            // TODO redo this
+            friendlies.Notify_MapRemoved();
+            // TODO redo this
+            mechsInsects.Notify_MapRemoved();
         }
     }
 }
