@@ -113,7 +113,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugDrawLOSShadowGrid, "debugDrawLOSShadowGrid", false);
-            Scribe_Values.Look(ref debugDrawLOSVectorGrid, "DebugDrawLOSVectorGrid", false);
+            Scribe_Values.Look(ref debugDrawLOSVectorGrid, "debugDrawLOSVectorGrid", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
             Scribe_Values.Look(ref debugDrawTargetedBy, "debugDrawTargetedBy", false);
 #endif

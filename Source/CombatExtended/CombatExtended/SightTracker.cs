@@ -139,17 +139,20 @@ namespace CombatExtended
                     foreach (Pawn pawn in Find.Selector.SelectedPawns)
                     {
                         pawn.GetSightReader(out SightReader reader);
-                        IntVec3 center = pawn.Position;
-                        if (center.InBounds(map))
+                        if (reader != null)
                         {
-                            foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
+                            IntVec3 center = pawn.Position;
+                            if (center.InBounds(map))
                             {
-                                if (cell.InBounds(map) && !_drawnCells.Contains(cell))
+                                foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, 64, true))
                                 {
-                                    _drawnCells.Add(cell);
-                                    var value = reader.GetEnemies(cell);
-                                    if (value > 0)
-                                        map.debugDrawer.FlashCell(cell, (float)reader.GetVisibility(cell) / 10f, $"{Math.Round(value, 3)} {value}", 15);
+                                    if (cell.InBounds(map) && !_drawnCells.Contains(cell))
+                                    {
+                                        _drawnCells.Add(cell);
+                                        var value = reader.GetEnemies(cell);
+                                        if (value > 0)
+                                            map.debugDrawer.FlashCell(cell, (float)reader.GetVisibility(cell) / 10f, $"{Math.Round(value, 3)} {value}", 15);
+                                    }
                                 }
                             }
                         }
