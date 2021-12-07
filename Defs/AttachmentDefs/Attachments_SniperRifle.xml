@@ -4,14 +4,17 @@
   <!-- ====== Ammo ====== -->
 
   <CombatExtended.AttachmentDef ParentName="CE_AmmoIndustrialBase">
-    <defName>CE_Attachment_SR_Ammo_Magazine</defName>
+    <defName>CE_Attachment_SR_Ammo_MagazineA</defName>
     <label>10 Rnd Magazine</label>
+    <statReplacers>
+      <MagazineCapacity>10</MagazineCapacity>
+    </statReplacers>
     <attachmentGraphicData>
-      <texPath>Things/Weapons/SniperRifle/AmmoMag</texPath>
+      <texPath>Things/Weapons/SniperRifle/MagA</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </attachmentGraphicData>
     <outlineGraphicData>
-      <texPath>Things/Weapons/SniperRifle/AmmoMagO</texPath>
+      <texPath>Things/Weapons/SniperRifle/MagAO</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
@@ -19,21 +22,11 @@
   <!-- ====== Barrel ====== -->
 
   <CombatExtended.AttachmentDef ParentName="CE_BarrelIndustrialBase">
-    <defName>CE_Attachment_SR_Barrel_Short</defName>
-    <label>short barrel</label>
-    <attachmentGraphicData>
-      <texPath>Things/Weapons/SniperRifle/BarrelShort</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </attachmentGraphicData>
-    <outlineGraphicData>
-      <texPath>Things/Weapons/SniperRifle/BarrelShortO</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </outlineGraphicData>
-  </CombatExtended.AttachmentDef>
-
-  <CombatExtended.AttachmentDef ParentName="CE_BarrelIndustrialBase">
     <defName>CE_Attachment_SR_Barrel_Long</defName>
     <label>long barrel</label>
+    <statMultipliers>
+      <SwayFactor>0.95</SwayFactor>
+    </statMultipliers>
     <attachmentGraphicData>
       <texPath>Things/Weapons/SniperRifle/BarrelLong</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -43,8 +36,6 @@
       <graphicClass>Graphic_Single</graphicClass>
     </outlineGraphicData>
   </CombatExtended.AttachmentDef>
-
-  <!-- ====== Optic ====== -->
 
   <!-- ====== Stock ====== -->
 
