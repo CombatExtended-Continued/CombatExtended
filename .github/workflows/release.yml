@@ -1,30 +1,37 @@
-name: Build Release
-on:
+name: Build-Release
+env:
+  SLN_PATH: Source/
+on:    
   release:
     types:
       - published
-  workflow_dispatch:
 
 jobs:
   build:
+    name: Build on ubuntu-latest
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: prebuild
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Installing Dependencies
+      run: dotnet restore ${{ env.SLN_PATH }}
+
+    - name: Building Mod
+      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
+    
+    - name: Packaging
       run: |
-        rm -rf AssemblyPublicizer
-        git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-    - name: build
-      run: |
-        mkdir -p Assemblies
-        mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
-    - name: package
-      run: |
-        mkdir CombatExtended
-        cp -r Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
-        zip -9 -r CombatExtended.zip CombatExtended
+          mkdir CombatRealism
+          cp -r Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatRealism
+          zip -9 -r CombatRealism.zip CombatRealism        
+    
     - name: Upload Package
       id: upload-package
       uses: actions/upload-release-asset@v1
@@ -33,7 +40,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: CombatExtended.zip
-        asset_name: CombatExtended-${{ github.event.release.tag_name }}.zip
+        asset_path: CombatRealism.zip
+        asset_name: CombatRealism-${{ github.event.release.tag_name }}.zip
         asset_content_type: application/octet-stream
-      
+
