@@ -83,11 +83,10 @@ namespace CombatExtended
         {
             var continueAnywayAction = new Action(() =>
             {
-
             });
             var getDevBuildAction = new Action(() =>
             {
-                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
+                Application.OpenURL("https://github.com/CombatRealism/CombatRealism/releases");
             });
 
             var dialog = new Dialog_MessageBox("CE_UncompiledDevBuild".Translate(), "CE_ContinueAnyway".Translate(), continueAnywayAction, "CE_GetCompiledDevBuild".Translate(), getDevBuildAction, null, true);
