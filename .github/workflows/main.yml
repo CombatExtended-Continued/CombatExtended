@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
-    name: Build on windows-latest
-    runs-on: windows-latest
+    name: Build on ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore ${{ env.SLN_PATH }}
 
     - name: Building Mod
-      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
+      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug
     
     - name: Upload Mod Files
       uses: actions/upload-artifact@v2
