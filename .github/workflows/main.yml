@@ -23,7 +23,9 @@ jobs:
       run: dotnet restore ${{ env.SLN_PATH }}
 
     - name: Building Mod
-      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug
+      run: |
+        dotnet restore ${{ env.SLN_PATH }}
+        dotnet build ${{ env.SLN_PATH }} --configuration Debug
     
     - name: Upload Mod Files
       uses: actions/upload-artifact@v2
