@@ -1,39 +1,46 @@
-name: Build Branch
-on:
-  workflow_dispatch:
+name: Build
+env:
+  SLN_PATH: Source/
+on:  
   push:
     branches: [ master, Development ]
 
 jobs:
   build:
+    name: Build on ubuntu-latest
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: prebuild
-      run: |
-        rm -rf AssemblyPublicizer
-        git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-    - name: build
-      run: |
-        mkdir -p Assemblies
-        mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
-    - name: package
-      run: |
-        mkdir CombatExtended
-        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
-        zip -9 -r build.zip CombatExtended
-    - name: Upload to DO
-      run: |
-        printf "%s" "$SSH_KEY" > id_ecdsa
-        echo "$SSH_KEY_PUB" > id_ecdsa.pub
-        chmod 600 id_ecdsa
-        echo put build.zip CombatExtended-${{ github.run_id }}.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
-        echo put build.zip CombatExtended-latest.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
-      
-      shell: bash
-      env:
-        SSH_KEY: ${{secrets.ID_ECDSA}}
-        SSH_KEY_PUB: ${{secrets.ID_ECDSA_PUB}}
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Installing Dependencies
+      run: dotnet restore ${{ env.SLN_PATH }}
+
+    - name: Building Mod
+      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
+    
+   - name: Upload Mod Files
+      uses: actions/upload-artifact@v2
+      with:
+        name: combatrealism
+        path: |
+          About/
+          Assemblies/
+          Defs/
+          Ideology/
+          Languages/
+          Media/
+          Patches/
+          Royalty/
+          Sounds/
+          Textures/
+          Source/
+          LoadFolders.xml
+          !**/.*
 
