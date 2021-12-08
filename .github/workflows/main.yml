@@ -1,0 +1,46 @@
+name: Build
+env:
+  SLN_PATH: Source/
+on:  
+  push:
+    branches: [ master, Development ]
+
+jobs:
+  build:
+    name: Build on ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Installing Dependencies
+      run: dotnet restore ${{ env.SLN_PATH }}
+
+    - name: Building Mod
+      run: dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
+    
+    - name: Upload Mod Files
+      uses: actions/upload-artifact@v2
+      with:
+        name: combatrealism
+        path: |
+          About/
+          Assemblies/
+          Defs/
+          Ideology/
+          Languages/
+          Media/
+          Patches/
+          Royalty/
+          Sounds/
+          Textures/
+          Source/
+          LoadFolders.xml
+          !**/.*
+
