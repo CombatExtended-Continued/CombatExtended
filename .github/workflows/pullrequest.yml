@@ -1,0 +1,47 @@
+name: Build
+on:
+  workflow_dispatch:
+    inputs:
+      PR:
+        description: PR Number
+        required: true
+  pull_request_target:
+    branches: [ master, Development, staging ]
+
+jobs:
+  build:
+    name: Build on ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x    
+
+    - name: Building
+      run: |
+        dotnet restore ${{ env.SLN_PATH }}
+        dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
+    
+    - name: Upload Mod Files
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-combatrealism
+        path: |
+          About/
+          Assemblies/
+          Defs/
+          Ideology/
+          Languages/
+          Media/
+          Patches/
+          Royalty/
+          Sounds/
+          Textures/
+          Source/
+          LoadFolders.xml
+
