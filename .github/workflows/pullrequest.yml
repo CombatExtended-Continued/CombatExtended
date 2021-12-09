@@ -58,9 +58,9 @@ jobs:
 
     - name: Getting artifact Urls
       id: get_artifact
-      run: node .github/actions/get-artifact.js
+      uses: kbatbouta/artifact-comment@v1
+#       run: node .github/actions/get-artifact.js
       with:
-        issue-number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
         run-id: ${{ github.run_id }}       
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
