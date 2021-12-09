@@ -19,16 +19,19 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    # Setup dot net
     - name: Setup Dotnet
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x    
 
+    # Build artifact
     - name: Building
       run: |
         dotnet restore ${{ env.SLN_PATH }}
         dotnet build ${{ env.SLN_PATH }} --configuration Debug --no-restore
     
+    # Upload artifact
     - name: Upload Mod Files
       uses: actions/upload-artifact@v2
       with:
@@ -47,3 +50,31 @@ jobs:
           Source/
           LoadFolders.xml
 
+    # Install Node 12
+    - uses: actions/setup-node@v1
+      with:
+        version: 12    
+    - run: npm install @octokit/action
+
+    - name: Getting artifact Urls
+      id: get_artifact
+      run: node .github/actions/get-artifact.js
+      with:
+        issue-number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
+        run-id: ${{ github.run_id }}       
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create comment
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
+        body: |
+          You can download the rebuilt assembly for this PR here: ${{ steps.get_artifact.outputs.urls }}
+
+    - name: Add Label
+      uses: actions-ecosystem/action-add-labels@v1
+      with:
+        github_token: ${{ secrets.github_token }}
+        labels: "Download in Comments"
+        number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
