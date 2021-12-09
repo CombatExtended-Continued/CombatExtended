@@ -68,4 +68,5 @@ If you want to build it yourself, see Building.md
 ## Supported Third-Party Mods
 CE comes with built-in support for a number of popular third-party mods, a [list of which can be found here](SupportedThirdPartyMods.md).
 
-
+## License & Attribution
+This mod is a continuation and expansion of the original (Combat Extended for Rimworld 1.0)[ludeon.com] and is used under (license)[creativecommons.org].
