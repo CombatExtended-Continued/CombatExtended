@@ -10,10 +10,10 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public enum Targetting_Mode
+    public enum TargettingMode
     {
-        legs_lowertorso,
-        centermass,
-        uppertorso_head
+        legs,
+        torso,
+        head
     }
 }
