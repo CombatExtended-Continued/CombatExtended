@@ -50,27 +50,12 @@ jobs:
 #           Source/
 #           LoadFolders.xml
 
-    # Install Node 12
-    - uses: actions/setup-node@v1
-      with:
-        version: 12    
-    - run: npm install @octokit/action
-
-    - name: Getting artifact Urls
-      id: get_artifact
-      uses: kbatbouta/artifact-comment@v1.2.3
-#       run: node .github/actions/get-artifact.js
-      with:
-        run-id: ${{ github.run_id }}       
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Create comment
       uses: peter-evans/create-or-update-comment@v1
       with:
         issue-number: ${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}
         body: |
-          You can download the rebuilt assembly for this PR here: ${{ steps.get_artifact.outputs.urls }}
+          You can download the built mod for this PR here in the artifacts section (at the bottom of the page): https://github.com/CombatRealism/CombatRealism/actions/runs/${{ github.run_id }}
 
     - name: Add Label
       uses: actions-ecosystem/action-add-labels@v1
