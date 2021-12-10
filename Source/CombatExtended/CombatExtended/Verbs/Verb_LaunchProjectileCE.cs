@@ -349,19 +349,28 @@ namespace CombatExtended
                     else if (currentTarget.Thing is Pawn)
                     {
 
-                        if (CompFireModes?.CurrentAimMode == AimMode.AimedShot)
+                        if (CasterPawn.skills.GetSkill(SkillDefOf.Shooting).Level > 7)
                         {
-                            if (CompFireModes?.target_mode == Targetting_Mode.uppertorso_head)
+                            if (CompFireModes?.CurrentAimMode != AimMode.SuppressFire)
                             {
-                                // Aim upper thoraxic to head
-                                targetRange.min = victimVert.MiddleHeight;
-                                targetRange.max = victimVert.Max;
-                            }
-                            else if (CompFireModes?.target_mode == Targetting_Mode.legs_lowertorso)
-                            {
-                                // Aim legs to lower abdomen
-                                targetRange.min = victimVert.Min;
-                                targetRange.max = victimVert.BottomHeight;
+                                if (CompFireModes?.target_mode == TargettingMode.head)
+                                {
+                                    // Aim upper thoraxic to head
+                                    targetRange.min = victimVert.MiddleHeight;
+                                    targetRange.max = victimVert.Max;
+                                }
+                                else if (CompFireModes?.target_mode == TargettingMode.legs)
+                                {
+                                    // Aim legs to lower abdomen
+                                    targetRange.min = victimVert.Min;
+                                    targetRange.max = victimVert.BottomHeight;
+                                }
+                                else
+                                {
+                                    // Aim center mass
+                                    targetRange.min = victimVert.BottomHeight;
+                                    targetRange.max = victimVert.MiddleHeight;
+                                }
                             }
                             else
                             {
@@ -376,6 +385,8 @@ namespace CombatExtended
                             targetRange.min = victimVert.BottomHeight;
                             targetRange.max = victimVert.MiddleHeight;
                         }
+
+
 
 
 
