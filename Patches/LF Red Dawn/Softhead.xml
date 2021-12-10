@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Beanie === -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RD_GRUBeanie"
+				or defName="RD_HoodNormal"
+				or defName="RD_HoodZKS"
+				or defName="RD_HoodKLMK"
+				or defName="RD_Panama"
+				or defName="RD_Afgcap"
+				or defName="RD_Facemask"
+				or defName="RD_Mabutacap"
+				or defName="RD_Sovhat"]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>20</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RD_TKDVDHelmet"
+				or defName="RD_SovEurTankerHelm"
+				or defName="RD_TankerHelmCamo"]/costStuffCount</xpath>
+				<value>
+					<costStuffCount>30</costStuffCount>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RD_GRUBeanie"
+				or defName="RD_HoodNormal"
+				or defName="RD_HoodZKS"
+				or defName="RD_HoodKLMK"
+				or defName="RD_Panama"
+				or defName="RD_Afgcap"
+				or defName="RD_OfficerCap"
+				or defName="RD_NCOCap"
+				or defName="RD_Facemask"
+				or defName="RD_Mabutacap"
+				or defName="RD_SovUshanka"
+				or defName="RD_SovBeret"
+				or defName="RD_Sovhat"
+				or defName="RD_SovEurTankerHelm"
+				or defName="RD_TKDVDHelmet"
+				or defName="RD_TankerHelmCamo"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>	
+					<Bulk>0.5</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RD_HoodNormal" 
+						or defName="RD_HoodZKS"
+						or defName="RD_HoodKLMK"
+						or defName="RD_HoodZKS"]/equippedStatOffsets</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RD_Facemask"]</xpath>
+				<value>
+        				<equippedStatOffsets>
+          					<ToxicSensitivity>-0.05</ToxicSensitivity>
+          					<SmokeSensitivity>-0.1</SmokeSensitivity>
+        				</equippedStatOffsets>
+				</value>
+			</li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "RD_Facemask" ]/apparel/layers</xpath>
+        <value>
+        <layers>
+            <li>StrappedHead</li>
+        </layers>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName = "RD_Facemask"]</xpath>
+        <value>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>false</HideHair>
+              <HideBeard>false</HideBeard>
+            </li>
+        </value>
+      </li>
+
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RD_PVNHelmet"]/equippedStatOffsets</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RD_PVNHelmet"]/statBases</xpath>
+				<value>
+            					<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+				</value>
+			</li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "RD_PVNHelmet" ]/apparel/layers</xpath>
+        <value>
+            <li>StrappedHead</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName = "RD_PVNHelmet"]</xpath>
+        <value>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>true</HideHair>
+              <HideBeard>false</HideBeard>
+            </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "RD_PVNHelmet" ]/costList</xpath>
+        <value>
+		<costList>
+			<Steel>40</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+		</costList>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "RD_PVNHelmet" ]/recipeMaker/researchPrerequisite</xpath>
+        <value>
+        <researchPrerequisite>CE_SimpleNV</researchPrerequisite>      
+        </value>
+      </li>
+
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "RD_PVNHelmet" ]/recipeMaker/skillRequirements</xpath>
+        <value>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+      </skillRequirements>
+        </value>
+      </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

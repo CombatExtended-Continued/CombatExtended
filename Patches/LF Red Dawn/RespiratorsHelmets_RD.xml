@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[
+        defName = "RD_PMK"
+        or defName = "RD_MMGasMask"
+        or defName = "RD_GPgasmask"]/statBases</xpath>
+        <value>
+          <Bulk>3</Bulk>
+          <WornBulk>1</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "RD_PMK"
+        or defName = "RD_MMGasMask"
+        or defName = "RD_GPgasmask"
+        ]/equippedStatOffsets</xpath>
+        <value>
+        <equippedStatOffsets>
+          <ToxicSensitivity>-0.5</ToxicSensitivity>
+          <SmokeSensitivity>-1</SmokeSensitivity>
+        </equippedStatOffsets>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "RD_PMK"
+        or defName = "RD_MMGasMask"
+        or defName = "RD_GPgasmask"
+        ]/apparel/layers</xpath>
+        <value>
+        <layers>
+            <li>StrappedHead</li>
+        </layers>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[
+        defName = "RD_PMK"
+        or defName = "RD_MMGasMask"
+        ]</xpath>
+        <value>
+        <modExtensions>
+          <li Class="CombatExtended.ApparelHediffExtension">
+            <hediff>WearingGasMask</hediff>
+          </li>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>false</HideHair>
+              <HideBeard>true</HideBeard>
+            </li>
+        </modExtensions>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "RD_GPgasmask"]</xpath>
+        <value>
+        <modExtensions>
+          <li Class="CombatExtended.ApparelHediffExtension">
+            <hediff>WearingGasMask</hediff>
+          </li>
+            <li Class="CombatExtended.ApperalRenderingExtension">
+              <HideHair>true</HideHair>
+              <HideBeard>true</HideBeard>
+            </li>
+        </modExtensions>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[
+        defName = "RD_PMK"
+        or defName = "RD_MMGasMask"
+        or defName = "RD_GPgasmask"]/recipeMaker</xpath>
+        <value>
+        <recipeMaker>
+          <skillRequirements>
+            <Crafting>8</Crafting>
+          </skillRequirements>
+          <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+          <recipeUsers>
+            <li>TableMachining</li>
+          </recipeUsers>
+      </recipeMaker>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[
+          defName = "RD_PMK"
+          or defName = "RD_MMGasMask"
+          or defName = "RD_GPgasmask"
+          ]/costList</xpath>
+          <value>
+        <costList>
+            <ComponentIndustrial>2</ComponentIndustrial>
+            <Chemfuel>10</Chemfuel>
+            </costList>
+          </value>
+      </li>
+ 
+			</operations>
+		</match>
+	</Operation>
+</Patch>
