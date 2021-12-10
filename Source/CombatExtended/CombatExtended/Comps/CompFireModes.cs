@@ -19,7 +19,7 @@ namespace CombatExtended
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
-        public Targetting_Mode target_mode = Targetting_Mode.centermass;
+        public TargettingMode target_mode = TargettingMode.torso;
 
         #endregion
 
@@ -228,13 +228,13 @@ namespace CombatExtended
 
                 switch (target_mode)
                 {
-                    case Targetting_Mode.centermass:
+                    case TargettingMode.torso:
                         mode_name = "center";
                         break;
-                    case Targetting_Mode.legs_lowertorso:
+                    case TargettingMode.legs:
                         mode_name = "legs";
                         break;
-                    case Targetting_Mode.uppertorso_head:
+                    case TargettingMode.head:
                         mode_name = "head";
                         break;
                 }
@@ -276,32 +276,34 @@ namespace CombatExtended
             }
             yield return toggleAimModeGizmo;
 
-            if (CurrentAimMode == AimMode.AimedShot)
+            if (CasterPawn.skills.GetSkill(SkillDefOf.Shooting).Level > 7)
             {
-                yield return new Command_Action
+                if (CurrentAimMode != AimMode.SuppressFire)
                 {
-                    defaultLabel = "switch targeted body part area",
-                    defaultDesc = "",
-                    icon = TrueIcon,
-                    action = delegate
+                    yield return new Command_Action
                     {
-                        switch (target_mode)
+                        defaultLabel = "Targeted body part area: " + target_mode,
+                        defaultDesc = "",
+                        icon = TrueIcon,
+                        action = delegate
                         {
-                            case Targetting_Mode.centermass:
-                                target_mode = Targetting_Mode.uppertorso_head;
-                                break;
-                            case Targetting_Mode.uppertorso_head:
-                                target_mode = Targetting_Mode.legs_lowertorso;
-                                break;
-                            case Targetting_Mode.legs_lowertorso:
-                                target_mode = Targetting_Mode.centermass;
-                                break;
-                        }
+                            switch (target_mode)
+                            {
+                                case TargettingMode.torso:
+                                    target_mode = TargettingMode.head;
+                                    break;
+                                case TargettingMode.head:
+                                    target_mode = TargettingMode.legs;
+                                    break;
+                                case TargettingMode.legs:
+                                    target_mode = TargettingMode.torso;
+                                    break;
+                            }
 
-                    }
-                };
-            }
-           
+                        }
+                    };
+                }
+            } 
         }
 
         /*
