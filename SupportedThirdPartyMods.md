@@ -230,6 +230,7 @@ Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
 Ni'Hal	|
+Nukes   |
 Nyaron Race |
 Not Only Just a Cannon  |
 Ogam's Warbanner Mod    |
