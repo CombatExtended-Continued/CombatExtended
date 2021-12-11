@@ -349,21 +349,30 @@ namespace CombatExtended
                     else if (currentTarget.Thing is Pawn)
                     {
 
-                        if (CasterPawn.skills.GetSkill(SkillDefOf.Shooting).Level > 7)
+                        if (CasterPawn.Faction == Faction.OfPlayer)
                         {
-                            if (CompFireModes?.CurrentAimMode != AimMode.SuppressFire)
+                            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) > 2.8f)
                             {
-                                if (CompFireModes?.target_mode == TargettingMode.head)
+                                if (CompFireModes?.CurrentAimMode != AimMode.SuppressFire)
                                 {
-                                    // Aim upper thoraxic to head
-                                    targetRange.min = victimVert.MiddleHeight;
-                                    targetRange.max = victimVert.Max;
-                                }
-                                else if (CompFireModes?.target_mode == TargettingMode.legs)
-                                {
-                                    // Aim legs to lower abdomen
-                                    targetRange.min = victimVert.Min;
-                                    targetRange.max = victimVert.BottomHeight;
+                                    if (CompFireModes?.target_mode == TargettingMode.head)
+                                    {
+                                        // Aim upper thoraxic to head
+                                        targetRange.min = victimVert.MiddleHeight;
+                                        targetRange.max = victimVert.Max;
+                                    }
+                                    else if (CompFireModes?.target_mode == TargettingMode.legs)
+                                    {
+                                        // Aim legs to lower abdomen
+                                        targetRange.min = victimVert.Min;
+                                        targetRange.max = victimVert.BottomHeight;
+                                    }
+                                    else
+                                    {
+                                        // Aim center mass
+                                        targetRange.min = victimVert.BottomHeight;
+                                        targetRange.max = victimVert.MiddleHeight;
+                                    }
                                 }
                                 else
                                 {
@@ -381,17 +390,103 @@ namespace CombatExtended
                         }
                         else
                         {
-                            // Aim center mass
+                            var Victim = (Pawn)CurrentTarget.Thing;
+
                             targetRange.min = victimVert.BottomHeight;
                             targetRange.max = victimVert.MiddleHeight;
+
+                            if (Victim?.kindDef?.RaceProps?.Humanlike ?? false)
+                            {
+                                if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) >= 2.2f)
+                                {
+                                    #region Finding highest protection apparel on legs, head and torso
+                                    var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").First();
+
+                                    var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
+
+                                    var Helmet = Helmets.FirstOrDefault();
+
+                                    foreach (Apparel ap in Helmets)
+                                    {
+                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > Helmet.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                                        {
+                                            Helmet = ap;
+                                        }
+                                    }
+
+                                    var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").First();
+
+                                    var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
+
+                                    var LegArmor = LegArmors.FirstOrDefault();
+
+                                    foreach (Apparel ap in LegArmors)
+                                    {
+                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > LegArmor.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                                        {
+                                            LegArmor = ap;
+                                        }
+                                    }
+
+                                    var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Torso").First();
+
+                                    var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
+
+                                    var TorsoArmor = TorsoArmors.FirstOrDefault();
+
+                                    foreach (Apparel ap in TorsoArmors)
+                                    {
+                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > TorsoArmor.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                                        {
+                                            TorsoArmor = ap;
+                                        }
+                                    }
+                                    #endregion
+
+                                    #region get CompAmmo's Current ammo projectile
+
+                                    var ProjCE = (ProjectilePropertiesCE)compAmmo.CurAmmoProjectile?.projectile ?? null;
+
+                                    #endregion
+
+                                    var TargetedBodyPartArmor = TorsoArmor;
+
+                                    bool flag1 = ((TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
+
+                                    bool flag2 = ( (ProjCE?.armorPenetrationSharp ?? 0f) >= (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+
+                                    if (flag1 | flag2)
+                                    {
+                                        TargetedBodyPartArmor = Helmet;
+                                    }
+                                    //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
+                                    if ( (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ( (LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f))
+                                    {
+                                        TargetedBodyPartArmor = LegArmor;
+                                    }
+
+                                    if (TargetedBodyPartArmor == Helmet)
+                                    {
+                                        targetRange.min = victimVert.MiddleHeight;
+                                        targetRange.max = victimVert.Max;
+                                    }
+                                    else if(TargetedBodyPartArmor == LegArmor)
+                                    {
+                                        targetRange.min = victimVert.Min;
+                                        targetRange.max = victimVert.BottomHeight;
+                                    }
+                                    else
+                                    {
+                                        targetRange.min = victimVert.BottomHeight;
+                                        targetRange.max = victimVert.MiddleHeight;
+                                    }
+
+
+                                }      
+                            }
+
+                          
                         }
-
-
-
-
-
-
-
 
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
