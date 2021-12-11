@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[1.3] Nukes</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Add ThingClass-->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+				defName="Bullet_FusionWarhead" or
+				defName="Bullet_LargeNuclearWarhead" or
+				defName="Bullet_SmallNuclearWarhead" or
+				defName="Bullet_DirtyNuclearWarhead"				
+				]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>	
+			</value>
+		</li>	
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>/Defs/ThingDef[
+				defName="Bullet_FusionWarhead" or
+				defName="Bullet_LargeNuclearWarhead" or
+				defName="Bullet_SmallNuclearWarhead" or
+				defName="Bullet_DirtyNuclearWarhead"				
+				]/projectile</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.ProjectilePropertiesCE</value>
+		</li>	
+
+		<!-- Set speed.-->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+				defName="Bullet_FusionWarhead" or
+				defName="Bullet_LargeNuclearWarhead" or
+				defName="Bullet_SmallNuclearWarhead" or
+				defName="Bullet_DirtyNuclearWarhead"				
+				]/projectile/speed</xpath>
+			<value>
+				<speed>0</speed>
+			</value>
+		</li>	
+
+		<!-- Add shells to 81mm ammo set.-->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+			<value>
+				<Ammo_FusionBomb>Bullet_FusionWarhead</Ammo_FusionBomb>
+				<Ammo_LargeNuclearBomb>Bullet_LargeNuclearWarhead</Ammo_LargeNuclearBomb>
+				<Ammo_SmallNuclearBomb>Bullet_SmallNuclearWarhead</Ammo_SmallNuclearBomb>
+				<Ammo_DirtyNuclearBomb>Bullet_DirtyNuclearWarhead</Ammo_DirtyNuclearBomb>				
+			</value>
+		</li>
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>

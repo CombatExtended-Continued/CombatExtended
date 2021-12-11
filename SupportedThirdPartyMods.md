@@ -97,6 +97,7 @@ Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
+Bulgarian Imperial Uniforms |
 Carbon	|
 Censored Armory  |
 Clay Soldier Race |
@@ -158,7 +159,8 @@ Forgotten Realms - Minotaur	|
 Forsakens	|
 Forsakens Fauna |  
 Fortifications - Industrial |
-Frontline Collection    |
+Frontline Collection  |
+FROG Suit Set   |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Genetic Rim |
@@ -240,6 +242,7 @@ Nearmare Race	|
 Neclose Race	|
 NewRatkinPlus |
 Ni'Hal	|
+Nukes   |
 Nyaron Race |
 Not Only Just a Cannon  |
 Ogam's Warbanner Mod    |
