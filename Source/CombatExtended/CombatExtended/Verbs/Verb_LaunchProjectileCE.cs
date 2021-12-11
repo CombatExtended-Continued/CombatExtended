@@ -351,7 +351,7 @@ namespace CombatExtended
 
                         if (CasterPawn.Faction == Faction.OfPlayer)
                         {
-                            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) > 2.8f)
+                            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) >= 2.2f)
                             {
                                 if (CompFireModes?.CurrentAimMode != AimMode.SuppressFire)
                                 {
