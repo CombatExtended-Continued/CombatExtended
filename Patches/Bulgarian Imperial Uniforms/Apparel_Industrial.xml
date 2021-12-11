@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Bulgarian Imperial Uniforms</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Uniform -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Uniform"]/statBases</xpath>
+				<value>
+					<Bulk>3.5</Bulk>
+					<WornBulk>2</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Uniform"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+ 					<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Uniform"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+ 					<ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- Uniform Cap -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Cap"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+ 					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Cap"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+ 					<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<!-- Webbing -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+ 					<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+					<Bulk>5</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+ 					<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/equippedStatOffsets/CarryingCapacity</xpath>
+				<value>
+ 					<CarryBulk>30</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/apparel/layers/li[.="Belt"]</xpath>
+				<value>
+ 					<li>Webbing</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Hessian_Bulgarian_Webbing"]/apparel/bodyPartGroups/li[.="Waist"]</xpath>
+				<value>
+ 					<li>Shoulders</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

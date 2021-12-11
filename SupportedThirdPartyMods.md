@@ -92,6 +92,7 @@ Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
 Black Widows	|
+Bulgarian Imperial Uniforms |
 Carbon	|
 Censored Armory  |
 Clay Soldier Race |
