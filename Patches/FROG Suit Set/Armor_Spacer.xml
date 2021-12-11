@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>FROG Suit Set</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Trooper Armor === -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/Mass</xpath>
+				<value>
+					<Bulk>40</Bulk>
+					<WornBulk>6</WornBulk>
+					<Mass>20</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>28</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/equippedStatOffsets/MentalBreakThreshold</xpath>
+				<value>
+					<CarryWeight>25</CarryWeight>
+					<CarryBulk>7.5</CarryBulk>
+					<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+					<ToxicSensitivity>-0.3</ToxicSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
