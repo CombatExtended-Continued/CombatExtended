@@ -276,7 +276,7 @@ namespace CombatExtended
             }
             yield return toggleAimModeGizmo;
 
-            if (CasterPawn.skills.GetSkill(SkillDefOf.Shooting).Level > 7)
+            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) > 2.2f)
             {
                 if (CurrentAimMode != AimMode.SuppressFire)
                 {
