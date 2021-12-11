@@ -8,43 +8,72 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-			<!-- === Trooper Armor === -->
+			<!-- === Frog Helmet === -->
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="FROG_Helmet"]/statBases</xpath>
+			<value>
+				<Bulk>5</Bulk>
+				<WornBulk>1</WornBulk>
+				<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+			</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/Mass</xpath>
+			<xpath>/Defs/ThingDef[defName="FROG_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="FROG_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>38</ArmorRating_Blunt>
+			</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="FROG_Helmet"]/equippedStatOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</value>
+			</li>
+
+			<!-- === Frog Suit === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="FROG_Suit"]/statBases</xpath>
 				<value>
 					<Bulk>40</Bulk>
-					<WornBulk>6</WornBulk>
-					<Mass>20</Mass>
+					<WornBulk>4</WornBulk>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>/Defs/ThingDef[defName="FROG_Suit"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
-					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>/Defs/ThingDef[defName="FROG_Suit"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>28</ArmorRating_Blunt>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/equippedStatOffsets/MentalBreakThreshold</xpath>
-				<value>
-					<CarryWeight>25</CarryWeight>
-					<CarryBulk>7.5</CarryBulk>
-					<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-					<ToxicSensitivity>-0.3</ToxicSensitivity>
+					<ArmorRating_Blunt>32</ArmorRating_Blunt>
 				</value>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VAE_Apparel_TrooperArmor"]/apparel/bodyPartGroups</xpath>
+				<xpath>/Defs/ThingDef[defName="FROG_Suit"]/equippedStatOffsets</xpath>
 				<value>
+					<CarryWeight>25</CarryWeight>
+					<CarryBulk>10</CarryBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="FROG_Suit"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
 					<li>Feet</li>
 				</value>
 			</li>
