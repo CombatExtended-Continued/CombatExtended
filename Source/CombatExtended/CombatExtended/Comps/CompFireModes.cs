@@ -85,6 +85,28 @@ namespace CombatExtended
         }
         private Faction _factionFireMode = null;
         private bool _initCurrentFireMode = false;
+
+        private bool IsTurret = false;
+
+        public float HandLing
+        {
+            get
+            {
+                if (CasterPawn != null)
+                {
+                    return CasterPawn.GetStatValue(StatDefOf.ShootingAccuracyPawn);
+                }
+                else if (Caster is Building_TurretGunCE)
+                {
+                    IsTurret = true;
+                    return 0f;
+                }
+                else
+                {
+                    return 0f;
+                }
+            }
+        }
         public FireMode CurrentFireMode
         {
             get
@@ -276,9 +298,10 @@ namespace CombatExtended
             }
             yield return toggleAimModeGizmo;
 
-            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) > 2.2f)
+
+            if (CurrentAimMode != AimMode.SuppressFire)
             {
-                if (CurrentAimMode != AimMode.SuppressFire)
+                if ( (HandLing > 2.2f) | IsTurret)
                 {
                     yield return new Command_Action
                     {
