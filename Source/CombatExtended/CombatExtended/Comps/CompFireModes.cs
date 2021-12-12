@@ -162,6 +162,7 @@ namespace CombatExtended
             base.PostExposeData();
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
+            Scribe_Values.Look(ref target_mode, "currentTargettingMode", TargettingMode.torso);
         }
 
         public void InitAvailableFireModes()
