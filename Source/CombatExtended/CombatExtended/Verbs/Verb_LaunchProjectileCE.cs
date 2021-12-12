@@ -348,12 +348,15 @@ namespace CombatExtended
                     }
                     else if (currentTarget.Thing is Pawn)
                     {
+                        targetRange.min = victimVert.BottomHeight;
+                        targetRange.max = victimVert.MiddleHeight;
 
-                        if (CasterPawn.Faction == Faction.OfPlayer)
+                        bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
+                        if ( (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer)
                         {
-                            if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) >= 2.2f)
+                            if ((ShootingAccuracy >= 2.2f) | (Caster is Building_TurretGunCE))
                             {
-                                if (CompFireModes?.CurrentAimMode != AimMode.SuppressFire)
+                                if (AppropiateAimMode)
                                 {
                                     if (CompFireModes?.target_mode == TargettingMode.head)
                                     {
@@ -374,18 +377,6 @@ namespace CombatExtended
                                         targetRange.max = victimVert.MiddleHeight;
                                     }
                                 }
-                                else
-                                {
-                                    // Aim center mass
-                                    targetRange.min = victimVert.BottomHeight;
-                                    targetRange.max = victimVert.MiddleHeight;
-                                }
-                            }
-                            else
-                            {
-                                // Aim center mass
-                                targetRange.min = victimVert.BottomHeight;
-                                targetRange.max = victimVert.MiddleHeight;
                             }
                         }
                         else
@@ -395,9 +386,9 @@ namespace CombatExtended
                             targetRange.min = victimVert.BottomHeight;
                             targetRange.max = victimVert.MiddleHeight;
 
-                            if (Victim?.kindDef?.RaceProps?.Humanlike ?? false)
+                            if ( (Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode)
                             {
-                                if (CasterPawn.GetStatValueForPawn(StatDefOf.ShootingAccuracyPawn, CasterPawn) >= 2.2f)
+                                if (ShootingAccuracy >= 2.2f)
                                 {
                                     #region Finding highest protection apparel on legs, head and torso
                                     var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").First();
@@ -449,22 +440,33 @@ namespace CombatExtended
 
                                     #endregion
 
+                                    #region checks for whether the pawn can penetrate armor, which armor is stronger, etc
+
                                     var TargetedBodyPartArmor = TorsoArmor;
 
-                                    bool flag1 = ((TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
+                                    bool flag1 = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
 
-                                    bool flag2 = ( (ProjCE?.armorPenetrationSharp ?? 0f) >= (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
-
-                                    if (flag1 | flag2)
+                                    bool flag2 = ( (ProjCE?.armorPenetrationSharp ?? 0f) >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+                                    //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
+                                    if ( (flag1 && !flag2))
                                     {
                                         TargetedBodyPartArmor = Helmet;
                                     }
                                     //Leg armor is artificially increased in calculation so pawns will prefer headshots over leg shots even with medium strength helmets
-                                    if ( (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ( (LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f))
+                                    bool flag3 = (TargetedBodyPartArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) >= ((LegArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f) + 4f);
+
+                                    //bool for whether the pawn can penetrate helmet
+                                    bool flag4 = ((ProjCE?.armorPenetrationSharp ?? 0f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
+
+                                    //if the pawn can penetrate the helmet or torso armor there's no need to aim for legs
+                                    if ( flag3 && (!flag4) && (!flag2))
                                     {
                                         TargetedBodyPartArmor = LegArmor;
                                     }
+                                    #endregion
 
+
+                                    #region choose shot height based on TargetedBodyPartArmor
                                     if (TargetedBodyPartArmor == Helmet)
                                     {
                                         targetRange.min = victimVert.MiddleHeight;
@@ -481,8 +483,10 @@ namespace CombatExtended
                                         targetRange.max = victimVert.MiddleHeight;
                                     }
 
+                                    #endregion
 
-                                }      
+
+                                }
                             }
 
                           
