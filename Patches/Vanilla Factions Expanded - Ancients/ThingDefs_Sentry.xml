@@ -35,6 +35,13 @@
       </value>
     </li>
 
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFEA_Turret_AncientPointDefense"]</xpath>
+      <value>
+        <fillPercent>0.95</fillPercent>
+      </value>
+    </li>
+
 	  <li Class="PatchOperationAdd">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFEA_Turret_AncientSecurityTurret" or		
@@ -76,10 +83,11 @@
       </value>
     </li>
 
-    <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFEA_Turret_AncientPointDefense"]</xpath>
+    <!-- Make turrets taller -->
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/statBases/MaxHitPoints</xpath>
       <value>
-        <fillPercent>0.95</fillPercent>
+        <MaxHitPoints>125</MaxHitPoints>
       </value>
     </li>
 
