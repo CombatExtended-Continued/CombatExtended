@@ -57,6 +57,64 @@
 		  </tools>
 		</value>
 	</li>
+    
+	        <!-- === VFE Handheld Autocannon === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFE_Gun_RaiderMechanoidGun</defName>
+          <statBases>
+            <Mass>40</Mass>
+            <Bulk>22</Bulk>
+            <SwayFactor>8.80</SwayFactor>
+            <ShotSpread>0.01</ShotSpread>
+            <SightsEfficiency>0.66</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.78</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+            <warmupTime>1</warmupTime>
+            <range>56</range>
+            <minRange>2</minRange>
+            <soundCast>Shot_Autocannon</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>50</magazineSize>
+            <reloadTime>6.5</reloadTime>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+          <AllowWithRunAndGun>false</AllowWithRunAndGun>
+        </li>
+		        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VFE_Gun_RaiderMechanoidGun"]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
 
     <!-- ========== Light Charge Blaster ========== -->
 	
@@ -397,7 +455,74 @@
 		  <li>VFE_AdvMechanoidGunHeavy</li>
 		</weaponTags>
 	</li>
+    
+	 <!-- ========== Advanced Thump cannon ========== -->
 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>VFE_Gun_AdvancedThumpCannon</defName>
+    <statBases>
+      <Mass>300.00</Mass>
+      <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.01</ShotSpread>
+      <SwayFactor>0.82</SwayFactor>
+      <Bulk>20.00</Bulk>
+    </statBases>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
+      <warmupTime>2.5</warmupTime>
+      <range>42</range>
+      <burstShotCount>1</burstShotCount>
+      <soundCast>ThumpCannon_Fire</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>14</muzzleFlashScale>
+      <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+      <minRange>4</minRange>
+      <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>4</magazineSize>
+      <reloadTime>9.8</reloadTime>
+      <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_Launcher</li>
+    </weaponTags>
+  </li>
+
+    <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>2.44</cooldownTime>
+          <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.95,1.95</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
       </operations>
     </match>
   </Operation>
