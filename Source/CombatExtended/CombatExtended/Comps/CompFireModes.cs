@@ -260,6 +260,9 @@ namespace CombatExtended
                     case TargettingMode.head:
                         mode_name = "head";
                         break;
+                    case TargettingMode.automatic:
+                        mode_name = "auto";
+                        break;
                 }
 
                 return ContentFinder<Texture2D>.Get("UI/Buttons/Targetting/" + mode_name);
@@ -320,6 +323,9 @@ namespace CombatExtended
                                     target_mode = TargettingMode.legs;
                                     break;
                                 case TargettingMode.legs:
+                                    target_mode = TargettingMode.automatic;
+                                    break;
+                                case TargettingMode.automatic:
                                     target_mode = TargettingMode.torso;
                                     break;
                             }
