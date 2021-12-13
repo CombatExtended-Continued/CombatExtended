@@ -103,16 +103,30 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>4</ArmorRating_Sharp>
       </value>
     </li>
 	
-	<li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Blunt</xpath>
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>6</ArmorRating_Blunt>
+      </value>
+    </li>
+    
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Sharp</xpath>
+      <value>
+        <ArmorRating_Sharp>10</ArmorRating_Sharp>
+      </value>
+    </li>
+	
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Blunt</xpath>
+      <value>
+        <ArmorRating_Blunt>14</ArmorRating_Blunt>
       </value>
     </li>
 
@@ -162,6 +176,39 @@
             <power>27</power>
             <cooldownTime>1.75</cooldownTime>
             <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+            <armorPenetrationSharp>0</armorPenetrationSharp>
+            <armorPenetrationBlunt>11.25</armorPenetrationBlunt>
+          </li>
+	  <li Class="CombatExtended.ToolCE">
+            <label>blade</label>
+            <capacities>
+              <li>Stab</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>2</cooldownTime>
+            <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+            <armorPenetrationSharp>20</armorPenetrationSharp>
+            <armorPenetrationBlunt>10</armorPenetrationBlunt>
+          </li>
+	  <li Class="CombatExtended.ToolCE">
+            <label>blade</label>
+            <capacities>
+              <li>Cut</li>
+            </capacities>
+            <power>16</power>
+            <cooldownTime>2</cooldownTime>
+            <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+            <armorPenetrationSharp>2.16</armorPenetrationSharp>
+            <armorPenetrationBlunt>5.4</armorPenetrationBlunt>
+          </li>
+	  <li Class="CombatExtended.ToolCE">
+            <label>shield</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>20</power>
+            <cooldownTime>3</cooldownTime>
+            <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
             <armorPenetrationSharp>0</armorPenetrationSharp>
             <armorPenetrationBlunt>11.25</armorPenetrationBlunt>
           </li>
