@@ -540,6 +540,79 @@
       </value>
     </li>
 
+	<!-- ==========VFE Advanced Termite ========== -->
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+		<value>
+			<CarryWeight>300</CarryWeight>
+			<CarryBulk>60</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.02</MeleeDodgeChance>
+			<MeleeCritChance>0.17</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<AimingDelayFactor>1.65</AimingDelayFactor>
+			<MaxHitPoints>400</MaxHitPoints>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>48</ArmorRating_Blunt>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>2.0</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.8</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>3.01</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>13.5</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
       </operations>
     </match>
   </Operation>

@@ -20,14 +20,14 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Turret"]/race/baseBodySize</xpath>
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/race/baseBodySize</xpath>
       <value>
         <baseBodySize>0.20</baseBodySize>
       </value>
     </li>
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"]</xpath>
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"or defName="VFE_Mechanoids_Autobroadcaster"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Vehicle</bodyShape>
@@ -36,7 +36,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"]/statBases</xpath>
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/statBases</xpath>
       <value>
         <MeleeDodgeChance>0</MeleeDodgeChance>
         <MeleeCritChance>0.01</MeleeCritChance>
@@ -45,21 +45,21 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>2.5</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>1.5</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"]/tools</xpath>
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -80,7 +80,7 @@
     <!-- ========== VFE Combat and Riot Mechs ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Humanoid</bodyShape>
@@ -89,7 +89,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>20</CarryBulk>
@@ -103,35 +103,35 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>4</ArmorRating_Sharp>
       </value>
     </li>
 	
 	<li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>6</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Pyro"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>8</ArmorRating_Sharp>
       </value>
     </li>
 	
 	<li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Pyro"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>12</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -165,6 +165,153 @@
             <armorPenetrationSharp>0</armorPenetrationSharp>
             <armorPenetrationBlunt>11.25</armorPenetrationBlunt>
           </li>
+        </tools>
+      </value>
+    </li>
+	
+	<!-- ==========VFE Strider ========== -->
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/statBases</xpath>
+		<value>
+			<CarryWeight>300</CarryWeight>
+			<CarryBulk>60</CarryBulk>
+			<AimingAccuracy>1.0</AimingAccuracy>
+			<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+			<MeleeDodgeChance>0.02</MeleeDodgeChance>
+			<MeleeCritChance>0.17</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<AimingDelayFactor>1.65</AimingDelayFactor>
+			<MaxHitPoints>200</MaxHitPoints>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>28</ArmorRating_Blunt>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>12</ArmorRating_Sharp>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.25</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.8</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="VFE_Mechanoids_Autostrider"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>3.01</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+      <li Class="PatchOperationAddModExtension">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]</xpath>
+      <value>
+        <li Class="CombatExtended.RacePropertiesExtensionCE">
+          <bodyShape>Humanoid</bodyShape>
+        </li>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/statBases</xpath>
+      <value>
+        <CarryWeight>50</CarryWeight>
+        <CarryBulk>20</CarryBulk>
+        <MeleeDodgeChance>0</MeleeDodgeChance>
+        <MeleeCritChance>0.01</MeleeCritChance>
+        <MeleeParryChance>0</MeleeParryChance>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/statBases/ArmorRating_Sharp</xpath>
+      <value>
+        <ArmorRating_Sharp>4</ArmorRating_Sharp>
+      </value>
+    </li>
+	
+	<li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/statBases/ArmorRating_Blunt</xpath>
+      <value>
+        <ArmorRating_Blunt>6</ArmorRating_Blunt>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Mechanoids_AutoMedic"]/tools</xpath>
+      <value>
+        <tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.26</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.26</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<armorPenetrationBlunt>0.450</armorPenetrationBlunt>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>3</power>
+				<cooldownTime>4.49</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<chanceFactor>0.2</chanceFactor>
+				<armorPenetrationBlunt>0.825</armorPenetrationBlunt>
+			</li>
         </tools>
       </value>
     </li>
