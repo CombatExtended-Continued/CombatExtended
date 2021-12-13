@@ -9,7 +9,13 @@
 				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[defName="AA_FrostWeb" or defName="AA_FireWeb" or defName="AA_AcidicWeb" or defName="AA_ElectricBolt"]/thingClass</xpath>
+				<xpath>/Defs/ThingDef[
+				defName="AA_FrostWeb" or 
+				defName="AA_FireWeb" or 
+				defName="AA_AcidicWeb" or 
+				defName="AA_ElectricBolt" or
+				defName="AA_FrostBolt"
+				]/thingClass</xpath>
 				</li>
 
 				<li Class="PatchOperationAdd">
@@ -28,7 +34,8 @@
 				defName="AA_DarkBolt" or
 				defName="AA_AcidBolt" or
 				defName="AA_ElectricBolt" or
-				defName="AA_WindBolt"
+				defName="AA_WindBolt" or
+				defName="AA_FrostBolt"
 				]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
@@ -46,7 +53,8 @@
 				<xpath>/Defs/ThingDef[
 				defName="AA_Bullet_Rock" or
 				defName="AA_ToxicInk" or
-				defName="AA_IncendiaryMote"
+				defName="AA_IncendiaryMote" or
+				defName="AA_FrostBolt"
 				]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -82,7 +90,8 @@
 				defName="AA_Thermadon" or
 				defName="AA_Erin" or
 				defName="AA_Thunderbeast" or
-				defName="AA_WindBeast"
+				defName="AA_WindBeast" or
+				defName="AA_FrostLynx"
 				]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.7</AimingAccuracy>
@@ -129,7 +138,7 @@
 									<li>
 										<def>Stun</def>
 										<amount>8</amount>
-          										<chance>0.5</chance>
+          								<chance>0.5</chance>
 									</li>
 								</secondaryDamage>
 							</projectile>
@@ -438,7 +447,22 @@
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 					</value>
-				</li>										
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_FrostBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionDelay>1</explosionDelay>
+							<explosionRadius>2.9</explosionRadius>
+							<damageDef>AA_FrostBomb</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<postExplosionSpawnThingDef>AA_FrostPuff</postExplosionSpawnThingDef>
+							<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+							<postExplosionSpawnChance>1</postExplosionSpawnChance>
+							<speed>28</speed>
+						</projectile>
+					</value>
+				</li>																
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/projectile</xpath>
 					<value>
