@@ -352,9 +352,16 @@ namespace CombatExtended
                         targetRange.max = victimVert.MiddleHeight;
 
                         bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
-                        if ( (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer)
+
+                        bool flagautomatic = (CompFireModes?.target_mode != TargettingMode.automatic);
+
+                        if ( (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer && flagautomatic)
                         {
-                            if ((ShootingAccuracy >= 2.2f) | (Caster is Building_TurretGunCE))
+                            bool flag1 = ((ShootingAccuracy >= 2.2f) | (Caster is Building_TurretGunCE));
+
+                           
+
+                            if (flag1)
                             {
                                 if (AppropiateAimMode)
                                 {
@@ -386,7 +393,7 @@ namespace CombatExtended
                             targetRange.min = victimVert.BottomHeight;
                             targetRange.max = victimVert.MiddleHeight;
 
-                            if ( (Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode)
+                            if (((Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode))
                             {
                                 if (ShootingAccuracy >= 2.2f)
                                 {
