@@ -14,6 +14,7 @@ namespace CombatExtended
     {
         legs,
         torso,
-        head
+        head,
+        automatic
     }
 }
