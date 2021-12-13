@@ -657,6 +657,7 @@
 								</verbs>
 							</value>
 					</li>
+
 					<!-- Dark Beast -->
 
 					<li Class="PatchOperationReplace">
@@ -679,7 +680,9 @@
 								</verbs>
 							</value>
 					</li>
+
 					<!-- Erin -->
+
 					<li Class="PatchOperationReplace">
 						<xpath>/Defs/ThingDef[defName="AA_Erin"]/verbs</xpath>
 							<value>
@@ -695,6 +698,50 @@
 										<soundCast>AA_PoisonBolt</soundCast>
 										<muzzleFlashScale>0</muzzleFlashScale>
 										<label>acidic vomit</label>
+										<commonality>.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Thunderbeast -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_Thunderbeast"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_ElectricBolt</defaultProjectile>
+										<warmupTime>2.6</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<range>18</range>
+										<soundCast>AA_ElectricBolt</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>electric bolt</label>
+										<commonality>.8</commonality>
+									</li>
+								</verbs>
+							</value>
+					</li>
+
+					<!-- Windbeast -->
+
+					<li Class="PatchOperationReplace">
+						<xpath>/Defs/ThingDef[defName="AA_WindBeast"]/verbs</xpath>
+							<value>
+								<verbs>
+									<li Class="CombatExtended.VerbPropertiesCE">
+										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+										<hasStandardCommand>true</hasStandardCommand>
+										<defaultProjectile>AA_WindBolt</defaultProjectile>
+										<warmupTime>2.6</warmupTime>
+										<burstShotCount>1</burstShotCount>
+										<range>32</range>
+										<soundCast>AA_WindBolt</soundCast>
+										<muzzleFlashScale>0</muzzleFlashScale>
+										<label>wind blast</label>
 										<commonality>.8</commonality>
 									</li>
 								</verbs>
