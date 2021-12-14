@@ -236,7 +236,7 @@ namespace CombatExtended
                     {
 			int armorDamage = 0;
 			if (dmgAmount <= 1.0f) {
-			    if (UnityEngine.Random.value < (penAmount / armorAmount) * dmgAmount) {
+			    if (Rand.Value < (penAmount / armorAmount) * dmgAmount) {
 				armorDamage = 1;
 			    }
 			}
@@ -256,7 +256,7 @@ namespace CombatExtended
 		    
 		    armorDamage2 = armorDamage2 - armorDamage;
 		    if (armorDamage2 > 0) {
-			if (UnityEngine.Random.value < armorDamage2) {
+			if (Rand.Value < armorDamage2) {
 			    armorDamage++;
 			}
 		    }
