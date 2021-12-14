@@ -252,15 +252,14 @@ namespace CombatExtended
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
 		    float armorDamage2 = newDmgAmount * Mathf.Min(1.0f, penAmount / armorAmount);
-		    if (armorDamage2 <= 0.5f) {
+		    int armorDamage = (int) armorDamage2;
+		    armorDamage2 = armorDamage2 - armorDamage;
+		    if (armorDamage2 > 0) {
 			if (UnityEngine.Random.value < armorDamage2) {
-			    armorDamage2 = 1.0f;
-			}
-			else {
-			    armorDamage2 = 0.0f;
+			  armorDamage++;
 			}
 		    }
-                    int armorDamage = Mathf.RoundToInt(armorDamage2);
+                    
                     armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
