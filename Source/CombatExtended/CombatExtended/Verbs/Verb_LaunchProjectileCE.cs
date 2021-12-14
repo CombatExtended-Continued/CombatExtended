@@ -114,14 +114,14 @@ namespace CombatExtended
             }
         }
 
-        public bool isTurret = false;
+        public bool isTurretMannable = false;
 
         public float ShootingAccuracy
         {
             get
             {
 
-                isTurret = (Caster is Building_TurretGunCE);
+                isTurretMannable = (Caster.TryGetComp<CompMannable>() != null);
                 return Mathf.Min(CasterShootingAccuracyValue(Shooter), 4.5f);
             }
            
@@ -357,7 +357,7 @@ namespace CombatExtended
                             targetRange.max = coverRange.max * 2;
                         }
                     }
-                    else if (currentTarget.Thing is Pawn)
+                    else if (currentTarget.Thing is Pawn Victim)
                     {
                         targetRange.min = victimVert.BottomHeight;
                         targetRange.max = victimVert.MiddleHeight;
@@ -368,9 +368,8 @@ namespace CombatExtended
 
                         bool isPlayerFaction = (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer;
 
-                        bool flag1 = ((ShootingAccuracy >= 2.2f) | isTurret);
 
-                        if (flag1)
+                        if ((ShootingAccuracy >= 2.2f) | isTurretMannable)
                         {
                             if (isPlayerFaction && flagTargetMode)
                             {
@@ -399,11 +398,9 @@ namespace CombatExtended
                         }
                         if (!flagTargetMode | !isPlayerFaction)
                         {
-                            var Victim = (Pawn)CurrentTarget.Thing;
-
-                            if (((Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode))
+                            if ( ( (Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode) )
                             {
-                                if (ShootingAccuracy >= 2.2f)
+                                if ((ShootingAccuracy >= 2.2f) | isTurretMannable)
                                 {
                                     #region Finding highest protection apparel on legs, head and torso
 
