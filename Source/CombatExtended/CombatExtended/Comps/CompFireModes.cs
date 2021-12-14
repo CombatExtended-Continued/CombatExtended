@@ -19,7 +19,7 @@ namespace CombatExtended
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
-        public TargettingMode target_mode = TargettingMode.torso;
+        public TargettingMode targetMode = TargettingMode.torso;
 
         #endregion
 
@@ -92,19 +92,12 @@ namespace CombatExtended
         {
             get
             {
-                if (CasterPawn != null)
+                if (Caster is Pawn)
                 {
                     return CasterPawn.GetStatValue(StatDefOf.ShootingAccuracyPawn);
                 }
-                else if (Caster is Building_TurretGunCE)
-                {
-                    IsTurret = true;
-                    return 0f;
-                }
-                else
-                {
-                    return 0f;
-                }
+                IsTurret = (Caster is Building_TurretGunCE);
+                return 0f;
             }
         }
         public FireMode CurrentFireMode
@@ -162,7 +155,7 @@ namespace CombatExtended
             base.PostExposeData();
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
-            Scribe_Values.Look(ref target_mode, "currentTargettingMode", TargettingMode.torso);
+            Scribe_Values.Look(ref targetMode, "currentTargettingMode", TargettingMode.torso);
         }
 
         public void InitAvailableFireModes()
@@ -249,7 +242,7 @@ namespace CombatExtended
             {
                 string mode_name = "";
 
-                switch (target_mode)
+                switch (targetMode)
                 {
                     case TargettingMode.torso:
                         mode_name = "center";
@@ -309,24 +302,24 @@ namespace CombatExtended
                 {
                     yield return new Command_Action
                     {
-                        defaultLabel = "Targeted body part area: " + target_mode,
+                        defaultLabel = "Targeted body part area: " + targetMode,
                         defaultDesc = "",
                         icon = TrueIcon,
                         action = delegate
                         {
-                            switch (target_mode)
+                            switch (targetMode)
                             {
                                 case TargettingMode.torso:
-                                    target_mode = TargettingMode.head;
+                                    targetMode = TargettingMode.head;
                                     break;
                                 case TargettingMode.head:
-                                    target_mode = TargettingMode.legs;
+                                    targetMode = TargettingMode.legs;
                                     break;
                                 case TargettingMode.legs:
-                                    target_mode = TargettingMode.automatic;
+                                    targetMode = TargettingMode.automatic;
                                     break;
                                 case TargettingMode.automatic:
-                                    target_mode = TargettingMode.torso;
+                                    targetMode = TargettingMode.torso;
                                     break;
                             }
 
