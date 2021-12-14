@@ -86,7 +86,7 @@ namespace CombatExtended
         private Faction _factionFireMode = null;
         private bool _initCurrentFireMode = false;
 
-        private bool IsTurret = false;
+        private bool IsTurretMannable = false;
 
         public float HandLing
         {
@@ -96,7 +96,7 @@ namespace CombatExtended
                 {
                     return CasterPawn.GetStatValue(StatDefOf.ShootingAccuracyPawn);
                 }
-                IsTurret = (Caster is Building_TurretGunCE);
+                IsTurretMannable = (Caster.TryGetComp<CompMannable>() != null);
                 return 0f;
             }
         }
@@ -298,7 +298,7 @@ namespace CombatExtended
 
             if (CurrentAimMode != AimMode.SuppressFire)
             {
-                if ( (HandLing > 2.2f) | IsTurret)
+                if ( (HandLing > 2.2f) | IsTurretMannable)
                 {
                     yield return new Command_Action
                     {
