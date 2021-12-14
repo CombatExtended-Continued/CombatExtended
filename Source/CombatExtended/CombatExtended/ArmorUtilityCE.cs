@@ -189,12 +189,12 @@ namespace CombatExtended
             }
 
             // Applies blunt damage from partial penetrations.
-            if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount)))
+            if (isSharp && (dinfo.Amount > dmgAmount))
             {
                 pawn.TakeDamage(GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true));
             }
             // Return damage info.
-            dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
+            dinfo.SetAmount(dmgAmount);
             return dinfo;
         }
 
@@ -234,14 +234,32 @@ namespace CombatExtended
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
                     if (isSharpDmg)
                     {
-                        var armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-                        armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
+			int armorDamage = 0;
+			if (dmgAmount <= 1.0f) {
+			    if (Rand.Value < (penAmount / armorAmount) * dmgAmount) {
+				armorDamage = 1;
+			    }
+			}
+			else {
+			    
+			    armorDamage = Mathf.CeilToInt(Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount));
+			}
+			
+                        armor.TakeDamage(new DamageInfo(def, armorDamage));
                     }
                 }
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    var armorDamage = Mathf.Max(1, newDmgAmount);
+		    float armorDamage2 = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, penAmount / armorAmount);
+		    int armorDamage = (int) armorDamage2;
+		    
+		    armorDamage2 = armorDamage2 - armorDamage;
+		    if (armorDamage2 > 0) {
+			if (Rand.Value < armorDamage2) {
+			    armorDamage++;
+			}
+		    }
                     armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
