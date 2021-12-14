@@ -105,7 +105,6 @@ CyberNet	|
 Cybernetic Organism and Neural Network	|
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
-Defensive Machine Gun Turret Pack	|
 Devilstrand Colour Bundle   |
 Dinosauria |
 Dishonored Assassin Coat |
