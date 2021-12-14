@@ -71,7 +71,7 @@ namespace CombatExtended
                     if (modified > 0)
                         shotsPerBurst = modified;
                 }
-                return (int) shotsPerBurst;
+                return (int)shotsPerBurst;
             }
         }
 
@@ -114,7 +114,18 @@ namespace CombatExtended
             }
         }
 
-        public float ShootingAccuracy => Mathf.Min(CasterShootingAccuracyValue(Shooter), 4.5f);
+        public bool isTurret = false;
+
+        public float ShootingAccuracy
+        {
+            get
+            {
+
+                isTurret = (Caster is Building_TurretGunCE);
+                return Mathf.Min(CasterShootingAccuracyValue(Shooter), 4.5f);
+            }
+           
+        }
         public float AimingAccuracy => Mathf.Min(Shooter.GetStatValue(CE_StatDefOf.AimingAccuracy), 1.5f); //equivalent of ShooterPawn?.GetStatValue(CE_StatDefOf.AimingAccuracy) ?? caster.GetStatValue(CE_StatDefOf.AimingAccuracy)
         public float SightsEfficiency => EquipmentSource?.GetStatValue(CE_StatDefOf.SightsEfficiency) ?? 1f;
         public virtual float SwayAmplitude => Mathf.Max(0, (4.5f - ShootingAccuracy) * (EquipmentSource?.GetStatValue(StatDef.Named("SwayFactor")) ?? 1f));
@@ -353,25 +364,25 @@ namespace CombatExtended
 
                         bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
 
-                        bool flagautomatic = (CompFireModes?.target_mode != TargettingMode.automatic);
+                        bool flagTargetMode = (CompFireModes?.targetMode != TargettingMode.automatic);
 
-                        if ( (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer && flagautomatic)
+                        bool isPlayerFaction = (CasterPawn?.Faction ?? Caster.Faction) == Faction.OfPlayer;
+
+                        bool flag1 = ((ShootingAccuracy >= 2.2f) | isTurret);
+
+                        if (flag1)
                         {
-                            bool flag1 = ((ShootingAccuracy >= 2.2f) | (Caster is Building_TurretGunCE));
-
-                           
-
-                            if (flag1)
+                            if (isPlayerFaction && flagTargetMode)
                             {
                                 if (AppropiateAimMode)
                                 {
-                                    if (CompFireModes?.target_mode == TargettingMode.head)
+                                    if (CompFireModes?.targetMode == TargettingMode.head)
                                     {
                                         // Aim upper thoraxic to head
                                         targetRange.min = victimVert.MiddleHeight;
                                         targetRange.max = victimVert.Max;
                                     }
-                                    else if (CompFireModes?.target_mode == TargettingMode.legs)
+                                    else if (CompFireModes?.targetMode == TargettingMode.legs)
                                     {
                                         // Aim legs to lower abdomen
                                         targetRange.min = victimVert.Min;
@@ -386,59 +397,36 @@ namespace CombatExtended
                                 }
                             }
                         }
-                        else
+                        if (!flagTargetMode | !isPlayerFaction)
                         {
                             var Victim = (Pawn)CurrentTarget.Thing;
-
-                            targetRange.min = victimVert.BottomHeight;
-                            targetRange.max = victimVert.MiddleHeight;
 
                             if (((Victim?.kindDef?.RaceProps?.Humanlike ?? false) && AppropiateAimMode))
                             {
                                 if (ShootingAccuracy >= 2.2f)
                                 {
                                     #region Finding highest protection apparel on legs, head and torso
+
+                                    Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
+
+
                                     var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").First();
 
                                     var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
 
-                                    var Helmet = Helmets.FirstOrDefault();
-
-                                    foreach (Apparel ap in Helmets)
-                                    {
-                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > Helmet.GetStatValue(StatDefOf.ArmorRating_Sharp))
-                                        {
-                                            Helmet = ap;
-                                        }
-                                    }
+                                    Apparel Helmet = Helmets.MaxByWithFallback(funcArmor);
 
                                     var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").First();
 
                                     var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
 
-                                    var LegArmor = LegArmors.FirstOrDefault();
-
-                                    foreach (Apparel ap in LegArmors)
-                                    {
-                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > LegArmor.GetStatValue(StatDefOf.ArmorRating_Sharp))
-                                        {
-                                            LegArmor = ap;
-                                        }
-                                    }
+                                    Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
 
                                     var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Torso").First();
 
                                     var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
 
-                                    var TorsoArmor = TorsoArmors.FirstOrDefault();
-
-                                    foreach (Apparel ap in TorsoArmors)
-                                    {
-                                        if (ap.GetStatValue(StatDefOf.ArmorRating_Sharp) > TorsoArmor.GetStatValue(StatDefOf.ArmorRating_Sharp))
-                                        {
-                                            TorsoArmor = ap;
-                                        }
-                                    }
+                                    Apparel TorsoArmor = TorsoArmors.MaxByWithFallback(funcArmor);
                                     #endregion
 
                                     #region get CompAmmo's Current ammo projectile
@@ -451,11 +439,11 @@ namespace CombatExtended
 
                                     var TargetedBodyPartArmor = TorsoArmor;
 
-                                    bool flag1 = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
+                                    bool flagTorsoArmor = ((TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f) >= (Helmet?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0f));
 
                                     bool flag2 = ( (ProjCE?.armorPenetrationSharp ?? 0f) >= (TorsoArmor?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f));
                                     //Headshots do too little damage too often, so if the pawn can penetrate torso armor, they should aim at it
-                                    if ( (flag1 && !flag2))
+                                    if ( (flagTorsoArmor && !flag2))
                                     {
                                         TargetedBodyPartArmor = Helmet;
                                     }
@@ -484,12 +472,6 @@ namespace CombatExtended
                                         targetRange.min = victimVert.Min;
                                         targetRange.max = victimVert.BottomHeight;
                                     }
-                                    else
-                                    {
-                                        targetRange.min = victimVert.BottomHeight;
-                                        targetRange.max = victimVert.MiddleHeight;
-                                    }
-
                                     #endregion
 
 
@@ -891,6 +873,7 @@ namespace CombatExtended
         public virtual void VerbTickCE()
         {
         }
+       
 
         #region Line of Sight Utility
 
