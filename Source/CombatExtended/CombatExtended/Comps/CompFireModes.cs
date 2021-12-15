@@ -302,7 +302,7 @@ namespace CombatExtended
                 {
                     yield return new Command_Action
                     {
-                        defaultLabel = "Targeted body part area: " + targetMode,
+                        defaultLabel = "Targeted area: " + targetMode,
                         defaultDesc = "",
                         icon = TrueIcon,
                         action = delegate
