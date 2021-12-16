@@ -11,7 +11,11 @@
 			<!-- Melee Attacks -->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[@Name="AA_FlamethrowerBase" or defName = "AA_SiegeTurret" or defName="AA_CryogenicGun"]/tools</xpath>
+				<xpath>/Defs/ThingDef[
+				@Name="AA_FlamethrowerBase" or
+				defName = "AA_SiegeTurret" or
+				@Name="AA_CryogenicGunBase"
+				]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
