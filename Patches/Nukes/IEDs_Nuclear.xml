@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[1.3] Nukes</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="TrapIED_Fusion"]/costList</xpath>
+			<value>
+			<costList>
+				<Ammo_FusionBomb>1</Ammo_FusionBomb>
+			</costList>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="TrapIED_LargeNuclear"]/costList</xpath>
+			<value>
+			<costList>
+				<Ammo_LargeNuclearBomb>2</Ammo_LargeNuclearBomb>
+			</costList>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="TrapIED_SmallNuclear"]/costList</xpath>
+			<value>
+			<costList>
+				<Ammo_SmallNuclearBomb>2</Ammo_SmallNuclearBomb>
+			</costList>
+			</value>
+		</li>	
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>

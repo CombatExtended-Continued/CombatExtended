@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim Galaxies</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/HediffDef[defName="O21_OR_DroidTwinWristBlaster"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Droid_Red</defaultProjectile>
+								<warmupTime>3</warmupTime>
+								<range>42</range>
+								<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+								<burstShotCount>4</burstShotCount>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<label>TwinWristBlaster</label>
+							</li>
+						</verbs>
+					</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/HediffDef[defName="O21_OR_DroidWristBlaster"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Droid_Red</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<range>42</range>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<burstShotCount>2</burstShotCount>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<label>WristBlaster</label>
+							</li>
+						</verbs>
+					</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/HediffDef[defName="O21_OR_DroidWristBlasterIon"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_Blaster_Ion</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<range>42</range>
+								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+								<burstShotCount>2</burstShotCount>
+								<soundCast>O21_Shot_BlasterBolt</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<label>WristBlasterIon</label>
+							</li>
+						</verbs>
+					</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/HediffDef[defName="O21_OR_DroidWristRocket"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_OR_WristRocket</defaultProjectile>
+								<warmupTime>7.5</warmupTime>
+								<range>42</range>
+								<burstShotCount>1</burstShotCount>
+								<soundCast>InfernoCannon_Fires</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>9</muzzleFlashScale>
+								<label>WristRocket</label>
+							</li>
+						</verbs>
+					</value>
+			</li>
+			
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>
