@@ -29,14 +29,43 @@ namespace CombatExtended
 
                 Log.Message("Patching: " + gun.defName.Colorize(Color.blue) + " because of it's: " + the_tag.Colorize(Color.cyan) + " weapontag");
 
+                var BaseVerb = gun.verbs.Find(x => x.range > 0).MemberwiseClone();
+
                 gun.verbs.RemoveAll(M => (M.range > 0));
 
                 gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.Bulk, value = the_patcher_def.bulk });
 
+                var newTools = new List<Tool>();
+
+                #region Tool patching
                 foreach (Tool tool in gun.tools)
                 {
-                    tool.ChangeType<ToolCE>();
+                    if (!(tool is ToolCE))
+                    {
+                        ToolCE newTool = new ToolCE();
+
+                        newTool.capacities = tool.capacities;
+
+                        newTool.armorPenetrationSharp = tool.armorPenetration;
+
+                        newTool.armorPenetrationBlunt = tool.armorPenetration;
+
+                        newTool.armorPenetration = tool.armorPenetration;
+
+                        newTool.chanceFactor = tool.chanceFactor;
+
+                        newTool.power = tool.power;
+
+                        newTool.linkedBodyPartsGroup = tool.linkedBodyPartsGroup;
+
+                        newTool.label = tool.label;
+
+                        newTools.Add(newTool);
+                    }
                 }
+
+                gun.tools = newTools;
+                #endregion
 
                 gun.verbs.Add(new VerbPropertiesCE
                 {
@@ -56,7 +85,17 @@ namespace CombatExtended
 
                     defaultProjectile = the_patcher_def.DefaultProj,
 
-                    muzzleFlashScale = 9f
+                    muzzleFlashScale = 9f,
+
+                    soundAiming = BaseVerb.soundAiming,
+
+                    soundCast = BaseVerb.soundCast,
+
+                    soundCastTail = BaseVerb.soundCastTail
+                    
+
+
+                    
 
                     
 
