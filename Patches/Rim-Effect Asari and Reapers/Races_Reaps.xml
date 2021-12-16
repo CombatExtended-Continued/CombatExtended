@@ -186,8 +186,8 @@
       					<PsychicSensitivity>0.6</PsychicSensitivity>
 					<AimingAccuracy>1.0</AimingAccuracy>
 					<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
-					<MeleeDodgeChance>0.3</MeleeDodgeChance>
-					<MeleeCritChance>0.3</MeleeCritChance>
+					<MeleeDodgeChance>0.33</MeleeDodgeChance>
+					<MeleeCritChance>0.33</MeleeCritChance>
     				</statBases>
 				</value>
 			</li>
@@ -197,12 +197,23 @@
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
+							 <label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2.4</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>10</armorPenetrationBlunt>
+        				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						</li>
+						<li Class="CombatExtended.ToolCE">
 							<label>left fist</label>
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
 							<power>18</power>
-							<cooldownTime>1.65</cooldownTime>
+							<cooldownTime>1.76</cooldownTime>
 							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>2</armorPenetrationBlunt>
 							<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -213,7 +224,7 @@
 								<li>Scratch</li>
 							</capacities>
 							<power>18</power>
-							<cooldownTime>1.65</cooldownTime>
+							<cooldownTime>1.76</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>2</armorPenetrationBlunt>
 							<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -234,12 +245,12 @@
 				<value>
     				<statBases>
       					<MoveSpeed>4.6</MoveSpeed>
-      					<ArmorRating_Blunt>27</ArmorRating_Blunt>
-      					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+      					<ArmorRating_Blunt>28</ArmorRating_Blunt>
+      					<ArmorRating_Sharp>15</ArmorRating_Sharp>
       					<PsychicSensitivity>0.6</PsychicSensitivity>
 					<AimingAccuracy>1.3</AimingAccuracy>
 					<ShootingAccuracyPawn>1.3</ShootingAccuracyPawn>
-					<MeleeDodgeChance>0.75</MeleeDodgeChance>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>0.33</MeleeCritChance>
     				</statBases>
 				</value>
@@ -254,8 +265,8 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>18</power>
-							<cooldownTime>1.65</cooldownTime>
+							<power>12</power>
+							<cooldownTime>135</cooldownTime>
 							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>2</armorPenetrationBlunt>
 							<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -265,8 +276,8 @@
 							<capacities>
 								<li>Scratch</li>
 							</capacities>
-							<power>18</power>
-							<cooldownTime>1.65</cooldownTime>
+							<power>12</power>
+							<cooldownTime>1.35</cooldownTime>
 							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 							<armorPenetrationBlunt>2</armorPenetrationBlunt>
 							<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -278,7 +289,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RE_Husk_Marauder"]/race/baseHealthScale</xpath>
 				<value>
-      					<baseHealthScale>1.15</baseHealthScale>
+      					<baseHealthScale>1.05</baseHealthScale>
 				</value>
 			</li>
 			<!-- ========== Goliath ========== -->
@@ -338,8 +349,8 @@
 				<value>
     					<statBases>
       					<MoveSpeed>2.4</MoveSpeed>
-      					<ArmorRating_Blunt>6</ArmorRating_Blunt>
-      					<ArmorRating_Sharp>4</ArmorRating_Sharp>
+      					<ArmorRating_Blunt>7.5</ArmorRating_Blunt>
+      					<ArmorRating_Sharp>5</ArmorRating_Sharp>
       					<PsychicSensitivity>0.6</PsychicSensitivity>
 					<MeleeDodgeChance>0.15</MeleeDodgeChance>
 					<MeleeCritChance>0.40</MeleeCritChance>
@@ -504,7 +515,7 @@
           <extraMeleeDamages>
             <li>
               <def>Stun</def>
-              <amount>10</amount>
+              <amount>5</amount>
             </li>
           </extraMeleeDamages>
 							<cooldownTime>3.3</cooldownTime>
@@ -524,7 +535,7 @@
           <extraMeleeDamages>
             <li>
               <def>Stun</def>
-              <amount>10</amount>
+              <amount>5</amount>
             </li>
           </extraMeleeDamages>
 							<cooldownTime>3.3</cooldownTime>
@@ -537,41 +548,87 @@
 							<capacities>
 								<li>Bite</li>
 							</capacities>
-							<power>16</power>
+							<power>30</power>
 							<cooldownTime>3.0</cooldownTime>
         							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
         							<chanceFactor>0.2</chanceFactor>
         							<soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
         							<soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
-							<armorPenetrationBlunt>15</armorPenetrationBlunt>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
+							<armorPenetrationBlunt>45</armorPenetrationBlunt>
+							<armorPenetrationSharp>15</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>headbutt</label>
 							<capacities>
 								<li>Blunt</li>
 							</capacities>
-							<power>7</power>
+							<power>48</power>
 							<cooldownTime>3.0</cooldownTime>
         							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
         							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-        							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							<armorPenetrationBlunt>500</armorPenetrationBlunt>
 							<armorPenetrationSharp>0</armorPenetrationSharp>
 						</li>
 					</tools>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="baseBodySize"]/race/baseBodySize</xpath>
+				<xpath>Defs/ThingDef[defName="RE_Husk_Brute"]/race/baseBodySize</xpath>
 				<value>
-      					<baseBodySize>2.6</baseBodySize>
+      					<baseBodySize>2.5</baseBodySize>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RE_Husk_Brute"]/race/baseHealthScale</xpath>
 				<value>
       					<baseHealthScale>4.0</baseHealthScale>
+				</value>
+			</li>
+
+			<!-- ========== Swarmer ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Husk_Swarmer"]/statBases</xpath>
+				<value>
+    					<statBases>
+      					<MoveSpeed>4.0</MoveSpeed>
+					<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+      					<PsychicSensitivity>0.3</PsychicSensitivity>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.1</MeleeCritChance>
+    					</statBases>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Husk_Swarmer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>claw</label>
+							<capacities>
+								<li>Cut</li>
+								<li>Stab</li>
+								<li>Scratch</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.33</cooldownTime>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
+							<armorPenetrationSharp>2</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>headbutt</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>3.0</cooldownTime>
+        							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        							<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+						</li>
+					</tools>
 				</value>
 			</li>
 
