@@ -12,65 +12,53 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-					<li Class="PatchOperationAddModExtension">
-						<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Siegebreaker"]</xpath>
-						<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-							<min>10</min>
-							<max>14</max>
-						</primaryMagazineCount>
-						</li>
-						</value>
-					</li>
+		<!-- 
+			This patch sequence appears to execute as intended and without errors, but the pawns
+			don't actually spawn with the prescribed amounts of ammo, only the smaller amount
+			automatically by the autopatcher. I'll be damned if I know why.
+		 -->
 
-<!--
-					<li Class="PatchOperationAddModExtension">
-						<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Advanced_Siegebreaker"]</xpath>
-						<value>
+			<!-- Siegebreaker -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Siegebreaker" or defName="VFE_Mech_Advanced_Siegebreaker"]</xpath>
+				<value>
+					<modExtensions>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
+						<primaryMagazineCount>
 							<min>10</min>
 							<max>14</max>
 						</primaryMagazineCount>
 						</li>
-						</value>
-					</li>
--->
-					<!--Fireworm-->
-<!--
-					<li Class="PatchOperationAddModExtension">
-						<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Fireworm" or defName="VFE_Mech_Advanced_Fireworm"]</xpath>
-						<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-							<min>4</min>
-							<max>5</max>
-						</primaryMagazineCount>
-						</li>
-						</value>
-					</li>
--->					
-					<!--Goliath-->
-<!--					
-					<li Class="PatchOperationAddModExtension">
-						<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Goliath" or defName="VFE_Mech_Advanced_Goliath"]</xpath>
-						<value>
-						<li Class="CombatExtended.LoadoutPropertiesExtension">
-							<primaryMagazineCount>
-							<min>20</min>
-							<max>30</max>
-						</primaryMagazineCount>
-						</li>
-						</value>
-					</li>
--->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Goliath"]/label</xpath>
-				<value>
-					<label>TESTING</label>
+					</modExtensions>
 				</value>
 			</li>
+
+			<!-- Fireworm -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Fireworm" or defName="VFE_Mech_Advanced_Fireworm"]</xpath>
+				<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					<min>4</min>
+					<max>5</max>
+				</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+	
+			<!-- Goliath -->				
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Goliath" or defName="VFE_Mech_Advanced_Goliath"]</xpath>
+				<value>
+				<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+					<min>20</min>
+					<max>30</max>
+				</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+
 
 			</operations>
 		</match>					
