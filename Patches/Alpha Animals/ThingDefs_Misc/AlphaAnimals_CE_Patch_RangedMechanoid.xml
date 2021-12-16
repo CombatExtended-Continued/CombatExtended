@@ -8,6 +8,25 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+			<!-- Melee Attacks -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="AA_FlamethrowerBase" or defName = "AA_SiegeTurret" or defName="AA_CryogenicGun"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>11.7</power>
+							<cooldownTime>2.6</cooldownTime>
+							<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+						</li>					
+					</tools>
+				</value>
+			</li>
+
 			<!-- Make the Siege Turret usable -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -51,23 +70,6 @@
 				<xpath>/Defs/ThingDef[@Name="AA_FlamethrowerBase"]/description</xpath>
 				<value>
 					<description>A prometheum jelly flamethrower. Short range, but it will cause uncontrollable fires if you let the fireworms come near.</description>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[@Name="AA_FlamethrowerBase"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>11.7</power>
-							<cooldownTime>2.6</cooldownTime>
-							<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
-						</li>					
-					</tools>
 				</value>
 			</li>
 			
