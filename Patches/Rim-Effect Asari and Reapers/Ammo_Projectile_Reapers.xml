@@ -183,19 +183,18 @@
 			</projectile>
 		</ThingDef>
 
-
 		<!-- ================== Cannibal ================== -->
 
 		<ThingDef Class="CombatExtended.AmmoDef" Name="BaseCannibalBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
-			<graphicData>
-			<texPath>Things/Projectiles/Shot_CannibalCaster</texPath>
+			<label>cannibal shot</label>
+			<graphicData>	
+				<texPath>Things/Projectiles/Shot_CannibalCaster</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
 				<shaderType>TransparentPostLight</shaderType>
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<label>cannibal shot</label>
-			<damageDef>Bullet</damageDef>
-			<speed>300</speed>
+				<damageDef>Bullet</damageDef>
+				<speed>300</speed>
 			</projectile>
 		</ThingDef>
 
@@ -212,7 +211,7 @@
 			<defName>Bullet_Cannibal_AP</defName>
 			<label>accelerated shot</label>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>13</damageAmountBase>
+				<damageAmountBase>13</damageAmountBase>
 				<armorPenetrationSharp>32</armorPenetrationSharp>      
 				<armorPenetrationBlunt>56</armorPenetrationBlunt>
 			</projectile>
@@ -225,55 +224,55 @@
 				<damageAmountBase>20</damageAmountBase>
 				<armorPenetrationSharp>16</armorPenetrationSharp>      
 				<armorPenetrationBlunt>56</armorPenetrationBlunt>
-			<secondaryDamage>
+				<secondaryDamage>
 					<li>
-					<def>Bomb_Secondary</def>
-					<amount>10</amount>
+						<def>Bomb_Secondary</def>
+						<amount>10</amount>
 					</li>
-			</secondaryDamage>
-			</projectile>
+				</secondaryDamage>
+				</projectile>
 		</ThingDef>
 
 		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
 			<defName>Bullet_Cannibal_FI</defName>
 			<label>accelerated incendiary shot</label>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>19</damageAmountBase>
-			<armorPenetrationSharp>16</armorPenetrationSharp>      
-			<armorPenetrationBlunt>56</armorPenetrationBlunt>
-			<secondaryDamage>
-			<li>
-				<def>ME_SickBurn</def>
-				<amount>4</amount>
-			</li>
-			<li>
-				<def>Flame</def>
-				<amount>1</amount>
-				<chance>0.2</chance>
-			</li>
-			<li>
-				<def>Stun</def>
-				<amount>8</amount>
-				<chance>0.03</chance>
-			</li>
-			</secondaryDamage>
+				<damageAmountBase>19</damageAmountBase>
+				<armorPenetrationSharp>16</armorPenetrationSharp>      
+				<armorPenetrationBlunt>56</armorPenetrationBlunt>
+				<secondaryDamage>
+				<li>
+					<def>ME_SickBurn</def>
+					<amount>4</amount>
+				</li>
+				<li>
+					<def>Flame</def>
+					<amount>1</amount>
+					<chance>0.2</chance>
+				</li>
+				<li>
+					<def>Stun</def>
+					<amount>8</amount>
+					<chance>0.03</chance>
+				</li>
+				</secondaryDamage>
 			</projectile>
 		</ThingDef>
 
 		<!-- ================== Marauder ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseMarauderBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectiles/Shot_MarauderRifle</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.0</drawSize>
-		</graphicData>
+		<ThingDef Class="CombatExtended.AmmoDef" Name="BaseMarauderBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
 			<label>maruader shot</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageDef>Bullet</damageDef>
-		<speed>400</speed>
-		</projectile>
-	</ThingDef>
+			<graphicData>
+				<texPath>Things/Projectiles/Shot_MarauderRifle</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<drawSize>1.0</drawSize>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<speed>400</speed>
+			</projectile>
+		</ThingDef>
 
 		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMarauderBullet">
 			<defName>Bullet_Marauder</defName>
@@ -288,60 +287,60 @@
 			<defName>Bullet_Marauder_AP</defName>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageAmountBase>11</damageAmountBase>
-		<armorPenetrationSharp>40</armorPenetrationSharp>      
-		<armorPenetrationBlunt>44</armorPenetrationBlunt>
+				<armorPenetrationSharp>40</armorPenetrationSharp>      
+				<armorPenetrationBlunt>44</armorPenetrationBlunt>
 			</projectile>
 		</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMarauderBullet">
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMarauderBullet">
 			<defName>Bullet_Marauder_HE</defName>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageAmountBase>16</damageAmountBase>
-		<armorPenetrationSharp>20</armorPenetrationSharp>      
-		<armorPenetrationBlunt>44</armorPenetrationBlunt>
-			<secondaryDamage>
-					<li>
+				<armorPenetrationSharp>20</armorPenetrationSharp>      
+				<armorPenetrationBlunt>44</armorPenetrationBlunt>
+				<secondaryDamage>
+				<li>
 					<def>Bomb_Secondary</def>
 					<amount>8</amount>
-					</li>
-			</secondaryDamage>
+				</li>
+				</secondaryDamage>
 			</projectile>
 		</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMarauderBullet">
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseMarauderBullet">
 			<defName>Bullet_Marauder_FI</defName>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageAmountBase>15</damageAmountBase>
-		<armorPenetrationSharp>20</armorPenetrationSharp>      
-		<armorPenetrationBlunt>44</armorPenetrationBlunt>
-			<secondaryDamage>
-					<li>
+				<armorPenetrationSharp>20</armorPenetrationSharp>      
+				<armorPenetrationBlunt>44</armorPenetrationBlunt>
+				<secondaryDamage>
+				<li>
 					<def>ME_SickBurn</def>
 					<amount>4</amount>
-					</li>
-					<li>
+				</li>
+				<li>
 					<def>Flame</def>
 					<amount>1</amount>
-							<chance>0.15</chance>
-					</li>
-			</secondaryDamage>
+					<chance>0.15</chance>
+				</li>
+				</secondaryDamage>
 			</projectile>
 		</ThingDef>
 
 
 		<!-- ================== Ravager ================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseRavagerBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectiles/Shot_RavagerCannon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		<drawSize>2</drawSize>
-		</graphicData>
-		<label>ravager cannon shot</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<speed>160</speed>
-		</projectile>
-	</ThingDef>
+		<ThingDef Class="CombatExtended.AmmoDef" Name="BaseRavagerBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+			<label>ravager cannon shot</label>
+			<graphicData>
+				<texPath>Things/Projectiles/Shot_RavagerCannon</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>TransparentPostLight</shaderType>
+				<drawSize>2</drawSize>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>160</speed>
+			</projectile>
+		</ThingDef>
 
 		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRavagerBullet">
 			<defName>Bullet_Ravager</defName>
@@ -352,34 +351,34 @@
 				<pelletCount>2</pelletCount>
 				<spreadMult>2</spreadMult>
 			</projectile>
-				<comps>
+			<comps>
 				<li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<damageAmountBase>32</damageAmountBase>
-				<explosiveDamageType>Bomb</explosiveDamageType>
-				<explosiveRadius>0.9</explosiveRadius>
-				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			</li>
-			<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_ME>5</Fragment_ME>
-			</fragments>
-			</li>
-				</comps>
+					<damageAmountBase>32</damageAmountBase>
+					<explosiveDamageType>Bomb</explosiveDamageType>
+					<explosiveRadius>0.9</explosiveRadius>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</li>
+				<li Class="CombatExtended.CompProperties_Fragments">
+					<fragments>
+						<Fragment_ME>5</Fragment_ME>
+					</fragments>
+				</li>
+			</comps>
 		</ThingDef>
 
 		<!-- ================== DO NOT REMOVE THE SHARP PENETRATION ================== -->
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRavagerBullet">
-			<defName>Bullet_Ravager_HE</defName>
-				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRavagerBullet">
+		<defName>Bullet_Ravager_HE</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<explosionRadius>1.5</explosionRadius>
-		<damageDef>Bomb</damageDef>
-		<armorPenetrationSharp>200</armorPenetrationSharp>
-		<damageAmountBase>90</damageAmountBase>
-		<armorPenetrationBlunt>0</armorPenetrationBlunt>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		<pelletCount>2</pelletCount>
-		<spreadMult>2.0</spreadMult>
+			<explosionRadius>1.5</explosionRadius>
+			<damageDef>Bomb</damageDef>
+			<armorPenetrationSharp>200</armorPenetrationSharp>
+			<damageAmountBase>90</damageAmountBase>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<pelletCount>2</pelletCount>
+			<spreadMult>2.0</spreadMult>
 		</projectile>
 		<comps>
 		<li Class="CombatExtended.CompProperties_Fragments">
@@ -390,20 +389,20 @@
 		</comps>
 		</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRavagerBullet">
-		<defName>Bullet_Ravager_FI</defName>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRavagerBullet">
+			<defName>Bullet_Ravager_FI</defName>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<explosionRadius>1.5</explosionRadius>
-		<damageDef>Bomb</damageDef>
-		<armorPenetrationSharp>300</armorPenetrationSharp>
-		<damageAmountBase>100</damageAmountBase>
-		<armorPenetrationBlunt>0</armorPenetrationBlunt>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		<pelletCount>2</pelletCount>
-		<spreadMult>2.0</spreadMult>
-		</projectile>
-	</ThingDef>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1.5</explosionRadius>
+				<damageDef>Bomb</damageDef>
+				<armorPenetrationSharp>300</armorPenetrationSharp>
+				<damageAmountBase>100</damageAmountBase>
+				<armorPenetrationBlunt>0</armorPenetrationBlunt>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<pelletCount>2</pelletCount>
+				<spreadMult>2.0</spreadMult>
+			</projectile>
+		</ThingDef>
 
 		</value>
 		</li>
