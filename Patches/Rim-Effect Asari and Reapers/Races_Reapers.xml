@@ -56,6 +56,14 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="BaseHusk"]/statBases</xpath>
+			<value>
+				<NightVisionEfficiency>0.8</NightVisionEfficiency>
+				<SmokeSensitivity>0</SmokeSensitivity>
+			</value>
+		</li>
+
 		<!-- ========== Banshee ========== -->
 
 		<li Class="PatchOperationReplace">
@@ -237,7 +245,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>12</power>
+						<power>10</power>
 						<cooldownTime>135</cooldownTime>
 						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 						<armorPenetrationBlunt>2</armorPenetrationBlunt>
@@ -248,7 +256,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>12</power>
+						<power>10</power>
 						<cooldownTime>1.35</cooldownTime>
 						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 						<armorPenetrationBlunt>2</armorPenetrationBlunt>
@@ -393,7 +401,7 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>15</power>
+						<power>14</power>
 						<cooldownTime>2.8</cooldownTime>
 						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
 						<chanceFactor>0.2</chanceFactor>
@@ -448,16 +456,14 @@
 					<li Class="CombatExtended.ToolCE">
 						<label>left claw</label>
 						<capacities>
-							<li>Blunt</li>
 							<li>Cut</li>
-							<li>Stab</li>
 							<li>Scratch</li>
 						</capacities>
-						<power>96</power>
+						<power>56</power>
 						<extraMeleeDamages>
 						<li>
 							<def>Stun</def>
-							<amount>5</amount>
+							<amount>15</amount>
 						</li>
 						</extraMeleeDamages>
 						<cooldownTime>3.3</cooldownTime>
@@ -466,22 +472,20 @@
 						<armorPenetrationSharp>60</armorPenetrationSharp>
 					</li>
 					<li Class="CombatExtended.ToolCE">
-						<label>right claw</label>
+						<label>left claw</label>
 						<capacities>
-							<li>Blunt</li>
 							<li>Cut</li>
-							<li>Stab</li>
 							<li>Scratch</li>
 						</capacities>
-						<power>96</power>
+						<power>56</power>
 						<extraMeleeDamages>
 						<li>
 							<def>Stun</def>
-							<amount>5</amount>
+							<amount>15</amount>
 						</li>
 						</extraMeleeDamages>
 						<cooldownTime>3.3</cooldownTime>
-						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 						<armorPenetrationBlunt>500</armorPenetrationBlunt>
 						<armorPenetrationSharp>60</armorPenetrationSharp>
 					</li>
@@ -490,12 +494,12 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>48</power>
-						<cooldownTime>3.0</cooldownTime>
+						<power>35</power>
+						<cooldownTime>3.51</cooldownTime>
 						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-						<armorPenetrationBlunt>500</armorPenetrationBlunt>
 						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>18</armorPenetrationBlunt>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</value>
@@ -519,7 +523,7 @@
 			<xpath>/Defs/ThingDef[defName="RE_Husk_Swarmer"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
 				<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+				<MeleeDodgeChance>0.35</MeleeDodgeChance>
 				<MeleeCritChance>0.1</MeleeCritChance>
 			</value>
 		</li>
@@ -534,16 +538,14 @@
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
-						<label>claw</label>
+						<label>blade</label>
 						<capacities>
-							<li>Cut</li>
-							<li>Stab</li>
 							<li>Scratch</li>
 						</capacities>
-						<power>11</power>
+						<power>8</power>
 						<cooldownTime>1.33</cooldownTime>
 						<armorPenetrationBlunt>2</armorPenetrationBlunt>
-						<armorPenetrationSharp>2</armorPenetrationSharp>
+						<armorPenetrationSharp>2.5</armorPenetrationSharp>
 					</li>
 					<li Class="CombatExtended.ToolCE">
 						<label>head</label>
