@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AlienRace;
 using RimWorld;
 using Verse;
+using UnityEngine;
 
 namespace CombatExtended.Compatibility
 {
@@ -13,6 +14,8 @@ namespace CombatExtended.Compatibility
     {
         public static void PatchHARs()
         {
+            Log.Error("Patching alien races".Colorize(Color.magenta));
+
             var UnpatchedHARs = DefDatabase<AlienRace.ThingDef_AlienRace>.AllDefs.Where(x => x.tools.Any(y => !(y is ToolCE) ));
 
             foreach (ThingDef_AlienRace alienRace in UnpatchedHARs)
