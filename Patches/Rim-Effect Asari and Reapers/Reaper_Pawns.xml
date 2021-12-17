@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+            <!-- ======= Combat Power ======= -->
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Banshee" or defName="RE_Husk_Brute"]/combatPower</xpath>
+				<value>
+					<combatPower>360</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Ravager"]/combatPower</xpath>
+				<value>
+					<combatPower>180</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Cannibal"]/combatPower</xpath>
+				<value>
+					<combatPower>75</combatPower>
+				</value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+			<xpath>/Defs/PawnKindDef[defName="RE_Husk_Husk" or defName="RE_Husk_Swarmer"]/combatPower</xpath>
+				<value>
+					<combatPower>15</combatPower>
+				</value>
+            </li>		
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
