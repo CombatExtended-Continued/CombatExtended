@@ -9,18 +9,18 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-        <!-- === Add ammo to scenario === -->
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ScenarioDef[defName="RE_LoneAsariExplorer"]/scenario/parts</xpath>
+      <!-- === Add ammo to scenario === -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ScenarioDef[defName="RE_LoneAsariExplorer"]/scenario/parts</xpath>
+        <value>
+          <li Class="ScenPart_StartingThing_Defined">
+            <def>StartingThing_Defined</def>
+            <thingDef>Ammo_ME</thingDef>
+            <count>120</count>
+          </li>
+        </value>
+      </li>
 
-          <value>
-            <li Class="ScenPart_StartingThing_Defined">
-              <def>StartingThing_Defined</def>
-              <thingDef>Ammo_ME</thingDef>
-              <count>120</count>
-            </li>
-          </value>
-        </li>
       </operations>
     </match>
   </Operation>

@@ -7,19 +7,17 @@
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-			
-			
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/HediffDef[defName = "RER_DirectControl"]/stages/li[1]/statOffsets/ShootingAccuracyPawn</xpath>			
-					<value>
-                    					<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
-              					<MeleeCritChance>0.33</MeleeCritChance>
-              					<MeleeParryChance>0.33</MeleeParryChance>
-              					<MeleeDodgeChance>0.33</MeleeDodgeChance>
-					<Suppressability>-0.33</Suppressability>
-					</value>
-				</li>
 				
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/HediffDef[defName = "RER_DirectControl"]/stages/li[1]/statOffsets/ShootingAccuracyPawn</xpath>			
+			<value>
+				<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+				<MeleeCritChance>0.50</MeleeCritChance>
+				<MeleeParryChance>0.50</MeleeParryChance>
+				<MeleeDodgeChance>0.50</MeleeDodgeChance>
+				<Suppressability>-10</Suppressability>
+			</value>
+		</li>		
 				
 		</operations>
 		</match>

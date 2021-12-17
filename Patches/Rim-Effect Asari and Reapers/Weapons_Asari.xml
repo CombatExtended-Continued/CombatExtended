@@ -8,342 +8,342 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-        <!-- === Asari Blade === -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]/statBases/Mass</xpath>
-          <value>
-            <Mass>0.25</Mass>
-            <Bulk>6.25</Bulk>
-            <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
-          </value>
-        </li>
+      <!-- === Asari Blade === -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]/statBases/Mass</xpath>
+        <value>
+          <Mass>0.25</Mass>
+          <Bulk>6.25</Bulk>
+          <MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+        </value>
+      </li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]</xpath>
-          <value>
-            <equippedStatOffsets>
-              <MeleeCritChance>1.1</MeleeCritChance>
-              <MeleeParryChance>0.24</MeleeParryChance>
-              <MeleeDodgeChance>0.4</MeleeDodgeChance>
-            </equippedStatOffsets>
-          </value>
-        </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]</xpath>
+        <value>
+          <equippedStatOffsets>
+            <MeleeCritChance>1.1</MeleeCritChance>
+            <MeleeParryChance>0.24</MeleeParryChance>
+            <MeleeDodgeChance>0.4</MeleeDodgeChance>
+          </equippedStatOffsets>
+        </value>
+      </li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]/tools</xpath>
-          <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <label>edge</label>
-                <capacities>
-                  <li>Cut</li>
-                </capacities>
-                <power>30</power>
-                <cooldownTime>1.1</cooldownTime>
-                <chanceFactor>1</chanceFactor>
-                <armorPenetrationBlunt>1</armorPenetrationBlunt>
-                <armorPenetrationSharp>10</armorPenetrationSharp>
-                <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-              </li>
-              <li Class="CombatExtended.ToolCE">
-                <label>point</label>
-                <capacities>
-                  <li>Stab</li>
-                </capacities>
-                <power>20</power>
-                <cooldownTime>1.18</cooldownTime>
-                <chanceFactor>2</chanceFactor>
-                <armorPenetrationBlunt>1</armorPenetrationBlunt>
-                <armorPenetrationSharp>20</armorPenetrationSharp>
-                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-              </li>
-            </tools>
-          </value>
-        </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RE_MeleeWeapon_AsariSword"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>edge</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>30</power>
+              <cooldownTime>1.1</cooldownTime>
+              <chanceFactor>1</chanceFactor>
+              <armorPenetrationBlunt>1</armorPenetrationBlunt>
+              <armorPenetrationSharp>10</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>point</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.18</cooldownTime>
+              <chanceFactor>2</chanceFactor>
+              <armorPenetrationBlunt>1</armorPenetrationBlunt>
+              <armorPenetrationSharp>20</armorPenetrationSharp>
+              <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
 
-  <!-- ========== Melee Tools ========== -->
-  <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="RE_Gun_AsariPistol"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>grip</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>3</power>
-          <cooldownTime>1.54</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>2</power>
-          <cooldownTime>1.54</cooldownTime>
-          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
+      <!-- ========== Melee Tools ========== -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RE_Gun_AsariPistol"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>grip</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>3</power>
+              <cooldownTime>1.54</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.54</cooldownTime>
+              <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
 
-  <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="RE_Gun_AsariAssaultRifle" or defName="RE_Gun_AsariShotgun" or defName="RE_Gun_AsariSniperRifle"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>stock</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>8</power>
-          <cooldownTime>1.55</cooldownTime>
-          <chanceFactor>1.5</chanceFactor>
-          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>5</power>
-          <cooldownTime>2.02</cooldownTime>
-          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>8</power>
-          <cooldownTime>1.55</cooldownTime>
-          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
-				
-  <!-- ========== Priestess ========== -->
-  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
-    <defName>RE_Gun_AsariAssaultRifle</defName>
-    <statBases>
-      <WorkToMake>42000</WorkToMake>
-      <SightsEfficiency>1.15</SightsEfficiency>
-      <ShotSpread>0.06</ShotSpread>
-      <SwayFactor>1.3</SwayFactor>
-      <Bulk>6.4</Bulk>
-      <Mass>1.8</Mass>
-      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>True</hasStandardCommand>
-      <defaultProjectile>Bullet_AAR_Basic</defaultProjectile>
-      <warmupTime>0.75</warmupTime>
-      <range>50</range>
-      <burstShotCount>6</burstShotCount>
-      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-      <soundCast>RE_Shot_AsariAssaultRifle</soundCast>
-      <soundCastTail>GunTail_Medium</soundCastTail>
-      <muzzleFlashScale>8</muzzleFlashScale>
-      <recoilPattern>Regular</recoilPattern>
-      <recoilAmount>1.26</recoilAmount>
-    </Properties>
-    <costList>
-      <Steel>5</Steel>
-      <Plasteel>55</Plasteel>
-      <ComponentSpacer>1</ComponentSpacer>
-        <RE_ElementZero>6</RE_ElementZero>
-    </costList>
-    <AmmoUser>
-      <magazineSize>36</magazineSize>
-      <reloadTime>3.6</reloadTime>
-      <ammoSet>AmmoSet_AAR</ammoSet>
-    </AmmoUser>
-    <FireModes>
-      <aiUseBurstMode>True</aiUseBurstMode>
-      <aiAimMode>AimedShot</aiAimMode>
-      <aimedBurstShotCount>3</aimedBurstShotCount>
-    </FireModes>
-  </li>
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RE_Gun_AsariAssaultRifle" or defName="RE_Gun_AsariShotgun" or defName="RE_Gun_AsariSniperRifle"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+            
+      <!-- ========== Priestess ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_AsariAssaultRifle</defName>
+        <statBases>
+          <WorkToMake>42000</WorkToMake>
+          <SightsEfficiency>1.15</SightsEfficiency>
+          <ShotSpread>0.06</ShotSpread>
+          <SwayFactor>1.3</SwayFactor>
+          <Bulk>6.4</Bulk>
+          <Mass>1.8</Mass>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_AAR_Basic</defaultProjectile>
+          <warmupTime>0.75</warmupTime>
+          <range>50</range>
+          <burstShotCount>6</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+          <soundCast>RE_Shot_AsariAssaultRifle</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>8</muzzleFlashScale>
+          <recoilPattern>Regular</recoilPattern>
+          <recoilAmount>1.26</recoilAmount>
+        </Properties>
+        <costList>
+          <Steel>5</Steel>
+          <Plasteel>55</Plasteel>
+          <ComponentSpacer>1</ComponentSpacer>
+            <RE_ElementZero>6</RE_ElementZero>
+        </costList>
+        <AmmoUser>
+          <magazineSize>36</magazineSize>
+          <reloadTime>3.6</reloadTime>
+          <ammoSet>AmmoSet_AAR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>True</aiUseBurstMode>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aimedBurstShotCount>3</aimedBurstShotCount>
+        </FireModes>
+      </li>
 
-  <!-- Name -->
-  <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='RE_Gun_AsariAssaultRifle']/label</xpath> 
-    <value>
-      <label>Priestess</label>
-    </value>
-  </li>
+      <!-- Name -->
+      <li Class='PatchOperationReplace'>
+        <xpath>/Defs/ThingDef[defName='RE_Gun_AsariAssaultRifle']/label</xpath> 
+        <value>
+          <label>Priestess</label>
+        </value>
+      </li>
 
-  <!-- ========== Huntress ========== -->
-  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
-    <defName>RE_Gun_AsariSniperRifle</defName>
-    <statBases>
-      <WorkToMake>48000</WorkToMake>
-      <SightsEfficiency>2.8</SightsEfficiency>
-      <ShotSpread>0.03</ShotSpread>
-      <SwayFactor>1.43</SwayFactor>
-      <Bulk>9.0</Bulk>
-      <Mass>3.60</Mass>
-      <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>True</hasStandardCommand>
-      <defaultProjectile>Bullet_ASR</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
-      <range>75</range>
-      <ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
-      <soundCast>RE_Shot_AsariSniperRifle</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>9</muzzleFlashScale>
-    </Properties>
-    <costList>
-      <Steel>40</Steel>
-      <Plasteel>30</Plasteel>
-      <ComponentSpacer>1</ComponentSpacer>
-      <Chemfuel>10</Chemfuel>
-    </costList>
-    <AmmoUser>
-      <magazineSize>18</magazineSize>
-      <reloadTime>3.6</reloadTime>
-      <ammoSet>AmmoSet_ASR</ammoSet>
-    </AmmoUser>
-    <FireModes>
-      <aiUseBurstMode>False</aiUseBurstMode>
-      <aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-  </li>
+      <!-- ========== Huntress ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_AsariSniperRifle</defName>
+        <statBases>
+          <WorkToMake>48000</WorkToMake>
+          <SightsEfficiency>2.8</SightsEfficiency>
+          <ShotSpread>0.03</ShotSpread>
+          <SwayFactor>1.43</SwayFactor>
+          <Bulk>9.0</Bulk>
+          <Mass>3.60</Mass>
+          <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_ASR</defaultProjectile>
+          <warmupTime>1.3</warmupTime>
+          <range>75</range>
+          <ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+          <soundCast>RE_Shot_AsariSniperRifle</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <costList>
+          <Steel>40</Steel>
+          <Plasteel>30</Plasteel>
+          <ComponentSpacer>1</ComponentSpacer>
+          <Chemfuel>10</Chemfuel>
+        </costList>
+        <AmmoUser>
+          <magazineSize>18</magazineSize>
+          <reloadTime>3.6</reloadTime>
+          <ammoSet>AmmoSet_ASR</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>False</aiUseBurstMode>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+      </li>
 
-  <!-- Name -->
-  <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='RE_Gun_AsariSniperRifle']/label</xpath>
-    <value>
-      <label>Huntress</label>
-    </value>
-  </li>
+      <!-- Name -->
+      <li Class='PatchOperationReplace'>
+        <xpath>/Defs/ThingDef[defName='RE_Gun_AsariSniperRifle']/label</xpath>
+        <value>
+          <label>Huntress</label>
+        </value>
+      </li>
 
-<!-- ========== Disciple ========== -->
-  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
-    <defName>RE_Gun_AsariShotgun</defName>
-    <statBases>
-      <WorkToMake>40000</WorkToMake>
-      <SightsEfficiency>1.0</SightsEfficiency>
-      <ShotSpread>0.11</ShotSpread>
-      <SwayFactor>1.20</SwayFactor>
-      <Bulk>5</Bulk>
-      <Mass>1.5</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>True</hasStandardCommand>
-      <defaultProjectile>Bullet_Disciple</defaultProjectile>
-      <warmupTime>0.55</warmupTime>
-      <range>25</range>
-      <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
-      <soundCast>RE_Shot_AsariShotgun</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>9</muzzleFlashScale>
-    </Properties>
-    <costList>
-      <Steel>5</Steel>
-      <Plasteel>40</Plasteel>
-      <ComponentSpacer>1</ComponentSpacer>
-      <RE_ElementZero>5</RE_ElementZero>
-    </costList>
-    <AmmoUser>
-      <magazineSize>18</magazineSize>
-      <reloadTime>3.5</reloadTime>
-      <ammoSet>AmmoSet_Disciple</ammoSet>
-    </AmmoUser>
-    <FireModes>
-      <aiUseBurstMode>False</aiUseBurstMode>
-    </FireModes>
-  </li>
+    <!-- ========== Disciple ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_AsariShotgun</defName>
+        <statBases>
+          <WorkToMake>40000</WorkToMake>
+          <SightsEfficiency>1.0</SightsEfficiency>
+          <ShotSpread>0.11</ShotSpread>
+          <SwayFactor>1.20</SwayFactor>
+          <Bulk>5</Bulk>
+          <Mass>1.5</Mass>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Disciple</defaultProjectile>
+          <warmupTime>0.55</warmupTime>
+          <range>25</range>
+          <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+          <soundCast>RE_Shot_AsariShotgun</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <costList>
+          <Steel>5</Steel>
+          <Plasteel>40</Plasteel>
+          <ComponentSpacer>1</ComponentSpacer>
+          <RE_ElementZero>5</RE_ElementZero>
+        </costList>
+        <AmmoUser>
+          <magazineSize>18</magazineSize>
+          <reloadTime>3.5</reloadTime>
+          <ammoSet>AmmoSet_Disciple</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>False</aiUseBurstMode>
+        </FireModes>
+      </li>
 
-  <!-- Name -->
-  <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='RE_Gun_AsariShotgun']/label</xpath>
-    <value>
-      <label>Disciple</label>
-    </value>
-  </li>
+      <!-- Name -->
+      <li Class='PatchOperationReplace'>
+        <xpath>/Defs/ThingDef[defName='RE_Gun_AsariShotgun']/label</xpath>
+        <value>
+          <label>Disciple</label>
+        </value>
+      </li>
 
- <li Class="PatchOperationReplace">
- <xpath>/Defs/ThingDef[defName="RE_Gun_AsariShotgun"]/description</xpath>
- <value>
-               <description>The Katana is a common mercenary weapon, and is also popular on colonies with varren infestations. It's deadly at short range, but ineffective at long range. Being a shotgun, it sacrifices its long range and armour piercing capabilities for short range firepower.</description>
- </value>
- </li>
+      <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="RE_Gun_AsariShotgun"]/description</xpath>
+      <value>
+        <description>The Katana is a common mercenary weapon, and is also popular on colonies with varren infestations. It's deadly at short range, but ineffective at long range. Being a shotgun, it sacrifices its long range and armour piercing capabilities for short range firepower.</description>
+      </value>
+      </li>
 
-  <!-- ========== Acolyte ========== -->
-  <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
-    <defName>RE_Gun_AsariPistol</defName>
-    <statBases>
-      <WorkToMake>19000</WorkToMake>
-      <SightsEfficiency>0.8</SightsEfficiency>
-      <ShotSpread>0.13</ShotSpread>
-      <SwayFactor>1.19</SwayFactor>
-      <Bulk>1.5</Bulk>
-      <Mass>0.6</Mass>
-      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>True</hasStandardCommand>
-      <defaultProjectile>Bullet_Acolyte</defaultProjectile>
-      <warmupTime>1.1</warmupTime>
-      <range>18</range>
-      <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
-      <soundCast>RE_Shot_AsariPistol</soundCast>
-      <soundCastTail>GunTail_Light</soundCastTail>
-      <muzzleFlashScale>7</muzzleFlashScale>
-	<targetParams>
-		<canTargetLocations>true</canTargetLocations>
-          		<canTargetPawns>true</canTargetPawns>
-	</targetParams>
-    </Properties>
-    <costList>
-      <Steel>5</Steel>
-      <Plasteel>15</Plasteel>
-       <ComponentIndustrial>5</ComponentIndustrial>
-      <RE_ElementZero>10</RE_ElementZero>
-    </costList>
-    <AmmoUser>
-      <magazineSize>12</magazineSize>
-      <reloadTime>3.0</reloadTime>
-      <ammoSet>AmmoSet_Acolyte</ammoSet>
-    </AmmoUser>
-    <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-      <li>CE_OneHandedWeapon</li>
-    </weaponTags>
-  </li>
+      <!-- ========== Acolyte ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_AsariPistol</defName>
+        <statBases>
+          <WorkToMake>19000</WorkToMake>
+          <SightsEfficiency>0.8</SightsEfficiency>
+          <ShotSpread>0.13</ShotSpread>
+          <SwayFactor>1.19</SwayFactor>
+          <Bulk>1.5</Bulk>
+          <Mass>0.6</Mass>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Acolyte</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>18</range>
+          <ammoConsumedPerShotCount>3</ammoConsumedPerShotCount>
+          <soundCast>RE_Shot_AsariPistol</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>7</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+          <canTargetPawns>true</canTargetPawns>
+        </targetParams>
+        </Properties>
+        <costList>
+          <Steel>5</Steel>
+          <Plasteel>15</Plasteel>
+          <ComponentIndustrial>5</ComponentIndustrial>
+          <RE_ElementZero>10</RE_ElementZero>
+        </costList>
+        <AmmoUser>
+          <magazineSize>12</magazineSize>
+          <reloadTime>3.0</reloadTime>
+          <ammoSet>AmmoSet_Acolyte</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>CE_OneHandedWeapon</li>
+        </weaponTags>
+      </li>
 
-  <!-- Name -->
-  <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='RE_Gun_AsariPistol']/label</xpath>
-    <value>
-      <label>Acolyte</label>
-    </value>
-  </li>
+      <!-- Name -->
+      <li Class='PatchOperationReplace'>
+        <xpath>/Defs/ThingDef[defName='RE_Gun_AsariPistol']/label</xpath>
+        <value>
+          <label>Acolyte</label>
+        </value>
+      </li>
 
- <li Class="PatchOperationReplace">
- <xpath>/Defs/ThingDef[defName="RE_Gun_AsariPistol"]/description</xpath>
- <value>
-               <description>Pistol firing miniture warp bomb, it have a notable chance of stunning the target on direct hits.</description>
- </value>
- </li>
+      <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="RE_Gun_AsariPistol"]/description</xpath>
+        <value>
+          <description>Pistol firing miniture warp bomb, it have a notable chance of stunning the target on direct hits.</description>
+        </value>
+      </li>
 
 			</operations>		
 		</match>
