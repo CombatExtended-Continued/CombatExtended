@@ -111,7 +111,7 @@
 			<defName>AmmoSet_Goliath</defName>
 			<label>Reaper tech</label>
 			<ammoTypes>
-				<Ammo_Reapers>Bullet_12x64mmCharged</Ammo_Reapers>
+				<Ammo_Reapers>Bullet_Goliath</Ammo_Reapers>
 			</ammoTypes>
 		</CombatExtended.AmmoSetDef>
 
@@ -151,7 +151,7 @@
 			<defName>AmmoSet_Collossus</defName>
 			<label>Reaper tech</label>
 			<ammoTypes>
-				<Ammo_Reapers>Bullet_80x256mmFuel_Thermobaric</Ammo_Reapers>
+				<Ammo_Reapers>Bullet_Collosus</Ammo_Reapers>
 			</ammoTypes>
 		</CombatExtended.AmmoSetDef>
 
@@ -159,27 +159,14 @@
 
 		<!-- ================== Goliath ================== -->
 
-		<ThingDef ParentName="Base6x24mmChargedBullet">
+		<ThingDef ParentName="Base12x64mmChargedBullet">
 			<defName>Bullet_Goliath</defName>
-			<label>Goliath shot</label>
+			<label>goliath cannon shot</label>
 			<graphicData>
-			<texPath>Things/Projectiles/Shot_GoliathCannon</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
+				<texPath>Things/Projectiles/Shot_GoliathCannon</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>TransparentPostLight</shaderType>
 			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>38</damageAmountBase>
-			<speed>260</speed>
-			<secondaryDamage>
-				<li>
-				<def>Bomb_Secondary</def>
-				<amount>18</amount>
-				</li>
-			</secondaryDamage>
-			<armorPenetrationSharp>38</armorPenetrationSharp>
-			<armorPenetrationBlunt>334.6</armorPenetrationBlunt>
-			</projectile>
 		</ThingDef>
 
 		<!-- ================== Cannibal ================== -->
@@ -382,7 +369,7 @@
 		<comps>
 		<li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
-			<Fragment_ME>15</Fragment_ME>
+				<Fragment_ME>15</Fragment_ME>
 			</fragments>
 		</li>
 		</comps>
@@ -404,6 +391,22 @@
 		</ThingDef>
 
 		<!-- ================== Collossus ================== -->
+
+		<ThingDef ParentName="Base80x256mmFuelThermobaricBullet">
+			<defName>Bullet_Collosus</defName>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+			<label>colossus artillery shot</label>
+			<graphicData>
+				<texPath>Things/Projectiles/Shot_ColossusArtillery</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>TransparentPostLight</shaderType>
+				<drawSize>2.5</drawSize>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bomb</damageDef>
+				<ai_IsIncendiary>false</ai_IsIncendiary>
+			</projectile>			
+		</ThingDef>
 
 		</value>
 		</li>
