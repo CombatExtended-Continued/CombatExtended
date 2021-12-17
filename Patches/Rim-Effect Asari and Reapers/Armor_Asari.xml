@@ -8,7 +8,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-
+				<!-- === Armor Layers === -->				
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_AsariJusticarArmor" or defName="RE_Apparel_AsariCommandoArmor"]/apparel/layers</xpath>
 					<value>
@@ -46,7 +46,7 @@
 					</value>
 				</li>
 
-				<!-- === KOMMANDO Armor (Middle layer only) === -->
+				<!-- === Commando Armor (Middle layer only) === -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_AsariCommandoArmor"]/statBases/Mass</xpath>
 					<value>
@@ -118,7 +118,7 @@
 
 				<!-- === Justicar Armor === -->
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_AsariJusticarArmor"]</xpath>
 					<value>
 						<thingClass>RimEffect.ShieldBeltApparel</thingClass>
@@ -184,10 +184,12 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="RE_Apparel_AsariJusticarArmor"]/costList</xpath>
 					<value>
-      						<ComponentSpacer>5</ComponentSpacer>
-      						<Plasteel>80</Plasteel>
-      						<RE_ElementZero>35</RE_ElementZero>
+					<costList>
+						<ComponentSpacer>5</ComponentSpacer>
+						<Plasteel>80</Plasteel>
+						<RE_ElementZero>35</RE_ElementZero>
 						<DevilstrandCloth>50</DevilstrandCloth>
+					</costList>	
 					</value>
 				</li>
 
@@ -209,7 +211,6 @@
 	  				</li>
 					</value>
 				</li>
-
 
 			</operations>
 		</match>
