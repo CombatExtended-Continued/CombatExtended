@@ -12,7 +12,7 @@
           <value>
             <hitPoints>50</hitPoints>
           </value>
-        </li>
+      </li>
 
       <li Class="PatchOperationReplace">
         <xpath>Defs/BodyPartDef[defName="RE_HuskLeg"]/hitPoints</xpath>
@@ -36,16 +36,6 @@
 
       <li Class="PatchOperationAdd">
         <xpath>
-          /Defs/BodyDef[defName="RE_RachniLike"]//*[
-          def="SightSensor"]/groups
-        </xpath>
-        <value>
-          <li>OutsideSquishy</li>
-        </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <xpath>
           /Defs/BodyDef[defName="RE_Swarmer"]//*[
           def="Shell" or 
           def="Pronotum" or 
@@ -54,16 +44,6 @@
         </xpath>
         <value>
           <li>CoveredByNaturalArmor</li>
-        </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <xpath>
-          /Defs/BodyDef[defName="RE_Swarmer"]//*[
-          def="SightSensor"]/groups
-        </xpath>
-        <value>
-          <li>OutsideSquishy</li>
         </value>
       </li>
 
@@ -86,16 +66,6 @@
 
       <li Class="PatchOperationAdd">
         <xpath>
-          /Defs/BodyDef[defName="RE_Banshee" or defName="RE_Husk" or defName="RE_Marauder or defName="RE_Brute"]//*[
-          def="SightSensor" or def="Nose" or def="Jaw"]/groups
-        </xpath>
-        <value>
-          <li>OutsideSquishy</li>
-        </value>
-      </li>
-
-      <li Class="PatchOperationAdd">
-        <xpath>
           /Defs/BodyDef[defName="RE_Colossus"]//*[
           def="RE_HuskBodyCanManipulate" or 
           def="RE_HuskNeck" or 
@@ -113,13 +83,65 @@
       <li Class="PatchOperationAdd">
         <xpath>
           /Defs/BodyDef[defName="RE_Colossus"]//*[
-          def="SightSensor" or def="Nose"]/groups
+          def="SightSensor" or def="Nose"]
         </xpath>
+        <value>
+        <groups>  
+          <li>OutsideSquishy</li>
+        </groups>            
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName="RE_RachniLike"]//*[def="SightSensor"]</xpath>
+        <value>
+        <groups>  
+          <li>OutsideSquishy</li>
+        </groups>  
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName="RE_Banshee"]//*[def="SightSensor" or def="Nose" or def="Jaw"]/groups </xpath>
         <value>
           <li>OutsideSquishy</li>
         </value>
       </li>
 
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName="RE_Husk"]//*[def="SightSensor" or def="Nose" or def="Jaw"]/groups</xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>      
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/BodyDef[defName="RE_Marauder"]//*[def="SightSensor" or def="Nose" or def="Jaw"]/groups</xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Brute"]//*[def="SightSensor" or def="Nose" or def="Jaw"]/groups
+        </xpath>
+        <value>
+          <li>OutsideSquishy</li>
+        </value>
+      </li>      
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RE_Swarmer"]//*[def="SightSensor"]
+        </xpath>
+        <value>
+        <groups>    
+          <li>OutsideSquishy</li>
+        </groups>    
+        </value>
+      </li>
+   
 			</operations>
 		</match>
 	</Operation>
