@@ -32,7 +32,7 @@
 		<defName>AmmoSet_AAR</defName>
 		<label>Thermal Clip</label>
 		<ammoTypes>
-			<Ammo_ME>Bullet_AAR_Basic</Ammo_ME>
+			<Ammo_ME>Bullet_AAR</Ammo_ME>
 			<Ammo_ME_AP>Bullet_AAR_AP</Ammo_ME_AP>
 			<Ammo_ME_Cryo>Bullet_AAR_Cryo</Ammo_ME_Cryo>
 			<Ammo_ME_HE>Bullet_AAR_HE</Ammo_ME_HE>
@@ -115,7 +115,6 @@
 		</projectile>
 	</ThingDef>
 
-
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
 		<defName>Bullet_AAR_AP</defName>
 		<label>accelerated shot</label>
@@ -152,7 +151,7 @@
 			</li>
 			</secondaryDamage>
 		</projectile>
-		</ThingDef>
+	</ThingDef>
 
   	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
 		<defName>Bullet_AAR_Cryo</defName>
@@ -174,7 +173,6 @@
 		  	</secondaryDamage>
 		</projectile>
 	</ThingDef>
-
 
   	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
 		<defName>Bullet_AAR_Toxic</defName>
@@ -219,7 +217,7 @@
 		</projectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
+  	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAARBullet">
 		<defName>Bullet_AAR_FI</defName>
 		<label>accelerated incendiary shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -228,18 +226,18 @@
 			<armorPenetrationBlunt>59</armorPenetrationBlunt>
 			<secondaryDamage>
 			<li>
-			<def>ME_SickBurn</def>
-			<amount>2</amount>
+				<def>ME_SickBurn</def>
+				<amount>2</amount>
 			</li>
 			<li>
-			<def>Flame</def>
-			<amount>1</amount>
-			<chance>0.2</chance>
+				<def>Flame</def>
+				<amount>1</amount>
+				<chance>0.2</chance>
 			</li>
 			<li>
-			<def>Stun</def>
-			<amount>8</amount>
-			<chance>0.03</chance>
+				<def>Stun</def>
+				<amount>8</amount>
+				<chance>0.03</chance>
 			</li>
 			</secondaryDamage>
 		</projectile>
@@ -260,7 +258,8 @@
 		</projectile>
 	</ThingDef>
 
-	<!-- ================== DO NOT REMOVE THE SHARP PENETRATION ================== -->
+	<!-- DO NOT REMOVE THE SHARP PENETRATION -->
+
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseAcolyteBullet">
 		<defName>Bullet_Acolyte</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -365,7 +364,7 @@
 			<def>Bomb_Secondary</def>
 			<amount>6</amount>
 		</li>		
-		</secondaryDamage>s
+		</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -468,7 +467,6 @@
 		</projectile>
 	</ThingDef>
 
-
   	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseASRBullet">
 		<defName>Bullet_ASR_Toxic</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -521,7 +519,8 @@
 	</ThingDef>
 
 	<!-- ================== Disciple ================== -->
-  	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseDiscipleBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseDiscipleBullet" ParentName="Base6x24mmChargedBullet" Abstract="true">
 		<label>accelerated blast</label>
 		<graphicData>
 			<texPath>Things/Projectiles/Shot_BioticBlunt_Small</texPath>
