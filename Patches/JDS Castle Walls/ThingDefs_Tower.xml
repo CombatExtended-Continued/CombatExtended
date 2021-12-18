@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[JDS] Castle Walls</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Remove refuelable property -->
+		<li Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[@Name = "CaslteDefendsBase"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[@Name = "CaslteDefendsBase"]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+		</li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[@Name = "CaslteDefendsBase"]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[@Name = "CaslteDefendsBase"]/building/turretBurstCooldownTime</xpath>
+      <value>
+        <turretBurstCooldownTime>5</turretBurstCooldownTime>
+      </value>
+    </li>
+
+    <!-- Tower Turret -->
+
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>Defend_Tower_GreatBow</defName>
+      <statBases>
+        <SightsEfficiency>0.6</SightsEfficiency>
+        <ShotSpread>1</ShotSpread>
+        <SwayFactor>2</SwayFactor>
+        <Bulk>5.00</Bulk>
+        <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+      </statBases>
+      <Properties>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Projectile_GreatArrow_Stone</defaultProjectile>
+        <warmupTime>1.3</warmupTime>
+        <range>40</range>
+        <soundCast>Bow_Large</soundCast>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>50</magazineSize>
+        <reloadTime>10</reloadTime>
+        <ammoSet>AmmoSet_GreatArrow</ammoSet>
+      </AmmoUser>
+      <weaponTags Inherit="false">
+        <li>TurretGun</li>
+      </weaponTags>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+        <noSnapshot>true</noSnapshot>
+        <noSingleShot>true</noSingleShot>
+      </FireModes>        
+    </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    
