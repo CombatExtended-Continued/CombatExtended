@@ -7,6 +7,8 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
+		<!-- ========== Body Shapes ========== -->
+
 		<li Class="PatchOperationAddModExtension">
 			<xpath>/Defs/ThingDef[
 			defName="RE_Husk_Banshee" or
@@ -56,11 +58,15 @@
 			</value>
 		</li>
 
+		<!-- ========== Stat Bases ========== -->
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[@Name="BaseHusk"]/statBases</xpath>
 			<value>
 				<NightVisionEfficiency>0.8</NightVisionEfficiency>
 				<SmokeSensitivity>0</SmokeSensitivity>
+				<PainShockThreshold>1</PainShockThreshold>
+				<Suppressability>0</Suppressability>
 			</value>
 		</li>
 

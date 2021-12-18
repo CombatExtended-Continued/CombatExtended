@@ -19,6 +19,7 @@ namespace CombatExtended
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
+        public TargettingMode targetMode = TargettingMode.torso;
 
         #endregion
 
@@ -84,6 +85,21 @@ namespace CombatExtended
         }
         private Faction _factionFireMode = null;
         private bool _initCurrentFireMode = false;
+
+        private bool IsTurretMannable = false;
+
+        public float HandLing
+        {
+            get
+            {
+                if (Caster is Pawn)
+                {
+                    return CasterPawn.GetStatValue(StatDefOf.ShootingAccuracyPawn);
+                }
+                IsTurretMannable = (Caster.TryGetComp<CompMannable>() != null);
+                return 0f;
+            }
+        }
         public FireMode CurrentFireMode
         {
             get
@@ -139,6 +155,7 @@ namespace CombatExtended
             base.PostExposeData();
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
+            Scribe_Values.Look(ref targetMode, "currentTargettingMode", TargettingMode.torso);
         }
 
         public void InitAvailableFireModes()
@@ -219,6 +236,32 @@ namespace CombatExtended
             }
         }
 
+        public Texture2D TrueIcon
+        {
+            get
+            {
+                string mode_name = "";
+
+                switch (targetMode)
+                {
+                    case TargettingMode.torso:
+                        mode_name = "center";
+                        break;
+                    case TargettingMode.legs:
+                        mode_name = "legs";
+                        break;
+                    case TargettingMode.head:
+                        mode_name = "head";
+                        break;
+                    case TargettingMode.automatic:
+                        mode_name = "auto";
+                        break;
+                }
+
+                return ContentFinder<Texture2D>.Get("UI/Buttons/Targetting/" + mode_name);
+            }
+        }
+
         public IEnumerable<Command> GenerateGizmos()
         {
             Command_Action toggleFireModeGizmo = new Command_Action
@@ -251,6 +294,39 @@ namespace CombatExtended
                 LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimModes, parent, OpportunityType.GoodToKnow);
             }
             yield return toggleAimModeGizmo;
+
+
+            if (CurrentAimMode != AimMode.SuppressFire)
+            {
+                if ( (HandLing > 2.2f) | IsTurretMannable)
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "Targeted area: " + targetMode,
+                        defaultDesc = "",
+                        icon = TrueIcon,
+                        action = delegate
+                        {
+                            switch (targetMode)
+                            {
+                                case TargettingMode.torso:
+                                    targetMode = TargettingMode.head;
+                                    break;
+                                case TargettingMode.head:
+                                    targetMode = TargettingMode.legs;
+                                    break;
+                                case TargettingMode.legs:
+                                    targetMode = TargettingMode.automatic;
+                                    break;
+                                case TargettingMode.automatic:
+                                    targetMode = TargettingMode.torso;
+                                    break;
+                            }
+
+                        }
+                    };
+                }
+            } 
         }
 
         /*

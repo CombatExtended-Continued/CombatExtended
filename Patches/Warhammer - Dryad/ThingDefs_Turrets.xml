@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Warhammer"ish":Dryad</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		  <operations>
+
+      <!-- Replace vanilla thingClass -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadArm" or defName = "Turret_DryadRevenant"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadArm" or defName = "Turret_DryadRevenant"]/statBases</xpath>
+        <value>
+          <AimingAccuracy>0.75</AimingAccuracy>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadArm" or defName = "Turret_DryadRevenant"]/statBases/ShootingAccuracyTurret</xpath>
+        <value>
+          <ShootingAccuracyTurret>1.1</ShootingAccuracyTurret>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadArm" or defName = "Turret_DryadRevenant"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>2.5</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadArm"]/specialDisplayRadius</xpath>
+        <value>
+          <specialDisplayRadius>13</specialDisplayRadius>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "Turret_DryadRevenant"]/specialDisplayRadius</xpath>
+        <value>
+          <specialDisplayRadius>18</specialDisplayRadius>
+        </value>
+      </li>
+
+      <!-- Dryad Arm -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_DryadArm</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>0.01</SwayFactor>
+          <Bulk>10.00</Bulk>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_DryadArm</defaultProjectile>
+          <warmupTime>1.2</warmupTime>
+          <range>13</range>
+          <soundCast>Pawn_BigInsect_Angry</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>0</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <FireModes>
+          <aiAimMode>Snapshot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>TurretGun</li>
+        </weaponTags>        
+      </li>
+
+      <!-- Revenant Arm -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_DryadRevenant</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>0.01</SwayFactor>
+          <Bulk>10.00</Bulk>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_RevenantArm</defaultProjectile>
+          <warmupTime>1.2</warmupTime>
+          <range>18</range>
+          <soundCast>Pawn_BigInsect_Angry</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>0</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <FireModes>
+          <aiAimMode>Snapshot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>TurretGun</li>
+        </weaponTags>        
+      </li>
+
+        <!-- === Projectile === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+
+            <ThingDef ParentName="BaseBullet">
+              <thingClass>CombatExtended.BulletCE</thingClass>
+              <defName>Bullet_DryadArm</defName>
+              <label>revenant projectile</label>
+              <graphicData>
+                <texPath>Things/Projectile/ArmTurretBullet</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                <speed>60</speed>
+                <damageDef>Cut</damageDef>
+                <damageAmountBase>16</damageAmountBase>
+                <armorPenetrationSharp>2</armorPenetrationSharp>
+                <armorPenetrationBlunt>5</armorPenetrationBlunt>
+              </projectile>
+            </ThingDef>
+
+            <ThingDef ParentName="BaseBullet">
+              <thingClass>CombatExtended.BulletCE</thingClass>
+              <defName>Bullet_RevenantArm</defName>
+              <label>revenant projectile</label>
+              <graphicData>
+                <texPath>Things/Projectile/RevenantTurretBullet</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                <speed>60</speed>
+                <damageDef>Cut</damageDef>
+                <damageAmountBase>20</damageAmountBase>
+                <armorPenetrationSharp>4</armorPenetrationSharp>
+                <armorPenetrationBlunt>8</armorPenetrationBlunt>
+              </projectile>
+            </ThingDef>
+
+          </value>
+        </li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    
