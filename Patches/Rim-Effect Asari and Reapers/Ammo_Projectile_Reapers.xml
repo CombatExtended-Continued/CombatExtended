@@ -23,7 +23,7 @@
 				<MarketValue>0.1</MarketValue>
 			</statBases>
 			<tradeTags>
-					<li>CE_AutoEnableTrade_Sellable</li>
+				<li>CE_AutoEnableTrade_Sellable</li>
 			</tradeTags>
 			<thingCategories>
 				<li>AmmoME</li>
@@ -33,7 +33,7 @@
 				<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 			</graphicData>
 			<ammoClass>ME_FMJ</ammoClass>
-				<generateAllowChance>0.1</generateAllowChance>
+			<generateAllowChance>0.1</generateAllowChance>
 		</ThingDef>
 
 		<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
@@ -445,10 +445,14 @@
 				<drawSize>2.5</drawSize>
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<speed>0</speed>
 				<damageDef>Bomb</damageDef>
+				<explosionRadius>7.5</explosionRadius>
 				<ai_IsIncendiary>false</ai_IsIncendiary>
 			</projectile>			
 		</ThingDef>
+
+		<!-- ================== Reaper Kinetic Artillery ================== -->
 
 		<ThingDef ParentName="Base105mmHowitzerShell">
 			<defName>Bullet_ReaperKineticArtillery</defName>
@@ -458,7 +462,7 @@
 				<texPath>Things/Projectiles/KineticArtillery_Shot</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
 				<shaderType>TransparentPostLight</shaderType>
-				<drawSize>3.0</drawSize>
+				<drawSize>2.5</drawSize>
 			</graphicData>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>Bomb</damageDef>
