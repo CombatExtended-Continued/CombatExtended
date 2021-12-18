@@ -270,6 +270,7 @@ Rah's Bionics and Surgery Expansion	|
 Rah's Vanilla Turrets Expansion |
 Rakkle The Rattle Snake Race Mod  |
 Rambo Weapons Pack (Continued)  |
+Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
