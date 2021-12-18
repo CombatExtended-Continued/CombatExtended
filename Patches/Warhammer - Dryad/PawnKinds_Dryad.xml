@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Warhammer"ish":Dryad</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- ========== Give ammo to pawns with ranged weapons. ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>
+          /Defs/PawnKindDef[
+          defName="DryadGood" or
+          deName="DryadBad" or
+          defName="WildDryadGood" or
+          defName="WildDryadGood" or
+          defName="DryadPlayer" or
+          defName="BranchHunter"
+          ]
+        </xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>14</min>
+              <max>20</max>
+            </primaryMagazineCount>
+            <forcedSidearm>
+              <sidearmMoney>
+                <min>80</min>
+                <max>160</max>
+              </sidearmMoney>
+              <weaponTags>
+                <li>CE_Sidearm_Tribal</li>
+              </weaponTags>
+            </forcedSidearm>
+          </li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    
