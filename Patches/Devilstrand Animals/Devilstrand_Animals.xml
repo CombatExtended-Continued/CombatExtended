@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Devilstrand Animals</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+	<!-- ========== Animal stats are identical to Vanilla equivalents. Devilhare is already covered by @BaseHare patches in Core. ========== -->
+
+	<!-- ========== Devilbex ========== -->
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ATK_Devilbex"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilbex"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>4.4</MoveSpeed>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
+			<MeleeCritChance>0.08</MeleeCritChance>
+			<MeleeParryChance>0.07</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilbex"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hoof</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>left hoof</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontLeftLeg_2</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right hoof</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right hoof</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1</cooldownTime>
+					<linkedBodyPartsGroup>FrontRightLeg_2</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.5</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.01</armorPenetrationSharp>					
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.13</cooldownTime>
+					<restrictedGender>Female</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>3.630</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>antlers</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.13</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>3.630</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilbex"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>0.9</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilbex"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>0.9</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="ATK_Devilbex"]/combatPower</xpath>
+		<value>
+			<combatPower>55</combatPower>
+		</value>
+	</li>
+
+	<!-- ========== DevilATK_Devilyak ========== -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilyak"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>5</MoveSpeed>
+			<MeleeDodgeChance>0.11</MeleeDodgeChance>
+			<MeleeCritChance>0.30</MeleeCritChance>
+			<MeleeParryChance>0.19</MeleeParryChance>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilyak"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<capacities>
+						<li>BiteBlunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.66</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.75</armorPenetrationBlunt>			
+				</li>			
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>2.05</cooldownTime>
+					<restrictedGender>Female</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>horns</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>2.05</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilyak"]/race/baseBodySize</xpath>
+		<value>
+			<baseBodySize>1.65</baseBodySize>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="ATK_Devilyak"]/race/baseHealthScale</xpath>
+		<value>
+			<baseHealthScale>1.65</baseHealthScale>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="ATK_Devilyak"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Quadruped</bodyShape>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="ATK_Devilyak"]/combatPower</xpath>
+		<value>
+			<combatPower>75</combatPower>
+		</value>
+	</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

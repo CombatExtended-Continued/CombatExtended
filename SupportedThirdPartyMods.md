@@ -112,6 +112,7 @@ Cybernetic Organism and Neural Network	|
 Cybernetic Warfare and Special Weapons (Continued)  |
 Darkest Night SK Steam	|
 Darkest Rim: Core	|
+Devilstrand Animals |
 Devilstrand Colour Bundle   |
 Dinosauria |
 Dishonored Assassin Coat |
