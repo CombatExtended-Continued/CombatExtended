@@ -132,6 +132,7 @@ Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
 Erin's Lizard Doggo |
+Erin's Miqo'te  |
 Erin's Mountain Animals |
 EvolvedOrgansRedux |
 Exotic Arsenal |
