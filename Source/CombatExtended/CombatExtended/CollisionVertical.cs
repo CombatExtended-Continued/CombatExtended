@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,12 +70,12 @@ namespace CombatExtended
             
             float collisionHeight = 0f;
             float shotHeightOffset = 0;
-	    float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
+            float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
 
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-		collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
+                collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
             	
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
 				
