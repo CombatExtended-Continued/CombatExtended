@@ -33,7 +33,7 @@ namespace CombatExtended.Compatibility
 		    CompProperties_TerrainSetter compProperties = thing.def.GetCompProperties<CompProperties_TerrainSetter>();
                     if (compProperties == null)
                     {
-                        return;
+                        return 0f;
                     }
 		    
                     TerrainDef terrainDef = compProperties.terrainDef;
