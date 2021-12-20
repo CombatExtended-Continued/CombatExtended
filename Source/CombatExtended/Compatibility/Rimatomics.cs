@@ -25,11 +25,11 @@ namespace CombatExtended.Compatibility
 
         public static bool CanInstall()
         {
-	    return ModLister.HasActiveModWithName("Rimatomics");
+	    return ModLister.HasActiveModWithName("Dubs Rimatomics");
         }
         public static void Install()
         {
-            BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
+	    BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
         public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
@@ -152,9 +152,14 @@ namespace CombatExtended.Compatibility
             int thisTick = Find.TickManager.TicksAbs;
             if (lastCacheTick != thisTick || lastCacheMap != map)
             {
-                IEnumerable<Building_ShieldArray> buildings = (IEnumerable<Building_ShieldArray>) map.listerBuildings.allBuildingsColonist.Where(b => b is Building_ShieldArray);
-		shields = buildings.Select(x => x.CompShield as ThingComp).ToList();
-                lastCacheTick = thisTick;
+                IEnumerable<Building> buildings = map.listerBuildings.allBuildingsColonist.Where(b => b is Building_ShieldArray);
+		shields = new List<ThingComp>();
+		foreach (Building b in buildings)
+		{
+		    shields.Add((b as Building_ShieldArray).CompShield);
+		}
+		
+		lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
         }
