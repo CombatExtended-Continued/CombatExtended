@@ -38,7 +38,7 @@ namespace CombatExtended.Compatibility
 		    
                     TerrainDef terrainDef = compProperties.terrainDef;
                     TerrainDefExtension terrainDefExtension = TerrainDefExtension.Get(terrainDef);
-                    return terrainDefExtension.coverEffectiveness * -1.76;
+                    return -terrainDefExtension.coverEffectiveness * CollisionVertical.WallCollisionHeight;
 		    
 		}
 	    }
