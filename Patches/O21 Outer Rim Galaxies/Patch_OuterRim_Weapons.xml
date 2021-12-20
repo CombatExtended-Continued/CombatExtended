@@ -3,7 +3,7 @@
 	
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+		<li>[O21] Outer Rim Galaxies</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -583,75 +583,6 @@
 				  <armorPenetrationSharp>0.88</armorPenetrationSharp>
 				</value>
 			  </li>
-			
-			<li Class="PatchOperationConditional">
-				<xpath>Defs/ThingDef[defName="O21_OR_RakataDagger"]</xpath>
-				<match Class="PatchOperationSequence">
-				<operations>
-					
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="O21_OR_RakataDagger"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>handle</label>
-								<capacities>
-									<li>Poke</li>
-								</capacities>
-								<power>1.5</power>
-								<cooldownTime>1.26</cooldownTime>
-								<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>blade</label>
-								<capacities>
-									<li>Cut</li>
-								</capacities>
-								<power>15</power>
-								<cooldownTime>1.18</cooldownTime>
-								<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.48</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>point</label>
-								<capacities>
-									<li>Stab</li>
-								</capacities>
-								<power>16.5</power>
-								<cooldownTime>1.26</cooldownTime>
-								<chanceFactor>1.33</chanceFactor>
-								<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.63</armorPenetrationSharp>
-								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-							</li>
-						</tools>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="O21_OR_RakataDagger"]/statBases</xpath>
-					<value>
-						<Bulk>1</Bulk>
-						<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
-					</value>
-				</li>
-				
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="O21_OR_RakataDagger"]</xpath>
-					<value>
-						<equippedStatOffsets>
-							<MeleeCritChance>0.5</MeleeCritChance>
-							<MeleeParryChance>0.15</MeleeParryChance>
-							<MeleeDodgeChance>0.05</MeleeDodgeChance>	
-						</equippedStatOffsets>
-					</value>
-				</li>
-					
-				</operations>
-				</match>
-			</li>
 			
 		</operations>
 		</match>

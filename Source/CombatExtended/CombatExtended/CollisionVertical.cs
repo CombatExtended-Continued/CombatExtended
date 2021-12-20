@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -69,10 +70,12 @@ namespace CombatExtended
             
             float collisionHeight = 0f;
             float shotHeightOffset = 0;
+            float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
+
             var pawn = thing as Pawn;
             if (pawn != null)
             {
-            	collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
+                collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
             	
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
 				
@@ -90,7 +93,7 @@ namespace CombatExtended
                             Thing cover = curCell.GetCover(map);
                             if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsPlant())
                             {
-                                var coverHeight = new CollisionVertical(cover).Max;
+                                var coverHeight = new CollisionVertical(cover).Max - heightAdjust;
                                 if (coverHeight > crouchHeight) crouchHeight = coverHeight;
                             }
                         }
@@ -112,7 +115,7 @@ namespace CombatExtended
                 }
             }
             float fillPercent2 = collisionHeight;
-            heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2), Mathf.Max(edificeHeight, edificeHeight + fillPercent2));
+            heightRange = new FloatRange(Mathf.Min(edificeHeight, edificeHeight + fillPercent2) + heightAdjust, Mathf.Max(edificeHeight, edificeHeight + fillPercent2) + heightAdjust);
             shotHeight = heightRange.max - shotHeightOffset;
         }
 

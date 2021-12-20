@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>DOOM - Factions (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[@Name="UAC_FBase" or defName="UAC_Scientist" or defName="UAC_Wildcat" or defName="UAC_Sheperd" or defName="UAC_Raven" or defName="UAC_ASP" or defName="UAC_XO" or defName="UAC_EliteLight" or defName="UAC_EliteSniper" or defName="UAC_EliteHeavy"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>10</min>
+                <max>20</max>
+              </primaryMagazineCount>
+              <forcedSidearm>
+                <sidearmMoney>
+                  <min>150</min>
+                  <max>350</max>
+                </sidearmMoney>
+                <weaponTags>
+                  <li>CE_Sidearm_Melee</li>
+                </weaponTags>
+              </forcedSidearm>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[@Name="SpaceMarine_FBase" or defName="Doom_MarineBerserker" or defName="Doom_MarineLight" or defName="Doom_MarineHeavy" or defName="Doom_MarineSniper" or defName="Doom_MarineBoss"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>14</min>
+                <max>26</max>
+              </primaryMagazineCount>
+              <forcedSidearm>
+                <sidearmMoney>
+                  <min>190</min>
+                  <max>390</max>
+                </sidearmMoney>
+                <weaponTags>
+                  <li>CE_Sidearm_Melee</li>
+                </weaponTags>
+              </forcedSidearm>
+            </li>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

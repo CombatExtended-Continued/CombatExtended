@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[1.3] Odz Suits</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        
+        <!-- === Shell === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="ODZ_SM_SuitI" or 
+              defName="ODZ_SM_SuitII" or 
+              defName="ODZ_SR_MonsotaSuit" or 
+              defName="ODZ_SR_OXSSuit" or 
+              defName="ODZ_SR_Goldmenuit"
+            ]/statBases/StuffEffectMultiplierArmor
+          </xpath>
+          <value>
+            <Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+        
+        <!-- === OnSkin === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="ODZ_SM_ShirtAndTie" or 
+              defName="ODZ_SR_MonsotaShirt" or 
+              defName="ODZ_SR_OXSShirt" or 
+              defName="ODZ_SR_GoldmenShirt"
+            ]/statBases/StuffEffectMultiplierArmor
+          </xpath>
+          <value>
+            <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName="ODZ_SM_ShirtAndTie" or 
+              defName="ODZ_SR_MonsotaShirt" or 
+              defName="ODZ_SR_OXSShirt" or 
+              defName="ODZ_SR_GoldmenShirt"
+            ]/costStuffCount
+          </xpath>
+          <value>
+            <costStuffCount>25</costStuffCount>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

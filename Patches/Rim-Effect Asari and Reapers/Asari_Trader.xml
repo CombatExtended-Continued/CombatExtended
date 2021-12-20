@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Rim-Effect: Asari and Reapers</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ========== Traders ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Base_Asari_Standard"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>FSX</thingDef>
+						<countRange>
+						<min>25</min>
+						<max>90</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>Prometheum</thingDef>
+						<countRange>
+						<min>25</min>
+						<max>90</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>500</min>
+							<max>1800</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>4</max>
+						</thingDefCountRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_HeavyAmmo</tradeTag>
+						<countRange>
+							<min>10</min>
+							<max>50</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>3</min>
+							<max>6</max>
+						</thingDefCountRange>
+						</li>        
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Caravan_Asari_CombatSupplier"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>FSX</thingDef>
+						<countRange>
+						<min>12</min>
+						<max>36</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>Prometheum</thingDef>
+						<countRange>
+						<min>12</min>
+						<max>36</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>300</min>
+							<max>1200</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>3</max>
+						</thingDefCountRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_HeavyAmmo</tradeTag>
+						<countRange>
+							<min>10</min>
+							<max>20</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>0</min>
+							<max>3</max>
+						</thingDefCountRange>
+						</li>        
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Caravan_Asari_Exotic" or
+					defName="RE_Caravan_Asari_BulkGoods"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>FSX</thingDef>
+						<countRange>
+						<min>15</min>
+						<max>45</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>Prometheum</thingDef>
+						<countRange>
+						<min>15</min>
+						<max>45</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>120</min>
+							<max>400</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>2</max>
+						</thingDefCountRange>
+					</li>
+						<li Class="StockGenerator_Tag">
+						<tradeTag>CE_HeavyAmmo</tradeTag>
+						<countRange>
+							<min>1</min>
+							<max>5</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>-1</min>
+							<max>3</max>
+						</thingDefCountRange>
+						</li>         
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="RE_Visitor_Asari_Standard"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>ME_Ammo</tradeTag>
+						<countRange>
+							<min>10</min>
+							<max>60</max>
+						</countRange>
+						<thingDefCountRange>
+							<min>-1</min>
+							<max>1</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

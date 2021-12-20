@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class ="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!--========================= Helmets ========================-->
+				<!--Ssh60-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_Ssh60helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_Ssh60helmet"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+
+				<!--Ssh68-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_Ssh68helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>7</ArmorRating_Sharp>
+						<ArmorRating_Blunt>10.5</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.36</ArmorRating_Heat>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_Ssh68helmet"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<!--Sfera-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_SferaHelmt"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_SferaHelmt"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_SferaHelmt"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.386</ArmorRating_Heat>
+					</value>
+				</li>
+
+					<!--Altyn no mask-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskless"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskless"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_AltynMaskless"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskless"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+					<!--Altyn mask down-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskDown"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskDown"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_AltynMaskDown"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskDown"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskDown"]/apparel/bodyPartGroups</xpath>
+					<value>
+      						<bodyPartGroups>
+        							<li>FullHead</li>
+      						</bodyPartGroups>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskDown"]</xpath>
+					<value>
+        					<equippedStatOffsets>
+						<AimingAccuracy>-0.4</AimingAccuracy>
+            						<MeleeHitChance>-2</MeleeHitChance>
+					</equippedStatOffsets>
+					</value>
+				</li>
+
+					<!--Altyn mask up-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskUP"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskUP"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_AltynMaskUP"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_AltynMaskUP"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+					<!--PSH77 Maskless-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskless"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskless"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_PSHMaskless"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskless"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+					<!--PSH77 mask down-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskDown"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskDown"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_PSHMaskDown"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskDown"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskDown"]/apparel/bodyPartGroups</xpath>
+					<value>
+      						<bodyPartGroups>
+        							<li>FullHead</li>
+      						</bodyPartGroups>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskDown"]</xpath>
+					<value>
+        					<equippedStatOffsets>
+						<AimingAccuracy>-0.4</AimingAccuracy>
+            						<MeleeHitChance>-2</MeleeHitChance>
+					</equippedStatOffsets>
+					</value>
+				</li>
+
+					<!--PSHMaskUP mask up-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskUP"]/statBases/Mass</xpath>
+					<value>
+						<Mass>4</Mass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskUP"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_PSHMaskUP"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_PSHMaskUP"]/costList</xpath>
+					<value>
+						<costList>
+      							<ComponentIndustrial>1</ComponentIndustrial>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+					<!--SSh-68 Helmet-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_DesertHelmet" or defName="RD_KLMKHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+  				<li Class="PatchOperationReplace">
+    					<xpath>Defs/ThingDef[defName="RD_DesertHelmet" or defName="RD_KLMKHelmet"]/stuffCategories/li[.="Metallic"]</xpath>
+    					<value>
+      						<li>Steeled</li>
+    					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_DesertHelmet" or defName="RD_KLMKHelmet"]/costStuffCount</xpath>
+					<value>
+						<costStuffCount>30</costStuffCount>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_DesertHelmet" or defName="RD_KLMKHelmet"]/costList</xpath>
+					<value>
+						<costList>
+      							<Plasteel>10</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+				<!--========================== Body Armors =====================================-->
+					<!--6b2-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/statBases/Mass</xpath>
+					<value>
+						<Mass>13</Mass>
+						<Bulk>5</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>125</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>14</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest"]/costList</xpath>
+					<value>
+						<costList>
+							<Cloth>10</Cloth>
+							<Steel>80</Steel>
+						</costList>
+					</value>
+				</li>
+
+					<!--6B3-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/statBases/Mass</xpath>
+					<value>
+						<Mass>10.4</Mass>
+						<Bulk>5</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>250</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_6b3FlakVest"]/costList</xpath>
+					<value>
+						<costList>
+							<Cloth>10</Cloth>
+							<Plasteel>90</Plasteel>
+						</costList>
+					</value>
+				</li>
+
+					<!--Very Heavy-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_BzhVest"]/statBases/Mass</xpath>
+					<value>
+						<Mass>20</Mass>
+						<Bulk>8</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_BzhVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>250</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_BzhVest"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_BzhVest"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>26</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_BzhVest"]/costList</xpath>
+					<value>
+						<costList>
+							<Cloth>10</Cloth>
+							<Plasteel>110</Plasteel>
+						</costList>
+					</value>
+				</li>
+				<!--Light-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>100</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/Mass</xpath>
+					<value>
+						<Mass>8</Mass>
+						<Bulk>5</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>6.5</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>10</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.1</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/costList</xpath>
+					<value>
+						<costList>
+      							<Cloth>5</Cloth>
+      							<Steel>65</Steel>
+						</costList>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>100</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]/statBases/Mass</xpath>
+					<value>
+						<Mass>7.5</Mass>
+						<Bulk>5</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVest"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>9</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.12</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]/costList</xpath>
+					<value>
+						<costList>
+      							<Cloth>20</Cloth>
+      							<Steel>60</Steel>
+						</costList>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RD_VDBVest"]</xpath>
+					<value>
+    						<equippedStatOffsets>
+      							<CarryBulk>6</CarryBulk>
+    						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>100</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/statBases/Mass</xpath>
+					<value>
+						<Mass>7.5</Mass>
+						<Bulk>5</Bulk>
+						<WornBulk>2</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>9</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.12</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RD_LightPilotFlightVestCamo"]/costList</xpath>
+					<value>
+						<costList>
+      							<Cloth>10</Cloth>
+      							<Steel>60</Steel>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="RD_6b2FlakVest" or defName="RD_6b3FlakVest" or defName="RD_BzhVest"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

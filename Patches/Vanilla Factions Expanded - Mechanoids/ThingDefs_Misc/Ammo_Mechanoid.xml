@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
   <Operation Class="PatchOperationFindMod">
-		
-	<mods><li>Vanilla Factions Expanded - Mechanoids</li></mods>
-		
+	<mods>
+		<li>Vanilla Factions Expanded - Mechanoids</li>
+	</mods>	
 	<match Class="PatchOperationSequence">
 	<operations>
 		
@@ -49,38 +49,58 @@
           </projectile>
         </ThingDef>	
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
-		<defName>VFE_Bullet_ChargeRailgun_CE</defName>
-		<label>charge railgun shot</label>
-		<graphicData>
-			<texPath>Things/Projectile/ChargeRailgunShot</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-			<drawSize>4</drawSize>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <damageDef>Bullet</damageDef>
-		  <damageAmountBase>5000</damageAmountBase>
-		  <soundExplode>MortarBomb_Explode</soundExplode>
-		  <armorPenetrationSharp>5000</armorPenetrationSharp>
-		  <armorPenetrationBlunt>200000</armorPenetrationBlunt>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>800</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>8</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>80</Fragment_Large>
-			</fragments>
-		  </li>
-		</comps>
-	  </ThingDef>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmCannonShell">
+			<defName>VFE_Bullet_ChargeRailgun_CE</defName>
+			<label>charge railgun shot</label>
+			<graphicData>
+				<texPath>Things/Projectile/ChargeRailgunShot</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<shaderType>TransparentPostLight</shaderType>
+				<drawSize>4</drawSize>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>5000</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>5000</armorPenetrationSharp>
+			<armorPenetrationBlunt>200000</armorPenetrationBlunt>
+			</projectile>
+			<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>800</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>8</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>80</Fragment_Large>
+				</fragments>
+			</li>
+			</comps>
+		</ThingDef>
+	  
+		<ThingDef ParentName="BaseBullet">
+			<defName>VFE_Bullet_TeslaProjectileCE</defName>
+			<label>lightning bolt</label>
+			<graphicData>
+				<texPath>Projectile/Lightning</texPath>
+				<graphicClass>Graphic_Flicker</graphicClass>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>EMP</damageDef>
+				<damageAmountBase>21</damageAmountBase>
+				<explosionRadius>2.5</explosionRadius>
+				<soundExplode>MortarBomb_Explode</soundExplode>
+				<speed>300</speed>
+				<flyOverhead>false</flyOverhead>
+				<dropsCasings>false</dropsCasings>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</projectile>
+		</ThingDef>
+	  	
 	</value>
-</li>
+    </li>
 		
 	</operations>
 	</match>	
