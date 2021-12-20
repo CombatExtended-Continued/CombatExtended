@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Android Tiers SM7 Overhaul (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- ==========  20mm Rotary Cannon  =========== -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>MechRotaryCannon</defName>
+          <statBases>
+            <SightsEfficiency>1.5</SightsEfficiency>
+            <ShotSpread>0.25</ShotSpread>
+            <SwayFactor>1.32</SwayFactor>
+            <Bulk>35</Bulk>
+            <Mass>42</Mass>
+            <RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_20x102mm_AP</defaultProjectile>
+            <warmupTime>3</warmupTime>
+            <burstShotCount>250</burstShotCount>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+            <range>64</range>
+            <soundCast>RotaryCannon</soundCast>
+            <soundCastTail>RotaryCannonSpin</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1000</magazineSize>
+            <reloadTime>8</reloadTime>
+            <ammoSet>AmmoSet_20x102mm</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <noSingleShot>true</noSingleShot>
+          </FireModes>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MechRotaryCannon"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>40</power>
+                <cooldownTime>2.1</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>21</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>45</power>
+                <cooldownTime>2.2</cooldownTime>
+                <armorPenetrationBlunt>21</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>25</power>
+                <cooldownTime>2.5</cooldownTime>
+                <armorPenetrationBlunt>30.24</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Red Army (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationInsert">
+          <xpath>Defs/ThingDef[defName="Artillery_zis"]</xpath>
+          <value>
+            <ThingDef Name="BaseArtilleryWeaponZIS" Abstract="True">
+              <category>Item</category>
+              <thingClass>ThingWithComps</thingClass>
+              <label>artillery error</label>
+              <useHitPoints>false</useHitPoints>
+              <equipmentType>Primary</equipmentType>
+              <tickerType>Never</tickerType>
+              <techLevel>Industrial</techLevel>
+              <destroyOnDrop>True</destroyOnDrop>
+              <generateCommonality>0</generateCommonality>
+              <menuHidden>True</menuHidden>
+              <tradeability>None</tradeability>
+              <weaponTags>
+                <li>Artillery</li>
+              </weaponTags>
+              <comps>
+                <li>
+                  <compClass>CompEquippable</compClass>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Artillery_zis</defName>
+          <statBases>
+            <SightsEfficiency>1.0</SightsEfficiency>
+            <ShotSpread>0.11</ShotSpread>
+            <SwayFactor>0.82</SwayFactor>
+            <Bulk>13.0</Bulk>
+            <WorkToMake>18000</WorkToMake>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Zis</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <minRange>5</minRange>
+            <range>75</range>
+            <ticksBetweenBurstShots>45</ticksBetweenBurstShots>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>Zis_Fire1</soundCast>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <recoilAmount>0.78</recoilAmount>
+            <forcedMissRadius>3</forcedMissRadius>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>4.75</reloadTime>
+            <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_Turret</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Turret_Zis"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <!--
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+		</value>
+	</li>
+	-->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Turret_Zis"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -17,15 +17,19 @@ namespace CombatExtended.Compatibility
         {
 
             List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => {
-                var hasModExtensions = i.modExtensions?.Any(tt => !(tt is LoadoutPropertiesExtension)) ?? true;
+                var hasModExtensions = i.modExtensions?.Any(tt => tt is LoadoutPropertiesExtension) ?? false;
                 var isHuman = !i.RaceProps.Animal;
                 var hasCompInv = i.race?.comps?.Any(t => t is CompProperties_Inventory) ?? false;
 
-                return hasModExtensions && isHuman && hasCompInv;
+                return !hasModExtensions && isHuman && hasCompInv;
             });
             foreach (PawnKindDef thin in stuff)
             {
-                thin.modExtensions = new List<DefModExtension>();
+                if (thin.modExtensions == null)
+                {
+                    thin.modExtensions = new List<DefModExtension>();
+                }
+
                 thin.modExtensions.Add(new LoadoutPropertiesExtension { primaryMagazineCount = new FloatRange { min = 2, max = 5 } });
                 
 

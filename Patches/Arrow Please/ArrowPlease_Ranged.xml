@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Arrow Please (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Ranged_Crossbow === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Crossbow"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Crossbow</defName>
+          <statBases>
+            <Bulk>4</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>2.05</RangedWeapon_Cooldown>
+          </statBases>
+          <costList>
+            <WoodLog>50</WoodLog>
+            <Steel>20</Steel>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <warmupTime>0.90</warmupTime>
+            <range>25</range>
+            <soundCast>Bow_Small</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>3</reloadTime>
+            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>MedievalRanged</li>
+            <li>CE_Bow</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Ranged_Arbalest === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Arbalest"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Arbalest</defName>
+          <statBases>
+            <Bulk>6</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>2.55</RangedWeapon_Cooldown>
+          </statBases>
+          <costList>
+            <WoodLog>40</WoodLog>
+            <Steel>50</Steel>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <warmupTime>1.05</warmupTime>
+            <range>28</range>
+            <soundCast>Bow_Large</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>5</reloadTime>
+            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>MedievalRanged</li>
+            <li>CE_Bow</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Ranged_Waistcrossbow === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Waistcrossbow"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2.2</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Waistcrossbow</defName>
+          <statBases>
+            <Bulk>12</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>4.15</RangedWeapon_Cooldown>
+          </statBases>
+          <costList>
+            <WoodLog>75</WoodLog>
+            <Steel>55</Steel>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <warmupTime>1.15</warmupTime>
+            <range>34</range>
+            <soundCast>Bow_Large</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>9</reloadTime>
+            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>MedievalRanged</li>
+            <li>CE_Bow</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Ranged_Repeatingcrossbow === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Repeatingcrossbow"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2.2</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Repeatingcrossbow</defName>
+          <statBases>
+            <Bulk>7</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>4.15</RangedWeapon_Cooldown>
+          </statBases>
+          <costList>
+            <WoodLog>100</WoodLog>
+            <Steel>30</Steel>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
+            <burstShotCount>5</burstShotCount>
+            <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+            <warmupTime>0.95</warmupTime>
+            <range>20</range>
+            <soundCast>Bow_Small</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>5</magazineSize>
+            <reloadTime>7</reloadTime>
+            <ammoSet>AmmoSet_CrossbowBolt</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>MedievalRanged</li>
+            <li>CE_Bow</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Ranged_Slinger === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Slinger"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stone</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Slinger</defName>
+          <statBases>
+            <Bulk>2</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Ammo_SlingBullet_Stone</defaultProjectile>
+            <warmupTime>2.25</warmupTime>
+            <range>16</range>
+            <soundCast>ThrowGrenade</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>1.5</reloadTime>
+            <ammoSet>AmmoSet_SlingBullet</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>NeolithicRangedBasic</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Ranged_Blowgun === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Ranged_Blowgun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Ranged_Blowgun</defName>
+          <statBases>
+            <Bulk>2</Bulk>
+            <SwayFactor>1.0</SwayFactor>
+            <ShotSpread>0.5</ShotSpread>
+            <SightsEfficiency>0.7</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Projectile_Dart_Venom</defaultProjectile>
+            <warmupTime>1.65</warmupTime>
+            <range>12</range>
+            <soundCast>Bow_Small</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>2</reloadTime>
+            <ammoSet>AmmoSet_Blowdart</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>NeolithicRangedBasic</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <!-- === Remove unneeded === -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Flame_Crossbow"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrow_Crossbow"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="FlameArrow_Crossbow"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrow_Arbalest"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Flame_Arbalest"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="FlameArrow_Arbalest"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrow_Waistcrossbow"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrow_Repeatingcrossbow"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Stone_Slinger"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Dart_Blowgun"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Bowshort_Flame"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrowshort_Flame"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Bowrecurve_Flame"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrowrecurve_Flame"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Bowgreat_Flame"]</xpath>
+        </li>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Arrowgreat_Flame"]</xpath>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>

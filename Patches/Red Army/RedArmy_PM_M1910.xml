@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Red Army (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationInsert">
+          <xpath>Defs/ThingDef[defName="Maxim_HMG"]</xpath>
+          <value>
+            <ThingDef Name="BaseArtilleryWeaponPMM1910" Abstract="True">
+              <category>Item</category>
+              <thingClass>ThingWithComps</thingClass>
+              <label>artillery error</label>
+              <useHitPoints>false</useHitPoints>
+              <equipmentType>Primary</equipmentType>
+              <tickerType>Never</tickerType>
+              <techLevel>Industrial</techLevel>
+              <destroyOnDrop>True</destroyOnDrop>
+              <generateCommonality>0</generateCommonality>
+              <menuHidden>True</menuHidden>
+              <tradeability>None</tradeability>
+              <weaponTags>
+                <li>Turret</li>
+              </weaponTags>
+              <comps>
+                <li>
+                  <compClass>CompEquippable</compClass>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Maxim_HMG</defName>
+          <statBases>
+            <SightsEfficiency>1.0</SightsEfficiency>
+            <ShotSpread>0.11</ShotSpread>
+            <SwayFactor>0.82</SwayFactor>
+            <Bulk>10.0</Bulk>
+            <WorkToMake>14000</WorkToMake>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_Maxim</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>35</range>
+            <minRange>2</minRange>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+            <burstShotCount>6</burstShotCount>
+            <soundCast>Maxim_Fire1</soundCast>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <recoilAmount>0.78</recoilAmount>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>250</magazineSize>
+            <reloadTime>6.25</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_Turret</li>
+          </weaponTags>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="Turret_Maxim"]/label</xpath>
+          <value>
+            <label>PM M1910</label>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="Maxim_HMG"]/label</xpath>
+          <value>
+            <label>PM M1910</label>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Turret_Maxim"]</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+        </li>
+        <!--
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.25</AimingAccuracy>
+			<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
+		</value>
+	</li>
+	-->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Turret_Maxim"]</xpath>
+          <value>
+            <fillPercent>0.85</fillPercent>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
