@@ -127,6 +127,7 @@ ED-Shields	|
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
+Erin's Au Ra    |
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
