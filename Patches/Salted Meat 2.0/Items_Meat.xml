@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Salted Meat 2.0</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Give meat products appropriate bulk. -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="SM_Sausage_Raw" or defName="SM_Sausage" or defName="SM_SaltedMeat"]/statBases</xpath>
+        <value>
+          <Bulk>0.20</Bulk>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

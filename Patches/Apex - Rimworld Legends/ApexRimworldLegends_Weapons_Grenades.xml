@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Arc Star -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeGrenade</defName>
+          <statBases>
+            <WorkToMake>16000</WorkToMake>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>3.66</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Proj_ARL_ChargeGrenade</defaultProjectile>
+            <warmupTime>0.85</warmupTime>
+            <range>16</range>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <noiseRadius>4</noiseRadius>
+            <soundCast>ARL_Throw_ChargeGrenade</soundCast>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <weaponTags>
+            <li>CE_AI_Grenade</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeGrenade"]/label</xpath>
+          <value>
+            <label>Arc Star</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeGrenade"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1</cooldownTime>
+                <armorPenetrationSharp>1.20</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.96</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- Smoke Grenade -->
+        <!-- Projectile -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_Projectile_SmokeGrenade"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_Projectile_SmokeGrenade"]/projectile</xpath>
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>Smoke</damageDef>
+              <explosionRadius>4.3</explosionRadius>
+              <damageAmountBase>10</damageAmountBase>
+              <explosionDelay>60</explosionDelay>
+              <dropsCasings>true</dropsCasings>
+              <preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+              <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+            </projectile>
+          </value>
+        </li>
+
+        <!-- Grenade -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_SmokeGrenade"]/label</xpath>
+          <value>
+            <label>Bangalore Smoke Grenade</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="ARL_SmokeGrenade"]</xpath>
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="ARL_SmokeGrenade"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="ARL_SmokeGrenade"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="ARL_SmokeGrenade"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_SmokeGrenade</defName>
+          <statBases>
+            <Mass>0.4</Mass>
+            <MarketValue>2.25</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <label>throw Smoke grenade</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>ARL_Projectile_SmokeGrenade</defaultProjectile>
+            <range>16</range>
+            <minRange>4</minRange>
+            <warmupTime>1.8</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <weaponTags>
+            <li>CE_AI_Grenade</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+
+        <!-- Toxic Grenade -->
+        <!-- Projectile -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_Projectile_ToxicGrenade"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_Projectile_ToxicGrenade"]/projectile</xpath>
+          <value>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>ARL_ToxicGas</damageDef>
+              <explosionRadius>3.9</explosionRadius>
+              <damageAmountBase>10</damageAmountBase>
+              <explosionDelay>60</explosionDelay>
+              <dropsCasings>true</dropsCasings>
+              <soundExplode>DispensePaste</soundExplode>
+              <postExplosionSpawnThingDef>ARL_ToxicGasCloud</postExplosionSpawnThingDef>
+              <postExplosionSpawnChance>1</postExplosionSpawnChance>
+              <postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+              <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+            </projectile>
+          </value>
+        </li>
+
+        <!-- Grenade -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ToxicGrenade"]/label</xpath>
+          <value>
+            <label>Caustic Nox Grenade</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="ARL_ToxicGrenade"]</xpath>
+          <value>
+            <thingClass>CombatExtended.AmmoThing</thingClass>
+            <stackLimit>75</stackLimit>
+            <resourceReadoutPriority>First</resourceReadoutPriority>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>/Defs/ThingDef[defName="ARL_ToxicGrenade"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[defName="ARL_ToxicGrenade"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="ARL_ToxicGrenade"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ToxicGrenade</defName>
+          <statBases>
+            <Mass>0.4</Mass>
+            <MarketValue>2.25</MarketValue>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <label>throw toxic grenade</label>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>ARL_Projectile_ToxicGrenade</defaultProjectile>
+            <range>16</range>
+            <minRange>4</minRange>
+            <warmupTime>3.5</warmupTime>
+            <soundCast>ThrowGrenade</soundCast>
+            <noiseRadius>4</noiseRadius>
+            <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+            <onlyManualCast>true</onlyManualCast>
+            <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <weaponTags>
+            <li>CE_AI_Grenade</li>
+            <li>CE_OneHandedWeapon</li>
+          </weaponTags>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Warhammer"ish":Dryad</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- ==== Scythe ==== -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="MeleeWeapon_SylScythe"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>hand guard</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.26</cooldownTime>
+              <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>hook</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>14</power>
+              <cooldownTime>1.11</cooldownTime>
+              <armorPenetrationSharp>2.82</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>edge</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>35</power>
+              <cooldownTime>1.32</cooldownTime>
+              <armorPenetrationSharp>1.5</armorPenetrationSharp>
+              <armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="MeleeWeapon_SylScythe"]</xpath>
+        <value>
+          <equippedStatOffsets>
+            <MeleeCritChance>0.25</MeleeCritChance>
+            <MeleeParryChance>0.5</MeleeParryChance>
+            <MeleeDodgeChance>0.6</MeleeDodgeChance>
+          </equippedStatOffsets>  
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MeleeWeapon_SylScythe"]/statBases</xpath>
+        <value>
+          <Bulk>8</Bulk>
+          <MeleeCounterParryBonus>0.54</MeleeCounterParryBonus>
+        </value>
+      </li>
+
+      <!-- === Willow Whip === -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_WillowWhip</defName>
+        <statBases>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.5</ShotSpread>
+          <SwayFactor>0.26</SwayFactor>
+          <Bulk>1.5</Bulk>
+          <Mass>0.9</Mass>
+          <RangedWeapon_Cooldown>0.48</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_WillowWhip</defaultProjectile>
+          <warmupTime>1</warmupTime>
+          <range>6</range>
+          <soundCast>Interact_BeatFire</soundCast>
+        </Properties>
+      </li>
+
+      <!-- Tools -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Gun_WillowWhip"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>branch</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>3</power>
+              <cooldownTime>2</cooldownTime>
+              <chanceFactor>1.33</chanceFactor>
+              <armorPenetrationSharp>0.15</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- === Projectile === -->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+          <ThingDef ParentName="BaseBullet">
+            <thingClass>CombatExtended.BulletCE</thingClass>
+            <defName>Bullet_WillowWhip</defName>
+            <label>willow lash</label>
+            <graphicData>
+              <texPath>Things/Projectile/WillowBullet</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <speed>80</speed>
+              <damageDef>Cut</damageDef>
+              <damageAmountBase>8</damageAmountBase>
+              <armorPenetrationSharp>0.65</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.80</armorPenetrationBlunt>
+            </projectile>
+          </ThingDef>
+        </value>
+
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

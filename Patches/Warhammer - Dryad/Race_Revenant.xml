@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Warhammer"ish":Dryad</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Revenants -->
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadDeadRevenant" or defName="DryadDeadRevenantFoe"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+            <SmokeSensitivity>-1</SmokeSensitivity>
+            <Suppressability>-10</Suppressability>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+           <xpath>/Defs/ThingDef[defName="DryadSpiteRevenant" or defName="DryadSpiteRevenantAnimal"]/statBases/ArmorRating_Blunt</xpath>
+            <value>
+              <ArmorRating_Blunt>2.5</ArmorRating_Blunt>
+              <SmokeSensitivity>-1</SmokeSensitivity>
+              <Suppressability>-10</Suppressability>            
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadSpiteRevenant" or defName="DryadSpiteRevenantAnimal"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadDeadRevenant" or defName="DryadDeadRevenantFoe"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadLeftBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadRightBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadSpiteRevenant" or defName="DryadSpiteRevenantAnimal"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadLeftBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadRightBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

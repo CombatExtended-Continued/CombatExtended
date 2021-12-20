@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ========== Light Bolter ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Turret_ReaperBolter" or defName="RE_Turret_ReaperHeavyBolter"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RE_Turret_ReaperBolter" or defName="RE_Turret_ReaperHeavyBolter"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.75</AimingAccuracy>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Turret_ReaperBolter" or defName="RE_Turret_ReaperHeavyBolter"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+				</value>
+			</li>
+
+			<li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+				<defName>RE_Gun_ReaperBolter</defName>
+				<statBases>
+					<Mass>35.00</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>0.72</SwayFactor>
+					<RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>					
+					<Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.28</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ReaperBolter</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>55</range>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<burstShotCount>9</burstShotCount>
+					<soundCast>RE_Shot_ReaperBolter</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Suppressive</li>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+				<defName>RE_Gun_ReaperHeavyBolter</defName>
+				<statBases>
+					<Mass>35.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.33</SwayFactor>
+					<Bulk>13.00</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.28</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ReaperHeavyBolter</defaultProjectile>
+					<warmupTime>1.30</warmupTime>
+					<range>75</range>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<burstShotCount>9</burstShotCount>
+					<soundCast>RE_Shot_HeavyBolter</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_Suppressive</li>
+					<li>TurretGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== Reaper Missile Launcher ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Turret_ReaperMissileLauncher"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Turret_ReaperMissileLauncher"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>10</turretBurstCooldownTime>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RE_Gun_ReaperMissileLauncher</defName>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ReaperMissile</defaultProjectile>
+					<warmupTime>3.2</warmupTime>
+					<minRange>10</minRange>
+					<range>100</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>RE_Shot_ReaperKineticArtillery</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>55</muzzleFlashScale>
+					<circularError>1.2</circularError>
+					<requireLineOfSight>true</requireLineOfSight>
+					<indirectFirePenalty>0.4</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+				</Properties>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RE_Gun_ReaperMissileLauncher"]</xpath>
+				<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>90</li>
+					<li>100</li>
+					<li>150</li>
+					</chargeSpeeds>
+					</li>
+				</comps>	
+				</value>
+			</li>
+
+			<!-- ========== Reaper Beam ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Bullet_ReaperBeam"]/projectile/armorPenetrationBase</xpath>
+				<value>
+					<armorPenetrationBase>1000</armorPenetrationBase>
+				</value>
+			</li>
+
+			<!-- ========== Kinetic Artillery ========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Turret_ReaperKineticArtillery"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RE_Turret_ReaperKineticArtillery"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>10</turretBurstCooldownTime>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RE_Gun_ReaperKineticArtillery</defName>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_ReaperKineticArtillery</defaultProjectile>
+					<warmupTime>1.2</warmupTime>
+					<minRange>20</minRange>
+					<range>500</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>RE_Shot_ReaperKineticArtillery</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>55</muzzleFlashScale>
+					<circularError>2.5</circularError>
+					<requireLineOfSight>false</requireLineOfSight>
+					<indirectFirePenalty>0.6</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>false</canTargetLocations>
+					</targetParams>
+				</Properties>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "RE_Gun_ReaperKineticArtillery"]</xpath>
+				<value>
+				<comps>
+					<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					</chargeSpeeds>
+					</li>
+				</comps>	
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

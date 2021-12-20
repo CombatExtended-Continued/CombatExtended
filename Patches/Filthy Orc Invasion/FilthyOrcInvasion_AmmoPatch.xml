@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Filthy Orc Invasion (Continued)</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <ThingCategoryDef>
+          <defName>AmmoCannonball</defName>
+          <label>Cannonball</label>
+          <parent>AmmoPistols</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+        </ThingCategoryDef>
+        <!-- ==================== AmmoSet ========================== -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_Cannonball</defName>
+          <label>Cannonball</label>
+          <ammoTypes>
+            <Ammo_Cannonball>Bullet_Cannonball_CE</Ammo_Cannonball>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+        <!-- ==================== Ammo ========================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="CannonballBase" ParentName="AmmoBase" Abstract="True">
+          <description>Cannonball</description>
+          <statBases>
+            <Mass>0.08</Mass>
+            <Bulk>0.06</Bulk>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_FueledSmithy</li>
+            <li>CE_AutoEnableCrafting_ElectricSmithy</li>
+          </tradeTags>
+          <thingCategories>
+            <li>AmmoCannonball</li>
+          </thingCategories>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="CannonballBase">
+          <defName>Ammo_Cannonball</defName>
+          <label>Cannonball</label>
+          <graphicData>
+            <texPath>Things/Ammo/Mortar</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+          </graphicData>
+          <statBases>
+            <MarketValue>2</MarketValue>
+          </statBases>
+          <ammoClass>RocketFrag</ammoClass>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>20</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>3</explosiveRadius>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>20</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ================== Projectiles ================== -->
+        <ThingDef Name="BaseCannonball" ParentName="BaseBullet" Abstract="true">
+          <graphicData>
+            <texPath>Things/Projectile/Bullet_Cannonball</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bomb</damageDef>
+            <explosionRadius>3.0</explosionRadius>
+            <speed>60</speed>
+          </projectile>
+        </ThingDef>
+        <ThingDef ParentName="BaseCannonball">
+          <defName>Bullet_Cannonball_CE</defName>
+          <label>Cannonball</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <explosionRadius>3</explosionRadius>
+            <damageDef>Bomb</damageDef>
+            <damageAmountBase>20</damageAmountBase>
+          </projectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <explosiveRadius>3</explosiveRadius>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>20</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <RecipeDef ParentName="AmmoRecipeBase">
+          <defName>MakeAmmo_Cannonball</defName>
+          <label>make Cannonball x20</label>
+          <description>Craft 20 Cannonballs.</description>
+          <jobString>Making Cannonballs.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>10</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_Cannonball>20</Ammo_Cannonball>
+          </products>
+          <workAmount>1000</workAmount>
+        </RecipeDef>
+        <ThingDef ParentName="BaseBullet">
+          <defName>Javelin_Thrown_CE</defName>
+          <graphicData>
+            <texPath>Things/Projectile/Javelin_Thrown</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <label>Javelin</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>RangedStab</damageDef>
+            <speed>35</speed>
+            <damageAmountBase>20</damageAmountBase>
+          </projectile>
+        </ThingDef>
+      </value>
+    </match>
+  </Operation>
+</Patch>

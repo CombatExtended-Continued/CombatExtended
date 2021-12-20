@@ -1,0 +1,973 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- Mod Support for Combat Extended -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turrets -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidBlasterTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidBlasterTurret</defName>
+              <label>Mechanoid Blaster</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidLoseTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidTurretGun_Ico</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>70</pathCost>
+              <statBases>
+                <MaxHitPoints>1500</MaxHitPoints>
+                <Flammability>0.35</Flammability>
+                <WorkToBuild>4400</WorkToBuild>
+                <Mass>240</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.89</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>7</explosiveRadius>
+                  <explosiveDamageType>EMP</explosiveDamageType>
+                  <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a mechanoid blaster on top that automatically fires at nearby and distant enemies. Has a chance to explode in an EMP impulse when damaged.\n\nEvolved defense building, primarily made for stationary warfare against xenomorphic insectoids and mechanoid swarms - on planets of importance. Has 4 Blaster Cannons with a long range target acquisition attached to it. The central weapon system is mounted on an auto turret of a sturdy nature. Relies on Mechanoid Technology. Can be upgraded.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>150</costStuffCount>
+              <costList>
+                <Plasteel>300</Plasteel>
+                <ComponentIndustrial>4</ComponentIndustrial>
+                <ComponentSpacer>1</ComponentSpacer>
+                <Uranium>25</Uranium>
+                <Gold>75</Gold>
+              </costList>
+              <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidBlasterTurret</turretGunDef>
+                <turretBurstCooldownTime>7.2</turretBurstCooldownTime>
+                <turretTopOffset>(0, 0.2)</turretTopOffset>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>MPC_MechanoidBlaster</li>
+              </researchPrerequisites>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidBlasterTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidBlasterTurret</defName>
+              <label>Mechanoid Blaster</label>
+              <description>Evolved defense building, primarily made for stationary warfare against xenomorphic insectoids and mechanoid swarms - on planets of importance. Has 4 Blaster Cannons with a long range target acquisition attached to it. The central weapon system is mounted on an auto turret of a sturdy nature. Relies on Mechanoid Technology.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidTurretGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.85</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.5</SwayFactor>
+                <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>18.05</Bulk>
+                <Mass>40</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.69</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_30x64mmFuel_Incendiary</defaultProjectile>
+                  <warmupTime>0.5</warmupTime>
+                  <range>52.4</range>
+                  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+                  <burstShotCount>12</burstShotCount>
+                  <soundCast>MechanoidPoweredNitroRound</soundCast>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>false</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                  <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>SuppressFire</aiAimMode>
+                  <aimedBurstShotCount>10</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>100</magazineSize>
+                  <reloadTime>7.8</reloadTime>
+                  <ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Nummer Zwei Laser -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidLaserTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidLaserTurret</defName>
+              <label>Mechanoid Detonator</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidLaserGun_Ico</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>70</pathCost>
+              <statBases>
+                <MaxHitPoints>1000</MaxHitPoints>
+                <Flammability>0.35</Flammability>
+                <WorkToBuild>4800</WorkToBuild>
+                <Mass>240</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.91</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>8</explosiveRadius>
+                  <explosiveDamageType>EMP</explosiveDamageType>
+                  <chanceNeverExplodeFromDamage>0.25</chanceNeverExplodeFromDamage>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a mechanoid laser gun on top that automatically fires at nearby and distant enemies. Has a chance to explode in an EMP impulse when damaged.\n\nEvolved defense building, primarily made for stationary warfare against heavy ordinance - on planets of importance. Has a Laser Cannon with a long range target acquisition attached to it. The central weapon system is mounted on an auto turret. Relies on Mechanoid Technology. Can be upgraded.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>300</costStuffCount>
+              <costList>
+                <Plasteel>150</Plasteel>
+                <ComponentIndustrial>5</ComponentIndustrial>
+                <ComponentSpacer>1</ComponentSpacer>
+                <Uranium>75</Uranium>
+                <Gold>25</Gold>
+              </costList>
+              <constructionSkillPrerequisite>9</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidLaserTurret</turretGunDef>
+                <turretBurstCooldownTime>7.2</turretBurstCooldownTime>
+                <turretTopOffset>(0, 0.05)</turretTopOffset>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>MPC_MechanoidBlaster</li>
+              </researchPrerequisites>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidLaserTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidLaserTurret</defName>
+              <label>Mechanoid Detonator</label>
+              <description>Evolved defense building, primarily made for stationary warfare against heavy ordinance - on planets of importance. Has a Laser Cannon with a long range target acquisition attached to it. The central weapon system is mounted on an auto turret. Relies on Mechanoid Technology.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidLaserGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <tickerType>Normal</tickerType>
+              <statBases>
+                <SightsEfficiency>0.88</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.35</SwayFactor>
+                <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>18.05</Bulk>
+                <Mass>40</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.69</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_30x64mmFuel_Thermobaric</defaultProjectile>
+                  <warmupTime>1.5</warmupTime>
+                  <range>52.4</range>
+                  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                  <burstShotCount>6</burstShotCount>
+                  <soundCast>MechanoidLaserPulse</soundCast>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>false</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                  <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <aimedBurstShotCount>3</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_ExplosiveCE">
+                  <damageAmountBase>15</damageAmountBase>
+                  <explosiveDamageType>Bomb</explosiveDamageType>
+                  <explosiveRadius>2.5</explosiveRadius>
+                  <explosionSound>Explosion_Stun</explosionSound>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>100</magazineSize>
+                  <reloadTime>7.8</reloadTime>
+                  <ammoSet>AmmoSet_30x64mmFuel</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Nummer Drei Shockwave -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidShockwaveTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidShockwaveTurret</defName>
+              <label>Mechanoid Coil</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidZoneTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidShockwaveGun_Ico</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>70</pathCost>
+              <statBases>
+                <MaxHitPoints>1250</MaxHitPoints>
+                <Flammability>0.35</Flammability>
+                <WorkToBuild>5200</WorkToBuild>
+                <Mass>200</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.98</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>6</explosiveRadius>
+                  <explosiveDamageType>EMP</explosiveDamageType>
+                  <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a shockwave gun on top that automatically fires at nearby and distant enemies. Meant to support during heavy warfare. Has a chance to explode in an EMP impulse when damaged.\n\nEvolved defense building, primarily made to support against incoming ground units. Outsorted models were taken out and misused to beat down riots on Jailplanets. Has a Shockwave Gun with an AI target acquisition attached to it. The central weapon system is mounted on an auto turret. Can be slightly upgraded.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>225</costStuffCount>
+              <costList>
+                <Plasteel>225</Plasteel>
+                <ComponentIndustrial>8</ComponentIndustrial>
+                <ComponentSpacer>1</ComponentSpacer>
+                <Uranium>50</Uranium>
+                <Gold>50</Gold>
+                <!-- <AIPersonaCore>1</AIPersonaCore> -->
+              </costList>
+              <constructionSkillPrerequisite>15</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidShockwaveTurret</turretGunDef>
+                <turretBurstCooldownTime>10.2</turretBurstCooldownTime>
+                <turretTopOffset>(0, 0.05)</turretTopOffset>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>MPC_MechanoidBlaster</li>
+              </researchPrerequisites>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidShockwaveTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidShockwaveTurret</defName>
+              <label>Mechanoid Coil</label>
+              <description>Evolved defense building, primarily made to support against incoming ground units. Outsorted models were alienated to beat down riots on Jailplanets. Has a Shockwave Gun with an AI target acquisition attached to it. The central weapon system is mounted on an auto turret.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidShockwaveGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.98</SightsEfficiency>
+                <ShotSpread>0.15</ShotSpread>
+                <SwayFactor>0.75</SwayFactor>
+                <RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>18.05</Bulk>
+                <Mass>40</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.39</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_60x225mmGamma_Standard</defaultProjectile>
+                  <!-- Flashbang -->
+                  <warmupTime>0.1</warmupTime>
+                  <range>52.4</range>
+                  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                  <burstShotCount>2</burstShotCount>
+                  <soundCast>MechanoidEnergizedShot</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+                  <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>100</magazineSize>
+                  <reloadTime>7.8</reloadTime>
+                  <ammoSet>AmmoSet_60x225mmGamma</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Nummer Vier Devastator -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidDevastatorTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidDevastatorTurret</defName>
+              <label>Mechanoid Devastator</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidLoseTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidDevastatorGun</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>85</pathCost>
+              <statBases>
+                <MaxHitPoints>900</MaxHitPoints>
+                <Flammability>0.35</Flammability>
+                <WorkToBuild>5600</WorkToBuild>
+                <Mass>150</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.91</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>5</explosiveRadius>
+                  <explosiveDamageType>Flame</explosiveDamageType>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a heavy Novagun on top that automatically fires at nearby and distant enemies. Has a chance to explode in an inferno when damaged.\n\nEvolved defense building, primarily made to slow down any incoming offenses with its reactive orbs. The fireline Novagun is guided by an AI Smartfire upgrade and scans the surrounding area for thermal signatures and movement. The central weapon system is mounted on an auto turret. The case can be slightly improved.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>250</costStuffCount>
+              <costList>
+                <Plasteel>150</Plasteel>
+                <ComponentIndustrial>4</ComponentIndustrial>
+                <ComponentSpacer>1</ComponentSpacer>
+                <Uranium>50</Uranium>
+                <AIPersonaCore>1</AIPersonaCore>
+              </costList>
+              <constructionSkillPrerequisite>20</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidDevastatorTurret</turretGunDef>
+                <turretBurstCooldownTime>10.2</turretBurstCooldownTime>
+                <turretTopOffset>(0, 0.05)</turretTopOffset>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>MPC_MechanoidBlaster</li>
+              </researchPrerequisites>
+              <uiIconScale>0.90</uiIconScale>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidDevastatorTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidDevastatorTurret</defName>
+              <label>Mechanoid Devastator</label>
+              <description>Evolved defense building, primarily made to slow down any incoming offenses with its reactive orbs. The fireline Novagun is guided by an AI Smartfire upgrade and scans the surrounding area for thermal signatures and movement. The central weapon system is mounted on an auto turret.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidDevastatorGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.85</SightsEfficiency>
+                <ShotSpread>0.17</ShotSpread>
+                <SwayFactor>0.73</SwayFactor>
+                <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>25.05</Bulk>
+                <Mass>50</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.25</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+                  <warmupTime>1.8</warmupTime>
+                  <range>55</range>
+                  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                  <burstShotCount>4</burstShotCount>
+                  <soundCast>MechanoidBlizzard</soundCast>
+                  <soundCastTail>MechanoidThermal</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>true</aiUseBurstMode>
+                  <aiAimMode>SuppressFire</aiAimMode>
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>100</magazineSize>
+                  <reloadTime>7.8</reloadTime>
+                  <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Nummer FÃ¼nf Multi Burst -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidMultiTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidMultiTurret</defName>
+              <label>Mechanoid Multi Burst</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidLoseTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidMultiGun</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>85</pathCost>
+              <statBases>
+                <MaxHitPoints>2000</MaxHitPoints>
+                <Flammability>0.35</Flammability>
+                <WorkToBuild>7500</WorkToBuild>
+                <Mass>300</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.95</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>7</explosiveRadius>
+                  <explosiveDamageType>Flame</explosiveDamageType>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A tank turret with a Quadgun on top that automatically fires at nearby and distant enemies. Has a chance to explode in an inferno when damaged.\n\nNeeds Plasteel to repair.\n\nEvolved defense building, primarily made to sieve through approaching combat forces with its superior firepower. Has high velocity fastcharger guns with an adaptive AI target system attached to it. The central weapon system is mounted on an auto turret. Can be upgraded.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>225</costStuffCount>
+              <costList>
+                <Plasteel>225</Plasteel>
+                <ComponentIndustrial>4</ComponentIndustrial>
+                <ComponentSpacer>1</ComponentSpacer>
+                <AIPersonaCore>1</AIPersonaCore>
+              </costList>
+              <constructionSkillPrerequisite>15</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidMultiTurret</turretGunDef>
+                <turretBurstCooldownTime>10.2</turretBurstCooldownTime>
+                <turretTopOffset>(0, 0.15)</turretTopOffset>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>MPC_MechanoidBlaster</li>
+              </researchPrerequisites>
+              <uiIconScale>0.90</uiIconScale>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidMultiTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidMultiTurret</defName>
+              <label>Mechanoid Multi Burst</label>
+              <description>Evolved defense building, primarily made to sieve through heavy combat forces. Has a Quad Gun with an AI target system attached to it. The central weapon system is mounted on an auto turret.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidMultiGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.95</SightsEfficiency>
+                <ShotSpread>0.05</ShotSpread>
+                <SwayFactor>0.23</SwayFactor>
+                <RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>25.05</Bulk>
+                <Mass>100</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.25</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+                  <warmupTime>1.6</warmupTime>
+                  <range>55</range>
+                  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                  <burstShotCount>30</burstShotCount>
+                  <soundCast>MechanoidPhaserBeam</soundCast>
+                  <soundCastTail>MechanoidShredder</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>true</aiUseBurstMode>
+                  <aiAimMode>SuppressFire</aiAimMode>
+                  <aimedBurstShotCount>24</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>180</magazineSize>
+                  <reloadTime>7.8</reloadTime>
+                  <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Nummer Sechs Trinity Gun -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Mechanoid Master Blaster (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MPC_MechanoidTrinityTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>MPC_MechanoidTrinityTurret</defName>
+              <label>Mechanoid Trinity</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidTurretPowerBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/MechanoidTrinityGun</uiIconPath>
+              <altitudeLayer>BuildingOnTop</altitudeLayer>
+              <pathCost>85</pathCost>
+              <statBases>
+                <MaxHitPoints>650</MaxHitPoints>
+                <Flammability>0.45</Flammability>
+                <WorkToBuild>4000</WorkToBuild>
+                <Mass>240</Mass>
+                <Beauty>-20</Beauty>
+                <AimingAccuracy>0.65</AimingAccuracy>
+                <ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>7</explosiveRadius>
+                  <explosiveDamageType>Flame</explosiveDamageType>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>500</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a mechanoid trinity gun on top that automatically fires at nearby and distant enemies. Has a chance to explode in an inferno when damaged.\n\nEvolved defense building with an unbelievable firerate and low accuracy, designed to maw down anything entering its security zone. Has a Trinity Gun, which is fed by 4 large ammunition containers with magnum breaker cartridges inside. The central weapon system is mounted on an auto turret. Needs steel to renew the barrels after heave use. Can be upgraded.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>100</costStuffCount>
+              <costList>
+                <Plasteel>100</Plasteel>
+                <ComponentIndustrial>3</ComponentIndustrial>
+                <Gun_LMG>3</Gun_LMG>
+              </costList>
+              <constructionSkillPrerequisite>12</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_MechanoidTrinityTurret</turretGunDef>
+                <turretBurstCooldownTime>4.2</turretBurstCooldownTime>
+                <turretBurstWarmupTime>4</turretBurstWarmupTime>
+                <turretTopOffset>(0, 0.01)</turretTopOffset>
+                <turretTopDrawSize>2</turretTopDrawSize>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>CE_HeavyTurret</li>
+              </researchPrerequisites>
+              <uiIconScale>0.90</uiIconScale>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_MechanoidTrinityTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeapon">
+              <defName>Gun_MechanoidTrinityTurret</defName>
+              <label>Mechanoid Trinity</label>
+              <description>Evolved defense building with an unbelievable firerate and low accuracy, designed to maw down anything entering its security zone. Has a Trinity Gun, which is fed by 4 large ammunition containers with magnum breaker cartridges inside. The central weapon system is mounted on an auto turret. Needs steel to renew the barrels after heave use. Can be upgraded.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/MechanoidTrinityGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.65</SightsEfficiency>
+                <ShotSpread>0.15</ShotSpread>
+                <SwayFactor>0.43</SwayFactor>
+                <RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+                <DeteriorationRate>0</DeteriorationRate>
+                <Bulk>25.05</Bulk>
+                <Mass>100</Mass>
+                <Flammability>0</Flammability>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.45</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+                  <warmupTime>1.6</warmupTime>
+                  <range>75</range>
+                  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                  <burstShotCount>50</burstShotCount>
+                  <soundCast>MechanoidShredder</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>2</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>true</aiUseBurstMode>
+                  <aiAimMode>SuppressFire</aiAimMode>
+                  <aimedBurstShotCount>40</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>150</magazineSize>
+                  <reloadTime>8.8</reloadTime>
+                  <ammoSet>AmmoSet_12x64mmCharged</ammoSet>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

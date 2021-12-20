@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+            <!-- Biotics -->			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/VFECore.Abilities.AbilityDef[defName="RE_Biotic_Lance"]/range</xpath>
+				<value>
+					<range>62</range>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/VFECore.Abilities.AbilityDef[defName="RE_Biotic_Warp" or defName="RE_Biotic_Stasis"]/range</xpath>
+				<value>
+					<range>40</range>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RE_Biotic_LanceProjectile"]/projectile/armorPenetrationBase</xpath>
+				<value>
+					<armorPenetrationBase>1000</armorPenetrationBase>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
