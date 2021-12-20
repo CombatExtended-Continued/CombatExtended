@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+				<ThingCategoryDef>
+					<defName>Ammo9M113</defName>
+					<label>9M113 Konkur Missile</label>
+					<parent>AmmoRockets</parent>
+				</ThingCategoryDef>
+
+				<!-- ==================== AmmoSet ========================== -->
+
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_Konkur</defName>
+					<label>9M113 Missiles</label>
+					<ammoTypes>
+						<Ammo_9M113_HEAT>Bullet_9M113_HEAT</Ammo_9M113_HEAT>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+
+				<!-- ==================== Ammo ========================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" Name="9M113Base" ParentName="HeavyAmmoBase" Abstract="True">
+					<description>135mm Anti-tank guided missiles for use in Konkur system.</description>
+					<statBases>
+						<MaxHitPoints>200</MaxHitPoints>
+					</statBases>
+					<tradeTags>
+      						<li>CE_AutoEnableTrade_Sellable</li>
+						<li>CE_AutoEnableCrafting_TableMachining</li>
+					</tradeTags>
+					<thingCategories>
+						<li>Ammo9M113</li>
+					</thingCategories>
+					<stackLimit>10</stackLimit>
+					<cookOffFlashScale>30</cookOffFlashScale>
+					<cookOffSound>MortarBomb_Explode</cookOffSound>
+				</ThingDef>
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="9M113Base">
+					<defName>Ammo_9M113_HEAT</defName>
+					<label>9M113 Missile (HEAT)</label>
+					<graphicData>
+						<texPath>Things\Projectile\Konkurs_Shell\Shell_HE\Shell_Konkurs</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+						<drawSize>1.0</drawSize>
+					</graphicData>
+					<statBases>
+						<MarketValue>180</MarketValue>
+						<Mass>14.1</Mass>
+						<Bulk>27.17</Bulk>
+					</statBases>
+					<ammoClass>RocketHEAT</ammoClass>
+					<detonateProjectile>Bullet_9M113_HEAT</detonateProjectile>
+				</ThingDef>
+
+				<!-- ================== Projectiles ================== -->
+
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG7Grenade">
+					<defName>Bullet_9M113_HEAT</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>9M113 Missile (HEAT)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Rocket_Big</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+      						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>42</speed>
+						<damageDef>Bullet</damageDef>
+						<damageAmountBase>300</damageAmountBase>
+						<armorPenetrationSharp>800</armorPenetrationSharp>
+						<armorPenetrationBlunt>151.584</armorPenetrationBlunt>
+						<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+					</projectile>
+					<comps>
+		  				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>240</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.5</explosiveRadius>
+							<explosionSound>MortarBomb_Explode</explosionSound>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  				</li>
+						<li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+								<Fragment_Large>10</Fragment_Large>
+								<Fragment_Small>50</Fragment_Small>
+							</fragments>
+						</li>
+					</comps>
+				</ThingDef>
+
+				<!-- ==================== Recipes ========================== -->
+
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_9M113_HEAT</defName>
+					<label>make 9M113 HEAT Missile</label>
+					<description>Craft 5 9M113 HEAT Missiles.</description>
+					<jobString>Making 9M113 HEAT Missiles.</jobString>
+					<workAmount>42000</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>190</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>12</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>FSX</li>
+								</thingDefs>
+							</filter>
+							<count>20</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>ComponentIndustrial</li>
+							<li>FSX</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_9M113_HEAT>5</Ammo_9M113_HEAT>
+					</products>
+				</RecipeDef>
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

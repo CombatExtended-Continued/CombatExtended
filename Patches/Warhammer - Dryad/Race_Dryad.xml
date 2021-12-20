@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Warhammer"ish":Dryad</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- Base Dryad -->
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/ThingDef[@Name="DryadAnimalThingBase"]</xpath>
+          <value>
+            <li Class="CombatExtended.RacePropertiesExtensionCE">
+              <bodyShape>Humanoid</bodyShape>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/ThingDef[@Name="DryadAnimalThingBase"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[@Name="DryadAnimalThingBase"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name="DryadAnimalThingBase"]/comps</xpath>
+          <value>
+            <li>
+              <compClass>CombatExtended.CompPawnGizmo</compClass>
+            </li>
+            <li Class="CombatExtended.CompProperties_Suppressable" />
+          </value>
+        </li>
+
+        <!-- Dryad -->
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/statBases/MeleeDodgeChance</xpath>
+          <value>
+            <NightVisionEfficiency>0.4</NightVisionEfficiency>
+            <MeleeDodgeChance>1.1</MeleeDodgeChance>
+            <MeleeCritChance>0.8</MeleeCritChance>
+            <MeleeParryChance>0.85</MeleeParryChance>
+            <CarryWeight>35</CarryWeight>
+            <CarryBulk>20</CarryBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>1</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left branch</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>5</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>                
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>DryadLeftBranchG</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right branch</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>1</power>
+                <surpriseAttack>
+                  <extraMeleeDamages>
+                    <li>
+                      <def>Stun</def>
+                      <amount>5</amount>
+                    </li>
+                  </extraMeleeDamages>
+                </surpriseAttack>                
+                <cooldownTime>1.26</cooldownTime>
+                <linkedBodyPartsGroup>DryadRightBranchG</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>4.49</cooldownTime>
+                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                <chanceFactor>0.2</chanceFactor>
+                <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>teeth</label>
+                <capacities>
+                <li>Bite</li>
+                </capacities>
+                <power>4</power>
+                <cooldownTime>1.37</cooldownTime>
+                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.02</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.923</armorPenetrationBlunt>
+                <chanceFactor>0.2</chanceFactor>
+              </li>              
+            </tools>
+          </value>
+        </li>
+
+        <!-- Willow Aspect -->
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadWillowAspect"]/statBases/MeleeDodgeChance</xpath>
+          <value>
+            <NightVisionEfficiency>0.4</NightVisionEfficiency>
+            <MeleeDodgeChance>1.6</MeleeDodgeChance>
+            <MeleeCritChance>0.75</MeleeCritChance>
+            <MeleeParryChance>0.80</MeleeParryChance>
+            <CarryWeight>35</CarryWeight>
+            <CarryBulk>20</CarryBulk>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadWillowAspect"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadWillowAspect"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>1</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadWillowAspect"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadLeftBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right branch</label>
+                <capacities>
+                  <li>Scratch</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>5</power>
+                <cooldownTime>1.15</cooldownTime>
+                <linkedBodyPartsGroup>DryadRightBranchG</linkedBodyPartsGroup>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.462</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- Oak Aspect -->
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="DryadOakAspect"]/statBases</xpath>
+          <value>
+            <NightVisionEfficiency>0.4</NightVisionEfficiency>
+            <MeleeDodgeChance>0.8</MeleeDodgeChance>
+            <MeleeCritChance>0.80</MeleeCritChance>
+            <MeleeParryChance>0.85</MeleeParryChance>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadOakAspect"]/statBases/ArmorRating_Sharp</xpath>
+          <value>
+            <ArmorRating_Sharp>2.35</ArmorRating_Sharp>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadOakAspect"]/statBases/ArmorRating_Blunt</xpath>
+          <value>
+            <ArmorRating_Blunt>4</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="DryadOakAspect"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>left branch</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.85</cooldownTime>
+                <linkedBodyPartsGroup>DryadLeftBranchG</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>3</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>right branch</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.85</cooldownTime>
+                <linkedBodyPartsGroup>DryadRightBranchG</linkedBodyPartsGroup>
+                <armorPenetrationBlunt>3</armorPenetrationBlunt>
+                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
