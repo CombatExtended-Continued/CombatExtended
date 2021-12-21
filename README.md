@@ -1,5 +1,5 @@
 <p>
-  <img src="https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Media/Icon_CE_large.png" height="128" align="right">
+  <img src="Media/Icon_CE_large.png" height="128" align="right">
   <h1 align="left">Combat Extended</h1>
 </p>
 <p align="left">
