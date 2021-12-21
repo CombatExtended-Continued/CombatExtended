@@ -27,17 +27,17 @@ namespace CombatExtended
 		{
 			return this.pawn.Reserve(this.job.GetTarget(guntosetup), this.job, 1, -1, null);
 		}
-		public bipodcomp Bipod
+		public BipodComp Bipod
 		{
 			get
 			{
-				return this.weapon.TryGetComp<bipodcomp>();
+				return this.weapon.TryGetComp<BipodComp>();
 			}
 		}
 		public override IEnumerable<Toil> MakeNewToils()
 		{
-			yield return Toils_General.Wait(Bipod.Props.TicksToSetUp);
-			yield return Toils_General.Do(delegate { Bipod.IsSetUpRn = true; });
+			yield return Toils_General.Wait(Bipod.Props.ticksToSetUp);
+			yield return Toils_General.Do(delegate { Bipod.SetUpEnd(weapon); });
 
 
 		}
