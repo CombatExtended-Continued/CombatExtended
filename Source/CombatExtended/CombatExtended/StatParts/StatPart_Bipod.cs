@@ -17,18 +17,18 @@ namespace CombatExtended
 	{
 		public override void TransformValue(StatRequest req, ref float val)
 		{
-			var varA = req.Thing.TryGetComp<bipodcomp>();
+			var varA = req.Thing.TryGetComp<BipodComp>();
 			if (Controller.settings.BipodMechanics)
 			{
 				if (varA != null)
 				{
 					if (varA.IsSetUpRn == true)
 					{
-						val *= varA.Props.recoilmulton;
+						val *= varA.Props.recoilMulton;
 					}
 					else
 					{
-						val *= varA.Props.recoilmultoff;
+						val *= varA.Props.recoilMultoff;
 					}
 				}
 			}
@@ -37,16 +37,16 @@ namespace CombatExtended
 
 		public override string ExplanationPart(StatRequest req)
 		{
-			var varA = req.Thing.TryGetComp<bipodcomp>();
+			var varA = req.Thing.TryGetComp<BipodComp>();
 			if (varA != null)
 			{
 				if (varA.IsSetUpRn == true)
 				{
-					return "Bipod IS set up - " + varA.Props.recoilmulton.ToString().Colorize(Color.blue);
+					return "Bipod IS set up - " + varA.Props.recoilMulton.ToString().Colorize(Color.blue);
 				}
 				else
 				{
-					return "Bipod is NOT set up - " + varA.Props.recoilmultoff.ToString().Colorize(Color.blue);
+					return "Bipod is NOT set up - " + varA.Props.recoilMultoff.ToString().Colorize(Color.blue);
 				}
 			}
 			else
@@ -61,18 +61,18 @@ namespace CombatExtended
 	{
 		public override void TransformValue(StatRequest req, ref float val)
 		{
-			var varA = req.Thing.TryGetComp<bipodcomp>();
+			var varA = req.Thing.TryGetComp<BipodComp>();
 			if (Controller.settings.BipodMechanics)
 			{
 				if (varA != null)
 				{
 					if (varA.IsSetUpRn == true)
 					{
-						val *= varA.Props.swaymult;
+						val *= varA.Props.swayMult;
 					}
 					else
 					{
-						val *= varA.Props.warmuppenalty;
+						val *= varA.Props.warmupPenalty;
 					}
 				}
 			}
@@ -81,16 +81,16 @@ namespace CombatExtended
 
 		public override string ExplanationPart(StatRequest req)
 		{
-			var varA = req.Thing.TryGetComp<bipodcomp>();
+			var varA = req.Thing.TryGetComp<BipodComp>();
 			if (varA != null)
 			{
 				if (varA.IsSetUpRn == true)
 				{
-					return "Bipod IS set up - " + varA.Props.swaymult.ToString().Colorize(Color.blue);
+					return "Bipod IS set up - " + varA.Props.swayMult.ToString().Colorize(Color.blue);
 				}
 				else
 				{
-					return "Bipod is NOT set up - " + varA.Props.swaypenalty.ToString().Colorize(Color.blue);
+					return "Bipod is NOT set up - " + varA.Props.swayPenalty.ToString().Colorize(Color.blue);
 				}
 			}
 			else
