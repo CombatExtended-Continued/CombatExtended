@@ -35,7 +35,7 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 ## Development Version
 **Do not directly download this repository if you aren't going to build it yourself!**
 
-This repository holds an out of date assembly file that will **not work** with the latest changes.
+This repository holds an uncompiled assembly file that will **not work** with the latest changes.
 
 If you want to play yourself with the latest changes without compiling the assembly, you can download the [development snapshot](https://combatextended.lp-programming.com/CombatExtended-latest.zip), it is updated a few minutes after a pull request is merged to the ` Development ` branch.
 
