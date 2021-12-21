@@ -1,5 +1,5 @@
 <p>
-  <img src="https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Media/Icon_CE_large.png" height="120" align="right">
+  <img src="https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Media/Icon_CE_large.png" height="128" align="right">
   <h1 align="left">Combat Extended</h1>
 </p>
 <p align="left">
@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/-latest%20release-black?style=for-the-badge&logo=github">
   </a>
   <a href="https://combatextended.lp-programming.com/CombatExtended-latest.zip">
-    <img src="https://img.shields.io/badge/dev%20snapshot-black?style=for-the-badge&logo=github">
+    <img src="https://img.shields.io/badge/development%20snapshot-black?style=for-the-badge&logo=github">
   </a>
 </p>
 
