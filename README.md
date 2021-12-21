@@ -3,16 +3,16 @@
   <h1 align="left">Combat Extended</h1>
 </p>
 <p align="left">
-  <a href="https://discord.gg/safyWuA">
+  <a href="https://discord.gg/safyWuA" target="_blank">
     <img src="https://img.shields.io/badge/join%20us-black?style=for-the-badge&logo=discord&logoColor=white">
   </a>
-  <a href="https://steamcommunity.com/workshop/filedetails/?id=1631756268">
+  <a href="https://steamcommunity.com/workshop/filedetails/?id=1631756268" target="_blank">
     <img src="https://img.shields.io/badge/subscribe-black?style=for-the-badge&logo=steam">
   </a>
-  <a href="https://github.com/CombatExtended-Continued/CombatExtended/releases">
+  <a href="https://github.com/CombatExtended-Continued/CombatExtended/releases" target="_blank">
     <img src="https://img.shields.io/badge/-latest%20release-black?style=for-the-badge&logo=github">
   </a>
-  <a href="https://combatextended.lp-programming.com/CombatExtended-latest.zip">
+  <a href="https://combatextended.lp-programming.com/CombatExtended-latest.zip" target="_blank">
     <img src="https://img.shields.io/badge/development%20snapshot-black?style=for-the-badge&logo=github">
   </a>
 </p>
