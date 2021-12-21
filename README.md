@@ -4,13 +4,13 @@
 </p>
 <p align="left">
   <a href="https://discord.gg/safyWuA">
-    <img src="https://img.shields.io/badge/Discord-join%20us-black?style=for-the-badge&logo=discord&logoColor=white">
+    <img src="https://img.shields.io/badge/join%20us-black?style=for-the-badge&logo=discord&logoColor=white">
   </a>
   <a href="https://steamcommunity.com/workshop/filedetails/?id=1631756268">
-    <img src="https://img.shields.io/badge/steam-subscribe-black?style=for-the-badge&logo=steam">
+    <img src="https://img.shields.io/badge/subscribe-black?style=for-the-badge&logo=steam">
   </a>
   <a href="https://github.com/CombatExtended-Continued/CombatExtended/releases">
-    <img src="https://img.shields.io/github/v/release/CombatExtended-Continued/CombatExtended?color=black&logo=github&logoColor=white&style=for-the-badge">
+    <img src="https://img.shields.io/badge/-latest%20release-black?style=for-the-badge&logo=github">
   </a>
   <a href="https://combatextended.lp-programming.com/CombatExtended-latest.zip">
     <img src="https://img.shields.io/badge/dev%20snapshot-black?style=for-the-badge&logo=github">
