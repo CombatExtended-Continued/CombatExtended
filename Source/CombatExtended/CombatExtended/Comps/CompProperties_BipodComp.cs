@@ -18,25 +18,27 @@ namespace CombatExtended
 
 		public int additionalrange = 12;
 
-		public float recoilmulton = 0.5f;
+		public float recoilMulton = 0.5f;
 
-		public float recoilmultoff = 1f;
+		public float recoilMultoff = 1f;
 
-		public float warmupmult = 0.85f;
+		public float warmupMult = 0.85f;
 
-		public float warmuppenalty = 2f;
+		public float warmupPenalty = 2f;
 
-		public float swaymult = 1f;
+		public float swayMult = 1f;
 
-		public float swaypenalty = 1f;
+		public float swayPenalty = 1f;
 
-		public int TicksToSetUp = 60;
+		public int ticksToSetUp = 60;
+
+		public BipodCategoryDef catDef;
 
 
 
 		public CompProperties_BipodComp()
 		{
-			this.compClass = typeof(bipodcomp);
+			this.compClass = typeof(BipodComp);
 		}
 
 		public CompProperties_BipodComp(Type compClass) : base(compClass)

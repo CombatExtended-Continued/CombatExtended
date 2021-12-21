@@ -12,10 +12,19 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-	public class bipodcomp : CompRangedGizmoGiver
+	public class BipodComp : CompRangedGizmoGiver
 	{
-		public bool ShouldSetUpint = false;
-		public bool ShouldSetUp
+        #region Fields
+        public bool ShouldSetUpint = false;
+
+		public bool IsSetUpRn;
+
+		private int starts = 5;
+
+        #endregion
+
+        #region Properties
+        public bool ShouldSetUp
 		{
 			get
 			{
@@ -23,14 +32,11 @@ namespace CombatExtended
 				if (Controller.settings.AutoSetUp)
 				{
 					var varA = this.parent.TryGetComp<CompFireModes>();
-					if (varA.CurrentAimMode != AimMode.Snapshot)
-					{
-						return true;
-					}
+					result = ((varA.CurrentAimMode == Props.catDef.autosetMode) | !Props.catDef.useAutoSetMode) && !IsSetUpRn;
 				}
 				else
 				{
-					return ShouldSetUpint;
+					result = ShouldSetUpint && !IsSetUpRn;
 				}
 
 				return result;
@@ -40,10 +46,10 @@ namespace CombatExtended
 
 			}
 		}
+        #endregion
 
-		public bool IsSetUpRn;
-
-		public override void PostExposeData()
+        #region Methods
+        public override void PostExposeData()
 		{
 			Scribe_Values.Look<bool>(ref IsSetUpRn, "isBipodSetUp");
 			base.PostExposeData();
@@ -116,36 +122,82 @@ namespace CombatExtended
 
 
 		}
-
-		public Verb_ShootWithBipod verbbipod
-		{
-			get
-			{
-				var result = (Verb_ShootWithBipod)this.parent.TryGetComp<CompEquippable>().PrimaryVerb;
-				return result;
-			}
-		}
 		public override void Notify_Unequipped(Pawn pawn)
 		{
-
 			IsSetUpRn = false;
-		}
-		public override void Notify_Equipped(Pawn pawn)
-		{
-			IsSetUpRn = false;
-			verbbipod.WereChangesApplied1 = false;
-			verbbipod.WereChangesApplied2 = false;
 		}
 
 		public CompProperties_BipodComp Props => (CompProperties_BipodComp)this.props;
+
+		public VerbPropertiesCE CopyVerbPropsFromThing(Thing source)
+		{
+			return (VerbPropertiesCE)source.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.MemberwiseClone();
+		}
+
+		public void AssignVerbProps(Thing target, VerbPropertiesCE props)
+		{
+			target.TryGetComp<CompEquippable>().PrimaryVerb.verbProps = props;
+		}
+
+		public void ResetVerbProps(Thing source)
+		{
+			var VerbPropsCloneDef = (VerbPropertiesCE)source.def.verbs.Find(x => x is VerbPropertiesCE).MemberwiseClone();
+
+			AssignVerbProps(target: source, props: VerbPropsCloneDef);
+		}
+
+		public void SetUpInvert(Thing source)
+		{
+			ResetVerbProps(source: source);
+
+			IsSetUpRn = false;
+
+			var changed = CopyVerbPropsFromThing(source);
+
+			changed.recoilAmount *= Props.recoilMultoff;
+
+			changed.warmupTime *= Props.warmupPenalty;
+
+			AssignVerbProps(source, changed);
+		}
+
+		public void SetUpEnd(Thing source)
+		{
+			var changed = CopyVerbPropsFromThing(source);
+
+			changed.range += Props.additionalrange;
+
+			changed.recoilAmount *= Props.recoilMulton;
+
+			changed.warmupTime *= Props.warmupMult;
+
+			IsSetUpRn = true;
+
+			AssignVerbProps(source, changed);
+		}
+
 		public void SetUpStart(Pawn pawn = null)
 		{
-			if (pawn != null)
+			starts--;
+
+			if (starts == 0)
 			{
-				pawn.jobs.StopAll();
-				pawn.jobs.StartJob(new Job { def = BipodDefsOfs.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);
+				if (pawn != null && (pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.Moving && ShouldSetUp)
+				{
+					pawn.jobs.StopAll();
+					pawn.jobs.StartJob(new Job { def = BipodDefsOfs.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);
+				}
+
+				if (pawn.pather.Moving)
+				{
+					SetUpInvert(this.parent);
+	
+				}
+				starts = 5;
 			}
 
+
 		}
-	}
+        #endregion
+    }
 }
