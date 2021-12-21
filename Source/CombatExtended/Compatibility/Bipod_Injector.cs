@@ -10,7 +10,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 
-namespace CombatExtended.Compatibility
+namespace CombatExtended
 {
 	[StaticConstructorOnStartup]
 	public class Bipod_Injector
@@ -18,6 +18,7 @@ namespace CombatExtended.Compatibility
 		static Bipod_Injector()
 		{
 			Add_and_change_all();
+			AddJobModExts();
 		}
 
 		public static void Add_and_change_all()
@@ -34,11 +35,11 @@ namespace CombatExtended.Compatibility
 
 						if (dar != null)
 						{
-							dar.verbClass = typeof(Verb_ShootWithBipod);
+							dar.verbClass = typeof(Verb_ShootCE);
 							def.Verbs.Clear();
-							def.comps.Add(new CompProperties_BipodComp { swaymult = bipod_def.swaymult, swaypenalty = bipod_def.swaypenalty, additionalrange = bipod_def.ad_Range, recoilmulton = bipod_def.recoil_mult_setup, recoilmultoff = bipod_def.recoil_mult_NOT_setup, TicksToSetUp = bipod_def.setuptime, warmupmult = bipod_def.warmup_mult_setup, warmuppenalty = bipod_def.warmup_mult_NOT_setup });
+							def.comps.Add(new CompProperties_BipodComp { catDef = bipod_def, swayMult = bipod_def.swayMult, swayPenalty = bipod_def.swayPenalty, additionalrange = bipod_def.ad_Range, recoilMulton = bipod_def.recoil_mult_setup, recoilMultoff = bipod_def.recoil_mult_NOT_setup, ticksToSetUp = bipod_def.setuptime, warmupMult = bipod_def.warmup_mult_setup, warmupPenalty = bipod_def.warmup_mult_NOT_setup });
 							def.Verbs.Add(dar);
-							Log.Message("sucessfully added bipod (" + bipod_def.label + ") to: " + def.label.Colorize(bipod_def.log_color));
+							Log.Message("sucessfully added bipod (" + bipod_def.label + ") to: " + def.defName.Colorize(bipod_def.logColor));
 						}
 						else
 						{
@@ -47,7 +48,7 @@ namespace CombatExtended.Compatibility
 					}
 					else
 					{
-						Log.Message("adding bipod failed in " + def.label.Colorize(Color.red) + ". It appears to have no VerbShootCE in verbs. It's verbs are following:");
+						Log.Message("adding bipod failed in " + def.defName.Colorize(Color.red) + ". It appears to have no VerbShootCE in verbs. It's verbs are following:");
 						foreach (VerbProperties verbp in def.Verbs)
 						{
 							Log.Message(verbp.verbClass.Name.Colorize(Color.magenta));
@@ -55,6 +56,21 @@ namespace CombatExtended.Compatibility
 
 					}
 				}
+			}
+		}
+
+		public static void AddJobModExts()
+		{
+			List<JobDef> defs = DefDatabase<JobDef>.AllDefsListForReading.FindAll(x => x.defName.Contains("Wait") | x.defName.Contains("wait"));
+
+			foreach (JobDef def in defs)
+			{
+				if (def.modExtensions == null)
+				{
+					def.modExtensions = new List<DefModExtension>();
+				}
+
+				def.modExtensions.Add(new JobDefBipodCancelExtension());
 			}
 		}
 
