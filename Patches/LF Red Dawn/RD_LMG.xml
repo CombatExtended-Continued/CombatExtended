@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- ========== PK ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_PKGPMG</defName>
+				<statBases>
+					<Mass>9.00</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.05</ShotSpread>
+					<SwayFactor>1.37</SwayFactor>
+					<Bulk>14.92</Bulk>
+					<WorkToMake>36000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>80</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.45</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<soundCast>PKshoot</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_762x54mmR</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_MachineGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== RPD ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RPDLMG</defName>
+				<statBases>
+					<Mass>7.40</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.24</SwayFactor>
+					<Bulk>13.37</Bulk>
+					<WorkToMake>35000</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>15</WoodLog>
+					<Steel>70</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.24</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x39mmSoviet_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>48</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>PKshoot</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>7.8</reloadTime>
+					<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_MachineGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== RPK-47 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RPKMMG</defName>
+				<statBases>
+					<Mass>4.80</Mass>
+					<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>12.40</Bulk>
+					<WorkToMake>29500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>65</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.24</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x39mmSoviet_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>48</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>Ak47Shoot</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>75</magazineSize>
+					<reloadTime>4.8</reloadTime>
+					<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_MachineGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- ========== RPK-74 ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RPKLMG</defName>
+				<statBases>
+					<Mass>4.80</Mass>
+					<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.2</SwayFactor>
+					<Bulk>12.40</Bulk>
+					<WorkToMake>29500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>10</WoodLog>
+					<Steel>65</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.10</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_545x39mmSoviet_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>58</range>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>Ak74Shoot</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>75</magazineSize>
+					<reloadTime>4.8</reloadTime>
+					<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_MachineGun</li>
+				</weaponTags>
+			</li>
+
+			<!-- == Shared patches for firearm melee tools == -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+					defName="Gun_PKGPMG" or
+					defName="Gun_RPDLMG" or
+					defName="Gun_RPKMMG" or
+					defName="Gun_RPKLMG"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

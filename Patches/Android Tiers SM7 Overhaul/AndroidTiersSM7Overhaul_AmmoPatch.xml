@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Android Tiers SM7 Overhaul (Continued)</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+
+        <CombatExtended.AmmoCategoryDef>
+          <defName>DepletedUranium</defName>
+          <label>depleted uranium</label>
+          <labelShort>DU</labelShort>
+          <description>A lightweight steel casing cast around a depleted uranium core, this round offers exceptional damage and armor penetration.</description>
+        </CombatExtended.AmmoCategoryDef>
+
+        <ThingCategoryDef>
+          <defName>Ammo20x102mm</defName>
+          <label>20x102mm</label>
+          <parent>AmmoShells</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberAutocannonLarge</iconPath>
+        </ThingCategoryDef>
+
+        <!-- ==================== AmmoSet ========================== -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_20x102mm</defName>
+          <label>20x102mm</label>
+          <ammoTypes>
+            <Ammo_20x102mm_HE>Bullet_20x102mm_HE</Ammo_20x102mm_HE>
+            <Ammo_20x102mm_AP>Bullet_20x102mm_AP</Ammo_20x102mm_AP>
+            <Ammo_20x102mm_DU>Bullet_20x102mm_DU</Ammo_20x102mm_DU>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <!-- ==================== Ammo ========================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x102mmBase" ParentName="SmallAmmoBase" Abstract="True">
+          <description>Large caliber cartridge used by 20mm rotary cannons and vulcans.</description>
+          <statBases>
+            <Mass>0.1</Mass>
+            <Bulk>0.07</Bulk>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <thingCategories>
+            <li>Ammo20x102mm</li>
+          </thingCategories>
+          <stackLimit>2000</stackLimit>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmBase">
+          <defName>Ammo_20x102mm_HE</defName>
+          <label>20x102mm cartridge (HE)</label>
+          <graphicData>
+            <texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+            <drawSize>0.80</drawSize>
+          </graphicData>
+          <statBases>
+            <MarketValue>17.21</MarketValue>
+          </statBases>
+          <ammoClass>ExplosiveAP</ammoClass>
+          <cookOffProjectile>Bullet_20x102mm_HE</cookOffProjectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmBase">
+          <defName>Ammo_20x102mm_AP</defName>
+          <label>20x102mm cartridge (AP)</label>
+          <graphicData>
+            <texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+            <drawSize>0.80</drawSize>
+          </graphicData>
+          <statBases>
+            <MarketValue>6.83</MarketValue>
+          </statBases>
+          <ammoClass>ArmorPiercing</ammoClass>
+          <cookOffProjectile>Bullet_20x102mm_AP</cookOffProjectile>
+        </ThingDef>
+
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmBase">
+          <defName>Ammo_20x102mm_DU</defName>
+          <label>20x102mm cartridge (DU)</label>
+          <graphicData>
+            <texPath>Things/Ammo/HighCaliber/DU/20mmx102</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+            <drawSize>0.80</drawSize>
+          </graphicData>
+          <statBases>
+            <MarketValue>12.4</MarketValue>
+          </statBases>
+          <ammoClass>DepletedUranium</ammoClass>
+          <cookOffProjectile>Bullet_20x102mm_DU</cookOffProjectile>
+        </ThingDef>
+
+        <!-- ================== Projectiles ================== -->
+
+        <ThingDef ParentName="Base40x365mmBoforsBullet">
+          <defName>Bullet_20x102mm_HE</defName>
+          <label>20x102mm bullet (HE)</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>20</damageAmountBase>
+            <armorPenetrationSharp>26</armorPenetrationSharp>
+            <armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
+            <secondaryDamage>
+              <li>
+                <def>Bomb_Secondary</def>
+                <amount>87</amount>
+              </li>
+            </secondaryDamage>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef ParentName="Base40x365mmBoforsBullet">
+          <defName>Bullet_20x102mm_AP</defName>
+          <label>20x102mm bullet (AP)</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>15</damageAmountBase>
+            <armorPenetrationSharp>50</armorPenetrationSharp>
+            <armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
+          </projectile>
+        </ThingDef>
+
+        <ThingDef ParentName="Base40x365mmBoforsBullet">
+          <defName>Bullet_20x102mm_DU</defName>
+          <label>20x102mm bullet (DU)</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageAmountBase>15</damageAmountBase>
+            <armorPenetrationSharp>100</armorPenetrationSharp>
+            <armorPenetrationBlunt>10007.440</armorPenetrationBlunt>
+          </projectile>
+        </ThingDef>
+
+        <!-- ==================== Recipes ========================== -->
+        <RecipeDef ParentName="AmmoRecipeBase">
+          <defName>MakeAmmo_20x102mm_HE</defName>
+          <label>make 20x102mm (HE) cartridge x250</label>
+          <description>Craft 250 20x102mm  (HE) cartridges.</description>
+          <jobString>Making 20x102mm (HE) cartridges.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>430</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>FSX</li>
+                </thingDefs>
+              </filter>
+              <count>50</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>FSX</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_20x102mm_HE>250</Ammo_20x102mm_HE>
+          </products>
+          <workAmount>24000</workAmount>
+        </RecipeDef>
+
+        <RecipeDef ParentName="AmmoRecipeBase">
+          <defName>MakeAmmo_20x102mm_AP</defName>
+          <label>make 20x102mm (AP) cartridge x250</label>
+          <description>Craft 250 20x102mm (AP) cartridges.</description>
+          <jobString>Making 20x102mm (AP) cartridges.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>430</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_20x102mm_AP>250</Ammo_20x102mm_AP>
+          </products>
+          <workAmount>10800</workAmount>
+        </RecipeDef>
+
+        <RecipeDef ParentName="AmmoRecipeBase">
+          <defName>MakeAmmo_20x102mm_DU</defName>
+          <label>make 20x102mm (DU) cartridge x250</label>
+          <description>Craft 250 20x102mm (DU) cartridges.</description>
+          <jobString>Making 20x102mm (DU) cartridges.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>250</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Uranium</li>
+                </thingDefs>
+              </filter>
+              <count>180</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Uranium</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_20x102mm_DU>250</Ammo_20x102mm_DU>
+          </products>
+          <workAmount>10800</workAmount>
+        </RecipeDef>
+
+      </value>
+    </match>
+  </Operation>
+</Patch>

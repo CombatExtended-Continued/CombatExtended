@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Red Army (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <!-- START SovietFlag -->
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="SovietBanner"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>1.2</cooldownTime>
+                <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>11.3</power>
+                <cooldownTime>1.2</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="SovietBanner"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="SovietBanner"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.25</MeleeCritChance>
+              <MeleeParryChance>0.25</MeleeParryChance>
+              <MeleeDodgeChance>0.9</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+        <!-- Add tags -->
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>Defs/ThingDef[defName="SovietBanner"]/weaponTags</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>Defs/ThingDef[defName="SovietBanner"]</xpath>
+              <value>
+                <weaponTags />
+              </value>
+            </li>
+          </operations>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="SovietBanner"]/weaponTags</xpath>
+          <value>
+            <li>CE_Sidearm_Melee</li>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+        <!-- END SovietFlag -->
+        <!-- START Mosin IronSight Rifle -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>MosinNagant</defName>
+          <statBases>
+            <Mass>4.20</Mass>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+            <SightsEfficiency>1.24</SightsEfficiency>
+            <ShotSpread>0.06</ShotSpread>
+            <SwayFactor>1.05</SwayFactor>
+            <Bulk>8.7</Bulk>
+            <WorkToMake>18000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>40</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietRifle</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>50</range>
+            <soundCast>Mosin_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>4.5</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SovietInfantry</li>
+            <li>SovietAssaultInfantry</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietEarlyWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="MosinNagant"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.9</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END Mosin IronSight Rifle -->
+        <!-- START Mosin Sniper Rifle Var1 -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>MosinSniper</defName>
+          <statBases>
+            <Mass>5.20</Mass>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+            <SightsEfficiency>1.24</SightsEfficiency>
+            <ShotSpread>0.06</ShotSpread>
+            <SwayFactor>0.93</SwayFactor>
+            <Bulk>8.7</Bulk>
+            <WorkToMake>18000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>40</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietRifle</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>100</range>
+            <soundCast>Mosin_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>6.5</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SovietScoutInfantry</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietMidWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="MosinSniper"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.9</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END Mosin Sniper Rifle Var1 -->
+        <!-- START Mosin Sniper Rifle Var2 -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>MosinSniperVariant</defName>
+          <statBases>
+            <Mass>5.20</Mass>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+            <SightsEfficiency>1.24</SightsEfficiency>
+            <ShotSpread>0.06</ShotSpread>
+            <SwayFactor>0.90</SwayFactor>
+            <Bulk>8.7</Bulk>
+            <WorkToMake>18000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>40</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietRifle</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>100</range>
+            <soundCast>Mosin_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>6.8</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SovietScoutInfantry</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietMidWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="MosinSniperVariant"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.9</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END Mosin Sniper Rifle Var2 -->
+        <!-- START Nagant M1895 -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>Nagant1895Pistol</defName>
+          <statBases>
+            <Mass>3.20</Mass>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+            <SightsEfficiency>1.24</SightsEfficiency>
+            <ShotSpread>0.11</ShotSpread>
+            <SwayFactor>0.94</SwayFactor>
+            <Bulk>3.7</Bulk>
+            <WorkToMake>9000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>40</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietPistol</defaultProjectile>
+            <warmupTime>0.5</warmupTime>
+            <range>25</range>
+            <soundCast>NagantPistol_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>6</magazineSize>
+            <reloadTime>3.8</reloadTime>
+            <ammoSet>AmmoSet_762x38mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_Pistol</li>
+            <li>SovietFactionCommander</li>
+            <li>CE_Sidearm</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietEarlyWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="Nagant1895Pistol"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END Nagant M1895 -->
+        <!-- START PPSh 41 Drum -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>PPSh</defName>
+          <statBases>
+            <Mass>4.20</Mass>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.50</SightsEfficiency>
+            <ShotSpread>0.12</ShotSpread>
+            <SwayFactor>1.06</SwayFactor>
+            <Bulk>3.7</Bulk>
+            <WorkToMake>7500</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>65</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietMachinePistol</defaultProjectile>
+            <warmupTime>1.25</warmupTime>
+            <range>19</range>
+            <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+            <burstShotCount>7</burstShotCount>
+            <soundCast>PPSh_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>71</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_762x25mmTokarev</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_SMG</li>
+            <li>SovietInfantry</li>
+            <li>SovietAssaultInfantry</li>
+            <li>SovietFactionCommander</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietEarlyWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="PPSh"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END PPSh 41 Drum -->
+        <!-- START DP27 LMG -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>DPTwentySeven</defName>
+          <statBases>
+            <Mass>10.50</Mass>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.50</SightsEfficiency>
+            <ShotSpread>0.14</ShotSpread>
+            <SwayFactor>1.51</SwayFactor>
+            <Bulk>14.05</Bulk>
+            <WorkToMake>13000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>65</Steel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietLMG</defaultProjectile>
+            <warmupTime>3</warmupTime>
+            <range>32</range>
+            <ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+            <burstShotCount>8</burstShotCount>
+            <soundCast>DP27_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>47</magazineSize>
+            <reloadTime>7.8</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_MachineGun</li>
+            <li>SovietMG</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietMidWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="DPTwentySeven"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END DP27 LMG -->
+        <!-- START SVTForty -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>SVTForty</defName>
+          <statBases>
+            <Mass>8.50</Mass>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.50</SightsEfficiency>
+            <ShotSpread>0.08</ShotSpread>
+            <SwayFactor>0.93</SwayFactor>
+            <Bulk>7.05</Bulk>
+            <WorkToMake>16000</WorkToMake>
+          </statBases>
+          <costList>
+            <Steel>65</Steel>
+            <ComponentIndustrial>3</ComponentIndustrial>
+          </costList>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietRifle</defaultProjectile>
+            <warmupTime>2</warmupTime>
+            <range>33</range>
+            <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+            <burstShotCount>2</burstShotCount>
+            <soundCast>SVT_Fire1</soundCast>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>3.8</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_Rifle</li>
+            <li>SovietScoutInfantry</li>
+          </weaponTags>
+          <researchPrerequisite>
+            <researchPrerequisite>SovietMidWarTech</researchPrerequisite>
+          </researchPrerequisite>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="SVTForty"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>bayonet</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.8</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <!-- END SVTForty -->
+        <!-- START TankLightGun -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>SovietTankLightGun</defName>
+          <statBases>
+            <SightsEfficiency>1.0</SightsEfficiency>
+            <ShotSpread>0.11</ShotSpread>
+            <SwayFactor>0.82</SwayFactor>
+            <Bulk>13.0</Bulk>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_SovietTank</defaultProjectile>
+            <warmupTime>1.5</warmupTime>
+            <range>65</range>
+            <minRange>2</minRange>
+            <forcedMissRadius>0.5</forcedMissRadius>
+            <ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+            <burstShotCount>1</burstShotCount>
+            <soundCast>Tank_Fire1</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <recoilAmount>0.78</recoilAmount>
+            <recoilPattern>Mounted</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>6.75</reloadTime>
+            <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>TRUE</aiUseBurstMode>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>1</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+          </weaponTags>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

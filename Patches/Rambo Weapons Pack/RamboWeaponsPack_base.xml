@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Rambo Weapons Pack (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[@ParentName = "BaseRamboGun"]/tools</xpath>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[@Name = "BaseRamboGun"]</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>1.8</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.9</cooldownTime>
+                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/PawnKindDef[defName="Mercenary_Sniper" or defName="Mercenary_Sniper_Acidifier"]/weaponMoney</xpath>
+          <value>
+            <weaponMoney>475~600</weaponMoney>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs</xpath>
+          <value>
+            <CombatExtended.AmmoSetDef>
+              <defName>AmmoSet_Medusa_M-47</defName>
+              <label>9mm up to .357 Magnum</label>
+              <ammoTypes>
+                <Ammo_357Magnum_FMJ>Bullet_357Magnum_FMJ</Ammo_357Magnum_FMJ>
+                <Ammo_357Magnum_AP>Bullet_357Magnum_AP</Ammo_357Magnum_AP>
+                <Ammo_357Magnum_HP>Bullet_357Magnum_HP</Ammo_357Magnum_HP>
+                <Ammo_38Special_FMJ>Bullet_38Special_FMJ</Ammo_38Special_FMJ>
+                <Ammo_38Special_AP>Bullet_38Special_AP</Ammo_38Special_AP>
+                <Ammo_38Special_HP>Bullet_38Special_HP</Ammo_38Special_HP>
+                <Ammo_9x19mmPara_FMJ>Bullet_9x19mmPara_FMJ</Ammo_9x19mmPara_FMJ>
+                <Ammo_9x19mmPara_AP>Bullet_9x19mmPara_AP</Ammo_9x19mmPara_AP>
+                <Ammo_9x19mmPara_HP>Bullet_9x19mmPara_HP</Ammo_9x19mmPara_HP>
+                <Ammo_380ACP_FMJ>Bullet_380ACP_FMJ</Ammo_380ACP_FMJ>
+                <Ammo_380ACP_AP>Bullet_380ACP_AP</Ammo_380ACP_AP>
+                <Ammo_380ACP_HP>Bullet_380ACP_HP</Ammo_380ACP_HP>
+                <Ammo_38ACP_FMJ>Bullet_38ACP_FMJ</Ammo_38ACP_FMJ>
+                <Ammo_762x25mmTokarev_FMJ>Bullet_762x25mmTokarev_FMJ</Ammo_762x25mmTokarev_FMJ>
+                <Ammo_762x25mmTokarev_AP>Bullet_762x25mmTokarev_AP</Ammo_762x25mmTokarev_AP>
+                <Ammo_762x25mmTokarev_HP>Bullet_762x25mmTokarev_HP</Ammo_762x25mmTokarev_HP>
+                <Ammo_763x25mmMauser_FMJ>Bullet_763x25mmMauser_FMJ</Ammo_763x25mmMauser_FMJ>
+                <Ammo_9x21mmGyurza_FMJ>Bullet_9x21mmGyurza_FMJ</Ammo_9x21mmGyurza_FMJ>
+                <Ammo_9x21mmGyurza_AP>Bullet_9x21mmGyurza_AP</Ammo_9x21mmGyurza_AP>
+                <Ammo_9x21mmGyurza_HP>Bullet_9x21mmGyurza_HP</Ammo_9x21mmGyurza_HP>
+              </ammoTypes>
+            </CombatExtended.AmmoSetDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs</xpath>
+          <value>
+            <CombatExtended.AmmoSetDef>
+              <defName>AmmoSet_357Magnum_Revolver</defName>
+              <label>.357 Magnum</label>
+              <ammoTypes>
+                <Ammo_357Magnum_FMJ>Bullet_357Magnum_FMJ</Ammo_357Magnum_FMJ>
+                <Ammo_357Magnum_AP>Bullet_357Magnum_AP</Ammo_357Magnum_AP>
+                <Ammo_357Magnum_HP>Bullet_357Magnum_HP</Ammo_357Magnum_HP>
+                <Ammo_38Special_FMJ>Bullet_38Special_FMJ</Ammo_38Special_FMJ>
+                <Ammo_38Special_AP>Bullet_38Special_AP</Ammo_38Special_AP>
+                <Ammo_38Special_HP>Bullet_38Special_HP</Ammo_38Special_HP>
+              </ammoTypes>
+            </CombatExtended.AmmoSetDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

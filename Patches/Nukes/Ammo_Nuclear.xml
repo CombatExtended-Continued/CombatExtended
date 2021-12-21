@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[1.3] Nukes</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Create new ammo categories.-->		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<!-- Ammo Categories -->
+			<CombatExtended.AmmoCategoryDef>
+				<defName>Fusion</defName>
+				<label>Fusion</label>
+				<description>A massively powerful nuclear fusion warhead.</description>
+			</CombatExtended.AmmoCategoryDef>
+
+			<CombatExtended.AmmoCategoryDef>
+				<defName>LargeNuke</defName>
+				<label>Large Nuke</label>
+				<description>A large nuclear fission device.</description>
+			</CombatExtended.AmmoCategoryDef>
+
+			<CombatExtended.AmmoCategoryDef>
+				<defName>SmallNuke</defName>
+				<label>Small Nuke</label>
+				<description>A small nuclear fission device.</description>
+			</CombatExtended.AmmoCategoryDef>				
+
+			<CombatExtended.AmmoCategoryDef>
+				<defName>DirtyBomb</defName>
+				<label>Dirty</label>
+				<description>A bomb loaded with dangerous radioactive materials, designed to poison large areas with radiation.</description>
+			</CombatExtended.AmmoCategoryDef>
+
+			<!-- Ammo Items -->
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>Ammo_FusionBomb</defName>
+				<label>fusion warhead</label>
+				<graphicData>
+					<texPath>Things/FusionWarhead</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+      				<MarketValue>4000</MarketValue>
+					<Mass>7.5</Mass>
+					<Bulk>15</Bulk>
+				</statBases>
+				<ammoClass>Fusion</ammoClass>
+				<detonateProjectile>Bullet_FusionWarhead</detonateProjectile>			
+				<comps>
+					<!-- Vanilla values -->
+				<li Class="CompProperties_Explosive">
+					<explosiveRadius>60</explosiveRadius>
+					<explosiveDamageType>BombSuper</explosiveDamageType>
+					<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+					<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+					<chanceToStartFire>1</chanceToStartFire>
+					<damageFalloff>false</damageFalloff>
+					<explosionEffect>GiantExplosion</explosionEffect>
+					<explosionSound>Explosion_GiantBomb</explosionSound>
+					<wickTicks>
+					<min>60</min>
+					<max>120</max>
+					</wickTicks>
+				</li>
+				</comps>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>Ammo_LargeNuclearBomb</defName>
+    			<label>large nuclear warhead</label>
+				<graphicData>
+					<texPath>Things/LargeNuke</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+      				<MarketValue>4000</MarketValue>
+					<Mass>7.5</Mass>
+					<Bulk>15</Bulk>
+				</statBases>
+				<ammoClass>LargeNuke</ammoClass>
+				<detonateProjectile>Bullet_FusionWarhead</detonateProjectile>			
+				<comps>
+					<!-- Vanilla values -->
+					<li Class="CompProperties_Explosive">
+						<explosiveRadius>35</explosiveRadius>
+						<explosiveDamageType>BombSuper</explosiveDamageType>
+						<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<chanceToStartFire>0.5</chanceToStartFire>
+						<damageFalloff>false</damageFalloff>
+						<explosionEffect>GiantExplosion</explosionEffect>
+						<explosionSound>Explosion_GiantBomb</explosionSound>
+						<wickTicks>
+						<min>60</min>
+						<max>120</max>
+						</wickTicks>
+					</li>
+				</comps>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>Ammo_SmallNuclearBomb</defName>
+    			<label>small nuclear warhead</label>
+				<graphicData>
+					<texPath>Things/SmallNuke</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+      				<MarketValue>500</MarketValue>
+					<Mass>7.5</Mass>
+					<Bulk>15</Bulk>
+				</statBases>
+				<ammoClass>SmallNuke</ammoClass>
+				<detonateProjectile>Bullet_FusionWarhead</detonateProjectile>			
+				<comps>
+					<!-- Vanilla values -->
+					<li Class="CompProperties_Explosive">
+						<explosiveRadius>10</explosiveRadius>
+						<explosiveDamageType>BombSuper</explosiveDamageType>
+						<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<chanceToStartFire>0.3</chanceToStartFire>
+						<damageFalloff>true</damageFalloff>
+						<explosionEffect>GiantExplosion</explosionEffect>
+						<explosionSound>Explosion_GiantBomb</explosionSound>
+						<wickTicks>
+						<min>60</min>
+						<max>120</max>
+						</wickTicks>
+					</li>
+				</comps>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+				<defName>Ammo_DirtyNuclearBomb</defName>
+				<label>dirty nuclear warhead</label>
+				<graphicData>
+					<texPath>Things/DirtyNuke</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+      				<MarketValue>800</MarketValue>
+					<Mass>7.5</Mass>
+					<Bulk>15</Bulk>
+				</statBases>
+				<ammoClass>DirtyBomb</ammoClass>
+				<detonateProjectile>Bullet_FusionWarhead</detonateProjectile>			
+				<comps>
+					<!-- Vanilla values -->
+					<li Class="CompProperties_Explosive">
+						<explosiveRadius>4</explosiveRadius>
+						<explosiveDamageType>BombSuper</explosiveDamageType>
+						<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+						<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+						<chanceToStartFire>0</chanceToStartFire>
+						<damageFalloff>true</damageFalloff>
+						<explosionEffect>GiantExplosion</explosionEffect>
+						<explosionSound>Explosion_GiantBomb</explosionSound>
+						<wickTicks>
+						<min>60</min>
+						<max>120</max>
+						</wickTicks>
+					</li>
+				</comps>
+			</ThingDef>
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_FusionBomb</defName>
+				<label>make a fusion shell</label>
+				<description>Craft a fusion shell.</description>
+				<jobString>Making a fusion shell.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>200</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+					</filter>
+					<count>400</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+					</filter>
+					<count>40</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>10</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentSpacer</li>
+					</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Shell_AntigrainWarhead</li>
+					</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>																	
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>Uranium</li>
+					<li>Plasteel</li>
+					<li>ComponentIndustrial</li>
+					<li>ComponentSpacer</li>
+					<li>Shell_AntigrainWarhead</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_FusionBomb>1</Ammo_FusionBomb>
+				</products>
+				<workAmount>7500</workAmount>
+				<researchPrerequisite>FusionWeaponsResearch</researchPrerequisite>
+				<skillRequirements>
+					<Crafting>15</Crafting>
+				</skillRequirements>				
+			</RecipeDef>
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_LargeNuclearBomb</defName>
+				<label>make a large nuclear shell</label>
+				<description>Craft a large nuclear shell.</description>
+				<jobString>Making a large nuclear shell.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>150</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+					</filter>
+					<count>200</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Plasteel</li>
+					</thingDefs>
+					</filter>
+					<count>40</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>10</count>
+				</li>																
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>Uranium</li>
+					<li>Plasteel</li>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_LargeNuclearBomb>1</Ammo_LargeNuclearBomb>
+				</products>
+				<workAmount>7000</workAmount>
+				<researchPrerequisite>LargeNuclearWeaponsResearch</researchPrerequisite>
+				<skillRequirements>
+					<Crafting>12</Crafting>
+				</skillRequirements>					
+			</RecipeDef>
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_SmallNuclearBomb</defName>
+				<label>make a small nuclear shell</label>
+				<description>Craft a small nuclear shell.</description>
+				<jobString>Making a small nuclear shell.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>60</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+					</filter>
+					<count>30</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>																
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>Uranium</li>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_SmallNuclearBomb>1</Ammo_SmallNuclearBomb>
+				</products>
+				<workAmount>6500</workAmount>
+				<researchPrerequisite>SmallNuclearWeaponsResearch</researchPrerequisite>
+				<skillRequirements>
+					<Crafting>8</Crafting>
+				</skillRequirements>				
+			</RecipeDef>
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_DirtyNuclearBomb</defName>
+				<label>make a dirty nuclear shell</label>
+				<description>Craft a dirty nuclear shell.</description>
+				<jobString>Making a dirty nuclear shell.</jobString>
+				<ingredients>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+					</filter>
+					<count>60</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+					</filter>
+					<count>20</count>
+				</li>
+				<li>
+					<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>																
+				</ingredients>
+				<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>Uranium</li>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_DirtyNuclearBomb>1</Ammo_DirtyNuclearBomb>
+				</products>
+				<workAmount>6000</workAmount>
+				<researchPrerequisite>DirtyNuclearWeaponsResearch</researchPrerequisite>
+				<skillRequirements>
+					<Crafting>8</Crafting>
+				</skillRequirements>					
+			</RecipeDef>
+
+			</value>
+		</li>
+
+		<!-- Remove base mod shells.-->
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[
+				defName="Shell_FusionWarhead" or
+				defName="Shell_LargeNuclearWarhead" or
+				defName="Shell_SmallNuclearWarhead" or
+				defName="Shell_DirtyNuclearWarhead"]
+			</xpath>
+		</li>		
+
+		</operations>
+	</match>
+	</Operation>
+</Patch>

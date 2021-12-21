@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LF] Red Dawn</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+  <ThingCategoryDef>
+    <defName>AmmoRPG16Grenades</defName>
+    <label>RPG-16 grenades</label>
+    <parent>AmmoRockets</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_RPG16Grenade</defName>
+    <label>RPG-16 Grenades</label>
+    <ammoTypes>
+      <Ammo_RPG16Grenade_HEAT>Bullet_RPG16Grenade_HEAT</Ammo_RPG16Grenade_HEAT>
+      <Ammo_RPG16Grenade_Frag>Bullet_RPG16Grenade_Frag</Ammo_RPG16Grenade_Frag>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="RPG16GrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Rocket-propelled grenade designed for the RPG-16 launcher. After being fired a rocket motor kicks in to propel the grenade further.</description>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoRPG16Grenades</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
+    <cookOffFlashScale>40</cookOffFlashScale>
+    <cookOffSound>MortarBomb_Explode</cookOffSound>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG16GrenadeBase">
+    <defName>Ammo_RPG16Grenade_HEAT</defName>
+    <label>RPG-16 grenade (HEAT)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/HEAT</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>57.78</MarketValue>
+      <Mass>2.8</Mass>
+      <Bulk>9.37</Bulk>
+    </statBases>
+    <ammoClass>RocketHEAT</ammoClass>
+	<detonateProjectile>Bullet_RPG16Grenade_HEAT</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="RPG16GrenadeBase">
+    <defName>Ammo_RPG16Grenade_Frag</defName>
+    <label>RPG-16 grenade (Frag)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Frag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>38.96</MarketValue>
+      <Mass>2.2</Mass>
+      <Bulk>1.89</Bulk>
+    </statBases>
+    <stackLimit>100</stackLimit>    
+    <ammoClass>RocketFrag</ammoClass>
+	<detonateProjectile>Bullet_RPG16Grenade_Frag</detonateProjectile>
+  </ThingDef>
+
+  <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseRPG16Grenade" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>72</speed>
+      <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG16Grenade">
+    <defName>Bullet_RPG16Grenade_HEAT</defName>
+    <label>RPG-16 grenade (HEAT)</label>
+    <graphicData>
+      <texPath>Things/Projectile/RPG/HEAT</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>200</damageAmountBase>
+      <armorPenetrationSharp>300</armorPenetrationSharp>
+      <armorPenetrationBlunt>44.956</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>90</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>1.5</explosiveRadius>
+		<explosionSound>MortarBomb_Explode</explosionSound>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>2</Fragment_Large>
+		  <Fragment_Small>31</Fragment_Small>
+		</fragments>
+	  </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseRPG16Grenade">
+    <defName>Bullet_RPG16Grenade_Frag</defName>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <label>RPG-16 grenade (Frag)</label>
+    <graphicData>
+      <texPath>Things/Projectile/RPG/Frag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.5</explosionRadius>
+      <damageDef>Bomb</damageDef>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <damageAmountBase>40</damageAmountBase>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+		  <Fragment_Small>120</Fragment_Small>
+		</fragments>
+	  </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_RPG16Grenade_HEAT</defName>
+    <label>make RPG-16 HEAT grenades x5</label>
+    <description>Craft 5 RPG-16 HEAT grenades.</description>
+    <jobString>Making RPG-16 HEAT grenades.</jobString>
+    <workAmount>9200</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>28</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>9</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RPG16Grenade_HEAT>5</Ammo_RPG16Grenade_HEAT>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_RPG16Grenade_Frag</defName>
+    <label>make RPG-16 frag grenades x5</label>
+    <description>Craft 5 RPG-16 frag grenades.</description>
+    <jobString>Making RPG-16 frag grenades.</jobString>
+    <workAmount>5400</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>22</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_RPG16Grenade_Frag>5</Ammo_RPG16Grenade_Frag>
+    </products>
+  </RecipeDef>
+
+
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

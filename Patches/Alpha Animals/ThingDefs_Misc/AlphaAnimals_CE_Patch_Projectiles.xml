@@ -9,11 +9,18 @@
 				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[defName="AA_FrostWeb" or defName="AA_FireWeb" or defName="AA_AcidicWeb"]/thingClass</xpath>
+				<xpath>/Defs/ThingDef[
+				defName="AA_FrostWeb" or 
+				defName="AA_FireWeb" or 
+				defName="AA_AcidicWeb" or 
+				defName="AA_ElectricBolt" or
+				defName="AA_FrostBolt"
+				]/thingClass</xpath>
 				</li>
 
 				<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_AcidicWeb" or
+				<xpath>/Defs/ThingDef[
+				defName="AA_AcidicWeb" or
 				defName="AA_Bullet_Barb" or
 				defName="AA_Bullet_VenomBarb" or
 				defName="AA_FireWeb" or
@@ -25,12 +32,16 @@
 				defName="AA_Web" or
 				defName="AA_FireSpit" or
 				defName="AA_DarkBolt" or
-				defName="AA_AcidBolt"]</xpath>
+				defName="AA_AcidBolt" or
+				defName="AA_ElectricBolt" or
+				defName="AA_WindBolt" or
+				defName="AA_FrostBolt"
+				]</xpath>
 					<value>
 						<thingClass>CombatExtended.BulletCE</thingClass>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/thingClass</xpath>
 					<value>
@@ -39,20 +50,25 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock" or
+				<xpath>/Defs/ThingDef[
+				defName="AA_Bullet_Rock" or
 				defName="AA_ToxicInk" or
-				defName="AA_IncendiaryMote"
+				defName="AA_IncendiaryMote" or
+				defName="AA_FrostBolt"
 				]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 					</value>
 				</li>
+
 				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_BlackSpelopede" or
+				<xpath>/Defs/ThingDef[
+				defName="AA_BlackSpelopede" or
 				defName="AA_BlackSpider" or
 				defName="AA_Barbslinger" or
-				defName="AA_Blizzarisk" or defName="AA_BlizzariskClutchMother" or
+				defName="AA_Blizzarisk" or
+				defName="AA_BlizzariskClutchMother" or
 				defName="AA_Cinderlisk" or
 				defName="AA_CrystallineCaracal" or
 				defName="AA_Dunealisk" or 
@@ -73,20 +89,24 @@
 				defName="AA_TetraSlug" or
 				defName="AA_Thermadon" or
 				defName="AA_Erin" or
-				defName="AA_Thunderbeast"
+				defName="AA_Thunderbeast" or
+				defName="AA_WindBeast" or
+				defName="AA_FrostLynx" or
+				defName="AA_Demolisher"
 				]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.7</AimingAccuracy>
 					</value>
 				</li>
+
 				<!-- Different accuracy for spammy stuff -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Needlepost" or
-				defName="AA_Needleroll"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Needlepost" or defName="AA_Needleroll"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.3</AimingAccuracy>
 					</value>
 				</li>
+
 				<!-- Different accuracy for Gallatross since his Projectile isn't directly under his control (it's just a random boulder he picks off the ground with his psionic abilities) -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
@@ -94,6 +114,7 @@
 						<AimingAccuracy>0.6</AimingAccuracy>
 					</value>
 				</li>
+
 				<!-- Dunelisk web, does burn damage but does not set the target on fire -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs</xpath>
@@ -118,7 +139,7 @@
 									<li>
 										<def>Stun</def>
 										<amount>8</amount>
-          										<chance>0.5</chance>
+          								<chance>0.5</chance>
 									</li>
 								</secondaryDamage>
 							</projectile>
@@ -143,6 +164,7 @@
 						</ThingDef>
 					</value>
 				</li>
+
 				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Bullet_Barb"]/projectile</xpath>
@@ -266,7 +288,7 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
-          									<chance>0.5</chance>
+          							<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -287,7 +309,7 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
-          									<chance>0.5</chance>
+          							<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -307,7 +329,7 @@
 								<li>
 									<def>Stun</def>
 									<amount>8</amount>
-          									<chance>0.5</chance>
+          							<chance>0.5</chance>
 								</li>
 							</secondaryDamage>
 						</projectile>
@@ -406,6 +428,42 @@
 						</projectile>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_WindBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Blunt</damageDef>
+							<damageAmountBase>18</damageAmountBase>
+							<speed>35</speed>
+						</projectile>
+					</value>
+				</li>
+				<!-- Windbolt uses an unsupported graphics class. -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_WindBolt"]/graphicData</xpath>
+					<value>
+						<graphicData>
+							<texPath>Things/Pawn/Animal/AA_ArcticLion/AA_ArcticLion_Invisible</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="AA_FrostBolt"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<explosionDelay>1</explosionDelay>
+							<explosionRadius>2.9</explosionRadius>
+							<damageDef>AA_FrostBomb</damageDef>
+							<damageAmountBase>14</damageAmountBase>
+							<postExplosionSpawnThingDef>AA_FrostPuff</postExplosionSpawnThingDef>
+							<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+							<postExplosionSpawnChance>1</postExplosionSpawnChance>
+							<speed>28</speed>
+						</projectile>
+					</value>
+				</li>																
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="AA_LaserBullet"]/projectile</xpath>
 					<value>

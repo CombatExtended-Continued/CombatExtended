@@ -3,7 +3,7 @@
 	
 	<Operation Class="PatchOperationFindMod">
     <mods>
-		<li>[O21] Outer Rim Galaxies [DevBuild]</li>
+		<li>[O21] Outer Rim Galaxies</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
@@ -119,7 +119,7 @@
 						<li>O21_OR_WeaponsFabricator</li>
 					  </recipeUsers>
 					<products>
-					  <Ammo_PlasmaGasCartridge>500</Ammo_PlasmaGasCartridge>
+					  <Ammo_PlasmaGasCartridge>200</Ammo_PlasmaGasCartridge>
 					</products>
 					<researchPrerequisite>O21_OR_WeaponFabrication</researchPrerequisite>
 				  </RecipeDef>
@@ -166,7 +166,7 @@
 						<li>O21_OR_WeaponsFabricator</li>
 					  </recipeUsers>
 					<products>
-					  <Ammo_PlasmaGasCartridge_AP>500</Ammo_PlasmaGasCartridge_AP>
+					  <Ammo_PlasmaGasCartridge_AP>200</Ammo_PlasmaGasCartridge_AP>
 					</products>
 					<researchPrerequisite>O21_OR_WeaponFabrication</researchPrerequisite>
 				  </RecipeDef>
@@ -214,7 +214,7 @@
 						<li>O21_OR_WeaponsFabricator</li>
 					  </recipeUsers>
 					<products>
-					  <Ammo_PlasmaGasCartridge_Ion>500</Ammo_PlasmaGasCartridge_Ion>
+					  <Ammo_PlasmaGasCartridge_Ion>200</Ammo_PlasmaGasCartridge_Ion>
 					</products>
 					<researchPrerequisite>O21_OR_WeaponFabrication</researchPrerequisite>
 				  </RecipeDef>
@@ -254,6 +254,22 @@
 					<label>Plasma Gas Cartridges</label>
 					<ammoTypes>
 					  <Ammo_PlasmaGasCartridge_Ion>Bullet_OR_Blaster_Ion</Ammo_PlasmaGasCartridge_Ion>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+				  
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_PlasmaGasCartridgeAnaxesTurret</defName>
+					<label>Plasma Gas Cartridges</label>
+					<ammoTypes>
+					  <Ammo_PlasmaGasCartridge>Bullet_OR_Blaster_AnaxesTurret_Red</Ammo_PlasmaGasCartridge>
+					</ammoTypes>
+				  </CombatExtended.AmmoSetDef>
+				  
+				  <CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_PlasmaGasCartridgePTowerTurret</defName>
+					<label>Plasma Gas Cartridges</label>
+					<ammoTypes>
+					  <Ammo_PlasmaGasCartridge>Bullet_OR_Blaster_PTowerTurret_Red</Ammo_PlasmaGasCartridge>
 					</ammoTypes>
 				  </CombatExtended.AmmoSetDef>
 					
@@ -346,7 +362,7 @@
 					</ThingDef>
 					
 					<ThingDef ParentName="Base556x45mmNATOBullet">
-						<defName>Bullet_OR_Blaster_Turret_Red</defName>
+						<defName>Bullet_OR_Blaster_AnaxesTurret_Red</defName>
 						<label>blaster bolt</label>
 						<graphicData>
 							<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
@@ -373,6 +389,40 @@
 							</fragments>
 						  </li>
 						</comps>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_OR_Blaster_PTowerTurret_Red</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>O21_OR_Blaster</damageDef>
+							<speed>175</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>95</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>75</armorPenetrationSharp>		
+						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_OR_Blaster_Droid_Red</defName>
+						<label>blaster bolt</label>
+						<graphicData>
+							<texPath>OuterRim/Projectile/BlasterBolt_Red</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>O21_OR_Blaster</damageDef>
+							<speed>150</speed>
+							<dropsCasings>false</dropsCasings>
+							<damageAmountBase>18</damageAmountBase>
+							<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							<armorPenetrationSharp>25</armorPenetrationSharp>		
+						</projectile>
 					</ThingDef>
 					
 					<ThingDef ParentName="Base556x45mmNATOBullet">
@@ -419,6 +469,30 @@
 								</li>
 							  </secondaryDamage>
 						</projectile>
+					</ThingDef>
+					
+					<ThingDef ParentName="Base556x45mmNATOBullet">
+						<defName>Bullet_OR_WristRocket</defName>
+						<label>wrist rocket</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/120mmTank/Sabot</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <explosionRadius>1.8</explosionRadius >
+						  <damageDef>Bomb</damageDef>
+						  <damageAmountBase>190</damageAmountBase>
+						  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  <speed>65</speed>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_Fragments">
+							<fragments>
+							  <Fragment_Small>19</Fragment_Small>
+							  <Fragment_Large>5</Fragment_Large>
+							</fragments>
+						  </li>
+						</comps>
 					</ThingDef>
 					
 				</value>
