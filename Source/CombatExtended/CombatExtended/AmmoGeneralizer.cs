@@ -18,34 +18,31 @@ namespace CombatExtended
 
                 var toGenericAmmos = DefDatabase<AmmoSetDef>.AllDefs.Where(x => x.similarTo != null);
 
-                foreach (AmmoSetDef togenericammo in toGenericAmmos)
+                foreach (AmmoSetDef amset in toGenericAmmos)
                 {
-                    var RemadeAmmos = new List<AmmoLink>();
-
-                    var TargetCaliber = togenericammo.similarTo;
-
-                    foreach (AmmoLink amlink in togenericammo.ammoTypes)
+                    List<AmmoLink> newAmmos = new List<AmmoLink>();
+                    var ammoSource = amset.similarTo;
+                    foreach (AmmoLink link in amset.ammoTypes)
                     {
-                        var proj = amlink.projectile;
+                        var sameClass = ammoSource.ammoTypes.Find(x => x.ammo.ammoClass == link.ammo.ammoClass);
+                        if (sameClass != null)
+                        {
+                            link.projectile.label = ammoSource.label + " bullet " + "(" + link.ammo.ammoClass.labelShort + ")";
+                            newAmmos.Add(new AmmoLink { ammo = sameClass.ammo, projectile = link.projectile });
+                        }
 
-                        var am = amlink.ammo;
 
-                        am.label = TargetCaliber.label + " cartridge (" + am.ammoClass.labelShort + ")";
+                        
 
-                        var GenericProjectileOfClass = (TargetCaliber.ammoTypes.Find(M => M.ammo.ammoClass == am.ammoClass)).projectile;
-
-                        var GenericAmType = new AmmoLink { ammo = am, projectile = GenericProjectileOfClass };
-
-                        am.SetMenuHidden(true);
-
-                        am.menuHidden = true;
-
-                        RemadeAmmos.Add(GenericAmType);
+                        
                     }
 
-                    togenericammo.similarTo.ammoTypes.AddRange(RemadeAmmos);
+                    amset.label = ammoSource.label;
+                    amset.ammoTypes = newAmmos;
+
                 }
 
+                /*
                 var GunsToRedo = DefDatabase<ThingDef>.AllDefs.Where(x => 
                 x.comps.Any(y => y is CompProperties_AmmoUser)
                 && ((CompProperties_AmmoUser)x.comps.Find(y => y is CompProperties_AmmoUser)).ammoSet.similarTo != null
@@ -60,7 +57,7 @@ namespace CombatExtended
                     CompAmmo.ammoSet = GenCaliber;
 
 
-                }
+                }*/
             }
 
            
