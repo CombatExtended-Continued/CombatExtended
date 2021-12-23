@@ -46,6 +46,7 @@ namespace CombatExtended
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = false;
         private bool enableSimplifiedAmmo = false;
+	private bool genericammo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -55,6 +56,7 @@ namespace CombatExtended
         public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
         public bool RealisticCookOff => realisticCookOff;
         public bool EnableSimplifiedAmmo => enableSimplifiedAmmo;
+	public bool GenericAmmo => genericammo;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debuggingMode = false;
@@ -111,6 +113,7 @@ namespace CombatExtended
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
+	    Scribe_Values.Look(ref genericammo, "genericammo", false);
             Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
             Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
@@ -204,6 +207,7 @@ namespace CombatExtended
             list.GapLine();
             if (enableAmmoSystem)
             {
+	    	list.CheckboxLabeled("Use generic ammo".Translate(), ref genericammo, "Use generic ammo".Translate());
                 list.CheckboxLabeled("CE_Settings_RightClickAmmoSelect_Title".Translate(), ref rightClickAmmoSelect, "CE_Settings_RightClickAmmoSelect_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate(), ref autoReloadOnChangeAmmo, "CE_Settings_AutoReloadOnChangeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
