@@ -13,6 +13,10 @@ namespace CombatExtended
     {
         static AmmoGeneralizer()
         {
+            /* 
+             * Generic ammosetdefs need projectiles for the code to work, but what the projectiles are doesn't matter
+             * Also generic ammosetdefs need their own recipes for ammo, the similarTo caliber's will have their recipes hidden
+             */
             if (Controller.settings.GenericAmmo)
             {
 
@@ -31,33 +35,35 @@ namespace CombatExtended
                             newAmmos.Add(new AmmoLink { ammo = sameClass.ammo, projectile = link.projectile });
                         }
 
+                        var makeRecipe = DefDatabase<RecipeDef>.AllDefs.Where(x => x.defName == "Make" + link.ammo.defName).FirstOrFallback();
 
+                        link.ammo.SetMenuHidden(true);
+
+                        if (makeRecipe != null)
+                        {
+                            Log.Message(makeRecipe.label.Colorize(Color.magenta));
+
+                            if (CE_ThingDefOf.AmmoBench.AllRecipes.Contains(makeRecipe))
+                            {
+                                CE_ThingDefOf.AmmoBench.AllRecipes.Remove(makeRecipe);
+                            }
+
+                            if (makeRecipe.AllRecipeUsers.Count() > 0 | (makeRecipe.recipeUsers?.Count() ?? 0) > 0)
+                            {
+                                makeRecipe.recipeUsers = new List<ThingDef>();
+                            }
+                        }
                         
 
                         
                     }
 
+                    Log.Message("Generalized " + amset.label.Colorize(Color.blue) + " into " + ammoSource.label.Colorize(Color.red));
+
                     amset.label = ammoSource.label;
                     amset.ammoTypes = newAmmos;
 
                 }
-
-                /*
-                var GunsToRedo = DefDatabase<ThingDef>.AllDefs.Where(x => 
-                x.comps.Any(y => y is CompProperties_AmmoUser)
-                && ((CompProperties_AmmoUser)x.comps.Find(y => y is CompProperties_AmmoUser)).ammoSet.similarTo != null
-                );
-
-                foreach (ThingDef gun in GunsToRedo)
-                {
-                    var CompAmmo = (CompProperties_AmmoUser)gun.comps.Find(x => x is CompProperties_AmmoUser);
-
-                    var GenCaliber = CompAmmo.ammoSet.similarTo;
-
-                    CompAmmo.ammoSet = GenCaliber;
-
-
-                }*/
             }
 
            
