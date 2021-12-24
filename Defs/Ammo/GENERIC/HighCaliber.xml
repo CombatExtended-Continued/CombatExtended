@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+<!--really just relabeled .338 Lapua Magnum-->
+
+	<ThingCategoryDef>
+		<defName>AmmoHighCaliber</defName>
+		<label>high caliber ammo</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoHighCaliberBase" ParentName="SmallAmmoBase" Abstract="True">
+        <description>Large caliber bullet used by heavy machine guns and anti-materiel rifles.</description>
+		<statBases>
+            <Mass>0.140</Mass>
+            <Bulk>0.20</Bulk>
+            <MarketValue>0.60</MarketValue>      
+        </statBases>
+        <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting</li>
+        </tradeTags>
+		<thingCategories>
+			<li>AmmoHighCaliber</li>
+		</thingCategories>
+        <stackLimit>400</stackLimit>
+	</ThingDef>
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">		
+        <defName>Ammo_HighCaliber_FMJ</defName>
+		<label>high caliber cartridge (FMJ)</label>
+		<graphicData>
+			<texPath>Things/Ammo/STACK_RANGED/HighCaliber/FMJ</texPath>
+			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.60</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_50BMG_FMJ</cookOffProjectile>
+	</ThingDef>
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
+        <defName>Ammo_HighCaliber_Incendiary</defName>
+        <label>high caliber cartridge (AP-I)</label>
+        <graphicData>
+        <texPath>Things/Ammo/STACK_RANGED/HighCaliber/Incendiary</texPath>
+        <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+        </graphicData>
+        <statBases>
+        <MarketValue>0.74</MarketValue>
+        </statBases>
+        <ammoClass>IncendiaryAP</ammoClass>
+        <cookOffProjectile>Bullet_50BMG_Incendiary</cookOffProjectile>
+    </ThingDef>
+
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
+        <defName>Ammo_HighCaliber_HE</defName>
+        <label>high caliber cartridge (HE)</label>
+        <graphicData>
+        <texPath>Things/Ammo/STACK_RANGED/HighCaliber/HE</texPath>
+        <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+        </graphicData>
+        <statBases>
+        <MarketValue>1.25</MarketValue>
+        </statBases>
+        <ammoClass>ExplosiveAP</ammoClass>
+        <cookOffProjectile>Bullet_50BMG_HE</cookOffProjectile>
+    </ThingDef>
+    
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
+        <defName>Ammo_HighCaliber_Sabot</defName>
+        <label>high caliber cartridge (Sabot)</label>
+        <graphicData>
+        <texPath>Things/Ammo/STACK_RANGED/HighCaliber/Sabot</texPath>
+        <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+        </graphicData>
+        <statBases>
+        <MarketValue>0.68</MarketValue>
+        <Mass>0.120</Mass>
+        </statBases>
+        <ammoClass>Sabot</ammoClass>
+        <cookOffProjectile>Bullet_50BMG_Sabot</cookOffProjectile>
+    </ThingDef>
+
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_HighCaliber_FMJ</defName>
+		<label>make high caliber (FMJ) cartridge x80</label>
+		<description>Craft 80 high caliber (FMJ) cartridges.</description>
+		<jobString>Making high caliber (FMJ) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>30</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_HighCaliber_FMJ>80</Ammo_HighCaliber_FMJ>
+		</products>
+		<workAmount>6000</workAmount>
+	</RecipeDef>
+
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_HighCaliber_Incendiary</defName>
+    <label>make high caliber (AP-I) cartridge x80</label>
+    <description>Craft 80 high caliber (AP-I) cartridges.</description>
+    <jobString>Making high caliber (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>29</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_HighCaliber_Incendiary>80</Ammo_HighCaliber_Incendiary>
+    </products>
+    <workAmount>7800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_HighCaliber_HE</defName>
+    <label>make high caliber (HE) cartridge x80</label>
+    <description>Craft 80 high caliber (HE) cartridges.</description>
+    <jobString>Making high caliber (HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_HighCaliber_HE>80</Ammo_HighCaliber_HE>
+    </products>
+    <workAmount>11000</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_HighCaliber_Sabot</defName>
+    <label>make high caliber (Sabot) cartridge x80</label>
+    <description>Craft 80 high caliber (Sabot) cartridges.</description>
+    <jobString>Making high caliber (Sabot) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>23</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>		  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_HighCaliber_Sabot>80</Ammo_HighCaliber_Sabot>
+    </products>
+    <workAmount>7500</workAmount>
+  </RecipeDef>
+
+</Defs>
