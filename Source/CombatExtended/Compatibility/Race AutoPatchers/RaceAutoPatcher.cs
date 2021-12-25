@@ -38,6 +38,11 @@ namespace CombatExtended.Compatibility
                         ToolCE newTool = new ToolCE();
 
                         newTool.capacities = tool.capacities;
+                        if (tool.armorPenetration == -1)
+                        {
+                            Log.Message("Armor penetration is -1. Settings to 2");
+                            tool.armorPenetration = 2f;
+                        }
 
                         newTool.armorPenetrationSharp = tool.armorPenetration;
 
@@ -48,6 +53,14 @@ namespace CombatExtended.Compatibility
                         newTool.chanceFactor = tool.chanceFactor;
 
                         newTool.power = tool.power;
+
+                        if (tool.cooldownTime == 0)
+                        {
+                            Log.Message("Cooldown time is 0. Settings to 2");
+                            tool.cooldownTime = 2f;
+                        }
+
+                        newTool.cooldownTime = tool.cooldownTime;
 
                         newTool.linkedBodyPartsGroup = tool.linkedBodyPartsGroup;
 
