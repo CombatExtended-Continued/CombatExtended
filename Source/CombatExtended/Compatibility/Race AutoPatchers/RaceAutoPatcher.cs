@@ -40,8 +40,8 @@ namespace CombatExtended.Compatibility
                         newTool.capacities = tool.capacities;
                         if (tool.armorPenetration == -1)
                         {
-                            Log.Message("Armor penetration is -1. Settings to 2");
-                            tool.armorPenetration = 2f;
+                            Log.Message("Armor penetration is -1. Settings to 0.5");
+                            tool.armorPenetration = 0.5f;
                         }
 
                         newTool.armorPenetrationSharp = tool.armorPenetration;
