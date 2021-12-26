@@ -36,8 +36,8 @@ namespace CombatExtended.Compatibility
 
                         if (tool.armorPenetration == -1)
                         {
-                            Log.Message("Armor penetration is -1. Settings to 2");
-                            tool.armorPenetration = 2f;
+                            //Log.Message("Armor penetration is -1. Settings to 0.5");
+                            tool.armorPenetration = 0.5f;
                         }
 
                         newTool.armorPenetrationSharp = tool.armorPenetration;
@@ -53,7 +53,7 @@ namespace CombatExtended.Compatibility
                         //Log.Message("Testing message. Cooldown time is :" + tool.cooldownTime.ToString());
                         if (tool.cooldownTime == 0)
                         {
-                            Log.Message("Cooldown time is 0. Settings to 2");
+                            //Log.Message("Cooldown time is 0. Settings to 2");
                             tool.cooldownTime = 2f;
                         }
                         newTool.cooldownTime = tool.cooldownTime;
