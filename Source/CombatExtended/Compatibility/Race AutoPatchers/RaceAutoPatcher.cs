@@ -13,7 +13,6 @@ namespace CombatExtended.Compatibility
     {
         static RaceAutoPatcher()
         {
-
             #region Animal patching
             var animalsUnpatched = DefDatabase<ThingDef>.AllDefs.Where(x =>
                    x.race != null &&
@@ -21,11 +20,15 @@ namespace CombatExtended.Compatibility
                    x.tools.Any(y => !(y is ToolCE))
                 );
 
-
+            int patchCount = 0;
             foreach (ThingDef animal in animalsUnpatched)
             {
-                Log.Message("Patching " +  animal.defName.Colorize(UnityEngine.Color.green));
+                if (animal.modExtensions == null)
+                {
+                    animal.modExtensions = new List<DefModExtension>();
+                }
 
+                animal.modExtensions.Add(new RacePropertiesExtensionCE { bodyShape = CE_BodyShapeDefOf.Quadruped });
 
                 var newTools = new List<Tool>();
 
@@ -35,38 +38,11 @@ namespace CombatExtended.Compatibility
                 {
                     if ( !(tool is ToolCE) )
                     {
-                        ToolCE newTool = new ToolCE();
-
-                        newTool.capacities = tool.capacities;
-                        if (tool.armorPenetration == -1)
-                        {
-                            Log.Message("Armor penetration is -1. Settings to 0.5");
-                            tool.armorPenetration = 0.5f;
-                        }
-
-                        newTool.armorPenetrationSharp = tool.armorPenetration;
-
-                        newTool.armorPenetrationBlunt = tool.armorPenetration;
-
-                        newTool.armorPenetration = tool.armorPenetration;
-
-                        newTool.chanceFactor = tool.chanceFactor;
-
-                        newTool.power = tool.power;
-
-                        if (tool.cooldownTime == 0)
-                        {
-                            Log.Message("Cooldown time is 0. Settings to 2");
-                            tool.cooldownTime = 2f;
-                        }
-
-                        newTool.cooldownTime = tool.cooldownTime;
-
-                        newTool.linkedBodyPartsGroup = tool.linkedBodyPartsGroup;
-
-                        newTool.label = tool.label;
-
-                        newTools.Add(newTool);
+                        newTools.Add(tool.ConvertTool());
+                    }
+                    else
+                    {
+                        newTools.Add(tool);
                     }
                 }
 
@@ -101,9 +77,10 @@ namespace CombatExtended.Compatibility
                     animal.statBases.Add(RatingBlunt);
                 }
 
-                
-                Log.Message("successfully patched: " + animal.defName.Colorize(UnityEngine.Color.green));
+                patchCount++;
             }
+
+            Log.Message("CE successfully patched " + patchCount.ToString() + " animals");
 
             #endregion
 

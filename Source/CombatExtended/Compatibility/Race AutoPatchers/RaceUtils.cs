@@ -11,16 +11,49 @@ namespace CombatExtended.Compatibility
 {
     public static class RaceUtil
     {
+        public static ToolCE ConvertTool(this Tool tool)
+        {
+            var newTool = new ToolCE()
+            {
+                capacities = tool.capacities,
+                armorPenetrationSharp = tool.armorPenetration,
+                armorPenetrationBlunt = tool.armorPenetration,
+                cooldownTime = tool.cooldownTime,
+                chanceFactor = tool.chanceFactor,
+                power = tool.power,
+                label = tool.label,
+                linkedBodyPartsGroup = tool.linkedBodyPartsGroup
+            };
+
+            if (newTool.cooldownTime <= 0)
+            {
+                newTool.cooldownTime = 2f;
+            }
+
+            if (newTool.armorPenetrationSharp <= 0)
+            {
+                newTool.armorPenetrationSharp = 0.5f;
+                newTool.armorPenetrationBlunt = 2f;
+            }
+
+            return newTool;
+        }
         public static void PatchHARs()
         {
-            Log.Error("Patching alien races".Colorize(Color.magenta));
 
             var UnpatchedHARs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetType().ToString() == "AlienRace.ThingDef_AlienRace").Where(x => x.tools.Any(y => !(y is ToolCE) ));
 
+            int patchCount = 0;
+
             foreach (ThingDef alienRace in UnpatchedHARs)
             {
-                Log.Message("Patching " + alienRace.defName.Colorize(UnityEngine.Color.blue));
 
+                if (alienRace.modExtensions == null)
+                {
+                    alienRace.modExtensions = new List<DefModExtension>();
+                }
+
+                alienRace.modExtensions.Add(new RacePropertiesExtensionCE { bodyShape = CE_BodyShapeDefOf.Humanoid });
 
                 var newTools = new List<Tool>();
                 #region Tool patching
@@ -28,41 +61,11 @@ namespace CombatExtended.Compatibility
                 {
                     if (!(tool is ToolCE))
                     {
-                        ToolCE newTool = new ToolCE();
-
-                        newTool.capacities = tool.capacities;
-
-                        //Log.Message("Testing message. Tool armor penetration is :" + tool.armorPenetration.ToString());
-
-                        if (tool.armorPenetration == -1)
-                        {
-                            //Log.Message("Armor penetration is -1. Settings to 0.5");
-                            tool.armorPenetration = 0.5f;
-                        }
-
-                        newTool.armorPenetrationSharp = tool.armorPenetration;
-
-                        newTool.armorPenetrationBlunt = tool.armorPenetration;
-
-                        newTool.armorPenetration = tool.armorPenetration;
-
-                        newTool.chanceFactor = tool.chanceFactor;
-
-                        newTool.power = tool.power;
-
-                        //Log.Message("Testing message. Cooldown time is :" + tool.cooldownTime.ToString());
-                        if (tool.cooldownTime == 0)
-                        {
-                            //Log.Message("Cooldown time is 0. Settings to 2");
-                            tool.cooldownTime = 2f;
-                        }
-                        newTool.cooldownTime = tool.cooldownTime;
-
-                        newTool.linkedBodyPartsGroup = tool.linkedBodyPartsGroup;
-
-                        newTool.label = tool.label;
-
-                        newTools.Add(newTool);
+                        newTools.Add(tool.ConvertTool());
+                    }
+                    else
+                    {
+                        newTools.Add(tool);
                     }
                 }
 
@@ -81,8 +84,10 @@ namespace CombatExtended.Compatibility
 
                 alienRace.comps.Add(new CompProperties { compClass = typeof(CompPawnGizmo) });
 
-                Log.Message("Succesfully patched: " + alienRace.defName.Colorize(UnityEngine.Color.blue));
+                patchCount++;
             }
+
+            Log.Message("CE successfully patched " + patchCount.ToString() + " humanoid alien races");
         }
     }
 }
