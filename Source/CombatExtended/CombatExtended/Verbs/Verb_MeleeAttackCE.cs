@@ -91,7 +91,19 @@ namespace CombatExtended
         public override bool IsUsableOn(Thing target)
         {            
             return Enabled && base.IsUsableOn(target);
-        }       
+        }      
+        
+        public CompMeleeTargettingGizmo gizmoComp
+        {
+            get
+            {
+                if (CasterIsPawn)
+                {
+                    return CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// Performs the actual melee attack part. Awards XP, calculates and applies whether an attack connected and the outcome.
@@ -229,6 +241,21 @@ namespace CombatExtended
             }
             return result;
         }
+        /// <summary>
+        /// Gets attacked body part height
+        /// </summary>
+        /// <returns></returns>
+        public BodyPartHeight GetAttackedPartHeightCE()
+        {
+            var result = BodyPartHeight.Undefined;
+
+            if (gizmoComp != null)
+            {
+                return gizmoComp.finalHeight;
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Calculates primary DamageInfo from verb, as well as secondary DamageInfos to apply (i.e. surprise attack stun damage).
@@ -281,19 +308,42 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
             DamageDef def = damDef;
             //END 1:1 COPY
-            BodyPartHeight bodyRegion = BodyPartHeight.Undefined; //Alistaire: The GetBodyPartHeightFor code is completely broken and targets Bottom some 90% of the time! Therefore easiest fix to set to Vanilla (Undefined)
+            BodyPartHeight bodyRegion = GetAttackedPartHeightCE(); //Caula: Changed to the comp selector
                                                                   //GetBodyPartHeightFor(target);   //Custom // Add check for body height
                                                                   //START 1:1 COPY
             DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
 
-            // Predators get a neck bite on immobile targets
-            if (caster.def.race.predator && IsTargetImmobile(target) && target.Thing is Pawn pawn)
+            if (target.Thing is Pawn pawn)
             {
-                var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                    .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
-                damageInfo.SetHitPart(neck);
+                // Predators get a neck bite on immobile targets
+                if (caster.def.race.predator && IsTargetImmobile(target))
+                {
+                    var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                        .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
+                    damageInfo.SetHitPart(neck);
+                }
+                if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
+                {
+                    bodyRegion = BodyPartHeight.Middle;
+                }
             }
 
+            
+
+            if (gizmoComp != null)
+            {
+                if (gizmoComp.SkillReqBP && Rand.Chance(gizmoComp.SkillBodyPartAttackChance) && target.Thing is Pawn p)
+                {
+                    var Part = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined)
+                    .FirstOrFallback(r => r.def == gizmoComp.targetBodyPart);
+                    if (Part != null)
+                    {
+                        damageInfo.SetHitPart(Part);
+                    }
+
+                    
+                }
+            }
             damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
