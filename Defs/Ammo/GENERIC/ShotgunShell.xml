@@ -8,6 +8,7 @@
     <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
   </ThingCategoryDef>
 
+
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
@@ -21,6 +22,7 @@
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
+  
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoShotgunBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -36,7 +38,7 @@
     <thingCategories>
       <li>AmmoShotgun</li>
     </thingCategories>
-    <stackLimit>400</stackLimit>
+    <stackLimit>2000</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoShotgunBase">
@@ -44,7 +46,7 @@
     <label>shotgun shell (Buck)</label>
     <graphicData>
       <texPath>Things/Ammo/STACK_RANGED/Shotgun/Shot</texPath>
-      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+      <graphicClass>Graphic_StackCountRanged</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.1</MarketValue>
@@ -59,7 +61,7 @@
     <label>shotgun shell (Slug)</label>
     <graphicData>
       <texPath>Things/Ammo/STACK_RANGED/Shotgun/Slug</texPath>
-      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+      <graphicClass>Graphic_StackCountRanged</graphicClass>
     </graphicData>
     <statBases>
       <Mass>0.048</Mass>
@@ -75,7 +77,7 @@
     <generateAllowChance>0</generateAllowChance>
     <graphicData>
       <texPath>Things/Ammo/STACK_RANGED/Shotgun/Beanbag</texPath>
-      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+      <graphicClass>Graphic_StackCountRanged</graphicClass>
     </graphicData>
     <statBases>
       <Mass>0.059</Mass>
@@ -90,7 +92,7 @@
     <label>shotgun shell (EMP)</label>
     <graphicData>
       <texPath>Things/Ammo/STACK_RANGED/Shotgun/EMP</texPath>
-      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+      <graphicClass>Graphic_StackCountRanged</graphicClass>
     </graphicData>
     <statBases>
       <Mass>0.054</Mass>
@@ -104,8 +106,8 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_Shotgun_Buck</defName>
-    <label>make shotgun (Buck) shell x80</label>
-    <description>Craft 80 shotgun (Buck) shells.</description>
+    <label>make shotgun (Buck) shell x200</label>
+    <description>Craft 200 shotgun (Buck) shells.</description>
     <jobString>Making shotgun (Buck) shells.</jobString>
     <ingredients>
       <li>
@@ -114,7 +116,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>5</count>
+        <count>10</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -123,15 +125,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_Shotgun_Buck>80</Ammo_Shotgun_Buck>
+      <Ammo_Shotgun_Buck>200</Ammo_Shotgun_Buck>
     </products>
     <workAmount>1000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_Shotgun_Slug</defName>
-    <label>make shotgun (Slug) shell x80</label>
-    <description>Craft 80 shotgun (Slug) shells.</description>
+    <label>make shotgun (Slug) shell x200</label>
+    <description>Craft 200 shotgun (Slug) shells.</description>
     <jobString>Making shotgun (Slug) shells.</jobString>
     <ingredients>
       <li>
@@ -140,7 +142,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>20</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -149,15 +151,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_Shotgun_Slug>80</Ammo_Shotgun_Slug>
+      <Ammo_Shotgun_Slug>200</Ammo_Shotgun_Slug>
     </products>
     <workAmount>2000</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_Shotgun_Beanbag</defName>
-    <label>make shotgun (Beanbag) shell x80</label>
-    <description>Craft 80 shotgun (Beanbag) shells.</description>
+    <label>make shotgun (Beanbag) shell x200</label>
+    <description>Craft 200 shotgun (Beanbag) shells.</description>
     <jobString>Making shotgun (Beanbag) shells.</jobString>
     <ingredients>
       <li>
@@ -166,7 +168,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>24</count>
       </li>
       <li>
         <filter>
@@ -174,7 +176,7 @@
             <li>Cloth</li>
           </thingDefs>
         </filter>
-        <count>5</count>
+        <count>10</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -184,15 +186,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_Shotgun_Beanbag>80</Ammo_Shotgun_Beanbag>
+      <Ammo_Shotgun_Beanbag>200</Ammo_Shotgun_Beanbag>
     </products>
     <workAmount>3400</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_Shotgun_ElectroSlug</defName>
-    <label>make shotgun (EMP) shell x80</label>
-    <description>Craft 80 shotgun (EMP) shells.</description>
+    <label>make shotgun (EMP) shell x200</label>
+    <description>Craft 200 shotgun (EMP) shells.</description>
     <jobString>Making shotgun (EMP) shells.</jobString>
     <ingredients>
       <li>
@@ -201,7 +203,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>11</count>
+        <count>22</count>
       </li>
       <li>
         <filter>
@@ -209,7 +211,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>2</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -219,7 +221,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_Shotgun_ElectroSlug>80</Ammo_Shotgun_ElectroSlug>
+      <Ammo_Shotgun_ElectroSlug>200</Ammo_Shotgun_ElectroSlug>
     </products>
     <workAmount>4600</workAmount>
   </RecipeDef>

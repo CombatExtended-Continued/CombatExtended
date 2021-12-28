@@ -4,7 +4,7 @@
 <!--really just relabeled .338 Lapua Magnum-->
 
 	<ThingCategoryDef>
-		<defName>AmmoHighCaliberRounds</defName>
+		<defName>AmmoHighCaliber</defName>
 		<label>high caliber ammo</label>
 		<parent>AmmoHighCaliber</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
@@ -23,7 +23,7 @@
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
-
+  
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoHighCaliberBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -40,7 +40,7 @@
 		<thingCategories>
 			<li>AmmoHighCaliber</li>
 		</thingCategories>
-        <stackLimit>400</stackLimit>
+        <stackLimit>2000</stackLimit>
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">		
@@ -105,8 +105,8 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_HighCaliber_FMJ</defName>
-		<label>make high caliber (FMJ) cartridge x80</label>
-		<description>Craft 80 high caliber (FMJ) cartridges.</description>
+		<label>make high caliber (FMJ) cartridge x200</label>
+		<description>Craft 200 high caliber (FMJ) cartridges.</description>
 		<jobString>Making high caliber (FMJ) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -115,7 +115,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>30</count>
+				<count>60</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -124,7 +124,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HighCaliber_FMJ>80</Ammo_HighCaliber_FMJ>
+			<Ammo_HighCaliber_FMJ>200</Ammo_HighCaliber_FMJ>
 		</products>
 		<workAmount>6000</workAmount>
 	</RecipeDef>
@@ -132,8 +132,8 @@
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_HighCaliber_Incendiary</defName>
-    <label>make high caliber (AP-I) cartridge x80</label>
-    <description>Craft 80 high caliber (AP-I) cartridges.</description>
+    <label>make high caliber (AP-I) cartridge x200</label>
+    <description>Craft 200 high caliber (AP-I) cartridges.</description>
     <jobString>Making high caliber (AP-I) cartridges.</jobString>
     <ingredients>
       <li>
@@ -142,7 +142,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>58</count>
       </li>
       <li>
         <filter>
@@ -150,7 +150,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>5</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -160,15 +160,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_Incendiary>80</Ammo_HighCaliber_Incendiary>
+      <Ammo_HighCaliber_Incendiary>200</Ammo_HighCaliber_Incendiary>
     </products>
     <workAmount>7800</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_HighCaliber_HE</defName>
-    <label>make high caliber (HE) cartridge x80</label>
-    <description>Craft 80 high caliber (HE) cartridges.</description>
+    <label>make high caliber (HE) cartridge x200</label>
+    <description>Craft 200 high caliber (HE) cartridges.</description>
     <jobString>Making high caliber (HE) cartridges.</jobString>
     <ingredients>
       <li>
@@ -177,7 +177,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>30</count>
+        <count>60</count>
       </li>
       <li>
         <filter>
@@ -185,7 +185,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>6</count>
+        <count>12</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -195,15 +195,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_HE>80</Ammo_HighCaliber_HE>
+      <Ammo_HighCaliber_HE>200</Ammo_HighCaliber_HE>
     </products>
-    <workAmount>11000</workAmount>
+    <workAmount>3600</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_HighCaliber_Sabot</defName>
-    <label>make high caliber (Sabot) cartridge x80</label>
-    <description>Craft 80 high caliber (Sabot) cartridges.</description>
+    <label>make high caliber (Sabot) cartridge x200</label>
+    <description>Craft 200 high caliber (Sabot) cartridges.</description>
     <jobString>Making high caliber (Sabot) cartridges.</jobString>
     <ingredients>
       <li>
@@ -212,7 +212,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>23</count>
+        <count>45</count>
       </li>
       <li>
         <filter>
@@ -220,7 +220,7 @@
             <li>Uranium</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>6</count>
       </li>
       <li>
         <filter>
@@ -228,7 +228,7 @@
             <li>Chemfuel</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>6</count>
       </li>		  
     </ingredients>
     <fixedIngredientFilter>
@@ -239,9 +239,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_Sabot>80</Ammo_HighCaliber_Sabot>
+      <Ammo_HighCaliber_Sabot>200</Ammo_HighCaliber_Sabot>
     </products>
-    <workAmount>7500</workAmount>
+    <workAmount>2400</workAmount>
   </RecipeDef>
 
 </Defs>
