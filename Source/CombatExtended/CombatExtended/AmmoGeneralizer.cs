@@ -41,8 +41,6 @@ namespace CombatExtended
 
                         if (makeRecipe != null)
                         {
-                            Log.Message(makeRecipe.label.Colorize(Color.magenta));
-
                             if (CE_ThingDefOf.AmmoBench.AllRecipes.Contains(makeRecipe))
                             {
                                 CE_ThingDefOf.AmmoBench.AllRecipes.Remove(makeRecipe);
@@ -57,9 +55,6 @@ namespace CombatExtended
 
                         
                     }
-
-                    Log.Message("Generalized " + amset.label.Colorize(Color.blue) + " into " + ammoSource.label.Colorize(Color.red));
-
                     amset.label = ammoSource.label;
                     amset.ammoTypes = newAmmos;
 
