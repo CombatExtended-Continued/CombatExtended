@@ -83,7 +83,7 @@ namespace CombatExtended
         {
             get
             {
-                var result = 0.10f;
+                var result = 0.20f;
 
                 result *= ((PawnParent.skills.GetSkill(SkillDefOf.Melee).Level * 1f) - 15f);
 
