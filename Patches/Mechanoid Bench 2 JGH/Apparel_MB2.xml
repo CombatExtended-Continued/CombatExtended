@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Mechanoid Bench 2</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== Mecha Power Armor ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>100</Bulk>
+                        <WornBulk>16</WornBulk>
+                        <MaxHitPoints>1000</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>47</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBBase"]/equippedStatOffsets</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <CarryWeight>90</CarryWeight>
+                            <CarryBulk>13.5</CarryBulk>
+                            <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+                            <ToxicSensitivity>-0.50</ToxicSensitivity>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/costList</xpath>
+                    <value>
+                        <DevilstrandCloth>100</DevilstrandCloth>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>22</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>50</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBBase"]/apparel/bodyPartGroups</xpath>
+                    <value>
+                        <li>Hands</li>
+                        <li>Feet</li>
+                    </value>
+                </li>
+
+                <!-- == Increase Mecha Armor Cost == -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/costList/Plasteel</xpath>
+                    <value>
+                        <Plasteel>210</Plasteel>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaArmor"]/costList/Uranium</xpath>
+                    <value>
+                        <Uranium>70</Uranium>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Power Helmet ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>5</Bulk>
+                        <WornBulk>1</WornBulk>
+                        <MaxHitPoints>280</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>2.5</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]</xpath>
+                    <value>
+                        <equippedStatOffsets>
+                            <PsychicSensitivity>-0.2</PsychicSensitivity>
+                            <AimingAccuracy>0.20</AimingAccuracy>
+                            <ToxicSensitivity>-0.50</ToxicSensitivity>
+                            <SmokeSensitivity>-1</SmokeSensitivity>
+                            <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+                        </equippedStatOffsets>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]/costList</xpath>
+                    <value>
+                        <DevilstrandCloth>40</DevilstrandCloth>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>18</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>38</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBHelmetBase"]/apparel/layers</xpath>
+                    <value>
+                        <li>OnHead</li>
+                        <li>MiddleHead</li>
+                        <li>StrappedHead</li>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
