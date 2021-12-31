@@ -249,9 +249,9 @@ namespace CombatExtended
         {
             var result = BodyPartHeight.Undefined;
 
-            if (gizmoComp != null)
+            if (gizmoComp != null && this.CurrentTarget.Thing is Pawn pawn)
             {
-                return gizmoComp.finalHeight;
+                return gizmoComp.finalHeight(pawn);
             }
 
             return result;
@@ -340,8 +340,6 @@ namespace CombatExtended
                     {
                         damageInfo.SetHitPart(Part);
                     }
-
-                    
                 }
             }
             damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
@@ -362,10 +360,102 @@ namespace CombatExtended
                         extraDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                         extraDamageInfo.SetWeaponHediff(hediffDef);
                         extraDamageInfo.SetAngle(direction);
+
+                        if (damageInfo.HitPart != null)
+                        {
+                            extraDamageInfo.SetHitPart(damageInfo.HitPart);
+                        }
+
                         yield return extraDamageInfo;
                     }
                 }
             }
+            //apply internal damage
+            //checks if tool can penetrate into internal parts and if target is an actual pawn
+            if (target.Thing is Pawn pn && this.ToolCE.capacities.Any(y => y.GetModExtension<ModExtensionMeleeToolPenetration>()?.canHitInternal ?? false))
+            {
+                if ( 
+                    //can probably be done better, but that's what I came up with
+                    (
+                    (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Sharp, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                    |
+                    (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Blunt, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Blunt)
+                    ))
+                {
+                    //Less specific system, has a few issues with arm damage when torso is hit and vice versa
+                    
+                    var penetratedDamageInfo = new DamageInfo(damageInfo);
+                    penetratedDamageInfo.armorPenetrationInt = 2f;
+                    penetratedDamageInfo.SetBodyRegion(damageInfo.Height, BodyPartDepth.Inside);
+                    penetratedDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                    penetratedDamageInfo.SetWeaponHediff(hediffDef);
+                    penetratedDamageInfo.SetAngle(direction);
+                    yield return penetratedDamageInfo;
+
+
+                    #region commented out coverage-armor penetration system, non functioning and probably of questionable actual value
+                    /*var bodyPartsCovered = pn.health.hediffSet.GetNotMissingParts(damageInfo.Height, BodyPartDepth.Inside).Where(y => y.def.solid);
+
+                    var bodyPartsNaked = pn.health.hediffSet.GetNotMissingParts(damageInfo.Height, BodyPartDepth.Inside).Where(y => !y.def.solid);
+
+                    bodyPartsCovered = bodyPartsCovered.Where(y => !y.def.HasModExtension<densityModExt>());
+
+                    var RHAAmount = ArmorPenetrationSharp;
+
+                    float amount = (int)damageInfo.Amount;
+
+                    if (bodyPartsCovered.Count() > 0)
+                    {
+                        foreach (BodyPartRecord record in bodyPartsCovered)
+                        {
+                            Log.Message(record.Label);
+
+                            var extension = record.def.GetModExtension<densityModExt>();
+
+                            if (extension != null)
+                            {
+                                RHAAmount -= extension.SharpRating;
+
+                                if (extension.DamageReduction > 0)
+                                {
+                                    var reductionDinfo = new DamageInfo(damageInfo);
+
+                                    reductionDinfo.SetAmount(extension.DamageReduction);
+
+                                    reductionDinfo.SetHitPart(record);
+
+                                    amount -= extension.DamageReduction;
+
+                                    yield return reductionDinfo;
+
+                                }
+                            }
+
+                            
+
+                           
+                        }
+                    }
+
+                    foreach (BodyPartRecord record in bodyPartsNaked)
+                    {
+                        Log.Message(record.Label.Colorize(Color.cyan));
+
+                        var hitPartDinfo = new DamageInfo(damageInfo);
+
+                        hitPartDinfo.SetAmount(amount);
+
+                        hitPartDinfo.SetHitPart(record);
+
+                        yield return hitPartDinfo;
+                    }*/
+                    #endregion
+
+
+                }
+            }
+
+            
 
             // Apply critical damage
             if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp && target.Thing.def.race.IsFlesh)
