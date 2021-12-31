@@ -38,30 +38,69 @@ namespace CombatExtended
 
         #region Properties
 
-        public BodyPartHeight finalHeight
+        public Thing primaryWeapon
         {
             get
             {
-                if (PawnParent.Faction == Faction.OfPlayer)
-                {
-                    return heightInt;
-                }
+                Thing result = null;
 
-                if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16)
-                {
-                    return BodyPartHeight.Middle;
-                }
 
-                if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 16)
-                {
-                    targetBodyPart = BodyPartDefOf.Neck;
-                    return BodyPartHeight.Top;
-                }
+                result = PawnParent?.equipment.Primary;
 
-                return BodyPartHeight.Undefined;
+                return result;
             }
         }
 
+        public BodyPartHeight finalHeight(Pawn target)
+        {
+            if (PawnParent.Faction == Faction.OfPlayer)
+            {
+                return heightInt;
+            }
+
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 4)
+            {
+                float maxWeaponPen = 1f;
+
+                if (primaryWeapon != null)
+                {
+                    maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+                }
+
+                var torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
+
+                //just in case of attacking some weird creature
+                if (torso != null)
+                {
+                    var torsoApparel = target.apparel.WornApparel.FindAll(x => x.def.apparel.CoversBodyPart(torso));
+
+                    float overallRHA = 0f;
+
+                    if (torsoApparel.Count() > 0)
+                    {
+                        foreach (Apparel apparel in torsoApparel)
+                        {
+                            overallRHA += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                        }
+                    }
+                    if (maxWeaponPen < overallRHA)
+                    {
+                        return BodyPartHeight.Top;
+                    }
+                }
+
+                return BodyPartHeight.Middle;
+            }
+
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 16)
+            {
+                targetBodyPart = BodyPartDefOf.Neck;
+                return BodyPartHeight.Top;
+            }
+
+            return BodyPartHeight.Undefined;
+        }
+            
 
 
         public bool SkillReqA
@@ -100,8 +139,8 @@ namespace CombatExtended
             {
                 yield return new Command_Action
                 {
-                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/" + finalHeight.ToString()),
-                    defaultLabel = "Melee target height: " + finalHeight.ToString(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/" + heightInt.ToString()),
+                    defaultLabel = "Melee target height: " + heightInt.ToString(),
                     action = delegate 
                     {
                         switch (heightInt)
@@ -137,7 +176,7 @@ namespace CombatExtended
                             if (!parts.Contains(posTarget.def))
                             {
                                 if(posTarget.depth == BodyPartDepth.Outside
-                                && posTarget.height == finalHeight
+                                && posTarget.height == heightInt
                                 && !posTarget.def.label.Contains("toe")
                                 && !posTarget.def.label.Contains("finger")
                                 && !posTarget.def.label.Contains("utility")
