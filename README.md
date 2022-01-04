@@ -17,9 +17,9 @@
   </a>
 </p>
 
-Combat Extended completely overhauls combat. It adds completely new shooting and melee mechanics, an inventory system and rebalances the health system.
+Combat Extended completely overhauls combat. It adds completely new shooting and melee mechanics, an inventory system, and rebalances the health system.
 
-**NOTE:** This mod requires a new save to play.
+**NOTE:** This mod requires a new save to play, and should not be removed from existing saves.
 
 ## Index
 - [Index](#index)
@@ -35,11 +35,11 @@ Combat Extended completely overhauls combat. It adds completely new shooting and
 ## Development Version
 **Do not directly download this repository if you aren't going to build it yourself!**
 
-This repository holds an uncompiled assembly file that will **not work** with the latest changes.
+This repository contains an uncompiled assembly file that will **not work** with the latest changes.
 
-If you want to play yourself with the latest changes without compiling the assembly, you can download the [development snapshot](https://combatextended.lp-programming.com/CombatExtended-latest.zip), it is updated a few minutes after a pull request is merged to the ` Development ` branch.
+If you want to play with the latest changes without compiling the assembly yourself, you can download the [development snapshot](https://combatextended.lp-programming.com/CombatExtended-latest.zip), it is updated a few minutes after a pull request is merged to the ` Development ` branch.
 
-Pull Requests also have their own built versions of the mod, including the changes that said pull request holds. To download it simply click on the link provided by the Github-Actions bot as shown below:
+Pull Requests also have their own built versions, including the changes made by said pull request. To download it, simply click on the latest link provided by the Github-Actions bot as shown below:
 
 ![image](https://user-images.githubusercontent.com/25396698/146984853-4717f30d-c6e3-4508-afd5-b7bd79cd25a9.png)
 
@@ -52,13 +52,13 @@ If you want to build the assembly yourself, please see [Building](Building.md) f
 **Projectile Rebalance**
 - Vanilla percentage based shooting system is completely gone. Instead, CE uses a ballistic model where bullets fly along a trajectory and intersect hitboxes.
 - Range and damage has been completely rebalanced. No more raiders shrugging off dozens of bullets or sniping with pistols.
-- Guns will dominate in their assigned role and range bracket. Rifles excel at medium-long range engagements, MG's are good at area suppression and shotguns and SMG's are lethal in close quarters.
-- Bullets track their height as part of their trajectory. When hitting a pawn this will affect where the bullet hits, i.e. someone crouching behind sandbags can only be shot in the head, so make sure you wear your protective helmet.
+- Guns will dominate in their assigned role and range bracket. Rifles excel at medium-long range engagements, MGs are good at area suppression, and shotguns and SMG's are lethal in close quarters.
+- Bullets track their height as part of their trajectory. When striking a pawn this will affect where the bullet hits, i.e. someone crouching behind sandbags can only be shot in the head, so make sure you wear your protective helmet.
 
 **New Mechanics**
 - Weapons can switch between different aim and fire modes.
 - Pawns in the open will crouch in combat when not moving, making them harder to hit.
-- Projectiles create suppression on near misses. As suppression builds up, pawns will run for cover (even against orders) and have significantly decreased accuracy. If suppression reaches a critical threshold pawns will hunker down in panic and become completely unresponsive.
+- Projectiles create suppression on near misses. As suppression builds up, pawns will run for cover (even against orders) and suffer from significantly decreased accuracy. If suppression reaches a critical threshold, pawns will hunker down in panic and become completely unresponsive.
 - **` Toggleable `** Ranged weapons require ammo and can switch between different ammo types such as armor-piercing and high-explosive rounds.
   
 ### Melee
@@ -99,7 +99,7 @@ If you want to build the assembly yourself, please see [Building](Building.md) f
 - RNG death on downed has been disabled. No more wimp visitors dying from one squirrel bite.
 - Body part coverage has been overhauled. Torso shots are significantly more likely to hit a vital organ.
 - Limbs are overall tougher.
-- Bleed rates of internal organs are *significantly* higher. Someone shot in the heart or lung will only have a few hours before bleedout and requires immediate medical attention.
+- Bleed rates of internal organs are *significantly* higher. Someone shot in the heart or lung will only have a few hours before they bleed out and require immediate medical attention.
 - Internal organs continue bleeding when destroyed.
 
 **Stabilizing**
@@ -109,7 +109,7 @@ If you want to build the assembly yourself, please see [Building](Building.md) f
 - Amount of reduction depends on medicine used and doctor skill. Don't expect the guy with 2 doctoring skill and herbal medicine to stop a destroyed lung from bleeding.
 
 ### Supported Third-Party Mods
-CE comes with built-in support for a number of popular third-party mods, a [list of which can be found here](SupportedThirdPartyMods.md).
+In addition to external patches, CE comes with built-in support for a number of popular third-party mods, a [list of which can be found here](SupportedThirdPartyMods.md).
 
 ### License
 This mod is a continuation and expansion of the original [Combat Extended](https://ludeon.com/forums/index.php?topic=33461.0) and is used under the [Creative Commons 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
