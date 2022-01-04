@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEngine;
 using Verse;
 
 
@@ -116,6 +114,39 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
+
+        /// <summary>
+        /// Create an actual LoadoutSlot by first retrieving the real ThingDef from the Def
+        /// database based on the ThingDef name
+        /// </summary>
+        /// <param name="loadoutSlotConfig">The config form of the LoadoutSlot</param>
+        /// <returns>
+        /// Return either the LoadoutSlot or null if the ThingDef could not be loaded
+        /// (e.g. the mod it came from is not loaded into the current game)
+        /// </returns>
+        public static LoadoutSlot FromConfig(LoadoutSlotConfig loadoutSlotConfig)
+        {
+	        if (loadoutSlotConfig.isGenericDef)
+	        {
+		        LoadoutGenericDef genericThingDef = DefDatabase<LoadoutGenericDef>.GetNamed(loadoutSlotConfig.defName, false);
+		        return genericThingDef == null ? null : new LoadoutSlot(genericThingDef, loadoutSlotConfig.count);
+	        }
+
+	        var thingDef = DefDatabase<ThingDef>.GetNamed(loadoutSlotConfig.defName, false);
+	        return thingDef == null ? null : new LoadoutSlot(thingDef, loadoutSlotConfig.count);
+        }
+        
+
+        public LoadoutSlotConfig ToConfig()
+        {
+	        return new LoadoutSlotConfig
+	        {
+		        isGenericDef = _type == typeof(LoadoutGenericDef),
+		        defName = _def.defName,
+		        count = _count
+	        };
+        }
+        
         
         /// <summary>
         /// Used during Rimworld Save/Load.
