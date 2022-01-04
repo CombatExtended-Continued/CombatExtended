@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Infused 2 Expansion</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== Uncommon tier ========== -->
+
+                <!-- ======= Apparel =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Pocketed"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>CarryWeight</key>
+                                <value>
+                                    <offset>5</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+                <!-- ======= Melee Weapon =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Speedy"]/stats/li[3]/value/offset</xpath>
+                    <value>
+                        <offset>0.10</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Ranged Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="AimAssist"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>SightsEfficiency</key>
+                                <value>
+                                    <offset>0.10</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+                <!-- ========== Rare tier ========== -->
+
+                <!-- ======= Apparel =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="DeepPocketed"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>CarryWeight</key>
+                                <value>
+                                    <offset>15</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+                <!-- ======= Melee Weapon =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Jock"]/stats/li[3]/value/offset</xpath>
+                    <value>
+                        <offset>0.12</offset>
+                    </value>
+                </li>
+
+                <!-- ========== Legendary tier ========== -->
+
+                <!-- ======= Melee Weapon =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Doppelganger"]/stats/li[1]/value/offset</xpath>
+                    <value>
+                        <offset>0.35</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Ranged Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="TrueShot"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>SightsEfficiency</key>
+                                <value>
+                                    <offset>0.25</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+                <!-- ========== Cursed tier ========== -->
+
+                <!-- ======= Ranged Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="CurseOfGambling"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>SightsEfficiency</key>
+                                <value>
+                                    <offset>-0.95</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
