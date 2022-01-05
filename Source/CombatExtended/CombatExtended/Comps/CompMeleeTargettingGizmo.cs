@@ -53,20 +53,20 @@ namespace CombatExtended
 
         public BodyPartHeight finalHeight(Pawn target)
         {
-            if (PawnParent.Faction == Faction.OfPlayer)
+            if (PawnParent.Faction == Faction.OfPlayer && heightInt != BodyPartHeight.Undefined)
             {
                 return heightInt;
             }
 
+            float maxWeaponPen = 1f;
+
+            if (primaryWeapon != null)
+            {
+                maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
+            }
+
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 4)
             {
-                float maxWeaponPen = 1f;
-
-                if (primaryWeapon != null)
-                {
-                    maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
-                }
-
                 var torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
 
                 //just in case of attacking some weird creature
@@ -95,6 +95,24 @@ namespace CombatExtended
             if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 16)
             {
                 targetBodyPart = BodyPartDefOf.Neck;
+
+                var neck = target.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top).Where(y => y.def == BodyPartDefOf.Neck).FirstOrFallback();
+
+                if (neck != null)
+                {
+                    var neckApparel = target.apparel.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
+
+                    if (neckApparel == null | maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                    {
+                        Log.Message(neckApparel.Label);
+                        targetBodyPart = null;
+                    }
+                    else
+                    {
+                        targetBodyPart = neck.def;
+                    }
+                }
+
                 return BodyPartHeight.Top;
             }
 
@@ -129,6 +147,22 @@ namespace CombatExtended
                 return result;
             }
         }
+
+        private string heightString
+        {
+            get
+            {
+                var result = heightInt.ToString();
+
+                if (result.ToLower() == "undefined")
+                {
+                    result = "Automatic";
+                }
+
+                return result;
+            }
+        }
+
         #endregion
 
 
@@ -140,8 +174,7 @@ namespace CombatExtended
                 yield return new Command_Action
                 {
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/" + heightInt.ToString()),
-                    defaultLabel = "Melee target height: " + heightInt.ToString(),
-                    action = delegate 
+                    action = delegate
                     {
                         switch (heightInt)
                         {
@@ -158,7 +191,8 @@ namespace CombatExtended
                                 heightInt = BodyPartHeight.Bottom;
                                 break;
                         }
-                    }
+                    },
+                    defaultLabel = "Melee target height: " + heightString,
                 };
             }
             if (SkillReqBP)
