@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+    	<li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>			
+
+			<!-- Warcasket Combat Knife -->	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_CombatKnife"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>41</power>
+							<cooldownTime>2.24</cooldownTime>
+							<chanceFactor>0.60</chanceFactor>
+							<armorPenetrationBlunt>2.50</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.78</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>45</power>
+							<cooldownTime>2.17</cooldownTime>
+							<chanceFactor>0.30</chanceFactor>
+							<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
+							<armorPenetrationSharp>2.50</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_CombatKnife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.63</MeleeCritChance>
+						<MeleeParryChance>0.75</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_CombatKnife"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<!-- Warcasket Broadsword -->	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_Broadsword"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.60</chanceFactor>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.6</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>36</power>
+							<cooldownTime>1.56</cooldownTime>
+							<chanceFactor>0.30</chanceFactor>
+							<armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.58</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_Broadsword"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.63</MeleeCritChance>
+						<MeleeParryChance>0.75</MeleeParryChance>
+						<MeleeDodgeChance>0.4</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_Broadsword"]/statBases</xpath>
+				<value>
+					<Bulk>8</Bulk>
+					<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
