@@ -337,6 +337,24 @@ namespace CombatExtended
         #endregion
 
         #region Misc
+        public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartDef part)
+        {
+            float result = apparel.GetStatValue(stat);
+            if (apparel.def.HasModExtension<PartialArmorExt>())
+            {
+                foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
+                {
+                    if (partial?.parts?.Contains(part) ?? false)
+                    {
+                        result = (float)Math.Round( ( (apparel?.HitPoints ?? 1f) * 1f / (apparel?.MaxHitPoints ?? 1f) * 1f) * partial.value * (apparel?.Stuff?.statBases?.Find(x => x.stat == StatDefOf.ArmorRating_Sharp)?.value ?? 1f), 2);
+                        break;
+                       
+                    }
+                }
+            }
+            return result;
+        }
+
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
         public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
