@@ -126,7 +126,7 @@ namespace CombatExtended
 
                     if (app != null
                         && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
+                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart.def), ref penAmount, ref dmgAmount, app))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
@@ -271,6 +271,7 @@ namespace CombatExtended
             }
             return !deflected;
         }
+     
 
         /// <summary>
         /// Calculates damage reduction for ambient damage types (fire, electricity) versus natural and worn armor of a pawn. Adds up the total armor percentage (clamped at 0-100%) and multiplies damage by that amount.
