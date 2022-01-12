@@ -77,20 +77,24 @@
   
   <!-- =========== Layering Changes =========== -->
   
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[
-      defName="Apparel_Flophat" or 
-      defName="Apparel_Shadecone" or 
-      defName="Apparel_Tailcap" or 
-      defName="Apparel_AuthorityCap" or 
-      defName="Apparel_Slicecap" or
-      defName="Apparel_Headwrap" or 
-      defName="Apparel_Broadwrap"
-    ]/apparel/layers</xpath>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[      
+      defName="Apparel_Collar" or 
+      defName="Apparel_VisageMask"]/apparel/layers/li[.="Overhead"]
+	</xpath>
 	  <value>
-		  <li>MiddleHead</li>
+		  <li>StrappedHead</li>
 	  </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[      
+      defName="Apparel_Broadwrap"]/apparel/layers/li[.="Overhead"]
+	</xpath>
+	  <value>
+		  <li>OnHead</li>
+	  </value>
+  </Operation>	
+	
 </Patch>
 

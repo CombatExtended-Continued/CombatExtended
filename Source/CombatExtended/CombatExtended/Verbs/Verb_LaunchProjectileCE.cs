@@ -404,24 +404,23 @@ namespace CombatExtended
 
                                         Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
 
-
-                                        var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").First();
-
-                                        var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
-
-                                        Apparel Helmet = Helmets.MaxByWithFallback(funcArmor);
-
-                                        var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").First();
-
-                                        var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
-
-                                        Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
-
                                         var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Torso").First();
 
                                         var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
 
                                         Apparel TorsoArmor = TorsoArmors.MaxByWithFallback(funcArmor);
+
+                                        var Head = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Head").FirstOrFallback(Torso);
+
+                                        var Helmets = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Head)) ?? null);
+
+                                        Apparel Helmet = Helmets.MaxByWithFallback(funcArmor);
+
+                                        var Leg = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Leg").FirstOrFallback(Torso);
+
+                                        var LegArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Leg)) ?? null);
+
+                                        Apparel LegArmor = LegArmors.MaxByWithFallback(funcArmor);
                                         #endregion
 
                                         #region get CompAmmo's Current ammo projectile

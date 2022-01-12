@@ -73,7 +73,7 @@ Ancient Fallout Armory  |
 Ancient Humans   |
 Android Tiers	|
 Android Tiers SM7 Overhaul (Continued)  |
-Android TX Series   |
+Android - TX Series   |
 Androids	|
 Androids Expanded	|
 Anima Animals  |
