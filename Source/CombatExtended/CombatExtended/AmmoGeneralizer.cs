@@ -41,6 +41,7 @@ namespace CombatExtended
 
                         if (makeRecipe != null)
                         {
+
                             if (CE_ThingDefOf.AmmoBench.AllRecipes.Contains(makeRecipe))
                             {
                                 CE_ThingDefOf.AmmoBench.AllRecipes.Remove(makeRecipe);
@@ -51,13 +52,37 @@ namespace CombatExtended
                                 makeRecipe.recipeUsers = new List<ThingDef>();
                             }
                         }
+
+                        link.ammo.AmmoSetDefs.Add(ammoSource);
                         
 
                         
                     }
+
                     amset.label = ammoSource.label;
                     amset.ammoTypes = newAmmos;
 
+                }
+
+                var toFixScenarios = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.scenario.AllParts.Any(y => y.def == ScenPartDefOf.ScatterThingsAnywhere | y.def == ScenPartDefOf.ScatterThingsNearPlayerStart | y.def == ScenPartDefOf.StartingThing_Defined));
+                foreach(ScenarioDef def in toFixScenarios)
+                {
+                    var PartAmmos = def.scenario.AllParts.Where(y => y is ScenPart_StartingThing_Defined
+                    && ((ScenPart_StartingThing_Defined)y).thingDef is AmmoDef).Select(x => x as ScenPart_StartingThing_Defined);
+
+                    foreach (ScenPart_StartingThing_Defined scene in PartAmmos)
+                    {
+                        var ammodef = ((AmmoDef)scene.thingDef);
+
+                        var ammoreplaced = ammodef.AmmoSetDefs?.First()?.ammoTypes?.Find(x => x.ammo.ammoClass == ammodef.ammoClass)?.ammo ?? null;
+
+                        if(ammoreplaced != null)
+                        {
+                            scene.thingDef = ammoreplaced;
+                        }
+
+                        
+                    }
                 }
             }
 
