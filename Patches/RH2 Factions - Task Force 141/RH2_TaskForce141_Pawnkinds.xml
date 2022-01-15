@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>[RH2] Faction: Task Force 141</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+       
+			<!-- ========== Traders ammo stock ========== -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[
+					defName="RHVisitor_141_Standard" or
+					defName="RHBase_141_Standard" or
+					defName="RHCaravan_141_MilitiaSupplier"
+				]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_Ammo</tradeTag>
+						<countRange>
+							<min>1000</min>
+							<max>3000</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>5</min>
+							<max>12</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+        <!-- ========== Weapon money ========== -->
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/PawnKindDef[
+                    defName="RH2_141_FNG" or
+                    defName="RH2_141_Gunner" or
+                    defName="RH2_141_Assault" or
+                    defName="RH2_141_Trader"
+                    ]/weaponMoney/min</xpath>
+                <value>
+                    <min>550</min>
+                </value>
+            </li>
+
+            
+        <!-- ========== Apparel, Webbing ========== -->
+        
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/PawnKindDef[
+                    @Name="RH2_141_SpecialBase"
+                ]/specificApparelRequirements/li[1]</xpath>
+                <value>
+                    <li>
+                        <bodyPartGroup>Eyes</bodyPartGroup>
+                        <apparelLayer>StrappedHead</apparelLayer>
+                        <stuff>Plasteel</stuff>
+                    </li>
+                </value>
+            </li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[ 
+                    @Name="RH2_Operator_NonEliteTierBase" or
+                    @Name="RH2_141_EliteTierBase" or
+                    @Name="RH2_141_BossTierBase" or
+                    @Name="RH2_141_SoapTierBase" or
+                    defName="RH2_141_Trader"]/apparelTags</xpath>
+				<value>
+                    <li>RH2_XBelt_141</li>
+                    <li>RH2_Backpack_141</li>
+				</value>
+			</li>
+
+			<!-- ========== Ammo ========== -->
+			
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/PawnKindDef[ defName="RH2_141_EliteGunner" ]/weaponTags</xpath>
+                <value>
+                    <weaponTags>
+                        <li>RN_Coalition_MG</li>
+                        <li>RNGun_FNMinimi762</li>
+                    </weaponTags>
+                </value>
+            </li>
+
+            <li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH2_141_EliteGunner" or
+					defName="RH2_141_Gunner"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>1</min>
+							<max>2</max>
+						</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+					defName="RH2_141_Trader" or
+					defName="RH2_141_FNG" or
+					defName="RH2_141_Assault" or
+					defName="RH2_141_Sharpshooter" or
+					defName="RH2_141_Boss" or
+					defName="RH2_141_Elite"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+						<primaryMagazineCount>
+							<min>3</min>
+							<max>5</max>
+						</primaryMagazineCount>
+                        <sidearms>
+                            <li>
+                                <generateChance>0.15</generateChance>
+                                <sidearmMoney>
+                                    <min>10</min>
+                                    <max>100</max>
+                                </sidearmMoney>
+                                <weaponTags>
+                                    <li>GrenadeSmoke</li>
+                                </weaponTags>
+                                <magazineCount>
+                                    <min>1</min>
+                                    <max>2</max>
+                                </magazineCount>
+                            </li>
+                            <li>
+                                <generateChance>0.075</generateChance>
+                                <sidearmMoney>
+                                    <min>50</min>
+                                    <max>200</max>
+                                </sidearmMoney>
+                                <weaponTags>
+                                    <li>CE_FlareLauncher</li>
+                                </weaponTags>
+                                <magazineCount>
+                                    <min>2</min>
+                                    <max>4</max>
+                                </magazineCount>
+                            </li>
+                        </sidearms>
+                    </li>
+				</value>
+			</li>
+
+
+        </operations>
+        </match>
+    </Operation>
+
+</Patch>
