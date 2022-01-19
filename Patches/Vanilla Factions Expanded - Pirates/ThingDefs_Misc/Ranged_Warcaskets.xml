@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VFEP_WarcasketGun_Autorifle" or
+              defName = "VFEP_WarcasketGun_UraniumSlugRifle" or
+              defName = "VFEP_WarcasketGun_Slugthrower" or
+              defName = "VFEP_WarcasketGun_Minigun" or
+              defName = "VFEP_WarcasketGun_GrenadeLauncher" or
+              defName = "VFEP_WarcasketGun_HeavyFlamer"
+            ]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Autocannon === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_Autorifle</defName>
+          <statBases>
+            <Mass>70</Mass>
+            <Bulk>25</Bulk>
+            <SwayFactor>8.80</SwayFactor>
+            <ShotSpread>0.04</ShotSpread>
+            <SightsEfficiency>0.66</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.48</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+            <warmupTime>1</warmupTime>
+            <range>56</range>
+            <soundCast>Shot_Autocannon</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>70</magazineSize>
+            <reloadTime>8.5</reloadTime>
+            <ammoSet>AmmoSet_20x110mmHispano</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>5</aimedBurstShotCount>
+          </FireModes>
+        </li>
+
+        <!-- === Slug Rifle === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_UraniumSlugRifle</defName>
+          <statBases>
+            <Mass>75</Mass>
+            <Bulk>25</Bulk>
+            <SwayFactor>8.85</SwayFactor>
+            <ShotSpread>0.01</ShotSpread>
+            <SightsEfficiency>2.20</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_30x173mmNATO_FMJ</defaultProjectile>
+            <warmupTime>4.6</warmupTime>
+            <range>86</range>
+            <minRange>3</minRange>
+            <soundCast>Shot_TurretSniper</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>16</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>10</magazineSize>
+            <reloadTime>8.6</reloadTime>
+            <ammoSet>AmmoSet_30x173mmNATO</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+
+        <!-- === Warcasket Heavy Flamer === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_HeavyFlamer</defName>
+          <statBases>
+            <Mass>50</Mass>
+            <Bulk>20</Bulk>
+            <SwayFactor>7.10</SwayFactor>
+            <ShotSpread>0.40</ShotSpread>
+            <SightsEfficiency>0.65</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <recoilAmount>0.85</recoilAmount>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+            <burstShotCount>40</burstShotCount>
+            <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+            <warmupTime>1</warmupTime>
+            <range>36</range>
+            <minRange>3</minRange>
+            <soundCast>HissFlamethrower</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>12</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+            <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>300</magazineSize>
+            <reloadTime>6.6</reloadTime>
+            <ammoSet>AmmoSet_Flamethrower</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>20</aimedBurstShotCount>
+            <noSingleShot>True</noSingleShot>
+          </FireModes>
+        </li>
+
+        <!-- ========== Warcasket Grenade Launcher ========== -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_GrenadeLauncher</defName>
+          <statBases>
+            <Bulk>5.65</Bulk>
+            <Mass>5.3</Mass>
+            <SwayFactor>1.31</SwayFactor>
+            <ShotSpread>0.18</ShotSpread>
+            <SightsEfficiency>1.0</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>2.93</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+            <warmupTime>1.8</warmupTime>
+            <range>64</range>
+            <minRange>4</minRange>
+            <ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+            <burstShotCount>4</burstShotCount>            
+            <soundCast>VFEP_Shot_GrenadeLauncher</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>16</magazineSize>
+            <reloadTime>3.1</reloadTime>
+            <reloadOneAtATime>true</reloadOneAtATime>
+            <ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>2</aimedBurstShotCount>
+          </FireModes>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
