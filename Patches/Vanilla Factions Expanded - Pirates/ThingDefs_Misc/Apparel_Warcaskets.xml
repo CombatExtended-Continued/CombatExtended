@@ -8,6 +8,20 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
+		<!-- ========== Remove Vanilla Carry Capacity ========== -->		
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_Warcasket_Warcasket" or
+			defName="VFEP_Warcasket_Marine" or
+			defName="VFEP_Warcasket_Recon" or
+			defName="VFEP_Warcasket_Cataphract" or
+			defName="VFEP_Warcasket_Aerial" or
+			defName="VFEP_Warcasket_Hazard" or
+			defName="VFEP_Warcasket_Barrage" or
+			defName="VFEP_Warcasket_Shock"																
+			]/modExtensions/li/carryingCapacity</xpath>
+		</li>
+
 		<!-- ========== Basic Warcasket ========== -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Warcasket"]/statBases</xpath>
@@ -225,6 +239,269 @@
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Cataphract"]/statBases/ArmorRating_Blunt</xpath>
 			<value>
 				<ArmorRating_Blunt>58</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- ========== Aerial Warcasket ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Aerial"]/statBases</xpath>
+			<value>
+				<Bulk>250</Bulk>
+				<WornBulk>25</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Aerial"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>26</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Aerial"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>62</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Aerial"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>250</CarryWeight>
+				<CarryBulk>200</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- ========== Aerial Warcasket - Shoulders ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Aerial"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Aerial"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>26</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Aerial"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>62</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- ========== Barrage Warcasket ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barrage"]/statBases</xpath>
+			<value>
+				<Bulk>275</Bulk>
+				<WornBulk>35</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barrage"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>30</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barrage"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>68</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barrage"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>250</CarryWeight>
+				<CarryBulk>225</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- ========== Barrage Warcasket - Shoulders ========== -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>30</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>68</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/verbs</xpath>
+			<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>grenade barrage</label>
+						<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<onlyManualCast>True</onlyManualCast>
+						<warmupTime>1.5</warmupTime>
+						<range>36</range>
+						<minRange>5</minRange>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>Shot_IncendiaryLauncher</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<defaultProjectile>Bullet_30x29mmGrenade_HE</defaultProjectile>
+						<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					</li>
+				</verbs>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+			<value>
+				<ammoDef>Ammo_30x29mmGrenade_HE</ammoDef>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+			<value>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+			</value>
+		</li>
+
+		<!-- ========== Hazard Warcasket ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Hazard"]/statBases</xpath>
+			<value>
+				<Bulk>200</Bulk>
+				<WornBulk>20</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Hazard"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Hazard"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>44</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Hazard"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>250</CarryWeight>
+				<CarryBulk>200</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- ========== Hazard Warcasket - Shoulders ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Hazard"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Hazard"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>18</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Hazard"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>44</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- ========== Shock Warcasket ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Shock"]/statBases</xpath>
+			<value>
+				<Bulk>250</Bulk>
+				<WornBulk>25</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Shock"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>26</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Shock"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>62</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Shock"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>250</CarryWeight>
+				<CarryBulk>200</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- ========== Shock Warcasket - Shoulders ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Shock"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Shock"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>26</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Shock"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>62</ArmorRating_Blunt>
 			</value>
 		</li>
 
