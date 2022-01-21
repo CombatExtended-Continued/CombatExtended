@@ -322,26 +322,107 @@ namespace CombatExtended
                         .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
                     damageInfo.SetHitPart(neck);
                 }
+                //for some reason, when all parts of height are missing their incode count is 3
                 if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
                 {
                     bodyRegion = BodyPartHeight.Middle;
                 }
             }
 
-            
+            //apply internal damage
+            //checks if tool can penetrate into internal parts and if target is an actual pawn
+            var penetratedDamageInfo = new DamageInfo(damageInfo);
 
-            if (gizmoComp != null)
+            if (target.Thing is Pawn pn)
             {
-                if (gizmoComp.SkillReqBP && Rand.Chance(gizmoComp.SkillBodyPartAttackChance) && target.Thing is Pawn p)
+                bool penetrated = (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Sharp, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp) | (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Blunt, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Blunt);
+
+                if (this.ToolCE.capacities.Any(y => y.GetModExtension<ModExtensionMeleeToolPenetration>()?.canHitInternal ?? false))
                 {
-                    var Part = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined)
-                    .FirstOrFallback(r => r.def == gizmoComp.targetBodyPart);
-                    if (Part != null)
+                    if (penetrated)
                     {
-                        damageInfo.SetHitPart(Part);
+
+                        #region creating new damageinfo for penetration
+
+                        //Arm coverage is off, which seems to make them be targetted disproportionally
+                        Func<BodyPartRecord, float> trueWeight = delegate (BodyPartRecord x)
+                        {
+                            var result = 1f;
+
+                            result = x.coverageAbsWithChildren;
+
+                            if (x.def.defName.ToLower() == "arm" | x.def.defName.ToLower() == "shoulder")
+                            {
+                                result *= 0.1f;
+                            }
+                            return result;
+                        };
+
+                        var hitParent = pn.health.hediffSet.GetNotMissingParts(bodyRegion, BodyPartDepth.Outside).RandomElementByWeight(trueWeight);
+
+                        damageInfo.SetHitPart(hitParent);
+
+                        damageInfo.hitPartInt = hitParent;
+
+
+                        penetratedDamageInfo.armorPenetrationInt = 0.5f;
+
+                        if (!hitParent.parts.Where(x => x.depth == BodyPartDepth.Inside && x.def.defName.ToLower() != "pelvis").EnumerableNullOrEmpty())
+                        {
+                            //Pelvis was hit disproportionally and it ended any fight far too quick
+                            BodyPartRecord hitChild = hitParent.parts.Where(x => x.depth == BodyPartDepth.Inside && x.def.defName.ToLower() != "pelvis").RandomElementByWeight(x => x.coverageAbs);
+
+                            penetratedDamageInfo.SetHitPart(hitChild);
+                        }
+
+                        penetratedDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
+                        penetratedDamageInfo.SetWeaponHediff(hediffDef);
+                        penetratedDamageInfo.SetAngle(direction);
+
+                        //outside damage is applied twice, so its split
+                        penetratedDamageInfo.SetAmount(damageInfo.Amount / 2);
+                        damageInfo.SetAmount(damageInfo.Amount / 2);
+
+                        #endregion
+
                     }
                 }
+
+                if (gizmoComp != null)
+                {
+                    if (gizmoComp.SkillReqBP && Rand.Chance(gizmoComp.SkillBodyPartAttackChance) && target.Thing is Pawn p)
+                    {
+                        var Part = pn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined)
+                        .FirstOrFallback(r => r.def == gizmoComp.targetBodyPart);
+                        if (Part != null)
+                        {
+
+                            damageInfo.SetHitPart(Part);
+
+                            if (!Part.parts.NullOrEmpty() && penetrated)
+                            {
+                                penetratedDamageInfo.SetHitPart(Part.parts.RandomElement());
+                            }
+
+                            
+                        }
+                    }
+                }   
+
+                if (penetrated && penetratedDamageInfo.HitPart != null)                     
+                {
+                    yield return penetratedDamageInfo;
+                }
             }
+
+            
+            
+
+                
+
+
+
+
             damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
@@ -370,90 +451,7 @@ namespace CombatExtended
                     }
                 }
             }
-            //apply internal damage
-            //checks if tool can penetrate into internal parts and if target is an actual pawn
-            if (target.Thing is Pawn pn && this.ToolCE.capacities.Any(y => y.GetModExtension<ModExtensionMeleeToolPenetration>()?.canHitInternal ?? false))
-            {
-                if ( 
-                    //can probably be done better, but that's what I came up with
-                    (
-                    (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Sharp, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
-                    |
-                    (ArmorPenetrationSharp > target.Thing.GetStatValueForPawn(StatDefOf.ArmorRating_Blunt, pn) && damageInfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Blunt)
-                    ))
-                {
-                    //Less specific system, has a few issues with arm damage when torso is hit and vice versa
-                    
-                    var penetratedDamageInfo = new DamageInfo(damageInfo);
-                    penetratedDamageInfo.armorPenetrationInt = 2f;
-                    penetratedDamageInfo.SetBodyRegion(damageInfo.Height, BodyPartDepth.Inside);
-                    penetratedDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
-                    penetratedDamageInfo.SetWeaponHediff(hediffDef);
-                    penetratedDamageInfo.SetAngle(direction);
-                    yield return penetratedDamageInfo;
-
-
-                    #region commented out coverage-armor penetration system, non functioning and probably of questionable actual value
-                    /*var bodyPartsCovered = pn.health.hediffSet.GetNotMissingParts(damageInfo.Height, BodyPartDepth.Inside).Where(y => y.def.solid);
-
-                    var bodyPartsNaked = pn.health.hediffSet.GetNotMissingParts(damageInfo.Height, BodyPartDepth.Inside).Where(y => !y.def.solid);
-
-                    bodyPartsCovered = bodyPartsCovered.Where(y => !y.def.HasModExtension<densityModExt>());
-
-                    var RHAAmount = ArmorPenetrationSharp;
-
-                    float amount = (int)damageInfo.Amount;
-
-                    if (bodyPartsCovered.Count() > 0)
-                    {
-                        foreach (BodyPartRecord record in bodyPartsCovered)
-                        {
-                            Log.Message(record.Label);
-
-                            var extension = record.def.GetModExtension<densityModExt>();
-
-                            if (extension != null)
-                            {
-                                RHAAmount -= extension.SharpRating;
-
-                                if (extension.DamageReduction > 0)
-                                {
-                                    var reductionDinfo = new DamageInfo(damageInfo);
-
-                                    reductionDinfo.SetAmount(extension.DamageReduction);
-
-                                    reductionDinfo.SetHitPart(record);
-
-                                    amount -= extension.DamageReduction;
-
-                                    yield return reductionDinfo;
-
-                                }
-                            }
-
-                            
-
-                           
-                        }
-                    }
-
-                    foreach (BodyPartRecord record in bodyPartsNaked)
-                    {
-                        Log.Message(record.Label.Colorize(Color.cyan));
-
-                        var hitPartDinfo = new DamageInfo(damageInfo);
-
-                        hitPartDinfo.SetAmount(amount);
-
-                        hitPartDinfo.SetHitPart(record);
-
-                        yield return hitPartDinfo;
-                    }*/
-                    #endregion
-
-
-                }
-            }
+           
 
             
 
