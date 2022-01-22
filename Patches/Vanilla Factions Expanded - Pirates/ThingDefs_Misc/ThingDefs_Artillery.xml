@@ -18,16 +18,69 @@
 
       <!-- Replace vanilla thingClass -->
       <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="VFEP_Artillery_Cannon"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_Cannon" or defName="VFEP_Turret_FieldGun"]</xpath>
         <value>
           <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
         </value>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="VFEP_Artillery_Cannon"]</xpath>
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]</xpath>
         <value>
-          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          <statBases>
+            <SightsEfficiency>0.5</SightsEfficiency>
+          </statBases>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/comps</xpath>
+        <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>1</magazineSize>
+              <reloadTime>7.2</reloadTime>
+              <ammoSet>AmmoSet_105mmHowitzerShell</ammoSet>
+            </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/weaponTags</xpath>
+        <value>
+          <li>TurretGun</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/verbs</xpath>
+        <value>
+          <verbs>
+            <li Class="CombatExtended.VerbPropertiesCE">
+              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>Bullet_105mmHowitzerShell_HE</defaultProjectile>
+              <warmupTime>5.5</warmupTime>
+              <minRange>32</minRange>
+              <range>700</range>
+              <burstShotCount>1</burstShotCount>
+              <soundCast>VFEP_Shot_FieldCannon</soundCast>
+              <muzzleFlashScale>16</muzzleFlashScale>
+              <circularError>1</circularError>
+              <indirectFirePenalty>0.2</indirectFirePenalty>
+              <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+              </targetParams>
+            </li>
+          </verbs>
         </value>
       </li>
 
