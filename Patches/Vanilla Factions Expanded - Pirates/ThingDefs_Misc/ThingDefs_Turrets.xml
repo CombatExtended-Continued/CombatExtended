@@ -8,11 +8,6 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-      <!-- Temporarily remove turrets from Gauntlet craft, as the custom ThingClass isn't supported. -->
-      <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretGunDef</xpath>
-      </li>
-
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
         <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
