@@ -10,7 +10,7 @@
 
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
-      <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
       </li>
 
       <!-- Replace vanilla thingClass -->
@@ -21,8 +21,21 @@
           </value>
       </li>
 
-	  	<!-- Make turrets taller -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+          <value>
+            <thingCategories />
+          </value>
+      </li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.5</AimingAccuracy>
+				</value>
+			</li>
+
+	  	<!-- Make turrets taller -->
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
         <value>
@@ -49,7 +62,7 @@
         <Properties>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Ammo_12x65mmCharged</defaultProjectile>
+          <defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
           <warmupTime>2</warmupTime>
           <range>62</range>
           <minRange>13</minRange>
@@ -63,7 +76,7 @@
         <AmmoUser>
           <magazineSize>200</magazineSize>
           <reloadTime>10</reloadTime>
-          <ammoSet>AmmoSet_12x65mmCharged</ammoSet>
+          <ammoSet>AmmoSet_12x72mmCharged</ammoSet>
         </AmmoUser>
         <weaponTags Inherit="false">
           <li>TurretGun</li>
