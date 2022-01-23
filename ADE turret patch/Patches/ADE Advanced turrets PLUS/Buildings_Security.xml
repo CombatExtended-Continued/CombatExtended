@@ -1,0 +1,204 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ADE Advanced Turrets +</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+                    <success>Always</success>		
+		<operations>
+		
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AHST" or
+					defName="ADE_Turret_AMBMGT"
+				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AHST" or
+					defName="ADE_Turret_AMBMGT"
+				]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AHST" or
+					defName="ADE_Turret_AMBMGT"
+				]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+			<!-- adding power requirement -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef/comps[
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AHST" or
+					defName="ADE_Turret_AMBMGT"
+				]</xpath>
+				<value>
+				<li Class = "CompProperties_Power">
+				<basePowerConsumption>950</basePowerConsumption>
+				</li>
+				</value>
+			</li>		
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AHST" or
+					defName="ADE_Turret_AMBMGT"
+				]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<AimingAccuracy>1</AimingAccuracy>
+					<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+				</value>
+			</li>
+			<!-- ========== HMG+  Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>ADE_Gun_HMGT</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.18</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.13</SwayFactor>
+					<Bulk>37.08</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.59</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>68</range>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>50Cal_Browning</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>250</magazineSize>
+					<reloadTime>17.8</reloadTime>
+					<ammoSet>AmmoSet_50BMG</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>					
+				</FireModes>				
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ADE_Gun_HMGT"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>68</specialDisplayRadius>
+				</value>
+			</li>
+
+			<!-- ========== Autocannon Launcher Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>ADE_Gun_AMBMGT</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>2.02</SwayFactor>
+					<Bulk>10.66</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.54</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_20x128mmOerlikon_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>65</range>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>Shot_Minigun</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>25</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+					<requireLineOfSight>false</requireLineOfSight>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>500</magazineSize>
+					<reloadTime>18.9</reloadTime>
+					<ammoSet>AmmoSet_20x128mmOerlikon</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ADE_Gun_AMBMGT"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>65</specialDisplayRadius>
+				</value>
+			</li>
+
+			<!-- ========== Anti Aircraft Precision turret PLUS========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>ADE_Gun_AHST</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>1.27</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.2</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>1.02</SwayFactor>
+					<Bulk>28.72</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>3.80</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_40x365mmBofors_HE</defaultProjectile>
+					<warmupTime>2.4</warmupTime>
+					<range>121</range>
+					<soundCast>Shot_SniperRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>55</muzzleFlashScale>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>25</magazineSize>
+					<reloadTime>10.8</reloadTime>
+					<ammoSet>AmmoSet_40x365mmBofors</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>				
+				</FireModes>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ADE_Gun_AHST"]/specialDisplayRadius</xpath>
+				<value>
+					<specialDisplayRadius>121</specialDisplayRadius>
+				</value>
+			</li>
+
+
+		</operations>
+		</match>
+	</Operation>
+</Patch> 
