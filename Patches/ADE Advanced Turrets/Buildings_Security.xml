@@ -49,6 +49,17 @@
 				</li>
 				</value>
 			</li>		
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+					defName="ADE_Turret_HMGT" or
+					defName="ADE_Turret_HST" or
+					defName="ADE_Turret_GLT"
+				]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<AimingAccuracy>1</AimingAccuracy>
+					<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+				</value>
+			</li>
 			<!-- ========== HMG  Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -87,16 +98,9 @@
 				</FireModes>				
 			</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="ADE_Gun_HMGT"]/specialDisplayRadius</xpath>
-				<value>
-					<specialDisplayRadius>54</specialDisplayRadius>
-				</value>
-			</li>
-
 			<!-- ========== Grenade Launcher Turret ========== -->
 
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<li  Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>ADE_Gun_GLT</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
@@ -113,7 +117,7 @@
 					<warmupTime>0.6</warmupTime>
 					<range>55</range>
 					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-					<burstShotCount>2</burstShotCount>
+					<burstShotCount>5</burstShotCount>
 					<soundCast>AGS</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>18</muzzleFlashScale>
@@ -124,8 +128,8 @@
 					</targetParams>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>50</magazineSize>
-					<reloadTime>4.9</reloadTime>
+					<magazineSize>40</magazineSize>
+					<reloadTime>10.9</reloadTime>
 					<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -134,13 +138,6 @@
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="ADE_Gun_GLT"]/specialDisplayRadius</xpath>
-				<value>
-					<specialDisplayRadius>55</specialDisplayRadius>
-				</value>
 			</li>
 
 			<!-- ========== Anti Aircraft Precision ========== -->
@@ -178,28 +175,6 @@
 					<aiAimMode>AimedShot</aiAimMode>
 					<noSnapshot>true</noSnapshot>				
 				</FireModes>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="ADE_Gun_HST"]/specialDisplayRadius</xpath>
-				<value>
-					<specialDisplayRadius>91</specialDisplayRadius>
-				</value>
-			</li>
-
-
-			<!-- ========== Common to many or all Turrets ========== -->
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
-				]/statBases/ShootingAccuracyTurret</xpath>
-				<value>
-					<AimingAccuracy>1</AimingAccuracy>
-					<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
-				</value>
 			</li>
 
 
