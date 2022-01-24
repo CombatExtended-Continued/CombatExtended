@@ -17,6 +17,5 @@ namespace CombatExtended
 
         public static ApparelLayerDef StrappedHead;
 
-        public static ApparelLayerDef MiddleHead;
     }
 }

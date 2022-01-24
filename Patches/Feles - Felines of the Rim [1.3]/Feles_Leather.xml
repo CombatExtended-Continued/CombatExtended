@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Feles - Felines of the Rim [1.3]</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+			defName="Leo_leather" or
+			defName="Tigris_leather" or
+			defName="Jaguar_leather" or
+			defName="Cheetah_leather" or
+			defName="Panther_leather"
+			]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.04</StuffPower_Armor_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+			defName="Leo_leather" or
+			defName="Tigris_leather" or
+			defName="Jaguar_leather" or
+			defName="Cheetah_leather" or
+			defName="Panther_leather"
+			]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.03</StuffPower_Armor_Blunt>
+			</value>
+		</li>
+			
+		</operations>
+	</match>
+	</Operation>
+</Patch>
