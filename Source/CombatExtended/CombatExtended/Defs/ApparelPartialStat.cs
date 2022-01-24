@@ -13,7 +13,7 @@ namespace CombatExtended
     {
         public StatDef stat;
 
-        public float value;
+        public float mult;
 
         public List<BodyPartDef> parts;
 
@@ -21,15 +21,13 @@ namespace CombatExtended
         {
 
             DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "stat", xmlRoot.FirstChild.Name, null, null);
-            this.value = ParseHelper.FromString<float>(xmlRoot.FirstChild.InnerText);
+            this.mult = ParseHelper.FromString<float>(xmlRoot.FirstChild.InnerText);
             if (parts == null)
             {
                 parts = new List<BodyPartDef>();
             }
             foreach (XmlNode node in xmlRoot.LastChild.ChildNodes)
             {
-              
-
                 DirectXmlCrossRefLoader.RegisterListWantsCrossRef(parts, node.InnerText);
             }
         }
