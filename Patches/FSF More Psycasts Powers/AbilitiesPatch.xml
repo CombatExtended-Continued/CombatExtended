@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>[FSF] More Psycast Powers</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== Psyblade ========== -->
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/HediffDef[defName="FSFPsyblade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>handle</label>
+                                <capacities>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>2</power>
+                                <cooldownTime>1.5</cooldownTime>
+                                <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>edge</label>
+                                <capacities>
+                                    <li>Cut</li>
+                                </capacities>
+                                <power>35</power>
+                                <cooldownTime>0.83</cooldownTime>
+                                <chanceFactor>1.33</chanceFactor>
+                                <armorPenetrationBlunt>3.46</armorPenetrationBlunt>
+                                <armorPenetrationSharp>21.6</armorPenetrationSharp>
+                                <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>point</label>
+                                <capacities>
+                                    <li>Stab</li>
+                                </capacities>
+                                <power>16</power>
+                                <cooldownTime>0.94</cooldownTime>
+                                <armorPenetrationBlunt>1.54</armorPenetrationBlunt>
+                                <armorPenetrationSharp>30</armorPenetrationSharp>
+                                <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

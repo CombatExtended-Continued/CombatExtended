@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Infusion 2</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== Common tier ========== -->
+
+                <!-- ======= Apparel =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Absorbing"]/stats/li[1]/value/offset</xpath>
+                    <value>
+                        <offset>0.75</offset>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Hardened"]/stats/li[1]/value/offset</xpath>
+                    <value>
+                        <offset>0.75</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Melee Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Keen"]/stats/li[1]/value/offset</xpath>
+                    <value>
+                        <offset>0.10</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Ranged Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Accurate"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>SightsEfficiency</key>
+                                <value>
+                                    <offset>0.05</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
