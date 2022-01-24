@@ -258,6 +258,24 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakJacket"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<!--Stat def in '<>', value inside, works for both armor rating sharp and blunt -->
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+					<!-- BodyPartDefs -->
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	  </Operation>
+
 
 	<!-- Half the insulation of a regular jacket -->
 	<Operation Class="PatchOperationReplace">
@@ -553,4 +571,3 @@
 	</Operation>
 
 </Patch>
-
