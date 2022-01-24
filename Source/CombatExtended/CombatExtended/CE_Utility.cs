@@ -346,7 +346,7 @@ namespace CombatExtended
                 {
                     if (partial?.parts?.Contains(part) ?? false)
                     {
-                        result = (float)Math.Round( ( (apparel?.HitPoints ?? 1f) * 1f / (apparel?.MaxHitPoints ?? 1f) * 1f) * partial.value * (apparel?.Stuff?.statBases?.Find(x => x.stat == StatDefOf.ArmorRating_Sharp)?.value ?? 1f), 2);
+                        result *= partial.mult;
                         break;
                        
                     }
