@@ -334,7 +334,7 @@ namespace CombatExtended
             if (target.Thing is Pawn p)
             {
 
-                if(damageInfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                if(damageInfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && this.ToolCE.capacities.Any(y => y.GetModExtension<ModExtensionMeleeToolPenetration>()?.canHitInternal ?? false))
                 {
                     if (Rand.Chance(damageInfo.Def.stabChanceOfForcedInternal))
                     {
