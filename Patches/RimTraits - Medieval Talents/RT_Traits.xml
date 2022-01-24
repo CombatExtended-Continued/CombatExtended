@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>RimTraits - Medieval Talents</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Tier 1 -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentBowman" or defName="RT_TalentSwordsman"]/degreeDatas/li/statOffsets</xpath>
+				</li>
+
+				<!-- Tier 2 -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentWeaponsMaster" or defName="RT_TalentHunter" or defName="RT_TalentFletcher"]/degreeDatas/li/statOffsets</xpath>
+				</li>
+
+				<!-- Tier 3 -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentAdventurer" or defName="RT_TalentArchitect"]/degreeDatas/li/statOffsets</xpath>
+				</li>
+
+				<!-- Tier 4 -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentScout"]/degreeDatas/li/statOffsets</xpath>
+				</li>
+
+				<!-- Tier 5 -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentHero" or defName="RT_TalentHerald"]/degreeDatas/li/statOffsets</xpath>
+				</li>
+
+				<!-- Talent Bowman -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentBowman"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeHitChance>1</MeleeHitChance>
+							<MeleeCritChance>0.05</MeleeCritChance>
+							<MeleeParryChance>0.05</MeleeParryChance>
+							<MeleeDodgeChance>0.1</MeleeDodgeChance>
+							<RestRateMultiplier>0.05</RestRateMultiplier>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.10</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Swordsman -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentSwordsman"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeHitChance>2</MeleeHitChance>
+							<MeleeCritChance>0.10</MeleeCritChance>
+							<MeleeParryChance>0.10</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+							<RestRateMultiplier>0.05</RestRateMultiplier>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.10</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Weapons Master -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentWeaponsMaster"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeHitChance>3</MeleeHitChance>
+							<MeleeCritChance>0.15</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+							<RestRateMultiplier>0.05</RestRateMultiplier>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.15</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Hunter -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentHunter"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeHitChance>2</MeleeHitChance>
+							<MeleeCritChance>0.10</MeleeCritChance>
+							<MeleeParryChance>0.10</MeleeParryChance>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+							<MedicalTendQuality>0.05</MedicalTendQuality>
+							<RestRateMultiplier>0.1</RestRateMultiplier>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.15</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Fletcher -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentFletcher"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeDodgeChance>0.2</MeleeDodgeChance>
+							<SmithingSpeed>0.1</SmithingSpeed>
+							<RestRateMultiplier>0.05</RestRateMultiplier>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.15</Suppressability>
+							<ComfyTemperatureMax>3</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-3</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Adventurer -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentAdventurer"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.15</AimingDelayFactor>
+							<MeleeHitChance>3</MeleeHitChance>
+							<MeleeCritChance>0.15</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<RestRateMultiplier>0.15</RestRateMultiplier>
+							<PawnTrapSpringChance>0.2</PawnTrapSpringChance>
+							<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<Suppressability>-0.15</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Architect -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentArchitect"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ConstructionSpeed>0.15</ConstructionSpeed>
+							<FixBrokenDownBuildingSuccessChance>0.15</FixBrokenDownBuildingSuccessChance>
+							<MiningSpeed>0.15</MiningSpeed>
+							<MiningYield>0.15</MiningYield>
+							<SculptingSpeed>0.15</SculptingSpeed>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.10</PainShockThreshold>
+							<ComfyTemperatureMax>3</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-3</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Scout -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentScout"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.1</AimingDelayFactor>
+							<MeleeHitChance>3</MeleeHitChance>
+							<MeleeCritChance>0.15</MeleeCritChance>
+							<MeleeParryChance>0.15</MeleeParryChance>
+							<MeleeDodgeChance>0.3</MeleeDodgeChance>
+							<PlantHarvestYield>0.1</PlantHarvestYield>
+							<MedicalTendSpeed>0.10</MedicalTendSpeed>
+							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<PawnTrapSpringChance>0.1</PawnTrapSpringChance>
+							<RestRateMultiplier>0.25</RestRateMultiplier>
+							<MentalBreakThreshold>-0.20</MentalBreakThreshold>
+							<PainShockThreshold>0.20</PainShockThreshold>
+							<Suppressability>-0.20</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Hero -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentHero"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>3</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.25</AimingDelayFactor>
+							<MeleeHitChance>6</MeleeHitChance>
+							<MeleeCritChance>0.30</MeleeCritChance>
+							<MeleeParryChance>0.30</MeleeParryChance>
+							<MeleeDodgeChance>0.6</MeleeDodgeChance>
+							<MedicalTendQuality>0.15</MedicalTendQuality>
+							<PawnTrapSpringChance>0.1</PawnTrapSpringChance>
+							<RestRateMultiplier>0.5</RestRateMultiplier>
+							<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+							<PainShockThreshold>0.15</PainShockThreshold>
+							<Suppressability>-0.25</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Talent Herald -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraitDef[defName="RT_TalentHerald"]/degreeDatas/li</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+							<AimingDelayFactor>-0.20</AimingDelayFactor>
+							<MeleeHitChance>4</MeleeHitChance>
+							<MeleeCritChance>0.25</MeleeCritChance>
+							<MeleeParryChance>0.25</MeleeParryChance>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<RestRateMultiplier>0.45</RestRateMultiplier>
+							<PawnTrapSpringChance>0.2</PawnTrapSpringChance>
+							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
+							<PainShockThreshold>0.15</PainShockThreshold>
+							<Suppressability>-0.25</Suppressability>
+							<ComfyTemperatureMax>5</ComfyTemperatureMax>
+							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
+						</statOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
