@@ -521,8 +521,8 @@
 						<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
 						<hasStandardCommand>true</hasStandardCommand>
 						<onlyManualCast>True</onlyManualCast>
-						<warmupTime>1.5</warmupTime>
-						<range>36</range>
+						<warmupTime>0.6</warmupTime>
+						<range>40</range>
 						<minRange>5</minRange>
 						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 						<soundCast>Shot_IncendiaryLauncher</soundCast>
@@ -533,7 +533,7 @@
 							<canTargetLocations>true</canTargetLocations>
 						</targetParams>
 						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-						<defaultProjectile>Bullet_30x29mmGrenade_HE</defaultProjectile>
+						<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
 						<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
 					</li>
 				</verbs>
@@ -543,7 +543,7 @@
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
 			<value>
-				<ammoDef>Ammo_30x29mmGrenade_HE</ammoDef>
+				<ammoDef>Ammo_40x53mmGrenade_HE</ammoDef>
 			</value>
 		</li>
 
@@ -551,6 +551,12 @@
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
 			<value>
 				<ammoCountPerCharge>1</ammoCountPerCharge>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barrage"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+			<value>
+				<maxCharges>8</maxCharges>
 			</value>
 		</li>
 
