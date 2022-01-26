@@ -14,7 +14,7 @@
 		<defName>AmmoSet_20x128mmOerlikon</defName>
 		<label>20x128mm Oerlikon</label>
 		<ammoTypes>
-      		<Ammo_20x128mmOerlikon_FMJ>Bullet_20x128mmOerlikon_FMJ</Ammo_20x128mmOerlikon_FMJ>		
+      		<Ammo_20x128mmOerlikon_AP>Bullet_20x128mmOerlikon_AP</Ammo_20x128mmOerlikon_AP>		
 			<Ammo_20x128mmOerlikon_Incendiary>Bullet_20x128mmOerlikon_Incendiary</Ammo_20x128mmOerlikon_Incendiary>
 			<Ammo_20x128mmOerlikon_HE>Bullet_20x128mmOerlikon_HE</Ammo_20x128mmOerlikon_HE>
 			<Ammo_20x128mmOerlikon_Sabot>Bullet_20x128mmOerlikon_Sabot</Ammo_20x128mmOerlikon_Sabot>	   			
@@ -41,17 +41,17 @@
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
-      <defName>Ammo_20x128mmOerlikon_FMJ</defName>
-      <label>20x128mm Oerlikon cartridge (FMJ)</label>
+      <defName>Ammo_20x128mmOerlikon_AP</defName>
+      <label>20x128mm Oerlikon cartridge (AP)</label>
       <graphicData>
-        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <texPath>Things/Ammo/HighCaliber/AP</texPath>
         <graphicClass>Graphic_StackCount</graphicClass>
       </graphicData>
       <statBases>
         <MarketValue>1.41</MarketValue>
       </statBases>
-      <ammoClass>FullMetalJacket</ammoClass>
-      <cookOffProjectile>Bullet_20x128mmOerlikon_FMJ</cookOffProjectile>
+      <ammoClass>ArmorPiercing</ammoClass>
+      <cookOffProjectile>Bullet_20x128mmOerlikon_AP</cookOffProjectile>
     </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x128mmOerlikonBase">
@@ -112,11 +112,11 @@
 	</ThingDef>
 
   <ThingDef ParentName="Base20x128mmOerlikonBullet">
-    <defName>Bullet_20x128mmOerlikon_FMJ</defName>
-    <label>20x128mm Oerlikon bullet (FMJ)</label>
+    <defName>Bullet_20x128mmOerlikon_AP</defName>
+    <label>20x128mm Oerlikon bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>75</damageAmountBase>
-      <armorPenetrationSharp>18</armorPenetrationSharp>
+      <damageAmountBase>47</damageAmountBase>
+      <armorPenetrationSharp>36</armorPenetrationSharp>
       <armorPenetrationBlunt>314.28</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -167,10 +167,10 @@
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_20x128mmOerlikon_FMJ</defName>
-      <label>make 20x128mm Oerlikon (FMJ) cartridge x200</label>
-      <description>Craft 200 20x128mm Oerlikon (FMJ) cartridges.</description>
-      <jobString>Making 20x128mm Oerlikon (FMJ) cartridges.</jobString>
+      <defName>MakeAmmo_20x128mmOerlikon_AP</defName>
+      <label>make 20x128mm Oerlikon (AP) cartridge x200</label>
+      <description>Craft 200 20x128mm Oerlikon (AP) cartridges.</description>
+      <jobString>Making 20x128mm Oerlikon (AP) cartridges.</jobString>
       <ingredients>
         <li>
           <filter>
@@ -187,7 +187,7 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_20x128mmOerlikon_FMJ>200</Ammo_20x128mmOerlikon_FMJ>
+        <Ammo_20x128mmOerlikon_AP>200</Ammo_20x128mmOerlikon_AP>
       </products>
       <workAmount>14200</workAmount>
     </RecipeDef>
