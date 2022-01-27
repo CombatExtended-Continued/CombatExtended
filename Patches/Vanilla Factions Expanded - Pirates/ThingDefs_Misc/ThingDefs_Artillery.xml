@@ -9,18 +9,24 @@
       <operations>
       
       <!-- Remove turret burst warmup and cooldown because it's annoying and just needlessly obfuscates things -->
-      <li Class="PatchOperationRemove">
+      <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[
           defName = "VFEP_Turret_FieldGun" or
-          defName = "VFEP_Turret_Cannon"
+          @Name = "VFEP_BaseCannonBuilding"
           ]/building/turretBurstWarmupTime</xpath>
+          <value>
+            <turretBurstWarmupTime>1</turretBurstWarmupTime>
+          </value>
       </li>
 
       <li Class="PatchOperationRemove">
         <xpath>/Defs/ThingDef[
           defName = "VFEP_Turret_FieldGun" or
-          defName = "VFEP_Turret_Cannon"
+          @Name = "VFEP_BaseCannonBuilding"
           ]/building/turretBurstCooldownTime</xpath>
+          <value>
+            <turretBurstCooldownTime>1</turretBurstCooldownTime>
+          </value>
       </li>
 
 
@@ -110,7 +116,7 @@
 				</statBases>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
-					<reloadTime>13</reloadTime>
+					<reloadTime>12</reloadTime>
 					<ammoSet>AmmoSet_CannonBall</ammoSet>
 				</AmmoUser>
 				<FireModes>
