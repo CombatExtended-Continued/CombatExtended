@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>ReGrowth: Mutated Animals Pack</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>9</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.5</MeleeDodgeChance>
+					<MeleeCritChance>0.46</MeleeCritChance>
+					<MeleeParryChance>0.78</MeleeParryChance>
+				</value>
+			</li>
+				
+				
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>2.5</baseBodySize>
+				</value>
+			</li>
+				
+			<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/statBases/MoveSpeed</xpath>
+		<value>
+			<MoveSpeed>6.75</MoveSpeed>
+		</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeathclaw"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+                    							<li>Scratch</li>
+                    							<li>Stab</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>1.1</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftClaws</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>7.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right blade</label>
+							<capacities>
+                    							<li>Scratch</li>
+                    							<li>Stab</li>
+							</capacities>
+							<power>40</power>
+							<cooldownTime>1.1</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightClaws</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationSharp>7.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>16</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>2</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                						<chanceFactor>0.7</chanceFactor>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
+							<armorPenetrationBlunt>6.750</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>Horn</label>
+							<capacities>
+                    							<li>Scratch</li>
+                    							<li>Stab</li>
+							</capacities>
+							<power>24</power>
+							<cooldownTime>1.45</cooldownTime>
+							<linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationSharp>12</armorPenetrationSharp>
+							<armorPenetrationBlunt>8.750</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>6</power>
+							<cooldownTime>1.65</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.750</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

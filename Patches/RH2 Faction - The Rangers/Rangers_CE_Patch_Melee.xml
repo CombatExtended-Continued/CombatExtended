@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>[RH2] Faction: The Rangers</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Vintage KABAR_Knife === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="RNMeleeWeapon_VintageKABAR_Knife"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+            <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="RNMeleeWeapon_VintageKABAR_Knife"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.05</MeleeCritChance>
+              <MeleeParryChance>0.15</MeleeParryChance>
+              <MeleeDodgeChance>0.05</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="RNMeleeWeapon_VintageKABAR_Knife"]/weaponTags</xpath>
+          <value>
+            <li>CE_Sidearm_Melee</li>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="RNMeleeWeapon_VintageKABAR_Knife"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>1.26</cooldownTime>
+                <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>            
+              <li Class="CombatExtended.ToolCE">
+                <label>blade</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>11</power>
+                <cooldownTime>1.22</cooldownTime>
+                <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>12</power>
+                <cooldownTime>1.29</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.44</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
