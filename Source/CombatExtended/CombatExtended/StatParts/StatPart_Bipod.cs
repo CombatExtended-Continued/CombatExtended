@@ -42,11 +42,11 @@ namespace CombatExtended
 			{
 				if (varA.IsSetUpRn == true)
 				{
-					return "Bipod IS set up - " + varA.Props.recoilMulton.ToString().Colorize(Color.blue);
+					return "Bipod IS set up -" + " x".Colorize(Color.green) + varA.Props.recoilMulton.ToString().Colorize(Color.green);
 				}
 				else
 				{
-					return "Bipod is NOT set up - " + varA.Props.recoilMultoff.ToString().Colorize(Color.blue);
+					return "Bipod is NOT set up -" + " x".Colorize(Color.red) + varA.Props.recoilMultoff.ToString().Colorize(Color.red);
 				}
 			}
 			else
@@ -86,11 +86,11 @@ namespace CombatExtended
 			{
 				if (varA.IsSetUpRn == true)
 				{
-					return "Bipod IS set up - " + varA.Props.swayMult.ToString().Colorize(Color.blue);
+					return "Bipod IS set up -" + " x".Colorize(Color.green) + varA.Props.swayMult.ToString().Colorize(Color.green);
 				}
 				else
 				{
-					return "Bipod is NOT set up - " + varA.Props.swayPenalty.ToString().Colorize(Color.blue);
+					return "Bipod is NOT set up - " + "x".Colorize(Color.red) + varA.Props.swayPenalty.ToString().Colorize(Color.red);
 				}
 			}
 			else
