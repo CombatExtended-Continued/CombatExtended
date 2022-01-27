@@ -14,7 +14,7 @@ namespace CombatExtended
         #region Settings
 
         // General settings
-        private bool bipodMechanics = false;
+        private bool bipodMechanics = true;
         private bool autosetup = true;
         private bool showCasings = true;
         private bool showTaunts = true;
@@ -24,12 +24,15 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
+        private bool genericammo = false;
 
 	    private bool showExtraTooltips = false;
 
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
+
+        public bool GenericAmmo => genericammo;
 
         public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
@@ -125,6 +128,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
 
+            Scribe_Values.Look(ref genericammo, "genericammo", false);
+
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
             //Bipod settings
@@ -214,6 +219,7 @@ namespace CombatExtended
             if (enableAmmoSystem)
             {
                 list.CheckboxLabeled("CE_Settings_RightClickAmmoSelect_Title".Translate(), ref rightClickAmmoSelect, "CE_Settings_RightClickAmmoSelect_Desc".Translate());
+                list.CheckboxLabeled("Use generic ammo".Translate(), ref genericammo, "Use generic ammo".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoReloadOnChangeAmmo_Title".Translate(), ref autoReloadOnChangeAmmo, "CE_Settings_AutoReloadOnChangeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_AutoTakeAmmo_Title".Translate(), ref autoTakeAmmo, "CE_Settings_AutoTakeAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
