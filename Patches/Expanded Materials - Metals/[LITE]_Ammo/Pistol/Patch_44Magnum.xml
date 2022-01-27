@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Combat Extended</li>
+		<li>Cupro's Alloys (Continued)</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+		<!-- .44 Magnum -->
+		<!-- Full Metal Jacket -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_FMJ"]/ingredients</xpath>
+			<value>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Lead</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>				
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Chemfuel</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+			</ingredients>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_FMJ"]/fixedIngredientFilter</xpath>
+			<value>
+			<fixedIngredientFilter>
+					<thingDefs>
+					    <li>VMEu_Bronze</li>
+						<li>Steel</li>
+					</thingDefs>
+			</fixedIngredientFilter>
+			</value>
+		</li>
+		<!-- Hollow Point -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_HP"]/ingredients</xpath>
+			<value>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Lead</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>				
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Chemfuel</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+			</ingredients>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_HP"]/fixedIngredientFilter</xpath>
+			<value>
+			<fixedIngredientFilter>
+					<thingDefs>
+							<li>VMEu_Bronze</li>
+							<li>Steel</li>
+					</thingDefs>
+			</fixedIngredientFilter>
+			</value>
+		</li>
+		<!-- Armor-piercing -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_AP"]/ingredients</xpath>
+			<value>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>				
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Chemfuel</li>
+						</thingDefs>
+					</filter>
+					<count>5</count>
+				</li>
+				<li>
+					<filter>
+						<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					</filter>
+					<count>2</count>
+				</li>
+			</ingredients>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/RecipeDef[defName="MakeAmmo_44Magnum_AP"]/fixedIngredientFilter</xpath>
+			<value>
+			<fixedIngredientFilter>
+					<thingDefs>
+						<li>VMEu_Bronze</li>
+						<li>Steel</li>
+					</thingDefs>
+			</fixedIngredientFilter>
+			</value>
+		</li>
+
+		</operations>
+	</match>
+</Operation>
+</Patch>		

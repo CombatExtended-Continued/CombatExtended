@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Combat Extended</li>
+		<li>Cupro's Alloys (Continued)</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+	<success>Always</success>
+		<operations>
+		
+
+		<!-- .410 Bore -->
+		<!-- Buckshot -->
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/RecipeDef[defName="MakeAmmo_410Bore_Buck"]/ingredients</xpath>
+			<value>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Lead</li>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>3</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>VMEu_Bronze</li>
+						</thingDefs>
+					</filter>
+					<count>3</count>
+				</li>				
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Chemfuel</li>
+						</thingDefs>
+					</filter>
+					<count>3</count>
+				</li>
+			</ingredients>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/RecipeDef[defName="MakeAmmo_410Bore_Buck"]/fixedIngredientFilter</xpath>
+			<value>
+			<fixedIngredientFilter>
+					<thingDefs>
+					    <li>VMEu_Lead</li>
+						<li>Steel</li>
+					</thingDefs>
+			</fixedIngredientFilter>
+			</value>
+		</li>
+
+		</operations>
+	</match>
+</Operation>
+</Patch>		
