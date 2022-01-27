@@ -7,6 +7,22 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+      
+      <!-- Remove turret burst warmup and cooldown because it's annoying and just needlessly obfuscates things -->
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[
+          defName = "VFEP_Turret_FieldGun" or
+          defName = "VFEP_Turret_Cannon"
+          ]/building/turretBurstWarmupTime</xpath>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[
+          defName = "VFEP_Turret_FieldGun" or
+          defName = "VFEP_Turret_Cannon"
+          ]/building/turretBurstCooldownTime</xpath>
+      </li>
+
 
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
@@ -88,13 +104,13 @@
 				<defName>VFEP_Artillery_Cannon</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.64</RangedWeapon_Cooldown>
-					<SightsEfficiency>2.3</SightsEfficiency>
-					<ShotSpread>0.24</ShotSpread>
+					<SightsEfficiency>0.80</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
 					<SwayFactor>0.81</SwayFactor>
 				</statBases>
 				<AmmoUser>
 					<magazineSize>1</magazineSize>
-					<reloadTime>14.8</reloadTime>
+					<reloadTime>13</reloadTime>
 					<ammoSet>AmmoSet_CannonBall</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -114,7 +130,7 @@
               <verbClass>CombatExtended.Verb_ShootCE</verbClass>
               <hasStandardCommand>true</hasStandardCommand>
               <defaultProjectile>Bullet_CannonBall_Round</defaultProjectile>
-              <warmupTime>4.3</warmupTime>
+              <warmupTime>3.3</warmupTime>
               <range>64</range>
               <minRange>16</minRange>
               <soundCast>VFEP_Shot_Cannon</soundCast>
