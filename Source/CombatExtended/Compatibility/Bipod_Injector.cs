@@ -28,7 +28,6 @@ namespace CombatExtended
 				List<ThingDef> defs = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(k => (k.weaponTags?.Any(O => O == bipod_def.bipod_id) ?? false) && (!k.Verbs?.Any(P => P.verbClass == typeof(CompProperties_BipodComp)) ?? false));
 				foreach (ThingDef def in defs)
 				{
-					Log.Message("adding bipod (" + bipod_def.label + ") to: " + def.defName.Colorize(Color.cyan));
 					if (def.Verbs?.Any(PP => PP.verbClass == typeof(Verb_ShootCE)) ?? false)
 					{
 						var dar = def.Verbs.Find(PP => PP.verbClass == typeof(Verb_ShootCE)).MemberwiseClone();
@@ -39,11 +38,7 @@ namespace CombatExtended
 							def.Verbs.Clear();
 							def.comps.Add(new CompProperties_BipodComp { catDef = bipod_def, swayMult = bipod_def.swayMult, swayPenalty = bipod_def.swayPenalty, additionalrange = bipod_def.ad_Range, recoilMulton = bipod_def.recoil_mult_setup, recoilMultoff = bipod_def.recoil_mult_NOT_setup, ticksToSetUp = bipod_def.setuptime, warmupMult = bipod_def.warmup_mult_setup, warmupPenalty = bipod_def.warmup_mult_NOT_setup });
 							def.Verbs.Add(dar);
-							Log.Message("sucessfully added bipod (" + bipod_def.label + ") to: " + def.defName.Colorize(bipod_def.logColor));
-						}
-						else
-						{
-							Log.Message("adding bipod failed in " + def.label.Colorize(Color.red) + ". It appears to have no VerbShootCE in verbs");
+							def.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats});
 						}
 					}
 					else
