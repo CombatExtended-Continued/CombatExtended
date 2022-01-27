@@ -8,33 +8,9 @@
 			<operations>
 
 				<!-- Tier 1 -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraitDef[defName="RT_TalentBowman" or defName="RT_TalentSwordsman"]/degreeDatas/li/statOffsets</xpath>
-				</li>
-
-				<!-- Tier 2 -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraitDef[defName="RT_TalentWeaponsMaster" or defName="RT_TalentHunter" or defName="RT_TalentFletcher"]/degreeDatas/li/statOffsets</xpath>
-				</li>
-
-				<!-- Tier 3 -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraitDef[defName="RT_TalentAdventurer" or defName="RT_TalentArchitect"]/degreeDatas/li/statOffsets</xpath>
-				</li>
-
-				<!-- Tier 4 -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraitDef[defName="RT_TalentScout"]/degreeDatas/li/statOffsets</xpath>
-				</li>
-
-				<!-- Tier 5 -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraitDef[defName="RT_TalentHero" or defName="RT_TalentHerald"]/degreeDatas/li/statOffsets</xpath>
-				</li>
-
 				<!-- Talent Bowman -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentBowman"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentBowman"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
@@ -54,8 +30,8 @@
 				</li>
 
 				<!-- Talent Swordsman -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentSwordsman"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentSwordsman"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
@@ -74,9 +50,10 @@
 					</value>
 				</li>
 
+				<!-- Tier 2 -->
 				<!-- Talent Weapons Master -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentWeaponsMaster"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentWeaponsMaster"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
@@ -96,8 +73,8 @@
 				</li>
 
 				<!-- Talent Hunter -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentHunter"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentHunter"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
@@ -118,8 +95,8 @@
 				</li>
 
 				<!-- Talent Fletcher -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentFletcher"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentFletcher"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
@@ -136,9 +113,10 @@
 					</value>
 				</li>
 
+				<!-- Tier 3 -->
 				<!-- Talent Adventurer -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentAdventurer"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentAdventurer"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
@@ -148,6 +126,8 @@
 							<MeleeParryChance>0.15</MeleeParryChance>
 							<MeleeDodgeChance>0.3</MeleeDodgeChance>
 							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<CarryWeight>2</CarryWeight>
+							<CarryBulk>3</CarryBulk>
 							<RestRateMultiplier>0.15</RestRateMultiplier>
 							<PawnTrapSpringChance>0.2</PawnTrapSpringChance>
 							<MentalBreakThreshold>-0.15</MentalBreakThreshold>
@@ -160,8 +140,8 @@
 				</li>
 
 				<!-- Talent Architect -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentArchitect"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentArchitect"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ConstructionSpeed>0.15</ConstructionSpeed>
@@ -170,6 +150,8 @@
 							<MiningYield>0.15</MiningYield>
 							<SculptingSpeed>0.15</SculptingSpeed>
 							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+							<CarryWeight>2</CarryWeight>
+							<CarryBulk>3</CarryBulk>
 							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
 							<PainShockThreshold>0.10</PainShockThreshold>
 							<ComfyTemperatureMax>3</ComfyTemperatureMax>
@@ -178,9 +160,10 @@
 					</value>
 				</li>
 
+				<!-- Tier 4 -->
 				<!-- Talent Scout -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentScout"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentScout"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
@@ -192,6 +175,8 @@
 							<PlantHarvestYield>0.1</PlantHarvestYield>
 							<MedicalTendSpeed>0.10</MedicalTendSpeed>
 							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<CarryWeight>-1</CarryWeight>
+							<CarryBulk>-2</CarryBulk>
 							<PawnTrapSpringChance>0.1</PawnTrapSpringChance>
 							<RestRateMultiplier>0.25</RestRateMultiplier>
 							<MentalBreakThreshold>-0.20</MentalBreakThreshold>
@@ -203,9 +188,10 @@
 					</value>
 				</li>
 
+				<!-- Tier 5 -->
 				<!-- Talent Hero -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentHero"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentHero"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>3</ShootingAccuracyPawn>
@@ -215,6 +201,8 @@
 							<MeleeParryChance>0.30</MeleeParryChance>
 							<MeleeDodgeChance>0.6</MeleeDodgeChance>
 							<MedicalTendQuality>0.15</MedicalTendQuality>
+							<CarryWeight>5</CarryWeight>
+							<CarryBulk>5</CarryBulk>
 							<PawnTrapSpringChance>0.1</PawnTrapSpringChance>
 							<RestRateMultiplier>0.5</RestRateMultiplier>
 							<MentalBreakThreshold>-0.15</MentalBreakThreshold>
@@ -227,8 +215,8 @@
 				</li>
 
 				<!-- Talent Herald -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/TraitDef[defName="RT_TalentHerald"]/degreeDatas/li</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentHerald"]/degreeDatas/li/statOffsets</xpath>
 					<value>
 						<statOffsets>
 							<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
@@ -238,6 +226,8 @@
 							<MeleeParryChance>0.25</MeleeParryChance>
 							<MeleeDodgeChance>0.5</MeleeDodgeChance>
 							<MedicalTendQuality>0.10</MedicalTendQuality>
+							<CarryWeight>4</CarryWeight>
+							<CarryBulk>4</CarryBulk>
 							<RestRateMultiplier>0.45</RestRateMultiplier>
 							<PawnTrapSpringChance>0.2</PawnTrapSpringChance>
 							<MentalBreakThreshold>-0.10</MentalBreakThreshold>
@@ -247,6 +237,29 @@
 							<ComfyTemperatureMin>-5</ComfyTemperatureMin>
 						</statOffsets>
 					</value>
+				</li>
+				
+				<!-- Any Tier -->
+				<!-- Replacing Carry Capacity to Carry Weight or Bulk Bonus -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentBuilder" or defName="RT_TalentMiner" or defName="RT_TalentTrader" or defName="RT_TalentHerbalist" or defName="RT_TalentJackOfAllTrades"]/degreeDatas/li/statOffsets/CarryingCapacity</xpath>
+					<value>
+						<CarryWeight>1</CarryWeight>
+						<CarryBulk>2</CarryBulk>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/TraitDef[defName="RT_TalentGroundskeeper" or defName="RT_TalentEngineer"]/degreeDatas/li/statOffsets/CarryingCapacity</xpath>
+					<value>
+						<CarryWeight>2</CarryWeight>
+						<CarryBulk>3</CarryBulk>
+					</value>
+				</li>
+				
+				<!-- Remove Movespeed Bonus -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/TraitDef[defName="RT_TalentPhysician" or defName="RT_TalentGroundskeeper" or defName="RT_TalentEngineer" or defName="RT_TalentCook" or defName="RT_TalentHerbalist" or defName="RT_TalentArmourer" or defName="RT_TalentVeterinarian" or defName="RT_TalentChef" or defName="RT_TalentSurgeon" or defName="RT_TalentPhilosopher" or defName="RT_TalentRecruiter" or defName="RT_TalentJackOfAllTrades"]/degreeDatas/li/statOffsets/MoveSpeed</xpath>
 				</li>
 
 			</operations>
