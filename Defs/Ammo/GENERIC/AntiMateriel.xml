@@ -4,29 +4,29 @@
 <!--really just relabeled .338 Lapua Magnum-->
 
 	<ThingCategoryDef>
-		<defName>AmmoHighCaliber</defName>
-		<label>high caliber ammo</label>
+		<defName>AmmoAntiMateriel</defName>
+		<label>anti-materiel</label>
 		<parent>AmmoHighCaliber</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+		<iconPath>UI/Icons/ThingCategories/AmmoHighCaliber</iconPath>
 	</ThingCategoryDef>
 
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_HighCaliber</defName>
-    <label>high caliber</label>
+    <defName>AmmoSet_AntiMateriel</defName>
+    <label>anti-materiel</label>
     <ammoTypes>
-      <Ammo_HighCaliber_FMJ>Bullet_50BMG_FMJ</Ammo_HighCaliber_FMJ>
-      <Ammo_HighCaliber_Incendiary>Bullet_50BMG_Incendiary</Ammo_HighCaliber_Incendiary>
-      <Ammo_HighCaliber_HE>Bullet_50BMG_HE</Ammo_HighCaliber_HE>
-      <Ammo_HighCaliber_Sabot>Bullet_50BMG_Sabot</Ammo_HighCaliber_Sabot>	  
+      <Ammo_AntiMateriel_FMJ>Bullet_50BMG_FMJ</Ammo_AntiMateriel_FMJ>
+      <Ammo_AntiMateriel_Incendiary>Bullet_50BMG_Incendiary</Ammo_AntiMateriel_Incendiary>
+      <Ammo_AntiMateriel_HE>Bullet_50BMG_HE</Ammo_AntiMateriel_HE>
+      <Ammo_AntiMateriel_Sabot>Bullet_50BMG_Sabot</Ammo_AntiMateriel_Sabot>	  
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
   
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoHighCaliberBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoAntiMaterielBase" ParentName="SmallAmmoBase" Abstract="True">
         <description>Large caliber bullet used by heavy machine guns and anti-materiel rifles.</description>
 		<statBases>
             <Mass>0.140</Mass>
@@ -38,14 +38,14 @@
             <li>CE_AutoEnableCrafting</li>
         </tradeTags>
 		<thingCategories>
-			<li>AmmoHighCaliber</li>
+			<li>AmmoAntiMateriel</li>
 		</thingCategories>
         <stackLimit>2000</stackLimit>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">		
-        <defName>Ammo_HighCaliber_FMJ</defName>
-		<label>high caliber cartridge (FMJ)</label>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAntiMaterielBase">		
+        <defName>Ammo_AntiMateriel_FMJ</defName>
+		<label>anti-materiel cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/STACK_RANGED/HighCaliber/FMJ</texPath>
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
@@ -57,9 +57,9 @@
 		<cookOffProjectile>Bullet_50BMG_FMJ</cookOffProjectile>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
-        <defName>Ammo_HighCaliber_Incendiary</defName>
-        <label>high caliber cartridge (AP-I)</label>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAntiMaterielBase">
+        <defName>Ammo_AntiMateriel_Incendiary</defName>
+        <label>anti-materiel cartridge (AP-I)</label>
         <graphicData>
         <texPath>Things/Ammo/STACK_RANGED/HighCaliber/Incendiary</texPath>
         <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
@@ -71,9 +71,9 @@
         <cookOffProjectile>Bullet_50BMG_Incendiary</cookOffProjectile>
     </ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
-        <defName>Ammo_HighCaliber_HE</defName>
-        <label>high caliber cartridge (HE)</label>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAntiMaterielBase">
+        <defName>Ammo_AntiMateriel_HE</defName>
+        <label>anti-materiel cartridge (HE)</label>
         <graphicData>
         <texPath>Things/Ammo/STACK_RANGED/HighCaliber/HE</texPath>
         <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
@@ -85,9 +85,9 @@
         <cookOffProjectile>Bullet_50BMG_HE</cookOffProjectile>
     </ThingDef>
     
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoHighCaliberBase">
-        <defName>Ammo_HighCaliber_Sabot</defName>
-        <label>high caliber cartridge (Sabot)</label>
+    <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoAntiMaterielBase">
+        <defName>Ammo_AntiMateriel_Sabot</defName>
+        <label>anti-materiel cartridge (Sabot)</label>
         <graphicData>
         <texPath>Things/Ammo/STACK_RANGED/HighCaliber/Sabot</texPath>
         <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
@@ -104,10 +104,10 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_HighCaliber_FMJ</defName>
-		<label>make high caliber (FMJ) cartridge x200</label>
-		<description>Craft 200 high caliber (FMJ) cartridges.</description>
-		<jobString>Making high caliber (FMJ) cartridges.</jobString>
+		<defName>MakeAmmo_AntiMateriel_FMJ</defName>
+		<label>make anti-materiel (FMJ) cartridge x200</label>
+		<description>Craft 200 anti-materiel (FMJ) cartridges.</description>
+		<jobString>Making anti-materiel (FMJ) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -124,17 +124,17 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_HighCaliber_FMJ>200</Ammo_HighCaliber_FMJ>
+			<Ammo_AntiMateriel_FMJ>200</Ammo_AntiMateriel_FMJ>
 		</products>
 		<workAmount>6000</workAmount>
 	</RecipeDef>
 
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_HighCaliber_Incendiary</defName>
-    <label>make high caliber (AP-I) cartridge x200</label>
-    <description>Craft 200 high caliber (AP-I) cartridges.</description>
-    <jobString>Making high caliber (AP-I) cartridges.</jobString>
+    <defName>MakeAmmo_AntiMateriel_Incendiary</defName>
+    <label>make anti-materiel (AP-I) cartridge x200</label>
+    <description>Craft 200 anti-materiel (AP-I) cartridges.</description>
+    <jobString>Making anti-materiel (AP-I) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -160,16 +160,16 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_Incendiary>200</Ammo_HighCaliber_Incendiary>
+      <Ammo_AntiMateriel_Incendiary>200</Ammo_AntiMateriel_Incendiary>
     </products>
     <workAmount>7800</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_HighCaliber_HE</defName>
-    <label>make high caliber (HE) cartridge x200</label>
-    <description>Craft 200 high caliber (HE) cartridges.</description>
-    <jobString>Making high caliber (HE) cartridges.</jobString>
+    <defName>MakeAmmo_AntiMateriel_HE</defName>
+    <label>make anti-materiel (HE) cartridge x200</label>
+    <description>Craft 200 anti-materiel (HE) cartridges.</description>
+    <jobString>Making anti-materiel (HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -195,16 +195,16 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_HE>200</Ammo_HighCaliber_HE>
+      <Ammo_AntiMateriel_HE>200</Ammo_AntiMateriel_HE>
     </products>
     <workAmount>3600</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_HighCaliber_Sabot</defName>
-    <label>make high caliber (Sabot) cartridge x200</label>
-    <description>Craft 200 high caliber (Sabot) cartridges.</description>
-    <jobString>Making high caliber (Sabot) cartridges.</jobString>
+    <defName>MakeAmmo_AntiMateriel_Sabot</defName>
+    <label>make anti-materiel (Sabot) cartridge x200</label>
+    <description>Craft 200 anti-materiel (Sabot) cartridges.</description>
+    <jobString>Making anti-materiel (Sabot) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -239,7 +239,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_HighCaliber_Sabot>200</Ammo_HighCaliber_Sabot>
+      <Ammo_AntiMateriel_Sabot>200</Ammo_AntiMateriel_Sabot>
     </products>
     <workAmount>2400</workAmount>
   </RecipeDef>
