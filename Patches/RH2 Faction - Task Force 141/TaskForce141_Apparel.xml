@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+<Operation Class="PatchOperationFindMod">
+    <mods>
+    <li>[RH2] Faction: Task Force 141</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+    <operations>    
+
+        <!-- Shirts, pants, hats, earpro-->
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName="RNApparel_TacticalJacket_141Fleece" or 
+                defName="RNApparel_Pants_CryeG3MultiCam" or
+                defName="RNApparel_Pants_BDUDCU" or
+                defName="RNApparel_BoonieHat_Price" or
+                defName="RNApparel_EarDefs_PeltorComtacII"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="RNApparel_EarDefs_PeltorComtacII"]/costStuffCount</xpath>
+            <value>
+                <costStuffCount>20</costStuffCount>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[
+                defName="RNApparel_TacticalJacket_141Fleece" or 
+                defName="RNApparel_Pants_CryeG3MultiCam" or
+                defName="RNApparel_Pants_BDUDCU"]/statBases</xpath>
+            <value>
+                <Bulk>2</Bulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="RNApparel_TacticalJacket_141Fleece"]/statBases/Mass</xpath>
+            <value>
+                <Mass>0.75</Mass>
+            </value>
+        </li>
+
+        <!--Masks-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName="RNApparel_Balaclava_Helikon" or 
+                defName="RNApparel_Balaclava_Ghost"]/apparel/layers</xpath>
+            <value>
+                <layers>
+                    <li>OnHead</li>
+                </layers>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[
+                defName="RNApparel_Balaclava_Helikon" or 
+                defName="RNApparel_Balaclava_Ghost"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <bodyPartGroups>
+                    <li>UpperHead</li>
+                    <li>Teeth</li>
+                </bodyPartGroups>
+            </value>
+        </li>
+
+        <!--Eyepros-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[
+                defName="RNApparel_EyePros_SIBallistic" or 
+                defName="RNApparel_EyePros_PILLAPantherX"]/apparel/layers</xpath>
+            <value>
+                <layers>
+                    <li>StrappedHead</li>
+                </layers>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="RNApparel_EyePros_SIBallistic"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="RNApparel_EyePros_PILLAPantherX"]/statBases/StuffEffectMultiplierArmor</xpath>
+            <value>
+                <StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+            </value>
+        </li>
+
+        <!--Armor-->
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RNApparel_CryeCAGE_Tan"]/statBases/Mass</xpath>
+            <value>
+                <Mass>9</Mass>
+                <Bulk>6</Bulk>
+                <WornBulk>3</WornBulk>
+            </value>
+        </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RNApparel_CryeCAGE_Tan"]/statBases/MaxHitPoints</xpath>
+            <value>
+                    <MaxHitPoints>75</MaxHitPoints>
+            </value>
+        </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RNApparel_CryeCAGE_Tan"]/statBases/ArmorRating_Sharp</xpath>
+            <value>
+                <ArmorRating_Sharp>14</ArmorRating_Sharp>
+            </value>
+        </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RNApparel_CryeCAGE_Tan"]/statBases/ArmorRating_Blunt</xpath>
+            <value>
+                <ArmorRating_Blunt>20</ArmorRating_Blunt>
+            </value>
+        </li>
+        <li Class="PatchOperationRemove">
+            <xpath>/Defs/ThingDef[defName="RNApparel_CryeCAGE_Tan"]/equippedStatOffsets/MoveSpeed</xpath>
+        </li>
+
+        <!--Helmets-->
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[ 
+                defName="RNApparel_MICH2000_141Rook" or 
+                defName="RNApparel_MICH2000_141Roach"]/stuffCategories</xpath>
+            <value>
+                <stuffCategories>
+                    <li>Steeled</li>
+                </stuffCategories>
+            </value>
+        </li>
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[
+                defName="RNApparel_MICH2000_141Rook" or 
+                defName="RNApparel_MICH2000_141Roach"]/statBases</xpath>
+            <value>
+                <Bulk>3.5</Bulk>
+                <WornBulk>1</WornBulk>
+                <ArmorRating_Sharp>10</ArmorRating_Sharp>
+                <ArmorRating_Blunt>20</ArmorRating_Blunt>
+                <ArmorRating_Heat>0.54</ArmorRating_Heat>
+            </value>
+        </li>
+
+        <!--Webbing, packs-->
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name = "RHApparel_141HarnessBase"]/apparel/layers</xpath>
+            <value>
+                <layers>
+                    <li>Webbing</li>
+                </layers>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name = "RHApparel_141HarnessBase"]/apparel/bodyPartGroups</xpath>
+            <value>
+                <bodyPartGroups>
+                    <li>Shoulders</li>
+                </bodyPartGroups>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[
+                @Name = "RHApparel_141HarnessBase" or
+                defName="RNApparel_Backpack_CamelbakMULE" or
+                defName="RNApparel_Backpack_MaxpeditionFalconIII" or
+                defName="RNApparel_Backpack_MFH"]/statBases
+
+            </xpath>
+            <value>
+                <Bulk>10</Bulk>
+                <WornBulk>2</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationreplace">
+            <xpath>/Defs/ThingDef[@Name = "RHApparel_141HarnessBase"]/equippedStatOffsets
+            </xpath>
+            <value>
+                <equippedStatOffsets>
+                    <CarryBulk>30</CarryBulk>
+                    <ReloadSpeed>0.1</ReloadSpeed>
+                </equippedStatOffsets>
+            </value>
+        </li>
+
+        <li Class="PatchOperationreplace">
+            <xpath>/Defs/ThingDef[defName = "RNApparel_Backpack_MaxpeditionFalconIII"]/equippedStatOffsets
+            </xpath>
+            <value>
+                <equippedStatOffsets>
+                    <CarryBulk>35</CarryBulk>
+                </equippedStatOffsets>
+            </value>
+        </li>
+        <li Class="PatchOperationreplace">
+            <xpath>/Defs/ThingDef[defName = "RNApparel_Backpack_CamelbakMULE"]/equippedStatOffsets
+            </xpath>
+            <value>
+                <equippedStatOffsets>
+                    <CarryBulk>25</CarryBulk>
+                </equippedStatOffsets>
+            </value>
+        </li>
+        <li Class="PatchOperationreplace">
+            <xpath>/Defs/ThingDef[defName = "RNApparel_Backpack_MFH"]/equippedStatOffsets
+            </xpath>
+            <value>
+                <equippedStatOffsets>
+                    <CarryBulk>15</CarryBulk>
+                </equippedStatOffsets>
+            </value>
+        </li>
+
+    </operations>
+    </match>
+</Operation>
+
+</Patch>
