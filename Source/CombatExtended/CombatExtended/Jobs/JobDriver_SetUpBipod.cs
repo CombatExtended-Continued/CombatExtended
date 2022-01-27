@@ -36,7 +36,8 @@ namespace CombatExtended
 		}
 		public override IEnumerable<Toil> MakeNewToils()
 		{
-			yield return Toils_General.Wait(Bipod.Props.ticksToSetUp);
+			int timeToSetUpTrue = (int)(Bipod.Props.ticksToSetUp / GetActor().health.capacities.GetLevel(PawnCapacityDefOf.Manipulation));
+			yield return Toils_General.Wait(timeToSetUpTrue).WithProgressBarToilDelay(TargetIndex.A);
 			yield return Toils_General.Do(delegate { Bipod.SetUpEnd(weapon); });
 
 
