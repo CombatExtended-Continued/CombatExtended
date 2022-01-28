@@ -34,6 +34,13 @@
 	</Operation>
 
 	<!-- Armor Rating -->
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[@Name = "ArmorRatingBase"]</xpath>
+		<value>
+			<workerClass>CombatExtended.StatWorker_ArmorPartial</workerClass>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[@Name = "ArmorRatingBase"]/parts/li[@Class = "StatPart_Quality"]</xpath>
@@ -291,4 +298,3 @@
 	</Operation>
 
 </Patch>
-
