@@ -79,7 +79,7 @@ namespace CombatExtended
                     result += "\n" + "Auto sets up in firemode: " + "\n";
                     if (BipodCompProps.catDef.useAutoSetMode)
                     {
-                        result += BipodCompProps.catDef.autosetMode.ToString();
+                        result += "- " + BipodCompProps.catDef.autosetMode.ToString() + "\n";
                     }
                     else
                     {
