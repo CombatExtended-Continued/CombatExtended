@@ -32,7 +32,7 @@ namespace CombatExtended
 				if (Controller.settings.AutoSetUp)
 				{
 					var varA = this.parent.TryGetComp<CompFireModes>();
-					result = ((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn;
+					result = (((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn);
 				}
 				else
 				{
@@ -106,7 +106,7 @@ namespace CombatExtended
 							{
 								yield return new Command_Action
 								{
-									action = delegate { ShouldSetUpint = false; IsSetUpRn = false; },
+									action = delegate { ShouldSetUpint = false; IsSetUpRn = false; SetUpInvert(this.parent); },
 									defaultLabel = "Close bipod",
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
 								};
@@ -179,6 +179,11 @@ namespace CombatExtended
 
 		public void SetUpStart(Pawn pawn = null)
 		{
+			if (!(pawn?.Drafted ?? false))
+			{
+				return;
+			}
+
 			starts--;
 
 			if (starts == 0)
