@@ -32,7 +32,7 @@ namespace CombatExtended
 				if (Controller.settings.AutoSetUp)
 				{
 					var varA = this.parent.TryGetComp<CompFireModes>();
-					result = ((varA.CurrentAimMode == Props.catDef.autosetMode) | !Props.catDef.useAutoSetMode) && !IsSetUpRn;
+					result = ((varA.CurrentAimMode == Props.catDef.autosetMode) | (!Props.catDef.useAutoSetMode && varA.CurrentAimMode != AimMode.Snapshot)) && !IsSetUpRn;
 				}
 				else
 				{
@@ -98,7 +98,7 @@ namespace CombatExtended
 								yield return new Command_Action
 								{
 									action = delegate { ShouldSetUpint = true; },
-									defaultLabel = "Set up bipod",
+									defaultLabel = "Deploy bipod",
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
 								};
 							}
@@ -106,7 +106,7 @@ namespace CombatExtended
 							{
 								yield return new Command_Action
 								{
-									action = delegate { ShouldSetUpint = false; },
+									action = delegate { ShouldSetUpint = false; IsSetUpRn = false; },
 									defaultLabel = "Close bipod",
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
 								};
@@ -125,6 +125,7 @@ namespace CombatExtended
 		public override void Notify_Unequipped(Pawn pawn)
 		{
 			IsSetUpRn = false;
+			ResetVerbProps(this.parent);
 		}
 
 		public CompProperties_BipodComp Props => (CompProperties_BipodComp)this.props;
@@ -182,16 +183,15 @@ namespace CombatExtended
 
 			if (starts == 0)
 			{
-				if (pawn != null && (pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.Moving && ShouldSetUp)
+				if (pawn != null && (pawn.jobs?.curJob?.def?.HasModExtension<JobDefBipodCancelExtension>() ?? false) && !pawn.pather.MovingNow && ShouldSetUp)
 				{
 					pawn.jobs.StopAll();
 					pawn.jobs.StartJob(new Job { def = BipodDefsOfs.JobDef_SetUpBipod, targetA = this.parent }, JobCondition.InterruptForced);
 				}
 
-				if (pawn.pather.Moving)
+				if (pawn.pather.MovingNow)
 				{
 					SetUpInvert(this.parent);
-	
 				}
 				starts = 5;
 			}
