@@ -7,28 +7,6 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
-      
-      <!-- Remove turret burst warmup and cooldown because it's annoying and just needlessly obfuscates things -->
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[
-          defName = "VFEP_Turret_FieldGun" or
-          @Name = "VFEP_BaseCannonBuilding"
-          ]/building/turretBurstWarmupTime</xpath>
-          <value>
-            <turretBurstWarmupTime>1</turretBurstWarmupTime>
-          </value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[
-          defName = "VFEP_Turret_FieldGun" or
-          @Name = "VFEP_BaseCannonBuilding"
-          ]/building/turretBurstCooldownTime</xpath>
-          <value>
-            <turretBurstCooldownTime>1</turretBurstCooldownTime>
-          </value>
-      </li>
-
 
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
@@ -47,6 +25,21 @@
       </li>
 
       <!-- Field Gun -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
+        <value>
+            <turretBurstWarmupTime>4.0</turretBurstWarmupTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstCooldownTime</xpath>
+        <value>
+            <turretBurstCooldownTime>2.0</turretBurstCooldownTime>
+        </value>
+      </li>
+
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/statBases</xpath>
         <value>
@@ -106,27 +99,42 @@
       </li>
 
       <!-- Cannon - Based on the M1897 12-pounder -->
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>VFEP_Artillery_Cannon</defName>
-				<statBases>
-					<RangedWeapon_Cooldown>2.64</RangedWeapon_Cooldown>
-					<SightsEfficiency>0.80</SightsEfficiency>
-					<ShotSpread>0.15</ShotSpread>
-					<SwayFactor>0.81</SwayFactor>
-				</statBases>
-				<AmmoUser>
-					<magazineSize>1</magazineSize>
-					<reloadTime>12</reloadTime>
-					<ammoSet>AmmoSet_CannonBall</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiUseBurstMode>FALSE</aiUseBurstMode>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-				<weaponTags>
-					<li>TurretGun</li>
-				</weaponTags>
-			</li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/building/turretBurstWarmupTime</xpath>
+        <value>
+            <turretBurstWarmupTime>3.3</turretBurstWarmupTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/building/turretBurstCooldownTime</xpath>
+        <value>
+            <turretBurstCooldownTime>2.64</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_Artillery_Cannon</defName>
+          <statBases>
+            <RangedWeapon_Cooldown>2.64</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.80</SightsEfficiency>
+            <ShotSpread>0.15</ShotSpread>
+            <SwayFactor>0.81</SwayFactor>
+          </statBases>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>10</reloadTime>
+            <ammoSet>AmmoSet_CannonBall</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>TurretGun</li>
+          </weaponTags>
+      </li>
 
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_Cannon"]/verbs</xpath>
@@ -151,22 +159,22 @@
         </value>
       </li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
-				<value>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
+        <value>
         <statBases>
-					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
-					<AimingAccuracy>1.0</AimingAccuracy>
+          <ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+          <AimingAccuracy>1.0</AimingAccuracy>
         </statBases>
-				</value>
-			</li>
+        </value>
+      </li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
-				<value>
-					<specialDisplayRadius>64</specialDisplayRadius>
-				</value>
-			</li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
+        <value>
+          <specialDisplayRadius>64</specialDisplayRadius>
+        </value>
+      </li>
 
       </operations>
     </match>
