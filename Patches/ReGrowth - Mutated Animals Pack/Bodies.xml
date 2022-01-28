@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>ReGrowth: Mutated Animals Pack</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Natural Armor -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+            /Defs/BodyDef[defName="RG-WF_HumanoidWithHornsAndClaws"]//*[
+            def="Body" or 
+            def="Neck" or 
+            def="Leg" or 
+            def="Paw" or 
+            def="Arm"]
+          </xpath>
+        <value>
+          <groups />
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/BodyDef[defName="RG-WF_HumanoidWithHornsAndClaws"]//*[
+          def="Body" or 
+          def="Neck" or 
+          def="Head" or 
+          def="Horn" or
+          def="Arm" or
+          def="FrontClaw" or
+			    def="Leg" or 
+			    def="Paw"
+			    ]/groups
+        </xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

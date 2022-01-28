@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ReGrowth: Extinct Animals Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Remove tusk as a weapon -->
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[defName="RG-EAP_WoollyMammothTusk"]/tools</xpath>
+				</li>
+				<li Class="PatchOperationAttributeSet">
+					<xpath>/Defs/ThingDef[defName="RG-EAP_WoollyMammothTusk"]</xpath>
+					<attribute>ParentName</attribute>
+					<value>ResourceBase</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RG-EAP_WoollyMammothTusk"]/statBases/MarketValue</xpath>
+					<value>
+						<MarketValue>120</MarketValue>
+					</value>
+				</li>
+
+				<!--wooly wool -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RG-EAP_WoollyRhinocerosWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.036</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
