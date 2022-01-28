@@ -72,6 +72,8 @@ namespace CombatExtended.Compatibility
                 alienRace.tools = newTools;
                 #endregion
 
+
+                #region comp additions
                 if (alienRace.comps == null)
                 {
                     alienRace.comps = new List<CompProperties>();
@@ -83,6 +85,35 @@ namespace CombatExtended.Compatibility
                 alienRace.comps.Add(new CompProperties_Suppressable());
 
                 alienRace.comps.Add(new CompProperties { compClass = typeof(CompPawnGizmo) });
+
+                #endregion
+
+                #region stat patching
+                var RatingSharp = alienRace.statBases.Find(y => y.stat == StatDefOf.ArmorRating_Sharp);
+
+                if (RatingSharp != null)
+                {
+                    RatingSharp.value *= 100f;
+                }
+                else
+                {
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 1f };
+                    alienRace.statBases.Add(RatingSharp);
+                }
+
+                var RatingBlunt = alienRace.statBases.Find(y => y.stat == StatDefOf.ArmorRating_Blunt);
+
+                if (RatingBlunt != null)
+                {
+                    RatingBlunt.value *= 100f;
+                }
+                else
+                {
+                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 1f };
+
+                    alienRace.statBases.Add(RatingBlunt);
+                }
+                #endregion
 
                 patchCount++;
             }
