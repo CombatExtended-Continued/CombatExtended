@@ -10,9 +10,9 @@ namespace CombatExtended
 {
     public class StatWorker_BipodDisplay : StatWorker
     {
-        public BipodComp bipodComp(StatRequest req)
+        public CompProperties_BipodComp bipodComp(StatRequest req)
         {
-            var result = req.Thing?.TryGetComp<BipodComp>();
+            var result = req.Thing?.TryGetComp<BipodComp>().Props;
 
             if (result == null)
             {
@@ -40,7 +40,7 @@ namespace CombatExtended
 
         public VerbPropertiesCE verbPropsCE(StatRequest req)
         {
-            var result = (VerbPropertiesCE)req.Thing?.TryGetComp<CompEquippable>().PrimaryVerb.verbProps;
+            var result = (VerbPropertiesCE)req.Thing?.def.verbs.Find(x => x is VerbPropertiesCE);
 
             if (result == null)
             {
@@ -70,26 +70,37 @@ namespace CombatExtended
         {
             if (req.HasThing && req.Thing != null)
             {
-                var BipodCompProps = bipodComp(req).Props;
-
+                var BipodCompProps = bipodComp(req);
                 var VerbPropsCE = verbPropsCE(req);
+                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 30) + "s)";
 
-                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 30) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
+                if (Controller.settings.AutoSetUp)
+                {
+                    result += "\n" + "Auto sets up in firemode: " + "\n";
+                    if (BipodCompProps.catDef.useAutoSetMode)
+                    {
+                        result += BipodCompProps.catDef.autosetMode.ToString();
+                    }
+                    else
+                    {
+                        result += "- " + AimMode.AimedShot.ToString() + "\n";
+                        result += "- " + AimMode.SuppressFire.ToString() + "\n";
+                    }
+                    
+                }
+
+                result += "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
 
                 result += "Recoil: " + Math.Round ( (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
-
                 result += "\n";
-
+               
                 result += "Sway: " + Math.Round( (req.Thing.GetStatValue(CE_StatDefOf.SwayFactor) * BipodCompProps.swayMult), 2);
-
                 result += "\n";
 
                 result += "Range: " + (BipodCompProps.additionalrange + VerbPropsCE.range);
-
                 result += "\n";
 
                 result += "Warmup Time: " + (BipodCompProps.warmupMult * VerbPropsCE.warmupTime);
-
                 result += "\n" + "\n";
 
                 result += "Stats when NOT set up: ".Colorize(Color.red) + "\n";
@@ -176,9 +187,9 @@ namespace CombatExtended
             
         }
 
-        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
+        public override bool ShouldShowFor(StatRequest req)
         {
-            return base.GetExplanationUnfinalized(req, numberSense);
+            return req.Thing?.def.comps.Any(x => x is CompProperties_BipodComp) ?? (req.Def is ThingDef && ((ThingDef)req.Def).comps.Any(x => x is CompProperties_BipodComp));
         }
     }
 }
