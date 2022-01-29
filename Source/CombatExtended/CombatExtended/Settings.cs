@@ -24,6 +24,7 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
+	private bool genericammo = false;
 
 	    private bool showExtraTooltips = false;
 
@@ -31,6 +32,7 @@ namespace CombatExtended
 
         public bool BipodMechanics => bipodMechanics;
 
+	public bool GenericAmmo => genericammo;
         public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
@@ -124,6 +126,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
+	    Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
@@ -219,7 +222,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
+		list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref genericammo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref enableSimplifiedAmmo, "CE_Settings_GenericAmmo".Translate()); ;
             }
             else
             {
