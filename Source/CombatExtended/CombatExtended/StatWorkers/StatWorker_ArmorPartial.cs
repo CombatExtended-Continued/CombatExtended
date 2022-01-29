@@ -15,7 +15,7 @@ namespace CombatExtended
         {
             if (req.Thing.def.HasModExtension<PartialArmorExt>())
             {
-                var result = "General value: " + finalVal.ToString() + " \n \n Special values for bodyparts ".Colorize(Color.red);
+                var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
                 var ext = req.Thing.def.GetModExtension<PartialArmorExt>();
 
                 foreach(ApparelPartialStat partstat in ext.stats)
