@@ -24,12 +24,8 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
-        private bool genericammo = false;
 
-
-        private bool showExtraTooltips = false;
-
-        public bool GenericAmmo => genericammo;
+	    private bool showExtraTooltips = false;
 
         public bool ShowCasings => showCasings;
 
@@ -128,7 +124,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
-            Scribe_Values.Look(ref genericammo, "genericAmmo", false);
+
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
             //Bipod settings
@@ -224,7 +220,6 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
-                list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate());
             }
             else
             {
