@@ -74,7 +74,7 @@ namespace CombatExtended
                     {
                         var ammodef = ((AmmoDef)scene.thingDef);
 
-                        var ammoreplaced = ammodef.AmmoSetDefs?.First()?.ammoTypes?.Find(x => x.ammo.ammoClass == ammodef.ammoClass)?.ammo ?? null;
+                        var ammoreplaced = ammodef.AmmoSetDefs?.FirstOrFallback()?.ammoTypes?.Find(x => x.ammo.ammoClass == ammodef.ammoClass)?.ammo ?? null;
 
                         if(ammoreplaced != null)
                         {
