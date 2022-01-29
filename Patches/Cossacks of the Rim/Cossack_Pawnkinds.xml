@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Cossacks of the Rim</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/PawnKindDef[ @Name="Cossack_NobleBase" or @Name="Cossack_CommonBase"]/apparelRequired</xpath>
+					<value>
+						<li>Apparel_TribalBackpack</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/PawnKindDef[ @Name="Cossack_CommonBase" or defName="Cossack_Private" or defName="Cossack_Private2" or defName="Cossack_Peasant" or defName="Cossack_Trader"]/itemQuality</xpath>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/PawnKindDef[ defName="Cossack_Captain2" or defName="Cossack_Private2" or defName="Cossack_Peasant"]</xpath>
+					<value>
+						<li Class="CombatExtended.LoadoutPropertiesExtension">
+							<primaryMagazineCount>
+								<min>15</min>
+								<max>30</max>
+							</primaryMagazineCount>
+							<forcedSidearm>
+								<sidearmMoney>
+									<min>200</min>
+									<max>300</max>
+								</sidearmMoney>
+								<weaponTags>
+									<li>NeolithicMeleeBasic</li>
+									<li>MedievalMeleeDecent</li>
+								</weaponTags>
+							</forcedSidearm>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Weapons Expanded</li>
+					</mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationAddModExtension">
+								<xpath>/Defs/PawnKindDef[ @Name="Cossack_NobleBase" or @Name="Cossack_CommonBase" or defName="Cossack_Private2" or defName="Cossack_Captain2"]</xpath>
+								<value>
+									<li Class="CombatExtended.LoadoutPropertiesExtension">
+										<primaryMagazineCount>
+											<min>15</min>
+											<max>20</max>
+										</primaryMagazineCount>
+										<forcedSidearm>
+											<sidearmMoney>
+												<min>200</min>
+												<max>450</max>
+											</sidearmMoney>
+											<weaponTags>
+												<li>CossackSabre</li>
+											</weaponTags>
+										</forcedSidearm>
+									</li>
+								</value>
+							</li>
+						</operations>
+					</match>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
