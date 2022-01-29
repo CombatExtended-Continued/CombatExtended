@@ -348,7 +348,7 @@ namespace CombatExtended
             {
                 foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
                 {
-                    if ( (partial?.parts?.Contains(part.def) ?? false) | (partial?.parts?.Contains(part?.parent?.def) ?? false))
+                    if ( (partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                     {
                         result *= partial.mult;
                         break;
