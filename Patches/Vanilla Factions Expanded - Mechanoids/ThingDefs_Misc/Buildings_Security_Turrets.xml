@@ -239,13 +239,6 @@
 					<fillPercent>0.85</fillPercent>
 				</value>
 			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoInfernoCannon"]/building/turretBurstCooldownTime</xpath>
-				<value>
-					<turretBurstCooldownTime>1</turretBurstCooldownTime>
-				</value>
-			</li>
 			
 			<!-- Price increase because CE Inferno cannon is not an equivalent weapon to most other options : Reduced compared to sheet inferno since it bloats the cost too much-->
 			
@@ -453,14 +446,7 @@
 				</value>
 			</li>
 			
-			<!-- ========== Auto Charge Lance ========== -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoTesla"]</xpath>
-				<value>
-					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-				</value>
-			</li>
+			<!-- ========== Auto Tesla Turret ========== -->
 
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoTesla"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
@@ -476,39 +462,52 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoTesla"]/building/turretBurstCooldownTime</xpath>
 				<value>
-					<turretBurstCooldownTime>0.9</turretBurstCooldownTime>
+					<turretBurstCooldownTime>2</turretBurstCooldownTime>
 				</value>
 			</li>
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>VFE_Gun_AutoTesla</defName>
-				<statBases>
-				  <Mass>40</Mass>
-				  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-				  <SightsEfficiency>1</SightsEfficiency>
-				  <ShotSpread>0.01</ShotSpread>
-				  <SwayFactor>0.44</SwayFactor>
-				  <Bulk>13.00</Bulk>
-				</statBases>
-				<Properties>
-				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>VFE_Bullet_TeslaProjectileCE</defaultProjectile>
-				  <warmupTime>1.3</warmupTime>
-				  <range>45</range>
-				  <burstShotCount>5</burstShotCount>
-				  <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-				  <soundCast>Shot_ChargeBlaster</soundCast>
-				  <soundCastTail>GunTail_Heavy</soundCastTail>
-				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <minRange>6</minRange>
-				</Properties>
-				<FireModes>
-				  <aiAimMode>AimedShot</aiAimMode>
-				  <noSnapshot>true</noSnapshot>
-				</FireModes>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoTesla"]/statBases/RangedWeapon_Cooldown</xpath>
+				<value>
+					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+				</value>
 			</li>
-			
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoTesla"]/verbs/li/warmupTime</xpath>
+				<value>
+					<warmupTime>4.0</warmupTime>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoTesla"]/verbs/li/range</xpath>
+				<value>
+					<range>45</range>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Gun_AutoTesla"]/verbs/li/minRange</xpath>
+				<value>
+					<minRange>6</minRange>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Bullet_TeslaProjectile"]/projectile/damageAmountBase</xpath>
+				<value>
+					<damageAmountBase>10</damageAmountBase>
+				</value>
+			</li>
+ 
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFE_Bullet_TeslaProjectile"]/modExtensions/li[@Class="VFEMech.TeslaChainingProps"]/damageDef</xpath>
+				<value>
+					<damageDef>Electrical</damageDef>
+				</value>
+			</li>
+
       </operations>
     </match>
   </Operation>
