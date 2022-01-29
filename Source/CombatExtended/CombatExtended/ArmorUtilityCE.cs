@@ -123,10 +123,9 @@ namespace CombatExtended
                 for (var i = apparel.Count - 1; i >= 0; i--)
                 {
                     var app = apparel[i];
-
                     if (app != null
                         && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart.def), ref penAmount, ref dmgAmount, app))
+                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
