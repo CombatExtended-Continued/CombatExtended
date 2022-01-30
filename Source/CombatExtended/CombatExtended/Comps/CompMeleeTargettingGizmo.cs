@@ -189,7 +189,7 @@ namespace CombatExtended
                                 break;
                         }
                     },
-                    defaultLabel = "CE_MeleeTargetting_CurHeight ".Translate() + " " + heightString,
+                    defaultLabel = "CE_MeleeTargetting_CurHeight".Translate() + " " + heightString,
                 };
             }
             if (SkillReqBP)
