@@ -189,7 +189,7 @@ namespace CombatExtended
                                 break;
                         }
                     },
-                    defaultLabel = "Melee target height: " + heightString,
+                    defaultLabel = "CE_MeleeTargetting_CurHeight ".Translate() + " " + heightString,
                 };
             }
             if (SkillReqBP)
@@ -197,7 +197,7 @@ namespace CombatExtended
                 yield return new Command_Action
                 {
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/Undefined"),
-                    defaultLabel = "CE_MeleeTargetting_CurPart" + targetBodyPart,
+                    defaultLabel = "CE_MeleeTargetting_CurPart".Translate() + " " + targetBodyPart,
                     action = delegate
                     {
                         List<FloatMenuOption> options = new List<FloatMenuOption>();
