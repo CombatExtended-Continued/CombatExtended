@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<!-- Remove Multibarrel Weapons (no Minigun means no point in researching this) -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ResearchProjectDef[defName="MultibarrelWeapons"]</xpath>
-	</Operation>
-
 	<!-- Move auto-turret research to turrets tab -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ResearchProjectDef[defName="GunTurrets"]</xpath>
@@ -27,14 +22,13 @@
 			<researchViewY>0</researchViewY>
 		</value>
 	</Operation>
-	
-	<!-- Remove Sniper & Autoturret -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ResearchProjectDef[defName="HeavyTurrets"]</xpath>
-	</Operation>
-	
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ResearchProjectDef[defName="SniperTurret"]</xpath>
+
+	<!-- Make Uranium Slug & Auto Turret require 'CE_HeavyTurret'  -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ResearchProjectDef[defName="SniperTurret" or defName="HeavyTurrets"]/prerequisites</xpath>
+		<value>
+			<li>CE_HeavyTurret</li>
+		</value>
 	</Operation>
 
 </Patch>
