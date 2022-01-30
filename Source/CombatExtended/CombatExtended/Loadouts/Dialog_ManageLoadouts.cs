@@ -1,9 +1,10 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 using UnityEngine;
 using Verse;
 
@@ -135,7 +136,7 @@ namespace CombatExtended
         {
             get
             {
-                return new Vector2(700, 700);
+                return new Vector2(1000, 700);
             }
         }
 
@@ -160,12 +161,18 @@ namespace CombatExtended
             // fix weird zooming bug
             Text.Font = GameFont.Small;
 
+            const int BUTTON_COUNT = 6;
+            const float BUTTON_STRETCH_FACTOR = 0.8f / (float) BUTTON_COUNT;
+            float buttonWidth = canvas.width * BUTTON_STRETCH_FACTOR;
+                                        
             // SET UP RECTS
             // top buttons
-            Rect selectRect = new Rect(0f, 0f, canvas.width * .2f, _topAreaHeight);
-            Rect newRect = new Rect(selectRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
-            Rect copyRect = new Rect(newRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
-            Rect deleteRect = new Rect(copyRect.xMax + _margin, 0f, canvas.width * .2f, _topAreaHeight);
+            Rect selectRect = new Rect(0f, 0f, buttonWidth, _topAreaHeight);
+            Rect newRect = new Rect(selectRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect copyRect = new Rect(newRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect deleteRect = new Rect(copyRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect loadRect = new Rect(deleteRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
+            Rect saveRect = new Rect(loadRect.xMax + _margin, 0f, buttonWidth, _topAreaHeight);
 
             // main areas
             Rect nameRect = new Rect(
@@ -258,6 +265,41 @@ namespace CombatExtended
                 Find.WindowStack.Add(new FloatMenu(options));
             }
 
+            // load loadout
+            if (Widgets.ButtonText(loadRect, "CE_LoadLoadout".Translate()))
+            {
+                Find.WindowStack.Add(new LoadLoadoutDialog("loadout", (fileInfo, dialog) =>
+                {
+                    Log.Message($"Loading loadout from file '{fileInfo.FullName}'...");
+                    var mySerializer = new XmlSerializer(typeof(LoadoutConfig));
+                    using var myFileStream = new FileStream(fileInfo.FullName, FileMode.Open);
+                    LoadoutConfig loadoutConfig = (LoadoutConfig)mySerializer.Deserialize(myFileStream);
+                    CurrentLoadout = Loadout.FromConfig(loadoutConfig, out List<string> unloadableDefNames);
+                    // Report any LoadoutSlots (i.e. ThingDefs) that could not be loaded.
+                    if (unloadableDefNames.Count > 0)
+                    {
+                        Messages.Message(
+                            "CE_MissingLoadoutSlots".Translate(String.Join(", ", unloadableDefNames)), 
+                            null, MessageTypeDefOf.RejectInput);
+                    }
+                    LoadoutManager.AddLoadout(CurrentLoadout);
+                    dialog.Close();
+                }));
+            }
+
+            // save loadout
+            if (CurrentLoadout != null && Widgets.ButtonText(saveRect, "CE_SaveLoadout".Translate()))
+            {
+                Find.WindowStack.Add(new SaveLoadoutDialog("loadout", (fileInfo, dialog) =>
+                {
+                    Log.Message($"Saving loadout '{CurrentLoadout.label}' to file '{fileInfo.FullName}'...");
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(LoadoutConfig));
+                    using TextWriter writer = new StreamWriter(fileInfo.FullName);
+                    xmlSerializer.Serialize(writer, CurrentLoadout.ToConfig());
+                    dialog.Close();
+                }, CurrentLoadout.label));
+            }
+            
             // draw notification if no loadout selected
             if (CurrentLoadout == null)
             {

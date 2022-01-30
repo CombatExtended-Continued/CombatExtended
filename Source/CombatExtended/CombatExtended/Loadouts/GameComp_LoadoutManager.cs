@@ -226,6 +226,17 @@ namespace CombatExtended
             return GetUniqueLabel("CE_DefaultLoadoutName".Translate());
         }
 
+        internal static bool IsUniqueLabel(string label)
+        {
+            LoadoutManager manager = Current.Game.GetComponent<LoadoutManager>();
+            // For consistency with the 'GetUniqueLabel' behavior
+            if (manager == null)
+            {
+                return false;
+            }
+            return !manager._loadouts.Any(l => l.label == label);
+        }
+
         internal static string GetUniqueLabel(string head)
         {
             LoadoutManager manager = Current.Game.GetComponent<LoadoutManager>();
