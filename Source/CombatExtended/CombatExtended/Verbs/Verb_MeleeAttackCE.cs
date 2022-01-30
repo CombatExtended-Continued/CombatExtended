@@ -327,7 +327,32 @@ namespace CombatExtended
                 {
                     bodyRegion = BodyPartHeight.Middle;
                 }
+                //specific part hits
+                if (gizmoComp?.SkillReqBP ?? false && gizmoComp.targetBodyPart != null)
+                {
+                    
+                    // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level   
+                    float targetSkillDecrease = (pawn.skills?.GetSkill(SkillDefOf.Melee).Level ?? 0f) / 50f;
+
+                    if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving) > 0f)
+                    {
+                        targetSkillDecrease *= pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
+                    }
+                    else
+                    {
+                        targetSkillDecrease = 0f;
+                    }
+
+                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == gizmoComp.targetBodyPart).FirstOrFallback();
+
+                    if (Rand.Chance(gizmoComp.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
+                    {
+                        damageInfo.SetHitPart(partToHit);
+                    }
+                }
             }
+
+           
 
             //everything related to internal organ penetration
             BodyPartDepth finalDepth = BodyPartDepth.Outside;
@@ -392,7 +417,7 @@ namespace CombatExtended
             }
         }
 
-        // unmodified
+        // center mass has the standard change to hit, rest is much lowered
         private float GetHitChance(LocalTargetInfo target)
         {
             if (surpriseAttack)
@@ -405,7 +430,23 @@ namespace CombatExtended
             }
             if (CasterPawn.skills != null)
             {
-                return CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+                float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+
+                switch (GetAttackedPartHeightCE())
+                {
+                    case BodyPartHeight.Bottom:
+                        chance *= 0.5f;
+                        break;
+                    case BodyPartHeight.Middle:
+                        break;
+                    case BodyPartHeight.Undefined:
+                        break;
+                    case BodyPartHeight.Top:
+                        chance *= 0.3f;
+                        break;
+                }
+
+                return chance;
             }
             return DefaultHitChance;
         }
