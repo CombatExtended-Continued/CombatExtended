@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingCategoryDef>
+    <defName>AmmoLauncherGrenade</defName>
+    <label>launcher Grenade</label>
+    <parent>AmmoGrenades</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+  </ThingCategoryDef>
+
+
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_LauncherGrenade</defName>
+    <label>launcher grenade</label>
+    <ammoTypes>
+      <Ammo_LauncherGrenade_HE>Bullet_40x53mmGrenade_HE</Ammo_LauncherGrenade_HE>
+      <Ammo_LauncherGrenade_EMP>Bullet_40x53mmGrenade_EMP</Ammo_LauncherGrenade_EMP>
+			<Ammo_LauncherGrenade_Smoke>Bullet_40x53mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>	        
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoLauncherGrenadeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Low velocity grenade fired from various grenade launchers</description>
+    <statBases>
+      <Mass>0.26</Mass>
+      <Bulk>0.40</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_TableMachining</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoLauncherGrenade</li>
+    </thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffFlashScale>100</cookOffFlashScale>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+    <defName>Ammo_LauncherGrenade_HE</defName>
+    <label>launcher grenade (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/STACK_RANGED/GrenadeLauncher/HE</texPath>
+      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.5</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+    <defName>Ammo_LauncherGrenade_EMP</defName>
+    <label>launcher grenade (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/STACK_RANGED/GrenadeLauncher/EMP</texPath>
+      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>4.5</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
+	  </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoLauncherGrenadeBase">
+    <defName>Ammo_LauncherGrenade_Smoke</defName>
+    <label>launcher grenade (Smoke)</label>
+    <graphicData>
+      <texPath>Things/Ammo/STACK_RANGED/GrenadeLauncher/SMK</texPath>
+      <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2</MarketValue>
+    </statBases>
+    <ammoClass>Smoke</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>5</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>0.75</explosiveRadius>
+	  </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>1</Fragment_Large>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_LauncherGrenade_HE</defName>
+    <label>make launcher HE grenades x100</label>
+    <description>Craft 100 launcher HE grenades.</description>
+    <jobString>Making launcher HE grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>58</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>7</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_LauncherGrenade_HE>100</Ammo_LauncherGrenade_HE>
+    </products>
+    <workAmount>9000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_LauncherGrenade_EMP</defName>
+    <label>make launcher EMP grenades x100</label>
+    <description>Craft 100 launcher EMP grenades.</description>
+    <jobString>Making launcher EMP grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>58</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_LauncherGrenade_EMP>100</Ammo_LauncherGrenade_EMP>
+    </products>
+    <workAmount>11000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_LauncherGrenade_Smoke</defName>
+    <label>make launcher smoke grenades x100</label>
+    <description>Craft 100 launcher smoke grenades.</description>
+    <jobString>Making launcher smoke grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>58</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>      
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>        
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_LauncherGrenade_Smoke>100</Ammo_LauncherGrenade_Smoke>
+    </products>
+    <workAmount>7400</workAmount>
+  </RecipeDef>
+
+</Defs>
