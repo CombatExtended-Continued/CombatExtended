@@ -856,7 +856,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_AI_Suppressive</li>
-    </weaponTags>
+    </weaponTags>    
   </Operation>
 
   <Operation Class="PatchOperationReplace">
@@ -882,7 +882,7 @@
   <Operation Class="PatchOperationAttributeSet">
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]</xpath>
     <attribute>ParentName</attribute>
-    <value>BaseGun</value>
+    <value>BaseGunWithQuality</value>
   </Operation>
 
   <Operation Class="PatchOperationRemove">
@@ -893,23 +893,10 @@
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]/recipeMaker</xpath>
   </Operation>
 
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/weaponTags</xpath>
-  </Operation>
-
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]/statBases</xpath>
     <value>
       <MarketValue>2200</MarketValue>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/ThingDef[defName="Gun_Minigun"]</xpath>
-    <value>
-      <li Class="CombatExtended.ThingDefExtensionCE">
-        <MenuHidden>True</MenuHidden>
-      </li>
     </value>
   </Operation>
 
