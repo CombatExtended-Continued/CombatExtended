@@ -877,27 +877,29 @@
     </value>
   </Operation>
 
-  <!-- Disable for player -->
-
-  <Operation Class="PatchOperationAttributeSet">
-    <xpath>Defs/ThingDef[defName="Gun_Minigun"]</xpath>
-    <attribute>ParentName</attribute>
-    <value>BaseGunWithQuality</value>
-  </Operation>
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/costList</xpath>
-  </Operation>
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/recipeMaker</xpath>
-  </Operation>
-
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Gun_Minigun"]/statBases</xpath>
     <value>
-      <MarketValue>2200</MarketValue>
+      <MarketValue>1700</MarketValue>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/costList/Steel</xpath>
+    <value>
+      <Steel>200</Steel>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/costList/ComponentIndustrial</xpath>
+    <value>
+      <ComponentIndustrial>14</ComponentIndustrial>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Gun_Minigun"]/equippedStatOffsets</xpath>
   </Operation>
 
   <!-- ========== Doomsday launcher ========== -->
