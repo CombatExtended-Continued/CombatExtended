@@ -42,12 +42,7 @@ namespace CombatExtended
         {
             get
             {
-                Thing result = null;
-
-
-                result = PawnParent?.equipment.Primary;
-
-                return result;
+                return PawnParent?.equipment.Primary;
             }
         }
 
@@ -92,7 +87,7 @@ namespace CombatExtended
                 return BodyPartHeight.Middle;
             }
 
-            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 16)
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
             {
                 targetBodyPart = BodyPartDefOf.Neck;
 
@@ -104,7 +99,6 @@ namespace CombatExtended
 
                     if (neckApparel == null | maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
-                        Log.Message(neckApparel.Label);
                         targetBodyPart = null;
                     }
                     else
@@ -136,16 +130,19 @@ namespace CombatExtended
             }
         }
 
-        public float SkillBodyPartAttackChance
+        public float SkillBodyPartAttackChance(BodyPartRecord PartToHit)
         {
-            get
+            if (PartToHit == null)
             {
-                var result = 0.20f;
-
-                result *= ((PawnParent.skills.GetSkill(SkillDefOf.Melee).Level * 1f) - 15f);
-
-                return result;
+                return 0f;
             }
+
+            Log.Message("Coverage of " + PartToHit.Label + " " + PartToHit.coverage);
+            var result = PartToHit.coverage;
+
+            result *= ((PawnParent.skills.GetSkill(SkillDefOf.Melee).Level) - 15f) * PawnParent.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation);
+
+            return result;
         }
 
         private string heightString
@@ -200,7 +197,7 @@ namespace CombatExtended
                 yield return new Command_Action
                 {
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/Undefined"),
-                    defaultLabel = "Targeted bodypart " + targetBodyPart,
+                    defaultLabel = "CE_MeleeTargetting_CurPart" + targetBodyPart,
                     action = delegate
                     {
                         List<FloatMenuOption> options = new List<FloatMenuOption>();
