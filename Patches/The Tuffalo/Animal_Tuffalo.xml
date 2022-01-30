@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>The Tuffalo</li>
+        </mods>
+
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== Tuffalo Body Class ===== -->
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>/Defs/ThingDef[defName="Tuffalo"]</xpath>
+
+                    <value>
+                        <li Class="CombatExtended.RacePropertiesExtensionCE">
+                            <bodyShape>Quadruped</bodyShape>
+                        </li>
+                    </value>
+                </li>
+
+                <!-- ===== Tuffalo Combat Stats ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Tuffalo"]/statBases/MoveSpeed</xpath>
+                    <value>
+                        <MoveSpeed>4.85</MoveSpeed>
+                        <MeleeDodgeChance>0.15</MeleeDodgeChance>
+                        <MeleeCritChance>0.30</MeleeCritChance>
+                        <MeleeParryChance>0.20</MeleeParryChance>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Tuffalo"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>head</label>
+                                <capacities>
+                                    <li>Scratch</li>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>24</power>
+                                <cooldownTime>3.17</cooldownTime>
+                                <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <chanceFactor>0.2</chanceFactor>
+                                <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+                                <armorPenetrationSharp>0.64</armorPenetrationSharp>
+                                <armorPenetrationBlunt>8</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>left hoof</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>6</power>
+                                <cooldownTime>2</cooldownTime>
+                                <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+                                <armorPenetrationBlunt>0.68</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>right hoof</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>6</power>
+                                <cooldownTime>2</cooldownTime>
+                                <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+                                <armorPenetrationBlunt>0.68</armorPenetrationBlunt>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <capacities>
+                                    <li>Bite</li>
+                                </capacities>
+                                <power>11</power>
+                                <cooldownTime>1.2</cooldownTime>
+                                <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+                                <chanceFactor>0.5</chanceFactor>
+                                <armorPenetrationSharp>0.54</armorPenetrationSharp>
+                                <armorPenetrationBlunt>3.89</armorPenetrationBlunt>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/PawnKindDef[defName="Tuffalo"]/combatPower</xpath>
+                    <value>
+                        <combatPower>135</combatPower>
+                    </value>
+                </li>
+
+                <!-- ===== Tuffalo Wool ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="TuffaloWool"]/statBases/StuffPower_Armor_Sharp</xpath>
+
+                    <value>
+                        <StuffPower_Armor_Sharp>0.02</StuffPower_Armor_Sharp>
+                        <StuffPower_Armor_Blunt>0.056</StuffPower_Armor_Blunt>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>
