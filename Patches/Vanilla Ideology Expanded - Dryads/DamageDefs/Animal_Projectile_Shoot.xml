@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Ideology Expanded - Dryads</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ================= Setting it so that the Animal is shooting using CE code ================= -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VDE_AwakenedDryad_Spitter"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>VDE_AcidBolt</defaultProjectile>
+								<warmupTime>3.4</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>1.9</minRange>
+								<range>32</range>
+								<soundCast>VDE_AcidBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VDE_Dryad_Spitter"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>VDE_AcidBolt</defaultProjectile>
+								<warmupTime>3.2</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>1.9</minRange>
+								<range>22</range>
+								<soundCast>VDE_AcidBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
