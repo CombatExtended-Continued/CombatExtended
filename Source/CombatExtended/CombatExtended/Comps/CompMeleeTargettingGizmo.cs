@@ -71,11 +71,14 @@ namespace CombatExtended
 
                     float overallRHA = 0f;
 
-                    if (torsoApparel.Count() > 0)
+                    if (!torsoApparel.NullOrEmpty())
                     {
                         foreach (Apparel apparel in torsoApparel)
                         {
-                            overallRHA += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                            if (apparel != null)
+                            {
+                                overallRHA += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                            }
                         }
                     }
                     if (maxWeaponPen < overallRHA)
@@ -97,7 +100,7 @@ namespace CombatExtended
                 {
                     var neckApparel = target.apparel.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
 
-                    if (neckApparel == null | maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                    if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
                         targetBodyPart = null;
                     }
@@ -137,7 +140,6 @@ namespace CombatExtended
                 return 0f;
             }
 
-            Log.Message("Coverage of " + PartToHit.Label + " " + PartToHit.coverage);
             var result = PartToHit.coverage;
 
             result *= ((PawnParent.skills.GetSkill(SkillDefOf.Melee).Level) - 15f) * PawnParent.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation);
