@@ -54,14 +54,6 @@
 	</CombatExtended.AmmoSetDef>
 	
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_CannonBall</defName>
-		<label>Cannon Ball</label>
-		<ammoTypes>
-			<Ammo_CannonBall_Steel>Bullet_CannonBall_Steel</Ammo_CannonBall_Steel>
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
-	
-	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_LargeCannonBall</defName>
 		<label>Large Cannon Ball</label>
 		<ammoTypes>
@@ -103,39 +95,6 @@
 		</statBases>
 		<ammoClass>ExplosiveShell</ammoClass>
 		<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
-	</ThingDef>
-
-	<!-- ==== Cannon Ball ==== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="CannonBallBase" ParentName="HeavyAmmoBase" Abstract="True">
-		<description>A head-sized ball of metal.</description>
-		<thingCategories>
-			<li>CannonBall</li>
-		</thingCategories>
-		<stackLimit>25</stackLimit>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FueledSmithy</li>
-			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
-		</tradeTags>
-		<statBases>
-			<MaxHitPoints>450</MaxHitPoints>
-			<Mass>12</Mass>
-			<Bulk>10</Bulk>
-		</statBases>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="CannonBallBase">
-		<defName>Ammo_CannonBall_Steel</defName>
-		<label>Cannon Ball</label>
-		<graphicData>
-			<texPath>Things/Ammo/Cannon/BlackPowder/Cannon_Round</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>3.5</MarketValue>
-		</statBases>
-		<ammoClass>CannonBall</ammoClass>
-		<detonateProjectile>Bullet_CannonBall_Steel</detonateProjectile>
 	</ThingDef>
 	
 	<!-- ==== Large Steel Cannon Ball	==== -->
@@ -211,50 +170,7 @@
 			</li>
 		</comps>
 	</ThingDef>
-	
-	<!-- ==== Cannon Ball ==== -->
-	<ThingDef Name="Base90mmCannonShell" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>280</speed>
-			<soundExplode>MortarBomb_Explode</soundExplode>
-			<flyOverhead>false</flyOverhead>
-			<dropsCasings>false</dropsCasings>
-		</projectile>
-	</ThingDef>
 
-	<ThingDef ParentName="Base90mmCannonShell">
-		<defName>Bullet_CannonBall_Steel</defName>
-		<label>Cannon Ball</label>
-		<thingClass>CombatExtended.BulletCE</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/Cannon/HEAT</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>60.8</damageAmountBase>
-			<armorPenetrationSharp>0</armorPenetrationSharp>
-			<armorPenetrationBlunt>110</armorPenetrationBlunt>
-		</projectile>
-		<comps>
-		<li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>12</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>1.5</explosiveRadius>
-			<explosionSound>MortarBomb_Explode</explosionSound>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		</li>
-		<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>2</Fragment_Large>
-				<Fragment_Small>12</Fragment_Small>
-			</fragments>
-		</li>
-		</comps>
-	</ThingDef>
 	
 	<!-- ==== Large Steel Cannon Ball ==== -->
 	<ThingDef ParentName="Base81mmMortarShell">
@@ -322,34 +238,7 @@
 		</products>
 		<workAmount>8500</workAmount>
 	</RecipeDef>
-	
-	<!-- ==== Cannon Ball ==== -->
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_CannonBall_Steel</defName>
-		<label>Make Steel Cannon Balls x5</label>
-		<description>Craft 5 Steel Cannon Balls</description>
-		<jobString>Making Steel Cannon Balls</jobString>
-		<workAmount>24000</workAmount>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>50</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_CannonBall_Steel>5</Ammo_CannonBall_Steel>
-		</products>
-	</RecipeDef>
-	
+
 	<!-- ==== Large Steel Cannon Ball ==== -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeShell_LargeCannonBall_Steel</defName>
