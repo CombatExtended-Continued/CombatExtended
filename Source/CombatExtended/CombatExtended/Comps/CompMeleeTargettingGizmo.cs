@@ -103,6 +103,7 @@ namespace CombatExtended
                     if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
                         targetBodyPart = null;
+                        return BodyPartHeight.Bottom;
                     }
                     else
                     {
@@ -194,7 +195,7 @@ namespace CombatExtended
                     defaultLabel = "CE_MeleeTargetting_CurHeight".Translate() + " " + heightString,
                 };
             }
-            if (SkillReqBP)
+            if (SkillReqBP && heightInt != BodyPartHeight.Undefined)
             {
                 yield return new Command_Action
                 {
