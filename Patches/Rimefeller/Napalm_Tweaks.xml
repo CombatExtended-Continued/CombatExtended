@@ -159,12 +159,12 @@
                 </value>
             </li>
 
-            <!--<li Class="PatchOperationReplace">
+            <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[defName="NapalmBomb"]/graphicData/texPath</xpath>
                 <value>
-                    <texPath>Rimefeller/Things/Resource/NapalmBomb</texPath>
+                    <texPath>ThirdParty/Rimefeller/Things/Resource/NapalmBomb</texPath>
                 </value>
-            </li>-->
+            </li>
 
             <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[defName="NapalmBomb"]/comps/li[2]</xpath>
@@ -194,19 +194,19 @@
             <li Class="PatchOperationAdd">
                 <xpath>Defs/ThingDef[defName="NapalmBomb"]</xpath>
                 <value>
-                    <fillPercent>0.5</fillPercent>
+					<fillPercent>0.5</fillPercent>
                 </value>
+            </li>
+
+            <!-- Napalm Shell -->
+            <li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[defName="Shell_Napalm" or defName="Bullet_Shell_Napalm"]</xpath>
             </li>
 
             <!-- Napalm Recipes -->
             <li Class="PatchOperationRemove">
                 <xpath>Defs/RecipeDef[defName="Make_Napalm"]</xpath>
             </li>
-
-            <!-- Kill Napalm de una puta vez -->
-            <!--<li Class="PatchOperationRemove">
-                <xpath>Defs/ThingDef[defName="Napalm"]</xpath>
-            </li>-->
 
             <li Class="PatchOperationAdd">
                 <xpath>Defs/ThingDef[defName="Napalm"]</xpath>
@@ -222,12 +222,40 @@
                 </value>
             </li>
 
-            <!--<li Class="PatchOperationReplace">
+            <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[defName="Napalm"]/graphicData/texPath</xpath>
                 <value>
-                    <texPath>Rimefeller/Things/Resource/NapalmBomb</texPath>
+                    <texPath>ThirdParty/Rimefeller/Things/Resource/NapalmBomb</texPath>
                 </value>
-            </li>-->
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="OilBarrel"]/graphicData/texPath</xpath>
+                <value>
+                    <texPath>ThirdParty/Rimefeller/Things/Resource/OilBarrel</texPath>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="Filth_OilSlick"]/graphicData/texPath</xpath>
+                <value>
+                    <texPath>ThirdParty/Rimefeller/Things/Resource/OilBarrel</texPath>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/graphicData/texPath</xpath>
+                <value>
+                    <texPath>ThirdParty/Rimefeller/UI/NapalmSpill</texPath>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="Filth_NapalmTrail"]/building/blueprintGraphicData/texPath</xpath>
+                <value>
+                    <texPath>ThirdParty/Rimefeller/UI/NapalmSpill_bp</texPath>
+                </value>
+            </li>
 
       </operations>
     </match>
