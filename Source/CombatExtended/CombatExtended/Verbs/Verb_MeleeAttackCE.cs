@@ -435,14 +435,14 @@ namespace CombatExtended
                 switch (GetAttackedPartHeightCE())
                 {
                     case BodyPartHeight.Bottom:
-                        chance *= 0.5f;
+                        chance *= 0.8f;
                         break;
                     case BodyPartHeight.Middle:
                         break;
                     case BodyPartHeight.Undefined:
                         break;
                     case BodyPartHeight.Top:
-                        chance *= 0.3f;
+                        chance *= 0.7f;
                         break;
                 }
 
