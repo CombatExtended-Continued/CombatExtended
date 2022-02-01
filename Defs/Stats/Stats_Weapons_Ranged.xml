@@ -10,7 +10,6 @@
     <minValue>0.01</minValue>
     <toStringStyle>PercentZero</toStringStyle>
     <showIfUndefined>false</showIfUndefined>
-    <hideAtValue>0</hideAtValue>
     <parts>
       <li Class="StatPart_Quality">
         <factorAwful>0.7</factorAwful>
@@ -79,6 +78,7 @@
     <displayPriorityInCategory>894</displayPriorityInCategory>
     <parts>
       <li Class="CombatExtended.StatPart_Attachments" />
+      <li Class="CombatExtended.Bipod_Sway_StatPart" />
     </parts>    
   </StatDef>
 
@@ -106,6 +106,16 @@
     <category>Weapon</category>
     <showIfUndefined>true</showIfUndefined>
     <displayPriorityInCategory>898</displayPriorityInCategory>
+  </StatDef>
+
+  <StatDef>
+    <defName>BipodStats</defName>
+    <workerClass>CombatExtended.StatWorker_BipodDisplay</workerClass>
+    <label>Bipod stats</label>
+    <description>Stats with bipod deployed and undeployed.</description>
+    <category>Weapon</category>
+    <showIfUndefined>true</showIfUndefined>
+    <displayPriorityInCategory>998</displayPriorityInCategory>
   </StatDef>
 
   <StatDef>
@@ -141,11 +151,12 @@
     <description>How much will this weapon recoil upon firing.</description>
     <category>Weapon</category>    
     <defaultBaseValue>0</defaultBaseValue>
+    <toStringStyle>FloatTwo</toStringStyle>
     <showIfUndefined>false</showIfUndefined>
-    <hideAtValue>0</hideAtValue>
     <displayPriorityInCategory>898</displayPriorityInCategory>
     <parts>
       <li Class="CombatExtended.StatPart_Attachments" />
+      <li Class="CombatExtended.Bipod_Recoil_StatPart" />
     </parts>
   </StatDef>
 
@@ -182,7 +193,7 @@
     <label>ammo consumed per shot</label>
     <description>How many units of ammunition this gun consumes for each individual shot.\n\nThis applies to guns with multiple barrels that fire simultaneously with each pull of the trigger, or exotic energy weapons that use up different amounts of energy from a power cell.</description>
     <category>Weapon</category>
-    <showIfUndefined>true</showIfUndefined>
+      <showIfUndefined>true</showIfUndefined>
 	  <displayPriorityInCategory>877</displayPriorityInCategory>
   </StatDef>
 

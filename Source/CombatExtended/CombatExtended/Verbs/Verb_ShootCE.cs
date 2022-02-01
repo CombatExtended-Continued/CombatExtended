@@ -33,6 +33,14 @@ namespace CombatExtended
 
         #region Properties
 
+        public bool isBipodGun
+        {
+            get
+            {
+                return ((this.EquipmentSource?.TryGetComp<BipodComp>() ?? null) != null);
+
+            }
+        }
         public override int ShotsPerBurst
         {
             get
@@ -195,6 +203,11 @@ namespace CombatExtended
                 {
                     _isAiming = false;
                 }
+            }
+
+            if (isBipodGun && Controller.settings.BipodMechanics)
+            {
+                EquipmentSource.TryGetComp<BipodComp>().SetUpStart(CasterPawn);
             }
         }
 

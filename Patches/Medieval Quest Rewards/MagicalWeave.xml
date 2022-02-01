@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Medieval Quest Rewards</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Blessedweave-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/statBases</xpath>
+					<value>
+						<Bulk>0.1</Bulk>
+						<WornBulk>0.75</WornBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/stuffProps</xpath>
+					<value>
+						<statOffsets>
+							<Mass>0.75</Mass>
+						</statOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/stuffProps/statFactors</xpath>
+					<value>
+						<Mass>1.8</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>1</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>1.5</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>1.92</StuffPower_Armor_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Blessedweave"]/stuffProps/statFactors/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Blessedweave"]/stuffProps/categories</xpath>
+					<value>
+						<li>SoftArmor</li>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -91,7 +91,19 @@ namespace CombatExtended
         public override bool IsUsableOn(Thing target)
         {            
             return Enabled && base.IsUsableOn(target);
-        }       
+        }      
+        
+        public CompMeleeTargettingGizmo gizmoComp
+        {
+            get
+            {
+                if (CasterIsPawn)
+                {
+                    return CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// Performs the actual melee attack part. Awards XP, calculates and applies whether an attack connected and the outcome.
@@ -229,6 +241,21 @@ namespace CombatExtended
             }
             return result;
         }
+        /// <summary>
+        /// Gets attacked body part height
+        /// </summary>
+        /// <returns></returns>
+        public BodyPartHeight GetAttackedPartHeightCE()
+        {
+            var result = BodyPartHeight.Undefined;
+
+            if (gizmoComp != null && this.CurrentTarget.Thing is Pawn pawn)
+            {
+                return gizmoComp.finalHeight(pawn);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Calculates primary DamageInfo from verb, as well as secondary DamageInfos to apply (i.e. surprise attack stun damage).
@@ -281,20 +308,70 @@ namespace CombatExtended
             Vector3 direction = (target.Thing.Position - CasterPawn.Position).ToVector3();
             DamageDef def = damDef;
             //END 1:1 COPY
-            BodyPartHeight bodyRegion = BodyPartHeight.Undefined; //Alistaire: The GetBodyPartHeightFor code is completely broken and targets Bottom some 90% of the time! Therefore easiest fix to set to Vanilla (Undefined)
+            BodyPartHeight bodyRegion = GetAttackedPartHeightCE(); //Caula: Changed to the comp selector
                                                                   //GetBodyPartHeightFor(target);   //Custom // Add check for body height
                                                                   //START 1:1 COPY
             DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
 
-            // Predators get a neck bite on immobile targets
-            if (caster.def.race.predator && IsTargetImmobile(target) && target.Thing is Pawn pawn)
+            if (target.Thing is Pawn pawn)
             {
-                var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                    .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
-                damageInfo.SetHitPart(neck);
+                // Predators get a neck bite on immobile targets
+                if (caster.def.race.predator && IsTargetImmobile(target))
+                {
+                    var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
+                        .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
+                    damageInfo.SetHitPart(neck);
+                }
+                //for some reason, when all parts of height are missing their incode count is 3
+                if (pawn.health.hediffSet.GetNotMissingParts(bodyRegion).Count() <= 3)
+                {
+                    bodyRegion = BodyPartHeight.Middle;
+                }
+                //specific part hits
+                if (gizmoComp?.SkillReqBP ?? false && gizmoComp.targetBodyPart != null)
+                {
+                    
+                    // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level   
+                    float targetSkillDecrease = (pawn.skills?.GetSkill(SkillDefOf.Melee).Level ?? 0f) / 50f;
+
+                    if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving) > 0f)
+                    {
+                        targetSkillDecrease *= pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving);
+                    }
+                    else
+                    {
+                        targetSkillDecrease = 0f;
+                    }
+
+                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == gizmoComp.targetBodyPart).FirstOrFallback();
+
+                    if (Rand.Chance(gizmoComp.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
+                    {
+                        damageInfo.SetHitPart(partToHit);
+                    }
+                }
             }
 
-            damageInfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
+           
+
+            //everything related to internal organ penetration
+            BodyPartDepth finalDepth = BodyPartDepth.Outside;
+            if (target.Thing is Pawn p)
+            {
+
+                if(damageInfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && this.ToolCE.capacities.Any(y => y.GetModExtension<ModExtensionMeleeToolPenetration>()?.canHitInternal ?? false))
+                {
+                    if (Rand.Chance(damageInfo.Def.stabChanceOfForcedInternal))
+                    {
+                        if (ToolCE.armorPenetrationSharp > p.GetStatValueForPawn(StatDefOf.ArmorRating_Sharp, p))
+                        {
+                            finalDepth = BodyPartDepth.Inside;
+                        }
+                    }
+                }
+            }
+
+            damageInfo.SetBodyRegion(bodyRegion, finalDepth);
             damageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
             damageInfo.SetWeaponHediff(hediffDef);
             damageInfo.SetAngle(direction);
@@ -312,10 +389,19 @@ namespace CombatExtended
                         extraDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                         extraDamageInfo.SetWeaponHediff(hediffDef);
                         extraDamageInfo.SetAngle(direction);
+
+                        if (damageInfo.HitPart != null)
+                        {
+                            extraDamageInfo.SetHitPart(damageInfo.HitPart);
+                        }
+
                         yield return extraDamageInfo;
                     }
                 }
             }
+           
+
+            
 
             // Apply critical damage
             if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp && target.Thing.def.race.IsFlesh)
@@ -331,7 +417,7 @@ namespace CombatExtended
             }
         }
 
-        // unmodified
+        // center mass has the standard change to hit, rest is much lowered
         private float GetHitChance(LocalTargetInfo target)
         {
             if (surpriseAttack)
@@ -344,7 +430,23 @@ namespace CombatExtended
             }
             if (CasterPawn.skills != null)
             {
-                return CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+                float chance = CasterPawn.GetStatValue(StatDefOf.MeleeHitChance, true);
+
+                switch (GetAttackedPartHeightCE())
+                {
+                    case BodyPartHeight.Bottom:
+                        chance *= 0.5f;
+                        break;
+                    case BodyPartHeight.Middle:
+                        break;
+                    case BodyPartHeight.Undefined:
+                        break;
+                    case BodyPartHeight.Top:
+                        chance *= 0.3f;
+                        break;
+                }
+
+                return chance;
             }
             return DefaultHitChance;
         }
