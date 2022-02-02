@@ -21,7 +21,15 @@
 			defName="VFEP_Warcasket_Shock"																
 			]/modExtensions/li/carryingCapacity</xpath>
 		</li>
-		
+
+		<!-- ========== Remove Warcasket Flammability ========== -->		
+		<Operation Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="VFEP_WarcasketPartBase"]/statBases/Flammability</xpath>
+			<value>
+				<Flammability>0</Flammability>
+			</value>
+		</Operation>
+
 		<!-- ========== Basic Warcasket ========== -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Warcasket"]/statBases</xpath>
