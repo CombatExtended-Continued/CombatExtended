@@ -72,7 +72,7 @@ namespace CombatExtended
             {
                 var BipodCompProps = bipodComp(req);
                 var VerbPropsCE = verbPropsCE(req);
-                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 30) + "s)";
+                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)";
 
                 if (Controller.settings.AutoSetUp)
                 {
@@ -94,7 +94,7 @@ namespace CombatExtended
                 result += "Recoil: " + Math.Round ( (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
                 result += "\n";
                
-                result += "Sway: " + Math.Round( (req.Thing.GetStatValue(CE_StatDefOf.SwayFactor) * BipodCompProps.swayMult), 2);
+                result += "Sway: " + Math.Round( (req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
                 result += "\n";
 
                 result += "Range: " + (BipodCompProps.additionalrange + VerbPropsCE.range);
@@ -109,7 +109,7 @@ namespace CombatExtended
 
                 result += "\n";
 
-                result += "Sway: " + Math.Round( (req.Thing.GetStatValue(CE_StatDefOf.SwayFactor) * BipodCompProps.swayPenalty), 2);
+                result += "Sway: " + Math.Round( (req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
 
                 result += "\n";
 
@@ -132,7 +132,7 @@ namespace CombatExtended
                     return base.GetExplanationFinalizePart(req, numberSense, finalVal);
                 }
 
-                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 30) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
+                string result = "Time to set up bipod: " + BipodCompProps.ticksToSetUp + " ticks (" + (BipodCompProps.ticksToSetUp / 60) + "s)" + "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
 
                 result += "Recoil: " + (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton);
 
