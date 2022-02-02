@@ -83,6 +83,16 @@
     </recipeMaker>
   </ThingDef>
 
+  <ThingDef Name="TurretMannedBuildableBase" ParentName="TurretBase" Abstract="True">
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <comps>
+      <li Class="CompProperties_Mannable">
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+  </ThingDef>
+
   <!--=============== Blaster Turret ===============-->
 
   <ThingDef ParentName="TurretAutoBase">
@@ -185,7 +195,7 @@
 
   <!--=============== M240B ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_M240B</defName>
     <label>M240B</label>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
@@ -194,7 +204,7 @@
     </graphicData>
     <statBases>
       <Flammability>1.0</Flammability>
-      <WorkToMake>31500</WorkToMake>
+      <WorkToBuild>31500</WorkToBuild>
       <Mass>16.5</Mass>
       <Bulk>20</Bulk>
     </statBases>
@@ -220,7 +230,7 @@
 
   <!--=============== KPV ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_KPV</defName>
     <label>KPV machine gun</label>
     <constructionSkillPrerequisite>7</constructionSkillPrerequisite>
@@ -229,7 +239,7 @@
     </graphicData>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
-      <WorkToMake>50500</WorkToMake>
+      <WorkToBuild>50500</WorkToBuild>
       <Mass>88</Mass>
       <Bulk>100</Bulk>
     </statBases>
@@ -255,7 +265,7 @@
 
   <!--=============== AGS-30 ===============-->
 
-  <ThingDef ParentName="TurretMannedCraftableBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_AGSThirty</defName>
     <label>AGS-30</label>
     <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
@@ -263,7 +273,7 @@
       <texPath>Things/Building/Turrets/AGS30Base</texPath>
     </graphicData>
     <statBases>
-      <WorkToMake>33500</WorkToMake>
+      <WorkToBuild>33500</WorkToBuild>
       <Mass>16</Mass>
       <Bulk>20</Bulk>
     </statBases>
@@ -290,7 +300,7 @@
 
   <!--=============== Flak cannon ===============-->
 
-  <ThingDef ParentName="TurretMannedBase">
+  <ThingDef ParentName="TurretMannedBuildableBase">
     <defName>Turret_Flak</defName>
     <label>90mm flak turret</label>
     <description>Old school anti-aircraft cannon. Ineffective against modern aviation but still popular on rimworlds for use against entrenched enemies and vehicles.</description>
