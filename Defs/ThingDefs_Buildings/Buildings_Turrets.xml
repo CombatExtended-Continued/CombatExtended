@@ -196,6 +196,56 @@
     </researchPrerequisites>
   </ThingDef>
 
+  <!--=============== Medium Turret ===============-->
+
+  <ThingDef ParentName="TurretAutoBase">
+    <defName>Turret_Medium</defName>
+    <label>medium auto-turret</label>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+    <graphicData>
+      <texPath>Things/Building/Turrets/MachineGunBase</texPath>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <uiIconPath>UI/Icons/Turrets/HeavyAutoTurret_uiIcon</uiIconPath>
+    <statBases>
+      <WorkToBuild>40000</WorkToBuild>
+      <MarketValue>750</MarketValue>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <Mass>30</Mass>
+      <Bulk>40</Bulk>
+      <AimingAccuracy>0.5</AimingAccuracy>
+      <ShootingAccuracyTurret>0.75</ShootingAccuracyTurret>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <description>Automatic turret equiped with an intermediate caliber machine gun. Fairly resistant to damage.</description>
+    <costList>
+      <Steel>150</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
+    </costList>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Gun_MediumTurret</turretGunDef>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>250</basePowerConsumption>
+      </li>
+    </comps>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <researchPrerequisites>
+      <li>GunTurrets</li>
+    </researchPrerequisites>
+  </ThingDef>
+
   <!--=============== M240B ===============-->
 
   <ThingDef ParentName="TurretMannedBuildableBase">
