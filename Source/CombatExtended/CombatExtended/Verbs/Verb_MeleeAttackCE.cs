@@ -366,6 +366,11 @@ namespace CombatExtended
                         if (ToolCE.armorPenetrationSharp > p.GetStatValueForPawn(StatDefOf.ArmorRating_Sharp, p))
                         {
                             finalDepth = BodyPartDepth.Inside;
+
+                            if (damageInfo.HitPart != null)
+                            {
+                                damageInfo.SetHitPart(damageInfo.HitPart.GetDirectChildParts().RandomElementByWeight(x => x.coverage));
+                            }
                         }
                     }
                 }
