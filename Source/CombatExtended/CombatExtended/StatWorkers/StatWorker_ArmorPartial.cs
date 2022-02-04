@@ -19,13 +19,17 @@ namespace CombatExtended
                 {
                     var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
                     var ext = req.Thing.def.GetModExtension<PartialArmorExt>();
-
+;
                     foreach (ApparelPartialStat partstat in ext.stats)
                     {
-                        if (partstat.stat != this.stat)
+                        if (req.Thing.def.IsApparel)
                         {
-                            return base.GetExplanationFinalizePart(req, numberSense, finalVal);
+                            if (partstat.stat != this.stat)
+                            {
+                                return base.GetExplanationFinalizePart(req, numberSense, finalVal);
+                            }
                         }
+                        
 
                         var value = 0f;
                         if (req.Thing is Apparel)
@@ -38,7 +42,7 @@ namespace CombatExtended
                         }
 
                         result += "\n";
-                        result += this.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
+                        result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
 
                         foreach (BodyPartDef bodypart in partstat.parts)
                         {
@@ -50,6 +54,15 @@ namespace CombatExtended
                 }
             }
             return base.GetExplanationFinalizePart(req, numberSense, finalVal);
+        }
+
+        public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
+        {
+            if (this.stat.defName == "PartialArmorBody")
+            {
+                return "hover over";
+            }
+            return base.ValueToString(val, finalized, numberSense);
         }
     }
 }
