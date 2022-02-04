@@ -52,14 +52,14 @@
     <li Class="PatchOperationReplace">
       <xpath>/Defs/ThingDef[defName="VAECaves_CaveBear"]/statBases/ArmorRating_Blunt</xpath>
       <value>
-        <ArmorRating_Blunt>2</ArmorRating_Blunt>
+        <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
       <xpath>/Defs/ThingDef[defName="VAECaves_CaveBear"]/statBases/ArmorRating_Sharp</xpath>
       <value>
-        <ArmorRating_Sharp>1</ArmorRating_Sharp>
+        <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
       </value>
     </li>
 
@@ -145,13 +145,6 @@
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>QuadrupedLow</bodyShape>
         </li>
-      </value>
-    </li>
-
-    <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VAECaves_CaveCrawler"]/race/baseHealthScale</xpath>
-      <value>
-        <baseHealthScale>2</baseHealthScale>
       </value>
     </li>
     
@@ -483,21 +476,25 @@
     </li>
 
     <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]/statBases/ArmorRating_Blunt</xpath>
+      <value>
+        <ArmorRating_Blunt>16</ArmorRating_Blunt>
+      </value>
+    </li>
+    
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]/statBases/ArmorRating_Sharp</xpath>
+      <value>
+        <ArmorRating_Sharp>8</ArmorRating_Sharp>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="VAECaves_InsectoidHulk"]/statBases</xpath>
       <value>
-        <statBases>
-          <MoveSpeed>4.0</MoveSpeed>
-          <ArmorRating_Blunt>16</ArmorRating_Blunt>
-          <ArmorRating_Sharp>8</ArmorRating_Sharp>
-          <ComfyTemperatureMin>-40</ComfyTemperatureMin>
-          <MarketValue>1000</MarketValue>
-          <LeatherAmount>0</LeatherAmount>
-          <ToxicSensitivity>0</ToxicSensitivity>
-          <ComfyTemperatureMax>60</ComfyTemperatureMax>
           <MeleeDodgeChance>0.25</MeleeDodgeChance>
           <MeleeCritChance>0.75</MeleeCritChance>
           <MeleeParryChance>0.5</MeleeParryChance>
-        </statBases>
       </value>
     </li>
 
@@ -648,20 +645,6 @@
     </li>
 
     <!-- === Wyrm === -->
-    <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/race/baseBodySize</xpath>
-      <value>
-        <baseBodySize>20</baseBodySize>
-      </value>
-    </li>
-
-    <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/race/baseHealthScale</xpath>
-      <value>
-        <baseHealthScale>6</baseHealthScale>
-      </value>
-    </li>
-
     <li Class="PatchOperationAddModExtension">
       <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]</xpath>
       <value>
@@ -672,22 +655,25 @@
     </li>
 
     <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/statBases/ArmorRating_Blunt</xpath>
+      <value>
+        <ArmorRating_Blunt>8</ArmorRating_Blunt>
+      </value>
+    </li>
+    
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/statBases/ArmorRating_Sharp</xpath>
+      <value>
+        <ArmorRating_Sharp>6</ArmorRating_Sharp>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="VAECaves_Wyrm"]/statBases</xpath>
       <value>
-      <statBases>
-        <MoveSpeed>5.8</MoveSpeed>
-        <ComfyTemperatureMin>-40</ComfyTemperatureMin>			
-        <Flammability>0</Flammability>
-        <MarketValue>2400</MarketValue>
-        <ArmorRating_Blunt>.5</ArmorRating_Blunt>
-        <ArmorRating_Sharp>.45</ArmorRating_Sharp>
-        <ArmorRating_Heat>1.5</ArmorRating_Heat>
-        <FilthRate>8</FilthRate>
-        <CaravanRidingSpeedFactor>1.8</CaravanRidingSpeedFactor>
         <MeleeDodgeChance>0.4</MeleeDodgeChance>
         <MeleeCritChance>0.33</MeleeCritChance>
         <MeleeParryChance>0.25</MeleeParryChance>
-      </statBases>
       </value>
     </li>
 
