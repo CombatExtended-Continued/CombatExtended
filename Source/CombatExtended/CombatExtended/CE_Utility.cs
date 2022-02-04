@@ -353,6 +353,11 @@ namespace CombatExtended
                     {
                         if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                         {
+
+                            if (partial.staticValue > 0f)
+                            {
+                                return partial.staticValue;
+                            }
                             result *= partial.mult;
                             break;
 
@@ -378,6 +383,11 @@ namespace CombatExtended
                     {
                         if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                         {
+
+                            if (partial.staticValue > 0f)
+                            {
+                                return partial.staticValue;
+                            }
                             result *= partial.mult;
                             break;
 
@@ -400,6 +410,11 @@ namespace CombatExtended
                 {
                     if ((partial?.parts?.Contains(part) ?? false))
                     {
+
+                        if (partial.staticValue > 0f)
+                        {
+                            return partial.staticValue;
+                        }
                         result *= partial.mult;
                         break;
 
@@ -421,6 +436,10 @@ namespace CombatExtended
                 {
                     if ((partial?.parts?.Contains(part) ?? false))
                     {
+                        if (partial.staticValue > 0f)
+                        {
+                            return partial.staticValue;
+                        }
                         result *= partial.mult;
                         break;
 
