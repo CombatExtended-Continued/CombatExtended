@@ -99,6 +99,138 @@
     </tools>
   </ThingDef>
 
+   <!-- ==================== M72 LAW ==================== -->
+
+   <ThingDef ParentName="BaseGun_CE">
+    <defName>CE_DisposableRocketLauncher</defName>
+    <label>disposable rocket launcher</label>
+    <description>A lightweight single-use anti-tank launcher. Designed to provide soldiers in the field with a compact anti-armor weapon.</description>
+    <graphicData>
+      <texPath>Things/Weapons/M72</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <statBases>
+      <MarketValue>35.72</MarketValue>
+      <SightsEfficiency>1.0</SightsEfficiency>
+      <ShotSpread>0.2</ShotSpread>
+      <SwayFactor>1.24</SwayFactor>
+      <Bulk>6.30</Bulk>
+      <Mass>2.5</Mass>
+      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>GunHeavy</li>
+    </weaponTags>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_M72LAW</defaultProjectile>
+        <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+        <warmupTime>1.9</warmupTime>
+        <range>31</range>
+        <minRange>5</minRange>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <soundCast>InfernoCannon_Fire</soundCast>
+        <muzzleFlashScale>14</muzzleFlashScale>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_FireModes">
+        <aiUseBurstMode>FALSE</aiUseBurstMode>
+        <aiAimMode>AimedShot</aiAimMode>
+      </li>
+    </comps>
+    <stackLimit>25</stackLimit>
+    <tools>
+      <li Class="CombatExtended.ToolCE">
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>1.55</cooldownTime>
+        <chanceFactor>1.5</chanceFactor>
+        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+      </li>
+      <li Class="CombatExtended.ToolCE">
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2.02</cooldownTime>
+        <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+      </li>
+      <li Class="CombatExtended.ToolCE">
+        <label>muzzle</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>1.55</cooldownTime>
+        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+        <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <modExtensions>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.0,1.0</DrawSize>
+        <DrawOffset>-0.3,0.0</DrawOffset>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+   <RecipeDef ParentName="GrenadeRecipeBase">
+    <defName>MakeDisposableRocketLauncher</defName>
+    <label>make disposable rocket launcher x5</label>
+    <description>Craft 5 disposable rocket launchers.</description>
+    <jobString>Making disposable rocket launchers.</jobString>
+    <workAmount>6200</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <CE_DisposableRocketLauncher>5</CE_DisposableRocketLauncher>
+    </products>
+    <researchPrerequisite>CE_Launchers</researchPrerequisite>
+  </RecipeDef>
+
 
   <!-- ==================== Explosive Bolt Launcher ==================== -->
 
