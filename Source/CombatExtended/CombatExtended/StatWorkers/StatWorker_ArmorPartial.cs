@@ -46,7 +46,7 @@ namespace CombatExtended
 
                         foreach (BodyPartDef bodypart in partstat.parts)
                         {
-                            result += "\n";
+                            result += "\n -";
                             result += bodypart.label;
                         }
                     }
@@ -63,6 +63,11 @@ namespace CombatExtended
                 return "hover over";
             }
             return base.ValueToString(val, finalized, numberSense);
+        }
+
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            return (req.Thing?.def?.statBases?.Any(x => x.stat.defName == "PartialArmorBody") ?? false) && req.Thing.def.HasModExtension<PartialArmorExt>();
         }
     }
 }
