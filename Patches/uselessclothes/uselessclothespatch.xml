@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Useless clothes</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="woola" or defName="woolschoolpants" or defName="woolschoolskirt" or defName="woolshirtpants" or defName="wooluniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- == Useless nooses == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="woolnecktie" or defName="woolbow"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>0.1</Bulk>
+						<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- == useless SuitJacket == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="woolsuitpants"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!-- == useless school uniform == -->
+				<!-- statBases -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="woolschooluniform_Thin"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+						<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
