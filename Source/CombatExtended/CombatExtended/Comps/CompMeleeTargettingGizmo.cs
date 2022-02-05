@@ -103,6 +103,7 @@ namespace CombatExtended
                     if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
                         targetBodyPart = null;
+                        return BodyPartHeight.Bottom;
                     }
                     else
                     {
@@ -179,27 +180,31 @@ namespace CombatExtended
                         {
                             case BodyPartHeight.Bottom:
                                 heightInt = BodyPartHeight.Middle;
+                                targetBodyPart = null;
                                 break;
                             case BodyPartHeight.Middle:
                                 heightInt = BodyPartHeight.Top;
+                                targetBodyPart = null;
                                 break;
                             case BodyPartHeight.Top:
                                 heightInt = BodyPartHeight.Undefined;
+                                targetBodyPart = null;
                                 break;
                             case BodyPartHeight.Undefined:
                                 heightInt = BodyPartHeight.Bottom;
+                                targetBodyPart = null;
                                 break;
                         }
                     },
                     defaultLabel = "CE_MeleeTargetting_CurHeight".Translate() + " " + heightString,
                 };
             }
-            if (SkillReqBP)
+            if (SkillReqBP && heightInt != BodyPartHeight.Undefined)
             {
                 yield return new Command_Action
                 {
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/Undefined"),
-                    defaultLabel = "CE_MeleeTargetting_CurPart".Translate() + " " + targetBodyPart,
+                    defaultLabel = "CE_MeleeTargetting_CurPart".Translate() + " " + (targetBodyPart?.label ?? "CE_NoBP".Translate()),
                     action = delegate
                     {
                         List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -233,6 +238,8 @@ namespace CombatExtended
                                    }
                                    ));
                         }
+
+                        options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { targetBodyPart = null; }));
 
                         Find.WindowStack.Add(new FloatMenu(options));
                     }
