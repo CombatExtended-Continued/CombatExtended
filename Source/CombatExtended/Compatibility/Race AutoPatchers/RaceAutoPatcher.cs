@@ -54,12 +54,20 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 100f;
+                    RatingSharp.value *= 10f;
+
+                    var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
+
+                    animal.statBases.Add(RatingSharpBP);
                 }
                 else
                 {
                     RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 1f };
                     animal.statBases.Add(RatingSharp);
+
+                    var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = 1f };
+
+                    animal.statBases.Add(RatingSharpBP);
                 }
 
                 
@@ -68,13 +76,21 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 100f;
+                    RatingBlunt.value *= 10f;
+
+                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = RatingBlunt.value };
+
+                    animal.statBases.Add(RatingBluntBP);
                 }
                 else
                 {
                     RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 1f };
 
                     animal.statBases.Add(RatingBlunt);
+
+                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = 1f};
+
+                    animal.statBases.Add(RatingBluntBP);
                 }
 
                 patchCount++;

@@ -56,6 +56,7 @@ namespace CombatExtended.Compatibility
                 alienRace.modExtensions.Add(new RacePropertiesExtensionCE { bodyShape = CE_BodyShapeDefOf.Humanoid });
 
                 var newTools = new List<Tool>();
+
                 #region Tool patching
                 foreach (Tool tool in alienRace.tools)
                 {
@@ -71,7 +72,6 @@ namespace CombatExtended.Compatibility
 
                 alienRace.tools = newTools;
                 #endregion
-
 
                 #region comp additions
                 if (alienRace.comps == null)
@@ -93,11 +93,15 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 100f;
+                    RatingSharp.value *= 10f;
+
+                    var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
+
+                    alienRace.statBases.Add(RatingSharpBP);
                 }
                 else
                 {
-                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 1f };
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 2f };
                     alienRace.statBases.Add(RatingSharp);
                 }
 
@@ -105,11 +109,11 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 100f;
+                    RatingBlunt.value *= 10f;
                 }
                 else
                 {
-                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 1f };
+                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 2f };
 
                     alienRace.statBases.Add(RatingBlunt);
                 }
