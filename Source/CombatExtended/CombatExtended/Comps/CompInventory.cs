@@ -386,8 +386,13 @@ namespace CombatExtended
         /// </summary>
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
         /// <param name="useAOE">Whether to use AOE weapons (grenades, explosive, RPGs, etc)</param>
-        public bool SwitchToNextViableWeapon(bool useFists = true, bool useAOE = false, bool stopJob = true, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
+        public bool SwitchToNextViableWeapon(bool useFists = false, bool useAOE = false, bool stopJob = true, Func<ThingWithComps, CompAmmoUser, bool> predicate = null)
         {
+            if (parentPawn.equipment?.Primary?.def.weaponTags?.Contains("NoSwitch") ?? false)
+            {
+                return false;
+            }
+
             ThingWithComps newEq = null;
 
             // Stop current job
