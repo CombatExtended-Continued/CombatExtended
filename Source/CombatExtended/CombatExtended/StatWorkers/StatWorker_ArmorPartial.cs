@@ -22,13 +22,6 @@ namespace CombatExtended
 ;
                     foreach (ApparelPartialStat partstat in ext.stats)
                     {
-                        if (req.Thing.def.IsApparel)
-                        {
-                            if (partstat.stat != this.stat)
-                            {
-                                return base.GetExplanationFinalizePart(req, numberSense, finalVal);
-                            }
-                        }
                         
 
                         var value = 0f;
@@ -46,7 +39,7 @@ namespace CombatExtended
 
                         foreach (BodyPartDef bodypart in partstat.parts)
                         {
-                            result += "\n";
+                            result += "\n - ";
                             result += bodypart.label;
                         }
                     }
@@ -60,9 +53,30 @@ namespace CombatExtended
         {
             if (this.stat.defName == "PartialArmorBody")
             {
-                return "hover over";
+                return "Hover over";
             }
             return base.ValueToString(val, finalized, numberSense);
+        }
+
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            if ( ((ThingDef)req.Def)?.IsApparel ?? req.Thing?.def?.IsApparel ?? false)
+            {
+                return this.stat.defName != "PartialArmorBody";
+            }
+            else if (req.Thing is Pawn)
+            {
+                if (req.Thing.def.HasModExtension<PartialArmorExt>())
+                {
+                    return true;
+                }
+                else
+                {
+                    return this.stat.defName != "PartialArmorBody";
+                }
+            }
+            return false;
+            
         }
     }
 }
