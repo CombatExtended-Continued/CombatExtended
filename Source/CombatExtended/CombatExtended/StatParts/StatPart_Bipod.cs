@@ -72,7 +72,7 @@ namespace CombatExtended
 					}
 					else
 					{
-						val *= varA.Props.warmupPenalty;
+						val *= varA.Props.swayPenalty;
 					}
 				}
 			}

@@ -24,7 +24,8 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
-	private bool genericammo = false;
+	    private bool genericammo = false;
+        private bool partialstats = true;
 
 	    private bool showExtraTooltips = false;
 
@@ -32,7 +33,7 @@ namespace CombatExtended
 
         public bool BipodMechanics => bipodMechanics;
 
-	public bool GenericAmmo => genericammo;
+	    public bool GenericAmmo => genericammo;
         public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
@@ -41,6 +42,8 @@ namespace CombatExtended
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
         public bool ShowTacticalVests => showTacticalVests;
+
+        public bool PartialStat => partialstats;
 	public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowTutorialPopup = true;
@@ -103,6 +106,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
+            Scribe_Values.Look(ref partialstats, "PartialArmor", true);
 
 	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
@@ -148,6 +152,7 @@ namespace CombatExtended
             list.Label("CE_Settings_HeaderGeneral".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
+            list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());

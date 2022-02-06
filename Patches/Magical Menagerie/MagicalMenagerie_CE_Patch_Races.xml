@@ -10,7 +10,22 @@
 				<!-- Shared bodyShape patches -->
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath> Defs/ThingDef[ defName="MM_Ahuizotl" or defName="MM_Catoblepas" or defName="MM_Cerberus" or defName="MM_CeryneianHind" or defName="MM_Chimera" or defName="MM_ErymanthianBoar" or defName="MM_Griffin" or defName="MM_Kitsune" or defName="MM_LernaeanHydra" or defName="MM_Manticore" or defName="MM_Pegasus" or defName="MM_Qilin" or defName="MM_Unicorn" or defName="MM_Xiezhi"]</xpath>
+					<xpath>/Defs/ThingDef[
+					defName="MM_Ahuizotl" or 
+					defName="MM_Catoblepas" or 
+					defName="MM_Cerberus" or 
+					defName="MM_CeryneianHind" or 
+					defName="MM_Chimera" or 
+					defName="MM_ErymanthianBoar" or 
+					defName="MM_Griffin" or 
+					defName="MM_Kitsune" or 
+					defName="MM_LernaeanHydra" or 
+					defName="MM_Manticore" or 
+					defName="MM_Pegasus" or 
+					defName="MM_Qilin" or 
+					defName="MM_Unicorn" or 
+					defName="MM_Xiezhi"
+					]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Quadruped</bodyShape>
@@ -19,7 +34,7 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath> Defs/ThingDef[defName="MM_WillOWisp" or defName="MM_LesserWyvern"]</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WillOWisp"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
@@ -28,7 +43,7 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath> Defs/ThingDef[defName="MM_Basilisk" or defName="MM_Tlilcoatl" or defName="MM_Salamander"]</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Basilisk" or defName="MM_Tlilcoatl" or defName="MM_Salamander"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Serpentine</bodyShape>
@@ -37,7 +52,7 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath> Defs/ThingDef[defName="MM_WildMinotaur" or defName="MM_Kappa"]</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WildMinotaur" or defName="MM_Kappa"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -46,7 +61,12 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath> Defs/ThingDef[defName="MM_Phoenix" or defName="MM_Fenghuang" or defName="MM_Ieltxu"]</xpath>
+					<xpath>/Defs/ThingDef[
+					defName="MM_Phoenix" or 
+					defName="MM_Fenghuang" or 
+					defName="MM_Ieltxu" or 
+					defName="MM_LesserWyvern"
+					]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Birdlike</bodyShape>
@@ -57,7 +77,7 @@
 				<!-- ========== Ahuizotl ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Ahuizotl"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Ahuizotl"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.10</MeleeDodgeChance>
 						<MeleeCritChance>0.26</MeleeCritChance>
@@ -66,7 +86,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Ahuizotl"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Ahuizotl"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -154,7 +174,7 @@
 				<!-- ========== Basilisk ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Basilisk"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Basilisk"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.19</MeleeDodgeChance>
 						<MeleeCritChance>0.18</MeleeCritChance>
@@ -165,7 +185,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Basilisk"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Basilisk"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -204,16 +224,29 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Basilisk"]/verbs/li/range</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Basilisk"]/verbs</xpath>
 					<value>
-						<range>12</range>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_GazeAttack_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1</warmupTime>
+								<range>12</range>
+								<minRange>1</minRange>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>1</commonality>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
 					</value>
 				</li>
 
 				<!-- ========== Catoblepas ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Catoblepas"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Catoblepas"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.10</MeleeDodgeChance>
 						<MeleeCritChance>0.35</MeleeCritChance>
@@ -224,7 +257,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Catoblepas"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Catoblepas"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -278,10 +311,30 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_Catoblepas"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_GazeAttack_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1</warmupTime>
+								<range>20</range>
+								<minRange>1</minRange>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>1</commonality>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
 				<!-- ========== Cerberus ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Cerberus"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Cerberus"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.13</MeleeDodgeChance>
 						<MeleeCritChance>0.28</MeleeCritChance>
@@ -290,7 +343,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Cerberus"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Cerberus"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -345,7 +398,7 @@
 				<!-- ========== Ceryneian Hind ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_CeryneianHind"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_CeryneianHind"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.14</MeleeDodgeChance>
 						<MeleeCritChance>0.27</MeleeCritChance>
@@ -354,7 +407,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_CeryneianHind"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_CeryneianHind"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -419,7 +472,7 @@
 				<!-- ========== Chimera ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Chimera"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Chimera"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.09</MeleeDodgeChance>
 						<MeleeCritChance>0.48</MeleeCritChance>
@@ -430,7 +483,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Chimera"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Chimera"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -527,16 +580,34 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Chimera"]/verbs/li/range</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Chimera"]/verbs</xpath>
 					<value>
-						<range>18</range>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_FlameBreathAnimated_CE</defaultProjectile>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<warmupTime>2.5</warmupTime>
+								<range>18</range>
+								<minRange>2</minRange>
+								<soundCast>MM_FireBreathSound</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<commonality>0.8</commonality>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
 					</value>
 				</li>
 
 				<!-- ========== Erymanthian Boar ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_ErymanthianBoar"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_ErymanthianBoar"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.12</MeleeDodgeChance>
 						<MeleeCritChance>0.33</MeleeCritChance>
@@ -545,7 +616,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_ErymanthianBoar"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_ErymanthianBoar"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -601,7 +672,7 @@
 				<!-- ========== Fenghuang ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Fenghuang"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Fenghuang"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.17</MeleeDodgeChance>
 						<MeleeCritChance>0.12</MeleeCritChance>
@@ -610,7 +681,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Fenghuang"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Fenghuang"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -670,7 +741,7 @@
 				<!-- ========== Griffin ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Griffin"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Griffin"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.17</MeleeDodgeChance>
 						<MeleeCritChance>0.17</MeleeCritChance>
@@ -679,7 +750,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Griffin"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Griffin"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -759,7 +830,7 @@
 				<!-- ========== Ieltxu ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Ieltxu"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Ieltxu"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.22</MeleeDodgeChance>
 						<MeleeCritChance>0.06</MeleeCritChance>
@@ -769,7 +840,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Ieltxu"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Ieltxu"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -827,16 +898,33 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Ieltxu"]/verbs/li/range</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Ieltxu"]/verbs</xpath>
 					<value>
-						<range>10</range>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_FlameBreathAnimated_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1.5</warmupTime>
+								<range>10</range>
+								<minRange>2</minRange>
+								<soundCast>MM_FireBreathSound</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>1.0</commonality>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
 					</value>
 				</li>
 
 				<!-- ========== Kappa ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Kappa"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Kappa"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.12</MeleeDodgeChance>
 						<MeleeCritChance>0.14</MeleeCritChance>
@@ -845,7 +933,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Kappa"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Kappa"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -917,7 +1005,7 @@
 				<!-- ========== Kitsune ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Kitsune"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Kitsune"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.07</MeleeCritChance>
@@ -926,7 +1014,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Kitsune"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Kitsune"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1001,10 +1089,10 @@
 					</value>
 				</li>
 
-				<!-- ========== Lernaean Hydra ========== --> <!-- Note: Hydra's projectile didn't work so it requires a fix -->
+				<!-- ========== Lernaean Hydra ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_LernaeanHydra"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LernaeanHydra"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.08</MeleeDodgeChance>
 						<MeleeCritChance>0.22</MeleeCritChance>
@@ -1015,7 +1103,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_LernaeanHydra"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LernaeanHydra"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1052,16 +1140,34 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_LernaeanHydra"]/verbs/li/range</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LernaeanHydra"]/verbs</xpath>
 					<value>
-						<range>18</range>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_AcidicBreath</defaultProjectile>
+								<burstShotCount>6</burstShotCount>
+								<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+								<warmupTime>2.0</warmupTime>
+								<range>18</range>
+								<minRange>2</minRange>
+								<soundCast>MM_PoisonBreathSound</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<commonality>1</commonality>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
 					</value>
 				</li>
 
 				<!-- ========== Lesser Wyvern ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_LesserWyvern"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LesserWyvern"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.25</MeleeDodgeChance>
 						<MeleeCritChance>0.33</MeleeCritChance>
@@ -1070,7 +1176,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_LesserWyvern"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LesserWyvern"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1132,16 +1238,16 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_LesserWyvern"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LesserWyvern"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_LesserWyvern"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_LesserWyvern"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
 					</value>
 				</li>
 
@@ -1149,7 +1255,7 @@
 				<!-- ========== Manticore ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Manticore"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Manticore"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.31</MeleeCritChance>
@@ -1159,7 +1265,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Manticore"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Manticore"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1254,7 +1360,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Manticore"]/verbs</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Manticore"]/verbs</xpath>
 					<value>
 						<verbs>
 							<li Class="CombatExtended.VerbPropertiesCE">
@@ -1281,7 +1387,7 @@
 				<!-- ========== Pegasus ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Pegasus"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Pegasus"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.48</MeleeCritChance>
@@ -1290,7 +1396,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Pegasus"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Pegasus"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1360,7 +1466,7 @@
 				<!-- ========== Phoenix ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Phoenix"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Phoenix"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.36</MeleeDodgeChance>
 						<MeleeCritChance>0.17</MeleeCritChance>
@@ -1369,7 +1475,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Phoenix"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Phoenix"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1427,14 +1533,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Phoenix"]/statBases/MoveSpeed</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Phoenix"]/statBases/MoveSpeed</xpath>
 					<value>
 						<MoveSpeed>4.7</MoveSpeed>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Phoenix"]</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Phoenix"]</xpath>
 					<value>
 						<butcherProducts>
 							<Prometheum>10</Prometheum>
@@ -1445,7 +1551,7 @@
 				<!-- ========== Qilin ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Qilin"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Qilin"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.13</MeleeDodgeChance>
 						<MeleeCritChance>0.23</MeleeCritChance>
@@ -1454,7 +1560,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Qilin"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Qilin"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1538,7 +1644,7 @@
 				<!-- ========== Salamander ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Salamander"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Salamander"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.29</MeleeCritChance>
@@ -1547,7 +1653,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Salamander"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Salamander"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1588,7 +1694,7 @@
 				<!-- ========== Tlilcoatl ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Tlilcoatl"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Tlilcoatl"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.23</MeleeDodgeChance>
 						<MeleeCritChance>0.12</MeleeCritChance>
@@ -1599,7 +1705,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Tlilcoatl"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Tlilcoatl"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1626,16 +1732,34 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Tlilcoatl"]/verbs/li/range</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Tlilcoatl"]/verbs</xpath>
 					<value>
-						<range>14</range>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_GreenStreamBreath_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1.5</warmupTime>
+								<range>14</range>
+								<minRange>1</minRange>
+								<soundCast>MM_PoisonBreathSound</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<commonality>1.0</commonality>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
 					</value>
 				</li>
+
 
 				<!-- ========== Unicorn ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Unicorn"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Unicorn"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.41</MeleeCritChance>
@@ -1644,7 +1768,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Unicorn"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Unicorn"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1736,7 +1860,7 @@
 				<!-- ========== Wild Minotaur ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_WildMinotaur"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WildMinotaur"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.12</MeleeDodgeChance>
 						<MeleeCritChance>0.14</MeleeCritChance>
@@ -1745,7 +1869,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_WildMinotaur"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WildMinotaur"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1821,10 +1945,34 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_WildMinotaur"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_Tremor</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1</warmupTime>
+								<range>15</range>
+								<minRange>5</minRange>
+								<soundCast>MM_Tremor</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<commonality>1</commonality>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
 				<!-- ========== Will-O'-Wisp ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_WillOWisp"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WillOWisp"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.22</MeleeDodgeChance>
 						<MeleeCritChance>0.00</MeleeCritChance>
@@ -1833,7 +1981,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_WillOWisp"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WillOWisp"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -1859,14 +2007,14 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_WillOWisp"]/verbs</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_WillOWisp"]/verbs</xpath>
 					<value>
 						<verbs>
 							<li Class="CombatExtended.VerbPropertiesCE">
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>MM_WispProjectile</defaultProjectile>
-								<burstShotCount>50</burstShotCount>
+								<burstShotCount>25</burstShotCount>
 								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 								<warmupTime>2</warmupTime>
 								<range>15</range>
@@ -1886,7 +2034,7 @@
 				<!-- ========== Xiezhi ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="MM_Xiezhi"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Xiezhi"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.25</MeleeDodgeChance>
 						<MeleeCritChance>0.18</MeleeCritChance>
@@ -1895,7 +2043,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="MM_Xiezhi"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="MM_Xiezhi"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">

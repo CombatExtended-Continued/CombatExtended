@@ -155,7 +155,7 @@ namespace CombatExtended
             }
 
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
-            var partDensityStat = isSharp
+            var partDensityStat = isSharp       
                 ? CE_StatDefOf.BodyPartSharpArmor
                 : CE_StatDefOf.BodyPartBluntArmor;
             var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
@@ -163,7 +163,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
+                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))

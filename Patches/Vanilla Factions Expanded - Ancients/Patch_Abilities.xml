@@ -23,22 +23,27 @@
       </li>
 
       <!-- Weapon Expert --> 
-      <li Class="PatchOperationReplace">
+      <li Class="PatchOperationAdd">
         <xpath>/Defs/VFEAncients.PowerDef[defName="WeaponExpert"]/statFactors</xpath>
         <value>
-        <statFactors>
-          <ReloadSpeed>3</ReloadSpeed>
-          <ShootingAccuracyPawn>6</ShootingAccuracyPawn>
-        </statFactors>  
+          <ReloadSpeed>2</ReloadSpeed>
+          <ShootingAccuracyPawn>2</ShootingAccuracyPawn>
         </value>
       </li>
 
       <!-- Marksmanship -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/VFEAncients.PowerDef[defName="Marksmanship"]/setStats/ShootingAccuracyPawn</xpath>
+        <value>
+          <ShootingAccuracyPawn>20</ShootingAccuracyPawn>  
+        </value>
+      </li>
+
       <li Class="PatchOperationAdd">
         <xpath>/Defs/VFEAncients.PowerDef[defName="Marksmanship"]</xpath>
         <value>
         <statFactors>
-          <ShootingAccuracyPawn>20</ShootingAccuracyPawn> 
+          <AimingAccuracy>5</AimingAccuracy> 
         </statFactors>  
         </value>
       </li>
