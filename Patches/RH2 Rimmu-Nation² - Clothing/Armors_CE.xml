@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class ="PatchOperationFindMod">
+		<mods>
+			<li>[RH2] Rimmu-Nation² - Clothing</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--=============== Eye and Ear Pro ====================-->
+
+				<!--layer fix-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EyePros_8X10BallisticGoggles" or 
+						defName="RNApparel_EyePros_RB3025AviatorGlasses" or
+						defName="RNApparel_EyePros_SIBallisticMFrame" or
+						defName="RNApparel_EyePros_TerminatorGlasses"
+					]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>StrappedHead</li>
+						</layers>
+					</value>
+				</li>
+
+				<!--Ballistic Goggles + Ear Pro-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EyePros_8X10BallisticGoggles" or 
+						defName="RNApparel_EarDefs_PeltorOptimeII"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.1</WornBulk>
+						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>1</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EyePros_8X10BallisticGoggles"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.5</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<!--SI Ballistic M frame-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EyePros_SIBallisticMFrame"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>0.1</WornBulk>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EyePros_SIBallisticMFrame"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>1.3</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[
+						defName = "RNApparel_EyePros_SIBallisticMFrame" or 
+						defName="RNApparel_EyePros_8X10BallisticGoggles"]</xpath>
+					<value>
+						<li Class="CombatExtended.ApperalRenderingExtension">
+							<HideHair>false</HideHair>
+							<HideBeard>false</HideBeard>
+						</li>
+					</value>
+				</li>
+
+				<!--========================= Helmets ========================-->
+				<!--Material-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_M1Helmet_Vietnam" or 
+						defName="RNApparel_ProTecPrime_PizzaTime" or 
+						defName="RNApparel_EXFILBallisticHelmet_Tan" or 
+						defName="RNApparel_3MF70HighCut_Tan" or
+						defName="RNApparel_FLUXBallisticHelmet_Raid" or 
+						defName="RNApparel_UaRmsTORD_Tan" or 
+						defName="RNApparel_VestGuardFAST_Black" or 
+						defName="RNApparel_OpsCoreFAST_Tan" or 
+						defName="RNApparel_OpsCoreFASTBUMP_Multicam" or 
+						defName="RNApparel_OpsCoreFASTCarbon_Grey" or 
+						defName="RNApparel_MICH2000_CAG" or 
+						defName="RNApparel_MICH2000_AmericanSniper" or 
+						defName="RNApparel_Mk6BallisticHelmet_DDPM" or 
+						defName="RNApparel_Mk6BallisticHelmet_Olive" or
+						defName="RNApparel_Mk6ABallisticHelmet_Black" or 
+						defName="RNApparel_Mk7BallisticHelmet_Tan" or 
+						defName="RNApparel_VestGuardPASGT_Black" or 
+						defName="RNApparel_VestGuardPASGT_PRESS" or 
+						defName="RNApparel_PASGT_Tan" or 
+						defName="RNApparel_PASGT_ENVO" or 
+						defName="RNApparel_LWH_DMARPAT" or 
+						defName="RNApparel_ACH_UCP" or 
+						defName="RNApparel_LZSH2DTM_Olive" or 
+						defName="RNApparel_STSh81_Helmet" or 
+						defName="RNApparel_6B48_Helmet"]/stuffCategories</xpath>
+					<value>
+						<stuffCategories>
+							<li>Steeled</li>
+						</stuffCategories>
+					</value>
+				</li>
+
+				<!--Wendy Exfil Ballistic-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_EXFILBallisticHelmet_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--FLUX Helmet-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FLUXBallisticHelmet_Raid"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--M1 Helmet-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_M1Helmet_Vietnam"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.375</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.143</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.386</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_M1Helmet_Vietnam"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_M1Helmet_Vietnam"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!--Epic Pizzatime Helmet-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_ProTecPrime_PizzaTime"]/statBases</xpath>
+					<value>
+						<Bulk>3</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>0.375</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.143</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.386</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_ProTecPrime_PizzaTime"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_ProTecPrime_PizzaTime"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<value>
+						<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!--3M F70-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_3MF70HighCut_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--TOR-D-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_UaRmsTORD_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--SF151-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_VestGuardFAST_Black"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--Ops Core FAST Helmets-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_OpsCoreFAST_Tan" or 
+						defName="RNApparel_OpsCoreFASTBUMP_Multicam" or 
+						defName="RNApparel_OpsCoreFASTCarbon_Grey"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--MICH 2000-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MICH2000_CAG" or 
+						defName="RNApparel_MICH2000_AmericanSniper" or 
+						defName="RNApparel_ACH_UCP"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--Mk Series-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_Mk6BallisticHelmet_DDPM" or 
+						defName="RNApparel_Mk6BallisticHelmet_Olive" or 
+						defName="RNApparel_Mk6ABallisticHelmet_Black" or 
+						defName="RNApparel_Mk7BallisticHelmet_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+						<ArmorRating_Blunt>14</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--PASGT Helmets-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_VestGuardPASGT_Black" or 
+						defName="RNApparel_PASGT_Tan" or 
+						defName="RNApparel_PASGT_ENVO" or 
+						defName="RNApparel_LWH_DMARPAT"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--LZSH 2DTM-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_LZSH2DTM_Olive"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>2</WornBulk>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--STSh-81-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_STSh81_Helmet"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--6B48-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_6B48_Helmet"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--EOD-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEngHelmet_EOD9A"]/statBases</xpath>
+					<value>
+						<Bulk>15</Bulk>
+						<WornBulk>10</WornBulk>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.90</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEngHelmet_EOD9A"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>FullHead</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEngHelmet_EOD9A"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>10</Plasteel>
+							<DevilstrandCloth>5</DevilstrandCloth>
+							<ComponentIndustrial>2</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<!--Juggernaut-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_Helmet_Juggernaut"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1.5</WornBulk>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.90</ArmorRating_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_Helmet_Juggernaut"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<bodyPartGroups>
+							<li>FullHead</li>
+						</bodyPartGroups>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_Helmet_Juggernaut"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>15</Plasteel>
+							<ComponentIndustrial>5</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<!--Riot Helmet-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_SecProHelmet_Riot"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--Galac-Tac Helmet (Fast Helmet?)-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_GalacTacFAST_Tan"]/statBases</xpath>
+					<value>
+						<Bulk>3.5</Bulk>
+						<WornBulk>1</WornBulk>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.54</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<!--========================== Body Armors =====================================-->
+				<!--EOD-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/statBases</xpath>
+					<value>
+						<Bulk>60</Bulk>
+						<WornBulk>20</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
+					</value>
+				</li>
+				<!--Stats-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>-0.75</MoveSpeed>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/equippedStatOffsets</xpath>
+					<value>
+						<WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+						<MeleeHitChance>-0.25</MeleeHitChance>
+						<AimingDelayFactor>0.15</AimingDelayFactor>
+					</value>
+				</li>
+				<!--Costs-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_EOD9Suit"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>120</Plasteel>
+							<Uranium>20</Uranium>
+							<DevilstrandCloth>50</DevilstrandCloth>
+							<ComponentIndustrial>10</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+
+				<!--Juggernaut Suit-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/statBases</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<WornBulk>20</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>28</ArmorRating_Blunt>
+					</value>
+				</li>
+				<!--Stats-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/statBases/Mass</xpath>
+					<value>
+						<Mass>30</Mass>
+						<WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+						<MeleeHitChance>-0.25</MeleeHitChance>
+						<AimingDelayFactor>0.15</AimingDelayFactor>
+					</value>
+				</li>				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>-1.0</MoveSpeed>
+					</value>
+				</li>
+				<!--Costs-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_MedEng_JuggernautSuit"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>120</Plasteel>
+							<Uranium>50</Uranium>
+							<DevilstrandCloth>30</DevilstrandCloth>
+							<ComponentIndustrial>12</ComponentIndustrial>
+						</costList>
+					</value>
+				</li>
+				
+				<!--Riot Suit-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_RiotSuit_SecPro"]/statBases/Mass</xpath>
+					<value>
+						<Mass>18</Mass>
+						<Bulk>40</Bulk>
+						<WornBulk>10</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_RiotSuit_SecPro"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_RiotSuit_SecPro"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>26</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+							defName="RNApparel_RiotSuit_SecPro"]/apparel/layers</xpath>
+					<value>
+						<layers>
+							<li>Middle</li>
+							<li>Shell</li>
+						</layers>
+					</value>
+				</li>
+				
+				<!--14mm armors (same sharp value 1.01)-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FlyyeFCPC_Multicam" or 
+						defName="RNApparel_511TacTec_Tan" or 
+						defName="RNApparel_DDTGhost_ODGreen" or 
+						defName="RNApparel_WarriorDCS_ODGreen" or 
+						defName="RNApparel_ENVOVestSystem_Grey" or 
+						defName="RNApparel_ViperLazerSOPC_Tan" or 
+						defName="RNApparel_PointBlankASPC_Black" or 
+						defName="RNApparel_PointBlankFASTC_CoyoteBrown" or 
+						defName="RNApparel_LBTMPC_Tan" or 
+						defName="RNApparel_LBTG3_Multicam" or 
+						defName="RNApparel_AR500Veritas_Brown" or 
+						defName="RNApparel_MBCFantom_Black" or 
+						defName="RNApparel_PACALVC_Tan" or 
+						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/Mass</xpath>
+					<value>
+						<Mass>11</Mass>
+						<Bulk>6</Bulk>
+						<WornBulk>3</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FlyyeFCPC_Multicam" or 
+						defName="RNApparel_511TacTec_Tan" or 
+						defName="RNApparel_DDTGhost_ODGreen" or 
+						defName="RNApparel_WarriorDCS_ODGreen" or 
+						defName="RNApparel_ENVOVestSystem_Grey" or 
+						defName="RNApparel_ViperLazerSOPC_Tan" or 
+						defName="RNApparel_PointBlankASPC_Black" or 
+						defName="RNApparel_PointBlankFASTC_CoyoteBrown" or 
+						defName="RNApparel_LBTMPC_Tan" or 
+						defName="RNApparel_LBTG3_Multicam" or 
+						defName="RNApparel_AR500Veritas_Brown" or 
+						defName="RNApparel_MBCFantom_Black" or 
+						defName="RNApparel_PACALVC_Tan" or 
+						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>75</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FlyyeFCPC_Multicam" or 
+						defName="RNApparel_511TacTec_Tan" or 
+						defName="RNApparel_DDTGhost_ODGreen" or 
+						defName="RNApparel_WarriorDCS_ODGreen" or 
+						defName="RNApparel_ENVOVestSystem_Grey" or 
+						defName="RNApparel_ViperLazerSOPC_Tan" or 
+						defName="RNApparel_PointBlankASPC_Black" or 
+						defName="RNApparel_PointBlankFASTC_CoyoteBrown" or 
+						defName="RNApparel_LBTMPC_Tan" or 
+						defName="RNApparel_LBTG3_Multicam" or 
+						defName="RNApparel_AR500Veritas_Brown" or 
+						defName="RNApparel_MBCFantom_Black" or 
+						defName="RNApparel_PACALVC_Tan" or 
+						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FlyyeFCPC_Multicam" or 
+						defName="RNApparel_511TacTec_Tan" or 
+						defName="RNApparel_DDTGhost_ODGreen" or 
+						defName="RNApparel_WarriorDCS_ODGreen" or 
+						defName="RNApparel_ENVOVestSystem_Grey" or 
+						defName="RNApparel_ViperLazerSOPC_Tan" or 
+						defName="RNApparel_PointBlankASPC_Black" or 
+						defName="RNApparel_PointBlankFASTC_CoyoteBrown" or 
+						defName="RNApparel_LBTMPC_Tan" or 
+						defName="RNApparel_LBTG3_Multicam" or 
+						defName="RNApparel_AR500Veritas_Brown" or 
+						defName="RNApparel_MBCFantom_Black" or 
+						defName="RNApparel_PACALVC_Tan" or 
+						defName="RNApparel_BristolBodyArmor_Olive"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_FlyyeFCPC_Multicam" or 
+						defName="RNApparel_511TacTec_Tan" or 
+						defName="RNApparel_DDTGhost_ODGreen" or 
+						defName="RNApparel_WarriorDCS_ODGreen" or 
+						defName="RNApparel_ENVOVestSystem_Grey" or 
+						defName="RNApparel_ViperLazerSOPC_Tan" or 
+						defName="RNApparel_PointBlankASPC_Black" or 
+						defName="RNApparel_PointBlankFASTC_CoyoteBrown" or 
+						defName="RNApparel_LBTMPC_Tan" or 
+						defName="RNApparel_LBTG3_Multicam" or 
+						defName="RNApparel_AR500Veritas_Brown" or 
+						defName="RNApparel_MBCFantom_Black" or 
+						defName="RNApparel_PACALVC_Tan" or 
+						defName="RNApparel_BristolBodyArmor_Olive"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<!--16mm (sharp 1.05)-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_OTV_Tan" or 
+						defName="RNApparel_IOTV_UCP" or 
+						defName="RNApparel_MTV_Tan" or 
+						defName="RNApparel_VestguardCT101_Navy" or 
+						defName="RNApparel_VestguardQRA_Black" or 
+						defName="RNApparel_VestguardQRX_Black" or 
+						defName="RNApparel_PASGTVest_Olive" or 
+						defName="RNApparel_Defender2_Tan" or 
+						defName="RNApparel_GalacTecBodyArmour_Tan" or 
+						defName="RNApparel_OspreyMk3_DDPM" or 
+						defName="RNApparel_VestguardOT103_Navy"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>75</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RNApparel_OTV_Tan" or 
+					defName="RNApparel_IOTV_UCP" or 
+					defName="RNApparel_MTV_Tan" or 
+					defName="RNApparel_VestguardCT101_Navy" or 
+					defName="RNApparel_VestguardQRA_Black" or 
+					defName="RNApparel_VestguardQRX_Black" or 
+					defName="RNApparel_PASGTVest_Olive" or 
+					defName="RNApparel_Defender2_Tan" or 
+					defName="RNApparel_GalacTecBodyArmour_Tan" or 
+					defName="RNApparel_OspreyMk3_DDPM" or 
+					defName="RNApparel_VestguardOT103_Navy"]/statBases/Mass</xpath>
+					<value>
+						<Mass>13</Mass>
+						<Bulk>6</Bulk>
+						<WornBulk>4</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_OTV_Tan" or 
+						defName="RNApparel_IOTV_UCP" or 
+						defName="RNApparel_MTV_Tan" or 
+						defName="RNApparel_VestguardCT101_Navy" or 
+						defName="RNApparel_VestguardQRA_Black" or 
+						defName="RNApparel_VestguardQRX_Black" or 
+						defName="RNApparel_PASGTVest_Olive" or 
+						defName="RNApparel_Defender2_Tan" or 
+						defName="RNApparel_GalacTecBodyArmour_Tan" or 
+						defName="RNApparel_OspreyMk3_DDPM" or 
+						defName="RNApparel_VestguardOT103_Navy"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_OTV_Tan" or 
+						defName="RNApparel_IOTV_UCP" or 
+						defName="RNApparel_MTV_Tan" or 
+						defName="RNApparel_VestguardCT101_Navy" or 
+						defName="RNApparel_VestguardQRA_Black" or 
+						defName="RNApparel_VestguardQRX_Black" or 
+						defName="RNApparel_PASGTVest_Olive" or 
+						defName="RNApparel_Defender2_Tan" or 
+						defName="RNApparel_GalacTecBodyArmour_Tan" or 
+						defName="RNApparel_OspreyMk3_DDPM" or 
+						defName="RNApparel_VestguardOT103_Navy"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>23</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_OTV_Tan" or 
+						defName="RNApparel_IOTV_UCP" or 
+						defName="RNApparel_MTV_Tan" or 
+						defName="RNApparel_VestguardCT101_Navy" or 
+						defName="RNApparel_VestguardQRA_Black" or 
+						defName="RNApparel_VestguardQRX_Black" or 
+						defName="RNApparel_PASGTVest_Olive" or 
+						defName="RNApparel_Defender2_Tan" or 
+						defName="RNApparel_GalacTecBodyArmour_Tan" or 
+						defName="RNApparel_OspreyMk3_DDPM" or 
+						defName="RNApparel_VestguardOT103_Navy"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+				<!--18mm (sharp 1.1)-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_PinnacleArmor_DragonSkin"]/statBases/MaxHitPoints</xpath>
+					<value>
+      						<MaxHitPoints>160</MaxHitPoints>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_PinnacleArmor_DragonSkin"]/statBases/Mass</xpath>
+					<value>
+						<Mass>20.7</Mass>
+						<Bulk>8</Bulk>
+						<WornBulk>4</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_PinnacleArmor_DragonSkin"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>18</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_PinnacleArmor_DragonSkin"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>/Defs/ThingDef[
+						defName="RNApparel_PinnacleArmor_DragonSkin"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>

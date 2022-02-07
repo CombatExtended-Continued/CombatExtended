@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Gas Traps And Shells</li>
+    </mods>
+	<match Class="PatchOperationSequence">		
+		<operations>
+
+		<!-- ==================== Recipes ========================== -->
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeToxicGasGrenade</defName>
+			<label>make toxic gas grenades x10</label>
+			<description>Craft 10 toxic gas grenades.</description>
+			<jobString>Making toxic gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_ToxicGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_ToxicGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeToxic>10</Weapon_GrenadeToxic>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeRageGasGrenade</defName>
+			<label>make rage gas grenades x10</label>
+			<description>Craft 10 rage gas grenades.</description>
+			<jobString>Making rage gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_RageGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_RageGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeRage>10</Weapon_GrenadeRage>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeTearGasGrenade</defName>
+			<label>make tear gas grenades x10</label>
+			<description>Craft 10 tear gas grenades.</description>
+			<jobString>Making tear gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_TearGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_TearGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeTearGas>10</Weapon_GrenadeTearGas>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeSleepGasGrenade</defName>
+			<label>make sleep gas grenades x10</label>
+			<description>Craft 10 sleep gas grenades.</description>
+			<jobString>Making sleep gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_SleepGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_SleepGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeSleep>10</Weapon_GrenadeSleep>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeFearGasGrenade</defName>
+			<label>make fear gas grenades x10</label>
+			<description>Craft 10 fear gas grenades.</description>
+			<jobString>Making fear gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_FearGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_FearGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeFear>10</Weapon_GrenadeFear>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeAcidGasGrenade</defName>
+			<label>make corrosive gas grenades x10</label>
+			<description>Craft 10 corrosive gas grenades.</description>
+			<jobString>Making corrosive gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_AcidGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_AcidGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeAcid>10</Weapon_GrenadeAcid>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+			
+		</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeMechVirusGrenade</defName>
+			<label>make nanomachine canisters x10</label>
+			<description>Craft 10 nanomachine canisters.</description>
+			<jobString>Making nanomachine canisters.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_MechVirusGas</li>
+						</thingDefs>
+					</filter>
+					<count>1</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>3</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_MechVirusGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeMechVirus>10</Weapon_GrenadeMechVirus>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+		</value>
+		
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+		
+			<RecipeDef ParentName="GrenadeRecipeBase">
+			<defName>MakeAntiBugGrenade</defName>
+			<label>make insecticide gas grenades x10</label>
+			<description>Craft 10 insecticide gas grenades.</description>
+			<jobString>Making insecticide gas grenades.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>8</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Canister_AntibugGas</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+				</li>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</filter>
+				<count>2</count>
+				</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+					<li>Canister_AntibugGas</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Weapon_GrenadeAntiBug>10</Weapon_GrenadeAntiBug>
+			</products>
+			<workAmount>3600</workAmount>
+			</RecipeDef>
+		</value>
+		
+		</li>
+		
+		</operations>
+	</match>
+</Operation>
+</Patch>

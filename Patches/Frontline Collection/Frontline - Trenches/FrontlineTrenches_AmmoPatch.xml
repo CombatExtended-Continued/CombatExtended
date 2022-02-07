@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Frontline - Trenches (Continued)</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <ThingCategoryDef>
+          <defName>AmmoTRMortarGrenades</defName>
+          <label>TR Mortar Grenade</label>
+          <parent>AmmoShells</parent>
+          <iconPath>Things/Building/Mounted/Ammo/Ammo-Mortar</iconPath>
+        </ThingCategoryDef>
+        <!-- ==================== AmmoSet TRMortarGrenade ========================== -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_TRMortarGrenade</defName>
+          <label>TRMortar Grenades</label>
+          <ammoTypes>
+            <Ammo_TRMortarGrenade_HE>Bullet_TRMortarGrenade_HE</Ammo_TRMortarGrenade_HE>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+        <!-- ==================== Ammo ========================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="TRMortarGrenadesBase" ParentName="AmmoBase" Abstract="True">
+          <description>Grenades for your Mortar.</description>
+          <thingCategories>
+            <li>AmmoTRMortarGrenades</li>
+          </thingCategories>
+          <stackLimit>25</stackLimit>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <Mass>0.4</Mass>
+            <Bulk>0.5</Bulk>
+          </statBases>
+          <cookOffFlashScale>20</cookOffFlashScale>
+          <cookOffSound>MortarBomb_Explode</cookOffSound>
+          <destroyOnDrop>False</destroyOnDrop>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="TRMortarGrenadesBase">
+          <defName>Ammo_TRMortarGrenade_HE</defName>
+          <label>Mortar Round (HE)</label>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Ammo/Ammo-Mortar</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <statBases>
+            <MarketValue>3.2</MarketValue>
+          </statBases>
+          <ammoClass>GrenadeHE</ammoClass>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>25</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>3</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>120</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ================== Projectiles ================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="BaseTRMortarGrenade" ParentName="BaseBullet" Abstract="true">
+          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          <graphicData>
+            <shaderType>TransparentPostLight</shaderType>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>29</speed>
+            <soundExplode>TR_ExplosionMortar</soundExplode>
+            <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+            <flyOverhead>true</flyOverhead>
+            <dropsCasings>false</dropsCasings>
+            <gravityFactor>5</gravityFactor>
+          </projectile>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTRMortarGrenade">
+          <defName>Bullet_TRMortarGrenade_HE</defName>
+          <label>Mortar round (HE)</label>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Bullets/Mortarbullet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <explosionRadius>2.5</explosionRadius>
+            <damageDef>Bomb</damageDef>
+            <damageAmountBase>80</damageAmountBase>
+            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            <soundExplode>TR_ExplosionMortar</soundExplode>
+            <soundAmbient>MortarRound_Ambient</soundAmbient>
+            <soundImpactAnticipate>TR_IncomingMortar</soundImpactAnticipate>
+          </projectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>80</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>2.5</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Small>120</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ==================== Recipes ========================== -->
+        <RecipeDef ParentName="GrenadeRecipeBase">
+          <defName>MakeAmmo_TRMortarGrenade_HE</defName>
+          <label>make TR-Mortar rounds x5</label>
+          <description>Craft 5 TR-Mortar rounds.</description>
+          <jobString>Making TR-Mortar rounds.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>50</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Chemfuel</li>
+                </thingDefs>
+              </filter>
+              <count>20</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Chemfuel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_TRMortarGrenade_HE>5</Ammo_TRMortarGrenade_HE>
+          </products>
+        </RecipeDef>
+        <ThingCategoryDef>
+          <defName>AmmoTRHowitzerShells</defName>
+          <label>TRHowitzer Shell</label>
+          <parent>AmmoShells</parent>
+          <iconPath>Things/Building/Mounted/Ammo/Ammo-Howitzer</iconPath>
+        </ThingCategoryDef>
+        <!-- ==================== AmmoSet TRHowitzerShell ========================== -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_TRHowitzerShell</defName>
+          <label>TRHowitzer Shells</label>
+          <ammoTypes>
+            <Ammo_TRHowitzerShell_HE>Bullet_TRHowitzerShell_HE</Ammo_TRHowitzerShell_HE>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+        <!-- ==================== Ammo ========================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="TRHowitzerShellsBase" ParentName="AmmoBase" Abstract="True">
+          <description>Shells for your Howitzer.</description>
+          <thingCategories>
+            <li>AmmoTRHowitzerShells</li>
+          </thingCategories>
+          <stackLimit>10</stackLimit>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <statBases>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>4</Mass>
+            <Bulk>5</Bulk>
+          </statBases>
+          <cookOffFlashScale>30</cookOffFlashScale>
+          <cookOffSound>MortarBomb_Explode</cookOffSound>
+          <destroyOnDrop>False</destroyOnDrop>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="TRHowitzerShellsBase">
+          <defName>Ammo_TRHowitzerShell_HE</defName>
+          <label>Howitzer Shell (HE)</label>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Ammo/Ammo-Howitzer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <statBases>
+            <MarketValue>27.83</MarketValue>
+          </statBases>
+          <ammoClass>GrenadeHE</ammoClass>
+          <detonateProjectile>Bullet_TRHowitzerShell_HE</detonateProjectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>50</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>4</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>70</Fragment_Large>
+                <Fragment_Small>130</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ================== Projectiles ================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="BaseTRHowitzerShell" ParentName="BaseBullet" Abstract="true">
+          <graphicData>
+            <shaderType>TransparentPostLight</shaderType>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>180</speed>
+            <soundExplode>TR_ExplosionHowitzer</soundExplode>
+            <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+            <flyOverhead>true</flyOverhead>
+            <dropsCasings>true</dropsCasings>
+            <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+            <gravityFactor>5</gravityFactor>
+          </projectile>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseTRHowitzerShell">
+          <defName>Bullet_TRHowitzerShell_HE</defName>
+          <label>Howitzer Shell (HE)</label>
+          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Bullets/Howitzerbullet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bomb</damageDef>
+            <damageAmountBase>150</damageAmountBase>
+            <explosionRadius>4</explosionRadius>
+            <soundExplode>TR_ExplosionHowitzer</soundExplode>
+            <soundAmbient>MortarRound_Ambient</soundAmbient>
+            <soundImpactAnticipate>TR_IncomingHowitzer</soundImpactAnticipate>
+          </projectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>100</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>4</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>70</Fragment_Large>
+                <Fragment_Small>120</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ==================== Recipes ========================== -->
+        <RecipeDef ParentName="GrenadeRecipeBase">
+          <defName>MakeAmmo_TRHowitzerShell_HE</defName>
+          <label>make TR-Howitzer shells x5</label>
+          <description>Craft 5 TR-Howitzer shells.</description>
+          <jobString>Making TR-Howitzer shells.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>75</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Chemfuel</li>
+                </thingDefs>
+              </filter>
+              <count>50</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Chemfuel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_TRHowitzerShell_HE>5</Ammo_TRHowitzerShell_HE>
+          </products>
+        </RecipeDef>
+        <ThingCategoryDef>
+          <defName>AmmoTRPAKShells</defName>
+          <label>TRPAK Shell</label>
+          <parent>AmmoShells</parent>
+          <iconPath>Things/Building/Mounted/Ammo/Ammo-PAK</iconPath>
+        </ThingCategoryDef>
+        <!-- ==================== AmmoSet TRPAKShell ========================== -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_TRPAKShell</defName>
+          <label>TRPAK Shells</label>
+          <ammoTypes>
+            <Ammo_TRPAKShell_HEAT>Bullet_TRPAKShell_HEAT</Ammo_TRPAKShell_HEAT>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+        <!-- ==================== Ammo ========================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="TRPAKShellsBase" ParentName="AmmoBase" Abstract="True">
+          <description>Shell for your PAK.</description>
+          <thingCategories>
+            <li>AmmoTRPAKShells</li>
+          </thingCategories>
+          <stackLimit>25</stackLimit>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting_TableMachining</li>
+          </tradeTags>
+          <statBases>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Mass>5</Mass>
+            <Bulk>6</Bulk>
+          </statBases>
+          <cookOffFlashScale>30</cookOffFlashScale>
+          <cookOffSound>MortarBomb_Explode</cookOffSound>
+          <destroyOnDrop>False</destroyOnDrop>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="TRPAKShellsBase">
+          <defName>Ammo_TRPAKShell_HEAT</defName>
+          <label>PAK Shell (HEAT)</label>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Ammo/Ammo-PAK</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <statBases>
+            <MarketValue>48.7</MarketValue>
+            <Mass>8.8</Mass>
+          </statBases>
+          <ammoClass>RocketHEAT</ammoClass>
+          <detonateProjectile>Bullet_TRPAKShell_HEAT</detonateProjectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>50</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>2</explosiveRadius>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>30</Fragment_Large>
+                <Fragment_Small>70</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ================== Projectiles ================== -->
+        <ThingDef Class="CombatExtended.AmmoDef" Name="BasePAKShell" ParentName="BaseBullet" Abstract="true">
+          <graphicData>
+            <shaderType>TransparentPostLight</shaderType>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <speed>290</speed>
+            <soundExplode>TR_ExplosionHowitzer</soundExplode>
+            <flyOverhead>false</flyOverhead>
+            <dropsCasings>true</dropsCasings>
+            <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+          </projectile>
+        </ThingDef>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePAKShell">
+          <defName>Bullet_TRPAKShell_HEAT</defName>
+          <label>PAK Shell (HEAT)</label>
+          <graphicData>
+            <texPath>Things/Building/Mounted/Bullets/Howitzerbullet</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>200</damageAmountBase>
+            <soundExplode>TR_ExplosionHowitzer</soundExplode>
+            <armorPenetrationBase>7.0</armorPenetrationBase>
+            <armorPenetrationSharp>300</armorPenetrationSharp>
+            <armorPenetrationBlunt>18.005</armorPenetrationBlunt>
+          </projectile>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <damageAmountBase>70</damageAmountBase>
+              <explosiveDamageType>Bomb</explosiveDamageType>
+              <explosiveRadius>2</explosiveRadius>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </li>
+            <li Class="CombatExtended.CompProperties_Fragments">
+              <fragments>
+                <Fragment_Large>22</Fragment_Large>
+                <Fragment_Small>36</Fragment_Small>
+              </fragments>
+            </li>
+          </comps>
+        </ThingDef>
+        <!-- ==================== Recipes ========================== -->
+        <RecipeDef ParentName="GrenadeRecipeBase">
+          <defName>MakeAmmo_TRPAKShell_HEAT</defName>
+          <label>make TR-PAK shells x5</label>
+          <description>Craft 5 TR-PAK shells.</description>
+          <jobString>Making TR-PAK shells.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>150</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Chemfuel</li>
+                </thingDefs>
+              </filter>
+              <count>50</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Steel</li>
+              <li>Chemfuel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_TRPAKShell_HEAT>5</Ammo_TRPAKShell_HEAT>
+          </products>
+        </RecipeDef>
+      </value>
+    </match>
+  </Operation>
+</Patch>

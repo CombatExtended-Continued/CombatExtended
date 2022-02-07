@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>ReGrowth: Mutated Animals Pack</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeer"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeer"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.15</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="RG-WF_WastelandDeer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>Right head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.45</cooldownTime>
+						<linkedBodyPartsGroup>RG-WF_RightHeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					                </li>
+						<li Class="CombatExtended.ToolCE">
+						<label>Left head</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.45</cooldownTime>
+						<linkedBodyPartsGroup>RG-WF_LeftHeadAttackTool</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>2</armorPenetrationBlunt>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					                </li>
+						<li Class="CombatExtended.ToolCE">
+						<label>left hoof</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.33</cooldownTime>
+						<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<label>right hoof</label>
+						<capacities>
+						  <li>Blunt</li>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.33</cooldownTime>
+						<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+						<li Class="CombatExtended.ToolCE">
+						<capacities>
+						  <li>BiteBlunt</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<chanceFactor>0.5</chanceFactor>
+						<armorPenetrationBlunt>1</armorPenetrationBlunt>
+					  </li>
+				<li Class="CombatExtended.ToolCE">
+					<label>antlers</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.66</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>RG-WF_RightHeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.750</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>antlers</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.66</cooldownTime>
+					<restrictedGender>Male</restrictedGender>
+					<linkedBodyPartsGroup>RG-WF_LeftHeadAttackTool</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.750</armorPenetrationBlunt>
+				</li>
+					</tools>
+				</value>
+			</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

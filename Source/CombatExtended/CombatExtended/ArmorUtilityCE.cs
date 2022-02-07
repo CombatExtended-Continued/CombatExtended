@@ -123,10 +123,9 @@ namespace CombatExtended
                 for (var i = apparel.Count - 1; i >= 0; i--)
                 {
                     var app = apparel[i];
-
                     if (app != null
                         && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, app))
+                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                     {
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
@@ -156,7 +155,7 @@ namespace CombatExtended
             }
 
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
-            var partDensityStat = isSharp
+            var partDensityStat = isSharp       
                 ? CE_StatDefOf.BodyPartSharpArmor
                 : CE_StatDefOf.BodyPartBluntArmor;
             var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
@@ -164,7 +163,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat) : 0;
+                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -189,12 +188,12 @@ namespace CombatExtended
             }
 
             // Applies blunt damage from partial penetrations.
-            if (isSharp && (dinfo.Amount > Mathf.CeilToInt(dmgAmount)))
+            if (isSharp && (dinfo.Amount > dmgAmount))
             {
                 pawn.TakeDamage(GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, true));
             }
             // Return damage info.
-            dinfo.SetAmount(Mathf.CeilToInt(dmgAmount));
+            dinfo.SetAmount(dmgAmount);
             return dinfo;
         }
 
@@ -234,14 +233,32 @@ namespace CombatExtended
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
                     if (isSharpDmg)
                     {
-                        var armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-                        armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
+			int armorDamage = 0;
+			if (dmgAmount <= 1.0f) {
+			    if (Rand.Value < (penAmount / armorAmount) * dmgAmount) {
+				armorDamage = 1;
+			    }
+			}
+			else {
+			    
+			    armorDamage = Mathf.CeilToInt(Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount));
+			}
+			
+                        armor.TakeDamage(new DamageInfo(def, armorDamage));
                     }
                 }
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    var armorDamage = Mathf.Max(1, newDmgAmount);
+		    float armorDamage2 = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, penAmount / armorAmount);
+		    int armorDamage = (int) armorDamage2;
+		    
+		    armorDamage2 = armorDamage2 - armorDamage;
+		    if (armorDamage2 > 0) {
+			if (Rand.Value < armorDamage2) {
+			    armorDamage++;
+			}
+		    }
                     armor.TakeDamage(new DamageInfo(def, Mathf.CeilToInt(armorDamage)));
                 }
             }
@@ -253,6 +270,7 @@ namespace CombatExtended
             }
             return !deflected;
         }
+     
 
         /// <summary>
         /// Calculates damage reduction for ambient damage types (fire, electricity) versus natural and worn armor of a pawn. Adds up the total armor percentage (clamped at 0-100%) and multiplies damage by that amount.

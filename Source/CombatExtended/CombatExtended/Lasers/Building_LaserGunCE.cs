@@ -15,7 +15,6 @@ namespace CombatExtended.Lasers
     // AdeptusMechanicus.Building_LaserGunCE
     public class Building_LaserGunCE : Building_TurretGunCE, IBeamColorThing
     {
-	private static MethodInfo ChangeStoredEnergy = typeof(PowerNet).GetMethod("ChangeStoredEnergy", BindingFlags.Instance | BindingFlags.NonPublic);
         public bool isCharged = false;
         public int previousBurstCooldownTicksLeft = 0;
 
@@ -86,8 +85,7 @@ namespace CombatExtended.Lasers
         {
             if (amount <= 0) return true;
             if (AvailablePower() < amount) return false;
-
-	    ChangeStoredEnergy.Invoke(powerComp.PowerNet, new object[]{-amount});
+            powerComp.PowerNet.ChangeStoredEnergy(-amount);
             return true;
         }
 

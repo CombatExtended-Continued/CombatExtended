@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+			<mods>
+				<li>More Utility Packs</li>
+			</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Vanilla Factions Expanded - Mechanoids</li>
+			</mods>
+				
+			<match Class="PatchOperationSequence">
+				<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+					defName="SGC_Apparel_CombatMechPack" or
+					defName="SGC_Apparel_INDMechPack"				
+					]/apparel/layers</xpath>
+					<value>
+						<li>Backpack</li>
+					</value>
+				</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
+</Patch>

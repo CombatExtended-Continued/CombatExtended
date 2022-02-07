@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Cossacks of the Rim</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Cossack Mace === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackNobleMace"]/statBases</xpath>
+          <value>
+            <Bulk>4</Bulk>
+            <MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackNobleMace"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.42</MeleeCritChance>
+              <MeleeParryChance>0.24</MeleeParryChance>
+              <MeleeDodgeChance>0.2</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackNobleMace"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackNobleMace"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.59</cooldownTime>
+                <chanceFactor>0.10</chanceFactor>
+                <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>head</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>16</power>
+                <cooldownTime>2</cooldownTime>
+                <chanceFactor>0.90</chanceFactor>
+                <armorPenetrationBlunt>7.125</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- === Cossacks Saber === -->
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackSabre"]/statBases</xpath>
+          <value>
+            <Bulk>3.5</Bulk>
+            <MeleeCounterParryBonus>0.35</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackSabre"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.2</MeleeCritChance>
+              <MeleeParryChance>0.35</MeleeParryChance>
+              <MeleeDodgeChance>0.2</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackSabre"]/weaponTags</xpath>
+          <value>
+            <li>CE_OneHandedWeapon</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_CossackSabre"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>1.44</cooldownTime>
+                <armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>27</power>
+                <cooldownTime>1.44</cooldownTime>
+                <armorPenetrationBlunt>0.425</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.48</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>edge</label>
+                <capacities>
+                  <li>Cut</li>
+                </capacities>
+                <power>20</power>
+                <cooldownTime>1.34</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationBlunt>0.956</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.43</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>

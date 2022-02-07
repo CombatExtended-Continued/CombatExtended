@@ -258,6 +258,24 @@
 		</value>
 	</Operation>
 
+	<!--<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakJacket"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					Stat def in '<>', value inside, works for both armor rating sharp and blunt. The value can be anything higher than 0, even higher than 1 for setting up a strong point in the armor pieces
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+					BodyPartDefs
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	  </Operation> -->
+
 
 	<!-- Half the insulation of a regular jacket -->
 	<Operation Class="PatchOperationReplace">
@@ -491,7 +509,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorReconBase"]/statBases/Flammability</xpath>
 		<value>
-			<Flammability>0</Flammability>
+			<Flammability>0.2</Flammability>
 		</value>
 	</Operation>
 
@@ -505,7 +523,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorReconBase"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
-			<ArmorRating_Blunt>40</ArmorRating_Blunt>
+			<ArmorRating_Blunt>34</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -523,7 +541,7 @@
 			<CarryWeight>50</CarryWeight>
 			<CarryBulk>8</CarryBulk>
 			<ToxicSensitivity>-0.50</ToxicSensitivity>
-			<MoveSpeed>0.1</MoveSpeed>
+			<MoveSpeed>0.4</MoveSpeed>
 		</equippedStatOffsets>
 		</value>
 	</Operation>
@@ -553,4 +571,3 @@
 	</Operation>
 
 </Patch>
-

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anima Bionics</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+
+			<operations>
+
+				<!-- ===== V1 ===== -->
+
+				<!-- Anima War Arm -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="AnimaWarArmHeddiff"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>Scythe</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>21</power>
+								<cooldownTime>1.29</cooldownTime>
+								<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.76</armorPenetrationSharp>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ===== V2 ===== -->
+
+				<!-- ===== V3 ===== -->
+
+				<!-- Anima Plate -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="AnimaPlateHediff"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>1.25</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="AnimaPlateHediff"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>1.8</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- Anima Spine -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets</xpath>
+					<value>
+						<CarryWeight>10</CarryWeight>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="AnimaspineHediff"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>1.2</ArmorRating_Blunt>
+					</value>
+				</li>
+
+			</operations>
+
+		</match>
+	</Operation>
+
+</Patch>

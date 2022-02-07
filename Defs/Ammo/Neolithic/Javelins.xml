@@ -15,7 +15,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseProjectileNeolithic" Name="BasePilumProjectile" Abstract="true">
+	<ThingDef ParentName="BaseProjectileNeolithic" Name="BasePilumProjectile" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Pilum</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -30,12 +30,12 @@
 		x = preExplosionSpawnChance,
 		r = resource cost. -->
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+	<ThingDef ParentName="BasePilumProjectile">
 		<defName>Pilum_Thrown</defName>
 		<label>pilum (thrown)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>14</damageAmountBase>
-			<speed>8</speed>
+			<speed>16</speed>
 			<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.75</preExplosionSpawnChance>	<!-- 4 javelins per resource -->
@@ -43,12 +43,12 @@
 		</projectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BasePilumProjectile">
+	<ThingDef ParentName="BasePilumProjectile">
 		<defName>Pilum_Fired</defName>
 		<label>pilum (fired)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>29</damageAmountBase>
-			<speed>38</speed>
+			<speed>44</speed>
 			<armorPenetrationBlunt>141.12</armorPenetrationBlunt>
 			<armorPenetrationSharp>12</armorPenetrationSharp>
 			<preExplosionSpawnChance>0.4</preExplosionSpawnChance> <!-- 1.67 javelins per resource -->

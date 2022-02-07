@@ -33,6 +33,14 @@ namespace CombatExtended
 
         #region Properties
 
+        public bool isBipodGun
+        {
+            get
+            {
+                return ((this.EquipmentSource?.TryGetComp<BipodComp>() ?? null) != null);
+
+            }
+        }
         public override int ShotsPerBurst
         {
             get
@@ -196,6 +204,11 @@ namespace CombatExtended
                     _isAiming = false;
                 }
             }
+
+            if (isBipodGun && Controller.settings.BipodMechanics)
+            {
+                EquipmentSource.TryGetComp<BipodComp>().SetUpStart(CasterPawn);
+            }
         }
 
         public virtual ShiftVecReport SimulateShiftVecReportFor(LocalTargetInfo target, AimMode aimMode)
@@ -208,7 +221,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
-            report.lightingShift = CE_Utility.GetLightingShift(caster, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
+            report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
 
             if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
             {

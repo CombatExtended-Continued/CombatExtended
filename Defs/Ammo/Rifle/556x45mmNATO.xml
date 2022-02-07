@@ -21,6 +21,7 @@
 			<Ammo_556x45mmNATO_HE>Bullet_556x45mmNATO_HE</Ammo_556x45mmNATO_HE>
 			<Ammo_556x45mmNATO_Sabot>Bullet_556x45mmNATO_Sabot</Ammo_556x45mmNATO_Sabot>				
 		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>		
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -82,52 +83,52 @@
 		<cookOffProjectile>Bullet_556x45mmNATO_HP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
-    <defName>Ammo_556x45mmNATO_Incendiary</defName>
-    <label>5.56x45mm NATO cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.14</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_556x45mmNATO_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+		<defName>Ammo_556x45mmNATO_Incendiary</defName>
+		<label>5.56x45mm NATO cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_556x45mmNATO_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
-    <defName>Ammo_556x45mmNATO_HE</defName>
-    <label>5.56x45mm NATO cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.07</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_556x45mmNATO_HE</cookOffProjectile>
-  </ThingDef>
- 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
-    <defName>Ammo_556x45mmNATO_Sabot</defName>
-    <label>5.56x45mm NATO cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.07</MarketValue>
-	  <Mass>0.011</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_556x45mmNATO_Sabot</cookOffProjectile>
-  </ThingDef>
-  
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+		<defName>Ammo_556x45mmNATO_HE</defName>
+		<label>5.56x45mm NATO cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_556x45mmNATO_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="556x45mmNATOBase">
+		<defName>Ammo_556x45mmNATO_Sabot</defName>
+		<label>5.56x45mm NATO cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+			<Mass>0.011</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_556x45mmNATO_Sabot</cookOffProjectile>
+	</ThingDef>
+	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base556x45mmNATOBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base556x45mmNATOBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -139,7 +140,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_FMJ</defName>
 		<label>5.56mm NATO bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -149,7 +150,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_AP</defName>
 		<label>5.56mm NATO bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -159,7 +160,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	<ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_HP</defName>
 		<label>5.56mm NATO bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -169,7 +170,7 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	  <ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_Incendiary</defName>
 		<label>5.56mm NATO bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -185,7 +186,7 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	  <ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_HE</defName>
 		<label>5.56mm NATO bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -201,7 +202,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base556x45mmNATOBullet">
+	  <ThingDef ParentName="Base556x45mmNATOBullet">
 		<defName>Bullet_556x45mmNATO_Sabot</defName>
 		<label>5.56mm NATO bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">

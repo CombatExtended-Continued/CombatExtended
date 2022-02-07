@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Cossacks of the Rim</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ======= Cossack headgear ======= -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[ defName="Cossack_floppy_cap" or defName="Cossack_noble_fur_hat"]/statBases</xpath>
+                    <value>
+                        <Bulk>2</Bulk>
+                        <WornBulk>0</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[ defName="Cossack_floppy_cap" or defName="Cossack_noble_fur_hat"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+                <!-- ======= Cossack garment ======= -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[ defName="Cossack_garment" or defName="Cossack_noble_garment"]/statBases</xpath>
+                    <value>
+                        <Bulk>5</Bulk>
+                        <WornBulk>0</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[ defName="Cossack_garment" or defName="Cossack_noble_garment"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+                <!-- ======= Cossack fur coat ======= -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[ defName="Cossack_fur_coat" or defName="Cossack_royal_cloak"]/statBases</xpath>
+                    <value>
+                        <Bulk>12</Bulk>
+                        <WornBulk>0</WornBulk>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[ defName="Cossack_fur_coat" or defName="Cossack_royal_cloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+                    <value>
+                        <StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

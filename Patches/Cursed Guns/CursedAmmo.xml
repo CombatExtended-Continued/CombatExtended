@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Cursed Guns</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+    <operations>
+	
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
+		<value>
+			<Ammo_40x46mmGrenade_Rubber>Bullet_40x46mmGrenade_Rubber</Ammo_40x46mmGrenade_Rubber>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>
+			
+			<CombatExtended.AmmoCategoryDef>
+				<defName>GrenadeRubber</defName>
+				<label>Rubberised slug</label>
+				<description>A rubber slug with a metal core inside. Less lethal than usual ammunition, but can still maim or kill someone.</description>
+				<advanced>true</advanced>
+			</CombatExtended.AmmoCategoryDef>	
+			
+			
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+				<defName>Ammo_40x46mmGrenade_Rubber</defName>
+				<label>40x46mm grenade (Rubber)</label>
+				<graphicData>
+					<texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>2.37</MarketValue>
+				</statBases>
+				<ammoClass>GrenadeRubber</ammoClass>
+				<cookOffProjectile>Bullet_40x46mmGrenade_Rubber</cookOffProjectile>
+			</ThingDef>
+			
+			<ThingDef ParentName="Base12GaugeBullet">
+				<defName>Bullet_40x46mmGrenade_Rubber</defName>
+				<label>Rubberised slug</label>
+				<graphicData>
+					<texPath>Rubberdong</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>16</speed>
+					<damageDef>Beanbag</damageDef>
+					<damageAmountBase>20</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.240</armorPenetrationBlunt>
+					<spreadMult>2</spreadMult>
+				</projectile>
+			</ThingDef>
+			
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_40x46mmGrenade_Rubber</defName>
+				<label>make 40x46mm Rubber grenades x100</label>
+				<description>Craft 100 40x46mm Rubber grenades.</description>
+				<jobString>Making 40x46mm Rubber grenades.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>50</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Chemfuel</li>
+							</thingDefs>
+						</filter>
+						<count>7</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_40x46mmGrenade_Rubber>100</Ammo_40x46mmGrenade_Rubber>
+				</products>
+				<workAmount>9000</workAmount>
+		</RecipeDef>
+		</value>		
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs</xpath>
+		<value>
+		
+	<CombatExtended.AmmoCategoryDef>
+				<defName>KniperBlade</defName>
+				<label>Blade</label>
+				<description>A ballistic knife blade.</description>
+				<advanced>false</advanced>
+	</CombatExtended.AmmoCategoryDef>
+	
+	<ThingCategoryDef>
+		<defName>KniperBlade</defName>
+		<label>Blade</label>
+		<parent>AmmoNeolithic</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath>
+	</ThingCategoryDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Ballistic_Blade</defName>
+		<label>kniper blades</label>
+		<ammoTypes>
+			<Ammo_kniper_blade>Projectile_kniper_blade</Ammo_kniper_blade>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+  
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+		<defName>Ammo_kniper_blade</defName>
+		<label>kniper blade</label>
+		<description>A ballistic knife blade.</description>
+		<statBases>
+			<Mass>0.014</Mass>
+			<Bulk>0.04</Bulk>
+			<Flammability>0</Flammability>
+		</statBases>    
+		<graphicData>
+			<texPath>Things/Ammo/Neolithic/Dart</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<ammoClass>KniperBlade</ammoClass>
+	</ThingDef>
+  
+	<ThingDef ParentName="BaseArrowProjectile">
+		<defName>Projectile_kniper_blade</defName>
+		<label>Blade</label>
+		<graphicData>
+			<texPath>Knife</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>55</speed>
+			<damageDef>RangedStab</damageDef>
+			<damageAmountBase>9</damageAmountBase> 
+			<armorPenetrationSharp>0.65</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.60</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+		<defName>MakeAmmo_kniper_blade</defName>
+		<label>make kniper blades x10</label>
+		<description>Craft 10 kniper blades.</description>
+		<jobString>Making kniper blades.</jobString>
+		<workAmount>960</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers>
+			<li>TableMachining</li>
+		</recipeUsers>
+		<products>
+			<Ammo_kniper_blade>10</Ammo_kniper_blade>
+		</products>
+  </RecipeDef>
+		
+		</value>		
+	</li>	
+	
+	</operations>
+    </match>
+ </Operation>
+</Patch>

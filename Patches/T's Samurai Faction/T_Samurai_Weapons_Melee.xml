@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>T's Samurai Faction</li>
+		</mods>
+        <match Class="PatchOperationSequence">
+        <operations>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Sake"]/tools</xpath>
+                <value>
+                    <tools>
+                        <li Class="CombatExtended.ToolCE">
+                            <capacities>
+                                <li>Blunt</li>
+                            </capacities>
+                            <power>2</power>
+                            <cooldownTime>2.22</cooldownTime>
+                            <chanceFactor>1.33</chanceFactor>
+                            <armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+                            <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>neck</label>
+                            <capacities>
+                                <li>Poke</li>
+                            </capacities>
+                            <power>1</power>
+                            <cooldownTime>3.33</cooldownTime>
+                            <armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+                            <linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+                        </li>
+                    </tools>
+                </value>
+            </li>
+
+            
+            <li Class="PatchOperationRemove">
+                <xpath>Defs/ThingDef[
+                    defName="TSF_Yari" or
+                    defName="TSF_Katana" or
+                    defName="TSF_Odachi" or
+                    defName="TSF_Naginata"]/equippedStatOffsets</xpath>
+            </li>
+
+        <!-- ========== Yari ========== -->
+
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="TSF_Yari"]/statBases</xpath>
+                <value>
+                    <Bulk>12</Bulk>
+                    <MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+                </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="TSF_Yari"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                        <MeleeCritChance>0.17</MeleeCritChance>
+                        <MeleeParryChance>1.45</MeleeParryChance>
+                        <MeleeDodgeChance>0.9</MeleeDodgeChance>
+                    </equippedStatOffsets>
+                </value>
+            </li>
+            
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Yari"]/tools</xpath>
+                <value>
+                    <tools>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>shaft</label>
+                            <capacities>
+                                <li>Blunt</li>
+                            </capacities>
+                            <power>7</power>
+                            <cooldownTime>2.20</cooldownTime>
+                            <chanceFactor>0.15</chanceFactor>
+                            <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                            <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>shaft</label>
+                            <capacities>
+                                <li>Poke</li>
+                            </capacities>
+                            <power>4</power>
+                            <cooldownTime>1.79</cooldownTime>
+                            <chanceFactor>0.05</chanceFactor>
+                            <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>head</label>
+                            <capacities>
+                                <li>Stab</li>
+                            </capacities>
+                            <power>25</power>
+                            <cooldownTime>1.8</cooldownTime>
+                            <chanceFactor>0.90</chanceFactor>
+                            <armorPenetrationBlunt>5</armorPenetrationBlunt>
+                            <armorPenetrationSharp>2.5</armorPenetrationSharp>
+                            <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                        </li>
+                    </tools>
+                </value>
+            </li>
+
+        <!-- ========== Katana ========== -->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/statBases</xpath>
+                <value>
+                    <Bulk>6</Bulk>
+                    <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/statBases/Mass</xpath>
+                <value>
+                    <Mass>1.3</Mass>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/weaponTags</xpath>
+                <value>
+                    <weaponTags>
+                        <li>SamuraiMeleeSidearm</li>
+                    </weaponTags>
+                </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]</xpath>
+                <value>
+                    <equippedStatOffsets>
+                        <MeleeCritChance>0.63</MeleeCritChance>
+                        <MeleeParryChance>0.75</MeleeParryChance>
+                        <MeleeDodgeChance>0.4</MeleeDodgeChance>	
+                    </equippedStatOffsets>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Katana"]/tools</xpath>
+                <value>
+                    <tools>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>handle</label>
+                            <capacities>
+                                <li>Poke</li>
+                            </capacities>
+                            <power>3</power>
+                            <cooldownTime>1.69</cooldownTime>
+                            <chanceFactor>0.10</chanceFactor>
+                            <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                            <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>point</label>
+                            <capacities>
+                                <li>Stab</li>
+                            </capacities>
+                            <power>18</power>
+                            <cooldownTime>1.69</cooldownTime>
+                            <chanceFactor>0.60</chanceFactor>
+                            <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                            <armorPenetrationSharp>1.35</armorPenetrationSharp>
+                            <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                            <label>edge</label>
+                            <capacities>
+                                <li>Cut</li>
+                            </capacities>
+                            <power>30</power>
+                            <cooldownTime>1.56</cooldownTime>
+                            <chanceFactor>0.30</chanceFactor>
+                            <armorPenetrationBlunt>2.592</armorPenetrationBlunt>
+                            <armorPenetrationSharp>0.65</armorPenetrationSharp>
+                            <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                        </li>
+                    </tools>
+                </value>
+            </li>
+
+        <!--Odachi-->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="TSF_Odachi"]/statBases</xpath>
+                <value>
+                  <Bulk>10</Bulk>
+                  <MeleeCounterParryBonus>0.70</MeleeCounterParryBonus>
+                </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="TSF_Odachi"]/statBases/Mass</xpath>
+                <value>
+                    <Mass>2.6</Mass>
+                </value>
+            </li>
+
+              <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="TSF_Odachi"]</xpath>
+              <value>
+                  <equippedStatOffsets>
+                  <MeleeCritChance>0.80</MeleeCritChance>
+                  <MeleeParryChance>0.60</MeleeParryChance>
+                  <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                  </equippedStatOffsets>
+              </value>
+            </li>
+
+              <li Class="PatchOperationReplace">
+              <xpath>/Defs/ThingDef[defName="TSF_Odachi"]/tools</xpath>
+              <value>
+                  <tools>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>handle</label>
+                      <capacities>
+                          <li>Poke</li>
+                      </capacities>
+                      <power>5</power>
+                      <cooldownTime>1.69</cooldownTime>
+                      <chanceFactor>0.05</chanceFactor>
+                      <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                      <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                  </li>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>point</label>
+                      <capacities>
+                          <li>Stab</li>
+                      </capacities>
+                      <power>22</power>
+                      <cooldownTime>1.98</cooldownTime>
+                      <chanceFactor>0.50</chanceFactor>
+                      <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                      <armorPenetrationSharp>1.45</armorPenetrationSharp>
+                      <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                  </li>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>edge</label>
+                      <capacities>
+                          <li>Cut</li>
+                      </capacities>
+                      <power>42</power>
+                      <cooldownTime>2.86</cooldownTime>
+                      <chanceFactor>0.45</chanceFactor>
+                      <armorPenetrationBlunt>3.592</armorPenetrationBlunt>
+                      <armorPenetrationSharp>0.70</armorPenetrationSharp>
+                      <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                  </li>
+                  </tools>
+              </value>
+            </li>
+
+
+        <!--Naginata-->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="TSF_Naginata"]/statBases</xpath>
+                <value>
+                  <Bulk>12</Bulk>
+                  <MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
+                </value>
+              </li>
+
+              <li Class="PatchOperationAdd">
+              <xpath>/Defs/ThingDef[defName="TSF_Naginata"]</xpath>
+              <value>
+                  <equippedStatOffsets>
+                  <MeleeCritChance>0.08</MeleeCritChance>
+                  <MeleeParryChance>0.95</MeleeParryChance>
+                  <MeleeDodgeChance>1.27</MeleeDodgeChance>
+                  </equippedStatOffsets>
+              </value>
+              </li>
+
+              <li Class="PatchOperationReplace">
+              <xpath>/Defs/ThingDef[defName="TSF_Naginata"]/tools</xpath>
+              <value>
+                  <tools>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>shaft</label>
+                      <capacities>
+                          <li>Poke</li>
+                      </capacities>
+                      <power>8</power>
+                      <cooldownTime>1.3</cooldownTime>
+                      <chanceFactor>0.05</chanceFactor>
+                      <armorPenetrationBlunt>5</armorPenetrationBlunt>
+                      <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                  </li>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>edge</label>
+                      <capacities>
+                          <li>Stab</li>
+                      </capacities>
+                      <power>18</power>
+                      <cooldownTime>1.8</cooldownTime>
+                      <chanceFactor>0.20</chanceFactor>
+                      <armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+                      <armorPenetrationSharp>1.6</armorPenetrationSharp>
+                      <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                  </li>
+                  <li Class="CombatExtended.ToolCE">
+                      <label>edge</label>
+                      <capacities>
+                          <li>Cut</li>
+                      </capacities>
+                      <power>28</power>
+                      <cooldownTime>2.3</cooldownTime>
+                      <chanceFactor>0.75</chanceFactor>
+                      <armorPenetrationBlunt>4.6</armorPenetrationBlunt>
+                      <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                      <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                  </li>
+                  </tools>
+              </value>
+              </li>
+        </operations>
+        </match>
+    </Operation>
+</Patch>

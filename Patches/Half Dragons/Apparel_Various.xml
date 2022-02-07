@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Half dragons</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+		<!-- Dragon Power Armor -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/statBases</xpath>
+			<value>
+				<Bulk>100</Bulk>
+				<WornBulk>15</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/statBases/MaxHitPoints</xpath>
+			<value>
+				<MaxHitPoints>500</MaxHitPoints>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>20</ArmorRating_Sharp>
+			</value>
+		</li>
+	
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>45</ArmorRating_Blunt>
+			</value>
+		</li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/costList</xpath>
+			<value>
+				<DevilstrandCloth>50</DevilstrandCloth>
+			</value>
+		</li>			
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/equippedStatOffsets/MoveSpeed</xpath>
+		</li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>80</CarryWeight>
+				<CarryBulk>10</CarryBulk>
+				<ToxicSensitivity>-0.50</ToxicSensitivity>
+			</value>
+		</li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorPowerBase"]/apparel/bodyPartGroups</xpath>
+			<value>
+				<li>Hands</li>
+				<li>Feet</li>
+			</value>
+		</li>
+
+		<!-- Dragon Power Armor Helmet -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/statBases/MaxHitPoints</xpath>
+			<value>
+			  <MaxHitPoints>240</MaxHitPoints>
+			</value>
+		</li>
+		
+		  <li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+			  <ArmorRating_Sharp>16</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+			  <ArmorRating_Blunt>36</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/equippedStatOffsets</xpath>
+			<value>
+			  <PsychicSensitivity>-0.2</PsychicSensitivity>
+			  <ToxicSensitivity>-0.50</ToxicSensitivity>
+			  <SmokeSensitivity>-1</SmokeSensitivity>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/costList/Plasteel</xpath>
+			<value>
+			  <Plasteel>60</Plasteel>
+			  <DevilstrandCloth>20</DevilstrandCloth>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ApparelDragonArmorHelmetPowerBase"]/apparel/layers</xpath>
+			<value>
+			  <li>OnHead</li>
+			  <li>StrappedHead</li>
+			</value>
+		 </li>		
+
+      </operations>
+    </match>
+	</Operation>
+</Patch>	

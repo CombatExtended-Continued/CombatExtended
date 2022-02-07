@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rah's Vanilla Turrets Expansion</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>/Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>81mmMortarShellBaseCraftableBase</value>
+		</li>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+			<attribute>Class</attribute>
+			<value>CombatExtended.AmmoDef</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="PlasmaPowerCell"]</xpath>
+			<value>
+				<ammoClass>Plasma</ammoClass>
+				<destroyOnDrop>False</destroyOnDrop>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="PlasmaPowerCell"]/costList</xpath>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="PlasmaPowerCell"]/recipeMaker</xpath>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_81mmMortarShell_Plasma</defName>
+				<label>plasma power cell</label>
+				<ammoTypes>
+					<PlasmaPowerCell>Bullet_81mmMortarShell_Plasma</PlasmaPowerCell>
+				</ammoTypes>
+				<isMortarAmmoSet>true</isMortarAmmoSet>
+			</CombatExtended.AmmoSetDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
+				<defName>Bullet_81mmMortarShell_Plasma</defName>
+				<label>81mm mortar shell (Plasma)</label>
+				<graphicData>
+					<texPath>ThirdParty/More Vanilla Turrets/PlasmaMortarProj</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bomb</damageDef>
+					<damageAmountBase>524</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+					<explosionRadius>5</explosionRadius>
+					<flyOverhead>true</flyOverhead>
+					<explosionChanceToStartFire>0.75</explosionChanceToStartFire>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<explosionEffect>GiantExplosion</explosionEffect>
+					<soundExplode>Explosion_GiantBomb</soundExplode>
+					<dropsCasings>true</dropsCasings>
+				</projectile>
+			</ThingDef>
+
+			<RecipeDef ParentName="ChargeAmmoRecipeBase">
+				<defName>MakePlasmaPowerCell</defName>
+				<label>make devastator plasma power cell</label>
+				<description>Craft 1 devastator plasma power cell.</description>
+				<jobString>Making devastator plasma power cell.</jobString>
+				<workAmount>40000</workAmount>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Plasteel</li>
+							</thingDefs>
+						</filter>
+						<count>20</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Shell_HighExplosive</li>
+							</thingDefs>
+						</filter>
+						<count>5</count>
+					</li>
+					<li>
+					<filter>
+						<thingDefs>
+							<li>Shell_EMP</li>
+						</thingDefs>
+					</filter>
+					<count>2</count>
+					</li>					
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Plasteel</li>
+						<li>Shell_EMP</li>
+						<li>Shell_HighExplosive</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<PlasmaPowerCell>1</PlasmaPowerCell>
+				</products>
+			</RecipeDef>
+
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch> 

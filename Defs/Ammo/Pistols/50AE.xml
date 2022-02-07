@@ -18,6 +18,7 @@
 			<Ammo_50AE_AP>Bullet_50AE_AP</Ammo_50AE_AP>			
 			<Ammo_50AE_HP>Bullet_50AE_HP</Ammo_50AE_HP>
 		</ammoTypes>
+		<similarTo>AmmoSet_PistolMagnum</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -81,7 +82,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base50AEBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base50AEBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -92,7 +93,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50AEBullet">
+	<ThingDef ParentName="Base50AEBullet">
 		<defName>Bullet_50AE_FMJ</defName>
 		<label>.50 AE bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -102,7 +103,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50AEBullet">
+	<ThingDef ParentName="Base50AEBullet">
 		<defName>Bullet_50AE_AP</defName>
 		<label>.50 AE bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -112,7 +113,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base50AEBullet">
+	<ThingDef ParentName="Base50AEBullet">
 		<defName>Bullet_50AE_HP</defName>
 		<label>.50 AE bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">

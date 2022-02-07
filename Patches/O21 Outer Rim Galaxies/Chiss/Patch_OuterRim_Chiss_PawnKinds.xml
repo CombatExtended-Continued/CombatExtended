@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>[O21] Outer Rim Galaxies</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/PawnKindDef[defName="O21_OR_ChissAscendancy_Trooper"]</xpath>
+				<match Class="PatchOperationSequence">
+					<operations>
+						
+						<li Class="PatchOperationAddModExtension">
+							<xpath>Defs/PawnKindDef[defName="O21_OR_ChissAscendancy_Trooper" or defName="O21_OR_ChissAscendancy_Officer" or defName="O21_OR_ChissAscendancy_Trader" or defName="O21_OR_ChissAscendancy_Syndic"]</xpath>
+							<value>
+							  <li Class="CombatExtended.LoadoutPropertiesExtension">
+								<primaryMagazineCount>
+								  <min>5</min>
+								  <max>12</max>
+								</primaryMagazineCount>
+							  </li>
+							</value>
+						</li>
+						
+					</operations>
+				</match>
+			</li>
+			
+		</operations>
+		</match>
+	</Operation>
+	
+</Patch>

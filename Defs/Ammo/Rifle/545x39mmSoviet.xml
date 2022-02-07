@@ -21,6 +21,7 @@
 			<Ammo_545x39mmSoviet_HE>Bullet_545x39mmSoviet_HE</Ammo_545x39mmSoviet_HE>
 			<Ammo_545x39mmSoviet_Sabot>Bullet_545x39mmSoviet_Sabot</Ammo_545x39mmSoviet_Sabot>				
 		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>	
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -82,52 +83,52 @@
 		<cookOffProjectile>Bullet_545x39mmSoviet_HP</cookOffProjectile>
 	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
-    <defName>Ammo_545x39mmSoviet_Incendiary</defName>
-    <label>5.45x39mm Soviet cartridge (AP-I)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Incendiary</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.07</MarketValue>
-    </statBases>
-    <ammoClass>IncendiaryAP</ammoClass>
-    <cookOffProjectile>Bullet_545x39mmSoviet_Incendiary</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_Incendiary</defName>
+		<label>5.45x39mm Soviet cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_545x39mmSoviet_Incendiary</cookOffProjectile>
+	</ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
-    <defName>Ammo_545x39mmSoviet_HE</defName>
-    <label>5.45x39mm Soviet cartridge (HE)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/HE</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.14</MarketValue>
-    </statBases>
-    <ammoClass>ExplosiveAP</ammoClass>
-    <cookOffProjectile>Bullet_545x39mmSoviet_HE</cookOffProjectile>
-  </ThingDef>
- 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
-    <defName>Ammo_545x39mmSoviet_Sabot</defName>
-    <label>5.45x39mm Soviet cartridge (Sabot)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Rifle/Sabot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>0.07</MarketValue>
-	  <Mass>0.01</Mass>
-    </statBases>
-    <ammoClass>Sabot</ammoClass>
-    <cookOffProjectile>Bullet_545x39mmSoviet_Sabot</cookOffProjectile>
-  </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_HE</defName>
+		<label>5.45x39mm Soviet cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.14</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_545x39mmSoviet_HE</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="545x39mmSovietBase">
+		<defName>Ammo_545x39mmSoviet_Sabot</defName>
+		<label>5.45x39mm Soviet cartridge (Sabot)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.07</MarketValue>
+			<Mass>0.01</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_545x39mmSoviet_Sabot</cookOffProjectile>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Base545x39mmSovietBullet" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Name="Base545x39mmSovietBullet" ParentName="BaseBullet" Abstract="True">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -139,7 +140,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	<ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_FMJ</defName>
 		<label>5.45mm Soviet bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -149,7 +150,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	<ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_AP</defName>
 		<label>5.45mm Soviet bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -159,7 +160,7 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	<ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_HP</defName>
 		<label>5.45mm Soviet bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -169,7 +170,7 @@
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_Incendiary</defName>
 		<label>5.45mm Soviet bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -185,7 +186,7 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_HE</defName>
 		<label>5.45mm Soviet bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -201,7 +202,7 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base545x39mmSovietBullet">
+	  <ThingDef ParentName="Base545x39mmSovietBullet">
 		<defName>Bullet_545x39mmSoviet_Sabot</defName>
 		<label>5.45mm Soviet bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
