@@ -11,16 +11,11 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="Apparel_Tuque"]/apparel/layers/li[.="Overhead"]</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Tuque"]/apparel/layers</xpath>
     <value>
-      <li>MiddleHead</li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_CowboyHat" or defName="Apparel_BowlerHat"]/apparel/layers</xpath>
-    <value>
-      <li>MiddleHead</li>
+      <layers>
+        <li>OnHead</li>
+      </layers>
     </value>
   </Operation>
 
@@ -41,8 +36,8 @@
       <Suppressability>-0.25</Suppressability>
     </value>
   </Operation>
-
-  <Operation Class="PatchOperationReplace">
+  
+	<Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Apparel_WarMask"]/statBases/StuffEffectMultiplierArmor</xpath>
     <value>
       <StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
@@ -55,6 +50,13 @@
       <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
     </value>
   </Operation>
+  
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_WarVeil"]/apparel/layers/li[.="Overhead"]</xpath>
+    <value>
+      <li>StrappedHead</li>
+    </value>
+  </Operation> 
 
   <!-- ========== Simple Helmet ========== -->
 
@@ -141,14 +143,7 @@
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/stuffCategories</xpath>
   </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Apparel_AdvancedHelmet"]/apparel/layers</xpath>
-    <value>
-      <li>MiddleHead</li>
-    </value>
-  </Operation>
-
+  
   <!-- ========== Power Armor Helmet ========== -->
 
   <Operation Class="PatchOperationReplace">
@@ -232,7 +227,6 @@
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>
-      <li>MiddleHead</li>
     </value>
   </Operation>
 
@@ -315,7 +309,6 @@
     <value>
       <li>OnHead</li>
       <li>StrappedHead</li>
-      <li>MiddleHead</li>
     </value>
   </Operation>
 

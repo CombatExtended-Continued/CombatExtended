@@ -5,76 +5,165 @@
 			<li>Magical Menagerie</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-		<operations>
+			<operations>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>MM_ToxicSting</damageDef>
-						<damageAmountBase>20</damageAmountBase>
-						<speed>20</speed>
-						<!-- Roughly equal to steel neolithic arrows -->
-						<armorPenetrationSharp>0.5</armorPenetrationSharp>
-						<armorPenetrationBlunt>3.02</armorPenetrationBlunt>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>MM_ToxicSting</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<speed>20</speed>
+							<!-- Roughly equal to steel neolithic arrows -->
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<armorPenetrationBlunt>3.02</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
 
-					</projectile>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_Tremor"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Blunt</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<speed>12</speed>
+							<armorPenetrationBlunt>100</armorPenetrationBlunt>
+						</projectile>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_Tremor"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Blunt</damageDef>
-						<damageAmountBase>20</damageAmountBase>
-						<speed>8</speed>
-						<armorPenetrationBlunt>100</armorPenetrationBlunt>
-					</projectile>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_WispProjectile"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<flyOverhead>false</flyOverhead>
+							<damageDef>Burn</damageDef>
+							<damageAmountBase>1</damageAmountBase>
+							<speed>8</speed>
+						</projectile>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_WispProjectile"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Burn</damageDef>
-						<damageAmountBase>1</damageAmountBase>
-						<speed>8</speed>
-					</projectile>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="MM_AcidicBreath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>15</speed>
+							<damageDef>MM_AcidicBreath</damageDef>
+							<damageAmountBase>1</damageAmountBase>
+							<flyOverhead>false</flyOverhead>
+						</projectile>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="MM_AcidicBreath"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>20</speed>
-						<damageDef>MM_ToxicBreath</damageDef>
-						<damageAmountBase>2</damageAmountBase>
-						<flyOverhead>false</flyOverhead>
-					</projectile>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_GazeAttack"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>MM_PetrifyingGaze</damageDef>
+							<flyOverhead>false</flyOverhead>
+							<damageAmountBase>3</damageAmountBase>
+							<speed>20</speed>
+						</projectile>
+					</value>
+				</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/VFECore.ExpandableProjectileDef[defName="MM_FlameBreathAnimated"]/projectile</xpath>
-				<value>
-					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-						<speed>40</speed>
-						<damageDef>Flame</damageDef>
-						<damageAmountBase>2</damageAmountBase>
-						<explosionRadius>1.1</explosionRadius>
-						<ai_IsIncendiary>true</ai_IsIncendiary>
-						<soundExplode>Interact_Ignite</soundExplode>
-					</projectile>
-				</value>
-			</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_GreenStreamBreath"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>ToxicBite</damageDef>
+							<flyOverhead>false</flyOverhead>
+							<damageAmountBase>15</damageAmountBase>
+							<speed>20</speed>
+						</projectile>
+					</value>
+				</li>
 
-		</operations>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_FlameBreathAnimated"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>40</speed>
+							<damageDef>Flame</damageDef>
+							<damageAmountBase>2</damageAmountBase>
+							<explosionRadius>1.1</explosionRadius>
+							<ai_IsIncendiary>true</ai_IsIncendiary>
+							<soundExplode>Interact_Ignite</soundExplode>
+						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseBullet">
+							<defName>MM_GazeAttack_CE</defName>
+							<label>petrifying gaze</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/MM_GazeAttack</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>MM_PetrifyingGaze</damageDef>
+								<damageAmountBase>5</damageAmountBase>
+								<speed>20</speed>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>MM_GreenStreamBreath_CE</defName>
+							<label>poison breath</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/MM_PoisonBreath</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>ToxicBite</damageDef>
+								<damageAmountBase>15</damageAmountBase>
+								<speed>20</speed>
+							</projectile>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>MM_FlameBreathAnimated_CE</defName>
+							<label>flame breath</label>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/MM_Firebreath</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>Flame</damageDef>
+								<damageAmountBase>2</damageAmountBase>
+								<speed>25</speed>
+								<ai_IsIncendiary>true</ai_IsIncendiary>
+								<soundExplode>Interact_Ignite</soundExplode>
+							</projectile>
+						</ThingDef>
+
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+				<xpath>/Defs/DamageDef[defName="MM_PetrifyingGaze"]/additionalHediffs/li[hediff="MM_Petrification"]/severityPerDamageDealt</xpath>
+					<value>
+						<severityPerDamageDealt>0.035</severityPerDamageDealt>
+					</value>
+				</li>
+
+			</operations>
 		</match>
 	</Operation>
 </Patch>

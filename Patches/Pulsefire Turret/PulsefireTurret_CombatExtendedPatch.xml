@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- Mod Support for Combat Extended -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Pulsefire Turret (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret #1 -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="PulsefireTurretGun"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>PulsefireTurretGun</defName>
+              <label>Pulsefire Turret</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <drawerType>MapMeshAndRealTime</drawerType>
+              <graphicData>
+                <texPath>Things/Building/Security/PulsefireTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/PulsefireTurretGun_Ico</uiIconPath>
+              <altitudeLayer>Building</altitudeLayer>
+              <pathCost>50</pathCost>
+              <statBases>
+                <MaxHitPoints>175</MaxHitPoints>
+                <Flammability>0.25</Flammability>
+                <WorkToBuild>3000</WorkToBuild>
+                <Mass>120</Mass>
+                <Beauty>-15</Beauty>
+                <AimingAccuracy>0.91</AimingAccuracy>
+                <ShootingAccuracyTurret>0.89</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>1</explosiveRadius>
+                  <explosiveDamageType>Bomb</explosiveDamageType>
+                  <chanceNeverExplodeFromDamage>0.8</chanceNeverExplodeFromDamage>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>400</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a sniper rifle on top that automtically fires at nearby and distant enemies. Has a chance to explode when damaged. Can be upgraded.\n\nBase defense Turret for military outposts. Has a direct impact rifle with Pulsefire technology attached to it. Maximum range, great accuracy and full metal jacket power mounted on an auto turret.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>125</costStuffCount>
+              <costList>
+                <Steel>125</Steel>
+                <ComponentIndustrial>8</ComponentIndustrial>
+              </costList>
+              <constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_PulsefireTurret</turretGunDef>
+                <turretBurstCooldownTime>6.0</turretBurstCooldownTime>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>PulsefireTech</li>
+              </researchPrerequisites>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_PulsefireTurret"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeaponTurret">
+              <defName>Gun_PulsefireTurret</defName>
+              <label>Pulsefire Turret</label>
+              <description>Drect impact rifle with Pulsefire technology attached to it. Maximum range, great accuracy and full metal jacket power.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/PulsefireTurretGun_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.93</SightsEfficiency>
+                <ShotSpread>0.01</ShotSpread>
+                <SwayFactor>0.25</SwayFactor>
+                <Bulk>18.05</Bulk>
+                <Mass>15.50</Mass>
+                <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.79</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_12x65mmCharged</defaultProjectile>
+                  <warmupTime>1.25</warmupTime>
+                  <range>75</range>
+                  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+                  <burstShotCount>1</burstShotCount>
+                  <soundCast>ChargeLance_Fire</soundCast>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>false</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>60</magazineSize>
+                  <reloadTime>8.5</reloadTime>
+                  <ammoSet>AmmoSet_12x65mmCharged</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>AimedShot</aiAimMode>
+                  <aimedBurstShotCount>1</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+  <!-- Mod Support for Combat Extended -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Pulsefire Turret (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <!-- Compatibility for Turret #2 -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="PulsefireTwinCannon"]</xpath>
+          <value>
+            <ThingDef ParentName="BuildingBase">
+              <defName>PulsefireTwinCannon</defName>
+              <label>Pulsefire Twin Cannon</label>
+              <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+              <drawerType>MapMeshAndRealTime</drawerType>
+              <graphicData>
+                <texPath>Things/Building/Security/PulsefireTurretBase</texPath>
+                <shaderType>CutoutComplex</shaderType>
+                <graphicClass>Graphic_Single</graphicClass>
+                <drawSize>(2,2)</drawSize>
+                <damageData>
+                  <rect>(0.2,0.2,0.6,0.6)</rect>
+                </damageData>
+              </graphicData>
+              <castEdgeShadows>true</castEdgeShadows>
+              <minifiedDef>MinifiedThing</minifiedDef>
+              <uiIconPath>Things/Building/Security/PulsefireTwinCannon</uiIconPath>
+              <altitudeLayer>Building</altitudeLayer>
+              <pathCost>50</pathCost>
+              <statBases>
+                <MaxHitPoints>225</MaxHitPoints>
+                <Flammability>0.25</Flammability>
+                <WorkToBuild>5000</WorkToBuild>
+                <Mass>150</Mass>
+                <Beauty>-10</Beauty>
+                <AimingAccuracy>0.81</AimingAccuracy>
+                <ShootingAccuracyTurret>0.79</ShootingAccuracyTurret>
+              </statBases>
+              <tickerType>Normal</tickerType>
+              <comps Inherit="False">
+                <li Class="CompProperties_Explosive">
+                  <explosiveRadius>1</explosiveRadius>
+                  <explosiveDamageType>Bomb</explosiveDamageType>
+                  <chanceNeverExplodeFromDamage>0.7</chanceNeverExplodeFromDamage>
+                </li>
+                <li Class="CompProperties_Forbiddable" />
+                <li Class="CompProperties_Power">
+                  <compClass>CompPowerTrader</compClass>
+                  <basePowerConsumption>400</basePowerConsumption>
+                </li>
+                <li Class="CompProperties_Flickable" />
+                <li Class="CompProperties_Breakdownable" />
+              </comps>
+              <description>A turret with a twin cannon on top that automtically fires at nearby and distant enemies. Has a chance to explode when damaged. Can be upgraded.\n\nBase defense Turret for military outposts. Has a twin cannon with Pulsefire technology attached to it, to double up its rapid firerate. Maximum range, good precision and armor piercing bullets mounted on an auto turret.</description>
+              <passability>PassThroughOnly</passability>
+              <fillPercent>0.85</fillPercent>
+              <hasTooltip>true</hasTooltip>
+              <thingCategories>
+                <li>BuildingsSecurity</li>
+              </thingCategories>
+              <stuffCategories>
+                <li>Metallic</li>
+              </stuffCategories>
+              <costStuffCount>125</costStuffCount>
+              <costList>
+                <Steel>125</Steel>
+                <ComponentIndustrial>8</ComponentIndustrial>
+              </costList>
+              <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+              <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+              <designationCategory>Security</designationCategory>
+              <designationHotKey>Misc5</designationHotKey>
+              <specialDisplayRadius>56</specialDisplayRadius>
+              <stealable>false</stealable>
+              <rotatable>true</rotatable>
+              <building>
+                <ai_combatDangerous>true</ai_combatDangerous>
+                <turretGunDef>Gun_PulsefireTwinCannon</turretGunDef>
+                <turretBurstCooldownTime>6.0</turretBurstCooldownTime>
+              </building>
+              <placeWorkers>
+                <li>PlaceWorker_TurretTop</li>
+              </placeWorkers>
+              <researchPrerequisites>
+                <li>PulsefireTech</li>
+              </researchPrerequisites>
+            </ThingDef>
+          </value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Gun_PulsefireTwinCannon"]</xpath>
+          <value>
+            <ThingDef ParentName="BaseWeaponTurret">
+              <defName>Gun_PulsefireTwinCannon</defName>
+              <label>Pulsefire Twin Cannon</label>
+              <description>Twin Cannon with Pulsefire technology attached to it. Maximum range, good precision and armor piercing bullets.</description>
+              <graphicData>
+                <texPath>Things/Building/Security/PulsefireTwinCannon_11</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+              </graphicData>
+              <soundInteract>Interact_Rifle</soundInteract>
+              <tradeability>None</tradeability>
+              <destroyOnDrop>true</destroyOnDrop>
+              <statBases>
+                <SightsEfficiency>0.77</SightsEfficiency>
+                <ShotSpread>0.11</ShotSpread>
+                <SwayFactor>0.15</SwayFactor>
+                <Bulk>18.05</Bulk>
+                <Mass>15.50</Mass>
+                <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+              </statBases>
+              <weaponTags>
+                <li>TurretGun</li>
+              </weaponTags>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <recoilAmount>0.69</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+                  <warmupTime>1.25</warmupTime>
+                  <range>65</range>
+                  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                  <burstShotCount>12</burstShotCount>
+                  <soundCast>Shot_ChargeBlaster</soundCast>
+                  <muzzleFlashScale>18</muzzleFlashScale>
+                  <targetParams>
+                    <canTargetLocations>false</canTargetLocations>
+                  </targetParams>
+                  <recoilPattern>Mounted</recoilPattern>
+                </li>
+              </verbs>
+              <comps>
+                <li Class="CombatExtended.CompProperties_AmmoUser">
+                  <magazineSize>150</magazineSize>
+                  <reloadTime>7.9</reloadTime>
+                  <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+                </li>
+                <li Class="CombatExtended.CompProperties_FireModes">
+                  <aiUseBurstMode>FALSE</aiUseBurstMode>
+                  <aiAimMode>SuppressFire</aiAimMode>
+                  <aimedBurstShotCount>10</aimedBurstShotCount>
+                  <noSnapshot>true</noSnapshot>
+                  <noSingleShot>true</noSingleShot>
+                </li>
+              </comps>
+            </ThingDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

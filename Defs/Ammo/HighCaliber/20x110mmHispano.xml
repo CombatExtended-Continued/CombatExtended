@@ -19,6 +19,7 @@
       <Ammo_20x110mmHispano_HE>Bullet_20x110mmHispano_HE</Ammo_20x110mmHispano_HE>
 	    <Ammo_20x110mmHispano_Sabot>Bullet_20x110mmHispano_Sabot</Ammo_20x110mmHispano_Sabot>	        
     </ammoTypes>
+		<similarTo>AmmoSet_Autocannon</similarTo>
   </CombatExtended.AmmoSetDef>
   
   <!-- ==================== Ammo ========================== -->
@@ -41,15 +42,15 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x110mmHispanoBase">
     <defName>Ammo_20x110mmHispano_FMJ</defName>
-    <label>20x110mm Hispano cartridge (FMJ)</label>
+    <label>20x110mm Hispano cartridge (AP)</label>
     <graphicData>
-      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>1.04</MarketValue>
     </statBases>
-    <ammoClass>FullMetalJacket</ammoClass>
+    <ammoClass>ArmorPiercing</ammoClass>
     <cookOffProjectile>Bullet_20x110mmHispano_FMJ</cookOffProjectile>
   </ThingDef>
 
@@ -113,10 +114,10 @@
 
   <ThingDef ParentName="Base20x110mmHispanoBullet">
     <defName>Bullet_20x110mmHispano_FMJ</defName>
-    <label>20mm Hispano bullet (FMJ)</label>
+    <label>20mm Hispano bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>66</damageAmountBase>
-      <armorPenetrationSharp>20</armorPenetrationSharp>
+      <damageAmountBase>41</damageAmountBase>
+      <armorPenetrationSharp>40</armorPenetrationSharp>
       <armorPenetrationBlunt>869.04</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -167,9 +168,9 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_20x110mmHispano_FMJ</defName>
-    <label>make 20x110mm Hispano (FMJ) cartridge x200</label>
-    <description>Craft 200 20x110mm Hispano (FMJ) cartridges.</description>
-    <jobString>Making 20x110mm Hispano (FMJ) cartridges.</jobString>
+    <label>make 20x110mm Hispano (AP) cartridge x200</label>
+    <description>Craft 200 20x110mm Hispano (AP) cartridges.</description>
+    <jobString>Making 20x110mm Hispano (AP) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

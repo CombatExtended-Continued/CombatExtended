@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Asari and Reapers</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+      <!-- ========== Melee Tools ========== -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RE_Gun_CannibalCaster" or defName="RE_Gun_MarauderRifle"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[
+        defName="RE_Gun_GoliathCannon" or
+        defName="RE_Gun_ColossusArtillery"
+        ]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>3.44</cooldownTime>
+              <armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+
+      <!-- ========== Goliath Cannnon ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_GoliathCannon</defName>
+        <statBases>
+          <Mass>35.00</Mass>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>1.33</SwayFactor>
+          <Bulk>13.00</Bulk>
+        </statBases>
+        <Properties>
+          <recoilAmount>1.28</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_Goliath</defaultProjectile>
+          <warmupTime>1.30</warmupTime>
+          <range>75</range>
+          <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+          <burstShotCount>25</burstShotCount>
+          <soundCast>RE_Shot_GoliathCannon</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>14</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>200</magazineSize>
+          <reloadTime>9.1</reloadTime>
+        </AmmoUser>
+        <FireModes>
+          <aimedBurstShotCount>12</aimedBurstShotCount>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>CE_AI_Suppressive</li>
+        </weaponTags>
+      </li>
+
+      <!-- ========== Cannibal Caster ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_CannibalCaster</defName>
+        <statBases>
+          <SightsEfficiency>1.0</SightsEfficiency>
+          <ShotSpread>0.11</ShotSpread>
+          <SwayFactor>1.30</SwayFactor>
+          <Bulk>8</Bulk>
+          <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Cannibal_Basic</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>50</range>
+          <burstShotCount>5</burstShotCount>
+          <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+          <soundCast>RE_Shot_CannibalCaster</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Regular</recoilPattern>
+          <recoilAmount>1.68</recoilAmount>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>35</magazineSize>
+          <reloadTime>4.0</reloadTime>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>True</aiUseBurstMode>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aimedBurstShotCount>3</aimedBurstShotCount>
+        </FireModes>
+      </li>
+
+      <!-- ========== Marauder ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_MarauderRifle</defName>
+        <statBases>
+          <SightsEfficiency>1.25</SightsEfficiency>
+          <ShotSpread>0.07</ShotSpread>
+          <SwayFactor>1.20</SwayFactor>
+          <Bulk>10</Bulk>
+          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Marauder</defaultProjectile>
+          <burstShotCount>8</burstShotCount>
+          <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+          <warmupTime>1.0</warmupTime>
+          <range>55</range>
+          <soundCast>RE_Shot_MarauderRifle</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilAmount>1.24</recoilAmount>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>50</magazineSize>
+          <reloadTime>3.5</reloadTime>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>FALSE</aiUseBurstMode>
+          <aiAimMode>AimedShot</aiAimMode>
+          <aimedBurstShotCount>4</aimedBurstShotCount>
+        </FireModes>
+      </li>
+
+      <!-- ========== Colossus Artillery ========== -->
+      <li Class='CombatExtended.PatchOperationMakeGunCECompatible'>
+        <defName>RE_Gun_ColossusArtillery</defName>
+        <statBases>
+          <Mass>50.00</Mass>
+          <RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.01</ShotSpread>
+          <SwayFactor>0.82</SwayFactor>
+          <Bulk>20.00</Bulk>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_Collosus</defaultProjectile>
+          <burstShotCount>1</burstShotCount>
+          <warmupTime>5.5</warmupTime>
+          <ai_AvoidFriendlyFireRadius>5.9</ai_AvoidFriendlyFireRadius>
+          <requireLineOfSight>false</requireLineOfSight>
+          <range>92</range>
+          <minRange>5.9</minRange>
+          <soundCast>RE_Shot_ColossusArtillery</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <muzzleFlashScale>40</muzzleFlashScale>
+          <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>          
+        </Properties>
+        <AmmoUser>
+          <magazineSize>1</magazineSize>
+          <reloadTime>7.6</reloadTime>
+        </AmmoUser>
+        <FireModes>
+          <aiUseBurstMode>FALSE</aiUseBurstMode>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+      </li>
+
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>

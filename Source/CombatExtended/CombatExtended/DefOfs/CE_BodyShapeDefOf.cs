@@ -12,5 +12,9 @@ namespace CombatExtended
     public class CE_BodyShapeDefOf
     {
         public static BodyShapeDef Invalid;
+
+        public static BodyShapeDef Humanoid;
+
+        public static BodyShapeDef Quadruped;
     }
 }

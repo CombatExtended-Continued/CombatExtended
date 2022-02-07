@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Rim-Effect: Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor" or defName="RE_Apparel_AllianceArmor" or defName="RE_Apparel_HeavyAllianceArmor" or defName="RE_Apparel_SpectreArmor"]/apparel/layers</xpath>
+					<value>
+						<li>Webbing</li>
+					</value>
+				</li>
+
+ 				<li Class='PatchOperationReplace'>
+    					<xpath>/Defs/ThingDef[defName='RE_Apparel_LightAllianceArmor' or defName='RE_Apparel_LightAllianceHelmet']/recipeMaker/skillRequirements</xpath> 
+    					<value>
+      						<skillRequirements>
+        						<Crafting>6</Crafting>
+      						</skillRequirements>
+    					</value>
+  				</li>
+
+ 				<li Class='PatchOperationReplace'>
+    					<xpath>/Defs/ThingDef[defName='RE_Apparel_AllianceArmor' or defName='RE_Apparel_AllianceHelmet']/recipeMaker/skillRequirements</xpath> 
+    					<value>
+      						<skillRequirements>
+        						<Crafting>8</Crafting>
+      						</skillRequirements>
+    					</value>
+  				</li>
+
+ 				<li Class='PatchOperationReplace'>
+    					<xpath>/Defs/ThingDef[defName='RE_Apparel_HeavyAllianceArmor' or defName='RE_Apparel_HeavyAllianceHelmet']/recipeMaker/skillRequirements</xpath> 
+    					<value>
+      						<skillRequirements>
+        						<Crafting>10</Crafting>
+      						</skillRequirements>
+    					</value>
+  				</li>
+
+				<!-- === Light Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>0.5</WornBulk>
+      						<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>      
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>11</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>180</MaxHitPoints>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]</xpath>
+					<value>
+    						<equippedStatOffsets>
+						<AimingDelayFactor>-0.05</AimingDelayFactor>
+						<ToxicSensitivity>-0.1</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+    						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>40</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Trooper Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>35</Bulk>
+						<WornBulk>6</WornBulk>
+						<Mass>12</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>13</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>26</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>400</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]</xpath>
+					<value>
+    					<equippedStatOffsets>
+						<CarryWeight>12</CarryWeight>
+						<CarryBulk>35</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.3</ToxicSensitivity>
+						<MoveSpeed>0.3</MoveSpeed>
+						<ReloadSpeed>0.1</ReloadSpeed>
+    					</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_LightAllianceArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>25</DevilstrandCloth>
+					</value>
+				</li>
+
+
+				<!-- === Medium Helmet === -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/statBases</xpath>
+					<value>
+						<Bulk>4</Bulk>
+						<WornBulk>0.5</WornBulk>
+      						<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>      
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>13</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>200</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]</xpath>
+					<value>
+    						<equippedStatOffsets>
+						<PsychicSensitivity>-0.1</PsychicSensitivity>
+						<AimingDelayFactor>-0.05</AimingDelayFactor>
+						<ToxicSensitivity>-0.25</ToxicSensitivity>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+    						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/costList/Plasteel</xpath>
+					<value>
+						<Plasteel>50</Plasteel>
+						<DevilstrandCloth>10</DevilstrandCloth>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Medium Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>50</Bulk>
+						<WornBulk>8</WornBulk>
+						<Mass>22</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>17</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>32</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>450</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+					<value>
+						<CarryWeight>20</CarryWeight>
+						<CarryBulk>40</CarryBulk>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+						<ToxicSensitivity>-0.3</ToxicSensitivity>
+						<ReloadSpeed>0.1</ReloadSpeed>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_AllianceArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>35</DevilstrandCloth>
+					</value>
+				</li>
+
+				<!-- === Heavy Alliance Helmet === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>8</Bulk>
+						<WornBulk>2.5</WornBulk>
+						<Mass>6</Mass>
+      						<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>      
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>17</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>34</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>240</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<PsychicSensitivity>-0.3</PsychicSensitivity>
+							<AimingAccuracy>0.3</AimingAccuracy>
+							<ToxicSensitivity>-0.5</ToxicSensitivity>
+							<CarryWeight>5.4</CarryWeight>
+							<CarryBulk>1</CarryBulk>
+							<SmokeSensitivity>-1</SmokeSensitivity>
+							<PainShockThreshold>0.05</PainShockThreshold>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/costList</xpath>
+					<value>
+						<costList>
+							<Plasteel>65</Plasteel>
+							<DevilstrandCloth>15</DevilstrandCloth>
+							<ComponentSpacer>3</ComponentSpacer>
+						</costList>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceHelmet"]/apparel/layers</xpath>
+					<value>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+
+				<!-- === Heavy Alliance Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>100</Bulk>
+						<WornBulk>20</WornBulk>
+						<Mass>60</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>22</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>60</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>520</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryWeight>75</CarryWeight>
+							<CarryBulk>60</CarryBulk>
+							<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
+							<ToxicSensitivity>-0.5</ToxicSensitivity>
+							<PainShockThreshold>0.05</PainShockThreshold>
+      							<MoveSpeed>-0.4</MoveSpeed>
+							<ReloadSpeed>0.1</ReloadSpeed>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_HeavyAllianceArmor"]/costList</xpath>
+					<value>
+						<DevilstrandCloth>50</DevilstrandCloth>
+						<Hyperweave>10</Hyperweave>
+					</value>
+				</li>
+
+				<!-- === Spectre Armor === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/statBases/Mass</xpath>
+					<value>
+						<Bulk>80</Bulk>
+						<WornBulk>15</WornBulk>
+						<Mass>30</Mass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/statBases/Flammability</xpath>
+					<value>
+						<Flammability>0.1</Flammability>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>44</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/statBases/MaxHitPoints</xpath>
+					<value>
+						<MaxHitPoints>500</MaxHitPoints>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryWeight>40</CarryWeight>
+							<CarryBulk>50</CarryBulk>
+							<ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
+							<ToxicSensitivity>-0.5</ToxicSensitivity>
+							<PainShockThreshold>0.1</PainShockThreshold>
+      							<MoveSpeed>0.5</MoveSpeed>
+							<ReloadSpeed>0.1</ReloadSpeed>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreArmor"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreVisor"]/statBases</xpath>
+					<value>
+      						<NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>      
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreVisor"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+      							<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn>
+      							<AimingAccuracy>0.4</AimingAccuracy>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RE_Apparel_SpectreVisor"]/apparel</xpath>
+					<value>
+						<layers>
+							<li>StrappedHead</li>
+						</layers>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

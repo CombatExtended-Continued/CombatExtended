@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Apex: Rimworld Legends (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- M600 Spitfire -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_HMG</defName>
+          <statBases>
+            <WorkToMake>50000</WorkToMake>
+            <Bulk>14.05</Bulk>
+            <Mass>10.5</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.06</ShotSpread>
+            <SwayFactor>1.51</SwayFactor>
+            <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.33</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
+            <burstShotCount>21</burstShotCount>
+            <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+            <warmupTime>1.25</warmupTime>
+            <range>60</range>
+            <soundCast>Shot_Minigun</soundCast>
+            <soundCastTail>GunTail_Light</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>63</magazineSize>
+            <reloadTime>3.33</reloadTime>
+            <ammoSet>AmmoSet_762x54mmR</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_Machinegun</li>
+          </weaponTags>
+          <researchPrerequisite>GasOperation</researchPrerequisite>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_HMG"]/label</xpath>
+          <value>
+            <label>M600 Spitfire</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_HMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.6</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- L-Star -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_MechanoidLMG</defName>
+          <statBases>
+            <WorkToMake>100000</WorkToMake>
+            <Bulk>14.7</Bulk>
+            <Mass>11.3</Mass>
+            <SightsEfficiency>1.2</SightsEfficiency>
+            <ShotSpread>0.13</ShotSpread>
+            <SwayFactor>1.16</SwayFactor>
+            <RangedWeapon_Cooldown>5.5</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.23</recoilAmount>
+            <recoilPattern>Mounted</recoilPattern>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+            <burstShotCount>20</burstShotCount>
+            <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+            <warmupTime>1.25</warmupTime>
+            <range>64</range>
+            <soundCast>Shot_ChargeBlaster</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>80</magazineSize>
+            <reloadTime>4</reloadTime>
+            <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>CE_AI_AssaultWeapon</li>
+          </weaponTags>
+          <researchPrerequisite>GasOperation</researchPrerequisite>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_MechanoidLMG"]/label</xpath>
+          <value>
+            <label>L-Star</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_MechanoidLMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Poke</li>
+                  <li>Blunt</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.086</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>
+                </linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- Devotion -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeLMG</defName>
+          <statBases>
+            <WorkToMake>550000</WorkToMake>
+            <Bulk>12.5</Bulk>
+            <Mass>12.5</Mass>
+            <SightsEfficiency>1.5</SightsEfficiency>
+            <ShotSpread>0.15</ShotSpread>
+            <SwayFactor>1.1</SwayFactor>
+            <RangedWeapon_Cooldown>1.80</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.23</recoilAmount>
+            <recoilPattern>Mounted</recoilPattern>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+            <burstShotCount>15</burstShotCount>
+            <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+            <warmupTime>1.8</warmupTime>
+            <range>58</range>
+            <soundCast>Shot_ChargeRifle</soundCast>
+            <soundCastTail>GunTail_Medium</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>60</magazineSize>
+            <reloadTime>2.8</reloadTime>
+            <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aimedBurstShotCount>10</aimedBurstShotCount>
+          </FireModes>
+          <weaponTags>
+            <li>SpacerGun</li>
+          </weaponTags>
+          <researchPrerequisite>GasOperation</researchPrerequisite>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeLMG"]/label</xpath>
+          <value>
+            <label>Devotion</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeLMG"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>grip</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.6</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>6</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.102</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>1.6</cooldownTime>
+                <armorPenetrationBlunt>0.075</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- 40mm Charge Minigun -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>ARL_ChargeMinigun</defName>
+          <statBases>
+            <WorkToMake>105000</WorkToMake>
+            <Bulk>14.7</Bulk>
+            <Mass>9.12</Mass>
+            <SightsEfficiency>1</SightsEfficiency>
+            <ShotSpread>0.05</ShotSpread>
+            <SwayFactor>1.53</SwayFactor>
+            <RangedWeapon_Cooldown>0.90</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <recoilAmount>1.98</recoilAmount>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>true</hasStandardCommand>
+            <defaultProjectile>Bullet_ARL_127x39mmCharged_HE</defaultProjectile>
+            <burstShotCount>10</burstShotCount>
+            <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+            <warmupTime>1.75</warmupTime>
+            <range>52</range>
+            <minRange>2</minRange>
+            <soundCast>ARL_Shot_ChargeMinigun</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <targetParams>
+              <canTargetLocations>true</canTargetLocations>
+            </targetParams>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>60</magazineSize>
+            <reloadTime>4.9</reloadTime>
+            <ammoSet>AmmoSet_ARL_127x39mmCharged</ammoSet>
+          </AmmoUser>
+          <FireModes />
+          <weaponTags>
+            <li>CE_Machinegun</li>
+          </weaponTags>
+          <researchPrerequisite>GasOperation</researchPrerequisite>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeMinigun"]/label</xpath>
+          <value>
+            <label>Charge Minigun</label>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="ARL_ChargeMinigun"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>stock</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                  <li>Poke</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.118</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>muzzle</label>
+                <capacities>
+                  <li>Poke</li>
+                </capacities>
+                <power>9</power>
+                <cooldownTime>2</cooldownTime>
+                <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+        
+      </operations>
+    </match>
+  </Operation>
+</Patch>
