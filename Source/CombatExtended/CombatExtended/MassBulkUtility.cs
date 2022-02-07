@@ -27,12 +27,18 @@ namespace CombatExtended
         {
             float t = weight / weightCapacity;
             if (float.IsNaN(t)) t = 1f;
+
+            if (t <= 0.25f)
+            {
+                return 1f;
+            }
+
             return Mathf.Lerp(1f, 0.75f, t);
         }
 
         public static float WorkSpeedFactor(float bulk, float bulkCapacity)
         {
-            if ((bulk / bulkCapacity) <= 0.5f)
+            if ((bulk / bulkCapacity) <= 0.3463f)
             {
                 return 1f;
             }
@@ -52,7 +58,7 @@ namespace CombatExtended
                 return weightPercent - 1;
             }
             else
-                return 0f;
+                return 0f;      
         }
 
     }
