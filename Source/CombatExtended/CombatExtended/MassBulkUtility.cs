@@ -38,12 +38,22 @@ namespace CombatExtended
 
         public static float WorkSpeedFactor(float bulk, float bulkCapacity)
         {
-            if ((bulk / bulkCapacity) <= 0.3463f)
+            if ((bulk / bulkCapacity) <= 0.35f)
             {
                 return 1f;
             }
 
             return Mathf.Lerp(1f, 0.75f, bulk / bulkCapacity);
+        }
+
+        public static float DodgeChanceFactor(float bulk, float bulkCapacity)
+        {
+            if ((bulk / bulkCapacity) <= 0.5f)
+            {
+                return 1f;
+            }
+
+            return Mathf.Lerp(1f, 0.80f, bulk / bulkCapacity);
         }
 
         public static float EncumberPenalty(float weight, float weightCapacity)
