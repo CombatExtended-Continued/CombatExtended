@@ -37,6 +37,10 @@ namespace CombatExtended
                     stringBuilder.AppendLine(
                         $"{"CE_CrouchWalking".Translate()}: x{CrouchWalkFactor.ToStringPercent()}");
                 }
+                if (this.stat.defName == "MeleeDodgeChance")
+                {
+                    stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk).ToString());
+                }
             }
 
             return stringBuilder.ToString();
@@ -68,6 +72,11 @@ namespace CombatExtended
             if (suppressComp?.IsCrouchWalking ?? false)
             {
                 factor *= CrouchWalkFactor;
+            }
+
+            if (this.stat.defName == "MeleeDodgeChance")
+            {
+                factor *= MassBulkUtility.DodgeChanceFactor(inventory.currentBulk, inventory.capacityBulk);
             }
 
             return factor;
