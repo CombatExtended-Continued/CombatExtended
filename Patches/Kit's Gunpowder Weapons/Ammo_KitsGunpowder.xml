@@ -13,14 +13,7 @@
 		<value>
 	
 	<!-- ==================== ThingCategories ========================== -->
-	
-	<ThingCategoryDef>
-		<defName>MortarGrenade</defName>
-		<label>Mortar Grenade</label>
-		<parent>AmmoGrenades</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
-	</ThingCategoryDef>
-	
+
 	<ThingCategoryDef>
 		<defName>LargeCannonBall</defName>
 		<label>Large Cannon Ball</label>
@@ -29,14 +22,6 @@
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
-
-	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_MortarGrenade</defName>
-		<label>Mortar Grenades</label>
-		<ammoTypes>
-			<Ammo_MortarGrenade>Bullet_MortarGrenade</Ammo_MortarGrenade>      
-		</ammoTypes>
-	</CombatExtended.AmmoSetDef>
 	
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_BlunderShot</defName>
@@ -56,39 +41,6 @@
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
-	
-	<!-- ==== Mortar Grenade ==== -->
-	<ThingDef Class="CombatExtended.AmmoDef" Name="HandMortarBombBase" ParentName="AmmoBase" Abstract="True">
-		<description>Low velocity grenade fired from a hand mortar.</description>
-		<statBases>
-			<Mass>0.26</Mass>
-			<Bulk>0.43</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting_FueledSmithy</li>
-			<li>CE_AutoEnableCrafting_ElectricSmithy</li>
-		</tradeTags>
-		<thingCategories>
-			<li>MortarGrenade</li>
-		</thingCategories>
-		<stackLimit>500</stackLimit>
-		<cookOffFlashScale>20</cookOffFlashScale>
-	</ThingDef>
-	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="HandMortarBombBase">
-		<defName>Ammo_MortarGrenade</defName>
-		<label>Mortar Grenades</label>
-		<graphicData>
-			<texPath>ThirdParty/Kit's Weapons/Ammo/HandMortar/MortarGrenade</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>2.96</MarketValue>
-		</statBases>
-		<ammoClass>BurstingShell</ammoClass>
-		<detonateProjectile>Bullet_MortarGrenade</detonateProjectile>
-	</ThingDef>
 
 	<!-- ==== Large Steel Cannon Ball	==== -->
 
@@ -140,29 +92,6 @@
 		</projectile>
 	</ThingDef>
 	
-	<!-- ==== Mortar Grenade ==== -->
-	<ThingDef ParentName="Base40x46mmGrenadeBullet">
-		<defName>Bullet_MortarGrenade</defName>
-		<label>Mortar Grenade</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>		
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>1</explosionRadius>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>19.9</damageAmountBase>
-			<speed>12</speed>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Small>12</Fragment_Small>
-			</fragments>
-			</li>
-		</comps>
-	</ThingDef>
 	
 	<!-- ==== Large Steel Cannon Ball ==== -->
 	<ThingDef ParentName="Base81mmMortarShell">
