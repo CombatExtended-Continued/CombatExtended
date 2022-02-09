@@ -94,6 +94,13 @@ namespace CombatExtended
                 return MassBulkUtility.MoveSpeedFactor(currentWeight, capacityWeight);
             }
         }
+        public float dodgeChanceFactorWeight
+        {
+            get
+            {
+                return MassBulkUtility.DodgeWeightFactor(currentWeight, capacityWeight);
+            }
+        }
         public float workSpeedFactor
         {
             get
