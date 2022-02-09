@@ -43,7 +43,7 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return Mathf.Lerp(1f, 0.75f, bulk / bulkCapacity);
+            return Mathf.Lerp(1f, 0.75f, bulk / bulkCapacity - 0.35f);
         }
 
         public static float DodgeChanceFactor(float bulk, float bulkCapacity)
@@ -53,7 +53,7 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(bulk / bulkCapacity, 1f)), 2);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(bulk / bulkCapacity - 0.5f, 1f)), 2);
         }
 
         public static float HitChanceBulkFactor(float bulk, float bulkCapacity)
