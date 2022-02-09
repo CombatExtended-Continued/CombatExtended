@@ -364,7 +364,7 @@ namespace CombatExtended
 
                         bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
 
-                        bool IsAccurate = (ShootingAccuracy >= 2.2f) | isTurretMannable;
+                        bool IsAccurate = (ShootingAccuracy >= 2.6f) | isTurretMannable;
 
 
                         if (IsAccurate)
@@ -898,7 +898,7 @@ namespace CombatExtended
             if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
-                return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
+                return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null) | EquipmentSource.def.weaponTags.Contains("Pistol");
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
