@@ -53,7 +53,17 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return Mathf.Lerp(1f, 0.80f, bulk / bulkCapacity);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.90f, Math.Min(bulk / bulkCapacity, 1f)), 2);
+        }
+
+        public static float HitChanceBulkFactor(float bulk, float bulkCapacity)
+        {
+            if ((bulk / bulkCapacity) <= 0.5f)
+            {
+                return 1f;
+            }
+
+            return (float)Math.Round(Mathf.Lerp(1f, 0.90f, Math.Min(bulk / bulkCapacity, 1f)), 2);
         }
 
         public static float EncumberPenalty(float weight, float weightCapacity)
