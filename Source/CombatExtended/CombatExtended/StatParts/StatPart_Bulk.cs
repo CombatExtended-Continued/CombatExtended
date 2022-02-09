@@ -24,7 +24,7 @@ namespace CombatExtended
         {
             if (ValidReq(req))
             {
-                return "CE_BulkEffect".Translate() + " x" + MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk);
+                return "CE_BulkEffect".Translate() + " x" + (MassBulkUtility.HitChanceBulkFactor(inv(req).currentBulk, inv(req).capacityBulk) * 100f) + "%";
             }
             return null;
         }
