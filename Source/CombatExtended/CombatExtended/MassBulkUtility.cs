@@ -68,12 +68,12 @@ namespace CombatExtended
 
         public static float DodgeWeightFactor(float weight, float weightCapacity)
         {
-            if ((weight / weightCapacity) <= 0.5f)
+            if ((weight / weightCapacity) <= 0.25f)
             {
                 return 1f;
             }
 
-            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(weight / weightCapacity, 1f)), 2);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(weight / weightCapacity - 0.25f, 1f)), 2);
         }
 
         public static float EncumberPenalty(float weight, float weightCapacity)
