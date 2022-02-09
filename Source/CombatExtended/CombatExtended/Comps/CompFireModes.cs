@@ -298,7 +298,7 @@ namespace CombatExtended
 
             if (CurrentAimMode != AimMode.SuppressFire)
             {
-                if ( (HandLing > 2.2f) | IsTurretMannable)
+                if ( (HandLing > 2.6f) | IsTurretMannable)
                 {
                     yield return new Command_Action
                     {

@@ -60,7 +60,7 @@ namespace CombatExtended
                 maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
             }
 
-            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 4)
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 18 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 9)
             {
                 var torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
 
@@ -90,7 +90,7 @@ namespace CombatExtended
                 return BodyPartHeight.Middle;
             }
 
-            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 16)
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 18)
             {
                 targetBodyPart = BodyPartDefOf.Neck;
 
@@ -123,14 +123,14 @@ namespace CombatExtended
         {
             get
             {
-                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 5;
+                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 10;
             }
         }
         public bool SkillReqBP
         {
             get
             {
-                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 15;
+                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 17;
             }
         }
 
