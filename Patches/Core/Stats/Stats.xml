@@ -66,12 +66,12 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<!--<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[@Name = "ArmorRatingBase"]/category</xpath>
 		<value>
-			<category>Apparel</category>
+			<category>Basics</category>
 		</value>
-	</Operation>
+	</Operation>-->
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/StatDef[defName="ArmorRating_Sharp"]</xpath>
@@ -152,6 +152,15 @@
 		<xpath>Defs/StatDef[defName="MeleeHitChance"]/noSkillOffset</xpath>
 		<value>
 			<noSkillOffset>6.7</noSkillOffset>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="MeleeHitChance"]</xpath>
+		<value>
+			<parts>
+				<li Class="CombatExtended.StatPart_Bulk" />
+			</parts>
 		</value>
 	</Operation>
 
