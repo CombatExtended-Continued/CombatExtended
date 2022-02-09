@@ -39,7 +39,7 @@ namespace CombatExtended
                 }
                 if (this.stat.defName == "MeleeDodgeChance")
                 {
-                    stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk).ToString());
+                    stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
                 }
             }
 
@@ -64,7 +64,15 @@ namespace CombatExtended
             CompInventory inventory = thing.TryGetComp<CompInventory>();
             if (inventory != null)
             {
-                factor = Mathf.Clamp(inventory.moveSpeedFactor - inventory.encumberPenalty, 0.5f, 1f);
+                if (this.stat.defName == "MeleeDodgeChance")
+                {
+                    factor = Mathf.Clamp(inventory.dodgeChanceFactorWeight - inventory.encumberPenalty, 0.5f, 1f);
+                }
+                else
+                {
+                    factor = Mathf.Clamp(inventory.moveSpeedFactor - inventory.encumberPenalty, 0.5f, 1f);
+                }
+               
             }
 
             // Apply crouch walk penalty
