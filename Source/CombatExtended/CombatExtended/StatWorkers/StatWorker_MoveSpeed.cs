@@ -29,24 +29,13 @@ namespace CombatExtended
                     else
                     {
                         stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + MassBulkUtility.DodgeWeightFactor(inventoryComp.currentWeight, inventoryComp.capacityWeight).ToStringPercent());
+                        stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
                     }
                     if (inventoryComp.encumberPenalty > 0)
                     {
                         stringBuilder.AppendLine("CE_Encumbered".Translate() + ": -" + inventoryComp.encumberPenalty.ToStringPercent());
-                        if (this.stat.defName == "MeleeDodgeChance")
-                        {
-                            stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
-                            stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)
-                           * MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk)
-                           * MassBulkUtility.DodgeWeightFactor(inventoryComp.currentWeight, inventoryComp.capacityWeight)
-                           ).ToStringPercent());
-                        }
-                        else
-                        {
-                            stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)).ToStringPercent());
-                        }
-                       
                     }
+                    stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)).ToStringPercent());
                 }
 
                 var suppressComp = req.Thing.TryGetComp<CompSuppressable>();
