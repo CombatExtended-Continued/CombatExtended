@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Scrapper === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="VFEP_Scrapper"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>3</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Pyro === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="VFEP_Pyro"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>4</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Pyro, Hussar === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="VFEP_Footsoldier" or defName="VFEP_Veteran"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>5</min>
+                <max>7</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+        <!-- === Heavy Weapons Platform, Artillery === -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>/Defs/PawnKindDef[defName="VFEP_HeavyWeaponsPlatform" or defName="VFEP_Artillery"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>4</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>

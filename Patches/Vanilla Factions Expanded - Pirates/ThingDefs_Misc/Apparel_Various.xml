@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- ========== Rum Suit ========== -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Rumsuit"]/statBases</xpath>
+        <value>
+          <Bulk>50</Bulk>
+          <WornBulk>10</WornBulk>
+        </value>
+      </li>
+
+      <!-- ========== Privateer Armor ========== -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases</xpath>
+        <value>
+          <Bulk>100</Bulk>
+          <WornBulk>15</WornBulk>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases/MaxHitPoints</xpath>
+        <value>
+          <MaxHitPoints>480</MaxHitPoints>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases/Mass</xpath>
+        <value>
+          <Mass>50</Mass>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases/Flammability</xpath>
+        <value>
+          <Flammability>0</Flammability>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>19</ArmorRating_Sharp>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>43</ArmorRating_Blunt>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/costList</xpath>
+        <value>
+          <DevilstrandCloth>50</DevilstrandCloth>
+        </value>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/equippedStatOffsets/MoveSpeed</xpath>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/equippedStatOffsets</xpath>
+        <value>
+          <CarryWeight>80</CarryWeight>
+          <CarryBulk>10</CarryBulk>
+          <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+          <ToxicSensitivity>-0.50</ToxicSensitivity>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/apparel/bodyPartGroups</xpath>
+        <value>
+          <li>Hands</li>
+          <li>Feet</li>
+        </value>
+      </li>
+      
+      <!-- Increase Cost -->
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/costList/Plasteel</xpath>
+        <value>
+          <Plasteel>170</Plasteel>
+        </value>
+      </li>
+      
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="VFEP_Apparel_Privateer"]/costList/Uranium</xpath>
+        <value>
+          <Uranium>40</Uranium>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
