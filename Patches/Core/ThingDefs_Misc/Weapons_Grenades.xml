@@ -16,6 +16,26 @@
 		</xpath>
 	</Operation> -->
 
+	<!-- ========== Melee tools ========== -->
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]</xpath>
+		<value>
+			<tools>
+			  <li Class="CombatExtended.ToolCE">
+				<label>Body</label>
+				<capacities>
+				  <li>Blunt</li>
+				</capacities>
+				<power>5</power>
+				<cooldownTime>1.75</cooldownTime>
+				<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+			  </li>
+			</tools>
+		</value>
+	</Operation>
+
 	<!-- ========== Base Grenade Projectile ========== -->
 
 	<Operation Class="PatchOperationReplace">
