@@ -33,7 +33,7 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return Mathf.Lerp(1f, 0.75f, t - 0.25f);
+            return Mathf.Lerp(1f, 0.75f, t);
         }
 
         public static float WorkSpeedFactor(float bulk, float bulkCapacity)
@@ -53,17 +53,17 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(bulk / bulkCapacity /*- 0.5f*/, 1f)), 2);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(bulk / bulkCapacity, 1f)), 2);
         }
 
         public static float HitChanceBulkFactor(float bulk, float bulkCapacity)
         {
-            if ((bulk / bulkCapacity) <= 0.35f)
+            if ((bulk / bulkCapacity) <= 0.25f)
             {
                 return 1f;
             }
 
-            return (float)Math.Round(Mathf.Lerp(1f, 0.75f, Math.Min(bulk / bulkCapacity - 0.35f, 1f)), 2);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.75f, Math.Min(bulk / bulkCapacity, 1f)), 2);
         }
 
         public static float DodgeWeightFactor(float weight, float weightCapacity)
@@ -73,7 +73,7 @@ namespace CombatExtended
                 return 1f;
             }
 
-            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(weight / weightCapacity/* - 0.25f*/, 1f)), 2);
+            return (float)Math.Round(Mathf.Lerp(1f, 0.87f, Math.Min(weight / weightCapacity, 1f)), 2);
         }
 
         public static float EncumberPenalty(float weight, float weightCapacity)
