@@ -153,9 +153,6 @@ Fallout Traits	|
 Fantasy Metals Reforged |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
-FCP Makeshift Weapons Pack	|
-FCP Minuteman Equipment Teaser	|
-FCP Raider Armor and Apparel Teaser	|
 Feles - Felines of the Rim [1.3]    |
 Fell Tribes	|
 Ferrex Race	|
