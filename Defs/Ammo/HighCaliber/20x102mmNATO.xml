@@ -14,7 +14,7 @@
 		<defName>AmmoSet_20x102mmNATO</defName>
 		<label>20x102mm NATO</label>
 		<ammoTypes>
-      		<Ammo_20x102mmNATO_FMJ>Bullet_20x102mmNATO_FMJ</Ammo_20x102mmNATO_FMJ>		
+      		<Ammo_20x102mmNATO_AP>Bullet_20x102mmNATO_AP</Ammo_20x102mmNATO_AP>		
 			<Ammo_20x102mmNATO_Incendiary>Bullet_20x102mmNATO_Incendiary</Ammo_20x102mmNATO_Incendiary>
 			<Ammo_20x102mmNATO_HE>Bullet_20x102mmNATO_HE</Ammo_20x102mmNATO_HE>
 			<Ammo_20x102mmNATO_Sabot>Bullet_20x102mmNATO_Sabot</Ammo_20x102mmNATO_Sabot>
@@ -41,7 +41,7 @@
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-      <defName>Ammo_20x102mmNATO_FMJ</defName>
+      <defName>Ammo_20x102mmNATO_AP</defName>
       <label>20x102mm NATO cartridge (AP)</label>
       <graphicData>
         <texPath>Things/Ammo/HighCaliber/AP</texPath>
@@ -51,7 +51,7 @@
         <MarketValue>1.04</MarketValue>
       </statBases>
       <ammoClass>ArmorPiercing</ammoClass>
-      <cookOffProjectile>Bullet_20x102mmNATO_FMJ</cookOffProjectile>
+      <cookOffProjectile>Bullet_20x102mmNATO_AP</cookOffProjectile>
     </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
@@ -112,7 +112,7 @@
 	</ThingDef>
 
     <ThingDef ParentName="Base20x102mmNATOBullet">
-      <defName>Bullet_20x102mmNATO_FMJ</defName>
+      <defName>Bullet_20x102mmNATO_AP</defName>
       <label>20x102mm NATO bullet (AP)</label>
       <projectile Class="CombatExtended.ProjectilePropertiesCE">
         <damageAmountBase>44</damageAmountBase>
@@ -167,7 +167,7 @@
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_20x102mmNATO_FMJ</defName>
+      <defName>MakeAmmo_20x102mmNATO_AP</defName>
       <label>make 20x102mm NATO (AP) cartridge x200</label>
       <description>Craft 200 20x102mm NATO (AP) cartridges.</description>
       <jobString>Making 20x102mm NATO (AP) cartridges.</jobString>
@@ -187,7 +187,7 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_20x102mmNATO_FMJ>200</Ammo_20x102mmNATO_FMJ>
+        <Ammo_20x102mmNATO_AP>200</Ammo_20x102mmNATO_AP>
       </products>
       <workAmount>10400</workAmount>
     </RecipeDef>
