@@ -14,7 +14,7 @@
 		<defName>AmmoSet_40x311mmR</defName>
 		<label>40x311mmR</label>
 		<ammoTypes>
-		    <Ammo_40x311mmR_FMJ>Bullet_40x311mmR_FMJ</Ammo_40x311mmR_FMJ>
+			<Ammo_40x311mmR_AP>Bullet_40x311mmR_AP</Ammo_40x311mmR_AP>
 			<Ammo_40x311mmR_Incendiary>Bullet_40x311mmR_Incendiary</Ammo_40x311mmR_Incendiary>
 			<Ammo_40x311mmR_HE>Bullet_40x311mmR_HE</Ammo_40x311mmR_HE>
 			<Ammo_40x311mmR_Sabot>Bullet_40x311mmR_Sabot</Ammo_40x311mmR_Sabot>
@@ -40,19 +40,19 @@
 		<stackLimit>100</stackLimit>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x311mmRBase">
-      <defName>Ammo_40x311mmR_FMJ</defName>
-      <label>40x311mmR cartridge (AP)</label>
-      <graphicData>
-        <texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
-        <graphicClass>Graphic_StackCount</graphicClass>
-      </graphicData>
-      <statBases>
-        <MarketValue>8.53</MarketValue>
-      </statBases>
-      <ammoClass>ArmorPiercing</ammoClass>
-      <cookOffProjectile>Bullet_40x311mmR_FMJ</cookOffProjectile>
-    </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x311mmRBase">
+		<defName>Ammo_40x311mmR_AP</defName>
+		<label>40x311mmR cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>8.53</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_40x311mmR_FMJ</cookOffProjectile>
+	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo40x311mmRBase">
 		<defName>Ammo_40x311mmR_Incendiary</defName>
@@ -112,7 +112,7 @@
 	</ThingDef>
 
 	<ThingDef ParentName="Base40x311mmRBullet">
-		<defName>Bullet_40x311mmR_FMJ</defName>
+		<defName>Bullet_40x311mmR_AP</defName>
 		<label>40x311mmR bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<damageAmountBase>105</damageAmountBase>
@@ -167,7 +167,7 @@
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_40x311mmR_FMJ</defName>
+      <defName>MakeAmmo_40x311mmR_AP</defName>
       <label>make 40x311mmR (AP) cartridge x50</label>
       <description>Craft 50 40x311mmR (AP) cartridges.</description>
       <jobString>Making 40x311mmR (AP) cartridges.</jobString>
@@ -187,7 +187,7 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_40x311mmR_FMJ>50</Ammo_40x311mmR_FMJ>
+        <Ammo_40x311mmR_AP>50</Ammo_40x311mmR_AP>
       </products>
       <workAmount>21600</workAmount>
     </RecipeDef>
