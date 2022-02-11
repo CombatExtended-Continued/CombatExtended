@@ -3,17 +3,17 @@
   <Operation Class="PatchOperationSequence">
 	<operations>
 	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Dragonian Race</li></mods>
-			
+		<mods>
+			<li>Dragonian Race</li>
+		</mods>			
 		<match Class="PatchOperationSequence">
 		<operations>
-			
+
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Male"]/comps</xpath>
 				<value>
 					<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
 				</value>
@@ -23,26 +23,12 @@
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female"]/comps</xpath>
 				<value>
 					<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
 					</li>
 					<li Class="CombatExtended.CompProperties_Suppressable" />
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
-                    <value>
-                        <li>CombatExtended.ITab_Inventory</li>
-                    </value>
-			</li>
 
-            <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="DR_PawnBase"]/comps</xpath>
-                    <value>
-                        <li Class="CombatExtended.CompProperties_Inventory" />
-                    </value>
-			</li>
-			
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]</xpath>
 				<value>
@@ -56,47 +42,47 @@
 			
 			<li Class="PatchOperationAdd">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases</xpath>
-				  <value>
-					<MeleeCritChance>1.08</MeleeCritChance>
-					<MeleeParryChance>1.06</MeleeParryChance>
-					<Suppressability>1</Suppressability>
-					<!--Innate toxic resistance of 0.6-->
-					<SmokeSensitivity>0.6</SmokeSensitivity>
-				  </value>
+				<value>
+				<MeleeCritChance>1.08</MeleeCritChance>
+				<MeleeParryChance>1.06</MeleeParryChance>
+				<Suppressability>1</Suppressability>
+				<!--Innate toxic resistance of 0.6-->
+				<SmokeSensitivity>0.6</SmokeSensitivity>
+				</value>
 			</li>
-			
+	
 			<li Class="PatchOperationReplace">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/MeleeDodgeChance</xpath>
-				  <value>
+				<value>
 					<MeleeDodgeChance>1.18</MeleeDodgeChance>
-				  </value>
+				</value>
 			</li>
-			
+
 			<!--4mm Wool (skin+scales), their vanilla armor is thrumbo level-->
-			
+		
 			<li Class="PatchOperationReplace">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
+				<value>
 					<ArmorRating_Sharp>2.7</ArmorRating_Sharp>
-				  </value>
+				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
+				<value>
 					<ArmorRating_Blunt>3.4</ArmorRating_Blunt>
-				  </value>
+				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/statBases/ArmorRating_Heat</xpath>
-				  <value>
+				<value>
 					<ArmorRating_Heat>0.6</ArmorRating_Heat>
-				  </value>
+				</value>
 			</li>
-			
+
 			<!--Their vanilla melee is very strong (18 verus 8.2 for humanlike)-->
-			
+		
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/tools</xpath> 
 				<value>
@@ -140,17 +126,17 @@
 			
 			<li Class="PatchOperationAdd">
 			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Dragonian_Female" or defName="Dragonian_Male"]/alienRace/raceRestriction/whiteApparelList</xpath>
-				  <value>
-					<li>Apparel_TacVest</li>
-					<li>Apparel_Backpack</li>
-					<li>Apparel_TribalBackpack</li>
-					<li>Apparel_BallisticShield</li>
-					<li>Apparel_MeleeShield</li>
-					<li>Apparel_GasMask</li>
-					<li>Apparel_ImprovGasMask</li>
-				  </value>
+				<value>
+				<li>Apparel_TacVest</li>
+				<li>Apparel_Backpack</li>
+				<li>Apparel_TribalBackpack</li>
+				<li>Apparel_BallisticShield</li>
+				<li>Apparel_MeleeShield</li>
+				<li>Apparel_GasMask</li>
+				<li>Apparel_ImprovGasMask</li>
+				</value>
 			</li>
-			
+	
 		</operations>
 		</match>	
 	  </li>
