@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Bulk === -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_Rum"]/statBases</xpath>
+          <value>
+            <Bulk>1</Bulk>
+          </value>
+        </li>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[@Name="VFEP_DrugToolBase"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <capacities>
+                <li>Blunt</li>
+                </capacities>
+                <power>2</power>
+                <cooldownTime>2.22</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>neck</label>
+                <capacities>
+                <li>Poke</li>
+                </capacities>
+                <power>1</power>
+                <cooldownTime>3.33</cooldownTime>
+                <armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

@@ -36,7 +36,27 @@ namespace CombatExtended
 		}
 		public override IEnumerable<Toil> MakeNewToils()
 		{
-			int timeToSetUpTrue = (int)(Bipod.Props.ticksToSetUp / GetActor().health.capacities.GetLevel(PawnCapacityDefOf.Manipulation));
+			var Pawn = GetActor();
+
+			int timeToSetUpTrue = (int)(Bipod.Props.ticksToSetUp / (Pawn.GetStatValue(StatDefOf.ShootingAccuracyPawn) * 0.5f));
+
+			var cells = Pawn.CellsAdjacent8WayAndInside();
+
+			bool hasCover = false;
+
+			foreach (IntVec3 vec in cells)
+			{
+				if (!hasCover)
+				{
+					hasCover = vec.GetThingList(Pawn.Map).Any(x => x.def.fillPercent >= 0.2f && x.def.fillPercent < 1f);
+
+					if (hasCover)
+					{
+						Log.Message(vec.GetThingList(Pawn.Map).Find(x => x.def.fillPercent >= 0.2f && x.def.fillPercent < 1f).Label);
+					}
+				}
+			}
+
 			yield return Toils_General.Wait(timeToSetUpTrue).WithProgressBarToilDelay(TargetIndex.A);
 			yield return Toils_General.Do(delegate { Bipod.SetUpEnd(weapon); });
 

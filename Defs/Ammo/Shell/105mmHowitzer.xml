@@ -22,6 +22,19 @@
     	<isMortarAmmoSet>true</isMortarAmmoSet>		
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_105mmHowitzerShell_directfire</defName>
+		<label>105mm Howitzer shells</label>
+		<ammoTypes>
+			<Ammo_105mmHowitzerShell_HEAT>Bullet_105mmHowitzerShell_HEAT_directfire</Ammo_105mmHowitzerShell_HEAT>
+			<Ammo_105mmHowitzerShell_HE>Bullet_105mmHowitzerShell_HE_directfire</Ammo_105mmHowitzerShell_HE>
+			<Ammo_105mmHowitzerShell_Incendiary>Bullet_105mmHowitzerShell_Incendiary_directfire</Ammo_105mmHowitzerShell_Incendiary>
+			<Ammo_105mmHowitzerShell_EMP>Bullet_105mmHowitzerShell_EMP_directfire</Ammo_105mmHowitzerShell_EMP>
+			<Ammo_105mmHowitzerShell_Smoke>Bullet_105mmHowitzerShell_Smoke_directfire</Ammo_105mmHowitzerShell_Smoke>
+		</ammoTypes>
+    	<isMortarAmmoSet>true</isMortarAmmoSet>		
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="105mmHowitzerShellBase" ParentName="HeavyAmmoBase" Abstract="True">
@@ -57,6 +70,21 @@
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_105mmHowitzerShell_HE</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+		<defName>Ammo_105mmHowitzerShell_HEAT</defName>
+		<label>105mm Howitzer shell (HEAT)</label>
+		<graphicData>
+		  <texPath>Things/Ammo/Cannon/Flak/HEAT</texPath>
+		  <graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+		  <Mass>21</Mass>
+		  <MarketValue>128</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_105mmHowitzerShell_HEAT_directfire</detonateProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
@@ -105,6 +133,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
+	<!-- indirect fire-->
 	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
@@ -132,7 +161,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>350</damageAmountBase>
+			<damageAmountBase>370</damageAmountBase>
 			<explosionRadius>5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -165,6 +194,15 @@
 			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
 		  </projectile>
+		  <comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			  <damageAmountBase>120</damageAmountBase>
+			  <explosiveDamageType>Thermobaric</explosiveDamageType>
+			  <explosiveRadius>2.5</explosiveRadius>
+			  <explosionSound>MortarIncendiary_Explode</explosionSound>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Base105mmHowitzerShell">
@@ -206,7 +244,147 @@
 		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
 		</projectile>
-	  </ThingDef>
+	</ThingDef>
+
+	<!-- direct fire-->
+	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		  </graphicData>
+		  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>150</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
+		<defName>Bullet_105mmHowitzerShell_HEAT_directfire</defName>
+		<label>105mm cannon shell (HEAT)</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Cannon/HEAT</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>200</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>400</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>375</armorPenetrationSharp>
+			<armorPenetrationBlunt>251</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>150</damageAmountBase>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		  <li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Fragment_Large>25</Fragment_Large>
+				<Fragment_Small>40</Fragment_Small>
+			</fragments>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
+		<defName>Bullet_105mmHowitzerShell_HE_directfire</defName>
+		<label>105mm Howitzer shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>370</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>30</Fragment_Large>
+					<Fragment_Small>50</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
+		<defName>Bullet_105mmHowitzerShell_Incendiary_directfire</defName>
+		<label>105mm Howitzer shell (Incendiary)</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>7</explosionRadius>
+			<flyOverhead>true</flyOverhead>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		  </projectile>
+		  <comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+			  <damageAmountBase>120</damageAmountBase>
+			  <explosiveDamageType>Thermobaric</explosiveDamageType>
+			  <explosiveRadius>2.5</explosiveRadius>
+			  <explosionSound>MortarIncendiary_Explode</explosionSound>
+			  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
+		<defName>Bullet_105mmHowitzerShell_EMP_directfire</defName>
+		<label>105mm Howitzer shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>EMP</damageDef>
+		  <damageAmountBase>136</damageAmountBase>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+		  <flyOverhead>true</flyOverhead>
+		  <explosionRadius>6.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base105mmHowitzerShellDirectfire">
+		<defName>Bullet_105mmHowitzerShell_Smoke_directfire</defName>
+		<label>105mm Howitzer shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+	<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>Smoke</damageDef>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+		  <explosionRadius>7.5</explosionRadius>
+		  <flyOverhead>true</flyOverhead>
+		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+		  <soundExplode>Explosion_EMP</soundExplode>
+		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		  <soundAmbient>MortarRound_Ambient</soundAmbient>
+		  <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+		  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
@@ -251,6 +429,50 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_105mmHowitzerShell_HE>2</Ammo_105mmHowitzerShell_HE>
+		</products>
+	</RecipeDef>
+	
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_105mmHowitzerShell_HEAT</defName>
+		<label>make 105mm HEAT Howitzer shells x2</label>
+		<description>Craft 2 105mm HEAT Howitzer shells.</description>
+		<jobString>Making 105mm HEAT Howitzer shells.</jobString>
+		<workAmount>10400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>76</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>ComponentIndustrial</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_105mmHowitzerShell_HEAT>2</Ammo_105mmHowitzerShell_HEAT>
 		</products>
 	</RecipeDef>
 
