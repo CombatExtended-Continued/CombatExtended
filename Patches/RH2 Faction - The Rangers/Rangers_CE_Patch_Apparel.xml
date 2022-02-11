@@ -8,7 +8,24 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
+            <!-- ========== In-built Shield Patch ========== -->
+
+           <Operation Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldRechargeRate</xpath>
+                <value>
+                    <EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
+                </value>
+           </Operation>
+
+           <Operation Class="PatchOperationReplace">
+                <xpath>Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldEnergyMax</xpath>
+                <value>
+                    <EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
+                </value>
+           </Operation>
+
             <!-- ========== Ranger Helmet ========== -->
+
            <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/recipeMaker/researchPrerequisite</xpath>
                 <value>
@@ -42,7 +59,7 @@
            <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
                 <value>
-                <ArmorRating_Sharp>12</ArmorRating_Sharp>
+                <ArmorRating_Sharp>14</ArmorRating_Sharp>
                 </value>
             </li>
 
@@ -108,7 +125,7 @@
            <li Class="PatchOperationReplace">
                 <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
                 <value>
-                    <ArmorRating_Sharp>12</ArmorRating_Sharp>
+                    <ArmorRating_Sharp>14</ArmorRating_Sharp>
                 </value>
             </li>
 
