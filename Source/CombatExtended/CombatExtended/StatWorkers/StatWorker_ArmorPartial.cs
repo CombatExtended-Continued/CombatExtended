@@ -60,6 +60,11 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
+            if (!(req.Def is ThingDef))
+            {
+                return false;
+            }
+
             if ( ((ThingDef)req.Def)?.IsApparel ?? req.Thing?.def?.IsApparel ?? false)
             {
                 return this.stat.defName != "PartialArmorBody";
