@@ -5,7 +5,7 @@
 		<mods>
 		<li>[RH2] Faction: The Rangers</li>
 		</mods>
-		<match Class="PatchOperationSequence">
+		  <match Class="PatchOperationSequence">
 		<operations>
 
         <!-- ========== In-built Shield Patch ========== -->
@@ -32,6 +32,14 @@
                 <researchPrerequisite>ReconArmor</researchPrerequisite> 
             </value>
         </li>
+
+         <li Class="PatchOperationReplace">
+              <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+              <value>
+              <ArmorRating_Sharp>14</ArmorRating_Sharp>
+              </value>
+          </li>
+
 
         <li Class="PatchOperationReplace">
             <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/Mass</xpath>
@@ -99,6 +107,14 @@
         </li>
 
         <!-- ========== Ranger armor ========== -->
+
+         <li Class="PatchOperationReplace">
+              <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+              <value>
+                  <ArmorRating_Sharp>14</ArmorRating_Sharp>
+              </value>
+          </li>
+
 
         <li Class="PatchOperationAdd">
             <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases</xpath>
