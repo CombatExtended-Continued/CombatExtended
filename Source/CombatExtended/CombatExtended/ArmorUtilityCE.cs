@@ -228,30 +228,41 @@ namespace CombatExtended
             if (armor != null)
             {
                 var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
+                float armorDamage = -1f;
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
                     if (isSharpDmg)
                     {
-                        var armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-                        //If the damage is, let's say, 5.75, then there's a 75% chance that the damage armor takes will be 6 or a 25% for 5 damage;
-                        if (Rand.Value < (armorDamage - Mathf.FloorToInt(armorDamage)))
-                        {
-                            armorDamage++;
-                        }
-                        armor.TakeDamage(new DamageInfo(def, Mathf.Floor(armorDamage)));
+                        armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
                     }
                 }
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    var armorDamage = newDmgAmount;
-                    //If the damage is, let's say, 5.75, then there's a 75% chance that the damage armor takes will be 6 or a 25% for 5 damage;
-                    if (Rand.Value < (armorDamage - Mathf.FloorToInt(armorDamage)))
+                    armorDamage = newDmgAmount;
+                }
+
+                // armorDamage being -1 means that there shouldn't be any calculations done
+                if (armorDamage != -1f)
+                {
+                    // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this is an extremely small chance)
+                    if ((Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)) && (armorDamage < 1f))
                     {
-                        armorDamage++;
+                        armorDamage = 1f;
                     }
-                    armor.TakeDamage(new DamageInfo(def, Mathf.FloorToInt(armorDamage)));
+
+                    // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
+                    // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
+                    if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
+                    {
+                        armorDamage = Mathf.Ceil(armorDamage);
+                    }
+
+                    armorDamage = Mathf.Floor(armorDamage);
+                    // Don't call TakeDamage() with 0 damage as taht would be a waste
+                    if (armorDamage != 0f)
+                        armor.TakeDamage(new DamageInfo(def, armorDamage));
                 }
             }
 
