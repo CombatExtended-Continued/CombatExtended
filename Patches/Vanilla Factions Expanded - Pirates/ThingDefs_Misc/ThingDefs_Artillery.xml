@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Remove refuelable property -->
+      <li Class="PatchOperationRemove">
+      <xpath>/Defs/ThingDef[
+        defName = "VFEP_Turret_FieldGun" or
+        defName = "VFEP_Turret_Cannon"
+        ]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon" or defName="VFEP_Turret_FieldGun"]</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+      </li>
+
+      <!-- Field Gun -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
+        <value>
+            <turretBurstWarmupTime>4.0</turretBurstWarmupTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstCooldownTime</xpath>
+        <value>
+            <turretBurstCooldownTime>2.0</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
+        <value>
+        <statBases>
+          <Mass>500</Mass>
+          <Bulk>250</Bulk>
+        </statBases>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/statBases/RangedWeapon_Cooldown</xpath>
+        <value>
+            <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/statBases</xpath>
+        <value>
+            <SightsEfficiency>0.5</SightsEfficiency>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/comps</xpath>
+        <value>
+            <li Class="CombatExtended.CompProperties_Charges">
+              <chargeSpeeds>
+                <li>30</li>
+                <li>50</li>
+                <li>70</li>
+                <li>90</li>
+              </chargeSpeeds>
+            </li>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+              <magazineSize>1</magazineSize>
+              <reloadTime>5</reloadTime>
+              <ammoSet>AmmoSet_105mmHowitzerShell</ammoSet>
+            </li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/weaponTags</xpath>
+        <value>
+          <li>TurretGun</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/verbs</xpath>
+        <value>
+          <verbs>
+            <li Class="CombatExtended.VerbPropertiesCE">
+              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>Bullet_105mmHowitzerShell_HE</defaultProjectile>
+              <warmupTime>4</warmupTime>
+              <minRange>20</minRange>
+              <range>900</range>
+              <burstShotCount>1</burstShotCount>
+              <soundCast>VFEP_Shot_FieldCannon</soundCast>
+              <muzzleFlashScale>16</muzzleFlashScale>
+              <circularError>1</circularError>
+              <indirectFirePenalty>0.3</indirectFirePenalty>
+              <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+              </targetParams>
+            </li>
+          </verbs>
+        </value>
+      </li>
+
+      <!-- Cannon - Based on the M1897 12-pounder -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/building/turretBurstWarmupTime</xpath>
+        <value>
+            <turretBurstWarmupTime>3.3</turretBurstWarmupTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/building/turretBurstCooldownTime</xpath>
+        <value>
+            <turretBurstCooldownTime>2.7</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_Artillery_Cannon</defName>
+          <statBases>
+            <RangedWeapon_Cooldown>2.7</RangedWeapon_Cooldown>
+            <SightsEfficiency>0.80</SightsEfficiency>
+            <ShotSpread>0.15</ShotSpread>
+            <SwayFactor>0.81</SwayFactor>
+          </statBases>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>10</reloadTime>
+            <ammoSet>AmmoSet_CannonBall</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+          <weaponTags>
+            <li>TurretGun</li>
+          </weaponTags>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_Cannon"]/verbs</xpath>
+        <value>
+          <verbs>
+            <li Class="CombatExtended.VerbPropertiesCE">
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+              <hasStandardCommand>true</hasStandardCommand>
+              <defaultProjectile>Bullet_CannonBall_Round</defaultProjectile>
+              <warmupTime>3.3</warmupTime>
+              <range>64</range>
+              <minRange>16</minRange>
+              <soundCast>VFEP_Shot_Cannon</soundCast>
+              <soundCastTail>GunTail_Heavy</soundCastTail>
+              <muzzleFlashScale>18</muzzleFlashScale>
+              <targetParams>
+                <canTargetLocations>true</canTargetLocations>
+              </targetParams>
+              <recoilPattern>Mounted</recoilPattern>
+            </li>
+          </verbs>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
+        <value>
+        <statBases>
+          <ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+          <AimingAccuracy>1.0</AimingAccuracy>
+          <Bulk>150</Bulk>
+          <Mass>250</Mass>
+        </statBases>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

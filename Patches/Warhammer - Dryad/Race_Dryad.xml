@@ -46,6 +46,32 @@
 
         <!-- Dryad -->
 
+        <li Class="PatchOperationSequence">
+          <success>Always</success>
+          <operations>
+            <li Class="PatchOperationTest">
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/comps</xpath>
+              <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]</xpath>
+              <value>
+                <comps />
+              </value>
+            </li>
+          </operations>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/comps</xpath>
+          <value>
+            <li>
+              <compClass>CombatExtended.CompPawnGizmo</compClass>
+            </li>
+            <li Class="CombatExtended.CompProperties_Suppressable" />
+          </value>
+        </li>
+
         <li Class="PatchOperationReplace">
           <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/statBases/MeleeDodgeChance</xpath>
           <value>

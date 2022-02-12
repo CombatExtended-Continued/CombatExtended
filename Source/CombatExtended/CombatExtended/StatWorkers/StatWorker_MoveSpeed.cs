@@ -22,12 +22,21 @@ namespace CombatExtended
                 if (inventoryComp != null)
                 {
                     stringBuilder.AppendLine();
-                    stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + inventoryComp.moveSpeedFactor.ToStringPercent());
+                    if (this.stat.defName != "MeleeDodgeChance")
+                    {
+                        stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + inventoryComp.moveSpeedFactor.ToStringPercent());
+                    }
+                    else
+                    {
+                        stringBuilder.AppendLine("CE_CarriedWeight".Translate() + ": x" + MassBulkUtility.DodgeWeightFactor(inventoryComp.currentWeight, inventoryComp.capacityWeight).ToStringPercent());
+                        stringBuilder.AppendLine("CE_BulkEffect".Translate() + " x" + (MassBulkUtility.DodgeChanceFactor(inventoryComp.currentBulk, inventoryComp.capacityBulk) * 100f).ToString() + "%");
+                    }
                     if (inventoryComp.encumberPenalty > 0)
                     {
                         stringBuilder.AppendLine("CE_Encumbered".Translate() + ": -" + inventoryComp.encumberPenalty.ToStringPercent());
-                        stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + GetStatFactor(req.Thing).ToStringPercent());
                     }
+                    if (this.stat.defName != "MeleeDodgeChance")
+                        stringBuilder.AppendLine("CE_FinalModifier".Translate() + ": x" + (GetStatFactor(req.Thing)).ToStringPercent());
                 }
 
                 var suppressComp = req.Thing.TryGetComp<CompSuppressable>();
@@ -47,7 +56,21 @@ namespace CombatExtended
             float value = base.GetValueUnfinalized(req, applyPostProcess);
             if (req.HasThing)
             {
-                value *= GetStatFactor(req.Thing);
+                var inventory = req.Thing.TryGetComp<CompInventory>();
+                if (this.stat.defName != "MeleeDodgeChance" && inventory != null)
+                    value *= GetStatFactor(req.Thing);
+
+
+                
+                if (this.stat.defName == "MeleeDodgeChance" && inventory != null)
+                {
+                    value *= MassBulkUtility.DodgeChanceFactor(inventory.currentBulk, inventory.capacityBulk);
+                    value *= MassBulkUtility.DodgeWeightFactor(inventory.currentWeight, inventory.capacityWeight);
+                    if (inventory.currentWeight > inventory.capacityWeight)
+                    {
+                        value -= inventory.encumberPenalty;
+                    }
+                }
             }
             return value;
         }

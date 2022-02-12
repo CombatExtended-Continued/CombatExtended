@@ -76,7 +76,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 10f;
+                    RatingBlunt.value *= 15f;
 
                     var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = RatingBlunt.value };
 

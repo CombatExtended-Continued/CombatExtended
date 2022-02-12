@@ -60,16 +60,16 @@ namespace CombatExtended
                 maxWeaponPen = primaryWeapon.def.tools.Select(x => x as ToolCE).Max(x => x.armorPenetrationSharp) * primaryWeapon.GetStatValue(CE_StatDefOf.MeleePenetrationFactor);
             }
 
-            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 4)
+            if (PawnParent.skills.GetSkill(SkillDefOf.Melee).Level < 16 && PawnParent.skills.GetSkill(SkillDefOf.Melee).Level > 7)
             {
                 var torso = target.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Torso).FirstOrFallback();
 
                 //just in case of attacking some weird creature
                 if (torso != null)
                 {
-                    var torsoApparel = target.apparel.WornApparel.FindAll(x => x.def.apparel.CoversBodyPart(torso));
+                    var torsoApparel = target.apparel?.WornApparel?.FindAll(x => x.def.apparel.CoversBodyPart(torso));
 
-                    float overallRHA = 0f;
+                    float overallRHA = target.GetStatValue(StatDefOf.ArmorRating_Sharp);
 
                     if (!torsoApparel.NullOrEmpty())
                     {
@@ -98,7 +98,7 @@ namespace CombatExtended
 
                 if (neck != null)
                 {
-                    var neckApparel = target.apparel.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
+                    var neckApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(neck));
 
                     if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
@@ -123,7 +123,7 @@ namespace CombatExtended
         {
             get
             {
-                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 5;
+                return PawnParent.skills.GetSkill(SkillDefOf.Melee).Level >= 8;
             }
         }
         public bool SkillReqBP

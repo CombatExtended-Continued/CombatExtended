@@ -66,7 +66,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>65</MarketValue>
+			<MarketValue>333.53</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeIncendiary</ammoClass>
 		<detonateProjectile>Bullet_155mmHowitzerShell_Incendiary</detonateProjectile>
@@ -160,7 +160,16 @@
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
-		  </projectile>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>104</damageAmountBase>
+			<explosiveDamageType>Thermobaric</explosiveDamageType>
+			<explosiveRadius>4</explosiveRadius>
+			<explosionSound>MortarIncendiary_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Base155mmHowitzerShell">
@@ -253,8 +262,8 @@
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_Incendiary</defName>
 		<label>make 155mm Incendiary Howitzer shells x1</label>
-		<description>Craft 2 155mm Incendiary Howitzer shells.</description>
-		<jobString>Making 155mm Incendiary Howitzer shells.</jobString>
+		<description>Craft 155mm Incendiary Howitzer shell.</description>
+		<jobString>Making 155mm Incendiary Howitzer shell.</jobString>
 		<workAmount>10000</workAmount>
 		<ingredients>
 			<li>
@@ -297,8 +306,8 @@
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_EMP</defName>
 		<label>make 155mm EMP Howitzer shells x1</label>
-		<description>Craft 2 155mm EMP Howitzer shells.</description>
-		<jobString>Making 155mm EMP Howitzer shells.</jobString>
+		<description>Craft 155mm EMP Howitzer shell.</description>
+		<jobString>Making 155mm EMP Howitzer shell.</jobString>
 		<workAmount>13600</workAmount>
 		<ingredients>
 			<li>
@@ -332,8 +341,8 @@
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_155mmHowitzerShell_Smoke</defName>
 		<label>make 155mm Smoke Howitzer shells x1</label>
-		<description>Craft 2 155mm Smoke Howitzer shells.</description>
-		<jobString>Making 155mm Smoke Howitzer shells.</jobString>
+		<description>Craft 155mm Smoke Howitzer shell.</description>
+		<jobString>Making 155mm Smoke Howitzer shell.</jobString>
 		<workAmount>9600</workAmount>
 		<ingredients>
 			<li>

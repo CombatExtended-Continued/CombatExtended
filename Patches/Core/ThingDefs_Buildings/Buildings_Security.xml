@@ -55,6 +55,7 @@
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/statBases/Mass</xpath>
 		<value>
 			<Mass>25</Mass>
+			<Bulk>15</Bulk>
 		</value>
 	</Operation>
 
@@ -358,6 +359,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding"]/statBases</xpath>
+		<value>
+			<Bulk>200</Bulk>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/inspectorTabs</xpath>
 	</Operation>
@@ -407,7 +415,7 @@
 		<value>
 			<costList>
 				<Steel>10</Steel>
-				<FSX>2</FSX>
+				<FSX>3</FSX>
 				<ComponentIndustrial>1</ComponentIndustrial>
 			</costList>
 		</value>
@@ -429,6 +437,7 @@
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>270</damageAmountBase>
 				<explosiveRadius>4.5</explosiveRadius>
 				<wickTicks>
 				  <min>5</min>
@@ -449,7 +458,7 @@
 		<value>
 			<li Class="CompProperties_Explosive">
 				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
-				<explosiveRadius>7</explosiveRadius>
+				<explosiveRadius>5</explosiveRadius>
 				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
 				<wickTicks>
@@ -461,4 +470,3 @@
 	</Operation>
 
 </Patch>
-

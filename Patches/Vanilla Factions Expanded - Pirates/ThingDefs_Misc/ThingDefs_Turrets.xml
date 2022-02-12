@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Remove refuelable property -->
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
+      </li>
+
+      <!-- Replace vanilla thingClass -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/thingClass</xpath>
+          <value>
+            <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+          </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+          <value>
+            <thingCategories />
+          </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/statBases</xpath>
+          <value>
+            <AimingAccuracy>0.5</AimingAccuracy>
+          </value>
+      </li>
+
+	  	<!-- Make turrets taller -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+        <value>
+          <fillPercent>0.95</fillPercent>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.95</fillPercent>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <!-- Gauntlet Charge Cannnon -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>VFEP_GauntletChargeCanon</defName>
+        <statBases>
+          <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+          <SightsEfficiency>1</SightsEfficiency>
+          <ShotSpread>0.09</ShotSpread>
+          <SwayFactor>0.26</SwayFactor>
+        </statBases>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>True</hasStandardCommand>
+          <defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
+          <warmupTime>2</warmupTime>
+          <range>62</range>
+          <minRange>13</minRange>
+          <burstShotCount>4</burstShotCount>
+          <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+          <soundCast>VFEP_Shot_GauntletCannon</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+          <recoilPattern>Mounted</recoilPattern>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>200</magazineSize>
+          <reloadTime>10</reloadTime>
+          <ammoSet>AmmoSet_12x72mmCharged</ammoSet>
+        </AmmoUser>
+        <weaponTags Inherit="false">
+          <li>TurretGun</li>
+        </weaponTags>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+            <noSnapshot>true</noSnapshot>
+            <noSingleShot>true</noSingleShot>
+          </FireModes>        
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
+        <value>
+          <ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretGunDef</xpath>
+        <value>
+          <turretGunDef>VFEP_GauntletChargeCanon_CE</turretGunDef>
+        </value>
+      </li>
+
+      <!-- Vanilla Gauntlet Charge Cannnon -->
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs</xpath>
+        <value>
+          <ThingDef ParentName="BaseWeaponTurret">
+            <defName>VFEP_GauntletChargeCanon_CE</defName>
+            <label>gauntlet charge cannon</label>
+            <description>Ship mounted anti-armor charge cannon, often utilised in ship-to-ship combat in low atmosphere.</description>
+            <graphicData>
+              <texPath>Things/Building/Security/GauntletTurret_Top</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <statBases>
+              <AccuracyTouch>0.9</AccuracyTouch>
+              <AccuracyShort>0.85</AccuracyShort>
+              <AccuracyMedium>0.75</AccuracyMedium>
+              <AccuracyLong>0.60</AccuracyLong>
+              <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+              <DeteriorationRate>0</DeteriorationRate>
+              <Mass>5</Mass>
+              <Flammability>0</Flammability>
+            </statBases>
+            <verbs>
+              <li>
+                <verbClass>Verb_Shoot</verbClass>
+                <defaultProjectile>VFEP_Bullet_GauntletChargeCanon</defaultProjectile>
+                <warmupTime>3</warmupTime>
+                <range>62</range>
+                <minRange>13</minRange>
+                <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+                <burstShotCount>4</burstShotCount>
+                <soundCast>VFEP_Shot_GauntletCannon</soundCast>
+                <soundCastTail>GunTail_Light</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+                <consumeFuelPerShot>1</consumeFuelPerShot>
+              </li>
+            </verbs>
+          </ThingDef>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/damageAmountBase</xpath>
+        <value>
+          <damageAmountBase>20</damageAmountBase>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/armorPenetrationBase</xpath>
+        <value>
+          <armorPenetrationBase>25</armorPenetrationBase>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/speed</xpath>
+        <value>
+          <speed>150</speed>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
