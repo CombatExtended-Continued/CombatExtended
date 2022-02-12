@@ -67,23 +67,27 @@ namespace CombatExtended
                 //just in case of attacking some weird creature
                 if (torso != null)
                 {
-                    var torsoApparel = target.apparel.WornApparel.FindAll(x => x.def.apparel.CoversBodyPart(torso));
-
-                    float overallRHA = 0f;
-
-                    if (!torsoApparel.NullOrEmpty())
+                    var apparelTracker = target.apparel;
+                    if (apparelTracker != null)
                     {
-                        foreach (Apparel apparel in torsoApparel)
+                        var torsoApparel = apparelTracker.WornApparel.FindAll(x => x.def.apparel.CoversBodyPart(torso));
+
+                        float overallRHA = 0f;
+
+                        if (!torsoApparel.NullOrEmpty())
                         {
-                            if (apparel != null)
+                            foreach (Apparel apparel in torsoApparel)
                             {
-                                overallRHA += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                                if (apparel != null)
+                                {
+                                    overallRHA += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                                }
                             }
                         }
-                    }
-                    if (maxWeaponPen < overallRHA)
-                    {
-                        return BodyPartHeight.Top;
+                        if (maxWeaponPen < overallRHA)
+                        {
+                            return BodyPartHeight.Top;
+                        }
                     }
                 }
 
@@ -98,16 +102,20 @@ namespace CombatExtended
 
                 if (neck != null)
                 {
-                    var neckApparel = target.apparel.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
+                    var apparelTracker = target.apparel;
+                    if (apparelTracker != null)
+                    {
+                        var neckApparel = apparelTracker.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
 
-                    if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
-                    {
-                        targetBodyPart = null;
-                        return BodyPartHeight.Bottom;
-                    }
-                    else
-                    {
-                        targetBodyPart = neck.def;
+                        if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
+                        {
+                            targetBodyPart = null;
+                            return BodyPartHeight.Bottom;
+                        }
+                        else
+                        {
+                            targetBodyPart = neck.def;
+                        }
                     }
                 }
 
