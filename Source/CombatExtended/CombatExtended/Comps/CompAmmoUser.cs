@@ -488,8 +488,14 @@ namespace CombatExtended
 
         private void DoOutOfAmmoAction()
         {
+            if (this.parent.def.weaponTags.Contains("NoSwitch"))
+            {
+                return;
+            }
+
             if (ShouldThrowMote)
                 MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
+
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
             {
                 if (CompInventory.TryFindViableWeapon(out ThingWithComps weapon, useAOE: !Holder.IsColonist))
@@ -500,7 +506,7 @@ namespace CombatExtended
                 if (!Holder.IsColonist || !parent.def.IsAOEWeapon())
                     TryPickupAmmo();
             }
-            CompInventory?.SwitchToNextViableWeapon(true, !Holder.IsColonist, stopJob: false);
+            CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
         }
 
         public bool TryPickupAmmo()

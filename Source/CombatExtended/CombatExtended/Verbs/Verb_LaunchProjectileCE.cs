@@ -364,7 +364,7 @@ namespace CombatExtended
 
                         bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
 
-                        bool IsAccurate = (ShootingAccuracy >= 2.2f) | isTurretMannable;
+                        bool IsAccurate = (ShootingAccuracy >= 2.45f) | isTurretMannable;
 
 
                         if (IsAccurate)
