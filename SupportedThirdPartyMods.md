@@ -204,6 +204,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
+Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
@@ -281,6 +282,7 @@ Ogam's Warbanner Mod    |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
+Paniel the Automata |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
