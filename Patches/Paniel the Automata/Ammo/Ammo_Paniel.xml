@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	  <Operation Class="PatchOperationFindMod">
+			
+		<mods><li>Paniel the Automata</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<!-- ==================== Shells ========================== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+					<ThingCategoryDef>
+						<defName>AmmoPanielHowitzerShells</defName>
+						<label>Paniel Howitzer shell</label>
+						<parent>AmmoShells</parent>
+						<iconPath>UI/Icons/ThingCategories/CaliberCannon</iconPath>
+					</ThingCategoryDef>
+
+					<!-- ==================== AmmoSet ========================== -->
+
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_PanielHowitzerShell</defName>
+						<label>Paniel Howitzer shells</label>
+						<ammoTypes>
+							<Ammo_PanielHowitzerShell_HE>Bullet_PanielHowitzerShell_HE</Ammo_PanielHowitzerShell_HE>
+							<Ammo_PanielHowitzerShell_Incendiary>Bullet_PanielHowitzerShell_Incendiary</Ammo_PanielHowitzerShell_Incendiary>
+							<Ammo_PanielHowitzerShell_EMP>Bullet_PanielHowitzerShell_EMP</Ammo_PanielHowitzerShell_EMP>
+							<Ammo_PanielHowitzerShell_Smoke>Bullet_PanielHowitzerShell_Smoke</Ammo_PanielHowitzerShell_Smoke>
+							<Ammo_PanielHowitzerShell_Firefoam>Bullet_PanielHowitzerShell_Firefoam</Ammo_PanielHowitzerShell_Firefoam>
+							<Ammo_PanielHowitzerShell_AP>Bullet_PanielHowitzerShell_AP</Ammo_PanielHowitzerShell_AP>
+						</ammoTypes>
+						<isMortarAmmoSet>true</isMortarAmmoSet>		
+					</CombatExtended.AmmoSetDef>
+
+					<!-- ==================== Ammo ========================== -->
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_HE</defName>
+						<label>Paniel Howitzer shell (HE)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellHE</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>233.6</MarketValue>
+						</statBases>
+						<ammoClass>GrenadeHE</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_HE</detonateProjectile>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_Incendiary</defName>
+						<label>Paniel Howitzer shell (Incendiary)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellIN</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>187.76</MarketValue>
+						</statBases>
+						<ammoClass>GrenadeIncendiary</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_Incendiary</detonateProjectile>
+					</ThingDef>	
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_EMP</defName>
+						<label>Paniel Howitzer shell (EMP)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellEM</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>375.52</MarketValue>
+						</statBases>
+						<ammoClass>GrenadeEMP</ammoClass>
+					</ThingDef>
+
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_Smoke</defName>
+						<label>Paniel Howitzer shell (Smoke)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellSM</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>177.6</MarketValue>
+						</statBases>
+						<ammoClass>Smoke</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_Smoke</detonateProjectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_Firefoam</defName>
+						<label>Paniel Howitzer shell (Foam)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellFF</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>191.76</MarketValue>
+						</statBases>
+						<ammoClass>FoamFuel</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_Firefoam</detonateProjectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_AP</defName>
+						<label>Paniel Howitzer shell (AP)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellAP</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>144.04</MarketValue>
+						</statBases>
+						<ammoClass>GrenadeHE</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_AP</detonateProjectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielHowitzerShell_Anti</defName>
+						<label>Paniel Howitzer shell (Anti)</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellAG</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						  <li>CE_AutoEnableTrade_Sellable</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>1500</MarketValue>
+						</statBases>
+						<ammoClass>Antigrain</ammoClass>
+						<detonateProjectile>Bullet_PanielHowitzerShell_Anti</detonateProjectile>
+					</ThingDef>
+
+					<!-- ================== Projectiles ================== -->
+
+					<ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_HE</defName>
+						<label>Paniel Howitzer shell (HE)</label>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Bullet_60mmMortarPaniel_HE>8</Bullet_60mmMortarPaniel_HE>
+								</fragments>
+							</li>
+						</comps>
+					</ThingDef>
+
+					<ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_Incendiary</defName>
+						<label>Paniel Howitzer shell (Incendiary)</label>
+						<graphicData>
+						  <texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Bullet_60mmMortarPaniel_Incendiary>8</Bullet_60mmMortarPaniel_Incendiary>
+								</fragments>
+							</li>
+						</comps>
+					</ThingDef>
+
+					<ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_EMP</defName>
+						<label>Paniel Howitzer shell (EMP)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Bullet_60mmMortarPaniel_EMP>8</Bullet_60mmMortarPaniel_EMP>
+								</fragments>
+							</li>
+						</comps>
+					</ThingDef>
+
+					<ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_Smoke</defName>
+						<label>Paniel Howitzer shell (Smoke)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Bullet_60mmMortarPaniel_Smoke>8</Bullet_60mmMortarPaniel_Smoke>
+								</fragments>
+							</li>
+						</comps>
+					  </ThingDef>
+					  
+					  <ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_Firefoam</defName>
+						<label>Paniel Howitzer shell (Foam)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<explosionRadius>0.5</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Bullet_60mmMortarPaniel_Firefoam>8</Bullet_60mmMortarPaniel_Firefoam>
+								</fragments>
+							</li>
+						</comps>
+					  </ThingDef>
+					  
+					  <ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_AP</defName>
+						<label>Paniel Howitzer shell (AP)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/IILUM</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>Bomb</damageDef>
+							<damageAmountBase>1050</damageAmountBase>
+							<explosionRadius>1</explosionRadius>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Large>30</Fragment_Large>
+									<Fragment_Small>50</Fragment_Small>
+								</fragments>
+							</li>
+						</comps>
+					  </ThingDef>
+					  
+					  <ThingDef ParentName="Base105mmHowitzerShell">
+						<defName>Bullet_PanielHowitzerShell_Anti</defName>
+						<label>Paniel Howitzer shell (AP)</label>
+						<graphicData>
+							<texPath>Things/Projectile/Cannon/Howitzer/ANTI</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <damageDef>Bomb</damageDef>
+						  <damageAmountBase>800</damageAmountBase>
+						  <explosionRadius>50</explosionRadius>
+						  <explosionChanceToStartFire>0.22</explosionChanceToStartFire>
+						  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  <flyOverhead>true</flyOverhead>
+						  <explosionEffect>GiantExplosion</explosionEffect>
+						  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+						  <soundExplode>Explosion_GiantBomb</soundExplode>
+						  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+						  <soundAmbient>MortarRound_Ambient</soundAmbient>
+						</projectile>
+					  </ThingDef>
+
+					<!-- ==================== Cluster ========================== -->
+					
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarPaniel_HE</defName>
+					<label>60mm mortar shell (HE)</label>
+					<graphicData>
+					  <texPath>Things/Projectile/Mortar/HE</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>9</speed>
+					  <gravityFactor>5</gravityFactor>
+					  <damageDef>Bomb</damageDef>
+					  <explosionRadius>2</explosionRadius>	  
+					  <damageAmountBase>76</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <flyOverhead>true</flyOverhead>
+					  <soundExplode>MortarBomb_Explode</soundExplode>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_Fragments">
+						<fragments>
+						  <Fragment_Large>6</Fragment_Large>
+						  <Fragment_Small>31</Fragment_Small>
+						</fragments>
+					  </li>
+					</comps>
+					</ThingDef>
+
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarPaniel_Incendiary</defName>
+					<label>60mm mortar shell (Incendiary)</label>
+					<graphicData>
+					  <texPath>Things/Projectile/Mortar/Incendiary</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>9</speed>
+					  <gravityFactor>5</gravityFactor>
+					  <damageDef>PrometheumFlame</damageDef>
+					  <damageAmountBase>0</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+					  <soundExplode>MortarIncendiary_Explode</soundExplode>
+					</projectile>
+					</ThingDef>
+
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarPaniel_EMP</defName>
+					<label>60mm mortar shell (EMP)</label>
+					<graphicData>
+					  <texPath>Things/Projectile/Mortar/EMP</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>9</speed>
+					  <gravityFactor>5</gravityFactor>
+					  <damageDef>EMP</damageDef>
+					  <damageAmountBase>76</damageAmountBase>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <flyOverhead>true</flyOverhead>
+					  <explosionRadius>3.5</explosionRadius>
+					</projectile>
+					</ThingDef>
+
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarPaniel_Firefoam</defName>
+					<label>60mm mortar shell (Foam)</label>
+					<graphicData>
+					  <texPath>Things/Projectile/Mortar/Firefoam</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>9</speed>
+					  <gravityFactor>5</gravityFactor>
+					  <damageDef>Extinguish</damageDef>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>7</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+					  <postExplosionSpawnChance>1</postExplosionSpawnChance>
+					  <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+
+					<ThingDef ParentName="Base60mmMortarShell">
+					<defName>Bullet_60mmMortarPaniel_Smoke</defName>
+					<label>60mm mortar shell (Smoke)</label>
+					<graphicData>
+					  <texPath>Things/Projectile/Mortar/Smoke</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>9</speed>
+					  <gravityFactor>5</gravityFactor>
+					  <damageDef>Smoke</damageDef>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+					  <explosionRadius>4.5</explosionRadius>
+					  <flyOverhead>true</flyOverhead>
+					  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					  <soundExplode>Explosion_EMP</soundExplode>
+					  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					  <soundAmbient>MortarRound_Ambient</soundAmbient>
+					  <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+					  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+					</projectile>
+					</ThingDef>
+					
+					<!-- ==================== Railgun Projectile ========================== -->
+					
+					<ThingDef ParentName="Base90mmCannonShell">
+						<defName>Bullet_PanielRail</defName>
+						<label>Prototype Railgun Shot</label>
+						<graphicData>
+						  <texPath>Things/Projectile/ChargeLanceShot</texPath>
+						  <graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						  <speed>400</speed>
+						  <damageDef>Bullet</damageDef>
+						  <damageAmountBase>600</damageAmountBase>
+						  <soundExplode>MortarBomb_Explode</soundExplode>
+						  <armorPenetrationSharp>500</armorPenetrationSharp>
+						  <armorPenetrationBlunt>12000</armorPenetrationBlunt>
+						</projectile>
+						<comps>
+						  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+							<damageAmountBase>250</damageAmountBase>
+							<explosiveDamageType>Bomb</explosiveDamageType>
+							<explosiveRadius>1.5</explosiveRadius>
+							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						  </li>
+						</comps>
+					</ThingDef>
+					
+					<!-- ==================== Recipes ========================== -->
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_HE</defName>
+						<label>make Paniel HE Howitzer shells x2</label>
+						<description>Craft 2 Paniel HE Howitzer shells.</description>
+						<jobString>Making Paniel HE Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_60mmMortar_HE</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>Shell_60mmMortar_HE</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_HE>2</Ammo_PanielHowitzerShell_HE>
+						</products>
+					</RecipeDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_Incendiary</defName>
+						<label>make Paniel Incendiary Howitzer shells x2</label>
+						<description>Craft 2 Paniel Incendiary Howitzer shells.</description>
+						<jobString>Making Paniel Incendiary Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_60mmMortar_Incendiary</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>Shell_60mmMortar_Incendiary</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_Incendiary>2</Ammo_PanielHowitzerShell_Incendiary>
+						</products>
+					</RecipeDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_EMP</defName>
+						<label>make Paniel EMP Howitzer shells x2</label>
+						<description>Craft 2 Paniel EMP Howitzer shells.</description>
+						<jobString>Making Paniel EMP Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_60mmMortar_EMP</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>Shell_60mmMortar_EMP</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_EMP>2</Ammo_PanielHowitzerShell_EMP>
+						</products>
+					</RecipeDef>
+
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_Smoke</defName>
+						<label>make Paniel Smoke Howitzer shells x2</label>
+						<description>Craft 2 Paniel Smoke Howitzer shells.</description>
+						<jobString>Making Paniel Smoke Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_60mmMortar_Smoke</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>Shell_60mmMortar_Smoke</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_Smoke>2</Ammo_PanielHowitzerShell_Smoke>
+						</products>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_Firefoam</defName>
+						<label>make Paniel Firefoam Howitzer shells x2</label>
+						<description>Craft 2 Paniel firefoam Howitzer shells.</description>
+						<jobString>Making Paniel firefoam Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_60mmMortar_Firefoam</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>Shell_60mmMortar_Firefoam</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_Firefoam>2</Ammo_PanielHowitzerShell_Firefoam>
+						</products>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_AP</defName>
+						<label>make Paniel AP Howitzer shells x2</label>
+						<description>Craft 2 Paniel ap Howitzer shells.</description>
+						<jobString>Making Paniel ap Howitzer shells.</jobString>
+						<workAmount>11600</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>76</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentIndustrial</li>
+									</thingDefs>
+								</filter>
+								<count>2</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>FSX</li>
+									</thingDefs>
+								</filter>
+								<count>7</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>ComponentIndustrial</li>
+								<li>FSX</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_AP>2</Ammo_PanielHowitzerShell_AP>
+						</products>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_Anti</defName>
+						<label>make Paniel Antigrain Howitzer shell</label>
+						<description>Craft Paniel antigrain Howitzer shell.</description>
+						<jobString>Making Paniel antigrain Howitzer shell.</jobString>
+						<workAmount>1200</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_AntigrainWarhead</li>
+									</thingDefs>
+								</filter>
+								<count>16</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>Shell_AntigrainWarhead</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_Anti>1</Ammo_PanielHowitzerShell_Anti>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@ParentName="PN_ShellBase"]</xpath>
+			</li>
+		</operations>
+		</match>	
+	  </Operation>
+</Patch>
