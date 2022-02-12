@@ -5,171 +5,186 @@
 		<mods>
 		<li>[RH2] Faction: The Rangers</li>
 		</mods>
-		<match Class="PatchOperationSequence">
+		  <match Class="PatchOperationSequence">
 		<operations>
 
-            <!-- ========== In-built Shield Patch ========== -->
+        <!-- ========== In-built Shield Patch ========== -->
 
-           <Operation Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldRechargeRate</xpath>
-                <value>
-                    <EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
-                </value>
-           </Operation>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/comps/li[@Class="JetPacks.CompProperties_ShieldBelt"]/EnergyShieldRechargeRate</xpath>
+            <value>
+                <EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
+            </value>
+        </li>
 
-           <Operation Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldEnergyMax</xpath>
-                <value>
-                    <EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
-                </value>
-           </Operation>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/comps/li[@Class="JetPacks.CompProperties_ShieldBelt"]/EnergyShieldEnergyMax</xpath>
+            <value>
+                <EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
+            </value>
+        </li>
 
-            <!-- ========== Ranger Helmet ========== -->
+        <!-- ========== Ranger Helmet ========== -->
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/recipeMaker/researchPrerequisite</xpath>
-                <value>
-                    <researchPrerequisite>ReconArmor</researchPrerequisite> 
-                </value>
-            </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/recipeMaker/researchPrerequisite</xpath>
+            <value>
+                <researchPrerequisite>ReconArmor</researchPrerequisite> 
+            </value>
+        </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/Mass</xpath>
-                <value>
-                <Mass>3.0</Mass><Bulk>4</Bulk>
-                <WornBulk>1</WornBulk>
-                <NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel> 
-                </value>
-            </li>
+         <li Class="PatchOperationReplace">
+              <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+              <value>
+              <ArmorRating_Sharp>14</ArmorRating_Sharp>
+              </value>
+          </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/Flammability</xpath>
-                <value>
-                <Flammability>0.25</Flammability>
-                </value>
-            </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/MaxHitPoints</xpath>
-                <value>
-                <MaxHitPoints>190</MaxHitPoints>
-                </value>
-            </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/Mass</xpath>
+            <value>
+            <Mass>3.0</Mass><Bulk>4</Bulk>
+            <WornBulk>1</WornBulk>
+            <NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel> 
+            </value>
+        </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
-                <value>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/Flammability</xpath>
+            <value>
+            <Flammability>0.25</Flammability>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/MaxHitPoints</xpath>
+            <value>
+            <MaxHitPoints>190</MaxHitPoints>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+            <value>
+            <ArmorRating_Sharp>14</ArmorRating_Sharp>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Blunt</xpath>
+            <value>
+            <ArmorRating_Blunt>26</ArmorRating_Blunt>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
+            <value>
+            <equippedStatOffsets>
+                <PsychicSensitivity>-0.2</PsychicSensitivity>
+                <AimingAccuracy>0.15</AimingAccuracy>
+                <ToxicSensitivity>-0.50</ToxicSensitivity>
+                <SmokeSensitivity>-1</SmokeSensitivity>
+            </equippedStatOffsets>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/costList/Plasteel</xpath>
+            <value>
+            <Plasteel>50</Plasteel>
+            <DevilstrandCloth>15</DevilstrandCloth>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/apparel/layers</xpath>
+            <value>
+                <li>OnHead</li>
+                <li>StrappedHead</li>
+            </value>
+        </li>
+
+        <!-- ========== Ranger armor ========== -->
+
+         <li Class="PatchOperationReplace">
+              <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+              <value>
+                  <ArmorRating_Sharp>14</ArmorRating_Sharp>
+              </value>
+          </li>
+
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases</xpath>
+            <value>
+                <Bulk>80</Bulk>
+                <WornBulk>12</WornBulk>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/Mass</xpath>
+            <value>
+                <Mass>19</Mass>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/Flammability</xpath>
+            <value>
+                <Flammability>0.2</Flammability>
+            </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
+            <value>
                 <ArmorRating_Sharp>14</ArmorRating_Sharp>
-                </value>
-            </li>
+            </value>
+        </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/statBases/ArmorRating_Blunt</xpath>
-                <value>
-                <ArmorRating_Blunt>26</ArmorRating_Blunt>
-                </value>
-            </li>
+        <li Class="PatchOperationReplace">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Blunt</xpath>
+            <value>
+                <ArmorRating_Blunt>24</ArmorRating_Blunt>
+            </value>
+        </li>
 
-           <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
-                <value>
-                <equippedStatOffsets>
-                    <PsychicSensitivity>-0.2</PsychicSensitivity>
-                    <AimingAccuracy>0.15</AimingAccuracy>
-                    <ToxicSensitivity>-0.50</ToxicSensitivity>
-                    <SmokeSensitivity>-1</SmokeSensitivity>
-                </equippedStatOffsets>
-                </value>
-            </li>
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/costList</xpath>
+            <value>
+                <DevilstrandCloth>40</DevilstrandCloth>
+            </value>
+        </li>
 
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/costList/Plasteel</xpath>
-                <value>
-                <Plasteel>50</Plasteel>
-                <DevilstrandCloth>15</DevilstrandCloth>
-                </value>
-            </li>
-
-           <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/apparel/layers</xpath>
-                <value>
-                    <li>OnHead</li>
-                    <li>StrappedHead</li>
-                </value>
-            </li>
-
-            <!-- ========== Ranger armor ========== -->
-
-           <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases</xpath>
-                <value>
-                    <Bulk>80</Bulk>
-                    <WornBulk>12</WornBulk>
-                </value>
-            </li>
-
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/Mass</xpath>
-                <value>
-                    <Mass>19</Mass>
-                </value>
-            </li>
-
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/Flammability</xpath>
-                <value>
-                    <Flammability>0.2</Flammability>
-                </value>
-            </li>
-
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Sharp</xpath>
-                <value>
-                    <ArmorRating_Sharp>14</ArmorRating_Sharp>
-                </value>
-            </li>
-
-           <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/statBases/ArmorRating_Blunt</xpath>
-                <value>
-                    <ArmorRating_Blunt>24</ArmorRating_Blunt>
-                </value>
-            </li>
-
-           <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]/costList</xpath>
-                <value>
-                    <DevilstrandCloth>40</DevilstrandCloth>
-                </value>
-            </li>
-
-           <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]</xpath>
-                <value>
-                <equippedStatOffsets>
-                    <CarryWeight>25</CarryWeight>
-                    <ToxicSensitivity>-0.50</ToxicSensitivity>
-                    <MoveSpeed>0.4</MoveSpeed>
-                </equippedStatOffsets>
-                </value>
-            </li>
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]</xpath>
+            <value>
+            <equippedStatOffsets>
+                <CarryWeight>25</CarryWeight>
+                <ToxicSensitivity>-0.50</ToxicSensitivity>
+                <MoveSpeed>0.4</MoveSpeed>
+            </equippedStatOffsets>
+            </value>
+        </li>
 
         <!-- Poncho & Duster-->
            <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[defName="RHApparel_Duster_Ranger" or defName="RHApparel_Poncho_Western"]/statBases/StuffEffectMultiplierArmor</xpath>
+                <xpath>/Defs/ThingDef[defName="RHApparel_Duster_Ranger" or defName="RHApparel_Poncho_Western"]/statBases/StuffEffectMultiplierArmor</xpath>
                 <value>
                     <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
                 </value>
             </li>
 
            <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[defName="RHApparel_Duster_Ranger" or defName="RHApparel_Poncho_Western"]/statBases</xpath>
+                <xpath>/Defs/ThingDef[defName="RHApparel_Duster_Ranger" or defName="RHApparel_Poncho_Western"]/statBases</xpath>
                 <value>
                     <Bulk>7.5</Bulk>
                     <WornBulk>2</WornBulk>
                 </value>
             </li>
-
 
             <!--Packs-->
 
@@ -260,8 +275,7 @@
                         <CarryBulk>25</CarryBulk>
                     </equippedStatOffsets>
                 </value>
-            </li>
-            
+            </li>         
 
 		</operations>
 		</match>

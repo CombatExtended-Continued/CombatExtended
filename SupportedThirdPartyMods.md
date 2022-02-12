@@ -15,6 +15,7 @@ Mod |
 [CP] Spec Ops - The Line	|
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
+[FSF] More Psycast Powers   |
 [Fuu] Uncompromising Tribal Faction |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
@@ -27,6 +28,7 @@ Mod |
 [KV] Hand 'n' Footwear	|
 [LF] Command And Conquer NOD Combat Armor |
 [LF] Red Dawn   |
+[LITE] Expanded Materials – Metals  |
 [LTS] Military |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
@@ -65,6 +67,8 @@ Mod |
 [SYR] Naga	|
 [SYR] Thrumkin	|
 A Dog Said...	|
+ADE Advanced Turrets    |
+ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
 Alpha Animals |
 Alpha Biomes |
@@ -80,6 +84,7 @@ Androids	|
 Androids Expanded	|
 Anima Animals  |
 Anima Animals - Community Pack  |
+Anima Bionics   |
 Anima Gear  |
 AnimalCollabProj	|
 Animal Armor: Vanilla	|
@@ -89,6 +94,8 @@ Anty the War Ant Race |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
+Archotech Expanded  |
+Archotech+ (Continued)  
 Arasaka Corporation [1.3]	|
 Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
@@ -100,6 +107,7 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Birds Beyond: Temperate Forest  |
 Black Widows	|
 Bulgarian Imperial Uniforms |
 Carbon	|
@@ -108,7 +116,10 @@ Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
+Cossacks of the Rim |
+Crowns and Regalia  |
 Cupro's Alloys	|
+Cursed Guns |
 CutePenguin	|
 CyberNet	|
 Cybernetic Organism and Neural Network	|
@@ -125,6 +136,7 @@ DMWands |
 Dragonian Race	|
 Dragon's Descent    |
 Dragons!	|
+Dubs Rimatomics |
 Dumbs' Dachshunds   |
 ED-Shields	|
 Eltex Bodysuit  |
@@ -151,6 +163,7 @@ Faction: Mafia  |
 Fallout New Vegas - Elite Riot Gear |
 Fallout Traits	|
 Fantasy Metals Reforged |
+Farming Expansion   |
 FashionRIMsta	|
 Fate Grand Order - Styles Apparel Pack	|
 Feles - Felines of the Rim [1.3]    |
@@ -194,6 +207,8 @@ Heavy Melee Weapons |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
+Infused 2 Expansion |
+Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
 Japanese Dogs   |
 Jernfalk's Standalone Horses	|
@@ -220,11 +235,13 @@ Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
 Mechanite Plague    |
+Mechanoid Bench 2   |
 Mechanoid Master Blaster (Continued)    |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
 Medical System Expansion	|
 Medieval Overhaul   |
+Medieval Quest Rewards  |
 Megafauna	|
 Midworld Expanded: Flak Armor  |
 Mincho, The Mint Choco Slime  |
@@ -239,6 +256,7 @@ Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
 More Practical Traits	|
+More Psycasts   |
 More Utility Packs	|
 More Vanilla Turrets	|
 Morgante Mafia Weapons Pack |
@@ -306,6 +324,7 @@ Rimsenal - Enhanced Vanilla |
 Rimsenal - Federation Faction Pack |
 Rimsenal - Feral Faction Pack |
 Rimsenal - Security Pack |
+RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld of Magic |
@@ -313,6 +332,7 @@ Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
 Sergals, Gnolls, Lions and Frogs	|
+Seventh Seraph  |
 Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
@@ -331,6 +351,7 @@ The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
+The Tuffalo |
 Thog's Guns - More Brukka Pack  |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
@@ -341,6 +362,7 @@ Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
 Ultratech: Altered Carbon Remastered |
+Useless Clothes |
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
@@ -356,6 +378,7 @@ Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Vikings	|
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Ideology Expanded – Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Vehicles Expanded	|
@@ -379,6 +402,7 @@ Wall Mounted Turrets (Continued)    |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
+Windows |
 Xenn Race	|
 Xenohumans - Anthromorphs |
 Xenohumans Expanded |
