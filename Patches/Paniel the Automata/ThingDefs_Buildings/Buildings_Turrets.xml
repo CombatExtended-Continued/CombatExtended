@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Paniel the Automata</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.25</AimingAccuracy>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/statBases/Mass</xpath>
+				<value>
+					<Mass>1000</Mass>
+				</value>
+			</li>
+			<!--
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="PN_BaseArtilleryBuilding" ]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Base_Core"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<!-- ==========  Paniel Cannon  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>PN_Artillery_Turret</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.12</ShotSpread>
+					<SwayFactor>0.80</SwayFactor>
+					<Bulk>22.00</Bulk>
+					<Mass>18.50</Mass>
+					<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.12</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+					<warmupTime>8</warmupTime>
+					<minRange>32</minRange>
+					<range>700</range>
+					<soundCast>PNCannonSound</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>12</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.2</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>1</magazineSize>
+				  <reloadTime>7.8</reloadTime>
+				  <reloadOneAtATime>true</reloadOneAtATime>
+				  <ammoSet>AmmoSet_PanielHowitzerShell</ammoSet>
+				</AmmoUser>
+			
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/building/fixedStorageSettings</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/building/defaultStorageSettings</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Artillery_Turret" ]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName = "PN_Artillery_Turret"]/comps</xpath>
+				<value>
+				  <li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					  <li>30</li>
+					  <li>50</li>
+					  <li>70</li>
+					  <li>90</li>
+					</chargeSpeeds>
+				  </li>
+				</value>
+			</li>
+			 
+			 
+				<!--<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>-->
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
