@@ -54,38 +54,23 @@
 					<!-- ========== Projectiles ========== -->
 					<ThingDef ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_PlasmaCellPistol</defName>
-						<label>EMG Bolt</label>
+						<label>Plasma</label>
 						<graphicData>
 							<texPath>Things/Projectile/UACSidearmProj</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>140</speed>
-							<damageDef>Bomb</damageDef>
-							<damageAmountBase>2</damageAmountBase>
-							<armorPenetrationSharp>30</armorPenetrationSharp>
+							<damageDef>UAC_Plasm</damageDef>
+							<damageAmountBase>8</damageAmountBase>
+							<armorPenetrationSharp>25</armorPenetrationSharp>
 							<armorPenetrationBlunt>65.6</armorPenetrationBlunt>
-							<secondaryDamage>
-								<li>
-									<def>Flame_Secondary</def>
-									<amount>4</amount>
-								</li>
-							</secondaryDamage>
 						</projectile>
-						<comps>
-							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>2</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
-								<explosiveRadius>0.5</explosiveRadius>
-								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<explosionSound>Explosion_EMP</explosionSound>
-							</li>
-						</comps>
 					</ThingDef>
 					
 					<ThingDef ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_UACPlasmaRifle</defName>
-						<label>Plasma Shot</label>
+						<label>Plasma</label>
 						<graphicData>
 							<texPath>Things/Projectile/Plasma2016</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -93,64 +78,54 @@
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>200</speed>
-							<damageDef>Bomb</damageDef>
-							<damageAmountBase>2</damageAmountBase>
-							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-							<armorPenetrationSharp>30</armorPenetrationSharp>
-							<armorPenetrationBlunt>65.6</armorPenetrationBlunt>
-							<secondaryDamage>
-								<li>
-									<def>Flame_Secondary</def>
-									<amount>4</amount>
-								</li>
-							</secondaryDamage>
+							<damageDef>UAC_Plasm</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<armorPenetrationSharp>25</armorPenetrationSharp>
+							<armorPenetrationBlunt>165.6</armorPenetrationBlunt>
+							<!--explosionRadius>0.9</explosionRadius>
+							<soundExplode>Hit_UACBFG9000</soundExplode-->
 						</projectile>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>2</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
-								<explosiveRadius>0.9</explosiveRadius>
+								<damageAmountBase>3</damageAmountBase>
+								<explosiveDamageType>UAC_Plasm</explosiveDamageType>
+								<explosiveRadius>0.5</explosiveRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<explosionSound>Explosion_EMP</explosionSound>
+								<explosionSound>Hit_UACBFG9000</explosionSound>
 							</li>
 						</comps>
 					</ThingDef>
 
 					<ThingDef ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_UACVortexRiflePlasma</defName>
-						<label>Plasma Shot</label>
+						<label>Plasma</label>
 						<graphicData>
 							<texPath>Things/Projectile/Vortexbeam</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>200</speed>
-							<damageDef>Bomb</damageDef>
-							<damageAmountBase>10</damageAmountBase>
-							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-							<armorPenetrationSharp>30</armorPenetrationSharp>
-							<armorPenetrationBlunt>65.6</armorPenetrationBlunt>
-							<secondaryDamage>
-								<li>
-									<def>Flame_Secondary</def>
-									<amount>30</amount>
-								</li>
-							</secondaryDamage>
+							<damageDef>UAC_Plasm</damageDef>
+							<damageAmountBase>40</damageAmountBase>
+							<armorPenetrationSharp>60</armorPenetrationSharp>
+							<armorPenetrationBlunt>165.6</armorPenetrationBlunt>
+							<!--explosionRadius>0.9</explosionRadius>
+							<soundExplode>Hit_UACBFG9000</soundExplode-->
 						</projectile>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>10</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
-								<explosiveRadius>0.9</explosiveRadius>
+								<damageAmountBase>5</damageAmountBase>
+								<explosiveDamageType>UAC_Plasm</explosiveDamageType>
+								<explosiveRadius>0.5</explosiveRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<explosionSound>Explosion_EMP</explosionSound>
+								<explosionSound>Hit_UACBFG9000</explosionSound>
 							</li>
 						</comps>
 					</ThingDef>
 
 					<ThingDef ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_UACHellshotBolt</defName>
-						<label>Plasma Shot</label>
+						<label>Plasma</label>
 						<graphicData>
 							<texPath>Things/Projectile/HellshotPlasma</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -158,23 +133,16 @@
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>200</speed>
-							<damageDef>Bomb</damageDef>
-							<damageAmountBase>10</damageAmountBase>
-							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-							<armorPenetrationSharp>30</armorPenetrationSharp>
-							<armorPenetrationBlunt>65.6</armorPenetrationBlunt>
-							<secondaryDamage>
-								<li>
-									<def>Flame_Secondary</def>
-									<amount>20</amount>
-								</li>
-							</secondaryDamage>
+							<damageDef>UAC_Plasm</damageDef>
+							<damageAmountBase>20</damageAmountBase>
+							<armorPenetrationSharp>25</armorPenetrationSharp>
+							<armorPenetrationBlunt>165.6</armorPenetrationBlunt>
 						</projectile>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>10</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
-								<explosiveRadius>0.9</explosiveRadius>
+								<damageAmountBase>20</damageAmountBase>
+								<explosiveDamageType>Flame_Secondary</explosiveDamageType>
+								<explosiveRadius>0.5</explosiveRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<explosionSound>Explosion_EMP</explosionSound>
 							</li>
@@ -190,25 +158,24 @@
 						</graphicData>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>Bullet</damageDef>
-							<damageAmountBase>121</damageAmountBase>
-							<armorPenetrationSharp>160</armorPenetrationSharp>
-							<armorPenetrationBlunt>11348.10</armorPenetrationBlunt>
+							<damageAmountBase>150</damageAmountBase>
+							<armorPenetrationSharp>130</armorPenetrationSharp>
+							<armorPenetrationBlunt>7250</armorPenetrationBlunt>
 							<speed>500</speed>
 						</projectile>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>120</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
+								<damageAmountBase>150</damageAmountBase>
+								<explosiveDamageType>UAC_GAUSS</explosiveDamageType>
 								<explosiveRadius>1.9</explosiveRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<explosionSound>Explosion_EMP</explosionSound>
 							</li>
 						</comps>
 					</ThingDef>
 
 					<ThingDef ParentName="Base6x24mmChargedBullet">
 						<defName>Bullet_UACBFG</defName>
-						<label>UAC Gauss Cannon Flechette</label>
+						<label>BFG Plasma</label>
 						<graphicData>
 							<texPath>Things/Projectile/BFGPLAZMA</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -216,21 +183,73 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<damageDef>Bomb</damageDef>
 							<damageAmountBase>6000</damageAmountBase>
-							<armorPenetrationSharp>160</armorPenetrationSharp>
+							<armorPenetrationSharp>3000</armorPenetrationSharp>
 							<armorPenetrationBlunt>11348.10</armorPenetrationBlunt>
 							<speed>30</speed>
 						</projectile>
 						<comps>
 							<li Class="CombatExtended.CompProperties_ExplosiveCE">
-								<damageAmountBase>1200</damageAmountBase>
-								<explosiveDamageType>Bomb_Secondary</explosiveDamageType>
+								<damageAmountBase>6000</damageAmountBase>
+								<explosiveDamageType>UAC_BFG</explosiveDamageType>
 								<explosiveRadius>3.9</explosiveRadius>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-								<explosionSound>Explosion_EMP</explosionSound>
 							</li>
 						</comps>
 					</ThingDef>
 					
+				</value>
+			</li>
+					
+			<!-- ========== Change the damagedefs ========== -->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="UAC_Plasm"]/label</xpath>
+				<value>
+					<label>Plasma</label>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="UAC_GAUSS"]/label</xpath>
+				<value>
+					<label>Plasma</label>
+				</value>
+				</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="UAC_BFG"]/label</xpath>
+				<value>
+					<label>BFG Plasma</label>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/DamageDef[defName="UAC_Plasm" or defName="UAC_GAUSS" or defName="UAC_BFG"]/hediff</xpath>
+				<value>
+					<hediff>BurnSecondary</hediff>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/DamageDef[defName="UAC_Plasm"]</xpath>
+				<value>
+					<explosionCellMote>UACMote_BlastGAUSS</explosionCellMote>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/DamageDef[defName="UAC_GAUSS"]</xpath>
+				<value>
+					<minDamageToFragment>15</minDamageToFragment>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/DamageDef[defName="UAC_BFG"]</xpath>
+				<value>
+					<minDamageToFragment>150</minDamageToFragment>
+				</value>
+			</li>
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/DamageDef[defName="UAC_Plasm"]</xpath>
+				<value>
+					<li Class="CombatExtended.DamageDefExtensionCE">
+						<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+						<isAmbientDamage>true</isAmbientDamage>
+					</li>
 				</value>
 			</li>
 		</operations>
