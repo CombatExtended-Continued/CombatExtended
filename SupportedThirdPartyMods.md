@@ -319,7 +319,6 @@ RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Shek	|
-Rim-Skeletons	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
