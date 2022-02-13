@@ -1,24 +1,24 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>ADE Advanced Turrets</li>
+			<li>ADE Advanced Turrets +</li>
 		</mods>
-		<match Class="PatchOperationSequence">	
+		<match Class="PatchOperationSequence">		
 		<operations>
 		
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AMBMGT" or
+					defName="ADE_Turret_AHST"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
 			
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AMBMGT" or
+					defName="ADE_Turret_AHST"
 				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -26,9 +26,9 @@
 			</li>
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AMBMGT" or
+					defName="ADE_Turret_AHST"
 				]/fillPercent</xpath>
 				<value>
 					<fillPercent>0.85</fillPercent>
@@ -37,57 +37,57 @@
 			<!-- adding power requirement -->
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AMBMGT" or
+					defName="ADE_Turret_AHST"
 				]/comps</xpath>
 				<value>
 				<li Class = "CompProperties_Power">
-			    <compClass>CompPowerTrader</compClass>
-				<basePowerConsumption>350</basePowerConsumption>
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>950</basePowerConsumption>
 				</li>
 				</value>
 			</li>		
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[
-					defName="ADE_Turret_HMGT" or
-					defName="ADE_Turret_HST" or
-					defName="ADE_Turret_GLT"
+					defName="ADE_Turret_AHMGT" or
+					defName="ADE_Turret_AMBMGT" or
+					defName="ADE_Turret_AHST"
 				]/statBases/ShootingAccuracyTurret</xpath>
 				<value>
 					<AimingAccuracy>1</AimingAccuracy>
 					<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 				</value>
 			</li>
-			<!-- ========== HMG  Turret ========== -->
+			<!-- ========== HMG+  Turret ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>ADE_Gun_HMGT</defName>
+				<defName>ADE_Gun_AHMGT</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.18</RangedWeapon_Cooldown>
 					<SightsEfficiency>1</SightsEfficiency>
-					<ShotSpread>0.02</ShotSpread>
+					<ShotSpread>0.03</ShotSpread>
 					<SwayFactor>1.13</SwayFactor>
 					<Bulk>37.08</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.09</recoilAmount>
+					<recoilAmount>1.59</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
 					<warmupTime>1.1</warmupTime>
-					<range>54</range>
+					<range>68</range>
 					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
 					<burstShotCount>20</burstShotCount>
-					<soundCast>Shot_AssaultRifle</soundCast>
+					<soundCast>Shot_Autocannon</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>500</magazineSize>
-					<reloadTime>15.6</reloadTime>
-					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+					<magazineSize>300</magazineSize>
+					<reloadTime>17.8</reloadTime>
+					<ammoSet>AmmoSet_145x114mm</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -97,10 +97,11 @@
 				</FireModes>				
 			</li>
 
-			<!-- ========== Grenade Launcher Turret ========== -->
 
-			<li  Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>ADE_Gun_GLT</defName>
+			<!-- ========== gatling autocannon Turret ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>ADE_Gun_AMBMGT</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 					<SightsEfficiency>1.00</SightsEfficiency>
@@ -109,17 +110,17 @@
 					<Bulk>10.66</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>0.34</recoilAmount>
+					<recoilAmount>0.74</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_40x53mmGrenade_HE</defaultProjectile>
+					<defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
 					<warmupTime>0.6</warmupTime>
-					<range>55</range>
-					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-					<burstShotCount>5</burstShotCount>
-					<soundCast>AGS</soundCast>
+					<range>62</range>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<burstShotCount>20</burstShotCount>
+					<soundCast>Shot_Autocannon</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>18</muzzleFlashScale>
+					<muzzleFlashScale>45</muzzleFlashScale>
 					<recoilPattern>Mounted</recoilPattern>
 					<requireLineOfSight>false</requireLineOfSight>
 					<targetParams>
@@ -127,9 +128,9 @@
 					</targetParams>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>40</magazineSize>
-					<reloadTime>10.9</reloadTime>
-					<ammoSet>AmmoSet_40x53mmGrenade</ammoSet>
+					<magazineSize>300</magazineSize>
+					<reloadTime>18.9</reloadTime>
+					<ammoSet>AmmoSet_20x102mmNATO</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiUseBurstMode>TRUE</aiUseBurstMode>
@@ -139,43 +140,43 @@
 				</FireModes>
 			</li>
 
-			<!-- ========== Anti Aircraft Precision ========== -->
+
+			<!-- ========== Anti Aircraft autocannon PLUS========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-				<defName>ADE_Gun_HST</defName>
+				<defName>ADE_Gun_AHST</defName>
 				<statBases>
-					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
-					<SightsEfficiency>1.2</SightsEfficiency>
+					<RangedWeapon_Cooldown>1.27</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.5</SightsEfficiency>
 					<ShotSpread>0.01</ShotSpread>
-					<SwayFactor>1.32</SwayFactor>
+					<SwayFactor>1.02</SwayFactor>
 					<Bulk>28.72</Bulk>
 				</statBases>
 				<Properties>
-					<recoilAmount>1.80</recoilAmount>
+					<recoilAmount>3.74</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_20x128mmOerlikon_AP</defaultProjectile>
-					<warmupTime>1.4</warmupTime>
-					<range>65</range>
-					<soundCast>Shot_SniperRifle</soundCast>
+					<defaultProjectile>Bullet_57x483mmBofors_HE</defaultProjectile>
+					<warmupTime>2.5</warmupTime>
+					<range>80</range>
+					<soundCast>autocannon_slow</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
-					<muzzleFlashScale>45</muzzleFlashScale>
+					<muzzleFlashScale>55</muzzleFlashScale>
 					<recoilPattern>Mounted</recoilPattern>
 				</Properties>
 				<AmmoUser>
-					<magazineSize>150</magazineSize>
-					<reloadTime>7.8</reloadTime>
-					<ammoSet>AmmoSet_20x128mmOerlikon</ammoSet>
+					<magazineSize>10</magazineSize>
+					<reloadTime>10.8</reloadTime>
+					<ammoSet>AmmoSet_57x483mmBofors</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
 					<noSnapshot>true</noSnapshot>				
 				</FireModes>
 			</li>
-
 
 		</operations>
 		</match>
