@@ -689,10 +689,22 @@ namespace CombatExtended
                 return new Bounds();
             }
             var height = new CollisionVertical(thing);
-            var width = GetCollisionWidth(thing);
+            float length;
+            float width;
             var thingPos = thing.DrawPos;
             thingPos.y = height.Max - height.HeightRange.Span / 2;
-            Bounds bounds = new Bounds(thingPos, new Vector3(width, height.HeightRange.Span, width));
+            if (thing is Building)
+            {
+                IntVec2 rotatedSize = thing.RotatedSize;
+                length = rotatedSize.x;
+                width = rotatedSize.z;
+            }
+            else
+            {
+                width = GetCollisionWidth(thing);
+                length = width;
+            }
+            Bounds bounds = new Bounds(thingPos, new Vector3(length, height.HeightRange.Span, width));
             return bounds;
         }
 
