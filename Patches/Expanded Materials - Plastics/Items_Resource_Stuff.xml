@@ -9,14 +9,15 @@
 
 			<!-- === Polyester Cloth === -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth" or @Name="SynthleatherBase"]/statBases</xpath>
 				<value>
 					<Bulk>0.03</Bulk>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<xpath>/Defs/ThingDef[
+					defName="VMEu_PolyesterCloth"]/statBases/StuffPower_Armor_Sharp</xpath>
 				<value>
 					<StuffPower_Armor_Sharp>0.012</StuffPower_Armor_Sharp>
 				</value>
@@ -26,6 +27,21 @@
 				<xpath>/Defs/ThingDef[defName="VMEu_PolyesterCloth"]/statBases/StuffPower_Armor_Blunt</xpath>
 				<value>
 					<StuffPower_Armor_Blunt>0.015</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+					@Name="SynthleatherBase"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.06</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[@Name="SynthleatherBase"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
 				</value>
 			</li>
 

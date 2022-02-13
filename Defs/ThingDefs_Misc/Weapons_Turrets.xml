@@ -85,7 +85,7 @@
       <texPath>Things/Building/Turrets/HeavyTurret_Top</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <description>Large caliber gun on a turret mount.</description>
+    <description>High caliber gun on a turret mount.</description>
     <statBases>
       <MarketValue>2000</MarketValue>
       <SightsEfficiency>1</SightsEfficiency>
@@ -118,6 +118,48 @@
     </comps>
   </ThingDef>
 
+  <!-- ================== Medium Turret ================== -->
+
+  <ThingDef ParentName="BaseAutoTurretGun">
+    <defName>Gun_MediumTurret</defName>
+    <label>medium turret gun</label>
+    <graphicData>
+      <texPath>Things/Building/Turrets/MediumTurret_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <description>Full powered cartridge gun on a turret mount.</description>
+    <statBases>
+      <MarketValue>500</MarketValue>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.03</ShotSpread>
+      <SwayFactor>0.86</SwayFactor>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>1.0</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+        <warmupTime>1.3</warmupTime>
+        <range>55</range>
+        <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
+        <soundCast>MediumMG</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>11</muzzleFlashScale>
+        <recoilPattern>Mounted</recoilPattern>
+      </li>
+    </verbs>
+    <comps>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>60</magazineSize>
+        <reloadTime>7.8</reloadTime>
+        <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+      </li>
+    </comps>
+  </ThingDef>
+
   <!-- ================== Autocannon Turret ================== -->
 
   <ThingDef ParentName="BaseTurretGun">
@@ -131,16 +173,16 @@
     <statBases>
       <MarketValue>2000</MarketValue>
       <SightsEfficiency>1</SightsEfficiency>
-      <ShotSpread>0.2</ShotSpread>
-      <SwayFactor>1.61</SwayFactor>
+      <ShotSpread>0.1</ShotSpread>
+      <SwayFactor>1.42</SwayFactor>
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
-        <recoilAmount>1.67</recoilAmount>
+        <recoilAmount>1.61</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+        <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
         <warmupTime>4.3</warmupTime>
         <range>78</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
@@ -155,7 +197,7 @@
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>80</magazineSize>
         <reloadTime>7.8</reloadTime>
-        <ammoSet>AmmoSet_20x110mmHispano</ammoSet>
+        <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
         <aiAimMode>AimedShot</aiAimMode>
@@ -170,7 +212,7 @@
   <ThingDef ParentName="BaseTurretGun">
     <defName>Gun_TurretSniper</defName>
     <label>flak turret</label>
-    <description>A self-loading heavy cannon designed to attach to a turret.</description>
+    <description>A self-loading heavy autocannon designed to attach to a turret.</description>
     <soundInteract>Artillery_ShellLoaded</soundInteract>
     <graphicData>
       <texPath>Things/Building/Security/TurretSniper_Top</texPath>
@@ -179,34 +221,30 @@
     </graphicData>
     <statBases>
       <MarketValue>2000</MarketValue>
-      <SightsEfficiency>2.3</SightsEfficiency>
+      <SightsEfficiency>2.36</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>1.14</SwayFactor>
-      <RangedWeapon_Cooldown>10.7</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_90mmCannonShell_HEAT</defaultProjectile>
-        <warmupTime>6.55</warmupTime>
-        <minRange>16</minRange>
+        <defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
+        <warmupTime>4.6</warmupTime>
+        <minRange>5</minRange>
         <range>86</range>
-        <burstShotCount/>
-        <soundCast>120mm</soundCast>
+        <soundCast>Shot_TurretSniper</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>20</muzzleFlashScale>
-        <targetParams>
-          <canTargetLocations>true</canTargetLocations>
-        </targetParams>
         <recoilPattern>Mounted</recoilPattern>
       </li>
     </verbs>
     <comps>
       <li Class="CombatExtended.CompProperties_AmmoUser">
-        <magazineSize>3</magazineSize>
-        <reloadTime>9.8</reloadTime>
-        <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
+        <magazineSize>20</magazineSize>
+        <reloadTime>6.8</reloadTime>
+        <ammoSet>AmmoSet_40x311mmR</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
         <aiAimMode>AimedShot</aiAimMode>
@@ -221,7 +259,7 @@
     <defName>Gun_KPV</defName>
     <label>KPV machine gun</label>
     <graphicData>
-      <texPath>Things/Building/Turrets/KPVT_Top</texPath>
+      <texPath>Things/Building/Turrets/KPV_gun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <description>Heavy machine gun for use against light vehicles.</description>
@@ -267,7 +305,7 @@
     <defName>Gun_M240B</defName>
     <label>M240B machine gun</label>
     <graphicData>
-      <texPath>Things/Building/Turrets/M240_Top</texPath>
+      <texPath>Things/Building/Turrets/M240_gun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <description>M240B machine gun mounted on a tripod.</description>
@@ -332,7 +370,7 @@
         <defaultProjectile>Bullet_90mmCannonShell_HEAT</defaultProjectile>
         <warmupTime>4.55</warmupTime>
         <minRange>16</minRange>
-        <range>86</range>
+        <range>92</range>
         <burstShotCount/>
         <soundCast>120mm</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
@@ -361,7 +399,7 @@
     <defName>Gun_AGSThirty</defName>
     <label>AGS-30 grenade launcher</label>
     <graphicData>
-      <texPath>Things/Building/Turrets/TurretGun_AGS30</texPath>
+      <texPath>Things/Building/Turrets/AGS30_gun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <description>AGS-30 attached to a tripod.</description>

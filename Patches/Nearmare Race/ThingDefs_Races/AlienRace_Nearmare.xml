@@ -10,14 +10,14 @@
 		<operations>
 		
             <li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BaseNRPawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
                     <value>
                         <li>CombatExtended.ITab_Inventory</li>
                     </value>
 			</li>
 
             <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BaseNRPawn"]/comps</xpath>
+                    <xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/comps</xpath>
                     <value>
                         <li Class="CombatExtended.CompProperties_Inventory" />
 						<li Class="CombatExtended.CompProperties_TacticalManager" />
@@ -25,7 +25,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BaseNRPawn"]/comps</xpath>
+				<xpath>/Defs/ThingDef[@Name="HAR_Nearmaere_BasePawn"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -35,7 +35,7 @@
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Nearmaere"]</xpath>
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -45,7 +45,7 @@
 
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Nearmaere"]/statBases</xpath>
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/statBases</xpath>
 				  <value>
 					<Suppressability>1</Suppressability>
 					<SmokeSensitivity>1.2</SmokeSensitivity>
@@ -53,7 +53,7 @@
 			</li>
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Nearmaere"]/tools</xpath> 
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -92,7 +92,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HAR_Nearmaere"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[@Name="HAR_Nearmaere_Base"]/alienRace/raceRestriction/whiteApparelList</xpath>
 				  <value>
 					<li>Apparel_TacVest</li>
 					<li>Apparel_Backpack</li>

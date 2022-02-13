@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Infusion 2</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== Rare tier ========== -->
+
+                <!-- ======= Apparel =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Deflecting"]/stats/li[2]/value/offset</xpath>
+                    <value>
+                        <offset>2.75</offset>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Dispersing"]/stats/li[2]/value/offset</xpath>
+                    <value>
+                        <offset>2.75</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Melee Weapon =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Dancing"]/stats/li[2]/value/offset</xpath>
+                    <value>
+                        <offset>0.20</offset>
+                    </value>
+                </li>
+
+                <!-- ======= Ranged Weapon ======= -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Optimized"]/stats</xpath>
+                    <value>
+                        <stats>
+                            <li>
+                                <key>SightsEfficiency</key>
+                                <value>
+                                    <offset>0.08</offset>
+                                </value>
+                            </li>
+                        </stats>
+                    </value>
+                </li>
+
+                <!-- ======= Weapons Infusion =======-->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Shielding"]/stats/li[2]/value/offset</xpath>
+                    <value>
+                        <offset>1.45</offset>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/Infusion.InfusionDef[defName="Shielding"]/stats/li[3]/value/offset</xpath>
+                    <value>
+                        <offset>1.45</offset>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

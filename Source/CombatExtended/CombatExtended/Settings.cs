@@ -14,6 +14,8 @@ namespace CombatExtended
         #region Settings
 
         // General settings
+        private bool bipodMechanics = true;
+        private bool autosetup = true;
         private bool showCasings = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
@@ -22,10 +24,17 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
+	    private bool genericammo = false;
+        private bool partialstats = true;
 
-	private bool showExtraTooltips = false;
+	    private bool showExtraTooltips = false;
 
         public bool ShowCasings => showCasings;
+
+        public bool BipodMechanics => bipodMechanics;
+
+	    public bool GenericAmmo => genericammo;
+        public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
         public bool SmokeEffects => smokeEffects;
@@ -33,6 +42,8 @@ namespace CombatExtended
         public bool TurretsBreakShields => turretsBreakShields;
         public bool ShowBackpacks => showBackpacks;
         public bool ShowTacticalVests => showTacticalVests;
+
+        public bool PartialStat => partialstats;
 	public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowTutorialPopup = true;
@@ -95,6 +106,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
+            Scribe_Values.Look(ref partialstats, "PartialArmor", true);
 
 	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
@@ -118,8 +130,13 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
+	    Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
+
+            //Bipod settings
+            Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
+            Scribe_Values.Look(ref autosetup, "autosetup", true);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
@@ -135,14 +152,14 @@ namespace CombatExtended
             list.Label("CE_Settings_HeaderGeneral".Translate());
             Text.Font = GameFont.Small;
             list.Gap();
-
+            list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
-	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
+	        list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
@@ -210,7 +227,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate()); ;
+		list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate()); ;
             }
             else
             {
@@ -226,6 +244,12 @@ namespace CombatExtended
                 GUI.contentColor = Color.white;
             }
 
+            Text.Font = GameFont.Medium;
+            list.Label("CE_Settings_BipodSettings".Translate());
+            Text.Font = GameFont.Small;
+            list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+
             list.End();
 
             // Update ammo if setting changes
@@ -240,6 +264,7 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
+       
         }
 
         #endregion

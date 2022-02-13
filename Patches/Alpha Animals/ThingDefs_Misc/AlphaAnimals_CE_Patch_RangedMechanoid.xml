@@ -13,7 +13,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[
 				@Name="AA_FlamethrowerBase" or
-				defName = "AA_SiegeTurret" or
+				@Name="AA_SiegeTurretBase" or
 				@Name="AA_CryogenicGunBase"
 				]/tools</xpath>
 				<value>
@@ -47,9 +47,9 @@
 			  <recoilAmount>1</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Bullet_120mmCannonShell_HE</defaultProjectile>
+			  <defaultProjectile>Bullet_90mmCannonShell_HE</defaultProjectile>
 			  <warmupTime>4.5</warmupTime>
-			  <range>88</range>
+			  <range>86</range>
 			  <minRange>8</minRange>
 			  <soundCast>120mm</soundCast>
 			  <muzzleFlashScale>2</muzzleFlashScale>
@@ -58,7 +58,7 @@
 			<AmmoUser>
 			  <magazineSize>1</magazineSize>
 			  <reloadTime>8</reloadTime>
-			  <ammoSet>AmmoSet_120mmCannonShell</ammoSet>
+			  <ammoSet>AmmoSet_90mmCannonShell</ammoSet>
 			</AmmoUser>
 			<FireModes>
 			  <aiAimMode>AimedShot</aiAimMode>
@@ -79,26 +79,27 @@
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AA_Flamethrower</defName>
-			  <statBases>
-			  <Mass>2.00</Mass>
-			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<statBases>
+			  <Mass>0</Mass>
+			  <Bulk>0</Bulk>
+			  <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 			  <SightsEfficiency>0.8</SightsEfficiency>
-			  <ShotSpread>0.3</ShotSpread>
+			  <ShotSpread>4.0</ShotSpread>
 			  <SwayFactor>1.33</SwayFactor>
-			  <Bulk>1.00</Bulk>
 			</statBases>
 			<Properties>
 			  <recoilAmount>0</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
-			  <warmupTime>0.3</warmupTime>
+			  <warmupTime>1.3</warmupTime>
 			  <range>16</range>
-			  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			  <minRange>2.9</minRange>
+			  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			  <burstShotCount>5</burstShotCount>
 			  <soundCast>HissFlamethrower</soundCast>
 			  <muzzleFlashScale>2</muzzleFlashScale>
-				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			</Properties>
 			<AmmoUser>
 			  <magazineSize>100</magazineSize>
@@ -117,7 +118,7 @@
 			<defName>AA_CryogenicGun</defName>
 			  <statBases>
 			  <Mass>2.00</Mass>
-			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			  <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
 			  <SightsEfficiency>0.8</SightsEfficiency>
 			  <ShotSpread>0.3</ShotSpread>
 			  <SwayFactor>1.33</SwayFactor>
@@ -128,7 +129,7 @@
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>AA_CryoBulletCE</defaultProjectile>
-			  <warmupTime>0.9</warmupTime>
+			  <warmupTime>1.5</warmupTime>
 			  <range>15</range>
 			  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
 			  <burstShotCount>3</burstShotCount>
@@ -165,7 +166,7 @@
 						<speed>40</speed>
 						<damageDef>Frostbite</damageDef>
 						<damageAmountBase>3</damageAmountBase>
-						<explosionRadius>3</explosionRadius>						
+						<explosionRadius>2</explosionRadius>						
 						<soundExplode>AA_Cryogun</soundExplode>
 						<armorPenetrationSharp>0</armorPenetrationSharp>
 						<armorPenetrationBlunt>0</armorPenetrationBlunt>			

@@ -14,11 +14,12 @@
 		<defName>AmmoSet_25x137mmNATO</defName>
 		<label>25x137mm NATO</label>
 		<ammoTypes>
-      		<Ammo_25x137mmNATO_FMJ>Bullet_25x137mmNATO_FMJ</Ammo_25x137mmNATO_FMJ>		
+      		<Ammo_25x137mmNATO_AP>Bullet_25x137mmNATO_AP</Ammo_25x137mmNATO_AP>		
 			<Ammo_25x137mmNATO_Incendiary>Bullet_25x137mmNATO_Incendiary</Ammo_25x137mmNATO_Incendiary>
 			<Ammo_25x137mmNATO_HE>Bullet_25x137mmNATO_HE</Ammo_25x137mmNATO_HE>
 			<Ammo_25x137mmNATO_Sabot>Bullet_25x137mmNATO_Sabot</Ammo_25x137mmNATO_Sabot>
 		</ammoTypes>
+		<similarTo>AmmoSet_Autocannon</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
@@ -40,17 +41,17 @@
 	</ThingDef>
 
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
-      <defName>Ammo_25x137mmNATO_FMJ</defName>
-      <label>25x137mm NATO cartridge (FMJ)</label>
+      <defName>Ammo_25x137mmNATO_AP</defName>
+      <label>25x137mm NATO cartridge (AP)</label>
       <graphicData>
-        <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+        <texPath>Things/Ammo/HighCaliber/AP</texPath>
         <graphicClass>Graphic_StackCount</graphicClass>
       </graphicData>
       <statBases>
         <MarketValue>2.01</MarketValue>
       </statBases>
-      <ammoClass>FullMetalJacket</ammoClass>
-      <cookOffProjectile>Bullet_25x137mmNATO_FMJ</cookOffProjectile>
+      <ammoClass>ArmorPiercing</ammoClass>
+      <cookOffProjectile>Bullet_25x137mmNATO_AP</cookOffProjectile>
     </ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
@@ -111,11 +112,11 @@
 	</ThingDef>
 
   <ThingDef ParentName="Base25x137mmNATOBullet">
-    <defName>Bullet_25x137mmNATO_FMJ</defName>
-    <label>25x137mm NATO bullet (FMJ)</label>
+    <defName>Bullet_25x137mmNATO_AP</defName>
+    <label>25x137mm NATO bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>98</damageAmountBase>
-      <armorPenetrationSharp>29</armorPenetrationSharp>
+      <damageAmountBase>62</damageAmountBase>
+      <armorPenetrationSharp>57</armorPenetrationSharp>
       <armorPenetrationBlunt>2238.500</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -166,10 +167,10 @@
 	<!-- ==================== Recipes ========================== -->
 
     <RecipeDef ParentName="AmmoRecipeBase">
-      <defName>MakeAmmo_25x137mmNATO_FMJ</defName>
-      <label>make 25x137mm NATO (FMJ) cartridge x200</label>
-      <description>Craft 200 25x137mm NATO (FMJ) cartridges.</description>
-      <jobString>Making 25x137mm NATO (FMJ) cartridges.</jobString>
+      <defName>MakeAmmo_25x137mmNATO_AP</defName>
+      <label>make 25x137mm NATO (AP) cartridge x200</label>
+      <description>Craft 200 25x137mm NATO (AP) cartridges.</description>
+      <jobString>Making 25x137mm NATO (AP) cartridges.</jobString>
       <ingredients>
         <li>
           <filter>
@@ -186,7 +187,7 @@
         </thingDefs>
       </fixedIngredientFilter>
       <products>
-        <Ammo_25x137mmNATO_FMJ>200</Ammo_25x137mmNATO_FMJ>
+        <Ammo_25x137mmNATO_AP>200</Ammo_25x137mmNATO_AP>
       </products>
       <workAmount>20200</workAmount>
     </RecipeDef>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[LITE]Expanded Materials - Metals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Iron === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Iron"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Iron"]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Iron"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.8</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Iron"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- === Lead === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Lead"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Lead"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.3</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Lead"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.3</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Lead"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>1.4</Mass>
+					<MeleePenetrationFactor>1.05</MeleePenetrationFactor>
+				</value>
+			</li>
+
+			<!-- === Bronze === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Bronze"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Bronze"]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Bronze"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.83</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Bronze"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.24</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- === Tin === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Tin"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Tin"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.13</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Tin"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<!-- === Copper === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Copper"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Copper"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VMEu_Copper"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.32</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+			
+
+			<!-- === Concrete, Rock Powder, and Fossil === -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VMEu_Concrete" or defName="VMEu_RockPowder" or defName="VMEu_Fossil"]/statBases</xpath>
+				<value>
+					<Bulk>0.2</Bulk>
+				</value>
+			</li>
+
+
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

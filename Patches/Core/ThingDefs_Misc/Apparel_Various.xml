@@ -166,7 +166,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_FlakVest"]/statBases/Mass</xpath>
 		<value>
-			<Mass>13</Mass>
+			<Mass>11</Mass>
 		</value>
 	</Operation>
 
@@ -234,7 +234,7 @@
 		<xpath>Defs/ThingDef[defName="Apparel_FlakJacket"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<Bulk>5</Bulk>
-			<WornBulk>5</WornBulk>
+			<WornBulk>2.5</WornBulk>
 			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
 			<ArmorRating_Sharp>2</ArmorRating_Sharp>
 		</value>
@@ -257,6 +257,24 @@
 			<Mass>4</Mass>
 		</value>
 	</Operation>
+
+	<!--<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakJacket"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					Stat def in '<>', value inside, works for both armor rating sharp and blunt. The value can be anything higher than 0, even higher than 1 for setting up a strong point in the armor pieces
+					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+					BodyPartDefs
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	  </Operation> -->
 
 
 	<!-- Half the insulation of a regular jacket -->
@@ -302,10 +320,17 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakPants"]/statBases/Mass</xpath>
+		<value>
+			<Mass>2.5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_FlakPants"]/statBases/ArmorRating_Sharp</xpath>
 		<value>
 			<Bulk>4</Bulk>
-			<WornBulk>4</WornBulk>
+			<WornBulk>2.5</WornBulk>
 			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
 			<ArmorRating_Sharp>2</ArmorRating_Sharp>
 		</value>
@@ -553,4 +578,3 @@
 	</Operation>
 
 </Patch>
-

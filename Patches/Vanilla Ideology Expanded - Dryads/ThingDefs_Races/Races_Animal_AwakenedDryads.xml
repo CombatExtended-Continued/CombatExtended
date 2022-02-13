@@ -1,0 +1,1163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Ideology Expanded - Dryads</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Carrier"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+			
+						<!-- ======================== Awakened Carrier ========================  -->
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Carrier"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Carrier"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+			
+				<!-- ======================== Awakened Clawer ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Clawer"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Clawer"]/statBases</xpath>
+					<value>
+						<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+						<MeleeDodgeChance>0.8</MeleeDodgeChance>
+						<MeleeCritChance>0.45</MeleeCritChance>
+						<MeleeParryChance>0.50</MeleeParryChance>
+					</value>
+				</li>
+
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Clawer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>0.96</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>24</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>0.96</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>24</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>5.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>8</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>28</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+								<armorPenetrationSharp>15</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.2</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+
+				<!-- ======================== Awakened Barkskin ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Barkskin"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Barkskin"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.1</MeleeCritChance>
+						<MeleeParryChance>0.08</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Barkskin"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>24</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Barkskin"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+				
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Barkskin"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+				<!-- ======================== Awakened WoodMaker ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Woodmaker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Birdlike</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Woodmaker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Woodmaker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>15</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>15</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>8</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- ======================== Awakened Medicinemaker ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Medicinemaker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Medicinemaker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Medicinemaker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+
+				<!-- ======================== Awakened Berrymaker ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Berrymaker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Berrymaker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Berrymaker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+				<!-- ======================== Awakened Stonedigger ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Stonedigger"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Stonedigger"]/statBases</xpath>
+					<value>
+						<ArmorRating_Blunt>20</ArmorRating_Blunt>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Stonedigger"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>10</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+				<!-- ======================== Awakened Nectarmaker ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Nectarmaker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Nectarmaker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Nectarmaker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+				<!-- ======================== Awakened Spitter ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Spitter"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Serpentine</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Spitter"]/statBases</xpath>
+					<value>
+						<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+						<AimingAccuracy>1.0</AimingAccuracy>
+						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Spitter"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>14</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>20</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+
+				<!-- ======================== Awakened Gaubricmaker ========================  -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Gaubricmaker"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Quadruped</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<!-- Adding stats to the pawn to make sure they have them -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Gaubricmaker"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.25</MeleeDodgeChance>
+						<MeleeCritChance>0.06</MeleeCritChance>
+						<MeleeParryChance>0.04</MeleeParryChance>
+					</value>
+				</li>
+
+
+				<!-- Adds the combat stats that CE needs in order to work-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VDE_AwakenedDryad_Gaubricmaker"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>right claw</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>Bite</li>
+								</capacities>
+								<power>12</power>
+								<cooldownTime>1.5</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>10</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							</li>
+
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>2</cooldownTime>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>5</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>		
+			</operations>
+		</match>
+	</Operation>
+</Patch>

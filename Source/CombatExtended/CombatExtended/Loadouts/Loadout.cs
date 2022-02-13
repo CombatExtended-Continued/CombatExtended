@@ -1,10 +1,7 @@
 ﻿using System.Text.RegularExpressions;
-using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEngine;
 using Verse;
 
 namespace CombatExtended
@@ -97,13 +94,7 @@ namespace CombatExtended
 		/// </remarks>
         static Loadout Copy(Loadout source)
         {
-        	string newName = source.label;
-        	Regex reNum = new Regex(@"^(.*?)\d+$");
-        	if (reNum.IsMatch(newName))
-        		newName = reNum.Replace(newName, @"$1");
-        	newName = LoadoutManager.GetUniqueLabel(newName);
-        	
-        	Loadout dest = new Loadout(newName);
+        	Loadout dest = new Loadout(UniqueLabel(source.label));
         	dest.defaultLoadout = source.defaultLoadout;
         	dest.canBeDeleted = source.canBeDeleted;
         	dest._slots = new List<LoadoutSlot>();
@@ -111,6 +102,18 @@ namespace CombatExtended
         		dest.AddSlot(slot.Copy());
         	return dest;
         }
+
+		/// <summary>
+		/// Translates the label into a unique label, adding an appropriate suffix if necessary
+		/// </summary>
+		/// <returns>New unique label</returns>
+		static string UniqueLabel(string label)
+		{
+			Regex reNum = new Regex(@"^(.*?)\d+$");
+			if (reNum.IsMatch(label))
+				label = reNum.Replace(label, @"$1");
+			return LoadoutManager.GetUniqueLabel(label);
+		}
         
         /// <summary>
         /// Copies self to a new Loadout.  <see cref="Copy(Loadout)"/>.
@@ -132,6 +135,67 @@ namespace CombatExtended
         		old.count += slot.count;
         	else
             	_slots.Add(slot);
+        }
+
+        /// <summary>
+        /// Factory method to create a Loadout object from a serializable LoadoutConfig loaded from a loadout save file
+        /// </summary>
+        /// <remarks>
+        /// Note that the logic should be different to scribing data to/from a save file since
+        /// additional validation related logic must exist and in some cases certain fields should not be serialized
+        /// </remarks>
+        /// <param name="loadoutConfig">The LoadoutConfig config object.</param>
+        /// <returns>A Loadout object</returns>
+        public static Loadout FromConfig(LoadoutConfig loadoutConfig, out List<string> unloadableDefNames)
+        {
+	        // Create the new loadout, preventing name clashes if the loadout already exists
+	        string uniqueLabel = LoadoutManager.IsUniqueLabel(loadoutConfig.label)
+		        ? loadoutConfig.label
+		        : UniqueLabel(loadoutConfig.label);
+	        
+	        Loadout loadout = new Loadout(uniqueLabel);
+	        
+	        unloadableDefNames = new List<string>();
+	        
+	        // Now create each of the slots
+	        foreach (LoadoutSlotConfig loadoutSlotConfig in loadoutConfig.slots)
+	        {
+		        LoadoutSlot loadoutSlot = LoadoutSlot.FromConfig(loadoutSlotConfig);
+		        // If the LoadoutSlot could not be loaded then continue loading the others as this most likely means
+		        // that the current game does not have the mod loaded that was used to create the initial loadout.
+		        if (loadoutSlot == null)
+		        {
+			        unloadableDefNames.Add(loadoutSlotConfig.defName);
+			        continue;
+		        }
+				loadout.AddSlot(LoadoutSlot.FromConfig(loadoutSlotConfig));		        
+	        }
+	        
+	        return loadout;
+        }
+
+        /// <summary>
+        /// Factory method to create a serializable LoadoutConfig object from this Loadout object
+        /// </summary>
+        /// <remarks>
+        /// Note that the logic should be different to scribing data to/from a save file since
+        /// additional validation related logic must exist and in some cases certain fields should not be serialized
+        /// </remarks>
+        /// <returns>A LoadoutConfig object that can be serialized to a loadout config file.</returns>
+        public LoadoutConfig ToConfig()
+        {
+	        List<LoadoutSlotConfig> loadoutSlotConfigList = new List<LoadoutSlotConfig>();
+
+	        foreach (LoadoutSlot loadoutSlot in _slots)
+	        {
+		        loadoutSlotConfigList.Add(loadoutSlot.ToConfig());
+	        }
+	        
+	        return new LoadoutConfig
+	        {
+		        label = label,
+		        slots = loadoutSlotConfigList.ToArray()
+	        };
         }
 
         /// <summary>

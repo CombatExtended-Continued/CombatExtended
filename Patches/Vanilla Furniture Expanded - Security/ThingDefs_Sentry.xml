@@ -303,7 +303,7 @@
           <recoilAmount>1.56</recoilAmount>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_20x110mmHispano_FMJ</defaultProjectile>
+          <defaultProjectile>Bullet_20x110mmHispano_AP</defaultProjectile>
           <warmupTime>4.3</warmupTime>
           <range>78</range>
           <burstShotCount>12</burstShotCount>
@@ -370,13 +370,6 @@
 
       <!-- Tri-Rocket Turret -->
 
-      <li Class="PatchOperationReplace">
-          <xpath>Defs/ResearchProjectDef[defName="VFES_MissileBarrage"]/prerequisites/li[text()="HeavyTurrets"]</xpath>
-          <value>
-            <li>CE_HeavyTurret</li>
-          </value>
-      </li>
-
       <li Class="PatchOperationRemove">
           <xpath>Defs/ThingDef[defName="VFES_Turret_TriRocket"]/costList/Shell_HighExplosive</xpath>
       </li>
@@ -423,13 +416,6 @@
 
       <!-- EMP Cannon -->
 
-      <li Class="PatchOperationReplace">
-          <xpath>Defs/ResearchProjectDef[defName="VFES_EMPCannon"]/prerequisites/li[text()="HeavyTurrets"]</xpath>
-          <value>
-            <li>CE_HeavyTurret</li>
-          </value>
-      </li>
-
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VFES_Gun_EMPTurret</defName>
         <statBases>
@@ -457,13 +443,6 @@
       </li>
 
       <!-- Railgun Turret -->
-
-		<li Class="PatchOperationReplace">
-        <xpath>Defs/ResearchProjectDef[defName="VFES_Railgun"]/prerequisites/li[text()="SniperTurret"]</xpath>
-        <value>
-          <li>CE_HeavyTurret</li>
-        </value>
-		</li>
 
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VFES_Gun_RailgunTurret</defName>

@@ -78,6 +78,7 @@
     <displayPriorityInCategory>894</displayPriorityInCategory>
     <parts>
       <li Class="CombatExtended.StatPart_Attachments" />
+      <li Class="CombatExtended.Bipod_Sway_StatPart" />
     </parts>    
   </StatDef>
 
@@ -89,7 +90,7 @@
     <label>muzzle flash</label>
     <description>How bright the muzzle flash is.\n\nMuzzle flashes will illuminate a shooter's position in darkness, exposing them to more accurate return fire. Brighter muzzle flashes are easier to target.\n\nPawns will remember the position of the muzzle flash for 5-10 seconds.</description>
     <category>Weapon</category>
-    <showIfUndefined>true</showIfUndefined>
+    <showIfUndefined>false</showIfUndefined>
     <displayPriorityInCategory>898</displayPriorityInCategory>
     <defaultBaseValue>0</defaultBaseValue>
     <parts>
@@ -105,6 +106,16 @@
     <category>Weapon</category>
     <showIfUndefined>true</showIfUndefined>
     <displayPriorityInCategory>898</displayPriorityInCategory>
+  </StatDef>
+
+  <StatDef>
+    <defName>BipodStats</defName>
+    <workerClass>CombatExtended.StatWorker_BipodDisplay</workerClass>
+    <label>Bipod stats</label>
+    <description>Stats with bipod deployed and undeployed.</description>
+    <category>Weapon</category>
+    <showIfUndefined>true</showIfUndefined>
+    <displayPriorityInCategory>998</displayPriorityInCategory>
   </StatDef>
 
   <StatDef>
@@ -140,10 +151,12 @@
     <description>How much will this weapon recoil upon firing.</description>
     <category>Weapon</category>    
     <defaultBaseValue>0</defaultBaseValue>
+    <toStringStyle>FloatTwo</toStringStyle>
     <showIfUndefined>false</showIfUndefined>
     <displayPriorityInCategory>898</displayPriorityInCategory>
     <parts>
       <li Class="CombatExtended.StatPart_Attachments" />
+      <li Class="CombatExtended.Bipod_Recoil_StatPart" />
     </parts>
   </StatDef>
 
@@ -166,7 +179,7 @@
     <label>reload time</label>
     <description>How long should this weapon take to reload.</description>
     <category>Weapon</category>
-    <showIfUndefined>true</showIfUndefined>
+    <showIfUndefined>false</showIfUndefined>
     <displayPriorityInCategory>897</displayPriorityInCategory>
     <defaultBaseValue>1</defaultBaseValue>
     <parts>
