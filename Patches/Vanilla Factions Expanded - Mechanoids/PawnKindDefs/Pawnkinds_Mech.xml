@@ -37,8 +37,6 @@
 			<xpath>Defs/PawnKindDef[
 			defName="VFE_Mech_Knight" or 
 			defName="VFE_Mech_AdvancedKnight" or
-			defName="VFE_Mech_Inquisitor" or
-			defName="VFE_Mech_AdvancedInquisitor" or
 			defName="VFE_Mech_Pikeman"
 			]</xpath>
 			<value>
@@ -50,7 +48,22 @@
 			  </li>
 			</value>
 		  </li>
-		  
+
+		  <li Class="PatchOperationAddModExtension">
+			<xpath>Defs/PawnKindDef[
+			defName="VFE_Mech_Inquisitor" or
+			defName="VFE_Mech_AdvancedInquisitor"
+			]</xpath>
+			<value>
+			  <li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+				  <min>1</min>
+				  <max>2</max>
+				</primaryMagazineCount>
+			  </li>
+			</value>
+		  </li>
+
 		  <li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[defName="VFE_Mech_AdvancedPikeman"]</xpath>
 			<value>
