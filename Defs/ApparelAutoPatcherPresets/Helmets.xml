@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <!-- Example def -->
+    <CombatExtended.ApparelPatcherPresetDef>
+        <defName>Helmet</defName>
+        <label>preset helmet</label>
+        <Bulk>4</Bulk>
+        <BulkWorn>4</BulkWorn>
+        <Mass>1</Mass>
+        <ArmorStaticSharp>8</ArmorStaticSharp>
+        <ArmorStaticBlunt>12</ArmorStaticBlunt>
+        <!-- IMPORTANT: This is SHARP armor range OR StuffEffectMultiplierArmor range-->
+        <vanillaArmorRatingRange>0.6~0.9</vanillaArmorRatingRange>
+        <neededLayers>
+            <li>Overhead</li>
+        </neededLayers>
+        <neededGroups>
+            <li>UpperHead</li>
+        </neededGroups>
+        <!-- Doesn't have to be specified -->
+        <partialStats>
+            <li>
+                <!-- When useStatic is added it MUST be the first node in the partial stat -->
+                <useStatic>true</useStatic>
+                <ArmorRating_Sharp>2</ArmorRating_Sharp>
+                <parts>
+                    <li>Neck</li>
+                    <li>Brain</li>
+                </parts>
+              </li>
+        </partialStats>
+    </CombatExtended.ApparelPatcherPresetDef>
+</Defs>
