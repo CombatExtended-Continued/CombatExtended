@@ -27,6 +27,13 @@
       <!-- Field Gun -->
 
       <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/fillPercent</xpath>
+        <value>
+            <fillPercent>0.65</fillPercent>
+        </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
         <value>
             <turretBurstWarmupTime>4.0</turretBurstWarmupTime>
@@ -101,7 +108,7 @@
               <defaultProjectile>Bullet_105mmHowitzerShell_HEAT_directfire</defaultProjectile>
               <warmupTime>4</warmupTime>
               <minRange>20</minRange>
-              <range>900</range>
+              <range>100</range>
               <burstShotCount>1</burstShotCount>
               <soundCast>VFEP_Shot_FieldCannon</soundCast>
               <muzzleFlashScale>16</muzzleFlashScale>
@@ -118,7 +125,7 @@
       <!-- Cannon - Based on the M1897 12-pounder -->
 
       <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/fillPercent</xpath>
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/fillPercent</xpath>
         <value>
             <fillPercent>0.65</fillPercent>
         </value>
