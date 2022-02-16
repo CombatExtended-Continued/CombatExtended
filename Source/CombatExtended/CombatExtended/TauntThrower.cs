@@ -68,7 +68,7 @@ namespace CombatExtended
             // Use map.uniqueId as it'll be the same for each player, GetHashCode() is not guaranteed to be the same
             // for each player (unless it's a custom implementation)
             // and we want this to be called at the same time for everyone
-            if ((Find.TickManager.TicksGame + map.uniqueID) % 10 == 0)
+            if ((Find.TickManager.TicksGame + map.uniqueID * 3) % 10 == 0)
             {
                 foreach (var entry in tauntTickTracker.Where(kvp => TimedOut(kvp.Key)).ToArray())
                 {
