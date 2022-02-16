@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <CombatExtended.GunPatcherPresetDef>
+        <defName>SMGs</defName>
+        <gunStats>
+            <recoilAmount>1.53</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>26</range>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>RNShotMP5SMG</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+        </gunStats>
+        <names>
+            <!-- all stuff is non capitalised -->
+        </names>
+
+        <fireModes>
+            <aiUseBurstMode>FALSE</aiUseBurstMode>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aimedBurstShotCount>3</aimedBurstShotCount>
+        </fireModes>
+        <setCaliber>AmmoSet_9x19mmPara</setCaliber>
+        <AmmoCapacity>30</AmmoCapacity>
+        <ReloadTime>4</ReloadTime>
+        <!--
+             this basically makes matcher ignore stuff like "A1" if it's not separated (for example MP5A2)
+             DONT use this to determine guns with capital A-s in name (like AK74)
+         -->
+        <DiscardDesignations>true</DiscardDesignations>
+        <!-- if you end up specifying verbprops ranges I suggest separating them by some comment -->
+        <RangeRange>20~25</RangeRange>
+        <WarmupRange>0.4~0.81</WarmupRange>
+        <DamageRange>6~15</DamageRange>
+        <ProjSpeedRange>54~70</ProjSpeedRange>
+    </CombatExtended.GunPatcherPresetDef>
+</Defs>
