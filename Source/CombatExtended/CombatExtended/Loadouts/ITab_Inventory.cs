@@ -4,6 +4,7 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Multiplayer.API;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -179,12 +180,7 @@ namespace CombatExtended
 
                     if (Widgets.ButtonInvisible(loadoutButtonRect.ContractedBy(2), doMouseoverSound: true))
                     {
-                        Loadout loadout = SelPawnForGear.GenerateLoadoutFromPawn();
-                        LoadoutManager.AddLoadout(loadout);
-                        SelPawnForGear.SetLoadout(loadout);
-
-                        // Opening this window is the same way as if from the assign tab so should be correct.
-                        Find.WindowStack.Add(new Dialog_ManageLoadouts(SelPawnForGear.GetLoadout()));
+                        SyncedAddLoadout(SelPawnForGear);
                     }
                     // Restore GUI color
                     Text.Anchor = anchor;
@@ -238,7 +234,7 @@ namespace CombatExtended
                 if (Widgets.ButtonImage(dropRect, TexButton.Drop, color, mouseoverColor) && !dropForbidden)
                 {                   
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    InterfaceDrop(thing);
+                    SyncedInterfaceDrop(thing);
                 }
                 rect.width -= 24f;
             }
@@ -251,7 +247,7 @@ namespace CombatExtended
                     if (Widgets.ButtonImage(rect3, TexButton.Ingest))
                     {
                         SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
-                        InterfaceIngest(thing);
+                        SyncedInterfaceIngest(thing);
                     }
                     rect.width -= 24f;
                 }
@@ -359,10 +355,7 @@ namespace CombatExtended
                             else if (SelPawnForGear.equipment.AllEquipmentListForReading.Contains(eq) && SelPawnForGear.inventory != null)
                             {
                                 equipOption = new FloatMenuOption("CE_PutAway".Translate(eqLabel),
-                                    new Action(delegate
-                                    {
-                                        SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.innerContainer);
-                                    }));
+                                    () => SyncedTryTransferEquipmentToContainer(SelPawnForGear));
                             }
                             else if (!SelPawnForGear.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                             {
@@ -379,10 +372,7 @@ namespace CombatExtended
                                     equipOptionLabel,
                                     (SelPawnForGear.story != null && SelPawnForGear.WorkTagIsDisabled(WorkTags.Violent))
                                     ? null
-                                    : new Action(delegate
-                                    {
-                                        compInventory.TrySwitchToWeapon(eq);
-                                    }));
+                                    : new Action(() => SyncedTrySwitchToWeapon(compInventory, eq)));
                             }
                             floatOptionList.Add(equipOption);
                         }
@@ -403,7 +393,7 @@ namespace CombatExtended
                                     //var reloadJob = JobMaker.MakeJob(JobDefOf.Reload, apparel, thing);
                                     //SelPawnForGear.jobs.StartJob(reloadJob, JobCondition.InterruptForced, null, SelPawnForGear.CurJob?.def != reloadJob.def, true);
 
-                                    SelPawnForGear.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Reload, apparel, thing));
+                                    SyncedReloadApparel(SelPawnForGear, apparel, thing);
                                 })
                             );
                                 floatOptionList.Add(reloadApparelOption);
@@ -417,7 +407,7 @@ namespace CombatExtended
                         Action eatFood = delegate
                         {
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                            InterfaceIngest(thing);
+                            SyncedInterfaceIngest(thing);
                         };
                         string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? (string)"ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
                         if (SelPawnForGear.IsTeetotaler() && thing.def.IsNonMedicalDrug)
@@ -440,12 +430,12 @@ namespace CombatExtended
                         floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), new Action(delegate
                         {
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                            InterfaceDrop(thing);
+                            SyncedInterfaceDrop(thing);
                         })));
                         floatOptionList.Add(new FloatMenuOption("CE_DropThingHaul".Translate(), new Action(delegate
                         {
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                            InterfaceDropHaul(thing);
+                            SyncedInterfaceDropHaul(thing);
                         })));
                     }
                     // Stop holding in inventory option
@@ -454,7 +444,7 @@ namespace CombatExtended
                         Action forgetHoldTracker = delegate
                         {
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                            SelPawnForGear.HoldTrackerForget(thing);
+                            SyncedHoldTrackerForget(SelPawnForGear, thing);
                         };
                         floatOptionList.Add(new FloatMenuOption("CE_HoldTrackerForget".Translate(), forgetHoldTracker));
                     }
@@ -528,6 +518,12 @@ namespace CombatExtended
             }
         }
 
+        [SyncMethod]
+        private void SyncedInterfaceIngest(Thing t) => InterfaceIngest(t);
+
+        [SyncMethod]
+        private void SyncedInterfaceDropHaul(Thing t) => InterfaceDropHaul(t);
+
         private new void InterfaceIngest(Thing t)
         {
             Job job = JobMaker.MakeJob(JobDefOf.Ingest, t);
@@ -549,6 +545,37 @@ namespace CombatExtended
                 value *= 100f;
             }
             return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
+        }
+
+        [SyncMethod]
+        private void SyncedInterfaceDrop(Thing thing) => InterfaceDrop(thing);
+
+        [SyncMethod]
+        private static void SyncedTryTransferEquipmentToContainer(Pawn p) 
+            => p.equipment.TryTransferEquipmentToContainer(p.equipment.Primary, p.inventory.innerContainer);
+
+        [SyncMethod]
+        private static void SyncedTrySwitchToWeapon(CompInventory compInventory, ThingWithComps eq) 
+            => compInventory.TrySwitchToWeapon(eq);
+
+        [SyncMethod]
+        private static void SyncedReloadApparel(Pawn p, Apparel apparel, Thing thing) 
+            => p.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Reload, apparel, thing));
+
+        [SyncMethod]
+        private static void SyncedHoldTrackerForget(Pawn p, Thing thing) 
+            => p.HoldTrackerForget(thing);
+
+        [SyncMethod]
+        private static void SyncedAddLoadout(Pawn p)
+        {
+            Loadout loadout = p.GenerateLoadoutFromPawn();
+            LoadoutManager.AddLoadout(loadout);
+            p.SetLoadout(loadout);
+
+            if (MP.IsExecutingSyncCommandIssuedBySelf)
+                // Opening this window is the same way as if from the assign tab so should be correct.
+                Find.WindowStack.Add(new Dialog_ManageLoadouts(p.GetLoadout()));
         }
 
         #endregion Methods
