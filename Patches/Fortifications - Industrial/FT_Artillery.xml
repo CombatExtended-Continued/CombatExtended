@@ -180,6 +180,162 @@
 			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/inspectorTabs</xpath>
 		</li>
 
+      <!-- === Heavy Artillery Common === -->
+	  
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>1</turretBurstCooldownTime>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.85</fillPercent>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building</xpath>
+			<value>
+				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/inspectorTabs</xpath>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class="VFESecurity.CompProperties_LongRangeArtillery"]</xpath>
+		</li>
+        
+      <!-- === 155mm Artillery / NK-33L "Prince" === -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretPrince"]/statBases</xpath>
+			<value>
+				<SightsEfficiency>0.5</SightsEfficiency>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretPrince"]/label</xpath>
+			<value>
+				<label>155mm howitzer</label>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretPrince"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+				</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>10</reloadTime>
+					<ammoSet>AmmoSet_155mmHowitzerShell</ammoSet>
+				</li>				
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_Gun_TurretPrince"]/verbs</xpath>
+			<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<requireLineOfSight>false</requireLineOfSight>
+						<defaultProjectile>Bullet_155mmHowitzerShell_HE</defaultProjectile>
+						<warmupTime>4</warmupTime>
+						<minRange>50</minRange>
+						<range>1000</range>
+						<soundCast>FT_CannonLaunchB</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<circularError>1</circularError>
+						<indirectFirePenalty>0.4</indirectFirePenalty>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+				</verbs>
+			</value>
+		</li>
+        
+      <!-- === 155mm Field Cannon / NK-30 "Empero" === -->
+	  
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="FT_Gun_TurretEmpero"]</xpath>
+			<value>
+				<ThingDef ParentName="BaseWeaponTurret">
+					<defName>FT_Gun_TurretEmpero</defName>
+					<label>155mm field cannon</label>
+					<description>A recoilless cannon designed to engage heavily-armed targets at range.</description>
+					<graphicData>
+						<texPath>Empero/Empero_Gun</texPath>
+						<drawOffset>(5,0,0)</drawOffset>
+					</graphicData>
+					<soundInteract>Artillery_ShellLoaded</soundInteract>
+					<statBases>
+						<RangedWeapon_Cooldown>8.0</RangedWeapon_Cooldown>
+						<SightsEfficiency>2.18</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>3.07</SwayFactor>
+						<DeteriorationRate>0</DeteriorationRate>
+						<Mass>205</Mass>
+						<Flammability>0</Flammability>     
+					</statBases>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Bullet_155mmHowitzerShell_HE_directfire</defaultProjectile>
+							<warmupTime>4</warmupTime>
+							<minRange>4.9</minRange>
+							<range>500</range>
+							<soundCast>FT_CannonLaunchC</soundCast>
+							<soundCastTail>GunTail_Heavy</soundCastTail>
+							<muzzleFlashScale>32</muzzleFlashScale>
+							<targetParams>
+							  <canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<recoilPattern>Mounted</recoilPattern>
+						</li>
+					</verbs>
+					<comps>
+						<li Class="CombatExtended.CompProperties_AmmoUser">
+							<magazineSize>1</magazineSize>
+							<reloadTime>10</reloadTime>
+							<ammoSet>AmmoSet_155mmHowitzerShell_directfire</ammoSet>
+						</li>
+						<li Class="CombatExtended.CompProperties_FireModes">
+							<aiAimMode>AimedShot</aiAimMode>
+						</li>
+					</comps>
+			  </ThingDef>
+			</value>
+		</li>
+
       </operations>
     </match>
   </Operation>
