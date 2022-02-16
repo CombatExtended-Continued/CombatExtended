@@ -33,7 +33,9 @@ namespace CombatExtended.Compatibility
                 else
                 {
                     sync.Write(false);
-                    sync.Write(comp);
+                    // Sync using ThingComp worker, not this one
+                    // Prevents infinite iteration
+                    sync.Write(comp as ThingComp);
                 }
             }
             else
@@ -41,7 +43,7 @@ namespace CombatExtended.Compatibility
                 if (sync.Read<bool>())
                     comp = sync.Read<Building_TurretGunCE>().CompAmmo;
                 else
-                    comp = sync.Read<CompAmmoUser>();
+                    comp = sync.Read<ThingComp>() as CompAmmoUser;
             }
         }
 
@@ -63,7 +65,9 @@ namespace CombatExtended.Compatibility
                 else
                 {
                     sync.Write(false);
-                    sync.Write(comp);
+                    // Sync using ThingComp worker, not this one
+                    // Prevents infinite iteration
+                    sync.Write(comp as ThingComp);
                 }
             }
             else
@@ -71,7 +75,7 @@ namespace CombatExtended.Compatibility
                 if (sync.Read<bool>())
                     comp = sync.Read<Building_TurretGunCE>().CompFireModes;
                 else
-                    comp = sync.Read<CompFireModes>();
+                    comp = sync.Read<ThingComp>() as CompFireModes;
             }
         }
 
