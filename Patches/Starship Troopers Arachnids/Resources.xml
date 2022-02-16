@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[1.3] Starship Troopers Arachnids Ver6.3</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Arachnid Leg -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="ArachnidLeg"]/statBases</xpath>
+					<value>
+						<Bulk>20.53</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ArachnidLeg"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Scratch</li>
+									<li>Stab</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2.6</cooldownTime>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+			
+				<!-- Arachnid Carapace -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="ArachnidCarapace"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ArachnidCarapace"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="ArachnidCarapace"]/statBases/SharpDamageMultiplier</xpath>
+					<value>
+						<MeleePenetrationFactor>3.0</MeleePenetrationFactor>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="ArachnidCarapace"]/stuffProps/categories</xpath>
+					<value>
+						<li>Metallic_Weapon</li>
+					</value>
+				</li>
+				
+				<!-- Arachnid Leather, made a bit worse than thrumbofur -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Arachnids"]/statBases</xpath>
+					<value>
+						<Bulk>0.05</Bulk>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Arachnids"]/statBases/StuffPower_Armor_Sharp</xpath>
+					<value>
+						<StuffPower_Armor_Sharp>0.35</StuffPower_Armor_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Arachnids"]/statBases/StuffPower_Armor_Blunt</xpath>
+					<value>
+						<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Leather_Arachnids"]/statBases/StuffPower_Armor_Heat</xpath>
+					<value>
+						<StuffPower_Armor_Heat>0.015</StuffPower_Armor_Heat>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Leather_Arachnids"]/stuffProps/categories</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Leather_Arachnids"]/stuffProps</xpath>
+						<value>
+							<categories>
+							  <li>SoftArmor</li>
+							</categories>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Leather_Arachnids"]/stuffProps/categories</xpath>
+						<value>
+							<li>SoftArmor</li>
+						</value>
+					</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
