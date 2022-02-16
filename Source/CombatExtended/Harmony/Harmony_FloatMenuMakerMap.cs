@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
+using Multiplayer.API;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -92,25 +93,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             string label = "CE_Stabilize".Translate(patient.LabelCap);
-                            Action action = delegate
-                            {
-                                if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
-                                {
-                                    Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
-                                    return;
-                                }
-                                // Drop medicine from inventory
-                                Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
-                                Thing medThing;
-                                if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
-                                {
-                                    Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
-                                    job.count = 1;
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
-                                }
-                            };
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, patient), pawn, patient, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, () => Stabilize(pawn, patient), MenuOptionPriority.Default, null, patient), pawn, patient, "ReservedBy"));
                         }
                     }
                 }
@@ -139,15 +122,7 @@ namespace CombatExtended.HarmonyCE
                         // Pick up x
                         else if (count == 1)
                         {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), delegate
-                            {
-                                item.SetForbidden(false, false);
-                                Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                job.count = 1;
-                                pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                pawn.Notify_HoldTrackerItem(item, 1);
-                                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                            }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
                         else
                         {
@@ -157,27 +132,12 @@ namespace CombatExtended.HarmonyCE
                             }
                             else
                             {
-                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), delegate
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                    job.count = item.stackCount;
-                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerItem(item, item.stackCount);
-                                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
-                                }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                                opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpAll".Translate(item.Label, item), () => PickupAll(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                             }
                             opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpSome".Translate(item.Label, item), delegate
                             {
                                 int to = Mathf.Min(count, item.stackCount);
-                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, delegate (int selectCount)
-                                {
-                                    item.SetForbidden(false, false);
-                                    Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
-                                    job.count = selectCount;
-                                    pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                                    pawn.Notify_HoldTrackerItem(item, selectCount);
-                                }, -2147483648);
+                                Dialog_Slider window = new Dialog_Slider("PickUpCount".Translate(item.LabelShort, item), 1, to, (selectCount) => PickupCount(pawn, item, selectCount), -2147483648);
                                 Find.WindowStack.Add(window);
                                 PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
                             }, MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
@@ -185,6 +145,58 @@ namespace CombatExtended.HarmonyCE
                     }
                 }
             }
+        }
+
+        [SyncMethod]
+        private static void Stabilize(Pawn pawn, Pawn patient)
+        {
+            if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
+            {
+                Messages.Message("CE_CannotStabilize".Translate() + ": " + "CE_NoMedicine".Translate(pawn), patient, MessageTypeDefOf.RejectInput);
+                return;
+            }
+            // Drop medicine from inventory
+            Medicine medicine = (Medicine)pawn.inventory.innerContainer.OrderByDescending(t => t.GetStatValue(StatDefOf.MedicalPotency)).FirstOrDefault();
+            Thing medThing;
+            if (medicine != null && pawn.inventory.innerContainer.TryDrop(medicine, pawn.Position, pawn.Map, ThingPlaceMode.Direct, 1, out medThing))
+            {
+                Job job = JobMaker.MakeJob(CE_JobDefOf.Stabilize, patient, medThing);
+                job.count = 1;
+                pawn.jobs.TryTakeOrderedJob(job);
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_Stabilizing, KnowledgeAmount.Total);
+            }
+        }
+
+        [SyncMethod]
+        private static void Pickup(Pawn pawn, Thing item)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = 1;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, 1);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+        }
+
+        [SyncMethod]
+        private static void PickupAll(Pawn pawn, Thing item)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = item.stackCount;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, item.stackCount);
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
+        }
+
+        [SyncMethod]
+        private static void PickupCount(Pawn pawn, Thing item, int selectCount)
+        {
+            item.SetForbidden(false, false);
+            Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, item);
+            job.count = selectCount;
+            pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            pawn.Notify_HoldTrackerItem(item, selectCount);
         }
 
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

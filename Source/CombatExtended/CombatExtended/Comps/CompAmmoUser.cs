@@ -10,6 +10,7 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
 using CombatExtended.AI;
+using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -353,6 +354,19 @@ namespace CombatExtended
         // used as a rate limiter
         private int _lastReloadJobTick = -1;
 
+        [SyncMethod]
+        private void SyncedTryForceReload()
+        {
+            turret.TryForceReload();
+        }
+
+        [SyncMethod]
+        private void SyncedTryStartReload()
+        {
+            TryStartReload();
+        }
+
+
         // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
         /// <summary>
         /// Overrides a Pawn's current activities to start reloading a gun or turret.  Has a code path to resume the interrupted job.
@@ -676,8 +690,8 @@ namespace CombatExtended
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
                 Action action = null;
-                if (IsEquippedGun) action = TryStartReload;
-                else if (mannableComp != null) action = turret.TryForceReload;
+                if (IsEquippedGun) action = SyncedTryStartReload;
+                else if (mannableComp != null) action = SyncedTryForceReload;
 
                 // Check for teaching opportunities
                 string tag;
