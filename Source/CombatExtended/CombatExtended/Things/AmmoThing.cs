@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using RimWorld;
 using Verse;
 using Verse.Sound;
@@ -157,7 +158,13 @@ namespace CombatExtended
                     this);
             }
             // Create sound and flash effects
-            if (AmmoDef.cookOffFlashScale > 0.01) FleckMaker.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
+            if (AmmoDef.cookOffFlashScale > 0.01)
+            {
+                if (MP.IsInMultiplayer) Rand.PushState();
+                FleckMaker.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
+                if (MP.IsInMultiplayer) Rand.PopState();
+            }
+
             if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
             if (AmmoDef.cookOffTailSound != null) AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
 

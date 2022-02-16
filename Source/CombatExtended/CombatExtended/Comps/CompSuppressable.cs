@@ -7,6 +7,7 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 using CombatExtended.AI;
+using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -181,7 +182,9 @@ namespace CombatExtended
             currentSuppression += suppressAmount;
             if (Controller.settings.DebugShowSuppressionBuildup)
             {
+                if (MP.IsInMultiplayer) Rand.PushState();
                 MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
+                if (MP.IsInMultiplayer) Rand.PopState();
             }
             ticksUntilDecay = TicksForDecayStart;
             if (currentSuppression > maxSuppression)
@@ -264,7 +267,9 @@ namespace CombatExtended
                 //Decay global suppression
                 if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
                 {
+                    if (MP.IsInMultiplayer) Rand.PushState();
                     MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
+                    if (MP.IsInMultiplayer) Rand.PopState();
                 }
                 currentSuppression -= Mathf.Min(SuppressionDecayRate, currentSuppression);
                 isSuppressed = currentSuppression > 0;

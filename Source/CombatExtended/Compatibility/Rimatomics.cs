@@ -6,6 +6,7 @@ using Verse;
 using Verse.Sound;
 using System.Reflection.Emit;
 using System;
+using Multiplayer.API;
 using UnityEngine;
 using RimWorld;
 using Rimatomics;
@@ -81,7 +82,9 @@ namespace CombatExtended.Compatibility
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.parent.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
+                    if (MP.IsInMultiplayer) Rand.PushState();
                     FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    if (MP.IsInMultiplayer) Rand.PopState();
                     projectile.ExactPosition = exactPosition;
 
 

@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using Multiplayer.API;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -284,7 +285,9 @@ namespace CombatExtended
                     {
                         if (VerbPropsCE.muzzleFlashScale > 0.01f)
                         {
+                            if (MP.IsInMultiplayer) Rand.PushState();
                             FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
+                            if (MP.IsInMultiplayer) Rand.PopState();
                         }
                         if (VerbPropsCE.soundCast != null)
                         {

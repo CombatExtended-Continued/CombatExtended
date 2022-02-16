@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Multiplayer.API;
 using RimWorld;
 using Verse;
 using Verse.Grammar;
@@ -47,7 +48,9 @@ namespace CombatExtended
             }
             else
             {
+                if (MP.IsInMultiplayer) Rand.PushState();
                 MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), pawn.Map, taunt);
+                if (MP.IsInMultiplayer) Rand.PopState();
             }
             var curTick = Find.TickManager.TicksGame;
             if (!tauntTickTracker.ContainsKey(pawn))

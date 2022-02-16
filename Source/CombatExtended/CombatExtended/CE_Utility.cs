@@ -9,6 +9,7 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -632,6 +633,8 @@ namespace CombatExtended
             {
                 return;
             }
+
+            if (MP.IsInMultiplayer) Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 60;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
@@ -640,6 +643,7 @@ namespace CombatExtended
             creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
             creationData.velocityAngle = (float)Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
+            if (MP.IsInMultiplayer) Rand.PopState();
         }
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)

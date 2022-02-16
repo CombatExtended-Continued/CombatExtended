@@ -5,6 +5,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using CombatExtended.Compatibility;
+using Multiplayer.API;
 
 
 namespace CombatExtended
@@ -165,7 +166,9 @@ namespace CombatExtended
                 waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
                 {
+                    if (MP.IsInMultiplayer) Rand.PushState();
                     MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
+                    if (MP.IsInMultiplayer) Rand.PopState();
                 }
                 //Thing newAmmo;
                 //compReloader.TryUnload(out newAmmo);

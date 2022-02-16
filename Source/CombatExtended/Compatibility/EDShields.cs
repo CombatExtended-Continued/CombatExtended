@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using RimWorld;
 using Jaxxa.EnhancedDevelopment.Shields.Shields;
+using Multiplayer.API;
 
 
 namespace CombatExtended.Compatibility
@@ -87,7 +88,9 @@ namespace CombatExtended.Compatibility
                     generator.FieldIntegrity_Current -= damage;
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
+                    if (MP.IsInMultiplayer) Rand.PushState();
                     FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    if (MP.IsInMultiplayer) Rand.PopState();
                     projectile.ExactPosition = exactPosition;
                     return true;
                 }
@@ -126,7 +129,9 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
+                if (MP.IsInMultiplayer) Rand.PushState();
                 FleckMaker.ThrowLightningGlow(destination, map, 0.5f);
+                if (MP.IsInMultiplayer) Rand.PopState();
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 generator.FieldIntegrity_Current -= damage;
                 return true;

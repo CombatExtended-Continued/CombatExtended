@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using HarmonyLib;
+using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -304,7 +305,9 @@ namespace CombatExtended
             }
             damType.Worker.ExplosionStart(this, cellsToAffect);
             PlayExplosionSound(explosionSound);
+            if (MP.IsInMultiplayer) Rand.PushState();
             FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, radius * 6f, 20f);
+            if (MP.IsInMultiplayer) Rand.PopState();
             cellsToAffect.Sort((IntVec3 a, IntVec3 b) => GetCellAffectTick(b).CompareTo(GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(Position, Map, (Region from, Region to) => true, delegate (Region x)
             {

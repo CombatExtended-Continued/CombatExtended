@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Multiplayer.API;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -145,7 +146,9 @@ namespace CombatExtended
             // Throw mote
             if (compReloader.ShouldThrowMote && holder.Map != null)     //holder.Map is temporarily null after game load, skip mote if a pawn was reloading when game was saved
             {
+                if (MP.IsInMultiplayer) Rand.PushState();
                 MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                if (MP.IsInMultiplayer) Rand.PopState();
             }
 
             //Toil of do-nothing		

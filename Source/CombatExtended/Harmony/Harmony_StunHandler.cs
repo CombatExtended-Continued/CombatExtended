@@ -6,6 +6,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using HarmonyLib;
+using Multiplayer.API;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -50,7 +51,9 @@ namespace CombatExtended.HarmonyCE
                     }
                     else
                     {
+                        if (MP.IsInMultiplayer) Rand.PushState();
                         MoteMaker.ThrowText(new Vector3((float)__instance.parent.Position.x + 1f, (float)__instance.parent.Position.y, (float)__instance.parent.Position.z + 1f), __instance.parent.Map, "Adapted".Translate(), Color.white, -1f);
+                        if (MP.IsInMultiplayer) Rand.PushState(); 
                         int adaptationReduction = Mathf.RoundToInt(Mathf.Sqrt(dinfo.Amount * 45));
 
                         if (adaptationReduction < ___EMPAdaptedTicksLeft)

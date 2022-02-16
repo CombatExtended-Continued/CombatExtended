@@ -10,6 +10,7 @@ using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
 using CombatExtended.Utilities;
+using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -787,7 +788,12 @@ namespace CombatExtended
             ExactPosition = point;
             landed = true;
 
-            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                if (MP.IsInMultiplayer) Rand.PushState();
+                MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+                if (MP.IsInMultiplayer) Rand.PopState();
+            }
 
             Impact(null);
             return true;
@@ -821,7 +827,12 @@ namespace CombatExtended
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
                 var chance = thing.def.fillPercent * accuracyFactor;
-                if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
+                if (Controller.settings.DebugShowTreeCollisionChance)
+                {
+                    if (MP.IsInMultiplayer) Rand.PushState();
+                    MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
+                    if (MP.IsInMultiplayer) Rand.PopState();
+                }
                 if (!Rand.Chance(chance)) return false;
             }
 
@@ -832,7 +843,12 @@ namespace CombatExtended
             ExactPosition = point;
             landed = true;
 
-            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                if (MP.IsInMultiplayer) Rand.PushState();
+                MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+                if (MP.IsInMultiplayer) Rand.PopState();
+            }
 
             Impact(thing);
             return true;

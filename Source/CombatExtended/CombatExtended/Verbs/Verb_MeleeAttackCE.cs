@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Multiplayer.API;
 using UnityEngine;
 using RimWorld;
 using Verse;
@@ -221,8 +222,13 @@ namespace CombatExtended
                 soundDef = SoundMiss();
                 CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false);
             }
+
             if (!moteText.NullOrEmpty())
+            {
+                if (MP.IsInMultiplayer) Rand.PushState();
                 MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+                if (MP.IsInMultiplayer) Rand.PopState();
+            }
             soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
             casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
             if (defender != null && !defender.Dead)
