@@ -465,9 +465,8 @@ namespace CombatExtended
         public static Vector2 GenRandInCircle(float radius)
         {
             //Fancy math to get random point in circle
-            System.Random rand = new System.Random();
-            double angle = rand.NextDouble() * Math.PI * 2;
-            double range = Math.Sqrt(rand.NextDouble()) * radius;
+            double angle = Rand.Value * Math.PI * 2;
+            double range = Rand.Value * radius;
             return new Vector2((float)(range * Math.Cos(angle)), (float)(range * Math.Sin(angle)));
         }
 

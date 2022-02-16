@@ -521,8 +521,8 @@ namespace CombatExtended
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
-            rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
-            angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
+            rotation += recoilMagnitude * Rand.Range(minX, maxX);
+            angle += Mathf.Deg2Rad * recoilMagnitude * Rand.Range(minY, maxY);
         }
 
         /// <summary>

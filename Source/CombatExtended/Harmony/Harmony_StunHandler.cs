@@ -35,7 +35,7 @@ namespace CombatExtended.HarmonyCE
 
                     float stunResistChance = ((float)___EMPAdaptedTicksLeft / (float)newStunAdaptedTicks) * 15;
 
-                    if (UnityEngine.Random.value > stunResistChance)
+                    if (Rand.Value > stunResistChance)
                     {
                         ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
 
