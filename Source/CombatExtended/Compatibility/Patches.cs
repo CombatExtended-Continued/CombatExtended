@@ -21,9 +21,14 @@ namespace CombatExtended.Compatibility
                 ProjectRimFactoryCompat.Install();
             }
 
-	    if (Rimatomics.CanInstall())
+	        if (Rimatomics.CanInstall())
             {
                 Rimatomics.Install();
+            }
+
+            if (Multiplayer.CanInstall())
+            {
+                Multiplayer.Install();
             }
         }
     }
