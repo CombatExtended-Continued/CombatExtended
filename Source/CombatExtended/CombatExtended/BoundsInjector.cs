@@ -162,7 +162,7 @@ namespace CombatExtended
 				catch (Exception e) {	throw new Exception(def+".plant.immatureGraphic", e);	}
     		}
     		
-    		Graphic graphicSowing = (Graphic)(typeof(Plant).GetField("GraphicSowing", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null));
+    		Graphic graphicSowing = Plant.GraphicSowing;
     		
 			try {	if (graphicSowing != null)
 					BoundMap(graphicSowing, GraphicType.Plant);	}
