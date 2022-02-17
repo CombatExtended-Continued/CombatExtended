@@ -7,6 +7,14 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<!-- Plate Armor -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name="AnimalPlateArmorBase"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeDodgeChance>-0.1</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[@Name="AnimalPlateArmorBase"]/statBases</xpath>
 					<value>
@@ -21,6 +29,14 @@
 					</value>
 				</li>
 				<!-- Plate Helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[@Name="AnimalPlateHelmBase"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeHitChance>-1.0</MeleeHitChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[@Name="AnimalPlateHelmBase"]/statBases</xpath>
 					<value>
