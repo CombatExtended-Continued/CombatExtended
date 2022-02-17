@@ -18,7 +18,7 @@ namespace CombatExtended.HarmonyCE
         const string className = "DisplayClass";
         const string methodName = "<TryFindRandomShellDef>";
 
-        public static void Postfix(object __instance, ThingDef x, ref bool __result)
+        public static void Postfix(object __instance, ThingDef x, ref bool __result, bool ___allowEMP, float ___maxMarketValue, bool ___mustHarmHealth)
         {
             // Ignore already true results.
             if (__result)
@@ -34,21 +34,8 @@ namespace CombatExtended.HarmonyCE
                 return;
             }
 
-            #region Get properties of parent of TryFindRandomShellDef
-            var type = __instance.GetType();
-
-            bool allowEMP;
-            bool.TryParse(AccessTools.Field(type, "allowEMP").GetValue(__instance)?.ToString(), out allowEMP);
-
-            float maxMarketValue;
-            float.TryParse(AccessTools.Field(type, "maxMarketValue").GetValue(__instance)?.ToString(), out maxMarketValue);
-
-            bool mustHarmHealth;
-            bool.TryParse(AccessTools.Field(type, "mustHarmHealth").GetValue(__instance)?.ToString(), out mustHarmHealth);
-            #endregion
-
             // Check if market value is within range.
-            if (maxMarketValue >= 0.0f && ammoDef.BaseMarketValue > maxMarketValue)
+            if (___maxMarketValue >= 0.0f && ammoDef.BaseMarketValue > ___maxMarketValue)
             {
                 return;
             }
@@ -68,13 +55,13 @@ namespace CombatExtended.HarmonyCE
             }
 
             // Ignore EMP if not allowed.
-            if (!allowEMP && (explosiveDamageDef == DamageDefOf.EMP || projectileDamageDef == DamageDefOf.EMP))
+            if (!___allowEMP && (explosiveDamageDef == DamageDefOf.EMP || projectileDamageDef == DamageDefOf.EMP))
             {
                 return;
             }
 
             // Check if shell harms health.
-            if (mustHarmHealth && explosiveDamageDef != null && !explosiveDamageDef.harmsHealth && projectileDamageDef != null && !projectileDamageDef.harmsHealth)
+            if (___mustHarmHealth && explosiveDamageDef != null && !explosiveDamageDef.harmsHealth && projectileDamageDef != null && !projectileDamageDef.harmsHealth)
             {
                 return;
             }

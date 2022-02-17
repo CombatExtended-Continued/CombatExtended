@@ -345,8 +345,6 @@ namespace CombatExtended
         }
 
 
-        // Todo: When rimworld harmony updates to 2.0.4 use FieldRefAccess
-        private static readonly FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         private Material[] shadowMaterial;
         private Material ShadowMaterial
@@ -562,8 +560,6 @@ namespace CombatExtended
         #endregion
 
         #region Collisions        
-        static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
-
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -591,7 +587,7 @@ namespace CombatExtended
                 return false;
             }
 
-            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !((bool)interceptDebug.GetValue(interceptorComp)) && !interceptorComp.Props.interceptNonHostileProjectiles)
+            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
             {
                 return false;
             }
@@ -1165,7 +1161,7 @@ namespace CombatExtended
 
         private static Material[] GetShadowMaterial(Graphic_Collection g)
         {
-            var collection = (Graphic[])subGraphics.GetValue(g);
+            var collection = g.subGraphics;
             var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();
 
             return shadows;
