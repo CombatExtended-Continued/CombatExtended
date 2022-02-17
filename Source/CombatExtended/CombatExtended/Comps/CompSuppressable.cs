@@ -182,9 +182,7 @@ namespace CombatExtended
             currentSuppression += suppressAmount;
             if (Controller.settings.DebugShowSuppressionBuildup)
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
             }
             ticksUntilDecay = TicksForDecayStart;
             if (currentSuppression > maxSuppression)
@@ -267,9 +265,7 @@ namespace CombatExtended
                 //Decay global suppression
                 if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
                 {
-                    if (MP.IsInMultiplayer) Rand.PushState();
-                    MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
-                    if (MP.IsInMultiplayer) Rand.PopState();
+                    MoteMakerCE.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
                 }
                 currentSuppression -= Mathf.Min(SuppressionDecayRate, currentSuppression);
                 isSuppressed = currentSuppression > 0;

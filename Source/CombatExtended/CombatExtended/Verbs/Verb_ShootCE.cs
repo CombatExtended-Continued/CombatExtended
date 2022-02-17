@@ -285,9 +285,7 @@ namespace CombatExtended
                     {
                         if (VerbPropsCE.muzzleFlashScale > 0.01f)
                         {
-                            if (MP.IsInMultiplayer) Rand.PushState();
-                            FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
-                            if (MP.IsInMultiplayer) Rand.PopState();
+                            FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
                         }
                         if (VerbPropsCE.soundCast != null)
                         {

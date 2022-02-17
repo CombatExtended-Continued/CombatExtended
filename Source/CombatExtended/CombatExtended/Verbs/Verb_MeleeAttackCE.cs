@@ -225,9 +225,7 @@ namespace CombatExtended
 
             if (!moteText.NullOrEmpty())
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
             }
             soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
             casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);

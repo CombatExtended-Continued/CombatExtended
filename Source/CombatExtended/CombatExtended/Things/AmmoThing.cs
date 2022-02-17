@@ -160,9 +160,7 @@ namespace CombatExtended
             // Create sound and flash effects
             if (AmmoDef.cookOffFlashScale > 0.01)
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                FleckMaker.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
-                if (MP.IsInMultiplayer) Rand.PopState();
+                FleckMakerCE.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
             }
 
             if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));

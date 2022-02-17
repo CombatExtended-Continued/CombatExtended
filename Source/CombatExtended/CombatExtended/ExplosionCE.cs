@@ -305,9 +305,7 @@ namespace CombatExtended
             }
             damType.Worker.ExplosionStart(this, cellsToAffect);
             PlayExplosionSound(explosionSound);
-            if (MP.IsInMultiplayer) Rand.PushState();
-            FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, radius * 6f, 20f);
-            if (MP.IsInMultiplayer) Rand.PopState();
+            FleckMakerCE.WaterSplash(Position.ToVector3Shifted(), Map, radius * 6f, 20f);
             cellsToAffect.Sort((IntVec3 a, IntVec3 b) => GetCellAffectTick(b).CompareTo(GetCellAffectTick(a)));
             RegionTraverser.BreadthFirstTraverse(Position, Map, (Region from, Region to) => true, delegate (Region x)
             {

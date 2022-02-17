@@ -790,9 +790,7 @@ namespace CombatExtended
 
             if (Controller.settings.DebugDrawInterceptChecks)
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
             }
 
             Impact(null);
@@ -829,9 +827,7 @@ namespace CombatExtended
                 var chance = thing.def.fillPercent * accuracyFactor;
                 if (Controller.settings.DebugShowTreeCollisionChance)
                 {
-                    if (MP.IsInMultiplayer) Rand.PushState();
-                    MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
-                    if (MP.IsInMultiplayer) Rand.PopState();
+                    MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 }
                 if (!Rand.Chance(chance)) return false;
             }
@@ -845,9 +841,7 @@ namespace CombatExtended
 
             if (Controller.settings.DebugDrawInterceptChecks)
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
 
             Impact(thing);

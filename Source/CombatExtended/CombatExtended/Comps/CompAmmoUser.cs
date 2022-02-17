@@ -509,9 +509,7 @@ namespace CombatExtended
 
             if (ShouldThrowMote)
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
             }
 
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))

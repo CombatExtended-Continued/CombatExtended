@@ -166,9 +166,7 @@ namespace CombatExtended
                 waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
                 {
-                    if (MP.IsInMultiplayer) Rand.PushState();
-                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
-                    if (MP.IsInMultiplayer) Rand.PopState();
+                    MoteMakerCE.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 }
                 //Thing newAmmo;
                 //compReloader.TryUnload(out newAmmo);

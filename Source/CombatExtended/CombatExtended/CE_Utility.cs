@@ -634,16 +634,16 @@ namespace CombatExtended
                 return;
             }
 
-            if (MP.IsInMultiplayer) Rand.PushState();
+            Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 60;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
-            if (MP.IsInMultiplayer) Rand.PopState();
+            Rand.PopState();
         }
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)

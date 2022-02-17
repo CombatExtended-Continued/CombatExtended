@@ -48,9 +48,7 @@ namespace CombatExtended
             }
             else
             {
-                if (MP.IsInMultiplayer) Rand.PushState();
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), pawn.Map, taunt);
-                if (MP.IsInMultiplayer) Rand.PopState();
+                MoteMakerCE.ThrowText(pawn.Position.ToVector3Shifted(), pawn.Map, taunt);
             }
             var curTick = Find.TickManager.TicksGame;
             if (!tauntTickTracker.ContainsKey(pawn))
