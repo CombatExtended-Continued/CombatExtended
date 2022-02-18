@@ -8,17 +8,63 @@
     <match Class="PatchOperationSequence">
       <operations>
         
-      <!-- === Mortar === -->
+      <!-- === Turret Bases === -->
       
-      <li Class="PatchOperationRemove">
-        <xpath>
-          /Defs/ThingDef[defName="FT_Turret_Mortar"]/comps |
-          /Defs/ThingDef[defName="FT_Turret_Mortar"]/building/buildingTags/li[text()="Artillery_BaseDestroyer"] |
-          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags/li[text()="Artillery_BaseDestroyer"] |
-          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/building |
-          /Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]
-        </xpath>
-      </li>
+	        <li Class="PatchOperationRemove">
+			<xpath>
+			  /Defs/ThingDef[defName="FT_Turret_Mortar"]/comps |
+			  /Defs/ThingDef[defName="FT_Turret_Mortar"]/building/buildingTags/li[text()="Artillery_BaseDestroyer"] |
+			  /Defs/ThingDef[defName="FT_Artillery_Mortar"]/weaponTags/li[text()="Artillery_BaseDestroyer"] |
+			  /Defs/ThingDef[defName="FT_Artillery_Mortar"]/building |
+			  /Defs/ThingDef[defName="FT_Artillery_Mortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]
+			</xpath>
+	        </li>
+	  
+		<li Class="PatchOperationRemove">
+			<xpath>
+			Defs/ThingDef[defName="FT_TurretHexMortar" or defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class = "CompProperties_Refuelable"] |
+			Defs/ThingDef[defName="FT_TurretHexMortar" or defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/inspectorTabs |
+			Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class="VFESecurity.CompProperties_LongRangeArtillery"] |
+			Defs/ThingDef[defName="FT_TurretHexMortar" or defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building/buildingTags/li[text()="Artillery_BaseDestroyer"]
+			</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar" or defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/thingClass</xpath>
+			<value>
+				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>1</turretBurstCooldownTime>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>6</turretBurstCooldownTime>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.85</fillPercent>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar" or defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building</xpath>
+			<value>
+				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+			</value>
+		</li>
+		
+      <!-- === Infantry Mortar === -->
       
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="FT_Artillery_Mortar"]/label</xpath>
@@ -149,78 +195,6 @@
 				</verbs>
 			</value>
 		</li>
-
-		<!-- Patch base -->
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/thingClass</xpath>
-			<value>
-				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/building/turretBurstCooldownTime</xpath>
-			<value>
-				<turretBurstCooldownTime>5</turretBurstCooldownTime>
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/building</xpath>
-			<value>
-				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
-			</value>
-		</li>
-
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="FT_TurretHexMortar"]/inspectorTabs</xpath>
-		</li>
-
-      <!-- === Heavy Artillery Common === -->
-	  
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/thingClass</xpath>
-			<value>
-				<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building/turretBurstCooldownTime</xpath>
-			<value>
-				<turretBurstCooldownTime>1</turretBurstCooldownTime>
-			</value>
-		</li>
-
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/fillPercent</xpath>
-			<value>
-				<fillPercent>0.85</fillPercent>
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/building</xpath>
-			<value>
-				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
-			</value>
-		</li>
-
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/inspectorTabs</xpath>
-		</li>
-
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="FT_TurretPrince" or defName="FT_TurretEmpero"]/comps/li[@Class="VFESecurity.CompProperties_LongRangeArtillery"]</xpath>
-		</li>
         
       <!-- === 155mm Artillery / NK-33L "Prince" === -->
 
@@ -290,7 +264,7 @@
 				<ThingDef ParentName="BaseWeaponTurret">
 					<defName>FT_Gun_TurretEmpero</defName>
 					<label>155mm field cannon</label>
-					<description>A recoilless cannon designed to engage heavily-armed targets at range.</description>
+					<description>A powerful direct-firing cannon with high accuracy.</description>
 					<graphicData>
 						<texPath>Empero/Empero_Gun</texPath>
 						<drawOffset>(5,0,0)</drawOffset>
@@ -312,7 +286,7 @@
 							<defaultProjectile>Bullet_155mmHowitzerShell_HE_directfire</defaultProjectile>
 							<warmupTime>4</warmupTime>
 							<minRange>4.9</minRange>
-							<range>500</range>
+							<range>126</range>
 							<soundCast>FT_CannonLaunchC</soundCast>
 							<soundCastTail>GunTail_Heavy</soundCastTail>
 							<muzzleFlashScale>32</muzzleFlashScale>
