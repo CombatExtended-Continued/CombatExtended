@@ -32,6 +32,10 @@ namespace CombatExtended.Compatibility
                 if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute)) continue;
 
                 var syncMethod = MP.RegisterSyncMethod(method);
+                
+                if (attribute.syncContext != -1)
+                    syncMethod.SetContext((SyncContext)attribute.syncContext);
+
                 if (attribute.exposeParameters == null) continue;
 
                 foreach (var parameter in attribute.exposeParameters)
@@ -186,6 +190,7 @@ namespace CombatExtended.Compatibility
         [AttributeUsage(AttributeTargets.Method)]
         public class SyncMethodAttribute : Attribute
         {
+            public int syncContext = -1;
             public int[] exposeParameters = null;
         }
     }

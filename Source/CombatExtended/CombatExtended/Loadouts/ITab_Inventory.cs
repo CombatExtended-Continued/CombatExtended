@@ -517,10 +517,10 @@ namespace CombatExtended
             }
         }
 
-        [Compatibility.Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod(syncContext = 2)] // 2 is map selected
         private void SyncedInterfaceIngest(Thing t) => InterfaceIngest(t);
 
-        [Compatibility.Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod(syncContext = 2)]
         private void SyncedInterfaceDropHaul(Thing t) => InterfaceDropHaul(t);
 
         private new void InterfaceIngest(Thing t)
@@ -546,7 +546,7 @@ namespace CombatExtended
             return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
         }
 
-        [Compatibility.Multiplayer.SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod(syncContext = 2)]
         private void SyncedInterfaceDrop(Thing thing) => InterfaceDrop(thing);
 
         [Compatibility.Multiplayer.SyncMethod]
