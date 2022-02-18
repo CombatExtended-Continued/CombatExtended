@@ -80,6 +80,9 @@ namespace CombatExtended
             }
         }
 
+        [Compatibility.Multiplayer.SyncMethodAttribute]
+        private static void SetAmmoType(CompAmmoUser user, AmmoDef ammoDef) => user.SelectedAmmo = ammoDef;
+
         private FloatMenu MakeAmmoMenu()
         {
             return new FloatMenu(BuildAmmoOptions());
@@ -139,7 +142,7 @@ namespace CombatExtended
                             }
                             else
                             {
-                                del += delegate { user.SelectedAmmo = ammoDef; };
+                                del += () => SetAmmoType(user, ammoDef);
 
                                 if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null)
                                     del += other.action;
