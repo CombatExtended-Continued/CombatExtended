@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Multiplayer.API;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -235,7 +234,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref heightInt, "heightInt");
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void ChangeCurrentHeight()
         {
             switch (heightInt)
@@ -259,7 +258,7 @@ namespace CombatExtended
             }
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void ChangeCurrentPart(BodyPartDef def)
         {
             targetBodyPart = def;

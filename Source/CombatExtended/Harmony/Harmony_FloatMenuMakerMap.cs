@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
-using Multiplayer.API;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -147,7 +146,7 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
-        [SyncMethod]
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void Stabilize(Pawn pawn, Pawn patient)
         {
             if (pawn.inventory == null || pawn.inventory.innerContainer == null || !pawn.inventory.innerContainer.Any(t => t.def.IsMedicine))
@@ -167,7 +166,7 @@ namespace CombatExtended.HarmonyCE
             }
         }
 
-        [SyncMethod]
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void Pickup(Pawn pawn, Thing item)
         {
             item.SetForbidden(false, false);
@@ -178,7 +177,7 @@ namespace CombatExtended.HarmonyCE
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
         }
 
-        [SyncMethod]
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void PickupAll(Pawn pawn, Thing item)
         {
             item.SetForbidden(false, false);
@@ -189,7 +188,7 @@ namespace CombatExtended.HarmonyCE
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_InventoryWeightBulk, KnowledgeAmount.SpecificInteraction);
         }
 
-        [SyncMethod]
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void PickupCount(Pawn pawn, Thing item, int selectCount)
         {
             item.SetForbidden(false, false);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Multiplayer.API;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -52,13 +51,13 @@ namespace CombatExtended
             }
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SetLoadout(Pawn pawn, Loadout loadout) => pawn.SetLoadout(loadout);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void HoldTrackerClear(Pawn pawn) => pawn.HoldTrackerClear();
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void UpdateLoadoutNow(Pawn pawn)
         {
             Job job = pawn.thinker?.GetMainTreeThinkNode<JobGiver_UpdateLoadout>()?.TryGiveJob(pawn);

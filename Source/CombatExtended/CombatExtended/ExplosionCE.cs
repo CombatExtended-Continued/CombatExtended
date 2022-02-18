@@ -6,7 +6,6 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using HarmonyLib;
-using Multiplayer.API;
 
 namespace CombatExtended
 {

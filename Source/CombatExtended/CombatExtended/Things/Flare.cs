@@ -1,5 +1,4 @@
 ﻿using System;
-using Multiplayer.API;
 using RimWorld;
 using RimWorld.BaseGen;
 using UnityEngine;
@@ -200,7 +199,7 @@ namespace CombatExtended
                  * Incase this breaks use the fleck system below.
                  */
 
-                if (MP.IsInMultiplayer) Rand.PushState();
+                if (Compatibility.Multiplayer.InMultiplayer) Rand.PushState();
                 MoteThrownCE smokeMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareSmoke);
                 smokeMote.Scale = Rand.Range(1.5f, 2.5f) * Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE) * HeightDrawScale;
                 smokeMote.rotationRate = Rand.Range(-30f, 30f);
@@ -229,7 +228,7 @@ namespace CombatExtended
                 {
                     FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, Rand.Range(0.8f, 1.2f) * WATERSPLASH_SIZE * (1f - (CurAltitude - FinalAltitude) / (WATERSPLASH_MIN_ALTITUDE - FinalAltitude)), WATERSPLASH_VELOCITY);
                 }
-                if (MP.IsInMultiplayer) Rand.PopState();
+                if (Compatibility.Multiplayer.InMultiplayer) Rand.PopState();
                 /*
                  * Use incase motes start breaking                                 
                  */

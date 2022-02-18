@@ -5,7 +5,6 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using CombatExtended.Compatibility;
-using Multiplayer.API;
 
 
 namespace CombatExtended

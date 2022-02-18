@@ -7,7 +7,6 @@ using Verse;
 using UnityEngine;
 using Verse.AI;
 using CombatExtended.Compatibility;
-using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -211,7 +210,7 @@ namespace CombatExtended
             return floatOptionList;
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedTryUnload(List<CompAmmoUser> ammoUsers)
         {
             foreach (var user in ammoUsers) 

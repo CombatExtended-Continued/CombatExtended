@@ -10,7 +10,6 @@ using CombatExtended.Compatibility;
 using CombatExtended.Lasers;
 using ProjectileImpactFX;
 using CombatExtended.Utilities;
-using Multiplayer.API;
 
 namespace CombatExtended
 {

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Multiplayer.API;
 using UnityEngine;
 using Verse;
 using RimWorld;
@@ -96,7 +95,7 @@ namespace CombatExtended
                     newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
 
                     var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor);
-                    if (!MP.IsInMultiplayer)
+                    if (!Compatibility.Multiplayer.InMultiplayer)
                         _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
                     else
                     {

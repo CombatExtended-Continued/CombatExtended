@@ -1,19 +1,69 @@
-﻿using Multiplayer.API;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using Multiplayer.API;
 using Verse;
 
 namespace CombatExtended.Compatibility
 {
     internal class Multiplayer
     {
+        private static bool isMultiplayerActive = false;
+
         public static bool CanInstall()
         {
-            return MP.enabled;
+            return ModLister.HasActiveModWithName("Multiplayer");
         }
 
         public static void Install()
         {
+            isMultiplayerActive = true;
+
+            var methods = Controller.content.assemblies.loadedAssemblies
+                .SelectMany(a => a.GetTypes())
+                .SelectMany(t => t.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
+                .Where(m => !m.IsAbstract)
+                .Where(m => m.HasAttribute<SyncMethodAttribute>());
+
+            //MP.RegisterSyncMethod(typeof(Building_TurretGunCE), nameof(Building_TurretGunCE.OrderAttack));
+            foreach (var method in methods)
+            {
+                if (!method.TryGetAttribute<SyncMethodAttribute>(out var attribute)) continue;
+
+                var syncMethod = MP.RegisterSyncMethod(method);
+                if (attribute.exposeParameters == null) continue;
+
+                foreach (var parameter in attribute.exposeParameters)
+                    syncMethod.ExposeParameter(parameter);
+            }
+
             MP.RegisterAll();
         }
+
+        public static bool InMultiplayer
+        {
+            get
+            {
+                if (isMultiplayerActive)
+                    return _inMultiplayer;
+                return false;
+            }
+        }
+
+        public static bool IsExecutingCommandsIssuedBySelf
+        {
+            get
+            {
+                if (isMultiplayerActive)
+                    return _isExecutingCommandsIssuedBySelf;
+                return false;
+            }
+        }
+
+        private static bool _inMultiplayer => MP.IsInMultiplayer;
+
+        private static bool _isExecutingCommandsIssuedBySelf => MP.IsExecutingSyncCommandIssuedBySelf;
 
         [SyncWorker]
         private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
@@ -132,5 +182,11 @@ namespace CombatExtended.Compatibility
         [SyncWorker(shouldConstruct = true)]
         private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
         { }
+
+        [AttributeUsage(AttributeTargets.Method)]
+        public class SyncMethodAttribute : Attribute
+        {
+            public int[] exposeParameters = null;
+        }
     }
 }

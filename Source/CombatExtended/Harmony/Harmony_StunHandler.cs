@@ -6,7 +6,6 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 using HarmonyLib;
-using Multiplayer.API;
 
 namespace CombatExtended.HarmonyCE
 {

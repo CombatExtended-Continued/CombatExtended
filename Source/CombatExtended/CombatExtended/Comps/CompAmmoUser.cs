@@ -10,7 +10,6 @@ using Verse.Sound;
 using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
 using CombatExtended.AI;
-using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -354,13 +353,13 @@ namespace CombatExtended
         // used as a rate limiter
         private int _lastReloadJobTick = -1;
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedTryForceReload()
         {
             turret.TryForceReload();
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedTryStartReload()
         {
             TryStartReload();

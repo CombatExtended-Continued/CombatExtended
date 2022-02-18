@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
-using Multiplayer.API;
 using UnityEngine;
 using Verse;
 
@@ -111,7 +110,7 @@ namespace CombatExtended
             }
             set
             {
-                if (MP.IsInMultiplayer && _currentLoadout != null)
+                if (Compatibility.Multiplayer.InMultiplayer && _currentLoadout != null)
                     SyncedSetName(_currentLoadout, _currentLoadout.label);
                 _currentLoadout = value;
             }
@@ -467,7 +466,7 @@ namespace CombatExtended
             TooltipHandler.TipRegion(canvas, "CE_CountFieldTip".Translate(slot.count));
             if (slot.count != countInt)
             {
-                if (MP.IsInMultiplayer)
+                if (Compatibility.Multiplayer.InMultiplayer)
                     SetSlotCount(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot), countInt);
                 else
                     slot.count = countInt;
@@ -635,7 +634,7 @@ namespace CombatExtended
                 string tipString = slot.countType == LoadoutCountType.dropExcess ? "CE_DropExcess".Translate() : "CE_PickupMissingAndDropExcess".Translate();
                 if (Widgets.ButtonImage(countModeRect, curModeIcon))
                 {
-                    if (MP.IsInMultiplayer)
+                    if (Compatibility.Multiplayer.InMultiplayer)
                         ChangeCountType(CurrentLoadout, CurrentLoadout.Slots.IndexOf(slot));
                     else
                         slot.countType = slot.countType == LoadoutCountType.dropExcess ? LoadoutCountType.pickupDrop : LoadoutCountType.dropExcess;
@@ -688,7 +687,7 @@ namespace CombatExtended
                     // catch mouseUp
                     if (Input.GetMouseButtonUp(0))
                     {
-                        if (MP.IsInMultiplayer)
+                        if (Compatibility.Multiplayer.InMultiplayer)
                             MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), i);
                         else
                             CurrentLoadout.MoveSlot(Dragging, i);
@@ -726,7 +725,7 @@ namespace CombatExtended
                     // catch mouseUp
                     if (Input.GetMouseButtonUp(0))
                     {
-                        if (MP.IsInMultiplayer)
+                        if (Compatibility.Multiplayer.InMultiplayer)
                             MoveSlot(CurrentLoadout, CurrentLoadout.Slots.IndexOf(Dragging), CurrentLoadout.Slots.Count - 1);
                         else
                             CurrentLoadout.MoveSlot(Dragging, CurrentLoadout.Slots.Count - 1);
@@ -812,37 +811,37 @@ namespace CombatExtended
         {
             base.Close(doCloseSound);
 
-            if (MP.IsInMultiplayer && CurrentLoadout != null)
+            if (Compatibility.Multiplayer.InMultiplayer && CurrentLoadout != null)
                 SyncedSetName(CurrentLoadout, CurrentLoadout.label);
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedSetName(Loadout loadout, string name) => loadout.label = name;
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void AddLoadoutSlotGeneric(Loadout loadout, LoadoutGenericDef generic) => loadout.AddSlot(new LoadoutSlot(generic));
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void AddLoadoutSlotSpecific(Loadout loadout, ThingDef def, int count = 1) 
             => loadout.AddSlot(new LoadoutSlot(def, count));
 
         // We prefer syncing loadout and slot index, as it's faster than iterating over all of the loadouts first to find the current one.
         // We don't have direct reference to Loadout from LoadoutSlot, so we can't really speed up the SyncWorker for it.
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void RemoveSlot(Loadout loadout, int index)
         {
             if (index >= 0) 
                 loadout.RemoveSlot(index);
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SetSlotCount(Loadout loadout, int index, int count)
         {
             if (index >= 0) 
                 loadout.Slots[index].count = count;
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static Loadout NewLoadout()
         {
             Loadout loadout = new Loadout();
@@ -851,26 +850,26 @@ namespace CombatExtended
 
             // In synced methods, it always returns the default value (as it can't run the method at the time)
             // so we switch the loadout for the user who added a new one
-            if (MP.IsExecutingSyncCommandIssuedBySelf)
+            if (Compatibility.Multiplayer.IsExecutingCommandsIssuedBySelf)
                 Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>().CurrentLoadout = loadout;
             return loadout;
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static Loadout CopyLoadout(Loadout loadout)
         {
             var copy = loadout.Copy();
             LoadoutManager.AddLoadout(copy);
 
-            if (MP.IsExecutingSyncCommandIssuedBySelf)
+            if (Compatibility.Multiplayer.IsExecutingCommandsIssuedBySelf)
                 Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>().CurrentLoadout = copy;
             return copy;
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void RemoveLoadout(Loadout loadout)
         {
-            if (MP.IsInMultiplayer)
+            if (Compatibility.Multiplayer.InMultiplayer)
                 Find.WindowStack.WindowOfType<Dialog_ManageLoadouts>().CurrentLoadout = null;
             LoadoutManager.RemoveLoadout(loadout);
         }
@@ -880,10 +879,10 @@ namespace CombatExtended
         /// We need to use it in places where we haven't called <see cref="LoadoutManager.AddLoadout(Loadout)"/> yet on that specific loadout.
         /// </summary>
         /// <param name="loadout">A specific <see cref="Loadout"/> which we want to sync</param>
-        [SyncMethod(exposeParameters = new[] { 0 })]
+        [Compatibility.Multiplayer.SyncMethod(exposeParameters = new[] { 0 })]
         private static void AddLoadoutExpose(Loadout loadout) => LoadoutManager.AddLoadout(loadout);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void MoveSlot(Loadout loadout, int index, int moveIndex)
         {
             if (index >= 0)
@@ -893,7 +892,7 @@ namespace CombatExtended
             }
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void ChangeCountType(Loadout loadout, int index)
         {
             if (index >= 0)

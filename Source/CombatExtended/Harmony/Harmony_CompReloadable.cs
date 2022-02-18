@@ -7,7 +7,6 @@ using Verse.AI;
 using Verse;
 using UnityEngine;
 using HarmonyLib;
-using Multiplayer.API;
 
 namespace CombatExtended.HarmonyCE
 {
@@ -33,7 +32,7 @@ namespace CombatExtended.HarmonyCE
 
         }
 
-        [SyncMethod]
+        [global::CombatExtended.Compatibility.Multiplayer.SyncMethod]
         private static void TryReloadArmor(CompReloadable __instance)
         {
             ThingWithComps gear = __instance.parent;

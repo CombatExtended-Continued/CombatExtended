@@ -10,7 +10,6 @@ using Verse.Sound;
 using UnityEngine;
 using CombatExtended.CombatExtended.LoggerUtils;
 using CombatExtended.CombatExtended.Jobs.Utils;
-using Multiplayer.API;
 
 namespace CombatExtended
 {
@@ -244,7 +243,7 @@ namespace CombatExtended
             return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         public override void OrderAttack(LocalTargetInfo targ)      // Core method
         {
             if (!targ.IsValid)
@@ -638,7 +637,7 @@ namespace CombatExtended
 
         // ExtractShell not added
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void ToggleHoldFire()
         {
             holdFire = !holdFire;
@@ -648,7 +647,7 @@ namespace CombatExtended
             }
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedResetForcedTarget() => ResetForcedTarget();
 
         private void ResetForcedTarget()                // Core method

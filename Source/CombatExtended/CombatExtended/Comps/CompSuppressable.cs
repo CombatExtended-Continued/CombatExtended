@@ -7,7 +7,6 @@ using Verse;
 using Verse.AI;
 using UnityEngine;
 using CombatExtended.AI;
-using Multiplayer.API;
 
 namespace CombatExtended
 {

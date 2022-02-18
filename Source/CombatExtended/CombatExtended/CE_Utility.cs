@@ -9,7 +9,6 @@ using Verse.AI;
 using Verse.Sound;
 using UnityEngine;
 using System.Runtime.CompilerServices;
-using Multiplayer.API;
 
 namespace CombatExtended
 {

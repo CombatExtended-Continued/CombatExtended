@@ -4,7 +4,6 @@ using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Multiplayer.API;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -518,10 +517,10 @@ namespace CombatExtended
             }
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedInterfaceIngest(Thing t) => InterfaceIngest(t);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedInterfaceDropHaul(Thing t) => InterfaceDropHaul(t);
 
         private new void InterfaceIngest(Thing t)
@@ -547,33 +546,33 @@ namespace CombatExtended
             return value.ToStringByStyle(asPercent ? ToStringStyle.FloatMaxOne : ToStringStyle.FloatMaxTwo) + unit;
         }
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private void SyncedInterfaceDrop(Thing thing) => InterfaceDrop(thing);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedTryTransferEquipmentToContainer(Pawn p) 
             => p.equipment.TryTransferEquipmentToContainer(p.equipment.Primary, p.inventory.innerContainer);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedTrySwitchToWeapon(CompInventory compInventory, ThingWithComps eq) 
             => compInventory.TrySwitchToWeapon(eq);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedReloadApparel(Pawn p, Apparel apparel, Thing thing) 
             => p.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Reload, apparel, thing));
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedHoldTrackerForget(Pawn p, Thing thing) 
             => p.HoldTrackerForget(thing);
 
-        [SyncMethod]
+        [Compatibility.Multiplayer.SyncMethod]
         private static void SyncedAddLoadout(Pawn p)
         {
             Loadout loadout = p.GenerateLoadoutFromPawn();
             LoadoutManager.AddLoadout(loadout);
             p.SetLoadout(loadout);
 
-            if (MP.IsExecutingSyncCommandIssuedBySelf)
+            if (Compatibility.Multiplayer.IsExecutingCommandsIssuedBySelf)
                 // Opening this window is the same way as if from the assign tab so should be correct.
                 Find.WindowStack.Add(new Dialog_ManageLoadouts(p.GetLoadout()));
         }

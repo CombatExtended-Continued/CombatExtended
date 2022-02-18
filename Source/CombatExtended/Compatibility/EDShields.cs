@@ -9,7 +9,6 @@ using System;
 using UnityEngine;
 using RimWorld;
 using Jaxxa.EnhancedDevelopment.Shields.Shields;
-using Multiplayer.API;
 
 
 namespace CombatExtended.Compatibility

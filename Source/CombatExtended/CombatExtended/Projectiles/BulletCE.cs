@@ -9,7 +9,6 @@ using RimWorld;
 using UnityEngine;
 using HarmonyLib;
 using CombatExtended.AI;
-using Multiplayer.API;
 
 namespace CombatExtended
 {
