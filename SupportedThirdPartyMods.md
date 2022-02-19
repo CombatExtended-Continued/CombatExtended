@@ -362,6 +362,7 @@ Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
+T's Samurai Faction |
 Ultratech: Altered Carbon Remastered |
 Useless Clothes |
 Vanilla Animals Expanded |
