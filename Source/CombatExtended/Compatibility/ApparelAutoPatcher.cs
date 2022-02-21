@@ -38,6 +38,18 @@ namespace CombatExtended
                        new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.ArmorRating_Blunt)), stat = StatDefOf.ArmorRating_Blunt }
                     };
 
+                    if (!apparel.statBases.Any(x => x.stat == StatDefOf.ArmorRating_Sharp))
+                    {
+                        ArmorRatings = new StatModifier[]
+                       {
+                       new StatModifier { value = preset.FinalRatingSharp(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Sharp },
+                       new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Blunt }
+                       };
+
+                    }
+
+                   
+
                     apparel.statBases.RemoveAll(x => 
                     x.stat == StatDefOf.ArmorRating_Sharp 
                     |
@@ -63,7 +75,7 @@ namespace CombatExtended
                         apparel.AddModExtension(new PartialArmorExt { stats = preset.partialStats.ListFullCopy() });
                     }
 
-                    Log.Message("AutoPatched " + apparel.label + " as " + preset.label);
+                    Log.Message("AutoPatched " + apparel.label + "(" + apparel.defName + ")" + " as " + preset.label);
                 }
             }
         }
