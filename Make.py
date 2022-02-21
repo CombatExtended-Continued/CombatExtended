@@ -247,6 +247,7 @@ def main(argv=sys.argv):
             downloadLib(package.name, package.version, package.destination, verbose=verbose)
             unpackLib(package.destination, f"{tdir}/downloads/unpack", verbose=verbose)
             time.sleep(1)
+        os.system(f"chmod -R +r {tdir}/downloads/unpack")
         os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {options.reference}")
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {options.reference}")
 

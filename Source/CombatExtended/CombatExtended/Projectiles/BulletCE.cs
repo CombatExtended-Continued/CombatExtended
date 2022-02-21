@@ -184,9 +184,6 @@ namespace CombatExtended
          * Current users are SmokepopBelt and BroadshieldPack, requiring bullet.def and bullet.Launcher.
          */
 
-        // todo: remove when moved to publicised assembly
-        private static readonly FieldInfo bulletLauncher = typeof(Bullet).GetField("launcher", BindingFlags.Instance | BindingFlags.NonPublic);
-
         private Bullet GenerateVanillaBullet()
         {
             var bullet = new Bullet
@@ -195,7 +192,7 @@ namespace CombatExtended
                 intendedTarget = this.intendedTargetThing,
             };
 
-            bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
+            bullet.launcher = launcher;
             return bullet;
         }
 
