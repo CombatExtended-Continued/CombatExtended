@@ -47,6 +47,7 @@ namespace CombatExtended
                 return ArmorCurveSharp.Evaluate(vanillaRating);
             }
 
+            
             return result;
         }
 
@@ -59,6 +60,7 @@ namespace CombatExtended
                 return ArmorCurveBlunt.Evaluate(vanillaRating);
             }
 
+            
             return result;
         }
         #endregion
