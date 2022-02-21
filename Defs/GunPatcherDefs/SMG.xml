@@ -15,10 +15,12 @@
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
         </gunStats>
+        <Mass>2.5</Mass>
+        <Bulk>6.8</Bulk>
+        <Spread>0.08</Spread>
         <names>
             <!-- all stuff is non capitalised -->
         </names>
-
         <fireModes>
             <aiUseBurstMode>FALSE</aiUseBurstMode>
             <aiAimMode>Snapshot</aiAimMode>
@@ -37,5 +39,38 @@
         <WarmupRange>0.4~0.81</WarmupRange>
         <DamageRange>6~15</DamageRange>
         <ProjSpeedRange>54~70</ProjSpeedRange>
+        <!-- Special gun specifications -->
+        <specialGuns>
+            <li>
+                <!-- this order is set and stuff will break if it's changed -->
+                <!-- special names are also taken into account when determining if a gun matches the preset-->
+                <magCap>50</magCap>
+                <reloadTime>4.5</reloadTime>
+                <Mass>2.5</Mass>
+                <Bulk>6.8</Bulk>
+                <caliber>AmmoSet_FN57x28mm</caliber>
+                <names>
+                   <li>p90</li>
+                </names>
+            </li>
+        </specialGuns>
+        <CaliberRanges>
+            <li>
+                <DamageRange>9~9</DamageRange>
+                <SpeedRange>60~60</SpeedRange>
+                <AmmoSet>AmmoSet_9x19mmPara</AmmoSet>
+            </li>
+            <li>
+                <DamageRange>6~6</DamageRange>
+                <SpeedRange>65~65</SpeedRange>
+                <AmmoSet>AmmoSet_46x30mm</AmmoSet>
+            </li>
+            <li>
+                <DamageRange>7~7</DamageRange>
+                <SpeedRange>65~65</SpeedRange>
+                <AmmoSet>AmmoSet_FN57x28mm</AmmoSet>
+            </li>
+        </CaliberRanges>
+        <DetermineCaliber>true</DetermineCaliber>
     </CombatExtended.GunPatcherPresetDef>
 </Defs>
