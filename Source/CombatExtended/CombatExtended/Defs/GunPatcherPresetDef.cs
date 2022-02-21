@@ -6,9 +6,66 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using System.Xml;
 
 namespace CombatExtended
 {
+    public class CaliberFloatRange
+    {
+        public FloatRange DamageRange;
+
+        public FloatRange SpeedRange;
+
+        public AmmoSetDef AmmoSet;
+
+        public void LoadDataFromXmlCustom(XmlNode xmlRoot)
+        {
+            DamageRange = ParseHelper.FromString<FloatRange>(xmlRoot.ChildNodes[0].InnerText);
+            SpeedRange = ParseHelper.FromString<FloatRange>(xmlRoot.ChildNodes[1].InnerText);
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "AmmoSet", xmlRoot.LastChild.InnerText);
+        }
+    }
+    public class LabelGun
+    {
+        public List<string> names;
+
+        public int magCap;
+
+        public float reloadTime;
+
+        public float mass;
+
+        public float bulk;
+
+        public AmmoSetDef caliber;
+
+        public void LoadDataFromXmlCustom(XmlNode xmlRoot)
+        {
+            foreach (XmlNode child in xmlRoot.ChildNodes)
+            {
+                Log.Message("name " + child.Name + " innter text " + child.InnerText);
+            }
+
+            magCap = ParseHelper.FromString<int>(xmlRoot.FirstChild.InnerText);
+
+            reloadTime = ParseHelper.FromString<float>(xmlRoot.ChildNodes[1].InnerText);
+
+            mass = ParseHelper.FromString<float>(xmlRoot.ChildNodes[2].InnerText);
+
+            bulk = ParseHelper.FromString<float>(xmlRoot.ChildNodes[3].InnerText);
+
+            DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "caliber", xmlRoot.ChildNodes[4].InnerText);
+
+            if (names == null)
+            {
+                names = new List<string>();
+            }
+            foreach (XmlNode node in xmlRoot.LastChild.ChildNodes)
+            {
+                names.Add(node.InnerText);
+            }
+        }
+    }
     public static class GunPatcherUtil
     {
         public static bool DiscardDesignationsMatch(this ThingDef thingDef, GunPatcherPresetDef presetDef)
@@ -27,9 +84,15 @@ namespace CombatExtended
 
         public static bool MatchesVerbProps(this ThingDef gun, GunPatcherPresetDef preset)
         {
-            //Log.Message((gun.Verbs.FirstOrFallback()?.warmupTime ?? 0f).ToString());
-            //Log.Message((gun.Verbs.FirstOrFallback()?.range ?? 0f).ToString());
             return 
+                preset.WarmupRange != null
+                &&
+                preset.DamageRange != null
+                &&
+                preset.RangeRange != null
+                &&
+                preset.ProjSpeedRange != null
+                &&
                 preset.WarmupRange.Includes(gun.Verbs.FirstOrFallback()?.warmupTime ?? 0f)
                 &&
                 preset.RangeRange.Includes(gun.Verbs.FirstOrFallback()?.range ?? 0f)
@@ -73,11 +136,22 @@ namespace CombatExtended
                     x.DiscardDesignationsMatch(preset)
                     |
                     x.MatchesVerbProps(preset)
+                    |
+                    preset.specialGuns.
+                    Any
+                    (
+                        y =>
+                        y.names.Contains(x.label)
+                        |
+                        y.names.Intersect(x.label.ToLower().Replace("-", "").Split(' ')).Any()
+                        )
                     );
 
                 foreach (var gun in matchingGuns)
                 {
                     Log.Message(gun.label);
+
+                    var OldProj = gun.Verbs[0].defaultProjectile;
 
                     gun.Verbs.Clear();
 
@@ -90,22 +164,65 @@ namespace CombatExtended
                         gun.comps = new List<CompProperties>();
                     }
 
-                    gun.comps.Add(new CompProperties_AmmoUser
+                    float finalMass = preset.Mass;
+
+                    float finalBulk = preset.Bulk;
+
+                    if (preset.specialGuns.Any(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any()))
                     {
-                        ammoSet = preset.setCaliber,
-                        reloadTime = preset.ReloadTime,
-                        magazineSize = preset.AmmoCapacity,
-                        reloadOneAtATime = preset.reloadOneAtATime
-                        
-                    });
+                        var specialGun = preset.specialGuns.Find(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any());
+                        gun.comps.Add(new CompProperties_AmmoUser
+                        {
+                            ammoSet = specialGun.caliber,
+                            reloadTime = specialGun.reloadTime,
+                            magazineSize = specialGun.magCap,
+                            reloadOneAtATime = preset.reloadOneAtATime
+
+                        });
+
+                        finalMass = specialGun.mass;
+
+                        finalMass = specialGun.bulk;
+
+                        Log.Message(specialGun.names.First().Colorize(Color.yellow));
+                    }
+                    else
+                    {
+                        gun.comps.Add(new CompProperties_AmmoUser
+                        {
+                            ammoSet = preset.setCaliber,
+                            reloadTime = preset.ReloadTime,
+                            magazineSize = preset.AmmoCapacity,
+                            reloadOneAtATime = preset.reloadOneAtATime
+
+                        });
+                    }
+
+                    if (preset.DetermineCaliber)
+                    {
+                        var comp = gun.comps.Find(x => x is CompProperties_AmmoUser) as CompProperties_AmmoUser;
+
+                        comp.ammoSet = preset.CaliberRanges.Find
+                            (
+                                x => 
+                                x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
+                                &&
+                                x.SpeedRange.Includes(OldProj.projectile.speed)
+                            )?.AmmoSet ?? comp.ammoSet;
+                    }
+                    
 
                     gun.comps.Add(preset.fireModes);
 
-                    gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.Mass, value = preset.Mass });
+                    gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.Mass, value = finalMass });
 
-                    gun.AddOrChangeStat(new StatModifier { stat = CE_StatDefOf.Bulk, value = preset.Bulk });
+                    gun.AddOrChangeStat(new StatModifier { stat = CE_StatDefOf.Bulk, value = finalBulk });
 
                     gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.RangedWeapon_Cooldown, value = preset.CooldownTime });
+
+                    gun.statBases.RemoveAll(x => x.stat.label.Contains("accuracy"));
+
+                    gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.ShotSpread, value = preset.Spread });
                 }
             }
         }
@@ -113,6 +230,7 @@ namespace CombatExtended
 
     public class GunPatcherPresetDef : Def
     {
+        #region stats
         public VerbPropertiesCE gunStats;
 
         public float ReloadTime;
@@ -125,11 +243,14 @@ namespace CombatExtended
 
         public float Mass;
 
+        public float Spread;
+
         public AmmoSetDef setCaliber;
 
         public bool reloadOneAtATime = false;
 
         public CompProperties_FireModes fireModes;
+        #endregion
 
         #region Def matching
 
@@ -146,6 +267,18 @@ namespace CombatExtended
         public FloatRange ProjSpeedRange;
 
         public bool DiscardDesignations;
+
+        public List<LabelGun> specialGuns = new List<LabelGun>();
+
+
+        #endregion
+
+        #region caliber fields
+
+        public bool DetermineCaliber;
+
+        public List<CaliberFloatRange> CaliberRanges = new List<CaliberFloatRange>();
+
         #endregion
     }
 }
