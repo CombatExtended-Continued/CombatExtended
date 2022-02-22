@@ -404,7 +404,7 @@ namespace CombatExtended
 
                                         Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
 
-                                        var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Torso").First();
+                                        var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.IsCorePart).First();
 
                                         var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
 
