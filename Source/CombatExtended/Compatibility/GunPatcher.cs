@@ -30,6 +30,8 @@ namespace CombatExtended
                     |
                     x.MatchesVerbProps(preset)
                     |
+                    (preset.tags != null && x.weaponTags != null && preset.tags.Intersect(x.weaponTags).Any() )
+                    |
                     preset.specialGuns.
                     Any
                     (
@@ -116,6 +118,30 @@ namespace CombatExtended
                     gun.statBases.RemoveAll(x => x.stat.label.Contains("accuracy"));
 
                     gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.ShotSpread, value = preset.Spread });
+
+                    gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.SwayFactor, value = preset.Sway});
+
+                    if (preset.addBipods)
+                    {
+                        var bipodDef = DefDatabase<BipodCategoryDef>.AllDefsListForReading.Find(x => x.bipod_id == preset.bipodTag);
+
+                        if (bipodDef != null)
+                        {
+                            gun.comps.Add(new CompProperties_BipodComp
+                            {
+                                catDef = bipodDef,
+                                warmupPenalty = bipodDef.warmup_mult_NOT_setup,
+                                warmupMult = bipodDef.warmup_mult_setup,
+                                ticksToSetUp = bipodDef.setuptime,
+                                recoilMultoff = bipodDef.recoil_mult_NOT_setup,
+                                recoilMulton = bipodDef.recoil_mult_setup,
+                                additionalrange = bipodDef.ad_Range,
+                                swayMult = bipodDef.swayMult,
+                                swayPenalty = bipodDef.swayPenalty
+                            });
+                            gun.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
+                        }
+                    }
                 }
             }
         }
