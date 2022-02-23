@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>RimHammer40k -Dreadnought</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+		<!-- ========== Remove Vanilla Carry Capacity ========== -->		
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="Warcasket_Dreadnought"														
+			]/modExtensions/li/carryingCapacity</xpath>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="Warcasket_Dreadnought"]/statBases</xpath>
+			<value>
+				<Bulk>350</Bulk>
+				<WornBulk>40</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="Warcasket_Dreadnought"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>75</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="Warcasket_Dreadnought"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>187.5</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="Warcasket_Dreadnought"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>450</CarryWeight>
+				<CarryBulk>300</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- ========== Shoulders ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Dreadnought"]/statBases</xpath>
+			<value>
+				<Bulk>45</Bulk>
+				<WornBulk>15</WornBulk>
+			</value>
+		</li>
+			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Dreadnought"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>75</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Dreadnought"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>187.5</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- === Helmet === -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Dreadnought"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>8</WornBulk>
+				<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+			</value>
+		</li>
+	
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Dreadnought"]/equippedStatOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Dreadnought"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>80</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="WarcasketHelmet_Dreadnought"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>200</ArmorRating_Blunt>
+			</value>
+		</li>
+			
+		</operations>
+		</match>
+	</Operation>
+</Patch>
