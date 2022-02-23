@@ -27,11 +27,17 @@ namespace CombatExtended
 
         public float Spread;
 
+        public float Sway;
+
         public AmmoSetDef setCaliber;
 
         public bool reloadOneAtATime = false;
 
         public CompProperties_FireModes fireModes;
+
+        public bool addBipods;
+
+        public string bipodTag;
         #endregion
 
         #region Def matching
