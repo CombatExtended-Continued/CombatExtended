@@ -40,7 +40,7 @@ namespace CombatExtended.HarmonyCE
 			ConstructorInfo constructor = typeof(GenRadial).GetConstructors(AccessTools.all).FirstOrDefault();
 			MethodInfo redoMethod = null;
 
-            defaultValue = (Int32)AccessTools.Field(typeof(GenRadial), "RadialPatternCount").GetValue(null);
+            defaultValue = GenRadial.RadialPatternCount;
 
 			// patch the constructor.
 			HarmonyBase.instance.Patch(constructor, null, null, new HarmonyMethod(typeof(Harmony_GenRadial_RadialPatternCount), "Transpiler_RadialPatternCount"));

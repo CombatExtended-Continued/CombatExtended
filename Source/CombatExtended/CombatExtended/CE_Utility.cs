@@ -451,12 +451,10 @@ namespace CombatExtended
 
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
-        public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
-
         public static void UpdateLabel(this Def def, string label)
         {
             def.label = label;
-            cachedLabelCapInfo.SetValue(def, new TaggedString(""));
+            def.cachedLabelCap = "";
         }
 
         /// <summary>

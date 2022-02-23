@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CombatExtended.CombatExtended.LoggerUtils;
+using HarmonyLib;
 using UnityEngine;
 using Verse;
 using VFESecurity;
@@ -20,7 +21,7 @@ namespace CombatExtended.Compatibility
         private static HashSet<Building> shields;
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
 
-        private static MethodInfo CanFunctionPropertyGetter;
+        private static FastInvokeHandler CanFunctionPropertyGetter;
         public static bool CanInstall()
         {
             if (!ModLister.HasActiveModWithName(VFES_ModName))
@@ -33,7 +34,9 @@ namespace CombatExtended.Compatibility
         public static void Install()
         {
             // Only do this after we're sure that Building_Shield is a thing.
-            CanFunctionPropertyGetter = typeof(Building_Shield)?.GetProperty("CanFunction", BindingFlags.Instance | BindingFlags.NonPublic)?.GetGetMethod(nonPublic: true);
+            var type = typeof(Building_Shield);
+            if (type != null)
+                CanFunctionPropertyGetter = MethodInvoker.GetHandler(AccessTools.PropertyGetter(typeof(Building_Shield), "CanFunction"));
 
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision);
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
@@ -90,7 +93,7 @@ namespace CombatExtended.Compatibility
         private static bool ShieldInterceptsProjectile(Building building, ProjectileCE projectile, Thing launcher)
         {
             var shield = building as Building_Shield;
-            if (!shield.active || !(bool)CanFunctionPropertyGetter.Invoke(shield, null) || shield.Energy == 0)
+            if (!shield.active || !(bool)CanFunctionPropertyGetter(shield) || shield.Energy == 0)
             {
                 // Shield inactive, don't intercept.
                 return false;
