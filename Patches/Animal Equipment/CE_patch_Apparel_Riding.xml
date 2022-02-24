@@ -7,10 +7,10 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				 <!-- Howdah and Bridle -->
+				 <!-- Bridle -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]</xpath>
+					<xpath>/Defs/ThingDef[defName="Apparel_bridle"]</xpath>
 					<value>
 						<equippedStatOffsets>
 							<CarryWeight>25</CarryWeight>
@@ -20,7 +20,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="Apparel_bridle"]/statBases</xpath>
 					<value>
 						<Bulk>6</Bulk>
 						<WornBulk>2</WornBulk>
@@ -28,9 +28,63 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Apparel_Howdah" or defName="Apparel_bridle"]/statBases/StuffEffectMultiplierArmor</xpath>
+					<xpath>/Defs/ThingDef[defName="Apparel_bridle"]/statBases/StuffEffectMultiplierArmor</xpath>
 					<value>
 						<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					</value>
+				</li>
+
+				<!-- Universal Riding Gear -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+					<ThingDef ParentName="AnimalRidingBase">
+						<defName>Apparel_AnimalReins</defName>
+						<label>universal riding gear</label>
+						<description>Provides protection and a harness for riding.</description>
+						<graphicData>
+							<texPath>Things/Pawn/Animal/Apparel/Riding/ridinggear</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<statBases>
+							<MaxHitPoints>110</MaxHitPoints>
+							<WorkToMake>15000</WorkToMake>
+							<Mass>0.5</Mass>
+							<Bulk>6</Bulk>
+							<WornBulk>4</WornBulk>
+							<StuffEffectMultiplierArmor>15</StuffEffectMultiplierArmor>
+							<StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold>
+							<StuffEffectMultiplierInsulation_Heat>0.55</StuffEffectMultiplierInsulation_Heat>
+							<EquipDelay>3</EquipDelay>
+						</statBases>
+						<costStuffCount>60</costStuffCount>
+						<stuffCategories>
+							<li>Leathery</li>
+						</stuffCategories>
+						<costList>
+							<Steel>10</Steel>
+						</costList>
+						<apparel>
+							<careIfWornByCorpse>false</careIfWornByCorpse>
+							<bodyPartGroups>
+								<li>Neck</li>
+							</bodyPartGroups>
+							<layers>
+								<li>Belt</li>
+							</layers>
+							<tags>
+								<li>Animal</li>
+								<li>AnimalCUTOUTCOMPLEX</li>
+								<li>AnimalALL</li>
+							</tags>
+						</apparel>
+						<devNote>legacy[Apparel_bridle]</devNote>
+						<equippedStatOffsets>
+							<CarryWeight>25</CarryWeight>
+							<CarryBulk>15</CarryBulk>
+						</equippedStatOffsets>
+					</ThingDef>
 					</value>
 				</li>
 
