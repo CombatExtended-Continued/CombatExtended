@@ -21,9 +21,11 @@ namespace CombatExtended
 
         public float CooldownTime;
 
-        public float Bulk;
-
         public float Mass;
+
+        public List<StatModifier> MiscOtherStats;
+
+        public float Bulk;
 
         public float Spread;
 
