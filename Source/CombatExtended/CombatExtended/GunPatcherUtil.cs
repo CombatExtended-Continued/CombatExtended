@@ -57,5 +57,13 @@ namespace CombatExtended
                 gun.statBases.Add(mod);
             }
         }
+
+        public static void MergeStatLists(this ThingDef gun, List<StatModifier> mods)
+        {
+            foreach (StatModifier mod in mods)
+            {
+                gun.AddOrChangeStat(mod);
+            }
+        }
     }
 }
