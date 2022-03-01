@@ -143,7 +143,7 @@ namespace CombatExtended
 
             if (preset.MassCurve != null)
             {
-                finalMass = preset.MassCurve.Evaluate(gun.GetStatValueDef(StatDefOf.Mass));
+                finalMass = preset.MassCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.Mass));
             }
 
             #endregion
@@ -197,7 +197,7 @@ namespace CombatExtended
 
             if (preset.cooldownCurve != null)
             {
-                FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown));
+                FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
             }
             #region patching tools
 
