@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using CombatExtended.Compatibility;
 
 
 namespace CombatExtended
@@ -105,11 +106,27 @@ namespace CombatExtended
 
             var OldProj = gun.Verbs[0].defaultProjectile;
 
+            var OldVerb = gun.Verbs[0];
+
+            var OldBaseList = gun.statBases.ListFullCopy();
+
             gun.Verbs.Clear();
 
             gun.verbs.Clear();
 
             gun.verbs.Add(preset.gunStats.MemberwiseClone());
+
+            #region VerbProps curves
+            if (preset.rangeCurve != null)
+            {
+                gun.verbs[0].range = preset.rangeCurve.Evaluate(OldVerb.range);
+            }
+
+            if (preset.warmupCurve != null)
+            {
+                gun.verbs[0].warmupTime = preset.warmupCurve.Evaluate(OldVerb.warmupTime);
+            }
+            #endregion
 
             if (gun.comps == null)
             {
@@ -121,6 +138,15 @@ namespace CombatExtended
             float finalBulk = preset.Bulk;
 
             LabelGun specialGun = null;
+
+            #region stat curves
+
+            if (preset.MassCurve != null)
+            {
+                finalMass = preset.MassCurve.Evaluate(gun.GetStatValueDef(StatDefOf.Mass));
+            }
+
+            #endregion
 
             if (preset.specialGuns.Any(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any()))
             {
@@ -167,21 +193,52 @@ namespace CombatExtended
                     )?.AmmoSet ?? comp.ammoSet;
             }
 
+            float FinalCooldown = preset.CooldownTime;
 
+            if (preset.cooldownCurve != null)
+            {
+                FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueDef(StatDefOf.RangedWeapon_Cooldown));
+            }
+            #region patching tools
+
+            if (gun.tools != null)
+            {
+                var newtools = new List<Tool>();
+
+                foreach (Tool tool in gun.tools)
+                {
+                    if (tool is ToolCE)
+                    {
+                        newtools.Add(tool);
+                    }
+                    else
+                    {
+                        newtools.Add(tool.ConvertTool());
+                    }
+                }
+
+                gun.tools = newtools;
+            }
+
+            #endregion
+
+            #region addings stats
             gun.comps.Add(preset.fireModes);
 
             gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.Mass, value = finalMass });
 
             gun.AddOrChangeStat(new StatModifier { stat = CE_StatDefOf.Bulk, value = finalBulk });
 
-            gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.RangedWeapon_Cooldown, value = preset.CooldownTime });
+            gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.RangedWeapon_Cooldown, value = FinalCooldown });
 
-            gun.statBases.RemoveAll(x => x.stat.label.Contains("accuracy"));
+            gun.statBases.RemoveAll(x => x.stat.label.ToLower().Contains("accuracy"));
 
             gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.ShotSpread, value = preset.Spread });
 
             gun.statBases.Add(new StatModifier { stat = CE_StatDefOf.SwayFactor, value = preset.Sway });
+            #endregion
 
+            #region misc stats
             if (preset.MiscOtherStats != null)
             {
                 gun.statBases.AddRange(preset.MiscOtherStats);
@@ -194,8 +251,9 @@ namespace CombatExtended
                     gun.MergeStatLists(specialGun.stats);
                 }
             }
+            #endregion
 
-
+            #region bipods
             if (preset.addBipods)
             {
                 var bipodDef = DefDatabase<BipodCategoryDef>.AllDefsListForReading.Find(x => x.bipod_id == preset.bipodTag);
@@ -217,6 +275,7 @@ namespace CombatExtended
                     gun.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
                 }
             }
+            #endregion
         }
     }
 }
