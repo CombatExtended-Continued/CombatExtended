@@ -21,7 +21,14 @@ namespace CombatExtended
 
         public float CooldownTime;
 
+        public SimpleCurve MassCurve;
         public float Mass;
+
+        public SimpleCurve rangeCurve;
+
+        public SimpleCurve warmupCurve;
+
+        public SimpleCurve cooldownCurve;
 
         public List<StatModifier> MiscOtherStats;
 
