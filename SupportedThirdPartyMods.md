@@ -33,6 +33,7 @@ Mod |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
+[O21] Outland - Core    |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|

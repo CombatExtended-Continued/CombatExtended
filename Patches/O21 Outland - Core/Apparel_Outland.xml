@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Outland - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Cloak -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_ShoulderCloak"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+					<Bulk>3.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Heavy Tribalwear & Padding -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_HeavyTribalPadding" or defName="Outland_HeavyTribalwear"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>6</StuffEffectMultiplierArmor>
+					<Bulk>3.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
