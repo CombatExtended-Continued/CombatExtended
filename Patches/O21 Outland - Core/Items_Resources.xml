@@ -5,62 +5,56 @@
 			<li>[O21] Outland - Core</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-			<operations>
+		<operations>
 
-			<!-- Bones -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="Outland_Bones"]/stuffProps/statFactors</xpath>
-				<value>
-					<MeleePenetrationFactor>0.6</MeleePenetrationFactor>
-				</value>
-			</li>
+		<!-- Bones -->
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Outland_Bones"]/statBases/StuffPower_Armor_Sharp</xpath>
-				<value>
-					<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Bones"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.25</StuffPower_Armor_Sharp>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Outland_Bones"]/statBases/StuffPower_Armor_Blunt</xpath>
-				<value>
-					<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Bones"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Outland_Bones"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>0.99</cooldownTime>
-							<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Bones"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>0.99</cooldownTime>
+						<armorPenetrationBlunt>0.288</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-			<!-- Siege Weapon Ammo -->
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Outland_Ammo_BallistaBolt"]</xpath>
-			</li>
+		<!-- Siege Weapon Ammo -->
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="Outland_Ammo_BallistaBolt"]</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/RecipeDef[defName="Outland_Make_BallistaBolts"]</xpath>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/RecipeDef[defName="Outland_Make_BallistaBolts"]</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Outland_Ammo_RoundShot"]</xpath>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="Outland_Ammo_RoundShot"]</xpath>
+		</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/RecipeDef[defName="Outland_Make_RoundShots"]</xpath>
-			</li>
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/RecipeDef[defName="Outland_Make_RoundShots"]</xpath>
+		</li>
 
 		</operations>
 		</match>
