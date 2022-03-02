@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Outland - Eastborn Empire</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Hakama -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_Hakama"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+					<Bulk>2.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Ninja Garb -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_NinjaGarb"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>2.5</Bulk>
+					<WornBulk>1.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Ninja Mask -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_NinjaHood"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+					<Bulk>1</Bulk>
+					<WornBulk>0.5</WornBulk>
+				</value>
+			</li>
+
+			<!-- Haygrass Hat / Conical Hat -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_HaygrassHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>	  
+				</value>
+			</li>
+
+			<!-- Shogun Cuirass (has same stats as vanilla plate armor) -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunCuirass"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>12.5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunCuirass"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- Shogun Pauldrons -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunPauldrons"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<WornBulk>2.5</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunPauldrons"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<!-- Shogun Helmet -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunHelmet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Outland_ShogunHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.75</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
