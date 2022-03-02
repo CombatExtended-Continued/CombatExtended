@@ -7,6 +7,16 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+			<!-- Opium -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/HediffDef[defName = "VFEC_OpiumHigh"]/stages/li</xpath>
+				<value>
+					<statFactors>
+						<Suppressability>0.50</Suppressability>
+					</statFactors>
+				</value>				
+			</li>
+
 			<!-- Bronze -->
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/statBases</xpath>
