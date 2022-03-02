@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Classical</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Bronze -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/statBases</xpath>
+				<value>
+					<Bulk>0.03</Bulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/stuffProps/categories</xpath>
+				<value>
+					<li>Metallic_Weapon</li>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.83</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>1.24</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEC_Bronze"]/stuffProps/statFactors</xpath>
+				<value>
+					<Mass>1.1</Mass>
+				</value>
+			</li>
+
+			<!-- Tyrian -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEC_Tyrian"]/statBases/StuffPower_Armor_Sharp</xpath>
+				<value>
+					<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEC_Tyrian"]/statBases/StuffPower_Armor_Blunt</xpath>
+				<value>
+					<StuffPower_Armor_Blunt>0.015</StuffPower_Armor_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEC_Tyrian"]/statBases/StuffPower_Armor_Heat</xpath>
+				<value>
+					<StuffPower_Armor_Heat>0.044</StuffPower_Armor_Heat>
+				</value>
+			</li>
+
+			<Operation Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEC_Tyrian"]/statBases</xpath>
+				<value>
+					<Bulk>0.05</Bulk>
+				</value>
+			</li>
+
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
