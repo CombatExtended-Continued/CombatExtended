@@ -7,11 +7,17 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-      <!-- Give Auilaries some javelines. -->
+      <!-- Increase Legionaire weapon money slightly. -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="VFEC_Legionnaire"]/weaponMoney</xpath>
+        <value>
+          <weaponMoney>140~300</weaponMoney>
+        </value>
+      </li>
+
+      <!-- Give Auxilaries some javelines. -->
       <li Class="PatchOperationAddModExtension">
-        <xpath>
-          /Defs/PawnKindDef[defName="VFEC_RepublicAuxilia"]
-        </xpath>
+        <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicAuxilia"]</xpath>
         <value>
           <li Class="CombatExtended.LoadoutPropertiesExtension">
             <primaryMagazineCount>
