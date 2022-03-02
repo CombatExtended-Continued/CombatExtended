@@ -15,7 +15,7 @@
           /Defs/PawnKindDef[
           defName="Outland_Ninja" or
           defName="Outland_Bowman" or
-          @Name="Eastborn_Samurai"]
+          defName="Outland_Emperor"]
         </xpath>
         <value>
           <li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -38,6 +38,44 @@
           </li>
         </value>
       </li>
+
+      <!-- Give tribal backpacks to pawns with ranged weapons. -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/PawnKindDef[
+          defName="Outland_Ninja" or
+          defName="Outland_Emperor"]/apparelRequired
+        </xpath>
+        <value>
+          <li>Apparel_TribalBackpack</li>
+        </value>
+      </li>
+
+	  <li Class="PatchOperationAdd">
+        <xpath>/Defs/PawnKindDef[defName="Outland_Bowman"]</xpath>
+        <value>
+          <apparelRequired>
+            <li>Apparel_TribalBackpack</li>
+          </apparelRequired>
+        </value>
+	  </li>
+
+      <!--<li Class="PatchOperationAdd">
+        <xpath>
+          /Defs/PawnKindDef[
+          defName="Outland_Ninja" or
+          defName="Outland_Bowman" or
+          defName="Outland_Emperor"]/specificApparelRequirements
+        </xpath>
+        <value>
+          <li>
+            <apparelLayer>Backpack</apparelLayer>
+            <color>(90, 90, 90)</color>
+            <stuff>Cloth</stuff>
+          </li>
+        </value>
+      </li>-->
 
       </operations>
     </match>
