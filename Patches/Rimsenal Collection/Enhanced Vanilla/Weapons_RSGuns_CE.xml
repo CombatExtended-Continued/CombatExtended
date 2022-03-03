@@ -246,6 +246,7 @@
 				</FireModes>
 				<weaponTags>
 					<li>CE_AI_Rifle</li>
+					<li>Bipod_DMR</li>
 				</weaponTags>
 			</li>
 			
@@ -504,6 +505,52 @@
 				  <li>CE_AI_SR</li>
 				</weaponTags>
 				<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RSThumper</defName>
+				<statBases>
+					<Mass>8</Mass>
+					<RangedWeapon_Cooldown>0.43</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.15</ShotSpread>
+					<SwayFactor>1.8</SwayFactor>
+					<Bulk>10</Bulk>
+					<WorkToMake>39500</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>65</Steel>
+					<Plasteel>30</Plasteel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+					<Chemfuel>10</Chemfuel>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_30x64mmFuel_RSThump</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>40</range>
+					<burstShotCount>0</burstShotCount>
+					<soundCast>ThumpCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>14</muzzleFlashScale>
+					<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>8</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_30x64mmFuel_RSThump</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_AOE</li>
+				</weaponTags>
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 		</operations>
