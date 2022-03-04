@@ -181,7 +181,7 @@ namespace CombatExtended
             currentSuppression += suppressAmount;
             if (Controller.settings.DebugShowSuppressionBuildup)
             {
-                MoteMaker.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
+                MoteMakerCE.ThrowText(pawn.DrawPos, pawn.Map, suppressAmount.ToString());
             }
             ticksUntilDecay = TicksForDecayStart;
             if (currentSuppression > maxSuppression)
@@ -264,7 +264,7 @@ namespace CombatExtended
                 //Decay global suppression
                 if (Controller.settings.DebugShowSuppressionBuildup && Gen.IsHashIntervalTick(parent, 30))
                 {
-                    MoteMaker.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
+                    MoteMakerCE.ThrowText(parent.DrawPos, parent.Map, "-" + (SuppressionDecayRate * 30), Color.red);
                 }
                 currentSuppression -= Mathf.Min(SuppressionDecayRate, currentSuppression);
                 isSuppressed = currentSuppression > 0;

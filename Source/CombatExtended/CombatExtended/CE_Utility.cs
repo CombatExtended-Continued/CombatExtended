@@ -463,9 +463,8 @@ namespace CombatExtended
         public static Vector2 GenRandInCircle(float radius)
         {
             //Fancy math to get random point in circle
-            System.Random rand = new System.Random();
-            double angle = rand.NextDouble() * Math.PI * 2;
-            double range = Math.Sqrt(rand.NextDouble()) * radius;
+            double angle = Rand.Value * Math.PI * 2;
+            double range = Rand.Value * radius;
             return new Vector2((float)(range * Math.Cos(angle)), (float)(range * Math.Sin(angle)));
         }
 
@@ -631,14 +630,17 @@ namespace CombatExtended
             {
                 return;
             }
+
+            Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 60;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
+            Rand.PopState();
         }
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
