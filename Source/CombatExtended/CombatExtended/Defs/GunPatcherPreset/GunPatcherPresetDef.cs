@@ -59,9 +59,53 @@ namespace CombatExtended
 
         public FloatRange WarmupRange;
 
-        public FloatRange DamageRange;
+        public FloatRange DamageRange
+        {
+            get
+            {
+                var result = damageRange;
 
-        public FloatRange ProjSpeedRange;
+                if (CaliberRanges != null)
+                {
+                    if (CaliberRanges.Any(x => x.DamageRange.max > result.max))
+                    {
+                        result.max = CaliberRanges.MaxBy(z => z.DamageRange.max).DamageRange.max;
+                    }
+                    if (CaliberRanges.Any(x => x.DamageRange.min < result.min))
+                    {
+                        result.min = CaliberRanges.MinBy(z => z.DamageRange.min).DamageRange.min;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public FloatRange damageRange;
+
+        public FloatRange ProjSpeedRange
+        {
+            get
+            {
+                var result = projSpeedRange;
+
+                if (CaliberRanges != null)
+                {
+                    if (CaliberRanges.Any(x => x.SpeedRange.max > result.max))
+                    {
+                        result.max = CaliberRanges.MaxBy(z => z.SpeedRange.max).SpeedRange.max;
+                    }
+                    if (CaliberRanges.Any(x => x.SpeedRange.min < result.min))
+                    {
+                        result.min = CaliberRanges.MinBy(z => z.SpeedRange.min).SpeedRange.min;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public FloatRange projSpeedRange;
 
         public bool DiscardDesignations;
 
