@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Classical</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+      <!-- === Remove mobile "Scorpion". === -->
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]</xpath>
+			</li>
+
+      <!-- === Javelin === -->
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>				
+			</li>	
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<value>
+					<thingCategories>
+						<li>WeaponsRanged</li>
+					</thingCategories>
+          <techLevel>Neolithic</techLevel>			
+				</value>				
+			</li>		
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/recipeMaker</xpath>
+			</li>
+	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/statBases</xpath>
+				<value>
+					<statBases>
+            <MarketValue>7.26</MarketValue>
+            <SightsEfficiency>0.45</SightsEfficiency>
+            <ShotSpread>1.5</ShotSpread>
+            <SwayFactor>2.5</SwayFactor>
+            <Bulk>3.5</Bulk>
+            <Mass>2</Mass>
+            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+					</statBases>
+					<stackLimit>25</stackLimit>				
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/verbs</xpath>
+				<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Classical_Javelin_Thrown</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>12</range>
+						<soundCast>Interact_BeatFire</soundCast>
+					</li>
+				</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/tools</xpath>
+				<value>	
+						<tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>shaft</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>1.35</cooldownTime>
+                <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>point</label>
+                <capacities>
+                  <li>Stab</li>
+                </capacities>
+                <power>15</power>
+                <cooldownTime>1.37</cooldownTime>
+                <chanceFactor>1.5</chanceFactor>
+                <armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+              </li>
+						</tools>
+				</value>
+			</li>
+
+      <!-- === Add Projectiles and Recipes for the javelin. === -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs</xpath>
+				<value>
+
+        <ThingDef ParentName="BasePilumProjectile">
+          <defName>Classical_Javelin_Thrown</defName>
+          <label>javelin</label>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <damageAmountBase>14</damageAmountBase>
+          <speed>16</speed>
+          <armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+          <armorPenetrationSharp>5</armorPenetrationSharp>
+            <secondaryDamage>
+              <li>
+                <def>VFEC_ApparelDamage</def>
+                <amount>20</amount>
+              </li>
+            </secondaryDamage>
+            <preExplosionSpawnChance>0.25</preExplosionSpawnChance> <!-- Roman javelins/pila were designed to break or bend on impact, to prevent them being thrown back. -->
+            <preExplosionSpawnThingDef>VFEC_Javelin</preExplosionSpawnThingDef>
+          </projectile>
+        </ThingDef>
+
+        <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+          <defName>MakeAmmo_VFEC_Javelin</defName>
+          <label>make javelins x5</label>
+          <description>Craft 5 javelins.</description>
+        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+        <workSkill>Crafting</workSkill>
+        <recipeUsers>
+          <li>ElectricSmithy</li>
+          <li>FueledSmithy</li>
+          <li>CraftingSpot</li>
+        </recipeUsers>
+        <effectWorking>Smelt</effectWorking>
+        <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+          <workAmount>2700</workAmount>	
+          <jobString>Making javelins.</jobString>
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>WoodLog</li>
+                </thingDefs>
+              </filter>
+              <count>6</count>
+            </li>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+              <count>22</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>WoodLog</li>
+              <li>Steel</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+          <products>
+            <VFEC_Javelin>5</VFEC_Javelin>
+          </products>
+        </RecipeDef>
+
+				</value>				
+			</li>	
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

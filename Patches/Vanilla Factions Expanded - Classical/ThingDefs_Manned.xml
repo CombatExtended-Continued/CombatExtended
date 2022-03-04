@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Classical</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<li Class="PatchOperationRemove">
+		<xpath>/Defs/ThingDef[defName = "VFEC_Turret_Scorpion"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		</li>
+
+		<li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEC_Turret_Scorpion"]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+        </value>
+		</li>
+
+        <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName = "VFEC_Turret_Scorpion"]/fillPercent</xpath>
+        <value>
+          <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+		<!-- ========== Scorpion - Weapon ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFEC_TurretGun_Scorpion</defName>
+		  <statBases>
+		    <SightsEfficiency>1</SightsEfficiency>
+		    <ShotSpread>1</ShotSpread>
+		    <SwayFactor>1</SwayFactor>
+		    <Bulk>4.00</Bulk>
+		    <RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+		  </statBases>
+		  <Properties>
+		    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		    <hasStandardCommand>true</hasStandardCommand>
+		    <defaultProjectile>Pilum_Fired</defaultProjectile>
+		    <warmupTime>1.0</warmupTime>
+		    <range>32</range>
+		    <soundCast>Bow_Large</soundCast>
+		    <recoilPattern>Mounted</recoilPattern>
+		  </Properties>
+		  <AmmoUser>
+		    <magazineSize>1</magazineSize>
+		    <reloadTime>4</reloadTime>
+		    <ammoSet>AmmoSet_Javelins</ammoSet>
+		  </AmmoUser>
+		  <FireModes>
+		    <aiAimMode>AimedShot</aiAimMode>
+		    <noSnapshot>true</noSnapshot>
+		    <noSingleShot>false</noSingleShot>
+		  </FireModes>
+		</li>
+
+		<li Class="PatchOperationAdd">
+		  <xpath>/Defs/ThingDef[defName = "VFEC_TurretGun_Scorpion"]</xpath>
+		  <value>
+		  	<weaponTags>
+		    	<li>TurretGun</li>
+			</weaponTags>
+		  </value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>    
