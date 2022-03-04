@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+    <!--
+
+        Summary of how this works:
+
+        ========= stats
+        <gunStats> are the verbprops that are gived to the patched def
+        Mass, Bulk, Spread and Sway values are just the other base stats for it. If you add the stat curves, or special gun specs in <specialGuns> they will be overriden with those specified in the curves/specialguns
+
+        ========= matching
+        for a gun to be autopatched they need to match the def. Only one of the determiners are needed for the def to be patched. The determiners are:
+        - names. Just a list of names (labels) the guns can have
+            ** DiscardDesignations can be used to ignore shit like A1 **
+        - tags. If a gun has one of these tags the gun matches the preset.
+        - <DamageRange>, <ProjSpeedRange>, <RangeRange> and <WarmupRange>. If a gun has the projectile and verb properties values included in ALL of these ranges the gun matches the preset.
+        - special guns. If one of the special gun specs includes the name of the gun the gun matches the preset BUT their stats will be taken from the special gun spec
+
+        ======== special guns and caliber ranges
+        - special guns - description WiP, most of it is explained in special guns section in ========matching 
+        - caliber ranges. DOES NOT take a part in matching. All this does is it makes the gun's caliber the one specified if the damage AND speed ranges include BOTH the damage and speed
+        
+
+
+    -->
+
     <CombatExtended.GunPatcherPresetDef>
         <defName>SMGs</defName>
         <gunStats>
@@ -19,9 +44,7 @@
         <Bulk>6.8</Bulk>
         <Spread>0.08</Spread>
         <Sway>0.93</Sway>
-        <names>
-            <!-- all stuff is non capitalised -->
-        </names>
+
         <fireModes>
             <aiUseBurstMode>FALSE</aiUseBurstMode>
             <aiAimMode>Snapshot</aiAimMode>
@@ -30,53 +53,9 @@
         <setCaliber>AmmoSet_9x19mmPara</setCaliber>
         <AmmoCapacity>30</AmmoCapacity>
         <ReloadTime>4</ReloadTime>
-        <!--
-             this basically makes matcher ignore stuff like "A1" if it's not separated (for example MP5A2)
-             DONT use this to determine guns with capital A-s in name (like AK74)
-         -->
-        <DiscardDesignations>true</DiscardDesignations>
-        <!-- if you end up specifying verbprops ranges I suggest separating them by some comment -->
-        <RangeRange>20~25</RangeRange>
-        <WarmupRange>0.4~0.81</WarmupRange>
-        <!-- this should be lowest caliber range min value to highest caliber range max value -->
-        <DamageRange>6~15</DamageRange>
-        <ProjSpeedRange>54~70</ProjSpeedRange>
-        <!-- Special gun specifications -->
-        <specialGuns>
-            <li>
-                <magCap>50</magCap>
-                <reloadTime>4.5</reloadTime>
-                <mass>2.5</mass>
-                <bulk>6.5</bulk>
-                <caliber>AmmoSet_FN57x28mm</caliber>
-                <names>
-                   <li>p90</li>
-                </names>
-                <!-- Any stats you wanna put in. Mass and bulk can be ovewritten with this-->
-                <stats>
-                    
-                </stats>
-            </li>
-        </specialGuns>
-        <CaliberRanges>
-            <li>
-                <DamageRange>9~9</DamageRange>
-                <SpeedRange>56~60</SpeedRange>
-                <AmmoSet>AmmoSet_9x19mmPara</AmmoSet>
-            </li>
-            <li>
-                <DamageRange>6~6</DamageRange>
-                <SpeedRange>61~65</SpeedRange>
-                <AmmoSet>AmmoSet_46x30mm</AmmoSet>
-            </li>
-            <li>
-                <DamageRange>7~7</DamageRange>
-                <SpeedRange>61~65</SpeedRange>
-                <AmmoSet>AmmoSet_FN57x28mm</AmmoSet>
-            </li>
-        </CaliberRanges>
-        <DetermineCaliber>true</DetermineCaliber> 
-        <!-- ==================================== -->
+
+
+          <!-- ==================================== -->
         <!-- Currently examples are from MP5A2 and MP7 -->
         <!-- If you're trying to make stats for certain guns, like the mentioned MP7 and MP5 just use specialguns -->
         <rangeCurve>
@@ -103,5 +82,66 @@
                 <li>2.1, 2.7</li>
             </points>
         </MassCurve>
+
+        <!-- ==== DEF MATCHING ==== -->
+        <names>
+            <!-- all stuff is non capitalised -->
+        </names>
+
+        <tags>
+            <!-- this stuff IS capitalised -->
+        </tags>
+       
+        <!--
+             this basically makes matcher ignore stuff like "A1" if it's not separated (for example MP5A2)
+             DONT use this to determine guns with capital A-s in name (like AK74)
+         -->
+        <DiscardDesignations>true</DiscardDesignations>
+
+        <!-- Verb properties values determiners -->
+        <RangeRange>20~25</RangeRange>
+        <WarmupRange>0.4~0.81</WarmupRange>
+        
+        <!-- Projectile properties values determiners -->
+        <damageRange>6~15</damageRange>
+        <projSpeedRange>54~70</projSpeedRange>
+
+        <!-- ==== Special gun specifications ==== -->
+        <specialGuns>
+            <li>
+                <magCap>50</magCap>
+                <reloadTime>4.5</reloadTime>
+                <mass>2.5</mass>
+                <bulk>6.5</bulk>
+                <caliber>AmmoSet_FN57x28mm</caliber>
+                <names>
+                   <li>p90</li>
+                </names>
+                <!-- Any stats you wanna put in. Mass and bulk can be ovewritten with this-->
+                <stats>
+                    
+                </stats>
+            </li>
+        </specialGuns>
+
+        <!-- ==== Caliber determination ==== -->
+        <CaliberRanges>
+            <li>
+                <DamageRange>9~9</DamageRange>
+                <SpeedRange>56~60</SpeedRange>
+                <AmmoSet>AmmoSet_9x19mmPara</AmmoSet>
+            </li>
+            <li>
+                <DamageRange>6~6</DamageRange>
+                <SpeedRange>61~65</SpeedRange>
+                <AmmoSet>AmmoSet_46x30mm</AmmoSet>
+            </li>
+            <li>
+                <DamageRange>7~7</DamageRange>
+                <SpeedRange>61~65</SpeedRange>
+                <AmmoSet>AmmoSet_FN57x28mm</AmmoSet>
+            </li>
+        </CaliberRanges>
+        <DetermineCaliber>true</DetermineCaliber> 
     </CombatExtended.GunPatcherPresetDef>
 </Defs>
