@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Outland - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Projectiles -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Projectile_ArcaneShard"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Outland_ArcaneDamage</damageDef>
+					<damageAmountBase>9</damageAmountBase>
+					<armorPenetrationSharp>4</armorPenetrationSharp>
+					<armorPenetrationBlunt>9.66</armorPenetrationBlunt>
+					<speed>60</speed>
+				</projectile>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Projectile_ArcaneBolt"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Outland_ArcaneDamage</damageDef>
+					<damageAmountBase>14</damageAmountBase>
+					<armorPenetrationSharp>6</armorPenetrationSharp>
+					<armorPenetrationBlunt>12.18</armorPenetrationBlunt>
+					<speed>60</speed>
+				</projectile>
+			</value>
+		</li>	
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Projectile_ArcaneBlast"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Outland_ArcaneDamage</damageDef>
+					<damageAmountBase>18</damageAmountBase>
+					<armorPenetrationSharp>8.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>18.18</armorPenetrationBlunt>
+					<speed>60</speed>
+				</projectile>
+			</value>
+		</li>	
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
