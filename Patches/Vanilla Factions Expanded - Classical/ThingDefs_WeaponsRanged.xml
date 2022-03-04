@@ -8,18 +8,19 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-      <!-- === Remove mobile "Scorpion". === -->
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]</xpath>
-			</li>
-
       <!-- === Javelin === -->
 
 			<li Class="PatchOperationAttributeSet">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<attribute>ParentName</attribute>
-				<value>BaseWeapon</value>				
+				<value>BaseWeaponAndAmmoNeolithic</value>				
 			</li>	
+
+        <li Class="PatchOperationAttributeAdd">
+          <xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+          <attribute>Class</attribute>
+          <value>CombatExtended.AmmoDef</value>
+        </li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
@@ -51,7 +52,8 @@
             <Mass>2</Mass>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 					</statBases>
-					<stackLimit>25</stackLimit>				
+					<stackLimit>25</stackLimit>
+          <ammoClass>HeavyJavelin</ammoClass>				
 				</value>
 			</li>
 
@@ -107,25 +109,6 @@
 				<xpath>Defs</xpath>
 				<value>
 
-        <ThingDef ParentName="BasePilumProjectile">
-          <defName>Classical_Javelin_Thrown</defName>
-          <label>javelin</label>
-          <projectile Class="CombatExtended.ProjectilePropertiesCE">
-          <damageAmountBase>14</damageAmountBase>
-          <speed>16</speed>
-          <armorPenetrationBlunt>5.44</armorPenetrationBlunt>
-          <armorPenetrationSharp>5</armorPenetrationSharp>
-            <secondaryDamage>
-              <li>
-                <def>VFEC_ApparelDamage</def>
-                <amount>20</amount>
-              </li>
-            </secondaryDamage>
-            <preExplosionSpawnChance>0.25</preExplosionSpawnChance> <!-- Roman javelins/pila were designed to break or bend on impact, to prevent them being thrown back. -->
-            <preExplosionSpawnThingDef>VFEC_Javelin</preExplosionSpawnThingDef>
-          </projectile>
-        </ThingDef>
-
         <RecipeDef ParentName="AmmoRecipeNeolithicBase">
           <defName>MakeAmmo_VFEC_Javelin</defName>
           <label>make javelins x5</label>
@@ -172,6 +155,26 @@
 
 				</value>				
 			</li>	
+
+      <!-- === Can't remove it entirely without causing errors, but make the mobile "Scorpion" weapon inaccessible. === -->
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]/weaponTags</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion"]/minifiedDef</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion"]/thingCategories</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion" or defName="VFEC_TurretGun_Scorpion"]/description</xpath>
+        <value>
+          <description>A ballista-like turret capable of firing rapidly when set up and manned. Very effective against enemy infantry.</description>
+        </value>
+			</li>
 
 		</operations>
 		</match>
