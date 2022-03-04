@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using CombatExtended.Compatibility;
 
 namespace CombatExtended
 {
@@ -17,6 +18,8 @@ namespace CombatExtended
             var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsRangedWeapon && (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false));
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
+
+            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.Any(y => !(y is ToolCE)));
 
             foreach (var preset in patcherDefs)
             {
@@ -42,6 +45,17 @@ namespace CombatExtended
 
                             ));
                 }
+            }
+
+            foreach (var toolMisser in toolMissers)
+            {
+                List<Tool> newTools = new List<Tool>();
+                foreach(var tool in toolMisser.tools)
+                {
+                    newTools.Add(tool.ConvertTool());
+                }
+
+                toolMisser.tools = newTools;
             }
         }
     }
