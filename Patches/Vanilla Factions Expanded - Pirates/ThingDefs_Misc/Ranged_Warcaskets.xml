@@ -8,6 +8,14 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <!-- === Remove the added weapon tag from the Charge Lance === -->
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags</xpath>
+          <value>
+            <li>VFEP_Captain</li>
+          </value>
+        </li>
+
         <!-- === Research === -->
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ResearchProjectDef[defName="VFEP_WarcasketWeaponry"]/prerequisites/li[text()="MultibarrelWeapons"]</xpath>
