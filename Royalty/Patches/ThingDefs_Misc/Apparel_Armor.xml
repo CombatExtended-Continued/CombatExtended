@@ -75,7 +75,7 @@
 			<li>Feet</li>
 		</value>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorCataphractBase"]/costList/Plasteel</xpath>
 		<value>
@@ -190,6 +190,22 @@
 			<ArmorRating_Blunt>55</ArmorRating_Blunt>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorCataphractBase"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>		  				  
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	  </Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_ArmorCataphractPhoenix"]/costList</xpath>
