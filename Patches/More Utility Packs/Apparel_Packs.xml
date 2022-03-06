@@ -8,6 +8,33 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+		<!-- Add a parent with quality -->
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[
+			defName="SGC_Apparel_RoboticRig" or
+			defName="SGC_Apparel_TraumaKit" or
+			defName="SGC_Apparel_RescueFrame" or
+			defName="SGC_Apparel_FieldMortar" or
+			defName="SGC_Apparel_Jetpack" or
+			defName="SGC_Apparel_CommandTower" or
+			defName="SGC_Apparel_CombatMechPack" or
+			defName="SGC_Apparel_INDMechPack" or
+			defName="SGC_Apparel_MechJet"
+			]</xpath>
+				<attribute>ParentName</attribute>
+				<value>ApparelBase</value>
+		</li>
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[
+			defName="SGC_Apparel_SurvivalPack" or
+			defName="SGC_Apparel_Forklift"
+			]</xpath>
+				<attribute>ParentName</attribute>
+				<value>ApparelBase</value>
+		</li>
+
 		<!-- Change Layer -->
 
 		<li Class="PatchOperationAdd">
@@ -33,7 +60,8 @@
 			</value>
 		</li>
 
-		<!-- Robot Rig -->		
+		<!-- Robot Rig -->	
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RoboticRig"]/statBases</xpath>
 			<value>
@@ -50,6 +78,7 @@
 		</li>
 
 		<!-- Medical Bag -->	
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_TraumaKit"]/statBases</xpath>
 			<value>
@@ -81,6 +110,7 @@
 		</li>
 
 		<!-- Rescue Frame -->
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases</xpath>
 			<value>
@@ -97,6 +127,7 @@
 		</li>
 
 		<!-- Forklift Rig -->
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName = "SGC_Apparel_Forklift"]/statBases</xpath>
 			<value>
@@ -113,68 +144,69 @@
 		</li>
 
 		<!-- Mortar Pack -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
-          <value>
-            <ammoDef>Shell_60mmMortar_HE</ammoDef>
-          </value>
-        </li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
-          <value>
-            <maxCharges>3</maxCharges>
-          </value>
-        </li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+			<value>
+				<ammoDef>Shell_60mmMortar_HE</ammoDef>
+			</value>
+		</li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
-          <value>
-            <ammoCountPerCharge>1</ammoCountPerCharge>
-          </value>
-        </li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/maxCharges</xpath>
+			<value>
+				<maxCharges>3</maxCharges>
+			</value>
+		</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps</xpath>
-          <value>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
-          </value>
-        </li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+			<value>
+				<ammoCountPerCharge>1</ammoCountPerCharge>
+			</value>
+		</li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/verbs</xpath>
-          <value>
-            <verbs>
-              <li Class="CombatExtended.VerbPropertiesCE">
-                <label>launch 60mm shell</label>
-                <verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-                <hasStandardCommand>true</hasStandardCommand>
-                <onlyManualCast>True</onlyManualCast>
-                <warmupTime>2</warmupTime>
-                <range>40</range>
-                <minRange>5</minRange>
-                <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-        		<soundCast>Mortar_LaunchA</soundCast>
-                <soundCastTail>GunTail_Medium</soundCastTail>
-                <muzzleFlashScale>14</muzzleFlashScale>
-                <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-                <targetParams>
-                  <canTargetLocations>true</canTargetLocations>
-                </targetParams>
-                <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-                <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-                <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-              </li>
-            </verbs>
-          </value>
-        </li>
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/comps</xpath>
+			<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+						<li>30</li>
+						<li>50</li>
+						<li>70</li>
+						<li>90</li>
+					</chargeSpeeds>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_FieldMortar"]/verbs</xpath>
+			<value>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<label>launch 60mm shell</label>
+						<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<onlyManualCast>True</onlyManualCast>
+						<warmupTime>2</warmupTime>
+						<range>40</range>
+						<minRange>5</minRange>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+						<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+						<defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+						<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+					</li>
+				</verbs>
+			</value>
+		</li>
 
 		</operations>
 		</match>
