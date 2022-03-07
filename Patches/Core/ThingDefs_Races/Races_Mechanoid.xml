@@ -117,6 +117,21 @@
 		</value>
 	</Operation>
 
+	<!-- this is for the C# functionality, for whole thing to work you gotta add CombatExtended.BodyPartExploderExt mod extension to a bodypart -->
+	<!--
+		 CombatExtended.BodyPartExploderExt has only <triggerChance> and <allowedDamageDefs> (list node, example usage <allowedDamageDefs><li>Burn</li></allowedDamageDefs>) nodes
+	-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Centipede"]</xpath>
+		<value>
+			<comps>
+				<li>
+					<compClass>CombatExtended.CompAmmoExploder</compClass>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+
 	<!-- ========== Termite ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -391,4 +406,3 @@
 	</Operation>
 
 </Patch>
-
