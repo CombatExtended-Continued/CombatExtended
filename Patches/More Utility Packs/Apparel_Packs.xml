@@ -8,31 +8,78 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-		<!-- Add a parent with quality -->
+		<!-- Quality Comp -->
 
-		<li Class="PatchOperationAttributeSet">
-			<xpath>Defs/ThingDef[
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[
 			defName="SGC_Apparel_RoboticRig" or
 			defName="SGC_Apparel_TraumaKit" or
-			defName="SGC_Apparel_RescueFrame" or
-			defName="SGC_Apparel_FieldMortar" or
-			defName="SGC_Apparel_Jetpack" or
-			defName="SGC_Apparel_CommandTower" or
-			defName="SGC_Apparel_CombatMechPack" or
-			defName="SGC_Apparel_INDMechPack" or
-			defName="SGC_Apparel_MechJet"
-			]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ApparelBase</value>
+			defName="SGC_Apparel_FieldMortar"
+			]/comps/li/compClass[.="CompQuality"]</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="SGC_Apparel_RoboticRig" or defName="SGC_Apparel_TraumaKit" or defName="SGC_Apparel_RescueFrame" or defName="SGC_Apparel_FieldMortar"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</value>
+			</nomatch>
 		</li>
 
-		<li Class="PatchOperationAttributeSet">
-			<xpath>Defs/VAE_Accessories.CaravanCapacityApparelDef[
-			defName="SGC_Apparel_SurvivalPack" or
-			defName="SGC_Apparel_Forklift"
-			]</xpath>
-				<attribute>ParentName</attribute>
-				<value>ApparelBase</value>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]/comps</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]</xpath>
+				<value>
+					<comps>
+						<li>
+							<compClass>CompQuality</compClass>
+						</li>
+					</comps>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="SGC_Apparel_RescueFrame"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</value>
+			</match>
+		</li>
+
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_Forklift"]/comps/li/compClass[.="CompQuality"]</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_Forklift"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</value>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]</xpath>
+				<value>
+					<comps>
+						<li>
+							<compClass>CompQuality</compClass>
+						</li>
+					</comps>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/VAE_Accessories.CaravanCapacityApparelDef[defName="SGC_Apparel_SurvivalPack"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CompQuality</compClass>
+					</li>
+				</value>
+			</match>
 		</li>
 
 		<!-- Change Layer -->
@@ -123,6 +170,20 @@
 			<value>
 				<CarryBulk>10</CarryBulk>
 				<CarryWeight>20</CarryWeight>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases/EnergyShieldRechargeRate</xpath>
+			<value>
+				<EnergyShieldRechargeRate>0.75</EnergyShieldRechargeRate>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "SGC_Apparel_RescueFrame"]/statBases/EnergyShieldEnergyMax</xpath>
+			<value>
+				<EnergyShieldEnergyMax>9.0</EnergyShieldEnergyMax>
 			</value>
 		</li>
 
