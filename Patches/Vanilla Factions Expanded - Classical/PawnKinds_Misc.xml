@@ -15,14 +15,14 @@
         </value>
       </li>
 
-      <!-- Give Auxilaries some javelines. -->
+      <!-- Give Auxilaries some javelins. -->
       <li Class="PatchOperationAddModExtension">
         <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicAuxilia"]</xpath>
         <value>
           <li Class="CombatExtended.LoadoutPropertiesExtension">
             <primaryMagazineCount>
-              <min>2</min>
-              <max>6</max>
+              <min>4</min>
+              <max>8</max>
             </primaryMagazineCount>
             <sidearms>
             <li>
@@ -38,6 +38,40 @@
             </li>  
             </sidearms>
           </li>
+        </value>
+      </li>
+
+      <!-- Give Archers some arrows. -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicArcher"]</xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>12</min>
+              <max>20</max>
+            </primaryMagazineCount>
+            <sidearms>
+            <li>
+              <generateChance>0.50</generateChance>
+              <sidearmMoney>
+                <min>100</min>
+                <max>250</max>
+              </sidearmMoney>
+              <weaponTags>
+                <li>NeolithicMeleeBasic</li>
+                <li>ClassicalSimple</li>
+              </weaponTags>
+            </li>  
+            </sidearms>
+          </li>
+        </value>
+      </li>
+
+      <!-- Give pawns some packs. -->
+      <li Class="PatchOperationAdd">
+      <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicArcher" or defName="VFEC_RepublicAuxilia"]/apparelRequired</xpath>
+        <value>
+          <li>Apparel_TribalBackpack</li>
         </value>
       </li>
 
