@@ -33,6 +33,8 @@ Mod |
 [O21] Dragons Not Included |
 [O21] Forgotten Realms |
 [O21] Mechadroids |
+[O21] Outland - Core    |
+[O21] Outland - Eastborn Empire    |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
@@ -204,6 +206,7 @@ Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
+Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
@@ -281,6 +284,7 @@ Ogam's Warbanner Mod    |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
+Paniel the Automata |
 Pawnbold Race   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
@@ -317,7 +321,6 @@ RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Shek	|
-Rim-Skeletons	|
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -361,6 +364,7 @@ Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
+T's Samurai Faction |
 Ultratech: Altered Carbon Remastered |
 Useless Clothes |
 Vanilla Animals Expanded |

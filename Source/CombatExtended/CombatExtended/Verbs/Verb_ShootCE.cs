@@ -284,7 +284,7 @@ namespace CombatExtended
                     {
                         if (VerbPropsCE.muzzleFlashScale > 0.01f)
                         {
-                            FleckMaker.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
+                            FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
                         }
                         if (VerbPropsCE.soundCast != null)
                         {

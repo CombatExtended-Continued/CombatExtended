@@ -41,7 +41,7 @@ namespace CombatExtended.Compatibility
         public static void PatchHARs()
         {
 
-            var UnpatchedHARs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetType().ToString() == "AlienRace.ThingDef_AlienRace").Where(x => x.tools.Any(y => !(y is ToolCE) ));
+            var UnpatchedHARs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetType().ToString() == "AlienRace.ThingDef_AlienRace").Where(x => x.tools != null && x.tools.Any(y => y != null && !(y is ToolCE)));
 
             int patchCount = 0;
 

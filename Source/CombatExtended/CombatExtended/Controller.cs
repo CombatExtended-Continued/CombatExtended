@@ -21,7 +21,7 @@ namespace CombatExtended
             Controller.instant = this;
             Controller.content = content;
             Controller.settings = GetSettings<Settings>();
-
+            
             // Apply Harmony patches
             HarmonyBase.InitPatches();
 
