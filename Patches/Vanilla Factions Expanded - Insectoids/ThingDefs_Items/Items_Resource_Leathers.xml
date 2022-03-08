@@ -8,36 +8,34 @@
 
     <match Class="PatchOperationSequence">
       <operations>
-        <!-- === Chitin === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases</xpath>
-          <value>
-            <Bulk>0.3</Bulk>
-          </value>
-        </li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+		<!-- === Chitin === -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases</xpath>
+			<value>
+				<Bulk>0.3</Bulk>
+			</value>
+		</li>
 
-          <value>
-            <StuffPower_Armor_Sharp>1.1</StuffPower_Armor_Sharp>
-          </value>
-        </li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>1.1</StuffPower_Armor_Sharp>
+			</value>
+		</li>
 
-        <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.60</StuffPower_Armor_Blunt>
+			</value>
+		</li>
 
-          <value>
-            <StuffPower_Armor_Blunt>0.60</StuffPower_Armor_Blunt>
-          </value>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Heat</xpath>
-
-          <value>
-            <StuffPower_Armor_Heat>0.05</StuffPower_Armor_Heat>
-          </value>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEI_Chitin"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.005</StuffPower_Armor_Heat>
+			</value>
         </li>
 		
 		<li Class="PatchOperationAdd">
@@ -64,20 +62,26 @@
 
         <!-- === Spidersilk === -->
         <li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEI_Spidersilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<xpath>/Defs/ThingDef[defName="VFEI_Spidersilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>0.01</StuffPower_Armor_Sharp>
+			</value>
+		</li>
 
-				<value>
-					<StuffPower_Armor_Sharp>0.18</StuffPower_Armor_Sharp>
-				</value>
-			</li>
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="VFEI_Spidersilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
+			</value>
+		</li>
 
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEI_Spidersilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEI_Spidersilk"]/statBases/StuffPower_Armor_Heat</xpath>
+			<value>
+				<StuffPower_Armor_Heat>0.001</StuffPower_Armor_Heat>
+			</value>
+        </li>
 
-				<value>
-					<StuffPower_Armor_Blunt>0.05</StuffPower_Armor_Blunt>
-				</value>
-			</li>
       </operations>
     </match>
   </Operation>
