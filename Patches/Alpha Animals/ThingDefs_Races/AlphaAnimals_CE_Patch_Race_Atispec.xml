@@ -59,13 +59,14 @@
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>5</ArmorRating_Blunt>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
 					</value>
 				</li>
 				
@@ -85,14 +86,22 @@
 					</value>
 				</li>
 
-
 				<li Class="PatchOperationReplace">
-		                 	<xpath>/Defs/ThingDef[defName="AA_Atispec"]/race/baseHealthScale</xpath>
-		                 	<value>
-			               		<baseHealthScale>10</baseHealthScale>
-		                 	</value>
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/race/baseHealthScale</xpath>
+					<value>
+						<baseHealthScale>15</baseHealthScale>
+					</value>
+				</li>
 
-	                	</li>
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/comps</xpath>
+					<value>
+						<li Class="AnimalBehaviours.CompProperties_InitialHediff">
+						<hediffname>AA_LowBleed</hediffname>
+						<hediffseverity>1</hediffseverity>
+						</li>
+					</value>
+				</li>
 
 				<!-- Atispec -->
 
@@ -100,7 +109,6 @@
 					<xpath>/Defs/ThingDef[defName="AA_Atispec"]/tools</xpath>
 					<value>
 						<tools>
-
 							<li Class="CombatExtended.ToolCE">
 								<label>left claw</label>
 								<capacities>
@@ -112,7 +120,6 @@
 								<armorPenetrationSharp>2</armorPenetrationSharp>
 								<armorPenetrationBlunt>4</armorPenetrationBlunt>
 							</li>
-
 							<li Class="CombatExtended.ToolCE">
 								<label>right claw</label>
 								<capacities>
@@ -151,6 +158,7 @@
 						</tools>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
