@@ -19,6 +19,19 @@ namespace CombatExtended.HarmonyCE
             {
                 loadoutProps.GenerateLoadoutFor(p);
             }
+
+            var kindDefSkills = p.kindDef.GetModExtension<SkillKindDefExt>();
+            if (kindDefSkills != null)
+            {
+                if (p.skills != null)
+                {
+                    foreach (SkillRange range in kindDefSkills.skills)
+                    {
+                        p.skills.skills.Find(x => x.def == range.skill).Level = range.range.RandomInRange;
+                    }
+                }
+                
+            }
         }
     }
 }
