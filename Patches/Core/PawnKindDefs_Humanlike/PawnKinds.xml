@@ -147,47 +147,38 @@
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner" or defName="Mercenary_Gunner_Acidifier"]</xpath>
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>2</min>
-          <max>4</max>
-        </primaryMagazineCount>
-        <shieldMoney>
-          <min>200</min>
-          <max>600</max>
-        </shieldMoney>
-        <shieldTags>
-          <li>OutlanderShield</li>
-        </shieldTags>
-        <shieldChance>0.8</shieldChance>
-        <sidearms>
+        
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner" defName="Mercenary_Gunner_Acidifier"]</xpath>
+    <value>
+      <li Class="CombatExtended.SkillKindDefExt">
+        <skills>
           <li>
-            <generateChance>0.5</generateChance>
-            <sidearmMoney>
-              <min>20</min>
-              <max>120</max>
-            </sidearmMoney>
-            <weaponTags>
-              <li>CE_Sidearm_Melee</li>
-            </weaponTags>
+            <skill>Shooting</skill>
+            <range>7~14</range>
           </li>
+        </skills>
+      </li>
+    </value>
+  </Operation>
+  
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner_Acidifier"]</xpath>
+    <value>
+      <li Class="CombatExtended.SkillKindDefExt">
+        <skills>
           <li>
-              <generateChance>0.075</generateChance>
-              <sidearmMoney>
-                <min>10</min>
-                <max>100</max>
-              </sidearmMoney>
-              <weaponTags>
-                <li>CE_FlareLauncher</li>
-              </weaponTags>
-              <magazineCount>
-                <min>1</min>
-                <max>3</max>
-              </magazineCount>
+            <skill>Shooting</skill>
+            <range>10~17</range>
           </li>
-        </sidearms>
+        </skills>
       </li>
     </value>
   </Operation>
@@ -744,8 +735,8 @@
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>3</min>
-          <max>6</max>
+          <min>30</min>
+          <max>60</max>
         </primaryMagazineCount>
         <shieldMoney>
           <min>120</min>
@@ -785,13 +776,6 @@
         <max>300</max>
       </weaponMoney>
     </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-   <xpath>/Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
-     <value>
-       <li>Apparel_TribalBackpack</li>
-     </value>
   </Operation>
 
   <!-- Stranger in Black -->
