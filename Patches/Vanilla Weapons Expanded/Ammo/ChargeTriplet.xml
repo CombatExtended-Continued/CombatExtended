@@ -8,6 +8,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
@@ -25,24 +26,34 @@
           </value>
         </li>
 
+        <!--Add names for inheriting-->
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="Bullet_8x35mmCharged"]</xpath>
+          <attribute>Name</attribute>
+          <value>Bullet_8x35mmCharged</value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="Bullet_8x35mmCharged_AP"]</xpath>
+          <attribute>Name</attribute>
+          <value>Bullet_8x35mmCharged_AP</value>
+        </li>
+
+        <li Class="PatchOperationAttributeSet">
+          <xpath>Defs/ThingDef[defName="Bullet_8x35mmCharged_Ion"]</xpath>
+          <attribute>Name</attribute>
+          <value>Bullet_8x35mmCharged_Ion</value>
+        </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <ThingDef ParentName="Base8x35mmChargedBullet">
+            <ThingDef ParentName="Bullet_8x35mmCharged">
               <defName>Bullet_8x35mmCharged_Triple</defName>
-              <label>8x35mm Charged bullet</label>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                <damageAmountBase>19</damageAmountBase>
-                <secondaryDamage>
-                  <li>
-                    <def>Bomb_Secondary</def>
-                    <amount>6</amount>
-                  </li>
-                </secondaryDamage>
-                <armorPenetrationSharp>15</armorPenetrationSharp>
-                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
                 <pelletCount>3</pelletCount>
-                <spreadMult>1.6</spreadMult>
+                <spreadMult>1.8</spreadMult>
               </projectile>
             </ThingDef>
           </value>
@@ -51,21 +62,11 @@
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <ThingDef ParentName="Base8x35mmChargedBullet">
+            <ThingDef ParentName="Bullet_8x35mmCharged_AP">
               <defName>Bullet_8x35mmCharged_AP_Triple</defName>
-              <label>8x35mm Charged bullet (Conc.)</label>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                <damageAmountBase>15</damageAmountBase>
-                <secondaryDamage>
-                  <li>
-                    <def>Bomb_Secondary</def>
-                    <amount>2</amount>
-                  </li>
-                </secondaryDamage>
-                <armorPenetrationSharp>30</armorPenetrationSharp>
-                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
                 <pelletCount>3</pelletCount>
-                <spreadMult>1.4</spreadMult>
+                <spreadMult>1.8</spreadMult>
               </projectile>
             </ThingDef>
           </value>
@@ -74,22 +75,11 @@
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <ThingDef ParentName="Base8x35mmChargedBullet">
+            <ThingDef ParentName="Bullet_8x35mmCharged_Ion">
               <defName>Bullet_8x35mmCharged_Ion_Triple</defName>
-              <label>8x35mm Charged bullet (Ion)</label>
               <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                <damageAmountBase>15</damageAmountBase>
-                <secondaryDamage>
-                  <li>
-                    <def>EMP</def>
-                    <amount>9</amount>
-                  </li>
-                </secondaryDamage>
-                <armorPenetrationSharp>22.5</armorPenetrationSharp>
-                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
-                <empShieldBreakChance>0.2</empShieldBreakChance>
                 <pelletCount>3</pelletCount>
-                <spreadMult>1.4</spreadMult>
+                <spreadMult>1.8</spreadMult>
               </projectile>
             </ThingDef>
           </value>
