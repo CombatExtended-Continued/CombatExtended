@@ -139,6 +139,18 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+   <xpath>/Defs/PawnKindDef[@Name="MercenaryGunnerBase"]/skills</xpath>
+   <value>
+     <skills>
+       <li>
+         <skill>Shooting</skill>
+         <range>6~16</range>
+       </li>
+     </skills>
+   </value>
+  </Operation>
+
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
     <value>
@@ -190,6 +202,18 @@
         </sidearms>
       </li>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+   <xpath>/Defs/PawnKindDef[@Name="MercenarySniperBase"]/skills</xpath>
+   <value>
+     <skills>
+       <li>
+         <skill>Shooting</skill>
+         <range>8~18</range>
+       </li>
+     </skills>
+   </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
@@ -270,6 +294,21 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[@Name="MercenarySlasherBase"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[@Name="MercenarySlasherBase"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Melee</skill>
+           <range>4~12</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>Defs/PawnKindDef[defName = "Mercenary_Slasher" or defName="Mercenary_Slasher_Acidifier"]</xpath>
     <value>
@@ -284,6 +323,21 @@
         <shieldChance>0.9</shieldChance>
       </li>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>6~14</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
@@ -359,6 +413,21 @@
         </sidearms>
       </li>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="Town_Guard"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="Town_Guard"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>4~10</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -470,6 +539,25 @@
   </Operation>
 
   <!-- ========== Spacer ========== -->
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>6~12</range>
+         </li>
+         <li>
+           <skill>Melee</skill>
+           <range>4~12</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
+  </Operation>
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="AncientSoldier"]/weaponMoney</xpath>
@@ -662,6 +750,21 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="Tribal_HeavyArcher"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="Tribal_HeavyArcher"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>4~12</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>Defs/PawnKindDef[defName="Tribal_HeavyArcher"]</xpath>
     <value>
@@ -698,6 +801,21 @@
     <value>
       <combatPower>60</combatPower>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="Tribal_Berserker"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="Tribal_Berserker"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Melee</skill>
+           <range>4~12</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -739,6 +857,21 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefMelee"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefMelee"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Melee</skill>
+           <range>8~12</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]</xpath>
     <value>
@@ -768,6 +901,21 @@
         </sidearms>
       </li>
     </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefRanged"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefRanged"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>6~14</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
@@ -812,6 +960,21 @@
      <value>
        <li>Apparel_Backpack</li>
      </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+   <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]/skills</xpath>
+   <nomatch Class="PatchOperationAdd">
+     <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]</xpath>
+     <value>
+       <skills>
+         <li>
+           <skill>Shooting</skill>
+           <range>8~14</range>
+         </li>
+       </skills>
+     </value>
+   </nomatch>
   </Operation>
 
 </Patch>
