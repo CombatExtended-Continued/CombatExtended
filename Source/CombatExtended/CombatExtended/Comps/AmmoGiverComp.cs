@@ -27,7 +27,7 @@ namespace CombatExtended
                 {
                     if (user != null)
                     {
-                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate() + dad.Name.ToStringShort,
+                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate() + (dad.Name?.ToStringShort ?? dad.def.label),
                         delegate
                         {
                             List<FloatMenuOption> options = new List<FloatMenuOption>();
