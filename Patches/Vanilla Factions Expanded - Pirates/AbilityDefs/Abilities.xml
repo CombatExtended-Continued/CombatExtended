@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Firing Frenzy -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/verbProperties/range</xpath>
+			<value>
+				<range>14.9</range>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AbilityDef[@Name="VFEP_RoleAuraBuffBase"]/statBases/Ability_EffectRadius</xpath>
+			<value>
+				<Ability_EffectRadius>14.9</Ability_EffectRadius>
+			</value>
+		</li>
+
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>
+
