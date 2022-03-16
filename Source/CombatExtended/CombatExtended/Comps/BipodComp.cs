@@ -54,6 +54,13 @@ namespace CombatExtended
 			Scribe_Values.Look<bool>(ref IsSetUpRn, "isBipodSetUp");
 			base.PostExposeData();
 		}
+
+        [Compatibility.Multiplayer.SyncMethod]
+        public void DeployUpBipod() => ShouldSetUpint = true;
+
+        [Compatibility.Multiplayer.SyncMethod]
+        public void CloseBipod() { ShouldSetUpint = false; IsSetUpRn = false; SetUpInvert(parent); }
+
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
 			if (Controller.settings.BipodMechanics)
@@ -97,7 +104,7 @@ namespace CombatExtended
 							{
 								yield return new Command_Action
 								{
-									action = delegate { ShouldSetUpint = true; },
+									action = DeployUpBipod,
 									defaultLabel = "Deploy bipod",
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
 								};
@@ -106,7 +113,7 @@ namespace CombatExtended
 							{
 								yield return new Command_Action
 								{
-									action = delegate { ShouldSetUpint = false; IsSetUpRn = false; SetUpInvert(this.parent); },
+									action = CloseBipod,
 									defaultLabel = "Close bipod",
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
 								};

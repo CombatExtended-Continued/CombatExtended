@@ -68,7 +68,7 @@ namespace CombatExtended
 		if (Rand.Range(0,10) == 5) {
 		  float d = density * 0.0001f;
 		  if (density > 300) {
-		      if (Random.Range(0, (int)(MaxDensity)) < d) {
+		      if (Rand.Range(0, (int)(MaxDensity)) < d) {
 			  FilthMaker.TryMakeFilth(Position, Map, ThingDefOf.Filth_Ash, 1, FilthSourceFlags.None);
 		      }
 		  }

@@ -81,7 +81,7 @@ namespace CombatExtended.Compatibility
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.parent.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
-                    FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.ExactPosition = exactPosition;
 
 
