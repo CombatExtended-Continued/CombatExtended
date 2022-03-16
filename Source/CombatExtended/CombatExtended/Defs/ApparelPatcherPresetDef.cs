@@ -38,31 +38,10 @@ namespace CombatExtended
         public List<ApparelPartialStat> partialStats;
 
         #region methods
-        public float FinalRatingSharp(float vanillaRating)
-        {
-            float result = ArmorStaticSharp;
+        public float FinalRatingSharp(float vanillaRating) => ArmorCurveSharp?.Evaluate(vanillaRating) ?? ArmorStaticSharp;
 
-            if (ArmorCurveSharp != null)
-            {
-                return ArmorCurveSharp.Evaluate(vanillaRating);
-            }
+        public float FinalRatingBlunt(float vanillaRating) => ArmorCurveBlunt?.Evaluate(vanillaRating) ?? ArmorStaticBlunt;
 
-            
-            return result;
-        }
-
-        public float FinalRatingBlunt(float vanillaRating)
-        {
-            float result = ArmorStaticBlunt;
-
-            if (ArmorCurveBlunt != null)
-            {
-                return ArmorCurveBlunt.Evaluate(vanillaRating);
-            }
-
-            
-            return result;
-        }
         #endregion
 
         #endregion
