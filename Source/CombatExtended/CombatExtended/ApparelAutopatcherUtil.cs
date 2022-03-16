@@ -35,7 +35,7 @@ namespace CombatExtended
                 && 
                 (
                 matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.ArmorRating_Sharp))
-                |
+                ||
                 matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor))
                 )
                 ;
