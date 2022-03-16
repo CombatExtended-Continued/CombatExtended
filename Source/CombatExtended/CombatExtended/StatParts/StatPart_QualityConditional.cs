@@ -43,36 +43,34 @@ namespace CombatExtended
 
 		public override void TransformValue(StatRequest req, ref float val)
 		{
-			if (req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true)
+			if (!req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true)
 			{
-				if (!(val <= 0f) || applyToNegativeValues)
-				{
-					float a = val * QualityMultiplier(req.QualityCategory) - val;
-					a = Mathf.Min(a, MaxGain(req.QualityCategory));
-					val += a;
-				}
+				return;
+			}
+			if (!(val <= 0f) || applyToNegativeValues)
+			{
+				float a = val * QualityMultiplier(req.QualityCategory) - val;
+				a = Mathf.Min(a, MaxGain(req.QualityCategory));
+				val += a;
 			}
 
 		}
 
 		public override string ExplanationPart(StatRequest req)
 		{
-			if (req.HasThing && !applyToNegativeValues && req.Thing.GetStatValue(parentStat) <= 0f)
+			if ((req.HasThing && !applyToNegativeValues && req.Thing.GetStatValue(parentStat) <= 0f) || (req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true))
 			{
 				return null;
 			}
-			if (req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true)
+			if (req.HasThing && req.Thing.TryGetQuality(out var qc))
 			{
-				if (req.HasThing && req.Thing.TryGetQuality(out var qc))
+				string text = "StatsReport_QualityMultiplier".Translate() + ": x" + QualityMultiplier(qc).ToStringPercent();
+				float num = MaxGain(qc);
+				if (num < 999999f)
 				{
-					string text = "StatsReport_QualityMultiplier".Translate() + ": x" + QualityMultiplier(qc).ToStringPercent();
-					float num = MaxGain(qc);
-					if (num < 999999f)
-					{
-						text += "\n    (" + "StatsReport_MaxGain".Translate() + ": " + num.ToStringByStyle(parentStat.ToStringStyleUnfinalized, parentStat.toStringNumberSense) + ")";
-					}
-					return text;
+					text += "\n    (" + "StatsReport_MaxGain".Translate() + ": " + num.ToStringByStyle(parentStat.ToStringStyleUnfinalized, parentStat.toStringNumberSense) + ")";
 				}
+				return text;
 			}
 			return null;
 		}
