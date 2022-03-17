@@ -74,14 +74,6 @@
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/comps</xpath>
         <value>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
             <li Class="CombatExtended.CompProperties_AmmoUser">
               <magazineSize>1</magazineSize>
               <reloadTime>5</reloadTime>
@@ -102,21 +94,20 @@
         <value>
           <verbs>
             <li Class="CombatExtended.VerbPropertiesCE">
-              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
               <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
               <hasStandardCommand>true</hasStandardCommand>
               <defaultProjectile>Bullet_762x385mmRCannonShell_HE</defaultProjectile>
               <warmupTime>4</warmupTime>
-              <minRange>20</minRange>
-              <range>100</range>
+              <minRange>16</minRange>
+              <range>86</range>
               <burstShotCount>1</burstShotCount>
               <soundCast>VFEP_Shot_FieldCannon</soundCast>
               <muzzleFlashScale>16</muzzleFlashScale>
-              <circularError>1</circularError>
-              <indirectFirePenalty>0.3</indirectFirePenalty>
               <targetParams>
                 <canTargetLocations>true</canTargetLocations>
               </targetParams>
+              <recoilPattern>Mounted</recoilPattern>
             </li>
           </verbs>
         </value>
