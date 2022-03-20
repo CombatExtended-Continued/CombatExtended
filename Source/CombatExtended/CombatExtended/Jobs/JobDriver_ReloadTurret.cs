@@ -165,7 +165,7 @@ namespace CombatExtended
                 waitToil.actor.pather.StopDead();
                 if (compReloader.ShouldThrowMote)
                 {
-                    MoteMakerCE.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
+                    MoteMaker.ThrowText(turret.Position.ToVector3Shifted(), turret.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 }
                 //Thing newAmmo;
                 //compReloader.TryUnload(out newAmmo);
@@ -193,6 +193,113 @@ namespace CombatExtended
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
+        }
+        #endregion Methods
+    }
+
+
+    //Basically copied ReloadTurret but non reserving and using ammo from inventory
+    public class JobDriver_ReloadTurretLoader : JobDriver
+    {
+        #region Fields
+        private CompAmmoUser _compReloader;
+        #endregion Fields
+
+        #region Properties
+        private string errorBase => this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ";
+
+        private Building_Turret turret => TargetThingA as Building_Turret;
+        private AmmoThing ammo => TargetThingB as AmmoThing;
+
+        private CompAmmoUser compReloader
+        {
+            get
+            {
+                if (_compReloader == null && turret != null)
+                {
+                    _compReloader = turret.GetAmmo();
+                }
+                return _compReloader;
+            }
+        }
+        #endregion
+
+        #region Methods
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+
+            return GetActor().CanReach(TargetA, PathEndMode.ClosestTouch, Danger.Deadly);
+        }
+
+        public override string GetReport()
+        {
+            string text = CE_JobDefOf.ReloadTurret.reportString;
+            string turretType = (turret.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
+            text = text.Replace("TurretType", turretType);
+            text = text.Replace("TargetA", TargetThingA.def.label);
+            if (compReloader.UseAmmo)
+                text = text.Replace("TargetB", TargetThingB.def.label);
+            else
+                text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
+            return text;
+        }
+
+        public override IEnumerable<Toil> MakeNewToils()
+        {
+            // Error checking/input validation.
+            if (turret == null)
+            {
+                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_TurretGunCE"));
+                yield return null;
+            }
+            if (compReloader == null)
+            {
+                Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing its CompAmmoUser."));
+                yield return null;
+            }
+            if (compReloader.UseAmmo && ammo == null)
+            {
+                Log.Error(string.Concat(errorBase, "TargetThingB is either null or not an AmmoThing."));
+                yield return null;
+            }
+
+            AddEndCondition(delegate
+            {
+                return (pawn.Downed || pawn.Dead || pawn.InMentalState || pawn.IsBurning()) ? JobCondition.Incompletable : JobCondition.Ongoing;
+            });
+
+            this.FailOnIncapable(PawnCapacityDefOf.Manipulation);
+
+            // Set fail condition on turret.
+            if (pawn.Faction != Faction.OfPlayer)
+                this.FailOnDestroyedOrNull(TargetIndex.A);
+            else
+                this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
+
+            // If someone else magically reloaded our turret while we were reloading, fail.
+            // This happens when Project RimFactory's refueling machine is set up.
+            this.FailOn(() => compReloader.MissingToFullMagazine == 0);
+
+            // Perform ammo system specific activities, failure condition and hauling
+            if (compReloader.UseAmmo)
+            {
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
+
+                yield return Toils_General.Wait((int)(compReloader.Props.reloadTime.SecondsToTicks() / pawn.GetStatValue(CE_StatDefOf.ReloadSpeed) * 0.5f));
+
+                yield return Toils_General.Do(delegate
+                {
+                    if (compReloader.CurMagCount > 0)
+                    {
+                        compReloader.TryUnload();
+                    }
+
+                    compReloader.LoadAmmo(TargetB.Thing);
+
+
+                });
+            };
         }
         #endregion Methods
     }
