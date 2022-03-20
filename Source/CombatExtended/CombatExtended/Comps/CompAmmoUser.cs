@@ -79,6 +79,14 @@ namespace CombatExtended
         {
             get { return parent.GetComp<CompEquippable>(); }
         }
+
+        public Comp_DropInMortar CompMortarTeam
+        {
+            get
+            {
+                return turret?.GetComp<Comp_DropInMortar>();
+            }
+        }
         public Pawn Wielder
         {
             get
@@ -353,19 +361,6 @@ namespace CombatExtended
         // used as a rate limiter
         private int _lastReloadJobTick = -1;
 
-        [Compatibility.Multiplayer.SyncMethod]
-        private void SyncedTryForceReload()
-        {
-            turret.TryForceReload();
-        }
-
-        [Compatibility.Multiplayer.SyncMethod]
-        private void SyncedTryStartReload()
-        {
-            TryStartReload();
-        }
-
-
         // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
         /// <summary>
         /// Overrides a Pawn's current activities to start reloading a gun or turret.  Has a code path to resume the interrupted job.
@@ -389,6 +384,32 @@ namespace CombatExtended
             // secondary branch for if we ended up being called up by a turret somehow...
             if (turret != null)
             {
+                if (CompMortarTeam != null && this.CurMagCount == 0)
+                {
+                    if (CompMortarTeam.loaders.Any())
+                    {
+                        if (CompMortarTeam.loaders.Any(x => x.TryGetComp<CompInventory>().ammoList.Any(y => ((AmmoDef)y.def).AmmoSetDefs.Contains(this.Props.ammoSet))))
+                        {
+                            var loader = CompMortarTeam.loaders.MinBy(x => x.Position.DistanceTo(this.Position));
+
+                            if (loader.TryGetComp<CompInventory>().ammoList.Where(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(this.Props.ammoSet)).Any())
+                            {
+                                var ammo = loader.TryGetComp<CompInventory>().ammoList.Where(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(this.Props.ammoSet)).RandomElement();
+
+                                var Job = JobMaker.MakeJob(CE_JobDefOf.ReloadTurretAsLoader, turret, ammo);
+
+                                loader.jobs.StartJob(Job, JobCondition.InterruptForced);
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            CompMortarTeam.loaders.Clear();
+                        }
+                    }
+
+                }
+
                 turret.TryOrderReload();
                 return;
             }
@@ -507,9 +528,7 @@ namespace CombatExtended
             }
 
             if (ShouldThrowMote)
-            {
-                MoteMakerCE.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
-            }
+                MoteMaker.ThrowText(Position.ToVector3Shifted(), Map, "CE_OutOfAmmo".Translate() + "!");
 
             if (IsEquippedGun && CompInventory != null && (Wielder.CurJob == null || Wielder.CurJob.def != JobDefOf.Hunt))
             {
@@ -691,8 +710,8 @@ namespace CombatExtended
             if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
             {
                 Action action = null;
-                if (IsEquippedGun) action = SyncedTryStartReload;
-                else if (mannableComp != null) action = SyncedTryForceReload;
+                if (IsEquippedGun) action = TryStartReload;
+                else if (mannableComp != null) action = turret.TryForceReload;
 
                 // Check for teaching opportunities
                 string tag;
