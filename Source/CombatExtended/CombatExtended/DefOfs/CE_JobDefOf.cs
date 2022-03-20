@@ -23,5 +23,6 @@ namespace CombatExtended
         public static JobDef TendSelf;
         public static JobDef ModifyWeapon;
         public static JobDef GiveAmmo;
+        public static JobDef ReloadTurretAsLoader;
     }
 }
