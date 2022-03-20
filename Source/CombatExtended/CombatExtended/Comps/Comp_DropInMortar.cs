@@ -41,11 +41,11 @@ namespace CombatExtended
         {
             if (!loaders.Contains(selPawn))
             {
-                yield return new FloatMenuOption("CE_ActAsLoader", delegate { loaders.Add(selPawn); });
+                yield return new FloatMenuOption("CE_ActAsLoader".Translate(), delegate { loaders.Add(selPawn); });
             }
             else
             {
-                yield return new FloatMenuOption("CE_StopActingAsLoader", delegate { loaders.Remove(selPawn); });
+                yield return new FloatMenuOption("CE_StopActingAsLoader".Translate(), delegate { loaders.Remove(selPawn); });
             }
         }
 
@@ -53,7 +53,7 @@ namespace CombatExtended
         {
             if (!loaders.All(x => selPawns.Contains(x)))
             {
-                yield return new FloatMenuOption("CE_ActAsLoaders", delegate { loaders.AddRange(selPawns); });
+                yield return new FloatMenuOption("CE_ActAsLoader".Translate(), delegate { loaders.AddRange(selPawns); });
             }
         }
     }
