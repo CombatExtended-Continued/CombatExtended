@@ -360,6 +360,18 @@ namespace CombatExtended
 
         // used as a rate limiter
         private int _lastReloadJobTick = -1;
+        
+         [Compatibility.Multiplayer.SyncMethod]
+        private void SyncedTryForceReload()
+        {
+            turret.TryForceReload();
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private void SyncedTryStartReload()
+        {
+            TryStartReload();
+        }
 
         // really only used by pawns (JobDriver_Reload) at this point... TODO: Finish making sure this is only used by pawns and fix up the error checking.
         /// <summary>
