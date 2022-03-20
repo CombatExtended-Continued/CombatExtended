@@ -14,6 +14,7 @@
 		<defName>AmmoSet_762x385mmRCannonShell</defName>
 		<label>76.2x385mmR Cannon shells</label>
 		<ammoTypes>
+			<Ammo_762x385mmRCannonShell_HEAT>Bullet_762x385mmRCannonShell_HEAT</Ammo_762x385mmRCannonShell_HEAT>
 			<Ammo_762x385mmRCannonShell_HE>Bullet_762x385mmRCannonShell_HE</Ammo_762x385mmRCannonShell_HE>
 			<Ammo_762x385mmRCannonShell_EMP>Bullet_762x385mmRCannonShell_EMP</Ammo_762x385mmRCannonShell_EMP>
 		</ammoTypes>
@@ -41,6 +42,21 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x385mmRCannonShellBase">
+		<defName>Ammo_762x385mmRCannonShell_HEAT</defName>
+		<label>76.2x385mmR Cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Cannon/762x385mmR/HEAT</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>9.62</Mass>
+			<MarketValue>64.28</MarketValue>
+		</statBases>
+		<ammoClass>RocketHEAT</ammoClass>
+		<detonateProjectile>Bullet_762x385mmRCannonShell_HEAT</detonateProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x385mmRCannonShellBase">
 		<defName>Ammo_762x385mmRCannonShell_HE</defName>
 		<label>76.2x385mmR Cannon shell (HE)</label>
 		<graphicData>
@@ -48,7 +64,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>63.17</MarketValue>
+			<MarketValue>59.04</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeHE</ammoClass>
 		<detonateProjectile>Bullet_762x385mmRCannonShell_HE</detonateProjectile>
@@ -95,6 +111,36 @@
 	</ThingDef>
 
 	<ThingDef ParentName="Base762x385mmRCannonShell">
+		<defName>Bullet_762x385mmRCannonShell_HEAT</defName>
+		<label>76.2x385mmR Cannon shell (HEAT)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/762x385mmR/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>264</damageAmountBase>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<armorPenetrationSharp>300</armorPenetrationSharp>
+			<armorPenetrationBlunt>32.966</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>110</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>12</Fragment_Large>
+					<Fragment_Small>36</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base762x385mmRCannonShell">
 		<defName>Bullet_762x385mmRCannonShell_HE</defName>
 		<label>76.2x385mmR Cannon shell (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
@@ -137,11 +183,55 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_762x385mmRCannonShell_HEAT</defName>
+		<label>make 76.2x385mmR HEAT cannon shells x5</label>
+		<description>Craft 5 76.2x385mmR HEAT cannon shells.</description>
+		<jobString>Making 76.2x385mmR HEAT cannon shells.</jobString>
+		<workAmount>13400</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>98</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_762x385mmRCannonShell_HEAT>5</Ammo_762x385mmRCannonShell_HEAT>
+		</products>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_762x385mmRCannonShell_HE</defName>
 		<label>make 76.2x385mmR HE cannon shells x5</label>
 		<description>Craft 5 76.2x385mmR HE cannon shells.</description>
 		<jobString>Making 76.2x385mmR HE cannon shells.</jobString>
-		<workAmount>13000</workAmount>
+		<workAmount>12200</workAmount>
 		<ingredients>
 			<li>
 				<filter>
@@ -157,7 +247,7 @@
 						<li>FSX</li>
 					</thingDefs>
 				</filter>
-				<count>7</count>
+				<count>5</count>
 			</li>
 			<li>
 				<filter>
