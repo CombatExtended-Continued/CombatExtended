@@ -363,16 +363,19 @@ namespace CombatExtended
                 {
                     foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
                     {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
+                        if (partial.stat == stat)
                         {
-
-                            if (partial.staticValue > 0f)
+                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                             {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
 
+                                if (partial.staticValue > 0f)
+                                {
+                                    return partial.staticValue;
+                                }
+                                result *= partial.mult;
+                                break;
+
+                            }
                         }
                     }
                 }
@@ -393,16 +396,19 @@ namespace CombatExtended
                 {
                     foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
                     {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
+                        if (partial.stat == stat)
                         {
-
-                            if (partial.staticValue > 0f)
+                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                             {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
 
+                                if (partial.staticValue > 0f)
+                                {
+                                    return partial.staticValue;
+                                }
+                                result *= partial.mult;
+                                break;
+
+                            }
                         }
                     }
                 }
@@ -423,13 +429,15 @@ namespace CombatExtended
                     if ((partial?.parts?.Contains(part) ?? false))
                     {
 
-                        if (partial.staticValue > 0f)
+                        if (partial.stat == stat)
                         {
-                            return partial.staticValue;
+                            if (partial.staticValue > 0f)
+                            {
+                                return partial.staticValue;
+                            }
+                            result *= partial.mult;
+                            break;
                         }
-                        result *= partial.mult;
-                        break;
-
                     }
                 }
             }
@@ -446,15 +454,18 @@ namespace CombatExtended
             {
                 foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
                 {
-                    if ((partial?.parts?.Contains(part) ?? false))
+                    if (partial.stat == stat)
                     {
-                        if (partial.staticValue > 0f)
+                        if ((partial?.parts?.Contains(part) ?? false))
                         {
-                            return partial.staticValue;
-                        }
-                        result *= partial.mult;
-                        break;
+                            if (partial.staticValue > 0f)
+                            {
+                                return partial.staticValue;
+                            }
+                            result *= partial.mult;
+                            break;
 
+                        }
                     }
                 }
             }
