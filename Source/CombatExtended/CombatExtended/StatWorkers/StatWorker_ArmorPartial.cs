@@ -24,25 +24,26 @@ namespace CombatExtended
                         ;
                         foreach (ApparelPartialStat partstat in ext.stats)
                         {
-
-
-                            var value = 0f;
-                            if (req.Thing is Apparel)
+                            if (partstat.stat == this.stat)
                             {
-                                value = CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First());
-                            }
-                            else if (req.Thing is Pawn pawn)
-                            {
-                                value = pawn.PartialStat(partstat.stat, partstat.parts.First());
-                            }
+                                var value = 0f;
+                                if (req.Thing is Apparel)
+                                {
+                                    value = (float)Math.Round(CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
+                                }
+                                else if (req.Thing is Pawn pawn)
+                                {
+                                    value = (float)Math.Round(pawn.PartialStat(partstat.stat, partstat.parts.First()), 2);
+                                }
 
-                            result += "\n";
-                            result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
+                                result += "\n";
+                                result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
 
-                            foreach (BodyPartDef bodypart in partstat.parts)
-                            {
-                                result += "\n - ";
-                                result += bodypart.label;
+                                foreach (BodyPartDef bodypart in partstat.parts)
+                                {
+                                    result += "\n - ";
+                                    result += bodypart.label;
+                                }
                             }
                         }
                         return result;
@@ -57,26 +58,29 @@ namespace CombatExtended
                         ;
                         foreach (ApparelPartialStat partstat in ext.stats)
                         {
-
-
-                            var value = 0f;
-                            if (req.Thing is Apparel)
+                            if (partstat.stat == this.stat)
                             {
-                                value = CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First());
-                            }
-                            else if (req.Thing is Pawn pawn)
-                            {
-                                value = pawn.PartialStat(partstat.stat, partstat.parts.First());
+                                var value = 0f;
+                                if (req.Thing is Apparel)
+                                {
+                                    value = (float)Math.Round (CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
+                                }
+                                else if (req.Thing is Pawn pawn)
+                                {
+                                    value = (float)Math.Round(pawn.PartialStat(partstat.stat, partstat.parts.First()), 2);
+                                }
+
+                                result += "\n";
+                                result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
+
+                                foreach (BodyPartDef bodypart in partstat.parts)
+                                {
+                                    result += "\n - ";
+                                    result += bodypart.label;
+                                }
                             }
 
-                            result += "\n";
-                            result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
-
-                            foreach (BodyPartDef bodypart in partstat.parts)
-                            {
-                                result += "\n - ";
-                                result += bodypart.label;
-                            }
+                            
                         }
                         return result;
                     }
