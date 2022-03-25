@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Furniture Expanded - Security</li>
+	</mods>
+	<match Class="PatchOperationSequence">
+	<operations>
+
+	<!-- ========== EMP Ammo ========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<ThingDef ParentName="BaseBullet">
+				<defName>Bullet_EMPCannon</defName>
+				<label>EMP Blast</label>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>			
+				<graphicData>
+				  <texPath>Things/Projectile/Bullet_EMPCannon</texPath>
+				  <graphicClass>Graphic_Single</graphicClass>
+				  <shaderType>TransparentPostLight</shaderType>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <damageDef>EMP</damageDef>
+				  <damageAmountBase>42</damageAmountBase>
+				  <explosionRadius>4</explosionRadius>
+				  <soundExplode>MortarBomb_Explode</soundExplode>				
+				  <speed>130</speed>
+				  <flyOverhead>false</flyOverhead>
+				  <dropsCasings>false</dropsCasings>
+				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				</projectile>
+			</ThingDef>
+		</value>
+    </li>
+
+	<!-- ========== Raider Artillery (To circumvent the issue with vanilla shells.) ========== -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_RaiderArtillery</defName>
+				<label>Raider Artillery</label>
+				<ammoTypes>
+				    <Shell_HighExplosive>Bullet_155mmHowitzerShell_HE</Shell_HighExplosive>
+				    <Shell_Incendiary>Bullet_155mmHowitzerShell_HE</Shell_Incendiary>				
+				</ammoTypes>	
+			</CombatExtended.AmmoSetDef>
+		</value>
+    </li>
+	
+	</operations>
+	</match>
+	</Operation>
+</Patch>
