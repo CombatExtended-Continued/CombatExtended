@@ -88,6 +88,14 @@ namespace CombatExtended
 
         public override void PostExposeData()
         {
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                if (usingUBGL)
+                {
+                    ubglMagCount = compAmmo.CurMagCount;
+                    ubglLoadedAmmo = compAmmo.CurrentAmmo;
+                }
+            }
             Scribe_Values.Look(ref usingUBGL, "usingUBGL");
             Scribe_Defs.Look(ref mainGunLoadedAmmo, "mainGunAmmo");
             Scribe_Defs.Look(ref ubglLoadedAmmo, "ubglAmmo");
@@ -97,13 +105,13 @@ namespace CombatExtended
             {
                 if (usingUBGL)
                 {
-                    mainGunLoadedAmmo = compAmmo.CurrentAmmo;
-                    mainGunMagCount = compAmmo.CurMagCount;
+                    compAmmo.CurMagCount = ubglMagCount;
+                    compAmmo.CurrentAmmo = ubglLoadedAmmo;
+
                     compAmmo.props = this.Props.propsUBGL;
                     compEq.PrimaryVerb.verbProps = Props.verbPropsUBGL;
                     compFireModes.props = this.Props.propsFireModesUBGL;
-                    compAmmo.CurMagCount = ubglMagCount;
-                    compAmmo.CurrentAmmo = ubglLoadedAmmo;
+                    
                     if (compAmmo.Wielder != null)
                     {
                         compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
