@@ -163,7 +163,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
+                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
