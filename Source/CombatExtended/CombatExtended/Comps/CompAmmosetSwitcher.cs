@@ -93,18 +93,21 @@ namespace CombatExtended
             Scribe_Defs.Look(ref ubglLoadedAmmo, "ubglAmmo");
             Scribe_Values.Look(ref mainGunMagCount, "magCountMainGun");
             Scribe_Values.Look(ref ubglMagCount, "ubglMagCount");
-            if (usingUBGL)
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                mainGunLoadedAmmo = compAmmo.CurrentAmmo;
-                mainGunMagCount = compAmmo.CurMagCount;
-                compAmmo.props = this.Props.propsUBGL;
-                compEq.PrimaryVerb.verbProps = Props.verbPropsUBGL;
-                compFireModes.props = this.Props.propsFireModesUBGL;
-                compAmmo.CurMagCount = ubglMagCount;
-                compAmmo.CurrentAmmo = ubglLoadedAmmo;
-                if (compAmmo.Wielder != null)
+                if (usingUBGL)
                 {
-                    compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+                    mainGunLoadedAmmo = compAmmo.CurrentAmmo;
+                    mainGunMagCount = compAmmo.CurMagCount;
+                    compAmmo.props = this.Props.propsUBGL;
+                    compEq.PrimaryVerb.verbProps = Props.verbPropsUBGL;
+                    compFireModes.props = this.Props.propsFireModesUBGL;
+                    compAmmo.CurMagCount = ubglMagCount;
+                    compAmmo.CurrentAmmo = ubglLoadedAmmo;
+                    if (compAmmo.Wielder != null)
+                    {
+                        compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+                    }
                 }
             }
             base.PostExposeData();
