@@ -339,18 +339,6 @@ namespace CombatExtended
         #region Misc
 
         /// <summary>
-        /// If the comps is null, assigns a new list with the comp to it
-        /// </summary>
-        public static void AddComp(this ThingDef def, CompProperties props)
-        {
-            if (def.comps == null)
-            {
-                def.comps = new List<CompProperties>();
-            }
-
-            def.comps.Add(props);
-        }
-        /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
         /// </summary>
         public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
@@ -363,19 +351,16 @@ namespace CombatExtended
                 {
                     foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
                     {
-                        if (partial.stat == stat)
+                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                         {
-                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
+
+                            if (partial.staticValue > 0f)
                             {
-
-                                if (partial.staticValue > 0f)
-                                {
-                                    return partial.staticValue;
-                                }
-                                result *= partial.mult;
-                                break;
-
+                                return partial.staticValue;
                             }
+                            result *= partial.mult;
+                            break;
+
                         }
                     }
                 }
@@ -420,7 +405,7 @@ namespace CombatExtended
                 {
                     var component = pawn.TryGetComp<CompMechArmorDurability>().ERA?.Find(x => x.part == part.def || (part.depth == BodyPartDepth.Inside && (part.parent?.def ?? null) == x.part));
 
-                    
+
 
                     if (component != null)
                     {
@@ -462,15 +447,13 @@ namespace CombatExtended
                     if ((partial?.parts?.Contains(part) ?? false))
                     {
 
-                        if (partial.stat == stat)
+                        if (partial.staticValue > 0f)
                         {
-                            if (partial.staticValue > 0f)
-                            {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
+                            return partial.staticValue;
                         }
+                        result *= partial.mult;
+                        break;
+
                     }
                 }
             }
@@ -487,18 +470,15 @@ namespace CombatExtended
             {
                 foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
                 {
-                    if (partial.stat == stat)
+                    if ((partial?.parts?.Contains(part) ?? false))
                     {
-                        if ((partial?.parts?.Contains(part) ?? false))
+                        if (partial.staticValue > 0f)
                         {
-                            if (partial.staticValue > 0f)
-                            {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
-
+                            return partial.staticValue;
                         }
+                        result *= partial.mult;
+                        break;
+
                     }
                 }
             }
@@ -507,12 +487,10 @@ namespace CombatExtended
 
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
-        public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
-
         public static void UpdateLabel(this Def def, string label)
         {
             def.label = label;
-            cachedLabelCapInfo.SetValue(def, new TaggedString(""));
+            def.cachedLabelCap = "";
         }
 
         /// <summary>
@@ -688,14 +666,17 @@ namespace CombatExtended
             {
                 return;
             }
+
+            Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 60;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
+            Rand.PopState();
         }
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
