@@ -8,7 +8,7 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-      <!-- === Javelin === -->
+			<!-- === Javelin === -->
 
 			<li Class="PatchOperationAttributeSet">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
@@ -16,11 +16,11 @@
 				<value>BaseWeaponAndAmmoNeolithic</value>				
 			</li>	
 
-        <li Class="PatchOperationAttributeAdd">
-          <xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
-          <attribute>Class</attribute>
-          <value>CombatExtended.AmmoDef</value>
-        </li>
+			<li Class="PatchOperationAttributeAdd">
+				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
@@ -29,7 +29,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<value>
-          <techLevel>Neolithic</techLevel>			
+					<techLevel>Neolithic</techLevel>			
 				</value>				
 			</li>		
 
@@ -41,119 +41,120 @@
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/statBases</xpath>
 				<value>
 					<statBases>
-            <MarketValue>7.26</MarketValue>
-            <SightsEfficiency>0.45</SightsEfficiency>
-            <ShotSpread>1.5</ShotSpread>
-            <SwayFactor>2.5</SwayFactor>
-            <Bulk>3.5</Bulk>
-            <Mass>2</Mass>
-            <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+						<MarketValue>7.26</MarketValue>
+						<SightsEfficiency>0.45</SightsEfficiency>
+						<ShotSpread>1.5</ShotSpread>
+						<SwayFactor>2.5</SwayFactor>
+						<Bulk>3.5</Bulk>
+						<Mass>2</Mass>
+						<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 					</statBases>
 					<stackLimit>25</stackLimit>
-          <ammoClass>HeavyJavelin</ammoClass>				
+					<ammoClass>HeavyJavelin</ammoClass>				
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/verbs</xpath>
 				<value>
-				<verbs>
-					<li Class="CombatExtended.VerbPropertiesCE">
-						<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Classical_Javelin_Thrown</defaultProjectile>
-						<warmupTime>0.8</warmupTime>
-						<range>12</range>
-						<soundCast>Interact_BeatFire</soundCast>
-					</li>
-				</verbs>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<defaultProjectile>Classical_Javelin_Thrown</defaultProjectile>
+							<warmupTime>0.8</warmupTime>
+							<range>12</range>
+							<soundCast>Interact_BeatFire</soundCast>
+						</li>
+					</verbs>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/tools</xpath>
 				<value>	
-						<tools>
-              <li Class="CombatExtended.ToolCE">
-                <label>shaft</label>
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>7</power>
-                <cooldownTime>1.35</cooldownTime>
-                <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-                <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-              </li>
-              <li Class="CombatExtended.ToolCE">
-                <label>point</label>
-                <capacities>
-                  <li>Stab</li>
-                </capacities>
-                <power>15</power>
-                <cooldownTime>1.37</cooldownTime>
-                <chanceFactor>1.5</chanceFactor>
-                <armorPenetrationBlunt>1.69</armorPenetrationBlunt>
-                <armorPenetrationSharp>0.34</armorPenetrationSharp>
-                <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-              </li>
-						</tools>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.35</cooldownTime>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.37</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.34</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+					</tools>
 				</value>
 			</li>
 
-      <!-- === Add Projectiles and Recipes for the javelin. === -->
+			<!-- === Add Projectiles and Recipes for the javelin. === -->
 
 			<li Class="PatchOperationAdd">
 				<xpath>Defs</xpath>
 				<value>
 
-        <RecipeDef ParentName="AmmoRecipeNeolithicBase">
-          <defName>MakeAmmo_VFEC_Javelin</defName>
-          <label>make javelins x5</label>
-          <description>Craft 5 javelins.</description>
-        <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-        <workSkill>Crafting</workSkill>
-        <recipeUsers>
-          <li>ElectricSmithy</li>
-          <li>FueledSmithy</li>
-          <li>CraftingSpot</li>
-        </recipeUsers>
-        <effectWorking>Smelt</effectWorking>
-        <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-          <workAmount>2700</workAmount>	
-          <jobString>Making javelins.</jobString>
-          <ingredients>
-            <li>
-              <filter>
-                <thingDefs>
-                  <li>WoodLog</li>
-                </thingDefs>
-              </filter>
-              <count>6</count>
-            </li>
-            <li>
-              <filter>
-                <thingDefs>
-                  <li>Steel</li>
-                </thingDefs>
-              </filter>
-              <count>22</count>
-            </li>
-          </ingredients>
-          <fixedIngredientFilter>
-            <thingDefs>
-              <li>WoodLog</li>
-              <li>Steel</li>
-            </thingDefs>
-          </fixedIngredientFilter>
-          <products>
-            <VFEC_Javelin>5</VFEC_Javelin>
-          </products>
-        </RecipeDef>
+					<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+					  <defName>MakeAmmo_VFEC_Javelin</defName>
+					  <label>make javelins x5</label>
+					  <description>Craft 5 javelins.</description>
+					<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+					<workSkill>Crafting</workSkill>
+					<recipeUsers>
+					  <li>ElectricSmithy</li>
+					  <li>FueledSmithy</li>
+					  <li>CraftingSpot</li>
+					</recipeUsers>
+					<effectWorking>Smelt</effectWorking>
+					<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+					  <workAmount>2700</workAmount>	
+					  <jobString>Making javelins.</jobString>
+					  <ingredients>
+					    <li>
+					      <filter>
+						<thingDefs>
+						  <li>WoodLog</li>
+						</thingDefs>
+					      </filter>
+					      <count>6</count>
+					    </li>
+					    <li>
+					      <filter>
+						<thingDefs>
+						  <li>Steel</li>
+						</thingDefs>
+					      </filter>
+					      <count>22</count>
+					    </li>
+					  </ingredients>
+					  <fixedIngredientFilter>
+					    <thingDefs>
+					      <li>WoodLog</li>
+					      <li>Steel</li>
+					    </thingDefs>
+					  </fixedIngredientFilter>
+					  <products>
+					    <VFEC_Javelin>5</VFEC_Javelin>
+					  </products>
+					</RecipeDef>
 
 				</value>				
 			</li>	
 
-      <!-- === Can't remove it entirely without causing errors, but make the mobile "Scorpion" weapon inaccessible. === -->
+			<!-- === Can't remove it entirely without causing errors, but make the mobile "Scorpion" weapon inaccessible. === -->
+
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]/weaponTags</xpath>
 			</li>
@@ -168,9 +169,9 @@
 
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion" or defName="VFEC_TurretGun_Scorpion"]/description</xpath>
-        <value>
-          <description>A ballista-like turret capable of firing rapidly when set up and manned. Very effective against enemy infantry.</description>
-        </value>
+				<value>
+				  <description>A ballista-like turret capable of firing rapidly when set up and manned. Very effective against enemy infantry.</description>
+				</value>
 			</li>
 
 		</operations>
