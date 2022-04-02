@@ -26,6 +26,13 @@
 
       <!-- Field Gun -->
 
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]</xpath>
+        <value>
+            <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
         <value>
@@ -67,18 +74,10 @@
       <li Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/comps</xpath>
         <value>
-            <li Class="CombatExtended.CompProperties_Charges">
-              <chargeSpeeds>
-                <li>30</li>
-                <li>50</li>
-                <li>70</li>
-                <li>90</li>
-              </chargeSpeeds>
-            </li>
             <li Class="CombatExtended.CompProperties_AmmoUser">
               <magazineSize>1</magazineSize>
               <reloadTime>5</reloadTime>
-              <ammoSet>AmmoSet_105mmHowitzerShell</ammoSet>
+              <ammoSet>AmmoSet_762x385mmRCannonShell</ammoSet>
             </li>
         </value>
       </li>
@@ -95,27 +94,33 @@
         <value>
           <verbs>
             <li Class="CombatExtended.VerbPropertiesCE">
-              <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+              <verbClass>CombatExtended.Verb_ShootCE</verbClass>
               <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
               <hasStandardCommand>true</hasStandardCommand>
-              <defaultProjectile>Bullet_105mmHowitzerShell_HE</defaultProjectile>
+              <defaultProjectile>Bullet_762x385mmRCannonShell_HEAT</defaultProjectile>
               <warmupTime>4</warmupTime>
-              <minRange>20</minRange>
-              <range>900</range>
+              <minRange>16</minRange>
+              <range>86</range>
               <burstShotCount>1</burstShotCount>
               <soundCast>VFEP_Shot_FieldCannon</soundCast>
               <muzzleFlashScale>16</muzzleFlashScale>
-              <circularError>1</circularError>
-              <indirectFirePenalty>0.3</indirectFirePenalty>
               <targetParams>
                 <canTargetLocations>true</canTargetLocations>
               </targetParams>
+              <recoilPattern>Mounted</recoilPattern>
             </li>
           </verbs>
         </value>
       </li>
 
       <!-- Cannon - Based on the M1897 12-pounder -->
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/fillPercent</xpath>
+        <value>
+            <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
 
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/building/turretBurstWarmupTime</xpath>

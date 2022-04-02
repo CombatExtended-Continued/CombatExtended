@@ -116,32 +116,46 @@
 		</li>
 
 		<!-- Adding Inventory Support-->
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
-			<value>
-			<inspectorTabs>
-				<li>CombatExtended.ITab_Inventory</li>
-			</inspectorTabs>				
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
-			<value>
-				<li Class="CombatExtended.CompProperties_Inventory" />
-			</value>
-		</li>
-
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
-			<value>
-				<li>
-				  <compClass>CombatExtended.CompPawnGizmo</compClass>
+		<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
+						<value>
+							<comps/>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
+						<value>
+						</value>
+					</match>
 				</li>
-				<li Class="CombatExtended.CompProperties_Suppressable" />
-			</value>
-		</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]</xpath>
+						<value>
+							<comps>
+								<li>
+									<compClass>CombatExtended.CompPawnGizmo</compClass>									
+								</li>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
+							</comps>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationReplace">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/comps</xpath>
+						<value>
+							<comps>
+								<li>
+									<compClass>CombatExtended.CompPawnGizmo</compClass>									
+								</li>
+								<li Class="CombatExtended.CompProperties_Suppressable" />
+							</comps>				
+						</value>
+					</match>
+				</li> 
 		<!-- Tweak weaponList -->
 		<li Class="PatchOperationRemove">
 			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin" or defName="Ratkin_Su"]/alienRace/raceRestriction/weaponList/li[.="RK_LongSword"]</xpath>

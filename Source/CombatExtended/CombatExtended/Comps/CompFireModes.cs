@@ -197,6 +197,7 @@ namespace CombatExtended
         /// <summary>
         /// Cycles through all available fire modes in order
         /// </summary>
+        [Compatibility.Multiplayer.SyncMethod]
         public void ToggleFireMode()
         {
             int currentFireModeNum = availableFireModes.IndexOf(currentFireModeInt);
@@ -205,12 +206,33 @@ namespace CombatExtended
             if (availableFireModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_FireModes, KnowledgeAmount.Total);
         }
 
+        [Compatibility.Multiplayer.SyncMethod]
         public void ToggleAimMode()
         {
             int currentAimModeNum = availableAimModes.IndexOf(currentAimModeInt);
             currentAimModeNum = (currentAimModeNum + 1) % availableAimModes.Count;
             currentAimModeInt = availableAimModes.ElementAt(currentAimModeNum);
             if (availableAimModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimModes, KnowledgeAmount.Total);
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        public void ChangeTargetMode()
+        {
+            switch (targetMode)
+            {
+                case TargettingMode.torso:
+                    targetMode = TargettingMode.head;
+                    break;
+                case TargettingMode.head:
+                    targetMode = TargettingMode.legs;
+                    break;
+                case TargettingMode.legs:
+                    targetMode = TargettingMode.automatic;
+                    break;
+                case TargettingMode.automatic:
+                    targetMode = TargettingMode.torso;
+                    break;
+            }
         }
 
         /// <summary>
@@ -305,25 +327,7 @@ namespace CombatExtended
                         defaultLabel = "Targeted area: " + targetMode,
                         defaultDesc = "",
                         icon = TrueIcon,
-                        action = delegate
-                        {
-                            switch (targetMode)
-                            {
-                                case TargettingMode.torso:
-                                    targetMode = TargettingMode.head;
-                                    break;
-                                case TargettingMode.head:
-                                    targetMode = TargettingMode.legs;
-                                    break;
-                                case TargettingMode.legs:
-                                    targetMode = TargettingMode.automatic;
-                                    break;
-                                case TargettingMode.automatic:
-                                    targetMode = TargettingMode.torso;
-                                    break;
-                            }
-
-                        }
+                        action = ChangeTargetMode
                     };
                 }
             } 

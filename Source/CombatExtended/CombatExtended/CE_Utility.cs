@@ -451,12 +451,10 @@ namespace CombatExtended
 
         public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
 
-        public static readonly FieldInfo cachedLabelCapInfo = typeof(Def).GetField("cachedLabelCap", BindingFlags.NonPublic | BindingFlags.Instance);
-
         public static void UpdateLabel(this Def def, string label)
         {
             def.label = label;
-            cachedLabelCapInfo.SetValue(def, new TaggedString(""));
+            def.cachedLabelCap = "";
         }
 
         /// <summary>
@@ -465,9 +463,8 @@ namespace CombatExtended
         public static Vector2 GenRandInCircle(float radius)
         {
             //Fancy math to get random point in circle
-            System.Random rand = new System.Random();
-            double angle = rand.NextDouble() * Math.PI * 2;
-            double range = Math.Sqrt(rand.NextDouble()) * radius;
+            double angle = Rand.Value * Math.PI * 2;
+            double range = Rand.Value * radius;
             return new Vector2((float)(range * Math.Cos(angle)), (float)(range * Math.Sin(angle)));
         }
 
@@ -633,14 +630,17 @@ namespace CombatExtended
             {
                 return;
             }
+
+            Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
             creationData.airTimeLeft = 60;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
-            creationData.velocitySpeed = (float)Rand.Range(0.7f, 0.5f);
-            creationData.velocityAngle = (float)Rand.Range(160, 200);
+            creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
+            creationData.velocityAngle = Rand.Range(160, 200);
             map.flecks.CreateFleck(creationData);
+            Rand.PopState();
         }
 
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
@@ -689,10 +689,22 @@ namespace CombatExtended
                 return new Bounds();
             }
             var height = new CollisionVertical(thing);
-            var width = GetCollisionWidth(thing);
+            float length;
+            float width;
             var thingPos = thing.DrawPos;
             thingPos.y = height.Max - height.HeightRange.Span / 2;
-            Bounds bounds = new Bounds(thingPos, new Vector3(width, height.HeightRange.Span, width));
+            if (thing is Building)
+            {
+                IntVec2 rotatedSize = thing.RotatedSize;
+                length = rotatedSize.x;
+                width = rotatedSize.z;
+            }
+            else
+            {
+                width = GetCollisionWidth(thing);
+                length = width;
+            }
+            Bounds bounds = new Bounds(thingPos, new Vector3(length, height.HeightRange.Span, width));
             return bounds;
         }
 

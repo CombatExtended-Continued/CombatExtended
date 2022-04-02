@@ -135,11 +135,13 @@ namespace CombatExtended
                 //Only display a dirt/water hit for projectiles with a dropshadow
                 if (base.castShadow)
                 {
+                    Rand.PushState();
                     FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                     if (base.Position.GetTerrain(map).takeSplashes)
                     {
                         FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
                     }
+                    Rand.PopState();
                 }
                 base.Impact(null);
             }
@@ -184,9 +186,6 @@ namespace CombatExtended
          * Current users are SmokepopBelt and BroadshieldPack, requiring bullet.def and bullet.Launcher.
          */
 
-        // todo: remove when moved to publicised assembly
-        private static readonly FieldInfo bulletLauncher = typeof(Bullet).GetField("launcher", BindingFlags.Instance | BindingFlags.NonPublic);
-
         private Bullet GenerateVanillaBullet()
         {
             var bullet = new Bullet
@@ -195,7 +194,7 @@ namespace CombatExtended
                 intendedTarget = this.intendedTargetThing,
             };
 
-            bulletLauncher.SetValue(bullet, this.launcher);  //Bad for performance, refactor if a more efficient solution is possible
+            bullet.launcher = launcher;
             return bullet;
         }
 

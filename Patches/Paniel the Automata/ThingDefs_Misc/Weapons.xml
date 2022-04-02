@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>Paniel the Automata</li></mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+		<!-- ==========  Shovel  =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_Shovel"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>handle</label>
+				  <capacities>
+					<li>Poke</li>
+				  </capacities>
+				  <power>4</power>
+				  <cooldownTime>1.78</cooldownTime>
+				  <armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>head</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>22</power>
+				  <cooldownTime>2.38</cooldownTime>
+				  <armorPenetrationBlunt>9</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+				  <label>blade</label>
+				  <capacities>
+					<li>Stab</li>
+				  </capacities>
+				  <power>18</power>
+				  <cooldownTime>1.19</cooldownTime>
+				  <armorPenetrationSharp>1.5</armorPenetrationSharp>
+				  <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+				</li>
+			  </tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Shovel"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+				<Bulk>5.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Shovel"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Shovel"]/equippedStatOffsets</xpath>
+			<value>
+			  <MeleeCritChance>0.42</MeleeCritChance>
+			  <MeleeParryChance>0.24</MeleeParryChance>
+			  <MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!-- ==========  PN_Chainsword  =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_Chainsword"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+					  <li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<armorPenetrationBlunt>1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+					  <li>Stab</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.19</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>3</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+					  <li>Cut</li>
+					</capacities>
+					<power>39</power>
+					<cooldownTime>1</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.6</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Chainsword"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+				<Bulk>6.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Chainsword"]/equippedStatOffsets</xpath>
+			<value>
+			  <MeleeCritChance>0.08</MeleeCritChance>
+			  <MeleeParryChance>0.24</MeleeParryChance>
+			  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Chainsword"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		
+		<!-- ==========  Sword  =========== -->
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]/statBases</xpath>
+			<value>
+				<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+				<Bulk>13.5</Bulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				  <MeleeCritChance>0.63</MeleeCritChance>
+				  <MeleeParryChance>0.75</MeleeParryChance>
+				  <MeleeDodgeChance>0.4</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_Chainlongsword"]/tools</xpath>
+			<value>
+			  <tools>
+				  <li Class="CombatExtended.ToolCE">
+					<label>Point</label>
+					<capacities>
+					  <li>Stab</li>
+					</capacities>
+					<power>44</power>
+					<cooldownTime>1.57</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>6.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>13.5</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>blade</label>
+					<capacities>
+					  <li>Cut</li>
+					</capacities>
+					<power>100</power>
+					<cooldownTime>1.2</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>6</armorPenetrationBlunt>
+					<armorPenetrationSharp>8.1</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				  </li>
+				  <li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+					  <li>Poke</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2.35</cooldownTime>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				  </li>
+			  </tools>
+			</value>
+		</li>
+		
+		<!-- ========== Rifle =========== -->
+		
+		<li Class="PatchOperationRemove">
+		 <xpath>/Defs/ThingDef[defName="PN_Rifle"]/verbs</xpath>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_Rifle</defName>
+			<statBases>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.06</ShotSpread>
+				<SwayFactor>1.34</SwayFactor>
+				<Bulk>10.25</Bulk>
+				<Mass>3.19</Mass>
+				<RangedWeapon_Cooldown>0.78</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>62</range>
+				<soundCast>PNRifleSound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>7</magazineSize>
+				<reloadTime>0.65</reloadTime>
+				<ammoSet>AmmoSet_303British</ammoSet>
+				<reloadOneAtATime>true</reloadOneAtATime>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Revolver =========== -->
+		
+		<li Class="PatchOperationRemove">
+		 <xpath>/Defs/ThingDef[defName="PN_Revolver"]/verbs</xpath>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_Revolver</defName>
+			<statBases>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<ShotSpread>0.14</ShotSpread>
+				<SwayFactor>0.47</SwayFactor>
+				<Bulk>3.25</Bulk>
+				<Mass>1.40</Mass>
+				<RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>3.71</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_44Magnum_FMJ</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<range>12</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>5.1</reloadTime>
+				<ammoSet>AmmoSet_44Magnum</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Machinegun =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_Machinegun</defName>
+			<statBases>
+				<SightsEfficiency>1.00</SightsEfficiency>
+				<ShotSpread>0.06</ShotSpread>
+				<SwayFactor>1.49</SwayFactor>
+				<Bulk>12.35</Bulk>
+				<Mass>10.00</Mass>
+				<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>1.24</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<burstShotCount>10</burstShotCount>
+				<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+				<range>59</range>
+				<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>80</magazineSize>
+				<reloadTime>7.8</reloadTime>
+				<ammoSet>AmmoSet_303British</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>5</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Portable Cannon =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_Cannon</defName>
+			<statBases>
+				<SightsEfficiency>2.60</SightsEfficiency>
+				<ShotSpread>0.01</ShotSpread>
+				<SwayFactor>2.58</SwayFactor>
+				<Bulk>19.85</Bulk>
+				<Mass>18.00</Mass>
+				<RangedWeapon_Cooldown>1.38</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_20x110mmHispano_AP</defaultProjectile>
+				<warmupTime>2.8</warmupTime>
+				<range>41</range>
+				<soundCast>PNCannonSound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>2.2</reloadTime>
+				<ammoSet>AmmoSet_20x110mmHispano</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Dual Royal Pistol =========== -->
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="PN_TwinPistol"]/verbs</xpath>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_TwinPistol</defName>
+			<statBases>
+				<SightsEfficiency>0.60</SightsEfficiency>
+				<ShotSpread>1.70</ShotSpread>
+				<SwayFactor>1.14</SwayFactor>
+				<Bulk>5.50</Bulk>
+				<Mass>4.6</Mass>
+				<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>1.25</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+				<warmupTime>0.6</warmupTime>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<range>14</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>5.5</reloadTime>
+				<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>6</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Royal Rifle =========== -->
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_RoyalRifle</defName>
+			<statBases>
+				<SightsEfficiency>2.60</SightsEfficiency>
+				<ShotSpread>0.11</ShotSpread>
+				<SwayFactor>1.37</SwayFactor>
+				<Bulk>9.05</Bulk>
+				<Mass>4.60</Mass>
+				<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>1.89</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<range>62</range>
+				<soundCast>PNRoyalRifleSound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>36</magazineSize>
+				<reloadTime>5</reloadTime>
+				<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aimedBurstShotCount>2</aimedBurstShotCount>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<!-- ========== Royal Launcher =========== -->
+		
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="PN_RoyalLSW"]/verbs</xpath>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>PN_RoyalLSW</defName>
+			<statBases>
+				<SightsEfficiency>1.1</SightsEfficiency>
+				<ShotSpread>0.11</ShotSpread>
+				<SwayFactor>1.87</SwayFactor>
+				<Bulk>12.05</Bulk>
+				<Mass>5.70</Mass>
+				<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+			</statBases>
+			
+			<Properties>
+				<recoilAmount>1.89</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+				<warmupTime>1.1</warmupTime>
+				<range>55</range>
+				<soundCast>PNRoyalRifleSound</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			
+			<AmmoUser>
+				<magazineSize>6</magazineSize>
+				<reloadTime>5.5</reloadTime>
+				<ammoSet>AmmoSet_25x59mmGrenade</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</li>
+		
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>PN_PrototypeRailGun</defName>
+			<statBases>
+			  <Mass>12.00</Mass>
+			  <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+			  <SightsEfficiency>1.00</SightsEfficiency>
+			  <ShotSpread>0.2</ShotSpread>
+			  <SwayFactor>2.80</SwayFactor>
+			  <Bulk>13.0</Bulk>
+			</statBases>
+			<Properties>
+			  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			  <hasStandardCommand>true</hasStandardCommand>
+			  <defaultProjectile>Bullet_PanielRail</defaultProjectile>
+			  <warmupTime>2.1</warmupTime>
+			  <range>53</range>
+			  <burstShotCount>1</burstShotCount>
+			  <soundAiming>PN_PrototypeRailGun_Warmup_Sound</soundAiming>
+			  <soundCast>PN_PrototypeRailGun_Fire_Sound</soundCast>
+			  <soundCastTail>GunTail_Heavy</soundCastTail>
+			  <onlyManualCast>true</onlyManualCast>
+			  <targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			  </targetParams>
+			  <muzzleFlashScale>14</muzzleFlashScale>
+			</Properties>
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_PrototypeRailGun"]/tools</xpath>
+			<value>
+			  <tools>
+				<li Class="CombatExtended.ToolCE">
+				  <label>barrel</label>
+				  <capacities>
+					<li>Blunt</li>
+				  </capacities>
+				  <power>10</power>
+				  <cooldownTime>2.44</cooldownTime>
+				  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+				  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			  </tools>
+			</value>
+		</li>
+		
+		<!-- ========== Melee Attacks =========== -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_Rifle" or 
+			defName="PN_Machinegun" or 
+			defName="PN_Cannon" or 
+			defName="PN_RoyalRifle" or 
+			defName="PN_RoyalLSW"
+			]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+						<capacities>
+						<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_Revolver" or
+			defName="PN_TwinPistol"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>grip</label>
+						<capacities>
+						<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+						<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.54</cooldownTime>
+						<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li> 
+		
+		<!-- ========== Royalty Equipment =========== -->
+		
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]</xpath>
+			<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.53</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>0.968</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>51</power>
+								<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>8</amount>
+									<chance>0.3</chance>
+								</li>
+								</extraMeleeDamages>					
+								<cooldownTime>1.03</cooldownTime>
+								<chanceFactor>0.66</chanceFactor>
+								<armorPenetrationBlunt>5.576</armorPenetrationBlunt>
+								<armorPenetrationSharp>29.04</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+								<li>Stab</li>
+								</capacities>
+								<power>26</power>
+								<extraMeleeDamages>
+								<li>
+									<def>Flame</def>
+									<amount>5</amount>
+									<chance>0.2</chance>
+								</li>
+								</extraMeleeDamages>					
+								<cooldownTime>0.96</cooldownTime>
+								<armorPenetrationBlunt>2.478</armorPenetrationBlunt>
+								<armorPenetrationSharp>38.72</armorPenetrationSharp>
+							</li>					
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]/statBases</xpath>
+					<value>
+						<Bulk>8.5</Bulk>
+						<MeleeCounterParryBonus>0.90</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PN_RoyalSaber_Bladelink"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.10</MeleeCritChance>
+							<MeleeParryChance>0.70</MeleeParryChance>
+							<MeleeDodgeChance>0.50</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="PN_Chainsword_Bladelink"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.36</cooldownTime>
+								<armorPenetrationBlunt>0.605</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>38</power>
+								<cooldownTime>0.74</cooldownTime>
+								<chanceFactor>1.33</chanceFactor>
+								<armorPenetrationBlunt>3.485</armorPenetrationBlunt>
+								<armorPenetrationSharp>21.78</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+								<li>Stab</li>
+								</capacities>
+								<power>16</power>					
+								<cooldownTime>0.85</cooldownTime>
+								<armorPenetrationBlunt>1.173</armorPenetrationBlunt>
+								<armorPenetrationSharp>30.24</armorPenetrationSharp>
+							</li>					
+						</tools>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+					  <DamageDef ParentName="Flame">
+						<defName>Flame_Nopenetration</defName>
+						<harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+					  </DamageDef>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PN_Chainsword_Bladelink"]/statBases</xpath>
+					<value>
+						<Bulk>5.5</Bulk>
+						<MeleeCounterParryBonus>0.50</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PN_Chainsword_Bladelink"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>1.10</MeleeCritChance>
+							<MeleeParryChance>0.50</MeleeParryChance>
+							<MeleeDodgeChance>0.37</MeleeDodgeChance>	
+						</equippedStatOffsets>
+					</value>
+				</li>
+				
+			</operations>
+			</match>
+		</li>
+		
+		</operations>
+		</match>
+	</Operation>
+</Patch>

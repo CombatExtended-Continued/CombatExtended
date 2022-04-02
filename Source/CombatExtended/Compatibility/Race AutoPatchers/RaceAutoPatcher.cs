@@ -17,7 +17,8 @@ namespace CombatExtended.Compatibility
             var animalsUnpatched = DefDatabase<ThingDef>.AllDefs.Where(x =>
                    x.race != null &&
                    x.race.Animal &&
-                   x.tools.Any(y => !(y is ToolCE))
+                   x.tools != null &&
+                   x.tools.Any(y => y != null && !(y is ToolCE))
                 );
 
             int patchCount = 0;

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UnityEngine;
 using Verse;
 using RimWorld;
@@ -49,13 +48,13 @@ namespace CombatExtended
                 projectile.canTargetSelf = true;
                 projectile.minCollisionDistance = 1f;
                 //TODO : Don't hardcode at FragmentShadowChance, make XML-modifiable
-                projectile.castShadow = (UnityEngine.Random.value < FragmentShadowChance);
+                projectile.castShadow = (Rand.Value < FragmentShadowChance);
                 projectile.logMisses = false;
                 projectile.Launch(
                     instigator,
                     exactOrigin,
                     range.RandomInRange * Mathf.Deg2Rad,
-                    UnityEngine.Random.Range(0, 360),
+                    Rand.Range(0, 360),
                     height,
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
@@ -94,7 +93,16 @@ namespace CombatExtended
                 {
                     var newCount = fragment;
                     newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
-                    _monoDummy.GetComponent<MonoDummy>().StartCoroutine(FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor));
+
+                    var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor);
+                    if (!Compatibility.Multiplayer.InMultiplayer)
+                        _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
+                    else
+                    {
+                        // Multiplayer really dislikes coroutines
+                        while (routine.MoveNext())
+                        { }
+                    }
                 }
             }
         }

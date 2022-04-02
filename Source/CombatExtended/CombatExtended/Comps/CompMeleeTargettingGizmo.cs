@@ -67,9 +67,9 @@ namespace CombatExtended
                 //just in case of attacking some weird creature
                 if (torso != null)
                 {
-                    var torsoApparel = target.apparel.WornApparel.FindAll(x => x.def.apparel.CoversBodyPart(torso));
+                    var torsoApparel = target.apparel?.WornApparel?.FindAll(x => x.def.apparel.CoversBodyPart(torso));
 
-                    float overallRHA = 0f;
+                    float overallRHA = target.GetStatValue(StatDefOf.ArmorRating_Sharp);
 
                     if (!torsoApparel.NullOrEmpty())
                     {
@@ -98,7 +98,7 @@ namespace CombatExtended
 
                 if (neck != null)
                 {
-                    var neckApparel = target.apparel.WornApparel.Find(x => x.def.apparel.CoversBodyPart(neck));
+                    var neckApparel = target.apparel?.WornApparel?.Find(x => x.def.apparel.CoversBodyPart(neck));
 
                     if (neckApparel != null && maxWeaponPen < neckApparel.GetStatValue(StatDefOf.ArmorRating_Sharp))
                     {
@@ -174,28 +174,7 @@ namespace CombatExtended
                 yield return new Command_Action
                 {
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/TargettingMelee/" + heightInt.ToString()),
-                    action = delegate
-                    {
-                        switch (heightInt)
-                        {
-                            case BodyPartHeight.Bottom:
-                                heightInt = BodyPartHeight.Middle;
-                                targetBodyPart = null;
-                                break;
-                            case BodyPartHeight.Middle:
-                                heightInt = BodyPartHeight.Top;
-                                targetBodyPart = null;
-                                break;
-                            case BodyPartHeight.Top:
-                                heightInt = BodyPartHeight.Undefined;
-                                targetBodyPart = null;
-                                break;
-                            case BodyPartHeight.Undefined:
-                                heightInt = BodyPartHeight.Bottom;
-                                targetBodyPart = null;
-                                break;
-                        }
-                    },
+                    action = ChangeCurrentHeight,
                     defaultLabel = "CE_MeleeTargetting_CurHeight".Translate() + " " + heightString,
                 };
             }
@@ -234,12 +213,12 @@ namespace CombatExtended
                             options.Add(new FloatMenuOption(def.label,
                                    delegate
                                    {
-                                       targetBodyPart = def;
+                                       ChangeCurrentPart(def);
                                    }
                                    ));
                         }
 
-                        options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { targetBodyPart = null; }));
+                        options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { ChangeCurrentPart(null); }));
 
                         Find.WindowStack.Add(new FloatMenu(options));
                     }
@@ -253,6 +232,36 @@ namespace CombatExtended
             Scribe_Defs.Look(ref targetBodyPart, "TargetBodyPart");
 
             Scribe_Values.Look(ref heightInt, "heightInt");
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private void ChangeCurrentHeight()
+        {
+            switch (heightInt)
+            {
+                case BodyPartHeight.Bottom:
+                    heightInt = BodyPartHeight.Middle;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Middle:
+                    heightInt = BodyPartHeight.Top;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Top:
+                    heightInt = BodyPartHeight.Undefined;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Undefined:
+                    heightInt = BodyPartHeight.Bottom;
+                    targetBodyPart = null;
+                    break;
+            }
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private void ChangeCurrentPart(BodyPartDef def)
+        {
+            targetBodyPart = def;
         }
 
         #endregion

@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[Cosplay equipment] Blue archive</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Logic_reason" or defName="Superningu" or defName="White_fang" or defName="Et_omnia_vanitas" or defName="Wine_red" or defName="Ideal" or defName="Destroyer" or defName="Eye_of_horus" or defName="Unique_idea" or defName="Flash_inspiration" or defName="Justice_black" or defName="Little_minigunv" or defName="Hawk_of_love" or defName="Mynecessity" or defName="Crimson_disaster"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>9</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <chanceFactor>1.5</chanceFactor>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>barrel</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>5</power>
+					  <cooldownTime>2.02</cooldownTime>
+					  <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>muzzle</label>
+					  <capacities>
+						<li>Poke</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.55</cooldownTime>
+					  <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+
+			<!-- ========== SIG MPX ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Logic_reason</defName>
+				<statBases>
+					<Mass>2.85</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.02</SwayFactor>
+					<Bulk>4.90</Bulk>
+					<WorkToMake>24000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>75</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.34</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>27</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>Shot_Logic_reason</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- ========== Nambu Type 100 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Superningu</defName>
+				<statBases>
+					<Mass>3.70</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.13</ShotSpread>
+					<SwayFactor>1.26</SwayFactor>
+					<Bulk>8.90</Bulk>
+					<WorkToMake>24000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>75</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.13</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x22mmNambu_FMJ</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>23</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<soundCast>Shot_Superningu</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_8x22mmNambu</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+			
+			<!-- ========== SIG556 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>White_fang</defName>
+				<statBases>
+					<Mass>4.10</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.30</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.41</SwayFactor>
+					<Bulk>9.98</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_White_fang</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== M4A1 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Et_omnia_vanitas</defName>
+				<statBases>
+					<Mass>2.90</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.1</ShotSpread>
+					<SwayFactor>1.17</SwayFactor>
+					<Bulk>7.56</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.58</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>Shot_Et_omnia_vanitas</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- ========== PSG-1 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Wine_red</defName>
+				<statBases>
+					<Mass>7.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.5</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>2.01</SwayFactor>
+					<Bulk>12.30</Bulk>
+					<WorkToMake>45000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>15</Chemfuel>
+					<Steel>65</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>75</range>
+					<soundCast>Shot_Wine_red</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== PSG-1 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Ideal</defName>
+				<statBases>
+					<Mass>7.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.5</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>2.01</SwayFactor>
+					<Bulk>12.30</Bulk>
+					<WorkToMake>45000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>15</Chemfuel>
+					<Steel>65</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>75</range>
+					<soundCast>Shot_Ideal</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== MG42 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Destroyer</defName>
+				<statBases>
+					<Mass>11.6</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.67</SwayFactor>
+					<Bulk>12.20</Bulk>
+					<WorkToMake>34000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>75</Steel>
+					<ComponentIndustrial>5</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.47</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+					<burstShotCount>10</burstShotCount>
+					<soundCast>Shot_Destroyer</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>50</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_792x57mmMauser</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== Benelli M1 Super 90 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Eye_of_horus</defName>
+				<statBases>
+					<Mass>3.82</Mass>
+					<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.27</SwayFactor>
+					<Bulk>10.10</Bulk>
+					<WorkToMake>12000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>17</range>
+					<soundCast>Shot_Shotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>7</magazineSize>
+ 					<reloadOneAtATime>true</reloadOneAtATime>
+      					<reloadTime>0.8</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== G3A3 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Unique_idea</defName>
+				<statBases>
+					<Mass>4.40</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.46</SwayFactor>
+					<Bulk>10.23</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>2.00</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>62</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<soundCast>Shot_Uniqueidea</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- ========== G3SG/1 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Flash_inspiration</defName>
+				<statBases>
+					<Mass>8.20</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.5</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.63</SwayFactor>
+					<Bulk>14.20</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>75</range>
+					<soundCast>Shot_Flashinspiration</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>20</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== Lee Enfield ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Justice_black</defName>
+				<statBases>
+					<Mass>4.19</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.03</ShotSpread>
+					<SwayFactor>1.62</SwayFactor>
+					<Bulk>12.60</Bulk>
+					<WorkToMake>12000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_Justiceblack</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_303British</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== M134 Minigun ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Little_minigunv</defName>
+				<statBases>
+					<Mass>30.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>5.41</SwayFactor>
+					<Bulk>10</Bulk>
+					<WorkToMake>60000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>160</Steel>
+					<ComponentIndustrial>20</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>0.75</recoilAmount>
+					<recoilPattern>Mounted</recoilPattern>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+					<warmupTime>2.3</warmupTime>
+					<range>56</range>
+					<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+					<burstShotCount>100</burstShotCount>
+					<soundCast>Shot_Littleminigunv</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>500</magazineSize>
+					<reloadTime>9.2</reloadTime>
+					<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== QBU 88 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Hawk_of_love</defName>
+				<statBases>
+					<Mass>4.10</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.55</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>0.99</SwayFactor>
+					<Bulk>10.20</Bulk>
+					<WorkToMake>45000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>8</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_58x42mmDBP10_FMJ</defaultProjectile>
+					<warmupTime>1.75</warmupTime>
+					<range>75</range>
+					<soundCast>Shot_Hawkoflove</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_58x42mmDBP10</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
+			<!-- ========== L85A2 ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Mynecessity</defName>
+				<statBases>
+					<Mass>3.82</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.3</SightsEfficiency>
+					<ShotSpread>0.06</ShotSpread>
+					<SwayFactor>1.21</SwayFactor>
+					<Bulk>7.85</Bulk>
+					<WorkToMake>40000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>7</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.40</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<range>55</range>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+					<soundCast>Shot_Mynecessity</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+				</FireModes>
+			</li>
+
+			<!-- ========== Type 99 Arisaka ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Crimson_disaster</defName>
+				<statBases>
+					<Mass>3.79</Mass>
+					<RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.50</SwayFactor>
+					<Bulk>11.18</Bulk>
+					<WorkToMake>12000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>60</Steel>
+					<ComponentIndustrial>3</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>55</range>
+					<soundCast>Shot_Crimsondisaster</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>5</magazineSize>
+					<reloadTime>4.3</reloadTime>
+					<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			</operations>		
+		</match>
+	</Operation>
+
+</Patch>
+

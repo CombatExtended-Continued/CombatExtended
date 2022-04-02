@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[O21] Outland - Eastborn Empire</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Tanto -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_Tanto"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>0.97</cooldownTime>
+						<chanceFactor>0.10</chanceFactor>
+						<armorPenetrationBlunt>0.259</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>0.97</cooldownTime>
+						<chanceFactor>0.60</chanceFactor>
+						<armorPenetrationBlunt>0.259</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.48</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.05</cooldownTime>
+						<chanceFactor>0.30</chanceFactor>
+						<armorPenetrationBlunt>0.304</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.28</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Outland_Tanto"]/statBases</xpath>
+			<value>
+				<Bulk>4.2</Bulk>
+				<MeleeCounterParryBonus>0.38</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Outland_Tanto"]</xpath>
+			<value>
+				<equippedStatOffsets>
+					<MeleeCritChance>0.93</MeleeCritChance>
+					<MeleeParryChance>0.38</MeleeParryChance>
+					<MeleeDodgeChance>0.09</MeleeDodgeChance>	
+				</equippedStatOffsets>
+			</value>
+		</li> 
+
+	<!-- Jitte -->	
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Jitte"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.59</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>0.68</cooldownTime>
+					<armorPenetrationBlunt>2.188</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>					
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Jitte"]/statBases</xpath>
+		<value>
+			<Bulk>5</Bulk>
+			<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Jitte"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.2</MeleeCritChance>
+			<MeleeParryChance>1</MeleeParryChance>
+			<MeleeDodgeChance>0.4</MeleeDodgeChance>
+		</equippedStatOffsets>	
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Jitte"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+	<!-- Ararebo -->	
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Ararebo"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>1.49</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>3.375</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>2.67</cooldownTime>
+					<armorPenetrationBlunt>15.75</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>					
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Ararebo"]/statBases</xpath>
+		<value>
+			<Bulk>14</Bulk>
+			<MeleeCounterParryBonus>0.28</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Ararebo"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>1.6</MeleeCritChance>
+			<MeleeParryChance>0.38</MeleeParryChance>
+			<MeleeDodgeChance>0.3</MeleeDodgeChance>
+		</equippedStatOffsets>	
+		</value>
+	</li>
+
+	<!-- Yari -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_JumonjiYari" or defName="Outland_SuYari"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>6</power>
+					<cooldownTime>1.29</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.71</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.85</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.14</cooldownTime>
+					<chanceFactor>1.00</chanceFactor>
+					<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.4</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>3.2</cooldownTime>
+					<chanceFactor>0.33</chanceFactor>
+					<armorPenetrationBlunt>1.913</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.28</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>					
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_JumonjiYari" or defName="Outland_SuYari"]/statBases</xpath>
+		<value>
+			<Bulk>11</Bulk>
+			<MeleeCounterParryBonus>2.12</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_JumonjiYari" or defName="Outland_SuYari"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.39</MeleeCritChance>
+			<MeleeParryChance>1.59</MeleeParryChance>
+			<MeleeDodgeChance>0.90</MeleeDodgeChance>
+		</equippedStatOffsets>		
+		</value>
+	</li>
+
+	<!-- Odachi -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Nagamaki" or defName="Outland_Odachi"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.38</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>17</power>
+					<cooldownTime>1.38</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>1.08</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.55</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>35</power>
+					<cooldownTime>1.49</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.75</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Nagamaki" or defName="Outland_Odachi"]/statBases</xpath>
+		<value>
+      		<Bulk>9</Bulk>
+      		<MeleeCounterParryBonus>3.6</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Nagamaki" or defName="Outland_Odachi"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.74</MeleeCritChance>
+				<MeleeParryChance>0.53</MeleeParryChance>
+				<MeleeDodgeChance>0.60</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- Ono -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Ono"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>3</power>
+				<cooldownTime>1.59</cooldownTime>
+				<chanceFactor>0.10</chanceFactor>
+				<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+				<li Class="CombatExtended.ToolCE">
+				<label>edge</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>17</power>
+				<cooldownTime>3.52</cooldownTime>
+				<chanceFactor>0.30</chanceFactor>
+				<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.68</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Ono"]/statBases</xpath>
+		<value>
+			<Bulk>4</Bulk>
+			<MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Ono"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.10</MeleeCritChance>
+			<MeleeParryChance>0.15</MeleeParryChance>
+			<MeleeDodgeChance>0.20</MeleeDodgeChance>
+		</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Ono"]/weaponTags</xpath>
+		<value>
+		<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+	<!-- Sai -->	
+
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/ThingDef[defName="Outland_Kabutowari" or defName="Outland_Sai"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+				<li>Poke</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.29</cooldownTime>
+				<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>point</label>
+				<capacities>
+				<li>Stab</li>
+				</capacities>
+				<power>13</power>
+				<cooldownTime>1.29</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
+				<armorPenetrationSharp>0.4</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+			</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+	<xpath>/Defs/ThingDef[defName="Outland_Kabutowari" or defName="Outland_Sai"]/statBases</xpath>
+		<value>
+			<Bulk>1</Bulk>
+			<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+	<xpath>/Defs/ThingDef[defName="Outland_Kabutowari" or defName="Outland_Sai"]</xpath>
+		<value>
+			<equippedStatOffsets>
+			<MeleeCritChance>0.63</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+	<xpath>/Defs/ThingDef[defName="Outland_Kabutowari" or defName="Outland_Sai"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</li>
+
+	<!-- Sasumata -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Sasumata"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.78</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>1.000</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>2.79</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>6.76</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Sasumata"]/statBases</xpath>
+		<value>
+      		<Bulk>7</Bulk>
+      		<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName="Outland_Sasumata"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>1.50</MeleeCritChance>
+				<MeleeParryChance>0.18</MeleeParryChance>
+				<MeleeDodgeChance>0.30</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>	
+	</li>
+
+	<!-- Katana -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Outland_Katana"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.10</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>15</power>
+					<cooldownTime>1.33</cooldownTime>
+					<chanceFactor>0.60</chanceFactor>
+					<armorPenetrationBlunt>0.936</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.88</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>31</power>
+					<cooldownTime>1.28</cooldownTime>
+					<chanceFactor>0.30</chanceFactor>
+					<armorPenetrationBlunt>2.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.65</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Katana"]/statBases</xpath>
+		<value>
+      		<Bulk>7.85</Bulk>
+      		<MeleeCounterParryBonus>1.38</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Katana"]</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeCritChance>0.85</MeleeCritChance>
+				<MeleeParryChance>0.69</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>	
+			</equippedStatOffsets>
+		</value>
+	</li> 
+
+	<!-- Masakari Axe -->
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Masakari"]/statBases</xpath>
+		<value>
+		<Bulk>13</Bulk>
+		<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Masakari"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.3</MeleeCritChance>
+			<MeleeParryChance>1.6</MeleeParryChance>
+			<MeleeDodgeChance>0.56</MeleeDodgeChance>
+		</equippedStatOffsets>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Outland_Masakari"]/tools</xpath>
+		<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>edge</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>48</power>
+				<cooldownTime>3.4</cooldownTime>
+				<chanceFactor>1.165</chanceFactor>
+				<armorPenetrationBlunt>10.4</armorPenetrationBlunt>
+				<armorPenetrationSharp>1.8</armorPenetrationSharp>
+				<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>3</power>
+				<cooldownTime>1.59</cooldownTime>
+				<chanceFactor>0.10</chanceFactor>
+				<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+			</li>
+		</tools>
+		</value>
+	</li>
+
+	<!-- Naginata -->
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Outland_Naginata"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>3</power>
+					<cooldownTime>1.76</cooldownTime>
+					<chanceFactor>0.15</chanceFactor>
+					<armorPenetrationBlunt>0.95</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>11</power>
+					<cooldownTime>1.76</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationSharp>1.9</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.95</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>32</power>
+					<cooldownTime>1.41</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationSharp>1.27</armorPenetrationSharp>
+					<armorPenetrationBlunt>3.8</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+				</li>					
+			</tools>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Naginata"]/statBases</xpath>
+		<value>
+			<Bulk>14</Bulk>
+			<MeleeCounterParryBonus>1.78</MeleeCounterParryBonus>
+		</value>
+	</li>
+
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Outland_Naginata"]</xpath>
+		<value>
+		<equippedStatOffsets>
+			<MeleeCritChance>0.56</MeleeCritChance>
+			<MeleeParryChance>0.75</MeleeParryChance>
+			<MeleeDodgeChance>0.6</MeleeDodgeChance>
+		</equippedStatOffsets>	
+		</value>
+	</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
