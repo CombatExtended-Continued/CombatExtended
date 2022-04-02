@@ -182,6 +182,15 @@ namespace CombatExtended
                     dinfo.SetHitPart(curPart);
                     if (isSharp && coveredByArmor)
                     {
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                        {
+                            if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
+                            {
+                                pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = true;
+
+                                pawn.TryGetComp<Comp_BurnDamageCalc>().weapon = originalDinfo.Weapon;
+                            }
+                        }
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
