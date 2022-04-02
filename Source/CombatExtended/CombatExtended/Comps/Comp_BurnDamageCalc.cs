@@ -30,7 +30,7 @@ namespace CombatExtended
     {
         static BurnCompAdder()
         {
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x => x.race?.Humanlike ?? false))
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null))
             {
                 if (def.comps == null)
                     def.comps = new List<CompProperties>();
