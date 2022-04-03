@@ -15,7 +15,7 @@ namespace CombatExtended.Compatibility
         {
             get
             {
-                return new SimpleCurve { new CurvePoint(0.2f, 2f), new CurvePoint(1.5f, 30f) };
+                return new SimpleCurve { new CurvePoint(0.2f, 1f), new CurvePoint(2.0f, 20f) };
             }
         }
 
@@ -23,7 +23,7 @@ namespace CombatExtended.Compatibility
         {
             get
             {
-                return new SimpleCurve { new CurvePoint(0.2f, 4f), new CurvePoint(1.5f, 60f) };
+                return new SimpleCurve { new CurvePoint(0.2f, 2f), new CurvePoint(2.0f, 40f) };
             }
         }
         public static ToolCE ConvertTool(this Tool tool)
