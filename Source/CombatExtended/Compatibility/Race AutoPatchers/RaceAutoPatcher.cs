@@ -55,7 +55,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 10f;
+                    RatingSharp.value = RaceUtil.SharpCurve.Evaluate(RatingSharp.value);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
 
@@ -77,7 +77,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 15f;
+                    RatingBlunt.value = RaceUtil.BluntCurve.Evaluate(RatingBlunt.value);
 
                     var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = RatingBlunt.value };
 

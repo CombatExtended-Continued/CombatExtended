@@ -11,6 +11,21 @@ namespace CombatExtended.Compatibility
 {
     public static class RaceUtil
     {
+        public static SimpleCurve SharpCurve
+        {
+            get
+            {
+                return new SimpleCurve { new CurvePoint(0.2f, 1f), new CurvePoint(2.0f, 20f) };
+            }
+        }
+
+        public static SimpleCurve BluntCurve
+        {
+            get
+            {
+                return new SimpleCurve { new CurvePoint(0.2f, 2f), new CurvePoint(2.0f, 40f) };
+            }
+        }
         public static ToolCE ConvertTool(this Tool tool)
         {
             var newTool = new ToolCE()
@@ -93,7 +108,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 10f;
+                    RatingSharp.value = RaceUtil.SharpCurve.Evaluate(RatingSharp.value);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
 
@@ -109,7 +124,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 15f;
+                    RatingBlunt.value = RaceUtil.BluntCurve.Evaluate(RatingBlunt.value);
                 }
                 else
                 {
