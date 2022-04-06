@@ -63,7 +63,7 @@ namespace CombatExtended.Compatibility
                 }
                 else
                 {
-                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 1f };
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 0.125f };
                     animal.statBases.Add(RatingSharp);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = 1f };
