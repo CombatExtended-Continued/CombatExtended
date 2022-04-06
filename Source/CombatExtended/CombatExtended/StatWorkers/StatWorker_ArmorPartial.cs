@@ -94,7 +94,7 @@ namespace CombatExtended
                                 {
                                     value = (float)Math.Round(((ThingDef)req.Def).GetStatValueAbstract(this.stat) * partstat.mult);
                                 }
-                                else if (this.stat.defName.ToLower().Contains("stuffpower"))
+                                else if (!((ThingDef)req.Def).stuffCategories.NullOrEmpty() || !((ThingDef)req.Def).stuffProps.categories.NullOrEmpty() || ((ThingDef)req.Def).stuffProps != null)
                                 {
                                     value = partstat.mult;
                                 }
