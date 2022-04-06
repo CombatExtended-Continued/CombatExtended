@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Storytellers Expanded - Winston Waves</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === FSX and Prometheum Rewards === -->
+
+        <!-- === Good Reward === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_GoodResourceDrop"]/description</xpath>
+          <value>
+		    <description>Cargo pods drop 500 wood, 500 steel, 30 components, 200 plasteel, 10 FSX and 10 Prometheum</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_GoodResourceDrop"]/items</xpath>
+          <value>
+		    <li>
+			  <thing>FSX</thing>
+			  <count>10</count>
+		    </li>
+		    <li>
+			  <thing>Prometheum</thing>
+			  <count>10</count>
+		    </li>
+          </value>
+        </li>
+
+        <!-- === Excellent Reward === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_ExcellentResourceDrop"]/description</xpath>
+          <value>
+		    <description>Cargo pods drop 1000 wood, 1000 steel, 60 components, 20 advanced components, 300 plasteel, 25 FSX and 25 Prometheum</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_ExcellentResourceDrop"]/items</xpath>
+          <value>
+		    <li>
+			  <thing>FSX</thing>
+			  <count>25</count>
+		    </li>
+		    <li>
+			  <thing>Prometheum</thing>
+			  <count>25</count>
+		    </li>
+          </value>
+        </li>
+
+        <!-- === Legendary Reward === -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_LegendaryResourceDrop"]/description</xpath>
+          <value>
+		    <description>Cargo pods drop 3000 wood, 3000 steel, 100 components, 50 advanced components, 500 plasteel, 100 FSX and 100 Prometheum</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/VSEWW.RewardDef[defName="VSEWW_LegendaryResourceDrop"]/items</xpath>
+          <value>
+		    <li>
+			  <thing>FSX</thing>
+			  <count>100</count>
+		    </li>
+		    <li>
+			  <thing>Prometheum</thing>
+			  <count>100</count>
+		    </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+
+  </Operation>
+
+</Patch>

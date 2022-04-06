@@ -10,7 +10,7 @@ namespace CombatExtended
 {
     public class SecondaryDamage
     {
-        private const float SecExplosionPenPerDmg = 3;
+        private const float SecExplosionPenPerDmg = 2;
 
         public DamageDef def;
         public int amount;
