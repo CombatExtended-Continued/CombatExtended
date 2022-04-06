@@ -32,6 +32,24 @@
                     </value>
                 </li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="MM_LightMagicalLeather" or defName="MM_HeavyMagicalLeather"]/stuffProps/categories</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="MM_LightMagicalLeather" or defName="MM_HeavyMagicalLeather"]/stuffProps</xpath>
+						<value>
+							<categories>
+							  <li>SoftArmor</li>
+							</categories>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="MM_LightMagicalLeather" or defName="MM_HeavyMagicalLeather"]/stuffProps/categories</xpath>
+						<value>
+							<li>SoftArmor</li>
+						</value>
+					</match>
+				</li>
+
             </operations>
         </match>
     </Operation>
