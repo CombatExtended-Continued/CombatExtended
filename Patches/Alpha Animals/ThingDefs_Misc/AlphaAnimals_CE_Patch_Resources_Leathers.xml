@@ -239,6 +239,23 @@
 						<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
 					</value>
 				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps/categories</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps</xpath>
+						<value>
+							<categories>
+							  <li>SoftArmor</li>
+							</categories>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_CinderSilk"]/stuffProps/categories</xpath>
+						<value>
+							<li>SoftArmor</li>
+						</value>
+					</match>
+				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="AA_MothSilk"]/statBases/StuffPower_Armor_Sharp</xpath>
 					<value>
@@ -257,11 +274,22 @@
 						<StuffPower_Armor_Heat>0.035</StuffPower_Armor_Heat>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps/categories</xpath>
-					<value>
-						<li>SoftArmor</li>
-					</value>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps</xpath>
+						<value>
+							<categories>
+							  <li>SoftArmor</li>
+							</categories>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AA_MothSilk"]/stuffProps/categories</xpath>
+						<value>
+							<li>SoftArmor</li>
+						</value>
+					</match>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="AA_GreyCoatedMouflonWool" or defName="AA_GiantCrownedSilkieSilk"]/statBases</xpath>
