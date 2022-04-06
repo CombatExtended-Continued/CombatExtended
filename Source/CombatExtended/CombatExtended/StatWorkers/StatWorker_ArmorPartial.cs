@@ -72,7 +72,7 @@ namespace CombatExtended
                             foreach (var part in this.stat.parts)
                             {
                                 string resultAd = part.ExplanationPart(req);
-                                if (resultAd.Any() && resultAd.Count() > 0)
+                                if (resultAd != null && resultAd.Any() && resultAd.Count() > 0)
                                 {
                                     result += "\n" + resultAd + "\n";
                                 }
