@@ -17,6 +17,14 @@ namespace CombatExtended
             {
                 if (req.Thing != null)
                 {
+                     if ((this.stat?.parts ?? null) != null)
+                     {
+                            foreach (var part in this.stat.parts)
+                            {
+                                result += "\n" + part.ExplanationPart(req) + "\n";
+                            }
+                    }
+                    
                     if (req.Thing.def.HasModExtension<PartialArmorExt>())
                     {
                         var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
@@ -46,26 +54,13 @@ namespace CombatExtended
                                 }
                             }
                         }
-
-                        if ((this.stat?.parts ?? null) != null)
-                        {
-                            foreach (var part in this.stat.parts)
-                            {
-                                string explanation = part.ExplanationPart(req);
-                                if ((explanation?.Count() ?? 0) > 1)
-                                {
-                                    result += "\n" + explanation;
-                                }
-                               
-                            }
-                        }
-
-
                         return result;
                     }
                 }
                 else
                 {
+
+                
                     if (req.Def.HasModExtension<PartialArmorExt>())
                     {
                         var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
@@ -84,6 +79,15 @@ namespace CombatExtended
                                 {
                                     value = (float)Math.Round(pawn.PartialStat(partstat.stat, partstat.parts.First()), 2);
                                 }
+                                
+                                if(!partstat.useStatic)
+                                {
+                                    value = (float)Math.Round(req.Def.GetStatValueAbstract(this.stat) * partstat.mult);
+                                }
+                                else
+                                {
+                                    value = partstat.staticValue;
+                                }
 
                                 result += "\n";
                                 result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
@@ -97,13 +101,7 @@ namespace CombatExtended
 
                             
                         }
-                        if ((this.stat?.parts ?? null) != null)
-                        {
-                            foreach (var part in this.stat.parts)
-                            {
-                                result += "\n" + part.ExplanationPart(req) + "\n";
-                            }
-                        }
+                       
 
                         return result;
                     }
