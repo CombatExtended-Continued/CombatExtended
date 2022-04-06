@@ -71,9 +71,15 @@ namespace CombatExtended
                             {
                                 foreach (var part in this.stat.parts)
                                 {
-                                    result += "\n" + part.ExplanationPart(req) + "\n";
+                                    string resultAd = part.ExplanationPart(req);
+                                    if(resultAd.Any() && resultAd.Count() > 0)
+                                    {
+                                        result += "\n" + resultAd + "\n";
+                                    }
+                                    
                                 }
                             }
+                            
                         result += "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();   
                         
                         var ext = req.Def.GetModExtension<PartialArmorExt>();
@@ -83,14 +89,6 @@ namespace CombatExtended
                             if (partstat.stat == this.stat)
                             {
                                 var value = 0f;
-                                if (req.Thing is Apparel)
-                                {
-                                    value = (float)Math.Round (CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
-                                }
-                                else if (req.Thing is Pawn pawn)
-                                {
-                                    value = (float)Math.Round(pawn.PartialStat(partstat.stat, partstat.parts.First()), 2);
-                                }
                                 
                                 if(!partstat.useStatic)
                                 {
