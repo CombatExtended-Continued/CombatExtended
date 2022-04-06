@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Classical</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Increase Legionaire weapon money slightly. -->
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/PawnKindDef[defName="VFEC_Legionnaire"]/weaponMoney</xpath>
+        <value>
+          <weaponMoney>140~300</weaponMoney>
+        </value>
+      </li>
+
+      <!-- Give Auxilaries some javelins. -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicAuxilia"]</xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>4</min>
+              <max>8</max>
+            </primaryMagazineCount>
+            <sidearms>
+            <li>
+              <generateChance>0.70</generateChance>
+              <sidearmMoney>
+                <min>100</min>
+                <max>250</max>
+              </sidearmMoney>
+              <weaponTags>
+                <li>NeolithicMeleeBasic</li>
+                <li>ClassicalSimple</li>
+              </weaponTags>
+            </li>  
+            </sidearms>
+          </li>
+        </value>
+      </li>
+
+      <!-- Give Archers some arrows. -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicArcher"]</xpath>
+        <value>
+          <li Class="CombatExtended.LoadoutPropertiesExtension">
+            <primaryMagazineCount>
+              <min>12</min>
+              <max>20</max>
+            </primaryMagazineCount>
+            <sidearms>
+            <li>
+              <generateChance>0.50</generateChance>
+              <sidearmMoney>
+                <min>100</min>
+                <max>250</max>
+              </sidearmMoney>
+              <weaponTags>
+                <li>NeolithicMeleeBasic</li>
+                <li>ClassicalSimple</li>
+              </weaponTags>
+            </li>  
+            </sidearms>
+          </li>
+        </value>
+      </li>
+
+      <!-- Give pawns some packs. -->
+      <li Class="PatchOperationAdd">
+      <xpath>/Defs/PawnKindDef[defName="VFEC_RepublicArcher" or defName="VFEC_RepublicAuxilia"]/apparelRequired</xpath>
+        <value>
+          <li>Apparel_TribalBackpack</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    
