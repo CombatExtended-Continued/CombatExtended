@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+          <CombatExtended.AmmoSetDef>
+            <defName>AmmoSet_8x35mmCharged_Triple</defName>
+            <label>8x35mm Charged</label>
+            <ammoTypes>
+              <Ammo_8x35mmCharged>Bullet_8x35mmCharged_Triple</Ammo_8x35mmCharged>
+              <Ammo_8x35mmCharged_AP>Bullet_8x35mmCharged_AP_Triple</Ammo_8x35mmCharged_AP>
+              <Ammo_8x35mmCharged_Ion>Bullet_8x35mmCharged_Ion_Triple</Ammo_8x35mmCharged_Ion>
+            </ammoTypes>
+            <similarTo>AmmoSet_ChargedRifle</similarTo>
+          </CombatExtended.AmmoSetDef>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+
+          <ThingDef ParentName="Bullet_8x35mmCharged">
+            <defName>Bullet_8x35mmCharged_Triple</defName>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <pelletCount>3</pelletCount>
+              <spreadMult>1.8</spreadMult>
+            </projectile>
+          </ThingDef>
+
+          <ThingDef ParentName="Bullet_8x35mmCharged_AP">
+            <defName>Bullet_8x35mmCharged_AP_Triple</defName>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <pelletCount>3</pelletCount>
+              <spreadMult>1.8</spreadMult>
+            </projectile>
+          </ThingDef>
+
+          <ThingDef ParentName="Bullet_8x35mmCharged_Ion">
+            <defName>Bullet_8x35mmCharged_Ion_Triple</defName>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <pelletCount>3</pelletCount>
+              <spreadMult>1.8</spreadMult>
+            </projectile>
+          </ThingDef>
+
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>

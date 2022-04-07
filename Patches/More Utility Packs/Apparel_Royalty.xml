@@ -12,27 +12,92 @@
 			<match Class="PatchOperationSequence">
 				<operations>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
-				defName="SGC_Apparel_Jetpack" or
-				defName="SGC_Apparel_CommandTower"		
-				]/apparel/layers</xpath>
-				<value>
-					<li>Backpack</li>
-				</value>
-			</li>
+				<!-- Quality Comp -->
 
-			<li Class="PatchOperationFindMod">
-				<mods>
-					<li>Vanilla Factions Expanded - Mechanoids</li>
-				</mods>						
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="SGC_Apparel_MechJet"]/apparel/layers</xpath>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[
+					defName="SGC_Apparel_Jetpack" or
+					defName="SGC_Apparel_CommandTower"
+					]/comps/li/compClass[.="CompQuality"]</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="SGC_Apparel_Jetpack" or defName="SGC_Apparel_CommandTower"]/comps</xpath>
+						<value>
+							<li>
+								<compClass>CompQuality</compClass>
+							</li>
+						</value>
+					</nomatch>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[
+					defName="SGC_Apparel_Jetpack" or
+					defName="SGC_Apparel_CommandTower"		
+					]/apparel/layers</xpath>
 					<value>
 						<li>Backpack</li>
 					</value>
-				</match>					
-			</li>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="SGC_Apparel_Jetpack"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.375</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="SGC_Apparel_Jetpack"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>3.75</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Vanilla Factions Expanded - Mechanoids</li>
+					</mods>						
+					<match Class="PatchOperationSequence">
+						<operations>
+
+						<li Class="PatchOperationAdd">
+							<xpath>/Defs/ThingDef[defName="SGC_Apparel_MechJet"]/apparel/layers</xpath>
+							<value>
+								<li>Backpack</li>
+							</value>
+						</li>
+
+						<!-- Quality Comp -->
+
+						<li Class="PatchOperationConditional">
+							<xpath>/Defs/ThingDef[defName="SGC_Apparel_MechJet"]/comps/li/compClass[.="CompQuality"]</xpath>
+							<nomatch Class="PatchOperationAdd">
+								<xpath>/Defs/ThingDef[defName="SGC_Apparel_MechJet"]/comps</xpath>
+								<value>
+									<li>
+										<compClass>CompQuality</compClass>
+									</li>
+								</value>
+							</nomatch>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName = "SGC_Apparel_MechJet"]/statBases/EnergyShieldRechargeRate</xpath>
+							<value>
+								<EnergyShieldRechargeRate>0.45</EnergyShieldRechargeRate>
+							</value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+							<xpath>Defs/ThingDef[defName = "SGC_Apparel_MechJet"]/statBases/EnergyShieldEnergyMax</xpath>
+							<value>
+								<EnergyShieldEnergyMax>4.5</EnergyShieldEnergyMax>
+							</value>
+						</li>
+
+						</operations>
+					</match>					
+				</li>
 
 				</operations>
 			</match>					

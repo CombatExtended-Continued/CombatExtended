@@ -374,6 +374,7 @@ Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
 Vanilla Factions Expanded - Ancients    |
+Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|

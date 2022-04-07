@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vanilla Factions Expanded - Classical</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		<operations>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<CombatExtended.AmmoCategoryDef>
+					<defName>HeavyJavelin</defName>
+					<label>Heavy Javelin</label>
+					<description>A heavy javelin with an extended shank, making it ideal for punching through shields and armor.</description>
+				</CombatExtended.AmmoCategoryDef>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Javelins"]/ammoTypes</xpath>
+			<value>
+				<VFEC_Javelin>Classical_Javelin_Fired</VFEC_Javelin>
+			</value>
+		</li>	
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+			<ThingDef ParentName="BasePilumProjectile">
+			<defName>Classical_Javelin_Thrown</defName>
+			<label>javelin</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>14</damageAmountBase>
+				<speed>16</speed>
+				<armorPenetrationBlunt>5.44</armorPenetrationBlunt>
+				<armorPenetrationSharp>5.5</armorPenetrationSharp>
+				<secondaryDamage>
+				<li>
+					<def>VFEC_ApparelDamage</def>
+					<amount>20</amount>
+				</li>
+				</secondaryDamage>
+				<preExplosionSpawnChance>0.40</preExplosionSpawnChance> <!-- Roman javelins/pila were designed to break or bend on impact, to prevent them being thrown back. -->
+				<preExplosionSpawnThingDef>VFEC_Javelin</preExplosionSpawnThingDef>
+			</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="BasePilumProjectile">
+				<defName>Classical_Javelin_Fired</defName>
+				<label>pilum (fired)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>29</damageAmountBase>
+					<speed>44</speed>
+					<armorPenetrationBlunt>141.12</armorPenetrationBlunt>
+					<armorPenetrationSharp>14</armorPenetrationSharp>
+					<secondaryDamage>
+					<li>
+						<def>VFEC_ApparelDamage</def>
+						<amount>20</amount>
+					</li>
+					</secondaryDamage>					
+					<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+					<preExplosionSpawnThingDef>VFEC_Javelin</preExplosionSpawnThingDef>
+				</projectile>
+			</ThingDef>
+
+			</value>
+		</li>
+		
+		</operations>
+	</match>
+	</Operation>
+</Patch>
+
