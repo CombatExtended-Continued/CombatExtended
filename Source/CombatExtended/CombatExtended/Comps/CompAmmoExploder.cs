@@ -9,17 +9,6 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
-    public class PatchesBPs
-    {
-       static PatchesBPs()
-        {
-            CE_BodyPartDefOf.MechanicalCapacitor.modExtensions = new List<DefModExtension>();
-
-            CE_BodyPartDefOf.MechanicalCapacitor.modExtensions.Add(new BodyPartExploderExt { triggerChance = 1f, allowedDamageDefs = new List<DamageDef> { DamageDefOf.Burn, DamageDefOf.Bullet, CE_DamageDefOf.Flame_Secondary } });
-        }
-    }
-
     public class CompAmmoExploder : ThingComp
     {
         public DamageDef damageDef;
