@@ -52,9 +52,9 @@ namespace CombatExtended
 
                     apparel.statBases.RemoveAll(x => 
                     x.stat == StatDefOf.ArmorRating_Sharp 
-                    |
+                    ||
                     x.stat == StatDefOf.ArmorRating_Blunt
-                    |
+                    ||
                     x.stat == StatDefOf.StuffEffectMultiplierArmor
                     );
                     apparel.statBases.AddRange(ArmorRatings);
