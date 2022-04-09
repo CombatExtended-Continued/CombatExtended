@@ -17,6 +17,8 @@ namespace CombatExtended
 
         private static readonly IntVec3[] AdjCells;
         private static readonly float[] AdjWeights;
+        private readonly float[] glowGridCache;
+	private int lastTick = 0;
 
         static LightingTracker()
         {
@@ -137,6 +139,7 @@ namespace CombatExtended
             _cellIndices = map.cellIndices;
 
             muzzle_grid = new MuzzleRecord[NumGridCells];
+	    glowGridCache = new float[map.Size.x * map.Size.y];
         }
 
         public override void ExposeData()
@@ -227,6 +230,21 @@ namespace CombatExtended
             return Mathf.Min(result, IsNight ? 0.5f : 1.0f);
         }
 
+	private float GameGlowAt(IntVec3 source)
+	{
+	    int thisTick = Find.TickManager.TicksAbs;
+
+	    if (thisTick != lastTick) {
+		Array.Fill(glowGridCache, -1f);
+		lastTick = thisTick;
+	    }
+	    float glow = glowGridCache[source.x * map.Size.y + source.y];
+	    if (glow == -1) {
+		glowGridCache[source.x * map.Size.y + source.y] = glow = map.glowGrid.GameGlowAt(source);
+	    }
+	    return glow;
+	}
+
         /// <summary>
         /// Used to retrive the combat lighting value in CE in relation to an other position. It combines both the vanilla system and a new muzzle flash system with a diffusion system. It is used to balance the difference lighting during daytime hours.
         /// </summary>
@@ -235,7 +253,7 @@ namespace CombatExtended
         /// <returns>Amount of light at said position</returns>
         public float CombatGlowAtFor(IntVec3 source, IntVec3 target)
         {
-            float glowAtSource = map.glowGrid.GameGlowAt(source);
+            float glowAtSource = GameGlowAt(source);
             // Detect day light
             if (glowAtSource > 0.5f)
             {
@@ -250,7 +268,7 @@ namespace CombatExtended
         {
             if (position.InBounds(map))
             {
-                var glow = map.glowGrid.GameGlowAt(position);
+                var glow = GameGlowAt(position);
                 var record = muzzle_grid[CellToIndex(position)];
                 if (!record.Recent)
                     return glow;
