@@ -61,8 +61,6 @@ namespace CombatExtended
                 }
                 else
                 {
-
-
                     if (req.Def.HasModExtension<PartialArmorExt>())
                     {
                         var result = "";
@@ -86,11 +84,26 @@ namespace CombatExtended
                         ;
                         foreach (ApparelPartialStat partstat in ext.stats)
                         {
+
                             if (partstat.stat == this.stat)
                             {
-                                var value = 0f;
-
                                 if (!partstat.useStatic)
+                                {
+                                    result += "\n CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
+                                }
+                                else
+                                {
+                                    result += "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
+                                }
+
+                                foreach (var bp in partstat.parts)
+                                {
+                                    result += "\n -" + bp.label;
+                                }
+
+                                
+                                #region commented out comment for calculating and showing these in def. Broken for stuffable but might be useful later
+                                /*if (!partstat.useStatic)
                                 {
                                     value = (float)Math.Round(((ThingDef)req.Def).GetStatValueAbstract(this.stat) * partstat.mult);
                                 }
@@ -117,7 +130,8 @@ namespace CombatExtended
                                 {
                                     result += "\n - ";
                                     result += bodypart.label;
-                                }
+                                }*/
+                                #endregion
                             }
 
 
