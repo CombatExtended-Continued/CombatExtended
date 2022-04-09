@@ -20,6 +20,7 @@ namespace CombatExtended.HarmonyCE
         private static DangerTracker dangerTracker;
         private static LightingTracker lightingTracker;
         private static List<CompProjectileInterceptor> interceptors;
+        private static int lastTick;
 
         [HarmonyPatch(typeof(CastPositionFinder), nameof(CastPositionFinder.TryFindCastPosition))]
         public static class CastPositionFinder_TryFindCastPosition_Patch
@@ -28,11 +29,18 @@ namespace CombatExtended.HarmonyCE
             {
                 verb = newReq.verb;
                 pawn = newReq.caster;
-                map = newReq.caster?.Map;
-                target = newReq.target.Position;
-                interceptors = map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
-                                               .Select(t => t.TryGetComp<CompProjectileInterceptor>())
-                                               .ToList();
+		target = newReq.target.Position;
+
+		int thisTick = Find.TickManager.TicksAbs;
+		if (thisTick != lastTick || map != newReq.caster.Map) {
+		    map = newReq.caster.Map;
+		    interceptors = map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
+			.Select(t => t.TryGetComp<CompProjectileInterceptor>())
+			.ToList();
+		    lastTick = thisTick;
+
+		}
+
                 if (map != null)
                 {
                     dangerTracker = map.GetDangerTracker();
