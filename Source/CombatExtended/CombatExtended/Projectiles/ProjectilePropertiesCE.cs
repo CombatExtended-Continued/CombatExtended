@@ -23,6 +23,19 @@ namespace CombatExtended
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
 
+        #region Bunker Buster fields
+        /// <summary>
+        /// Amount of tiles ProjectileCE_BunkerBuster will detonate after after penetrating an obstacle
+        /// </summary>
+        public int fuze_delay = 2;
+
+        public bool HP_penetration = false;
+
+        public float HP_penetration_ratio = 1f;
+
+        #endregion
+
+
         public float empShieldBreakChance = 1f;
         public float Gravity => CE_Utility.GravityConst * gravityFactor;
     }
