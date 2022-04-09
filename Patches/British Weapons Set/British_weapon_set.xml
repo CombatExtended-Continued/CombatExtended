@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>British Weapon Set</li>
+    </mods>
+ <match Class='PatchOperationSequence'>
+	
+	<operations>
+  
+     <!-- Bren Gun -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>BWS_Bren</defName>
+	<statBases>
+		<Mass>1.3</Mass>
+		<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+		<SightsEfficiency>0.7</SightsEfficiency>
+		<ShotSpread>0.05</ShotSpread>
+		<SwayFactor>1.53</SwayFactor>
+		<Bulk>12</Bulk>
+		<WorkToMake>30500</WorkToMake>
+	</statBases>
+	<costList>
+		<Steel>85</Steel>
+		<WoodLog>10</WoodLog>
+		<ComponentIndustrial>5</ComponentIndustrial>
+	</costList>
+	<Properties>
+		<recoilAmount>1.32</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+		<warmupTime>1.2</warmupTime>
+		<range>58</range>
+		<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+		<burstShotCount>10</burstShotCount>
+		<soundCast>Shot_Minigun</soundCast>
+		<soundCastTail>GunTail_Medium</soundCastTail>
+		<muzzleFlashScale>9</muzzleFlashScale>
+	<targetParams>
+		<canTargetLocations>true</canTargetLocations>
+	</targetParams>
+	<recoilPattern>Mounted</recoilPattern>
+	</Properties>
+    <AmmoUser>
+		<magazineSize>30</magazineSize>
+		<reloadTime>4.9</reloadTime>
+		<ammoSet>AmmoSet_303British</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aimedBurstShotCount>5</aimedBurstShotCount>
+		<aiUseBurstMode>FALSE</aiUseBurstMode>
+		<aiAimMode>SuppressFire</aiAimMode>
+	</FireModes>
+	<weaponTags>
+		<li>CE_MachineGun</li>
+		<li>CE_AI_LMG</li>
+		<li>Bipod_LMG</li>
+	</weaponTags>
+	<researchPrerequisite>GasOperation</researchPrerequisite>
+	<AllowWithRunAndGun>FALSE</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_Bren"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.35,1.18</DrawSize>
+        <DrawOffset>0.13,-0.03</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Browning HP -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWP_Browning</defName>
+    <statBases>
+      <Mass>1</Mass>
+      <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.17</ShotSpread>
+      <SwayFactor>1.07</SwayFactor>
+      <Bulk>1.90</Bulk>
+      <WorkToMake>5000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+      <WoodLog>5</WoodLog>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>12</range>
+      <soundCast>Shot_Autopistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_BROOM</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+</li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWP_Browning"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.00,1.00</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- EM-2 -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWP_EM</defName>
+    <statBases>
+      <Mass>3.5</Mass>
+      <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
+      <Bulk>8.30</Bulk>
+      <WorkToMake>50000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>50</Steel>
+      <WoodLog>35</WoodLog>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>1.53</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>50</range>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <burstShotCount>6</burstShotCount>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>20</magazineSize>
+      <reloadTime>4.4</reloadTime>
+      <ammoSet>AmmoSet_303British</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>true</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_AR</li>
+    </weaponTags>
+    <researchPrerequisite>GasOperation</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+</li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWP_EM"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.25,1.33</DrawSize>
+        <DrawOffset>0.12,-0.10</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Lee-3 -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_LeeA</defName>
+    <statBases>
+      <Mass>3.80</Mass>
+      <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.02</ShotSpread>
+      <SwayFactor>1.50</SwayFactor>
+      <Bulk>10.60</Bulk>
+      <WorkToMake>11000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>50</Steel>
+      <WoodLog>25</WoodLog>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>50</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4.3</reloadTime>
+      <ammoSet>AmmoSet_303British</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_SR</li>
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <AllowWithRunAndGun>FALSE</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_LeeA"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.34,1.34</DrawSize>
+        <DrawOffset>0.12,-0.10</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Lee-4 -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_LeeB</defName>
+    <statBases>
+      <Mass>4</Mass>
+      <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.02</ShotSpread>
+      <SwayFactor>1.50</SwayFactor>
+      <Bulk>11.30</Bulk>
+      <WorkToMake>12000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>60</Steel>
+      <WoodLog>10</WoodLog>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>53</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>4.3</reloadTime>
+      <ammoSet>AmmoSet_303British</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_SR</li>
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <AllowWithRunAndGun>FALSE</AllowWithRunAndGun>
+  </li> 
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_LeeB"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.34,1.34</DrawSize>
+        <DrawOffset>0.12,-0.10</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Lewis Gun -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_LewisGun</defName>
+    <statBases>
+      <Mass>13</Mass>
+      <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.5</ShotSpread>
+      <SwayFactor>1.83</SwayFactor>
+      <Bulk>18</Bulk>
+      <WorkToMake>34000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>110</Steel>
+      <WoodLog>20</WoodLog>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>1.32</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_3006Springfield_FMJ</defaultProjectile>
+      <warmupTime>1.3</warmupTime>
+      <range>65</range>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <burstShotCount>10</burstShotCount>
+      <soundCast>Shot_Minigun</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+      </targetParams>
+      <recoilPattern>Mounted</recoilPattern>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>47</magazineSize>
+      <reloadTime>4.9</reloadTime>
+      <ammoSet>AmmoSet_3006Springfield</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+    <weaponTags>
+	  <li>CE_MachineGun</li>
+      <li>CE_AI_LMG</li>
+      <li>Bipod_LMG</li>
+    </weaponTags>
+    <researchPrerequisite>GasOperation</researchPrerequisite>
+    <AllowWithRunAndGun>FALSE</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_LewisGun"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.35,1.18</DrawSize>
+        <DrawOffset>0.13,-0.03</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Martini Henry -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWP_MartiniHenry</defName>
+    <statBases>
+      <Mass>3.8</Mass>
+      <RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.02</ShotSpread>
+      <SwayFactor>1.30</SwayFactor>
+      <Bulk>11</Bulk>
+      <WorkToMake>8000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>40</Steel>
+      <WoodLog>30</WoodLog>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_303British_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>58</range>
+      <soundCast>Shot_BoltActionRifle</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <reloadTime>0.85</reloadTime>
+      <ammoSet>AmmoSet_303British</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_SR</li>
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <AllowWithRunAndGun>FALSE</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWP_MartiniHenry"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.34,1.34</DrawSize>
+        <DrawOffset>0.12,-0.10</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Sten -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_Sten</defName>
+    <statBases>
+      <Mass>3.2</Mass>
+      <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>0.80</SwayFactor>
+      <Bulk>5</Bulk>
+      <WorkToMake>15000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>45</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>2</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>20</range>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <burstShotCount>6</burstShotCount>
+      <soundCast>Shot_MachinePistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>32</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_SMG</li>
+      <li>CE_AI_BROOM</li>
+    </weaponTags>
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_Sten"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>0.85,0.85</DrawSize>
+        <DrawOffset>0.00,-0.03</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Sterling -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_Sterling</defName>
+    <statBases>
+      <Mass>2.7</Mass>
+      <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>0.80</SwayFactor>
+      <Bulk>4</Bulk>
+      <WorkToMake>21000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>2</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>24</range>
+      <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+      <burstShotCount>10</burstShotCount>
+      <soundCast>Shot_MachinePistol</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>50</magazineSize>
+      <reloadTime>3</reloadTime>
+      <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_SMG</li>
+      <li>CE_AI_BROOM</li>
+    </weaponTags>
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_Sterling"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+       <DrawSize>0.85,0.85</DrawSize>
+        <DrawOffset>0.00,-0.03</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Tommy Gun -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWP_TommyB</defName>
+    <statBases>
+      <Mass>5</Mass>
+      <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+      <SightsEfficiency>1.00</SightsEfficiency>
+      <ShotSpread>0.10</ShotSpread>
+      <SwayFactor>1.14</SwayFactor>
+      <Bulk>5.50</Bulk>
+      <WorkToMake>27000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>30</Steel>
+      <WoodLog>25</WoodLog>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>2.18</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>40</range>
+      <burstShotCount>10</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <soundCast>Shot_HeavySMG</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>50</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_45ACP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+	   <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_SMG</li>
+      <li>CE_AI_BROOM</li>
+    </weaponTags>
+    <researchPrerequisite>BlowbackOperation</researchPrerequisite>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWP_TommyB"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>0.85,0.85</DrawSize>
+        <DrawOffset>0.00,-0.03</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+     <!-- Webley -->
+	 
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWS_Webley</defName>
+    <statBases>
+      <Mass>1.1</Mass>
+      <RangedWeapon_Cooldown>0.49</RangedWeapon_Cooldown>
+      <SightsEfficiency>0.7</SightsEfficiency>
+      <ShotSpread>0.18</ShotSpread>
+      <SwayFactor>1.27</SwayFactor>
+      <Bulk>2.41</Bulk>
+      <WorkToMake>7000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+      <WoodLog>10</WoodLog>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+      <warmupTime>0.6</warmupTime>
+      <range>12</range>
+      <soundCast>Shot_Revolver</soundCast>
+      <soundCastTail>GunTail_Light</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>6</magazineSize>
+      <reloadTime>4.6</reloadTime>
+      <ammoSet>AmmoSet_45ACP</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_Sidearm</li>
+      <li>CE_AI_BROOM</li>
+      <li>CE_OneHandedWeapon</li>
+    </weaponTags>
+    <researchPrerequisite>Gunsmithing</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+  </li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWS_Webley"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.00,1.00</DrawSize>
+        <DrawOffset>0.0,0.0</DrawOffset>
+      </li>
+    </value>
+  </li>
+
+     <!-- L1A1 -->
+
+  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>BWP_FAL</defName>
+    <statBases>
+      <Mass>4.3</Mass>
+      <RangedWeapon_Cooldown>0.40</RangedWeapon_Cooldown>
+      <SightsEfficiency>1</SightsEfficiency>
+      <ShotSpread>0.06</ShotSpread>
+      <SwayFactor>1.52</SwayFactor>
+      <Bulk>10.90</Bulk>
+      <WorkToMake>28000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>55</Steel>
+      <WoodLog>10</WoodLog>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <Properties>
+      <recoilAmount>2.07</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <range>48</range>
+      <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+      <burstShotCount>6</burstShotCount>
+      <soundCast>Shot_AssaultRifle</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>20</magazineSize>
+      <reloadTime>4</reloadTime>
+      <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>true</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+    <weaponTags>
+      <li>CE_AI_AR</li>
+    </weaponTags>
+    <researchPrerequisite>PrecisionRifling</researchPrerequisite>
+    <AllowWithRunAndGun>true</AllowWithRunAndGun>
+</li>
+  <li Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="BWP_EM"]</xpath>
+    <value>
+      <li Class="CombatExtended.GunDrawExtension">
+        <DrawSize>1.25,1.33</DrawSize>
+        <DrawOffset>0.12,-0.10</DrawOffset>
+      </li>
+    </value>
+  </li>
+  
+  <!-- Tools -->
+
+  <li Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="BWP_Browning" or defName="BWS_Webley"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>grip</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>1.54</cooldownTime>
+          <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+
+  <li Class="PatchOperationReplace">
+    <xpath>
+      Defs/ThingDef[
+        defName="BWS_Bren" or 
+        defName="BWS_LeeA" or 
+        defName="BWS_LeeB" or 
+        defName="BWS_LewisGun" or 
+        defName="BWS_Sten" or 
+        defName="BWS_Sterling" or 
+        defName="BWP_EM" or 
+        defName="BWP_MartiniHenry" or 
+        defName="BWP_TommyB" or
+		defName="BWP_FAL"
+      ]/tools
+    </xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>stock</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <chanceFactor>1.5</chanceFactor>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>5</power>
+          <cooldownTime>2.02</cooldownTime>
+          <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>muzzle</label>
+          <capacities>
+            <li>Poke</li>
+          </capacities>
+          <power>8</power>
+          <cooldownTime>1.55</cooldownTime>
+          <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </li>
+	</operations>
+  </match>
+ </Operation>
+
+</Patch>
