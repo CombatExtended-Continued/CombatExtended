@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class CompUBGL: CompRangedGizmoGiver
+    public class CompUnderBarrel: CompRangedGizmoGiver
     {
-        public CompProperties_UBGL Props => (CompProperties_UBGL)this.props;
+        public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;
 
         public CompEquippable compEq => this.parent.TryGetComp<CompEquippable>();
 
@@ -29,11 +29,11 @@ namespace CombatExtended
 
         public int mainGunMagCount;
 
-        public AmmoDef ubglLoadedAmmo;
+        public AmmoDef UnderBarrelLoadedAmmo;
 
-        public int ubglMagCount;
+        public int UnderBarrelMagCount;
 
-        public bool usingUBGL;
+        public bool usingUnderBarrel;
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (compAmmo.Props.ammoSet == compPropsAmmo.ammoSet)
@@ -41,22 +41,22 @@ namespace CombatExtended
                 yield return new Command_Action
                 {
 
-                    defaultLabel = "CE_SwitchAmmmoSetToUBGL".Translate(),
+                    defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
                     action = delegate
                     {
                         mainGunLoadedAmmo = compAmmo.CurrentAmmo;
                         mainGunMagCount = compAmmo.CurMagCount;
 
-                        compAmmo.props = this.Props.propsUBGL;
-                        compEq.PrimaryVerb.verbProps = Props.verbPropsUBGL;
-                        compFireModes.props = this.Props.propsFireModesUBGL;
-                        compAmmo.CurMagCount = ubglMagCount;
-                        compAmmo.CurrentAmmo = ubglLoadedAmmo;
+                        compAmmo.props = this.Props.propsUnderBarrel;
+                        compEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
+                        compFireModes.props = this.Props.propsFireModesUnderBarrel;
+                        compAmmo.CurMagCount = UnderBarrelMagCount;
+                        compAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
                         if (compAmmo.Wielder != null)
                         {
                             compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
                         }
-                        usingUBGL = true;
+                        usingUnderBarrel = true;
                     }
                 };
             }
@@ -68,8 +68,8 @@ namespace CombatExtended
                     defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
                     action = delegate
                     {
-                        ubglLoadedAmmo = compAmmo.CurrentAmmo;
-                        ubglMagCount = compAmmo.CurMagCount;
+                        UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
+                        UnderBarrelMagCount = compAmmo.CurMagCount;
 
                         compAmmo.props = compPropsAmmo;
                         compEq.PrimaryVerb.verbProps = defVerbProps.MemberwiseClone();
@@ -80,37 +80,60 @@ namespace CombatExtended
                         {
                             compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
                         }
-                        usingUBGL = false;
+                        usingUnderBarrel = false;
                     }
                 };
             }
         }
 
+        public override string TransformLabel(string label)
+        {
+            /*if (!(compAmmo.Props.ammoSet == compPropsAmmo.ammoSet))
+            {
+                return this.parent.Label + " (" + compAmmo.Props.ammoSet.label + ")";
+            }*/
+            return base.TransformLabel(label);
+        }
+
+        public override void Initialize(CompProperties props)
+        {
+            if (this.parent.def.weaponTags.NullOrEmpty())
+            {
+                this.parent.def.weaponTags = new List<string>() { "NoSwitch" };
+            }
+            else if (!this.parent.def.weaponTags.Contains("NoSwitch"))
+            {
+                this.parent.def.weaponTags.Add("NoSwitch");
+            }
+            base.Initialize(props);
+        }
+
         public override void PostExposeData()
         {
+            
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                if (usingUBGL)
+                if (usingUnderBarrel)
                 {
-                    ubglMagCount = compAmmo.CurMagCount;
-                    ubglLoadedAmmo = compAmmo.CurrentAmmo;
+                    UnderBarrelMagCount = compAmmo.CurMagCount;
+                    UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
                 }
             }
-            Scribe_Values.Look(ref usingUBGL, "usingUBGL");
+            Scribe_Values.Look(ref usingUnderBarrel, "usingUnderBarrel");
             Scribe_Defs.Look(ref mainGunLoadedAmmo, "mainGunAmmo");
-            Scribe_Defs.Look(ref ubglLoadedAmmo, "ubglAmmo");
+            Scribe_Defs.Look(ref UnderBarrelLoadedAmmo, "UnderBarrelAmmo");
             Scribe_Values.Look(ref mainGunMagCount, "magCountMainGun");
-            Scribe_Values.Look(ref ubglMagCount, "ubglMagCount");
+            Scribe_Values.Look(ref UnderBarrelMagCount, "UnderBarrelMagCount");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (usingUBGL)
+                if (usingUnderBarrel)
                 {
-                    compAmmo.CurMagCount = ubglMagCount;
-                    compAmmo.CurrentAmmo = ubglLoadedAmmo;
+                    compAmmo.CurMagCount = UnderBarrelMagCount;
+                    compAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
 
-                    compAmmo.props = this.Props.propsUBGL;
-                    compEq.PrimaryVerb.verbProps = Props.verbPropsUBGL;
-                    compFireModes.props = this.Props.propsFireModesUBGL;
+                    compAmmo.props = this.Props.propsUnderBarrel;
+                    compEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
+                    compFireModes.props = this.Props.propsFireModesUnderBarrel;
                     
                     if (compAmmo.Wielder != null)
                     {
@@ -119,21 +142,22 @@ namespace CombatExtended
                 }
             }
             base.PostExposeData();
+
         }
     }
 
-    public class CompProperties_UBGL : CompProperties
+    public class CompProperties_UnderBarrel : CompProperties
     {
 
-        public CompProperties_AmmoUser propsUBGL;
+        public CompProperties_AmmoUser propsUnderBarrel;
 
-        public VerbPropertiesCE verbPropsUBGL;
+        public VerbPropertiesCE verbPropsUnderBarrel;
 
-        public CompProperties_FireModes propsFireModesUBGL;
+        public CompProperties_FireModes propsFireModesUnderBarrel;
 
-        public CompProperties_UBGL()
+        public CompProperties_UnderBarrel()
         {
-            this.compClass = typeof(CompUBGL);
+            this.compClass = typeof(CompUnderBarrel);
         }
     }
 }
