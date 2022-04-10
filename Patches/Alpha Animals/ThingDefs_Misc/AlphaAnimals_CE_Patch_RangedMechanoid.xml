@@ -31,23 +31,6 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="AA_DemolisherChargeBase"]</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>barrel</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>11.7</power>
-							<cooldownTime>2.6</cooldownTime>
-							<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
-						</li>					
-					</tools>
-				</value>
-			</li>
-
 			<!-- Make the Siege Turret usable -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -61,6 +44,7 @@
 			  <Bulk>1.00</Bulk>
 			</statBases>
 			<Properties>
+			  <recoilAmount>1</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_90mmCannonShell_HE</defaultProjectile>
@@ -84,42 +68,6 @@
 			</weaponTags>
 			</li>
 
-			<!-- Change the Demolisher Charge Gun -->
-
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>AA_DemolisherCharges</defName>
-			  <statBases>
-			  <Mass>2.00</Mass>
-			  <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
-			  <SightsEfficiency>1</SightsEfficiency>
-			  <ShotSpread>0.01</ShotSpread>
-			  <SwayFactor>1.0</SwayFactor>
-			  <Bulk>1.00</Bulk>
-			</statBases>
-			<Properties>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
-			  <warmupTime>2.0</warmupTime>
-			  <range>8</range>
-			  <minRange>4</minRange>
-			  <soundCast>AA_DemolisherCharge</soundCast>
-			  <muzzleFlashScale>14</muzzleFlashScale>
-			  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-			</Properties>
-			<AmmoUser>
-			  <magazineSize>2</magazineSize>
-			  <reloadTime>4</reloadTime>
-			  <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
-			</AmmoUser>
-			<FireModes>
-			  <aiAimMode>AimedShot</aiAimMode>
-			</FireModes>
-			<weaponTags>
-				<li>AA_MechanoidDemolisherCharges</li>
-			</weaponTags>
-			</li>
-
 			<!-- Change the Flamethrower -->
 
 			<li Class="PatchOperationReplace">
@@ -132,13 +80,15 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AA_Flamethrower</defName>
 			<statBases>
-			  <Mass>2.0</Mass>
+			  <Mass>0</Mass>
+			  <Bulk>0</Bulk>
 			  <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
 			  <SightsEfficiency>0.8</SightsEfficiency>
 			  <ShotSpread>4.0</ShotSpread>
 			  <SwayFactor>1.33</SwayFactor>
 			</statBases>
 			<Properties>
+			  <recoilAmount>0</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
@@ -163,9 +113,7 @@
 				<li>AA_MechanoidFlamethrower</li>
 			</weaponTags>
 			</li>
-
-			<!-- Change the Cryo Gun -->
-
+				
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>AA_CryogenicGun</defName>
 			  <statBases>
@@ -177,6 +125,7 @@
 			  <Bulk>1.00</Bulk>
 			</statBases>
 			<Properties>
+			  <recoilAmount>0</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>AA_CryoBulletCE</defaultProjectile>
@@ -200,30 +149,32 @@
 			</li>
 				
 			<li Class="PatchOperationAdd"> 
-				<xpath>/Defs</xpath>
-				<value>
-					<ThingDef ParentName="AA_BaseMechProjectile">
-						<defName>AA_CryoBulletCE</defName>
-						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-						<label>cryogenic pellet</label>
-						<graphicData>
-							<texPath>Things/Projectiles/AA_Cryo</texPath>
-							<graphicClass>Graphic_Single</graphicClass>
-							<shaderType>TransparentPostLight</shaderType>
-						</graphicData>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<flyOverhead>false</flyOverhead>
-							<speed>40</speed>
-							<damageDef>Frostbite</damageDef>
-							<damageAmountBase>3</damageAmountBase>
-							<explosionRadius>2</explosionRadius>						
-							<soundExplode>AA_Cryogun</soundExplode>
-							<armorPenetrationSharp>0</armorPenetrationSharp>
-							<armorPenetrationBlunt>0</armorPenetrationBlunt>			
-						</projectile>
-					</ThingDef>
-				</value>
-			</li>
+					<xpath>/Defs</xpath>
+						<value>
+
+				<ThingDef ParentName="AA_BaseMechProjectile">
+					<defName>AA_CryoBulletCE</defName>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>cryogenic pellet</label>
+					<graphicData>
+						<texPath>Things/Projectiles/AA_Cryo</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<flyOverhead>false</flyOverhead>
+						<speed>40</speed>
+						<damageDef>Frostbite</damageDef>
+						<damageAmountBase>3</damageAmountBase>
+						<explosionRadius>2</explosionRadius>						
+						<soundExplode>AA_Cryogun</soundExplode>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>0</armorPenetrationBlunt>			
+					</projectile>
+				</ThingDef>
+
+			</value>
+		</li>
 
 			</operations>
 		</match>

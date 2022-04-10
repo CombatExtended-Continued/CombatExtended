@@ -29,12 +29,12 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/race/baseHealthScale</xpath>
-				<value>
-					<baseHealthScale>30</baseHealthScale>
-				</value>
-			</li>
+		                 <xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/race/baseHealthScale</xpath>
+		                 <value>
+			               <baseHealthScale>7.5</baseHealthScale>
+		                 </value>
 
+	                </li>
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/tools</xpath>
 				<value>
@@ -77,25 +77,25 @@
 			
 			<!-- Add Low Bleed Hediff -->
 
-			<li Class="PatchOperationConditional">
-			<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]</xpath>
-					<value>
-						<comps />
-					</value>
-				</nomatch>
-			</li>
+		<li Class="PatchOperationConditional">
+	 	<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+          			<nomatch Class="PatchOperationAdd">
+            				<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]</xpath>
+            				<value>
+              					<comps />
+            				</value>
+			</nomatch>
+		</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/comps</xpath>
-				<value>
-					<li Class="AnimalBehaviours.CompProperties_InitialHediff">
-						<hediffname>AA_LowBleed</hediffname>
-						<hediffseverity>1</hediffseverity>
-					</li>
-				</value>
-			</li>
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="AA_GallatrossMoribund"]/comps</xpath>
+			<value>
+				<li Class="AnimalBehaviours.CompProperties_InitialHediff">
+					<hediffname>AA_LowBleed</hediffname>
+					<hediffseverity>1</hediffseverity>
+				</li>
+			</value>
+		</li>
 
 			</operations>
 		</match>
