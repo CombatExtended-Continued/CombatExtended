@@ -25,10 +25,10 @@ namespace CombatExtended
                         {
                             foreach (var part in this.stat.parts)
                             {
-                                result += "\n" + part.ExplanationPart(req) + "\n";
+                                result += part.ExplanationPart(req) + "\n";
                             }
                         }
-                        result += "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+                        result += "\n CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
 
                         var ext = req.Thing.def.GetModExtension<PartialArmorExt>();
                         ;
@@ -89,11 +89,11 @@ namespace CombatExtended
                             {
                                 if (!partstat.useStatic)
                                 {
-                                    result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
+                                    result += "\n CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
                                 }
                                 else
                                 {
-                                    result += "\n" + "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
+                                    result += "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
                                 }
 
                                 foreach (var bp in partstat.parts)
