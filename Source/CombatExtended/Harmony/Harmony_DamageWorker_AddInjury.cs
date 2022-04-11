@@ -104,7 +104,7 @@ namespace CombatExtended.HarmonyCE
                             {
                                 if (dinfo.Weapon == pawn.TryGetComp<Comp_BurnDamageCalc>().weapon)
                                 {
-                                    secDinfo.SetAmount( (float)Math.Round((secDinfo.Amount / 2f)) );
+                                    secDinfo.SetAmount( (float)Math.Floor((secDinfo.Amount / 2f)) );
 
                                     pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = false;
                                 }
