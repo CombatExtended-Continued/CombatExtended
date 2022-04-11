@@ -55,7 +55,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 10f;
+                    RatingSharp.value = RaceUtil.SharpCurve.Evaluate(RatingSharp.value);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
 
@@ -63,7 +63,7 @@ namespace CombatExtended.Compatibility
                 }
                 else
                 {
-                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 1f };
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 0.125f };
                     animal.statBases.Add(RatingSharp);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = 1f };
@@ -77,7 +77,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 15f;
+                    RatingBlunt.value = RaceUtil.BluntCurve.Evaluate(RatingBlunt.value);
 
                     var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = RatingBlunt.value };
 

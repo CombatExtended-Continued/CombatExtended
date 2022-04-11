@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+	<mods>
+		<li>Vanilla Factions Expanded - Classical</li>
+	</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Toga -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEC_Toga"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<Bulk>2</Bulk>
+				<WornBulk>2</WornBulk>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<!-- Legionaire Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_LegionnaireArmor"]/statBases</xpath>
+			<value>
+				<Bulk>60</Bulk>
+				<WornBulk>10</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_LegionnaireArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_LegionnaireArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_LegionnaireArmor"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeDodgeChance>-0.05</MeleeDodgeChance>
+			</value>
+		</li>
+
+		<!-- Centurion Armor -->
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_CenturionArmor"]/statBases</xpath>
+			<value>
+				<Bulk>80</Bulk>
+				<WornBulk>12</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_CenturionArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2.35</StuffEffectMultiplierArmor> <!-- Almost same thickness as plate armor. -->
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_CenturionArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEC_Apparel_CenturionArmor"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeDodgeChance>-0.10</MeleeDodgeChance>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
