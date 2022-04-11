@@ -89,11 +89,11 @@ namespace CombatExtended
                             {
                                 if (!partstat.useStatic)
                                 {
-                                    result += "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
+                                    result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
                                 }
                                 else
                                 {
-                                    result += "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
+                                    result += "\n" + "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
                                 }
 
                                 foreach (var bp in partstat.parts)
