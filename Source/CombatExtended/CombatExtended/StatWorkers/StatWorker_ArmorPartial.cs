@@ -19,30 +19,41 @@ namespace CombatExtended
                 {
                     if (req.Thing.def.HasModExtension<PartialArmorExt>())
                     {
-                        var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+                        var result = "";
+
+                        if ((this.stat?.parts ?? null) != null)
+                        {
+                            foreach (var part in this.stat.parts)
+                            {
+                                result += part.ExplanationPart(req) + "\n";
+                            }
+                        }
+                        result += "\n" + "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+
                         var ext = req.Thing.def.GetModExtension<PartialArmorExt>();
                         ;
                         foreach (ApparelPartialStat partstat in ext.stats)
                         {
-
-
-                            var value = 0f;
-                            if (req.Thing is Apparel)
+                            if (partstat.stat == this.stat)
                             {
-                                value = CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First());
-                            }
-                            else if (req.Thing is Pawn pawn)
-                            {
-                                value = pawn.PartialStat(partstat.stat, partstat.parts.First());
-                            }
+                                var value = 0f;
+                                if (req.Thing is Apparel)
+                                {
+                                    value = (float)Math.Round(CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First()), 2);
+                                }
+                                else if (req.Thing is Pawn pawn)
+                                {
+                                    value = (float)Math.Round(pawn.PartialStat(partstat.stat, partstat.parts.First()), 2);
+                                }
 
-                            result += "\n";
-                            result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
+                                result += "\n";
+                                result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
 
-                            foreach (BodyPartDef bodypart in partstat.parts)
-                            {
-                                result += "\n - ";
-                                result += bodypart.label;
+                                foreach (BodyPartDef bodypart in partstat.parts)
+                                {
+                                    result += "\n - ";
+                                    result += bodypart.label;
+                                }
                             }
                         }
                         return result;
@@ -52,36 +63,85 @@ namespace CombatExtended
                 {
                     if (req.Def.HasModExtension<PartialArmorExt>())
                     {
-                        var result = "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+                        var result = "";
+
+                        if ((this.stat?.parts ?? null) != null)
+                        {
+                            foreach (var part in this.stat.parts)
+                            {
+                                string resultAd = part.ExplanationPart(req);
+                                if (resultAd != null && resultAd.Any() && resultAd.Count() > 0)
+                                {
+                                    result += "\n" + resultAd + "\n";
+                                }
+
+                            }
+                        }
+
+                        result += "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+
                         var ext = req.Def.GetModExtension<PartialArmorExt>();
                         ;
                         foreach (ApparelPartialStat partstat in ext.stats)
                         {
 
-
-                            var value = 0f;
-                            if (req.Thing is Apparel)
+                            if (partstat.stat == this.stat)
                             {
-                                value = CE_Utility.PartialStat((Apparel)req.Thing, this.stat, partstat.parts.First());
-                            }
-                            else if (req.Thing is Pawn pawn)
-                            {
-                                value = pawn.PartialStat(partstat.stat, partstat.parts.First());
+                                if (!partstat.useStatic)
+                                {
+                                    result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
+                                }
+                                else
+                                {
+                                    result += "\n" + "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
+                                }
+
+                                foreach (var bp in partstat.parts)
+                                {
+                                    result += "\n -" + bp.label;
+                                }
+
+                                
+                                #region commented out comment for calculating and showing these in def. Broken for stuffable but might be useful later
+                                /*if (!partstat.useStatic)
+                                {
+                                    value = (float)Math.Round(((ThingDef)req.Def).GetStatValueAbstract(this.stat) * partstat.mult);
+                                }
+                                else if (!((ThingDef)req.Def).stuffCategories.NullOrEmpty() || !((ThingDef)req.Def).stuffProps.categories.NullOrEmpty() || ((ThingDef)req.Def).stuffProps != null)
+                                {
+                                    value = partstat.mult;
+                                }
+                                else
+                                {
+                                    value = partstat.staticValue;
+                                }
+
+                                result += "\n";
+                                if (!this.stat.defName.ToLower().Contains("stuffpower"))
+                                    result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
+                                else
+                                {
+                                    result += "Mult: " + value.ToStringPercent() + " for:";
+                                }
+
+                               
+
+                                foreach (BodyPartDef bodypart in partstat.parts)
+                                {
+                                    result += "\n - ";
+                                    result += bodypart.label;
+                                }*/
+                                #endregion
                             }
 
-                            result += "\n";
-                            result += partstat.stat.formatString.Replace("{0}", value.ToString()) + " for: ";
 
-                            foreach (BodyPartDef bodypart in partstat.parts)
-                            {
-                                result += "\n - ";
-                                result += bodypart.label;
-                            }
                         }
+
+
                         return result;
                     }
                 }
-                
+
             }
             return base.GetExplanationFinalizePart(req, numberSense, finalVal);
         }
@@ -102,7 +162,7 @@ namespace CombatExtended
                 return false;
             }
 
-            if ( ((ThingDef)req.Def)?.IsApparel ?? req.Thing?.def?.IsApparel ?? false)
+            if (((ThingDef)req.Def)?.IsApparel ?? req.Thing?.def?.IsApparel ?? false)
             {
                 return this.stat.defName != "PartialArmorBody";
             }
@@ -118,7 +178,7 @@ namespace CombatExtended
                 }
             }
             return false;
-            
+
         }
     }
 }
