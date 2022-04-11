@@ -28,7 +28,7 @@ namespace CombatExtended
                                 result += part.ExplanationPart(req) + "\n";
                             }
                         }
-                       result += "\n" + "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
+                        result += "\n" + "CE_StatWorker_ArmorGeneral".Translate() + finalVal.ToString() + " \n \n" + "CE_StatWorker_ArmorSpecific".Translate();
 
                         var ext = req.Thing.def.GetModExtension<PartialArmorExt>();
                         ;
@@ -89,7 +89,7 @@ namespace CombatExtended
                             {
                                 if (!partstat.useStatic)
                                 {
-                                      result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
+                                    result += "\n" + "CE_Multiplier".Translate() + " " + partstat.mult.ToStringPercent();
                                 }
                                 else
                                 {
