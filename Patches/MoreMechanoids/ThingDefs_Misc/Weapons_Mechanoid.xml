@@ -12,47 +12,49 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_ChargeBlasterInternal</defName>
 					<statBases>
-					  <Mass>22.00</Mass>
+					  <Mass>10.00</Mass>
 					  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					  <SightsEfficiency>1</SightsEfficiency>
-					  <ShotSpread>0.01</ShotSpread>
+					  <ShotSpread>3.0</ShotSpread>
 					  <SwayFactor>1.33</SwayFactor>
 					  <Bulk>13.00</Bulk>
 					</statBases>
 					<Properties>
-					  <recoilAmount>1.28</recoilAmount>
+					  <recoilAmount>1.51</recoilAmount>
 					  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					  <hasStandardCommand>true</hasStandardCommand>
-					  <defaultProjectile>Bullet_5x35mmCharged</defaultProjectile>
+					  <defaultProjectile>Bullet_6x22mmCharged</defaultProjectile>
 					  <warmupTime>1.1</warmupTime>
-					  <range>86</range>
+					  <range>31</range>
 					  <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-					  <burstShotCount>80</burstShotCount>
-					  <soundCast>ChargeLance_Fire</soundCast>
+					  <burstShotCount>20</burstShotCount>
+					  <soundCast>Shot_ChargeBlaster</soundCast>
 					  <soundCastTail>GunTail_Heavy</soundCastTail>
 					  <muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
 					  <magazineSize>300</magazineSize>
 					  <reloadTime>9.2</reloadTime>
-					  <ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+					  <ammoSet>AmmoSet_6x22mmCharged</ammoSet>
 					</AmmoUser>
 					<FireModes>
-					  <aimedBurstShotCount>20</aimedBurstShotCount>
-					  <aiAimMode>AimedShot</aiAimMode>
+					  <aiUseBurstMode>FALSE</aiUseBurstMode>
+					  <aiAimMode>SuppressFire</aiAimMode>
+					  <noSingleShot>true</noSingleShot>
 					</FireModes>
 					<weaponTags>
 					  <li>CE_AI_Suppressive</li>
 					</weaponTags>
 				</li>
+
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>MechanoidFlameThrower</defName>
 					<statBases>
 					  <Mass>2.00</Mass>
 					  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 					  <SightsEfficiency>1</SightsEfficiency>
-					  <ShotSpread>0.2</ShotSpread>
-					  <SwayFactor>1.33</SwayFactor>
+					  <ShotSpread>5.0</ShotSpread>
+					  <SwayFactor>1.00</SwayFactor>
 					  <Bulk>1.00</Bulk>
 					</statBases>
 					<Properties>
@@ -60,21 +62,23 @@
 					  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					  <hasStandardCommand>true</hasStandardCommand>
 					  <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
-					  <warmupTime>0.3</warmupTime>
-					  <range>9</range>
+					  <warmupTime>0.6</warmupTime>
+					  <range>12</range>
 					  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-					  <burstShotCount>20</burstShotCount>
+					  <burstShotCount>6</burstShotCount>
 					  <soundCast>FlameThrower</soundCast>
-					  <muzzleFlashScale>9</muzzleFlashScale>
-						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					  <muzzleFlashScale>5</muzzleFlashScale>
+					  <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
 					</Properties>
 					<AmmoUser>
-					  <magazineSize>100</magazineSize>
-					  <reloadTime>9.2</reloadTime>
+					  <magazineSize>50</magazineSize>
+					  <reloadTime>5</reloadTime>
 					  <ammoSet>AmmoSet_Flamethrower</ammoSet>
 					</AmmoUser>
 					<FireModes>
-					  <aiAimMode>AimedShot</aiAimMode>
+					  <aiUseBurstMode>FALSE</aiUseBurstMode>
+					  <aiAimMode>SuppressFire</aiAimMode>
+					  <noSingleShot>true</noSingleShot>
 					</FireModes>
 				</li>
 			</operations>
