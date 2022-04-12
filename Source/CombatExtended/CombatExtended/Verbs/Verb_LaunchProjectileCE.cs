@@ -425,7 +425,7 @@ namespace CombatExtended
 
                                         #region get CompAmmo's Current ammo projectile
 
-                                        var ProjCE = (ProjectilePropertiesCE)compAmmo.CurAmmoProjectile?.projectile ?? null;
+                                        var ProjCE = (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
 
                                         #endregion
 
