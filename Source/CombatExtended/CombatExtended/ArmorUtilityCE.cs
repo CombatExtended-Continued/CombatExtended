@@ -338,7 +338,7 @@ namespace CombatExtended
                 pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = false;
              }
             
-            return dmgAmount * dmgMult;
+            return (float)Math.Floor(dmgAmount * dmgMult);
         }
 
         /// <summary>
