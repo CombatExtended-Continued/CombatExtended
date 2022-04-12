@@ -116,7 +116,7 @@ namespace CombatExtended.Compatibility
                 }
                 else
                 {
-                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 2f };
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 0.125f };
                     alienRace.statBases.Add(RatingSharp);
                 }
 
@@ -128,7 +128,7 @@ namespace CombatExtended.Compatibility
                 }
                 else
                 {
-                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 2f };
+                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 1f };
 
                     alienRace.statBases.Add(RatingBlunt);
                 }
