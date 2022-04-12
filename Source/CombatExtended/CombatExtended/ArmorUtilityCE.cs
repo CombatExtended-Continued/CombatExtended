@@ -324,6 +324,20 @@ namespace CombatExtended
                     }
                 }
             }
+            
+            
+              if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
+              {
+                if (armorRatingStat == StatDefOf.ArmorRating_Heat)
+                {
+                    if (pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp)
+                    {
+                            dmgMult /= 2f;
+                    }
+                }
+                pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = false;
+             }
+            
             return dmgAmount * dmgMult;
         }
 
