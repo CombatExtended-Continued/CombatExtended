@@ -95,23 +95,7 @@ namespace CombatExtended.HarmonyCE
                         break;
                     }
                     var secDinfo = sec.GetDinfo(dinfo);
-
-                    if (secDinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Heat)
-                    {
-                        if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
-                        {
-                            if (pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp)
-                            {
-                                if (dinfo.Weapon == pawn.TryGetComp<Comp_BurnDamageCalc>().weapon)
-                                {
-                                    secDinfo.SetAmount( (float)Math.Floor((secDinfo.Amount / 2f)) );
-
-                                    pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = false;
-                                }
-                            }
-                        }
-                    }
-
+			
                     pawn.TakeDamage(secDinfo);
                 }
 
