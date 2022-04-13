@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Chemfuel Expanded</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- Give chemfuel-like product appropriate bulk. -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="VCHE_Deepchem"]/statBases</xpath>
+        <value>
+          <Bulk>0.05</Bulk>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    
