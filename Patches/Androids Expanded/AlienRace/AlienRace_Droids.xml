@@ -10,37 +10,26 @@
 			<operations>
 
 				<!-- === Comps === -->
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>	
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerBattleDroid"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>	
 
 				<li Class="PatchOperationAddModExtension">
 					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjSpacerDroid" or defName="ChjSpacerBattleDroid"]</xpath>
