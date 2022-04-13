@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vanilla Factions Expanded - Classical</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>			
+
+			<!-- Roman Shield (Scutum) -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEC_Shield_Heavy"]</xpath>
+				<value>
+					<ThingDef ParentName="ShieldBase">
+					<defName>VFEC_Shield_Heavy</defName>
+					<label>kite shield</label>
+					<description>A heavily fortified square shield that covers one's body from shin to shoulder, heavy enough to slow those weidling it at the benefit of incredible protection.</description>
+					<techLevel>Neolithic</techLevel>
+					<graphicData>
+						<texPath>Things/Item/Equipment/Shield/HeavyShield/HeavyShield</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<drawSize>0.88</drawSize>
+					</graphicData>
+					<thingCategories Inherit="False">
+						<li>Shields</li>
+					</thingCategories>
+					<costStuffCount>25</costStuffCount>							
+					<costList>
+						<WoodLog>60</WoodLog>
+						<Steel>35</Steel>
+					</costList>
+					<stuffCategories>
+						<li>Leathery</li>
+					</stuffCategories>
+					<recipeMaker>
+						<researchPrerequisite>VFEC_HeavyShieldMaking</researchPrerequisite>		
+						<recipeUsers>
+						<li>FueledSmithy</li>
+						<li>ElectricSmithy</li>		
+						</recipeUsers>
+					</recipeMaker>		
+					<statBases>
+						<WorkToMake>3000</WorkToMake>
+						<MaxHitPoints>145</MaxHitPoints>
+						<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+						<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>	  
+						<Mass>8</Mass>
+						<Bulk>8</Bulk>
+						<WornBulk>6</WornBulk>
+					</statBases>
+					<equippedStatOffsets>
+						<ReloadSpeed>-0.1</ReloadSpeed>
+						<MeleeHitChance>-1</MeleeHitChance>
+						<ShootingAccuracyPawn>-0.2</ShootingAccuracyPawn>
+						<AimingAccuracy>-0.05</AimingAccuracy>
+						<Suppressability>-0.25</Suppressability>
+						<MeleeCritChance>-0.08</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
+					</equippedStatOffsets>
+					<comps>
+						<li Class="CompOversizedWeapon.CompProperties_OversizedWeapon"/>							
+						<li>
+							<compClass>CompColorable</compClass>
+						</li>								
+					</comps>							
+					<modExtensions>
+						<li Class="CombatExtended.ShieldDefExtension">
+						<shieldCoverage>
+							<li>Hands</li>
+							<li>Arms</li>
+							<li>Shoulders</li>
+							<li>Torso</li>
+							<li>Neck</li>
+							<li>Legs</li>		  
+						</shieldCoverage>
+						<drawAsTall>false</drawAsTall>
+						</li>					  
+					</modExtensions>
+					</ThingDef>					
+				</value>
+			</li>		
+										
+			</operations>
+		</match>
+	</Operation>
+</Patch>

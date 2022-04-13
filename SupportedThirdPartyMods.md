@@ -281,6 +281,7 @@ Nyaron Race |
 Not Only Just a Cannon  |
 ODZ Suits |
 Ogam's Warbanner Mod    |
+Opossum Friends |
 Orassans	|
 Outer Rim - Tatooine    |
 Palm Cats   |
@@ -373,7 +374,9 @@ Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
 Vanilla Bionics Expansion	|
 Vanilla Brewing Expanded    |
+Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
+Vanilla Factions Expanded - Classical   |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
