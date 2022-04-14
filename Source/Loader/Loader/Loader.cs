@@ -91,17 +91,20 @@ namespace CombatExtended.Loader
 	    Loader.instance = this;
 	    this.content = content;
 
-	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
+	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
 	    if (locationInfo==null || !locationInfo.Exists) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
 		return;
 
 	    }
-
-	    FileInfo[] files = locationInfo.GetFiles();
-	    foreach (FileInfo file in files) {
-		if (file.Name.EndsWith(".dll")) {
-		    _loadFile(file);
+	    locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
+	    if (locationInfo==null || !locationInfo.Exists) {
+		FileInfo[] files = locationInfo.GetFiles();
+		foreach (FileInfo file in files) {
+		    if (file.Name.EndsWith(".dll")) {
+			Log.Message("Combat Extended :: Loading Core DLL: "+file.Name);
+			_loadFile(file);
+		    }
 		}
 	    }
 	    bool found = false;
