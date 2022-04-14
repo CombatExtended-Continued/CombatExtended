@@ -91,7 +91,7 @@ namespace CombatExtended.Loader
 	    Loader.instance = this;
 	    this.content = content;
 
-	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
+	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
 	    if (locationInfo==null || !locationInfo.Exists) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
 		return;
@@ -104,16 +104,16 @@ namespace CombatExtended.Loader
 		    _loadFile(file);
 		}
 	    }
-//	    bool found = false;
+	    bool found = false;
 	    var assembliesInfo = new DirectoryInfo(content.RootDir).GetDirectories("Assemblies").FirstOrFallback(null);
 	    if (assembliesInfo!=null) {
 		if (assembliesInfo.GetFiles("CombatExtended.dll").FirstOrFallback(null) !=null) {
-//		    found = true;
+		    found = true;
 		}
 	    }
-//	    if (!found) {
-		//LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
-//	    }
+	    if (!found) {
+		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
+	    }
 	    
         }
 

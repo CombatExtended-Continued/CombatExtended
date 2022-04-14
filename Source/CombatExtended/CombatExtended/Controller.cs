@@ -45,8 +45,6 @@ namespace CombatExtended
 
             LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
 
-            //This is uncommented in the repository's assembly, so players that download the repo without compiling it are warned about potential issues.
-            //LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
         }
 
         private static void DoTutorialPopup()
