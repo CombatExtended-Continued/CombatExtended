@@ -9,21 +9,15 @@
 
 			<!-- ========== Balaclava Hunter, Logan, Merrick, Spook, Wraith ========== -->
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_PMCBali"]/statBases/Bulk</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_PMCBali"]/statBases/Bulk</xpath>
+				<nomatch Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="RNApparel_Balaclava_PMCBali"]/statBases</xpath>
 					<value>
 						<Bulk>1</Bulk>
 						<WornBulk>1</WornBulk>
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationReplace">

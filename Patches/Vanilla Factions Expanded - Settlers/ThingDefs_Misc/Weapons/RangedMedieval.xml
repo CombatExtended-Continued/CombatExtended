@@ -44,8 +44,7 @@
         </li>
         
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
-          
+          <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>       
           <value>
             <thingCategories>
               <li>WeaponsRanged</li>
@@ -74,7 +73,6 @@
 
         <li Class="PatchOperationAdd">
           <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
-
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
@@ -84,31 +82,22 @@
 
         <li Class="PatchOperationAttributeSet">
           <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
-
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
-        
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]/comps</xpath>
-              <success>Invert</success>
-            </li>
 
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName = "VFES_Tomahawk"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "VFES_Tomahawk"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>VFES_Tomahawk</defName>
-
           <statBases>
             <Mass>1.2</Mass>
             <Bulk>3.3</Bulk>
@@ -117,7 +106,6 @@
 			      <SwayFactor>2.5</SwayFactor>
             <RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
           </statBases>
-
           <Properties>
             <label>Throw tomahawk</label>
             <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -127,7 +115,6 @@
             <range>10</range>
             <soundCast>Interact_BeatFire</soundCast>
           </Properties>
-
           <weaponTags>
             <li>CE_OneHandedWeapon</li>
           </weaponTags>
@@ -135,7 +122,6 @@
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="VFES_Tomahawk"]/tools</xpath>
-
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -167,7 +153,6 @@
         <!-- == Recipe == -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
-
           <value>
             <RecipeDef ParentName="AmmoRecipeBase">
               <defName>Make_VFES_Tomahawk</defName>

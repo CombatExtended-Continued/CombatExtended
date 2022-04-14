@@ -619,20 +619,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]</xpath>
-              <value>
-                <comps/>
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="Proj_Handgranat"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDe[defName="Proj_Handgranat"]</xpath>
+            <value>
+            <comps />
+            </value>
+          </nomatch>
         </li>
         
         <li Class="PatchOperationAdd">
@@ -687,21 +681,15 @@
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
-      
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]</xpath>
-              <value>
-                <comps/>
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="LTS_Handgranat"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDe[defName="LTS_Handgranat"]</xpath>
+            <value>
+            <comps />
+            </value>
+          </nomatch>
         </li>
       
         <li Class="PatchOperationAdd">

@@ -6,33 +6,31 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/tradeTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]</xpath>
-              <value>
-                <tradeTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="TR_Base_Mortar"]]/tradeTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="TR_Base_Mortar"]</xpath>
+            <value>
+              <tradeTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="TR_Base_Mortar"]/tradeTags</xpath>
           <value>
             <li>CE_Turret</li>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>TR_Gun_Mortar</defName>
           <statBases>
@@ -70,6 +68,7 @@
             <ammoSet>AmmoSet_TRMortarGrenade</ammoSet>
           </AmmoUser>
         </li>
+
       </operations>
     </match>
   </Operation>

@@ -6,6 +6,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+      
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Gun_HandCannon</defName>
           <statBases>
@@ -46,6 +47,7 @@
             <aiUseBurstMode>FALSE</aiUseBurstMode>
           </FireModes>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Gun_HandCannon"]/tools</xpath>
           <value>
@@ -74,6 +76,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Javelin</defName>
           <statBases>
@@ -101,6 +104,7 @@
             <aiUseBurstMode>FALSE</aiUseBurstMode>
           </FireModes>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Javelin"]/tools</xpath>
           <value>
@@ -126,6 +130,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>HeavySling</defName>
           <statBases>
@@ -151,6 +156,7 @@
             <aiUseBurstMode>FALSE</aiUseBurstMode>
           </FireModes>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="HeavySling"]/tools</xpath>
           <value>
@@ -167,6 +173,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/tools</xpath>
           <value>
@@ -195,12 +202,14 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/statBases</xpath>
           <value>
             <Bulk>1</Bulk>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/equippedStatOffsets</xpath>
           <value>
@@ -209,27 +218,24 @@
           </value>
         </li>
         <!-- Add tags -->
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
           <value>
             <li>GiantMelee</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/tools</xpath>
           <value>
@@ -247,12 +253,14 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/statBases</xpath>
           <value>
             <Bulk>1</Bulk>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/equippedStatOffsets</xpath>
           <value>
@@ -261,27 +269,24 @@
           </value>
         </li>
         <!-- Add tags -->
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatClub"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
           <value>
             <li>GiantMelee</li>
           </value>
         </li>
+
         <!-- ========== Knife ========== -->
         <!-- Patch stats -->
         <li Class="PatchOperationReplace">
@@ -301,12 +306,14 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/statBases</xpath>
           <value>
             <Bulk>1</Bulk>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/equippedStatOffsets</xpath>
           <value>
@@ -314,22 +321,19 @@
             <MeleeParryChance>0.2</MeleeParryChance>
           </value>
         </li>
+
         <!-- Add tags -->
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
           <value>

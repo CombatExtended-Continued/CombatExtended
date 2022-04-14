@@ -11,27 +11,21 @@
 
 			<!-- Shared with other CP / RH / RN mods - make sure not to apply redundant patches and cause duplicate XML node errors -->
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]/statBases/Bulk</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]/statBases</xpath>
-						<value>
-							<Bulk>7.5</Bulk>
-							<WornBulk>5</WornBulk>
-						</value>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]/equippedStatOffsets</xpath>
-						<value>
-							<CarryBulk>10</CarryBulk>
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]/statBases/Bulk</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]/statBases</xpath>
+					<value>
+						<Bulk>7.5</Bulk>
+						<WornBulk>5</WornBulk>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="RNApparel_511TacTec_Contractor"]equippedStatOffsets</xpath>
+					<value>
+						<CarryBulk>10</CarryBulk>
+					</value>
+				</match>				
 			</li>
 
 			<li Class="PatchOperationReplace">

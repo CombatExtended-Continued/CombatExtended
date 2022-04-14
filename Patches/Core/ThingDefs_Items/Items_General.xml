@@ -85,19 +85,15 @@
   </Operation>
 
   <!-- Ensure chunks have stuffProps so they can be used in recipes (like "make stone sling bullets") whithout throwing "not a stuff" error -->
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>Defs/ThingDef[@Name="ChunkBase"]/stuffProps</xpath>
-        <success>Invert</success>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[@Name="ChunkBase"]</xpath>
-        <value>
-          <stuffProps></stuffProps>
-        </value>
-      </li>
-    </operations>
-  </Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name="ChunkBase"]/stuffProps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="ChunkBase"]</xpath>
+			<value>
+				<stuffProps />
+			</value>
+		</nomatch>
+	</Operation>
+
 </Patch>
