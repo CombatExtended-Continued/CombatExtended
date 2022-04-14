@@ -8,6 +8,11 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <!-- === Remove the grenade projectile failing CE's grenade patch=== -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="VFEP_Proj_GrenadierGrenade"]</xpath>
+        </li>
+
         <!-- === Remove the added weapon tag from the Charge Lance === -->
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Gun_ChargeLance"]/weaponTags/li[contains(.,"VFEP_Captain")]</xpath>
