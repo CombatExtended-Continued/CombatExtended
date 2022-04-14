@@ -91,7 +91,7 @@ namespace CombatExtended.Loader
 	    Loader.instance = this;
 	    this.content = content;
 
-	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
+	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
 	    if (locationInfo==null || !locationInfo.Exists) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
 		return;
