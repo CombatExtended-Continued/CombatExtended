@@ -113,6 +113,7 @@ namespace CombatExtended.Loader
 	    }
 	    if (!found) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
+		_loadFile(new DirectoryInfo(content.RootDir).GetDirectories("Source/packages").First().GetFiles("CombatExtended.dll").First());
 	    }
 	    
         }
@@ -136,8 +137,7 @@ namespace CombatExtended.Loader
         private void ShowUncompiledBuildWarning()
         {
 	    Log.Error("You are running CE Uncompiled.  See https://github.com/CombatExtended-Continued/CombatExtended#development-version for details");
-                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
-	    var continueAnywayAction = new Action(() =>
+            var continueAnywayAction = new Action(() =>
             {
 
             });
