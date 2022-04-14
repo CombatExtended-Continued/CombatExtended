@@ -135,7 +135,9 @@ namespace CombatExtended.Loader
         //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
         private void ShowUncompiledBuildWarning()
         {
-            var continueAnywayAction = new Action(() =>
+	    Log.Error("You are running CE Uncompiled.  See https://github.com/CombatExtended-Continued/CombatExtended#development-version for details");
+                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
+	    var continueAnywayAction = new Action(() =>
             {
 
             });
