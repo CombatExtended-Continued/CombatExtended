@@ -104,16 +104,16 @@ namespace CombatExtended.Loader
 		    _loadFile(file);
 		}
 	    }
-	    bool found = false;
+//	    bool found = false;
 	    var assembliesInfo = new DirectoryInfo(content.RootDir).GetDirectories("Assemblies").FirstOrFallback(null);
 	    if (assembliesInfo!=null) {
 		if (assembliesInfo.GetFiles("CombatExtended.dll").FirstOrFallback(null) !=null) {
-		    found = true;
+//		    found = true;
 		}
 	    }
-	    if (!found) {
-		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
-	    }
+//	    if (!found) {
+		//LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
+//	    }
 	    
         }
 
