@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<AssemblyName>CombatExtendedMP</AssemblyName>
+		<AssemblyName>MultiplayerCompat</AssemblyName>
 		<AssemblyVersion>1.1.2.0</AssemblyVersion>
 		<FileVersion>1.1.2.0</FileVersion>
 		<Version>1.1.2</Version>
@@ -12,7 +12,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<OutputPath>..\..\AssembliesExtra\</OutputPath>
+		<OutputPath>..\..\AssembliesCompat\</OutputPath>
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -20,7 +20,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<OutputPath>..\..\AssembliesExtra\</OutputPath>
+		<OutputPath>..\..\AssembliesCompat\</OutputPath>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
@@ -33,6 +33,16 @@
 
 	<ItemGroup>
 		<Folder Include="MultiplayerCompat" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Loader\Loader.csproj">
+	    <Private>False</Private>
+	  </ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\CombatExtended\CombatExtended.csproj">
+	    <Private>False</Private>
+	  </ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="CombatExtendedLoader">
