@@ -99,7 +99,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    shotSpeed = Projectile.projectile.speed * this.VerbPropsCE.speedMult;
+                    shotSpeed = Projectile.projectile.speed;
                 }
                 return shotSpeed;
             }
@@ -364,7 +364,7 @@ namespace CombatExtended
 
                         bool AppropiateAimMode = CompFireModes?.CurrentAimMode != AimMode.SuppressFire;
 
-                        bool IsAccurate = (ShootingAccuracy >= 2.6f) | isTurretMannable;
+                        bool IsAccurate = (ShootingAccuracy >= 2.45f) | isTurretMannable;
 
 
                         if (IsAccurate)
@@ -425,7 +425,7 @@ namespace CombatExtended
 
                                         #region get CompAmmo's Current ammo projectile
 
-                                        var ProjCE = (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
+                                        var ProjCE = (ProjectilePropertiesCE)compAmmo.CurAmmoProjectile?.projectile ?? null;
 
                                         #endregion
 
@@ -521,8 +521,8 @@ namespace CombatExtended
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
-            rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
-            angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
+            rotation += recoilMagnitude * Rand.Range(minX, maxX);
+            angle += Mathf.Deg2Rad * recoilMagnitude * Rand.Range(minY, maxY);
         }
 
         /// <summary>
@@ -815,20 +815,6 @@ namespace CombatExtended
                                        EquipmentSource);
 
                 }
-                else if (projectile is BulletCE b)
-                {
-                    b.Launch(
-                        Shooter,
-                        sourceLoc, 
-                        shotAngle,
-                        shotRotation, 
-                        ShotHeight,
-                        ShotSpeed,
-                        EquipmentSource,
-                        this.VerbPropsCE
-
-                        );
-                }
                 else
                 {
                     projectile.Launch(
@@ -912,7 +898,7 @@ namespace CombatExtended
             if (EffectiveRange <= ShootTuning.MeleeRange) // If this verb has a MAX range up to melee range (NOT a MIN RANGE!)
             {
                 resultingLine = new ShootLine(root, targ.Cell);
-                return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null) | EquipmentSource.def.weaponTags.Contains("Pistol");
+                return ReachabilityImmediate.CanReachImmediate(root, targ, caster.Map, PathEndMode.Touch, null);
             }
             CellRect cellRect = (!targ.HasThing) ? CellRect.SingleCell(targ.Cell) : targ.Thing.OccupiedRect();
             float num = cellRect.ClosestDistSquaredTo(root);
