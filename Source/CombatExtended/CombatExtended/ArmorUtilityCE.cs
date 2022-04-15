@@ -42,6 +42,8 @@ namespace CombatExtended
             shieldAbsorbed = false;
             armorDeflected = false;
             armorReduced = false;
+            
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
 
             if (originalDinfo.Def.armorCategory == null
                 || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
@@ -63,6 +65,10 @@ namespace CombatExtended
                 dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
                 armorDeflected = dinfo.Amount <= 0;
                 return dinfo;
+            }
+            else if (deflectionComp != null)
+            {
+                deflectionComp.deflectedSharp = false;
             }
 
             var penAmount = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
@@ -129,11 +135,9 @@ namespace CombatExtended
                     {
                         if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                         {
-                            if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
+                            if (deflectionComp != null)
                             {
-                                pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = true;
-
-                                pawn.TryGetComp<Comp_BurnDamageCalc>().weapon = originalDinfo.Weapon;
+                                deflectionComp.deflectedSharp = true;
                             }
                         }
 
@@ -183,7 +187,7 @@ namespace CombatExtended
                     {
                         if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                         {
-                            if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
+                            if ( != null)
                             {
                                 pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = true;
 
