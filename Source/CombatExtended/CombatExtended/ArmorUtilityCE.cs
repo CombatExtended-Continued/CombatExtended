@@ -187,7 +187,7 @@ namespace CombatExtended
                     {
                         if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                         {
-                            if ( != null)
+                            if (deflectionComp != null)
                             {
                                 pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = true;
 
@@ -329,17 +329,17 @@ namespace CombatExtended
                 }
             }
             
-            
-              if (pawn.TryGetComp<Comp_BurnDamageCalc>() != null)
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
+              if (deflectionComp != null)
               {
                 if (armorRatingStat == StatDefOf.ArmorRating_Heat)
                 {
-                    if (pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp)
+                    if (deflectionComp.deflectedSharp)
                     {
                             dmgMult /= 2f;
                     }
                 }
-                pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = false;
+                deflectionComp.deflectedSharp = false;
              }
             
             return (float)Math.Floor(dmgAmount * dmgMult);
