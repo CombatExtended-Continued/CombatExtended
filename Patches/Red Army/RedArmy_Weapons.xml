@@ -6,6 +6,10 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+        <!-- Remove Unused grenade -->
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Proj_GrenadeRG" or defName="Weapon_RGFortyTwo"]</xpath>
+        </li>
         <!-- START SovietFlag -->
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="SovietBanner"]/tools</xpath>
