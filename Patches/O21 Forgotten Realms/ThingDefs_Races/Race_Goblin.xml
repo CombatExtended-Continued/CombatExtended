@@ -7,140 +7,134 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- Goblins stand about as tall as a child, with strength and wits to match. -->
-				<li Class="PatchOperationAddModExtension">
+			<!-- Goblins stand about as tall as a child, with strength and wits to match. -->
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
 					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
 					<value>
-						<li Class="CombatExtended.RacePropertiesExtensionCE">
-							<bodyShape>Humanoid</bodyShape>
-						</li>
+						<comps />
 					</value>
-				</li>
+				</nomatch>
+			</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
-				</li>
+			<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+				<value>
+					<li>
+						<defName>Beauty</defName>
+						<degree>-1</degree>
+						<chance>20</chance>
+					</li>
+					<li>
+						<defName>Greedy</defName>
+						<chance>20</chance>
+					</li>
+					<li>
+						<defName>Bravery</defName>
+						<degree>-1</degree>
+						<chance>20</chance>
+					</li>
+				</value>
+			</li>
 
-				<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
-					<value>
-						<li>
-							<defName>Beauty</defName>
-							<degree>-1</degree>
-							<chance>20</chance>
-						</li>
-						<li>
-							<defName>Greedy</defName>
-							<chance>20</chance>
-						</li>
-						<li>
-							<defName>Bravery</defName>
-							<degree>-1</degree>
-							<chance>20</chance>
-						</li>
-					</value>
-				</li>
+			<!-- The only good goblins are the ones who never come out of their holes. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/statBases</xpath>
+				<value>
+					<NightVisionEfficiency>0.4</NightVisionEfficiency>
+					<MeleeDodgeChance>1</MeleeDodgeChance>
+					<MeleeCritChance>0.6</MeleeCritChance>
+					<MeleeParryChance>0.8</MeleeParryChance>
+					<CarryWeight>20</CarryWeight>
+					<CarryBulk>15</CarryBulk>
+				</value>
+			</li>
 
-				<!-- The only good goblins are the ones who never come out of their holes. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/statBases</xpath>
-					<value>
-						<NightVisionEfficiency>0.4</NightVisionEfficiency>
-						<MeleeDodgeChance>1</MeleeDodgeChance>
-						<MeleeCritChance>0.6</MeleeCritChance>
-						<MeleeParryChance>0.8</MeleeParryChance>
-						<CarryWeight>20</CarryWeight>
-						<CarryBulk>15</CarryBulk>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/tools</xpath>
-					<value>
-						<tools>
-							<li Class="CombatExtended.ToolCE">
-								<label>left hand</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-								<surpriseAttack>
-									<extraMeleeDamages>
-										<li>
-											<def>Stun</def>
-											<amount>14</amount>
-										</li>
-									</extraMeleeDamages>
-								</surpriseAttack>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>right hand</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-								<surpriseAttack>
-									<extraMeleeDamages>
-										<li>
-											<def>Stun</def>
-											<amount>14</amount>
-										</li>
-									</extraMeleeDamages>
-								</surpriseAttack>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<capacities>
-									<li>Bite</li>
-								</capacities>
-								<power>2</power>
-								<cooldownTime>1.11</cooldownTime>
-								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<armorPenetrationSharp>0.01</armorPenetrationSharp>
-								<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
-							</li>
-							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
-								<capacities>
-									<li>Blunt</li>
-								</capacities>
-								<power>1</power>
-								<cooldownTime>1.19</cooldownTime>
-								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
-							</li>
-						</tools>
-					</value>
-				</li>
-
-				<!-- Goblins aren't bright, but they're not fools. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
-					<value>
-						<li>
-							<compClass>CombatExtended.CompPawnGizmo</compClass>
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left hand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
 						</li>
-						<li Class="CombatExtended.CompProperties_Suppressable" />
-					</value>
+						<li Class="CombatExtended.ToolCE">
+							<label>right hand</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>14</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.11</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.19</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<!-- Goblins aren't bright, but they're not fools. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
 				</li>
 
 			</operations>

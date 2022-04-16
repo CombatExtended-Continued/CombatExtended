@@ -5,69 +5,45 @@
 
   <!-- ========== Add groups entry if it doesn't exist already ========== -->
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/groups</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart</xpath>
-      	<value>
-        	<groups />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/groups</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]</xpath>
-      	<value>
-        	<groups />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
 	</Operation>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]/groups</xpath>
-        <success>Invert</success>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]</xpath>
-        <value>
-          <groups />
-        </value>
-      </li>
-    </operations>
-  </Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]/groups</xpath>
-        <success>Invert</success>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]</xpath>
-        <value>
-          <groups />
-        </value>
-      </li>
-    </operations>
-  </Operation>
+  	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
 
   <!-- ========== Add armor coverage ========== -->
 

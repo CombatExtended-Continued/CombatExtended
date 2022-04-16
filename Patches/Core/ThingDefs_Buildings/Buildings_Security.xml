@@ -83,20 +83,14 @@
 
 	<!-- Add trade tags -->
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Turret_MiniTurret"]/tradeTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Turret_MiniTurret"]</xpath>
+			<value>
+				<tradeTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -385,20 +379,14 @@
 
 	<!-- Add trade tags -->
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="Turret_Mortar"]</xpath>
-      	<value>
-        	<tradeTags />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Turret_Mortar"]/tradeTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Turret_Mortar"]</xpath>
+			<value>
+				<tradeTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

@@ -952,24 +952,18 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
-        <success>Invert</success>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]</xpath>
-        <value>
-          <comps />
-        </value>
-      </li>
-    </operations>
-  </Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
+    <xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
     <value>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragSpeedFactor>1</fragSpeedFactor>
@@ -1056,21 +1050,15 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
-        <success>Invert</success>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="Bullet_Rocket"]</xpath>
-        <value>
-          <comps />
-        </value>
-      </li>
-    </operations>
-  </Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Bullet_Rocket"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
