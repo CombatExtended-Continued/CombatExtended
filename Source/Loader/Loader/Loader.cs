@@ -13,11 +13,15 @@ namespace CombatExtended.Loader
     public class Loader : Mod
     {
 
-	private List<Assembly> extraAssemblies;
-	private List<ISettingsCE> settingList;
+	private static List<ISettingsCE> settingList = new List<ISettingsCE>();
+	private static Loader instance = null;
 	private ModContentPack content;
-	private static Loader instance;
 
+
+	public static bool LoadCompatAssembly(string name, ModContentPack content) {
+	    return _LoadCompatAssembly(name, content);
+	}
+	
 	public static bool LoadCompatAssembly(string name) {
 	    Log.Message("Combat Extended :: Loading "+name);
 
@@ -25,22 +29,29 @@ namespace CombatExtended.Loader
 	}
 
 	public bool _LoadCompatAssembly(string name) {
+	    return _LoadCompatAssembly(name, content);
+	}
+
+	public static bool _LoadCompatAssembly(string name, ModContentPack content) {
+	    Log.Error("Trying to load "+name);
 	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
 	    if (locationInfo==null || !locationInfo.Exists) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
 		return false;
 
 	    }
+	    Log.Error("Found AssembliesCompat");
 
 	    FileInfo file = locationInfo.GetFiles(name+".dll").FirstOrFallback(null);
 	    if (file == null || !file.Exists) {
+		Log.Error("No assembly for "+name);
 		return false;
 	    }
-	    return _loadFile(file);
+	    return _loadFile(file, content);
 
 	}
 
-	private bool _loadFile(FileInfo file) {
+	private static bool _loadFile(FileInfo file, ModContentPack content) {
 	    Log.Message("Combat Extended :: Loading "+file.FullName);
 	    byte[] rawAssembly = File.ReadAllBytes(file.FullName);
 
@@ -58,7 +69,6 @@ namespace CombatExtended.Loader
 	    }
 	    if (assembly != null) {
 		content.assemblies.loadedAssemblies.Add(assembly);
-		extraAssemblies.Add(assembly);
 		foreach (Type t in assembly.GetTypes().Where(x => typeof(IModPart).IsAssignableFrom(x) && !x.IsAbstract)) {
 		    
 		    IModPart imp;
@@ -71,7 +81,7 @@ namespace CombatExtended.Loader
 		    Type settingType = imp.GetSettingsType();
 		    ISettingsCE settings = null;
 		    if (settingType != null) {
-			settings = (ISettingsCE) typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingType).Invoke(this, null);
+			settings = (ISettingsCE) typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingType).Invoke(instance, null);
 			settingList.Add(settings);
 		    }
 		    
@@ -83,11 +93,9 @@ namespace CombatExtended.Loader
 	    }
 	    return false;
 	}
-	
+
         public Loader(ModContentPack content) : base(content)
         {
-	    settingList = new List<ISettingsCE>();
-	    extraAssemblies = new List<Assembly>();
 	    Loader.instance = this;
 	    this.content = content;
 
@@ -98,12 +106,12 @@ namespace CombatExtended.Loader
 
 	    }
 	    locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
-	    if (locationInfo==null || !locationInfo.Exists) {
+	    if (locationInfo!=null && locationInfo.Exists) {
 		FileInfo[] files = locationInfo.GetFiles();
 		foreach (FileInfo file in files) {
 		    if (file.Name.EndsWith(".dll")) {
 			Log.Message("Combat Extended :: Loading Core DLL: "+file.Name);
-			_loadFile(file);
+			_loadFile(file, content);
 		    }
 		}
 	    }
@@ -116,7 +124,7 @@ namespace CombatExtended.Loader
 	    }
 	    if (!found) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
-		_loadFile(new DirectoryInfo(content.RootDir).GetDirectories("Source/packages").First().GetFiles("CombatExtended.dll").First());
+		_loadFile(new DirectoryInfo(content.RootDir).GetDirectories("Source/packages").First().GetFiles("CombatExtended.dll").First(), content);
 	    }
 	    
         }
@@ -137,7 +145,7 @@ namespace CombatExtended.Loader
 
 
         //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
-        private void ShowUncompiledBuildWarning()
+        private static void ShowUncompiledBuildWarning()
         {
 	    Log.Error("You are running CE Uncompiled.  See https://github.com/CombatExtended-Continued/CombatExtended#development-version for details");
             var continueAnywayAction = new Action(() =>
