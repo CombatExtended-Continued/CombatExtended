@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThingCategoryDef>
+      <defName>Ammo8x35mmRailgunMKI</defName>
+      <label>8x35mm Railgun</label>
+      <parent>AmmoAdvanced</parent>
+      <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
+    </ThingCategoryDef>
+	
+	<!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_8x35mmRailgunMKI</defName>
+    <label>8x35mm Railgun</label>
+    <ammoTypes>
+      <Ammo_8x35mmRailgunMKI>Bullet_8x35mmRailgunMKI</Ammo_8x35mmRailgunMKI>
+      <Ammo_8x35mmRailgunMKI_Ion>Bullet_8x35mmRailgunMKI_Ion</Ammo_8x35mmRailgunMKI_Ion>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+	
+	<!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="8x35mmRailgunMKIBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+    <description>Railgun ammo used by advanced railgun designs.</description>
+    <statBases>
+	  <Mass>0.025</Mass>
+	  <Bulk>0.05</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo8x35mmRailgunMKI</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmRailgunMKIBase">
+    <defName>Ammo_8x35mmRailgunMKI</defName>
+    <label>8x35mm Railgun cartridge</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Regular</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.5</MarketValue>
+    </statBases>
+    <ammoClass>RailgunMKI</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="8x35mmRailgunMKIBase">
+    <defName>Ammo_8x35mmRailgunMKI_Ion</defName>
+    <label>8x35mm Railgun cartridge (Ion)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Charged/Concentrated</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.5</MarketValue>
+    </statBases>
+    <ammoClass>RailgunMKIIon</ammoClass>
+  </ThingDef>
+	
+	<!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Base8x35mmRailgunMKIBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>170</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmRailgunMKIBullet">
+    <defName>Bullet_8x35mmRailgunMKI</defName>
+    <label>8x35mm Railgun bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>19</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>10</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base8x35mmRailgunMKIBullet">
+    <defName>Bullet_8x35mmRailgunMKI_Ion</defName>
+    <label>8x35mm Railgun bullet (Ion)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>14</damageAmountBase>
+      <secondaryDamage>
+        <li>
+          <def>EMP</def>
+          <amount>15</amount>
+        </li>
+      </secondaryDamage>
+      <armorPenetrationSharp>10</armorPenetrationSharp>
+      <armorPenetrationBlunt>300</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+  
+	<!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+    <defName>MakeAmmo_8x35mmRailgunMKI</defName>
+    <label>make 8x35mm Railgun cartridge x50</label>
+    <description>Craft 50 8x35mm Railgun cartridges.</description>
+    <jobString>Making 8x35mm Railgun cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8x35mmRailgunMKI>50</Ammo_8x35mmRailgunMKI>
+    </products>
+  </RecipeDef>
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+    <defName>MakeAmmo_8x35mmRailgunMKI_Ion</defName>
+    <label>make 8x35mm Railgun (Ion) cartridge x50</label>
+    <description>Craft 50 8x35mm Railgun (Ion) cartridges.</description>
+    <jobString>Making 8x35mm Railgun (Ion) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_8x35mmRailgunMKI_Ion>50</Ammo_8x35mmRailgunMKI_Ion>
+    </products>
+  </RecipeDef>
+	
+</Defs>
