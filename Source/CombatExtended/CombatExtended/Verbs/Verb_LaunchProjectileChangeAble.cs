@@ -105,7 +105,7 @@ namespace CombatExtended
                     }
                 }
 
-                if (this.Bursting /*&& ChangerExt.additionalEquipment.Any(x => x.shotTime == this.burstShotsLeft)*/)
+                if (this.Bursting)
                 {
                     if (burstSwitcherPair == null || burstSwitcherPair.second < 1)
                     {
