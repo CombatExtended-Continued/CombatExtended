@@ -19,6 +19,8 @@ namespace CombatExtended
 
             return def;
         }
+        
+        public CompAmmoUser compAmmo;
 
         public override bool ShouldShowFor(StatRequest req)
         {
@@ -27,8 +29,9 @@ namespace CombatExtended
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
-            if ((req.Thing?.TryGetComp<CompAmmoUser>()?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
-                return req.Thing.TryGetComp<CompAmmoUser>().Props.magazineSize;
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+                return compAmmo.Props.magazineSize;
             float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
             return size;
         }
@@ -60,8 +63,9 @@ namespace CombatExtended
 
         private int GetMagSize(StatRequest req)
         {
-            if ((req.Thing?.TryGetComp<CompAmmoUser>()?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
-                return req.Thing.TryGetComp<CompAmmoUser>().Props.magazineSize;
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+                return compAmmo.Props.magazineSize;
             if (req.HasThing)
                 return (int)req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity);
             return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
