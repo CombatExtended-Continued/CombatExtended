@@ -371,7 +371,7 @@ namespace CombatExtended
         /// <summary>
         /// Gets the true rating of armor with partial stats taken into account
         /// </summary>
-        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part)
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartRecord part, float damage = 0f, float AP = 0f)
         {
             float result = pawn.GetStatValue(stat);
 
@@ -381,20 +381,56 @@ namespace CombatExtended
                 {
                     foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
                     {
-                        if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
+                        if (partial.stat == stat)
                         {
-
-                            if (partial.staticValue > 0f)
+                            if ((partial?.parts?.Contains(part.def) ?? false) | ((partial?.parts?.Contains(part?.parent?.def) ?? false) && part.depth == BodyPartDepth.Inside))
                             {
-                                return partial.staticValue;
-                            }
-                            result *= partial.mult;
-                            break;
 
+                                if (partial.staticValue > 0f)
+                                {
+                                    return partial.staticValue;
+                                }
+                                result *= partial.mult;
+                                break;
+
+                            }
                         }
                     }
                 }
             }
+
+            if (stat == StatDefOf.ArmorRating_Sharp)
+            {
+                if (pawn.TryGetComp<CompMechArmorDurability>() != null)
+                {
+                    var component = pawn.TryGetComp<CompMechArmorDurability>().ERA?.Find(x => x.part == part.def || (part.depth == BodyPartDepth.Inside && (part.parent?.def ?? null) == x.part));
+
+
+
+                    if (component != null)
+                    {
+                        if (
+                            damage >= component.damageTreshold
+                            && AP >= component.APTreshold
+                            &&
+                            !component.triggered
+                            )
+                        {
+                            result = component.armor;
+                            component.triggered = true;
+                            if (component.frags != null)
+                            {
+                                component.fragComp.Throw(pawn.Position.ToVector3(), pawn.Map, pawn, 1);
+                            }
+                            GenExplosionCE.DoExplosion
+                                (
+                                pawn.Position, pawn.Map, 3f, DamageDefOf.Bomb, pawn, 1, 0, preExplosionSpawnChance: 1f, preExplosionSpawnThingDef: ThingDefOf.Gas_Smoke
+                                );
+                        }
+                    }
+                }
+            }
+
             return result;
         }
 
