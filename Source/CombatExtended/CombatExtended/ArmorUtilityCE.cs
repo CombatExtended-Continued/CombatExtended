@@ -189,9 +189,9 @@ namespace CombatExtended
                         {
                             if (deflectionComp != null)
                             {
-                                pawn.TryGetComp<Comp_BurnDamageCalc>().deflectedSharp = true;
+                                deflectionComp.deflectedSharp = true;
 
-                                pawn.TryGetComp<Comp_BurnDamageCalc>().weapon = originalDinfo.Weapon;
+                                deflectionComp.weapon = originalDinfo.Weapon;
                             }
                         }
                         // For Mechanoid natural armor, apply deflection and blunt armor
