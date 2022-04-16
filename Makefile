@@ -1,4 +1,4 @@
-all: Assemblies/CombatExtendedLoader.dll Assemblies/CombatExtended.dll AssembliesCompat/MultiplayerCompat.dll
+all: Assemblies/CombatExtendedLoader.dll Assemblies/CombatExtended.dll AssembliesCompat/MultiplayerCompat.dll AssembliesCompat/MiscTurretsCompat.dll
 
 
 
@@ -11,3 +11,7 @@ Assemblies/CombatExtended.dll: Assemblies/CombatExtendedLoader.dll Source/Combat
 AssembliesCompat/MultiplayerCompat.dll: Assemblies/CombatExtended.dll Assemblies/CombatExtendedLoader.dll Source/MultiplayerCompat/MultiplayerCompat.csproj $(wildcard Source/MultiplayerCompat/MultiplayerCompat/*.cs)
 	mkdir -p AssembliesCompat
 	python Make.py --csproj Source/MultiplayerCompat/MultiplayerCompat.csproj --output AssembliesCompat/MultiplayerCompat.dll --reference /tmp/rwreference --all-libs --download-libs
+
+AssembliesCompat/MiscTurretsCompat.dll: Assemblies/CombatExtended.dll Assemblies/CombatExtendedLoader.dll Source/MiscTurretsCompat/MiscTurretsCompat.csproj $(wildcard Source/MiscTurretsCompat/MiscTurretsCompat/*.cs)
+	mkdir -p AssembliesCompat
+	python Make.py --csproj Source/MiscTurretsCompat/MiscTurretsCompat.csproj --output AssembliesCompat/MiscTurretsCompat.dll --reference /tmp/rwreference --all-libs --download-libs
