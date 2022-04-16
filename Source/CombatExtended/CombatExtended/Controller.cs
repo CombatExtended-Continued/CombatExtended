@@ -37,6 +37,8 @@ namespace CombatExtended
             // Initialize the DefUtility (a caching system for common checks on defs)
             LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
 
+	    Patches.LoadAssemblies(content);
+
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup

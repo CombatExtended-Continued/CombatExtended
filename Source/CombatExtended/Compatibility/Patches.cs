@@ -30,6 +30,18 @@ namespace CombatExtended.Compatibility
             {
                 Multiplayer.Install();
             }
+
         }
+
+	public static void LoadAssemblies(ModContentPack content) {
+	    if (MiscTurrets.CanInstall())
+	    {
+		Loader.Loader.LoadCompatAssembly("MiscTurretsCompat", content);
+
+		MiscTurrets.Install();
+	    }
+
+	}
+	
     }
 }
