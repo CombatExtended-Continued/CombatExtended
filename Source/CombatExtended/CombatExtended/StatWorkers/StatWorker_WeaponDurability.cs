@@ -50,6 +50,11 @@ namespace CombatExtended
         }
     }
 
+    public class ToughNessModExt : DefModExtension
+    {
+        public float Toughness;
+    }
+
     public class StatWorker_WeaponDurability : StatWorker
     {
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
@@ -57,7 +62,7 @@ namespace CombatExtended
             if (req.Thing != null && req.Thing.TryGetComp<CompStatCacher>() != null)
             {
                 val = req.Thing.TryGetComp<CompStatCacher>().StatDurability;
-                if (val <= this.stat.defaultBaseValue)
+                if (val <= this.stat.defaultBaseValue && !req.Thing.def.HasModExtension<ToughNessModExt>())
                 {
                     var parryThing = req.Thing;
 
@@ -117,8 +122,33 @@ namespace CombatExtended
 
                     req.Thing.TryGetComp<CompStatCacher>().StatDurability = val;
                 }
-                Log.Message("3");
+                else if(req.Thing.def.HasModExtension<ToughNessModExt>())
+                {
+                    val = req.Thing.def.GetModExtension<ToughNessModExt>().Toughness;
+
+                    if (this.stat.parts != null)
+                    {
+                        foreach (StatPart part in this.stat.parts)
+                        {
+                            part.TransformValue(req, ref val);
+                        }
+                    }
+
+                    req.Thing.TryGetComp<CompStatCacher>().StatDurability = val;
+                }
             }
+        }
+
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
+        {
+            string result = base.GetExplanationFinalizePart(req, numberSense, finalVal);
+
+            if (req.Thing != null && req.Thing?.TryGetComp<CompEquippable>()?.Holder != null)
+            {
+                result += "\n"+ "CE_HolderEffect_MeleeToughness".Translate() + ((req.Thing?.TryGetComp<CompEquippable>()?.Holder.GetStatValue(CE_StatDefOf.MeleeParryChance) ?? 1f) * 4f).ToStringPercent();
+            }
+
+            return result;
         }
 
         public override bool ShouldShowFor(StatRequest req)
