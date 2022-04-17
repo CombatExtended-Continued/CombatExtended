@@ -9,13 +9,6 @@
 		<value>BaseWeapon</value>
 	</Operation>
 
-	<!-- <Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]/costList |
-			Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]/recipeMaker	
-		</xpath>
-	</Operation> -->
-
 	<!-- ========== Melee tools ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -65,13 +58,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile</xpath>
-		<value>
-			<gravityFactor>2</gravityFactor>
-		</value>
-	</Operation>
-
 	<!-- ========== Frag Grenade ========== -->
 
 	<!-- Projectile -->
@@ -105,6 +91,7 @@
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<speed>12</speed>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -252,6 +239,7 @@
 				<preExplosionSpawnChance>1</preExplosionSpawnChance>
 				<speed>12</speed>
 				<ai_IsIncendiary>true</ai_IsIncendiary>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -383,6 +371,7 @@
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<speed>12</speed>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
