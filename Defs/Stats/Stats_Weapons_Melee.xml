@@ -13,6 +13,28 @@
   </StatDef>
 
   <StatDef>
+    <defName>Durability</defName>
+    <label>Melee durability</label>
+    <description>Durability of the weapon in melee combat.</description>
+    <category>Weapon</category>
+    <workerClass>CombatExtended.StatWorker_WeaponDurability</workerClass>
+    <displayPriorityInCategory>6</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <parts>
+      <li Class="StatPart_Quality">
+        <factorAwful>0.5</factorAwful>
+        <factorPoor>0.75</factorPoor>
+        <factorNormal>1</factorNormal>
+        <factorGood>1.15</factorGood>
+        <factorExcellent>1.3</factorExcellent>
+        <factorMasterwork>1.5</factorMasterwork>
+        <factorLegendary>1.75</factorLegendary>
+      </li>
+    </parts>
+  </StatDef>
+
+  <StatDef>
     <defName>MeleePenetrationFactor</defName>
 	<workerClass>CombatExtended.StatWorker_MeleeStats</workerClass>
     <label>melee armor penetration factor</label>
