@@ -27,7 +27,7 @@ namespace CombatExtended
                     def.statBases = new List<StatModifier>();
                 }
 
-                def.statBases.Add(new StatModifier { stat = DefOfDurability.Durability, value = 1 });
+                def.statBases.Add(new StatModifier { stat = DefOfDurability.Durability, value = 0 });
 
                 if (def.comps == null)
                 {
@@ -126,6 +126,8 @@ namespace CombatExtended
                             part.TransformValue(req, ref val);
                         }
                     }
+                    
+                    val = (float)Math.Round(val, 2);
 
                     req.Thing.TryGetComp<CompStatCacher>().StatDurability = val;
                 }
@@ -148,7 +150,7 @@ namespace CombatExtended
 
         public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal)
         {
-            string result = "StatsReport_BaseValue".Translate() + BaseVal(req);
+            string result = "";
 
             if (this.stat.parts != null)
             {
