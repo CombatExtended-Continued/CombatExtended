@@ -7,94 +7,96 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-			<li Class="PatchOperationAddModExtension">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Humanoid</bodyShape>
+		<li Class="PatchOperationAddModExtension">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/statBases</xpath>
+			<value>
+				<AimingAccuracy>0.9</AimingAccuracy>
+				<MeleeDodgeChance>2.5</MeleeDodgeChance>
+				<MeleeCritChance>1.25</MeleeCritChance>
+				<MeleeParryChance>1.75</MeleeParryChance>
+				<ReloadSpeed>0.85</ReloadSpeed>
+				<Suppressability>0.25</Suppressability>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>left fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 					</li>
-				</value>
-			</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>right fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>1.26</cooldownTime>
+						<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+						<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>3</power>
+						<cooldownTime>0.95</cooldownTime>
+						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+						<armorPenetration>0.16</armorPenetration>
+						<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>4.49</cooldownTime>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/statBases</xpath>
-				<value>
-					<AimingAccuracy>0.9</AimingAccuracy>
-					<MeleeDodgeChance>2.5</MeleeDodgeChance>
-					<MeleeCritChance>1.25</MeleeCritChance>
-					<MeleeParryChance>1.75</MeleeParryChance>
-					<ReloadSpeed>0.85</ReloadSpeed>
-					<Suppressability>0.25</Suppressability>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>left fist</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>1.26</cooldownTime>
-							<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>right fist</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>1.26</cooldownTime>
-							<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>teeth</label>
-							<capacities>
-								<li>Bite</li>
-							</capacities>
-							<power>3</power>
-							<cooldownTime>0.95</cooldownTime>
-							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-							<armorPenetration>0.16</armorPenetration>
-							<armorPenetrationBlunt>1.250</armorPenetrationBlunt>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>4.49</cooldownTime>
-							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-							<chanceFactor>0.2</chanceFactor>
-							<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<success>Always</success>
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"][not(comp)]</xpath>
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/comps</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]</xpath>
 				<value>
 					<comps />
 				</value>
-			</li>
+			</nomatch>
+		</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/comps</xpath>
-				<value>
-					<li>
-						<compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
-				</value>
-			</li>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Frog"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
 
 		</operations>
 		</match>

@@ -3,96 +3,72 @@
 	<Operation Class="PatchOperationSequence">
 	  <operations>
 		<li Class="PatchOperationFindMod">
-		
-		  <mods><li>[1.0] Android tiers</li>
-		<li>Android tiers</li></mods>
+		<mods>
+			<li>[1.0] Android tiers</li>
+			<li>Android tiers</li>
+		</mods>
 			<match Class="PatchOperationSequence">
 			  <operations>
+
 				<!--Test for comps-->
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]</xpath>
-					  <value><comps /></value>
-					</li>
-					
-				  </operations>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android1Tier"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android2Tier"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android3Tier"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android4Tier"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Android5Tier"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
-				
-				<li Class="PatchOperationSequence">
-				  <success>Always</success>
-				  <operations>
-				    <li Class="PatchOperationTest">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/comps</xpath>
-					  <success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					  <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]</xpath>
-					  <value><comps /></value>
-					</li>
-				  </operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="M7Mech"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
 				
 				<!--Multiple-->

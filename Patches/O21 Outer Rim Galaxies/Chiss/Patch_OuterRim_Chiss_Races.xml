@@ -33,21 +33,15 @@
 					<SmokeSensitivity>1</SmokeSensitivity>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_Chiss"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_Chiss"]</xpath>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_Chiss"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_Chiss"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">

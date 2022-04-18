@@ -52,22 +52,18 @@
             </equippedStatOffsets>
           </value>
         </li>
+
         <!-- Add tags -->
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="SovietBanner"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="SovietBanner"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
-        </li>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[defName="SovietBanner"]/weaponTags</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="SovietBanner"]</xpath>
+						<value>
+							<weaponTags />
+						</value>
+					</nomatch>
+				</li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="SovietBanner"]/weaponTags</xpath>
           <value>
@@ -75,6 +71,7 @@
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <!-- END SovietFlag -->
         <!-- START Mosin IronSight Rifle -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">

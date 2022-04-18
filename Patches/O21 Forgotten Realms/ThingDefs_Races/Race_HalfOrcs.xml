@@ -17,20 +17,14 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]</xpath>
+						<value>
+						<comps />
+						</value>
+					</nomatch>
 				</li>
 
 				<!-- The average half-orc is both larger and taller than your average human. -->

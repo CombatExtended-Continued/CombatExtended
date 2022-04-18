@@ -5,21 +5,17 @@
 			<li>Misc. Robots</li>
 		</mods>
 		<match Class="PatchOperationSequence">
-			<success>Always</success>
 			<operations>
-				<li Class="PatchOperationAddModExtension">
-					<xpath>
-						Defs/ThingDef[
 
-							@Name="Base_X2_AIRobot" 
-						]
-					</xpath>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="Base_X2_AIRobot"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
 						</li>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[@Name="Base_X2_AIRobot"]/statBases</xpath>
 					<value>
@@ -29,6 +25,7 @@
 						<SmokeSensitivity>0</SmokeSensitivity>
 					</value>
 				</li>	
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[@Name="Base_X2_AIRobot"]/tools</xpath>
 					<value>
@@ -68,6 +65,7 @@
 						</tools>
 					</value>
 				</li>
+				
 			</operations>
 		</match>
 	</Operation>

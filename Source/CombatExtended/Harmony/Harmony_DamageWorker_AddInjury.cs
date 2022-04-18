@@ -95,6 +95,7 @@ namespace CombatExtended.HarmonyCE
                         break;
                     }
                     var secDinfo = sec.GetDinfo(dinfo);
+			
                     pawn.TakeDamage(secDinfo);
                 }
 
