@@ -26,12 +26,6 @@
                         <ArmorRating_Sharp>2</ArmorRating_Sharp>
                     </value>
                 </li>
-                <li Class="PatchOperationReplace">
-                    <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases/ArmorRating_Blunt</xpath>
-                    <value>
-                        <ArmorRating_Blunt>3</ArmorRating_Blunt>
-                    </value>
-                </li>
                 
                 <li Class="PatchOperationAdd">
                     <xpath>Defs/ThingDef[defName="Mech_Crawler"]/statBases</xpath>
@@ -99,13 +93,13 @@
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Sharp</xpath>
                     <value>
-                        <ArmorRating_Sharp>8</ArmorRating_Sharp>
+                        <ArmorRating_Sharp>3</ArmorRating_Sharp>
                     </value>
                 </li>
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Skullywag"]/statBases/ArmorRating_Blunt</xpath>
                     <value>
-                        <ArmorRating_Blunt>12</ArmorRating_Blunt>
+                        <ArmorRating_Blunt>5</ArmorRating_Blunt>
                     </value>
                 </li>
                 
@@ -166,7 +160,7 @@
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases/ArmorRating_Sharp</xpath>
                     <value>
-                        <ArmorRating_Sharp>4</ArmorRating_Sharp>
+                        <ArmorRating_Sharp>3</ArmorRating_Sharp>
                     </value>
                 </li>
                 <li Class="PatchOperationReplace">
@@ -179,6 +173,10 @@
                 <li Class="PatchOperationAdd">
                     <xpath>Defs/ThingDef[defName="Mech_Flamebot"]/statBases</xpath>
                     <value>
+                        <CarryWeight>50</CarryWeight>
+                        <CarryBulk>100</CarryBulk>
+                        <AimingAccuracy>1.0</AimingAccuracy>
+                        <ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
                         <MeleeDodgeChance>0.10</MeleeDodgeChance>
                         <MeleeCritChance>0.04</MeleeCritChance>
                         <MeleeParryChance>0.0</MeleeParryChance>
@@ -229,20 +227,20 @@
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Sharp</xpath>
                     <value>
-                        <ArmorRating_Sharp>30</ArmorRating_Sharp>
+                        <ArmorRating_Sharp>22</ArmorRating_Sharp>
                     </value>
                 </li>
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/statBases/ArmorRating_Blunt</xpath>
                     <value>
-                        <ArmorRating_Blunt>67.5</ArmorRating_Blunt>
+                        <ArmorRating_Blunt>50</ArmorRating_Blunt>
                     </value>
                 </li>
                 
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Mammoth"]/race/baseHealthScale</xpath>
                     <value>
-                        <baseHealthScale>3</baseHealthScale>
+                        <baseHealthScale>4</baseHealthScale>
                     </value>
                 </li>
                 
@@ -258,6 +256,14 @@
                                 <power>72</power>
                                 <cooldownTime>7</cooldownTime>
                                 <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+                                <surpriseAttack>
+                                    <extraMeleeDamages>
+                                        <li>
+                                            <def>Stun</def>
+                                            <amount>25</amount>
+                                        </li>
+                                    </extraMeleeDamages>
+                                </surpriseAttack>
                                 <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
                                 <armorPenetrationBlunt>33.750</armorPenetrationBlunt>
                             </li>
@@ -313,19 +319,23 @@
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Sharp</xpath>
                     <value>
-                        <ArmorRating_Sharp>15</ArmorRating_Sharp>
+                        <ArmorRating_Sharp>18</ArmorRating_Sharp>
                     </value>
                 </li>
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases/ArmorRating_Blunt</xpath>
                     <value>
-                        <ArmorRating_Blunt>22.5</ArmorRating_Blunt>
+                        <ArmorRating_Blunt>42</ArmorRating_Blunt>
                     </value>
                 </li>
                 
                 <li Class="PatchOperationAdd">
                     <xpath>Defs/ThingDef[defName="Mech_Assaulter"]/statBases</xpath>
                     <value>
+                        <CarryWeight>50</CarryWeight>
+                        <CarryBulk>40</CarryBulk>
+                        <AimingAccuracy>1.0</AimingAccuracy>
+                        <ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
                         <MeleeDodgeChance>0.12</MeleeDodgeChance>
                         <MeleeCritChance>0.16</MeleeCritChance>
                         <MeleeParryChance>0.12</MeleeParryChance>
@@ -345,6 +355,14 @@
                                 <power>19</power>
                                 <cooldownTime>2.95</cooldownTime>
                                 <linkedBodyPartsGroup>CoveredByShield</linkedBodyPartsGroup>
+                                <surpriseAttack>
+                                    <extraMeleeDamages>
+                                        <li>
+                                            <def>Stun</def>
+                                            <amount>14</amount>
+                                        </li>
+                                    </extraMeleeDamages>
+                                </surpriseAttack>
                                 <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
                                 <armorPenetrationBlunt>7.5</armorPenetrationBlunt>
                             </li>
@@ -363,6 +381,7 @@
                         </tools>
                     </value>
                 </li>
+
             </operations>
         </match>
     </Operation>
