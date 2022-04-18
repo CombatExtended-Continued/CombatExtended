@@ -22,6 +22,18 @@
     	<isMortarAmmoSet>true</isMortarAmmoSet>		
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_155mmHowitzerShell_directfire</defName>
+		<label>155mm Howitzer shells</label>
+		<ammoTypes>
+			<Ammo_155mmHowitzerShell_HE>Bullet_155mmHowitzerShell_HE_directfire</Ammo_155mmHowitzerShell_HE>
+			<Ammo_155mmHowitzerShell_Incendiary>Bullet_155mmHowitzerShell_Incendiary_directfire</Ammo_155mmHowitzerShell_Incendiary>
+			<Ammo_155mmHowitzerShell_EMP>Bullet_155mmHowitzerShell_EMP_directfire</Ammo_155mmHowitzerShell_EMP>
+			<Ammo_155mmHowitzerShell_Smoke>Bullet_155mmHowitzerShell_Smoke_directfire</Ammo_155mmHowitzerShell_Smoke>
+		</ammoTypes>
+    	<isMortarAmmoSet>true</isMortarAmmoSet>		
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="155mmHowitzerShellBase" ParentName="HeavyAmmoBase" Abstract="True">
@@ -89,7 +101,7 @@
 		<defName>Ammo_155mmHowitzerShell_Smoke</defName>
 		<label>155mm Howitzer shell (Smoke)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Cannon/Howitzer/HE</texPath>
+			<texPath>Things/Ammo/Cannon/Howitzer/SMK</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -212,6 +224,112 @@
 		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
 		</projectile>
 	  </ThingDef>
+
+	<!-- direct fire-->
+	<ThingDef Name="Base155mmHowitzerShellDirectfire" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<shaderType>TransparentPostLight</shaderType>
+		  </graphicData>
+		  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>166</speed>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<flyOverhead>false</flyOverhead>
+			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShellDirectfire">
+		<defName>Bullet_155mmHowitzerShell_HE_directfire</defName>
+		<label>155mm Howitzer shell (HE)</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/HE</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>452</damageAmountBase>
+			<explosionRadius>10.5</explosionRadius>
+			<soundExplode>MortarBomb_Explode</soundExplode>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>40</Fragment_Large>
+					<Fragment_Small>60</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShellDirectfire">
+		<defName>Bullet_155mmHowitzerShell_Incendiary_directfire</defName>
+		<label>155mm Howitzer shell (Incendiary)</label>
+		<graphicData>
+		  <texPath>Things/Projectile/Cannon/Howitzer/INC</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>PrometheumFlame</damageDef>
+			<damageAmountBase>0</damageAmountBase>
+			<armorPenetrationSharp>0</armorPenetrationSharp>
+			<armorPenetrationBlunt>0</armorPenetrationBlunt>
+			<explosionRadius>11.5</explosionRadius>
+			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>0.20</preExplosionSpawnChance>
+			<soundExplode>MortarIncendiary_Explode</soundExplode>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>104</damageAmountBase>
+			<explosiveDamageType>Thermobaric</explosiveDamageType>
+			<explosiveRadius>4</explosiveRadius>
+			<explosionSound>MortarIncendiary_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShellDirectfire">
+		<defName>Bullet_155mmHowitzerShell_EMP_directfire</defName>
+		<label>155mm Howitzer shell (EMP)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/EMP</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>EMP</damageDef>
+		  <damageAmountBase>452</damageAmountBase>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+		  <explosionRadius>9.5</explosionRadius>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base155mmHowitzerShellDirectfire">
+		<defName>Bullet_155mmHowitzerShell_Smoke_directfire</defName>
+		<label>155mm Howitzer shell (Smoke)</label>
+		<graphicData>
+			<texPath>Things/Projectile/Cannon/Howitzer/SMK</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+	<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <damageDef>Smoke</damageDef>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+		  <explosionRadius>10.5</explosionRadius>
+		  <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+		  <soundExplode>Explosion_EMP</soundExplode>
+		  <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+		  <soundAmbient>MortarRound_Ambient</soundAmbient>
+		  <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+		  <preExplosionSpawnChance>1</preExplosionSpawnChance>
+		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <explosionEffect>ExtinguisherExplosion</explosionEffect>
+		</projectile>
+	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 

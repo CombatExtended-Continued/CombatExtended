@@ -243,6 +243,7 @@ namespace CombatExtended
             return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
         }
 
+        [Compatibility.Multiplayer.SyncMethod]
         public override void OrderAttack(LocalTargetInfo targ)      // Core method
         {
             if (!targ.IsValid)
@@ -608,7 +609,7 @@ namespace CombatExtended
                     stop.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                     stop.action = delegate
                     {
-                        ResetForcedTarget();
+                        SyncedResetForcedTarget();
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera(null);
                     };
                     if (!this.forcedTarget.IsValid)
@@ -627,14 +628,7 @@ namespace CombatExtended
                         defaultDesc = "CommandHoldFireDesc".Translate(),
                         icon = ContentFinder<Texture2D>.Get("UI/Commands/HoldFire", true),
                         hotKey = KeyBindingDefOf.Misc6,
-                        toggleAction = delegate
-                        {
-                            holdFire = !holdFire;
-                            if (holdFire)
-                            {
-                                ResetForcedTarget();
-                            }
-                        },
+                        toggleAction = ToggleHoldFire,
                         isActive = (() => holdFire)
                     };
                 }
@@ -642,6 +636,19 @@ namespace CombatExtended
         }
 
         // ExtractShell not added
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private void ToggleHoldFire()
+        {
+            holdFire = !holdFire;
+            if (holdFire)
+            {
+                ResetForcedTarget();
+            }
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private void SyncedResetForcedTarget() => ResetForcedTarget();
 
         private void ResetForcedTarget()                // Core method
         {

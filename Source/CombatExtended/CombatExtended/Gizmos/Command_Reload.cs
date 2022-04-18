@@ -80,6 +80,9 @@ namespace CombatExtended
             }
         }
 
+        [Compatibility.Multiplayer.SyncMethodAttribute]
+        private static void SetAmmoType(CompAmmoUser user, AmmoDef ammoDef) => user.SelectedAmmo = ammoDef;
+
         private FloatMenu MakeAmmoMenu()
         {
             return new FloatMenu(BuildAmmoOptions());
@@ -139,7 +142,7 @@ namespace CombatExtended
                             }
                             else
                             {
-                                del += delegate { user.SelectedAmmo = ammoDef; };
+                                del += () => SetAmmoType(user, ammoDef);
 
                                 if (Controller.settings.AutoReloadOnChangeAmmo && user.turret?.GetMannable() == null)
                                     del += other.action;
@@ -178,8 +181,7 @@ namespace CombatExtended
             #endregion
 
             #region Unloading and reloading
-            var unload = false;
-            Action unloadDel = null;
+            List<CompAmmoUser> usersToUnload = new List<CompAmmoUser>();
 
             var reload = false;
             Action reloadDel = null;
@@ -194,15 +196,14 @@ namespace CombatExtended
 
                     if (user.UseAmmo && user.CurMagCount > 0)
                     {
-                        unload = true;
-                        unloadDel += delegate { user.TryUnload(true); };
+                        usersToUnload.Add(user);
                     }
                 }
             }
 
             // Append unload delegates
-            if (unload)
-                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), unloadDel));
+            if (usersToUnload.Any())
+                floatOptionList.Add(new FloatMenuOption("CE_UnloadLabel".Translate(), () => SyncedTryUnload(usersToUnload)));
 
             // Append reload delegates
             if (reload)
@@ -210,6 +211,13 @@ namespace CombatExtended
             #endregion
 
             return floatOptionList;
+        }
+
+        [Compatibility.Multiplayer.SyncMethod]
+        private static void SyncedTryUnload(List<CompAmmoUser> ammoUsers)
+        {
+            foreach (var user in ammoUsers) 
+                user.TryUnload(true);
         }
 
     }

@@ -35,7 +35,7 @@ namespace CombatExtended.HarmonyCE
 
                     float stunResistChance = ((float)___EMPAdaptedTicksLeft / (float)newStunAdaptedTicks) * 15;
 
-                    if (UnityEngine.Random.value > stunResistChance)
+                    if (Rand.Value > stunResistChance)
                     {
                         ___EMPAdaptedTicksLeft += Mathf.RoundToInt(dinfo.Amount * 45 * bodySize);
 
@@ -50,7 +50,7 @@ namespace CombatExtended.HarmonyCE
                     }
                     else
                     {
-                        MoteMaker.ThrowText(new Vector3((float)__instance.parent.Position.x + 1f, (float)__instance.parent.Position.y, (float)__instance.parent.Position.z + 1f), __instance.parent.Map, "Adapted".Translate(), Color.white, -1f);
+                        MoteMakerCE.ThrowText(new Vector3((float)__instance.parent.Position.x + 1f, (float)__instance.parent.Position.y, (float)__instance.parent.Position.z + 1f), __instance.parent.Map, "Adapted".Translate(), Color.white, -1f);
                         int adaptationReduction = Mathf.RoundToInt(Mathf.Sqrt(dinfo.Amount * 45));
 
                         if (adaptationReduction < ___EMPAdaptedTicksLeft)

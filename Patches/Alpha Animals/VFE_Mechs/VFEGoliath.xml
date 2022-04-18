@@ -34,7 +34,7 @@
 				<value>
 					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
-			</li>			
+			</li>
 			
 			
 			<li Class="PatchOperationAdd">
@@ -50,6 +50,7 @@
 					<MaxHitPoints>500</MaxHitPoints>
 				</value>
 			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Goliath"]/race/baseHealthScale</xpath>
 				<value>
@@ -86,7 +87,22 @@
 					</li>
 				</value>
 			</li>
-			
+
+			<!-- Remove the explosive bolt projector -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
+			</li>
+
+			<!-- === combatPower Patch === -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Goliath"]/combatPower</xpath>
+				<value>
+					<combatPower>550</combatPower>
+				</value>
+			</li>
+
 				</operations>
 			</match>					
 		</match>			

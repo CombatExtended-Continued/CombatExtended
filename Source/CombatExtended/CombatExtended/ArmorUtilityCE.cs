@@ -42,6 +42,8 @@ namespace CombatExtended
             shieldAbsorbed = false;
             armorDeflected = false;
             armorReduced = false;
+            
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
 
             if (originalDinfo.Def.armorCategory == null
                 || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
@@ -63,6 +65,10 @@ namespace CombatExtended
                 dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
                 armorDeflected = dinfo.Amount <= 0;
                 return dinfo;
+            }
+            else if (deflectionComp != null)
+            {
+                deflectionComp.deflectedSharp = false;
             }
 
             var penAmount = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
@@ -127,6 +133,14 @@ namespace CombatExtended
                         && app.def.apparel.CoversBodyPart(hitPart)
                         && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                     {
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                        {
+                            if (deflectionComp != null)
+                            {
+                                deflectionComp.deflectedSharp = true;
+                            }
+                        }
+
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
@@ -163,7 +177,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
+                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -171,6 +185,15 @@ namespace CombatExtended
                     dinfo.SetHitPart(curPart);
                     if (isSharp && coveredByArmor)
                     {
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                        {
+                            if (deflectionComp != null)
+                            {
+                                deflectionComp.deflectedSharp = true;
+
+                                deflectionComp.weapon = originalDinfo.Weapon;
+                            }
+                        }
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
@@ -228,30 +251,41 @@ namespace CombatExtended
             if (armor != null)
             {
                 var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
+                float armorDamage = -1f;
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
                     if (isSharpDmg)
                     {
-                        var armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-                        //If the damage is, let's say, 5.75, then there's a 75% chance that the damage armor takes will be 6 or a 25% for 5 damage;
-                        if (Rand.Value < (armorDamage - Mathf.FloorToInt(armorDamage)))
-                        {
-                            armorDamage++;
-                        }
-                        armor.TakeDamage(new DamageInfo(def, Mathf.Floor(armorDamage)));
+                        armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
                     }
                 }
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    var armorDamage = newDmgAmount;
-                    //If the damage is, let's say, 5.75, then there's a 75% chance that the damage armor takes will be 6 or a 25% for 5 damage;
-                    if (Rand.Value < (armorDamage - Mathf.FloorToInt(armorDamage)))
+                    armorDamage = newDmgAmount;
+                }
+
+                // armorDamage being -1 means that there shouldn't be any calculations done
+                if (armorDamage != -1f)
+                {
+                    // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this is an extremely small chance)
+                    if ((Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)) && (armorDamage < 1f))
                     {
-                        armorDamage++;
+                        armorDamage = 1f;
                     }
-                    armor.TakeDamage(new DamageInfo(def, Mathf.FloorToInt(armorDamage)));
+
+                    // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
+                    // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
+                    if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
+                    {
+                        armorDamage = Mathf.Ceil(armorDamage);
+                    }
+
+                    armorDamage = Mathf.Floor(armorDamage);
+                    // Don't call TakeDamage() with 0 damage as taht would be a waste
+                    if (armorDamage != 0f)
+                        armor.TakeDamage(new DamageInfo(def, armorDamage));
                 }
             }
 
@@ -294,7 +328,21 @@ namespace CombatExtended
                     }
                 }
             }
-            return dmgAmount * dmgMult;
+            
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
+              if (deflectionComp != null)
+              {
+                if (armorRatingStat == StatDefOf.ArmorRating_Heat)
+                {
+                    if (deflectionComp.deflectedSharp)
+                    {
+                            dmgMult /= 2f;
+                    }
+                }
+                deflectionComp.deflectedSharp = false;
+             }
+            
+            return (float)Math.Floor(dmgAmount * dmgMult);
         }
 
         /// <summary>

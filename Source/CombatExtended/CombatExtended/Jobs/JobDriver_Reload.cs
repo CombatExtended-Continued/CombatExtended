@@ -145,7 +145,7 @@ namespace CombatExtended
             // Throw mote
             if (compReloader.ShouldThrowMote && holder.Map != null)     //holder.Map is temporarily null after game load, skip mote if a pawn was reloading when game was saved
             {
-                MoteMaker.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
+                MoteMakerCE.ThrowText(pawn.Position.ToVector3Shifted(), holder.Map, string.Format("CE_ReloadingMote".Translate(), weapon.def.LabelCap));
             }
 
             //Toil of do-nothing		

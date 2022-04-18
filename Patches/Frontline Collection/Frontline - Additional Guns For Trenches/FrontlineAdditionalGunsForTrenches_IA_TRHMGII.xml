@@ -6,30 +6,28 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
+
         <li Class="PatchOperationRemove">
           <xpath>Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]/tradeTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]</xpath>
-              <value>
-                <tradeTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]/tradeTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]</xpath>
+            <value>
+              <tradeTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="TR_Base_HMGII" or defName="TR_Base_HMGIISB"]/tradeTags</xpath>
           <value>
@@ -64,6 +62,7 @@
             <ammoSet>AmmoSet_50BMG</ammoSet>
           </AmmoUser>
         </li>
+
       </operations>
     </match>
   </Operation>

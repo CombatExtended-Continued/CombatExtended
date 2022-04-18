@@ -23,17 +23,16 @@ namespace CombatExtended.HarmonyCE
         private const string CoverStatName = "CoverEffectiveness";
 
         private static System.Type type;
-        private static FieldInfo weaponField;
-        private static FieldInfo thisField;
-        private static FieldInfo currentField;
-        private static FieldInfo valueStringInt = AccessTools.Field(typeof(StatDrawEntry), "valueStringInt");
+        private static AccessTools.FieldRef<object, VerbProperties> weaponField;
+        private static AccessTools.FieldRef<object, ThingDef> thisField;
+        private static AccessTools.FieldRef<object, StatDrawEntry> currentField;
 
         static MethodBase TargetMethod()
         {
             type = typeof(ThingDef).GetNestedTypes(AccessTools.all).FirstOrDefault(x => x.Name.Contains("<SpecialDisplayStats>"));
-            weaponField = AccessTools.Field(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("<verb>")));
-            thisField = AccessTools.Field(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("this")));
-            currentField = AccessTools.Field(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("current")));
+            weaponField = AccessTools.FieldRefAccess<VerbProperties>(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("<verb>")));
+            thisField = AccessTools.FieldRefAccess<ThingDef>(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("this")));
+            currentField = AccessTools.FieldRefAccess<StatDrawEntry>(type, AccessTools.GetFieldNames(type).FirstOrDefault(x => x.Contains("current")));
 
             return AccessTools.Method(type, "MoveNext");
         }
@@ -45,18 +44,18 @@ namespace CombatExtended.HarmonyCE
                 var entry = __instance.Current;
                 if (entry.LabelCap.Contains(BurstShotStatName.Translate().CapitalizeFirst()))
                 {
-                    var def = (ThingDef)thisField.GetValue(__instance);
+                    var def = thisField(__instance);
                     var compProps = def.GetCompProperties<CompProperties_FireModes>();
 
                     if (compProps != null)
                     {
                         var aimedBurstCount = compProps.aimedBurstShotCount;
-                        var burstShotCount = ((VerbProperties)weaponField.GetValue(__instance)).burstShotCount;
+                        var burstShotCount = weaponField(__instance).burstShotCount;
 
                         // Append aimed burst count
                         if (aimedBurstCount != burstShotCount)
                         {
-                            valueStringInt.SetValue(entry, $"{aimedBurstCount} / {burstShotCount}", BindingFlags.NonPublic | BindingFlags.Instance, null, CultureInfo.InvariantCulture);
+                            entry.valueStringInt = $"{aimedBurstCount} / {burstShotCount}";
                         }
                     }
                 }
@@ -64,7 +63,7 @@ namespace CombatExtended.HarmonyCE
                 else if (entry.LabelCap.Contains(CoverStatName.Translate().CapitalizeFirst()))
                 {
                     // Determine collision height
-                    var def = (ThingDef)thisField.GetValue(__instance);
+                    var def = thisField(__instance);
                     if (def.plant?.IsTree ?? false)
                         return;
 
@@ -75,7 +74,7 @@ namespace CombatExtended.HarmonyCE
 
                     var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", (string)"CE_CoverHeightExplanation".Translate(), entry.DisplayPriorityWithinCategory);
 
-                    currentField.SetValue(__instance, newEntry);
+                    currentField(__instance) = newEntry;
                 }
                 // Remove obsolete vanilla stats
                 else if (StatsToCull.Select(s => s.Translate().CapitalizeFirst()).Contains(entry.LabelCap))

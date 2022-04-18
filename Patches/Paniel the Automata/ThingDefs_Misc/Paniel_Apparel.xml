@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+		
+	<mods><li>Paniel the Automata</li></mods>
+		
+	<match Class="PatchOperationSequence">
+	<operations>
+	
+		<!--========= Stuffable =========-->
+		
+		<!--Fabric-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelBasic" or defName="PN_ApparelBasicHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="PN_ApparelCape"]/statBases</xpath>
+			<value>
+				<Bulk>4</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelCape"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<!--Metallic-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="PN_ApparelMilitia" or
+			defName="PN_ApparelWorker" or
+			defName="PN_ApparelMaid"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="PN_ApparelMilitiaHat" or
+			defName="PN_ApparelWorkerHat" or
+			defName="PN_ApparelMaidHat"
+			]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelMilitia"]/statBases/Mass</xpath>
+			<value>
+				<Mass>8</Mass>
+				<Bulk>25</Bulk>
+				<WornBulk>10</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="PN_ApparelWorker" or
+			defName="PN_ApparelMaid"
+			]/statBases/Mass</xpath>
+			<value>
+				<Mass>6</Mass>
+				<Bulk>25</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+		
+		<!-- Advanced -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldier"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>9</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldier"]/statBases/Mass</xpath>
+			<value>
+				<Mass>12</Mass>
+				<Bulk>28</Bulk>
+				<WornBulk>20</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldier"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			<value>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+				<CarryBulk>20</CarryBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldierHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldierHat"]/statBases/Mass</xpath>
+			<value>
+				<Mass>2</Mass>
+				<Bulk>2</Bulk>
+				<WornBulk>1</WornBulk>
+				<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelSoldierHat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.1</AimingAccuracy>
+			</value>
+		</li>
+		
+		<!-- Advanced -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguard"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguard"]/statBases/Mass</xpath>
+			<value>
+				<Mass>16</Mass>
+				<Bulk>28</Bulk>
+				<WornBulk>22</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguard"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			<value>
+				<MeleeDodgeChance>0.3</MeleeDodgeChance>
+				<CarryBulk>30</CarryBulk>
+				<CarryWeight>20</CarryWeight>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguardHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguardHat"]/statBases/Mass</xpath>
+			<value>
+				<Mass>5</Mass>
+				<Bulk>2.5</Bulk>
+				<WornBulk>1</WornBulk>
+				<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalguardHat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.3</AimingAccuracy>
+			</value>
+		</li>
+		
+		<!-- Advanced -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalmaid"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>8.5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalmaid"]/statBases/Mass</xpath>
+			<value>
+				<Mass>8</Mass>
+				<Bulk>25</Bulk>
+				<WornBulk>10</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalmaidHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>8</StuffEffectMultiplierArmor>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelRoyalmaidHat"]/statBases/Mass</xpath>
+			<value>
+				<Mass>2</Mass>
+				<Bulk>0.5</Bulk>
+				<WornBulk>0.5</WornBulk>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+			defName="PN_ApparelMilitia" or 
+			defName="PN_ApparelMilitiaHat" or 
+			defName="PN_ApparelSoldier" or 
+			defName="PN_ApparelSoldierHat" or 
+			defName="PN_ApparelWorker" or 
+			defName="PN_ApparelWorkerHat" or 
+			defName="PN_ApparelMaid" or 
+			defName="PN_ApparelMaidHat" or 
+			defName="PN_ApparelRoyalguard" or 
+			defName="PN_ApparelRoyalguardHat" or 
+			defName="PN_ApparelRoyalmaid" or 
+			defName="PN_ApparelRoyalmaidHat"]/stuffCategories</xpath>
+			<value>
+				<stuffCategories>
+				  <li>Steeled</li>
+				</stuffCategories>
+			</value>
+		</li>
+		
+		
+	</operations>
+	</match>	
+  </Operation>
+</Patch>

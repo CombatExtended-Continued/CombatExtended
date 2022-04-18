@@ -87,7 +87,7 @@ namespace CombatExtended.Compatibility
                     generator.FieldIntegrity_Current -= damage;
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
-                    FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.ExactPosition = exactPosition;
                     return true;
                 }
@@ -126,7 +126,7 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-                FleckMaker.ThrowLightningGlow(destination, map, 0.5f);
+                FleckMakerCE.ThrowLightningGlow(destination, map, 0.5f);
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 generator.FieldIntegrity_Current -= damage;
                 return true;

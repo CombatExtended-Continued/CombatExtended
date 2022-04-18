@@ -3,189 +3,87 @@
   <Operation Class="PatchOperationSequence">
 	<operations>
 	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Mincho, The Mint Choco Slime</li></mods>
-			
+		<mods>
+			<li>Mincho, The Mint Choco Slime ~ HAR ver.</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
 			
-			<li Class="PatchOperationConditional">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/comps</xpath>
-				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]</xpath>
-					<value>
-						<comps/>
-					</value>
-				</nomatch>
-				<match Class="PatchOperationAdd">
-					<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]</xpath>
-					<value>
-					</value>
-				</match>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/comps</xpath>
-				<value>
-					<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/comps</xpath>
+			<value>
+				<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases</xpath>
+			<value>
+				<Suppressability>0.8</Suppressability>
+				<!--Innate immunity to toxic fallout, high immunity gain rate-->
+				<SmokeSensitivity>0</SmokeSensitivity>
+			</value>
+		</li>
+		
+		<!-- -->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/tools</xpath> 
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>slime fist</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+							<li>Cut</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>0.9</cooldownTime>
+						<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.05</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Humanoid</bodyShape>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/statBases</xpath>
-				  <value>
-					<Suppressability>0.8</Suppressability>
-					<!--Innate immunity to toxic fallout, high immunity gain rate-->
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
-			</li>
-			
-			<!-- -->
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>1</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>slime fist</label>
-							<capacities>
-								<li>Blunt</li>
-								<li>Poke</li>
-								<li>Cut</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>0.9</cooldownTime>
-							<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.05</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/Garam_RaceAddon.RaceAddonThingDef[defName="Mincho_ThingDef"]/raceAddonSettings/apparelRestrictionSetting/allAllow_Exceptions</xpath>
-				  <value>
-					<li>Apparel_TacVest</li>
-					<li>Apparel_Backpack</li>
-					<li>Apparel_TribalBackpack</li>
-					<li>Apparel_BallisticShield</li>
-					<li>Apparel_MeleeShield</li>
-				  </value>
-			</li>
-			
-		</operations>
-		</match>	
-	  </li>
-	  
-	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Mincho, The Mint Choco Slime ~ HAR ver.</li></mods>
-			
-		<match Class="PatchOperationSequence">
-		<operations>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/comps</xpath>
-				<value>
-					<li>
-					<compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Humanoid</bodyShape>
-					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases</xpath>
-				  <value>
-					<Suppressability>0.8</Suppressability>
-					<!--Innate immunity to toxic fallout, high immunity gain rate-->
-					<SmokeSensitivity>0</SmokeSensitivity>
-				  </value>
-			</li>
-			
-			<!-- -->
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases/ArmorRating_Sharp</xpath>
-				  <value>
-					<ArmorRating_Sharp>1</ArmorRating_Sharp>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/statBases/ArmorRating_Blunt</xpath>
-				  <value>
-					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>slime fist</label>
-							<capacities>
-								<li>Blunt</li>
-								<li>Poke</li>
-								<li>Cut</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>0.9</cooldownTime>
-							<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.05</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/alienRace/raceRestriction/whiteApparelList</xpath>
-				  <value>
-					<li>Apparel_TacVest</li>
-					<li>Apparel_Backpack</li>
-					<li>Apparel_TribalBackpack</li>
-					<li>Apparel_BallisticShield</li>
-					<li>Apparel_MeleeShield</li>
-				  </value>
-			</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Mincho_ThingDef"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			<value>
+				<li>Apparel_TacVest</li>
+				<li>Apparel_Backpack</li>
+				<li>Apparel_TribalBackpack</li>
+				<li>Apparel_BallisticShield</li>
+				<li>Apparel_MeleeShield</li>
+			</value>
+		</li>
 			
 		</operations>
 		</match>	

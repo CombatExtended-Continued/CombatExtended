@@ -67,20 +67,14 @@
 			</li>
 			
 			<!-- Checking if "Alien_Asari_Base" has a <comps> node and adding it if it doesn't exist -->
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
 					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Asari_Base"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">

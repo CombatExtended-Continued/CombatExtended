@@ -28,6 +28,8 @@ namespace CombatExtended
         public static StatDef Recoil;
         public static StatDef ReloadTime;
 
+        public static StatDef OneHandedNess;
+
         // *** Melee weapon stats ***
         public static StatDef MeleePenetrationFactor;
         public static StatDef MeleeCounterParryBonus;
@@ -47,5 +49,7 @@ namespace CombatExtended
         public static StatDef SmokeSensitivity;
 
         public static StatDef Suppressability;
+
+        
     }
 }

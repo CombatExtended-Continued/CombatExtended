@@ -18,20 +18,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/ThingDef[@Name="KTDryadAnimalThingBase"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/ThingDef[@Name="KTDryadAnimalThingBase"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[@Name="KTDryadAnimalThingBase"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="KTDryadAnimalThingBase"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
@@ -45,6 +39,26 @@
         </li>
 
         <!-- Dryad -->
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/comps</xpath>
+          <value>
+            <li>
+              <compClass>CombatExtended.CompPawnGizmo</compClass>
+            </li>
+            <li Class="CombatExtended.CompProperties_Suppressable" />
+          </value>
+        </li>
 
         <li Class="PatchOperationReplace">
           <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Dryad" or defName="Alien_DryadWild"]/statBases/MeleeDodgeChance</xpath>

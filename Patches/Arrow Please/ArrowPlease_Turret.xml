@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Arrow Please (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<!--=============== Base turrets ===============-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Turret_Ballista" or defName="Turret_Triplecrossbow"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Turret_Ballista" or defName="Turret_Triplecrossbow"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			
+			<!--=============== Turret_Ballista ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Turret_BallistaGun</defName>
+				<statBases>
+					<Mass>25.0</Mass>
+					<RangedWeapon_Cooldown>8.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.002</ShotSpread>
+					<SwayFactor>0.0</SwayFactor>
+					<Bulk>18.87</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Pilum_Fired</defaultProjectile>
+					<warmupTime>0.5</warmupTime>
+					<range>42</range>
+					<soundCast>Ballista_Launch</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<!-- <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>6</burstShotCount> -->
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>3.5</reloadTime>
+					<ammoSet>AmmoSet_Javelins</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!--=============== Turret_Ballista ===============-->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Turret_TriplecrossbowGun</defName>
+				<statBases>
+					<Mass>25.0</Mass>
+					<RangedWeapon_Cooldown>8.56</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.1</SightsEfficiency>
+					<ShotSpread>0.005</ShotSpread>
+					<SwayFactor>0.0</SwayFactor>
+					<Bulk>22.87</Bulk>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.1</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Pilum_Fired</defaultProjectile>
+					<warmupTime>0.85</warmupTime>
+					<range>40</range>
+					<soundCast>Ballista_Launch</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>3</magazineSize>
+					<reloadTime>4.95</reloadTime>
+					<ammoSet>AmmoSet_Javelins</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aiUseBurstMode>true</aiUseBurstMode>	
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+      
+		</operations>
+		
+		</match>
+	</Operation>
+</Patch>

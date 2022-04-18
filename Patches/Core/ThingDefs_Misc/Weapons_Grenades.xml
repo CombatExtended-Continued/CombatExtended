@@ -9,13 +9,6 @@
 		<value>BaseWeapon</value>
 	</Operation>
 
-	<!-- <Operation Class="PatchOperationRemove">
-		<xpath>
-			Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]/costList |
-			Defs/ThingDef[defName="Weapon_GrenadeFrag" or defName="Weapon_GrenadeMolotov" or defName="Weapon_GrenadeEMP"]/recipeMaker	
-		</xpath>
-	</Operation> -->
-
 	<!-- ========== Melee tools ========== -->
 
 	<Operation Class="PatchOperationAdd">
@@ -65,13 +58,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name="BaseGrenadeProjectile"]/projectile/speed</xpath>
-		<value>
-			<speed>12</speed>
-		</value>
-	</Operation>
-
 	<!-- ========== Frag Grenade ========== -->
 
 	<!-- Projectile -->
@@ -105,24 +91,19 @@
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<speed>12</speed>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
-				<value>
-					<comps />
-				</value>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -171,20 +152,14 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
-				<value>
-					<comps />
-				</value>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -234,6 +209,7 @@
 			<defaultProjectile>Proj_GrenadeFrag</defaultProjectile>
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_AOE</li>
@@ -263,6 +239,7 @@
 				<preExplosionSpawnChance>1</preExplosionSpawnChance>
 				<speed>12</speed>
 				<ai_IsIncendiary>true</ai_IsIncendiary>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -309,20 +286,14 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
-				<value>
-					<comps />
-				</value>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -332,8 +303,8 @@
 			<damageAmountBase>1</damageAmountBase>
 			<explosiveDamageType>Flame</explosiveDamageType>
 			<explosiveRadius>0.5</explosiveRadius>
-				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 		  </li>
 		</value>
 	</Operation>
@@ -352,7 +323,7 @@
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10</range>
-			<minRange>4</minRange>
+			<minRange>2</minRange>
 			<warmupTime>0.8</warmupTime>
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
@@ -363,6 +334,7 @@
 			<defaultProjectile>Proj_GrenadeMolotov</defaultProjectile>
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_AOE</li>
@@ -399,24 +371,19 @@
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<speed>12</speed>
+				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]/comps</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Proj_GrenadeEMP"]</xpath>
-				<value>
-					<comps />
-				</value>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Proj_GrenadeEMP"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Proj_GrenadeEMP"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<!-- Grenade -->
@@ -483,6 +450,7 @@
 			<defaultProjectile>Proj_GrenadeEMP</defaultProjectile>
 			<onlyManualCast>true</onlyManualCast>
 			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
 			<li>CE_AI_EMP</li>

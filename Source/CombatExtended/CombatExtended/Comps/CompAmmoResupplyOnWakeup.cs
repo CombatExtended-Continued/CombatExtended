@@ -24,7 +24,6 @@ namespace CombatExtended
         public bool IsActive => Controller.settings.EnableAmmoSystem && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
 
         //FieldInfo thingsField = typeof(LordJob_MechanoidDefendBase).GetField("things");
-        FieldInfo mechClusterDefeatedField = typeof(LordJob_MechanoidDefendBase).GetField("mechClusterDefeated");
         LordJob_MechanoidDefendBase parentLordJob => ((parent as Building)?.GetLord()?.LordJob as LordJob_MechanoidDefendBase);
         public bool ClusterAlive
         {
@@ -35,7 +34,7 @@ namespace CombatExtended
                 if (lordJob == null)
                     return false;
 
-                return !(bool)mechClusterDefeatedField.GetValue(lordJob);
+                return !lordJob.mechClusterDefeated;
             }
         }
 

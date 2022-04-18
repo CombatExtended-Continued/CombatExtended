@@ -11,6 +11,21 @@ namespace CombatExtended.Compatibility
 {
     public static class RaceUtil
     {
+        public static SimpleCurve SharpCurve
+        {
+            get
+            {
+                return new SimpleCurve { new CurvePoint(0.2f, 1f), new CurvePoint(2.0f, 20f) };
+            }
+        }
+
+        public static SimpleCurve BluntCurve
+        {
+            get
+            {
+                return new SimpleCurve { new CurvePoint(0.2f, 2f), new CurvePoint(2.0f, 40f) };
+            }
+        }
         public static ToolCE ConvertTool(this Tool tool)
         {
             var newTool = new ToolCE()
@@ -41,7 +56,7 @@ namespace CombatExtended.Compatibility
         public static void PatchHARs()
         {
 
-            var UnpatchedHARs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetType().ToString() == "AlienRace.ThingDef_AlienRace").Where(x => x.tools.Any(y => !(y is ToolCE) ));
+            var UnpatchedHARs = DefDatabase<ThingDef>.AllDefs.Where(x => x.GetType().ToString() == "AlienRace.ThingDef_AlienRace").Where(x => x.tools != null && x.tools.Any(y => y != null && !(y is ToolCE)));
 
             int patchCount = 0;
 
@@ -93,7 +108,7 @@ namespace CombatExtended.Compatibility
 
                 if (RatingSharp != null)
                 {
-                    RatingSharp.value *= 10f;
+                    RatingSharp.value = RaceUtil.SharpCurve.Evaluate(RatingSharp.value);
 
                     var RatingSharpBP = new StatModifier { stat = CE_StatDefOf.BodyPartSharpArmor, value = RatingSharp.value };
 
@@ -101,7 +116,7 @@ namespace CombatExtended.Compatibility
                 }
                 else
                 {
-                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 2f };
+                    RatingSharp = new StatModifier { stat = StatDefOf.ArmorRating_Sharp, value = 0.125f };
                     alienRace.statBases.Add(RatingSharp);
                 }
 
@@ -109,11 +124,11 @@ namespace CombatExtended.Compatibility
 
                 if (RatingBlunt != null)
                 {
-                    RatingBlunt.value *= 15f;
+                    RatingBlunt.value = RaceUtil.BluntCurve.Evaluate(RatingBlunt.value);
                 }
                 else
                 {
-                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 2f };
+                    RatingBlunt = new StatModifier { stat = StatDefOf.ArmorRating_Blunt, value = 1f };
 
                     alienRace.statBases.Add(RatingBlunt);
                 }

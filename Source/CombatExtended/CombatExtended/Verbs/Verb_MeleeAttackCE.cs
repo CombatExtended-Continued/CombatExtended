@@ -221,8 +221,11 @@ namespace CombatExtended
                 soundDef = SoundMiss();
                 CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false);
             }
+
             if (!moteText.NullOrEmpty())
-                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+            {
+                MoteMakerCE.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+            }
             soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
             casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
             if (defender != null && !defender.Dead)

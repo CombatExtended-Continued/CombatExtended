@@ -16,23 +16,16 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
-			<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Tiefling"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
 				<value>

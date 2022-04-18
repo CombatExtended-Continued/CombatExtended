@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[O21] Outland - Core</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "Outland_Ballista" or defName="Outland_Mangonel"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "Outland_Ballista" or defName="Outland_Mangonel"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Outland_Gun_Mangonel" or defName="Outland_Gun_BallistaTurret"]/building</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName = "Outland_Gun_Mangonel" or defName="Outland_Gun_BallistaTurret"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+			</li>
+
+			<!-- ========== Ballista - Weapon ========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Outland_Gun_BallistaTurret</defName>
+				<statBases>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>1</SwayFactor>
+					<Bulk>4.00</Bulk>
+					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Pilum_Fired</defaultProjectile>
+					<warmupTime>1.4</warmupTime>
+					<range>44</range>
+					<soundCast>Bow_Large</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>8</reloadTime>
+					<ammoSet>AmmoSet_Javelins</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSnapshot>true</noSnapshot>
+					<noSingleShot>false</noSingleShot>
+				</FireModes>
+				<weaponTags><li>TurretGun</li></weaponTags>
+			</li>
+
+			<!-- ========== Catapult - Weapon ========== -->			
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Outland_Gun_Mangonel"]/statBases</xpath>
+				<value>
+					<SightsEfficiency>0.5</SightsEfficiency>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Outland_Gun_Mangonel"]/comps</xpath>
+				<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>10</li>
+					<li>20</li>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>12</reloadTime>
+					<ammoSet>AmmoSet_Catapult</ammoSet>
+				</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "Outland_Gun_Mangonel"]/verbs</xpath>
+				<value>
+					<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
+						<warmupTime>4</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Bow_Recurve</soundCast>
+						<muzzleFlashScale>0</muzzleFlashScale>
+						<indirectFirePenalty>0.2</indirectFirePenalty>
+						<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+					</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Outland_Gun_Mangonel"]/weaponTags</xpath>
+				<value>
+					<li>TurretGun</li>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

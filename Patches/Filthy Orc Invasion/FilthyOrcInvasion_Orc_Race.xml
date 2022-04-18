@@ -6,8 +6,8 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <li Class="PatchOperationAddModExtension">
-          <success>Always</success>
           <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orc"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
@@ -15,8 +15,8 @@
             </li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
-          <success>Always</success>
           <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orc"]/tools</xpath>
           <value>
             <tools>
@@ -43,21 +43,17 @@
             </tools>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orc"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orc"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orc"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Orc"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_Orc"]/comps</xpath>
           <value>
@@ -67,6 +63,7 @@
             <li Class="CombatExtended.CompProperties_Suppressable" />
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>

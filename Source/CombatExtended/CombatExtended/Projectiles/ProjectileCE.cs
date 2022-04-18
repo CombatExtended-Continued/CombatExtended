@@ -345,8 +345,6 @@ namespace CombatExtended
         }
 
 
-        // Todo: When rimworld harmony updates to 2.0.4 use FieldRefAccess
-        private static readonly FieldInfo subGraphics = typeof(Graphic_Collection).GetField("subGraphics", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         private Material[] shadowMaterial;
         private Material ShadowMaterial
@@ -562,8 +560,6 @@ namespace CombatExtended
         #endregion
 
         #region Collisions        
-        static readonly FieldInfo interceptDebug = typeof(CompProjectileInterceptor).GetField("debugInterceptNonHostileProjectiles", BindingFlags.NonPublic | BindingFlags.Instance);
-
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -591,7 +587,7 @@ namespace CombatExtended
                 return false;
             }
 
-            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !((bool)interceptDebug.GetValue(interceptorComp)) && !interceptorComp.Props.interceptNonHostileProjectiles)
+            if ((launcher == null || !launcher.HostileTo(interceptorThing)) && !interceptorComp.debugInterceptNonHostileProjectiles && !interceptorComp.Props.interceptNonHostileProjectiles)
             {
                 return false;
             }
@@ -787,7 +783,10 @@ namespace CombatExtended
             ExactPosition = point;
             landed = true;
 
-            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                MoteMakerCE.ThrowText(cell.ToVector3Shifted(), Map, "x", Color.red);
+            }
 
             Impact(null);
             return true;
@@ -821,7 +820,10 @@ namespace CombatExtended
                 //Prevents trees near the shooter (e.g the shooter's cover) to be hit
                 var accuracyFactor = def.projectile.alwaysFreeIntercept ? 1 : (thing.Position - OriginIV3).LengthHorizontal / 40 * AccuracyFactor;
                 var chance = thing.def.fillPercent * accuracyFactor;
-                if (Controller.settings.DebugShowTreeCollisionChance) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
+                if (Controller.settings.DebugShowTreeCollisionChance)
+                {
+                    MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
+                }
                 if (!Rand.Chance(chance)) return false;
             }
 
@@ -832,7 +834,10 @@ namespace CombatExtended
             ExactPosition = point;
             landed = true;
 
-            if (Controller.settings.DebugDrawInterceptChecks) MoteMaker.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            if (Controller.settings.DebugDrawInterceptChecks)
+            {
+                MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
+            }
 
             Impact(thing);
             return true;
@@ -1165,7 +1170,7 @@ namespace CombatExtended
 
         private static Material[] GetShadowMaterial(Graphic_Collection g)
         {
-            var collection = (Graphic[])subGraphics.GetValue(g);
+            var collection = g.subGraphics;
             var shadows = collection.Select(item => item.GetColoredVersion(ShaderDatabase.Transparent, Color.black, Color.black).MatSingle).ToArray();
 
             return shadows;

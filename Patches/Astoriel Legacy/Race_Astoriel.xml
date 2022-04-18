@@ -16,21 +16,15 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Astoriel"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Astoriel"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
-        </li>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Astoriel"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Astoriel"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
 
         <li Class="PatchOperationAdd">
           <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Astoriel"]/statBases</xpath>
