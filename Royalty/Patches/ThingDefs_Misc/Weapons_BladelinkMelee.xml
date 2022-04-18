@@ -62,20 +62,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSwordBladelink"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSwordBladelink"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSwordBladelink"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSwordBladelink"]</xpath>
+		<value>
+			<weaponTags />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -123,20 +117,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_ZeusHammerBladelink"]/statBases</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_ZeusHammerBladelink"]</xpath>
-      	<value>
-        	<statBases />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_ZeusHammerBladelink"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_ZeusHammerBladelink"]</xpath>
+		<value>
+			<statBases />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
