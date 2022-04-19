@@ -10,9 +10,9 @@ using SyncMethodAttribute = global::CombatExtended.Compatibility.Multiplayer.Syn
 
 namespace CombatExtended.Compatibility.MultiplayerAPI
 {
-    public class Multiplayer : IModPart
+    public class MultiplayerCompat : IModPart
     {
-	public Multiplayer() {}
+	public MultiplayerCompat() {}
 	public Type GetSettingsType() {
 	    return null;
 	    
