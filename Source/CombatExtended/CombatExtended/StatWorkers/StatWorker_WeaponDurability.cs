@@ -20,7 +20,7 @@ namespace CombatExtended
     {
         static DurabilityPatcher()
         {
-            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon))
+            foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && !x.IsApparel))
             {
                 if (def.statBases == null)
                 {
@@ -92,10 +92,10 @@ namespace CombatExtended
                         break;
                 }
             }
-            parryWeaponArmor *= Mathf.Pow(parryThing.GetStatValue(CE_StatDefOf.Bulk), 1f / 3f) * 1.25f; //Since there's no weapon thickness stat, approximate the values by bulk. This works well enough: longswords get a thickness of 2.5mm, knives get 1.25mm
+            parryWeaponArmor *= Mathf.Pow(parryThing.GetStatValue(CE_StatDefOf.Bulk), 1f / 3f) * 2f; //Since there's no weapon thickness stat, approximate the values by bulk. This works well enough: longswords get a thickness of 4mm, knives get 2mm
             if (!parryThing.def.tools.Any(tool => tool.capacities.Any(capacityDef => DefDatabase<DamageDef>.defsList.Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName)))) //Blunt weapons get double thickness because edges are easier to damage
             {
-                parryWeaponArmor *= 1.8f;
+                parryWeaponArmor *= 2f;
             }
 
             return (float)parryWeaponArmor;
@@ -103,18 +103,20 @@ namespace CombatExtended
 
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
         {
-            if (req.Thing != null && req.Thing.TryGetComp<CompStatCacher>() != null)
+            if (req.Thing != null)
             {
                 val = req.Thing.TryGetComp<CompStatCacher>().StatDurability;
-                if (val <= this.stat.defaultBaseValue && !req.Thing.def.HasModExtension<ToughNessModExt>())
+                if (!req.Thing.def.HasModExtension<ToughNessModExt>())
                 {
                     val = BaseVal(req);
+
                     var parryThing = req.Thing;
 
-                    var defender = parryThing.TryGetComp<CompEquippable>().Holder;
+                    var compEq = parryThing.TryGetComp<CompEquippable>();
 
+                    var defender = compEq.Holder;
 
-                    if (defender != null)
+                    if (defender != null && defender?.equipment.Primary == parryThing)
                     {
                         val *= defender.GetStatValue(CE_StatDefOf.MeleeParryChance) * 4f;
                     }
@@ -126,6 +128,7 @@ namespace CombatExtended
                             part.TransformValue(req, ref val);
                         }
                     }
+
                     val = (float)Math.Round(val, 2);
 
                     req.Thing.TryGetComp<CompStatCacher>().StatDurability = val;
@@ -181,7 +184,7 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return req.HasThing;
+            return req.HasThing && req.Thing.def.IsWeapon;
         }
     }
 }
