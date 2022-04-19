@@ -226,7 +226,9 @@ def parse_csproj(csproj_path, verbose):
     return packages, libraries, removed_libraries, publicized_libraries, sources
 
 def main(argv=sys.argv):
-    
+    if '--' in argv:
+        _idx = argv.index('--')
+        argv, rest = argv[:_idx], argv[_idx+1:]
     options = parseArgs(argv)
     verbose = options.verbose
 
@@ -268,6 +270,7 @@ def main(argv=sys.argv):
 
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
+    args.extend(rest)
     if options.refout:
         args.extend([f"-refout:{options.refout}"])
     if options.debug:
