@@ -6,10 +6,11 @@ using System.Text;
 using UnityEngine;
 using Verse;
 using RimWorld;
+using CombatExtended;
 
 namespace CombatExtended.Compatibility
 {
-    public class BulletCE_ThingSpawner : CombatExtended.BulletCE
+    public class BulletCE_ThingSpawner : BulletCE
     {
         public AmmoDef_ThingSpawner Def
         {

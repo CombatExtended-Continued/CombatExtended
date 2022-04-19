@@ -21,25 +21,25 @@ namespace CombatExtended.Compatibility
                 ProjectRimFactoryCompat.Install();
             }
 
-	        if (Rimatomics.CanInstall())
+	    if (Rimatomics.CanInstall())
             {
                 Rimatomics.Install();
             }
 
-            if (Multiplayer.CanInstall())
+
+        }
+
+	public static void LoadAssemblies() {
+	    if (MiscTurrets.CanInstall())
+	    {
+		MiscTurrets.Install();
+	    }
+
+	    if (Multiplayer.CanInstall())
             {
                 Multiplayer.Install();
             }
 
-        }
-
-	public static void LoadAssemblies(ModContentPack content) {
-	    if (MiscTurrets.CanInstall())
-	    {
-		Loader.Loader.LoadCompatAssembly("MiscTurretsCompat", content);
-
-		MiscTurrets.Install();
-	    }
 
 	}
 	

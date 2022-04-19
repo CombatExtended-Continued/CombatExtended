@@ -12,37 +12,25 @@ namespace CombatExtended.Loader
 {
     public class Loader : Mod
     {
-
 	private static List<ISettingsCE> settingList = new List<ISettingsCE>();
 	private static Loader instance = null;
 	private ModContentPack content;
 
 
-	public static bool LoadCompatAssembly(string name, ModContentPack content) {
-	    return _LoadCompatAssembly(name, content);
-	}
-	
 	public static bool LoadCompatAssembly(string name) {
 	    Log.Message("Combat Extended :: Loading "+name);
-
 	    return instance._LoadCompatAssembly(name);
 	}
 
-	public bool _LoadCompatAssembly(string name) {
-	    return _LoadCompatAssembly(name, content);
-	}
-
-	public static bool _LoadCompatAssembly(string name, ModContentPack content) {
-	    Log.Error("Trying to load "+name);
+	private bool _LoadCompatAssembly(string name) {
+	    Log.Message("Combat Extended :: Trying to load "+name);
 	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
 	    if (locationInfo==null || !locationInfo.Exists) {
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
 		return false;
 
 	    }
-	    Log.Error("Found AssembliesCompat");
-
-	    FileInfo file = locationInfo.GetFiles(name+".dll").FirstOrFallback(null);
+	    FileInfo file = locationInfo.GetFiles(name + ".dll").FirstOrFallback(null);
 	    if (file == null || !file.Exists) {
 		Log.Error("No assembly for "+name);
 		return false;
@@ -54,14 +42,11 @@ namespace CombatExtended.Loader
 	private static bool _loadFile(FileInfo file, ModContentPack content) {
 	    Log.Message("Combat Extended :: Loading "+file.FullName);
 	    byte[] rawAssembly = File.ReadAllBytes(file.FullName);
-
-		    
 		    
 	    Assembly assembly;
 
 	    FileInfo pdbFile = new FileInfo(Path.Combine(file.DirectoryName, Path.GetFileNameWithoutExtension(file.FullName)) + ".pdb");
 	    if (pdbFile.Exists) {
-		
 		assembly = AppDomain.CurrentDomain.Load(rawAssembly, File.ReadAllBytes(pdbFile.FullName));
 	    }
 	    else {
@@ -70,7 +55,6 @@ namespace CombatExtended.Loader
 	    if (assembly != null) {
 		content.assemblies.loadedAssemblies.Add(assembly);
 		foreach (Type t in assembly.GetTypes().Where(x => typeof(IModPart).IsAssignableFrom(x) && !x.IsAbstract)) {
-		    
 		    IModPart imp;
 		    if (file.Name.EndsWith("CombatExtendedCore.dll")) {
 			imp = ((IModPart)t.GetConstructor(new Type[]{typeof(ModContentPack)}).Invoke(new object[]{content}));
@@ -84,9 +68,7 @@ namespace CombatExtended.Loader
 			settings = (ISettingsCE) typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingType).Invoke(instance, null);
 			settingList.Add(settings);
 		    }
-		    
 		    imp.PostLoad(content, settings);
-		    
 		    break;
 		}
 		return true;
@@ -98,28 +80,19 @@ namespace CombatExtended.Loader
         {
 	    Loader.instance = this;
 	    this.content = content;
+	    bool found = false;
 
-	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
-	    if (locationInfo==null || !locationInfo.Exists) {
-		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
-		return;
-
-	    }
-	    locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
+	    DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
 	    if (locationInfo!=null && locationInfo.Exists) {
 		FileInfo[] files = locationInfo.GetFiles();
 		foreach (FileInfo file in files) {
 		    if (file.Name.EndsWith(".dll")) {
+			if (file.Name == "CombatExtended.dll") {
+			    found = true;
+			}
 			Log.Message("Combat Extended :: Loading Core DLL: "+file.Name);
 			_loadFile(file, content);
 		    }
-		}
-	    }
-	    bool found = false;
-	    var assembliesInfo = new DirectoryInfo(content.RootDir).GetDirectories("Assemblies").FirstOrFallback(null);
-	    if (assembliesInfo!=null) {
-		if (assembliesInfo.GetFiles("CombatExtended.dll").FirstOrFallback(null) !=null) {
-		    found = true;
 		}
 	    }
 	    if (!found) {
@@ -131,7 +104,7 @@ namespace CombatExtended.Loader
 
 	public override string SettingsCategory()
         {
-            return "Combat Extended Loader";
+            return "Combat Extended";
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

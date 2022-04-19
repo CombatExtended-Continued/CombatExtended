@@ -7,20 +7,28 @@ using Verse;
 using UnityEngine;
 using CombatExtended.HarmonyCE;
 using CombatExtended.Compatibility;
+using CombatExtended.Loader;
 
 namespace CombatExtended
 {
-    public class Controller : Mod
+    public class Controller : IModPart
     {
         public static Settings settings;
         public static Controller instant;
         public static ModContentPack content;
 
-        public Controller(ModContentPack content) : base(content)
+	public Type GetSettingsType() {
+	    return typeof(Settings);
+	}
+
+	public Controller() {
+	}
+	
+	public void PostLoad(ModContentPack content, ISettingsCE settings)
         {
-            Controller.instant = this;
+	    Controller.instant = this;
             Controller.content = content;
-            Controller.settings = GetSettings<Settings>();
+            Controller.settings = (Settings) settings;
             
             // Apply Harmony patches
             HarmonyBase.InitPatches();
@@ -37,12 +45,12 @@ namespace CombatExtended
             // Initialize the DefUtility (a caching system for common checks on defs)
             LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
 
-	    Patches.LoadAssemblies(content);
+	    Patches.LoadAssemblies();
 
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup
-            if (settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
+            if (Controller.settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
 
             LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
@@ -68,30 +76,5 @@ namespace CombatExtended
             Find.WindowStack.Add(dialog);
         }
 
-        public override string SettingsCategory()
-        {
-            return "Combat Extended";
-        }
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            settings.DoWindowContents(inRect);
-        }
-
-        //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
-        private void ShowUncompiledBuildWarning()
-        {
-            var continueAnywayAction = new Action(() =>
-            {
-
-            });
-            var getDevBuildAction = new Action(() =>
-            {
-                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
-            });
-
-            var dialog = new Dialog_MessageBox("CE_UncompiledDevBuild".Translate(), "CE_ContinueAnyway".Translate(), continueAnywayAction, "CE_GetCompiledDevBuild".Translate(), getDevBuildAction, null, true);
-            Find.WindowStack.Add(dialog);
-        }
     }
 }
