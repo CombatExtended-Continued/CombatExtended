@@ -41,7 +41,7 @@
 				<FireModes>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
 					<aiAimMode>AimedShot</aiAimMode>
-					<aimedBurstShotCount>25</aimedBurstShotCount>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
 					<noSnapshot>true</noSnapshot>
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
@@ -243,7 +243,7 @@
 				<defName>Gun_SuvTurret</defName>
 				<statBases>
 					<RangedWeapon_Cooldown>2.40</RangedWeapon_Cooldown>
-					<SightsEfficiency>1</SightsEfficiency>
+					<SightsEfficiency>2.6</SightsEfficiency>
 					<ShotSpread>0.01</ShotSpread>
 					<SwayFactor>1.23</SwayFactor>
 					<Bulk>11.90</Bulk>
@@ -253,10 +253,10 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_TEConcentratedPowerCharge_KE</defaultProjectile>
-					<warmupTime>2.1</warmupTime>
+					<warmupTime>1.5</warmupTime>
 					<range>75</range>
-					<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
-					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+					<burstShotCount>3</burstShotCount>
 					<soundCast>ImpactL</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<muzzleFlashScale>18</muzzleFlashScale>
@@ -530,6 +530,18 @@
 				]/statBases</xpath>
 				<value>
 					<AimingAccuracy>1.0</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+				defName="Gun_SuvTurret" or 
+				defName="Gun_RocketTurret" or 
+				defName="Gun_WaveEmitter" or 
+				defName="Gun_ShardSentry"
+				]/statBases</xpath>
+				<value>
+				  <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
 				</value>
 			</li>
 		 	
