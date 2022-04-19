@@ -35,6 +35,11 @@ namespace CombatExtended.Compatibility
 		MiscTurrets.Install();
 	    }
 
+	    if (BetterTurrets.CanInstall())
+	    {
+		BetterTurrets.Install();
+	    }
+
 	    if (Multiplayer.CanInstall())
             {
                 Multiplayer.Install();
