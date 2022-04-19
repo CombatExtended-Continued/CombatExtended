@@ -60,7 +60,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[@Name="ApparelArmorCataphractBase"]/equippedStatOffsets</xpath>
 		<value>
-			<CarryWeight>80</CarryWeight>
+			<CarryWeight>100</CarryWeight>
 			<CarryBulk>20</CarryBulk>
 			<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 			<ToxicSensitivity>-0.50</ToxicSensitivity>
@@ -90,6 +90,27 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorCataphractBase"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>		  				  
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	</Operation>
 
     <!-- Grenadier armor -->
 
@@ -190,28 +211,6 @@
 			<ArmorRating_Blunt>55</ArmorRating_Blunt>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="ApparelArmorCataphractBase"]</xpath>
-		<value>
-		  <li Class="CombatExtended.PartialArmorExt">
-			  <stats>		  				  
-				  <li>
-					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-					<parts>
-						<li>Hand</li>
-					</parts>
-				  </li>
-				  <li>
-					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-					<parts>
-						<li>Hand</li>
-					</parts>
-				  </li>
-			  </stats>
-		  </li>
-		</value>
-	  </Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Apparel_ArmorCataphractPhoenix"]/costList</xpath>

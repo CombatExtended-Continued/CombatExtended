@@ -111,6 +111,7 @@ Beeralope Squad	|
 Better Infestations	|
 Birds Beyond: Temperate Forest  |
 Black Widows	|
+British Weapon Set	|
 Bulgarian Imperial Uniforms |
 Carbon	|
 Censored Armory  |
@@ -305,6 +306,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+Remote Detonator	|
 Revia Race |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|

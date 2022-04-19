@@ -130,7 +130,7 @@ namespace CombatExtended
 
                     req.Thing.TryGetComp<CompStatCacher>().StatDurability = val;
                 }
-                else if(req.Thing.def.HasModExtension<ToughNessModExt>())
+                else if (req.Thing.def.HasModExtension<ToughNessModExt>())
                 {
                     val = req.Thing.def.GetModExtension<ToughNessModExt>().Toughness;
 
@@ -171,10 +171,10 @@ namespace CombatExtended
                 if (req.Thing?.TryGetComp<CompEquippable>()?.Holder != null)
                 {
                     result += "\n" + "CE_HolderEffect_MeleeToughness".Translate() + ((req.Thing?.TryGetComp<CompEquippable>()?.Holder.GetStatValue(CE_StatDefOf.MeleeParryChance) ?? 1f) * 4f).ToStringPercent();
-                } 
+                }
             }
 
-            result += "\n" + "StatsReport_FinalValue".Translate() + finalVal;
+            result += "\n" + "StatsReport_FinalValue".Translate() + ": " + finalVal;
 
             return result;
         }
@@ -185,4 +185,3 @@ namespace CombatExtended
         }
     }
 }
-
