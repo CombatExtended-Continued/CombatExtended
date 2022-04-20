@@ -8,7 +8,6 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-
 		<!-- Add Bulk to items. -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName = "VFEV_Honey"]/statBases</xpath>
@@ -24,8 +23,6 @@
 			</value>
 		</li>
 
-
-
 		<!-- Give Mead Bulk and Melee tools. -->
 
 		<li Class="PatchOperationAdd">
@@ -36,35 +33,35 @@
 		</li>
 
 	        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VFEV_Mead"]/tools</xpath>
-          <value>
-            <tools>
-				<li Class="CombatExtended.ToolCE">
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>2.22</cooldownTime>
-					<chanceFactor>1.33</chanceFactor>
-					<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>neck</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>3.33</cooldownTime>
-					<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
-				</li>
-            </tools>
-          </value>
-        </li>
+			<xpath>/Defs/ThingDef[defName="VFEV_Mead"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>2.22</cooldownTime>
+						<chanceFactor>1.33</chanceFactor>
+						<armorPenetrationBlunt>0.338</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>neck</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>3.33</cooldownTime>
+						<armorPenetrationBlunt>0.150</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Neck</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</li>
 		
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="VFEV_Mead"]</xpath>
+			<xpath>/Defs/ThingDef[defName="VFEV_Mead"]</xpath>
 			<value>
 				<equippedStatOffsets>
 					<MeleeCritChance>0.1</MeleeCritChance>
@@ -122,10 +119,28 @@
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/statBases/StuffPower_Armor_Blunt</xpath>
 			<value>
-				<StuffPower_Armor_Blunt>0.085</StuffPower_Armor_Blunt>
+				<StuffPower_Armor_Blunt>0.09</StuffPower_Armor_Blunt>
 			</value>
 		</li>
 
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps/categories</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps</xpath>
+				<value>
+					<categories>
+					  <li>SoftArmor</li>
+					</categories>
+				</value>
+			</nomatch>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps/categories</xpath>
+				<value>
+					<li>SoftArmor</li>
+				</value>
+			</match>
+		</li>
+		
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases/StuffPower_Armor_Sharp</xpath>
 			<value>
@@ -136,14 +151,14 @@
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases/StuffPower_Armor_Blunt</xpath>
 			<value>
-				<StuffPower_Armor_Blunt>0.07</StuffPower_Armor_Blunt>
+				<StuffPower_Armor_Blunt>0.1</StuffPower_Armor_Blunt>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Njorun"]/statBases/StuffPower_Armor_Sharp</xpath>
 			<value>
-				<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+				<StuffPower_Armor_Sharp>0.2</StuffPower_Armor_Sharp>
 			</value>
 		</li>
 
