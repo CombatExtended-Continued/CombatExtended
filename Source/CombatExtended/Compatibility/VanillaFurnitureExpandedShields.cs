@@ -10,7 +10,7 @@ using VFESecurity;
 
 namespace CombatExtended.Compatibility
 {
-    public class VanillaFurnitureExpandedShields
+    public class VanillaFurnitureExpandedShields: IPatch
     {
         private static int lastCacheTick = 0;
         private static Map lastCacheMap = null;
@@ -22,7 +22,7 @@ namespace CombatExtended.Compatibility
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
 
         private static FastInvokeHandler CanFunctionPropertyGetter;
-        public static bool CanInstall()
+        public bool CanInstall()
         {
             if (!ModLister.HasActiveModWithName(VFES_ModName))
             {
@@ -31,7 +31,7 @@ namespace CombatExtended.Compatibility
 
             return true;
         }
-        public static void Install()
+        public void Install()
         {
             // Only do this after we're sure that Building_Shield is a thing.
             var type = typeof(Building_Shield);
@@ -41,6 +41,10 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision);
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
         }
+
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
 
         private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {

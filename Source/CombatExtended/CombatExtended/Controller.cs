@@ -7,20 +7,34 @@ using Verse;
 using UnityEngine;
 using CombatExtended.HarmonyCE;
 using CombatExtended.Compatibility;
+using CombatExtended.Loader;
 
 namespace CombatExtended
 {
-    public class Controller : Mod
+    public class Controller : IModPart
     {
         public static Settings settings;
         public static Controller instant;
         public static ModContentPack content;
+	private static Patches patches;
 
-        public Controller(ModContentPack content) : base(content)
+	public Type GetSettingsType() {
+	    return typeof(Settings);
+	}
+
+	public Controller() {
+	    patches = new Patches();
+	}
+
+	public IEnumerable<string> GetCompatList() {
+	    return patches.GetCompatList();
+	}
+	
+	public void PostLoad(ModContentPack content, ISettingsCE settings)
         {
-            Controller.instant = this;
+	    Controller.instant = this;
             Controller.content = content;
-            Controller.settings = GetSettings<Settings>();
+            Controller.settings = (Settings) settings;
             
             // Apply Harmony patches
             HarmonyBase.InitPatches();
@@ -40,13 +54,11 @@ namespace CombatExtended
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup
-            if (settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
+            if (Controller.settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
 
-            LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
+            LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
-            //This is uncommented in the repository's assembly, so players that download the repo without compiling it are warned about potential issues.
-            //LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
         }
 
         private static void DoTutorialPopup()
@@ -68,30 +80,5 @@ namespace CombatExtended
             Find.WindowStack.Add(dialog);
         }
 
-        public override string SettingsCategory()
-        {
-            return "Combat Extended";
-        }
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            settings.DoWindowContents(inRect);
-        }
-
-        //Unused method is only here for reference, the repository assembly uses it to warn users to get a compiled build.
-        private void ShowUncompiledBuildWarning()
-        {
-            var continueAnywayAction = new Action(() =>
-            {
-
-            });
-            var getDevBuildAction = new Action(() =>
-            {
-                Application.OpenURL("https://github.com/CombatExtended-Continued/CombatExtended#development-version");
-            });
-
-            var dialog = new Dialog_MessageBox("CE_UncompiledDevBuild".Translate(), "CE_ContinueAnyway".Translate(), continueAnywayAction, "CE_GetCompiledDevBuild".Translate(), getDevBuildAction, null, true);
-            Find.WindowStack.Add(dialog);
-        }
     }
 }
