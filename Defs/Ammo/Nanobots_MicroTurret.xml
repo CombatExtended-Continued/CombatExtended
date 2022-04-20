@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingCategoryDef>
+    <ThingCategoryDef  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
       <defName>AmmoNanobotsMicroTurret</defName>
       <label>Nanobots (MicroTurret)</label>
       <parent>AmmoAdvanced</parent>
@@ -10,7 +10,7 @@
 	
 	<!-- ==================== AmmoSet ========================== -->
 
-  <CombatExtended.AmmoSetDef>
+  <CombatExtended.AmmoSetDef  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <defName>AmmoSet_NanobotsMicroTurret</defName>
     <label>Nanobots (MicroTurret)</label>
     <ammoTypes>
@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="NanobotsMicroTurretBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="NanobotsMicroTurretBase" ParentName="SpacerSmallAmmoBase" Abstract="True"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects"> 
     <description>Nanobot ammo used by highly-advanced designs.</description>
     <statBases>
 	  <Mass>0.025</Mass>
@@ -35,7 +35,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="NanobotsMicroTurretBase">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="NanobotsMicroTurretBase"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <defName>Ammo_NanobotsMicroTurret</defName>
     <label>Nanobots (MT) cartridge</label>
     <graphicData>
@@ -50,7 +50,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseNanobotsMicroTurretBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseNanobotsMicroTurretBullet" ParentName="BaseBullet" Abstract="true"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <graphicData>
       <texPath>Things/Projectile/Charge_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -61,7 +61,7 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef Class="CombatExtended.Compatibility.AmmoDef_ThingSpawner" ParentName="BaseNanobotsMicroTurretBullet">
+  <ThingDef Class="CombatExtended.Compatibility.AmmoDef_ThingSpawner" ParentName="BaseNanobotsMicroTurretBullet"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <defName>Bullet_NanobotsMicroTurret</defName>
     <label>Nanobots (MT) bullet</label>
 	<thingClass>CombatExtended.Compatibility.BulletCE_ThingSpawner</thingClass>
@@ -73,7 +73,7 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseNanobotsMicroTurretBullet">
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseNanobotsMicroTurretBullet"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <defName>Bullet_MicroTurret</defName>
     <label>Micro turret bullet</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -91,7 +91,7 @@
   
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="ChargeAmmoRecipeBase">
+  <RecipeDef ParentName="ChargeAmmoRecipeBase"  MayRequire="Haplo.Miscellaneous.TurretBaseAndObjects">
     <defName>MakeAmmo_NanobotsMicroTurret</defName>
     <label>make Nanobots (MT) cartridge x50</label>
     <description>Craft 50 Nanobots (MT) cartridges.</description>
