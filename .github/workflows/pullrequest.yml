@@ -24,16 +24,28 @@ jobs:
         git status
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
         mkdir -p Assemblies
+        mkdir -p AssembliesCore
+        mkdir -p AssembliesCompat
         mkdir -p ${{ runner.temp }}/downloads
         rm -rf AssemblyPublicizer
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-    - name: build
+        
+    - name: build loader
       run: |
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --download-libs --all-libs
+        
+    - name: build core
+      run: |
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+
+    - name: build compat
+      run: |
+        TEMP=${{ runner.temp }}/ for f in {MultiplayerCompat,MiscTurretsCompat,BetterTurretsCompat}; do python Make.py --csproj Source/$f/$f.csproj --output AssembliesCompat/$f.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer -- -r:Assemblies/CombatExtended.dll; done
+        
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |
