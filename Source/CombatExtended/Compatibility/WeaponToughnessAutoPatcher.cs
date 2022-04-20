@@ -50,10 +50,6 @@ namespace CombatExtended.Compatibility
                         var largestIngredientCount = DefDatabase<RecipeDef>.AllDefs.ToList().Find(recipeDef => (bool)recipeDef.products?.Any(product => product.thingDef.defName == def.defName))?.ingredients?.MaxBy(ingredientCount => ingredientCount.count);
                         float largestIngredientSharpArmor = largestIngredientCount?.filter?.thingDefs?.MaxBy(thingDef => thingDef.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value)?.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value ?? 1f;
 
-                        //Compensating for plasteel
-                        if (def.techLevel > TechLevel.Industrial)
-                            largestIngredientSharpArmor = Math.Max(1f, largestIngredientSharpArmor / 2f);
-
                         def.statBases.Add(new StatModifier { stat = CE_StatDefOf.ToughnessRating, value = weaponThickness * largestIngredientSharpArmor });
                     }
                 }
