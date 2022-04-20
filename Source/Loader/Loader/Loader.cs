@@ -141,7 +141,7 @@ namespace CombatExtended.Loader
 
 	public override string SettingsCategory()
         {
-            return "Combat Extended Loader";
+            return "Combat Extended";
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
