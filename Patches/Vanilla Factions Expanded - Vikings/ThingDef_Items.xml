@@ -126,6 +126,24 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps</xpath>
+			<value>
+				<categories>
+				  <li>SoftArmor</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEV_Leather_Fenrir"]/stuffProps/categories</xpath>
+			<value>
+				<li>SoftArmor</li>
+			</value>
+		</match>
+		</li>
+		
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFEV_Leather_Lothurr"]/statBases/StuffPower_Armor_Sharp</xpath>
 			<value>
