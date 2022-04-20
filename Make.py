@@ -226,6 +226,7 @@ def parse_csproj(csproj_path, verbose):
     return packages, libraries, removed_libraries, publicized_libraries, sources
 
 def main(argv=sys.argv):
+    rest = []
     if '--' in argv:
         _idx = argv.index('--')
         argv, rest = argv[:_idx], argv[_idx+1:]
