@@ -16,12 +16,18 @@ namespace CombatExtended
         public static Settings settings;
         public static Controller instant;
         public static ModContentPack content;
+	private static Patches patches;
 
 	public Type GetSettingsType() {
 	    return typeof(Settings);
 	}
 
 	public Controller() {
+	    patches = new Patches();
+	}
+
+	public IEnumerable<string> GetCompatList() {
+	    return patches.GetCompatList();
 	}
 	
 	public void PostLoad(ModContentPack content, ISettingsCE settings)
@@ -45,15 +51,13 @@ namespace CombatExtended
             // Initialize the DefUtility (a caching system for common checks on defs)
             LongEventHandler.QueueLongEvent(DefUtility.Initialize, "CE_LongEvent_BoundingBoxes", false, null);
 
-	    Patches.LoadAssemblies();
-
             Log.Message("Combat Extended :: initialized");
 
             // Tutorial popup
             if (Controller.settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
 
-            LongEventHandler.QueueLongEvent(Patches.Init, "CE_LongEvent_CompatibilityPatches", false, null);
+            LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
         }
 
