@@ -5,19 +5,23 @@ using System.Reflection;
 using Verse;
 using CombatExtended.Loader;
 using RimWorld;
+using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class MiscTurrets
+    public class MiscTurrets: IPatch
     {
-	public static bool CanInstall() {
+	public bool CanInstall() {
 	    Log.Message("Combat Extended :: Checking Misc Turrets");
 	    return ModLister.HasActiveModWithName("Misc. TurretBase, Objects");
 	}
 
-	public static void Install() {
+	public void Install() {
 	    Log.Message("Combat Extended :: Installing Misc Turrets");
-	    Loader.Loader.LoadCompatAssembly("MiscTurretsCompat");
+	}
+
+	public IEnumerable<string> GetCompatList() {
+	    yield return "MiscTurretsCompat";
 	}
 
 

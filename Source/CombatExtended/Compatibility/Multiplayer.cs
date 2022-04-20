@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Verse;
+using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
@@ -10,17 +11,20 @@ namespace CombatExtended.Compatibility
     {
         private static bool isMultiplayerActive = false;
 
-        public static bool CanInstall()
+        public bool CanInstall()
         {
 	    Log.Message("Checking Multiplayer Compat");
             return ModLister.HasActiveModWithName("Multiplayer");
         }
 
-        public static void Install()
+        public void Install()
         {
 	    Log.Message("CombatExtended :: Installing Multiplayer Compat");
 	    isMultiplayerActive = true;
-	    Loader.Loader.LoadCompatAssembly("MultiplayerCompat");
+	}
+
+	public IEnumerable<string> GetCompatList() {
+	    yield return "MultiplayerCompat";
 	}
 
         public static bool InMultiplayer

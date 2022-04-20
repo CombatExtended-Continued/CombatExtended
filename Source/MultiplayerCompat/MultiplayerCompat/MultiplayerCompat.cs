@@ -5,6 +5,7 @@ using System.Reflection;
 using Multiplayer.API;
 using Verse;
 using CombatExtended.Loader;
+using System.Collections.Generic;
 
 using SyncMethodAttribute = global::CombatExtended.Compatibility.Multiplayer.SyncMethodAttribute;
 
@@ -17,6 +18,11 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
 	    return null;
 	    
 	}
+
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
+	
 	public void PostLoad(ModContentPack content, ISettingsCE _) {
 	    LongEventHandler.QueueLongEvent(()=>this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
 	}

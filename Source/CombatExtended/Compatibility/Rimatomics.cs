@@ -13,7 +13,7 @@ using Rimatomics;
 
 namespace CombatExtended.Compatibility
 {
-    class Rimatomics
+    class Rimatomics: IPatch
     {
         public static SoundDef HitSoundDef = null;
 
@@ -23,15 +23,20 @@ namespace CombatExtended.Compatibility
         public static int lastCacheTick = 0;
         public static Map lastCacheMap = null;
 
-        public static bool CanInstall()
+        public bool CanInstall()
         {
 	    return ModLister.HasActiveModWithName("Dubs Rimatomics");
         }
-        public static void Install()
+        public void Install()
         {
 	    BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
+
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
+	
         public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             Map map = projectile.Map;

@@ -5,19 +5,22 @@ using System.Reflection;
 using Verse;
 using CombatExtended.Loader;
 using RimWorld;
+using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class BetterTurrets
+    public class BetterTurrets: IPatch
     {
-	public static bool CanInstall() {
+	public bool CanInstall() {
 	    Log.Message("Combat Extended :: Checking Better Turrets");
 	    return ModLister.HasActiveModWithName("Misc Turret Base Rearmed");
 	}
 
-	public static void Install() {
+	public void Install() {
 	    Log.Message("Combat Extended :: Installing Better Turrets");
-	    Loader.Loader.LoadCompatAssembly("BetterTurretsCompat");
+	}
+	public IEnumerable<string> GetCompatList() {
+	    yield return "BetterTurretsCompat";
 	}
 
 

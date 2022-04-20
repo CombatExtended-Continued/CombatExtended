@@ -5,11 +5,15 @@ using System.Reflection;
 using Verse;
 using CombatExtended.Loader;
 using RimWorld;
+using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility {
-    public class MiscTurretsCompat: IModPart {
+    public class BetterTurretsCompat: IModPart {
 	public Type GetSettingsType() {
 	    return null;
+	}
+	public IEnumerable<string> GetCompatList() {
+	    yield return "BetterTurretsCompat";
 	}
 	public void PostLoad(ModContentPack content, ISettingsCE _) {
 	    TurretRegistry.RegisterReloadableTurret(
