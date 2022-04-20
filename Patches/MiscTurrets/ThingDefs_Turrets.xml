@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Misc. TurretBase, Objects</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<!-- Replace thingClass -->
+		<li Class="PatchOperationReplace">
+			  <xpath>/Defs/ThingDef[
+			  @Name = "BuildingTurretBase_BuildAutoTurret" or
+			  @Name = "BuildingTurretBase_AutoTurret" or
+			  defName = "TurretWeaponBaseMannable"
+			  ]/thingClass</xpath>
+			  <value>
+				<thingClass>CombatExtended.Compatibility.MiscTurrets_CE_TurretWeaponBase</thingClass>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			  <xpath>/Defs/ThingDef[
+			  defName = "TurretWeaponBaseMannable" or
+			  defName = "TurretWeaponBaseAutomatic" or
+			  defName = "TurretWeaponBaseAutomatic_Buildable"
+			  ]/fillPercent</xpath>
+			  <value>
+				<fillPercent>0.85</fillPercent>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			  <xpath>/Defs/ThingDef[
+			  defName = "TurretWeaponBaseMannable" or
+			  defName = "TurretWeaponBaseAutomatic" or
+			  defName = "TurretWeaponBaseAutomaticPlasteel" or
+			  defName = "TurretWeaponBaseAutomatic_Buildable"
+			  ]/statBases/ShootingAccuracyTurret</xpath>
+			  <value>
+				<ShootingAccuracyTurret>0.75</ShootingAccuracyTurret>
+			  </value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			  <xpath>/Defs/ThingDef[
+			  defName = "TurretWeaponBaseAutomaticHighTechTargeting" or
+			  defName = "TurretWeaponBaseAutomaticHighTechTargeting_Buildable"
+			  ]/statBases/ShootingAccuracyTurret</xpath>
+			  <value>
+				<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+			  </value>
+		</li>
+
+		<!-- Micro Turret -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="MicroTurretMKI"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.5</fillPercent>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="MicroTurretMKI"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="MicroTurretMKI"]/statBases</xpath>
+			<value>
+				<AimingAccuracy>0.25</AimingAccuracy>
+				<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+			</value>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  <defName>Gun_MicroTurretMKI</defName>
+		  <statBases>
+			<SightsEfficiency>1.0</SightsEfficiency>
+			<ShotSpread>0.1</ShotSpread>
+			<SwayFactor>0.7</SwayFactor>
+			<Bulk>5.0</Bulk>
+			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		  </statBases>
+		  <Properties>
+			<recoilAmount>0.67</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>2</muzzleFlashScale>
+		  </Properties>
+		  <FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+		  </FireModes>
+		</li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>
