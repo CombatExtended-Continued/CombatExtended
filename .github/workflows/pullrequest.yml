@@ -18,12 +18,12 @@ jobs:
         fetch-depth: 0
     - name: Prebuild
       run: |
-        python3 --version
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git pull --no-ff --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
+        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
         mkdir -p Assemblies
         mkdir -p AssembliesCore
         mkdir -p AssembliesCompat
@@ -41,7 +41,7 @@ jobs:
 
     - name: build compat
       run: |
-        TEMP=${{ runner.temp }}/ for f in {MultiplayerCompat,MiscTurretsCompat,BetterTurretsCompat}; do python Make.py --csproj Source/$f/$f.csproj --output AssembliesCompat/$f.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer -- -r:Assemblies/CombatExtended.dll; done
+        TEMP=${{ runner.temp }}/ python BuildCompat.py
         
     - name: package
       run: |
