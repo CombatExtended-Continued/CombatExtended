@@ -5,9 +5,9 @@ from subprocess import Popen
 import re
 
 PROJECT_PATTERN = re.compile(r'''Project.".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}.". = '''
-                             '''"([0-9a-zA-Z]+Compat)", '''
-                             '''"([0-9A-zA-Z\/]+.csproj)", '''
-                             '''".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}."''')
+                             r'''"([0-9a-zA-Z]+Compat)", '''
+                             r'''"([0-9A-zA-Z\/]+.csproj)", '''
+                             r'''".[0-9A-Za-z]{8}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{4}-[0-9A-Za-z]{12}."''')
 
 
 def system(*cmd):
