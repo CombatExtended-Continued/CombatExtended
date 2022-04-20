@@ -98,7 +98,9 @@ namespace CombatExtended.Loader
 	    List<IModPart> modParts = new List<IModPart>();
 	    HashSet<string> compatParts = new HashSet<string>();
 
-	    void processModParts(Assembly assembly) {
+	    while (toProcess.Any()) {
+		Assembly assembly = toProcess.Dequeue();
+
 		foreach (Type t in assembly.GetTypes().Where(x => typeof(IModPart).IsAssignableFrom(x) && !x.IsAbstract)) {
 		    IModPart imp = ((IModPart)t.GetConstructor(new Type[]{}).Invoke(new object[]{}));
 		    modParts.Add(imp);
@@ -111,11 +113,6 @@ namespace CombatExtended.Loader
 		    }
 		}
 		
-	    }
-
-	    while (toProcess.Any()) {
-		Assembly assembly = toProcess.Dequeue();
-		processModParts(assembly);
 	    }
 	    
 
