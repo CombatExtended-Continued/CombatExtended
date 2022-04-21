@@ -12,24 +12,34 @@
 	<toStringStyle>FloatTwo</toStringStyle>
   </StatDef>
 
+  <!-- Used for stuffable weapons. Multiplies the material's sharp armour by this stat's value. -->
   <StatDef>
-    <defName>Durability</defName>
-    <label>Toughness</label>
-    <description>Toughness of the weapon. Higher values reduce the amount of damage the weapon takes on parry.</description>
+    <defName>StuffEffectMultiplierToughness</defName>
+    <label>Toughness - Material effect multiplier</label>
     <category>Weapon</category>
-    <workerClass>CombatExtended.StatWorker_WeaponDurability</workerClass>
-    <displayPriorityInCategory>6</displayPriorityInCategory>
     <defaultBaseValue>0</defaultBaseValue>
-    <toStringStyle>FloatTwo</toStringStyle>
+    <minValue>0</minValue>
+    <alwaysHide>true</alwaysHide>
+    <displayPriorityInCategory>1</displayPriorityInCategory>
+  </StatDef>
+
+  <!-- Base value for toughness. Acts as a base for further final value modifiers. Final value is (ToughnessRating + StuffEffectMultiplierToughness * StuffPower_Armor_Sharp) * Modifiers. -->
+  <StatDef ParentName="ArmorRatingBase">
+    <defName>ToughnessRating</defName>
+    <label>Toughness</label>
+    <labelForFullStatList>Toughness (weapon stat)</labelForFullStatList>
+    <description>Toughness of the weapon. Higher values reduce the amount of damage the weapon takes on parry. Acts like sharp armor for the weapon.\nAgainst blunt attacks this value is multiplied by 1.5.</description>
+	<category>Weapon</category>
+    <displayPriorityInCategory>6</displayPriorityInCategory>
+	<toStringStyle>FloatMaxTwo</toStringStyle>
+	<showOnDefaultValue>true</showOnDefaultValue>
+    <workerClass>CombatExtended.StatWorker_WeaponToughness</workerClass>
+    <formatString>{0} mm RHA</formatString>
     <parts>
-      <li Class="StatPart_Quality">
-        <factorAwful>0.5</factorAwful>
-        <factorPoor>0.75</factorPoor>
-        <factorNormal>1</factorNormal>
-        <factorGood>1.15</factorGood>
-        <factorExcellent>1.3</factorExcellent>
-        <factorMasterwork>1.5</factorMasterwork>
-        <factorLegendary>1.75</factorLegendary>
+      <li Class="StatPart_Stuff">
+        <priority>100</priority>
+        <stuffPowerStat>StuffPower_Armor_Sharp</stuffPowerStat>
+        <multiplierStat>StuffEffectMultiplierToughness</multiplierStat>
       </li>
     </parts>
   </StatDef>

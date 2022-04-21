@@ -445,9 +445,12 @@ namespace CombatExtended
         private static BodyPartRecord GetOuterMostParent(BodyPartRecord part)
         {
             var curPart = part;
-            while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+            if (curPart != null)
             {
-                curPart = curPart.parent;
+                while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+                {
+                    curPart = curPart.parent;
+                }
             }
             return curPart;
         }
@@ -485,17 +488,29 @@ namespace CombatExtended
             else
             {
                 float parryThingArmor;
-                var dmgAmount = dinfo.Amount * Rand.Range(0.1f, 0.3f);
+                var dmgAmount = dinfo.Amount * Rand.Range(0.2f, 0.3f);
+                // For apparel
                 if (parryThing.def.IsApparel)
                     parryThingArmor = parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
-                else // Special case for weapons
+                // Special case for weapons
+                else
                 {
-                    parryThingArmor = parryThing.GetStatValue(DefOfDurability.Durability);
-                    if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp) // Compensation for blunt damage against weapons
+                    parryThingArmor = parryThing.GetStatValue(CE_StatDefOf.ToughnessRating);
+                    // Compensation for blunt damage against weapons
+                    if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
                         parryThingArmor *= 1.5f;
                 }
+
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
-                TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing);
+                if (TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing))
+                {
+                    // Partially penetrating sharp attacks.
+                    if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                        ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, true), parryThing);
+                }
+                // Deflected attacks
+                else
+                    ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount), parryThing);
             }
         }
 
