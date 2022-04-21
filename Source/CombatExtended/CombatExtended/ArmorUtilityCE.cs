@@ -289,7 +289,7 @@ namespace CombatExtended
         private static bool TryDamageArmor(DamageDef def, float penAmount, float armorAmount, ref float armorDamage, Thing armor)
         {
             // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this can be an extremely small chance)
-            if ((Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)) && (armorDamage < 1f))
+            if ((armorDamage < 1f) && (Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)))
             {
                 armorDamage = 1f;
             }
