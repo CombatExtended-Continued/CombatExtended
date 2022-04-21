@@ -42,6 +42,7 @@ namespace CombatExtended
                 {
 
                     defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("Textures/UI/Buttons/Reload"),
                     action = delegate
                     {
                         mainGunLoadedAmmo = compAmmo.CurrentAmmo;
@@ -66,6 +67,7 @@ namespace CombatExtended
                 {
 
                     defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("Textures/UI/Buttons/Reload"),
                     action = delegate
                     {
                         UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
