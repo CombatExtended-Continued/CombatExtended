@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Misc. TurretBase, Objects</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+		<li Class="PatchOperationReplace">
+		  <xpath>/Defs/ThingDef[defName="Gun_MicroTurretLauncher"]/tools</xpath>
+		  <value>
+			<tools>
+			  <li Class="CombatExtended.ToolCE">
+			<label>barrel</label>
+			<capacities>
+			  <li>Blunt</li>
+			</capacities>
+			<power>11.2</power>
+			<cooldownTime>2.6</cooldownTime>
+			<armorPenetration>0.032</armorPenetration>
+			<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			  </li>
+			</tools>
+		  </value>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		  <defName>Gun_MicroTurretLauncher</defName>
+		  <statBases>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<ShotSpread>0.02</ShotSpread>
+			<SwayFactor>1.35</SwayFactor>
+			<Bulk>12.5</Bulk>
+			<Mass>8</Mass>
+			<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
+		  </statBases>
+		  <Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_NanobotsMicroTurret</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>25</range>
+			<burstShotCount>1</burstShotCount>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>2</muzzleFlashScale>
+			<targetParams>
+			  <canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		  </Properties>
+		  <AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_NanobotsMicroTurret</ammoSet>
+		  </AmmoUser>
+		  <FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+		  </FireModes>
+		  <weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>CE_AI_BROOM</li>
+		  </weaponTags>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Gun_MicroTurretLauncher"]/thingSetMakerTags</xpath>
+			<value>
+				<thingSetMakerTags>
+					<li>RewardStandardQualitySuper</li>
+				</thingSetMakerTags>
+			</value>
+		</li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>
