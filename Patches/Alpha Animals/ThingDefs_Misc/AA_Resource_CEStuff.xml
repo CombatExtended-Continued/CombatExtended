@@ -43,21 +43,21 @@
 					<nomatch Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="GU_RedWood"]</xpath>
 						<value>
-				<equippedStatOffsets>
-					<MeleeCritChance>0.2</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-					<MeleeDodgeChance>0.13</MeleeDodgeChance>
-				</equippedStatOffsets>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.2</MeleeCritChance>
+								<MeleeParryChance>1</MeleeParryChance>
+								<MeleeDodgeChance>0.13</MeleeDodgeChance>
+							</equippedStatOffsets>
 						</value>
 					</nomatch>
 					<match Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="GU_RedWood"]/equippedStatOffsets</xpath>
 						<value>
-				<equippedStatOffsets>
-					<MeleeCritChance>0.2</MeleeCritChance>
-					<MeleeParryChance>1</MeleeParryChance>
-					<MeleeDodgeChance>0.13</MeleeDodgeChance>
-				</equippedStatOffsets>
+							<equippedStatOffsets>
+								<MeleeCritChance>0.2</MeleeCritChance>
+								<MeleeParryChance>1</MeleeParryChance>
+								<MeleeDodgeChance>0.13</MeleeDodgeChance>
+							</equippedStatOffsets>
 						</value>
 					</match>
 				</li>
@@ -68,39 +68,39 @@
 					<nomatch Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
 						<value>
-		<statBases>
-			<Bulk>0.07</Bulk>
-			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
-			<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
-			<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
-			<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
-			<MarketValue>1.2</MarketValue>
-			<MaxHitPoints>150</MaxHitPoints>
-			<Mass>0.4</Mass>
-			<Flammability>0.6</Flammability>
-			<DeteriorationRate>1</DeteriorationRate>
-			<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
-			<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
-		</statBases>
+							<statBases>
+								<Bulk>0.07</Bulk>
+								<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+								<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+								<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+								<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+								<MarketValue>1.2</MarketValue>
+								<MaxHitPoints>150</MaxHitPoints>
+								<Mass>0.4</Mass>
+								<Flammability>0.6</Flammability>
+								<DeteriorationRate>1</DeteriorationRate>
+								<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+								<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+							</statBases>
 						</value>
 					</nomatch>
 					<match Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="GU_RedWood"]/statBases</xpath>
 						<value>
-		<statBases>
-			<Bulk>0.07</Bulk>
-			<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
-			<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
-			<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
-			<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
-			<MarketValue>1.2</MarketValue>
-			<MaxHitPoints>150</MaxHitPoints>
-			<Mass>0.4</Mass>
-			<Flammability>0.6</Flammability>
-			<DeteriorationRate>1</DeteriorationRate>
-			<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
-			<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
-		</statBases>
+							<statBases>
+								<Bulk>0.07</Bulk>
+								<MeleeCounterParryBonus>1.33</MeleeCounterParryBonus>
+								<StuffPower_Armor_Sharp>0.1</StuffPower_Armor_Sharp>
+								<StuffPower_Armor_Blunt>0.2</StuffPower_Armor_Blunt>
+								<StuffPower_Armor_Heat>0.025</StuffPower_Armor_Heat>
+								<MarketValue>1.2</MarketValue>
+								<MaxHitPoints>150</MaxHitPoints>
+								<Mass>0.4</Mass>
+								<Flammability>0.6</Flammability>
+								<DeteriorationRate>1</DeteriorationRate>
+								<SharpDamageMultiplier>0.7</SharpDamageMultiplier>
+								<BluntDamageMultiplier>0.5</BluntDamageMultiplier>
+							</statBases>
 						</value>
 					</match>
 				</li>
@@ -122,6 +122,14 @@
 					</match>
 				</li>
 
+				<li Class="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="GU_RedWood"]</xpath>
+					<value>
+						<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
+							<toughnessMultiplier>5</toughnessMultiplier>
+						</li>
+					</value>
+				</li>
 
 		</operations>
 		</match>
