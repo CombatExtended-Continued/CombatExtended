@@ -49,13 +49,19 @@ namespace CombatExtended.Compatibility
                         // C# magic
                         var largestIngredientCount = DefDatabase<RecipeDef>.AllDefs.ToList().Find(recipeDef => (bool)recipeDef.products?.Any(product => product.thingDef.defName == def.defName))?.ingredients?.MaxBy(ingredientCount => ingredientCount.count);
                         var largestIngredient = largestIngredientCount?.filter?.thingDefs?.MaxBy(thingDef => thingDef.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value);
-                        float largestIngredientSharpArmor = largestIngredient?.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value * (largestIngredient?.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f) ?? 1f;
+                        float? largestIngredientSharpArmor = largestIngredient?.statBases?.Find(statMod => statMod.stat.defName == StatDefOf.ArmorRating_Sharp.GetStatPart<StatPart_Stuff>().stuffPowerStat.defName)?.value * (largestIngredient?.GetModExtension<StuffToughnessMultiplierExtensionCE>()?.toughnessMultiplier ?? 1f);
 
-                        // Anything above spacer tech is assumed to be made out of plasteel at least
-                        if (def.techLevel > TechLevel.Industrial)
-                            largestIngredientSharpArmor = Mathf.Max(largestIngredientSharpArmor, 2f);
+                        // For weapons that do not have a recipe
+                        if (largestIngredientSharpArmor == null)
+                        {
+                            // Anything above spacer tech is assumed to be made out of plasteel at least
+                            if (def.techLevel > TechLevel.Industrial)
+                                largestIngredientSharpArmor = 2f;
+                            else
+                                largestIngredientSharpArmor = 1f;
+                        }
 
-                        def.statBases.Add(new StatModifier { stat = CE_StatDefOf.ToughnessRating, value = weaponThickness * largestIngredientSharpArmor });
+                        def.statBases.Add(new StatModifier { stat = CE_StatDefOf.ToughnessRating, value = weaponThickness * (float)largestIngredientSharpArmor });
                     }
                 }
             }
