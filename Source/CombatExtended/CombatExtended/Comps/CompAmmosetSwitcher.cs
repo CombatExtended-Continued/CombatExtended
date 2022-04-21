@@ -47,7 +47,7 @@ namespace CombatExtended
                     "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                     + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
                     + "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
-                    + "\n " + "CE_MagazineSize".Translat() + ": " + Props.propsUnderBarrel.magazineSize
+                    + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
                     ,
                     action = delegate
                     {
