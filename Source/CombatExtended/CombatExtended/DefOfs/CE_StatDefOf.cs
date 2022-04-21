@@ -14,6 +14,10 @@ namespace CombatExtended
         public static readonly StatDef Bulk = StatDef.Named("Bulk"); // for items in inventory
         public static readonly StatDef WornBulk = StatDef.Named("WornBulk"); // worn apparel        
 
+        // *** Weapon stats ***
+        public static StatDef StuffEffectMultiplierToughness;
+        public static StatDef ToughnessRating;
+
         // *** Ranged weapon stats ***
         public static readonly StatDef ShotSpread = StatDef.Named("ShotSpread"); // pawn capacity
         public static readonly StatDef SwayFactor = StatDef.Named("SwayFactor"); // pawn capacity

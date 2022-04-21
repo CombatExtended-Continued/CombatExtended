@@ -12,6 +12,38 @@
 	<toStringStyle>FloatTwo</toStringStyle>
   </StatDef>
 
+  <!-- Used for stuffable weapons. Multiplies the material's sharp armour by this stat's value. -->
+  <StatDef>
+    <defName>StuffEffectMultiplierToughness</defName>
+    <label>Toughness - Material effect multiplier</label>
+    <category>Weapon</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <alwaysHide>true</alwaysHide>
+    <displayPriorityInCategory>1</displayPriorityInCategory>
+  </StatDef>
+
+  <!-- Base value for toughness. Acts as a base for further final value modifiers. Final value is (ToughnessRating + StuffEffectMultiplierToughness * StuffPower_Armor_Sharp) * Modifiers. -->
+  <StatDef ParentName="ArmorRatingBase">
+    <defName>ToughnessRating</defName>
+    <label>Toughness</label>
+    <labelForFullStatList>Toughness (weapon stat)</labelForFullStatList>
+    <description>Toughness of the weapon. Higher values reduce the amount of damage the weapon takes on parry. Acts like sharp armor for the weapon.\nAgainst blunt attacks this value is multiplied by 1.5.</description>
+	<category>Weapon</category>
+    <displayPriorityInCategory>6</displayPriorityInCategory>
+	<toStringStyle>FloatMaxTwo</toStringStyle>
+	<showOnDefaultValue>true</showOnDefaultValue>
+    <workerClass>CombatExtended.StatWorker_WeaponToughness</workerClass>
+    <formatString>{0} mm RHA</formatString>
+    <parts>
+      <li Class="StatPart_Stuff">
+        <priority>100</priority>
+        <stuffPowerStat>StuffPower_Armor_Sharp</stuffPowerStat>
+        <multiplierStat>StuffEffectMultiplierToughness</multiplierStat>
+      </li>
+    </parts>
+  </StatDef>
+
   <StatDef>
     <defName>MeleePenetrationFactor</defName>
 	<workerClass>CombatExtended.StatWorker_MeleeStats</workerClass>
