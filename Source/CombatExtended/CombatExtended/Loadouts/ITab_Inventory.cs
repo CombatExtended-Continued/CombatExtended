@@ -29,6 +29,7 @@ namespace CombatExtended
 	private Dictionary<BodyPartRecord, float> bluntArmorCache = new Dictionary<BodyPartRecord, float>();
 	private Dictionary<BodyPartRecord, float> heatArmorCache = new Dictionary<BodyPartRecord, float>();
 	private int lastArmorTooltipTick = 0;
+	private Pawn lastArmorTooltipPawn = null;
 
         private float _scrollViewHeight;
 
@@ -145,16 +146,18 @@ namespace CombatExtended
             TryDrawComfyTemperatureRange(ref num, viewRect.width);
             if (ShouldShowOverallArmorCE(SelPawnForGear))
             {
+                Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
 		int thisTick = Find.TickManager.TicksAbs;
-		if (thisTick != lastArmorTooltipTick) {
-		    lastArmorTooltipTick = thisTick;
+		if (SelPawnForGear != lastArmorTooltipPawn || lastArmorTooltipTick != thisTick) {
 		    RebuildArmorCache(sharpArmorCache, StatDefOf.ArmorRating_Sharp);
 		    RebuildArmorCache(bluntArmorCache, StatDefOf.ArmorRating_Blunt);
 		    RebuildArmorCache(heatArmorCache, StatDefOf.ArmorRating_Heat);
+		    lastArmorTooltipPawn = SelPawnForGear;
+		    lastArmorTooltipTick = thisTick;
 		}
-                Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
-                TryDrawOverallArmor(sharpArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
-                TryDrawOverallArmor(bluntArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
+		
+                TryDrawOverallArmor(bluntArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
+                TryDrawOverallArmor(sharpArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
                 TryDrawOverallArmor(heatArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "%");
             }
             if (ShouldShowEquipment(SelPawnForGear))
