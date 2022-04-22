@@ -488,7 +488,7 @@ namespace CombatExtended
             else
             {
                 float parryThingArmor;
-                var dmgAmount = dinfo.Amount * Rand.Range(0.2f, 0.3f);
+                var dmgAmount = dinfo.Amount * 0.5f;
                 // For apparel
                 if (parryThing.def.IsApparel)
                     parryThingArmor = parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
