@@ -473,7 +473,7 @@ namespace CombatExtended
 	{
 	    armorCache.Clear();
 	    float naturalArmor = SelPawnForGear.GetStatValue(stat);
-	    List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel ?? null;
+	    List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
 	    foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
 	    {
 		if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
