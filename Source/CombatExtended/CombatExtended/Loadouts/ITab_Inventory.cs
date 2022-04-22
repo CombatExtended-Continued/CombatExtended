@@ -25,6 +25,12 @@ namespace CombatExtended
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
+	private Dictionary<BodyPartRecord, float> sharpArmorCache = new Dictionary<BodyPartRecord, float>();
+	private Dictionary<BodyPartRecord, float> bluntArmorCache = new Dictionary<BodyPartRecord, float>();
+	private Dictionary<BodyPartRecord, float> heatArmorCache = new Dictionary<BodyPartRecord, float>();
+	private int lastArmorTooltipTickSharp = 0;
+	private int lastArmorTooltipTickBlunt = 0;
+	private int lastArmorTooltipTickHeat = 0;
 
         private float _scrollViewHeight;
 
@@ -457,41 +463,80 @@ namespace CombatExtended
         // RimWorld.ITab_Pawn_Gear
         private void TryDrawOverallArmor(ref float curY, float width, StatDef stat, string label, string unit)
         {
-            float naturalArmor = SelPawnForGear.GetStatValue(stat);
-            float averageArmor = naturalArmor;
-            List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
-            foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
-            {
-                averageArmor += apparel.GetStatValue(stat, true) * apparel.def.apparel.HumanBodyCoverage;
-            }
-            if (averageArmor > 0.0001f)
-            {
-                Rect rect = new Rect(0f, curY, width, _standardLineHeight);
-                string text = "";
-                foreach (BodyPartRecord bodyPart in SelPawnForGear.RaceProps.body.AllParts)
-                {
-                    BodyPartRecord part = bodyPart;
-                    float armorValue = bodyPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
-                    if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
-                    {
-                        text += part.LabelCap + ": ";
-                        foreach (Apparel apparel in wornApparel ?? Enumerable.Empty<Apparel>())
-                        {
-                            if (apparel.def.apparel.CoversBodyPart(part))
-                            {
-                                armorValue += apparel.GetStatValue(stat, true);
-                            }
-                        }
-                        text += formatArmorValue(armorValue, unit) + "\n";
-                    }
-                }
-                TooltipHandler.TipRegion(rect, text);
+	    Dictionary<BodyPartRecord, float> armorCache;
+	    int thisTick = Find.TickManager.TicksAbs;
+	    bool shouldRebuildCache = false;
+	    if (stat == StatDefOf.ArmorRating_Blunt) {
+		armorCache = bluntArmorCache;
+		shouldRebuildCache = thisTick != lastArmorTooltipTickBlunt;
+		lastArmorTooltipTickBlunt = thisTick;
+	    }
+	    else if (stat == StatDefOf.ArmorRating_Sharp) {
+		armorCache = sharpArmorCache;
+		shouldRebuildCache = thisTick != lastArmorTooltipTickSharp;
+		lastArmorTooltipTickSharp = thisTick;
+	    }
+	    else if (stat == StatDefOf.ArmorRating_Heat) {
+		armorCache = heatArmorCache;
+		shouldRebuildCache = thisTick != lastArmorTooltipTickHeat;
+		lastArmorTooltipTickHeat = thisTick;
+	    }
+	    else {
+		Log.Error("Trying to get armor tooltip for unsupported armor type: "+stat);
+		return;
+	    }
+	    if (shouldRebuildCache) {
+		RebuildArmorCache(armorCache, stat);
+	    }
+	    TryDrawOverallArmor(armorCache, ref curY, width, stat, label, unit);
 
-                Widgets.Label(rect, label.Truncate(200f, null));
-                rect.xMin += 200;
-                Widgets.Label(rect, formatArmorValue(averageArmor, unit));
-                curY += _standardLineHeight;
+	}
+
+	private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
+	{
+	    armorCache.Clear();
+	    float naturalArmor = SelPawnForGear.GetStatValue(stat);
+	    List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel ?? null;
+	    foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
+	    {
+		if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
+		{
+		    float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
+		    if (wornApparel != null) {
+			foreach(var apparel in wornApparel) {
+			    if (apparel.def.apparel.CoversBodyPart(part)) {
+				armorValue += apparel.PartialStat(stat, part);
+			    }
+			}
+		    }
+		    armorCache[part] = armorValue;
+		}
+	    }
+	}
+
+	private void TryDrawOverallArmor(Dictionary<BodyPartRecord, float> armorCache, ref float curY, float width, StatDef stat, string label, string unit)
+	{
+	    Rect rect = new Rect(0f, curY, width, _standardLineHeight);
+	    string text = "";
+	    float averageArmor = 0;
+	    float bodyCoverage = 0;
+	    foreach (var bodyPartValue in armorCache)
+	    {
+		BodyPartRecord part = bodyPartValue.Key;
+		float armorValue = bodyPartValue.Value;
+		averageArmor += armorValue * part.coverage;
+		bodyCoverage += part.coverage;
+		text += part.LabelCap + ": ";
+		text += formatArmorValue(armorValue, unit) + "\n";
             }
+	    averageArmor /= bodyCoverage;
+	    
+	    TooltipHandler.TipRegion(rect, text);
+
+	    Widgets.Label(rect, label.Truncate(200f, null));
+	    rect.xMin += 200;
+	    Widgets.Label(rect, formatArmorValue(averageArmor, unit));
+	    curY += _standardLineHeight;
         }
 
         private void InterfaceDropHaul(Thing t)
