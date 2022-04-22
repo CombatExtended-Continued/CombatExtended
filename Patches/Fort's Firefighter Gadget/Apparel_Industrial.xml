@@ -46,6 +46,18 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="Apparel_FirefighterHelmetA" or
+				defName="Apparel_FirefighterHelmetB" or
+				defName="Apparel_FirefighterHelmetC" or
+				defName="Apparel_FirefighterHelmetG"
+				]/equippedStatOffsets</xpath>
+				<value>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[
 				defName="Apparel_FirefighterHelmetA" or
@@ -54,9 +66,46 @@
 				defName="Apparel_FirefighterHelmetG"
 				]</xpath>
 				<value>
-					<li Class="CombatExtended.ApparelHediffExtension">
-						<hediff>WearingGasMask</hediff>
-					</li>
+				<li Class="CombatExtended.PartialArmorExt">
+					<stats>
+						<li>
+							<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+							<parts>
+								<li>Eye</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+							<parts>
+								<li>Eye</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+							<parts>
+								<li>Nose</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+							<parts>
+								<li>Nose</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+							<parts>
+								<li>Jaw</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+							<parts>
+								<li>Jaw</li>
+							</parts>
+						</li>
+					</stats>
+				</li>
 				</value>
 			</li>
 
