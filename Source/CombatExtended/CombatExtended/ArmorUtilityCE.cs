@@ -251,41 +251,21 @@ namespace CombatExtended
             if (armor != null)
             {
                 var isSoftArmor = armor.Stuff != null && armor.Stuff.stuffProps.categories.Any(s => softStuffs.Contains(s));
-                float armorDamage = -1f;
+                float armorDamage = 0;
                 if (isSoftArmor)
                 {
                     // Soft armor takes absorbed damage from sharp and no damage from blunt
                     if (isSharpDmg)
                     {
                         armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
+                        TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                     }
                 }
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
                     armorDamage = newDmgAmount;
-                }
-
-                // armorDamage being -1 means that there shouldn't be any calculations done
-                if (armorDamage != -1f)
-                {
-                    // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this is an extremely small chance)
-                    if ((Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)) && (armorDamage < 1f))
-                    {
-                        armorDamage = 1f;
-                    }
-
-                    // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
-                    // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
-                    if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
-                    {
-                        armorDamage = Mathf.Ceil(armorDamage);
-                    }
-
-                    armorDamage = Mathf.Floor(armorDamage);
-                    // Don't call TakeDamage() with 0 damage as taht would be a waste
-                    if (armorDamage != 0f)
-                        armor.TakeDamage(new DamageInfo(def, armorDamage));
+                    TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                 }
             }
 
@@ -295,6 +275,40 @@ namespace CombatExtended
                 penAmount = Mathf.Max(0, newPenAmount);
             }
             return !deflected;
+        }
+
+        /// <summary>
+        /// Damages the armor, where the damage amount is modified, with damages rounding either to ceiling or floor based off of the fraction of the number and damages less than 1 having an increased chance to round to ceiling based off the ratio of armor penetration to armor amount.
+        /// </summary>
+        /// <param name="def">The DamageDef of the attack</param>
+        /// <param name="armorAmount">The amount of armor to apply</param>
+        /// <param name="penAmount">How much penetration the attack still has</param>
+        /// <param name="dmgAmount">The pre-armor amount of damage</param>
+        /// <param name="armor">The armor apparel</param>
+        /// <returns>Returns true if the armor takes damage, false if it doesn't.</returns>
+        private static bool TryDamageArmor(DamageDef def, float penAmount, float armorAmount, ref float armorDamage, Thing armor)
+        {
+            // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this can be an extremely small chance)
+            if ((armorDamage < 1f) && (Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)))
+            {
+                armorDamage = 1f;
+            }
+
+            // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
+            // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
+            if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
+            {
+                armorDamage = Mathf.Ceil(armorDamage);
+            }
+
+            armorDamage = Mathf.Floor(armorDamage);
+            // Don't call TakeDamage() with 0 damage as that would be a waste
+            if (armorDamage != 0f)
+            {
+                armor.TakeDamage(new DamageInfo(def, armorDamage));
+                return true;
+            }
+            return false;
         }
 
 
@@ -431,9 +445,12 @@ namespace CombatExtended
         private static BodyPartRecord GetOuterMostParent(BodyPartRecord part)
         {
             var curPart = part;
-            while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+            if (curPart != null)
             {
-                curPart = curPart.parent;
+                while (curPart.parent != null && curPart.depth != BodyPartDepth.Outside)
+                {
+                    curPart = curPart.parent;
+                }
             }
             return curPart;
         }
@@ -459,7 +476,7 @@ namespace CombatExtended
             if (pawn != null)
             {
                 // Pawns run their own armor calculations
-                dinfo.SetAmount(Mathf.CeilToInt(dinfo.Amount * Rand.Range(0f, 0.5f)));
+                dinfo.SetAmount(dinfo.Amount * Mathf.Clamp01(Rand.Range(0.5f - pawn.GetStatValue(CE_StatDefOf.MeleeParryChance), 1f - pawn.GetStatValue(CE_StatDefOf.MeleeParryChance) * 1.25f)));
                 pawn.TakeDamage(dinfo);
             }
             else if (dinfo.IsAmbientDamage())
@@ -470,9 +487,30 @@ namespace CombatExtended
             }
             else
             {
-                var dmgAmount = dinfo.Amount * 0.1f;
+                float parryThingArmor;
+                var dmgAmount = dinfo.Amount * Rand.Range(0.2f, 0.3f);
+                // For apparel
+                if (parryThing.def.IsApparel)
+                    parryThingArmor = parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
+                // Special case for weapons
+                else
+                {
+                    parryThingArmor = parryThing.GetStatValue(CE_StatDefOf.ToughnessRating);
+                    // Compensation for blunt damage against weapons
+                    if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
+                        parryThingArmor *= 1.5f;
+                }
+
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
-                TryPenetrateArmor(dinfo.Def, parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount, parryThing);
+                if (TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing))
+                {
+                    // Partially penetrating sharp attacks.
+                    if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dinfo.Amount > dmgAmount)
+                        ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, true), parryThing);
+                }
+                // Deflected attacks
+                else if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+                    ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount), parryThing);
             }
         }
 

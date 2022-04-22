@@ -200,6 +200,16 @@
 		</value>
 	</Operation>
 
+	<!-- A bonus multiplier on top of the base toughness rating of a material -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="WoodLog"]</xpath>
+		<value>
+			<li Class="CombatExtended.StuffToughnessMultiplierExtensionCE">
+				<toughnessMultiplier>5</toughnessMultiplier>
+			</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="WoodLog"]/statBases/StuffPower_Armor_Sharp</xpath>
 		<value>
