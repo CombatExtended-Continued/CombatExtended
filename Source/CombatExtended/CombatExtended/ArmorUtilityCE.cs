@@ -502,7 +502,8 @@ namespace CombatExtended
                 }
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
-                if (TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing))
+                TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing);
+                /*if (TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing))
                 {
                     // Partially penetrating sharp attacks.
                     if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp)
@@ -510,7 +511,7 @@ namespace CombatExtended
                 }
                 // Deflected attacks
                 else
-                    ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount), parryThing);
+                    ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount), parryThing);*/
             }
         }
 
