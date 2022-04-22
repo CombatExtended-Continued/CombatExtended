@@ -78,7 +78,7 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
+            return Controller.settings.ShowExtraStats && req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
         }
     }
 }
