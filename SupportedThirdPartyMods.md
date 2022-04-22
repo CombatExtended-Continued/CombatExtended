@@ -258,6 +258,7 @@ MiningCo. Spaceship	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
+Misc. Turrets   |
 Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
@@ -360,6 +361,7 @@ Starship Troopers Aracnids  |
 Solark Race |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
+Textiles+ (continued)   |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
