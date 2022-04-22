@@ -132,6 +132,12 @@ namespace CombatExtended.Loader
 	    if (!found) {
 		Log.Error("Combat Extended :: Running uncompiled");
 		LongEventHandler.QueueLongEvent(ShowUncompiledBuildWarning, "CE_LongEvent_ShowUncompiledBuildWarning", false, null);
+		_loadAssembly(new DirectoryInfo(content.RootDir)
+			      .GetDirectories("Source")
+			      .FirstOrFallback(null)?
+			      .GetDirectories("packages")
+			      .FirstOrFallback(null)?.GetFiles("CombatExtended.dll")
+			      .FirstOrFallback(null));
 	    }
 
         }
