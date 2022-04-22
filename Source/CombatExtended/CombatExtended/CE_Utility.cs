@@ -463,12 +463,12 @@ namespace CombatExtended
         /// <summary>
         /// version of PartialStat used for display in StatWorker_ArmorPartial
         /// </summary>
-        public static float PartialStat(this Pawn apparel, StatDef stat, BodyPartDef part)
+        public static float PartialStat(this Pawn pawn, StatDef stat, BodyPartDef part)
         {
-            float result = apparel.GetStatValue(stat);
-            if (apparel.def.HasModExtension<PartialArmorExt>())
+            float result = pawn.GetStatValue(stat);
+            if (pawn.def.HasModExtension<PartialArmorExt>())
             {
-                foreach (ApparelPartialStat partial in apparel.def.GetModExtension<PartialArmorExt>().stats)
+                foreach (ApparelPartialStat partial in pawn.def.GetModExtension<PartialArmorExt>().stats)
                 {
                     if ((partial?.parts?.Contains(part) ?? false))
                     {
