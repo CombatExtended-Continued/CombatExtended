@@ -43,8 +43,8 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationInsert">
-				<xpath>Defs/ThingDef[defName="Ranged_Tomahawk"]/statBases</xpath>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
 				<value>
 					<equippedStatOffsets>
 						<MeleeCritChance>0.40</MeleeCritChance>
@@ -59,7 +59,7 @@
 					<verbs>
 						<li Class="CombatExtended.VerbPropertiesCE">
 							<label>throw tomahawk</label>
-							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 							<hasStandardCommand>true</hasStandardCommand>
 							<onlyManualCast>False</onlyManualCast>
 							<warmupTime>2.05</warmupTime>
@@ -69,9 +69,6 @@
 							<soundCastTail>GunTail_Medium</soundCastTail>
 							<muzzleFlashScale>0</muzzleFlashScale>
 							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
 							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
 							<defaultProjectile>Axe_Tomahawk</defaultProjectile>
 							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
@@ -92,7 +89,84 @@
 					</projectile>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costStuffCount</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<!-- == Recipe == -->
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>Make_Ranged_Tomahawk</defName>
+				<label>make tomahawk x10</label>
+				<description>Craft 10 tomahawks.</description>
+				<jobString>Making tomahawk.</jobString>
+				<workAmount>8500</workAmount>	
+				<ingredients>
+					<li>
+					<filter>
+						<thingDefs>
+						<li>WoodLog</li>
+						</thingDefs>
+					</filter>
+					<count>10</count>
+					</li>
+					<li>
+						<filter>
+						<categories>
+							<li>Metallic</li>
+							<li>Stony</li>
+						</categories>
+						</filter>
+						<count>50</count>
+					</li>					
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>
+					<categories>
+						<li>Metallic</li>
+						<li>Stony</li>
+					</categories>					
+				</fixedIngredientFilter>
+				<products>
+					<Ranged_Tomahawk>10</Ranged_Tomahawk>
+				</products>
+				<recipeUsers>
+					<li>FueledSmithy</li>
+					<li>ElectricSmithy</li>
+					<li>CraftingSpot</li>
+				</recipeUsers>
+				</RecipeDef>
+			</value>
+			</li>
+
 			<!-- Torch -->
 			
 			<li Class="PatchOperationReplace">
@@ -148,14 +222,29 @@
 					<MeleeParryChance>0.30</MeleeParryChance>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>75</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/verbs</xpath>
 				<value>
 					<verbs>
 						<li Class="CombatExtended.VerbPropertiesCE">
 							<label>throw torch</label>
-							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 							<hasStandardCommand>true</hasStandardCommand>
 							<onlyManualCast>False</onlyManualCast>
 							<warmupTime>1.6</warmupTime>
@@ -192,12 +281,48 @@
 						<postExplosionSpawnChance>1</postExplosionSpawnChance>
 						<postExplosionSpawnThingDef>Fire</postExplosionSpawnThingDef>
 						<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
-						-->
-						
+						-->	
 					</projectile>
 				</value>
 			</li>
-        
+
+			<!-- == Recipe == -->
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>Make_Torch_Torch</defName>
+				<label>make torch x10</label>
+				<description>Craft 10 torches.</description>
+				<jobString>Making torch.</jobString>
+				<workAmount>400</workAmount>	
+				<ingredients>
+					<li>
+					<filter>
+						<thingDefs>
+						<li>WoodLog</li>
+						</thingDefs>
+					</filter>
+					<count>40</count>
+					</li>				
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>			
+				</fixedIngredientFilter>
+				<products>
+					<Torch_Torch>10</Torch_Torch>
+				</products>
+				<recipeUsers>
+					<li>FueledSmithy</li>
+					<li>ElectricSmithy</li>
+					<li>CraftingSpot</li>
+				</recipeUsers>
+				</RecipeDef>
+			</value>
+			</li>
+
 		</operations>
 		
 		</match>
