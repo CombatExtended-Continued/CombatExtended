@@ -502,7 +502,6 @@ namespace CombatExtended
                 }
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
-                //TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing);
                 if (TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing))
                 {
                     // Partially penetrating sharp attacks.
