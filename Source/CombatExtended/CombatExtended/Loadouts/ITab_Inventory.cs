@@ -28,9 +28,7 @@ namespace CombatExtended
 	private Dictionary<BodyPartRecord, float> sharpArmorCache = new Dictionary<BodyPartRecord, float>();
 	private Dictionary<BodyPartRecord, float> bluntArmorCache = new Dictionary<BodyPartRecord, float>();
 	private Dictionary<BodyPartRecord, float> heatArmorCache = new Dictionary<BodyPartRecord, float>();
-	private int lastArmorTooltipTickSharp = 0;
-	private int lastArmorTooltipTickBlunt = 0;
-	private int lastArmorTooltipTickHeat = 0;
+	private int lastArmorTooltipTick = 0;
 
         private float _scrollViewHeight;
 
@@ -147,10 +145,17 @@ namespace CombatExtended
             TryDrawComfyTemperatureRange(ref num, viewRect.width);
             if (ShouldShowOverallArmorCE(SelPawnForGear))
             {
+		int thisTick = Find.TickManager.TicksAbs;
+		if (thisTick != lastArmorTooltipTick) {
+		    lastArmorTooltipTick = thisTick;
+		    RebuildArmorCache(sharpArmorCache, StatDefOf.ArmorRating_Sharp);
+		    RebuildArmorCache(bluntArmorCache, StatDefOf.ArmorRating_Blunt);
+		    RebuildArmorCache(heatArmorCache, StatDefOf.ArmorRating_Heat);
+		}
                 Widgets.ListSeparator(ref num, viewRect.width, "OverallArmor".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
-                TryDrawOverallArmor(ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "%");
+                TryDrawOverallArmor(sharpArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Blunt, "ArmorBlunt".Translate(), " " + "CE_MPa".Translate());
+                TryDrawOverallArmor(bluntArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Sharp, "ArmorSharp".Translate(), "CE_mmRHA".Translate());
+                TryDrawOverallArmor(heatArmorCache, ref num, viewRect.width, StatDefOf.ArmorRating_Heat, "ArmorHeat".Translate(), "%");
             }
             if (ShouldShowEquipment(SelPawnForGear))
             {
@@ -461,37 +466,6 @@ namespace CombatExtended
         }
 
         // RimWorld.ITab_Pawn_Gear
-        private void TryDrawOverallArmor(ref float curY, float width, StatDef stat, string label, string unit)
-        {
-	    Dictionary<BodyPartRecord, float> armorCache;
-	    int thisTick = Find.TickManager.TicksAbs;
-	    bool shouldRebuildCache = false;
-	    if (stat == StatDefOf.ArmorRating_Blunt) {
-		armorCache = bluntArmorCache;
-		shouldRebuildCache = thisTick != lastArmorTooltipTickBlunt;
-		lastArmorTooltipTickBlunt = thisTick;
-	    }
-	    else if (stat == StatDefOf.ArmorRating_Sharp) {
-		armorCache = sharpArmorCache;
-		shouldRebuildCache = thisTick != lastArmorTooltipTickSharp;
-		lastArmorTooltipTickSharp = thisTick;
-	    }
-	    else if (stat == StatDefOf.ArmorRating_Heat) {
-		armorCache = heatArmorCache;
-		shouldRebuildCache = thisTick != lastArmorTooltipTickHeat;
-		lastArmorTooltipTickHeat = thisTick;
-	    }
-	    else {
-		Log.Error("Trying to get armor tooltip for unsupported armor type: "+stat);
-		return;
-	    }
-	    if (shouldRebuildCache) {
-		RebuildArmorCache(armorCache, stat);
-	    }
-	    TryDrawOverallArmor(armorCache, ref curY, width, stat, label, unit);
-
-	}
-
 	private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
 	{
 	    armorCache.Clear();
