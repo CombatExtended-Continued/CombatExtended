@@ -201,9 +201,11 @@ namespace CombatExtended
 			    else if (thisArmor > maxArmor) {
 				maxArmor = thisArmor;
 			    }
-			    string minArmorString = minArmor.ToString("0.00");
-			    string maxArmorString = maxArmor.ToString("0.00");
-			    return string.Format(stat.formatString, $"{minArmorString} ~ {maxArmorString}");
+			    if (minArmor != value || maxArmor != value) {
+				string minArmorString = minArmor.ToString("0.00");
+				string maxArmorString = maxArmor.ToString("0.00");
+				return string.Format(stat.formatString, $"{minArmorString} ~ {maxArmorString}");
+			    }
 			}
 		    }
 		}
