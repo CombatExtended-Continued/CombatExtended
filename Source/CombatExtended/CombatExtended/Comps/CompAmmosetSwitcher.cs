@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class CompUnderBarrel: CompRangedGizmoGiver
+    public class CompUnderBarrel : CompRangedGizmoGiver
     {
         public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;
 
@@ -42,8 +42,8 @@ namespace CombatExtended
                 {
 
                     defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("Textures/UI/Buttons/Reload"),
-                    defaultDesc = "CE_UBGLStats".Translate() + 
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                    defaultDesc = "CE_UBGLStats".Translate() +
                     "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
                     + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
                     + "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
@@ -59,9 +59,15 @@ namespace CombatExtended
                         compFireModes.props = this.Props.propsFireModesUnderBarrel;
                         compAmmo.CurMagCount = UnderBarrelMagCount;
                         compAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                        compAmmo.SelectedAmmo = compAmmo.CurrentAmmo;
                         if (compAmmo.Wielder != null)
                         {
                             compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+
+                            if (compAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
+                            {
+                                compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
+                            }
                         }
                         usingUnderBarrel = true;
                     }
@@ -73,7 +79,7 @@ namespace CombatExtended
                 {
 
                     defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("Textures/UI/Buttons/Reload"),
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
                     action = delegate
                     {
                         UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
@@ -84,9 +90,15 @@ namespace CombatExtended
                         compFireModes.props = compPropsFireModes;
                         compAmmo.CurMagCount = mainGunMagCount;
                         compAmmo.CurrentAmmo = mainGunLoadedAmmo;
+                        compAmmo.SelectedAmmo = compAmmo.CurrentAmmo;
                         if (compAmmo.Wielder != null)
                         {
                             compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+
+                            if (compAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
+                            {
+                                compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
+                            }
                         }
                         usingUnderBarrel = false;
                     }
@@ -118,7 +130,7 @@ namespace CombatExtended
 
         public override void PostExposeData()
         {
-            
+
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 if (usingUnderBarrel)
@@ -142,7 +154,7 @@ namespace CombatExtended
                     compAmmo.props = this.Props.propsUnderBarrel;
                     compEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
                     compFireModes.props = this.Props.propsFireModesUnderBarrel;
-                    
+
                     if (compAmmo.Wielder != null)
                     {
                         compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
