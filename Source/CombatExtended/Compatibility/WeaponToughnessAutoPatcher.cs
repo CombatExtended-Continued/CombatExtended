@@ -36,8 +36,8 @@ namespace CombatExtended.Compatibility
                             break;
                     }
 
-                    // Blunt weapons get double thickness because edges are easier to damage
-                    if (!def.tools?.Any(tool => tool.capacities?.Any(capacityDef => DefDatabase<DamageDef>.defsList.Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName)) ?? false) ?? false)
+                    // Blunt weapons get double thickness because edges are easier to damage. Note that ranged weapons are excluded.
+                    if (!def.IsRangedWeapon && (!def.tools?.Any(tool => tool.capacities?.Any(capacityDef => DefDatabase<DamageDef>.defsList.Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName)) ?? false) ?? false))
                         weaponThickness *= 2f;
 
                     // Stuffable weapons get the multiplier stat
