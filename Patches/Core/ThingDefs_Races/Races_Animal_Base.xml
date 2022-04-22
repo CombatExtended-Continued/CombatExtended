@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[@Name="BasePawn"]/statBases</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="BasePawn"]</xpath>
-				<value>
-					<statBases/>
-				</value>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name="BasePawn"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="BasePawn"]</xpath>
+			<value>
+				<statBases />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

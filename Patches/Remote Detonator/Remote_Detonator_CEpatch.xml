@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+<Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Remote Detonator</li>
+    </mods>
+ <match Class='PatchOperationSequence'>
+	
+	<operations>
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_IED_HighExplosive"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>10</Steel>
+				<FSX>3</FSX>
+			</costList>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_IED_Incendiary"]/costList</xpath>
+		<value>
+			<costList>
+				<Steel>10</Steel>
+				<Prometheum>2</Prometheum>
+			</costList>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_IED_HighExplosive"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<damageAmountBase>270</damageAmountBase>
+				<explosiveRadius>4.5</explosiveRadius>
+				<wickTicks>
+				  <min>5</min>
+				  <max>30</max>
+				</wickTicks>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>16</Fragment_Large>
+					<Fragment_Small>100</Fragment_Small>
+				</fragments>
+			</li>
+		</value>
+	</li>
+
+	<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RD_IED_Incendiary"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CompProperties_Explosive">
+				<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+				<explosiveRadius>5</explosiveRadius>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.75</preExplosionSpawnChance>
+				<wickTicks>
+				  <min>5</min>
+				  <max>20</max>
+				</wickTicks>
+			</li>
+		</value>
+	</li>
+	</operations>
+  </match>
+ </Operation>
+
+</Patch>

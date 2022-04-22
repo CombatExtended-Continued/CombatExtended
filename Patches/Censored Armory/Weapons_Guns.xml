@@ -1250,20 +1250,14 @@
 					<value>CombatExtended.AmmoDef</value>
 				</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAdd">
@@ -1338,24 +1332,19 @@
 							<dropsCasings>false</dropsCasings>
 							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 							<speed>10</speed>
+							<gravityFactor>2</gravityFactor>
 						</projectile>
 					</value>
 				</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
 
 			</operations>

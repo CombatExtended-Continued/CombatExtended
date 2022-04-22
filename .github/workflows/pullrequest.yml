@@ -23,24 +23,37 @@ jobs:
         git pull --no-ff --no-commit --allow-unrelated-histories -X theirs origin pull/${{ github.event.pull_request.number }}${{ github.event.inputs.PR }}/head:
         git status
         wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/Make.py -O Make.py
+        wget https://raw.githubusercontent.com/CombatExtended-Continued/CombatExtended/Development/BuildCompat.py -O BuildCompat.py
         mkdir -p Assemblies
+        mkdir -p AssembliesCore
+        mkdir -p AssembliesCompat
         mkdir -p ${{ runner.temp }}/downloads
         rm -rf AssemblyPublicizer
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-    - name: build
+        
+    - name: build loader
       run: |
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --download-libs --all-libs
+        
+    - name: build core
+      run: |
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+
+    - name: build compat
+      run: |
+        TEMP=${{ runner.temp }}/ python BuildCompat.py
+        
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ AssembliesCompat/ AssembliesCore/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |
-        printf "%s" "$SSH_KEY" > id_ecdsa
-        echo "$SSH_KEY_PUB" > id_ecdsa.pub
-        chmod 600 id_ecdsa
-        echo put build.zip CombatExtended-${{ github.run_id }}.zip | sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
+        /usr/bin/printf "%s" "$SSH_KEY" > id_ecdsa
+        /bin/echo "$SSH_KEY_PUB" > id_ecdsa.pub
+        /bin/chmod 600 id_ecdsa
+        /bin/echo put build.zip CombatExtended-${{ github.run_id }}.zip | /usr/bin/sftp -oStrictHostKeyChecking=no -P 2022 -i ./id_ecdsa combatextended@combatextended.lp-programming.com
       
       shell: bash
       env:

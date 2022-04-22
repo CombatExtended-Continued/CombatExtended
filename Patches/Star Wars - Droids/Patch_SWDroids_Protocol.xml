@@ -7,37 +7,25 @@
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="3PO_Protocol"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="3PO_Protocol"]</xpath>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="3PO_Protocol"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="3PO_Protocol"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="TC_Protocol"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="TC_Protocol"]</xpath>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="TC_Protocol"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="TC_Protocol"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">

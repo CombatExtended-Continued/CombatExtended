@@ -42,6 +42,8 @@ namespace CombatExtended
             shieldAbsorbed = false;
             armorDeflected = false;
             armorReduced = false;
+            
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
 
             if (originalDinfo.Def.armorCategory == null
                 || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
@@ -63,6 +65,10 @@ namespace CombatExtended
                 dinfo.SetAmount(Mathf.CeilToInt(GetAmbientPostArmorDamage(dmgAmount, originalDinfo.Def.armorCategory.armorRatingStat, pawn, hitPart)));
                 armorDeflected = dinfo.Amount <= 0;
                 return dinfo;
+            }
+            else if (deflectionComp != null)
+            {
+                deflectionComp.deflectedSharp = false;
             }
 
             var penAmount = originalDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
@@ -127,6 +133,14 @@ namespace CombatExtended
                         && app.def.apparel.CoversBodyPart(hitPart)
                         && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                     {
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                        {
+                            if (deflectionComp != null)
+                            {
+                                deflectionComp.deflectedSharp = true;
+                            }
+                        }
+
                         // Hit was deflected, convert damage type
                         //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
@@ -163,7 +177,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart) : 0;
+                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -171,6 +185,15 @@ namespace CombatExtended
                     dinfo.SetHitPart(curPart);
                     if (isSharp && coveredByArmor)
                     {
+                        if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
+                        {
+                            if (deflectionComp != null)
+                            {
+                                deflectionComp.deflectedSharp = true;
+
+                                deflectionComp.weapon = originalDinfo.Weapon;
+                            }
+                        }
                         // For Mechanoid natural armor, apply deflection and blunt armor
                         dinfo = GetDeflectDamageInfo(dinfo, curPart, ref dmgAmount, ref penAmount);
 
@@ -305,7 +328,21 @@ namespace CombatExtended
                     }
                 }
             }
-            return dmgAmount * dmgMult;
+            
+            var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
+              if (deflectionComp != null)
+              {
+                if (armorRatingStat == StatDefOf.ArmorRating_Heat)
+                {
+                    if (deflectionComp.deflectedSharp)
+                    {
+                            dmgMult /= 2f;
+                    }
+                }
+                deflectionComp.deflectedSharp = false;
+             }
+            
+            return (float)Math.Floor(dmgAmount * dmgMult);
         }
 
         /// <summary>

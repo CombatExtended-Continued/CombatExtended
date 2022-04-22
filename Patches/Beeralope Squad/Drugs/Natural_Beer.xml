@@ -36,21 +36,15 @@
 				</li>
 				
 				<!--Add weapon tags for 1-handing-->
-				
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>Defs/ThingDef[defName="NaturalBeer"]/weaponTags</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="NaturalBeer"]</xpath>
-							<value>
-								<weaponTags />
-							</value>
-						</li>
-					</operations>
+
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/ThingDef[defName="NaturalBeer"]/weaponTags</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/ThingDef[defName="NaturalBeer"]</xpath>
+						<value>
+							<weaponTags />
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAdd">
@@ -59,6 +53,7 @@
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
+				
 			  </operations>
 			</match>
 	    </li>

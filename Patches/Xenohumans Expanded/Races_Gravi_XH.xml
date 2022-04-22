@@ -86,35 +86,28 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]/race/baseBodySize</xpath>
 					<value>
-      						<baseBodySize>0.7</baseBodySize>
+      					<baseBodySize>0.7</baseBodySize>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]/race/baseHealthScale</xpath>
 					<value>
-      						<baseHealthScale>1.1</baseHealthScale>
+      					<baseHealthScale>1.1</baseHealthScale>
 					</value>
 				</li>
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]/comps</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]</xpath>
-							<value>
-								<comps />
-							</value>
-						</li>
-					</operations>
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<success>Always</success>
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="HighGravWorlderRace"]/comps</xpath>
 					<value>
 						<li>

@@ -111,6 +111,7 @@ Beeralope Squad	|
 Better Infestations	|
 Birds Beyond: Temperate Forest  |
 Black Widows	|
+British Weapon Set	|
 Bulgarian Imperial Uniforms |
 Carbon	|
 Censored Armory  |
@@ -254,7 +255,6 @@ MiningCo. Spaceship	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
-Mister Meeseeks |
 Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
@@ -306,6 +306,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+Remote Detonator	|
 Revia Race |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
