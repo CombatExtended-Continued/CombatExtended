@@ -191,20 +191,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]/statBases</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]</xpath>
-      	<value>
-        	<statBases />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSword"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSword"]</xpath>
+		<value>
+			<statBases />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -226,20 +220,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]/weaponTags</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]</xpath>
-      	<value>
-        	<weaponTags />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_MonoSword"]</xpath>
+		<value>
+			<weaponTags />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -287,20 +275,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Zeushammer"]/statBases</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_Zeushammer"]</xpath>
-      	<value>
-        	<statBases />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_Zeushammer"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_Zeushammer"]</xpath>
+		<value>
+			<statBases />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -379,20 +361,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-  	<success>Always</success>
-  	<operations>
-    	<li Class="PatchOperationTest">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSword"]/statBases</xpath>
-      	<success>Invert</success>
-    	</li>
-    	<li Class="PatchOperationAdd">
-      	<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSword"]</xpath>
-      	<value>
-        	<statBases />
-      	</value>
-    	</li>
-  	</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_PlasmaSword"]/statBases</xpath>
+		<nomatch Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[defName = "MeleeWeapon_PlasmaSword"]</xpath>
+		<value>
+			<statBases />
+		</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">

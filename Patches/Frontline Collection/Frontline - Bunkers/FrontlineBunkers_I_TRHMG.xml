@@ -6,36 +6,35 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="BK_Base_HMG"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
+
         <li Class="PatchOperationRemove">
           <xpath>Defs/ThingDef[defName="BK_Base_HMG"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="BK_Base_HMG"]/tradeTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="BK_Base_HMG"]</xpath>
-              <value>
-                <tradeTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+          <xpath>/Defs/ThingDef[defName="BK_Base_HMG"]/tradeTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName="BK_Base_HMG"]</xpath>
+            <value>
+              <tradeTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="BK_Base_HMG"]/tradeTags</xpath>
           <value>
             <li>CE_Turret</li>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>BK_Gun_HMG</defName>
           <statBases>
@@ -64,6 +63,7 @@
             <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
           </AmmoUser>
         </li>
+
       </operations>
     </match>
   </Operation>

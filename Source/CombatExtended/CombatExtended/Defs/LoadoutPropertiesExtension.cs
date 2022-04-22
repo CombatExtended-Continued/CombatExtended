@@ -20,6 +20,7 @@ namespace CombatExtended
         public float shieldChance = 0;        
         public SidearmOption forcedSidearm;
         public List<SidearmOption> sidearms;
+        public AmmoCategoryDef forcedAmmoCategory;
 
         private static List<ThingStuffPair> allWeaponPairs;
         private static List<ThingStuffPair> allShieldPairs;
@@ -216,7 +217,17 @@ namespace CombatExtended
             }
             // Determine ammo
             IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
+
             AmmoDef ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateAllowChance);
+
+            if (this.forcedAmmoCategory != null)
+            {
+                if (availableAmmo.Any(x => x.ammoClass == this.forcedAmmoCategory))
+                {
+                    ammoToLoad = availableAmmo.Where(x => x.ammoClass == this.forcedAmmoCategory).FirstOrFallback();
+                }
+            }
+
             compAmmo.ResetAmmoCount(ammoToLoad);
         }
 
@@ -243,6 +254,16 @@ namespace CombatExtended
                 thingToAdd = compAmmo.CurrentAmmo;
                 unitCount = Mathf.Max(1, compAmmo.MagSize);  // Guns use full magazines as units
             }
+
+            if (forcedAmmoCategory != null)
+            {
+                IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo);
+                if (availableAmmo.Any(x => x.ammoClass == forcedAmmoCategory))
+                {
+                    thingToAdd = availableAmmo.Where(x => x.ammoClass == forcedAmmoCategory).FirstOrFallback();
+                }
+            }
+
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
             ammoThing.stackCount = ammoCount * unitCount;
             int maxCount;

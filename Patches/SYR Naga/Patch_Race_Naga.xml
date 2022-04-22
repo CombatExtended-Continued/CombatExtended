@@ -7,20 +7,14 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 		
 		<li Class="PatchOperationAddModExtension">

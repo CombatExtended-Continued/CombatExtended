@@ -1514,20 +1514,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="CW_PowerFist"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="CW_PowerFist"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "CW_PowerFist"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "CW_PowerFist"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
@@ -1606,20 +1600,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="CW_EnergyClaw"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "CW_EnergyClaw"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "CW_EnergyClaw"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
@@ -1684,20 +1672,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="CW_EnergySword"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="CW_EnergySword"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "CW_EnergySword"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "CW_EnergySword"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
@@ -1725,20 +1707,14 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="CW_ChainSword"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="CW_ChainSword"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "CW_ChainSword"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "CW_ChainSword"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">

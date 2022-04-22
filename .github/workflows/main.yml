@@ -14,15 +14,26 @@ jobs:
       run: |
         rm -rf AssemblyPublicizer
         git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer
-    - name: build
-      run: |
         mkdir -p Assemblies
+        mkdir -p AssembliesCore
+        mkdir -p AssembliesCompat
         mkdir -p ${{ runner.temp }}/downloads
-        TEMP=${{ runner.temp }}/ python3 Make.py --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+    - name: build loader
+      run: |
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --download-libs --all-libs
+        
+    - name: build core
+      run: |
+        TEMP=${{ runner.temp }}/ python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --download-libs --all-libs --publicizer $PWD/AssemblyPublicizer
+        
+    - name: build compat
+      run: |
+        TEMP=${{ runner.temp }}/ python BuildCompat.py
+        
     - name: package
       run: |
         mkdir CombatExtended
-        cp -r Source/ Assemblies/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
+        cp -r Source/ Assemblies/ AssembliesCore/ AssembliesCompat/ About/ Defs/ Languages/ Patches/ Royalty/ Ideology/ Sounds/ Textures/ LoadFolders.xml README.md SupportedThirdPartyMods.md CombatExtended
         zip -9 -r build.zip CombatExtended
     - name: Upload to DO
       run: |

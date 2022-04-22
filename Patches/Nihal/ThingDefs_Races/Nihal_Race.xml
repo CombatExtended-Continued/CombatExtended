@@ -28,20 +28,15 @@
 	<!-- ========== Also Makes Em Suppressable		   ========== -->
 
 	<!-- Checking if "Alien_Nihal" has a <comps> node and adding it if it doesn't exist -->
-	<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
+
+	<li Class="PatchOperationConditional">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
 			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]</xpath>
 			<value>
 				<comps />
 			</value>
-			</li>
-		</operations>
+		</nomatch>
 	</li>
 	
 	<li Class="PatchOperationAdd">
@@ -58,75 +53,76 @@
 	<!-- === For the most part, it adds the CE melee handler thing 	=== -->
 	<!-- === And also defines armor penetration, which allows them	=== -->
 	<!-- === to actually do damage. 								=== -->
-			<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_NiHal"]/statBases</xpath>
-			<value>
+	<li Class="PatchOperationAdd">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_NiHal"]/statBases</xpath>
+		<value>
 			<AimingAccuracy>1</AimingAccuracy>
 			<MeleeDodgeChance>1.5</MeleeDodgeChance>
 			<MeleeCritChance>1</MeleeCritChance>
 			<MeleeParryChance>1</MeleeParryChance>
 			<ReloadSpeed>1</ReloadSpeed>
 			<Suppressability>1</Suppressability>
-			</value>
-			</li>
+		</value>
+	</li>
 
-			<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/tools</xpath>
-			<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-				<label>left claws</label>
-				<capacities>
-					<li>Scratch</li>
-				</capacities>
-				<power>6</power>
-				<cooldownTime>1.5</cooldownTime>
-				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-				<armorPenetration>0.15</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-				<label>right claws</label>
-				<capacities>
-					<li>Scratch</li>
-				</capacities>
-				<power>6</power>
-				<cooldownTime>1.5</cooldownTime>
-				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				<armorPenetration>0.15</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-				<label>left fist</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>6</power>
-				<cooldownTime>1</cooldownTime>
-				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-				<armorPenetration>0.10</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-				<label>right fist</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>6</power>
-				<cooldownTime>1</cooldownTime>
-				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-				<armorPenetration>0.10</armorPenetration>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-				<label>teeth</label>
-				<capacities>
-					<li>Bite</li>
-				</capacities>
-				<power>7</power>
-				<cooldownTime>1.7</cooldownTime>
-				<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-				<armorPenetration>0.16</armorPenetration>
-				</li>
-			</tools>
-			</value>
+	<li Class="PatchOperationReplace">
+	<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_NiHal"]/tools</xpath>
+	<value>
+		<tools>
+			<li Class="CombatExtended.ToolCE">
+			<label>left claws</label>
+			<capacities>
+				<li>Scratch</li>
+			</capacities>
+			<power>6</power>
+			<cooldownTime>1.5</cooldownTime>
+			<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+			<armorPenetration>0.15</armorPenetration>
 			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>right claws</label>
+			<capacities>
+				<li>Scratch</li>
+			</capacities>
+			<power>6</power>
+			<cooldownTime>1.5</cooldownTime>
+			<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+			<armorPenetration>0.15</armorPenetration>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>left fist</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>6</power>
+			<cooldownTime>1</cooldownTime>
+			<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+			<armorPenetration>0.10</armorPenetration>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>right fist</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>6</power>
+			<cooldownTime>1</cooldownTime>
+			<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+			<armorPenetration>0.10</armorPenetration>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			<label>teeth</label>
+			<capacities>
+				<li>Bite</li>
+			</capacities>
+			<power>7</power>
+			<cooldownTime>1.7</cooldownTime>
+			<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+			<armorPenetration>0.16</armorPenetration>
+			</li>
+		</tools>
+	</value>
+	</li>
+
 	<!-- === Claws! Teeth! Blub!		   === -->
 	<!-- ===================================== -->
 	<!-- === BaseBodySize, ArmorRatings, MoveSpeed, and BaseHealth should already be set. I think. === -->
@@ -145,13 +141,13 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-	
 		<xpath>/Defs/ThingDef[@Name="BaseNiHal"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_Inventory" />
 		</value>
 	</li>
-			</operations>		
+		
+		</operations>		
 		</match>
 	</Operation>
 	<!-- === Congratulations! Your alien is Combat Ready!	 === -->

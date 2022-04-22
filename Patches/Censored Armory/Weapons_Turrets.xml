@@ -381,20 +381,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="Artillery_leIG_18_RA"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Artillery_leIG_18_RA"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Artillery_leIG_18_RA"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -480,20 +474,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="Artillery_Nebelwerfer_41_RA"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
