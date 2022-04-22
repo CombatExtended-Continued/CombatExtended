@@ -146,6 +146,74 @@ namespace CombatExtended
             return base.GetExplanationFinalizePart(req, numberSense, finalVal);
         }
 
+	public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
+        {
+	    if (this.stat == global::RimWorld.StatDefOf.ArmorRating_Blunt ||
+		    this.stat == global::RimWorld.StatDefOf.ArmorRating_Sharp) {
+
+		if(optionalReq != null) {
+		    if (optionalReq.Thing is Apparel apparel) {
+			float minArmor = value;
+			float maxArmor = value;
+			if (apparel.def.HasModExtension<PartialArmorExt>()) {
+			    foreach (ApparelPartialStat p in apparel.def.GetModExtension<PartialArmorExt>().stats) {
+				
+				float thisArmor = value;
+				if (p.useStatic) {
+				    thisArmor = p.staticValue;
+				}
+				else {
+				    thisArmor *= p.mult;
+				}
+				if (thisArmor < minArmor) {
+				    minArmor = thisArmor;
+				}
+				else if (thisArmor > maxArmor) {
+				    maxArmor = thisArmor;
+				}
+			    }
+			    string minArmorString = minArmor.ToString("0.00");
+			    string maxArmorString = maxArmor.ToString("0.00");
+			    return string.Format(stat.formatString, $"{minArmorString} ~ {maxArmorString}");
+			}
+		    }
+		    else if (optionalReq.Def?.HasModExtension<PartialArmorExt>() ?? false) {
+
+			float minArmor = value;
+			float maxArmor = value;
+			var ext = optionalReq.Def.GetModExtension<PartialArmorExt>();
+			foreach (ApparelPartialStat partstat in ext.stats)
+			{
+			    float thisArmor = value;
+			    if (partstat.stat == stat)
+			    {
+				if (partstat.useStatic)
+				{
+				    thisArmor = partstat.staticValue;
+				}
+				else
+				{
+				    thisArmor *= partstat.mult;
+				}
+			    }
+			    if (thisArmor < minArmor) {
+				minArmor = thisArmor;
+			    }
+			    else if (thisArmor > maxArmor) {
+				maxArmor = thisArmor;
+			    }
+			    if (minArmor != value || maxArmor != value) {
+				string minArmorString = minArmor.ToString("0.00");
+				string maxArmorString = maxArmor.ToString("0.00");
+				return string.Format(stat.formatString, $"{minArmorString} ~ {maxArmorString}");
+			    }
+			}
+		    }
+		}
+	    }
+	    return base.GetStatDrawEntryLabel(stat, value, numberSense, optionalReq, finalized);
+        }
+
         public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
         {
             if (this.stat.defName == "PartialArmorBody")
