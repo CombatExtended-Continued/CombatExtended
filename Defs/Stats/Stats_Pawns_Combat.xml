@@ -150,7 +150,7 @@
   <StatDef>
     <defName>MeleeCritChance</defName>
     <label>melee critical chance</label>
-    <description>Base chance to critically hit a target in melee.\n\nThe final chance depends on the opponent's critical skill and equal opponents will always have a 10% chance to crit.</description>
+    <description>Base chance to land a critical hit with a melee attack. Critical hits from sharp attacks get double penetration, while critical hits from blunt attacks stun the target.\nThe final chance depends on the opponent's critical skill and equal opponents will always have a 10% chance to crit. The internal formula is:\n\nFinalCritChance = ClampBetweenZeroAndOne(0.1 + AttackerCritChance - DefenderCritChance)*100%</description>
     <category>PawnCombat</category>
     <displayPriorityInCategory>99</displayPriorityInCategory>
     <defaultBaseValue>1</defaultBaseValue>
