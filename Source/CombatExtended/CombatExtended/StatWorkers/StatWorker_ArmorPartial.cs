@@ -177,7 +177,8 @@ namespace CombatExtended
 			    return string.Format(stat.formatString, $"{minArmorString} ~ {maxArmorString}");
 			}
 		    }
-		    else if (optionalReq.Def!=null && optionalReq.Def.HasModExtension<PartialArmorExt>()) {
+		    else if (optionalReq.Def?.HasModExtension<PartialArmorExt>()) {
+
 			float minArmor = value;
 			float maxArmor = value;
 			var ext = optionalReq.Def.GetModExtension<PartialArmorExt>();
