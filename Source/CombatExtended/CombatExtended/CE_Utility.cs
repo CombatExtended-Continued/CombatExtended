@@ -343,6 +343,8 @@ namespace CombatExtended
         /// </summary>
         public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
         {
+	    if (!apparel.def.apparel.CoversBodyPart(part)) { return 0; }
+
             float result = apparel.GetStatValue(stat);
 
             if (Controller.settings.PartialStat)
