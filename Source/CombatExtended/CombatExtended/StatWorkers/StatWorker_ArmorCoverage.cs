@@ -8,7 +8,7 @@ namespace CombatExtended
     {
         public override bool ShouldShowFor(StatRequest req)
         {
-            return req.HasThing && (req.Thing as Pawn)?.apparel != null;
+            return Controller.settings.ShowExtraStats && req.HasThing && (req.Thing as Pawn)?.apparel != null;
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
