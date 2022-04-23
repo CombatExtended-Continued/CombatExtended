@@ -10,7 +10,7 @@
 
 			<!-- Tomahawk -->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Ranged_Tomahawk"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -36,7 +36,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Ranged_Tomahawk"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/statBases</xpath>
 				<value>
 					<Bulk>2</Bulk>
 					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
@@ -44,7 +44,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
 				<value>
 					<equippedStatOffsets>
 						<MeleeCritChance>0.40</MeleeCritChance>
@@ -90,22 +90,27 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costStuffCount</xpath>
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
 			</li>
 
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/recipeMaker</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costStuffCount</xpath>
 			</li>
 
 			<li Class="PatchOperationRemove">
 				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costList</xpath>
 			</li>
 
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/recipeMaker</xpath>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
 				<value>
-					<thingClass>CombatExtended.AmmoThing</thingClass>
 					<stackLimit>25</stackLimit>
 					<resourceReadoutPriority>First</resourceReadoutPriority>
 				</value>
@@ -122,7 +127,7 @@
 			<xpath>Defs</xpath>
 			<value>
 				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
-				<defName>Make_Ranged_Tomahawk</defName>
+				<defName>Make_Ranged_Tomahawk_CE</defName>
 				<label>make tomahawk x10</label>
 				<description>Craft 10 tomahawks.</description>
 				<jobString>Making tomahawk.</jobString>
@@ -138,10 +143,10 @@
 					</li>
 					<li>
 						<filter>
-						<categories>
-							<li>Metallic</li>
-							<li>Stony</li>
-						</categories>
+							<stuffCategoriesToAllow>
+								<li>Metallic</li>
+								<li>Stony</li>
+							</stuffCategoriesToAllow>						
 						</filter>
 						<count>50</count>
 					</li>					
@@ -150,10 +155,10 @@
 					<thingDefs>
 					<li>WoodLog</li>
 					</thingDefs>
-					<categories>
-						<li>Metallic</li>
-						<li>Stony</li>
-					</categories>					
+						<stuffCategoriesToAllow>
+							<li>Metallic</li>
+							<li>Stony</li>
+						</stuffCategoriesToAllow>							
 				</fixedIngredientFilter>
 				<products>
 					<Ranged_Tomahawk>10</Ranged_Tomahawk>
@@ -170,7 +175,7 @@
 			<!-- Torch -->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Ranged_Torch"]/tools</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -208,7 +213,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Ranged_Torch"]/statBases</xpath>
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/statBases</xpath>
 				<value>
 					<Bulk>2</Bulk>
 					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
@@ -216,7 +221,7 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Ranged_Torch"]/equippedStatOffsets</xpath>
+			<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/equippedStatOffsets</xpath>
 				<value>
 					<MeleeCritChance>0.10</MeleeCritChance>
 					<MeleeParryChance>0.30</MeleeParryChance>
@@ -230,12 +235,6 @@
 					<stackLimit>25</stackLimit>
 					<resourceReadoutPriority>First</resourceReadoutPriority>
 				</value>
-			</li>
-
-			<li Class="PatchOperationAttributeSet">
-				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
-				<attribute>Class</attribute>
-				<value>CombatExtended.AmmoDef</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
