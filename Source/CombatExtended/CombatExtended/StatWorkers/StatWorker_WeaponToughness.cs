@@ -19,8 +19,9 @@ namespace CombatExtended
 	    pawn.apparel = null;
 	    var equipment = pawn.equipment;
 	    pawn.equipment = null;
+	    float factor;
 	    try {
-		float factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
+		factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
 	    }
 	    finally {
 		pawn.apparel = apparel;
