@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>Moyo-Light in the Abyss</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ScenarioDef[defName="Moyo_RefugeeScenario"]/scenario/parts</xpath>
+				<value>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_6x18mmCharged</thingDef>
+						<count>216</count>
+					</li>
+					<li Class="ScenPart_StartingThing_Defined">
+						<def>StartingThing_Defined</def>
+						<thingDef>Ammo_Abyssnail</thingDef>
+						<count>240</count>
+					</li>
+				</value>
+			</li>
+			
+			<!--Add material filter to faction for MIB type events-->
+			
+			<li Class="PatchOperationConditional">
+				   <xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
+				<match Class="PatchOperationConditional">
+					<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
+					<match Class="PatchOperationConditional">
+						<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+						<match Class="PatchOperationReplace">
+							<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+							<value>
+								<li>Steel</li>
+							</value>
+						</match>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
+							<value>
+								<li>Steel</li>
+							</value>
+						</nomatch>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
+						<value>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</value>
+					</nomatch>
+				</match>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]</xpath>
+					<value>
+						<apparelStuffFilter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</apparelStuffFilter>
+					</value>
+				</nomatch>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

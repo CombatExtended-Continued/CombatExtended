@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		
+		<operations>
+			<li Class="PatchOperationFindMod">
+			<mods><li>Moyo-Light in the Abyss</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ==========  Moyo Knife : Same as normal variant =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.01</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>11</power>
+						<cooldownTime>1.26</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.67</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>1.18</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.2</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>0.39</MeleeCounterParryBonus>
+					<Bulk>1.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_Knife"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.08</MeleeCritChance>
+					  <MeleeParryChance>0.24</MeleeParryChance>
+					  <MeleeDodgeChance>1.07</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- ==========  Moyo Clamp : No melee bonuses but high power =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_KineticClamp"]/statBases</xpath>
+				<value>
+					<Bulk>9.5</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_KineticClamp"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>body</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.15</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Stake</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>51</power>
+						<cooldownTime>4.3</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>32</armorPenetrationBlunt>
+						<armorPenetrationSharp>8</armorPenetrationSharp>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Alloy Harpoon  =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.77</cooldownTime>
+						<chanceFactor>0.4</chanceFactor>
+						<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>16</power>
+						<cooldownTime>1.77</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>2.88</armorPenetrationBlunt>
+						<armorPenetrationSharp>5.76</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					<Bulk>10</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_AlloyHarpoon"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.24</MeleeCritChance>
+					  <MeleeParryChance>1.45</MeleeParryChance>
+					  <MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<!-- ==========  Plasma Harpoon  =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.68</MeleeCounterParryBonus>
+					<Bulk>10</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.24</MeleeCritChance>
+					  <MeleeParryChance>1.45</MeleeParryChance>
+					  <MeleeDodgeChance>0.9</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_PlasmaHarpoon"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						  <li>Stab</li>
+						</capacities>
+						<power>17</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>7</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.44</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>3.136</armorPenetrationBlunt>
+						<armorPenetrationSharp>24.5</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.01</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ==========  Plasma Tachi - Producable, longer and heavier plasmasword =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]/statBases</xpath>
+				<value>
+					<MeleeCounterParryBonus>1.27</MeleeCounterParryBonus>
+					<Bulk>10.50</Bulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]</xpath>
+				<value>
+					<equippedStatOffsets>
+					  <MeleeCritChance>0.95</MeleeCritChance>
+					  <MeleeParryChance>0.54</MeleeParryChance>
+					  <MeleeDodgeChance>0.33</MeleeDodgeChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaTachi"]/tools</xpath>
+				<value>
+				  <tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Cut</li>
+						</capacities>
+						<power>56</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>7</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>2.1</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>6.24</armorPenetrationBlunt>
+						<armorPenetrationSharp>16.26</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						  <li>Stab</li>
+						</capacities>
+						<power>14</power>
+						<extraMeleeDamages>
+							<li>
+								<def>Burn</def>
+								<amount>5</amount>
+							</li>
+						</extraMeleeDamages>
+						<cooldownTime>1.85</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationBlunt>3.46</armorPenetrationBlunt>
+						<armorPenetrationSharp>24</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+						  <li>Poke</li>
+						  <li>Blunt</li>
+						</capacities>
+						<power>7</power>
+						<cooldownTime>2.22</cooldownTime>
+						<chanceFactor>0.2</chanceFactor>
+						<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					  </li>
+				  </tools>
+				</value>
+			</li>
+			
+			<!-- ========== Pistol =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_Pistol</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.17</ShotSpread>
+					<SwayFactor>0.57</SwayFactor>
+					<Bulk>4.50</Bulk>
+					<Mass>1.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaPistol</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>35</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalLight</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Police Pistol =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_PistolPolice</defName>
+				<statBases>
+					<SightsEfficiency>0.70</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.65</SwayFactor>
+					<Bulk>3.75</Bulk>
+					<Mass>1.20</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaMid</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>18</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>18</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalMid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Charge SMG =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_SMG</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>0.75</SwayFactor>
+					<Bulk>6.80</Bulk>
+					<Mass>3.00</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.46</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaPistol</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+					<range>31</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>35</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalLight</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Civil Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_CivilAR</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.38</SwayFactor>
+					<Bulk>6.50</Bulk>
+					<Mass>7.25</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.39</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaMid</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+					<range>48</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>18</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalMid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Military Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_MilitaryAR</defName>
+				<statBases>
+					<SightsEfficiency>1.10</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.40</SwayFactor>
+					<Bulk>10.50</Bulk>
+					<Mass>3.5</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.39</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaMid</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalMid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Precision Rifle =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_MilitarySR</defName>
+				<statBases>
+					<SightsEfficiency>2.25</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>11.50</Bulk>
+					<Mass>6.2</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>1.00</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaMid</defaultProjectile>
+					<warmupTime>1.7</warmupTime>
+					<burstShotCount>6</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>65</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>30</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_MabyssalMid</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>3</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Accelerator =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>RedMoyo_MilitaryHeavyRifle</defName>
+				<statBases>
+					<SightsEfficiency>2.25</SightsEfficiency>
+					<ShotSpread>0.08</ShotSpread>
+					<SwayFactor>1.23</SwayFactor>
+					<Bulk>11.50</Bulk>
+					<Mass>6.2</Mass>
+					<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<recoilAmount>2.25</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MabyssalPlasmaAccelerated</defaultProjectile>
+					<warmupTime>1.875</warmupTime>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+					<range>51</range>
+					<soundCast>Shot_ChargeRifle</soundCast>
+					<soundCastTail>GunTail_Light</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>9</magazineSize>
+					<reloadTime>5.1</reloadTime>
+					<ammoSet>AmmoSet_MabyssalAccelerated</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_Pistol" or 
+				defName="RedMoyo_SMG" or 
+				defName="RedMoyo_MilitarySR" or 
+				defName="RedMoyo_CivilAR" or 
+				defName="RedMoyo_MilitaryHeavyRifle"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_PistolPolice"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>grip</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>muzzle</label>
+							<capacities>
+							<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.54</cooldownTime>
+							<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RedMoyo_MilitaryAR"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stock</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.55</cooldownTime>
+							<chanceFactor>1</chanceFactor>
+							<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>barrel</label>
+							<capacities>
+							<li>Blunt</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>2.02</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+						<label>plasma bayonet</label>
+							<capacities>
+							<li>Stab</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.62</cooldownTime>
+							<armorPenetrationBlunt>2.304</armorPenetrationBlunt>
+							<armorPenetrationSharp>24.5</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			</operations>
+			</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
