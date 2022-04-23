@@ -174,7 +174,7 @@ namespace CombatExtended
 	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
 	    list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
 
-	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref showExtraStats, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
+	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref unlimitParryDamage, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
