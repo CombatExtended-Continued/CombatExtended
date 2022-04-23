@@ -52,31 +52,31 @@
 					</equippedStatOffsets>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/verbs</xpath>
-				<value>
-					<verbs>
-						<li Class="CombatExtended.VerbPropertiesCE">
-							<label>throw tomahawk</label>
-							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<onlyManualCast>False</onlyManualCast>
-							<warmupTime>2.05</warmupTime>
-							<range>10</range>
-							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-							<soundCast>ThrowGrenade</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>0</muzzleFlashScale>
-							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-							<defaultProjectile>Axe_Tomahawk</defaultProjectile>
-							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-						</li>
-					</verbs>
-				</value>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Ranged_Tomahawk</defName>
+			<statBases>
+				<Mass>1.2</Mass>
+				<Bulk>3.3</Bulk>
+				<SightsEfficiency>0.45</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+				<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<label>throw tomahawk</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Axe_Tomahawk</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>10</range>
+				<soundCast>Interact_BeatFire</soundCast>
+			</Properties>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
 			</li>
-			
+				
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Axe_Tomahawk"]/projectile</xpath>
 				<value>
@@ -211,7 +211,35 @@
 					</tools>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Ranged_Torch</defName>
+				<statBases>
+					<SightsEfficiency>0.45</SightsEfficiency>
+					<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+					<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<label>throw torch</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Torch_Torch</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>10</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</Properties>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/statBases</xpath>
 				<value>
@@ -236,34 +264,6 @@
 					<resourceReadoutPriority>First</resourceReadoutPriority>
 				</value>
 			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/verbs</xpath>
-				<value>
-					<verbs>
-						<li Class="CombatExtended.VerbPropertiesCE">
-							<label>throw torch</label>
-							<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-							<hasStandardCommand>true</hasStandardCommand>
-							<onlyManualCast>False</onlyManualCast>
-							<warmupTime>1.6</warmupTime>
-							<range>6</range>
-							<minRange>2</minRange>
-							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-							<soundCast>ThrowGrenade</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
-							<muzzleFlashScale>0</muzzleFlashScale>
-							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-							<targetParams>
-								<canTargetLocations>true</canTargetLocations>
-							</targetParams>
-							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-							<defaultProjectile>Torch_Torch</defaultProjectile>
-							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-						</li>
-					</verbs>
-				</value>
-			</li>
 		
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Torch_Torch"]/projectile</xpath>
@@ -271,7 +271,7 @@
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<damageDef>Flame</damageDef>
 						<damageAmountBase>1</damageAmountBase>
-						<speed>20</speed>
+						<speed>12</speed>
 						<armorPenetrationSharp>0.0</armorPenetrationSharp>
 						<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 						<ai_IsIncendiary>true</ai_IsIncendiary>
