@@ -306,6 +306,9 @@ namespace CombatExtended
         /// <returns>Returns true if the armor takes damage, false if it doesn't.</returns>
         private static bool TryDamageArmor(DamageDef def, float penAmount, float armorAmount, ref float armorDamage, Thing armor)
         {
+	    if (armorDamage == 0) {
+		return false;
+	    }
             // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this can be an extremely small chance)
             if ((armorDamage < 1f) && (Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)))
             {
@@ -500,7 +503,11 @@ namespace CombatExtended
         /// </summary>
         /// <param name="dinfo">DamageInfo to apply to parryThing</param>
         /// <param name="parryThing">Thing taking the damage</param>
-	public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing)
+	public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing) {
+	    float maxDamage = float.MaxValue;
+	    ApplyParryDamage(dinfo, parryThing, ref maxDamage);
+	}
+	public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing, ref float maxDamage)
         {
             var pawn = parryThing as Pawn;
             if (pawn != null)
@@ -519,7 +526,9 @@ namespace CombatExtended
             {
                 float parryThingArmor;
                 var dmgAmount = dinfo.Amount * 0.5f;
-		var maxDamage = dinfo.Amount * 0.1f;
+		if (maxDamage == float.MaxValue) {
+		    maxDamage = dinfo.Amount * 0.1f;
+		}
 		if (Controller.settings.UnlimitParryDamage) {
 		    maxDamage = float.MaxValue;
 		}
@@ -538,10 +547,17 @@ namespace CombatExtended
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
 
+
 		bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, ref maxDamage, parryThing);
+
 		
-                if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp)
-                    ApplyParryDamage(GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen), parryThing);
+                if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dmgAmount > 0) {
+		    var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
+		    if (dmgAmount > 0) {
+			ApplyParryDamage(ndi, parryThing, ref maxDamage);
+		    }
+		}
+
             }
         }
 
