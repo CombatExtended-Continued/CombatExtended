@@ -27,7 +27,15 @@
 				defName="Turret_Triplecrossbow"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
-			
+
+			<!-- Remove duplicate mannable comp. -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				@Name="Turret_CatapultBase" or
+				@Name="Turret_TrebuchetBase"
+				]/comps/li[@Class = "CompProperties_Mannable"]</xpath>
+			</li>
+
 			<!--=============== Ballista ===============-->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Turret_BallistaGun</defName>
@@ -145,7 +153,7 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
 						<warmupTime>4</warmupTime>
-						<minRange>30</minRange>
+						<minRange>20</minRange>
 						<range>500</range>
 						<burstShotCount>1</burstShotCount>
 						<soundCast>Bow_Recurve</soundCast>
@@ -244,6 +252,10 @@
 			<value>
 				<li>TurretGun</li>
 			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[@Name="Turret_TrebuchetBase"]/inspectorTabs</xpath>
 		</li>
 
         <!-- === Remove Unneeded === -->
