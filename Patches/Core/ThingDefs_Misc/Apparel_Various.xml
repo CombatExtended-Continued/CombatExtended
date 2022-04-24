@@ -91,11 +91,11 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Parka"]/statBases/Mass</xpath>
 		<value>
-			<Mass>2.5</Mass>
+			<Mass>3</Mass>
 		</value>
 	</Operation>
 	
-		<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_Jacket"]/costStuffCount</xpath>
 		<value>
 			<costStuffCount>60</costStuffCount>
@@ -115,7 +115,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Apparel_PlateArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 		<value>
-			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
 		</value>
 	</Operation>
 
@@ -135,6 +135,64 @@
 		<value>
 			<li>Hands</li>
 			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_PlateArmor"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
 		</value>
 	</Operation>
 
@@ -167,6 +225,40 @@
 		<xpath>Defs/ThingDef[defName="Apparel_FlakVest"]/statBases/Mass</xpath>
 		<value>
 			<Mass>11</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Apparel_FlakVest"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Shoulder</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Shoulder</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
 		</value>
 	</Operation>
 
@@ -258,15 +350,20 @@
 		</value>
 	</Operation>
 
-	<!--<Operation Class="PatchOperationAddModExtension">
+	<!-- Partial armor coverage; collar is thinner. -->
+	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Apparel_FlakJacket"]</xpath>
 		<value>
 		  <li Class="CombatExtended.PartialArmorExt">
 			  <stats>
 				  <li>
-					Stat def in '<>', value inside, works for both armor rating sharp and blunt. The value can be anything higher than 0, even higher than 1 for setting up a strong point in the armor pieces
-					<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
-					BodyPartDefs
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
 					<parts>
 						<li>Neck</li>
 					</parts>
@@ -274,8 +371,7 @@
 			  </stats>
 		  </li>
 		</value>
-	  </Operation> -->
-
+	</Operation>
 
 	<!-- Half the insulation of a regular jacket -->
 	<Operation Class="PatchOperationReplace">
@@ -358,13 +454,6 @@
 		<xpath>Defs/ThingDef[defName="Apparel_FlakPants"]/statBases/Insulation_Heat</xpath>
 		<value>
 			<StuffEffectMultiplierInsulation_Heat>0.08</StuffEffectMultiplierInsulation_Heat>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_FlakPants"]/statBases/Mass</xpath>
-		<value>
-			<Mass>4</Mass>
 		</value>
 	</Operation>
 
@@ -472,7 +561,53 @@
 			<li>Feet</li>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorPowerBase"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	</Operation>
+
 	<!-- Increase Cost -->
 	
 	<Operation Class="PatchOperationReplace">
@@ -560,7 +695,65 @@
 			<li>Feet</li>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="ApparelArmorReconBase"]</xpath>
+		<value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+		</value>
+	</Operation>
+
 	<!-- Increase Cost -->
 	
 	<Operation Class="PatchOperationReplace">

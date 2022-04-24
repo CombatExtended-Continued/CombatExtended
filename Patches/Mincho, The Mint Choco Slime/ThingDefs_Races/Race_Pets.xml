@@ -2,84 +2,84 @@
 <Patch>
   <Operation Class="PatchOperationSequence">
 	<operations>
-	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Mincho, The Mint Choco Slime</li><li>Mincho, The Mint Choco Slime ~ HAR ver.</li></mods>
-			
+	  <li Class="PatchOperationFindMod">	
+		<mods>
+			<li>Mincho, The Mint Choco Slime ~ HAR ver.</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
 			
-			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/ThingDef[defName="Mincho_Minchonyang" or defName="Mincho_Minmoong"]</xpath>
-				<value>
-					<li Class="CombatExtended.RacePropertiesExtensionCE">
-						<bodyShape>Quadruped</bodyShape>
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/ThingDef[defName="Mincho_Minchonyang" or defName="Mincho_Minmoong"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Quadruped</bodyShape>
+				</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Mincho_Minchonyang"]/statBases</xpath>
+			<value>
+				<!--Innate immunity to toxic fallout, high immunity gain rate-->
+				<SmokeSensitivity>0</SmokeSensitivity>
+				<MeleeDodgeChance>0.23</MeleeDodgeChance>
+				<MeleeCritChance>0.02</MeleeCritChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Mincho_Minmoong"]/statBases</xpath>
+			<value>
+				<!--Innate immunity to toxic fallout, high immunity gain rate-->
+				<SmokeSensitivity>0</SmokeSensitivity>
+				<MeleeDodgeChance>0.19</MeleeDodgeChance>
+				<MeleeCritChance>0.06</MeleeCritChance>
+				<MeleeParryChance>0.04</MeleeParryChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Mincho_Minchonyang"]/tools</xpath> 
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>slime fist</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+							<li>Cut</li>
+						</capacities>
+						<power>1</power>
+						<cooldownTime>0.9</cooldownTime>
+						<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.05</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 					</li>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="Mincho_Minchonyang"]/statBases</xpath>
-				  <value>
-					<!--Innate immunity to toxic fallout, high immunity gain rate-->
-					<SmokeSensitivity>0</SmokeSensitivity>
-					<MeleeDodgeChance>0.23</MeleeDodgeChance>
-					<MeleeCritChance>0.02</MeleeCritChance>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/ThingDef[defName="Mincho_Minmoong"]/statBases</xpath>
-				  <value>
-					<!--Innate immunity to toxic fallout, high immunity gain rate-->
-					<SmokeSensitivity>0</SmokeSensitivity>
-					<MeleeDodgeChance>0.19</MeleeDodgeChance>
-					<MeleeCritChance>0.06</MeleeCritChance>
-					<MeleeParryChance>0.04</MeleeParryChance>
-				  </value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Mincho_Minchonyang"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>slime fist</label>
-							<capacities>
-								<li>Blunt</li>
-								<li>Poke</li>
-								<li>Cut</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>0.9</cooldownTime>
-							<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.05</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="Mincho_Minmoong"]/tools</xpath> 
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>slime fist</label>
-							<capacities>
-								<li>Blunt</li>
-								<li>Poke</li>
-								<li>Cut</li>
-							</capacities>
-							<power>1.5</power>
-							<cooldownTime>0.9</cooldownTime>
-							<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
-							<armorPenetrationSharp>0.05</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
-						</li>
-					</tools>
-				</value>
-			</li>
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Mincho_Minmoong"]/tools</xpath> 
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>slime fist</label>
+						<capacities>
+							<li>Blunt</li>
+							<li>Poke</li>
+							<li>Cut</li>
+						</capacities>
+						<power>1.5</power>
+						<cooldownTime>0.9</cooldownTime>
+						<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
+						<armorPenetrationSharp>0.05</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
 			
 		</operations>
 		</match>	

@@ -60,21 +60,15 @@
 					<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]/equippedStatOffsets</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="DR_BattleHammer"]</xpath>
-				<value>
-					<equippedStatOffsets />
-				</value>
-				</li>
-			</operations>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/ThingDef[defName = "DR_BattleHammer"]/equippedStatOffsets</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName = "DR_BattleHammer"]</xpath>
+					<value>
+						<equippedStatOffsets />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">
@@ -162,21 +156,15 @@
 					<MeleeCounterParryBonus>0.40</MeleeCounterParryBonus>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]/equippedStatOffsets</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="DR_BattleBlade"]</xpath>
+
+			<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName = "DR_BattleBlade"]/equippedStatOffsets</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "DR_BattleBlade"]</xpath>
 				<value>
-					<equippedStatOffsets />
+				<equippedStatOffsets />
 				</value>
-				</li>
-			</operations>
+			</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">

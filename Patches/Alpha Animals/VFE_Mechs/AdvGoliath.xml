@@ -29,28 +29,28 @@
 					<ArmorRating_Blunt>45</ArmorRating_Blunt>
 				</value>
 			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Goliath"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>20</ArmorRating_Sharp>
 				</value>
-			</li>	
+			</li>
 
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Goliath"]/race/baseHealthScale</xpath>
 				<value>
 					<baseHealthScale>3.0</baseHealthScale>
 				</value>
-			</li>		
-			
-			
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Goliath"]/statBases</xpath>
 				<value>
 					<CarryWeight>400</CarryWeight>
-			        <CarryBulk>1000</CarryBulk>
+					<CarryBulk>550</CarryBulk>
 					<AimingAccuracy>1.0</AimingAccuracy>
-			        <ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					<MeleeDodgeChance>0.1</MeleeDodgeChance>
 					<MeleeCritChance>0.75</MeleeCritChance>
 					<MeleeParryChance>0.25</MeleeParryChance>
@@ -88,16 +88,21 @@
 				</value>
 			</li>
 
+			<!-- Remove the explosive bolt projector -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Advanced_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
+			</li>
+
+			<!-- === combatPower Patch === -->
+
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Advanced_Goliath"]/weaponTags</xpath>
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Advanced_Goliath"]/combatPower</xpath>
 				<value>
-					<weaponTags>
-						<li>VFE_AdvMechanoidGunHeavy</li>
-						<li>VFE_AdvMechanoidGunLongRange</li>
-					</weaponTags>
+					<combatPower>550</combatPower>
 				</value>
 			</li>
-			
+
 				</operations>
 			</match>					
 		</match>			

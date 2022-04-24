@@ -1,20 +1,24 @@
 using Verse;
 using ProjectRimFactory.Industry;
 using System;
+using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    static class ProjectRimFactoryCompat
+    public class ProjectRimFactoryCompat: IPatch
     {
-        public static bool CanInstall()
+        public bool CanInstall()
         {
             return ModLister.GetActiveModWithIdentifier("spdskatr.projectrimfactory") != null;
         }
 
-        public static void Install()
+        public void Install()
         {
             Building_FuelingMachine.RegisterRefuelable(typeof(Building_TurretGunCE), FindCompAmmoUser, TestAmmo, ReloadAction);
         }
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
 
         private static int TestAmmo(object compObject, Thing ammo)
         {

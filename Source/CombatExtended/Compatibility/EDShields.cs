@@ -13,7 +13,7 @@ using Jaxxa.EnhancedDevelopment.Shields.Shields;
 
 namespace CombatExtended.Compatibility
 {
-    class EDShields
+    class EDShields: IPatch
     {
         public static SoundDef HitSoundDef = null;
 
@@ -23,7 +23,7 @@ namespace CombatExtended.Compatibility
         public static int lastCacheTick = 0;
         public static Map lastCacheMap = null;
 
-        public static bool CanInstall()
+        public bool CanInstall()
         {
             if (!ModLister.HasActiveModWithName("ED-Shields"))
             {
@@ -31,14 +31,17 @@ namespace CombatExtended.Compatibility
             }
             return true;
         }
-        public static void Install()
+        public void Install()
         {
             BlockerRegistry.RegisterCheckForCollisionCallback(EDShields.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(EDShields.ImpactSomethingCallback);
             Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
-        public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
+	public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             /* Check if an active shield can block this projectile, we don't check if the projectile flies overhead, as those projectiles don't call this function
              */
@@ -87,7 +90,7 @@ namespace CombatExtended.Compatibility
                     generator.FieldIntegrity_Current -= damage;
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
-                    FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.ExactPosition = exactPosition;
                     return true;
                 }
@@ -126,7 +129,7 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
                 HitSoundDef.PlayOneShot((SoundInfo)new TargetInfo(shield.Position, map, false));
-                FleckMaker.ThrowLightningGlow(destination, map, 0.5f);
+                FleckMakerCE.ThrowLightningGlow(destination, map, 0.5f);
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 generator.FieldIntegrity_Current -= damage;
                 return true;

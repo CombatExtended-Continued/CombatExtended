@@ -52,52 +52,34 @@
 				</value>
 			</li>
 			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]</xpath>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK47Droid"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]</xpath>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK50Droid"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]/comps</xpath>
-					<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]</xpath>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_OR_HK51Droid"]</xpath>
 					<value>
 						<comps />
 					</value>
-					</li>
-				</operations>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">

@@ -3,72 +3,66 @@
   <Operation Class="PatchOperationSequence">
 	<operations>
 	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Mincho, The Mint Choco Slime</li><li>Mincho, The Mint Choco Slime ~ HAR ver.</li></mods>
-			
+		<mods>
+			<li>Mincho, The Mint Choco Slime ~ HAR ver.</li>
+		</mods>			
 		<match Class="PatchOperationSequence">
 		<operations>
 			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/tools</xpath>
-				<value>
-					<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<labelUsedInLogging>false</labelUsedInLogging>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>15</power>
-					<cooldownTime>1.9</cooldownTime>
-					<chanceFactor>1.33</chanceFactor>
-					<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>handle</label>
-					<capacities>
-						<li>Poke</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>1.59</cooldownTime>
-					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-				</li>			
-					</tools>
-				</value>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/tools</xpath>
+			<value>
+				<tools>
+			<li Class="CombatExtended.ToolCE">
+				<label>head</label>
+				<labelUsedInLogging>false</labelUsedInLogging>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>1.9</cooldownTime>
+				<chanceFactor>1.33</chanceFactor>
+				<armorPenetrationBlunt>5.625</armorPenetrationBlunt>
 			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/statBases</xpath>
-				<value>
-					<Bulk>3.5</Bulk>
-					<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/equippedStatOffsets</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]</xpath>
+			<li Class="CombatExtended.ToolCE">
+				<label>handle</label>
+				<capacities>
+					<li>Poke</li>
+				</capacities>
+				<power>2</power>
+				<cooldownTime>1.59</cooldownTime>
+				<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+			</li>			
+				</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/statBases</xpath>
+			<value>
+				<Bulk>3.5</Bulk>
+				<MeleeCounterParryBonus>0.24</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/ThingDef[defName="Mincho_MintCandy"]/equippedStatOffsets</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Mincho_MintCandy"]</xpath>
 				<value>
 					<equippedStatOffsets />
 				</value>
-				</li>
-			</operations>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/equippedStatOffsets</xpath>
-				<value>
-					<MeleeCritChance>0.42</MeleeCritChance>
-					<MeleeParryChance>0.24</MeleeParryChance>
-					<MeleeDodgeChance>0.2</MeleeDodgeChance>
-				</value>	
-			</li>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Mincho_MintCandy"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.42</MeleeCritChance>
+				<MeleeParryChance>0.24</MeleeParryChance>
+				<MeleeDodgeChance>0.2</MeleeDodgeChance>
+			</value>	
+		</li>
 			
 		</operations>
 		</match>	

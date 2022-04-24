@@ -25,26 +25,28 @@
 					<ArmorRating_Blunt>40</ArmorRating_Blunt>
 				</value>
 			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>18</ArmorRating_Sharp>
 				</value>
-			</li>	
+			</li>
 						
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/statBases</xpath>
 				<value>
 					<CarryWeight>400</CarryWeight>
-			                	<CarryBulk>1000</CarryBulk>
+					<CarryBulk>500</CarryBulk>
 					<AimingAccuracy>1.0</AimingAccuracy>
-			                	<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
+					<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
 					<MeleeDodgeChance>0.05</MeleeDodgeChance>
 					<MeleeCritChance>0.75</MeleeCritChance>
 					<MeleeParryChance>0.2</MeleeParryChance>
 					<MaxHitPoints>500</MaxHitPoints>
 				</value>
 			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="AA_Goliath"]/race/baseHealthScale</xpath>
 				<value>
@@ -81,7 +83,13 @@
 					</li>
 				</value>
 			</li>
-			
+
+			<!-- Remove the explosive bolt projector -->
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/PawnKindDef[defName="AA_Goliath"]/weaponTags/li[.="MechanoidGunLongRange"]</xpath>
+			</li>
+
 			</operations>
 		</match>
 	</Operation>

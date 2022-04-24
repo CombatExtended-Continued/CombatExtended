@@ -13,7 +13,7 @@ using Rimatomics;
 
 namespace CombatExtended.Compatibility
 {
-    class Rimatomics
+    class Rimatomics: IPatch
     {
         public static SoundDef HitSoundDef = null;
 
@@ -23,15 +23,20 @@ namespace CombatExtended.Compatibility
         public static int lastCacheTick = 0;
         public static Map lastCacheMap = null;
 
-        public static bool CanInstall()
+        public bool CanInstall()
         {
 	    return ModLister.HasActiveModWithName("Dubs Rimatomics");
         }
-        public static void Install()
+        public void Install()
         {
 	    BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
+
+	public IEnumerable<string> GetCompatList() {
+	    yield break;
+	}
+	
         public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             Map map = projectile.Map;
@@ -81,7 +86,7 @@ namespace CombatExtended.Compatibility
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
 
                     exactPosition = BlockerRegistry.GetExactPosition(origin.ToVector3(), projectile.ExactPosition, shield.parent.Position.ToVector3(), (fieldRadius - 1) * (fieldRadius - 1));
-                    FleckMaker.ThrowLightningGlow(exactPosition, map, 0.5f);
+                    FleckMakerCE.ThrowLightningGlow(exactPosition, map, 0.5f);
                     projectile.ExactPosition = exactPosition;
 
 

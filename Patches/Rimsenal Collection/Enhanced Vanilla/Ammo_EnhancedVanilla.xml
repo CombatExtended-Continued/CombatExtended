@@ -196,6 +196,34 @@
 		<workAmount>900</workAmount>
 	</RecipeDef>
 
+		<!-- ==================== Thumper Fuel Cell ammoset ========================== -->
+
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_30x64mmFuel_RSThump</defName>
+			<label>30x64mm Fuel Cell (Thumper)</label>
+			<ammoTypes>
+				<Ammo_30x64mmFuel_Thermobaric>Bullet_30x64mmFuel_RSThump</Ammo_30x64mmFuel_Thermobaric>
+			</ammoTypes>
+		</CombatExtended.AmmoSetDef>
+
+		<!-- ================== Projectiles ================== -->
+
+	  <ThingDef ParentName="Base30x64mmFuelBullet">
+		<defName>Bullet_30x64mmFuel_RSThump</defName>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<label>concussion bolt</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+		  <explosionRadius>2.0</explosionRadius>
+		  <damageDef>Thump</damageDef>
+		  <damageAmountBase>24</damageAmountBase>
+		  <armorPenetrationSharp>0</armorPenetrationSharp>
+		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
+		  <soundExplode>ThumpCannon_Impact</soundExplode>
+		  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  <ai_IsIncendiary>true</ai_IsIncendiary>
+		</projectile>
+	  </ThingDef>
+
 			</value>	
 		</li>
 

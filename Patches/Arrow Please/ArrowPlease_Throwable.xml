@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Arrow Please (Continued)</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- Tomahawk -->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.8</cooldownTime>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>2</cooldownTime>
+							<armorPenetrationSharp>0.6</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.40</MeleeCritChance>
+						<MeleeParryChance>0.20</MeleeParryChance>
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Ranged_Tomahawk</defName>
+			<statBases>
+				<Mass>1.2</Mass>
+				<Bulk>3.3</Bulk>
+				<SightsEfficiency>0.45</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+				<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<label>throw tomahawk</label>
+				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Axe_Tomahawk</defaultProjectile>
+				<warmupTime>1.0</warmupTime>
+				<range>10</range>
+				<soundCast>Interact_BeatFire</soundCast>
+			</Properties>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+			</li>
+				
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Axe_Tomahawk"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Stab</damageDef>
+						<damageAmountBase>10</damageAmountBase>
+						<speed>12</speed>
+						<armorPenetrationSharp>0.5</armorPenetrationSharp>
+						<armorPenetrationBlunt>2</armorPenetrationBlunt>
+					</projectile>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costStuffCount</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/costList</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]/recipeMaker</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<value>
+					<stackLimit>25</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Tomahawk"]</xpath>
+				<attribute>Class</attribute>
+				<value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<!-- == Recipe == -->
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>Make_Ranged_Tomahawk_CE</defName>
+				<label>make tomahawk x10</label>
+				<description>Craft 10 tomahawks.</description>
+				<jobString>Making tomahawk.</jobString>
+				<workAmount>8500</workAmount>	
+				<ingredients>
+					<li>
+					<filter>
+						<thingDefs>
+						<li>WoodLog</li>
+						</thingDefs>
+					</filter>
+					<count>10</count>
+					</li>
+					<li>
+						<filter>
+							<stuffCategoriesToAllow>
+								<li>Metallic</li>
+								<li>Stony</li>
+							</stuffCategoriesToAllow>						
+						</filter>
+						<count>50</count>
+					</li>					
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>
+						<stuffCategoriesToAllow>
+							<li>Metallic</li>
+							<li>Stony</li>
+						</stuffCategoriesToAllow>							
+				</fixedIngredientFilter>
+				<products>
+					<Ranged_Tomahawk>10</Ranged_Tomahawk>
+				</products>
+				<recipeUsers>
+					<li>FueledSmithy</li>
+					<li>ElectricSmithy</li>
+					<li>CraftingSpot</li>
+				</recipeUsers>
+				</RecipeDef>
+			</value>
+			</li>
+
+			<!-- Torch -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>stick</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.8</cooldownTime>
+							<chanceFactor>1.5</chanceFactor>
+							<armorPenetrationBlunt>0.2</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>fire</label>
+							<capacities>
+								<li>TorchBurn</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>2.2</cooldownTime>
+							<chanceFactor>2.2</chanceFactor>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>fire</label>
+							<capacities>
+								<li>TorchFlame</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>2.2</cooldownTime>
+							<chanceFactor>0.5</chanceFactor>
+							<armorPenetrationBlunt>0.0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
+				<attribute>ParentName</attribute>
+				<value>BaseWeapon</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Ranged_Torch</defName>
+				<statBases>
+					<SightsEfficiency>0.45</SightsEfficiency>
+					<ShotSpread>1.5</ShotSpread>
+					<SwayFactor>2.5</SwayFactor>
+					<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<label>throw torch</label>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>True</hasStandardCommand>
+					<defaultProjectile>Torch_Torch</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>10</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</Properties>
+				<weaponTags>
+					<li>CE_OneHandedWeapon</li>
+				</weaponTags>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<MeleeCounterParryBonus>0.2</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Ranged_Torch"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.10</MeleeCritChance>
+					<MeleeParryChance>0.30</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Ranged_Torch"]</xpath>
+				<value>
+					<thingClass>CombatExtended.AmmoThing</thingClass>
+					<stackLimit>25</stackLimit>
+					<resourceReadoutPriority>First</resourceReadoutPriority>
+				</value>
+			</li>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Torch_Torch"]/projectile</xpath>
+				<value>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Flame</damageDef>
+						<damageAmountBase>1</damageAmountBase>
+						<speed>12</speed>
+						<armorPenetrationSharp>0.0</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+						<!--
+						<explosionRadius>0.5</explosionRadius>
+						<postExplosionSpawnChance>1</postExplosionSpawnChance>
+						<postExplosionSpawnThingDef>Fire</postExplosionSpawnThingDef>
+						<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
+						-->	
+					</projectile>
+				</value>
+			</li>
+
+			<!-- == Recipe == -->
+			<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+				<defName>Make_Torch_Torch</defName>
+				<label>make torch x10</label>
+				<description>Craft 10 torches.</description>
+				<jobString>Making torch.</jobString>
+				<workAmount>400</workAmount>	
+				<ingredients>
+					<li>
+					<filter>
+						<thingDefs>
+						<li>WoodLog</li>
+						</thingDefs>
+					</filter>
+					<count>40</count>
+					</li>				
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+					<li>WoodLog</li>
+					</thingDefs>			
+				</fixedIngredientFilter>
+				<products>
+					<Torch_Torch>10</Torch_Torch>
+				</products>
+				<recipeUsers>
+					<li>FueledSmithy</li>
+					<li>ElectricSmithy</li>
+					<li>CraftingSpot</li>
+				</recipeUsers>
+				</RecipeDef>
+			</value>
+			</li>
+
+		</operations>
+		
+		</match>
+	</Operation>
+</Patch>

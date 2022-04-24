@@ -166,16 +166,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/StatDef[defName="ShootingAccuracyPawn"]/workerClass</xpath>
-			</li>
-			<li Class="PatchOperationRemove">
-				<xpath>Defs/StatDef[defName="ShootingAccuracyPawn"]/workerClass</xpath>
-			</li>
-		</operations>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="ShootingAccuracyPawn"]/workerClass</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="ShootingAccuracyPawn"]/workerClass</xpath>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -190,6 +185,13 @@
 		<value>
 			<maxValue>13</maxValue>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="ShootingAccuracyPawn"]/skillNeedOffsets/li[@Class = "SkillNeed_Direct"]</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="ShootingAccuracyPawn"]/workerClass</xpath>
+		</match>
 	</Operation>
 
 	<Operation Class="PatchOperationSequence"> <!-- compatibility with any mod that redefines ShootingAccuracy and changes SkillNeed back to the traditional pre-A17 values per skill level (e.g. Shooting Skill Rebalanced) -->

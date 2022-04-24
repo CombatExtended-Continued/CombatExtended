@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>[O21] Outland - Eastborn Empire</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- ========== Yumi ========== -->
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Outland_Yumi</defName>
+			<statBases>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<ShotSpread>1</ShotSpread>
+				<SwayFactor>2</SwayFactor>
+				<Bulk>8.00</Bulk>
+				<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+			</statBases>
+			<costList>
+				<WoodLog>15</WoodLog>
+			</costList>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Projectile_StreamlinedArrow_Steel</defaultProjectile>
+				<warmupTime>1.2</warmupTime>
+				<range>20</range>
+				<soundCast>Bow_Recurve</soundCast>
+			</Properties>
+			<AmmoUser>
+				<ammoSet>AmmoSet_StreamlinedArrow</ammoSet>
+			</AmmoUser>
+			<FireModes/>
+			<weaponTags>
+				<li>CE_Bow</li>
+			</weaponTags>
+			<researchPrerequisite>RecurveBow</researchPrerequisite>
+			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+		</li>
+
+		<li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Outland_Yumi"]/tools</xpath>
+		<value>
+			<tools>
+			<li Class="CombatExtended.ToolCE">
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>7</power>
+				<cooldownTime>1.6</cooldownTime>
+				<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+			</li>
+			</tools>
+		</value>
+		</li>
+
+		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>Outland_EastbornMatchlock</defName>
+			<statBases>
+				<Mass>1.45</Mass>
+				<Bulk>4</Bulk>
+				<SwayFactor>1.24</SwayFactor>
+				<ShotSpread>0.37</ShotSpread>
+				<SightsEfficiency>0.7</SightsEfficiency>
+				<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>True</hasStandardCommand>
+				<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+				<warmupTime>1.86</warmupTime>
+				<range>12</range>
+				<soundCast>Shot_Revolver</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</Properties>
+			<AmmoUser>
+				<magazineSize>1</magazineSize>
+				<reloadTime>6.9</reloadTime>
+				<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+			</AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+			<weaponTags>
+				<li>CE_OneHandedWeapon</li>
+			</weaponTags>
+		</li>
+
+		<!-- Melee -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Outland_EastbornMatchlock"]/tools</xpath>
+			<value>
+				<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+					<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+					<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+				</tools>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

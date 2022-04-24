@@ -404,7 +404,7 @@ namespace CombatExtended
 
                                         Func<Apparel, float> funcArmor = x => (x?.GetStatValue(StatDefOf.ArmorRating_Sharp) ?? 0.1f);
 
-                                        var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.def.defName == "Torso").First();
+                                        var Torso = Victim.health.hediffSet.GetNotMissingParts().Where(X => X.IsCorePart).First();
 
                                         var TorsoArmors = (Victim?.apparel?.WornApparel?.FindAll(F => F.def.apparel.CoversBodyPart(Torso)) ?? null);
 
@@ -425,7 +425,7 @@ namespace CombatExtended
 
                                         #region get CompAmmo's Current ammo projectile
 
-                                        var ProjCE = (ProjectilePropertiesCE)compAmmo.CurAmmoProjectile?.projectile ?? null;
+                                        var ProjCE = (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
 
                                         #endregion
 
@@ -521,8 +521,8 @@ namespace CombatExtended
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
 
-            rotation += recoilMagnitude * UnityEngine.Random.Range(minX, maxX);
-            angle += Mathf.Deg2Rad * recoilMagnitude * UnityEngine.Random.Range(minY, maxY);
+            rotation += recoilMagnitude * Rand.Range(minX, maxX);
+            angle += Mathf.Deg2Rad * recoilMagnitude * Rand.Range(minY, maxY);
         }
 
         /// <summary>

@@ -34,6 +34,24 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps/categories</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps</xpath>
+						<value>
+							<categories>
+							  <li>SoftArmor</li>
+							</categories>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps/categories</xpath>
+						<value>
+							<li>SoftArmor</li>
+						</value>
+					</match>
+				</li>
+
 			</operations>
 		</match>
 	

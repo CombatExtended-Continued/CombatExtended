@@ -221,11 +221,23 @@ namespace CombatExtended
                 soundDef = SoundMiss();
                 CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false);
             }
+
             if (!moteText.NullOrEmpty())
-                MoteMaker.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+            {
+                MoteMakerCE.ThrowText(targetThing.PositionHeld.ToVector3Shifted(), targetThing.MapHeld, moteText);
+            }
             soundDef.PlayOneShot(new TargetInfo(targetThing.PositionHeld, targetThing.MapHeld));
-            casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
-            if (defender != null && !defender.Dead)
+
+            // The caster could be dead at this point due to a successful riposte from the defender,
+            // so check for that as appropriate.
+            if (casterPawn.Spawned)
+            {
+                casterPawn.Drawer.Notify_MeleeAttackOn(targetThing);
+            }
+
+            // The defender may still be alive but not spawned at this point due to a side-effect of the melee attack,
+            // such as the cocoon bite of giant spiders from VAE: Caves
+            if (defender != null && !defender.Dead && defender.Spawned)
             {
                 defender.stances.StaggerFor(95);
                 if (casterPawn.MentalStateDef != MentalStateDefOf.SocialFighting || defender.MentalStateDef != MentalStateDefOf.SocialFighting)
@@ -234,11 +246,10 @@ namespace CombatExtended
                     defender.mindState.lastMeleeThreatHarmTick = Find.TickManager.TicksGame;
                 }
             }
-            casterPawn.rotationTracker.FaceCell(targetThing.Position);
-            if (casterPawn.caller != null)
-            {
-                casterPawn.caller.Notify_DidMeleeAttack();
-            }
+
+            casterPawn.rotationTracker?.FaceCell(targetThing.Position);
+            casterPawn.caller?.Notify_DidMeleeAttack();
+
             return result;
         }
         /// <summary>

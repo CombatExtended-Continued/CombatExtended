@@ -6,7 +6,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[@Name="ApparelHatRoyalTier2"]/statBases</xpath>
     <value>
-		  <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
     </value>
   </Operation>
 
@@ -15,7 +15,7 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_Beret"]/statBases</xpath>
     <value>
-		  <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>	  
+      <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>	  
     </value>
   </Operation>
 
@@ -84,11 +84,11 @@
     </value>
   </Operation>
 
-	<Operation Class="PatchOperationAttributeAdd">
-  	<xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
+  <Operation Class="PatchOperationAttributeAdd">
+  <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
     <attribute>Inherit</attribute>
     <value>false</value>
-	</Operation>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/apparel</xpath>
@@ -172,49 +172,71 @@
       <li>StrappedHead</li>
     </value>
   </Operation>
-  
-	<!-- ========== Prestige Armor ========== -->
+
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[@Name="ApparelArmorHelmetCataphractBase"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+		<stats>
+			<li>
+				<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+				<parts>
+					<li>Eye</li>
+				</parts>
+			</li>
+			<li>
+				<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+				<parts>
+					<li>Eye</li>
+				</parts>
+			</li>
+		</stats>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- ========== Prestige Armor ========== -->
 	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetReconPrestige"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>70</Plasteel>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetReconPrestige"]/costList/Plasteel</xpath>
+    <value>
+      <Plasteel>70</Plasteel>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetReconPrestige"]/statBases</xpath>
-		<value>
-			<NightVisionEfficiency_Apparel>0.80</NightVisionEfficiency_Apparel>
-		</value>
-	</Operation>
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetReconPrestige"]/statBases</xpath>
+    <value>
+      <NightVisionEfficiency_Apparel>0.80</NightVisionEfficiency_Apparel>
+    </value>
+  </Operation>
 	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorMarineHelmetPrestige"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>90</Plasteel>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorMarineHelmetPrestige"]/costList/Plasteel</xpath>
+    <value>
+      <Plasteel>90</Plasteel>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorMarineHelmetPrestige"]/statBases</xpath>
-		<value>
-			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
-		</value>
-	</Operation>
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorMarineHelmetPrestige"]/statBases</xpath>
+    <value>
+      <NightVisionEfficiency_Apparel>0.70</NightVisionEfficiency_Apparel>
+    </value>
+  </Operation>
 	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphractPrestige"]/costList/Plasteel</xpath>
-		<value>
-			<Plasteel>120</Plasteel>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphractPrestige"]/costList/Plasteel</xpath>
+    <value>
+      <Plasteel>120</Plasteel>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphractPrestige"]/statBases</xpath>
-		<value>
-			<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
-		</value>
-	</Operation>
+    <xpath>Defs/ThingDef[defName="Apparel_ArmorHelmetCataphractPrestige"]/statBases</xpath>
+    <value>
+      <NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
+    </value>
+  </Operation>
 
 </Patch>

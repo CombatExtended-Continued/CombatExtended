@@ -26,7 +26,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
-					<ArmorRating_Blunt>85</ArmorRating_Blunt>
+					<ArmorRating_Blunt>59</ArmorRating_Blunt>
 				</value>
 			</li>
 			<li Class="PatchOperationReplace">
@@ -43,15 +43,14 @@
 				</value>
 			</li>		
 			
-			
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Siegebreaker"]/statBases</xpath>
 				<value>
 					<MeleeDodgeChance>0.01</MeleeDodgeChance>
 					<MeleeCritChance>0.07</MeleeCritChance>
 					<MeleeParryChance>0.24</MeleeParryChance>
-					<CarryWeight>400</CarryWeight>
-			                <CarryBulk>1000</CarryBulk>
+					<CarryWeight>250</CarryWeight>
+					<CarryBulk>350</CarryBulk>
 				</value>
 			</li>
 
@@ -84,7 +83,16 @@
 					</li>
 				</value>
 			</li>
-			
+
+			<!-- === combatPower Patch === -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/PawnKindDef[defName="VFE_Mech_Advanced_Siegebreaker"]/combatPower</xpath>
+				<value>
+					<combatPower>500</combatPower>
+				</value>
+			</li>
+
 				</operations>
 			</match>					
 		</match>			

@@ -16,23 +16,17 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
-			<!-- Warforged are generally larger than your average human. -->
+			<!-- Warforged are generally slightly larger than your average human. -->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]/race/baseBodySize</xpath>
 				<value>
@@ -108,22 +102,6 @@
 						</li>
 					</tools>
 				</value>
-			</li>
-
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Warforged"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
 			</li>
 
 			<li Class="PatchOperationAdd">
