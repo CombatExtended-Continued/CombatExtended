@@ -6,6 +6,7 @@ If the mod(s) you are interested in isn't on this list, first confirm that the m
 
 Mod |
 --- |
+[Cosplay Equipment]	Blue Archive |
 [CP] DOOM	|
 [CP] Metal Gear Solid	|
 [CP] Red Horse Furniture	|
@@ -119,6 +120,7 @@ Clay Soldier Race |
 Colony Leadership   |
 Combat Enthusiast’s Collection	|
 Comigo's Fancy Floating Turrets |
+Communicable Diseases   |
 Cossacks of the Rim |
 Crowns and Regalia  |
 Cupro's Alloys	|
@@ -220,6 +222,7 @@ Jernfalk's Standalone Horses	|
 Jernalk's Skeletal Legion (Continued)	|
 Kaiser Armory	|
 Kemomimihouse |
+Kemomimihouse Kz |
 Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
@@ -256,6 +259,7 @@ MiningCo. Spaceship	|
 Misc. Core	|
 Misc. MAI |
 Misc. Robots	|
+Misc. Turrets   |
 Moa |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
@@ -272,6 +276,7 @@ MorrowRim - Colovian Fur Helm	|
 MorrowRim - Just the Animals	|
 MorrowRim - Trolls	|
 Moyo - From the Depth   |
+Multiplayer |
 Nanosuit   |
 Nearmare Race	|
 Neclose Race	|
@@ -324,6 +329,8 @@ RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Shek	|
+RimCities   |
+RimHammer40k - Dreadnought |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -334,6 +341,7 @@ RimTraits – Medieval Talents    |
 Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld of Magic |
+Saclean Race    |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
@@ -350,9 +358,11 @@ Spidercamp's Horses     |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
+Starship Troopers Aracnids  |
 Solark Race |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
+Textiles+ (continued)   |
 The Mantodean insectoid race	|
 T-45b Power Armor	|
 The GiantRace	|
@@ -401,13 +411,15 @@ Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
 Vanilla-Friendly Animal Surgery	|
-Vanilla-Friendly Weapon Expansion	|
 Vanilla Storytellers Expanded - Perry Persistent |
+Vanilla Storytellers Expanded - Winston Waves |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
+VGP Garden Drinks UF    |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
+WarCasket Expanded  |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
