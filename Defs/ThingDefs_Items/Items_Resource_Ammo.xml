@@ -27,13 +27,25 @@
     </thingCategories>
     <tickerType>Normal</tickerType>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+	  <!--<li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>2</damageAmountBase>
 		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveRadius>2.6</explosiveRadius>
 		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 		<preExplosionSpawnChance>1</preExplosionSpawnChance>
-	  </li>
+	  </li>-->
+      <li Class="CompProperties_Explosive">
+		<damageAmountBase>2</damageAmountBase>
+		<explosiveRadius>1.9</explosiveRadius>
+		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
+		<explosiveExpandPerStackcount>0.02</explosiveExpandPerStackcount>
+		<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
+		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+		<preExplosionSpawnChance>1</preExplosionSpawnChance>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+		<wickTicks>60~90</wickTicks>
+      </li>
     </comps>
   </ThingDef>
 
@@ -41,7 +53,7 @@
 	<thingClass>CombatExtended.AmmoThing</thingClass>
     <defName>FSX</defName>
     <label>FSX</label>
-    <description>High-explosive chemical extracted from Boomalope sacks, it is used in a variety of industrial and military applications.</description>
+    <description>High-explosive chemical extracted from Boomalope sacks and synthesized from chemfuel, it is used in a variety of industrial and military applications.</description>
     <graphicData>
       <texPath>Things/Resources/FSX</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -61,11 +73,20 @@
     </thingCategories>
     <tickerType>Normal</tickerType>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+	  <!--<li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>60</damageAmountBase>
 		<explosiveDamageType>Bomb</explosiveDamageType>
 		<explosiveRadius>3.5</explosiveRadius>
-	  </li>
+	  </li>-->
+      <li Class="CompProperties_Explosive">
+		<explosiveRadius>0.9</explosiveRadius>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveExpandPerStackcount>0.033</explosiveExpandPerStackcount>
+		<startWickHitPointsPercent>0.5</startWickHitPointsPercent>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		<explodeOnKilled>True</explodeOnKilled>
+        <wickTicks>60~90</wickTicks>
+      </li>
     </comps>
   </ThingDef>
 
