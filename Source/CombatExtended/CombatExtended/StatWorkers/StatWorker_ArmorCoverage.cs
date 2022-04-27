@@ -24,7 +24,7 @@ namespace CombatExtended
                 totalCoverage += coverage;
             }
 
-            return totalCoverage > 0 ? weightedArmor / totalCoverage : 0;
+            return totalCoverage > 0 ? weightedArmor : 0;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

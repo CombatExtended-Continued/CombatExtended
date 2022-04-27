@@ -518,7 +518,7 @@ namespace CombatExtended
 	{
 	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
 	    {
-		ApplySuppression(pawn, destination.ToVector3());
+		ApplySuppression(pawn);
 	    }
 	}
 
@@ -750,7 +750,7 @@ namespace CombatExtended
                     var pawn = thing as Pawn;
                     if (pawn != null)
                     {
-                        ApplySuppression(pawn, cell.ToVector3());
+                        ApplySuppression(pawn);
                     }
                 }
             }
@@ -844,7 +844,7 @@ namespace CombatExtended
         }
         #endregion
 
-        private void ApplySuppression(Pawn pawn, Vector3 explodePos)
+        private void ApplySuppression(Pawn pawn, float explosiveSuppressionMultiplier = 1f)
         {
             ShieldBelt shield = null;
             if (pawn.RaceProps.Humanlike)
@@ -871,16 +871,18 @@ namespace CombatExtended
                 suppressionAmount = def.projectile.GetDamageAmount(1);
                 var propsCE = def.projectile as ProjectilePropertiesCE;
                 var explodeRadius = propsCE.explosionRadius;
-                if (explodeRadius < 0.1f)
+                if (explodeRadius == 0f)
                 {
                     var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
-                    var armorMod = penetrationAmount <= 0 ? 0    : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
+                    var armorMod = penetrationAmount <= 0 ? 0 : 1 - Mathf.Clamp(pawn.GetStatValue(CE_StatDefOf.AverageSharpArmor) * 0.5f / penetrationAmount, 0, 1);
                     suppressionAmount *= armorMod;
                 }
                 else
                 {
-                    var dPosMag = (explodePos - pawn.DrawPos).MagnitudeHorizontal();
-                    suppressionAmount *= Mathf.Lerp(1f, 0f, dPosMag * dPosMag / ((explodeRadius + SuppressionRadius) * (explodeRadius + SuppressionRadius)));
+                    var dPosX = ExactPosition.x - pawn.DrawPos.x;
+                    var dPosZ = ExactPosition.z - pawn.DrawPos.z;
+                    // Affected by the ratio of distance from the explosion to the max suppression radius raised to the power of two. Larger suppression amount compared to linear interpolation
+                    suppressionAmount *= Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / ((explodeRadius + SuppressionRadius) * (explodeRadius + SuppressionRadius))) * explosiveSuppressionMultiplier;
                 }
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
@@ -1078,7 +1080,7 @@ namespace CombatExtended
                 this.TryGetComp<CompFragments>()?.Throw(explodePos, Map, launcher);
 
             //If the comp exists, it'll already call CompFragments
-            if (explodingComp != null || def.projectile.explosionRadius > 0.1f)
+            if (explodingComp != null || def.projectile.explosionRadius > 0f)
             {
                 //Handle anything explosive
 
@@ -1089,7 +1091,7 @@ namespace CombatExtended
                 var dir = new float?(origin.AngleTo(Vec2Position()));
 
                 // Opt-out for things without explosionRadius
-                if (def.projectile.explosionRadius > 0.1f)
+                if (def.projectile.explosionRadius > 0f)
                 {
                     GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
                         def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetExplosionArmorPenetration(),
@@ -1113,7 +1115,7 @@ namespace CombatExtended
                 }
 
                 foreach (var thing in suppressThings)
-                    ApplySuppression(thing, explodePos);
+                    ApplySuppression(thing, 3f);
             }
 
             Destroy();
