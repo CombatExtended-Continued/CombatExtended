@@ -43,7 +43,7 @@ namespace CombatExtended
                 GenSpawn.Spawn(projectile, cell, map);
 
                 projectile.canTargetSelf = true;
-                projectile.minCollisionDistance = 1f;
+                projectile.minCollisionDistance = 0f;
                 projectile.castShadow = (Rand.Value < fragShadowChance);
                 projectile.logMisses = false;
                 projectile.Launch(
