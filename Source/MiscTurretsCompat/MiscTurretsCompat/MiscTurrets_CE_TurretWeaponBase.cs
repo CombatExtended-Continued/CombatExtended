@@ -25,7 +25,9 @@ namespace CombatExtended.Compatibility {
 	    }
 	    if (_ammo == null) {
 		_ammo = gun.TryGetComp<CompAmmoUser>();
-		_ammo.turret = this;
+		if (_ammo != null) {
+		    _ammo.turret = this;
+		}
 	    }
 	    return _ammo;
 	}
