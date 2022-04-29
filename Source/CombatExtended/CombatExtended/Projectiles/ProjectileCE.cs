@@ -27,6 +27,11 @@ namespace CombatExtended
         /// </summary>
         private const int collisionCheckSize = 5;
 
+        /// <summary>
+        /// Additional suppression multiplier for suppression caused by an explosion.
+        /// </summary>
+        private const float explosionSuppressionFactor = 3f;
+
         #region Origin destination
         public Vector2 origin;
 
@@ -844,7 +849,7 @@ namespace CombatExtended
         }
         #endregion
 
-        private void ApplySuppression(Pawn pawn, float explosiveSuppressionMultiplier = 1f)
+        private void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
         {
             ShieldBelt shield = null;
             if (pawn.RaceProps.Humanlike)
@@ -881,8 +886,9 @@ namespace CombatExtended
                 {
                     var dPosX = ExactPosition.x - pawn.DrawPos.x;
                     var dPosZ = ExactPosition.z - pawn.DrawPos.z;
-                    // Affected by the ratio of distance from the explosion to the max suppression radius raised to the power of two. Larger suppression amount compared to linear interpolation. Also helps that square root isn't used
-                    suppressionAmount *= Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / ((explodeRadius + SuppressionRadius) * (explodeRadius + SuppressionRadius))) * explosiveSuppressionMultiplier;
+                    var totalRadius = explodeRadius + SuppressionRadius;
+                    // Affected by the ratio of distance from the explosion to the max suppression radius raised to the power of two. Larger suppression amount at distances compared to linear interpolation
+                    suppressionAmount *= Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / (totalRadius * totalRadius)) * suppressionMultiplier;
                 }
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
             }
@@ -1114,7 +1120,7 @@ namespace CombatExtended
                 }
 
                 foreach (var thing in suppressThings)
-                    ApplySuppression(thing, 3f);
+                    ApplySuppression(thing, explosionSuppressionFactor);
             }
 
             Destroy();
