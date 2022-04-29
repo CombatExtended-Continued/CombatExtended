@@ -20,6 +20,9 @@ namespace CombatExtended.Compatibility {
 	public CompAmmoUser GetAmmo() {
 	    Thing gun = GetGun();
 	    if (gun == null) {
+		if (_ammo != null && _ammo.turret == this) {
+		    _ammo.turret = null;
+		}
 		_ammo = null;
 		return null;
 	    }
