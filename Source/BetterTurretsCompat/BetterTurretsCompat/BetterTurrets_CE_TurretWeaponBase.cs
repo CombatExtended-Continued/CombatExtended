@@ -18,15 +18,18 @@ namespace CombatExtended.Compatibility {
 	private CompAmmoUser _ammo;
 	private CompFireModes compFireModes = null;
 	public CompAmmoUser GetAmmo() {
-	    if (_ammo == null) {
-		_ammo = GetGun()?.TryGetComp<CompAmmoUser>();
+	    Thing gun = GetGun();
+	    if (gun == null) {
+		_ammo = null;
+		return null;
 	    }
-	    if (_ammo!=null) {
+	    if (_ammo == null) {
+		_ammo = gun.TryGetComp<CompAmmoUser>();
 		_ammo.turret = this;
 	    }
-	    
 	    return _ammo;
 	}
+
 
 	public Thing GetGun() {
 	    return gun;
