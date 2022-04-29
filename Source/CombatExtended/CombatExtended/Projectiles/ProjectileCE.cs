@@ -881,7 +881,7 @@ namespace CombatExtended
                 {
                     var dPosX = ExactPosition.x - pawn.DrawPos.x;
                     var dPosZ = ExactPosition.z - pawn.DrawPos.z;
-                    // Affected by the ratio of distance from the explosion to the max suppression radius raised to the power of two. Larger suppression amount compared to linear interpolation
+                    // Affected by the ratio of distance from the explosion to the max suppression radius raised to the power of two. Larger suppression amount compared to linear interpolation. Also helps that square root isn't used
                     suppressionAmount *= Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / ((explodeRadius + SuppressionRadius) * (explodeRadius + SuppressionRadius))) * explosiveSuppressionMultiplier;
                 }
                 compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
@@ -1103,15 +1103,14 @@ namespace CombatExtended
 
                     // Apply suppression around impact area
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial.RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + def.projectile.explosionRadius, true).OfType<Pawn>());
+                        suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map, SuppressionRadius + def.projectile.explosionRadius));
                 }
                 else if (explodingComp != null)
                 {
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
 
                     if (explodePos.y < SuppressionRadius)
-                        suppressThings.AddRange(GenRadial
-                            .RadialDistinctThingsAround(explodePos.ToIntVec3(), Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius, true).OfType<Pawn>());
+                        suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map, SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius));
                 }
 
                 foreach (var thing in suppressThings)
