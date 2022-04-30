@@ -69,6 +69,7 @@ namespace CombatExtended
                                 compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                             }
                         }
+                        compEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
                         usingUnderBarrel = true;
                     }
                 };
@@ -100,6 +101,7 @@ namespace CombatExtended
                                 compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                             }
                         }
+                        compEq.PrimaryVerb.verbProps.burstShotCount = defVerbProps.burstShotCount;
                         usingUnderBarrel = false;
                     }
                 };
@@ -178,6 +180,25 @@ namespace CombatExtended
         public CompProperties_UnderBarrel()
         {
             this.compClass = typeof(CompUnderBarrel);
+        }
+    }
+
+    public class VerbShootCE_AdvancedUBGL : Verb_ShootCE
+    {
+        public CompUnderBarrel UBGLComp => EquipmentSource.TryGetComp<CompUnderBarrel>();
+        public override int ShotsPerBurst
+        {
+            get
+            {
+                if (this.CompFireModes.CurrentFireMode == FireMode.AutoFire)
+                {
+                    if (UBGLComp?.usingUnderBarrel ?? false)
+                    {
+                        return UBGLComp.Props.verbPropsUnderBarrel.burstShotCount;
+                    }
+                }
+                return base.ShotsPerBurst;
+            }
         }
     }
 }
