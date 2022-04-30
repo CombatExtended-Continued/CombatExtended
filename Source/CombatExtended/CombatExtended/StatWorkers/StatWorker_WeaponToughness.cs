@@ -11,7 +11,25 @@ namespace CombatExtended
 {
     public class StatWorker_WeaponToughness : StatWorker
     {
-        public const float parryChanceFactor = 3f; // Factor by which the weapon holder's skill affects the final weapon toughness
+        public const float parryChanceFactor = 5f; // Factor by which the weapon holder's skill affects the final weapon toughness
+
+        public float GetHolderToughnessFactor(Pawn pawn)
+        {
+	    // We want the parry chance from the pawn, ignoring their gear, so remove their gear for the next function call, then put it back.
+	    var apparel = pawn.apparel;
+	    pawn.apparel = null;
+	    var equipment = pawn.equipment;
+	    pawn.equipment = null;
+	    float factor;
+	    try {
+		factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
+	    }
+	    finally {
+		pawn.apparel = apparel;
+		pawn.equipment = equipment;
+	    }
+	    return factor * parryChanceFactor;
+        }
 
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
         {
@@ -38,7 +56,7 @@ namespace CombatExtended
                 var holder = compEq?.Holder;
                 if (holder?.equipment?.Primary == thing)
                 {
-                    val *= holder.GetStatValue(CE_StatDefOf.MeleeParryChance) * parryChanceFactor;
+                    val *= GetHolderToughnessFactor(holder);
                 }
             }
         }
@@ -67,7 +85,7 @@ namespace CombatExtended
             {
                 if (req.Thing?.TryGetComp<CompEquippable>()?.Holder != null)
                 {
-                    result += "\n" + "CE_StatsReport_WeaponToughness_HolderEffect".Translate() + ((req.Thing?.TryGetComp<CompEquippable>()?.Holder.GetStatValue(CE_StatDefOf.MeleeParryChance) ?? 1f) * parryChanceFactor).ToStringPercent();
+                    result += "\n" + "CE_StatsReport_WeaponToughness_HolderEffect".Translate() + GetHolderToughnessFactor(req.Thing.TryGetComp<CompEquippable>().Holder).ToStringPercent();
                 }
             }
 
@@ -78,7 +96,7 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            return req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
+            return Controller.settings.ShowExtraStats && req.HasThing && req.Thing.def.IsWeapon && base.ShouldShowFor(req);
         }
     }
 }

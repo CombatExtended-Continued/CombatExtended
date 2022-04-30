@@ -25,16 +25,20 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
-	    private bool genericammo = false;
+	private bool genericammo = false;
         private bool partialstats = true;
 
-	    private bool showExtraTooltips = false;
+	private bool showExtraTooltips = false;
+
+	private bool showExtraStats = false;
+
+	private bool unlimitParryDamage = false;
 
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
 
-	    public bool GenericAmmo => genericammo;
+	public bool GenericAmmo => genericammo;
         public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
@@ -46,6 +50,9 @@ namespace CombatExtended
 
         public bool PartialStat => partialstats;
 	public bool ShowExtraTooltips => showExtraTooltips;
+
+	public bool ShowExtraStats => showExtraStats;
+	public bool UnlimitParryDamage => unlimitParryDamage;
 
         public bool ShowTutorialPopup = true;
 
@@ -111,6 +118,10 @@ namespace CombatExtended
 
 	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
+	    Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
+	    Scribe_Values.Look(ref unlimitParryDamage, "unlimitParryDamage", false);
+	    
+
 #if DEBUG
             // Debug settings
             Scribe_Values.Look(ref debuggingMode, "debuggingMode", false);
@@ -161,6 +172,9 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
 	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
+	    list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+
+	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref unlimitParryDamage, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
