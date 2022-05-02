@@ -13,7 +13,7 @@ namespace CombatExtended
         public List<ThingDefCountClass> fragments = new List<ThingDefCountClass>();
         public float fragSpeedFactor = 1f;
         public float fragShadowChance = 0.2f;
-        public FloatRange fragAngleRange = new FloatRange(0.55f, 5.5f);
+        public FloatRange fragAngleRange = new FloatRange(0.5f, 5f);
 
         public CompProperties_Fragments()
         {
