@@ -24,10 +24,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="CombatCommandBuff"]/stages/li/statOffsets</xpath>
 		<value>
-			<Suppressability>-0.25</Suppressability>
+			<statOffsets>
+				<ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+				<MeleeHitChance>1.5</MeleeHitChance>
+				<Suppressability>-0.25</Suppressability>
+			</statOffsets>
 		</value>
 	</Operation>
 
@@ -40,8 +44,14 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/HediffDef[defName="MarksmanCommandBuff"]/stages/li/statOffsets/AimingDelayFactor</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="MarksmanCommandBuff"]/stages/li/statOffsets</xpath>
+		<value>
+			<statOffsets>
+				<ShootingAccuracyPawn>2.0</ShootingAccuracyPawn>
+				<AimingAccuracy>0.2</AimingAccuracy>
+			</statOffsets>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -49,16 +59,20 @@
 		<value>
 			<statFactors>
 				<ReloadSpeed>1.20</ReloadSpeed>
-			</statFactors>		
+			</statFactors>
 		</value>
 	</Operation>
 
 	<!-- Beserker Trance -->
 
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/HediffDef[defName="BerserkTrance"]/stages/li/statOffsets</xpath>
 		<value>
-			<Suppressability>-10</Suppressability>
+			<statOffsets>
+				<MeleeHitChance>2.0</MeleeHitChance>
+				<MeleeDodgeChance>0.1</MeleeDodgeChance>
+				<Suppressability>-10</Suppressability>
+			</statOffsets>
 		</value>
 	</Operation>
 
