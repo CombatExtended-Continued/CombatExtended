@@ -23,6 +23,14 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 		/// Magic number. I took it from the now deprecated GenClosestAmmo class. Not sure why we would want 10 reservations, but there it is.
 		/// </summary>
 		private const int MagicMaxPawns = 10;
+		/// <summary>
+		/// The maximum radius in which a non-player pawn will look for ammo.
+		/// </summary>
+		/// <remarks>
+		/// This aims to ensure that mechanoids in a mechanoid cluster or pawns in a siege use the ammo that they are supplied
+		/// (via mech nodes or drop pods) instead of attempting to pick up ammo from the player's base or a distant point on the map.
+		/// </remarks>
+		private const float MaxAmmoSearchRadiusForNonPlayerPawns = 40f;
 
 		public static Job MakeReloadJob(Pawn pawn, Building_Turret turret)
 		{
@@ -53,7 +61,7 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 
 		private static Job MakeReloadJobNoAmmo(Building_Turret turret)
 		{
- 		        var compAmmo = turret.GetAmmo();
+			var compAmmo = turret.GetAmmo();
 			if (compAmmo == null)
 			{
 				CELogger.Error("Tried to create a reload job on a thing that's not reloadable.");
@@ -106,9 +114,9 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				CELogger.Message($"{pawn} could not reload {turret} because it is forbidden or otherwise busy.");
 				return false;
 			}
-			if (turret.Faction != pawn.Faction && (turret.Faction != null && pawn.Faction != null && turret.Faction.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally))
+			if (turret.Faction != pawn.Faction && pawn.Faction != null && turret.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
 			{
-				CELogger.Message($"{pawn} could not reload {turret} because the turret is hostile to them.");
+				CELogger.Message($"{pawn} could not reload {turret} because the turret is unclaimed or hostile to them.");
 				JobFailReason.Is("CE_TurretNonAllied".Translate());
 				return false;
 			}
@@ -162,58 +170,10 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
 				return GetPathCost(pawn, potentialAmmo) <= MaxPathCost;
 			};
 
-			return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(requestedAmmo), PathEndMode.ClosestTouch, TraverseParms.For(pawn), 9999f, validator);
-		}
+			var isNonPlayerPawn = pawn.Faction != Faction.OfPlayer;
+			var maxDistance = isNonPlayerPawn ? MaxAmmoSearchRadiusForNonPlayerPawns : 9999f;
 
-		/// <summary>
-		/// This method is a direct copy/paste of the <see cref="RefuelWorkGiverUtility"/> private FindAllFuel method.
-		/// 
-		/// Finds all relevant ammo in order of distance.
-		/// </summary>
-		/// <param name="pawn"></param>
-		/// <param name="reloadable"></param>
-		/// <returns></returns>
-		private static List<Thing> FindAllAmmo(Pawn pawn, Building_Turret reloadable)
-		{
-			var compAmmo = reloadable.GetAmmo();
-			int quantity = compAmmo.MissingToFullMagazine;
-			var ammoKind = compAmmo.SelectedAmmo;
-			Predicate<Thing> validator = (Thing potentialAmmo) =>
-			{
-				if (potentialAmmo.IsForbidden(pawn) || !pawn.CanReserve(potentialAmmo))
-				{
-					return false;
-				}
-				return GetPathCost(pawn, potentialAmmo) <= MaxPathCost;
-			};
-			Region region = reloadable.Position.GetRegion(pawn.Map);
-			TraverseParms traverseParams = TraverseParms.For(pawn);
-			Verse.RegionEntryPredicate entryCondition = (Region from, Region r) => r.Allows(traverseParams, isDestination: false);
-			var chosenThings = new List<Thing>();
-			int accumulatedQuantity = 0;
-			Verse.RegionProcessor regionProcessor = (Region r) =>
-			{
-				List<Thing> list = r.ListerThings.ThingsMatching(ThingRequest.ForDef(ammoKind));
-				foreach (var thing in list)
-				{
-					if (validator(thing) && !chosenThings.Contains(thing) && ReachabilityWithinRegion.ThingFromRegionListerReachable(thing, r, PathEndMode.ClosestTouch, pawn))
-					{
-						chosenThings.Add(thing);
-						accumulatedQuantity += thing.stackCount;
-						if (accumulatedQuantity >= quantity)
-						{
-							return true;
-						}
-					}
-				}
-				return false;
-			};
-			RegionTraverser.BreadthFirstTraverse(region, entryCondition, regionProcessor, 99999);
-			if (accumulatedQuantity >= quantity)
-			{
-				return chosenThings;
-			}
-			return null;
+			return GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(requestedAmmo), PathEndMode.ClosestTouch, TraverseParms.For(pawn), maxDistance, validator);
 		}
 
 		private static float GetPathCost(Pawn pawn, Thing thing)
