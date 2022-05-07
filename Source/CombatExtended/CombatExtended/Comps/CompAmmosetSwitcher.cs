@@ -14,17 +14,109 @@ namespace CombatExtended
     {
         public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;
 
-        public CompEquippable compEq => this.parent.TryGetComp<CompEquippable>();
+        public CompEquippable CompEq() => this.parent.TryGetComp<CompEquippable>();
+        
+         public CompFireModes _compEq;
+        
+        public CompFireModes compEq
+        {
+            get
+            {
+                if(_compEq == null)
+                {
+                    _compEq = CompEq();
+                }
+                
+                return _compEq;
+            }
+        }
 
-        public CompAmmoUser compAmmo => this.parent.TryGetComp<CompAmmoUser>();
+        public CompAmmoUser CompAmmo() => this.parent.TryGetComp<CompAmmoUser>();
+        
+        public CompFireModes _compAmmo;
+        
+        public CompFireModes compAmmo
+        {
+            get
+            {
+                if(_compAmmo == null)
+                {
+                    _compAmmo = CompAmmo();
+                }
+                
+                return _compAmmo;
+            }
+        }
 
-        public CompFireModes compFireModes => this.parent.TryGetComp<CompFireModes>();
 
-        public CompProperties_FireModes compPropsFireModes => this.parent.def.comps.Find(x => x is CompProperties_FireModes) as CompProperties_FireModes;
+        public CompFireModes CompFireModes() => this.parent.TryGetComp<CompFireModes>();
+        
+        public CompFireModes _compFireModes;
+        
+        public CompFireModes compFireModes
+        {
+            get
+            {
+                if(_compFireModes == null)
+                {
+                    _compFireModes = CompFireModes();
+                }
+                
+                return  _compFireModes;
+            }
+        }
 
-        public VerbProperties defVerbProps => this.parent.def.Verbs.Find(x => x is VerbPropertiesCE);
 
-        public CompProperties_AmmoUser compPropsAmmo => (CompProperties_AmmoUser)this.parent.def.comps.Find(x => x is CompProperties_AmmoUser);
+        public CompProperties_FireModes CompPropsFireModes() => this.parent.def.comps.Find(x => x is CompProperties_FireModes) as CompProperties_FireModes;
+        
+        public CompProperties_FireModes _compPropsFireModes;
+        
+        public CompProperties_FireModes compPropsFireModes
+        {
+            get
+            {
+                if(_compPropsFireModes == null)
+                {
+                    _compPropsFireModes = CompPropsFireModes();
+                }
+                
+                return  _compPropsFireModes;
+            }
+        }
+
+        public VerbProperties DefVerbProps() => this.parent.def.Verbs.Find(x => x is VerbPropertiesCE);
+        
+        public VerbProperties _defVerbProps;
+        
+        public VerbProperties defVerbProps
+        {
+            get
+            {
+                if(_defVerbProps == null)
+                {
+                    _defVerbProps = DefVerbProps()
+                }
+                
+                return _defVerbProps;
+            }
+        }
+
+        public CompProperties_AmmoUser CompPropsAmmo() => (CompProperties_AmmoUser)this.parent.def.comps.Find(x => x is CompProperties_AmmoUser);
+        
+        public CompProperties_AmmoUser _compPropsAmmo;
+        
+        public CompProperties_AmmoUser compPropsAmmo
+        {
+            get
+            {
+                if(_compPropsAmmo == null)
+                {
+                    _compPropsAmmo = CompPropsAmmo()
+                }
+                
+                return _compPropsAmmo;
+            }
+        }
 
         public AmmoDef mainGunLoadedAmmo;
 
@@ -118,15 +210,6 @@ namespace CombatExtended
                     }
                 };
             }
-        }
-
-        public override string TransformLabel(string label)
-        {
-            /*if (!(compAmmo.Props.ammoSet == compPropsAmmo.ammoSet))
-            {
-                return this.parent.Label + " (" + compAmmo.Props.ammoSet.label + ")";
-            }*/
-            return base.TransformLabel(label);
         }
 
         public override void Initialize(CompProperties props)
