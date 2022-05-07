@@ -297,7 +297,7 @@ namespace CombatExtended
                     }
                 }
             }
-            _allRecipesCached.SetValue(benchDef, null);  // Set ammoCraftingStation.AllRecipes to null so it will reset
+            benchDef.allRecipesCached = null;  // Set ammoCraftingStation.AllRecipes to null so it will reset
         }
 
         public static bool gunRecipesShowCaliber = false;
