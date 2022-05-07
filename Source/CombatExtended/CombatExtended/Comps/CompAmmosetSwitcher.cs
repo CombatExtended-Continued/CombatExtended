@@ -16,9 +16,9 @@ namespace CombatExtended
 
         public CompEquippable CompEq() => this.parent.TryGetComp<CompEquippable>();
         
-         public CompFireModes _compEq;
+        public CompEquippable _compEq;
         
-        public CompFireModes compEq
+        public CompEquippable compEq
         {
             get
             {
@@ -33,9 +33,9 @@ namespace CombatExtended
 
         public CompAmmoUser CompAmmo() => this.parent.TryGetComp<CompAmmoUser>();
         
-        public CompFireModes _compAmmo;
+        public CompAmmoUser _compAmmo;
         
-        public CompFireModes compAmmo
+        public CompAmmoUser compAmmo
         {
             get
             {
