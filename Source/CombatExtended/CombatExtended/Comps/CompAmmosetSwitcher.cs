@@ -94,7 +94,7 @@ namespace CombatExtended
             {
                 if(_defVerbProps == null)
                 {
-                    _defVerbProps = DefVerbProps()
+                    _defVerbProps = DefVerbProps();
                 }
                 
                 return _defVerbProps;
@@ -111,7 +111,7 @@ namespace CombatExtended
             {
                 if(_compPropsAmmo == null)
                 {
-                    _compPropsAmmo = CompPropsAmmo()
+                    _compPropsAmmo = CompPropsAmmo();
                 }
                 
                 return _compPropsAmmo;
