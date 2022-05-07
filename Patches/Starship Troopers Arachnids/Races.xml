@@ -28,8 +28,8 @@
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Arachnid_WarriorBug" or defName="Arachnid_WarriorBugHive"]/statBases</xpath>
 					<value>
-						<ArmorRating_Blunt>2</ArmorRating_Blunt>
-						<ArmorRating_Sharp>2</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
 					</value>
 				</li>
 				
@@ -71,7 +71,7 @@
 							<li Class="CombatExtended.ToolCE">
 								<label>head</label>
 								<capacities>
-									<li>Cut</li>
+									<li>Stab</li>
 								</capacities>
 								<power>36</power>
 								<cooldownTime>1.33</cooldownTime>
@@ -107,19 +107,12 @@
 				</li>
 			
 				<!-- Plasma Grenadier -->
-					
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Arachnid_PlasmaGrenadierBug"]/race/baseHealthScale</xpath>
-					<value>
-						<baseHealthScale>1.8</baseHealthScale>
-					</value>
-				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Arachnid_PlasmaGrenadierBug"]/statBases</xpath>
 					<value>
-						<ArmorRating_Blunt>28</ArmorRating_Blunt>
-						<ArmorRating_Sharp>14</ArmorRating_Sharp>
+						<ArmorRating_Blunt>2</ArmorRating_Blunt>
+						<ArmorRating_Sharp>1</ArmorRating_Sharp>
 					</value>
 				</li>
 				
@@ -174,39 +167,35 @@
 				</li>
 			
 				<!-- Large-class -->
+
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug" or defName="Arachnid_ScorpionBug" or defName="Arachnid_PlasmaBug"]/race/baseHealthScale</xpath>
+					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<baseHealthScale>5.0</baseHealthScale>
+						<ArmorRating_Sharp>22</ArmorRating_Sharp>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug" or defName="Arachnid_ScorpionBug"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+						<ArmorRating_Blunt>33</ArmorRating_Blunt>
 					</value>
 				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug"]/statBases/ArmorRating_Sharp</xpath>
-					<value>
-						<ArmorRating_Sharp>23</ArmorRating_Sharp>
-					</value>
-				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Arachnid_ScorpionBug"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
 						<ArmorRating_Sharp>25</ArmorRating_Sharp>
 					</value>
 				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="Arachnid_PlasmaBug"]/statBases</xpath>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="Arachnid_ScorpionBug"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Sharp>30</ArmorRating_Sharp>
-						<ArmorRating_Blunt>14</ArmorRating_Blunt>
+						<ArmorRating_Blunt>38</ArmorRating_Blunt>
 					</value>
 				</li>
-				
+
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Arachnid_TankerBug" or defName="Arachnid_ScorpionBug" or defName="Arachnid_PlasmaBug"]/statBases</xpath>
 					<value>
