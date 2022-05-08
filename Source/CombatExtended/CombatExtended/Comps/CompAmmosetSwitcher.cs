@@ -13,105 +13,91 @@ namespace CombatExtended
     public class CompUnderBarrel : CompRangedGizmoGiver
     {
         public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;
-
-        public CompEquippable CompEq() => this.parent.TryGetComp<CompEquippable>();
         
         public CompEquippable _compEq;
         
-        public CompEquippable compEq
+        public CompEquippable CompEq
         {
             get
             {
                 if(_compEq == null)
                 {
-                    _compEq = CompEq();
+                    _compEq = this.parent.TryGetComp<CompEquippable>();
                 }
                 
                 return _compEq;
             }
         }
-
-        public CompAmmoUser CompAmmo() => this.parent.TryGetComp<CompAmmoUser>();
         
         public CompAmmoUser _compAmmo;
         
-        public CompAmmoUser compAmmo
+        public CompAmmoUser CompAmmo
         {
             get
             {
                 if(_compAmmo == null)
                 {
-                    _compAmmo = CompAmmo();
+                    _compAmmo =  this.parent.TryGetComp<CompAmmoUser>();
                 }
                 
                 return _compAmmo;
             }
         }
 
-
-        public CompFireModes CompFireModes() => this.parent.TryGetComp<CompFireModes>();
-        
         public CompFireModes _compFireModes;
         
-        public CompFireModes compFireModes
+        public CompFireModes CompFireModes
         {
             get
             {
                 if(_compFireModes == null)
                 {
-                    _compFireModes = CompFireModes();
+                    _compFireModes = this.parent.TryGetComp<CompFireModes>();
                 }
                 
                 return  _compFireModes;
             }
         }
-
-
-        public CompProperties_FireModes CompPropsFireModes() => this.parent.def.comps.Find(x => x is CompProperties_FireModes) as CompProperties_FireModes;
         
         public CompProperties_FireModes _compPropsFireModes;
         
-        public CompProperties_FireModes compPropsFireModes
+        public CompProperties_FireModes CompPropsFireModes
         {
             get
             {
                 if(_compPropsFireModes == null)
                 {
-                    _compPropsFireModes = CompPropsFireModes();
+                    _compPropsFireModes = this.parent.def.comps.Find(x => x is CompProperties_FireModes) as CompProperties_FireModes;
                 }
                 
                 return  _compPropsFireModes;
             }
         }
-
-        public VerbProperties DefVerbProps() => this.parent.def.Verbs.Find(x => x is VerbPropertiesCE);
         
         public VerbProperties _defVerbProps;
         
-        public VerbProperties defVerbProps
+        public VerbProperties DefVerbProps
         {
             get
             {
                 if(_defVerbProps == null)
                 {
-                    _defVerbProps = DefVerbProps();
+                    _defVerbProps = this.parent.def.Verbs.Find(x => x is VerbPropertiesCE);
                 }
                 
                 return _defVerbProps;
             }
         }
-
-        public CompProperties_AmmoUser CompPropsAmmo() => (CompProperties_AmmoUser)this.parent.def.comps.Find(x => x is CompProperties_AmmoUser);
         
         public CompProperties_AmmoUser _compPropsAmmo;
         
-        public CompProperties_AmmoUser compPropsAmmo
+        public CompProperties_AmmoUser CompPropsAmmo
         {
             get
             {
                 if(_compPropsAmmo == null)
                 {
-                    _compPropsAmmo = CompPropsAmmo();
+                    _compPropsAmmo = (CompProperties_AmmoUser)this.parent.def.comps.Find(x => x is CompProperties_AmmoUser);
                 }
                 
                 return _compPropsAmmo;
@@ -130,55 +116,55 @@ namespace CombatExtended
 
         public void SwitchToUB()
         {
-            mainGunLoadedAmmo = compAmmo.CurrentAmmo;
-            mainGunMagCount = compAmmo.CurMagCount;
+            mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
+            mainGunMagCount = CompAmmo.CurMagCount;
 
-            compAmmo.props = this.Props.propsUnderBarrel;
-            compEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
-            compFireModes.props = this.Props.propsFireModesUnderBarrel;
-            compAmmo.CurMagCount = UnderBarrelMagCount;
-            compAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
-            compAmmo.SelectedAmmo = compAmmo.CurrentAmmo;
-            if (compAmmo.Wielder != null)
+            CompAmmo.props = this.Props.propsUnderBarrel;
+            CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
+            CompFireModes.props = this.Props.propsFireModesUnderBarrel;
+            CompAmmo.CurMagCount = UnderBarrelMagCount;
+            CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
+            if (CompAmmo.Wielder != null)
             {
-                compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+                CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
 
-                if (compAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
+                if (CompAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
                 {
-                    compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
+                    CompAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                 }
             }
-            compEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
+            CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.propsFireModesUnderBarrel.aimedBurstShotCount;
             usingUnderBarrel = true;
         }
 
         public void SwithToB()
         {
-            UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
-            UnderBarrelMagCount = compAmmo.CurMagCount;
+            UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
+            UnderBarrelMagCount = CompAmmo.CurMagCount;
 
-            compAmmo.props = compPropsAmmo;
-            compEq.PrimaryVerb.verbProps = defVerbProps.MemberwiseClone();
-            compFireModes.props = compPropsFireModes;
-            compAmmo.CurMagCount = mainGunMagCount;
-            compAmmo.CurrentAmmo = mainGunLoadedAmmo;
-            compAmmo.SelectedAmmo = compAmmo.CurrentAmmo;
-            if (compAmmo.Wielder != null)
+            CompAmmo.props = CompPropsAmmo;
+            CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
+            CompFireModes.props = CompPropsFireModes;
+            CompAmmo.CurMagCount = mainGunMagCount;
+            CompAmmo.CurrentAmmo = mainGunLoadedAmmo;
+            CompAmmo.SelectedAmmo = CompAmmo.CurrentAmmo;
+            if (CompAmmo.Wielder != null)
             {
-                compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+                CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
 
-                if (compAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
+                if (CompAmmo.Wielder.jobs?.curJob?.def == CE_JobDefOf.ReloadWeapon)
                 {
-                    compAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
+                    CompAmmo.Wielder.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
                 }
             }
-            compEq.PrimaryVerb.verbProps.burstShotCount = defVerbProps.burstShotCount;
+            CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
             usingUnderBarrel = false;
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (compAmmo.Props.ammoSet == compPropsAmmo.ammoSet)
+            if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
             {
                 yield return new Command_Action
                 {
@@ -232,8 +218,8 @@ namespace CombatExtended
             {
                 if (usingUnderBarrel)
                 {
-                    UnderBarrelMagCount = compAmmo.CurMagCount;
-                    UnderBarrelLoadedAmmo = compAmmo.CurrentAmmo;
+                    UnderBarrelMagCount = CompAmmo.CurMagCount;
+                    UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
                 }
             }
             Scribe_Values.Look(ref usingUnderBarrel, "usingUnderBarrel");
@@ -245,16 +231,16 @@ namespace CombatExtended
             {
                 if (usingUnderBarrel)
                 {
-                    compAmmo.CurMagCount = UnderBarrelMagCount;
-                    compAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                    CompAmmo.CurMagCount = UnderBarrelMagCount;
+                    CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
 
-                    compAmmo.props = this.Props.propsUnderBarrel;
-                    compEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
-                    compFireModes.props = this.Props.propsFireModesUnderBarrel;
+                    CompAmmo.props = this.Props.propsUnderBarrel;
+                    CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
+                    CompFireModes.props = this.Props.propsFireModesUnderBarrel;
 
-                    if (compAmmo.Wielder != null)
+                    if (CompAmmo.Wielder != null)
                     {
-                        compAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
+                        CompAmmo.Wielder.TryGetComp<CompInventory>().UpdateInventory();
                     }
                 }
             }
