@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Mechanoid Bench 3</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== Add Bodypart Groups and Layers ===== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBHelmetBase"]/apparel/layers</xpath>
+                    <value>
+                        <li>OnHead</li>
+                        <li>StrappedHead</li>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBBase"]/apparel/bodyPartGroups</xpath>
+                    <value>
+                        <li>Hands</li>
+                        <li>Feet</li>
+                    </value>
+                </li>
+
+                <!-- ===== Add Costlist ===== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBHelmetBase"]/costList</xpath>
+                    <value>
+                        <DevilstrandCloth>40</DevilstrandCloth>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[@Name="ApparelMBBase"]/costList</xpath>
+                    <value>
+                        <DevilstrandCloth>100</DevilstrandCloth>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Heavy Helmet ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyHelmet"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>6</Bulk>
+                        <WornBulk>1.5</WornBulk>
+                        <MaxHitPoints>350</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyHelmet"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>3</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyHelmet"]/equippedStatOffsets/MoveSpeed</xpath>
+                    <value>
+                        <AimingAccuracy>0.15</AimingAccuracy>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                        <SmokeSensitivity>-1</SmokeSensitivity>
+                        <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyHelmet"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>22</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyHelmet"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>48</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Heavy Armor ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>115</Bulk>
+                        <WornBulk>16</WornBulk>
+                        <MaxHitPoints>1300</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>55</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+                    <value>
+                        <CarryWeight>95</CarryWeight>
+                        <CarryBulk>12.2</CarryBulk>
+                        <ShootingAccuracyPawn>0.10</ShootingAccuracyPawn>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/equippedStatOffsets/WorkSpeedGlobal</xpath>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>28</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaHeavyArmor"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>60</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Combat Helmet ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatHelmet"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>5</Bulk>
+                        <WornBulk>1</WornBulk>
+                        <MaxHitPoints>280</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Apparel_MechaCombatHelmet"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>2.5</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatHelmet"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+                    <value>
+                        <AimingAccuracy>0.20</AimingAccuracy>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                        <SmokeSensitivity>-1</SmokeSensitivity>
+                        <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+                        <MeleeDodgeChance>0.15</MeleeDodgeChance>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatHelmet"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>18</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatHelmet"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>38</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Combat Armor ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>100</Bulk>
+                        <WornBulk>15</WornBulk>
+                        <MaxHitPoints>1000</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>47</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/equippedStatOffsets/MoveSpeed</xpath>
+                    <value>
+                        <CarryWeight>90</CarryWeight>
+                        <CarryBulk>13.5</CarryBulk>
+                        <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>22</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaCombatArmor"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>50</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Sniper Helmet ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperHelmet"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>5</Bulk>
+                        <WornBulk>1</WornBulk>
+                        <MaxHitPoints>280</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="Apparel_MechaSniperHelmet"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>2</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperHelmet"]/equippedStatOffsets/AimingDelayFactor</xpath>
+                    <value>
+                        <AimingAccuracy>0.25</AimingAccuracy>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                        <SmokeSensitivity>-1</SmokeSensitivity>
+                        <NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel>
+                        <AimingDelayFactor>-0.1</AimingDelayFactor>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperHelmet"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>16</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperHelmet"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>36</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Sniper Armor ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperArmor"]/statBases/MaxHitPoints</xpath>
+                    <value>
+                        <Bulk>95</Bulk>
+                        <WornBulk>14</WornBulk>
+                        <MaxHitPoints>800</MaxHitPoints>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperArmor"]/statBases/Mass</xpath>
+                    <value>
+                        <Mass>45</Mass>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperArmor"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+                    <value>
+                        <CarryWeight>85</CarryWeight>
+                        <CarryBulk>12.5</CarryBulk>
+                        <ShootingAccuracyPawn>0.25</ShootingAccuracyPawn>
+                        <ToxicSensitivity>-0.50</ToxicSensitivity>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperArmor"]/statBases/ArmorRating_Sharp</xpath>
+                    <value>
+                        <ArmorRating_Sharp>20</ArmorRating_Sharp>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="Apparel_MechaSniperArmor"]/statBases/ArmorRating_Blunt</xpath>
+                    <value>
+                        <ArmorRating_Blunt>48</ArmorRating_Blunt>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
