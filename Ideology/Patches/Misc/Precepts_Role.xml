@@ -6,7 +6,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PreceptDef[defName="IdeoRole_ShootingSpecialist"]/roleEffects/li[./statDef="ShootingAccuracyPawn"]/modifier</xpath>
 		<value>
-        	<modifier>2</modifier>
+			<modifier>2</modifier>
 		</value>
 	</Operation>
 
@@ -29,14 +29,28 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PreceptDef[defName="IdeoRole_MeleeSpecialist"]/roleEffects/li[./statDef="MeleeHitChance"]/modifier</xpath>
 		<value>
-        	<modifier>2</modifier>
+			<modifier>2</modifier>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PreceptDef[defName="IdeoRole_MeleeSpecialist"]/roleEffects/li[./statDef="MeleeDodgeChance"]/modifier</xpath>
 		<value>
-        	<modifier>0.2</modifier>
+			<modifier>0.2</modifier>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PreceptDef[defName="IdeoRole_MeleeSpecialist"]/roleEffects</xpath>
+		<value>
+			<li Class="RoleEffect_PawnStatOffset">
+				<statDef>MeleeCritChance</statDef>
+				<modifier>0.1</modifier>
+			</li>
+			<li Class="RoleEffect_PawnStatOffset">
+				<statDef>MeleeParryChance</statDef>
+				<modifier>0.2</modifier>
+			</li>
 		</value>
 	</Operation>
 
