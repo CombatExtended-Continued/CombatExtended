@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>MihoraceBeta</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			
+			
+			<!--========= Fixed Armor Value =========-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>launch thermobaric blast</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>False</onlyManualCast>
+							<warmupTime>4.5</warmupTime>
+							<range>50</range>
+							<minRange>5</minRange>
+							<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+							<soundCast>Shot_IncendiaryLauncher</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+							<defaultProjectile>Bullet_60x180mmMiho_Thermobaric</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+				<value>
+					<ammoDef>FSX</ammoDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+				<value>
+					<ammoCountPerCharge>15</ammoCountPerCharge>
+				</value>
+			</li>
+			
+			<!--Engineering Suit-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>15</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]</xpath>
+				<value>
+					<thingClass Inherit="false">CombatExtended.Apparel_Shield</thingClass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/apparel/bodyPartGroups</xpath>
+				<value>
+				  <bodyPartGroups>
+					<li>LeftShoulder</li>
+				  </bodyPartGroups>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/equippedStatOffsets/MoveSpeed</xpath>
+				<value>
+				  <ReloadSpeed>-0.3</ReloadSpeed>
+				  <MeleeHitChance>-4</MeleeHitChance>
+				  <ShootingAccuracyPawn>-0.4</ShootingAccuracyPawn>
+				  <AimingAccuracy>-0.2</AimingAccuracy>
+				  <Suppressability>-0.5</Suppressability>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+				  <MeleeCritChance>-0.2</MeleeCritChance>
+				  <MeleeParryChance>1.0</MeleeParryChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/equippedStatOffsets/IncomingDamageFactor</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/verbs</xpath>
+				<value>
+					<verbs>
+						<li Class="CombatExtended.VerbPropertiesCE">
+							<label>launch 30x29mm smoke</label>
+							<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+							<hasStandardCommand>true</hasStandardCommand>
+							<onlyManualCast>False</onlyManualCast>
+							<warmupTime>1.0</warmupTime>
+							<range>40</range>
+							<minRange>1</minRange>
+							<ai_IsBuildingDestroyer>False</ai_IsBuildingDestroyer>
+							<soundCast>Shot_IncendiaryLauncher</soundCast>
+							<soundCastTail>GunTail_Medium</soundCastTail>
+							<muzzleFlashScale>14</muzzleFlashScale>
+							<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+							<targetParams>
+								<canTargetLocations>true</canTargetLocations>
+							</targetParams>
+							<ignorePartialLoSBlocker>false</ignorePartialLoSBlocker>
+							<defaultProjectile>Bullet_30x29mmGrenade_Smoke</defaultProjectile>
+							<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+						</li>
+					</verbs>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/comps/li[@Class="CompProperties_Reloadable"]/ammoDef</xpath>
+				<value>
+					<ammoDef>Ammo_30x29mmGrenade_Smoke</ammoDef>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountPerCharge</xpath>
+				<value>
+					<ammoCountPerCharge>1</ammoCountPerCharge>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/apparel/layers</xpath>
+				<value>
+				  <layers>
+					<li>Shield</li>
+				  </layers>
+				</value>
+			</li>
+			
+			<!--Magnifier-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Magnifier"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>2</WornBulk>
+					<NightVisionEfficiency_Apparel>0.3</NightVisionEfficiency_Apparel> 
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Magnifier"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Magnifier"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<!--TacAssist-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_TacticalAssist"]/statBases</xpath>
+				<value>
+					<Bulk>6</Bulk>
+					<WornBulk>2</WornBulk>
+					<NightVisionEfficiency_Apparel>0.8</NightVisionEfficiency_Apparel> 
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_TacticalAssist"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_TacticalAssist"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

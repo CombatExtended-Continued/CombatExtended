@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>MihoraceBeta</li></mods>
+			<match Class="PatchOperationFindMod">
+			<mods><li>Vanilla Expanded Framework</li></mods>
+			<match Class="PatchOperationSequence">
+			<operations>
+			
+			<!-- ========== Bolter =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>MihoVEF_Weapon_Bolter</defName>
+				<statBases>
+					<SightsEfficiency>0.80</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.75</SwayFactor>
+					<Bulk>20.00</Bulk>
+					<Mass>55.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_132x92mmSRTuF_FMJ</defaultProjectile>
+					<warmupTime>1</warmupTime>
+					<range>40</range>
+					<soundCast>Shot_AssaultRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>7.8</reloadTime>
+				</AmmoUser>
+				<FireModes>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Rocket Launcher : 2kg blast mass thermo round ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MihoVEF_Weapon_Rocket</defName>
+				<statBases>
+				  <Mass>99.50</Mass>
+				  <RangedWeapon_Cooldown>2.50</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1.24</SightsEfficiency>
+				  <ShotSpread>0.07</ShotSpread>
+				  <SwayFactor>0.29</SwayFactor>
+				  <Bulk>20.00</Bulk>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>Bullet_60x180mmMiho_Thermobaric</defaultProjectile>
+				  <warmupTime>4.4</warmupTime>
+				  <range>75</range>
+				  <burstShotCount>1</burstShotCount>
+				  <soundCast>Shot_AssaultRifle</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>14</muzzleFlashScale>
+				  <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+				  <minRange>5</minRange>
+				  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>1</magazineSize>
+				  <reloadTime>9.8</reloadTime>
+				</AmmoUser>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+				  <li>CE_AI_Launcher</li>
+				</weaponTags>
+			</li>
+		  
+			<!-- ========== LMG =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>MihoVEF_Weapon_Machinegun</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.07</ShotSpread>
+					<SwayFactor>1.58</SwayFactor>
+					<Bulk>20.00</Bulk>
+					<Mass>55.00</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>0.32</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_65x50mmSRArisaka_FMJ</defaultProjectile>
+					<warmupTime>1.3</warmupTime>
+					<burstShotCount>10</burstShotCount>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<range>48</range>
+					<soundCast>Shot_AssaultRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>7.8</reloadTime>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>SuppressFire</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Laser Minigun =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MihoVEF_Weapon_Minigun</defName>
+				<statBases>
+				  <Mass>65.00</Mass>
+				  <Bulk>20.00</Bulk>
+				  <SwayFactor>1.71</SwayFactor>
+				  <ShotSpread>0.03</ShotSpread>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>True</hasStandardCommand>
+				  <defaultProjectile>Bullet_Laser_MihoMiniGun</defaultProjectile>
+				  <burstShotCount>125</burstShotCount>
+				  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				  <warmupTime>2.1</warmupTime>
+				  <range>35</range>
+				  <soundCast>VWE_LaserShot_Light</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>14</muzzleFlashScale>
+				  <recoilAmount>0.01</recoilAmount>
+				  <recoilPattern>Regular</recoilPattern>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>500</magazineSize>
+				  <reloadTime>6</reloadTime>
+				</AmmoUser>
+				<FireModes>
+				  <aiAimMode>SuppressFire</aiAimMode>
+				  <aimedBurstShotCount>50</aimedBurstShotCount>
+				  <noSingleShot>true</noSingleShot>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="MihoVEF_Weapon_Bolter" or
+				defName="MihoVEF_Weapon_Rocket" or
+				defName="MihoVEF_Weapon_Machinegun" or
+				defName="MihoVEF_Weapon_Minigun"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>barrel</label>
+						  <capacities>
+							<li>Blunt</li>
+						  </capacities>
+						  <power>10</power>
+						  <cooldownTime>2.44</cooldownTime>
+						  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			</operations>
+			</match>
+			</match>
+	</Operation>
+</Patch>

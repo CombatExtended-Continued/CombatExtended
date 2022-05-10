@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>MihoraceBeta</li></mods>
+	  <match Class="PatchOperationFindMod">
+			
+		<mods><li>Vanilla Expanded Framework</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_Bulgasal" or
+				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
+				defName="MihoVFE_Mechanoids_Sapsal" or
+				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
+				defName="MihoVFE_Mechanoids_MyeongIl" or
+				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
+				defName="MihoVFE_Mechanoids_Sapsal_NP"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			
+			<li Class="PatchOperationAdd">
+			 <xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal" or
+				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
+				defName="MihoVFE_Mechanoids_Sapsal" or
+				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
+				defName="MihoVFE_Mechanoids_MyeongIl" or
+				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
+				defName="MihoVFE_Mechanoids_Sapsal_NP"]/statBases</xpath>
+				  <value>
+					<MeleeDodgeChance>0.05</MeleeDodgeChance>
+					<MeleeCritChance>0.15</MeleeCritChance>
+					<MeleeParryChance>0.40</MeleeParryChance>
+					<NightVisionEfficiency>0.60</NightVisionEfficiency>
+				  </value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_Bulgasal" or
+				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
+				defName="MihoVFE_Mechanoids_Bulgasal_NP"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_Bulgasal" or
+				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
+				defName="MihoVFE_Mechanoids_Bulgasal_NP"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>18</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_Sapsal" or
+				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
+				defName="MihoVFE_Mechanoids_Sapsal_NP"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>12</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_Sapsal" or
+				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
+				defName="MihoVFE_Mechanoids_Sapsal_NP"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>18</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_MyeongIl"
+				]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[
+				defName="MihoVFE_Mechanoids_MyeongIl"
+				]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="MihoVFE_Mechanoids_Bulgasal" or
+				defName="MihoVFE_Mechanoids_Bulgasal_Bolter" or
+				defName="MihoVFE_Mechanoids_Sapsal" or
+				defName="MihoVFE_Mechanoids_Sapsal_LMG" or
+				defName="MihoVFE_Mechanoids_MyeongIl" or
+				defName="MihoVFE_Mechanoids_Bulgasal_NP" or
+				defName="MihoVFE_Mechanoids_Sapsal_NP"]/tools</xpath> 
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>35</power>
+							<cooldownTime>3.51</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>15</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						</li>
+					</tools>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </match>	
+  </Operation>
+</Patch>

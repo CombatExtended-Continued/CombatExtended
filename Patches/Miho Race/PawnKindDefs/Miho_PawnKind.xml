@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>MihoraceBeta</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Ammo-->
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Miho_Soldier_Adventurer" or
+				defName="Miho_Soldier_Hunter" or
+				defName="Miho_Soldier_Militia"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>5</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Miho_Soldier_Marksman" or
+				defName="Miho_Soldier_PMC_Sniper"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>10</min>
+						<max>15</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Miho_Soldier_Firepower" or
+				defName="Miho_Soldier_PMC_Infantry" or
+				defName="Miho_Soldier_PMC_InfantryShield"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>6</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/PawnKindDef[
+				defName="Miho_Soldier_AssassinRanged"
+				]</xpath>
+				<value>
+					<li Class="CombatExtended.LoadoutPropertiesExtension">
+					<primaryMagazineCount>
+						<min>20</min>
+						<max>30</max>
+					</primaryMagazineCount>
+					</li>
+				</value>
+			</li>
+			
+			<!--Backpack-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+				<value>
+					<li>MihoCommonNecessary</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/PawnKindDef[
+				defName="Miho_Soldier_Militia" or
+				defName="Miho_Soldier_Hunter" or
+				defName="Miho_Soldier_Marksman" or
+				defName="Miho_Soldier_Firepower" or
+				defName="Miho_Soldier_PMC_Infantry" or
+				defName="Miho_Soldier_PMC_InfantryShield" or
+				defName="Miho_Soldier_PMC_Sniper" or
+				defName="Miho_Soldier_AssassinRanged"
+				]/apparelRequired</xpath>
+				<value>
+					<li>Apparel_Backpack</li>
+				</value>
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

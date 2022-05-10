@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	  <Operation Class="PatchOperationFindMod">
+			
+		<mods><li>MihoraceBeta</li></mods>
+			
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MihoPlasma</defName>
+					<label>Rifle Plasma Cell</label>
+					<ammoTypes>
+					  <Ammo_PlasmaCellRifle>Bullet_MihoPlasma</Ammo_PlasmaCellRifle>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MihoPlasmaSniper</defName>
+					<label>Rifle Plasma Cell</label>
+					<ammoTypes>
+					  <Ammo_PlasmaCellRifle>Bullet_MihoPlasmaSniper</Ammo_PlasmaCellRifle>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<ThingDef ParentName="Base556x45mmNATOBullet">
+					<defName>Bullet_MihoPlasma</defName>
+					<label>Plasma Bolt</label>
+					<graphicData>
+					  <texPath>Things/Projectile/MihoPlasma</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>100</speed>
+					  <damageAmountBase>10</damageAmountBase>
+					  <damageDef>MihoPlasma</damageDef>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>80</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="Base556x45mmNATOBullet">
+					<defName>Bullet_MihoPlasmaSniper</defName>
+					<label>Plasma Bolt</label>
+					<graphicData>
+					  <texPath>Things/Projectile/MihoPlasma</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>200</speed>
+					  <damageAmountBase>15</damageAmountBase>
+					  <damageDef>MihoPlasma</damageDef>
+					  <armorPenetrationSharp>0</armorPenetrationSharp>
+					  <armorPenetrationBlunt>120</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+				  <defName>Bullet_Laser_MihoMiniGun</defName>
+				  <label>laser beam</label>  
+				  <graphicData>
+					<color>(255,160,46)</color>
+				  </graphicData>  
+				  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Miho_Laser</damageDef>
+					<damageAmountBase>4</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+				  </projectile>         
+				</ThingDef>
+				<ThingDef ParentName="BaseBullet">
+					<defName>Bullet_60x180mmMiho_Thermobaric</defName>
+					<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					<label>60x180mm fuel shell (Thermobaric)</label>
+					<graphicData>
+						<texPath>Things/Projectile/LauncherShot</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+						<shaderType>TransparentPostLight</shaderType>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>Thermobaric</damageDef>
+						<damageAmountBase>160</damageAmountBase>
+						<armorPenetrationSharp>0</armorPenetrationSharp>
+						<armorPenetrationBlunt>0</armorPenetrationBlunt>
+						<speed>60</speed>
+						<flyOverhead>false</flyOverhead>
+						<explosionRadius>3.5</explosionRadius>
+						<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+						<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+						<soundExplode>MortarIncendiary_Explode</soundExplode>
+						<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+						<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+						<soundAmbient>MortarRound_Ambient</soundAmbient>
+						<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+						<ai_IsIncendiary>true</ai_IsIncendiary>
+					</projectile>
+				</ThingDef>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_GreatArrowMiho</defName>
+					<label>great arrows</label>
+					<ammoTypes>
+					  <Ammo_GreatArrow_Stone>Projectile_GreatArrowMiho_Stone</Ammo_GreatArrow_Stone>
+					  <Ammo_GreatArrow_Steel>Projectile_GreatArrowMiho_Steel</Ammo_GreatArrow_Steel>
+					  <Ammo_GreatArrow_Plasteel>Projectile_GreatArrowMiho_Plasteel</Ammo_GreatArrow_Plasteel>
+					  <Ammo_GreatArrow_Venom>Projectile_GreatArrowMiho_Venom</Ammo_GreatArrow_Venom>
+					  <Ammo_GreatArrow_Flame>Projectile_GreatArrowMiho_Flame</Ammo_GreatArrow_Flame>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_GreatArrowMiho_Stone</defName>
+					<label>great arrow (stone)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Stone</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>22</speed>
+						<damageAmountBase>13</damageAmountBase>
+						<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.5</armorPenetrationSharp>
+						<preExplosionSpawnChance>0.2</preExplosionSpawnChance>	<!-- 12.5 arrows per resource -->
+						<preExplosionSpawnThingDef>Ammo_GreatArrow_Stone</preExplosionSpawnThingDef>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_GreatArrowMiho_Steel</defName>
+					<label>great arrow (steel)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Steel</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>33</speed>
+						<damageAmountBase>15</damageAmountBase>
+						<armorPenetrationBlunt>6.22</armorPenetrationBlunt>
+						<armorPenetrationSharp>3.5</armorPenetrationSharp>
+						<preExplosionSpawnChance>0.4</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+						<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_GreatArrowMiho_Plasteel</defName>
+					<label>great arrow (plasteel)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>37</speed>
+						<damageAmountBase>12</damageAmountBase>
+						<armorPenetrationBlunt>17.44</armorPenetrationBlunt>
+						<armorPenetrationSharp>5</armorPenetrationSharp>
+						<preExplosionSpawnChance>0.50</preExplosionSpawnChance>	<!-- 40 arrows per resource -->
+						<preExplosionSpawnThingDef>Ammo_GreatArrow_Plasteel</preExplosionSpawnThingDef>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_GreatArrowMiho_Venom</defName>
+					<label>great arrow (venom)</label>
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Venom</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>33</speed>
+						<damageDef>Arrow</damageDef>
+						<damageAmountBase>12</damageAmountBase>
+						<secondaryDamage>
+							<li>
+							<def>ArrowVenom</def>
+							<amount>3</amount>
+							</li>
+						</secondaryDamage>			
+						<armorPenetrationBlunt>17.44</armorPenetrationBlunt>
+						<armorPenetrationSharp>3.5</armorPenetrationSharp>
+						<preExplosionSpawnChance>0.4</preExplosionSpawnChance>	<!-- 25 arrows per resource -->
+						<preExplosionSpawnThingDef>Ammo_GreatArrow_Steel</preExplosionSpawnThingDef>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_GreatArrowMiho_Flame</defName>
+					<label>great arrow (flame)</label>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Flame</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				  <explosionRadius>0.2</explosionRadius>
+				  <speed>33</speed>
+				  <damageDef>ArrowFire</damageDef>
+				  <damageAmountBase>6</damageAmountBase>
+				  <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				  <preExplosionSpawnChance>0.16</preExplosionSpawnChance>
+				</projectile>
+				</ThingDef>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MihoStyxArrow</defName>
+					<label>styx bow</label>
+					<ammoTypes>
+					  <Ammo_MihoStyxArrow>Projectile_MihoStyxArrow</Ammo_MihoStyxArrow>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoGreatArrowBase">
+					<defName>Ammo_MihoStyxArrow</defName>
+					<label>styx arrow</label>
+					<graphicData>
+					  <texPath>Things/Ammo/Neolithic/Arrow/Plasteel</texPath>
+					  <graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+					  <Mass>0.33</Mass>	
+					  <MarketValue>9.72</MarketValue>
+					  <Bulk>1.14</Bulk>
+					</statBases>
+					<ammoClass>PlasteelArrow</ammoClass>
+					<generateAllowChance>0.2</generateAllowChance>
+				</ThingDef>
+				<ThingDef ParentName="BaseGreatArrowProjectile">
+					<defName>Projectile_MihoStyxArrow</defName>
+					<label>styx arrow</label>
+					<graphicData>
+						<texPath>Things/Projectile/Arrows/Arrow_Plasteel</texPath>
+						<graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<speed>54</speed>
+						<damageAmountBase>30</damageAmountBase>
+						<armorPenetrationBlunt>167.68</armorPenetrationBlunt>
+						<armorPenetrationSharp>18</armorPenetrationSharp>
+						<preExplosionSpawnChance>0.25</preExplosionSpawnChance>	<!-- 40 arrows per resource -->
+						<preExplosionSpawnThingDef>Ammo_MihoStyxArrow</preExplosionSpawnThingDef>
+					</projectile>
+				</ThingDef>
+				<RecipeDef ParentName="AmmoRecipeNeolithicBase">
+					<defName>MakeAmmo_MihoStyxArrow</defName>
+					<label>make miho styx arrows x10</label>
+					<description>Craft 10  miho styx arrows.</description>
+					<jobString>Making  miho styx arrows.</jobString>
+					<workAmount>4300</workAmount>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>WoodLog</li>
+						  </thingDefs>
+						</filter>
+						<count>3</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Plasteel</li>
+						  </thingDefs>
+						</filter>
+						<count>10</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>WoodLog</li>
+							<li>Plasteel</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_GreatArrow_Plasteel>10</Ammo_GreatArrow_Plasteel>
+					</products>
+				</RecipeDef>
+			</value>
+		</match>	
+	  </Operation>
+</Patch>

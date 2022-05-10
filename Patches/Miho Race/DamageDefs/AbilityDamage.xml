@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+		
+	<mods><li>MihoraceBeta</li></mods>
+		
+	<match Class="PatchOperationSequence">
+	<operations>
+	
+		<!--Tempoaryish fix-->
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[defName="Miho_MagicBombHawk"]/armorCategory</xpath> 
+			<value>
+				<armorCategory>Electric</armorCategory>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[defName="Miho_MagicBomb"]/armorCategory</xpath> 
+			<value>
+				<armorCategory>Electric</armorCategory>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/DamageDef[defName="Miho_MagicBombEMP"]/armorCategory</xpath> 
+			<value>
+				<armorCategory>Electric</armorCategory>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_Fireball_Small_Proj"]/projectile/damageAmountBase</xpath> 
+			<value>
+				<damageAmountBase>14</damageAmountBase>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_Fireball_Proj"]/projectile/damageAmountBase</xpath> 
+			<value>
+				<damageAmountBase>20</damageAmountBase>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_Fireball_Adept_Proj"]/projectile/damageAmountBase</xpath> 
+			<value>
+				<damageAmountBase>16</damageAmountBase>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_Thunder_Proj"]/projectile/damageAmountBase</xpath> 
+			<value>
+				<damageAmountBase>11</damageAmountBase>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_FanofKnives_Proj"]/projectile/damageAmountBase</xpath> 
+			<value>
+				<damageAmountBase>5</damageAmountBase>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Miho_FanofKnives_Proj"]/projectile/speed</xpath> 
+			<value>
+				<speed>75</speed>
+			</value>
+		</li>
+		
+	</operations>
+	</match>	
+  </Operation>
+	  
+</Patch>

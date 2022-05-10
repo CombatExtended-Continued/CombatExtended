@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+		
+	<mods><li>MihoraceBeta</li></mods>
+		
+	<match Class="PatchOperationSequence">
+	<operations>
+	
+		<li Class="PatchOperationConditional">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]/comps</xpath>
+			<match Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]/comps</xpath>
+				<value>
+					<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</match>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]</xpath>
+				<value>
+					<comps>
+						<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+						</li>
+						<li Class="CombatExtended.CompProperties_Suppressable" />
+					</comps>
+				</value>
+			</nomatch>
+		</li>
+		
+		<li Class="PatchOperationAddModExtension">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]</xpath>
+			<value>
+				<li Class="CombatExtended.RacePropertiesExtensionCE">
+					<bodyShape>Humanoid</bodyShape>
+				</li>
+			</value>
+		</li>
+
+		
+		<li Class="PatchOperationReplace">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]/statBases/MeleeDodgeChance</xpath>
+			  <value>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+				<Suppressability>1</Suppressability>
+				<SmokeSensitivity>0.5</SmokeSensitivity>
+				<AimingAccuracy>0.75</AimingAccuracy>
+			  </value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]/tools</xpath> 
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/ThingDef[@Name="MihoPawn"]/damageMultipliers</xpath>
+			  <value>
+				<li>
+					<damageDef>PrometheumFlame</damageDef>
+					<multiplier>0.25</multiplier>
+				</li>
+				<li>
+					<damageDef>Flame_Secondary</damageDef>
+					<multiplier>0.25</multiplier>
+				</li>
+			  </value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Miho"]/alienRace/raceRestriction/whiteApparelList</xpath>
+			<value>
+			<li>Apparel_TacVest</li>
+			<li>Apparel_Backpack</li>
+			<li>Apparel_TribalBackpack</li>
+			<li>Apparel_BallisticShield</li>
+			<li>Apparel_MeleeShield</li>
+			<li>Apparel_GasMask</li>
+			<li>Apparel_ImprovGasMask</li>
+			</value>
+		</li>
+		
+	</operations>
+	</match>	
+  </Operation>
+</Patch>
