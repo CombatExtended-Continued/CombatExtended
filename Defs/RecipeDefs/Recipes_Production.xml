@@ -1,73 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<RecipeDef ParentName="MakeStoneBlocksBase">
+	<RecipeDef>
 		<defName>Make_FSXDrugLab</defName>
 		<label>Synthesize 7 FSX</label>
 		<description>Synthesize 7 FSX from chemfuel using chemistry equipment.</description>
 		<jobString>Synthesizing FSX</jobString>
+		<workAmount>1000</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Drug</soundWorking>
 		<ingredients>
-		<li>
-		<filter>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>100</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Chemfuel</li>
 			</thingDefs>
-		</filter>
-		<count>100</count>
-		</li>
-		</ingredients>
-		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Chemfuel</li>		
-		</thingDefs>		
 		</fixedIngredientFilter>
-		<workAmount>1000</workAmount>
-		<workSkill>Intellectual</workSkill>		
-		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-		<effectWorking>Cook</effectWorking>
-		<soundWorking>Recipe_Drug</soundWorking>	
-		<recipeUsers Inherit="false">
-			<li>DrugLab</li>
-		</recipeUsers>	
-		<skillRequirements>
-			<Intellectual>4</Intellectual>
-		</skillRequirements>	
 		<products>
 			<FSX>7</FSX>
 		</products>
+		<recipeUsers>
+			<li>DrugLab</li>
+		</recipeUsers>
+		<workSkill>Intellectual</workSkill>
+		<skillRequirements>
+			<Intellectual>4</Intellectual>
+		</skillRequirements>	
 	</RecipeDef>
 
-	<RecipeDef ParentName="MakeStoneBlocksBase">
+	<RecipeDef>
 		<defName>Make_FSXRefinery</defName>
 		<label>Synthesize 8 FSX</label>
 		<description>Use the refinery to synthesize 8 FSX from chemfuel.</description>
 		<jobString>Synthesizing FSX</jobString>
+		<workAmount>800</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Cremate</soundWorking>
 		<ingredients>
-		<li>
-		<filter>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</filter>
+				<count>100</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
 			<thingDefs>
 				<li>Chemfuel</li>
 			</thingDefs>
-		</filter>
-		<count>100</count>
-		</li>
-		</ingredients>
-		<fixedIngredientFilter>
-		<thingDefs>
-			<li>Chemfuel</li>		
-		</thingDefs>		
 		</fixedIngredientFilter>
-		<workAmount>800</workAmount>
-		<workSkill>Crafting</workSkill>		
-    	<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-		<effectWorking>Cook</effectWorking>
-		<soundWorking>Recipe_Cremate</soundWorking>	
-		<recipeUsers Inherit="false">
-			<li>BiofuelRefinery</li>
-		</recipeUsers>		
 		<products>
 			<FSX>8</FSX>
 		</products>
+		<recipeUsers>
+			<li>BiofuelRefinery</li>
+		</recipeUsers>
+		<workSkill>Crafting</workSkill>
 	</RecipeDef>
 
 	<RecipeDef>
@@ -83,30 +83,29 @@
 		<ingredients>
 		  <li>
 			<filter>
-			<thingDefs>
-				<li>Ammo_5x35mmCharged</li>
-				<li>Ammo_6x22mmCharged</li>
-				<li>Ammo_12x64mmCharged</li>
-			</thingDefs>
+				<thingDefs>
+					<li>Ammo_5x35mmCharged</li>
+					<li>Ammo_6x22mmCharged</li>
+					<li>Ammo_12x64mmCharged</li>
+				</thingDefs>
 			</filter>
 			<count>200</count>
 		  </li>
 		</ingredients>
 		<fixedIngredientFilter>
-		<thingDefs>
+			<thingDefs>
 				<li>Ammo_5x35mmCharged</li>
 				<li>Ammo_6x22mmCharged</li>
-				<li>Ammo_12x64mmCharged</li>	
-		</thingDefs>		
+				<li>Ammo_12x64mmCharged</li>
+			</thingDefs>		
 		</fixedIngredientFilter>
+		<products>
+			<Plasteel>2</Plasteel>
+			<Steel>2</Steel>
+		</products>
 		<recipeUsers Inherit="false">
 			<li>ElectricSmelter</li>
 		</recipeUsers>	
-		<products>
-		  <Plasteel>2</Plasteel>
-		  <Steel>2</Steel>
-		</products>
 	</RecipeDef>
-
 
 </Defs>
