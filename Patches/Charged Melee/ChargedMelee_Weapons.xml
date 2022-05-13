@@ -167,7 +167,7 @@
 						<power>21</power>
 						<cooldownTime>2.25</cooldownTime>
 						<chanceFactor>1</chanceFactor>
-						<armorPenetrationSharp>12.3</armorPenetrationSharp>
+						<armorPenetrationSharp>11.3</armorPenetrationSharp>
 						<armorPenetrationBlunt>1.15</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 					</li>
@@ -179,7 +179,7 @@
 						<power>55</power>
 						<cooldownTime>2.1</cooldownTime>
 						<chanceFactor>1</chanceFactor>
-						<armorPenetrationSharp>11.78</armorPenetrationSharp>
+						<armorPenetrationSharp>10.78</armorPenetrationSharp>
 						<armorPenetrationBlunt>8</armorPenetrationBlunt>
 						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
 					</li>					
@@ -197,6 +197,168 @@
 
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="V_ChargeLongSword"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				<MeleeCritChance>0.71</MeleeCritChance>
+				<MeleeParryChance>0.32</MeleeParryChance>
+				<MeleeDodgeChance>0.6</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<!-- Batton -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_ChargeBaton"]/tools</xpath>
+			<value>
+				<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.59</cooldownTime>
+							<armorPenetrationBlunt>0.6.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>batton head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>0.75</cooldownTime>
+							<armorPenetrationBlunt>42.25</armorPenetrationBlunt>
+						</li>				
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeBaton"]/statBases</xpath>
+			<value>
+				<Bulk>2.5</Bulk>
+				<MeleeCounterParryBonus>1</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeBaton"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				<MeleeCritChance>0.2</MeleeCritChance>
+				<MeleeParryChance>1</MeleeParryChance>
+				<MeleeDodgeChance>0.4</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeBaton"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+			
+		<!-- Axe -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_ChargeAxe"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.59</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>29</power>
+						<cooldownTime>2.36</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationSharp>10.31</armorPenetrationSharp>
+						<armorPenetrationBlunt>39</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeAxe"]/statBases</xpath>
+			<value>
+				<Bulk>3</Bulk>
+				<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeAxe"]</xpath>
+			<value>
+				<equippedStatOffsets>
+				<MeleeCritChance>0.50</MeleeCritChance>
+				<MeleeParryChance>0.54</MeleeParryChance>
+				<MeleeDodgeChance>0.33</MeleeDodgeChance>
+				</equippedStatOffsets>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeAxe"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+		
+		<!-- Maul -->	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_ChargeHammer"]/tools</xpath>
+			<value>
+				<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.78</cooldownTime>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>batton head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>41</power>
+							<cooldownTime>2.76</cooldownTime>
+							<armorPenetrationBlunt>180</armorPenetrationBlunt>
+						</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeHammer"]/statBases</xpath>
+			<value>
+				<Bulk>18</Bulk>
+				<MeleeCounterParryBonus>0.43</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_ChargeHammer"]</xpath>
 			<value>
 				<equippedStatOffsets>
 				<MeleeCritChance>0.71</MeleeCritChance>
