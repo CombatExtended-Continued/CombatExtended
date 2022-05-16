@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Vali's Charged Arsenal - Eltex Series</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+		<!-- Knife -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_AnimaDagger"]/tools</xpath>
+			<value>
+				<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1.26</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>17</power>
+							<cooldownTime>1.05</cooldownTime>
+							<armorPenetrationBlunt>0.72</armorPenetrationBlunt>
+							<armorPenetrationSharp>16.56</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>0.84</cooldownTime>
+							<armorPenetrationBlunt>0.565</armorPenetrationBlunt>
+							<armorPenetrationSharp>19.64</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaDagger"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<MeleeCounterParryBonus>0.73</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaDagger"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>0.23</MeleeParryChance>
+				<MeleeDodgeChance>0.27</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaDagger"]/weaponTags</xpath>
+			<value>
+				<li>CE_OneHandedWeapon</li>
+			</value>
+		</li>
+			
+		<!-- Longsword -->	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_AnimaLongSword"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>handle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>2</power>
+						<cooldownTime>1.5</cooldownTime>
+						<chanceFactor>0.15</chanceFactor>
+						<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>18</power>
+						<cooldownTime>1</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationSharp>25.26</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+							<li>Cut</li>
+						</capacities>
+						<power>29</power>
+						<cooldownTime>1.35</cooldownTime>
+						<chanceFactor>1</chanceFactor>
+						<armorPenetrationSharp>19.12</armorPenetrationSharp>
+						<armorPenetrationBlunt>1.531</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+					</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaLongSword"]/statBases</xpath>
+			<value>
+				<Bulk>6</Bulk>
+				<MeleeCounterParryBonus>0.73</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaLongSword"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>1</MeleeCritChance>
+				<MeleeParryChance>0.55</MeleeParryChance>
+				<MeleeDodgeChance>0.37</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!-- Staff -->	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_AnimaStaff"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>staff top edge</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>0.80</cooldownTime>
+						<armorPenetrationBlunt>75.62</armorPenetrationBlunt>
+					</li>	
+					<li Class="CombatExtended.ToolCE">
+						<label>staff top edge</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>0.80</cooldownTime>
+						<armorPenetrationBlunt>75.62</armorPenetrationBlunt>
+					</li>							
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaStaff"]/statBases</xpath>
+			<value>
+				<Bulk>1.5</Bulk>
+				<MeleeCounterParryBonus>2.4</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaStaff"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>0.5</MeleeCritChance>
+				<MeleeParryChance>1.8</MeleeParryChance>
+				<MeleeDodgeChance>0.6</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!-- Maul -->	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_AnimaHammer"]/tools</xpath>
+			<value>
+				<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.97</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>43</power>
+							<cooldownTime>4.23</cooldownTime>
+							<armorPenetrationBlunt>283.5</armorPenetrationBlunt>
+						</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaHammer"]/statBases</xpath>
+			<value>
+				<Bulk>12</Bulk>
+				<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaHammer"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>2.5</MeleeCritChance>
+				<MeleeParryChance>0.06</MeleeParryChance>
+				<MeleeDodgeChance>0.4</MeleeDodgeChance>
+			</value>
+		</li>
+		
+		<!-- Mace -->	
+		
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="V_AnimaMace"]/tools</xpath>
+			<value>
+				<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>1.97</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>32</power>
+							<cooldownTime>3.16</cooldownTime>
+							<armorPenetrationBlunt>202.5</armorPenetrationBlunt>
+						</li>					
+				</tools>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaMace"]/statBases</xpath>
+			<value>
+				<Bulk>10</Bulk>
+				<MeleeCounterParryBonus>1.25</MeleeCounterParryBonus>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="V_AnimaMace"]/equippedStatOffsets</xpath>
+			<value>
+				<MeleeCritChance>1.5</MeleeCritChance>
+				<MeleeParryChance>0.27</MeleeParryChance>
+				<MeleeDodgeChance>0.5</MeleeDodgeChance>
+			</value>
+		</li>
+		
+			</operations>
+		</match>
+	</Operation>
+</Patch>
