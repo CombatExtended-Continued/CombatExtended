@@ -13,93 +13,93 @@ namespace CombatExtended
     public class CompUnderBarrel : CompRangedGizmoGiver
     {
         public CompProperties_UnderBarrel Props => (CompProperties_UnderBarrel)this.props;
-        
+
         public CompEquippable _compEq;
-        
+
         public CompEquippable CompEq
         {
             get
             {
-                if(_compEq == null)
+                if (_compEq == null)
                 {
                     _compEq = this.parent.TryGetComp<CompEquippable>();
                 }
-                
+
                 return _compEq;
             }
         }
-        
+
         public CompAmmoUser _compAmmo;
-        
+
         public CompAmmoUser CompAmmo
         {
             get
             {
-                if(_compAmmo == null)
+                if (_compAmmo == null)
                 {
-                    _compAmmo =  this.parent.TryGetComp<CompAmmoUser>();
+                    _compAmmo = this.parent.TryGetComp<CompAmmoUser>();
                 }
-                
+
                 return _compAmmo;
             }
         }
 
         public CompFireModes _compFireModes;
-        
+
         public CompFireModes CompFireModes
         {
             get
             {
-                if(_compFireModes == null)
+                if (_compFireModes == null)
                 {
                     _compFireModes = this.parent.TryGetComp<CompFireModes>();
                 }
-                
-                return  _compFireModes;
+
+                return _compFireModes;
             }
         }
-        
+
         public CompProperties_FireModes _compPropsFireModes;
-        
+
         public CompProperties_FireModes CompPropsFireModes
         {
             get
             {
-                if(_compPropsFireModes == null)
+                if (_compPropsFireModes == null)
                 {
                     _compPropsFireModes = this.parent.def.comps.Find(x => x is CompProperties_FireModes) as CompProperties_FireModes;
                 }
-                
-                return  _compPropsFireModes;
+
+                return _compPropsFireModes;
             }
         }
-        
+
         public VerbProperties _defVerbProps;
-        
+
         public VerbProperties DefVerbProps
         {
             get
             {
-                if(_defVerbProps == null)
+                if (_defVerbProps == null)
                 {
                     _defVerbProps = this.parent.def.Verbs.Find(x => x is VerbPropertiesCE);
                 }
-                
+
                 return _defVerbProps;
             }
         }
-        
+
         public CompProperties_AmmoUser _compPropsAmmo;
-        
+
         public CompProperties_AmmoUser CompPropsAmmo
         {
             get
             {
-                if(_compPropsAmmo == null)
+                if (_compPropsAmmo == null)
                 {
                     _compPropsAmmo = (CompProperties_AmmoUser)this.parent.def.comps.Find(x => x is CompProperties_AmmoUser);
                 }
-                
+
                 return _compPropsAmmo;
             }
         }
@@ -116,8 +116,11 @@ namespace CombatExtended
 
         public void SwitchToUB()
         {
-            mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
-            mainGunMagCount = CompAmmo.CurMagCount;
+            if (!Props.oneAmmoHolder)
+            {
+                mainGunLoadedAmmo = CompAmmo.CurrentAmmo;
+                mainGunMagCount = CompAmmo.CurMagCount;
+            }
 
             CompAmmo.props = this.Props.propsUnderBarrel;
             CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
@@ -140,8 +143,11 @@ namespace CombatExtended
 
         public void SwithToB()
         {
-            UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
-            UnderBarrelMagCount = CompAmmo.CurMagCount;
+            if (!Props.oneAmmoHolder)
+            {
+                UnderBarrelLoadedAmmo = CompAmmo.CurrentAmmo;
+                UnderBarrelMagCount = CompAmmo.CurMagCount;
+            }
 
             CompAmmo.props = CompPropsAmmo;
             CompEq.PrimaryVerb.verbProps = DefVerbProps.MemberwiseClone();
@@ -231,8 +237,11 @@ namespace CombatExtended
             {
                 if (usingUnderBarrel)
                 {
-                    CompAmmo.CurMagCount = UnderBarrelMagCount;
-                    CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                    if (!Props.oneAmmoHolder)
+                    {
+                        CompAmmo.CurMagCount = UnderBarrelMagCount;
+                        CompAmmo.CurrentAmmo = UnderBarrelLoadedAmmo;
+                    }
 
                     CompAmmo.props = this.Props.propsUnderBarrel;
                     CompEq.PrimaryVerb.verbProps = Props.verbPropsUnderBarrel;
@@ -261,6 +270,8 @@ namespace CombatExtended
         public List<string> targetTags;
 
         public bool targetHighVal;
+
+        public bool oneAmmoHolder = false;
 
         public CompProperties_UnderBarrel()
         {
