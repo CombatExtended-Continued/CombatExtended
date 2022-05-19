@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Arachne Race</li>
+			<li>Arachne Race (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+			<!-- Arachne Shirt -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Shirt"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Shirt"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+			
+			<!-- Arachne Valkyrie Armor -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]/statBases</xpath>
+				<value>
+					<Bulk>100</Bulk>
+					<WornBulk>18</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>3.15</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie"]</xpath>
+				<value>
+					<li Class="CombatExtended.PartialArmorExt">
+						<stats>
+							<li>
+								<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+								<parts>
+									<li>Neck</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+								<parts>
+									<li>Neck</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+								<parts>
+									<li>Leg</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+								<parts>
+									<li>Leg</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+								<parts>
+									<li>Arm</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+								<parts>
+									<li>Arm</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+								<parts>
+									<li>Hand</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+								<parts>
+									<li>Hand</li>
+								</parts>
+							</li>
+						</stats>
+					</li>
+				</value>
+			</li>
+
+			<!-- Arachne Valkyrie Helmet -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie_Helmet"]/statBases</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie_Helmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<StuffEffectMultiplierArmor>2.45</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Arachne_Valkyrie_Helmet"]</xpath>
+				<value>
+					<li Class="CombatExtended.PartialArmorExt">
+						<stats>
+							<li>
+								<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+								<parts>
+									<li>Eye</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+								<parts>
+									<li>Eye</li>
+								</parts>
+							</li>
+						</stats>
+					</li>
+				</value>
+			</li>
+
+			<!-- Arachne Scout Armor -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases</xpath>
+				<value>
+					<Bulk>90</Bulk>
+					<WornBulk>13</WornBulk>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>450</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases/Mass</xpath>
+				<value>
+					<Mass>40</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases/Flammability</xpath>
+				<value>
+					<Flammability>0.2</Flammability>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>18</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>40</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/costList/Plasteel</xpath>
+				<value>
+					<Plasteel>140</Plasteel>
+					<DevilstrandCloth>40</DevilstrandCloth>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/equippedStatOffsets/WorkSpeedGlobal</xpath>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/equippedStatOffsets</xpath>
+				<value>
+					<CarryWeight>50</CarryWeight>
+					<CarryBulk>8</CarryBulk>
+					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<MoveSpeed>0.3</MoveSpeed>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]/apparel/bodyPartGroups</xpath>
+				<value>
+					<li>Hands</li>
+					<li>Feet</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Armor"]</xpath>
+				<value>
+					<li Class="CombatExtended.PartialArmorExt">
+						<stats>
+							<li>
+								<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+								<parts>
+									<li>Neck</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+								<parts>
+									<li>Neck</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+								<parts>
+									<li>Leg</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+								<parts>
+									<li>Leg</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+								<parts>
+									<li>Arm</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+								<parts>
+									<li>Arm</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+								<parts>
+									<li>Hand</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+								<parts>
+									<li>Hand</li>
+								</parts>
+							</li>
+						</stats>
+					</li>
+				</value>
+			</li>
+
+			<!-- Arachne Scout Helmet -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases/MaxHitPoints</xpath>
+				<value>
+					<MaxHitPoints>190</MaxHitPoints>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases/Mass</xpath>
+				<value>
+					<Mass>3.0</Mass>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases/Flammability</xpath>
+				<value>
+					<Flammability>0.25</Flammability>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>14</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>30</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/costList/Plasteel</xpath>
+				<value>
+					<Plasteel>50</Plasteel>
+					<DevilstrandCloth>15</DevilstrandCloth>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/equippedStatOffsets</xpath>
+				<value>
+					<PsychicSensitivity>-0.2</PsychicSensitivity>
+					<AimingAccuracy>0.15</AimingAccuracy>
+					<ToxicSensitivity>-0.50</ToxicSensitivity>
+					<SmokeSensitivity>-1</SmokeSensitivity>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]/apparel/layers</xpath>
+				<value>
+					<li>OnHead</li>
+					<li>StrappedHead</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="Arachne_Scout_Helmet"]</xpath>
+				<value>
+					<li Class="CombatExtended.PartialArmorExt">
+						<stats>
+							<li>
+								<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+								<parts>
+									<li>Eye</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+								<parts>
+									<li>Eye</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+								<parts>
+									<li>Nose</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+								<parts>
+									<li>Nose</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+								<parts>
+									<li>Jaw</li>
+								</parts>
+							</li>
+							<li>
+								<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+								<parts>
+									<li>Jaw</li>
+								</parts>
+							</li>
+						</stats>
+					</li>
+				</value>
+			</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>
