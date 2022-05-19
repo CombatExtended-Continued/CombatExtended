@@ -369,6 +369,8 @@ Twi'lek Race    |
 T's Samurai Faction |
 Ultratech: Altered Carbon Remastered |
 Useless Clothes |
+Vali's Charged Arsenal |
+Vali's Charged Arsenal - Eltex Series |
 Vanilla Animals Expanded |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
