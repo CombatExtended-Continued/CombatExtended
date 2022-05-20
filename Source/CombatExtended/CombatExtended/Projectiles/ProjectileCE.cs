@@ -985,7 +985,7 @@ namespace CombatExtended
 
         #region Impact
         //Modified collision with downed pawns
-        private void ImpactSomething()
+        public void ImpactSomething()
         {
             if (BlockerRegistry.ImpactSomethingCallback(this, launcher))
             {
