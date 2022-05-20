@@ -650,7 +650,7 @@ namespace CombatExtended
         [Compatibility.Multiplayer.SyncMethod]
         private void SyncedResetForcedTarget() => ResetForcedTarget();
 
-        private void ResetForcedTarget()                // Core method
+        public void ResetForcedTarget()                // Core method
         {
             this.forcedTarget = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
@@ -660,7 +660,7 @@ namespace CombatExtended
             }
         }
 
-        private void ResetCurrentTarget()               // Core method
+        public void ResetCurrentTarget()               // Core method
         {
             this.currentTargetInt = LocalTargetInfo.Invalid;
             this.burstWarmupTicksLeft = 0;
