@@ -55,7 +55,36 @@
 				</value>
 			</li>
 			
-			<!--Engineering Suit-->
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/statBases/Mass</xpath>
+				<value>
+					<Mass>8</Mass>
+					<Bulk>7</Bulk>
+					<WornBulk>5</WornBulk>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/equippedStatOffsets/MeleeHitChance</xpath>
+				<value>
+					<MeleeHitChance>-2.5</MeleeHitChance>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="Miho_Apparel_Special_MissileLauncher"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+					<MeleeDodgeChance>-0.5</MeleeDodgeChance>
+				    <MeleeCritChance>-0.25</MeleeCritChance>
+				    <MeleeParryChance>-0.25</MeleeParryChance>
+				</value>
+			</li>
+			
+			<!--Shield-->
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Shield"]/statBases/ArmorRating_Sharp</xpath>
@@ -197,6 +226,15 @@
 			
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_TacticalAssist"]/equippedStatOffsets/MoveSpeed</xpath>
+			</li>
+			
+			<!--Glasses-->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Apparel_Special_Glasses"]/equippedStatOffsets/MeleeDodgeChance</xpath>
+				<value>
+				  <MeleeDodgeChance>-0.3</MeleeDodgeChance>
+				</value>
 			</li>
 			
 		</operations>
