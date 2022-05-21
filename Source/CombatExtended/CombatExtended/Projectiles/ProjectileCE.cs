@@ -33,6 +33,8 @@ namespace CombatExtended
         private const float explosionSuppressionFactor = 3f;
 
         #region Origin destination
+	public bool OffMapOrigin = false;
+
         public Vector2 origin;
 
         private IntVec3 originInt = new IntVec3(0, -1000, 0);
@@ -834,7 +836,17 @@ namespace CombatExtended
 
             var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(Map))
-                Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
+	    {
+		if (OffMapOrigin)
+		{
+		    landed = true;
+		    Destroy(DestroyMode.Vanish);
+		    return true;
+		}
+		else {
+		    Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
+		}
+	    }
 
             ExactPosition = point;
             landed = true;

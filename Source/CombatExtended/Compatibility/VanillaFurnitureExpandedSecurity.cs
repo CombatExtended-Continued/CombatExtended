@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,13 +10,13 @@ using VFESecurity;
 
 namespace CombatExtended.Compatibility
 {
-    public class VanillaFurnitureExpandedShields: IPatch
+    public class VanillaFurnitureExpandedSecurity: IPatch
     {
         private static int lastCacheTick = 0;
         private static Map lastCacheMap = null;
 
         /// <summary>
-        /// Set of shields. The type if Building because RimWorld dark magic doesn't allow using types that may not exist here.
+        /// Set of shields. The type is Building because RimWorld dark magic doesn't allow using types that may not exist here.
         ///</summary>
         private static HashSet<Building> shields;
         private const string VFES_ModName = "Vanilla Furniture Expanded - Security";
@@ -42,9 +42,9 @@ namespace CombatExtended.Compatibility
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
         }
 
-	public IEnumerable<string> GetCompatList() {
-	    yield break;
-	}
+        public IEnumerable<string> GetCompatList() {
+            yield return "ArtilleryCompat";
+        }
 
         private static bool CheckCollision(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {

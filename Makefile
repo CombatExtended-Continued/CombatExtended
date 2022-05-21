@@ -12,4 +12,4 @@ Assemblies/CombatExtended.dll: Assemblies/0CombatExtendedLoader.dll Source/Comba
 
 
 CompatAssemblies:
-	DOWNLOAD_LIBS="--reference=/tmp/rwreference" PUBLICIZER=$(PUBLICIZER) python BuildCompat.py
+	DOWNLOAD_LIBS="--reference=/tmp/rwreference" PUBLICIZER=$(PUBLICIZER) python BuildCompat.py -j
