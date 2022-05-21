@@ -2,6 +2,7 @@
 <Patch>
 	<Operation Class="PatchOperationSequence">
 		<operations>
+
 			<li Class="PatchOperationFindMod">
 				<mods>
 					<li>Alpha Animals</li>
@@ -55,6 +56,337 @@
 					</operations>
 				</match>
 			</li>
+
 		</operations>
 	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>A Dog Said... Animal Prosthetics</li>
+			</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+				<!--=============== Non-ranged implants ====================-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_ProstheticTentacle"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>prosthetic tentacle</label>
+							  <capacities>
+								 <li>Blunt</li>
+							  </capacities>
+							  <power>8</power>
+							  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>			  
+							  <cooldownTime>1.8</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_BionicTentacle"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>bionic tentacle</label>
+							  <capacities>
+								 <li>Blunt</li>
+							  </capacities>
+							  <power>20</power>
+							  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>			  
+							  <cooldownTime>1.4</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_ProstheticBeak"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>prosthetic beak</label>
+							  <capacities>
+								 <li>Bite</li>
+							  </capacities>
+							  <power>8</power>
+							  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							  <armorPenetrationSharp>0.5</armorPenetrationSharp>
+							  <cooldownTime>1.8</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_BionicBeak"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>bionic beak</label>
+							  <capacities>
+								 <li>Bite</li>
+							  </capacities>
+							  <power>20</power>
+							  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							  <armorPenetrationSharp>1.0</armorPenetrationSharp>
+							  <cooldownTime>1.4</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_ProstheticShell"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<statOffsets>
+									<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+									<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.025</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_BionicShell"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<statOffsets>
+									<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+									<ArmorRating_Blunt>1.0</ArmorRating_Blunt>
+									<ArmorRating_Heat>0.05</ArmorRating_Heat>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AB_SimpleProstheticClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>simple prosthetic claw</label>
+							  <capacities>
+								 <li>Cut</li>
+							  </capacities>
+							  <power>6</power>
+							  <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+							  <armorPenetrationSharp>0.3</armorPenetrationSharp>
+							  <cooldownTime>1.8</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AB_BionicClaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>bionic beak</label>
+							  <capacities>
+								 <li>Cut</li>
+							  </capacities>
+							  <power>15</power>
+							  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+							  <armorPenetrationSharp>0.7</armorPenetrationSharp>
+							  <cooldownTime>1.4</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<!--=============== Ranged implants ====================-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_RangedSpinneretImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_Web</defaultProjectile>
+								<warmupTime>2</warmupTime>
+								<burstShotCount>3</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>1</minRange>
+								<range>20</range>
+								<soundCast>AA_Throw</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>web</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_VenomousSpitterImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_PoisonBolt</defaultProjectile>
+								<warmupTime>1.6</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>2.0</minRange>
+								<range>30</range>
+								<soundCast>AA_PoisonBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>venomous spit</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_AcidicSpitterImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_AcidBolt</defaultProjectile>
+								<warmupTime>1.6</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>2</minRange>
+								<range>20</range>
+								<soundCast>AA_PoisonBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>acidic spit</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_BarbedQuillThrowerImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_Quill</defaultProjectile>
+								<warmupTime>2</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<minRange>2</minRange>
+								<range>20</range>
+								<soundCast>AA_DartSound</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>barbed quills</label> 
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_QuadTeslaCannonImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_Plasma</defaultProjectile>
+								<warmupTime>4.0</warmupTime>
+								<burstShotCount>4</burstShotCount>
+								<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+								<minRange>2</minRange>
+								<range>20</range>
+								<soundCast>AA_Plasma</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>quad tesla cannon</label>
+								<commonality>1</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_BioelectricOrganImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_ElectricBolt</defaultProjectile>
+								<warmupTime>2.6</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<range>15</range>
+								<soundCast>AA_ElectricBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>electric bolt</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_LightFocusingLensImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_LaserBullet</defaultProjectile>
+								<warmupTime>3</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>1.0</minRange>
+								<range>10</range>
+								<soundCast>AA_LaserBullet</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>laser</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="AA_HyperAcidicStomachImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>AA_AcidicVomit_CE</defaultProjectile>
+								<warmupTime>3.0</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>1</minRange>
+								<range>7</range>
+								<soundCast>AA_PoisonBolt</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>acidic vomit</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				</operations>
+			</match>					
+		</match>			
+	</Operation>
+
 </Patch>
