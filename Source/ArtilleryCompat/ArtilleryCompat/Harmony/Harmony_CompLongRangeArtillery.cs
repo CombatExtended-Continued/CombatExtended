@@ -14,7 +14,7 @@ using Verse.Sound;
 
 namespace CombatExtended.Compatibility
 {
-    [HarmonyPatch(typeof(CompLongRangeArtillery), "ResetWarmupTicks")]
+    // [HarmonyPatch(typeof(CompLongRangeArtillery), nameof(CompLongRangeArtillery.ResetWarmupTicks))] -- commented out because we haver to delay this call
     public class Harmony_CompLongRangeArtillery_ResetWarmupTicks {
         public static bool Prefix(CompLongRangeArtillery __instance) {
             if (__instance.parent is Building_TurretGunCE btgce) {
