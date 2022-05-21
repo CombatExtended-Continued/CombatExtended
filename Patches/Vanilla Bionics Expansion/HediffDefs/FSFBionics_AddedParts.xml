@@ -10,6 +10,7 @@
     </mods>
 	<match Class="PatchOperationSequence">
 		<operations>
+
 		<!--Power Arm-->
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFBionicPowerArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -29,6 +30,7 @@
 				</tools>
 			</value>
 		</li>
+
 		<!--Prosthetics -->
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[defName="FSFProstheticHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
@@ -46,14 +48,43 @@
 				</tools>
 			</value>
 		</li>
-		<!-- CE disables human bite attacks-->
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/HediffDef[defName="FSFArchotechJaw" or defName="FSFBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.5</cooldownTime>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
 		</li>
-		</operations>
-	</match>
-	</Operation>
-	
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFArchotechJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.0</cooldownTime>
+					<armorPenetrationSharp>0.5</armorPenetrationSharp>
+					<armorPenetrationBlunt>5.0</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
 	<Operation Class="PatchOperationFindMod">
     <mods>
 		<li>[FSF] Vanilla Bionics Expansion</li>
