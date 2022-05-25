@@ -275,8 +275,15 @@ namespace CombatExtended
                 else
                 {
                     // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-		    armorDamage = (dmgAmount - newDmgAmount) * Mathf.Clamp01(penAmount / armorAmount) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
-
+		    if (isSharpDmg && (penAmount / armorAmount) < 0.5f)
+		    {
+                        armorDamage = 0;
+		    }
+		    else 
+		    {
+		        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Clamp01(penAmount * penAmount / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+		    }
+			
 		    if (armorDamage > maxDamage) {
 			armorDamage = maxDamage;
 			newDmgAmount = maxDamage;
