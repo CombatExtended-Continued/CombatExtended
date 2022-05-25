@@ -310,12 +310,7 @@ namespace CombatExtended
 	    if (armorDamage == 0) {
 		return false;
 	    }
-            // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this can be an extremely small chance)
-            if ((armorDamage < 1f) && (Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)))
-            {
-                armorDamage = 1f;
-            }
-
+            
             // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
             // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
             if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
