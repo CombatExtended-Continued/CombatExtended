@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Antinium (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Natural armor coverage -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Waist"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Shoulder"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Leg"]/groups</xpath>
+					<value>
+						<li>CoveredByNaturalArmor</li>
+					</value>
+				</li>
+
+				<!-- Part squishy-ness -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Eye"]/groups</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/groups</xpath>
+					<value>
+						<li>OutsideSquishy</li>
+					</value>
+				</li>
+
+				<!-- Arm and shoulder tags-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def = "Shoulder"]/parts/li[contains(./customLabel, "left arm")]/groups</xpath>
+					<value>
+						<li>LeftArm</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[contains(./customLabel, "left shoulder")]/groups</xpath>
+					<value>
+						<li>LeftShoulder</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def = "Shoulder"]/parts/li[contains(./customLabel, "right arm")]/groups</xpath>
+					<value>
+						<li>RightArm</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[contains(./customLabel, "right shoulder")]/groups</xpath>
+					<value>
+						<li>RightShoulder</li>
+					</value>
+				</li>
+
+				<!-- Coverage -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Stomach"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Heart"]/coverage</xpath>
+					<value>
+						<coverage>0.04</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Lung"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Kidney"]/coverage</xpath>
+					<value>
+						<coverage>0.03</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Liver"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/coverage</xpath>
+					<value>
+						<coverage>0.055</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]/parts/li[def="Brain"]/coverage</xpath>
+					<value>
+						<coverage>0.9</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Eye"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Ear"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Ant_Antenna"]/coverage</xpath>
+					<value>
+						<coverage>0.05</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Nose"]/coverage</xpath>
+					<value>
+						<coverage>0.08</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Shoulder"]/coverage</xpath>
+					<value>
+						<coverage>0.085</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Clavicle"]/coverage</xpath>
+					<value>
+						<coverage>0.06</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Humerus"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Shoulder"]/parts/li[def="Arm"]/parts/li[def="Radius"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Leg"]/coverage</xpath>
+					<value>
+						<coverage>0.1</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Leg"]/parts/li[def="Femur"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Leg"]/parts/li[def="Tibia"]/coverage</xpath>
+					<value>
+						<coverage>0.15</coverage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/BodyDef[defName="Antinium"]/corePart/parts/li[def="Leg"]/parts/li[def="Foot"]/coverage</xpath>
+					<value>
+						<coverage>0.1</coverage>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
