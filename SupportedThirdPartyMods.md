@@ -93,6 +93,7 @@ AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anthro Race |
+Antinium    |
 Anty the War Ant Race |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
