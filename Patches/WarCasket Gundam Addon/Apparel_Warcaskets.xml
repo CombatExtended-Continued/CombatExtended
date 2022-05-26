@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>WarCasket Gundam Addon</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- ========== Remove Vanilla Carry Capacity ========== -->
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_Warcasket_Barbatos"															
+			]/modExtensions/li/carryingCapacity</xpath>
+		</li>
+
+	
+		<!-- ========== Barbatos (Aerial Warcasket) ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/statBases</xpath>
+			<value>
+				<Bulk>250</Bulk>
+				<WornBulk>25</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>28</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>70</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/equippedStatOffsets</xpath>
+			<value>
+				<CarryWeight>250</CarryWeight>
+				<CarryBulk>200</CarryBulk>
+				<Suppressability>-100</Suppressability>
+			</value>
+		</li>
+
+		<!-- Increase Cost -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/costList/Steel</xpath>
+			<value>
+				<Steel>290</Steel>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_Warcasket_Barbatos"]/costList/ComponentIndustrial</xpath>
+			<value>
+				<ComponentIndustrial>16</ComponentIndustrial>
+			</value>
+		</li>
+
+		<!-- ========== Barbatos - Shoulders ========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barbatos"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>5</WornBulk>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barbatos"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>28</ArmorRating_Sharp>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barbatos"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>70</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Increase Cost -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketShoulders_Barbatos"]/costList/Steel</xpath>
+			<value>
+				<Steel>40</Steel>
+			</value>
+		</li>
+
+		<!-- === Barbatos Helmet === -->
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/statBases</xpath>
+			<value>
+				<Bulk>15</Bulk>
+				<WornBulk>8</WornBulk>
+				<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
+			</value>
+		</li>
+  
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/equippedStatOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-1</SmokeSensitivity>
+			</value>
+		</li>
+  
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/statBases/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>25</ArmorRating_Sharp>
+			</value>
+		</li>
+  
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/statBases/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>56</ArmorRating_Blunt>
+			</value>
+		</li>  
+
+		<!-- Increase Cost -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/costList/Steel</xpath>
+			<value>
+				<Steel>90</Steel>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/costList/ComponentIndustrial</xpath>
+			<value>
+				<ComponentIndustrial>6</ComponentIndustrial>
+			</value>
+		</li>
+
+		</operations>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- === Tools === -->
+        <li Class="PatchOperationReplace">
+          <xpath>
+            /Defs/ThingDef[
+              defName = "VFEP_WarcasketGun_GSmoothboreGun"
+            ]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>16</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <!-- ========== warcasket "300mm" smoothbore gun (RPG-7) ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Gun_RPG7v</defName>
+				<statBases>
+					<Mass>40</Mass>
+					<RangedWeapon_Cooldown>1.50</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.16</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>1.68</SwayFactor>
+					<Bulk>30.50</Bulk>
+					<WorkToMake>25500</WorkToMake>
+				</statBases>
+				<costList>
+					<WoodLog>5</WoodLog>
+					<Steel>70</Steel>
+					<ComponentIndustrial>4</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_RPG7Grenade_HEAT</defaultProjectile>
+					<warmupTime>2.035</warmupTime>
+					<range>40</range>
+        					<minRange>3</minRange>
+					<soundCast>RPGFire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<stopBurstWithoutLos>false</stopBurstWithoutLos>
+					<muzzleFlashScale>15</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>1</magazineSize>
+					<reloadTime>5.6</reloadTime>
+					<ammoSet>AmmoSet_RPG7Grenade</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+
+				<!-- No additional CE weaponTags needed -->
+
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
