@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Factions Expanded - Pirates</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone" or defName="VFEP_Mech_Spidermine"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Vehicle</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone" or defName="VFEP_Mech_Spidermine"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.26</MeleeDodgeChance>
+					<MeleeCritChance>0.12</MeleeCritChance>
+					<MeleeParryChance>0.01</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>1.0</AimingAccuracy>
+					<ShootingAccuracyPawn>2.0</ShootingAccuracyPawn>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone" or defName="VFEP_Mech_Spidermine"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>3</ArmorRating_Blunt>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone" or defName="VFEP_Mech_Spidermine"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Wardrone"]/tools</xpath>
+				<value>
+					<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>turret</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					</li>					
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFEP_Mech_Spidermine"]/tools</xpath>
+				<value>
+					<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>frame</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					</li>					
+					</tools>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

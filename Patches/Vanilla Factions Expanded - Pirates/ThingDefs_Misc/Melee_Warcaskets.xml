@@ -114,6 +114,57 @@
 				</value>
 			</li>
 
+			<!-- Warcasket Gravity Hammer -->	
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_GravityHammer"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>VFEP_GravityHammerAttack</li>
+							</capacities>
+							<power>92</power>
+							<cooldownTime>5.73</cooldownTime>
+							<chanceFactor>0.60</chanceFactor>
+							<armorPenetrationBlunt>580</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>50</power>
+							<cooldownTime>2.11</cooldownTime>
+							<chanceFactor>0.30</chanceFactor>
+							<armorPenetrationBlunt>22.5</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_GravityHammer"]</xpath>
+				<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.8</MeleeCritChance>
+						<MeleeParryChance>0.1</MeleeParryChance>
+						<MeleeDodgeChance>0.18</MeleeDodgeChance>	
+					</equippedStatOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_GravityHammer"]/statBases</xpath>
+				<value>
+					<Bulk>18</Bulk>
+					<MeleeCounterParryBonus>2</MeleeCounterParryBonus>
+					<ToughnessRating>10</ToughnessRating>
+				</value>
+			</li>
+
 			</operations>
 		</match>
 	</Operation>

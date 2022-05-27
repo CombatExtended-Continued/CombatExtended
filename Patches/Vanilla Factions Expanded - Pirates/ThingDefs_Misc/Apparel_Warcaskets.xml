@@ -8,20 +8,6 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-		<!-- ========== Remove Vanilla Carry Capacity ========== -->
-		<li Class="PatchOperationRemove">
-			<xpath>/Defs/VFEPirates.WarcasketDef[
-			defName="VFEP_Warcasket_Warcasket" or
-			defName="VFEP_Warcasket_Marine" or
-			defName="VFEP_Warcasket_Recon" or
-			defName="VFEP_Warcasket_Cataphract" or
-			defName="VFEP_Warcasket_Aerial" or
-			defName="VFEP_Warcasket_Hazard" or
-			defName="VFEP_Warcasket_Barrage" or
-			defName="VFEP_Warcasket_Shock"																
-			]/modExtensions/li/carryingCapacity</xpath>
-		</li>
-
 		<!-- ========== Remove Warcasket Flammability ========== -->
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/VFEPirates.WarcasketDef[@Name="VFEP_WarcasketPartBase"]/statBases/Flammability</xpath>
@@ -58,18 +44,6 @@
 			<value>
 			  <li Class="CombatExtended.PartialArmorExt">
 				<stats>
-					<li>
-						<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
-						<parts>
-							<li>Arm</li>
-						</parts>
-					</li>
 					<li>
 						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
 						<parts>
@@ -182,7 +156,7 @@
 			</value>
 		</li>
 
-			<!--proportionally a bit better armor because assumed better neck suport allows for heavier-->
+		<!-- Proportionally a bit better armor because assumed better neck suport allows for heavier-->
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Warcasket"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
