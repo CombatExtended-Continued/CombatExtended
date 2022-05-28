@@ -152,6 +152,43 @@
 				</FireModes>
 			</li>
 			
+			<!-- ========== SMG =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>MihoVEF_Weapon_Security</defName>
+				<statBases>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.18</ShotSpread>
+					<SwayFactor>0.39</SwayFactor>
+					<Bulk>4</Bulk>
+					<Mass>1.50</Mass>
+					<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.60</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_8x22mmNambu_FMJ</defaultProjectile>
+					<warmupTime>0.80</warmupTime>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+					<range>25</range>
+					<soundCast>Miho_Pistol</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				
+				<AmmoUser>
+					<magazineSize>40</magazineSize>
+					<reloadTime>3</reloadTime>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>5</aimedBurstShotCount>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+				</FireModes>
+			</li>
+			
 			<!-- ========== Melee Attacks =========== -->
 			
 			<li Class="PatchOperationReplace">
@@ -159,7 +196,8 @@
 				defName="MihoVEF_Weapon_Bolter" or
 				defName="MihoVEF_Weapon_Rocket" or
 				defName="MihoVEF_Weapon_Machinegun" or
-				defName="MihoVEF_Weapon_Minigun"
+				defName="MihoVEF_Weapon_Minigun" or
+				defName="MihoVEF_Weapon_Security"
 				]/tools</xpath>
 				<value>
 					<tools>
@@ -172,6 +210,27 @@
 						  <cooldownTime>2.44</cooldownTime>
 						  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
 						  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li> 
+			
+			<!-- ========== Melee Attacks =========== -->
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+				defName="Miho_Weapon_SapperRobot"
+				]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						  <label>head</label>
+						  <capacities>
+							<li>Demolish</li>
+						  </capacities>
+						  <power>60</power>
+						  <cooldownTime>3.75</cooldownTime>
+						  <armorPenetrationBlunt>30.5</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
