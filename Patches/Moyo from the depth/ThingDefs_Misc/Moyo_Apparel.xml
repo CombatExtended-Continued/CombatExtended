@@ -35,14 +35,14 @@
 				<xpath>Defs/ThingDef[defName="Moyo_Parka"]/statBases</xpath>
 				<value>
 					<Bulk>10</Bulk>
-					<WornBulk>5</WornBulk>
+					<WornBulk>3</WornBulk>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Moyo_Parka"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
-					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+					<StuffEffectMultiplierArmor>7.5</StuffEffectMultiplierArmor>
 				</value>
 			</li>
 			
@@ -215,6 +215,33 @@
 				</value>
 			</li>
 			
+			<!--Suppressive Mask-->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Moyo_PShelmet" or defName="Moyo_SShelmet"]/statBases</xpath>
+				<value>
+					<Bulk>4</Bulk>
+					<WornBulk>1</WornBulk>
+					<NightVisionEfficiency_Apparel>0.4</NightVisionEfficiency_Apparel> 
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_PShelmet" or defName="Moyo_SShelmet"]/statBases/ArmorRating_Sharp</xpath>
+				<value>
+					<ArmorRating_Sharp>8</ArmorRating_Sharp>
+					<ArmorRating_Electric>0.25</ArmorRating_Electric>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Moyo_PShelmet" or defName="Moyo_SShelmet"]/statBases/ArmorRating_Blunt</xpath>
+				<value>
+					<ArmorRating_Blunt>12</ArmorRating_Blunt>
+				</value>
+			</li>
+			
+			
 			<!--Evasuit-->
 			
 			<li Class="PatchOperationAdd">
@@ -309,6 +336,64 @@
 				<value>
 					<li>Hands</li>
 					<li>Feet</li>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[@Name="Moyo_PowerArmorBase"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 			
@@ -437,6 +522,64 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Moyo_LDgear"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						  <li>
+							<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+							<parts>
+								<li>Neck</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Leg</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+							<parts>
+								<li>Arm</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+						  <li>
+							<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+							<parts>
+								<li>Hand</li>
+							</parts>
+						  </li>
+					  </stats>
+				  </li>
+				</value>
+			</li>
+			
 			<!--Diving Helmet-->
 			
 			<li Class="PatchOperationAdd">
@@ -492,6 +635,34 @@
 				<value>
 					<Moyo_Abyssteel>50</Moyo_Abyssteel>
 					<DevilstrandCloth>15</DevilstrandCloth>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="Moyo_LDhelmet"]</xpath>
+				<value>
+				  <li Class="CombatExtended.PartialArmorExt">
+					  <stats>
+						<li>
+							<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+							<parts>
+								<li>Eye</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+							<parts>
+								<li>Nose</li>
+							</parts>
+						</li>
+						<li>
+							<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+							<parts>
+								<li>Jaw</li>
+							</parts>
+						</li>
+					  </stats>
+				  </li>
 				</value>
 			</li>
 			
