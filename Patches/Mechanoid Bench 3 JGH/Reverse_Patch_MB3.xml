@@ -37,25 +37,52 @@
 
                 <li Class="PatchOperationConditional">
                     <xpath>/Defs/ThingDef[defName="Gun_InfernoCannon"]/tradeability</xpath>
-                    <nomatch Class="PatchOperationAdd">
-                        <xpath>/Defs/ThingDef[defName="Gun_InfernoCannon"]</xpath>
-                        <value>
-                            <tradeability>None</tradeability>
-                        </value>
-                    </nomatch>
-                    <match Class="PatchOperationReplace">
+                    <match Class="PatchOperationRemove">
                         <xpath>/Defs/ThingDef[defName="Gun_InfernoCannon"]/tradeability</xpath>
-                        <value>
-                            <tradeability>None</tradeability>
-                        </value>
                     </match>
                 </li>
 
                 <!-- Redundant RecipeDef -->
                 <li Class="PatchOperationConditional">
-                    <xpath>/Defs/RecipeDef[ defName = "MechanoidBench_MakeChargeBlaster" or defName = "MechanoidBench_MakeInfernoCannon" or defName = "MechanoidBench_MakeNeedleGun"]</xpath>
+                    <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[7]</xpath>
                     <match Class="PatchOperationRemove">
-                        <xpath>/Defs/RecipeDef[ defName = "MechanoidBench_MakeChargeBlaster" or defName = "MechanoidBench_MakeInfernoCannon" or defName = "MechanoidBench_MakeNeedleGun"]</xpath>
+                        <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[7]</xpath>
+                    </match>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[6]</xpath>
+                    <match Class="PatchOperationRemove">
+                        <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[6]</xpath>
+                    </match>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[5]</xpath>
+                    <match Class="PatchOperationRemove">
+                        <xpath>/Defs/ThingDef[defName="MechanoidBench_Bench"]/recipes/li[5]</xpath>
+                    </match>
+                </li>
+                
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/RecipeDef[ defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]</xpath>
+                    <match Class="PatchOperationRemove">
+                        <xpath>/Defs/RecipeDef[ defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]</xpath>
+                    </match>
+                </li>
+                
+                <!-- Redundant ResearchProjectDef -->
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/RecipeDef[ defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]/researchPrerequisite</xpath>
+                    <match Class="PatchOperationRemove">
+                        <xpath>/Defs/RecipeDef[ defName="MechanoidBench_MakeChargeBlaster" or defName="MechanoidBench_MakeInfernoCannon" or defName="MechanoidBench_MakeNeedleGun"]/researchPrerequisite</xpath>
+                    </match>
+                </li>
+
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/ResearchProjectDef[defName="MechanoidBench_Research_Copy"]</xpath>
+                    <match Class="PatchOperationRemove">
+                        <xpath>/Defs/ResearchProjectDef[defName="MechanoidBench_Research_Copy"]</xpath>
                     </match>
                 </li>
 
@@ -88,29 +115,13 @@
                                 <nomatch Class="PatchOperationAdd">
                                     <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
                                     <value>
-                                        <tradeability>none</tradeability>
+                                        <tradeability>None</tradeability>
                                     </value>
                                 </nomatch>
                                 <match Class="PatchOperationReplace">
                                     <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/tradeability</xpath>
                                     <value>
                                         <tradeability>None</tradeability>
-                                    </value>
-                                </match>
-                            </li>
-
-                            <li Class="PatchOperationConditional">
-                                <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/menuHidden</xpath>
-                                <nomatch Class="PatchOperationAdd">
-                                    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]</xpath>
-                                    <value>
-                                        <menuHidden>True</menuHidden>
-                                    </value>
-                                </nomatch>
-                                <match Class="PatchOperationReplace">
-                                    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance" or @Name="VFE_Gun_ChargeBlasterLightBase"]/menuHidden</xpath>
-                                    <value>
-                                        <menuHidden>True</menuHidden>
                                     </value>
                                 </match>
                             </li>
