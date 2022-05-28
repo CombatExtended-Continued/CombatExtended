@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Antinium (Continued)</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Antinium base trader -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Ant_Base_Standard"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Category">
+							<categoryDef>Ammo</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>WeaponsTurrets</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Animals">
+							<tradeTagsSell>
+								<li>CE_AnimalBoom</li>
+							</tradeTagsSell>
+							<tradeTagsBuy>
+								<li>CE_AnimalBoom</li>
+							</tradeTagsBuy>
+							<kindCountRange>
+								<min>1</min>
+								<max>2</max>
+							</kindCountRange>
+							<countRange>
+								<min>-2</min>
+								<max>4</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>10</min>
+								<max>50</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>10</min>
+								<max>50</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>60</min>
+								<max>300</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+				<!-- Antinium bulk goods trader -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Ant_Caravan_BulkGoods"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Category">
+							<categoryDef>Ammo</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>WeaponsTurrets</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>15</min>
+								<max>40</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>15</min>
+								<max>40</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>30</min>
+								<max>100</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>3</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+				<!-- Antinium war merchant -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Ant_Caravan_WarMerchant"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>FSX</thingDef>
+							<countRange>
+								<min>5</min>
+								<max>20</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_SingleDef">
+							<thingDef>Prometheum</thingDef>
+							<countRange>
+								<min>5</min>
+								<max>20</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>Ammo</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>WeaponsTurrets</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Animals">
+							<tradeTagsSell>
+								<li>CE_AnimalBoom</li>
+							</tradeTagsSell>
+							<tradeTagsBuy>
+								<li>CE_AnimalBoom</li>
+							</tradeTagsBuy>
+							<kindCountRange>
+								<min>1</min>
+								<max>2</max>
+							</kindCountRange>
+							<countRange>
+								<min>1</min>
+								<max>4</max>
+							</countRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>50</min>
+								<max>300</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+								<min>1</min>
+								<max>4</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+
+				<!-- Miscellaneous antinium traders -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/TraderKindDef[defName="Ant_Caravan_Slaver" or defName="Ant_Caravan_ShamanMerchant"]/stockGenerators</xpath>
+					<value>
+						<li Class="StockGenerator_Category">
+							<categoryDef>Ammo</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Category">
+							<categoryDef>WeaponsTurrets</categoryDef>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>0</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+							<countRange>
+								<min>30</min>
+								<max>100</max>
+							</countRange>
+							<thingDefCountRange>
+								<min>0</min>
+								<max>3</max>
+							</thingDefCountRange>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

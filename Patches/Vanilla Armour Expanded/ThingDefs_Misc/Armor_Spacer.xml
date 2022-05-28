@@ -430,6 +430,42 @@
 					</value>
 				</li>
 
+				<!-- === Energy shields === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.03</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>0.6</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.15</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_RoyalSiegeArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.3</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>150</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
