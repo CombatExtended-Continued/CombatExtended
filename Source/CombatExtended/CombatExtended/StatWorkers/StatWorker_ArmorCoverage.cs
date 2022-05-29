@@ -8,23 +8,21 @@ namespace CombatExtended
     {
         public override bool ShouldShowFor(StatRequest req)
         {
-            return req.HasThing && (req.Thing as Pawn)?.apparel != null;
+            return Controller.settings.ShowExtraStats && req.HasThing && (req.Thing as Pawn)?.apparel != null;
         }
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
             var weightedArmor = 0f;
-            var totalCoverage = 0f;
 
             var pawn = (Pawn)req.Thing;
             foreach (var apparel in pawn.apparel.WornApparel)
             {
                 var coverage = apparel.def.apparel.HumanBodyCoverage;
                 weightedArmor += apparel.GetStatValue(StatDefOf.ArmorRating_Sharp) * coverage;
-                totalCoverage += coverage;
             }
 
-            return totalCoverage > 0 ? weightedArmor / totalCoverage : 0;
+            return weightedArmor;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)

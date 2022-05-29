@@ -8,144 +8,126 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-        <!-- === Thing Category & Ammo Def === -->
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <ThingCategoryDef>
-              <defName>AmmoVWEExtinguisher</defName>
-              <label>firefoam</label>
-              <parent>AmmoAdvanced</parent>
-              <iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
-            </ThingCategoryDef>
-          </value>
-        </li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <CombatExtended.AmmoSetDef>
-              <defName>AmmoSet_VWE_Extinguisher</defName>
-              <label>firefoam</label>
-              <ammoTypes>
-                <Ammo_VWE_Extinguisher>Bullet_VWE_Extinguisher</Ammo_VWE_Extinguisher>
-              </ammoTypes>
-            </CombatExtended.AmmoSetDef>
-          </value>
-        </li>
+        <!-- === Thing Category & Ammo Def === -->
+
+        <ThingCategoryDef>
+          <defName>AmmoVWEExtinguisher</defName>
+          <label>firefoam</label>
+          <parent>AmmoAdvanced</parent>
+          <iconPath>UI/Icons/ThingCategories/CaliberFuel</iconPath>
+        </ThingCategoryDef>
+
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_VWE_Extinguisher</defName>
+          <label>firefoam</label>
+          <ammoTypes>
+            <Ammo_VWE_Extinguisher>Bullet_VWE_Extinguisher</Ammo_VWE_Extinguisher>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
 
         <!-- === Ammo === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
-              <defName>Ammo_VWE_Extinguisher</defName>
-              <label>firefoam</label>
-              <description>Flame suppressant used by the Fire Extinguisher</description>
-              <graphicData>
-                <texPath>Things/Ammo/FuelCell/Foam</texPath>
-                <graphicClass>Graphic_StackCount</graphicClass>
-              </graphicData>
-              <statBases>
-                <MarketValue>0.50</MarketValue>
-                <MaxHitPoints>70</MaxHitPoints>
-                <Flammability>1.0</Flammability>
-                <Mass>0.03</Mass>
-                <Bulk>0.03</Bulk>
-              </statBases>
-              <tradeTags>
-                <li>CE_AutoEnableTrade</li>
-                <li>CE_AutoEnableCrafting_DrugLab</li>
-              </tradeTags>
-              <thingCategories>
-                <li>AmmoVWEExtinguisher</li>
-              </thingCategories>
-              <stackLimit>500</stackLimit>
-              <ammoClass>FoamFuel</ammoClass>
-              <generateAllowChance>0</generateAllowChance>
-            </ThingDef>
-          </value>
-        </li>
+        <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+          <defName>Ammo_VWE_Extinguisher</defName>
+          <label>firefoam</label>
+          <description>Flame suppressant used by the Fire Extinguisher</description>
+          <graphicData>
+            <texPath>Things/Ammo/FuelCell/Foam</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+          </graphicData>
+          <statBases>
+            <MarketValue>0.50</MarketValue>
+            <MaxHitPoints>70</MaxHitPoints>
+            <Flammability>1.0</Flammability>
+            <Mass>0.03</Mass>
+            <Bulk>0.03</Bulk>
+          </statBases>
+          <tradeTags>
+            <li>CE_AutoEnableTrade</li>
+            <li>CE_AutoEnableCrafting</li>
+          </tradeTags>
+          <thingCategories>
+            <li>AmmoVWEExtinguisher</li>
+          </thingCategories>
+          <stackLimit>500</stackLimit>
+          <ammoClass>FoamFuel</ammoClass>
+          <generateAllowChance>0</generateAllowChance>
+        </ThingDef>
 
         <!-- === Projectile === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <ThingDef ParentName="BaseBullet">
-              <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-              <defName>Bullet_VWE_Extinguisher</defName>
-              <label>firefoam</label>
-              <graphicData>
-                <texPath>Things/Projectile/Proj_FireExtinguisher/Proj_FireExtinguisherA</texPath>
-                <graphicClass>Graphic_Single</graphicClass>
-                <shaderType>TransparentPostLight</shaderType>
-              </graphicData>
-              <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                <damageDef>VWE_Extinguish</damageDef>
-                <damageAmountBase>50</damageAmountBase>
-                <explosionRadius>1</explosionRadius>
-                <preExplosionSpawnThingDef>Filth_FireFoam</preExplosionSpawnThingDef>
-                <preExplosionSpawnChance>1</preExplosionSpawnChance>
-                <soundExplode>VWE_Explosion_FireExtinguisher</soundExplode>
-                <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-                <speed>20</speed>
-                <flyOverhead>false</flyOverhead>
-              </projectile>
-            </ThingDef>
-          </value>
-        </li>
+        <ThingDef ParentName="BaseBullet">
+          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+          <defName>Bullet_VWE_Extinguisher</defName>
+          <label>firefoam</label>
+          <graphicData>
+            <texPath>Things/Projectile/Proj_FireExtinguisher/Proj_FireExtinguisherA</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+          </graphicData>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>VWE_Extinguish</damageDef>
+            <damageAmountBase>50</damageAmountBase>
+            <explosionRadius>1</explosionRadius>
+            <preExplosionSpawnThingDef>Filth_FireFoam</preExplosionSpawnThingDef>
+            <preExplosionSpawnChance>1</preExplosionSpawnChance>
+            <soundExplode>VWE_Explosion_FireExtinguisher</soundExplode>
+            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            <speed>20</speed>
+            <flyOverhead>false</flyOverhead>
+          </projectile>
+        </ThingDef>
 
         <!-- === Recipe === -->
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <RecipeDef Name="ExtinguisherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-              <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-              <effectWorking>Cook</effectWorking>
-              <soundWorking>Recipe_CookMeal</soundWorking>
-              <workSkill>Intellectual</workSkill>
-            </RecipeDef>
-          </value>
-        </li>
+        <RecipeDef Name="ExtinguisherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
+          <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+          <effectWorking>Cook</effectWorking>
+          <soundWorking>Recipe_CookMeal</soundWorking>
+          <workSkill>Intellectual</workSkill>
+        </RecipeDef>
 
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <RecipeDef ParentName="ExtinguisherAmmoRecipeBase">
-              <defName>MakeAmmo_VWE_Extinguisher</defName>
-              <label>make firefoam x500</label>
-              <description>Craft 500 units of firefoam.</description>
-              <jobString>Making firefoam.</jobString>
-              <ingredients>
-                <li>
-                  <filter>
-                    <thingDefs>
-                      <li>Chemfuel</li>
-                    </thingDefs>
-                  </filter>
-                  <count>25</count>
-                </li>
-                <li>
-                  <filter>
-                    <categories>
-                      <li>MeatRaw</li>
-                    </categories>
-                  </filter>
-                  <count>25</count>
-                </li>
-              </ingredients>
-              <fixedIngredientFilter>
+        <RecipeDef ParentName="ExtinguisherAmmoRecipeBase">
+          <defName>MakeAmmo_VWE_Extinguisher</defName>
+          <label>make firefoam x500</label>
+          <description>Craft 500 units of firefoam.</description>
+          <jobString>Making firefoam.</jobString>
+          <recipeUsers>
+            <li>DrugLab</li>
+          </recipeUsers>
+          <researchPrerequisite>Firefoam</researchPrerequisite>	                    
+          <ingredients>
+            <li>
+              <filter>
                 <thingDefs>
                   <li>Chemfuel</li>
                 </thingDefs>
+              </filter>
+              <count>25</count>
+            </li>
+            <li>
+              <filter>
                 <categories>
                   <li>MeatRaw</li>
                 </categories>
-              </fixedIngredientFilter>
-              <products>
-                <Ammo_VWE_Extinguisher>500</Ammo_VWE_Extinguisher>
-              </products>
-            </RecipeDef>
+              </filter>
+              <count>25</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>Chemfuel</li>
+            </thingDefs>
+            <categories>
+              <li>MeatRaw</li>
+            </categories>
+          </fixedIngredientFilter>
+          <products>
+            <Ammo_VWE_Extinguisher>500</Ammo_VWE_Extinguisher>
+          </products>
+        </RecipeDef>
+
           </value>
         </li>
       </operations>

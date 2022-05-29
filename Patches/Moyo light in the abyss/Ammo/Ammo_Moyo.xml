@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	  <Operation Class="PatchOperationFindMod">
+			
+		<mods><li>Moyo-Light in the Abyss</li></mods>
+			
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MabyssalLight</defName>
+					<label>Light Plasma Cell</label>
+					<ammoTypes>
+					  <Ammo_PlasmaCellPistol>Bullet_MabyssalPlasmaPistol</Ammo_PlasmaCellPistol>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MabyssalMid</defName>
+					<label>Rifle Plasma Cell</label>
+					<ammoTypes>
+					  <Ammo_PlasmaCellRifle>Bullet_MabyssalPlasmaMid</Ammo_PlasmaCellRifle>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<CombatExtended.AmmoSetDef>
+					<defName>AmmoSet_MabyssalAccelerated</defName>
+					<label>Heavy Plasma Cell</label>
+					<ammoTypes>
+					  <Ammo_PlasmaCellHeavy>Bullet_MabyssalPlasmaAccelerated</Ammo_PlasmaCellHeavy>
+					</ammoTypes>
+				</CombatExtended.AmmoSetDef>
+				<ThingDef ParentName="Base556x45mmNATOBullet">
+					<defName>Bullet_MabyssalPlasmaPistol</defName>
+					<label>Low Density Plasma Bolt</label>
+					<graphicData>
+					  <texPath>RedMoyo_Weapons/RedMoyoBolt</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>100</speed>
+					  <damageAmountBase>10</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame_Secondary</def>
+						  <amount>2</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>12</armorPenetrationSharp>
+					  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="Base556x45mmNATOBullet">
+					<defName>Bullet_MabyssalPlasmaMid</defName>
+					<label>Medium Density Plasma Bolt</label>
+					<graphicData>
+					  <texPath>RedMoyo_Weapons/RedMoyoBolt</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>150</speed>
+					  <damageAmountBase>12</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame_Secondary</def>
+						  <amount>2</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>26</armorPenetrationSharp>
+					  <armorPenetrationBlunt>4</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<ThingDef ParentName="Base556x45mmNATOBullet">
+					<defName>Bullet_MabyssalPlasmaAccelerated</defName>
+					<label>Accelerated Plasma Bolt</label>
+					<graphicData>
+					  <texPath>RedMoyo_Weapons/RedMoyoBoltLarge</texPath>
+					  <graphicClass>Graphic_Single</graphicClass>
+					</graphicData>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  <speed>200</speed>
+					  <damageAmountBase>28</damageAmountBase>
+					  <secondaryDamage>
+						<li>
+						  <def>Flame_Secondary</def>
+						  <amount>6</amount>
+						</li>
+					  </secondaryDamage>
+					  <armorPenetrationSharp>60</armorPenetrationSharp>
+					  <armorPenetrationBlunt>23</armorPenetrationBlunt>
+					</projectile>
+				</ThingDef>
+				<RecipeDef ParentName="GrenadeRecipeBase">
+					<defName>MakeAmmo_PlasmaCellPistol_Abyss</defName>
+					<label>make Plasma Pistol Power Cells</label>
+					<description>Craft 500 shots' worth of Plasma Pistol Power Cells.</description>
+					<jobString>Making Plasma Pistol Power Cells.</jobString>
+					<workAmount>6800</workAmount>
+					<ingredients>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Steel</li>
+								</thingDefs>
+							</filter>
+							<count>14</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>Moyo_Abyssteel</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+						<li>
+							<filter>
+								<thingDefs>
+									<li>ComponentIndustrial</li>
+								</thingDefs>
+							</filter>
+							<count>2</count>
+						</li>
+					</ingredients>
+					<fixedIngredientFilter>
+						<thingDefs>
+							<li>Steel</li>
+							<li>Moyo_Abyssteel</li>
+							<li>ComponentIndustrial</li>
+						</thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_PlasmaCellPistol>500</Ammo_PlasmaCellPistol>
+					</products>
+				</RecipeDef>
+			</value>
+		</match>	
+	  </Operation>
+</Patch>

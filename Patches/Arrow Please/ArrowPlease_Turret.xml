@@ -10,17 +10,33 @@
 		
 			<!--=============== Base turrets ===============-->
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="Turret_Ballista" or defName="Turret_Triplecrossbow"]/thingClass</xpath>
+				<xpath>Defs/ThingDef[
+				defName="Turret_Ballista" or
+				defName="Turret_Triplecrossbow" or
+				@Name="Turret_CatapultBase" or
+				@Name="Turret_TrebuchetBase"
+				]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 				</value>
 			</li>
 		
 			<li Class="PatchOperationRemove">
-				<xpath>Defs/ThingDef[defName="Turret_Ballista" or defName="Turret_Triplecrossbow"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+				<xpath>Defs/ThingDef[
+				defName="Turret_Ballista" or
+				defName="Turret_Triplecrossbow"
+				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 			</li>
-			
-			<!--=============== Turret_Ballista ===============-->
+
+			<!-- Remove duplicate mannable comp. -->
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[
+				@Name="Turret_CatapultBase" or
+				@Name="Turret_TrebuchetBase"
+				]/comps/li[@Class = "CompProperties_Mannable"]</xpath>
+			</li>
+
+			<!--=============== Ballista ===============-->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Turret_BallistaGun</defName>
 				<statBases>
@@ -40,8 +56,6 @@
 					<range>42</range>
 					<soundCast>Ballista_Launch</soundCast>
 					<muzzleFlashScale>0</muzzleFlashScale>
-					<!-- <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
-					<burstShotCount>6</burstShotCount> -->
 					<targetParams>
 						<canTargetLocations>true</canTargetLocations>
 					</targetParams>
@@ -58,7 +72,7 @@
 				</FireModes>
 			</li>
 			
-			<!--=============== Turret_Ballista ===============-->
+			<!--=============== Triple Crossbow ===============-->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Turret_TriplecrossbowGun</defName>
 				<statBases>
@@ -97,9 +111,196 @@
 					<noSingleShot>true</noSingleShot>
 				</FireModes>
 			</li>
-      
-		</operations>
+
+			<!--========== Catapult - Weapon ==========-->			
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name="BaseCatapultWeapon"]</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>0.5</SightsEfficiency>
+					</statBases>	
+				</value>
+			</li>
 		
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[@Name = "BaseCatapultWeapon"]/comps</xpath>
+				<value>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+					<li>10</li>
+					<li>20</li>
+					<li>30</li>
+					<li>50</li>
+					<li>70</li>
+					</chargeSpeeds>
+				</li>
+				<li Class="CombatExtended.CompProperties_AmmoUser">
+					<magazineSize>1</magazineSize>
+					<reloadTime>12</reloadTime>
+					<ammoSet>AmmoSet_Catapult</ammoSet>
+				</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName = "Turret_CatapultGun"]/verbs</xpath>
+				<value>
+					<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
+						<warmupTime>4</warmupTime>
+						<minRange>20</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Bow_Recurve</soundCast>
+						<muzzleFlashScale>0</muzzleFlashScale>
+						<indirectFirePenalty>0.2</indirectFirePenalty>
+						<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+					</verbs>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName = "Turret_CatapultGun"]/weaponTags</xpath>
+				<value>
+					<li>TurretGun</li>
+				</value>
+			</li>
+
+		<!-- ========== Catapult - Base ========== -->
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="Turret_CatapultBase"]/building/turretBurstWarmupTime</xpath>
+			<value>
+				<turretBurstWarmupTime>1</turretBurstWarmupTime>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="Turret_CatapultBase"]/building/turretBurstCooldownTime</xpath>
+			<value>
+				<turretBurstCooldownTime>1</turretBurstCooldownTime>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[@Name="Turret_CatapultBase"]/inspectorTabs</xpath>
+		</li>
+
+		<!--========== Trebuchet - Weapon ==========-->		
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="BaseTrebuchetWeapon"]</xpath>
+			<value>
+				<statBases>
+					<SightsEfficiency>0.5</SightsEfficiency>
+				</statBases>	
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name = "BaseTrebuchetWeapon"]/comps</xpath>
+			<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+				<li>30</li>
+				<li>50</li>
+				<li>70</li>
+				<li>90</li>
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>1</magazineSize>
+				<reloadTime>14</reloadTime>
+				<ammoSet>AmmoSet_Catapult</ammoSet>
+			</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName = "Turret_TrebuchetGun"]/verbs</xpath>
+			<value>
+				<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Projectile_CatapultBullet_Boulder</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<minRange>30</minRange>
+					<range>500</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>Bow_Recurve</soundCast>
+					<muzzleFlashScale>0</muzzleFlashScale>
+					<indirectFirePenalty>0.2</indirectFirePenalty>
+					<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+				</verbs>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "Turret_TrebuchetGun"]/weaponTags</xpath>
+			<value>
+				<li>TurretGun</li>
+			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[@Name="Turret_TrebuchetBase"]/inspectorTabs</xpath>
+		</li>
+
+        <!-- === Remove Unneeded === -->
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Trebuchet_ShellsN"]</xpath>
+        </li>
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="Make_TrebuchetShells"]</xpath>
+        </li>
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="Make_TrebuchetShellsA"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Trebuchet_ShellsF"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Trebuchet_ShellsH"]</xpath>
+        </li>
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="MakeHumanRound"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Catapult_ShellsN"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName="Catapult_ShellsF"]</xpath>
+        </li>
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="Make_CatapultShells"]</xpath>
+        </li>
+
+		<li Class="PatchOperationRemove">
+          <xpath>/Defs/RecipeDef[defName="Make_CatapultShellsA"]</xpath>
+        </li>
+
+		</operations>	
 		</match>
 	</Operation>
 </Patch>

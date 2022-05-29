@@ -18,8 +18,8 @@ namespace CombatExtended.Compatibility
             {
                 if (!def.statBases.Any(x => x.stat == CE_StatDefOf.StuffEffectMultiplierToughness || x.stat == CE_StatDefOf.ToughnessRating))
                 {
-                    // Approximate weapon thickness via the bulk of the weapon. Longswords get 2mm, knives get 1mm, spears get about 2.2mm
-                    float weaponThickness = Mathf.Pow(def.statBases?.Find(statMod => statMod.stat.defName == CE_StatDefOf.Bulk.defName)?.value ?? 0f, 1f / 3f);
+                    // Approximate weapon thickness via the bulk of the weapon. Longswords get about 2.83mm, knives get 1mm, spears get about 3.162mm
+                    float weaponThickness = Mathf.Sqrt(def.statBases?.Find(statMod => statMod.stat.defName == CE_StatDefOf.Bulk.defName)?.value ?? 0f);
 
                     // Tech level improves toughness
                     switch (def.techLevel)
@@ -36,7 +36,7 @@ namespace CombatExtended.Compatibility
                             break;
                     }
 
-                    // Blunt weapons get double thickness because edges are easier to damage. Note that ranged weapons are excluded.
+                    // Blunt weapons get double thickness because edges are easier to damage. Note that ranged weapons are excluded
                     if (!def.IsRangedWeapon && (!def.tools?.Any(tool => tool.capacities?.Any(capacityDef => DefDatabase<DamageDef>.defsList.Any(damageDef => damageDef.armorCategory == DamageArmorCategoryDefOf.Sharp && capacityDef.defName == damageDef.defName)) ?? false) ?? false))
                         weaponThickness *= 2f;
 
