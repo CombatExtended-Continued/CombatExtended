@@ -70,7 +70,7 @@ namespace CombatExtended
                     }
                 }
             }
-            Material mat = Graphic.GetColoredVersion(ShaderDatabase.Cutout, DrawColor, DrawColorTwo).MatSingle;
+            Material mat = Graphic.GetColoredVersion(ShaderDatabase.CutoutComplex, DrawColor, DrawColorTwo).MatSingle;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(vector, Quaternion.AngleAxis(num, Vector3.up), s);
             Graphics.DrawMesh(MeshPool.plane10, matrix, mat, 0);
