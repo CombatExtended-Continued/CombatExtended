@@ -84,6 +84,28 @@ namespace CombatExtended
                         
                     }
                 }
+
+                var toFixComps = DefDatabase<ThingDef>.AllDefs.Where(x => x.comps?.Any(x => x is CompProperties_Reloadable) ?? false);
+
+                foreach (var def in toFixComps)
+                {
+                    
+                    var compProps = def.GetCompProperties<CompProperties_Reloadable>();
+                    if (compProps.ammoDef is AmmoDef am)
+                    {
+                        Log.Message(def.label);
+                        //95% of the time there is only one ammoset, esspecially for armor shotties
+                        var ammoset = am.AmmoSetDefs.Find(x => x.similarTo != null && x.ammoTypes.Any(x => x.ammo.ammoClass == am.ammoClass));
+                        if (ammoset != null)
+                        {
+                            compProps.ammoDef = ammoset.similarTo.ammoTypes.Find(x => x.ammo.ammoClass == am.ammoClass).ammo;
+                        }
+                        else if (am.AmmoSetDefs.Any(x => x.similarTo != null))
+                        {
+                            compProps.ammoDef = am.AmmoSetDefs.Find(x => x.similarTo != null).ammoTypes[0].ammo;
+                        }
+                    }
+                }
             }
 
            
