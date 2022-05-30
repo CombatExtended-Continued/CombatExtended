@@ -284,7 +284,7 @@ namespace CombatExtended
 		    }
 		    else 
 		    {
-		        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Clamp01(penAmount * penAmount / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+		        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(0, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
 		    }
 			
 		    if (armorDamage > maxDamage) {
