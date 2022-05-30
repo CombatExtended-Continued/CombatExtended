@@ -93,7 +93,6 @@ namespace CombatExtended
                     var compProps = def.GetCompProperties<CompProperties_Reloadable>();
                     if (compProps.ammoDef is AmmoDef am)
                     {
-                        Log.Message(def.label);
                         //95% of the time there is only one ammoset, esspecially for armor shotties
                         var ammoset = am.AmmoSetDefs.Find(x => x.similarTo != null && x.ammoTypes.Any(x => x.ammo.ammoClass == am.ammoClass));
                         if (ammoset != null)
