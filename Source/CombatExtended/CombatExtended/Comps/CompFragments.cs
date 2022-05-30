@@ -83,11 +83,24 @@ namespace CombatExtended
                     Log.Warning("CombatExtended :: Tried to throw fragments out of bounds");
                     return;
                 }
-                var projCE = parent as ProjectileCE;
-                var edifice = pos.ToIntVec3().GetEdifice(map);
-                var edificeHeight = edifice == null ? 0f : new CollisionVertical(edifice).Max;
-                var height = projCE != null ? Mathf.Max(edificeHeight, projCE.Height) : edificeHeight;
-		var fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+		float height;
+		FloatRange fragXZAngleRange;
+		if (parent is ProjectileCE projCE)
+		{
+		    height = projCE.Height;
+		    fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+		}
+		else
+		{
+		    height = 0;
+		    fragXZAngleRange = PropsCE.fragXZAngleRange;
+		}
+		var edifice = pos.ToIntVec3().GetEdifice(map);
+                if (edifice != null)
+		{
+		    var edificeHeight = new CollisionVertical(edifice).Max;
+		    height = Mathf.Max(height, edificeHeight);
+		}
 
                 foreach (var fragment in PropsCE.fragments)
                 {
