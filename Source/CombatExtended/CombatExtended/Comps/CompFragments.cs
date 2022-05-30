@@ -37,7 +37,7 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
-            while (fragToSpawn-- > 0 && Find.Maps.IndexOf(map) >= 0)
+            while (fragToSpawn-- > 0)
             {
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
                 GenSpawn.Spawn(projectile, cell, map);
@@ -61,6 +61,10 @@ namespace CombatExtended
                 {
                     fragSpawnedInTick = 0;
                     yield return new WaitForEndOfFrame();
+                    if (Find.Maps.IndexOf(map) < 0)
+                    {
+                        break;
+                    }
                 }
             }
         }
