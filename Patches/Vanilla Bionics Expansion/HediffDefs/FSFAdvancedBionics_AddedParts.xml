@@ -89,14 +89,28 @@
 			</value>
 		</li>
 		
-		<!-- CE disables human bite attacks-->
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]</xpath>
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="FSFAdvBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>1.25</cooldownTime>
+					<armorPenetrationSharp>0.3</armorPenetrationSharp>
+					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
 		</li>
+
 		</operations>
 	</match>
 	</Operation>
-	
+
 	<Operation Class="PatchOperationFindMod">
     <mods>
         <li>[FSF] Advanced Bionics Expansion</li>
@@ -155,7 +169,7 @@
 				</tools>
 			</value>
 		</li>
-		
+
 		<!--Implants-->
 		
 		<!--Tone down Speed torso implant dodge chance to be more inline with CE stats (also so it doesn't instantly max out dodge)-->
@@ -249,7 +263,7 @@
 					<capacities>
 						<li>FSFEffectTaser</li>
 					</capacities>
-					<power>2</power>
+					<power>5</power>
 					<cooldownTime>1.84</cooldownTime>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					<extraMeleeDamages>
