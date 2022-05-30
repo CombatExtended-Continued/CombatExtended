@@ -274,8 +274,11 @@ namespace CombatExtended
                 }
                 else
                 {
-                    // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-		    if (isSharpDmg && (penAmount / armorAmount) < 0.5f)
+                    // Hard armor takes damage depending on the damage amount and damage penetration
+                    // Such armor takes the most damage when the attack has the same amount of armor penetration as the armor has armor amount
+                    // Otherwise it's a non-penetration (was unable to perforate the armor) or an over-penetration (creates a nice hole in the armor)
+                    // It is assumed that elastic deformation (no damage) occurs when the attack is blunt and has less armor penetration than the armor amount divided by 2
+		    if (!isSharpDmg && (penAmount / armorAmount) < 0.5f)
 		    {
                         armorDamage = 0;
 		    }
