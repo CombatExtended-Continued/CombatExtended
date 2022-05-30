@@ -103,6 +103,10 @@ namespace CombatExtended
                         {
                             compProps.ammoDef = am.AmmoSetDefs.Find(x => x.similarTo != null).ammoTypes[0].ammo;
                         }
+                        else
+                        {
+                            Log.Warning($"Apparel {def} has CE AmmoDef {am.AmmoSetDefs[0]} but no similarTo tag");
+                        }
                     }
                 }
             }
