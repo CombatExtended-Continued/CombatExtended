@@ -28,7 +28,7 @@ namespace CombatExtended
 
         public CompProperties_Fragments PropsCE => (CompProperties_Fragments)props;
 
-        private static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange)
+        private static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange)
         {
             var cell = pos.ToIntVec3();
             var exactOrigin = new Vector2(pos.x, pos.z);
@@ -37,7 +37,7 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
-            while (fragToSpawn > 0 && Find.Maps.IndexOf(map) >= 0)
+            while (fragToSpawn-- > 0 && Find.Maps.IndexOf(map) >= 0)
             {
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
                 GenSpawn.Spawn(projectile, cell, map);
@@ -50,13 +50,12 @@ namespace CombatExtended
                     instigator,
                     exactOrigin,
                     fragAngleRange.RandomInRange * Mathf.Deg2Rad,
-                    Rand.Range(0, 360),
+		    (fragXZAngleRange.RandomInRange + 360) % 360,
                     height,
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
                 );
 
-                fragToSpawn--;
                 fragSpawnedInTick++;
                 if (fragSpawnedInTick >= fragPerTick)
                 {
@@ -84,13 +83,14 @@ namespace CombatExtended
                 var edifice = pos.ToIntVec3().GetEdifice(map);
                 var edificeHeight = edifice == null ? 0f : new CollisionVertical(edifice).Max;
                 var height = projCE != null ? Mathf.Max(edificeHeight, projCE.Height) : edificeHeight;
+		var fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
 
                 foreach (var fragment in PropsCE.fragments)
                 {
                     var newCount = fragment;
                     newCount.count = Mathf.RoundToInt(newCount.count * scaleFactor);
 
-                    var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange);
+                    var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange, fragXZAngleRange);
                     if (!Compatibility.Multiplayer.InMultiplayer)
                         _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
                     else
