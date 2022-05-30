@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Yet another prosthetic expansion mod - Core</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+	<operations>
+	<!-- Patches the BionicArm and BIE_BionicHand -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BionicArm" or defName="BIE_BionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.11</cooldownTime>
+						<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- Patches the BIE_AdvancedBionicArm and BIE_AdvancedBionicHand -->
+        <li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_AdvancedBionicArm" or defName="BIE_AdvancedBionicHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>bionic fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>0.96</cooldownTime>
+						<armorPenetrationBlunt>3.00</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- Patches the BIE_UltratechBionicArm (no hand for this tier) -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="BIE_UltratechBionicArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>bionic fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>13</power>
+						<cooldownTime>0.81</cooldownTime>
+						<armorPenetrationBlunt>4.5</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- Patches the ArchotechArm (no hand for this tier, it's patching vanilla for this) -->
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="ArchotechArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>bionic fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>17</power>
+						<cooldownTime>0.66</cooldownTime>
+						<armorPenetrationBlunt>6.00</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+        </li>
+<!-- Commented out until we can resolve issues with smoke hediff on body parts for resistance -->
+		<!-- Add for lungs of advanced nature, scale, recommended 15% for elite bionics, down to 5% for better-than -->
+		<!-- BIE_BionicLung -->
+		<!-- <li Class="PatchOperationAdd"> -->
+			<!-- <xpath>Defs/HediffDef[defName="BIE_BionicLung"]/stages/li[minSeverity="0.99"]/statOffsets</xpath> -->
+			<!-- <value> -->
+				<!-- <SmokeSensitivity>-0.025</SmokeSensitivity> -->
+			<!-- </value> -->
+		<!-- </li> -->
+		<!-- BIE_AdvancedBionicLung -->
+		<!-- <li Class="PatchOperationAdd"> -->
+			<!-- <xpath>Defs/HediffDef[defName="BIE_AdvancedBionicLung"]/stages/li[minSeverity="0.99"]/statOffsets</xpath> -->
+			<!-- <value> -->
+				<!-- <SmokeSensitivity>-0.05</SmokeSensitivity> -->
+			<!-- </value> -->
+		<!-- </li> -->
+		<!-- BIE_UltratechBionicLung -->
+		<!-- <li Class="PatchOperationAdd"> -->
+			<!-- <xpath>Defs/HediffDef[defName="BIE_UltratechBionicLung"]/stages/li[minSeverity="0.99"]/statOffsets</xpath> -->
+			<!-- <value> -->
+				<!-- <SmokeSensitivity>-0.10</SmokeSensitivity> -->
+			<!-- </value> -->
+		<!-- </li> -->
+		<!-- SoSArchotechLung -->
+		<!-- <li Class="PatchOperationAdd"> -->
+			<!-- <xpath>Defs/HediffDef[defName="SoSArchotechLung"]/stages/li[minSeverity="0.99"]/statOffsets</xpath> -->
+			<!-- <value> -->
+				<!-- <SmokeSensitivity>-0.15</SmokeSensitivity> -->
+			<!-- </value> -->
+		<!-- </li> -->
+
+		<!-- Patch for BIE_BionicJaw -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_BionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.27</cooldownTime>
+					<armorPenetrationBlunt>1.288</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.2</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- Patch for BIE_AdvancedBionicJaw -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_AdvancedBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.12</cooldownTime>
+					<armorPenetrationBlunt>2.2</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.4</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- BIE_UltratechBionicJaw -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_AdvancedBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>0.97</cooldownTime>
+					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.6</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+		</li>
+		<!-- SoSArchotechJaw -->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/HediffDef[defName="AdvancedBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+					<label>teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>13</power>
+					<cooldownTime>0.82</cooldownTime>
+					<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.8</armorPenetrationSharp>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- Patch for BIE_UltratechBionicSkin -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_UltratechBionicSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="BIE_UltratechBionicSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>2.25</ArmorRating_Blunt>
+				<ArmorRating_Electric>0.2</ArmorRating_Electric>
+			</value>
+		</li>
+		<!-- Patch for SoSArchotechSkin (YAP uses SOSArch for these) -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="SoSArchotechSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>3</ArmorRating_Sharp>
+			</value>
+		</li>
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="SoSArchotechSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>4.5</ArmorRating_Blunt>
+				<ArmorRating_Electric>0.4</ArmorRating_Electric>
+			</value>
+		</li>
+		</operations>
+	</match>
+	</Operation>
+</Patch>
