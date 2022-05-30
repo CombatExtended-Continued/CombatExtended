@@ -95,8 +95,7 @@ namespace CombatExtended
 		    height = 0;
 		    fragXZAngleRange = PropsCE.fragXZAngleRange;
 		}
-		var edifice = pos.ToIntVec3().GetEdifice(map);
-                if (edifice != null)
+                if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
 		{
 		    var edificeHeight = new CollisionVertical(edifice).Max;
 		    height = Mathf.Max(height, edificeHeight);
