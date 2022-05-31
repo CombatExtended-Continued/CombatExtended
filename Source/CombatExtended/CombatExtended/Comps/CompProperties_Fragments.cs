@@ -14,6 +14,7 @@ namespace CombatExtended
         public float fragSpeedFactor = 1f;
         public float fragShadowChance = 0.2f;
         public FloatRange fragAngleRange = new FloatRange(0.5f, 5f);
+	public FloatRange fragXZAngleRange = new FloatRange(0f, 360f);
 
         public CompProperties_Fragments()
         {
