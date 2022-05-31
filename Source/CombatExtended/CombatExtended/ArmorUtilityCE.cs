@@ -177,7 +177,7 @@ namespace CombatExtended
             {
                 var curPart = partsToHit[i];
                 var coveredByArmor = curPart.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor);
-                var armorAmount = coveredByArmor ? /*pawn.GetStatValue(dinfo.Def.armorCategory.armorRatingStat)*/ pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
+                var armorAmount = coveredByArmor ? pawn.PartialStat(dinfo.Def.armorCategory.armorRatingStat, curPart, dmgAmount, penAmount) : 0;
 
                 // Only apply damage reduction when penetrating armored body parts
                 if (!TryPenetrateArmor(dinfo.Def, armorAmount, ref penAmount, ref dmgAmount, null, partDensity))
@@ -274,8 +274,19 @@ namespace CombatExtended
                 }
                 else
                 {
-                    // Hard armor takes damage as reduced by damage resistance and can be almost impervious to low-penetration attacks
-                    armorDamage = newDmgAmount;
+                    // Hard armor takes damage depending on the damage amount and damage penetration
+                    // Such armor takes the most damage when the attack has the same amount of armor penetration as the armor has armor amount
+                    // Otherwise it's a non-penetration (was unable to perforate the armor) or an over-penetration (creates a nice hole in the armor)
+                    // It is assumed that elastic deformation (no damage) occurs when the attack is blunt and has less armor penetration than the armor amount divided by 2
+		    if (!isSharpDmg && (penAmount / armorAmount) < 0.5f)
+		    {
+                        armorDamage = 0;
+		    }
+		    else 
+		    {
+		        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+		    }
+			
 		    if (armorDamage > maxDamage) {
 			armorDamage = maxDamage;
 			newDmgAmount = maxDamage;
@@ -309,12 +320,7 @@ namespace CombatExtended
 	    if (armorDamage == 0) {
 		return false;
 	    }
-            // If armor damage is less than 1, have a chance for it to become exactly 1 (mind you, this can be an extremely small chance)
-            if ((armorDamage < 1f) && (Rand.Value <= Mathf.Min(1.0f, penAmount / armorAmount)))
-            {
-                armorDamage = 1f;
-            }
-
+            
             // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
             // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
             if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
