@@ -2,148 +2,186 @@
 <Patch>
 
 	<Operation Class="PatchOperationFindMod">
-    <mods>
-		<li>Save Our Ship 2</li>
-    </mods>
+		<mods>
+			<li>Save Our Ship 2</li>
+		</mods>
 		<match Class="PatchOperationSequence">
-		<operations>
-	
-	<li Class="PatchOperationConditional">
-	<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
-	<match Class="PatchOperationSequence">
-	<operations>
-	<!-- ========== Molotov cocktail ========== -->
+			<operations>
 
-	<!-- Projectile -->
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
+					<match Class="PatchOperationSequence">
+						<operations>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]/graphicData/texPath</xpath>
-		<value>
-			<texPath>Things/Projectile/Grenades/Molotov</texPath>
-		</value>
-	</li>
+							<!-- ========== Molotov cocktail ========== -->
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<explosionRadius>0.5</explosionRadius>
-				<damageDef>BombMechanite</damageDef>
-				<damageAmountBase>10</damageAmountBase>
-				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
-				<speed>12</speed>
-				<ai_IsIncendiary>true</ai_IsIncendiary>
-				<gravityFactor>2</gravityFactor>
-			</projectile>
-		</value>
-	</li>
+							<!-- Projectile -->
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
-		<value>
-			<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
-		</value>
-	</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]/graphicData/texPath</xpath>
+								<value>
+									<texPath>Things/Projectile/Grenades/Molotov</texPath>
+								</value>
+							</li>
 
-	<!-- Grenade -->
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
+								<value>
+									<projectile Class="CombatExtended.ProjectilePropertiesCE">
+										<explosionRadius>0.5</explosionRadius>
+										<damageDef>BombMechanite</damageDef>
+										<damageAmountBase>10</damageAmountBase>
+										<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+										<preExplosionSpawnChance>1</preExplosionSpawnChance>
+										<speed>12</speed>
+										<ai_IsIncendiary>true</ai_IsIncendiary>
+										<gravityFactor>2</gravityFactor>
+									</projectile>
+								</value>
+							</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/label</xpath>
-		<value>
-			<label>mechanite cocktail</label>
-		</value>
-	</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]</xpath>
+								<value>
+									<thingClass>CombatExtended.Projectile_FireTrail</thingClass>
+								</value>
+							</li>
 
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/graphicData</xpath>
-		<value>
-			<graphicData>
-				<texPath>Things/Ammo/HandGrenades/Molotov</texPath>
-				<graphicClass>Graphic_StackCount</graphicClass>
-				<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
-			</graphicData>
-		</value>
-	</li>
+							<!-- Grenade -->
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
-		<value>
-			<thingClass>CombatExtended.AmmoThing</thingClass>
-			<stackLimit>50</stackLimit>
-			<resourceReadoutPriority>First</resourceReadoutPriority>
-		</value>
-	</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/label</xpath>
+								<value>
+									<label>mechanite cocktail</label>
+								</value>
+							</li>
 
-	<li Class="PatchOperationAttributeSet">
-		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
-		<attribute>Class</attribute>
-		<value>CombatExtended.AmmoDef</value>
-	</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/graphicData</xpath>
+								<value>
+									<graphicData>
+										<texPath>Things/Ammo/HandGrenades/Molotov</texPath>
+										<graphicClass>Graphic_StackCount</graphicClass>
+										<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+									</graphicData>
+								</value>
+							</li>
 
-	<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/comps</xpath>
-				<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
-				<value>
-					<comps />
-				</value>
-			</li>
-		</operations>
-	</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
+								<value>
+									<thingClass>CombatExtended.AmmoThing</thingClass>
+									<stackLimit>50</stackLimit>
+									<resourceReadoutPriority>First</resourceReadoutPriority>
+								</value>
+							</li>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/comps</xpath>
-		<value>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>1</damageAmountBase>
-			<explosiveDamageType>Flame</explosiveDamageType>
-			<explosiveRadius>0.5</explosiveRadius>
-				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-				<preExplosionSpawnChance>1</preExplosionSpawnChance>
-		  </li>
-		</value>
-	</li>
+							<li Class="PatchOperationAttributeSet">
+								<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
+								<attribute>Class</attribute>
+								<value>CombatExtended.AmmoDef</value>
+							</li>
 
-	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Weapon_GrenadeMechanite</defName>
-		<statBases>
-			<Mass>0.6</Mass>
-			<Bulk>2.55</Bulk>
-			<MarketValue>7.05</MarketValue>
-			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			<SightsEfficiency>0.65</SightsEfficiency>
-		</statBases>
-		<Properties>
-			<label>throw molotov</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<range>10</range>
-			<minRange>4</minRange>
-			<warmupTime>0.8</warmupTime>
-			<noiseRadius>4</noiseRadius>
-			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-			<soundCast>ThrowMolotovCocktail</soundCast>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			<defaultProjectile>Proj_GrenadeMechanite</defaultProjectile>
-			<onlyManualCast>true</onlyManualCast>
-			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-		</Properties>
-		<weaponTags>
-			<li>CE_OneHandedWeapon</li>
-		</weaponTags>
-	</li>
-	</operations>
-	</match>
-	</li>
-		</operations>
+							<li Class="PatchOperationSequence">
+								<success>Always</success>
+								<operations>
+									<li Class="PatchOperationTest">
+										<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/comps</xpath>
+										<success>Invert</success>
+									</li>
+									<li Class="PatchOperationAdd">
+										<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]</xpath>
+										<value>
+											<comps />
+										</value>
+									</li>
+								</operations>
+							</li>
+
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/comps</xpath>
+								<value>
+									<li Class="CombatExtended.CompProperties_ExplosiveCE">
+										<damageAmountBase>1</damageAmountBase>
+										<explosiveDamageType>Flame</explosiveDamageType>
+										<explosiveRadius>0.5</explosiveRadius>
+										<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+										<preExplosionSpawnChance>1</preExplosionSpawnChance>
+									</li>
+								</value>
+							</li>
+
+							<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+								<defName>Weapon_GrenadeMechanite</defName>
+								<statBases>
+									<Mass>0.6</Mass>
+									<Bulk>2.55</Bulk>
+									<MarketValue>7.05</MarketValue>
+									<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+									<SightsEfficiency>0.65</SightsEfficiency>
+								</statBases>
+								<Properties>
+									<label>throw molotov</label>
+									<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<range>10</range>
+									<minRange>4</minRange>
+									<warmupTime>0.8</warmupTime>
+									<noiseRadius>4</noiseRadius>
+									<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+									<soundCast>ThrowMolotovCocktail</soundCast>
+									<targetParams>
+										<canTargetLocations>true</canTargetLocations>
+									</targetParams>
+									<defaultProjectile>Proj_GrenadeMechanite</defaultProjectile>
+									<onlyManualCast>true</onlyManualCast>
+									<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								</Properties>
+								<weaponTags>
+									<li>CE_OneHandedWeapon</li>
+								</weaponTags>
+							</li>
+
+							<!--Vanilla Textures Expanded - Save Our Ship 2-->
+							
+							<li Class="PatchOperationFindMod">
+								<mods>
+									<li>Vanilla Textures Expanded - Save Our Ship 2</li>
+								</mods>
+								<match Class="PatchOperationSequence">
+									<operations>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/ThingDef[defName="Proj_GrenadeMechanite"]/graphicData/texPath</xpath>
+											<value>
+												<texPath>Things/Item/GrenadeMechanite_Thrown</texPath>
+											</value>
+										</li>
+
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/graphicData</xpath>
+											<value>
+												<graphicData>
+													<texPath>Things/Ammo/HandGrenades/GrenadeMechanite</texPath>
+													<graphicClass>Graphic_StackCount</graphicClass>
+													<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+												</graphicData>
+											</value>
+										</li>
+
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/ThingDef[defName="Weapon_GrenadeMechanite"]/label</xpath>
+											<value>
+												<label>mechanite grenade</label>
+											</value>
+										</li>
+									</operations>
+								</match>
+							</li>
+
+						</operations>
+					</match>
+				</li>
+			</operations>
 		</match>
 	</Operation>
 </Patch>

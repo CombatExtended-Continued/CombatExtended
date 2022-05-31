@@ -18,7 +18,7 @@
                 defName="DankPyon_Headgear_ChainCoif" or 
                 defName="DankPyon_Headgear_ChainCoifClosed" or 
                 defName="DankPyon_Headgear_ChainCoifFull" or
-                defName="DankPyon_Headgear_PaddedNasalHelm" or 
+                defName="DankPyon_Headgear_PaddedNasalHelmet" or 
                 defName="DankPyon_Headgear_PaddedKettle" or 
                 defName="DankPyon_Headgear_PaddedFlatTop" or
                 defName="DankPyon_Headgear_ChainNasalHelm" or
@@ -37,7 +37,7 @@
         <li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[
                 defName="DankPyon_Headgear_ChainCoifFull" or
-                defName = "DankPyon_Headgear_PaddedNasalHelm" or 
+                defName = "DankPyon_Headgear_PaddedNasalHelmet" or 
                 defName="DankPyon_Headgear_PaddedFlatTop" or
                 defName="DankPyon_Headgear_ChainNasalHelm" or
                 defName="DankPyon_Headgear_ChainNasalHelmRed" or
@@ -64,36 +64,22 @@
             <xpath>Defs/ThingDef[
                 defName = "DankPyon_Headgear_coif" or 
                 defName="DankPyon_Headgear_ArmingCap" or 
-                defName="DankPyon_Headgear_FullArmingCap"]/statBases</xpath>
+				defname="DankPyon_Headgear_RedBandana" or 
+				defName="DankPyon_Headgear_FullArmingCap"]/statBases</xpath>
             <value>
                 <Bulk>2</Bulk>
                 <WornBulk>0</WornBulk>
             </value>
         </li>
 
-        <li Class="PatchOperationReplace">
+		<li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[
                 defName="DankPyon_Headgear_ArmingCap" or 
-                defName="DankPyon_Headgear_FullArmingCap"]/statBases/ArmorRating_Sharp</xpath>
-			<value>
-				<ArmorRating_Sharp>1</ArmorRating_Sharp>
-			</value>
-		</li>	
-        <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[
-                defName="DankPyon_Headgear_ArmingCap" or 
-                defName="DankPyon_Headgear_FullArmingCap"]/statBases/ArmorRating_Blunt</xpath>
-			<value>
-				<ArmorRating_Blunt>1</ArmorRating_Blunt>
-			</value>
-		</li>	
-
-        <li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "DankPyon_Headgear_coif"]/statBases/StuffEffectMultiplierArmor</xpath>
+                defName="DankPyon_Headgear_FullArmingCap"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
 			</value>
-		</li>	
+		</li>
 
     <!--Chain Coif, Closed, Full-->
         <li Class="PatchOperationAdd">
@@ -111,15 +97,9 @@
 			<xpath>Defs/ThingDef[
                 defName = "DankPyon_Headgear_ChainCoif" or 
                 defName="DankPyon_Headgear_ChainCoifClosed" or 
-                defName="DankPyon_Headgear_ChainCoifFull"]/statBases/ArmorRating_Sharp</xpath>
+                defName="DankPyon_Headgear_ChainCoifFull"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
-				<ArmorRating_Sharp>1.65</ArmorRating_Sharp>
-			</value>
-		</li>	
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "DankPyon_Headgear_ChainCoif" or defName="DankPyon_Headgear_ChainCoifClosed" or defName="DankPyon_Headgear_ChainCoifFull"]/statBases/ArmorRating_Blunt</xpath>
-			<value>
-				<ArmorRating_Blunt>1.75</ArmorRating_Blunt>
+				<StuffEffectMultiplierArmor>1.65</StuffEffectMultiplierArmor>
 			</value>
 		</li>
 
@@ -127,26 +107,28 @@
     <!--Chain Helmet Flat Top, Closed Flat Top, Kettle, Nasal-->
         <li Class="PatchOperationRemove">
             <xpath>Defs/ThingDef[
-                defName = "DankPyon_Headgear_PaddedNasalHelm" or 
-                defName="DankPyon_Headgear_PaddedKettle" or 
-                defName="DankPyon_Headgear_PaddedFlatTop" or
-                defName="DankPyon_Headgear_ChainNasalHelm" or
-                defName="DankPyon_Headgear_ChainNasalHelmRed" or
-                defName="DankPyon_Headgear_ChainKettle" or
-                defName="DankPyon_Headgear_Chain_FlatTop" or
-                defName="DankPyon_Headgear_ChainClosedFlatTop"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+                defName = "DankPyon_Headgear_PaddedNasalHelmet" or 
+                defName="DankPyon_Headgear_PaddedKettleHelmet" or 
+                defName="DankPyon_Headgear_PaddedFlatTopHelmet" or
+                defName="DankPyon_Headgear_ChainNasalHelmet" or
+				defname="DankPyon_Headgear_ChainNasalRedHelmet" or
+                defName="DankPyon_Headgear_ChainKettleHelmet" or
+                defName="DankPyon_Headgear_Chain_FlatTopHelmet" or
+				defname="DankPyon_Headgear_ClosedChain_FlatTopHelmet" or
+                defName="DankPyon_Headgear_ChainClosedFlatTopHelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
         </li>
 
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
-                defName = "DankPyon_Headgear_PaddedNasalHelm" or 
-                defName="DankPyon_Headgear_PaddedKettle" or 
-                defName="DankPyon_Headgear_PaddedFlatTop" or
-                defName="DankPyon_Headgear_ChainNasalHelm" or
-                defName="DankPyon_Headgear_ChainNasalHelmRed" or
-                defName="DankPyon_Headgear_ChainKettle" or
-                defName="DankPyon_Headgear_Chain_FlatTop" or
-                defName="DankPyon_Headgear_ChainClosedFlatTop"]/statBases</xpath>
+                defName = "DankPyon_Headgear_PaddedNasalHelmet" or 
+                defName="DankPyon_Headgear_PaddedKettleHelmet" or 
+                defName="DankPyon_Headgear_PaddedFlatTopHelmet" or
+                defName="DankPyon_Headgear_ChainNasalHelmet" or
+				defname="DankPyon_Headgear_ChainNasalRedHelmet" or
+                defName="DankPyon_Headgear_ChainKettleHelmet" or
+                defName="DankPyon_Headgear_Chain_FlatTopHelmet" or
+				defname="DankPyon_Headgear_ClosedChain_FlatTopHelmet" or
+                defName="DankPyon_Headgear_ChainClosedFlatTopHelmet"]/statBases</xpath>
             <value>
                 <Bulk>4</Bulk>
                 <WornBulk>0</WornBulk>
@@ -155,43 +137,24 @@
         
         <li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[
-                defName = "DankPyon_Headgear_PaddedNasalHelm" or 
-                defName="DankPyon_Headgear_PaddedKettle" or 
-                defName="DankPyon_Headgear_PaddedFlatTop"]/statBases/ArmorRating_Sharp</xpath>
+                defName = "DankPyon_Headgear_PaddedNasalHelmet" or 
+                defName="DankPyon_Headgear_PaddedKettleHelmet" or 
+                defName="DankPyon_Headgear_PaddedFlatTopHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
-				<ArmorRating_Sharp>2.2</ArmorRating_Sharp>
-			</value>
-		</li>	
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[
-                defName = "DankPyon_Headgear_PaddedNasalHelm" or 
-                defName="DankPyon_Headgear_PaddedKettle" or 
-                defName="DankPyon_Headgear_PaddedFlatTop"]/statBases/ArmorRating_Blunt</xpath>
-			<value>
-				<ArmorRating_Blunt>3.5</ArmorRating_Blunt>
+				<StuffEffectMultiplierArmor>2.2</StuffEffectMultiplierArmor>
 			</value>
 		</li>
 
         <li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[
-                defName="DankPyon_Headgear_ChainNasalHelm" or
-                defName="DankPyon_Headgear_ChainNasalHelmRed" or
-                defName="DankPyon_Headgear_ChainKettle" or
-                defName="DankPyon_Headgear_Chain_FlatTop" or
-                defName="DankPyon_Headgear_ChainClosedFlatTop"]/statBases/ArmorRating_Sharp</xpath>
+                defName="DankPyon_Headgear_ChainNasalHelmet" or
+				defname="DankPyon_Headgear_ChainNasalRedHelmet" or
+                defName="DankPyon_Headgear_ChainKettleHelmet" or
+                defName="DankPyon_Headgear_Chain_FlatTopHelmet" or
+				defname="DankPyon_Headgear_ClosedChain_FlatTopHelmet" or
+                defName="DankPyon_Headgear_ChainClosedFlatTopHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
-				<ArmorRating_Sharp>2.7</ArmorRating_Sharp>
-			</value>
-		</li>	
-		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[
-                defName="DankPyon_Headgear_ChainNasalHelm" or
-                defName="DankPyon_Headgear_ChainNasalHelmRed" or
-                defName="DankPyon_Headgear_ChainKettle" or
-                defName="DankPyon_Headgear_Chain_FlatTop" or
-                defName="DankPyon_Headgear_ChainClosedFlatTop"]/statBases/ArmorRating_Blunt</xpath>
-			<value>
-				<ArmorRating_Blunt>3.8</ArmorRating_Blunt>
+				<StuffEffectMultiplierArmor>2.7</StuffEffectMultiplierArmor>
 			</value>
 		</li>
 
@@ -201,17 +164,13 @@
 
         <li Class="PatchOperationAdd">
         <xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"]/statBases</xpath>
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"]/statBases</xpath>
             <value>
                 <Bulk>6</Bulk>
                 <WornBulk>0</WornBulk>
@@ -220,17 +179,13 @@
 
         <li Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"]/apparel/bodyPartGroups</xpath>
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"]/apparel/bodyPartGroups</xpath>
 			<value>
 				<bodyPartGroups>
                     <li>FullHead</li>
@@ -240,32 +195,24 @@
 
         <li Class="PatchOperationRemove">
             <xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
         </li>
 
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"]/equippedStatOffsets</xpath>
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"]/equippedStatOffsets</xpath>
             <value>
                 <AimingAccuracy>-0.4</AimingAccuracy>       <!--CE Bascinet-->
                 <MeleeHitChance>-2</MeleeHitChance>
@@ -275,17 +222,13 @@
         
         <li Class="PatchOperationReplace">
 			<xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"]/statBases/StuffEffectMultiplierArmor</xpath>
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
 			</value>
@@ -302,17 +245,13 @@
 
         <li Class="PatchOperationReplace">
             <xpath>Defs/ThingDef[
-            defName="DankPyon_Headgear_VisoredKettleHelmet" or
             defName="DankPyon_Headgear_ClosedBascinetHelmet" or
-            defName="DankPyon_Headgear_HounskullHelmet" or
             defName="DankPyon_Headgear_SalletHelmet" or
             defName="DankPyon_Headgear_Bascinet_KlappvisierHelmetClosed" or
-            defName="DankPoyn_Headgear_KlappvisierHelmetOpen" or
             defName="DankPyon_Headgear_GreatHelm" or
-            defName="DankPyon_Headgear_CrusaderGreatHelm" or
-            defName="DankPyon_Headgear_RoyalGreatHelm" or
-            defName="DankPyon_Headgear_HeraldicGreatHelm" or
-            defName="DankPyon_Headgear_Armet"          
+            defName="DankPyon_Headgear_HeraldicGreatHelm1c" or
+            defName="DankPyon_Headgear_Armet" or
+			defname="DankPyon_Headgear_ArmetGilded"
             ]/stuffCategories</xpath>
             <value>
                 <stuffCategories>

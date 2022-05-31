@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Mechanoid Bench 3</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== Mechanoid Bench Weapon Tools ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[ defName = "Gun_MechaMinigun" or defName = "Gun_MechaSniperRifle" or defName = "Gun_MechaShotgun"]/tools
+                    </xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>stock</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>8</power>
+                                <cooldownTime>1.55</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>5</power>
+                                <cooldownTime>2.02</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>muzzle</label>
+                                <capacities>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>8</power>
+                                <cooldownTime>1.55</cooldownTime>
+                                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+
+                <!-- ===== Mecha Minigun ===== -->
+                <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+                    <defName>Gun_MechaMinigun</defName>
+                    <statBases>
+                        <Mass>28.0</Mass>
+                        <Bulk>26.5</Bulk>
+                        <SwayFactor>1.35</SwayFactor>
+                        <ShotSpread>0.10</ShotSpread>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+                    </statBases>
+                    <Properties>
+                        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                        <hasStandardCommand>True</hasStandardCommand>
+                        <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+                        <burstShotCount>50</burstShotCount>
+                        <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+                        <warmupTime>2.5</warmupTime>
+                        <range>65</range>
+                        <soundCast>Shot_ChargeRifle</soundCast>
+                        <soundCastTail>GunTail_Medium</soundCastTail>
+                        <muzzleFlashScale>10</muzzleFlashScale>
+                        <recoilAmount>1.24</recoilAmount>
+                        <recoilPattern>Regular</recoilPattern>
+                    </Properties>
+                    <AmmoUser>
+                        <magazineSize>750</magazineSize>
+                        <reloadTime>9.2</reloadTime>
+                        <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+                    </AmmoUser>
+                    <FireModes>
+                        <aiAimMode>SuppressFire</aiAimMode>
+                        <aimedBurstShotCount>20</aimedBurstShotCount>
+                    </FireModes>
+                    <weaponTags>
+                        <li>SpacerGun</li>
+                        <li>GunHeavy</li>
+                    </weaponTags>
+                    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+                </li>
+
+                <!-- ===== Mecha Sniper Rifle ===== -->
+                <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+                    <defName>Gun_MechaSniperRifle</defName>
+                    <statBases>
+                        <Mass>4.5</Mass>
+                        <Bulk>11.0</Bulk>
+                        <SwayFactor>1.9</SwayFactor>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SightsEfficiency>2.6</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
+                    </statBases>
+                    <Properties>
+                        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                        <hasStandardCommand>True</hasStandardCommand>
+                        <defaultProjectile>Bullet_8x50mmCharged</defaultProjectile>
+                        <warmupTime>1.6</warmupTime>
+                        <range>85</range>
+                        <soundCast>ChargeLance_Fire</soundCast>
+                        <soundCastTail>GunTail_Medium</soundCastTail>
+                        <muzzleFlashScale>10</muzzleFlashScale>
+                    </Properties>
+                    <AmmoUser>
+                        <magazineSize>10</magazineSize>
+                        <reloadTime>4</reloadTime>
+                        <ammoSet>AmmoSet_8x50mmCharged</ammoSet>
+                    </AmmoUser>
+                    <FireModes>
+                        <aiAimMode>AimedShot</aiAimMode>
+                    </FireModes>
+                    <weaponTags>
+                        <li>SpacerGun</li>
+                        <li>SniperRifle</li>
+                    </weaponTags>
+                    <AllowWithRunAndGun>false</AllowWithRunAndGun>
+                </li>
+
+                <!-- ===== Mecha Shotgun ===== -->
+                <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+                    <defName>Gun_MechaShotgun</defName>
+                    <statBases>
+                        <Mass>3.45</Mass>
+                        <Bulk>5</Bulk>
+                        <SwayFactor>1.25</SwayFactor>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+                    </statBases>
+                    <Properties>
+                        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                        <hasStandardCommand>True</hasStandardCommand>
+                        <defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+                        <warmupTime>0.5</warmupTime>
+                        <range>22</range>
+                        <soundCast>ChargeLance_Fire</soundCast>
+                        <soundCastTail>GunTail_Heavy</soundCastTail>
+                        <muzzleFlashScale>12</muzzleFlashScale>
+                    </Properties>
+                    <AmmoUser>
+                        <magazineSize>15</magazineSize>
+                        <reloadTime>4.5</reloadTime>
+                        <ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+                    </AmmoUser>
+                    <FireModes/>
+                    <weaponTags>
+                        <li>SpacerGun</li>
+                        <li>CE_AI_AssaultWeapon</li>
+                    </weaponTags>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>

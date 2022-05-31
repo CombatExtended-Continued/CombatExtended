@@ -24,7 +24,7 @@
 
 		<!-- Replace vanilla thingClass -->
 		<li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[
+		<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeRailgunTurret" or 
 			defName = "VFES_Turret_ChargeTurret" or		
 			defName = "VFES_Turret_AutocannonDouble" or
@@ -36,14 +36,14 @@
 			defName = "VFES_Turret_TriRocket" or
 			defName = "VFES_Turret_FloorTurret"		        		
 		]/thingClass</xpath>
-        <value>
-          <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
-        </value>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
 		</li>
 
 		<!-- Make turrets taller -->
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeRailgunTurret" or 
 			defName = "VFES_Turret_ChargeTurret" or		
 			defName = "VFES_Turret_AutocannonDouble" or
@@ -53,12 +53,12 @@
 			defName = "VFES_Turret_MilitaryTurret" or				
 			defName = "VFES_Turret_TriRocket"		
 		]/fillPercent</xpath>
-        <value>
-          <fillPercent>0.85</fillPercent>
-        </value>
-      </li>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+		</li>
 
-	  <li Class="PatchOperationAdd">
+		<li Class="PatchOperationAdd">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeRailgunTurret" or 
 			defName = "VFES_Turret_ChargeTurret" or		
@@ -69,14 +69,14 @@
 			defName = "VFES_Turret_MilitaryTurret" or				
 			defName = "VFES_Turret_TriRocket" or
 			defName = "VFES_Turret_FloorTurret" or		        
-      defName = "VFES_Turret_Searchlight"			  
+		defName = "VFES_Turret_Searchlight"			  
 		]/statBases</xpath>
 	  	<value>
 	  		<AimingAccuracy>0.25</AimingAccuracy>
 	  	</value>
-	  </li>
+		</li>
   
-	  <li Class="PatchOperationReplace">
+		<li Class="PatchOperationReplace">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
@@ -87,9 +87,9 @@
 	  	<value>
 	  		<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
 	  	</value>
-	  </li>
+		</li>
 
-	  <li Class="PatchOperationReplace">
+		<li Class="PatchOperationReplace">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeTurret" or		      
 			defName = "VFES_Turret_ChargeRailgunTurret" or 
@@ -99,10 +99,10 @@
 	  	<value>
 	  		<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
 	  	</value>
-	  </li>
+		</li>
 
-    <li Class="PatchOperationReplace">
-      <xpath>Defs/ThingDef[
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeRailgunTurret" or 
 			defName = "VFES_Turret_ChargeTurret" or		
 			defName = "VFES_Turret_AutocannonDouble" or
@@ -112,13 +112,13 @@
 			defName = "VFES_Turret_MilitaryTurret" or
 			defName = "VFES_Turret_FloorTurret" or		        				
 			defName = "VFES_Turret_TriRocket"			 
-      ]/building/turretBurstCooldownTime</xpath>
-      <value>
-        <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
-      </value>
-    </li>
+		]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+		</value>
+		</li>
 
-      <!-- Searchlight -->
+	    <!-- Searchlight -->
 	    <li Class="PatchOperationReplace">
 	    	<xpath>Defs/ThingDef[defName = "VFES_Turret_Searchlight"]/specialDisplayRadius</xpath>
 	    	<value>
@@ -136,353 +136,353 @@
 	    <li Class="PatchOperationReplace">
 	    	<xpath>Defs/ThingDef[defName = "VFES_Gun_Searchlight"]/modExtensions/li[@Class="VFESecurity.ExtendedVerbProperties"]/illuminatedRadius</xpath>
 	    	<value>
-          <illuminatedRadius>6</illuminatedRadius>
+	    		<illuminatedRadius>6</illuminatedRadius>
 	    	</value>
 	    </li>
 
-      <!-- Flame Turret -->
-      <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VFES_Turret_Flame"]/costList/Chemfuel</xpath>
-      </li>
+	      <!-- Flame Turret -->
+	      <li Class="PatchOperationRemove">
+		  <xpath>Defs/ThingDef[defName="VFES_Turret_Flame"]/costList/Chemfuel</xpath>
+	      </li>
 
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_FlameTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.2</ShotSpread>
-          <SwayFactor>1.59</SwayFactor>
-          <Bulk>15.54</Bulk>
-        </statBases>
-        <Properties>
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_FlameTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>3.0</ShotSpread>
+		  <SwayFactor>1.59</SwayFactor>
+		  <Bulk>15.54</Bulk>
+		</statBases>
+		<Properties>
 		  <recoilAmount>0.85</recoilAmount>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
-          <warmupTime>1.2</warmupTime>
-          <range>20</range>
-          <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-          <burstShotCount>16</burstShotCount>
-          <soundCast>VFES_Shot_Flamethrower</soundCast>
-          <soundCastTail>GunTail_Light</soundCastTail>
-          <muzzleFlashScale>0</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>75</magazineSize>
-          <reloadTime>15</reloadTime>
-          <ammoSet>AmmoSet_Flamethrower</ammoSet>
-        </AmmoUser>
-        <FireModes>
-			    <aiUseBurstMode>true</aiUseBurstMode>
-			    <aimedBurstShotCount>10</aimedBurstShotCount>
-			    <aiAimMode>SuppressFire</aiAimMode>				
-        </FireModes>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_Flamethrower_Napalm</defaultProjectile>
+		  <warmupTime>1.2</warmupTime>
+		  <range>20</range>
+		  <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+		  <burstShotCount>16</burstShotCount>
+		  <soundCast>VFES_Shot_Flamethrower</soundCast>
+		  <soundCastTail>GunTail_Light</soundCastTail>
+		  <muzzleFlashScale>0</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>75</magazineSize>
+		  <reloadTime>15</reloadTime>
+		  <ammoSet>AmmoSet_Flamethrower</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		  <aiUseBurstMode>true</aiUseBurstMode>
+		  <aimedBurstShotCount>10</aimedBurstShotCount>
+		  <aiAimMode>SuppressFire</aiAimMode>				
+		</FireModes>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-        <!-- Military Turret -->
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_MilitaryTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.07</ShotSpread>
-          <SwayFactor>0.82</SwayFactor>
-          <Bulk>10.00</Bulk>
-        </statBases>
-        <Properties>
-          <recoilAmount>0.76</recoilAmount>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-          <warmupTime>1.3</warmupTime>
-          <range>54</range>
-          <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-          <burstShotCount>20</burstShotCount>
-          <soundCast>GunShotA</soundCast>
-          <soundCastTail>GunTail_Light</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>200</magazineSize>
-          <reloadTime>12</reloadTime>
-          <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-        </AmmoUser>
-        <FireModes>
-          <aiAimMode>AimedShot</aiAimMode>
-          <noSnapshot>true</noSnapshot>
-          <noSingleShot>true</noSingleShot>
-        </FireModes>
-      </li>
+		<!-- Military Turret -->
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_MilitaryTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.07</ShotSpread>
+		  <SwayFactor>0.82</SwayFactor>
+		  <Bulk>10.00</Bulk>
+		</statBases>
+		<Properties>
+		  <recoilAmount>0.76</recoilAmount>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>true</hasStandardCommand>
+		  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+		  <warmupTime>1.3</warmupTime>
+		  <range>54</range>
+		  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+		  <burstShotCount>20</burstShotCount>
+		  <soundCast>GunShotA</soundCast>
+		  <soundCastTail>GunTail_Light</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>200</magazineSize>
+		  <reloadTime>12</reloadTime>
+		  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
+	      </li>
 
-        <!-- Concealable Military Turret -->
+		<!-- Concealable Military Turret -->
 
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_FloorTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.07</ShotSpread>
-          <SwayFactor>0.82</SwayFactor>
-          <Bulk>10.00</Bulk>
-        </statBases>
-        <Properties>
-          <recoilAmount>0.76</recoilAmount>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-          <warmupTime>1.3</warmupTime>
-          <range>54</range>
-          <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-          <burstShotCount>20</burstShotCount>
-          <soundCast>GunShotA</soundCast>
-          <soundCastTail>GunTail_Light</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>200</magazineSize>
-          <reloadTime>12</reloadTime>
-          <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-        </AmmoUser>
-        <FireModes>
-          <aiAimMode>AimedShot</aiAimMode>
-          <noSnapshot>true</noSnapshot>
-          <noSingleShot>true</noSingleShot>
-        </FireModes>
-      </li>
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_FloorTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.07</ShotSpread>
+		  <SwayFactor>0.82</SwayFactor>
+		  <Bulk>10.00</Bulk>
+		</statBases>
+		<Properties>
+		  <recoilAmount>0.76</recoilAmount>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>true</hasStandardCommand>
+		  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+		  <warmupTime>1.3</warmupTime>
+		  <range>54</range>
+		  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+		  <burstShotCount>20</burstShotCount>
+		  <soundCast>GunShotA</soundCast>
+		  <soundCastTail>GunTail_Light</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>200</magazineSize>
+		  <reloadTime>12</reloadTime>
+		  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
+	      </li>
 
-      <!-- Charge Turret -->
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_ChargeTurret</defName>
-        <statBases>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.08</ShotSpread>
-          <SwayFactor>0.72</SwayFactor>
-          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-          <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
-        </statBases>
-        <Properties>
-          <recoilAmount>1.1</recoilAmount>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
-          <warmupTime>1.3</warmupTime>
-          <range>55</range>
-          <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-          <burstShotCount>10</burstShotCount>
-          <soundCast>Shot_ChargeBlaster</soundCast>
-          <soundCastTail>GunTail_Heavy</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>100</magazineSize>
-          <reloadTime>7.8</reloadTime>
-          <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
-        </AmmoUser>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+	      <!-- Charge Turret -->
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_ChargeTurret</defName>
+		<statBases>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.08</ShotSpread>
+		  <SwayFactor>0.72</SwayFactor>
+		  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		  <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+		</statBases>
+		<Properties>
+		  <recoilAmount>1.1</recoilAmount>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>true</hasStandardCommand>
+		  <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+		  <warmupTime>1.3</warmupTime>
+		  <range>55</range>
+		  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+		  <burstShotCount>10</burstShotCount>
+		  <soundCast>Shot_ChargeBlaster</soundCast>
+		  <soundCastTail>GunTail_Heavy</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>100</magazineSize>
+		  <reloadTime>7.8</reloadTime>
+		  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-      <!-- Double Autocannon -->
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_TurretDoubleAutocannon_Top</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.20</ShotSpread>
-          <SwayFactor>1.72</SwayFactor>
-          <Bulk>25.54</Bulk>
-        </statBases>
-        <Properties>
-          <recoilAmount>1.56</recoilAmount>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
-          <warmupTime>4.3</warmupTime>
-          <range>78</range>
-          <burstShotCount>12</burstShotCount>
-          <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-          <soundCast>Shot_Autocannon</soundCast>
-          <soundCastTail>GunTail_Heavy</soundCastTail>
-          <muzzleFlashScale>12</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>120</magazineSize>
-          <reloadTime>9.8</reloadTime>
-          <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
-        </AmmoUser>
-        <FireModes />
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+	      <!-- Double Autocannon -->
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_TurretDoubleAutocannon_Top</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.20</ShotSpread>
+		  <SwayFactor>1.72</SwayFactor>
+		  <Bulk>25.54</Bulk>
+		</statBases>
+		<Properties>
+		  <recoilAmount>1.56</recoilAmount>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+		  <warmupTime>4.3</warmupTime>
+		  <range>78</range>
+		  <burstShotCount>12</burstShotCount>
+		  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+		  <soundCast>Shot_Autocannon</soundCast>
+		  <soundCastTail>GunTail_Heavy</soundCastTail>
+		  <muzzleFlashScale>12</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>120</magazineSize>
+		  <reloadTime>9.8</reloadTime>
+		  <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes />
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-		  <li Class="PatchOperationReplace">
-		  	<xpath>/Defs/ThingDef[defName = "VFES_Turret_AutocannonDouble"]/researchPrerequisites</xpath>
-		  	<value>
-          <researchPrerequisites>
-            <li>CE_HeavyTurret</li>      
-          </researchPrerequisites>
-		  	</value>
-		  </li>
+	      <li Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName = "VFES_Turret_AutocannonDouble"]/researchPrerequisites</xpath>
+		<value>
+		  <researchPrerequisites>
+		    <li>CE_HeavyTurret</li>      
+		  </researchPrerequisites>
+		</value>
+	      </li>
 
-      <!-- Sentry Gun -->
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_SentryTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.06</ShotSpread>
-          <SwayFactor>1.32</SwayFactor>
-        </statBases>
-        <Properties>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
-          <warmupTime>2.3</warmupTime>
-          <range>62</range>
-          <burstShotCount>50</burstShotCount>
-          <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
-          <soundCast>Shot_Minigun</soundCast>
-          <soundCastTail>GunTail_Medium</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-          <targetParams>
-            <canTargetLocations>True</canTargetLocations>
-          </targetParams>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>500</magazineSize>
-          <reloadTime>9.2</reloadTime>
-          <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-        </AmmoUser>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+	      <!-- Sentry Gun -->
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_SentryTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.06</ShotSpread>
+		  <SwayFactor>1.32</SwayFactor>
+		</statBases>
+		<Properties>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+		  <warmupTime>2.3</warmupTime>
+		  <range>62</range>
+		  <burstShotCount>50</burstShotCount>
+		  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+		  <soundCast>Shot_Minigun</soundCast>
+		  <soundCastTail>GunTail_Medium</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		  <targetParams>
+		    <canTargetLocations>True</canTargetLocations>
+		  </targetParams>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>500</magazineSize>
+		  <reloadTime>9.2</reloadTime>
+		  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-      <!-- Tri-Rocket Turret -->
+	      <!-- Tri-Rocket Turret -->
 
-      <li Class="PatchOperationRemove">
-          <xpath>Defs/ThingDef[defName="VFES_Turret_TriRocket"]/costList/Shell_HighExplosive</xpath>
-      </li>
+	      <li Class="PatchOperationRemove">
+		  <xpath>Defs/ThingDef[defName="VFES_Turret_TriRocket"]/costList/Shell_HighExplosive</xpath>
+	      </li>
 
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_TurretTriRocket_Top</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>5.2</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.05</ShotSpread>
-          <SwayFactor>1.59</SwayFactor>
-          <Bulk>25.54</Bulk>
-        </statBases>
-        <Properties>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_RPG32Rocket_HEAT</defaultProjectile>
-          <warmupTime>1.2</warmupTime>
-          <range>70</range>
-          <burstShotCount>3</burstShotCount>
-          <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-          <soundCast>InfernoCannon_Fire</soundCast>
-          <soundCastTail>GunTail_Heavy</soundCastTail>
-          <muzzleFlashScale>16</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-          <targetParams>
-            <canTargetLocations>True</canTargetLocations>
-          </targetParams>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>12</magazineSize>
-          <reloadTime>10.5</reloadTime>
-          <ammoSet>AmmoSet_RPG32Rocket</ammoSet>
-        </AmmoUser>
-		    <FireModes>
-		      <aiAimMode>AimedShot</aiAimMode>
-		      <noSnapshot>true</noSnapshot>
-		      <noSingleShot>true</noSingleShot>
-		    </FireModes>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_TurretTriRocket_Top</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>5.2</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.05</ShotSpread>
+		  <SwayFactor>1.59</SwayFactor>
+		  <Bulk>25.54</Bulk>
+		</statBases>
+		<Properties>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_RPG32Rocket_HEAT</defaultProjectile>
+		  <warmupTime>1.2</warmupTime>
+		  <range>70</range>
+		  <burstShotCount>3</burstShotCount>
+		  <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
+		  <soundCast>InfernoCannon_Fire</soundCast>
+		  <soundCastTail>GunTail_Heavy</soundCastTail>
+		  <muzzleFlashScale>16</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		  <targetParams>
+		    <canTargetLocations>True</canTargetLocations>
+		  </targetParams>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>12</magazineSize>
+		  <reloadTime>10.5</reloadTime>
+		  <ammoSet>AmmoSet_RPG32Rocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-      <!-- EMP Cannon -->
+	      <!-- EMP Cannon -->
 
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_EMPTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
-          <SightsEfficiency>1</SightsEfficiency>
-          <ShotSpread>0.09</ShotSpread>
-          <SwayFactor>0.46</SwayFactor>
-          <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
-        </statBases>
-        <Properties>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_EMPCannon</defaultProjectile>
-          <warmupTime>3</warmupTime>
-          <range>86</range>
-          <burstShotCount>1</burstShotCount>
-          <ticksBetweenBurstShots>56</ticksBetweenBurstShots>
-          <soundCast>EnergyShield_AbsorbDamage</soundCast>
-          <soundCastTail>GunTail_Medium</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-      </li>
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_EMPTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1</SightsEfficiency>
+		  <ShotSpread>0.09</ShotSpread>
+		  <SwayFactor>0.46</SwayFactor>
+		  <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+		</statBases>
+		<Properties>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_EMPCannon</defaultProjectile>
+		  <warmupTime>3</warmupTime>
+		  <range>86</range>
+		  <burstShotCount>1</burstShotCount>
+		  <ticksBetweenBurstShots>56</ticksBetweenBurstShots>
+		  <soundCast>EnergyShield_AbsorbDamage</soundCast>
+		  <soundCastTail>GunTail_Medium</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+	      </li>
 
-      <!-- Railgun Turret -->
+	      <!-- Railgun Turret -->
 
-      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-        <defName>VFES_Gun_RailgunTurret</defName>
-        <statBases>
-          <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
-          <SightsEfficiency>1.2</SightsEfficiency>
-          <ShotSpread>0.09</ShotSpread>
-          <SwayFactor>0.26</SwayFactor>
-          <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
-        </statBases>
-        <Properties>
-          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-          <hasStandardCommand>True</hasStandardCommand>
-          <defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
-          <warmupTime>2</warmupTime>
-          <range>86</range>
-          <minRange>13</minRange>
-          <burstShotCount>4</burstShotCount>
-          <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-          <soundCast>ChargeLance_Fire</soundCast>
-          <soundCastTail>GunTail_Heavy</soundCastTail>
-          <muzzleFlashScale>9</muzzleFlashScale>
-          <recoilPattern>Mounted</recoilPattern>
-        </Properties>
-        <AmmoUser>
-          <magazineSize>40</magazineSize>
-          <reloadTime>10</reloadTime>
-          <ammoSet>AmmoSet_12mmRailgun</ammoSet>
-        </AmmoUser>
-        <weaponTags Inherit="false">
-          <li>TurretGun</li>
-        </weaponTags>
-		    <FireModes>
-		      <aiAimMode>AimedShot</aiAimMode>
-		      <noSnapshot>true</noSnapshot>
-		      <noSingleShot>true</noSingleShot>
-		    </FireModes>        
-      </li>
+	      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>VFES_Gun_RailgunTurret</defName>
+		<statBases>
+		  <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+		  <SightsEfficiency>1.2</SightsEfficiency>
+		  <ShotSpread>0.09</ShotSpread>
+		  <SwayFactor>0.26</SwayFactor>
+		  <NightVisionEfficiency_Weapon>0.5</NightVisionEfficiency_Weapon>
+		</statBases>
+		<Properties>
+		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		  <hasStandardCommand>True</hasStandardCommand>
+		  <defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+		  <warmupTime>2</warmupTime>
+		  <range>86</range>
+		  <minRange>13</minRange>
+		  <burstShotCount>4</burstShotCount>
+		  <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+		  <soundCast>ChargeLance_Fire</soundCast>
+		  <soundCastTail>GunTail_Heavy</soundCastTail>
+		  <muzzleFlashScale>9</muzzleFlashScale>
+		  <recoilPattern>Mounted</recoilPattern>
+		</Properties>
+		<AmmoUser>
+		  <magazineSize>40</magazineSize>
+		  <reloadTime>10</reloadTime>
+		  <ammoSet>AmmoSet_12mmRailgun</ammoSet>
+		</AmmoUser>
+		<weaponTags Inherit="false">
+		  <li>TurretGun</li>
+		</weaponTags>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>        
+	      </li>
 
 		</operations>
 		</match>

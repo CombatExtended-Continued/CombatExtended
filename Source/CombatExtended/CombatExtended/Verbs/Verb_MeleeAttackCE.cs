@@ -289,8 +289,12 @@ namespace CombatExtended
 
             if (EquipmentSource != null)
             {
+				//crits force a max damage variation roll
+                if (isCrit)
+                    damAmount *= StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn);
                 //melee weapon damage variation
-                damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
+                else
+                    damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
             }
             else if (!CE_StatDefOf.UnarmedDamage.Worker.IsDisabledFor(CasterPawn))  //ancient soldiers can punch even if non-violent, this prevents the disabled stat from being used
             {

@@ -7,6 +7,18 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[
+				defName="MM_Quill" or
+				defName="MM_Tremor" or
+				defName="MM_WispProjectile" or
+				defName="MM_AcidicBreath"
+				]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="MM_Quill"]/projectile</xpath>
 					<value>
@@ -55,44 +67,6 @@
 							<damageDef>MM_AcidicBreath</damageDef>
 							<damageAmountBase>2</damageAmountBase>
 							<flyOverhead>false</flyOverhead>
-						</projectile>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_GazeAttack"]/projectile</xpath>
-					<value>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>MM_PetrifyingGaze</damageDef>
-							<flyOverhead>false</flyOverhead>
-							<damageAmountBase>3</damageAmountBase>
-							<speed>20</speed>
-						</projectile>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_GreenStreamBreath"]/projectile</xpath>
-					<value>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>ToxicBite</damageDef>
-							<flyOverhead>false</flyOverhead>
-							<damageAmountBase>15</damageAmountBase>
-							<speed>20</speed>
-						</projectile>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/VFECore.ExpandableProjectileDef[defName="MM_FlameBreathAnimated"]/projectile</xpath>
-					<value>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<speed>40</speed>
-							<damageDef>Flame</damageDef>
-							<damageAmountBase>2</damageAmountBase>
-							<explosionRadius>1.1</explosionRadius>
-							<ai_IsIncendiary>true</ai_IsIncendiary>
-							<soundExplode>Interact_Ignite</soundExplode>
 						</projectile>
 					</value>
 				</li>
@@ -153,12 +127,11 @@
 								<soundExplode>Interact_Ignite</soundExplode>
 							</projectile>
 						</ThingDef>
-
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-				<xpath>/Defs/DamageDef[defName="MM_PetrifyingGaze"]/additionalHediffs/li[hediff="MM_Petrification"]/severityPerDamageDealt</xpath>
+					<xpath>/Defs/DamageDef[defName="MM_PetrifyingGaze"]/additionalHediffs/li[hediff="MM_Petrification"]/severityPerDamageDealt</xpath>
 					<value>
 						<severityPerDamageDealt>0.035</severityPerDamageDealt>
 					</value>

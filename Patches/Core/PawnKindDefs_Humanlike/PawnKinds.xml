@@ -883,11 +883,22 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationAdd">
+  <Operation Class="PatchOperationConditional">
    <xpath>/Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
-     <value>
-       <li>Apparel_TribalBackpack</li>
-     </value>
+   <nomatch Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]</xpath>
+    <value>
+      <apparelRequired>
+        <li>Apparel_TribalBackpack</li>
+      </apparelRequired>
+    </value>
+   </nomatch>
+   <match Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
+    <value>
+      <li>Apparel_TribalBackpack</li>
+    </value>
+   </match>
   </Operation>
 
   <!-- Stranger in Black -->

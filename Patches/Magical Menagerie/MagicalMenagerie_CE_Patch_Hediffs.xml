@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Magical Menagerie</li>
+		</mods>
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>A Dog Said... Animal Prosthetics</li>
+			</mods>
+					
+			<match Class="PatchOperationSequence">
+				<operations>
+
+				<!--=============== Non-ranged implants ====================-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_ProstheticHorns"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>prosthetic horns</label>
+							  <capacities>
+								 <li>Scratch</li>
+							  </capacities>
+							  <power>8</power>
+							  <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+							  <armorPenetrationSharp>0.15</armorPenetrationSharp>
+							  <cooldownTime>1.8</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_BionicHorns"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+					<value>
+						<tools>
+						   <li Class="CombatExtended.ToolCE">
+							  <label>bionic horns</label>
+							  <capacities>
+								 <li>Blunt</li>
+							  </capacities>
+							  <power>20</power>
+							  <armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							  <armorPenetrationSharp>0.1</armorPenetrationSharp>
+							  <cooldownTime>1.4</cooldownTime>
+						   </li>
+						</tools>
+					</value>
+				</li>
+
+				<!--=============== Ranged implants ====================-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_PetrifyingGazeImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_GazeAttack_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1</warmupTime>
+								<range>20</range>
+								<minRange>1</minRange>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>petrifying gaze</label>
+								<commonality>1</commonality>
+								<recoilAmount>0</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_VenomousQuillImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_Quill</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+								<warmupTime>1.5</warmupTime>
+								<range>18</range>
+								<minRange>2</minRange>
+								<soundCast>MM_QuillSound</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>venomous quills</label>
+								<commonality>1</commonality>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_WispFireImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_WispProjectile</defaultProjectile>
+								<burstShotCount>10</burstShotCount>
+								<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+								<warmupTime>2</warmupTime>
+								<range>15</range>
+								<minRange>1</minRange>
+								<soundCast>MM_PoisonBreathSound</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>wisp breath</label>
+								<commonality>1</commonality>
+								<recoilAmount>0.3</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_AcidicBreathImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_AcidicBreath</defaultProjectile>
+								<burstShotCount>6</burstShotCount>
+								<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+								<warmupTime>2.0</warmupTime>
+								<range>18</range>
+								<minRange>2</minRange>
+								<soundCast>MM_PoisonBreathSound</soundCast>
+								<muzzleFlashScale>0</muzzleFlashScale>
+								<label>acidic breath</label>
+								<commonality>1</commonality>
+								<recoilAmount>0.4</recoilAmount>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_FireBreathImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_FlameBreathAnimated_CE</defaultProjectile>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<warmupTime>2.5</warmupTime>
+								<range>18</range>
+								<minRange>2</minRange>
+								<soundCast>MM_FireBreathSound</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>fire breath</label>
+								<commonality>0.8</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="MM_ToxicBreathImplant"]/comps/li[@Class="MVCF.Comps.HediffCompProperties_ExtendedVerbGiver"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>MM_GreenStreamBreath_CE</defaultProjectile>
+								<burstShotCount>1</burstShotCount>
+								<warmupTime>1.5</warmupTime>
+								<range>14</range>
+								<minRange>1</minRange>
+								<soundCast>MM_PoisonBreathSound</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>toxic breath</label>
+								<commonality>1.0</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

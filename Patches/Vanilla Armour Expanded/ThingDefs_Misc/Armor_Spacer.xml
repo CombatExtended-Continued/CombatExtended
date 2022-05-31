@@ -18,7 +18,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationAdd" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_RoyalTrooperHelmet"]/statBases</xpath>
 					<value>
 						<Bulk>4</Bulk>
@@ -64,7 +64,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_RoyalTrooperHelmet"]/equippedStatOffsets/MentalBreakThreshold</xpath>
 					<value>
 						<AimingAccuracy>0.1</AimingAccuracy>
@@ -208,16 +208,16 @@
 					<value>
 						<Bulk>6</Bulk>
 						<WornBulk>2</WornBulk>
-						<NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
+						<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationAdd" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_RoyalSiegeHelmet"]/statBases</xpath>
 					<value>
 						<Bulk>6</Bulk>
 						<WornBulk>2</WornBulk>
-						<NightVisionEfficiency_Apparel>0.8</NightVisionEfficiency_Apparel>
+						<NightVisionEfficiency_Apparel>0.75</NightVisionEfficiency_Apparel>
 					</value>
 				</li>
 
@@ -262,7 +262,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_RoyalSiegeHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
@@ -288,7 +288,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_RoyalSiegeHelmet"]/costList</xpath>
 					<value>
 						<costList>
@@ -359,7 +359,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_RoyalSiegeArmor"]/equippedStatOffsets</xpath>
 					<value>
 						<equippedStatOffsets>
@@ -394,7 +394,7 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_RoyalSiegeArmor"]/costList</xpath>
 					<value>
 						<costList>
@@ -427,6 +427,42 @@
 							  </li>
 						  </stats>
 					  </li>
+					</value>
+				</li>
+
+				<!-- === Energy shields === -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/statBases/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.03</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/statBases/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>0.6</EnergyShieldEnergyMax>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.15</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_RoyalSiegeArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
+					<value>
+						<EnergyShieldRechargeRate>0.3</EnergyShieldRechargeRate>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_HeavyMarineArmor" or defName="VAE_Apparel_RoyalSiegeArmor"]/comps/li[@Class="VFECore.CompProperties_ShieldBubble"]/EnergyShieldEnergyMax</xpath>
+					<value>
+						<EnergyShieldEnergyMax>150</EnergyShieldEnergyMax>
 					</value>
 				</li>
 

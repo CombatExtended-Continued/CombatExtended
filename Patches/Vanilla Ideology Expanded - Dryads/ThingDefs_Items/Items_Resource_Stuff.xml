@@ -11,13 +11,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/statBases/StuffPower_Armor_Sharp</xpath>
 					<value>
-						<StuffPower_Armor_Sharp>0.4</StuffPower_Armor_Sharp>
+						<StuffPower_Armor_Sharp>0.05</StuffPower_Armor_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/statBases/StuffPower_Armor_Blunt</xpath>
 					<value>
-						<StuffPower_Armor_Blunt>0.075</StuffPower_Armor_Blunt>
+						<StuffPower_Armor_Blunt>0.04</StuffPower_Armor_Blunt>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -25,31 +25,6 @@
 					<value>
 						<StuffPower_Armor_Heat>0.01</StuffPower_Armor_Heat>
 					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps/statFactors/MaxHitPoints</xpath>
-					<value>
-						<MaxHitPoints>1</MaxHitPoints>
-					</value>
-				</li>
-
-				<li Class="PatchOperationConditional">
-					<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps/categories</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps</xpath>
-						<value>
-							<categories>
-							  <li>SoftArmor</li>
-							</categories>
-						</value>
-					</nomatch>
-					<match Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="VDE_Gaubric"]/stuffProps/categories</xpath>
-						<value>
-							<li>SoftArmor</li>
-						</value>
-					</match>
 				</li>
 
 			</operations>
