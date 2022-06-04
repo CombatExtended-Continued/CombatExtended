@@ -93,23 +93,32 @@ namespace CombatExtended
                     var compProps = def.GetCompProperties<CompProperties_Reloadable>();
                     if (compProps.ammoDef is AmmoDef am)
                     {
-                        //95% of the time there is only one ammoset, esspecially for armor shotties
-                        var ammoset = am.AmmoSetDefs.Find(x => x.similarTo != null && x.ammoTypes.Any(x => x.ammo.ammoClass == am.ammoClass));
+                        if (am.AmmoSetDefs.NullOrEmpty())
+                        {
+                            Log.Warning($"Apparel {def} has CE AmmoDef but with no AmmoSetDef");
+                            continue;
+                        }
+
+                        //I don't know why this works but it does. It seems like the AmmoSetDefs here only contain the generic ammo version.
+                        var ammoset = am.AmmoSetDefs.Find(x => x.similarTo == null);
                         if (ammoset != null)
                         {
-                            compProps.ammoDef = ammoset.similarTo.ammoTypes.Find(x => x.ammo.ammoClass == am.ammoClass).ammo;
+                            Log.Message(def.label + " switching to " + ammoset.label);
+                            var ammo = ammoset.ammoTypes.Find(x => (x.ammo?.ammoClass ?? null) == am.ammoClass)?.ammo ?? null;
+
+                            if (ammo == null)
+                            {
+                                ammo = ammoset.ammoTypes[0].ammo;
+                            }
+                            compProps.ammoDef = ammo;
                         }
-                        else if (am.AmmoSetDefs.Any(x => x.similarTo != null))
-                        {
-                            compProps.ammoDef = am.AmmoSetDefs.Find(x => x.similarTo != null).ammoTypes[0].ammo;
-                        }
-                        else if(!am.AmmoSetDefs.NullOrEmpty())
+                        else if (!am.AmmoSetDefs.NullOrEmpty())
                         {
                             Log.Warning($"Apparel {def} has CE AmmoDef {am.AmmoSetDefs[0]} but no similarTo tag");
                         }
                         else
                         {
-                             Log.Warning($"Apparel {def} has CE AmmoDef but with no AmmoSetDef");
+                            Log.Warning($"Apparel {def} has CE AmmoDef with no AmmoSetDefs");
                         }
                     }
                 }
