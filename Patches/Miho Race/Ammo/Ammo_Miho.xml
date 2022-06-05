@@ -2,11 +2,17 @@
 <Patch>
 	  <Operation Class="PatchOperationFindMod">
 			
-		<mods><li>MihoraceBeta</li></mods>
+		<mods><li>Miho, the celestial fox</li></mods>
 			
 		<match Class="PatchOperationAdd">
 			<xpath>Defs</xpath>
 			<value>
+			  <CombatExtended.AmmoCategoryDef>
+				<defName>IncendiaryMiho</defName>
+				<label>armor-piercing incendiary (Miholic)</label>
+				<labelShort>AP-IM</labelShort>
+				<description>Filled with an high intensity incendiary compound that ignites on impact, burning the target, increasing armor penetration and comprimising the structure of the target.</description>
+			  </CombatExtended.AmmoCategoryDef>
 				<CombatExtended.AmmoSetDef>
 					<defName>AmmoSet_MihoPlasma</defName>
 					<label>Rifle Plasma Cell</label>
@@ -33,7 +39,7 @@
 					  <damageAmountBase>10</damageAmountBase>
 					  <damageDef>MihoPlasma</damageDef>
 					  <armorPenetrationSharp>0</armorPenetrationSharp>
-					  <armorPenetrationBlunt>80</armorPenetrationBlunt>
+					  <armorPenetrationBlunt>200</armorPenetrationBlunt>
 					</projectile>
 				</ThingDef>
 				<ThingDef ParentName="Base556x45mmNATOBullet">
@@ -44,12 +50,21 @@
 					  <graphicClass>Graphic_Single</graphicClass>
 					</graphicData>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
-					  <speed>200</speed>
-					  <damageAmountBase>15</damageAmountBase>
+					  <speed>100</speed>
+					  <damageAmountBase>30</damageAmountBase>
 					  <damageDef>MihoPlasma</damageDef>
 					  <armorPenetrationSharp>0</armorPenetrationSharp>
-					  <armorPenetrationBlunt>120</armorPenetrationBlunt>
+					  <armorPenetrationBlunt>400</armorPenetrationBlunt>
 					</projectile>
+					<comps>
+					  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+						<damageAmountBase>120</damageAmountBase>
+						<explosiveDamageType>MihoPlasma</explosiveDamageType>
+						<explosiveRadius>1.7</explosiveRadius>
+						<explosionSound>Explosion_Bomb</explosionSound>
+						<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+					  </li>
+					</comps>
 				</ThingDef>
 				<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
 				  <defName>Bullet_Laser_MihoMiniGun</defName>
@@ -58,10 +73,10 @@
 					<color>(255,160,46)</color>
 				  </graphicData>  
 				  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-					<damageDef>Miho_Laser</damageDef>
-					<damageAmountBase>4</damageAmountBase>
+					<damageDef>MihoPlasma</damageDef>
+					<damageAmountBase>7</damageAmountBase>
 					<armorPenetrationSharp>0</armorPenetrationSharp>
-					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+					<armorPenetrationBlunt>200</armorPenetrationBlunt>
 				  </projectile>         
 				</ThingDef>
 				<ThingDef ParentName="BaseBullet">
@@ -277,6 +292,224 @@
 					<products>
 						<Ammo_MihoStyxArrow>10</Ammo_MihoStyxArrow>
 					</products>
+				</RecipeDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x22mmNambuBase">
+					<defName>Ammo_8x22mmNambu_Miho</defName>
+					<label>8x22mm Nambu cartridge (AP-IM)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Pistol/AP</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.12</MarketValue>
+					</statBases>
+					<ammoClass>IncendiaryMiho</ammoClass>
+					<cookOffProjectile>Bullet_8x22mmNambu_Miho</cookOffProjectile>
+				</ThingDef>
+				<ThingDef ParentName="Base8x22mmNambuBullet">
+					<defName>Bullet_8x22mmNambu_Miho</defName>
+					<label>8x22mm Nambu bullet (AP-IM)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>MihoGunshot</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.88</armorPenetrationBlunt>
+						<secondaryDamage>
+							<li>
+							<def>Flame_Secondary</def>
+							<amount>3</amount>
+							</li>
+						</secondaryDamage>
+					</projectile>
+				</ThingDef>
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_8x22mmNambu_Miho</defName>
+					<label>make 8x22mm Nambu (AP-IM) cartridge x500</label>
+					<description>Craft 500 8x22mm Nambu (AP-IM) cartridges.</description>
+					<jobString>Making 8x22mm Nambu (AP-IM) cartridges.</jobString>
+					<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Steel</li>
+						  </thingDefs>
+						</filter>
+						<count>14</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Prometheum</li>
+						  </thingDefs>
+						</filter>
+						<count>3</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Miho_HeatCeramics</li>
+						  </thingDefs>
+						</filter>
+						<count>1</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>Steel</li>
+						<li>Prometheum</li>
+						<li>Miho_HeatCeramics</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_8x22mmNambu_Miho>500</Ammo_8x22mmNambu_Miho>
+					</products>
+					<workAmount>3000</workAmount>
+				</RecipeDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="8x22mmNambuBase">
+					<defName>Ammo_65x50mmSRArisaka_Miho</defName>
+					<label>6.5x50mmSR cartridge (AP-IM)</label>
+					<graphicData>
+						<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+						<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+						<MarketValue>0.14</MarketValue>
+					</statBases>
+					<ammoClass>IncendiaryMiho</ammoClass>
+					<cookOffProjectile>Bullet_65x50mmSRArisaka_Miho</cookOffProjectile>
+				</ThingDef>
+				<ThingDef ParentName="Base8x22mmNambuBullet">
+					<defName>Bullet_65x50mmSRArisaka_Miho</defName>
+					<label>6.5x50mmSR bullet (AP-IM)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+						<damageDef>MihoGunshot</damageDef>
+						<damageAmountBase>5</damageAmountBase>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<armorPenetrationBlunt>5.88</armorPenetrationBlunt>
+						<secondaryDamage>
+							<li>
+							<def>Flame_Secondary</def>
+							<amount>3</amount>
+							</li>
+						</secondaryDamage>
+					</projectile>
+				</ThingDef>
+				<RecipeDef ParentName="AmmoRecipeBase">
+					<defName>MakeAmmo_65x50mmSRArisaka_Miho</defName>
+					<label>make 6.5x50mmSR (AP-IM) cartridge x500</label>
+					<description>Craft 500 6.5x50mmSR (AP-IM) cartridges.</description>
+					<jobString>Making 6.5x50mmSR (AP-IM) cartridges.</jobString>
+					<researchPrerequisite>Miho_HeavyWeapon</researchPrerequisite>
+					<ingredients>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Steel</li>
+						  </thingDefs>
+						</filter>
+						<count>24</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Prometheum</li>
+						  </thingDefs>
+						</filter>
+						<count>3</count>
+					  </li>
+					  <li>
+						<filter>
+						  <thingDefs>
+							<li>Miho_HeatCeramics</li>
+						  </thingDefs>
+						</filter>
+						<count>2</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>Steel</li>
+						<li>Prometheum</li>
+						<li>Miho_HeatCeramics</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+						<Ammo_65x50mmSRArisaka_Miho>500</Ammo_65x50mmSRArisaka_Miho>
+					</products>
+					<workAmount>4600</workAmount>
+				</RecipeDef>
+				<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo132x92mmSRTuFBase">
+					<defName>Ammo_132x92mmSRTuF_Miho</defName>
+					<label>13.2x92mmSR TuF cartridge (AP-IM)</label>
+					<graphicData>
+					<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+					</graphicData>
+					<statBases>
+					<MarketValue>0.77</MarketValue>   
+					</statBases>
+					<ammoClass>IncendiaryMiho</ammoClass>
+					<cookOffProjectile>Bullet_132x92mmSRTuF_Miho</cookOffProjectile>
+				</ThingDef>
+				<ThingDef ParentName="Base132x92mmSRTuFBullet">
+					<defName>Bullet_132x92mmSRTuF_Miho</defName>
+					<label>13.2x92mmSR TuF bullet (AP-IM)</label>
+					<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>MihoGunshot</damageDef>
+					<damageAmountBase>25</damageAmountBase>
+					<armorPenetrationSharp>44</armorPenetrationSharp>
+					<armorPenetrationBlunt>317.36</armorPenetrationBlunt>
+					<secondaryDamage>
+						<li>
+						<def>Flame_Secondary</def>
+						<amount>16</amount>
+						</li>
+					</secondaryDamage>
+					</projectile>
+				</ThingDef>
+				<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+					<defName>MakeAmmo_132x92mmSRTuF_Miho</defName>
+					<label>make 13.2x92mmSR TuF (AP-IM) cartridge x200</label>
+					<description>Craft 200 13.2x92mmSR TuF (AP-IM) cartridges.</description>
+					<jobString>Making 13.2x92mmSR TuF (AP-IM) cartridges.</jobString>
+					<ingredients>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+						</filter>
+						<count>58</count>
+					</li>
+					<li>
+						<filter>
+						<thingDefs>
+							<li>Prometheum</li>
+						</thingDefs>
+						</filter>
+						<count>6</count>
+					</li>
+					<li>
+						<filter>
+						  <thingDefs>
+							<li>Miho_HeatCeramics</li>
+						  </thingDefs>
+						</filter>
+						<count>2</count>
+					  </li>
+					</ingredients>
+					<fixedIngredientFilter>
+					  <thingDefs>
+						<li>Steel</li>
+						<li>Prometheum</li>
+						<li>Miho_HeatCeramics</li>
+					  </thingDefs>
+					</fixedIngredientFilter>
+					<products>
+					<Ammo_132x92mmSRTuF_Miho>200</Ammo_132x92mmSRTuF_Miho>
+					</products>
+					<workAmount>9800</workAmount>
 				</RecipeDef>
 			</value>
 		</match>	

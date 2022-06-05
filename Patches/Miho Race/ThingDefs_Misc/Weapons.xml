@@ -4,7 +4,7 @@
 		
 		<operations>
 			<li Class="PatchOperationFindMod">
-			<mods><li>MihoraceBeta</li></mods>
+			<mods><li>Miho, the celestial fox</li></mods>
 			<match Class="PatchOperationSequence">
 			<operations>
 			
@@ -538,14 +538,15 @@
 					<defaultProjectile>Bullet_MihoPlasmaSniper</defaultProjectile>
 					<warmupTime>1.7</warmupTime>
 					<range>86</range>
-					<soundCast>Shot_AssaultRifle</soundCast>
+					<soundCast>Miho_CannonPlasma</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
+					<ammoConsumedPerShotCount>48</ammoConsumedPerShotCount>
 				</Properties>
 				
 				<AmmoUser>
-					<magazineSize>3.5</magazineSize>
-					<reloadTime>32</reloadTime>
+					<magazineSize>96</magazineSize>
+					<reloadTime>3.5</reloadTime>
 					<ammoSet>AmmoSet_MihoPlasmaSniper</ammoSet>
 				</AmmoUser>
 				<FireModes>
@@ -801,6 +802,29 @@
 					</tools>
 				</value>
 			</li> 
+			
+			<!-- ========== Ammoset =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_8x22mmNambu"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_8x22mmNambu_Miho>Bullet_8x22mmNambu_Miho</Ammo_8x22mmNambu_Miho>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_65x50mmSRArisaka_Miho>Bullet_65x50mmSRArisaka_Miho</Ammo_65x50mmSRArisaka_Miho>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_132x92mmSRTuF"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_132x92mmSRTuF_Miho>Bullet_132x92mmSRTuF_Miho</Ammo_132x92mmSRTuF_Miho>
+				</value>
+			</li>
 			
 			</operations>
 			</match>
