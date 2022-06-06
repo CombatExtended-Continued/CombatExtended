@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Insectioids</li>
+    </mods>
+      <match Class="PatchOperationSequence">
+        <operations>
+
+		<!-- === Plasma Sword === -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]/statBases</xpath>
+			<value>
+				<Bulk>35</Bulk>
+				<MeleeCounterParryBonus>0.23</MeleeCounterParryBonus>
+				<!-- <ToughnessRating>8</ToughnessRating> -->
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="VFEP_WarcasketMeleeWeapon_PlasmaSword"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>point</label>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>46</power>
+						<cooldownTime>2</cooldownTime>
+						<armorPenetrationBlunt>9</armorPenetrationBlunt>
+						<armorPenetrationSharp>6</armorPenetrationSharp>
+						<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>10</amount>
+							<chance>0.15</chance>
+						</li>
+						</extraMeleeDamages>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>blade</label>
+						<capacities>
+						<li>Cut</li>
+						</capacities>
+						<power>58</power>
+						<cooldownTime>2.6</cooldownTime>
+						<armorPenetrationBlunt>17</armorPenetrationBlunt>
+						<armorPenetrationSharp>5</armorPenetrationSharp>
+						<extraMeleeDamages>
+						<li>
+							<def>Flame</def>
+							<amount>10</amount>
+							<chance>0.5</chance>
+						</li>
+						</extraMeleeDamages>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+        </operations>
+      </match>
+    </match>    
+  </Operation>    
+</Patch>
