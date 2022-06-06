@@ -15,8 +15,7 @@ using RimWorld.Planet;
 
 namespace CombatExtended.Compatibility.Artillery
 {
-    // TODO: Is this needed?
-    /*    [HarmonyPatch(typeof(ArtilleryComp), "TryStartBombardment")]
+    [HarmonyPatch(typeof(ArtilleryComp), "TryStartBombardment")]
     public class Harmony_ArtilleryComp_TryStartBombardment {
         public static bool Prefix(ArtilleryComp __instance) {
             if (__instance.CanAttack)
@@ -32,7 +31,7 @@ namespace CombatExtended.Compatibility.Artillery
             }
             return false;
         }
-    }*/
+    }
 
     [HarmonyPatch(typeof(ArtilleryComp), "BombardmentTick")]
     public class Harmony_ArtilleryComp_BombardmentTick {
