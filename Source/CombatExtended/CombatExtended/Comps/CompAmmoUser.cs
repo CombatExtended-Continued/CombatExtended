@@ -129,7 +129,7 @@ namespace CombatExtended
                 return (HasMagazine && CurMagCount > 0) || HasAmmo;
             }
         }
-        public bool CanBeFiredNow
+        public virtual bool CanBeFiredNow
         {
             get
             {
