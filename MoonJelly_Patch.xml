@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Moonjelly Race</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/race/baseBodySize</xpath>
+				<value>
+					<baseBodySize>0.7</baseBodySize>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/statBases</xpath>
+				<value>
+					<NightVisionEfficiency>1.0</NightVisionEfficiency>
+					<CarryWeight>10</CarryWeight>
+					<CarryBulk>20</CarryBulk>
+					<MeleeDodgeChance>2.1</MeleeDodgeChance>
+					<MeleeCritChance>0.4</MeleeCritChance>
+					<MeleeParryChance>0.5</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+				<label>left tentacle</label>
+				<capacities>
+					<li>Tentacletox</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.0</cooldownTime>
+				<armorPenetrationSharp>0.01</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Tentacles</linkedBodyPartsGroup>
+			</li>	
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/tentaclestrike</xpath>
+					<value>
+						<ToolCapacityDef>
+						<defName>Tentacletox</defName>
+						<label>tentacle strike</label>
+						</ToolCapacityDef>
+						<ManeuverDef>
+						<defName>TentacleStrike</defName>
+						<requiredCapacity>Tentacletox</requiredCapacity>
+						<verb>
+						<verbClass>Verb_MeleeAttackDamageCE</verbClass>
+						<meleeDamageDef>TentacleStrikeDmg</meleeDamageDef>
+						</verb>
+						<logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Poke_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Poke_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Poke_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Poke_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+					</value>
+			</li>
+		<li Class="CombatExtended.ToolCE">
+				<label>right tentacle</label>
+				<capacities>
+					<li>Tentacletox</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1.0</cooldownTime>
+				<armorPenetrationSharp>0.01</armorPenetrationSharp>
+				<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+				<linkedBodyPartsGroup>Tentacles</linkedBodyPartsGroup>
+			</li>	
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Tentacletox</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>1.85</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.46</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
+				<value>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</value>
+			</li>
+				
+			</operations>
+		</match>
+	</Operation>
+</Patch>
