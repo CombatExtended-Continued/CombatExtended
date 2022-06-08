@@ -20,9 +20,9 @@ namespace CombatExtended
                                                                         (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false)
                                                                         &&
                                                                         (
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) is Bullet)
+                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Bullet))
                                                                             ||
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) is Projectile_Explosive)
+                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Projectile_Explosive))
                                                                     )));
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
