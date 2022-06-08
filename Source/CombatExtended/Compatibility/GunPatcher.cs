@@ -23,7 +23,7 @@ namespace CombatExtended
                                                                             ((x.verbs?.FirstOrFallback()?.defaultProjectile ?? null) is Bullet)
                                                                             ||
                                                                             ((x.verbs?.FirstOrFallback()?.defaultProjectile ?? null) is ProjectileExplosive)
-                                                                    ));
+                                                                    )));
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
 
