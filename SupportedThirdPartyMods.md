@@ -420,6 +420,7 @@ VGP Garden Drinks UF    |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
+WarCasket Gundam Addon
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
