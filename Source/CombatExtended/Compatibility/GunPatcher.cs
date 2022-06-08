@@ -15,7 +15,15 @@ namespace CombatExtended
     {
         static GunPatcher()
         {
-            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(x => (x.thingClass == typeof(ThingWithComps) || x.thingClass == typeof(Thing)) && x.IsRangedWeapon && (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false));
+            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(x => !(x.weaponTags?.Contains("Patched") ?? true) && (x.thingClass == typeof(ThingWithComps) || x.thingClass == typeof(Thing)) && x.IsRangedWeapon &&
+                                                                    (
+                                                                        (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false)
+                                                                        &&
+                                                                        (
+                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile ?? null) is Bullet)
+                                                                            ||
+                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile ?? null) is ProjectileExplosive)
+                                                                    ));
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
 
