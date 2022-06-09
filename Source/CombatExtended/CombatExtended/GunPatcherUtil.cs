@@ -110,9 +110,13 @@ namespace CombatExtended
 
             var OldBaseList = gun.statBases.ListFullCopy();
 
-            gun.Verbs.Clear();
+            var oldVerbs = gun.verbs;
 
-            gun.verbs.Clear();
+            var oldComps = gun.comps;
+
+            var oldTools = gun.tools;
+
+            gun.verbs = new List<VerbProperties>();
 
             gun.verbs.Add(preset.gunStats.MemberwiseClone());
 
@@ -132,99 +136,121 @@ namespace CombatExtended
             {
                 gun.comps = new List<CompProperties>();
             }
+            else
+            {
+                gun.comps = new List<CompProperties>(gun.comps);
+            }
 
             float finalMass = preset.Mass;
 
             float finalBulk = preset.Bulk;
-
-            LabelGun specialGun = null;
-
-            #region stat curves
-
-            if (preset.MassCurve != null)
-            {
-                finalMass = preset.MassCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.Mass));
-            }
-
-            #endregion
-
-            if (preset.specialGuns.Any(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any()))
-            {
-                specialGun = preset.specialGuns.Find(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any());
-                gun.comps.Add(new CompProperties_AmmoUser
-                {
-                    ammoSet = specialGun.caliber,
-                    reloadTime = specialGun.reloadTime,
-                    magazineSize = specialGun.magCap,
-                    reloadOneAtATime = preset.reloadOneAtATime
-
-                });
-
-
-
-                finalMass = specialGun.mass;
-
-                finalBulk = specialGun.bulk;
-
-                Log.Message(specialGun.names.First().Colorize(Color.yellow));
-            }
-            else
-            {
-                gun.comps.Add(new CompProperties_AmmoUser
-                {
-                    ammoSet = preset.setCaliber,
-                    reloadTime = preset.ReloadTime,
-                    magazineSize = preset.AmmoCapacity,
-                    reloadOneAtATime = preset.reloadOneAtATime
-
-                });
-            }
-
-            if (preset.DetermineCaliber)
-            {
-                var comp = gun.comps.Find(x => x is CompProperties_AmmoUser) as CompProperties_AmmoUser;
-
-                comp.ammoSet = preset.CaliberRanges.Find
-                    (
-                        x =>
-                        x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
-                        &&
-                        x.SpeedRange.Includes(OldProj.projectile.speed)
-                    )?.AmmoSet ?? comp.ammoSet;
-            }
-
             float FinalCooldown = preset.CooldownTime;
 
-            if (preset.cooldownCurve != null)
-            {
-                FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
-            }
-            #region patching tools
 
-            if (gun.tools != null)
+            LabelGun specialGun = null;
+            try
             {
-                var newtools = new List<Tool>();
-
-                foreach (Tool tool in gun.tools)
+                #region stat curves
+                
+                if (preset.MassCurve != null)
                 {
-                    if (tool is ToolCE)
-                    {
-                        newtools.Add(tool);
-                    }
-                    else
-                    {
-                        newtools.Add(tool.ConvertTool());
-                    }
+                    finalMass = preset.MassCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.Mass));
                 }
 
-                gun.tools = newtools;
+                #endregion
+
+                if (preset.specialGuns.Any(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any()))
+                {
+                    specialGun = preset.specialGuns.Find(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any());
+                    gun.comps.Add(new CompProperties_AmmoUser
+                            {
+                                ammoSet = specialGun.caliber,
+                                reloadTime = specialGun.reloadTime,
+                                magazineSize = specialGun.magCap,
+                                reloadOneAtATime = preset.reloadOneAtATime
+
+                            });
+
+
+
+                    finalMass = specialGun.mass;
+
+                    finalBulk = specialGun.bulk;
+
+                    Log.Message(specialGun.names.First().Colorize(Color.yellow));
+                }
+                else
+                {
+                    gun.comps.Add(new CompProperties_AmmoUser
+                            {
+                                ammoSet = preset.setCaliber,
+                                reloadTime = preset.ReloadTime,
+                                magazineSize = preset.AmmoCapacity,
+                                reloadOneAtATime = preset.reloadOneAtATime
+
+                            });
+                }
+
+                if (preset.DetermineCaliber)
+                {
+                    var comp = gun.comps.Find(x => x is CompProperties_AmmoUser) as CompProperties_AmmoUser;
+
+                    comp.ammoSet = preset.CaliberRanges.Find
+                        (
+                         x =>
+                         x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
+                         &&
+                         x.SpeedRange.Includes(OldProj.projectile.speed)
+                         )?.AmmoSet ?? comp.ammoSet;
+                }
+
+                if (preset.cooldownCurve != null)
+                {
+                    FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
+                }
+                #region patching tools
+
+                if (gun.tools != null)
+                {
+                    var newtools = new List<Tool>();
+
+                    foreach (Tool tool in gun.tools)
+                    {
+                        if (tool is ToolCE)
+                        {
+                            newtools.Add(tool);
+                        }
+                        else
+                        {
+                            Tool newTool;
+                            try
+                            {
+                                newTool = tool.ConvertTool();
+                            }
+                            catch
+                            {
+                                newTool = tool;
+                                Log.Warning($"Failed to convert {tool} to ToolCE");
+                            }
+                            newtools.Add(newTool);
+                        }
+                    }
+                    gun.tools = newtools;
+                }
+
+                #endregion
+
             }
-
-            #endregion
-
+            catch (Exception e)
+            {
+                Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                Log.Error($"Failed auto patching {gun}.  Rolling back");
+                gun.comps = oldComps;
+                gun.tools = oldTools;
+                gun.verbs = oldVerbs;
+            }
             #region addings stats
             gun.comps.Add(preset.fireModes);
-
             gun.AddOrChangeStat(new StatModifier { stat = StatDefOf.Mass, value = finalMass });
 
             gun.AddOrChangeStat(new StatModifier { stat = CE_StatDefOf.Bulk, value = finalBulk });
@@ -261,17 +287,17 @@ namespace CombatExtended
                 if (bipodDef != null)
                 {
                     gun.comps.Add(new CompProperties_BipodComp
-                    {
-                        catDef = bipodDef,
-                        warmupPenalty = bipodDef.warmup_mult_NOT_setup,
-                        warmupMult = bipodDef.warmup_mult_setup,
-                        ticksToSetUp = bipodDef.setuptime,
-                        recoilMultoff = bipodDef.recoil_mult_NOT_setup,
-                        recoilMulton = bipodDef.recoil_mult_setup,
-                        additionalrange = bipodDef.ad_Range,
-                        swayMult = bipodDef.swayMult,
-                        swayPenalty = bipodDef.swayPenalty
-                    });
+                            {
+                                catDef = bipodDef,
+                                warmupPenalty = bipodDef.warmup_mult_NOT_setup,
+                                warmupMult = bipodDef.warmup_mult_setup,
+                                ticksToSetUp = bipodDef.setuptime,
+                                recoilMultoff = bipodDef.recoil_mult_NOT_setup,
+                                recoilMulton = bipodDef.recoil_mult_setup,
+                                additionalrange = bipodDef.ad_Range,
+                                swayMult = bipodDef.swayMult,
+                                swayPenalty = bipodDef.swayPenalty
+                            });
                     gun.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
                 }
             }
