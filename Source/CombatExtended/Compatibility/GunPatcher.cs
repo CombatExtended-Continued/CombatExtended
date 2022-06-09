@@ -13,21 +13,49 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class GunPatcher
     {
+        private static bool shouldPatch(ThingDef thingDef)
+        {
+            if (thingDef.weaponTags?.Contains("Patched") ?? true)
+            {
+                return false;
+            }
+            if (thingDef.thingClass != typeof(ThingWithComps) && thingDef.thingClass != typeof(Thing))
+            {
+                return false;
+            }
+            if (!thingDef.IsRangedWeapon)
+            {
+                return false;
+            }
+            if (thingDef.verbs is List<VerbProperties> verbs)
+            {
+                foreach (var verb in verbs)
+                {
+                    if (verb is VerbPropertiesCE)
+                    {
+                        Log.Warning($"Found partially patched thing {thingDef}.  If this is intentional, insert \"Patched\" into its weaponTags");
+                        return false;
+                    }
+                    if (verb.defaultProjectile?.thingClass is Type tc)
+                    {
+                        if (tc != typeof(Bullet) && tc != typeof(Projectile_Explosive))
+                        {
+                            return false;
+                        }
+                    }
+                    
+                }
+                return true;
+            }
+            return false;
+        }
         static GunPatcher()
         {
-            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(x => !(x.weaponTags?.Contains("Patched") ?? true) && (x.thingClass == typeof(ThingWithComps) || x.thingClass == typeof(Thing)) && x.IsRangedWeapon &&
-                                                                    (
-                                                                        (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false)
-                                                                        &&
-                                                                        (
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Bullet))
-                                                                            ||
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Projectile_Explosive))
-                                                                    )));
+            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
 
-            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.Any(y => !(y is ToolCE)));
+            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.All(y => !(y is ToolCE)));
 
             foreach (var preset in patcherDefs)
             {
@@ -38,20 +66,29 @@ namespace CombatExtended
             {
                 foreach (var gun in unpatchedGuns)
                 {
-                    gun.PatchGunFromPreset(
-                        patcherDefs.MaxBy
-                        (
-                            //random range is there to avoid elements with same values
-                            x =>
-                            (x.DamageRange.Average - (gun.Verbs[0]?.defaultProjectile?.projectile.GetDamageAmount(1f) ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.RangeRange.Average - (gun.Verbs[0]?.range ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.ProjSpeedRange.Average - (gun.Verbs[0]?.defaultProjectile?.projectile.speed ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.WarmupRange.Average - (gun.Verbs[0]?.warmupTime ?? Rand.Range(-800f, -900f)))
-
-                            ));
+                    try
+                    {
+                        gun.PatchGunFromPreset
+                            (
+                             patcherDefs.MaxBy
+                             (
+                              //random range is there to avoid elements with same values
+                              x =>
+                              (
+                               x.DamageRange.Average
+                               +
+                               x.RangeRange.Average
+                               +
+                               x.ProjSpeedRange.Average
+                               +
+                               x.WarmupRange.Average
+                               )));
+                    }
+                    catch (Exception e)
+                    {
+                        Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                        Log.Error($"Unhandled exception patching gun {gun} from preset");
+                    }
                 }
             }
 
@@ -60,7 +97,17 @@ namespace CombatExtended
                 List<Tool> newTools = new List<Tool>();
                 foreach(var tool in toolMisser.tools)
                 {
-                    newTools.Add(tool.ConvertTool());
+                    Tool newTool;
+                    try
+                    {
+                        newTool = tool.ConvertTool();
+                    }
+                    catch 
+                    {
+                        Log.Error($"Failed to autoconvert tool {tool} in {toolMisser}.  Using original");
+                        newTool = tool;
+                    }
+                    newTools.Add(newTool);
                 }
 
                 toolMisser.tools = newTools;
