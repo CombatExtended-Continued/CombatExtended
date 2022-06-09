@@ -6,11 +6,12 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
 
-	<li Class="PatchOperationAdd">
-		<xpath>Defs</xpath>
-		<value>
-
+	<!-- Ammo Categories -->
+		
 	<CombatExtended.AmmoCategoryDef>
 		<defName>MP_MechDart</defName>
 		<label>mechanite dart</label>
@@ -24,7 +25,9 @@
 		<description>A mortar shell designed to apply the Mechanite Plague. Combines high explosive power with the power of the plague, resulting in a lethal combination.</description>
 	</CombatExtended.AmmoCategoryDef>
 
-	<!-- ====== AmmoSet ====== -->
+	<!-- ===== Heavy Mechanite Darts ===== -->
+	
+	<!-- AmmoSet -->
 	<CombatExtended.AmmoSetDef>
 		<defName>MP_AmmoSet_MechDart_Heavy</defName>
 		<label>16mm mechanite dart</label>
@@ -33,7 +36,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ====== Ammo ====== -->	
+	<!-- Ammo -->	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
 		<defName>MP_Ammo_MechDart_Heavy</defName>
 		<description>Hefty darts used to apply the Mechanite Plague from a distance. Used in heavier dart-based weaponry.</description>
@@ -50,7 +53,7 @@
 		<ammoClass>MP_MechDart</ammoClass>
 	</ThingDef>
 
-	<!-- ====== Projectiles ====== -->
+	<!-- Projectiles -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>MP_Bullet_MechDart_Heavy</defName>
 		<label>16mm mechanite dart</label>
@@ -70,7 +73,7 @@
         </modExtensions>
 	</ThingDef>
 
-	<!-- ====== Recipes ====== -->
+	<!-- Recipes -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeMP_Ammo_MechDart_Heavy</defName> <!-- has to be named like this. deal with it. -->
 		<label>make 16mm mechanite dart cartridge x200</label>
@@ -105,8 +108,10 @@
 		</products>
 		<workAmount>6000</workAmount>
 	</RecipeDef>
+	
+	<!-- ===== Light Mechanite Darts ===== -->
 
-	<!-- ====== AmmoSet ====== -->
+	<!-- AmmoSet -->
 	<CombatExtended.AmmoSetDef>
 		<defName>MP_AmmoSet_MechDart_Light</defName>
 		<label>11mm mechanite dart</label>
@@ -115,7 +120,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ====== Ammo ====== -->	
+	<!-- Ammo -->	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
 		<defName>MP_Ammo_MechDart_Light</defName>
 		<description>Small darts used to apply the Mechanite Plague from a distance. Used in lighter dart-based weaponry.</description>
@@ -132,7 +137,7 @@
 		<ammoClass>MP_MechDart</ammoClass>
 	</ThingDef>
 
-	<!-- ====== Projectiles ====== -->
+	<!-- Projectiles -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>MP_Bullet_MechDart_Light</defName>
 		<label>11mm mechanite dart</label>
@@ -152,7 +157,7 @@
         </modExtensions>
 	</ThingDef>
 
-	<!-- ====== Recipes ====== -->
+	<!-- Recipes -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeMP_Ammo_MechDart_Light</defName> <!-- has to be named like this. deal with it. -->
 		<label>make 11mm mechanite dart cartridge x200</label>
@@ -187,8 +192,10 @@
 		</products>
 		<workAmount>3600</workAmount>
 	</RecipeDef>
+	
+	<!-- ===== Plague Mortar Shells ===== -->
 
-	<!-- ====== Ammo ====== -->	
+	<!-- Ammo -->	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
 		<defName>MP_Plague_Shell_81mm</defName>
 		<label>81mm mortar shell (Plague)</label>
@@ -215,7 +222,7 @@
 		</comps>
 	</ThingDef>
 	
-	<!-- ====== Bullet ====== -->	
+	<!-- Projectiles -->	
 	<ThingDef ParentName="Base81mmMortarShell">
 		<defName>MP_Bullet_81mmMortarShell_Plague</defName>
 		<label>81mm mortar shell (plague)</label>
@@ -244,7 +251,7 @@
 		</comps>
 	</ThingDef>
 	
-	<!-- ====== Recipe ====== -->
+	<!-- Recipe -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeMP_Plague_Shell_81mm</defName>
 		<label>make 81mm plague mortar shells x5</label>
@@ -298,8 +305,10 @@
 		<workAmount>12000</workAmount>
 		<researchPrerequisite>MP_MechaniteMortar</researchPrerequisite>
 	</RecipeDef>
+	
+	<!-- ===== Mechanite Shrapnel ===== -->
 
-	<!-- ====== AmmoSet ====== -->
+	<!-- AmmoSet -->
 	<CombatExtended.AmmoSetDef>
 		<defName>MP_AmmoSet_MechShrapnel</defName>
 		<label>mechanite shrapnel</label>
@@ -308,7 +317,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ====== Ammo ====== -->	
+	<!-- Ammo -->	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="762x51mmNATOBase">
 		<defName>MP_Ammo_MechShrapnel</defName>
 		<description>Razor-sharp fragments that can apply the Mechanite Plague from a distance. It is unclear as to how these remain stable during flight, but they're about as effective as normal ammunition.</description>
@@ -326,7 +335,7 @@
 		<cookOffProjectile>MP_Bullet_MechShrapnel</cookOffProjectile>
 	</ThingDef>
 
-	<!-- ====== Projectiles ====== -->
+	<!-- Projectiles -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base762x51mmNATOBullet">
 		<defName>MP_Bullet_MechShrapnel</defName>
 		<label>mechanite shrapnel</label>
@@ -346,7 +355,7 @@
         </modExtensions>
 	</ThingDef>
 
-	<!-- ====== Recipes ====== -->
+	<!-- Recipes -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeMP_Ammo_MechShrapnel</defName> <!-- has to be named like this. deal with it. -->
 		<label>make mechanite shrapnel cartridge x500</label>
@@ -382,7 +391,9 @@
 		<workAmount>4400</workAmount>
 	</RecipeDef>
 
-	<!-- ====== AmmoSet ====== -->
+	<!-- ===== Neolithic Mechanite Darts ===== -->
+	
+	<!-- AmmoSet -->
 	<CombatExtended.AmmoSetDef>
 		<defName>MP_AmmoSet_MechDart_Neolithic</defName>
 		<label>neolithic mechanite dart</label>
@@ -391,7 +402,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-	<!-- ====== Ammo ====== -->	
+	<!-- Ammo -->	
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
 		<defName>MP_Ammo_MechDart_Neolithic</defName>
 		<description>Neolithic darts used to apply the Mechanite Plague from a distance. Due to the lack of a sophisticated injection mechanism, these darts may fail to apply the plague.</description>
@@ -409,7 +420,7 @@
 		<ammoClass>MP_MechDart</ammoClass>
 	</ThingDef>
 
-	<!-- ====== Projectiles ====== -->
+	<!-- Projectiles -->
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseArrowProjectile">
 		<defName>MP_Bullet_MechDart_Neolithic</defName>
 		<label>Neolithic mechanite dart</label>
@@ -429,7 +440,7 @@
         </modExtensions>
 	</ThingDef>
 
-	<!-- ====== Recipes ====== -->
+	<!-- Recipes -->
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeMP_Ammo_MechDart_Neolithic</defName> <!-- has to be named like this. deal with it. -->
 		<label>make neolithic mechanite dart x25</label>
@@ -473,9 +484,159 @@
 		<workAmount>800</workAmount>
 	</RecipeDef>
 
-		</value>
-	</li>
+		
+	
+	
+	<!-- ====== Mechanite Shrapnel Buckshot ====== -->
+	
+	<!-- Ammo Set -->
+	<CombatExtended.AmmoSetDef>
+		<defName>MP_AmmoSet_MechShrapnelBuckshot</defName>
+		<label>mechanite shrapnel buckshot</label>
+		<ammoTypes>
+			<MP_Ammo_MechShrapnelBuckshot>MP_Bullet_MechShrapnelBuckshot</MP_Ammo_MechShrapnelBuckshot>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
 
+	<!-- Ammo -->	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="12GaugeBase">
+		<defName>MP_Ammo_MechShrapnelBuckshot</defName>
+		<description>Razor-sharp fragments that can apply the Mechanite Plague from a distance. It is unclear as to how these remain stable during flight, but they're about as effective as normal ammunition. This variant is designed to scatter over a short distance.</description>
+		<label>mechanite shrapnel buckshot shell</label>
+		<graphicData>
+			<texPath>ThirdParty/CP Metal Gear Solid/Rifle/NL</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.023</Mass>
+			<Bulk>0.07</Bulk>
+			<MarketValue>0.395</MarketValue>
+		</statBases>
+		<ammoClass>BuckShot</ammoClass>
+		<cookOffProjectile>MP_Bullet_MechShrapnelBuckshot</cookOffProjectile>
+	</ThingDef>
+
+	<!-- Projectiles -->
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base12GaugeBullet">
+		<defName>MP_Bullet_MechShrapnelBuckshot</defName>
+		<label>mechanite shrapnel buckshot pellet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>MP_BulletInfect</damageDef>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>4.5</armorPenetrationSharp>
+			<armorPenetrationBlunt>5.78</armorPenetrationBlunt>
+			<speed>76</speed>
+			<spreadMult>17.8</spreadMult>
+			<pelletCount>8</pelletCount>
+		</projectile>
+		<modExtensions>
+            <li Class="MP_MechanitePlague.ModExtension_MechPlagueOdds">
+                <addHediffChance>1.00</addHediffChance>
+				<hediffLowerValue>0.03</hediffLowerValue>
+				<hediffUpperValue>0.04</hediffUpperValue>
+				<extraSpawns>1</extraSpawns>
+            </li>
+        </modExtensions>
+	</ThingDef>
+
+	<!-- Recipes -->
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeMP_Ammo_MechShrapnelBuckshot</defName> <!-- has to be named like this. deal with it. -->
+		<label>make mechanite shrapnel buckshot shells x200</label>
+		<description>Craft 200 mechanite shrapnel buckshot shells.</description>
+		<jobString>Making mechanite shrapnel buckshot shells.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>10</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MP_MechaniteCanister</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>MP_MechaniteCanister</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<MP_Ammo_MechShrapnelBuckshot>200</MP_Ammo_MechShrapnelBuckshot>
+		</products>
+		<workAmount>300</workAmount>
+	</RecipeDef>
+	
+	<!-- ====== Chaos Rocket (uncraftable) ====== -->
+	
+	<!-- Projectile -->
+	<ThingDef ParentName="BaseRPG7Grenade">
+		<defName>MP_Bullet_ChaosLauncher</defName>
+		<label>chaos rocket</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/PlaguePod</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>25</speed>
+			<damageDef>Smoke</damageDef>
+			<explosionRadius>5.8</explosionRadius>
+			<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="MP_MechanitePlague.CompProperties_ProjectileSpawnBursters">
+				<amountSpawned>8</amountSpawned>
+				<doStunPulse>true</doStunPulse>
+				<stunPulseRadius>5.8</stunPulseRadius>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<!-- ===== Incubator Egg Pod (uncraftable) ===== -->
+	<ThingDef ParentName="BaseRPG7Grenade">
+		<defName>MP_Bullet_EggPod</defName>
+		<label>egg pod</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/PlaguePod</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>25</speed>
+			<damageDef>Smoke</damageDef>
+			<explosionRadius>1.8</explosionRadius>
+			<preExplosionSpawnThingDef>Gas_Smoke</preExplosionSpawnThingDef>
+			<preExplosionSpawnChance>1</preExplosionSpawnChance>
+			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+		</projectile>
+		<comps>
+			<li Class="MP_MechanitePlague.CompProperties_ProjectileSpawnBursters">
+				<amountSpawned>1</amountSpawned>
+				<doStunPulse>false</doStunPulse>
+			</li>
+		</comps>
+	</ThingDef>
+	
+			
+			</value>
+		</li>
       </operations>
     </match>
   </Operation>
