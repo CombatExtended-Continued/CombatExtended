@@ -38,6 +38,8 @@ namespace CombatExtended
             {
                 foreach (var gun in unpatchedGuns)
                 {
+                    try
+                    {
                         gun.PatchGunFromPreset
                             (
                              patcherDefs.MaxBy
@@ -53,6 +55,12 @@ namespace CombatExtended
                                +
                                x.WarmupRange.Average
                                )));
+                    }
+                    catch (Exception e)
+                    {
+                        Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                        Log.Error($"Unhandled exception patching gun {gun} from preset");
+                    }
                 }
             }
 
