@@ -102,7 +102,7 @@ namespace CombatExtended
 
         public static void PatchGunFromPreset(this ThingDef gun, GunPatcherPresetDef preset)
         {
-            Log.Message(gun.label);
+            Log.Message($"Auto-patching {gun} ({gun.label})");
 
             var OldProj = gun.Verbs[0].defaultProjectile;
 
