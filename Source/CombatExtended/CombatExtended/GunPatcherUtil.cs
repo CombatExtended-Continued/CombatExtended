@@ -75,21 +75,21 @@ namespace CombatExtended
                    x =>
                    // name checking
                    (x.label.ToLower().Replace("-", "").Split(' ').Any(y => preset.names?.Contains(y) ?? false))
-                   |
+                   ||
                    (preset.names?.Contains(x.label.ToLower()) ?? false)
-                   |
+                   ||
                    x.DiscardDesignationsMatch(preset)
-                   |
+                   ||
                    x.MatchesVerbProps(preset)
-                   |
+                   ||
                    (preset.tags != null && x.weaponTags != null && preset.tags.Intersect(x.weaponTags).Any())
-                   |
+                   ||
                    preset.specialGuns.
                    Any
                    (
                        y =>
                        y.names.Contains(x.label)
-                       |
+                       ||
                        y.names.Intersect(x.label.ToLower().Replace("-", "").Split(' ')).Any()
                        )
                    );
