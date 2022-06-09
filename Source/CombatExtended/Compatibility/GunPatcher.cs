@@ -38,20 +38,21 @@ namespace CombatExtended
             {
                 foreach (var gun in unpatchedGuns)
                 {
-                    gun.PatchGunFromPreset(
-                        patcherDefs.MaxBy
-                        (
-                            //random range is there to avoid elements with same values
-                            x =>
-                            (x.DamageRange.Average - (gun.Verbs[0]?.defaultProjectile?.projectile.GetDamageAmount(1f) ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.RangeRange.Average - (gun.Verbs[0]?.range ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.ProjSpeedRange.Average - (gun.Verbs[0]?.defaultProjectile?.projectile.speed ?? Rand.Range(-800f, -900f)))
-                            +
-                            (x.WarmupRange.Average - (gun.Verbs[0]?.warmupTime ?? Rand.Range(-800f, -900f)))
-
-                            ));
+                        gun.PatchGunFromPreset
+                            (
+                             patcherDefs.MaxBy
+                             (
+                              //random range is there to avoid elements with same values
+                              x =>
+                              (
+                               x.DamageRange.Average
+                               +
+                               x.RangeRange.Average
+                               +
+                               x.ProjSpeedRange.Average
+                               +
+                               x.WarmupRange.Average
+                               )));
                 }
             }
 
