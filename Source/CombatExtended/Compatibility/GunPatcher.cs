@@ -27,7 +27,7 @@ namespace CombatExtended
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
 
-            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.Any(y => !(y is ToolCE)));
+            var toolMissers = DefDatabase<ThingDef>.AllDefs.Where(x => x.tools != null && x.tools.All(y => !(y is ToolCE)));
 
             foreach (var preset in patcherDefs)
             {
