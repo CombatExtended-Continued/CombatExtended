@@ -69,7 +69,17 @@ namespace CombatExtended
                 List<Tool> newTools = new List<Tool>();
                 foreach(var tool in toolMisser.tools)
                 {
-                    newTools.Add(tool.ConvertTool());
+                    Tool newTool;
+                    try
+                    {
+                        newTool = tool.ConvertTool();
+                    }
+                    catch 
+                    {
+                        Log.Error($"Failed to autoconvert tool {tool} in {toolMisser}.  Using original");
+                        newTool = tool;
+                    }
+                    newTools.Add(newTool);
                 }
 
                 toolMisser.tools = newTools;
