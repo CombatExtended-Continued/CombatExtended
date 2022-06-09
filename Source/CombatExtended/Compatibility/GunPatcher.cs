@@ -13,17 +13,45 @@ namespace CombatExtended
     [StaticConstructorOnStartup]
     public class GunPatcher
     {
+        private static bool shouldPatch(ThingDef thingDef)
+        {
+            if (thingDef.weaponTags?.Contains("Patched") ?? true)
+            {
+                return false;
+            }
+            if (thingDef.thingClass != typeof(ThingWithComps) && thingDef.thingClass != typeof(Thing))
+            {
+                return false;
+            }
+            if (!thingDef.IsRangedWeapon)
+            {
+                return false;
+            }
+            if (thingDef.verbs is List<VerbProperties> verbs)
+            {
+                foreach (var verb in verbs)
+                {
+                    if (verb is VerbPropertiesCE)
+                    {
+                        Log.Warning($"Found partially patched thing {thingDef}.  If this is intentional, insert \"Patched\" into its weaponTags");
+                        return false;
+                    }
+                    if (verb.defaultProjectile?.thingClass is Type tc)
+                    {
+                        if (tc != typeof(Bullet) && tc != typeof(Projectile_Explosive))
+                        {
+                            return false;
+                        }
+                    }
+                    
+                }
+                return true;
+            }
+            return false;
+        }
         static GunPatcher()
         {
-            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(x => !(x.weaponTags?.Contains("Patched") ?? true) && (x.thingClass == typeof(ThingWithComps) || x.thingClass == typeof(Thing)) && x.IsRangedWeapon &&
-                                                                    (
-                                                                        (x.verbs?.Any(x => !(x is VerbPropertiesCE)) ?? false)
-                                                                        &&
-                                                                        (
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Bullet))
-                                                                            ||
-                                                                            ((x.verbs?.FirstOrFallback()?.defaultProjectile.thingClass ?? null) == typeof(Projectile_Explosive))
-                                                                    )));
+            var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
 
