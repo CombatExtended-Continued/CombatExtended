@@ -13,8 +13,8 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Mechanized_Helm_Apparel"]/statBases</xpath>
 					<value>
-						<Bulk>100</Bulk>
-						<WornBulk>0</WornBulk>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -29,14 +29,20 @@
 						<ArmorRating_Blunt>5.2</ArmorRating_Blunt>
 					</value>
 				</li>
-
+				
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Mechanized_Helm_Apparel"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-0.8</SmokeSensitivity>
+					</value>
+				</li>
 				
 				<!--Plate Armour-->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Mechanized_Plate_Apparel"]/statBases</xpath>
 					<value>
-						<Bulk>100</Bulk>
-						<WornBulk>0</WornBulk>
+						<Bulk>90</Bulk>
+						<WornBulk>12</WornBulk>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -48,7 +54,79 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Mechanized_Plate_Apparel"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>5.5</ArmorRating_Blunt>
+						<ArmorRating_Blunt>10.8</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Mechanized_Plate_Apparel"]/apparel/bodyPartGroups</xpath>
+					<value>
+						<li>Hands</li>
+						<li>Feet</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Mechanized_Plate_Apparel"]/equippedStatOffsets</xpath>
+					<value>
+						<CarryWeight>12</CarryWeight>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="Mechanized_Plate_Apparel"]</xpath>
+					<value>
+						<li Class="CombatExtended.PartialArmorExt">
+							<stats>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Neck</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+									<parts>
+										<li>Leg</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+									<parts>
+										<li>Arm</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+								<li>
+									<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+									<parts>
+										<li>Hand</li>
+									</parts>
+								</li>
+							</stats>
+						</li>
 					</value>
 				</li>
 				
@@ -88,6 +166,7 @@
 								<power>23</power>
 								<cooldownTime>2.6</cooldownTime>
 								<armorPenetrationSharp>4.755</armorPenetrationSharp>
+								<armorPenetrationBlunt>6.5</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
 							</li>	
 							</tools>	
@@ -97,7 +176,6 @@
 								<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 									<defName>Mechanized_Musket</defName>
 									<statBases>
-										<WorkToMake>40000</WorkToMake>
 										<Mass>1.25</Mass>
 										<Bulk>3.90</Bulk>
 										<SwayFactor>1.02</SwayFactor>
@@ -105,11 +183,6 @@
 										<SightsEfficiency>0.9</SightsEfficiency>
 										<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
 									</statBases>
-									<costList>
-										<Steel>20</Steel>
-										<Gold>5</Gold>
-										<ComponentIndustrial>1</ComponentIndustrial>
-									</costList>
 									<Properties>
 										<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 										<hasStandardCommand>True</hasStandardCommand>
@@ -129,9 +202,6 @@
 									<FireModes>
 										<aiAimMode>AimedShot</aiAimMode>
 									</FireModes>
-									<weaponTags>
-										<li>Mechanized</li>
-									</weaponTags>
 									</li>				
 			</operations>
 		</match>
