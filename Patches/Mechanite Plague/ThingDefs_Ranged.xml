@@ -127,7 +127,7 @@
 					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 				</statBases>
 				<costList>
-					<WoodLog>5</WoodLog>
+					<WoodLog>15</WoodLog>
 				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -290,9 +290,9 @@
 					<WorkToMake>52500</WorkToMake>
 				</statBases>
 				<costList>
-					<Plasteel>25</Plasteel>
-					<Steel>60</Steel>
-					<ComponentIndustrial>13</ComponentIndustrial>
+					<Plasteel>45</Plasteel>
+					<Steel>35</Steel>
+					<ComponentSpacer>2</ComponentSpacer>
 				</costList>
 				<Properties>
 					<recoilAmount>2.64</recoilAmount>
@@ -336,9 +336,10 @@
 					<WorkToMake>49000</WorkToMake>
 				</statBases>
 				<costList>
-					<Steel>60</Steel>
-					<Plasteel>60</Plasteel>
-					<ComponentIndustrial>8</ComponentIndustrial>
+					<Steel>80</Steel>
+					<ComponentSpacer>1</ComponentSpacer>
+					<Chemfuel>50</Chemfuel>
+					<MP_MechaniteCanister>20</MP_MechaniteCanister>
 					<FSX>5</FSX>
 				</costList>
 				<Properties>
@@ -538,193 +539,7 @@
 					<description>A portable, automatic turret that fires a barrage of Mechanite Plague inducing shrapnel. While incredibly powerful, it has a short range and is rather ammo hungry. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 				</value>
 			</li>
-		
-			<!-- =========== Melee Weaponry =========== -->
-			
-			<!-- Plague Needle -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]/statBases</xpath>
-				<value>
-					<Bulk>1</Bulk>
-					<MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
-				</value>
-			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.45</MeleeCritChance>
-						<MeleeParryChance>0.14</MeleeParryChance>
-						<MeleeDodgeChance>0.05</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>handle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>1.29</cooldownTime>
-							<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>blade</label>
-							<capacities>
-								<li>MP_CutInfect</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.21</cooldownTime>
-							<armorPenetrationBlunt>0.396</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.36</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>11</power>
-							<cooldownTime>1.29</cooldownTime>
-							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.46</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Plague Claw -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]/statBases</xpath>
-				<value>
-					<Bulk>3</Bulk>
-					<MeleeCounterParryBonus>0.46</MeleeCounterParryBonus>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.28</MeleeCritChance>
-						<MeleeParryChance>0.46</MeleeParryChance>
-						<MeleeDodgeChance>0.18</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>handle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.32</cooldownTime>
-							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>25</power>
-							<cooldownTime>1.32</cooldownTime>
-							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.38</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>edge</label>
-							<capacities>
-								<li>MP_CutInfect</li>
-							</capacities>
-							<power>17</power>
-							<cooldownTime>1.2</cooldownTime>
-							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.34</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Plague Fang -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]/statBases</xpath>
-				<value>
-					<Bulk>16</Bulk>
-					<MeleeCounterParryBonus>0.83</MeleeCounterParryBonus>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.09</MeleeCritChance>
-						<MeleeParryChance>0.82</MeleeParryChance>
-						<MeleeDodgeChance>0.67</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.47</cooldownTime>
-							<chanceFactor>0.15</chanceFactor>
-							<armorPenetrationBlunt>3.15</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>1.94</cooldownTime>
-							<chanceFactor>0.05</chanceFactor>
-							<armorPenetrationBlunt>1.4</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>30</power> <!-- owie -->
-							<cooldownTime>1.29</cooldownTime>
-							<chanceFactor>1.00</chanceFactor>
-							<armorPenetrationBlunt>3.15</armorPenetrationBlunt>
-							<armorPenetrationSharp>1.58</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	
 			</operations>
 		</match>
 	</Operation>
