@@ -243,7 +243,14 @@ namespace CombatExtended
             }
             catch (Exception e)
             {
-                Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                try 
+                {
+                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                }
+                catch (Exception e1)
+                {
+                    Log.Error("Cannot extract stack trace from "+e);
+                }
                 Log.Error($"Failed auto patching {gun}.  Rolling back");
                 gun.comps = oldComps;
                 gun.tools = oldTools;
