@@ -33,7 +33,6 @@ namespace CombatExtended
                 {
                     if (verb is VerbPropertiesCE)
                     {
-                        Log.Warning($"Found partially patched thing {thingDef}.  If this is intentional, insert \"Patched\" into its weaponTags");
                         return false;
                     }
                     if (verb.defaultProjectile?.thingClass is Type tc)
