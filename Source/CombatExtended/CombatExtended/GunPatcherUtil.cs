@@ -249,7 +249,7 @@ namespace CombatExtended
                 }
                 catch (Exception e1)
                 {
-                    Log.Error("Cannot extract stack trace from "+e);
+                    Log.Error($"Cannot extract stack trace from {e}: Failed with exception {e1}");
                 }
                 Log.Error($"Failed auto patching {gun}.  Rolling back");
                 gun.comps = oldComps;
