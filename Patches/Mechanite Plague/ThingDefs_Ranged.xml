@@ -58,7 +58,7 @@
 
 			<li Class="PatchOperationReplace">
 				<xpath>
-					Defs/ThingDef[defName="MP_Gun_MechaniteStinger" or defName="MP_Gun_MechaniteTempest"]/tools
+					Defs/ThingDef[defName="MP_Gun_MechaniteStinger" or defName="MP_Gun_MechaniteTempest" or defName="MP_Gun_MechaniteSlugger"]/tools
 				</xpath>
 				<value>
 					<tools>
@@ -97,6 +97,24 @@
 				</value>
 			</li>
 			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MP_Gun_ChaosRocket" or defName="MP_Gun_IncubatorSpawner"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>2.44</cooldownTime>
+						<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+				  </tools>
+				</value>
+			</li>
+			
 			<!-- Mechanite Blowpipe -->
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>MP_Gun_MechaniteBlowpipe</defName>
@@ -109,7 +127,7 @@
 					<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
 				</statBases>
 				<costList>
-					<WoodLog>5</WoodLog>
+					<WoodLog>15</WoodLog>
 				</costList>
 				<Properties>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -259,6 +277,130 @@
 				<researchPrerequisite>MP_MechaniteWeaponsIndustrial</researchPrerequisite>
 			</li>
 			
+			<!-- Mechanite Slugger -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MP_Gun_MechaniteSlugger</defName>
+				<statBases>
+					<Mass>9.30</Mass>
+					<RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.38</SwayFactor>
+					<Bulk>4.5</Bulk>
+					<WorkToMake>52500</WorkToMake>
+				</statBases>
+				<costList>
+					<Plasteel>45</Plasteel>
+					<Steel>35</Steel>
+					<ComponentSpacer>2</ComponentSpacer>
+				</costList>
+				<Properties>
+					<recoilAmount>2.64</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>MP_Bullet_MechShrapnelBuckshot</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+					<soundCast>Shot_Shotgun</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>6</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>MP_AmmoSet_MechShrapnelBuckshot</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+					<aiUseBurstMode>TRUE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_BROOM</li>
+				</weaponTags>
+				<researchPrerequisite>MP_MechaniteWeaponsSpacer</researchPrerequisite>
+			</li>
+			
+			<!-- Chaos Launcher -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MP_Gun_ChaosRocket</defName>
+				<statBases>
+					<Mass>18.00</Mass>
+					<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread>
+					<SwayFactor>3.04</SwayFactor>
+					<Bulk>13.0</Bulk>
+					<WorkToMake>49000</WorkToMake>
+				</statBases>
+				<costList>
+					<Steel>80</Steel>
+					<ComponentSpacer>1</ComponentSpacer>
+					<Chemfuel>50</Chemfuel>
+					<MP_MechaniteCanister>20</MP_MechaniteCanister>
+					<FSX>5</FSX>
+				</costList>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>MP_Bullet_ChaosLauncher</defaultProjectile>
+					<warmupTime>2.1</warmupTime>
+					<range>48</range>
+					<burstShotCount>1</burstShotCount>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+				<weaponTags>
+					<li>CE_AI_AOE</li>
+				</weaponTags>
+				<researchPrerequisite>MP_MechaniteWeaponsSpacer</researchPrerequisite>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
+			<!-- Incubator Cannon -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>MP_Gun_IncubatorSpawner</defName>
+				<statBases>
+					<Mass>100.00</Mass>
+					<RangedWeapon_Cooldown>25.00</RangedWeapon_Cooldown>
+					<SightsEfficiency>1.00</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.28</SwayFactor>
+					<Bulk>20.00</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>MP_Bullet_EggPod</defaultProjectile>
+					<warmupTime>10.00</warmupTime>
+					<range>86</range>
+					<burstShotCount>2</burstShotCount>
+					<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+					<soundCast>InfernoCannon_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<onlyManualCast>true</onlyManualCast>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<muzzleFlashScale>14</muzzleFlashScale>
+				</Properties>
+				<FireModes>
+					<aiAimMode>AimedShot</aiAimMode>
+					<noSingleShot>true</noSingleShot>
+				</FireModes>
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
+			</li>
+			
 			<!-- =========== Turrets =========== -->
 			
 			<!-- Shared Traits -->
@@ -397,193 +539,7 @@
 					<description>A portable, automatic turret that fires a barrage of Mechanite Plague inducing shrapnel. While incredibly powerful, it has a short range and is rather ammo hungry. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
 				</value>
 			</li>
-		
-			<!-- =========== Melee Weaponry =========== -->
-			
-			<!-- Plague Needle -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]/statBases</xpath>
-				<value>
-					<Bulk>1</Bulk>
-					<MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
-				</value>
-			</li>
 
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.45</MeleeCritChance>
-						<MeleeParryChance>0.14</MeleeParryChance>
-						<MeleeDodgeChance>0.05</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueNeedle"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>handle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>1</power>
-							<cooldownTime>1.29</cooldownTime>
-							<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>blade</label>
-							<capacities>
-								<li>MP_CutInfect</li>
-							</capacities>
-							<power>10</power>
-							<cooldownTime>1.21</cooldownTime>
-							<armorPenetrationBlunt>0.396</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.36</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>11</power>
-							<cooldownTime>1.29</cooldownTime>
-							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.275</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.46</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Plague Claw -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]/statBases</xpath>
-				<value>
-					<Bulk>3</Bulk>
-					<MeleeCounterParryBonus>0.46</MeleeCounterParryBonus>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.28</MeleeCritChance>
-						<MeleeParryChance>0.46</MeleeParryChance>
-						<MeleeDodgeChance>0.18</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueClaw"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>handle</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>2</power>
-							<cooldownTime>1.32</cooldownTime>
-							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>point</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>25</power>
-							<cooldownTime>1.32</cooldownTime>
-							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.38</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>edge</label>
-							<capacities>
-								<li>MP_CutInfect</li>
-							</capacities>
-							<power>17</power>
-							<cooldownTime>1.2</cooldownTime>
-							<chanceFactor>1.33</chanceFactor>
-							<armorPenetrationBlunt>0.675</armorPenetrationBlunt>
-							<armorPenetrationSharp>0.34</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-			
-			<!-- Plague Fang -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]/statBases</xpath>
-				<value>
-					<Bulk>16</Bulk>
-					<MeleeCounterParryBonus>0.83</MeleeCounterParryBonus>
-				</value>
-			</li>
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]</xpath>
-				<value>
-					<equippedStatOffsets>
-						<MeleeCritChance>0.09</MeleeCritChance>
-						<MeleeParryChance>0.82</MeleeParryChance>
-						<MeleeDodgeChance>0.67</MeleeDodgeChance>
-					</equippedStatOffsets>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="MP_MeleeWeapon_PlagueFang"]/tools</xpath>
-				<value>
-					<tools>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Blunt</li>
-							</capacities>
-							<power>9</power>
-							<cooldownTime>1.47</cooldownTime>
-							<chanceFactor>0.15</chanceFactor>
-							<armorPenetrationBlunt>3.15</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>shaft</label>
-							<capacities>
-								<li>Poke</li>
-							</capacities>
-							<power>5</power>
-							<cooldownTime>1.94</cooldownTime>
-							<chanceFactor>0.05</chanceFactor>
-							<armorPenetrationBlunt>1.4</armorPenetrationBlunt>
-							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
-						</li>
-						<li Class="CombatExtended.ToolCE">
-							<label>head</label>
-							<capacities>
-								<li>MP_StabInfect</li>
-							</capacities>
-							<power>30</power> <!-- owie -->
-							<cooldownTime>1.29</cooldownTime>
-							<chanceFactor>1.00</chanceFactor>
-							<armorPenetrationBlunt>3.15</armorPenetrationBlunt>
-							<armorPenetrationSharp>1.58</armorPenetrationSharp>
-							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
-						</li>
-					</tools>
-				</value>
-			</li>
-	
 			</operations>
 		</match>
 	</Operation>
