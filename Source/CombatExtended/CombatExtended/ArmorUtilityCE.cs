@@ -424,7 +424,7 @@ namespace CombatExtended
             {
                 localPenAmount = projectile.armorPenetrationBlunt * penMulti;
             }
-            else if (dinfo.Instigator.def.thingClass == typeof(Building_TrapDamager))
+            else if (dinfo.Instigator?.def.thingClass == typeof(Building_TrapDamager))
             {
                 //Temporarily deriving spike trap blunt AP based on their vanilla stats, just so they're not entirely broken
                 //TODO proper integration
