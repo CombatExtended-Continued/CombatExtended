@@ -77,7 +77,7 @@ namespace CombatExtended
 								yield return new Command_Action
 								{
 									action = delegate {},
-									defaultLabel = "Bipod IS set up",
+									defaultLabel = "CE_Bipod_Set_Up".Translate(),
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
 								};
 							}
@@ -86,7 +86,7 @@ namespace CombatExtended
 								yield return new Command_Action
 								{
 									action = delegate { },
-									defaultLabel = "Bipod IS NOT set up",
+									defaultLabel = "CE_Bipod_Not_Set_Up".Translate(),
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
 								};
 							}
@@ -105,7 +105,7 @@ namespace CombatExtended
 								yield return new Command_Action
 								{
 									action = DeployUpBipod,
-									defaultLabel = "Deploy bipod",
+									defaultLabel = "CE_Deploy_Bipod".Translate(),
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
 								};
 							}
@@ -114,7 +114,7 @@ namespace CombatExtended
 								yield return new Command_Action
 								{
 									action = CloseBipod,
-									defaultLabel = "Close bipod",
+									defaultLabel = "CE_Close_Bipod".Translate(),
 									icon = ContentFinder<Texture2D>.Get("UI/Buttons/closed_bipod")
 								};
 
