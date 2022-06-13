@@ -13,7 +13,7 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
-            var Apparels = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) && !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
+            var Apparels = new List<ThingDef>(); // DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) && !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
             {
