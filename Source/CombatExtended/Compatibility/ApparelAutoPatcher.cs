@@ -13,7 +13,21 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
-            var Apparels = new List<ThingDef>(); // DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) && !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
+	    var blacklist = new HashSet<string>
+		(from a in DefDatabase<ApparelModBlacklist>.AllDefs.First().modIDs
+		 select a.ToLower());
+	    
+
+	    HashSet<ModContentPack> mods = new HashSet<ModContentPack>
+		(LoadedModManager.RunningMods.Where
+		 (x => !blacklist.Contains(x.PackageId)));
+	    
+	    
+            var Apparels = DefDatabase<ThingDef>.AllDefs.Where
+		(x => x.IsApparel &&
+		 mods.Contains(x.modContentPack) &&
+		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
+		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
             {
