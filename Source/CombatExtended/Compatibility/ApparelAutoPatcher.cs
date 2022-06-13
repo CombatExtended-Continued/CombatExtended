@@ -17,8 +17,13 @@ namespace CombatExtended
 	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
 	    var blacklist = new HashSet<string>
 		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
-		 from b in a.modIds
+		 from b in a.modIDs
 		 select b.ToLower());
+
+	    var blacklistDefNames = new HashSet<string>
+		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
+		 from b in a.defNames
+		 select b);
 	    
 
 	    HashSet<ModContentPack> mods = new HashSet<ModContentPack>
@@ -29,6 +34,7 @@ namespace CombatExtended
             var Apparels = DefDatabase<ThingDef>.AllDefs.Where
 		(x => x.IsApparel &&
 		 mods.Contains(x.modContentPack) &&
+		 !blacklistDefNames.Contains(x.defName) &&
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
