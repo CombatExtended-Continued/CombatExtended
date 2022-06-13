@@ -13,6 +13,8 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
+
+	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
 	    var blacklist = new HashSet<string>
 		(from a in DefDatabase<ApparelModBlacklist>.AllDefs.First().modIDs
 		 select a.ToLower());
@@ -29,13 +31,19 @@ namespace CombatExtended
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
+	    foreach (var apparel in Apparels)
+	    {
+		Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
+	    }
+
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
             {
-                var toPatch = Apparels.Where(x => x.Matches(preset));
+                var toPatch = Apparels.Where(x => x.Matches(preset) && !patched.Contains(x));
 
                 foreach (var apparel in toPatch)
                 {
-                    Log.Message("Autopatching " + apparel.label);
+		    patched.Add(apparel);
+                    Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
 
                     if (apparel.statBases == null)
                     {
