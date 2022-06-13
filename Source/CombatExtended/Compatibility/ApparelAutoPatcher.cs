@@ -16,8 +16,9 @@ namespace CombatExtended
 
 	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
 	    var blacklist = new HashSet<string>
-		(from a in DefDatabase<ApparelModBlacklist>.AllDefs.First().modIDs
-		 select a.ToLower());
+		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
+		 from b in a.modIds
+		 select b.ToLower());
 	    
 
 	    HashSet<ModContentPack> mods = new HashSet<ModContentPack>
