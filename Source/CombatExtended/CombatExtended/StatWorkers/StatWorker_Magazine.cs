@@ -10,11 +10,11 @@ namespace CombatExtended
 {
     public class StatWorker_Magazine : StatWorker
     {
+        public CompAmmoUser compAmmo;
+
         private ThingDef GunDef(StatRequest req)
         {
             var def = req.Def as ThingDef;
-
-        public CompAmmoUser compAmmo;
 
             if (def?.building?.IsTurret ?? false)
                 def = def.building.turretGunDef;
