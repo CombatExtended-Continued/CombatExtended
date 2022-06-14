@@ -87,6 +87,8 @@ namespace CombatExtended
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
 
+	private bool debugAutopatcherLogger = false;
+
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
         public bool DebugDrawInterceptChecks => debugDrawInterceptChecks && debuggingMode;
@@ -97,6 +99,9 @@ namespace CombatExtended
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
+
+	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
+	
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -132,6 +137,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
 #endif
+	    Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
@@ -196,6 +202,9 @@ namespace CombatExtended
                 list.Label("CE_Settings_ShowWebbing_Title".Translate(), tooltip: "CE_Settings_ShowWebbing_Desc".Translate());
                 list.Gap();
             }
+
+	    list.GapLine();
+            list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");	    
 
 #if DEBUG
             // Do Debug settings

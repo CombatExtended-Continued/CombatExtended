@@ -38,9 +38,12 @@ namespace CombatExtended
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
-	    foreach (var apparel in Apparels)
+	    if (Settings.DebugAutopatcherLogger)
 	    {
-		Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
+		foreach (var apparel in Apparels)
+		{
+		    Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
+		}
 	    }
 
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
@@ -50,7 +53,10 @@ namespace CombatExtended
                 foreach (var apparel in toPatch)
                 {
 		    patched.Add(apparel);
-                    Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
+		    if (Settings.DebugAutopatcherLogger)
+		    {
+			Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
+		    }
 
                     if (apparel.statBases == null)
                     {
