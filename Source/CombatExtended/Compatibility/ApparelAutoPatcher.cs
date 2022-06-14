@@ -38,7 +38,7 @@ namespace CombatExtended
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
 		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
-	    if (Settings.DebugAutopatcherLogger)
+	    if (Controller.settings.DebugAutopatcherLogger)
 	    {
 		foreach (var apparel in Apparels)
 		{
@@ -53,7 +53,7 @@ namespace CombatExtended
                 foreach (var apparel in toPatch)
                 {
 		    patched.Add(apparel);
-		    if (Settings.DebugAutopatcherLogger)
+		    if (Controller.settings.DebugAutopatcherLogger)
 		    {
 			Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
 		    }
