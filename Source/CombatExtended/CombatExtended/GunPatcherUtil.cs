@@ -119,6 +119,9 @@ namespace CombatExtended
 
             var oldTools = gun.tools;
 
+	    var oldTags = gun.weaponTags;
+	    gun.weaponTags = new List<string>(oldTags);
+
             gun.verbs = new List<VerbProperties>();
 
             gun.verbs.Add(preset.gunStats.MemberwiseClone());
@@ -211,6 +214,14 @@ namespace CombatExtended
                 {
                     FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
                 }
+
+		if (preset.addTags != null)
+		{
+		    foreach(string tag in preset.addTags)
+		    {
+			gun.weaponTags.Add(tag);
+		    }
+		}
                 #region patching tools
 
                 if (gun.tools != null)
@@ -258,6 +269,7 @@ namespace CombatExtended
                 gun.comps = oldComps;
                 gun.tools = oldTools;
                 gun.verbs = oldVerbs;
+		gun.weaponTags = oldTags;
             }
             #region addings stats
             gun.comps.Add(preset.fireModes);
