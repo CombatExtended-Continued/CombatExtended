@@ -13,15 +13,44 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
-            var Apparels = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsApparel && !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) && !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
+
+	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
+	    var blacklist = new HashSet<string>
+		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
+		 from b in a.modIDs
+		 select b.ToLower());
+
+	    var blacklistDefNames = new HashSet<string>
+		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
+		 from b in a.defNames
+		 select b);
+	    
+
+	    HashSet<ModContentPack> mods = new HashSet<ModContentPack>
+		(LoadedModManager.RunningMods.Where
+		 (x => !blacklist.Contains(x.PackageId)));
+	    
+	    
+            var Apparels = DefDatabase<ThingDef>.AllDefs.Where
+		(x => x.IsApparel &&
+		 mods.Contains(x.modContentPack) &&
+		 !blacklistDefNames.Contains(x.defName) &&
+		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
+		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
+
+	    foreach (var apparel in Apparels)
+	    {
+		Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
+	    }
 
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
             {
-                var toPatch = Apparels.Where(x => x.Matches(preset));
+                var toPatch = Apparels.Where(x => x.Matches(preset) && !patched.Contains(x));
 
                 foreach (var apparel in toPatch)
                 {
-                    Log.Message("Autopatching " + apparel.label);
+		    patched.Add(apparel);
+                    Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
 
                     if (apparel.statBases == null)
                     {
