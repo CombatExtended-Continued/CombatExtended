@@ -255,6 +255,7 @@ Medieval Overhaul   |
 Medieval Quest Rewards  |
 Megafauna	|
 Midworld Expanded: Flak Armor  |
+Miho the Celestial Fox  |
 Mincho, The Mint Choco Slime  |
 Mincho, The Mint Choco Slime ~ HAR ver. |
 MiningCo. MiningHelmet	|
@@ -423,7 +424,7 @@ VGP Garden Drinks UF    |
 Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
-WarCasket Gundam Addon  |
+WarCasket Gundam Addon
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|

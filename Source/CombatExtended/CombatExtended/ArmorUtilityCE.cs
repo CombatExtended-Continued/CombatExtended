@@ -230,12 +230,12 @@ namespace CombatExtended
         /// <param name="armor">The armor apparel</param>
         /// <param name="partDensity">When penetrating body parts, the body part density</param>
         /// <returns>False if the attack is deflected, true otherwise</returns>
-	private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0) {
-	    float maxDamage = float.MaxValue;
-	    return TryPenetrateArmor(def, armorAmount, ref penAmount, ref dmgAmount, ref maxDamage, armor, partDensity);
-	}
-	
-	private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, ref float maxDamage, Thing armor = null, float partDensity = 0)
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0) {
+            float maxDamage = float.MaxValue;
+            return TryPenetrateArmor(def, armorAmount, ref penAmount, ref dmgAmount, ref maxDamage, armor, partDensity);
+        }
+    
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, ref float maxDamage, Thing armor = null, float partDensity = 0)
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
@@ -263,12 +263,12 @@ namespace CombatExtended
                     if (isSharpDmg)
                     {
                         armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-			if (armorDamage > maxDamage) {
-			    armorDamage = maxDamage;
-			}
-			if (armorDamage > 0) {
-			    maxDamage -= armorDamage;
-			}
+                        if (armorDamage > maxDamage) {
+                            armorDamage = maxDamage;
+                        }
+                        if (armorDamage > 0) {
+                            maxDamage -= armorDamage;
+                        }
                         TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                     }
                 }
@@ -278,22 +278,22 @@ namespace CombatExtended
                     // Such armor takes the most damage when the attack has the same amount of armor penetration as the armor has armor amount
                     // Otherwise it's a non-penetration (was unable to perforate the armor) or an over-penetration (creates a nice hole in the armor)
                     // It is assumed that elastic deformation (no damage) occurs when the attack is blunt and has less armor penetration than the armor amount divided by 2
-		    if (!isSharpDmg && (penAmount / armorAmount) < 0.5f)
-		    {
+                    if (!isSharpDmg && (penAmount / armorAmount) < 0.5f)
+                    {
                         armorDamage = 0;
-		    }
-		    else 
-		    {
-		        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
-		    }
-			
-		    if (armorDamage > maxDamage) {
-			armorDamage = maxDamage;
-			newDmgAmount = maxDamage;
-		    }
-		    if (armorDamage > 0) {
-			maxDamage -= armorDamage;
-		    }
+                    }
+                    else 
+                    {
+                        armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
+                    }
+
+                    if (armorDamage > maxDamage) {
+                        armorDamage = maxDamage;
+                        newDmgAmount = maxDamage;
+                    }
+                    if (armorDamage > 0) {
+                        maxDamage -= armorDamage;
+                    }
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                 }
             }
@@ -317,10 +317,10 @@ namespace CombatExtended
         /// <returns>Returns true if the armor takes damage, false if it doesn't.</returns>
         private static bool TryDamageArmor(DamageDef def, float penAmount, float armorAmount, ref float armorDamage, Thing armor)
         {
-	    if (armorDamage == 0) {
-		return false;
-	    }
-            
+            if (armorDamage == 0) {
+                return false;
+            }
+
             // Any fractional armor damage has a chance to get rounded to the largest nearest whole number
             // Combined with the previous dice roll, values between 0 and 1 have an increased chance to get rounded up
             if (Rand.Value < (armorDamage - Mathf.Floor(armorDamage)))
@@ -394,10 +394,11 @@ namespace CombatExtended
         /// <param name="partialPen">Is this is supposed to be a partial penetration</param>
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
         private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, bool partialPen = false) {
-	    float maxDamage = float.MaxValue;
-	    return GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
-	}
-	private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, ref float maxDamage, bool partialPen = false)
+            float maxDamage = float.MaxValue;
+            return GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
+        }
+
+        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, ref float maxDamage, bool partialPen = false)
         {
             if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
             {
@@ -419,12 +420,11 @@ namespace CombatExtended
             //and because localPenAmount is the sharp attack's remaining penetration amount and localDmgAmount is the sharp attack's remaining damage amount,
             //we have to take that amount away from the base penetration amount and damage amount.
             float penMulti = (partialPen ? ((dinfo.ArmorPenetrationInt - localPenAmount) * (dinfo.Amount - localDmgAmount) / dinfo.Amount) : localPenAmount) / dinfo.ArmorPenetrationInt;
-
             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE projectile)
             {
                 localPenAmount = projectile.armorPenetrationBlunt * penMulti;
             }
-            else if (dinfo.Instigator.def.thingClass == typeof(Building_TrapDamager))
+            else if (dinfo.Instigator?.def.thingClass == typeof(Building_TrapDamager))
             {
                 //Temporarily deriving spike trap blunt AP based on their vanilla stats, just so they're not entirely broken
                 //TODO proper integration
@@ -448,14 +448,22 @@ namespace CombatExtended
                 }
             }
             localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
+            
+            //Fragment damage from large fragments often splits up into multiple attacks with reduced damage, which have the same sharp pen I believe,
+            //therefore the deflected damage should also be with reduced damage, but the same blunt pen.
+            //The damage info's damage amount isn't set anywhere within this class, therefore it is a good gauge on how many times the damage split.
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE)
+            {
+                localDmgAmount *= dinfo.Amount / (float)dinfo.Weapon.projectile.damageAmountBase;
+            }
 
-	    if (localDmgAmount > maxDamage) {
-		localDmgAmount = maxDamage;
-	    }
-	    if (localDmgAmount > 0) {
-		maxDamage -= localDmgAmount;
-	    }
-	    
+            if (localDmgAmount > maxDamage) {
+                localDmgAmount = maxDamage;
+            }
+            if (localDmgAmount > 0) {
+                maxDamage -= localDmgAmount;
+            }
+        
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
                 localDmgAmount,
                 localPenAmount,
@@ -509,11 +517,11 @@ namespace CombatExtended
         /// </summary>
         /// <param name="dinfo">DamageInfo to apply to parryThing</param>
         /// <param name="parryThing">Thing taking the damage</param>
-	public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing) {
-	    float maxDamage = float.MaxValue;
-	    ApplyParryDamage(dinfo, parryThing, ref maxDamage);
-	}
-	public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing, ref float maxDamage)
+        public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing) {
+            float maxDamage = float.MaxValue;
+            ApplyParryDamage(dinfo, parryThing, ref maxDamage);
+        }
+        public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing, ref float maxDamage)
         {
             var pawn = parryThing as Pawn;
             if (pawn != null)
@@ -532,13 +540,13 @@ namespace CombatExtended
             {
                 float parryThingArmor;
                 var dmgAmount = dinfo.Amount * 0.5f;
-		if (maxDamage == float.MaxValue) {
-		    maxDamage = dinfo.Amount * 0.1f;
-		}
-		if (Controller.settings.UnlimitParryDamage) {
-		    maxDamage = float.MaxValue;
-		}
-			
+                if (maxDamage == float.MaxValue) {
+                    maxDamage = dinfo.Amount * 0.1f;
+                }
+                if (Controller.settings.UnlimitParryDamage) {
+                    maxDamage = float.MaxValue;
+                }
+            
                 // For apparel
                 if (parryThing.def.IsApparel)
                     parryThingArmor = parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
@@ -553,16 +561,14 @@ namespace CombatExtended
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
 
+                bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, ref maxDamage, parryThing);
 
-		bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, ref maxDamage, parryThing);
-
-		
                 if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dmgAmount > 0) {
-		    var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
-		    if (dmgAmount > 0) {
-			ApplyParryDamage(ndi, parryThing, ref maxDamage);
-		    }
-		}
+                    var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
+                    if (dmgAmount > 0) {
+                        ApplyParryDamage(ndi, parryThing, ref maxDamage);
+                    }
+                }
 
             }
         }
