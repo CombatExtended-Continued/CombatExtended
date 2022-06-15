@@ -8,9 +8,16 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-		<!-- ========== Remove Recipe Maker & Verbs ========== -->			
+		<!-- ========== Remove Recipe Maker & Verbs ========== -->	
+
+		<li Class="PatchOperationAttributeSet">
+			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+			<attribute>ParentName</attribute>
+			<value>BaseWeapon</value>
+		</li>
+		
 		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]//recipeMaker</xpath>
+			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/recipeMaker</xpath>
 		</li>		
 
 
@@ -18,7 +25,7 @@
 			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/costList</xpath>
 		</li>			
 
-		<!-- Without this mod, Grief and Bobcat don't work, and it logs at ForcedMissRadius error.-->
+		
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/verbs</xpath>
 		</li>				
