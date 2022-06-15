@@ -13,7 +13,10 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
-
+	    if (!Controller.settings.EnableApparelAutopatcher)
+	    {
+		return;
+	    }
 	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
 	    var blacklist = new HashSet<string>
 		(from a in DefDatabase<ApparelModBlacklist>.AllDefs

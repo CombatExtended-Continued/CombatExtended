@@ -55,6 +55,11 @@ namespace CombatExtended
         }
         static GunAutoPatcher()
         {
+	    if (!Controller.settings.EnableWeaponAutopatcher)
+	    {
+		return;
+	    }
+	    
             var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;

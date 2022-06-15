@@ -87,8 +87,6 @@ namespace CombatExtended
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
 
-	private bool debugAutopatcherLogger = false;
-
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
         public bool DebugDrawInterceptChecks => debugDrawInterceptChecks && debuggingMode;
@@ -99,10 +97,26 @@ namespace CombatExtended
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
+        #endregion
+
+	#region Autopatcher
+	private bool debugAutopatcherLogger = false;
 
 	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
+
+	private bool enableApparelAutopatcher = true;
+	private bool enableWeaponAutopatcher = true;
+	private bool enableWeaponToughnessAutopatcher = true;
+	private bool enableRaceAutopatcher = true;
+	private bool enablePawnKindAutopatcher = true;
 	
-        #endregion
+	public bool EnableApparelAutopatcher => enableApparelAutopatcher;
+	public bool EnableWeaponAutopatcher => enableWeaponAutopatcher;
+	public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
+	public bool EnableRaceAutopatcher => enableRaceAutopatcher;
+	public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
+
+	#endregion
 
         private bool lastAmmoSystemStatus;
 
@@ -138,6 +152,12 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
 #endif
 	    Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
+	    
+	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", true);
+	    Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
+	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", true);
+	    Scribe_Values.Look(ref enableRaceAutopatcher, "enableRaceAutopatcher", true);
+	    Scribe_Values.Look(ref enablePawnKindAutopatcher, "enablePawnKindAutopatcher", true);
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
@@ -204,7 +224,13 @@ namespace CombatExtended
             }
 
 	    list.GapLine();
-            list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");	    
+            list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");
+
+	    list.CheckboxLabeled("Enable apparel autopatcher", ref enableApparelAutopatcher, "This will enable the apparel autopatcher.");
+	    list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
+	    list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
+	    list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
+	    list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
 
 #if DEBUG
             // Do Debug settings
