@@ -7,39 +7,39 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-		<!-- =========== Burster =========== -->
-		<li Class="PatchOperationAddModExtension">
-		<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>QuadrupedLow</bodyShape>
-			</li>
-		</value>
-		</li>
+    <!-- =========== Burster =========== -->
+    <li Class="PatchOperationAddModExtension">
+    <xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]</xpath>
+    <value>
+      <li Class="CombatExtended.RacePropertiesExtensionCE">
+        <bodyShape>QuadrupedLow</bodyShape>
+      </li>
+    </value>
+    </li>
 
-		<!-- Armor / melee values for the creature. -->
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases/ArmorRating_Blunt</xpath>
-			<value>
-				<ArmorRating_Blunt>5</ArmorRating_Blunt>
-			</value>
-		</li>
-		
-		<li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases/ArmorRating_Sharp</xpath>
-			<value>
-				<ArmorRating_Sharp>3</ArmorRating_Sharp>
-			</value>
-		</li>
-		
-		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases</xpath>
-			<value>
-				<MeleeDodgeChance>0.22</MeleeDodgeChance>
-				<MeleeCritChance>0.05</MeleeCritChance>
-				<MeleeParryChance>0.04</MeleeParryChance>
-			</value>
-		</li>
+    <!-- Armor values for the creature. -->
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases</xpath>
+      <value>
+        <MeleeDodgeChance>0.22</MeleeDodgeChance>
+        <MeleeCritChance>0.05</MeleeCritChance>
+        <MeleeParryChance>0.04</MeleeParryChance>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases/ArmorRating_Blunt</xpath>
+      <value>
+        <ArmorRating_Blunt>3</ArmorRating_Blunt>
+      </value>
+    </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[defName="MP_Mech_Burster"]/statBases/ArmorRating_Sharp</xpath>
+      <value>
+        <ArmorRating_Sharp>2</ArmorRating_Sharp>
+      </value>
+    </li>
 		
 		<!-- Define attacks. -->
 		<li Class="PatchOperationReplace">

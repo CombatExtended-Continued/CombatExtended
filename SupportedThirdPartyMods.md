@@ -93,6 +93,7 @@ AnimalCollabProj	|
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anthro Race |
+Antinium    |
 Anty the War Ant Race |
 Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
@@ -144,6 +145,7 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 ED-Shields	|
+Edge of Descension  |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
@@ -155,6 +157,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
 Expanded Materials - Metals |
