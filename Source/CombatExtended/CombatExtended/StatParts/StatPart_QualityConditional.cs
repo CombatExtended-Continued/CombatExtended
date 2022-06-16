@@ -43,7 +43,7 @@ namespace CombatExtended
 
 		public override void TransformValue(StatRequest req, ref float val)
 		{
-			if (!req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true)
+			if (!(req.Def.GetModExtension<QualityConditionalModExt>()?.UseQualityMult ?? true))
 			{
 				return;
 			}
