@@ -227,7 +227,7 @@ namespace CombatExtended
 	    Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderAutopatcher".Translate());
             Text.Font = GameFont.Small;
-	    lit.Gap();
+	    list.Gap();
 
             list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");
 
