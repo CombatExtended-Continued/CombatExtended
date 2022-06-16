@@ -15,7 +15,7 @@ namespace CombatExtended
     {
         private static bool shouldPatch(ThingDef thingDef)
         {
-            if (thingDef.weaponTags?.Contains("Patched") ?? true)
+            if (thingDef.weaponTags?.Contains("Patched") ?? false)
             {
                 return false;
             }
@@ -42,7 +42,11 @@ namespace CombatExtended
                             return false;
                         }
                     }
-                    var t = verb.GetType();
+		    else
+		    {
+			return false;
+		    }
+                    var t = verb.verbClass;
                     if (t != typeof(Verb_ShootOneUse)  && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
                     {
                         return false;
@@ -68,7 +72,16 @@ namespace CombatExtended
 
             foreach (var preset in patcherDefs)
             {
-                unpatchedGuns.PatchGunsFromPreset(preset);
+		try
+		{
+		    unpatchedGuns.PatchGunsFromPreset(preset);
+		}
+		catch (Exception e)
+		{
+		    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+		    Log.Error($"Unhandled exception handling {preset}");
+
+		}
             }
 
             if (unpatchedGuns.Count() > 0)
