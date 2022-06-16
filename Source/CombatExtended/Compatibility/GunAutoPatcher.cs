@@ -15,7 +15,7 @@ namespace CombatExtended
     {
         private static bool shouldPatch(ThingDef thingDef)
         {
-            if (thingDef.weaponTags?.Contains("Patched") ?? true)
+            if (thingDef.weaponTags?.Contains("Patched") ?? false)
             {
                 return false;
             }
