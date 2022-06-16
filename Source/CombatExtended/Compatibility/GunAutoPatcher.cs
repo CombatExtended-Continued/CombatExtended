@@ -42,6 +42,10 @@ namespace CombatExtended
                             return false;
                         }
                     }
+		    else
+		    {
+			return false;
+		    }
                     var t = verb.verbClass;
                     if (t != typeof(Verb_ShootOneUse)  && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
                     {
