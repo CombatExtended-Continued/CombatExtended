@@ -70,33 +70,54 @@ namespace CombatExtended
 
         public static void PatchGunsFromPreset(this IEnumerable<ThingDef> unpatchedGuns, GunPatcherPresetDef preset)
         {
-            var matchingGuns = unpatchedGuns.Where
-                   (
-                   x =>
-                   // name checking
-                   (x.label.ToLower().Replace("-", "").Split(' ').Any(y => preset.names?.Contains(y) ?? false))
-                   ||
-                   (preset.names?.Contains(x.label.ToLower()) ?? false)
-                   ||
-                   x.DiscardDesignationsMatch(preset)
-                   ||
-                   x.MatchesVerbProps(preset)
-                   ||
-                   (preset.tags != null && x.weaponTags != null && preset.tags.Intersect(x.weaponTags).Any())
-                   ||
-                   preset.specialGuns.
-                   Any
-                   (
-                       y =>
-                       y.names.Contains(x.label)
-                       ||
-                       y.names.Intersect(x.label.ToLower().Replace("-", "").Split(' ')).Any()
-                       )
-                   );
 
-            foreach (var gun in matchingGuns)
+            foreach (var gun in unpatchedGuns)
             {
-                gun.PatchGunFromPreset(preset);
+		try
+		{
+		    bool shouldPatch = false;
+		    if (gun.label.ToLower().Replace("-", "").Split(' ').Any(y => preset.names?.Contains(y) ?? false))
+		    {
+			shouldPatch = true;
+		    }
+		    else if (preset.names?.Contains(gun.label.ToLower()) ?? false)
+		    {
+			shouldPatch = true;
+		    }
+		    else if (gun.DiscardDesignationsMatch(preset))
+		    {
+			shouldPatch = true;
+		    }
+		    else if (gun.MatchesVerbProps(preset))
+		    {
+			shouldPatch = true;
+		    }
+		    else if (preset.tags != null && gun.weaponTags != null && preset.tags.Intersect(gun.weaponTags).Any())
+		    {
+			shouldPatch = true;
+		    }
+		    else if (preset.specialGuns.Any
+			(
+			 y =>
+			 y.names.Contains(gun.label)
+			 ||
+			 y.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ')).Any()
+			 )
+			)
+		    {
+			shouldPatch = true;
+		    }
+
+		    if (shouldPatch)
+		    {
+			gun.PatchGunFromPreset(preset);
+		    }
+		}
+		catch (Exception e)
+		{
+		    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+		    Log.Error($"Unhandled exception patching gun {gun} from preset {preset}");
+		}
             }
         }
 

@@ -72,7 +72,16 @@ namespace CombatExtended
 
             foreach (var preset in patcherDefs)
             {
-                unpatchedGuns.PatchGunsFromPreset(preset);
+		try
+		{
+		    unpatchedGuns.PatchGunsFromPreset(preset);
+		}
+		catch (Exception e)
+		{
+		    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+		    Log.Error($"Unhandled exception handling {preset}");
+
+		}
             }
 
             if (unpatchedGuns.Count() > 0)
