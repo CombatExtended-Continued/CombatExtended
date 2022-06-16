@@ -14,6 +14,10 @@ namespace CombatExtended.Compatibility
     {
         static WeaponToughnessAutoPatcher()
         {
+	    if (!Controller.settings.EnableWeaponToughnessAutopatcher)
+	    {
+		return;
+	    }
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && !x.IsApparel))
             {
 		try {

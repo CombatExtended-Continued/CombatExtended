@@ -11,7 +11,7 @@ using CombatExtended.Compatibility;
 namespace CombatExtended
 {
     [StaticConstructorOnStartup]
-    public class GunPatcher
+    public class GunAutoPatcher
     {
         private static bool shouldPatch(ThingDef thingDef)
         {
@@ -53,8 +53,13 @@ namespace CombatExtended
             }
             return false;
         }
-        static GunPatcher()
+        static GunAutoPatcher()
         {
+	    if (!Controller.settings.EnableWeaponAutopatcher)
+	    {
+		return;
+	    }
+	    
             var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;

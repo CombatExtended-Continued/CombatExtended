@@ -15,6 +15,10 @@ namespace CombatExtended.Compatibility
 
         static PawnKindPatcher()
         {
+	    if (!Controller.settings.EnablePawnKindAutopatcher)
+	    {
+		return;
+	    }
 
             List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => {
                 var hasModExtensions = i.modExtensions?.Any(tt => tt is LoadoutPropertiesExtension) ?? false;

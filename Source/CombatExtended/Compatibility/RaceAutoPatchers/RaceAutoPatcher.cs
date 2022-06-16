@@ -13,6 +13,10 @@ namespace CombatExtended.Compatibility
     {
         static RaceAutoPatcher()
         {
+	    if (!Controller.settings.EnableRaceAutopatcher)
+	    {
+		return;
+	    }
             #region Animal patching
             var animalsUnpatched = DefDatabase<ThingDef>.AllDefs.Where(x =>
                    x.race != null &&

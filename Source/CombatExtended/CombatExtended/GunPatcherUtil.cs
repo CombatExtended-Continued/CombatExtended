@@ -102,7 +102,10 @@ namespace CombatExtended
 
         public static void PatchGunFromPreset(this ThingDef gun, GunPatcherPresetDef preset)
         {
-            Log.Message($"Auto-patching {gun} ({gun.label})");
+	    if (Controller.settings.DebugAutopatcherLogger)
+	    {
+		Log.Message($"Auto-patching {gun} ({gun.label})");
+	    }
 
             var OldProj = gun.Verbs[0].defaultProjectile;
 
@@ -115,6 +118,9 @@ namespace CombatExtended
             var oldComps = gun.comps;
 
             var oldTools = gun.tools;
+
+	    var oldTags = gun.weaponTags;
+	    gun.weaponTags = new List<string>(oldTags);
 
             gun.verbs = new List<VerbProperties>();
 
@@ -208,6 +214,14 @@ namespace CombatExtended
                 {
                     FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
                 }
+
+		if (preset.addTags != null)
+		{
+		    foreach(string tag in preset.addTags)
+		    {
+			gun.weaponTags.Add(tag);
+		    }
+		}
                 #region patching tools
 
                 if (gun.tools != null)
@@ -255,6 +269,7 @@ namespace CombatExtended
                 gun.comps = oldComps;
                 gun.tools = oldTools;
                 gun.verbs = oldVerbs;
+		gun.weaponTags = oldTags;
             }
             #region addings stats
             gun.comps.Add(preset.fireModes);
