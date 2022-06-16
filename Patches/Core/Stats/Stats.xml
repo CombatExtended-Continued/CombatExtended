@@ -45,7 +45,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[@Name = "ArmorRatingBase"]/parts/li[@Class = "StatPart_Quality"]</xpath>
 		<value>
-			<li Class="StatPart_Quality">
+			<li Class="CombatExtended.StatPart_QualityConditional">
 			  <factorAwful>0.5</factorAwful>
 			  <factorPoor>0.75</factorPoor>
 			  <factorNormal>1</factorNormal>
@@ -176,7 +176,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/StatDef[defName="ShootingAccuracyPawn"]/description</xpath>
 		<value>
-			<description>How well a shooter can hold a gun steady when aiming and compensate for recoil.\n\nThe total sway is calculated as:\n(4.5 - shooting accuracy) * weapon sway factor\n\nThe recoil per shot is determined by multiplying this value against the weapon's inherent recoil amount and increases after every shot in a burst.</description>
+			<description>How well a shooter can hold a gun steady when aiming and compensate for recoil.\n\nThe total sway is calculated as:\n(4.5 - weapon handling) * weapon sway factor\n\nThe recoil per shot is determined by multiplying this value against the weapon's inherent recoil amount and increases after every shot in a burst.</description>
 		</value>
 	</Operation>
 

@@ -1,63 +1,115 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Arachne Race</li>
-		</mods>
-		<match Class="PatchOperationSequence">
-		<operations>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Arachne Race</li>
+      <li>Arachne Race (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
 
-      <!-- Arachne Sword -->
-      <li Class="PatchOperationReplace">
-			<xpath>/Defs/ThingDef[defName="Arachne_Sword"]/tools</xpath>
-      <value>
-        <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>handle</label>
-          <capacities>
-          <li>Blunt</li>
-          </capacities>
-          <power>18</power>
-          <cooldownTime>2.1</cooldownTime>
-          <armorPenetrationBlunt>2</armorPenetrationBlunt>
-		  <armorPenetrationSharp>0.1</armorPenetrationSharp>
-          <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+        <!-- Arachne Sword -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Arachne_Sword"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>18</power>
+                <cooldownTime>2.1</cooldownTime>
+                <armorPenetrationBlunt>2</armorPenetrationBlunt>
+                <armorPenetrationSharp>0.1</armorPenetrationSharp>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>edge</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>38</power>
+                <cooldownTime>3</cooldownTime>
+                <chanceFactor>1.33</chanceFactor>
+                <armorPenetrationSharp>4</armorPenetrationSharp>
+                <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
         </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>edge</label>
-          <capacities>
-          <li>Scratch</li>
-          </capacities>
-          <power>38</power>
-          <cooldownTime>3</cooldownTime>
-          <chanceFactor>1.33</chanceFactor>
-          <armorPenetrationSharp>4</armorPenetrationSharp>
-		  <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Arachne_Sword"]/statBases</xpath>
+          <value>
+            <Bulk>5</Bulk>
+            <MeleeCounterParryBonus>3</MeleeCounterParryBonus>
+          </value>
         </li>
-        </tools>
-      </value>
-		  </li>
 
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="Arachne_Sword"]/statBases</xpath>
-        <value>
-          <Bulk>5</Bulk>
-          <MeleeCounterParryBonus>3</MeleeCounterParryBonus>
-        </value>
-      </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Arachne_Sword"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.60</MeleeCritChance>
+              <MeleeParryChance>0.375</MeleeParryChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
 
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="Arachne_Sword"]</xpath>
-        <value>
-          <equippedStatOffsets>
-				    <MeleeCritChance>0.60</MeleeCritChance>
-				    <MeleeParryChance>0.375</MeleeParryChance>
-			    </equippedStatOffsets>
-        </value>
-      </li>
-	  
-	</operations>
-  </match>
-	</Operation>
+        <!-- Arachne Scythe -->
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/ThingDef[defName="Arachne_Scythe"]/tools</xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>handle</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>7</power>
+                <cooldownTime>2.46</cooldownTime>
+                <armorPenetrationBlunt>1.75</armorPenetrationBlunt>
+                <chanceFactor>0.15</chanceFactor>
+                <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+              </li>
+              <li Class="CombatExtended.ToolCE">
+                <label>edge</label>
+                <capacities>
+                  <li>Scratch</li>
+                </capacities>
+                <power>22</power>
+                <cooldownTime>2.83</cooldownTime>
+                <chanceFactor>1.122</chanceFactor>
+                <armorPenetrationSharp>5.065</armorPenetrationSharp>
+                <armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Arachne_Scythe"]/statBases</xpath>
+          <value>
+            <Bulk>8</Bulk>
+            <MeleeCounterParryBonus>0.69</MeleeCounterParryBonus>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/ThingDef[defName="Arachne_Scythe"]</xpath>
+          <value>
+            <equippedStatOffsets>
+              <MeleeCritChance>0.1</MeleeCritChance>
+              <MeleeParryChance>0.63</MeleeParryChance>
+              <MeleeDodgeChance>0.67</MeleeDodgeChance>
+            </equippedStatOffsets>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
 </Patch>

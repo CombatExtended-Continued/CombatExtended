@@ -268,6 +268,45 @@
 					</tools>
 				</value>
 			</li>
+
+			<!-- Jaws -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="AdvancedBionicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.25</cooldownTime>
+						<armorPenetrationSharp>0.3</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="BionicJaw" or defName="SilentJaw" or defName="HydraulicJaw"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+						<label>teeth</label>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>4</power>
+						<cooldownTime>1.25</cooldownTime>
+						<armorPenetrationSharp>0.2</armorPenetrationSharp>
+						<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
 		</operations>
 	</match>
 	</Operation>

@@ -85,9 +85,19 @@
   </Operation>
 
   <Operation Class="PatchOperationAttributeAdd">
-  <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
     <attribute>Inherit</attribute>
-    <value>false</value>
+      <value>false</value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Apparel_Gunlink"]/equippedStatOffsets</xpath>
+    <value>
+      <equippedStatOffsets>
+        <AimingAccuracy>0.6</AimingAccuracy>
+        <ShootingAccuracyPawn>1.5</ShootingAccuracyPawn>
+      </equippedStatOffsets>
+    </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
