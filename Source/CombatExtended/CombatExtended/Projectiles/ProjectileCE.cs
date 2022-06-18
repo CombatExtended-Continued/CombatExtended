@@ -1091,7 +1091,13 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-
+	    
+            if (def.projectile.explosionEffect != null)
+            {
+                Effecter effecter = def.projectile.explosionEffect.Spawn();
+                effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
+                effecter.Cleanup();
+            }
             var explodingComp = this.TryGetComp<CompExplosiveCE>();
 
             if (explodingComp == null)
