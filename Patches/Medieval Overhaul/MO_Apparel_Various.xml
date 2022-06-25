@@ -8,8 +8,18 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-<!--Utility-->
-    <!--Quiver-->
+        <!--Jewelry-->
+        <li Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[@Name="DankPyon_NecklaceBase"]/statBases</xpath>
+            <value>
+                <Bulk>0.25</Bulk>
+                <WornBulk>0</WornBulk>
+            </value>
+        </li>
+
+
+        <!--Utility-->
+        <!--Quiver-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Quiver"]/statBases</xpath>
             <value>
@@ -17,6 +27,7 @@
                 <WornBulk>0</WornBulk>
             </value>
         </li>
+
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Quiver"]</xpath>
             <value>
@@ -27,7 +38,7 @@
             </value>
         </li>
 
-<!--Gloves 'n Boots'-->
+        <!--Gloves 'n Boots'-->
         <li Class="PatchOperationRemove">
             <xpath>Defs/ThingDef[
             defName="DankPyon_Handwear_GlovesLeather" or
@@ -65,10 +76,10 @@
             </value>
         </li>
 
-<!--Boots-->
+        <!--Boots-->
 
-<!--Body-->
-	<!--Leather Tunic-->
+        <!--Body-->
+        <!--Leather Tunic-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Sackcloth"]/statBases</xpath>
             <value>
@@ -83,7 +94,8 @@
 				<StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
 			</value>
 		</li>
-    <!--Leather Tunic-->
+
+        <!--Leather Tunic-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Leather_Tunic"]/statBases</xpath>
             <value>
@@ -99,8 +111,8 @@
 			</value>
 		</li>
 
-    <!--Padded Surcoat, Gambeson-->
-    <!--Surcoat:skin, Gambeson:middle-->
+        <!--Padded Surcoat, Gambeson-->
+        <!--Surcoat:skin, Gambeson:middle-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
                 defName="DankPyon_Apparel_Padded_Surcoat" or 
@@ -173,16 +185,18 @@
             </value>
         </li>
 
+        <!-- Added extra coverage -->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
                 defName="DankPyon_Apparel_Padded_Surcoat" or 
                 defName="Dankpyon_Apparel_Gambeson"]/apparel/bodyPartGroups</xpath>
             <value>
-                <li>Legs</li>                  <!-- Added extra coverage -->
+                <li>Legs</li>                  
                 <li>Arms</li>
             </value>
         </li>
-    <!--Padded Leather-->
+
+        <!--Padded Leather-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Padded_Leather"]/statBases</xpath>
             <value>
@@ -198,7 +212,7 @@
 			</value>
 		</li>
 
-	<!--Lamellar-->
+	    <!--Lamellar-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Light_Lamellar"]/statBases</xpath>
             <value>
@@ -214,7 +228,7 @@
 			</value>
 		</li>
 
-    <!--Hauberk, Heavy Hauberk-->
+        <!--Hauberk, Heavy Hauberk-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Hauberk" or defName="DankPyon_Apparel_Heavy_Hauberk"]/statBases</xpath>
             <value>
@@ -308,7 +322,7 @@
             </value>
         </li>
 
-    <!--Coat Of Plates, Brigandine-->
+        <!--Coat Of Plates, Brigandine-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
                 defName="DankPyon_Apparel_Brigandine"]/statBases</xpath>
@@ -347,7 +361,7 @@
             </value>
         </li>
 
-    <!--Breast Plate-->
+        <!--Breast Plate-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_Breast_Plate"]/statBases</xpath>
             <value>
@@ -375,7 +389,7 @@
         </li>
 
 
-    <!--Full Plate-->
+        <!--Full Plate-->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[defName="DankPyon_Apparel_FullPlate"]/statBases</xpath>
             <value>
@@ -445,7 +459,7 @@
             </value>
         </li>
   
-      </operations>
+        </operations>
 	</match>
 	</Operation>
 
