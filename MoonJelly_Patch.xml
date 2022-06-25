@@ -52,6 +52,7 @@
 										<armorPenetration>0.09</armorPenetration>
 										<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
 									</li>
+									<!-- had to add both tentacles hits here because they were not applying the anesthetic effect-->
 									<li Class="CombatExtended.ToolCE">
 									<label>left tentacle</label>
 									<capacities>
@@ -78,23 +79,7 @@
 								</tools>
 							</value>
 						</li>
-						<!-- Patch for bionic tentacles and implants-->
-						<li Class="PatchOperationReplace">
-						<xpath>/Defs/HediffDef[defName="BionicMoonJellyTentacle"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
-						<value>
-							<tools>
-								<li Class="CombatExtended.ToolCE">
-								<label>tentacle</label>
-									<capacities>
-									<li>Tentacletox</li>
-									</capacities>
-									<power>0.2</power>
-									<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
-									<cooldownTime>0.5</cooldownTime>
-								</li>
-							</tools>
-						</value>
-						</li>
+						<!--Had to lower the severity of anesthethic by 10 because they were just downing living creatures in one hit-->
 						<li Class="PatchOperationReplace">
 							<xpath>/Defs/DamageDef[defName="TentacleStrikeDmg"]/additionalHediffs/li[hediff="Anesthetic"]/severityPerDamageDealt</xpath>
 							<value>
