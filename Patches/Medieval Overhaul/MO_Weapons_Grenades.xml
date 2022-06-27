@@ -223,8 +223,6 @@
                     <explosiveRadius>2.5</explosiveRadius>
                     <explosiveDamageType>Stun</explosiveDamageType>
                     <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-                    <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
-                    <preExplosionSpawnChance>1</preExplosionSpawnChance>
                     <explodeOnKilled>True</explodeOnKilled>
                     <wickTicks>60~100</wickTicks>
                 </li>   
@@ -253,7 +251,7 @@
                 <targetParams>
                     <canTargetLocations>true</canTargetLocations>
                 </targetParams>
-                <defaultProjectile>DankPyon_Weapon_PotFlash</defaultProjectile>
+                <defaultProjectile>DankPyon_Proj_PotFlash</defaultProjectile>
                 <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
             </Properties>
             <weaponTags>
@@ -322,9 +320,11 @@
             <xpath>Defs/ThingDef[defName="DankPyon_Proj_PotSmoke"]/projectile</xpath>
             <value>
                 <projectile Class="CombatExtended.ProjectilePropertiesCE">
-                    <explosionRadius>2.5</explosionRadius>
-                    <damageDef>Stun</damageDef>
+                    <explosionRadius>3</explosionRadius>
+                    <damageDef>Smoke</damageDef>
                     <explosionDelay>100</explosionDelay>
+                    <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+                    <postExplosionSpawnChance>1</postExplosionSpawnChance>                    
                     <speed>10</speed>
                     <gravityFactor>2</gravityFactor>
                 </projectile>
@@ -347,7 +347,7 @@
         <li Class="PatchOperationReplace">
             <xpath>Defs/ThingDef[defName="DankPyon_Weapon_PotFlashSmoke"]/graphicData/texPath</xpath>
             <value>
-                <texPath>Projectile/FlashPot</texPath>
+                <texPath>Projectile/SmokePot</texPath>
             </value>
         </li>
 
@@ -403,7 +403,7 @@
                 <targetParams>
                     <canTargetLocations>true</canTargetLocations>
                 </targetParams>
-                <defaultProjectile>DankPyon_Weapon_PotFlashSmoke</defaultProjectile>
+                <defaultProjectile>DankPyon_Proj_PotSmoke</defaultProjectile>
                 <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
             </Properties>
             <weaponTags>
