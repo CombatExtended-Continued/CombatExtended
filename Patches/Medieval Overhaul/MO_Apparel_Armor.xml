@@ -35,15 +35,6 @@
             </value>
         </li>
 
-        <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Dankpyon_Apparel_Gambeson"]/apparel/layers</xpath>
-            <value>
-                <layers>
-                    <li>Middle</li>             
-                </layers>
-            </value>
-        </li>
-
         <!-- Added extra coverage -->
         <li Class="PatchOperationAdd">
             <xpath>Defs/ThingDef[
@@ -55,6 +46,16 @@
                 <li>Arms</li>
             </value>
         </li>
+
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+                defName="DankPyon_Apparel_Padded_Surcoat" or 
+                defName="Dankpyon_Apparel_Gambeson"
+                ]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+			</value>
+		</li>
 
         <!--Padded Leather-->
         <li Class="PatchOperationAdd">
