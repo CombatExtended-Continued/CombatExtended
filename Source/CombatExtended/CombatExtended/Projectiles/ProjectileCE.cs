@@ -879,7 +879,7 @@ namespace CombatExtended
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         /// <param name="closerProjAsOrigin">Whether or not the ratio of distance from the projectile to the explosion radius + suppression radius
         /// should influence where the origin of the suppression is</param>
-        private void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f, bool closerProjAsOrigin = false)
+        protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f, bool closerProjAsOrigin = false)
         {
             if (!def.projectile.damageDef.harmsHealth)
                 return;
@@ -937,12 +937,6 @@ namespace CombatExtended
             base.Tick();
             if (landed)
             {
-                if (def.projectile.explosionDelay == 0 || !def.projectile.damageDef.harmsHealth)
-                    return;
-                var suppressThings = new List<Pawn>();
-                suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map, SuppressionRadius + def.projectile.explosionRadius));
-                foreach (var thing in suppressThings)
-                    ApplySuppression(thing, 1, true);
                 return;
             }
             LastPos = ExactPosition;

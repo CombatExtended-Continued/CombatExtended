@@ -985,8 +985,16 @@ namespace CombatExtended
 
         public static Vector3 ToVec3Gridified(this Vector3 originalVec3)
         {
-            float highestNormalCoord = Math.Max(originalVec3.normalized.x, originalVec3.normalized.z);
-            return new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord);
+            Vector2 tempVec2 = new Vector2(originalVec3.normalized.x, originalVec3.normalized.z);
+            float factor = Math.Max(Mathf.Abs(tempVec2.x), Mathf.Abs(tempVec2.y));
+            // If factor <= 0.6f, something has definitely gone wrong;
+            if (factor <= 0.6f)
+            {
+                Log.Warning("CE calling ToVec3Gridified with a Vector3 that has a factor of no more than 0.6; returning original Vector3");
+                return originalVec3;
+            }
+            //Log.Warning("ToVec3Gridified " + (new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord)).ToString());
+            return new Vector3(originalVec3.x / factor, originalVec3.y, originalVec3.z / factor);
         }
     }
 }

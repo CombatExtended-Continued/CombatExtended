@@ -3,6 +3,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 using System.Collections.Generic;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -25,6 +26,17 @@ namespace CombatExtended
                 {
                     //Explosions are all handled in base
                     base.Impact(null);
+                    return;
+                }
+                if (landed)
+                {
+                    if (def.projectile.damageDef.harmsHealth)
+                    {
+                        var suppressThings = new List<Pawn>();
+                        suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map, SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f)));
+                        foreach (var thing in suppressThings)
+                            ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay), true);
+                    }
                 }
             }
         }
