@@ -150,14 +150,6 @@ namespace CombatExtended
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
                     cellRating = Mathf.Min(coverRating, 2f) * 8f;
                 }
-
-            }
-
-            for (int i = 0; i < interceptors.Count; i++)
-            {
-                CompProjectileInterceptor interceptor = interceptors[i];
-                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                    cellRating += 20f;
             }
 
             foreach (IntVec3 pos in pawn.Map.PartialLineOfSights(cell, shooterPos))
@@ -180,6 +172,13 @@ namespace CombatExtended
             }
 
             cellRating += 12f - (bonusCellRating * 8f);
+
+            for (int i = 0; i < interceptors.Count; i++)
+            {
+                CompProjectileInterceptor interceptor = interceptors[i];
+                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
+                    cellRating += 20f;
+            }
 
             // Avoid bullets and other danger sources.
             cellRating -= dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX * dangerAmountFactor;
