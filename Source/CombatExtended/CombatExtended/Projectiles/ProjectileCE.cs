@@ -535,7 +535,7 @@ namespace CombatExtended
 	{
 	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
 	    {
-		ApplySuppression(pawn, def.projectile.explosionDelay > 0 ? airborneFuseSuppressionFactor : 1f);
+		ApplySuppression(pawn);
 	    }
 	}
 
@@ -767,7 +767,7 @@ namespace CombatExtended
                     var pawn = thing as Pawn;
                     if (pawn != null)
                     {
-                        ApplySuppression(pawn, def.projectile.explosionDelay > 0 ? airborneFuseSuppressionFactor : 1f);
+                        ApplySuppression(pawn);
                     }
                 }
             }
@@ -880,6 +880,7 @@ namespace CombatExtended
         /// <param name="closerProjAsOrigin">Whether or not the ratio of distance from the projectile to the explosion radius + suppression radius
         /// should influence where the origin of the suppression is</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f, bool closerProjAsOrigin = false)
+
         {
             if (!def.projectile.damageDef.harmsHealth)
                 return;
@@ -905,7 +906,7 @@ namespace CombatExtended
                 && pawn.Faction != launcher?.Faction
                 && (shield == null || shield.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.GetDamageAmount(1);
+                suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
                 var propsCE = def.projectile as ProjectilePropertiesCE;
                 var explodeRadius = propsCE.explosionRadius;
                 var dPosX = ExactPosition.x - pawn.DrawPos.x;
@@ -924,7 +925,7 @@ namespace CombatExtended
                     if (!landed && def.projectile.explosionDelay > 0)
                         suppressionAmount *= airborneFuseSuppressionFactor;
                     // Larger suppression amount at distances compared to linear interpolation.
-                    suppressionAmount *= distanceFactor * suppressionMultiplier;
+                    suppressionAmount *= distanceFactor;
                 }
                 compSuppressable.AddSuppression(suppressionAmount,
                     closerProjAsOrigin ? Vector3.Lerp(OriginIV3.ToVector3Shifted(), ExactPosition, distanceFactor).ToIntVec3() : OriginIV3);
@@ -1131,7 +1132,7 @@ namespace CombatExtended
             //If the comp exists, it'll already call CompFragments
             if (explodingComp != null || def.projectile.explosionRadius > 0f)
             {
-                float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
+                float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 2.2f : 0f);
                 //Handle anything explosive
                 if (hitThing is Pawn pawn && pawn.Dead)
                     ignoredThings.Add(pawn.Corpse);
@@ -1176,8 +1177,8 @@ namespace CombatExtended
                         ApplySuppression(thing, explosionSuppressionFactor, true);
                     var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor;
                     DangerTracker.Notify_DangerRadiusAt(Position,
-                        Math.Max(Mathf.Sqrt(explosionSuppressionRadius * explosionSuppressionRadius * dangerAmount * SuppressionUtility.dangerAmountFactor) *
-                            0.2f, explosionSuppressionRadius) + 0.5f,
+                        Math.Max(explosionSuppressionRadius * Mathf.Sqrt(dangerAmount * SuppressionUtility.dangerAmountFactor) *
+                            0.2f, explosionSuppressionRadius) + 0.9f,
                         dangerAmount);
                 }
             }

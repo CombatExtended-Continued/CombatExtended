@@ -33,7 +33,8 @@ namespace CombatExtended
                     if (def.projectile.damageDef.harmsHealth)
                     {
                         var suppressThings = new List<Pawn>();
-                        suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map, SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f)));
+                        suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map,
+                            SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 2.2f : 0f)));
                         foreach (var thing in suppressThings)
                             ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay), true);
                     }
@@ -60,11 +61,11 @@ namespace CombatExtended
             ticksToDetonation = def.projectile.explosionDelay;
             if (def.projectile.damageDef.harmsHealth)
             {
-                var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor;
-                var explosionSuppressionRadius = def.projectile.explosionRadius + SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
+                var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor + ticksToDetonation;
+                var explosionSuppressionRadius = def.projectile.explosionRadius + SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 2.2f : 0f);
                 DangerTracker.Notify_DangerRadiusAt(Position,
-                    Math.Max(Mathf.Sqrt(explosionSuppressionRadius * explosionSuppressionRadius * dangerAmount * SuppressionUtility.dangerAmountFactor) *
-                        0.2f, explosionSuppressionRadius) + 0.5f,
+                    Math.Max(explosionSuppressionRadius * Mathf.Sqrt(dangerAmount * SuppressionUtility.dangerAmountFactor) *
+                        0.2f, explosionSuppressionRadius) + 0.9f,
                     dangerAmount);
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
             }

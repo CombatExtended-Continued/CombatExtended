@@ -148,7 +148,7 @@ namespace CombatExtended
                 {
                     pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 2f) * 10f;
+                    cellRating = Mathf.Min(coverRating, 2f) * 8f;
                 }
 
             }
@@ -170,8 +170,8 @@ namespace CombatExtended
                 {
                     // A pawn crouches down only next to nearby cover, therefore they can hide behind distanced cover that is higher than their current crouch height;
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
-                    if (distancedCoverRating * 10f > cellRating)
-                        cellRating = Mathf.Min(distancedCoverRating, 2f) * 10f;
+                    if (distancedCoverRating * 8f > cellRating)
+                        cellRating = Mathf.Min(distancedCoverRating, 2f) * 8f;
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace CombatExtended
                 }
             }
 
-            cellRating += 1f + (1f - bonusCellRating) * 10f;
+            cellRating += 12f - (bonusCellRating * 8f);
 
             // Avoid bullets and other danger sources.
             cellRating -= dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX * dangerAmountFactor;
@@ -187,7 +187,7 @@ namespace CombatExtended
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
             {
-                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) / 2f;
+                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 4f;
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
