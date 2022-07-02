@@ -11,7 +11,9 @@ namespace CombatExtended
 {
     public static class SuppressionUtility
     {
-        public const float maxCoverDist = 10f; //Maximum distance to run for cover to
+        private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
+
+        public const float dangerAmountFactor = 0.25f; // Multiplier for danger amount at a cell while calculating how safe the cell is;
 
         private static LightingTracker lightingTracker;
 
@@ -53,7 +55,6 @@ namespace CombatExtended
             {
                 return null;
             }
-            float distToSuppressor = (pawn.Position - comp.SuppressorLoc).LengthHorizontal;
             IntVec3 coverPosition;
 
             //Try to find cover position to move up to
@@ -106,6 +107,7 @@ namespace CombatExtended
                 }
             }
             coverPosition = bestPos;
+            //Log.Warning("best cell at " + bestPos.ToString() + ' ' + bestRating.ToString());
             lightingTracker = null;
             return bestRating >= 0;
         }
@@ -117,38 +119,70 @@ namespace CombatExtended
             {
                 return -1;
             }
+            float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
+                pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
+                pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
+                pawnLowestCrouchFillPercent = pawnHeightFactor * CollisionVertical.BodyRegionBottomHeight + pawnVisibleOverCoverFillPercent,
+                pawnCrouchFillPercent = pawnLowestCrouchFillPercent;
 
-            float cellRating = 0;
+            Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
 
+            // Line of sight is extremely important;
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating += 4f;
+                cellRating = 20f;
             }
             else
             {
-                //Check if cell has cover in desired direction
-                Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
+                // Check if cell has cover in desired direction;
                 IntVec3 coverCell = (cell.ToVector3Shifted() + coverVec).ToIntVec3();
                 Thing cover = coverCell.GetCover(pawn.Map);
-                cellRating += GetCoverRating(cover) * 2;
+                // Recheck with priority given to diagonal cover;
+                if (cover == null || cover is Plant || cover is Gas)
+                {
+                    coverCell = (cell.ToVector3Shifted() + coverVec.ToVec3Gridified()).ToIntVec3();
+                    cover = coverCell.GetCover(pawn.Map);
+                }
+                // Only account for solid cover;
+                if (cover != null && !(cover is Plant || cover is Gas))
+                {
+                    pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
+                    var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
+                    cellRating = Mathf.Min(coverRating, 2f) * 10f;
+                }
+
             }
 
-            // Avoid bullets and other danger source
-            cellRating -= dangerTracker.DangerAt(cell) * 4;
+            for (int i = 0; i < interceptors.Count; i++)
+            {
+                CompProjectileInterceptor interceptor = interceptors[i];
+                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
+                    cellRating += 20f;
+            }
 
-            // better cover rating system
-            float coverLOSRating = 0;
             foreach (IntVec3 pos in pawn.Map.PartialLineOfSights(cell, shooterPos))
             {
                 Thing cover = pos.GetCover(pawn.Map);
                 if (cover == null)
                     continue;
-                if (cover is Gas)
-                    coverLOSRating += 2;
-                else if (cover.def.Fillage == FillCategory.Partial)
-                    coverLOSRating += 4;
+                // Check if the pawn already has hard cover and the cover currently is hard cover; then do custom formula for increasing cell rating;
+                if (!(cover is Gas || cover is Plant))
+                {
+                    // A pawn crouches down only next to nearby cover, therefore they can hide behind distanced cover that is higher than their current crouch height;
+                    var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
+                    if (distancedCoverRating * 10f > cellRating)
+                        cellRating = Mathf.Min(distancedCoverRating, 2f) * 10f;
+                }
+                else
+                {
+                    bonusCellRating *= 1f - GetCoverRating(cover);
+                }
             }
-            cellRating += Mathf.Min(coverLOSRating, 25);
+
+            cellRating += 1f + (1f - bonusCellRating) * 10f;
+
+            // Avoid bullets and other danger sources.
+            cellRating -= dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX * dangerAmountFactor;
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
@@ -160,21 +194,17 @@ namespace CombatExtended
                     pathCost *= 5;
                 cellRating = cellRating / pathCost;
             }
-            for (int i = 0; i < interceptors.Count; i++)
-            {
-                CompProjectileInterceptor interceptor = interceptors[i];
-                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                    cellRating += 10;
-            }
             return cellRating;
         }
 
         private static float GetCoverRating(Thing cover)
         {
-            if (cover == null) return 0;
-            if (cover is Gas) return 0.8f;
-            if (cover.def.category == ThingCategory.Plant) return cover.def.fillPercent; // Plant cover only has a random chance to block gunfire and is rated lower            
-            return 1;
+            // Higher values mean more effective at being considered cover.
+            if (cover == null) return 0f;
+            if (cover is Gas) return 0.2f;
+            // Plant cover has a random chance to block projectiles and span a long height, therefore efficiency stacks
+            if (cover.def.category == ThingCategory.Plant) return 0.45f * cover.def.fillPercent;
+            return 0f;
         }
 
         public static bool TryGetSmokeScreeningJob(Pawn pawn, IntVec3 suppressorLoc, out Job job)

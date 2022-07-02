@@ -46,7 +46,16 @@ namespace CombatExtended
             }
             landed = true;
             ticksToDetonation = def.projectile.explosionDelay;
-            GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
+            if (def.projectile.damageDef.harmsHealth)
+            {
+                var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor;
+                var explosionSuppressionRadius = def.projectile.explosionRadius + SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
+                DangerTracker.Notify_DangerRadiusAt(Position,
+                    Math.Max(Mathf.Sqrt(explosionSuppressionRadius * explosionSuppressionRadius * dangerAmount * SuppressionUtility.dangerAmountFactor) *
+                        0.2f, explosionSuppressionRadius) + 0.5f,
+                    dangerAmount);
+                GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
+            }
         }
     }
 }

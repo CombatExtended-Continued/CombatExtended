@@ -982,5 +982,11 @@ namespace CombatExtended
             }
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
+
+        public static Vector3 ToVec3Gridified(this Vector3 originalVec3)
+        {
+            float highestNormalCoord = Math.Max(originalVec3.normalized.x, originalVec3.normalized.z);
+            return new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord);
+        }
     }
 }
