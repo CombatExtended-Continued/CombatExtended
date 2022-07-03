@@ -36,7 +36,7 @@ namespace CombatExtended
                         suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map,
                             SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 2.2f : 0f)));
                         foreach (var thing in suppressThings)
-                            ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay), true);
+                            ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay));
                     }
                 }
             }
@@ -61,7 +61,7 @@ namespace CombatExtended
             ticksToDetonation = def.projectile.explosionDelay;
             if (def.projectile.damageDef.harmsHealth)
             {
-                var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor + ticksToDetonation;
+                var dangerAmount = def.projectile.damageAmountBase * explosiveDangerFactor + ticksToDetonation;
                 var explosionSuppressionRadius = def.projectile.explosionRadius + SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 2.2f : 0f);
                 DangerTracker.Notify_DangerRadiusAt(Position,
                     Math.Max(explosionSuppressionRadius * Mathf.Sqrt(dangerAmount * SuppressionUtility.dangerAmountFactor) *

@@ -35,7 +35,12 @@ namespace CombatExtended
         /// <summary>
         /// By how much is the damage of the projectile multiplied before being sent as danger amount.
         /// </summary>
-        protected const float dangerAmountFactor = 1f;
+        protected const float projectileDangerFactor = 0.5f;
+
+        /// <summary>
+        /// By how much is the damage of an explosive projectile is multiplied before being sent as danger amount.
+        /// </summary>
+        protected const float explosiveDangerFactor = 1f;
 
         /// <summary>
         /// Additional suppression multiplier for airborne projectiles with a fuse.
@@ -984,7 +989,7 @@ namespace CombatExtended
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
             if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3 && def.projectile.damageDef.harmsHealth)
-                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerAmountFactor);
+                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * projectileDangerFactor);
         }
 
         /// <summary>
@@ -1174,8 +1179,8 @@ namespace CombatExtended
                 if (def.projectile.damageDef.harmsHealth)
                 {
                     foreach (var thing in suppressThings)
-                        ApplySuppression(thing, explosionSuppressionFactor, true);
-                    var dangerAmount = def.projectile.damageAmountBase * dangerAmountFactor;
+                        ApplySuppression(thing, explosionSuppressionFactor);
+                    var dangerAmount = def.projectile.damageAmountBase * explosiveDangerFactor;
                     DangerTracker.Notify_DangerRadiusAt(Position,
                         Math.Max(explosionSuppressionRadius * Mathf.Sqrt(dangerAmount * SuppressionUtility.dangerAmountFactor) *
                             0.2f, explosionSuppressionRadius) + 0.9f,

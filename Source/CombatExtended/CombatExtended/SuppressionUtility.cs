@@ -148,7 +148,7 @@ namespace CombatExtended
                 {
                     pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 2f) * 8f;
+                    cellRating = Mathf.Min(coverRating, 1.5f) * 10f;
                 }
             }
 
@@ -162,8 +162,8 @@ namespace CombatExtended
                 {
                     // A pawn crouches down only next to nearby cover, therefore they can hide behind distanced cover that is higher than their current crouch height;
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
-                    if (distancedCoverRating * 8f > cellRating)
-                        cellRating = Mathf.Min(distancedCoverRating, 2f) * 8f;
+                    if (distancedCoverRating * 10f > cellRating)
+                        cellRating = Mathf.Min(distancedCoverRating, 1.5f) * 10f;
                 }
                 else
                 {
@@ -171,7 +171,7 @@ namespace CombatExtended
                 }
             }
 
-            cellRating += 12f - (bonusCellRating * 8f);
+            cellRating += 10f - (bonusCellRating * 10f);
 
             for (int i = 0; i < interceptors.Count; i++)
             {
@@ -186,7 +186,7 @@ namespace CombatExtended
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
             {
-                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 4f;
+                cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
                 // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
