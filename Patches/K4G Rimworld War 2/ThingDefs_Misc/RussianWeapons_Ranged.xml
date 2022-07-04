@@ -411,7 +411,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2RussianServiceSemiAutomaticRifle</defName>
-                            <label>Russian SVT-40 Semi-Automatic Rifle</label>
+                            <label>Russian SVT-40 Rifle</label>
                             <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSemiAutomaticRifle</texPath>
@@ -446,6 +446,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
                                     <warmupTime>1.1</warmupTime>
@@ -510,7 +511,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2RussianServiceSemiAutomaticRifleBayonet</defName>
-                            <label>Russian SVT-40 Semi-Automatic Rifle (Bayonet)</label>
+                            <label>Russian SVT-40 Rifle (Bayonet)</label>
                             <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine. This one is equipped with a bayonet.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSemiAutomaticRifleBayonet</texPath>
@@ -546,6 +547,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
                                     <warmupTime>1.1</warmupTime>
@@ -620,7 +622,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2RussianServiceSMG</defName>
-                            <label>Russian PPSh-41 Stick Mag SMG</label>
+                            <label>Russian PPSh-41 SMG (Stick Mag)</label>
                             <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSMG</texPath>
@@ -724,7 +726,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2RussianServiceSMGB</defName>
-                            <label>Russian PPSh-41 Drum Mag SMG</label>
+                            <label>Russian PPSh-41 SMG (Drum Mag)</label>
                             <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Russia/WW2RussianServiceSMGB</texPath>
@@ -1250,10 +1252,10 @@
                 <!-- ======= Russian SVT-40 Semi-Automatic Sniper Rifle ======= -->
 
                 <li Class="PatchOperationReplace">
-                    <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSemiAutomaticRifle"]</xpath>
+                    <xpath>Defs/ThingDef[defName="K4G_Gun_WW2RussianServiceSemiAutomaticSniperRifle"]</xpath>
                     <value>
-                        <ThingDef ParentName="BaseHumanMakeableGun">
-                            <defName>K4G_Gun_WW2RussianServiceSemiAutomaticRifle</defName>
+                        <ThingDef Name="WW2ServiceSemiAutomaticSniperRifle" ParentName="BaseHumanMakeableGun">
+                            <defName>K4G_Gun_WW2RussianServiceSemiAutomaticSniperRifle</defName>
                             <label>Russian SVT-40 Semi-Automatic Sniper Rifle</label>
                             <description>A more versatile design of precision sniper rifle used during WW2. It has incredibly long range and is more versatile than a normal sniper rifle. Because it's so unwieldy, other weapons outclass it at close range.</description>
                             <graphicData>
@@ -1289,6 +1291,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
                                     <warmupTime>1.1</warmupTime>

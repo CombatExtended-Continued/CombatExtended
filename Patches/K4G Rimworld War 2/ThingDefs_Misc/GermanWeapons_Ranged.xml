@@ -283,7 +283,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2GermanServiceSemiAutomaticPistol</defName>
-                            <label>German Mauser C96 Semi-Automatic Pistol</label>
+                            <label>German Mauser C96 Machine Pistol</label>
                             <description>A small automatic pistol used during WW2. It is short-ranged, but very light in the hands and its rate of fire tends to make up for its weakness.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceSemiAutomaticPistol</texPath>
@@ -597,7 +597,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2GermanServiceSemiAutomaticRifle</defName>
-                            <label>German Gewehr 43 Semi-Automatic Rifle</label>
+                            <label>German Gewehr 43 Rifle</label>
                             <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceSemiAutomaticRifle</texPath>
@@ -631,6 +631,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
                                     <warmupTime>1.1</warmupTime>
@@ -695,7 +696,7 @@
                     <value>
                         <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2GermanServiceSemiAutomaticRifleBayonet</defName>
-                            <label>German Gewehr 43 Semi-Automatic Rifle (Bayonet)</label>
+                            <label>German Gewehr 43 Rifle (Bayonet)</label>
                             <description>A versatile, reliable design of rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine. This one is equipped with a bayonet.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceSemiAutomaticRifleBayonet</texPath>
@@ -730,6 +731,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
                                     <warmupTime>1.1</warmupTime>
@@ -1546,9 +1548,9 @@
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="K4G_Gun_WW2GermanServiceSemiAutomaticSniperRifle"]</xpath>
                     <value>
-                        <ThingDef Name="WW2ServiceSemiAutomaticSniperRifle" ParentName="BaseHumanMakeableGun">
+                        <ThingDef ParentName="BaseHumanMakeableGun">
                             <defName>K4G_Gun_WW2GermanServiceSemiAutomaticSniperRifle</defName>
-                            <label>German Gewehr 43 Semi-Automatic Sniper Rifle</label>
+                            <label>German Gewehr 43 Sniper Rifle</label>
                             <description>A versatile, reliable design of scoped rifle that saw extensive service during WW2. It fires faster than a bolt-action rifle but maintains the damage and range that would have been lost with a carbine.</description>
                             <graphicData>
                                 <texPath>Things/Item/Equipment/WeaponRanged/Germany/WW2GermanServiceSemiAutomaticSniperRifle</texPath>
@@ -1583,6 +1585,7 @@
                             </recipeMaker>
                             <verbs>
                                 <li Class="CombatExtended.VerbPropertiesCE">
+                                    <verbClass>CombatExtended.Verb_ShootCE</verbClass>
                                     <hasStandardCommand>true</hasStandardCommand>
                                     <defaultProjectile>Bullet_792x57mmMauser_FMJ</defaultProjectile>
                                     <warmupTime>1.5</warmupTime>
@@ -1640,7 +1643,7 @@
                     </value>
                 </li>
 
-                <!-- ======= German Panzershreck Rocket Launcher ======= -->
+                <!-- ======= German Panzerschreck Rocket Launcher ======= -->
 
                 <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
                     <defName>K4G_Gun_WW2GermanServiceRocketLauncher</defName>
@@ -1694,6 +1697,13 @@
                 </li>
 
                 <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="K4G_Gun_WW2GermanServiceRocketLauncher"]/label</xpath>
+                    <value>
+                        <label>German Panzerschreck</label>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="K4G_Gun_WW2GermanServiceRocketLauncher"]/tools</xpath>
                     <value>
                         <tools>
@@ -1711,7 +1721,7 @@
                     </value>
                 </li>
 
-                <!-- ======= German Panzerfaust Rocket Launcher ======= -->
+                <!-- ======= German Panzerfaust Gross Rocket Launcher ======= -->
 
                 <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
                     <defName>K4G_Gun_WW2GermanServiceDisposableRocketLauncher</defName>
@@ -1758,6 +1768,13 @@
                         <aiAimMode>AimedShot</aiAimMode>
                     </FireModes>
                     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="K4G_Gun_WW2GermanServiceDisposableRocketLauncher"]/label</xpath>
+                    <value>
+                        <label>German Panzerfaust Gross</label>
+                    </value>
                 </li>
 
                 <li Class="PatchOperationReplace">
@@ -1825,6 +1842,13 @@
                         <aiAimMode>AimedShot</aiAimMode>
                     </FireModes>
                     <AllowWithRunAndGun>false</AllowWithRunAndGun>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="K4G_Gun_WW2GermanServiceDisposableRocketLauncherB"]/label</xpath>
+                    <value>
+                        <label>German Panzerfaust Klein</label>
+                    </value>
                 </li>
 
                 <li Class="PatchOperationReplace">
