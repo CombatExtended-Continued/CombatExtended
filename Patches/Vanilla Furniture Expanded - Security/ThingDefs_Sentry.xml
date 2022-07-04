@@ -22,19 +22,32 @@
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 		</li>
 
-		<!-- Replace vanilla thingClass -->
-		<li Class="PatchOperationReplace">
+		<!-- Remove Explosive comp -->
+		<li Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "VFES_Turret_ChargeRailgunTurret" or 
-			defName = "VFES_Turret_ChargeTurret" or		
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_ChargeTurret" or
 			defName = "VFES_Turret_AutocannonDouble" or
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or	
-			defName = "VFES_Turret_FloorTurret" or		      			
+			defName = "VFES_Turret_MilitaryTurret" or
+			defName = "VFES_Turret_TriRocket"
+		]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		</li>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_ChargeTurret" or
+			defName = "VFES_Turret_AutocannonDouble" or
+			defName = "VFES_Turret_EMPTurret" or
+			defName = "VFES_Turret_Flame" or
+			defName = "VFES_Turret_SentryGun" or
+			defName = "VFES_Turret_MilitaryTurret" or
 			defName = "VFES_Turret_TriRocket" or
-			defName = "VFES_Turret_FloorTurret"		        		
+			defName = "VFES_Turret_FloorTurret"
 		]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
