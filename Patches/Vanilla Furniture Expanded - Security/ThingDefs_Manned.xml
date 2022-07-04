@@ -253,6 +253,10 @@
 			</value>
 		</li>
 
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/building/buildingTags</xpath>
+		</li>
+
 		<li Class="PatchOperationReplace">
 			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/building/turretBurstWarmupTime</xpath>
 			<value>
@@ -319,10 +323,12 @@
 			</value>
 		</li>
 	
-		<li Class="PatchOperationAdd">
+		<li Class="PatchOperationReplace">
 		  <xpath>/Defs/ThingDef[defName = "VFES_Artillery_Weapon"]/weaponTags</xpath>
 		  <value>
-		    <li>TurretGun</li>
+		    <weaponTags>
+		      <li>Artillery_BaseDestroyer</li>
+		    </weaponTags>
 		  </value>
 		</li>
 
