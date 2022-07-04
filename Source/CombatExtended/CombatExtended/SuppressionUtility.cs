@@ -91,6 +91,11 @@ namespace CombatExtended
                 Region pawnRegion = pawn.Position.GetRegion(pawn.Map);
                 List<Region> adjacentRegions = pawnRegion.Neighbors.ToList();
                 adjacentRegions.Add(pawnRegion);
+                List<Region> tempRegions = adjacentRegions.ListFullCopy();
+                foreach (Region region in tempRegions)
+                {
+                    adjacentRegions.AddRange(region.Neighbors.Except(adjacentRegions));
+                }
                 // Make sure only cells within bounds are evaluated
                 foreach (IntVec3 cell in cellList.Where(x => x.InBounds(pawn.Map)))
                 {
@@ -187,12 +192,16 @@ namespace CombatExtended
             if (!pawn.Position.Equals(cell))
             {
                 cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
-                // float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.NoPassClosedDoors).TotalCost;
+                //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
-                    pathCost *= 5;
+                    pathCost *= 5f;
+                pathCost++;
                 cellRating = cellRating / pathCost;
             }
+
+            if (Controller.settings.DebugDisplayCellCoverRating)
+                pawn.Map.debugDrawer.FlashCell(cell, cellRating, $"{cellRating}");
             return cellRating;
         }
 

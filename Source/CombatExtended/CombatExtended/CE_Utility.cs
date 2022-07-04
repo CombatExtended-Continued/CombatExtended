@@ -987,10 +987,10 @@ namespace CombatExtended
         {
             Vector2 tempVec2 = new Vector2(originalVec3.normalized.x, originalVec3.normalized.z);
             float factor = Math.Max(Mathf.Abs(tempVec2.x), Mathf.Abs(tempVec2.y));
-            // If factor <= 0.6f, something has definitely gone wrong;
+            // If factor <= 0.6f, something has definitely gone wrong (or the vector is a zero vector);
             if (factor <= 0.6f)
             {
-                Log.Warning("CE calling ToVec3Gridified with a Vector3 that has a factor of no more than 0.6; returning original Vector3");
+                Log.Warning($"CE calling ToVec3Gridified with Vector3 {originalVec3} that has a factor of no more than 0.6; returning original Vector3");
                 return originalVec3;
             }
             //Log.Warning("ToVec3Gridified " + (new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord)).ToString());

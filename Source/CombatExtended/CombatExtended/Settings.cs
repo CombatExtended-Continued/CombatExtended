@@ -28,7 +28,8 @@ namespace CombatExtended
 	private bool genericammo = false;
         private bool partialstats = true;
 
-	private bool showExtraTooltips = false;
+
+        private bool showExtraTooltips = false;
 
 	private bool showExtraStats = false;
 
@@ -86,6 +87,8 @@ namespace CombatExtended
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
+        private bool debugDisplayDangerBuildup = false;
+        private bool debugDisplayCellCoverRating = false;
 
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
@@ -97,10 +100,12 @@ namespace CombatExtended
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
+        public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
+        public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
         #endregion
 
-	#region Autopatcher
-	private bool debugAutopatcherLogger = false;
+        #region Autopatcher
+        private bool debugAutopatcherLogger = false;
 
 	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
 
@@ -150,8 +155,10 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
+            Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
+            Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
 #endif
-	    Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
+            Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 	    
 	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", true);
 	    Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
@@ -257,6 +264,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
                 list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
                 list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
+                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
+                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
             }
             else
             {

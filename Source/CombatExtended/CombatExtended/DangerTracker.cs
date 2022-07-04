@@ -62,7 +62,7 @@ namespace CombatExtended
                 if (cell.InBounds(map))
                     IncreaseAt(cell, (int)Mathf.Ceil(AdjWeights[i] * dangerAmount));
             }
-            if (Controller.settings.DebugMuzzleFlash) FlashCell(pos);
+            if (Controller.settings.DebugDisplayDangerBuildup) FlashCell(pos);
         }
 
         public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount, bool falloff = true, bool requireLOS = true)
@@ -79,7 +79,7 @@ namespace CombatExtended
                 }
                 IncreaseAt(cell, (int)Mathf.Ceil(cellDanger));
 
-                if (Controller.settings.DebugMuzzleFlash)
+                if (Controller.settings.DebugDisplayDangerBuildup)
                 {
                     float value = DangerAt(cell);
                     if (value > 0f) map.debugDrawer.FlashCell(cell, value, $"{value}");

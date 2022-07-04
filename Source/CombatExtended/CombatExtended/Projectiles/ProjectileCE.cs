@@ -35,7 +35,7 @@ namespace CombatExtended
         /// <summary>
         /// By how much is the damage of the projectile multiplied before being sent as danger amount.
         /// </summary>
-        protected const float projectileDangerFactor = 0.5f;
+        protected const float projectileDangerFactor = 1f;
 
         /// <summary>
         /// By how much is the damage of an explosive projectile is multiplied before being sent as danger amount.
@@ -1186,6 +1186,10 @@ namespace CombatExtended
                             0.2f, explosionSuppressionRadius) + 0.9f,
                         dangerAmount);
                 }
+            }
+            else
+            {
+                DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * projectileDangerFactor);
             }
 
             Destroy();
