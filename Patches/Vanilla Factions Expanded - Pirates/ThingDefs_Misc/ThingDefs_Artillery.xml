@@ -57,6 +57,16 @@
         </value>
       </li>
 
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName = "VFEP_Turret_FieldGun"]</xpath>
+        <value>
+          <placeWorkers Inherit="False">
+            <li>PlaceWorker_TurretTop</li>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+          </placeWorkers>
+        </value>
+      </li>
+
       <li Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName = "VFEP_Artillery_FieldGun"]/statBases/RangedWeapon_Cooldown</xpath>
         <value>
@@ -134,6 +144,17 @@
         <value>
             <turretBurstCooldownTime>2.7</turretBurstCooldownTime>
         </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/fillPercent</xpath>
+        <value>
+            <fillPercent>0.85</fillPercent>
+        </value>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>/Defs/ThingDef[@Name = "VFEP_BaseCannonBuilding"]/placeWorkers/li[.="PlaceWorker_NotUnderRoof"]</xpath>
       </li>
 
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
