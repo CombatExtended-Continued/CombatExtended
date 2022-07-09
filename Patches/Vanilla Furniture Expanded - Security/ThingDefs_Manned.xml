@@ -247,10 +247,21 @@
 		<!-- ========== Artillery - Base ========== -->
 
 		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/statBases</xpath>
+			<value>
+				<Mass>5500</Mass>
+			</value>
+		</li>
+
+		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/building</xpath>
 			<value>
 				<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
 			</value>
+		</li>
+
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="VFES_Turret_Artillery"]/building/buildingTags</xpath>
 		</li>
 
 		<li Class="PatchOperationReplace">
@@ -319,10 +330,12 @@
 			</value>
 		</li>
 	
-		<li Class="PatchOperationAdd">
+		<li Class="PatchOperationReplace">
 		  <xpath>/Defs/ThingDef[defName = "VFES_Artillery_Weapon"]/weaponTags</xpath>
 		  <value>
-		    <li>TurretGun</li>
+		    <weaponTags>
+		      <li>Artillery_BaseDestroyer</li>
+		    </weaponTags>
 		  </value>
 		</li>
 
