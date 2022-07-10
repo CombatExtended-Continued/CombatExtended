@@ -115,7 +115,7 @@ namespace CombatExtended
             coverPosition = bestPos;
             //Log.Warning("best cell at " + bestPos.ToString() + ' ' + bestRating.ToString());
             lightingTracker = null;
-            return bestRating >= -999f;
+            return bestRating >= -999f && pawn.Position != coverPosition;
         }
 
         private static float GetCellCoverRatingForPawn(Pawn pawn, IntVec3 cell, IntVec3 shooterPos)
