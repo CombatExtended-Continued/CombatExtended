@@ -1000,7 +1000,7 @@ namespace CombatExtended
                 }
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
-            if (shotHeight < CollisionVertical.WallCollisionHeight && distToOrigin > 3 && def.projectile.damageDef.harmsHealth)
+            if (ExactPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3 && def.projectile.damageDef.harmsHealth)
                 DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * projectileDangerFactor);
         }
 
