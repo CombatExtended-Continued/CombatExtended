@@ -262,17 +262,17 @@
 				</value>
 			</li>
 			
-			<!-- ==========  YP Shard Pistol =========== -->
+			<!-- ==========  YP Dual Wield Shard Pistols =========== -->
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/thingDef[defName="YP_SeolHwa"]/statBases</xpath>
 				<value>
 					<statBases>
 						<WorkToMake>50500</WorkToMake>
-						<SightsEfficiency>0.8</SightsEfficiency>
+						<SightsEfficiency>0.5</SightsEfficiency>
 						<ShotSpread>0.2</ShotSpread>
 						<SwayFactor>1.5</SwayFactor>
-						<Bulk>2.35</Bulk>
-						<Mass>2.16</Mass>
+						<Bulk>4.7</Bulk>
+						<Mass>4.32</Mass>
 						<RangedWeapon_Cooldown>0.2</RangedWeapon_Cooldown>
 					</statBases>				
 				</value>
@@ -287,9 +287,10 @@
 						<hasStandardCommand>true</hasStandardCommand>
 						<defaultProjectile>Bullet_PistolYP</defaultProjectile>
 						<warmupTime>0.5</warmupTime>
+						<ammoConsumedPerShotCount>2</ammoConsumedPerShotCount>
 						<burstShotCount>8</burstShotCount>
 						<ticksBetweenBurstShots>2</ticksBetweenBurstShots>						
-						<range>13</range>
+						<range>12</range>
 						<soundCast>RS_ShotShard</soundCast>
 						<soundCastTail>GunTail_Light</soundCastTail>
 						<muzzleFlashScale>3</muzzleFlashScale>
@@ -302,7 +303,7 @@
 				<value>
 					<comps>
 						<li Class="CombatExtended.CompProperties_AmmoUser">				
-							<magazineSize>24</magazineSize>
+							<magazineSize>32</magazineSize>
 							<reloadTime>4.5</reloadTime>
 							<ammoSet>AmmoSet_PistolYP</ammoSet>
 						</li>
@@ -314,6 +315,7 @@
 					</comps>					
 				</value>
 			</li>
+			
 			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="YP_SeolHwa"]/weaponTags</xpath>
 				<nomatch Class="PatchOperationAdd">
@@ -327,8 +329,7 @@
 				<xpath>Defs/thingDef[defName="YP_SeolHwa"]/weaponTags</xpath>
 				<value>
 				    <li>CE_Sidearm</li>
-					<li>CE_AI_Pistol</li>
-					<li>CE_OneHandedWeapon</li>				
+					<li>CE_AI_Pistol</li>			
 				</value>
 			</li>	
 
