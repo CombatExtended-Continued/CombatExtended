@@ -14,10 +14,10 @@ namespace CombatExtended
     {
         #region Constants
 
-        //private const float minSuppressionDist = 5f;         // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
+        //private const float minSuppressionDist = 5f;       // Minimum distance to be suppressed from, so melee won't be suppressed if it closes within this distance
         private const float maxSuppression = 1050f;          // Cap to prevent suppression from building indefinitely
-        private const int TicksForDecayStart = 120;          // How long since last suppression before decay starts
-        private const float SuppressionDecayRate = 5f;       // How much suppression decays per tick
+        private const int TicksForDecayStart = 30;           // How long since last suppression before decay starts
+        private const float SuppressionDecayRate = 4f;       // How much suppression decays per tick
         private const int TicksPerMote = 150;                // How many ticks between throwing a mote        
 
         private const int MinTicksUntilMentalBreak = 600;    // How long until pawn can have a mental break

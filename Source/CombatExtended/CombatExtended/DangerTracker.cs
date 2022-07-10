@@ -11,7 +11,7 @@ namespace CombatExtended
         //private const int DANGER_TICKS = 450;
         //private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 150;
-        public const int DANGER_TICKS_MAX = 600; // 1s in real life = 60 ticks in game;
+        public const int DANGER_TICKS_MAX = 300; // 1s in real life = 60 ticks in game;
         //private const float DANGER_BULLET_MAX_DIST = 20f;
 
         private const float WEIGHTS_DIG = 0.8f;
@@ -62,22 +62,18 @@ namespace CombatExtended
                 if (cell.InBounds(map))
                     IncreaseAt(cell, (int)Mathf.Ceil(AdjWeights[i] * dangerAmount));
             }
-            if (Controller.settings.DebugDisplayDangerBuildup) FlashCell(pos);
+            if (Controller.settings.DebugDisplayDangerBuildup) FlashCells(pos);
         }
 
-        public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount, bool falloff = true, bool requireLOS = true)
+        public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount)
         {
-            var radiusSqrd = radius * radius;
+            //var radiusSqrd = radius * radius;
             foreach (IntVec3 cell in GenRadial.RadialCellsAround(pos, radius, true))
             {
-                if (!cell.InBounds(map) || (requireLOS && !GenSight.LineOfSight(pos, cell, this.map)))
+                if (!cell.InBounds(map) && !GenSight.LineOfSight(pos, cell, this.map))
                     continue;
-                var cellDanger = dangerAmount;
-                if (falloff)
-                {
-                    dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / radiusSqrd));
-                }
-                IncreaseAt(cell, (int)Mathf.Ceil(cellDanger));
+                //dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / radiusSqrd));
+                IncreaseAt(cell, (int)Mathf.Ceil(dangerAmount));
 
                 if (Controller.settings.DebugDisplayDangerBuildup)
                 {
@@ -95,7 +91,7 @@ namespace CombatExtended
                 if (cell.InBounds(map))
                     IncreaseAt(cell, (int)(DANGER_TICKS_SMOKE_STEP * AdjWeights[i]));
             }
-            if (Controller.settings.DebugMuzzleFlash) FlashCell(pos);
+            if (Controller.settings.DebugDisplayDangerBuildup) FlashCells(pos);
         }
 
         public float DangerAt(IntVec3 pos)
@@ -118,7 +114,7 @@ namespace CombatExtended
                 dangerArray = new int[map.cellIndices.NumGridCells];
         }
 
-        private void FlashCell(IntVec3 pos)
+        private void FlashCells(IntVec3 pos)
         {
             for (int i = 0; i < 9; i++)
             {

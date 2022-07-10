@@ -14,6 +14,7 @@ namespace CombatExtended
         private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
 
         public const float dangerAmountFactor = 0.25f; // Multiplier for danger amount at a cell while calculating how safe the cell is;
+        private const float pathCostMultiplier = 2f;
 
         private static LightingTracker lightingTracker;
 
@@ -114,7 +115,7 @@ namespace CombatExtended
             coverPosition = bestPos;
             //Log.Warning("best cell at " + bestPos.ToString() + ' ' + bestRating.ToString());
             lightingTracker = null;
-            return bestRating >= 0;
+            return bestRating >= -999f;
         }
 
         private static float GetCellCoverRatingForPawn(Pawn pawn, IntVec3 cell, IntVec3 shooterPos)
@@ -122,7 +123,7 @@ namespace CombatExtended
             // Check for invalid locations            
             if (!cell.IsValid || !cell.Standable(pawn.Map) || !pawn.CanReserveAndReach(cell, PathEndMode.OnCell, Danger.Deadly) || cell.ContainsStaticFire(pawn.Map))
             {
-                return -1;
+                return -1000f;
             }
             float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
                 pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
@@ -135,7 +136,7 @@ namespace CombatExtended
             // Line of sight is extremely important;
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating = 20f;
+                cellRating = 15f;
             }
             else
             {
@@ -153,7 +154,7 @@ namespace CombatExtended
                 {
                     pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 1.5f) * 10f;
+                    cellRating = Mathf.Min(coverRating, 1.25f) * 10f;
                 }
             }
 
@@ -168,7 +169,7 @@ namespace CombatExtended
                     // A pawn crouches down only next to nearby cover, therefore they can hide behind distanced cover that is higher than their current crouch height;
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
                     if (distancedCoverRating * 10f > cellRating)
-                        cellRating = Mathf.Min(distancedCoverRating, 1.5f) * 10f;
+                        cellRating = Mathf.Min(distancedCoverRating, 1.25f) * 10f;
                 }
                 else
                 {
@@ -182,7 +183,7 @@ namespace CombatExtended
             {
                 CompProjectileInterceptor interceptor = interceptors[i];
                 if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                    cellRating += 20f;
+                    cellRating += 15f;
             }
 
             // Avoid bullets and other danger sources.
@@ -195,9 +196,8 @@ namespace CombatExtended
                 //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
                 if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
-                    pathCost *= 5f;
-                pathCost++;
-                cellRating = cellRating / pathCost;
+                    pathCost *= 4f;
+                cellRating = cellRating - (pathCost * pathCostMultiplier);
             }
 
             if (Controller.settings.DebugDisplayCellCoverRating)
