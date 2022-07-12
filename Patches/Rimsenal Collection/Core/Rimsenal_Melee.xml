@@ -176,7 +176,7 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="YP_BingJu"]/statBases</xpath>
 				<value>
-					<MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>				
+					<MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>				
 					<Bulk>2.5</Bulk>
 				</value>
 			</li>
@@ -185,9 +185,24 @@
 				<value>
 					<equippedStatOffsets>
 						<MeleeCritChance>0.75</MeleeCritChance>
-						<MeleeParryChance>1.88</MeleeParryChance>
+						<MeleeParryChance>0.94</MeleeParryChance>
 						<MeleeDodgeChance>0.20</MeleeDodgeChance>	
 					</equippedStatOffsets>
+				</value>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="YP_BingJu"]/weaponTags</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="YP_BingJu"]</xpath>
+					<value>
+						<weaponTags />
+					</value>
+				</nomatch>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="YP_BingJu"]/weaponTags</xpath>
+				<value>
+					<li>CE_OneHandedWeapon</li> 
 				</value>
 			</li>
 
