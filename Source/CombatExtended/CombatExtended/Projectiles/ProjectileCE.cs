@@ -882,8 +882,6 @@ namespace CombatExtended
         /// </summary>
         /// <param name="pawn">Which pawn to suppress</param>
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
-        /// <param name="closerProjAsOrigin">Whether or not the ratio of distance from the projectile to the explosion radius + suppression radius
-        /// should influence where the origin of the suppression is</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
 
         {
