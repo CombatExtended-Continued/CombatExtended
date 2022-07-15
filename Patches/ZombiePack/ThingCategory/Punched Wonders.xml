@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+        	<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+			
+	<ThingCategoryDef>
+		<defName>AmmoWonders_Punched</defName>
+		<label>Wonder</label>
+		<parent>AmmoPunched</parent>
+	</ThingCategoryDef>
+
+	<RecipeDef Name="CODZP_AmmoRecipeWonder_Punched" ParentName="AmmoRecipeBase" Abstract="true">
+		<researchPrerequisite>
+			<li>CodZP_WonderWorks</li>
+			<li>CodZP_PackAPunch</li>
+		</researchPrerequisite>
+	</RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
