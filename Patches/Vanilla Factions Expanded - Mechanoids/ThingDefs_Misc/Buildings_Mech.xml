@@ -8,7 +8,6 @@
 
     <match Class="PatchOperationSequence">
       <operations>
-
 			<!-- ========== Ship Charge Blaster ========== -->
 
 			<li Class="PatchOperationReplace">
@@ -120,7 +119,7 @@
 				</value>
 			</li>
 			
-			<!--It's supposed to presumably be the same threat as a HCB turret, so we'll have it use 12x64mm Hyper shots-->
+			<!--It's supposed to presumably be the same threat as a HCB turret, so we'll have it use railgun sabot shots-->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>VFE_Gun_ChargeLanceCannon</defName>
@@ -135,14 +134,14 @@
 				<Properties>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>Bullet_12x64mmHyper</defaultProjectile>
+				  <defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
 				  <warmupTime>4.2</warmupTime>
 				  <range>86</range>
 				  <burstShotCount>1</burstShotCount>
 				  <soundCast>ChargeLance_Fire</soundCast>
 				  <soundCastTail>GunTail_Heavy</soundCastTail>
 				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <minRange>1.9</minRange>
+				  <minRange>5</minRange>
 				</Properties>
 				<FireModes>
 				  <aiAimMode>AimedShot</aiAimMode>
@@ -216,7 +215,7 @@
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>14</muzzleFlashScale>
 				  <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-				  <minRange>4.9</minRange>
+				  <minRange>5</minRange>
 				  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 				  <recoilPattern>Mounted</recoilPattern>
 				</Properties>
@@ -411,7 +410,6 @@
 				  <soundCast>VFE_Shot_ChargeRailgun</soundCast>
 				  <soundCastTail>GunTail_Heavy</soundCastTail>
 				  <muzzleFlashScale>16</muzzleFlashScale>
-				  <minRange>8.9</minRange>
 				</Properties>
 				<FireModes>
 				  <aiAimMode>AimedShot</aiAimMode>
