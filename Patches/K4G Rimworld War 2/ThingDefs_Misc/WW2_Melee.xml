@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>[K4G] RimWorld War 2</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= Bayonet ======= -->
+
+            <!-- === American M1 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2AmericanServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality" Name="WW2ServiceBayonet">
+                     <defName>K4G_MeleeWeapon_WW2AmericanServiceBayonet</defName>
+                     <label>American M1 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2AmericanServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2UnitedStatesTrading</li>
+                        <li>K4GWW2UnitedStatesMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === American M1905 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2AmericanServiceBayonetB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2AmericanServiceBayonetB</defName>
+                     <label>American M1905 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2AmericanServiceBayonetB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2UnitedStatesTrading</li>
+                        <li>K4GWW2UnitedStatesMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === British Pattern 1907 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2BritishServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2BritishServiceBayonet</defName>
+                     <label>British Pattern 1907 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2BritishServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2EnglandTrading</li>
+                        <li>K4GWW2EnglandMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === Russian SVT-40 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2RussianServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2RussianServiceBayonet</defName>
+                     <label>Russian SVT-40 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2RussianServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2RussiaTrading</li>
+                        <li>K4GWW2RussiaMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === French M1886/35 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2FrenchServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2FrenchServiceBayonet</defName>
+                     <label>French M1886/35 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2FrenchServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === French M1886/35 Bayonet B === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2FrenchServiceBayonetB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2FrenchServiceBayonetB</defName>
+                     <label>French M1886/35 Bayonet B</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2FrenchServiceBayonetB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>2100</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.85</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === German S84/98 III Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2GermanServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2GermanServiceBayonet</defName>
+                     <label>German S84/98 III Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2GermanServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2GermanyTrading</li>
+                        <li>K4GWW2GermanyMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === Japanese Type 30 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2JapaneseServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2JapaneseServiceBayonet</defName>
+                     <label>Japanese Type 30 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2JapaneseServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2JapanTrading</li>
+                        <li>K4GWW2JapanMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === Italian M1938 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2ItalianServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2ItalianServiceBayonet</defName>
+                     <label>Italian M1938 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2ItalianServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === Finnish Mosin-Nagant M/27 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2FinnishServiceBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2FinnishServiceBayonet</defName>
+                     <label>Finnish Mosin-Nagant M/27 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2FinnishServiceBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2FinlandTrading</li>
+                        <li>K4GWW2FinlandMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.75</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- === Finnish Mosin-Nagant M/39 Bayonet === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2FinnishServiceBayonetB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+                     <defName>K4G_MeleeWeapon_WW2FinnishServiceBayonetB</defName>
+                     <label>Finnish Mosin-Nagant M/39 Bayonet</label>
+                     <techLevel>Industrial</techLevel>
+                     <description>A old design of knife used in WW2. These knifes were often attached to larger weapons to be used as bayonets but could also be seperated to be used on their own.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponMelee/WW2FinnishServiceBayonetB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                        <shaderType>CutoutComplex</shaderType>
+                     </graphicData>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                     </recipeMaker>
+                     <uiIconScale>1.6</uiIconScale>
+                     <weaponTags Inherit="False">
+                        <li>CE_Sidearm_Melee</li>
+                        <li>K4GWW2FinlandTrading</li>
+                        <li>K4GWW2FinlandMelee</li>
+                     </weaponTags>
+                     <statBases>
+                        <WorkToMake>1800</WorkToMake>
+                        <Mass>0.5</Mass>
+                        <Bulk>0.15</Bulk>
+                     </statBases>
+                     <equippedStatOffsets>
+                        <MeleeCritChance>0.1</MeleeCritChance>
+                        <MeleeParryChance>0.1</MeleeParryChance>
+                        <MeleeDodgeChance>0.05</MeleeDodgeChance>
+                     </equippedStatOffsets>
+                     <costList>
+                        <Steel>30</Steel>
+                     </costList>
+                     <equippedAngleOffset>-65</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>handle</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>4</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <armorPenetrationBlunt>0.071</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>9.5</power>
+                           <cooldownTime>1.2</cooldownTime>
+                           <chanceFactor>1.33</chanceFactor>
+                           <armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.85</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ===== Japanese Shin Gunto Service Sword ===== -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2JapaneseServiceSword"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>1.59</cooldownTime>
+                        <chanceFactor>0.05</chanceFactor>
+                        <armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>point</label>
+                        <capacities>
+                           <li>Stab</li>
+                        </capacities>
+                        <power>15</power>
+                        <cooldownTime>1.46</cooldownTime>
+                        <chanceFactor>0.50</chanceFactor>
+                        <armorPenetrationBlunt>0.55</armorPenetrationBlunt>
+                        <armorPenetrationSharp>1.20</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>edge</label>
+                        <capacities>
+                           <li>Cut</li>
+                        </capacities>
+                        <power>20</power>
+                        <cooldownTime>1.39</cooldownTime>
+                        <chanceFactor>0.45</chanceFactor>
+                        <armorPenetrationBlunt>1</armorPenetrationBlunt>
+                        <armorPenetrationSharp>0.48</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2JapaneseServiceSword"]/statBases</xpath>
+               <value>
+                  <Bulk>4</Bulk>
+                  <MeleeCounterParryBonus>0.15</MeleeCounterParryBonus>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2JapaneseServiceSword"]</xpath>
+               <value>
+                  <equippedStatOffsets>
+                     <MeleeCritChance>0.63</MeleeCritChance>
+                     <MeleeParryChance>0.75</MeleeParryChance>
+                     <MeleeDodgeChance>0.40</MeleeDodgeChance>
+                  </equippedStatOffsets>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="K4G_MeleeWeapon_WW2JapaneseServiceSword"]/weaponTags</xpath>
+               <value>
+                  <li>CE_Sidearm_Melee</li>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>
