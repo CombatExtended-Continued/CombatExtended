@@ -17,8 +17,8 @@ namespace CombatExtended
         // General settings
         private bool bipodMechanics = true;
         private bool autosetup = true;
-        private bool showCasings = false;
-        private bool showTaunts = false;
+        private bool showCasings = true;
+        private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
         private bool mergeExplosions = true;
@@ -125,8 +125,8 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref showCasings, "showCasings", false);
-            Scribe_Values.Look(ref showTaunts, "showTaunts", false);
+            Scribe_Values.Look(ref showCasings, "showCasings", true);
+            Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
             Scribe_Values.Look(ref mergeExplosions, "mergeExplosions", true);
