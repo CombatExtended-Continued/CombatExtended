@@ -17,12 +17,12 @@ namespace CombatExtended
         // General settings
         private bool bipodMechanics = true;
         private bool autosetup = true;
-        private bool showCasings = true;
-        private bool showTaunts = true;
+        private bool showCasings = false;
+        private bool showTaunts = false;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
         private bool mergeExplosions = true;
-        private bool turretsBreakShields = true;
+        private bool turretsBreakShields = false;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
 	private bool genericammo = false;
@@ -58,12 +58,12 @@ namespace CombatExtended
 
         // Ammo settings
         private bool enableAmmoSystem = true;
-        private bool rightClickAmmoSelect = false;
+        private bool rightClickAmmoSelect = true;
         private bool autoReloadOnChangeAmmo = true;
-        private bool autoTakeAmmo = true;
+        private bool autoTakeAmmo = false;
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
-        private bool realisticCookOff = false;
+        private bool realisticCookOff = true;
         private bool enableSimplifiedAmmo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
@@ -104,8 +104,8 @@ namespace CombatExtended
 
 	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
 
-	private bool enableApparelAutopatcher = true;
-	private bool enableWeaponAutopatcher = true;
+	private bool enableApparelAutopatcher = false;
+	private bool enableWeaponAutopatcher = false;
 	private bool enableWeaponToughnessAutopatcher = true;
 	private bool enableRaceAutopatcher = true;
 	private bool enablePawnKindAutopatcher = true;
