@@ -125,12 +125,12 @@ namespace CombatExtended
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref showCasings, "showCasings", true);
-            Scribe_Values.Look(ref showTaunts, "showTaunts", true);
+            Scribe_Values.Look(ref showCasings, "showCasings", false);
+            Scribe_Values.Look(ref showTaunts, "showTaunts", false);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
             Scribe_Values.Look(ref mergeExplosions, "mergeExplosions", true);
-            Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
+            Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", false);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
             Scribe_Values.Look(ref partialstats, "PartialArmor", true);
@@ -153,20 +153,20 @@ namespace CombatExtended
 #endif
 	    Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 	    
-	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", true);
+	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", false);
 	    Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
-	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", true);
+	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", false);
 	    Scribe_Values.Look(ref enableRaceAutopatcher, "enableRaceAutopatcher", true);
 	    Scribe_Values.Look(ref enablePawnKindAutopatcher, "enablePawnKindAutopatcher", true);
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
-            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
+            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", true);
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
-            Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
+            Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", false);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
-            Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
+            Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
 	    Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
