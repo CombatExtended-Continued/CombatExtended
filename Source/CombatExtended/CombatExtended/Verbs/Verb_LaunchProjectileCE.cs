@@ -356,6 +356,7 @@ namespace CombatExtended
                         {
                             targetRange.max = coverRange.max * 2;
                         }
+			targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
                     }
                     else if (currentTarget.Thing is Pawn Victim)
                     {
@@ -483,7 +484,7 @@ namespace CombatExtended
                        
 
                     }
-                    targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
+                    
                 }
                 if (projectilePropsCE.isInstant)
                 {
