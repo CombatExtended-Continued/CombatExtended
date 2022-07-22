@@ -293,6 +293,7 @@ namespace CombatExtended
         {
             if (!calculateMechanicalOnly)
             {
+		bool arcOverhead = false;
                 Vector3 u = caster.TrueCenter();
                 sourceLoc.Set(u.x, u.z);
 
@@ -357,6 +358,7 @@ namespace CombatExtended
                             targetRange.max = coverRange.max * 2;
                         }
 			targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
+			arcOverhead = true;
                     }
                     else if (currentTarget.Thing is Pawn Victim)
                     {
@@ -492,7 +494,7 @@ namespace CombatExtended
                 }
                 else
                 {
-                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead, projectilePropsCE.Gravity);
+                    angleRadians += ProjectileCE.GetShotAngle(ShotSpeed, (newTargetLoc - sourceLoc).magnitude, targetHeight - ShotHeight, Projectile.projectile.flyOverhead || arcOverhead, projectilePropsCE.Gravity);
                 }
             }
 
