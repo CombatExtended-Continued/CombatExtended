@@ -14,7 +14,7 @@
     <defName>AmmoSet_80x256mmFuel</defName>
     <label>80x256mm Fuel Cell</label>
     <ammoTypes>
-      <Ammo_80x256mmFuel_Thermobaric>Bullet_80x256mmFuel_Thermobaric</Ammo_80x256mmFuel_Thermobaric>
+      <Ammo_80x256mmFuel_Incendiary>Bullet_80x256mmFuel_Incendiary</Ammo_80x256mmFuel_Incendiary>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -36,8 +36,8 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="80x256mmFuelBase">
-    <defName>Ammo_80x256mmFuel_Thermobaric</defName>
-    <label>80x256mm fuel cell (Thermobaric)</label>
+    <defName>Ammo_80x256mmFuel_Incendiary</defName>
+    <label>80x256mm fuel cell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Large</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -45,13 +45,13 @@
     <statBases>
       <MarketValue>10.97</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
-    <ammoClass>ThermobaricFuel</ammoClass>
-	<detonateProjectile>Bullet_80x256mmFuel_Thermobaric</detonateProjectile>
+    <ammoClass>GrenadeIncendiary</ammoClass>
+	<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
 	<comps>
     <li Class="CompProperties_Explosive">
-        <explosiveRadius>1</explosiveRadius>
-		<damageAmountBase>20</damageAmountBase>
-        <explosiveDamageType>Thermobaric</explosiveDamageType>
+        <explosiveRadius>1.9</explosiveRadius>
+		<damageAmountBase>5</damageAmountBase>
+        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
         <startWickHitPointsPercent>0.33</startWickHitPointsPercent>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -63,24 +63,23 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base80x256mmFuelThermobaricBullet" ParentName="BaseBullet">
-    <defName>Bullet_80x256mmFuel_Thermobaric</defName>
-    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>80x256mm fuel shell (Thermobaric)</label>
+  <ThingDef Name="Base80x256mmFuelIncendiaryBullet" ParentName="BaseBullet">
+    <defName>Bullet_80x256mmFuel_Incendiary</defName>
+    <label>80x256mm fuel shell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Thermobaric</damageDef>
-      <damageAmountBase>309</damageAmountBase>
+      <damageDef>PrometheumFlame</damageDef>
+      <damageAmountBase>0</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <speed>60</speed>
       <flyOverhead>false</flyOverhead>
-      <explosionRadius>5.5</explosionRadius>
-      <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+      <explosionRadius>5.9</explosionRadius>
+      <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
       <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
@@ -89,6 +88,15 @@
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <ai_IsIncendiary>true</ai_IsIncendiary>
     </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>150</damageAmountBase>
+        <explosiveDamageType>Thermobaric</explosiveDamageType>
+        <explosiveRadius>1.9</explosiveRadius>
+        <explosionSound>MortarIncendiary_Explode</explosionSound>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
