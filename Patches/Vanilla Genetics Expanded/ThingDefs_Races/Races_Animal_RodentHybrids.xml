@@ -8,7 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 	
-	
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="GR_Molebear"]</xpath>
 				<value>
@@ -129,7 +128,7 @@
 							<power>7</power>
 							<cooldownTime>1.56</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					                                <chanceFactor>0.2</chanceFactor>
+					        <chanceFactor>0.2</chanceFactor>
 							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 					</tools>
@@ -172,7 +171,7 @@
 							<power>1</power>
 							<cooldownTime>1</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					                                <chanceFactor>0.2</chanceFactor>
+					        <chanceFactor>0.2</chanceFactor>
 							<armorPenetrationBlunt>0.15</armorPenetrationBlunt>
 						</li>
 					</tools>
@@ -215,13 +214,12 @@
 							<power>1</power>
 							<cooldownTime>1</cooldownTime>
 							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					                                <chanceFactor>0.2</chanceFactor>
+					        <chanceFactor>0.2</chanceFactor>
 							<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
 						</li>
 					</tools>
 				</value>
 			</li>
-
 			
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="GR_Beaverwolf"]</xpath>
@@ -306,6 +304,7 @@
 					</tools>
 				</value>
 			</li>
+
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="GR_Rabbitcat"]</xpath>
 				<value>
@@ -389,6 +388,77 @@
 					</tools>
 				</value>
 			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="GR_Moleman"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Humanoid</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GR_Moleman"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.12</MeleeDodgeChance>
+					<MeleeCritChance>0.05</MeleeCritChance>
+					<MeleeParryChance>0.05</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GR_Moleman"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.5</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.1</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.87</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>3.6</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.36</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>0.97</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+							<armorPenetrationSharp>0</armorPenetrationSharp>
+						</li>
+					</tools>
+				</value>
+			</li>
+
 		</operations>
 		</match>
 	</Operation>
