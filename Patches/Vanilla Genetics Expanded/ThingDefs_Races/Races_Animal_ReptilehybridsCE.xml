@@ -8,7 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 	
-	
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="GR_Bearodile"]</xpath>
 				<value>
@@ -24,8 +23,8 @@
 				<MeleeDodgeChance>0.05</MeleeDodgeChance>
 				<MeleeCritChance>0.43</MeleeCritChance>
 				<MeleeParryChance>0.1</MeleeParryChance>
-			                <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
-			                <ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+				<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+				<ArmorRating_Sharp>0.3</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -212,8 +211,8 @@
 				<MeleeDodgeChance>0.06</MeleeDodgeChance>
 				<MeleeCritChance>0.4</MeleeCritChance>
 				<MeleeParryChance>0.1</MeleeParryChance>
-			                <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
-			                <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+			    <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+			    <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -298,7 +297,7 @@
 				<MeleeDodgeChance>0.1</MeleeDodgeChance>
 				<MeleeCritChance>0.3</MeleeCritChance>
 				<MeleeParryChance>0.1</MeleeParryChance>
-			                <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
+			    <ArmorRating_Sharp>0.12</ArmorRating_Sharp>
 				</value>
 			</li>
 			
@@ -426,6 +425,54 @@
 					</tools>
 				</value>
 			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/ThingDef[defName="GR_Lizardman"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Birdlike</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/ThingDef[defName="GR_Lizardman"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.15</MeleeDodgeChance>
+					<MeleeCritChance>0.31</MeleeCritChance>
+					<MeleeParryChance>0.19</MeleeParryChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>/Defs/ThingDef[defName="GR_Lizardman"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>GR_VeryToxicBite</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.7</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>							
+							<armorPenetrationSharp>1.41</armorPenetrationSharp>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>		
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>1</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<armorPenetrationBlunt>0.8</armorPenetrationBlunt>
+						</li>						
+					</tools>
+				</value>
+			</li>
+
 		</operations>
 		</match>
 	</Operation>

@@ -8,7 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 	
-	
 			<li Class="PatchOperationAddModExtension">
 				<xpath>/Defs/ThingDef[defName="GR_Catbear"]</xpath>
 				<value>
@@ -21,9 +20,9 @@
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="GR_Catbear"]/statBases</xpath>
 				<value>
-				<MeleeDodgeChance>0.2</MeleeDodgeChance>
-				<MeleeCritChance>0.11</MeleeCritChance>
-				<MeleeParryChance>0.1</MeleeParryChance>
+					<MeleeDodgeChance>0.2</MeleeDodgeChance>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>0.1</MeleeParryChance>
 				</value>
 			</li>
 			
@@ -401,7 +400,99 @@
 					</tools>
 				</value>
 			</li>	
-						
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>Defs/ThingDef[defName="GR_Catman"]</xpath>
+				<value>
+					<li Class="CombatExtended.RacePropertiesExtensionCE">
+						<bodyShape>Quadruped</bodyShape>
+					</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GR_Catman"]/statBases</xpath>
+				<value>
+					<MeleeDodgeChance>0.23</MeleeDodgeChance>
+					<MeleeCritChance>0.02</MeleeCritChance>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="GR_Catman"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>left claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>0.55</cooldownTime>
+							<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>right claw</label>
+							<capacities>
+								<li>Scratch</li>
+							</capacities>
+							<power>2</power>
+							<cooldownTime>0.55</cooldownTime>
+							<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.01</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<capacities>
+								<li>Bite</li>
+							</capacities>
+							<power>5</power>
+							<cooldownTime>0.85</cooldownTime>
+							<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+							<surpriseAttack>
+								<extraMeleeDamages>
+									<li>
+										<def>Stun</def>
+										<amount>20</amount>
+									</li>
+								</extraMeleeDamages>
+							</surpriseAttack>
+							<armorPenetrationBlunt>0.254</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.03</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>1</power>
+							<cooldownTime>0.55</cooldownTime>
+							<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+							<chanceFactor>0.2</chanceFactor>
+							<armorPenetrationBlunt>0.042</armorPenetrationBlunt>
+						</li>
+					</tools>
+				</value>
+			</li>
+
 		</operations>
 		</match>
 	</Operation>
