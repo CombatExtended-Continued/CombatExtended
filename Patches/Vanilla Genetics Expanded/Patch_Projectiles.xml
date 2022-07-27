@@ -10,6 +10,10 @@
 
 		<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[@Name="GR_BaseAnimalProjectile"]/projectile/flyOverhead</xpath>
+		</li>	
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[
 			defName="GR_SniperFlechette" or
@@ -20,6 +24,7 @@
 			defName="GR_PoisonBlast" or
 			defName="GR_HairballProjectile" or
 			defName="GR_GreatHairballProjectile" or
+			defName="GR_Web" or
 			defName="GR_CryoBlast"
 			]</xpath>
 			<value>
@@ -34,6 +39,7 @@
 			defName="GR_IncendiaryMote" or
 			defName="GR_Warhead" or
 			defName="GR_PlasmaBurst" or
+			defName="GR_FireSpit" or
 			defName="GR_SmokeBomb"
 			]/thingClass</xpath>
 			<value>
@@ -192,7 +198,7 @@
 					<speed>18</speed>
 					<damageDef>Smoke</damageDef>
 					<damageAmountBase>1</damageAmountBase>
-					<explosionRadius >5.9</explosionRadius >
+					<explosionRadius>5.9</explosionRadius>
 					<explosionDelay>1</explosionDelay>
 					<postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
 					<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
@@ -208,7 +214,7 @@
 					<speed>31</speed>
 					<damageDef>Bomb</damageDef>
 					<damageAmountBase>56</damageAmountBase>
-					<explosionRadius >3.5</explosionRadius >
+					<explosionRadius>3.5</explosionRadius>
 					<explosionDelay>1</explosionDelay>
 				</projectile>
 			</value>
@@ -248,6 +254,20 @@
 					<soundAmbient>MortarRound_Ambient</soundAmbient>
 					<armorPenetrationSharp>100</armorPenetrationSharp>
 					<armorPenetrationBlunt>100</armorPenetrationBlunt>
+				</projectile>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="GR_Web"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<flyOverhead>false</flyOverhead>
+					<damageDef>Stun</damageDef>
+					<damageAmountBase>15</damageAmountBase>
+					<speed>20</speed>
+					<armorPenetrationSharp>2</armorPenetrationSharp>
+					<armorPenetrationBlunt>3</armorPenetrationBlunt>
 				</projectile>
 			</value>
 		</li>
