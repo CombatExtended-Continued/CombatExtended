@@ -24,7 +24,7 @@ $ start CombatExtended/Source/CombatExtended.sln
 ```
 `start` will open the sln file with whatever IDE you have set to open .sln files by default. You can also just open the sln file normally.
 
-After this, building is just building the solution, references will be pulled from Nuget, and the assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
+This will lead to references being pulled from Nuget. The assemblies should be automatically publicised by the msbuild task. The resulting assembly will be in `$(root)/Assemblies/CombatExtended.dll`.
 
 ## Other options
 
