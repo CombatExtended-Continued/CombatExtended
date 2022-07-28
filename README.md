@@ -74,7 +74,8 @@ If you want to build the assembly yourself, please see [Building](Building.md) f
 
 ### Armor
 **Armor Rebalance**
-- Vanilla percentage based armor system is gone. CE replaces it with a deflection-based model where projectiles have armor penetration which determines whether a bullet penetrates and how much it's damage is reduced. A rifle bullet will go straight through a synthread parka but will completely bounce off of legendary power armor.
+- CE replaces the vanilla armor system with a deflection-based model. Pojectiles have armor penetration which determines whether a bullet penetrates, and how much it's damage is reduced. 
+- A rifle bullet will go straight through a synthread parka. It will completely bounce off of legendary power armor.
 
 **Shields**
 - New shields provide additional protection against ranged fire. Basic melee shields can be made at the smithy and will block arrows, researching machining gives access to modern ballistic shields with improved coverage and protection against gunfire.
