@@ -22,7 +22,7 @@ namespace CombatExtended
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
         private bool mergeExplosions = true;
-        private bool turretsBreakShields = false;
+        private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
 	private bool genericammo = false;
@@ -60,7 +60,7 @@ namespace CombatExtended
         private bool enableAmmoSystem = true;
         private bool rightClickAmmoSelect = true;
         private bool autoReloadOnChangeAmmo = true;
-        private bool autoTakeAmmo = false;
+        private bool autoTakeAmmo = true;
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = true;
@@ -130,7 +130,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
             Scribe_Values.Look(ref mergeExplosions, "mergeExplosions", true);
-            Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", false);
+            Scribe_Values.Look(ref turretsBreakShields, "turretsBreakShields", true);
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
             Scribe_Values.Look(ref partialstats, "PartialArmor", true);
@@ -163,7 +163,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
             Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", true);
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
-            Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", false);
+            Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
