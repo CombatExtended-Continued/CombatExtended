@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public class StatWorker_Magazine : StatWorker
     {
+        public CompAmmoUser compAmmo;
+
         private ThingDef GunDef(StatRequest req)
         {
             var def = req.Def as ThingDef;
@@ -27,6 +29,9 @@ namespace CombatExtended
 
         public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
         {
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+                return compAmmo.Props.magazineSize;
             float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
             return size;
         }
@@ -58,6 +63,9 @@ namespace CombatExtended
 
         private int GetMagSize(StatRequest req)
         {
+            compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
+            if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+                return compAmmo.Props.magazineSize;
             if (req.HasThing)
                 return (int)req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity);
             return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
