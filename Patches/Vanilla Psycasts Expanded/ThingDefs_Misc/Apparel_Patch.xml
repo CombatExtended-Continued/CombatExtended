@@ -22,21 +22,21 @@
             <li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexMask"]/statBases/ArmorRating_Sharp</xpath>
                <value>
-                  <ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+                  <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
                </value>
             </li>
 
             <li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexMask"]/statBases/ArmorRating_Blunt</xpath>
                <value>
-                  <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+                  <ArmorRating_Blunt>1.0</ArmorRating_Blunt>
                </value>
             </li>
 
             <li Class="PatchOperationAdd">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexMask"]/equippedStatOffsets</xpath>
                <value>
-                  <Suppressability>-0.10</Suppressability>
+                  <Suppressability>-0.20</Suppressability>
                </value>
             </li>
 
@@ -44,53 +44,54 @@
             <li Class="PatchOperationAdd">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexCape"]/statBases</xpath>
                <value>
-                  <Bulk>7</Bulk>
-                  <WornBulk>2</WornBulk>
+                  <Bulk>5</Bulk>
+                  <WornBulk>1.5</WornBulk>
                </value>
             </li>
 
             <li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexCape"]/statBases/ArmorRating_Sharp</xpath>
                <value>
-                  <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+                  <StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
                </value>
             </li>
 
-            <li Class="PatchOperationReplace">
+            <li Class="PatchOperationRemove">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexCape"]/statBases/ArmorRating_Blunt</xpath>
-               <value>
-                  <ArmorRating_Blunt>0.22</ArmorRating_Blunt>
-               </value>
+            </li>
+
+            <li Class="PatchOperationRemove">
+               <xpath>Defs/ThingDef[defName="VPE_Apparel_EltexCape"]/statBases/ArmorRating_Heat</xpath>
             </li>
 
             <!-- === Plate Armor Prestige === -->
-            <li Class="PatchOperationReplace">
-               <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/statBases/Mass</xpath>
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/statBases</xpath>
                <value>
-                  <Bulk>52.5</Bulk>
-                  <WornBulk>8</WornBulk>
-                  <Mass>8</Mass>
+                  <Bulk>100</Bulk>
+                  <WornBulk>15</WornBulk>
                </value>
             </li>
 
             <li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/statBases/StuffEffectMultiplierArmor</xpath>
                <value>
-                  <StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
-               </value>
-            </li>
-
-            <li Class="PatchOperationReplace">
-               <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/statBases/StuffEffectMultiplierInsulation_Cold</xpath>
-               <value>
-                  <StuffEffectMultiplierArmor>0.1</StuffEffectMultiplierArmor>
+                  <StuffEffectMultiplierArmor>3</StuffEffectMultiplierArmor>
                </value>
             </li>
 
             <li Class="PatchOperationReplace">
                <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/equippedStatOffsets/MoveSpeed</xpath>
                <value>
-                  <MeleeDodgeChance>-0.08</MeleeDodgeChance>
+                  <MeleeDodgeChance>-0.15</MeleeDodgeChance>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="VPE_Apparel_PlateArmorPrestige"]/apparel/bodyPartGroups</xpath>
+               <value>
+                  <li>Hands</li>
+                  <li>Feet</li>
                </value>
             </li>
 
@@ -99,18 +100,54 @@
                <value>
                   <li Class="CombatExtended.PartialArmorExt">
                      <stats>
-                        <li>
-                           <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-                           <parts>
-                              <li>Arm</li>
-                           </parts>
-                        </li>
-                        <li>
-                           <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-                           <parts>
-                              <li>Arm</li>
-                           </parts>
-                        </li>
+                       <li>
+                        <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+                        <parts>
+                           <li>Neck</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+                        <parts>
+                           <li>Neck</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+                        <parts>
+                           <li>Leg</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+                        <parts>
+                           <li>Leg</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+                        <parts>
+                           <li>Arm</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+                        <parts>
+                           <li>Arm</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+                        <parts>
+                           <li>Hand</li>
+                        </parts>
+                       </li>
+                       <li>
+                        <ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+                        <parts>
+                           <li>Hand</li>
+                        </parts>
+                       </li>
                      </stats>
                   </li>
                </value>
@@ -120,8 +157,8 @@
             <li Class="PatchOperationAdd">
                <xpath>Defs/ThingDef[defName="VPE_Psyring"]/statBases</xpath>
                <value>
-                  <Bulk>1</Bulk>
-                  <WornBulk>1</WornBulk>
+                  <Bulk>0.5</Bulk>
+                  <WornBulk>0.1</WornBulk>
                </value>
             </li>
 
