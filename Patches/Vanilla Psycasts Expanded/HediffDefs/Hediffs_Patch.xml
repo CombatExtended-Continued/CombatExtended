@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>Vanilla Psycasts Expanded</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ===== Warlord Psycast Hediff ===== -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/HediffDef[defName="VPE_FiringFocus"]/stages/li/statFactors</xpath>
+               <value>
+                  <statOffsets>
+                     <AimingDelayFactor>-0.50</AimingDelayFactor>
+                  </statOffsets>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/HediffDef[defName="VPE_AdrenalineRush"]/stages/li</xpath>
+               <value>
+                  <statOffsets>
+                     <Suppressability>-0.20</Suppressability>
+                  </statOffsets>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/HediffDef[defName="VPE_GuidedShot"]/stages/li</xpath>
+               <value>
+                  <statOffsets>
+                     <ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+                  </statOffsets>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>
