@@ -133,10 +133,10 @@
 				<projectile Class="CombatExtended.ProjectilePropertiesCE">
 					<flyOverhead>false</flyOverhead>
 					<damageDef>GR_ToxicExplosion</damageDef>
-					<damageAmountBase>26</damageAmountBase>
+					<damageAmountBase>20</damageAmountBase>
 					<speed>78</speed>
-					<armorPenetrationSharp>40</armorPenetrationSharp>
-					<armorPenetrationBlunt>40</armorPenetrationBlunt>
+					<armorPenetrationSharp>10</armorPenetrationSharp>
+					<armorPenetrationBlunt>20</armorPenetrationBlunt>
 				</projectile>
 			</value>
 		</li>
@@ -212,7 +212,7 @@
 					<speed>12</speed>
 					<flyOverhead>False</flyOverhead>
 					<damageDef>Bomb</damageDef>
-					<damageAmountBase>30</damageAmountBase>
+					<damageAmountBase>20</damageAmountBase>
 					<explosionRadius>2.5</explosionRadius>
 					<explosionDelay>60</explosionDelay>
 				</projectile>
@@ -244,6 +244,21 @@
 					<damageAmountBase>56</damageAmountBase>
 					<explosionRadius>3.5</explosionRadius>
 					<explosionDelay>1</explosionDelay>
+				</projectile>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="GR_FireSpit"]/projectile</xpath>
+			<value>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>10</speed>
+					<damageDef>Flame</damageDef>
+					<damageAmountBase>1</damageAmountBase>
+					<explosionRadius>1.1</explosionRadius>
+					<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.1</preExplosionSpawnChance>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
 				</projectile>
 			</value>
 		</li>
@@ -305,7 +320,6 @@
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs</xpath>
 			<value>
-
 				<ThingDef ParentName="BaseBullet">
 					<defName>GR_PoisonBreathAnimated_CE</defName>
 					<label>poison breath</label>
