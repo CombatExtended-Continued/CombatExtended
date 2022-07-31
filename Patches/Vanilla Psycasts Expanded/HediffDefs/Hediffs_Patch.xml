@@ -8,8 +8,9 @@
       <match Class="PatchOperationSequence">
          <operations>
 
-            <!-- ===== Warlord Psycast Hediff ===== -->
+            <!-- ===== Psycast Hediff ===== -->
 
+            <!-- === Warlord === -->
             <li Class="PatchOperationReplace">
                <xpath>Defs/HediffDef[defName="VPE_FiringFocus"]/stages/li/statFactors</xpath>
                <value>
@@ -23,7 +24,7 @@
                <xpath>Defs/HediffDef[defName="VPE_AdrenalineRush"]/stages/li</xpath>
                <value>
                   <statOffsets>
-                     <Suppressability>-0.20</Suppressability>
+                     <Suppressability>-0.25</Suppressability>
                   </statOffsets>
                </value>
             </li>
@@ -32,7 +33,29 @@
                <xpath>Defs/HediffDef[defName="VPE_GuidedShot"]/stages/li</xpath>
                <value>
                   <statOffsets>
-                     <ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+                     <ShootingAccuracyPawn>5.0</ShootingAccuracyPawn>
+                  </statOffsets>
+               </value>
+            </li>
+
+            <!-- === Harmonist === -->
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/HediffDef[defName="VPE_Lucky"]/stages/li</xpath>
+               <value>
+                  <statOffsets>
+                     <ShootingAccuracyPawn>5.0</ShootingAccuracyPawn>
+                     <Suppressability>-1.0</Suppressability>
+                     <IncomingDamageFactor>-1.0</IncomingDamageFactor>
+                  </statOffsets>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/HediffDef[defName="VPE_UnLucky"]/stages/li</xpath>
+               <value>
+                  <statOffsets>
+                     <ShootingAccuracyPawn>-5.0</ShootingAccuracyPawn>
+                     <IncomingDamageFactor>2.0</IncomingDamageFactor>
                   </statOffsets>
                </value>
             </li>
