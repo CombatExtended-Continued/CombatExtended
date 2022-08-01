@@ -12,6 +12,7 @@ namespace CombatExtended
 {
     public class CompAmmoGiver : ThingComp
     {
+        public int ammoAmountToGive;
         public Pawn dad => this.parent as Pawn;
         public CompAmmoUser user => dad.equipment.Primary?.TryGetComp<CompAmmoUser>() ?? null;
 
@@ -39,11 +40,7 @@ namespace CombatExtended
                                   {
                                       options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label, delegate
                                       {
-                                          var jobdef = CE_JobDefOf.GiveAmmo;
-
-                                          var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
-
-                                          selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                                          Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
                                       }));
                                   }
                               }
