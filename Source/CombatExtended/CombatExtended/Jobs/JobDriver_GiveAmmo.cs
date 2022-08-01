@@ -23,13 +23,20 @@ namespace CombatExtended
                 {
                     var targetPawn = (Pawn)TargetA.Thing;
 
+                    var ammoGiverComp = targetPawn.TryGetComp<CompAmmoGiver>();
+
                     var newThing = ThingMaker.MakeThing(TargetB.Thing.def);
 
                     newThing.HitPoints = TargetB.Thing.HitPoints;
 
-                    newThing.stackCount = TargetB.Thing.stackCount;
+                    newThing.stackCount = ammoGiverComp.ammoAmountToGive;
 
-                    TargetB.Thing.Destroy();
+                    TargetB.Thing.stackCount -= ammoGiverComp.ammoAmountToGive;
+
+                    if (TargetB.Thing.stackCount <= 0)
+                    {
+                        TargetB.Thing.Destroy();
+                    }
 
                     targetPawn.inventory.TryAddItemNotForSale(newThing);
                 });
