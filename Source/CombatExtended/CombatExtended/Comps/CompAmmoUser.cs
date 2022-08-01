@@ -150,6 +150,10 @@ namespace CombatExtended
             {
                 return UseAmmo ? currentAmmoInt : null;
             }
+            set
+            {
+                currentAmmoInt = value;
+            }
         }
 
         public bool EmptyMagazine => HasMagazine && CurMagCount == 0;
