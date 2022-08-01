@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RimWorld;
+using Verse;
+using UnityEngine;
+using Verse.AI;
+
+namespace CombatExtended
+{
+    public class Window_GiveAmmoAmountSlider : Window
+    {
+        public int ammoToGiveAmount = 1;
+
+        public CompAmmoGiver sourceComp;
+
+        public Thing sourceAmmo;
+
+        public Pawn selPawn;
+
+        public Pawn dad;
+
+        public bool finalized = false;
+
+        public override Vector2 InitialSize
+        {
+            get
+            {
+                return new Vector2(350f, 200f);
+            }
+        }
+        public override void DoWindowContents(Rect inRect)
+        {
+            Widgets.Label(inRect.TopHalf().BottomHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
+            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf(), ammoToGiveAmount, 1, sourceAmmo.stackCount);
+
+            if(Widgets.ButtonText(inRect.BottomHalf().TopHalf().LeftHalf(), "Cancel".Translate()))
+            {
+                this.Close();
+            }
+
+            if (Widgets.ButtonText(inRect.BottomHalf().TopHalf().RightHalf(), "OK".Translate()))
+            {
+                finalized = true;
+                this.Close();
+            }
+        }
+
+        public override void Close(bool doCloseSound = true)
+        {
+            if (finalized)
+            {
+                sourceComp.ammoAmountToGive = this.ammoToGiveAmount;
+
+                var jobdef = CE_JobDefOf.GiveAmmo;
+
+                var job = new Job { def = jobdef, targetA = dad, targetB = sourceAmmo };
+
+                selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            }
+
+            base.Close(doCloseSound);
+        }
+    }
+}
