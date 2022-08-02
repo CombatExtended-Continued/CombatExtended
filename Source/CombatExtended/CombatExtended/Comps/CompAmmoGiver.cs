@@ -42,6 +42,17 @@ namespace CombatExtended
                                       {
                                           Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
                                       }));
+
+                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + " " + "All".Translate(), delegate
+                                      {
+                                          ammoAmountToGive = ammo.stackCount;
+
+                                          var jobdef = CE_JobDefOf.GiveAmmo;
+
+                                          var job = new Job { def = jobdef, targetA = dad, targetB =ammo };
+
+                                          selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                                      }));
                                   }
                               }
 
