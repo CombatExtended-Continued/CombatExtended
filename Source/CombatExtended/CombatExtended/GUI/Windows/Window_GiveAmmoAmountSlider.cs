@@ -28,13 +28,13 @@ namespace CombatExtended
         {
             get
             {
-                return new Vector2(350f, 100f);
+                return new Vector2(350f, 125f);
             }
         }
         public override void DoWindowContents(Rect inRect)
         {
-            Widgets.Label(inRect.TopHalf().BottomHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
-            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf(), ammoToGiveAmount, 1, sourceAmmo.stackCount);
+            Widgets.Label(inRect.TopHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
+            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, 1, sourceAmmo.stackCount);
 
             if(Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
             {
