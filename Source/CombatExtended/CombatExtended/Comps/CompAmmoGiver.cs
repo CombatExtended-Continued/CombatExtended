@@ -38,7 +38,7 @@ namespace CombatExtended
                               {
                                   if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                   {
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " " + "(All)".Translate(), delegate
+                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
                                       {
                                           ammoAmountToGive = ammo.stackCount;
 
