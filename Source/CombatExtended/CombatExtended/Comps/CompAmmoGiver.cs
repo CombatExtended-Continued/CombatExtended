@@ -38,20 +38,20 @@ namespace CombatExtended
                               {
                                   if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                   {
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label, delegate
-                                      {
-                                          Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
-                                      }));
-
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + " " + "All".Translate(), delegate
+                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " " + "(All)".Translate(), delegate
                                       {
                                           ammoAmountToGive = ammo.stackCount;
 
                                           var jobdef = CE_JobDefOf.GiveAmmo;
 
-                                          var job = new Job { def = jobdef, targetA = dad, targetB =ammo };
+                                          var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
 
                                           selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                                      }));
+
+                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label, delegate
+                                      {
+                                          Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
                                       }));
                                   }
                               }
