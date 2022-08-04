@@ -8,65 +8,95 @@
 			</mods>
 			<match Class="PatchOperationSequence">
 			<operations>
+
+			<!-- ========== Ammoset =========== -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_8x22mmNambu"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_8x22mmNambu_Miho>Bullet_8x22mmNambu_Miho</Ammo_8x22mmNambu_Miho>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_65x50mmSRArisaka_Miho>Bullet_65x50mmSRArisaka_Miho</Ammo_65x50mmSRArisaka_Miho>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_77x58mmArisaka"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_77x58mmArisaka_Miho>Bullet_77x58mmArisaka_Miho</Ammo_77x58mmArisaka_Miho>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_132x92mmSRTuF"]/ammoTypes</xpath>
+				<value>
+				  <Ammo_132x92mmSRTuF_Miho>Bullet_132x92mmSRTuF_Miho</Ammo_132x92mmSRTuF_Miho>
+				</value>
+			</li>
 			
 			<!-- ========== Miho Light Bow ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_BowLight</defName>
-			<statBases>
-			  <SightsEfficiency>0.6</SightsEfficiency>
-			  <ShotSpread>0.5</ShotSpread>
-			  <SwayFactor>1.5</SwayFactor>
-			  <Bulk>7.00</Bulk>
-			  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			</statBases>
-			<Properties>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Projectile_GreatArrowMiho_Stone</defaultProjectile>
-			  <warmupTime>1.3</warmupTime>
-			  <range>30</range>
-			  <soundCast>Bow_Recurve</soundCast>
-			</Properties>
-			<AmmoUser>
-			  <ammoSet>AmmoSet_GreatArrowMiho</ammoSet>
-			</AmmoUser>
-			<FireModes />
-			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				<defName>Miho_Weapon_BowLight</defName>
+				<statBases>
+				<SightsEfficiency>0.6</SightsEfficiency>
+				<ShotSpread>0.5</ShotSpread>
+				<SwayFactor>1.5</SwayFactor>
+				<Bulk>7.00</Bulk>
+				<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Projectile_GreatArrowMiho_Stone</defaultProjectile>
+				<warmupTime>1.3</warmupTime>
+				<range>30</range>
+				<soundCast>Bow_Recurve</soundCast>
+				</Properties>
+				<AmmoUser>
+				<ammoSet>AmmoSet_GreatArrowMiho</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
 			<!-- ========== Miho Light Bow ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_SniperStyx</defName>
-			<statBases>
-			  <SightsEfficiency>1</SightsEfficiency>
-			  <ShotSpread>0.05</ShotSpread>
-			  <SwayFactor>1.75</SwayFactor>
-			  <Bulk>11.00</Bulk>
-			  <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
-			</statBases>
-			<Properties>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>true</hasStandardCommand>
-			  <defaultProjectile>Projectile_MihoStyxArrow</defaultProjectile>
-			  <warmupTime>1.8</warmupTime>
-			  <range>86</range>
-			  <soundCast>Bow_Recurve</soundCast>
-			  <soundCastTail>GunTail_Heavy</soundCastTail>
-			  <muzzleFlashScale>9</muzzleFlashScale>
-			</Properties>
-			<AmmoUser>
-			  <ammoSet>AmmoSet_MihoStyxArrow</ammoSet>
-			</AmmoUser>
-			<FireModes />
-			<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				<defName>Miho_Weapon_SniperStyx</defName>
+				<statBases>
+				<SightsEfficiency>1</SightsEfficiency>
+				<ShotSpread>0.05</ShotSpread>
+				<SwayFactor>1.75</SwayFactor>
+				<Bulk>11.00</Bulk>
+				<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>Projectile_MihoStyxArrow</defaultProjectile>
+				<warmupTime>1.8</warmupTime>
+				<range>86</range>
+				<soundCast>Bow_Recurve</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+				<ammoSet>AmmoSet_MihoStyxArrow</ammoSet>
+				</AmmoUser>
+				<FireModes />
+				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
 			<!-- ========== SMG =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RifleCQB</defName>
+				<defName>Miho_Weapon_RifleCQB</defName>
 				<statBases>
 					<SightsEfficiency>0.70</SightsEfficiency>
 					<ShotSpread>0.17</ShotSpread>
@@ -146,11 +176,42 @@
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 			</li>
-			
+
+			<!-- ========== Precision Rifle =========== -->
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Miho_Weapon_RiflePrecisionGap</defName>
+				<statBases>
+					<RangedWeapon_Cooldown>0.57</RangedWeapon_Cooldown>
+					<SightsEfficiency>2.24</SightsEfficiency>
+					<ShotSpread>0.04</ShotSpread>
+					<SwayFactor>1.61</SwayFactor>
+					<Bulk>10.26</Bulk>
+				</statBases>
+				<Properties>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
+					<warmupTime>1.1</warmupTime>
+					<range>66</range>
+					<soundCast>Miho_SevenSevenRifle</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4</reloadTime>
+					<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
+				</AmmoUser>
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+
 			<!-- ========== AM Rifle =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RifleMarksman</defName>
+				<defName>Miho_Weapon_RifleMarksman</defName>
 				<statBases>
 					<SightsEfficiency>1.00</SightsEfficiency>
 					<ShotSpread>0.05</ShotSpread>
@@ -187,7 +248,7 @@
 			<!-- ========== Heavy 'Pistol' =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_HeavyPistol</defName>
+				<defName>Miho_Weapon_HeavyPistol</defName>
 				<statBases>
 					<SightsEfficiency>0.80</SightsEfficiency>
 					<ShotSpread>0.15</ShotSpread>
@@ -224,7 +285,7 @@
 			<!-- ========== Plamsa Rifle =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RiflePlasma</defName>
+				<defName>Miho_Weapon_RiflePlasma</defName>
 				<statBases>
 					<SightsEfficiency>1.10</SightsEfficiency>
 					<ShotSpread>0.2</ShotSpread>
@@ -261,7 +322,7 @@
 			<!-- ========== Plasma Sniper =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RiflePlasmaSniper</defName>
+				<defName>Miho_Weapon_RiflePlasmaSniper</defName>
 				<statBases>
 					<SightsEfficiency>3.00</SightsEfficiency>
 					<ShotSpread>0.05</ShotSpread>
@@ -294,7 +355,7 @@
 			<!-- ========== Plamsa Pistol =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RiflePlasmaPistol</defName>
+				<defName>Miho_Weapon_RiflePlasmaPistol</defName>
 				<statBases>
 					<SightsEfficiency>0.80</SightsEfficiency>
 					<ShotSpread>0.18</ShotSpread>
@@ -335,7 +396,7 @@
 			<!-- ========== SMG =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RifleCQBGap</defName>
+				<defName>Miho_Weapon_RifleCQBGap</defName>
 				<statBases>
 					<SightsEfficiency>0.80</SightsEfficiency>
 					<ShotSpread>0.15</ShotSpread>
@@ -377,7 +438,7 @@
 			<!-- ========== Rifle =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RifleDefenceGap</defName>
+				<defName>Miho_Weapon_RifleDefenceGap</defName>
 				<statBases>
 					<SightsEfficiency>1.20</SightsEfficiency>
 					<ShotSpread>0.09</ShotSpread>
@@ -419,7 +480,7 @@
 			<!-- ========== AM Rifle =========== -->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RifleMarksmanGap</defName>
+				<defName>Miho_Weapon_RifleMarksmanGap</defName>
 				<statBases>
 					<SightsEfficiency>2.30</SightsEfficiency>
 					<ShotSpread>0.05</ShotSpread>
@@ -447,44 +508,6 @@
 					<magazineSize>1</magazineSize>
 					<reloadTime>1.6</reloadTime>
 					<ammoSet>AmmoSet_132x92mmSRTuF</ammoSet>
-				</AmmoUser>
-				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
-				</FireModes>
-			</li>
-			
-			<!-- ========== AM Rifle =========== -->
-			
-			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>Miho_Weapon_RiflePrecisionGap</defName>
-				<statBases>
-					<SightsEfficiency>2.30</SightsEfficiency>
-					<ShotSpread>0.05</ShotSpread>
-					<SwayFactor>2.73</SwayFactor>
-					<Bulk>16.5</Bulk>
-					<Mass>11.00</Mass>
-					<RangedWeapon_Cooldown>1.19</RangedWeapon_Cooldown>
-				</statBases>
-				<costList>
-					<Chemfuel>30</Chemfuel>
-					<Miho_MilitaryGradeBalisticCeramics>80</Miho_MilitaryGradeBalisticCeramics>
-					<Steel>100</Steel>
-					<ComponentIndustrial>3</ComponentIndustrial>
-				</costList>
-				<Properties>
-					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<defaultProjectile>Bullet_77x58mmArisaka_FMJ</defaultProjectile>
-					<warmupTime>3</warmupTime>
-					<range>86</range>
-					<soundCast>Miho_HeavyRifle</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>12</muzzleFlashScale>
-				</Properties>
-				<AmmoUser>
-					<magazineSize>1</magazineSize>
-					<reloadTime>1.6</reloadTime>
-					<ammoSet>AmmoSet_77x58mmArisaka</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
@@ -590,29 +613,6 @@
 				</value>
 			</li>
 
-			<!-- ========== Ammoset =========== -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_8x22mmNambu"]/ammoTypes</xpath>
-				<value>
-				  <Ammo_8x22mmNambu_Miho>Bullet_8x22mmNambu_Miho</Ammo_8x22mmNambu_Miho>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_65x50mmSRArisaka"]/ammoTypes</xpath>
-				<value>
-				  <Ammo_65x50mmSRArisaka_Miho>Bullet_65x50mmSRArisaka_Miho</Ammo_65x50mmSRArisaka_Miho>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_132x92mmSRTuF"]/ammoTypes</xpath>
-				<value>
-				  <Ammo_132x92mmSRTuF_Miho>Bullet_132x92mmSRTuF_Miho</Ammo_132x92mmSRTuF_Miho>
-				</value>
-			</li>
-			
 			</operations>
 			</match>
 			</li>

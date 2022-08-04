@@ -227,12 +227,208 @@
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Miho_Weapon_Sappertool"]/equippedStatOffsets</xpath>
 				<value>
-					  <MeleeCritChance>2.30</MeleeCritChance>
-					  <MeleeParryChance>0.18</MeleeParryChance>
-					  <MeleeDodgeChance>0.30</MeleeDodgeChance>
+					<MeleeCritChance>2.30</MeleeCritChance>
+					<MeleeParryChance>0.18</MeleeParryChance>
+					<MeleeDodgeChance>0.30</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<!-- Flag -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Flag" or defName="Miho_Weapon_Flag_Shogitai"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>7</power>
+							<cooldownTime>1.35</cooldownTime>
+							<chanceFactor>0.15</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>shaft</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>4</power>
+							<cooldownTime>1.78</cooldownTime>
+							<chanceFactor>0.05</chanceFactor>
+							<armorPenetrationBlunt>1</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>head</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>18</power>
+							<cooldownTime>1.19</cooldownTime>
+							<chanceFactor>1.00</chanceFactor>
+							<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.5</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Flag" or defName="Miho_Weapon_Flag_Shogitai"]/statBases</xpath>
+				<value>
+					<Bulk>11</Bulk>
+					<MeleeCounterParryBonus>1.28</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Flag" or defName="Miho_Weapon_Flag_Shogitai"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.11</MeleeCritChance>
+					<MeleeParryChance>1.45</MeleeParryChance>
+					<MeleeDodgeChance>0.9</MeleeDodgeChance>
+				</value>
+			</li>
+
+			<!-- Plasma Tachi -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_PlasmaTachi"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>handle</label>
+							<capacities>
+								<li>Poke</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.69</cooldownTime>
+							<chanceFactor>0.10</chanceFactor>
+							<armorPenetrationBlunt>0.80</armorPenetrationBlunt>
+							<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>edge</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>47</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>5</amount>
+								<chance>0.3</chance>
+							</li>
+							</extraMeleeDamages>					
+							<cooldownTime>1.17</cooldownTime>
+							<chanceFactor>0.66</chanceFactor>
+							<armorPenetrationBlunt>4.06</armorPenetrationBlunt>
+							<armorPenetrationSharp>24</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>point</label>
+							<capacities>
+							<li>Stab</li>
+							</capacities>
+							<power>25</power>
+							<extraMeleeDamages>
+							<li>
+								<def>Flame</def>
+								<amount>3</amount>
+								<chance>0.2</chance>
+							</li>
+							</extraMeleeDamages>					
+							<cooldownTime>1.05</cooldownTime>
+							<armorPenetrationBlunt>2.048</armorPenetrationBlunt>
+							<armorPenetrationSharp>32</armorPenetrationSharp>
+						</li>				
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_PlasmaTachi"]/statBases</xpath>
+				<value>
+					<Bulk>9</Bulk>
+					<MeleeCounterParryBonus>3.6</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_PlasmaTachi"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>0.74</MeleeCritChance>
+					<MeleeParryChance>0.53</MeleeParryChance>
+					<MeleeDodgeChance>0.60</MeleeDodgeChance>	
+				</value>
+			</li> 
+
+			<!-- Slayer -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Slayer"]/tools</xpath>
+				<value>
+					<tools>
+					  <li Class="CombatExtended.ToolCE">
+						<label>edge</label>
+						<capacities>
+						  <li>Miho_Slayer</li>
+						</capacities>
+						<power>42</power>
+						<cooldownTime>4.9</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+						<armorPenetrationSharp>1.62</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>head</label>
+						<capacities>
+							<li>Miho_Slayer</li>
+						</capacities>
+						<power>42</power>
+						<cooldownTime>4.16</cooldownTime>
+						<chanceFactor>1.165</chanceFactor>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<armorPenetrationSharp>2.03</armorPenetrationSharp>
+						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+					  </li>
+					  <li Class="CombatExtended.ToolCE">
+						<label>Shaft</label>
+						<capacities>
+						  <li>Blunt</li>
+						</capacities>
+						<power>6</power>
+						<cooldownTime>1.31</cooldownTime>
+						<armorPenetrationBlunt>2.025</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+					  </li>
+					</tools>
 				</value>
 			</li>
 			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Slayer"]/statBases</xpath>
+				<value>
+					<Bulk>10</Bulk>
+					<MeleeCounterParryBonus>1.08</MeleeCounterParryBonus>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Miho_Weapon_Slayer"]/equippedStatOffsets</xpath>
+				<value>
+				  <MeleeCritChance>0.22</MeleeCritChance>
+				  <MeleeParryChance>1.53</MeleeParryChance>
+				  <MeleeDodgeChance>0.67</MeleeDodgeChance>
+				</value>
+			</li>
+
 			</operations>
 			</match>
 			</li>
