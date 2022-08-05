@@ -64,7 +64,7 @@ namespace CombatExtended
                                   if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                   {
                                       int outAmmoCount = 0;
-                                      if (dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo.def, out outAmmoCount) ?? false)
+                                      if (dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false && outAmmoCount >= ammo.stackCount)
                                       {
                                           options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
                                           {
@@ -77,7 +77,7 @@ namespace CombatExtended
                                               selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
                                           }));
                                       }
-
+                                      
                                       if (outAmmoCount > 0)
                                       {
                                           options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + "...", delegate
