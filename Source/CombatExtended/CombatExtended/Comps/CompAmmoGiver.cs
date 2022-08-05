@@ -10,6 +10,31 @@ using UnityEngine;
 
 namespace CombatExtended
 {
+    public class Building_WorkTableSmoking : Building_WorkTable
+    {
+        int timerCur;
+        const int timerCap = 30;
+        public override void UsedThisTick()
+        {
+            timerCur++;
+
+            if (timerCur >= timerCap)
+            {
+                if (this.Position.GetGas(this.Map) is Smoke existingSmoke)
+                {
+                    existingSmoke.UpdateDensityBy(900f);
+                }
+                else
+                {
+                    var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, this.Position.RandomAdjacentCell8Way(), this.Map);
+                    newSmoke.UpdateDensityBy(900f);
+                }
+                
+            }
+            
+            base.UsedThisTick();
+        }
+    }
     public class CompAmmoGiver : ThingComp
     {
         public int ammoAmountToGive;
@@ -38,27 +63,39 @@ namespace CombatExtended
                               {
                                   if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                   {
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
+                                      int outAmmoCount = 0;
+                                      if (dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo.def, out outAmmoCount) ?? false)
                                       {
-                                          ammoAmountToGive = ammo.stackCount;
+                                          options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
+                                          {
+                                              ammoAmountToGive = ammo.stackCount;
 
-                                          var jobdef = CE_JobDefOf.GiveAmmo;
+                                              var jobdef = CE_JobDefOf.GiveAmmo;
 
-                                          var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
+                                              var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
 
-                                          selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
-                                      }));
+                                              selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                                          }));
+                                      }
 
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + "...", delegate
+                                      if (outAmmoCount > 0)
                                       {
-                                          Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
-                                      }));
+                                          options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + "...", delegate
+                                          {
+                                              Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this, maxAmmoCount = outAmmoCount });
+                                          }));
+                                      }
+                                      else
+                                      {
+                                          options.Add(new FloatMenuOption("CE_TargetInventoryFull".Translate(), null));
+                                      }
+                                      
                                   }
                               }
 
                               if (!options.Any())
                               {
-                                  options.Add(new FloatMenuOption("CE_NoAmmoToGive", null));
+                                  options.Add(new FloatMenuOption("CE_NoAmmoToGive".Translate(), null));
                               }
 
                               Find.WindowStack.Add(new FloatMenu(options));
