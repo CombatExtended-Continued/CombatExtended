@@ -24,6 +24,8 @@ namespace CombatExtended
 
         public bool finalized = false;
 
+        public int maxAmmoCount;
+
         public override Vector2 InitialSize
         {
             get
@@ -34,7 +36,7 @@ namespace CombatExtended
         public override void DoWindowContents(Rect inRect)
         {
             Widgets.Label(inRect.TopHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
-            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, 1, sourceAmmo.stackCount);
+            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, maxAmmoCount, sourceAmmo.stackCount);
 
             if(Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
             {
