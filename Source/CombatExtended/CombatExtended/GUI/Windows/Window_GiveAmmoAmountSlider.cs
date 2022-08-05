@@ -36,7 +36,7 @@ namespace CombatExtended
         public override void DoWindowContents(Rect inRect)
         {
             Widgets.Label(inRect.TopHalf().TopHalf(), "CE_AmmoAmount".Translate() + " " + ammoToGiveAmount.ToString());
-            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, maxAmmoCount, sourceAmmo.stackCount);
+            ammoToGiveAmount = (int)Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf(), ammoToGiveAmount, 1, maxAmmoCount);
 
             if(Widgets.ButtonText(inRect.BottomHalf().LeftHalf(), "Cancel".Translate()))
             {
