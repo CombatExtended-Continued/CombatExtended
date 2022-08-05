@@ -49,7 +49,7 @@ namespace CombatExtended
                                           selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
                                       }));
 
-                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label, delegate
+                                      options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.def.label + " ...", delegate
                                       {
                                           Find.WindowStack.Add(new Window_GiveAmmoAmountSlider() { dad = dad, sourceAmmo = ammo, selPawn = selPawn, sourceComp = this });
                                       }));
