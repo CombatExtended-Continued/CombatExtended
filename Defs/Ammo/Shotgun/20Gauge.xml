@@ -28,8 +28,8 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="20GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Very common shotgun caliber used mostly for hunting.</description>
     <statBases>
-	  <Mass>0.043</Mass>
-	  <Bulk>0.06</Bulk>
+	  <Mass>0.017</Mass>
+	  <Bulk>0.05</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CE_AutoEnableTrade</li>
@@ -38,7 +38,7 @@
     <thingCategories>
       <li>Ammo20Gauge</li>
     </thingCategories>
-    <stackLimit>350</stackLimit>
+    <stackLimit>5000</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="20GaugeBase">
@@ -49,7 +49,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.12</MarketValue>
+      <MarketValue>0.08</MarketValue>
     </statBases>
     <ammoClass>BuckShot</ammoClass>
     <cookOffProjectile>Bullet_20Gauge_Buck</cookOffProjectile>
@@ -78,7 +78,7 @@
     </graphicData>
     <statBases>
 	  <Mass>0.08</Mass>
-      <MarketValue>0.12</MarketValue>
+      <MarketValue>0.14</MarketValue>
     </statBases>
     <ammoClass>Slug</ammoClass>
     <cookOffProjectile>Bullet_20Gauge_Slug</cookOffProjectile>
@@ -93,7 +93,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.12</MarketValue>
+      <MarketValue>0.19</MarketValue>
     </statBases>
     <ammoClass>Beanbag</ammoClass>
     <cookOffProjectile>Bullet_20Gauge_Beanbag</cookOffProjectile>
@@ -107,7 +107,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.33</MarketValue>
+      <MarketValue>0.49</MarketValue>
     </statBases>
     <ammoClass>ElectroSlug</ammoClass>
     <cookOffProjectile>Bullet_20Gauge_ElectroSlug</cookOffProjectile>
@@ -118,7 +118,7 @@
 	<ThingDef Name="Base20GaugeBullet" ParentName="BaseBullet" Abstract="true">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>84</speed>
+			<speed>74</speed>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
 		</projectile>
@@ -132,10 +132,11 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>6</damageAmountBase>
-			<pelletCount>7</pelletCount>
-			<armorPenetrationBase>0.185</armorPenetrationBase>
-			<spreadMult>17.8</spreadMult>
+			<damageAmountBase>5</damageAmountBase>
+			<pelletCount>20</pelletCount>
+      <armorPenetrationSharp>4</armorPenetrationSharp>
+      <armorPenetrationBlunt>1.92</armorPenetrationBlunt>
+			<spreadMult>21.8</spreadMult>
 		</projectile>
 	</ThingDef>
 
@@ -162,9 +163,10 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>120</speed>
-			<damageAmountBase>31</damageAmountBase>
-			<armorPenetrationBase>0.423</armorPenetrationBase>
+			<speed>97</speed>
+			<damageAmountBase>21</damageAmountBase>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>41.14</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -177,10 +179,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Beanbag</damageDef>
-			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationBase>0.107</armorPenetrationBase>
+			<damageAmountBase>8</damageAmountBase>
+      <armorPenetrationBlunt>2.18</armorPenetrationBlunt>
 			<spreadMult>2</spreadMult>
-			<speed>25</speed>
+			<speed>18</speed>
 		</projectile>
 	</ThingDef>
 
@@ -193,7 +195,11 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>11</damageAmountBase>
+			<damageAmountBase>9</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <empShieldBreakChance>0.18</empShieldBreakChance>      
+      <speed>30</speed>
 		</projectile>
 	</ThingDef>
   
