@@ -10,31 +10,6 @@ using UnityEngine;
 
 namespace CombatExtended
 {
-    public class Building_WorkTableSmoking : Building_WorkTable
-    {
-        int timerCur;
-        const int timerCap = 30;
-        public override void UsedThisTick()
-        {
-            timerCur++;
-
-            if (timerCur >= timerCap)
-            {
-                if (this.Position.GetGas(this.Map) is Smoke existingSmoke)
-                {
-                    existingSmoke.UpdateDensityBy(900f);
-                }
-                else
-                {
-                    var newSmoke = (Smoke)GenSpawn.Spawn(CE_ThingDefOf.Gas_BlackSmoke, this.Position.RandomAdjacentCell8Way(), this.Map);
-                    newSmoke.UpdateDensityBy(900f);
-                }
-                
-            }
-            
-            base.UsedThisTick();
-        }
-    }
     public class CompAmmoGiver : ThingComp
     {
         public int ammoAmountToGive;
