@@ -48,13 +48,13 @@
                         </statBases>
                         <!--equippedAngleOffset>30</equippedAngleOffset-->
                         <stackLimit>25</stackLimit>
-                        <weaponTags>
-                            <li>NeolithicRangedHeavy</li>
-                            <li>CE_Pila</li>
+                        <weaponTags Inherit="false">
+                            <!--li>NeolithicRangedHeavy</li>
+                            <li>CE_Pila</li--> <!-- tribal tags -->
                             <li>CE_OneHandedWeapon</li>
-                            <!--li>IndustrialRangedHeavy</li> 
+                            <li>IndustrialRangedHeavy</li> 
                             <li>GrenadeDestructive</li>
-                            <li>EmpireGrenadeDestructive</li--> <!-- Not sure whether to inherit the tags from the base mod, setting it to default for pila for now -->
+                            <li>EmpireGrenadeDestructive</li> <!-- Base tags from the mod -->
                         </weaponTags>
                         <tradeability>All</tradeability>
                         <verbs>
@@ -64,7 +64,10 @@
                                 <defaultProjectile>PilumHE_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                         <tools>
@@ -119,7 +122,10 @@
                                 <defaultProjectile>PilumHI_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                     </ThingDef>
@@ -149,7 +155,10 @@
                                 <defaultProjectile>PilumEMP_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                     </ThingDef>
@@ -172,6 +181,7 @@
                             <Mass>2.00</Mass>
                             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
                         </statBases>
+						<generateAllowChance>0</generateAllowChance>
                         <verbs Inherit="false">
                             <li Class="CombatExtended.VerbPropertiesCE">
                                 <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -179,7 +189,10 @@
                                 <defaultProjectile>PilumSmoke_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                     </ThingDef>
@@ -202,6 +215,7 @@
                             <Mass>2.00</Mass>
                             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
                         </statBases>
+						<generateAllowChance>0</generateAllowChance>
                         <verbs Inherit="false">
                             <li Class="CombatExtended.VerbPropertiesCE">
                                 <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -209,7 +223,10 @@
                                 <defaultProjectile>PilumFirefoam_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                     </ThingDef>
@@ -232,6 +249,7 @@
                             <Mass>2.00</Mass>
                             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
                         </statBases>
+						<generateAllowChance>0.1</generateAllowChance> <!-- carried over from base mod, generate commonality 0.1 -->
                         <verbs Inherit="false">
                             <li Class="CombatExtended.VerbPropertiesCE">
                                 <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
@@ -239,7 +257,10 @@
                                 <defaultProjectile>PilumAntigrain_Thrown</defaultProjectile>
                                 <warmupTime>0.8</warmupTime>
                                 <range>9</range>
-                                <!--<soundCast>Interact_BeatFire</soundCast>-->
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+                                <soundCast>Interact_BeatFire</soundCast>
                             </li>
                         </verbs>
                     </ThingDef>
