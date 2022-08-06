@@ -354,6 +354,7 @@ Saclean Race    |
 Save Our Ship 2	|
 SCP |
 SCP - Clothing Only	|
+Seren, from Stardust    |
 Sergals, Gnolls, Lions and Frogs	|
 Seventh Seraph  |
 Silkiera Race	|
