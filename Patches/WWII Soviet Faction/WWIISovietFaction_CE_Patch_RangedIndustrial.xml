@@ -94,6 +94,13 @@
 				<AllowWithRunAndGun>false</AllowWithRunAndGun>
 			</li>
 
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Gun_WWII_MosinNagant_Bayonet"]/weaponTags</xpath>
+				<value>
+				  <li>NoSwitch</li>
+				</value>
+			</li>
+
 			<!-- ========== PPsh-41 ========== -->
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -272,9 +279,35 @@
 			<!-- == Shared patches for firearm melee tools == -->
 
 			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="Gun_WWII_MosinNagant_Bayonet"]/tools</xpath>
+				<value>
+				  <tools>
+					<li Class="CombatExtended.ToolCE">
+					  <label>bayonet</label>
+					  <capacities>
+						<li>Stab</li>
+					  </capacities>
+					  <power>10</power>
+					  <cooldownTime>1.6</cooldownTime>
+					  <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+					  <armorPenetrationSharp>0.5</armorPenetrationSharp>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+					  <label>stock</label>
+					  <capacities>
+						<li>Blunt</li>
+					  </capacities>
+					  <power>8</power>
+					  <cooldownTime>1.8</cooldownTime>
+					  <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					</li>
+				  </tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[
 					defName="Gun_WWII_MosinNagant_Normal" or
-					defName="Gun_WWII_MosinNagant_Bayonet" or
 					defName="Gun_WWII_PPShSMG" or
 					defName="Gun_DP-28_LMG" or
 					defName="Gun_WWII_Svt-40_Rifle"
