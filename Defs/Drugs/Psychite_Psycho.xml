@@ -76,7 +76,7 @@
     <comps>
       <li Class="CompProperties_Drug">
         <chemical>Psychite</chemical>
-        <addictiveness>0.25</addictiveness>
+        <addictiveness>0.2</addictiveness>
         <existingAddictionSeverityOffset>0.25</existingAddictionSeverityOffset>
         <needLevelOffset>1.0</needLevelOffset>
         <isCombatEnhancingDrug>true</isCombatEnhancingDrug>
@@ -99,12 +99,49 @@
     <isBad>false</isBad>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-3.0</severityPerDay>
+        <severityPerDay>-2.5</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
     </comps>
       <stages>
         <li>
+          <label>crash</label>
+          <hediffGivers>
+            <li Class="HediffGiver_Random">
+              <hediff>PsychoCrash</hediff>
+              <mtbDays>0.05</mtbDays>
+              <partsToAffect>
+                <li>Brain</li>
+              </partsToAffect>
+            </li>
+          </hediffGivers>
+        </li>
+        <li>
+		  <minSeverity>0.05</minSeverity>
+          <label>coming down</label>
+          <painFactor>0.75</painFactor>
+          <restFallFactor>0.75</restFallFactor>
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>0.05</offset>
+            </li>
+            <li>
+              <capacity>Sight</capacity>
+              <offset>0.05</offset>
+            </li>
+            <li>
+              <capacity>Moving</capacity>
+              <offset>0.1</offset>
+            </li>
+          </capMods>
+          <statFactors>
+            <Suppressability>0.75</Suppressability>
+          </statFactors>
+        </li>
+        <li>
+          <minSeverity>0.15</minSeverity>
+          <label>full-on high</label>
           <painFactor>0</painFactor>
           <restFallFactor>0.33</restFallFactor>
           <capMods>
@@ -125,6 +162,29 @@
             <Suppressability>0</Suppressability>
           </statFactors>
         </li>
+        <li>
+          <minSeverity>0.9375</minSeverity>
+          <label>kicking in</label>
+          <painFactor>0.5</painFactor>
+          <restFallFactor>0.5</restFallFactor>
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>0.1</offset>
+            </li>
+            <li>
+              <capacity>Sight</capacity>
+              <offset>0.1</offset>
+            </li>
+            <li>
+              <capacity>Moving</capacity>
+              <offset>0.2</offset>
+            </li>
+          </capMods>
+          <statFactors>
+            <Suppressability>0.5</Suppressability>
+          </statFactors>
+        </li>
       </stages>
   </HediffDef>
 
@@ -135,9 +195,24 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
+        <label>coming down from psycho</label>
+        <description>Something is wrong.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+      <li>
+        <label>barely high on psycho</label>
+        <description>I still feel so good.</description>
+        <baseMoodEffect>20</baseMoodEffect>
+      </li>
+      <li>
         <label>high on psycho</label>
         <description>I AM GOD!</description>
         <baseMoodEffect>50</baseMoodEffect>
+      </li>
+      <li>
+        <label>almost high on psycho</label>
+        <description>I feel like a god.</description>
+        <baseMoodEffect>40</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -147,7 +222,7 @@
     <label>psycho crash</label>
     <labelNoun>a psycho crash</labelNoun>
     <description>A very unpleasant delayed after-effect of psycho intake.</description>
-    <hediffClass>Hediff_Hangover</hediffClass>
+    <hediffClass>HediffWithComps</hediffClass>
     <initialSeverity>1</initialSeverity>
     <scenarioCanAdd>false</scenarioCanAdd>
     <comps>
@@ -157,7 +232,6 @@
     </comps>
     <stages>
       <li>
-        <minSeverity>0</minSeverity>
         <label>recovering</label>
           <capMods>
             <li>
@@ -167,7 +241,7 @@
           </capMods>
       </li>
       <li>
-        <minSeverity>0.25</minSeverity>
+        <minSeverity>0.2</minSeverity>
         <label>serious</label>
 		<vomitMtbDays>0.5</vomitMtbDays>
           <capMods>
@@ -177,15 +251,26 @@
             </li>
           </capMods>
       </li>
-      <!-- starts low because it isn't visible until alcohol hediff is gone-->
       <li>
-        <minSeverity>0.5</minSeverity>
+        <minSeverity>0.4</minSeverity>
         <label>lethal</label>
+		<painFactor>0.1</painFactor>
         <vomitMtbDays>0.2</vomitMtbDays>
           <capMods>
             <li>
               <capacity>Consciousness</capacity>
               <setMax>0.1</setMax>
+            </li>
+          </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>initial</label>
+		<vomitMtbDays>0.5</vomitMtbDays>
+          <capMods>
+            <li>
+              <capacity>Consciousness</capacity>
+              <offset>-0.1</offset>
             </li>
           </capMods>
       </li>
@@ -199,19 +284,24 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>mild comedown</label>
-        <description>Let's not do this again.</description>
+        <label>mild psycho comedown</label>
+        <description>Let's not do this again...</description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
       <li>
-        <label>serious comedown</label>
+        <label>serious psycho comedown</label>
         <description>I might survive this after all.</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
       <li>
-        <label>lethal comedown</label>
+        <label>lethal psycho comedown</label>
         <description>It feels like I'm dying.</description>
         <baseMoodEffect>-20</baseMoodEffect>
+      </li>
+      <li>
+        <label>initial psycho comedown</label>
+        <description>I don't feel so good.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
