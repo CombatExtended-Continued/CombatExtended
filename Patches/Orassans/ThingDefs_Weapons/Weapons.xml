@@ -53,7 +53,8 @@
 						defName = "Gun_OrassanSniper" or
 						defName = "Gun_OrassanDMR" or
 						defName = "Gun_OrassanGMG" or
-						defName = "Gun_OrassanBattleRifle"
+						defName = "Gun_OrassanBattleRifle" or
+						defName = "Gun_OrassanGrenadeLauncher"
 						]/tools
 					</xpath>
 					<value>
@@ -764,6 +765,8 @@
 					</value>
 				</li>
 				
+				<!-- === Orassan Combat Knife === -->
+				
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]/statBases</xpath>
 					<value>
@@ -832,6 +835,66 @@
 					</value>
 				</li>
 
+				<!-- === Orassan Telescoping Warhammer === -->
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/statBases</xpath>
+					<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]</xpath>
+					<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.40</MeleeCritChance>
+					</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/weaponTags</xpath>
+					<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.8</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.2</cooldownTime>
+								<chanceFactor>0.30</chanceFactor>
+								<!-- Designed to damage most powered armor -->
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Cat's Eye berry juice (bottle) === -->
+				
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Catberryjuice"]/tools</xpath>
 					<value>
