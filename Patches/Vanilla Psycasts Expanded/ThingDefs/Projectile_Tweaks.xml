@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Psycasts Expanded</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ======= Projectile Adjustment ======= -->
+
+                <!-- ===== Conflagator ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPE_Flameball"]/projectile/speed</xpath>
+                    <value>
+                        <speed>25</speed>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/VFECore.ExpandableProjectileDef[defName="VPE_FireBreath"]/projectile/speed</xpath>
+                    <value>
+                        <speed>48</speed>
+                    </value>
+                </li>
+
+                <!-- ===== Staticlord ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPE_Bolt"]/projectile/extraDamages/li/amount</xpath>
+                    <value>
+                        <amount>12</amount>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPE_BallLightning"]/projectile/speed</xpath>
+                    <value>
+                        <speed>8</speed>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPE_BallLightning"]/projectile/damageAmountBase</xpath>
+                    <value>
+                        <damageAmountBase>12</damageAmountBase>
+                    </value>
+                </li>
+
+                <!-- ===== Frostshaper ===== -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/VFECore.ExpandableProjectileDef[defName="VPE_IceBreathe"]/projectile/speed</xpath>
+                    <value>
+                        <speed>48</speed>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>
