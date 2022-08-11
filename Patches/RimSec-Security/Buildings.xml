@@ -147,7 +147,7 @@
 				<!-- ========== Common to all Turrets ========== -->
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[ @Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
+					<xpath>Defs/ThingDef[@Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
 				]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -155,7 +155,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[ @Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
+					<xpath>Defs/ThingDef[@Name="RSTurretLLTBase" or @Name="RSTurretHLTBase" or @Name="RSTurretHAACBase"
 				]/fillPercent</xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
@@ -163,12 +163,12 @@
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
 				]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
 				]/statBases</xpath>
 					<value>
 						<AimingAccuracy>1</AimingAccuracy>
@@ -176,7 +176,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[ defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
+					<xpath>Defs/ThingDef[defName="RSTurretLLT" or defName="RSTurretHLT" or defName="RSTurretHAAC"
                 ]/statBases/ShootingAccuracyTurret</xpath>
 					<value>
 						<ShootingAccuracyTurret>1</ShootingAccuracyTurret>

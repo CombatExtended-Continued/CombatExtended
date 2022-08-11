@@ -9,43 +9,43 @@
 			<operations>
 
 			<!-- Make the YMIR usable -->
-  <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[@Name="RE_Gun_MechHeavyMassAccelerator"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>stock</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>36</power>
-          <cooldownTime>3</cooldownTime>
-          <armorPenetrationBlunt>148</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>43</power>
-          <cooldownTime>2.88</cooldownTime>
-          <armorPenetrationBlunt>100</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-        <li Class="CombatExtended.ToolCE">
-          <label>muzzle</label>
-          <capacities>
-            <li>Poke</li>
-          </capacities>
-          <power>38</power>
-          <cooldownTime>2.48</cooldownTime>
-          <armorPenetrationBlunt>90</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
+		  <li Class="PatchOperationReplace">
+		    <xpath>/Defs/ThingDef[@Name="RE_Gun_MechHeavyMassAccelerator"]/tools</xpath>
+		    <value>
+		      <tools>
+			<li Class="CombatExtended.ToolCE">
+			  <label>stock</label>
+			  <capacities>
+			    <li>Blunt</li>
+			  </capacities>
+			  <power>36</power>
+			  <cooldownTime>3</cooldownTime>
+			  <armorPenetrationBlunt>148</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			  <label>barrel</label>
+			  <capacities>
+			    <li>Blunt</li>
+			  </capacities>
+			  <power>43</power>
+			  <cooldownTime>2.88</cooldownTime>
+			  <armorPenetrationBlunt>100</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+			</li>
+			<li Class="CombatExtended.ToolCE">
+			  <label>muzzle</label>
+			  <capacities>
+			    <li>Poke</li>
+			  </capacities>
+			  <power>38</power>
+			  <cooldownTime>2.48</cooldownTime>
+			  <armorPenetrationBlunt>90</armorPenetrationBlunt>
+			  <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+			</li>
+		      </tools>
+		    </value>
+		  </li>
 
 
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -65,8 +65,8 @@
 			  <defaultProjectile>RE_YmirBullet</defaultProjectile>
 			  <warmupTime>1.4</warmupTime>
 			  <range>75</range>
-        			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
-        			<burstShotCount>16</burstShotCount>
+        		  <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        		  <burstShotCount>16</burstShotCount>
 			  <minRange>1.5</minRange>
 			  <soundCast>RE_Shot_YMIRCannon</soundCast>
       			<soundCastTail>GunTail_Heavy</soundCastTail>
@@ -78,8 +78,11 @@
 			</AmmoUser>
 			<FireModes>
 			  <aiAimMode>AimedShot</aiAimMode>
-      			<aimedBurstShotCount>8</aimedBurstShotCount>
+      			  <aimedBurstShotCount>8</aimedBurstShotCount>
 			</FireModes>
+			<weaponTags>
+				<li>NoSwitch</li>
+			</weaponTags>
 			</li>
 			
 

@@ -50,13 +50,6 @@
       </value>
     </li>
 
-    <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/race/baseBodySize</xpath>
-      <value>
-        <baseBodySize>0.20</baseBodySize>
-      </value>
-    </li>
-
     <li Class="PatchOperationAddModExtension">
       <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret"or defName="VFE_Mechanoids_Autobroadcaster"]</xpath>
       <value>
@@ -67,11 +60,26 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Turret" or defName="VFE_Mechanoids_Autobroadcaster"]/statBases</xpath>
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Autocleaner" or defName="VFE_Mechanoids_Autohauler" or defName="VFE_Mechanoids_Autominer" or defName="VFE_Mechanoids_Autobroadcaster"]/statBases</xpath>
       <value>
         <MeleeDodgeChance>0</MeleeDodgeChance>
         <MeleeCritChance>0.01</MeleeCritChance>
         <MeleeParryChance>0</MeleeParryChance>
+      </value>
+    </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Turret"]/statBases</xpath>
+      <value>
+        <CarryWeight>100</CarryWeight>
+        <CarryBulk>50</CarryBulk>
+        <AimingAccuracy>1.0</AimingAccuracy>
+        <ShootingAccuracyPawn>2.6</ShootingAccuracyPawn>
+        <ReloadSpeed>1</ReloadSpeed>
+        <MeleeDodgeChance>0</MeleeDodgeChance>
+        <MeleeCritChance>0.01</MeleeCritChance>
+        <MeleeParryChance>0</MeleeParryChance>
+	<NightVisionEfficiency>0.40</NightVisionEfficiency>
       </value>
     </li>
 
@@ -123,9 +131,10 @@
       <xpath>/Defs/ThingDef[defName="VFE_Mechanoids_Riot" or defName="VFE_Mechanoids_Combat" or defName="VFE_Mechanoids_Raider" or defName="VFE_Mechanoids_Pyro"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
-        <CarryBulk>20</CarryBulk>
+        <CarryBulk>30</CarryBulk>
         <AimingAccuracy>1.0</AimingAccuracy>
         <ShootingAccuracyPawn>2.6</ShootingAccuracyPawn>
+        <ReloadSpeed>1</ReloadSpeed>
         <MeleeDodgeChance>0.19</MeleeDodgeChance>
         <MeleeCritChance>0.22</MeleeCritChance>
         <MeleeParryChance>0.09</MeleeParryChance>
