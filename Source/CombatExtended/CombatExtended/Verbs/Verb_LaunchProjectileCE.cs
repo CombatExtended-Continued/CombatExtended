@@ -36,6 +36,7 @@ namespace CombatExtended
 
         private float shotAngle = 0f;   // Shot angle off the ground in radians.
         private float shotRotation = 0f;    // Angle rotation towards target.
+        private float distance = 10f;
 
         public CompCharges compCharges = null;
         public CompAmmoUser compAmmo = null;
@@ -504,6 +505,7 @@ namespace CombatExtended
             var w = (newTargetLoc - sourceLoc);
             shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x) + rotationDegrees + spreadVec.x) % 360;
             shotAngle = angleRadians + spreadVec.y * Mathf.Deg2Rad;
+            distance = (newTargetLoc - sourceLoc).magnitude;
         }
 
         /// <summary>
@@ -824,7 +826,8 @@ namespace CombatExtended
                                       shotRotation,
                                       ShotHeight,
                                       ShotSpeed,
-                                      EquipmentSource);
+                                      EquipmentSource,
+                                      distance);
                 }
                 pelletMechanicsOnly = true;
             }
