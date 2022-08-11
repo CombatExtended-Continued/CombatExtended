@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using RimWorld;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
