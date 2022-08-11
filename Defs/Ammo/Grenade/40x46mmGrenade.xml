@@ -18,6 +18,7 @@
       <Ammo_40x46mmGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_40x46mmGrenade_HEDP>	  
       <Ammo_40x46mmGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_40x46mmGrenade_EMP>
       <Ammo_40x46mmGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_40x46mmGrenade_Smoke>    
+      <Ammo_40x46mmGrenade_Smart>Bullet_40x46mmGrenade_Smart</Ammo_40x46mmGrenade_Smart>
     </ammoTypes>
     <similarTo>AmmoSet_LauncherGrenade</similarTo>
   </CombatExtended.AmmoSetDef>
@@ -53,6 +54,22 @@
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
 	<detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+    <defName>Ammo_40x46mmGrenade_Smart</defName>
+    <label>40x46mm grenade (Smart)</label>
+    <graphicData>
+      <!-- placeholder -->
+      <texPath>Things/Ammo/GrenadeLauncher/GS50_HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>4.74</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeSmart</ammoClass>
+    <!-- Directional frags would probably get borked here -->
+	  <detonateProjectile>Bullet_40x46mmGrenade_HE</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
@@ -151,6 +168,32 @@
   </ThingDef>
 
   <ThingDef ParentName="Base40x46mmGrenadeBullet">
+    <defName>Bullet_40x46mmGrenade_Smart</defName>
+    <label>40x46mm grenade (Smart)</label>
+    <thingClass>CombatExtended.ProjectileCE_Airburst</thingClass>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.0</explosionRadius >
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>18</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>18</Fragment_Small>
+        </fragments>
+        <fragXZAngleRange>0~45</fragXZAngleRange>
+      </li>
+    </comps>
+    <modExtensions>
+			<li Class="CombatExtended.ModExtension_Airburst">
+				<distToExplode>6</distToExplode>
+				<updateRate>5</updateRate>
+			</li>
+		</modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
     <defName>Bullet_40x46mmGrenade_HEDP</defName>
     <thingClass>CombatExtended.BulletCE</thingClass>
     <label>40x46mm grenade (HEDP)</label>
@@ -240,6 +283,54 @@
       <Ammo_40x46mmGrenade_HE>100</Ammo_40x46mmGrenade_HE>
     </products>
     <workAmount>9000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
+    <defName>MakeAmmo_40x46mmGrenade_Smart</defName>
+    <label>make 40x46mm Smart grenades x100</label>
+    <description>Craft 100 40x46mm Smart grenades.</description>
+    <jobString>Making 40x46mm Smart grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>45</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x46mmGrenade_Smart>100</Ammo_40x46mmGrenade_Smart>
+    </products>
+    <workAmount>27000</workAmount>
+    <researchPrerequisites>
+      <li>CE_AdvancedAmmo</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
