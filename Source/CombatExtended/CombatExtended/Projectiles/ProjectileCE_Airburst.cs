@@ -12,7 +12,7 @@ namespace CombatExtended
     {
         public int updateRate => props.updateRate;
 
-        public int timer;
+        public int timer = -10;
         
         public bool detonated;
 
@@ -36,7 +36,12 @@ namespace CombatExtended
 
         public virtual void UpdateDistance()
         {
-            if (detonated || this.Position.DistanceTo(this.intendedTarget.Cell)  <= props.distToExplode)
+             if (
+                detonated || 
+                this.Position.DistanceTo(this.intendedTarget.Cell) <= props.distToExplode
+                ||
+                this.Position.PawnsInRange(this.Map, props.distToExplode).Any()
+                )
             {
                 detonated = true;
                 base.ImpactSomething();
