@@ -11,10 +11,36 @@
                 <!-- ======= Projectile Adjustment ======= -->
 
                 <!-- ===== Conflagator ===== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef[defName="VPE_Flameball"]/projectile</xpath>
+                    <value>
+                        <damageAmountBase>5</damageAmountBase>
+                    </value>
+                </li>
+
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="VPE_Flameball"]/projectile/speed</xpath>
                     <value>
                         <speed>25</speed>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/VFECore.ExpandableProjectileDef[defName="VPE_FireBreath"]/projectile/damageAmountBase</xpath>
+                    <value>
+                        <damageAmountBase>9</damageAmountBase>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/VFECore.ExpandableProjectileDef[defName="VPE_FireBreath"]/projectile</xpath>
+                    <value>
+                        <extraDamages>
+                            <li>
+                                <def>PrometheumFlame</def>
+                                <amount>1</amount>
+                            </li>
+                        </extraDamages>
                     </value>
                 </li>
 
@@ -26,12 +52,6 @@
                 </li>
 
                 <!-- ===== Staticlord ===== -->
-                <li Class="PatchOperationReplace">
-                    <xpath>Defs/ThingDef[defName="VPE_Bolt"]/projectile/extraDamages/li/amount</xpath>
-                    <value>
-                        <amount>12</amount>
-                    </value>
-                </li>
 
                 <li Class="PatchOperationReplace">
                     <xpath>Defs/ThingDef[defName="VPE_BallLightning"]/projectile/speed</xpath>
@@ -52,6 +72,13 @@
                     <xpath>Defs/VFECore.ExpandableProjectileDef[defName="VPE_IceBreathe"]/projectile/speed</xpath>
                     <value>
                         <speed>48</speed>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[defName="VPE_IceSpike"]/projectile/damageAmountBase</xpath>
+                    <value>
+                        <damageAmountBase>15</damageAmountBase>
                     </value>
                 </li>
 
