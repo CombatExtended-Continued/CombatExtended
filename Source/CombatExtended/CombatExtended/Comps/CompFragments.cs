@@ -55,7 +55,7 @@ namespace CombatExtended
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
 
-                Log.Message(elevAngle + ",");
+                //Log.Message(elevAngle + "");
 
                 projectile.Launch(
                     instigator,
