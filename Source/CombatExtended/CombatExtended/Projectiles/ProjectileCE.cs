@@ -1129,7 +1129,7 @@ namespace CombatExtended
                     if (explodePos.y < SuppressionRadius)
                         suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map, SuppressionRadius + def.projectile.explosionRadius));
                 }
-                else if (explodingComp != null)
+                if (explodingComp != null)
                 {
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
 
