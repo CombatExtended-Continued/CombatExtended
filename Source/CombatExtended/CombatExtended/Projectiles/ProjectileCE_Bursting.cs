@@ -25,6 +25,8 @@ namespace CombatExtended
 
         public override void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
+            int armingDelay = 0;
+            if (def.projectile is ProjectilePropertiesCE props) armingDelay = props.armingDelay;
             if (distance > 0)
             {
                 float cosine = (float)Math.Cos((double)shotAngle);
@@ -38,6 +40,7 @@ namespace CombatExtended
 
                 ticksToBurst = (int)fuzeTiming;
             }
+            if (ticksToBurst < armingDelay) ticksToBurst = armingDelay;
 
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
