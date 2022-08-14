@@ -352,7 +352,7 @@ namespace CombatExtended
                         targetRange.min = coverRange.max;
 
                         // Target fully hidden, shift aim upwards if we're doing suppressive fire
-                        if (targetRange.max <= coverRange.max && CompFireModes?.CurrentAimMode == AimMode.SuppressFire)
+                        if (targetRange.max <= coverRange.max && (CompFireModes?.CurrentAimMode == AimMode.SuppressFire || VerbPropsCE.ignorePartialLoSBlocker))
                         {
                             targetRange.max = coverRange.max * 2;
                         }
@@ -483,7 +483,7 @@ namespace CombatExtended
                        
 
                     }
-                    targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
+                    targetHeight = targetRange.Average;
                 }
                 if (projectilePropsCE.isInstant)
                 {
