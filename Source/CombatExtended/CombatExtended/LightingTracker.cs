@@ -264,7 +264,7 @@ namespace CombatExtended
             return CombatGlowAt(target);
         }
 
-        private float GetGlowForCell(IntVec3 position)
+        public float GetGlowForCell(IntVec3 position)
         {
             if (position.InBounds(map))
             {

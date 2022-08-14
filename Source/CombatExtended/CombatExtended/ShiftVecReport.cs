@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = (lightingShift * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
@@ -103,8 +103,8 @@ namespace CombatExtended
             get
             {
                 return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
-                    + Mathf.Min(lightingShift * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, 2.0f)
-                    + Mathf.Min(smokeDensity * 0.5f, 2.0f);
+                    + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f: 2.0f))
+                    + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
             }
         }
 
@@ -124,6 +124,7 @@ namespace CombatExtended
         public float spreadDegrees = 0f;
         public Thing cover = null;
         public float smokeDensity = 0f;
+	public bool blindFiring = false;
 
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
@@ -142,6 +143,7 @@ namespace CombatExtended
             spreadDegrees = report.spreadDegrees;
             cover = report.cover;
             smokeDensity = report.smokeDensity;
+	    blindFiring = report.blindFiring;
         }
 
         public ShiftVecReport()
@@ -162,6 +164,10 @@ namespace CombatExtended
 
         public Vector2 GetRandLeadVec()
         {
+	    if (blindFiring)
+	    {
+		return new Vector2(0, 0);
+	    }
             Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {
