@@ -8,51 +8,49 @@ using System.Reflection.Emit;
 using System;
 using UnityEngine;
 using RimWorld;
-using Vehicles;
 
 
 namespace CombatExtended.Compatibility
 {
-    class Vehicles: IPatch
+    public class Vehicles: IPatch
     {
-	public bool CanInstall()
+        private static bool active = false;
+        
+        public static List<Func<Pawn,Tuple<bool,Vector2>>> CollisionBodyFactorCallbacks = new List<Func<Pawn,Tuple<bool,Vector2>>>();
+        
+        public bool CanInstall()
         {
+            Log.Message("Combat Extended :: Checking Vehicle Framework");
             if (!ModLister.HasActiveModWithName("Vehicle Framework"))
             {
                 return false;
             }
             return true;
         }
-	public IEnumerable<string> GetCompatList() {
-	    yield break;
-	}
-
-	public void Install()
+        public IEnumerable<string> GetCompatList() {
+            yield return "VehiclesCompat";
+        }
+        
+        
+        public void Install()
         {
-	    VehicleTurret.ProjectileAngleCE = ProjectileCE.GetShotAngle;
-	    VehicleTurret.LaunchProjectileCE = LaunchProjectileCE;
-	}
-	public static object LaunchProjectileCE(ThingDef projectileDef,
-						Vector3 origin,
-						VehiclePawn vehicle,
-						float shotAngle,
-						float shotRotation,
-						float shotHeight,
-						float shotSpeed)
-	{
-	    projectileDef = projectileDef.GetProjectile();
-	    ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
-	    GenSpawn.Spawn(projectile, origin.ToIntVec3(), vehicle.Map);
-	    projectile.Launch(
-			      vehicle,    //Shooter instead of caster to give turret operators' records the damage/kills obtained
-			      origin,
-			      shotAngle,
-			      shotRotation,
-			      shotHeight,
-			      shotSpeed,
-			      vehicle);
-	    return projectile;
-	}
-
+            Log.Message("Combat Extended :: Installing Vehicle Framework");
+            active = true;
+        }
+        
+        
+        public static bool GetCollisionBodyFactors(Pawn pawn, out Vector2 ret) {
+            ret = new Vector2();
+            if (active) {
+                foreach (Func<Pawn,Tuple<bool,Vector2>> f in CollisionBodyFactorCallbacks) {
+                    var r = f(pawn);
+                    if (r.Item1) {
+                        ret = r.Item2;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
