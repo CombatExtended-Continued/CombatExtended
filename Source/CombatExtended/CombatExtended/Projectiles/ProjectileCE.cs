@@ -1177,7 +1177,7 @@ namespace CombatExtended
                             explosionSuppressionRadius));
                     }
                 }
-                else if (explodingComp != null)
+                if (explodingComp != null)
                 {
                     dangerAmount = (explodingComp.props as CompProperties_ExplosiveCE).damageAmountBase;
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
