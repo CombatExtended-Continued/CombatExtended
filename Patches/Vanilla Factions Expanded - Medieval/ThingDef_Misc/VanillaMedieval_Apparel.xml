@@ -8,6 +8,20 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+
+				<!-- material category-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+						defName="VFEM_Apparel_PlateHelmetLight" or
+						defName="VFEM_Apparel_PlateHelmetHeavy" or
+						defName="VFEM_Apparel_PlateArmorHeavy"]/stuffCategories</xpath>
+					<value>
+						<stuffCategories>
+							<li>Steeled</li>
+						</stuffCategories>
+					</value>
+				</li>
+
 				<!-- ========== Light Helmet =========== -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="VFEM_Apparel_PlateHelmetLight"]/statBases</xpath>
