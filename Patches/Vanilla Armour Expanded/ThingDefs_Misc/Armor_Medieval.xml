@@ -8,21 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[
-						defName="VAE_Apparel_PlateHelmet" or
-						defName="VAE_Apparel_LightPlateArmor" or
-						defName="VAE_Apparel_Chainmail" or
-						defName="VAE_Apparel_Chestplate" or
-						defName="VAE_Apparel_PlateShoulderpads"]/stuffCategories</xpath>
-					<value>
-						<stuffCategories>
-							<li>Steeled</li>
-						</stuffCategories>
-					</value>
-				</li>
-
 				<!-- === Gambeson === -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="VAE_Apparel_Gambeson"]/statBases</xpath>
@@ -279,6 +264,15 @@
 							<AimingAccuracy>-0.1</AimingAccuracy>
 							<MeleeHitChance>-0.5</MeleeHitChance>
 						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="VAE_Apparel_PlateHelmet"]/stuffCategories</xpath>
+					<value>
+						<stuffCategories>
+							<li>Steeled</li>
+						</stuffCategories>
 					</value>
 				</li>
 
