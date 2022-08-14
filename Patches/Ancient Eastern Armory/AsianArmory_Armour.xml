@@ -8,6 +8,26 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[
+				defName="Ancient_SamuraiYoroi" or
+				defName="Ancient_SamuraiHelmet" or
+				defName="Ancient_SamuraiCaptainHelmet" or
+				defName="Ancient_AshigaruArmor" or
+				defName="Ancient_AshigaruHelmet" or
+				defName="Ancient_QingHeavyHelm" or
+				defName="Ancient_AshigaruHelmet" or
+				defName="Ancient_Brigandine" or
+				defName="Ancient_BrigandineHelm" or
+				defName="Ancient_GunnersHat"
+				]/stuffCategories</xpath>
+			<value>
+				<stuffCategories>
+					<li>Steeled</li>
+				</stuffCategories>
+			</value>
+		</li>
+
 		<!-- Yoroi -->
 
 		<li Class="PatchOperationAdd">
@@ -353,4 +373,3 @@
 	</Operation>
 
 </Patch>
-
