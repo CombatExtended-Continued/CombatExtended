@@ -482,7 +482,18 @@ namespace CombatExtended
                 }
 		var iv3 = tp.ToIntVec3();
 		if (!iv3.InBounds(map)) {
-		    continue;
+		    tp = ray.GetPoint(i-1);
+		    ExactPosition = tp;
+		    destination = tp;
+		    landed = true;
+                    LastPos = destination;
+                    Position = ExactPosition.ToIntVec3();
+
+                    lbce.SpawnBeam(muzzle, destination);
+		    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+                    lbce.Impact(null, muzzle);
+		    return;
+
 		}
                 foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
                 {
@@ -518,7 +529,6 @@ namespace CombatExtended
                     destination = tp;
                     landed = true;
                     LastPos = destination;
-                    ExactPosition = destination;
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
