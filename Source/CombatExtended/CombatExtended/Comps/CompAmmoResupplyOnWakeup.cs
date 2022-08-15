@@ -21,7 +21,7 @@ namespace CombatExtended
         /// <summary>
         /// The radius around a given turret in which to search for corresponding ammo.
         /// </summary>
-        private const float AmmoSearchRadius = 20;
+        private const float AmmoSearchRadius = 40;
 
         const int ticksBetweenChecks = 600;    //Divide by 60 for seconds
 

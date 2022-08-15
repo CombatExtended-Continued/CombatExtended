@@ -54,7 +54,7 @@ namespace CombatExtended
             if (def.projectile.explosionDelay == 0)
             {
                 //Explosions are all handled in base
-                base.Impact(null);
+                base.Impact(hitThing);
                 return;
             }
             landed = true;

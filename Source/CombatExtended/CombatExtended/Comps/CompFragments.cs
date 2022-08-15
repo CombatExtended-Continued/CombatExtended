@@ -28,7 +28,7 @@ namespace CombatExtended
 
         public CompProperties_Fragments PropsCE => (CompProperties_Fragments)props;
 
-        private static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange)
+        public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true)
         {
             var cell = pos.ToIntVec3();
             var exactOrigin = new Vector2(pos.x, pos.z);
@@ -46,8 +46,8 @@ namespace CombatExtended
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
                 GenSpawn.Spawn(projectile, cell, map);
 
-                projectile.canTargetSelf = true;
-                projectile.minCollisionDistance = 0f;
+                projectile.canTargetSelf = canTargetSelf;
+                projectile.minCollisionDistance = minCollisionDistance;
                 projectile.castShadow = (Rand.Value < fragShadowChance);
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);

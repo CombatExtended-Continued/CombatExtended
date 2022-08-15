@@ -74,16 +74,91 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Thump</damageDef>
-      <damageAmountBase>30</damageAmountBase>
+      <damageAmountBase>20</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <speed>48</speed>
       <flyOverhead>false</flyOverhead>
-      <explosionRadius>3.5</explosionRadius>
+      <explosionRadius>2</explosionRadius>
       <soundExplode>ThumpCannon_Impact</soundExplode>
       <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+	<comps>
+		<li Class="CombatExtended.CompProperties_Fragments">
+			<fragments>
+				<Bullet_164x284mmDemo_ASA>2</Bullet_164x284mmDemo_ASA>
+				<Bullet_164x284mmDemo_ASB>2</Bullet_164x284mmDemo_ASB>
+			</fragments>
+			<fragXZAngleRange>-5~5</fragXZAngleRange>
+			<fragAngleRange>0~5</fragAngleRange>
+			<fragSpeedFactor>0.01</fragSpeedFactor>
+		</li>
+	</comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_164x284mmDemo_ASA</defName>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <label>164x284mm demolition shell</label>
+    <graphicData>
+      <texPath>Things/Projectile/LauncherShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Thump</damageDef>
+      <damageAmountBase>10</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <speed>1</speed>
+	  <gravityFactor>50</gravityFactor>
+      <flyOverhead>false</flyOverhead>
+      <explosionRadius>2</explosionRadius>
+      <soundExplode>ThumpCannon_Impact</soundExplode>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+	<fragments>
+	  <Bullet_164x284mmDemo_ASB>2</Bullet_164x284mmDemo_ASB>
+	</fragments>
+	<fragXZAngleRange>-5~5</fragXZAngleRange>
+	<fragAngleRange>0~1</fragAngleRange>
+	<fragSpeedFactor>0.01</fragSpeedFactor>
+      </li>
+    </comps>
+    
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_164x284mmDemo_ASB</defName>
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <label>164x284mm demolition shell</label>
+    <graphicData>
+      <texPath>Things/Projectile/LauncherShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Thump</damageDef>
+      <damageAmountBase>10</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <speed>1</speed>
+	  <gravityFactor>50</gravityFactor>
+      <flyOverhead>false</flyOverhead>
+      <explosionRadius>2</explosionRadius>
+      <soundExplode>ThumpCannon_Impact</soundExplode>
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <fuze_delay>1</fuze_delay>
+      <explosionDelay>15</explosionDelay>
+
     </projectile>
   </ThingDef>
 
