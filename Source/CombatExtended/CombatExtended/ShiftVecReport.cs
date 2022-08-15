@@ -60,9 +60,13 @@ namespace CombatExtended
         {
             get
             {
-                if (visibilityShiftInt < 0)
+		if (visibilityShiftInt < 0)
                 {
-                    visibilityShiftInt = enviromentShift * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
+		    float se = sightsEfficiency;
+		    if (se < 0.02f) {
+			se = 0.02f;
+		    }
+                    visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
