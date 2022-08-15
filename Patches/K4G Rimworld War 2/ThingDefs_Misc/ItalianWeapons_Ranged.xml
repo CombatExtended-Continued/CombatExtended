@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>[K4G] RimWorld War 2</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= Italian Bodeo Model 1889 Revolver ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceRevolver"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceRevolver</defName>
+                     <label>Italian Bodeo Model 1889 Revolver</label>
+                     <description>An old pattern double-action revolver used during WW2. It's not very powerful, but it has a decent range for a pistol and is quick on the draw. It works quite well on deserters.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceRevolver</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <WorkToMake>4500</WorkToMake>
+                        <Mass>0.95</Mass>
+                        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.17</ShotSpread>
+                        <SwayFactor>1.03</SwayFactor>
+                        <Bulk>2.22</Bulk>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyPistol</li>
+                        <li>K4GWW2GermanyPistolSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2ChainOfCommand</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>3</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_45ACP_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Revolver</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4.6</reloadTime>
+                           <ammoSet>AmmoSet_45ACP</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Beretta M1934 Pistol ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServicePistol"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServicePistol</defName>
+                     <label>Italian Beretta M1934 Pistol</label>
+                     <description>An old pattern blowback-operated self-loading pistol used during WW2. It lacks stopping power and range, but is quick to fire..</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServicePistol</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <Mass>0.66</Mass>
+                        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.17</ShotSpread>
+                        <SwayFactor>1.07</SwayFactor>
+                        <Bulk>1.7</Bulk>
+                        <WorkToMake>5000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyPistol</li>
+                        <li>K4GWW2GermanyPistolSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>4</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_380ACP_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Autopistol</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_380ACP</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Carcano Rifle  ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceRifle</defName>
+                     <label>Italian Carcano Rifle</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.8</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.63</SwayFactor>
+                        <Bulk>12.00</Bulk>
+                        <WorkToMake>12000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyRifle</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_65x52mmCarcano_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_65x52mmCarcano</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Carcano Rifle (Bayonet) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceRifleBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceRifleBayonet</defName>
+                     <label>Italian Carcano Rifle (Bayonet)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceRifleBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.05</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.63</SwayFactor>
+                        <Bulk>12.00</Bulk>
+                        <WorkToMake>13000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyRifle</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>60</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_65x52mmCarcano_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_65x52mmCarcano</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Carcano Carbine ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceCarbine"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceCarbine</defName>
+                     <label>Italian Carcano Carbine</label>
+                     <description>A more versatile variant of the Service Rifle, the Service Carbine has an increased fire rate but is not as accurate.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceCarbine</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3</Mass>
+                        <RangedWeapon_Cooldown>0.97</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.06</ShotSpread>
+                        <SwayFactor>1.4</SwayFactor>
+                        <Bulk>9.5</Bulk>
+                        <WorkToMake>12000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyRifle</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2SemiAutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_65x52mmCarcano_FMJ</defaultProjectile>
+                           <warmupTime>0.85</warmupTime>
+                           <range>48</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_65x52mmCarcano</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Beretta M1918 SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceSMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceSMG</defName>
+                     <label>Italian Beretta M1918 SMG</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceSMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.3</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.21</SwayFactor>
+                        <Bulk>8.1</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalySMG</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>4</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.05</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_22LR_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>21</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+                           <soundCast>Shot_MachinePistol</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>25</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_22LR</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian MAB 38/42 SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceSMGB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceSMGB</defName>
+                     <label>Italian MAB 38/42 SMG</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceSMGB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.2</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.21</SwayFactor>
+                        <Bulk>9.1</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalySMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.22</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>23</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>20</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian FNAB-43 SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceSMGC"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceSMGC</defName>
+                     <label>Italian FNAB-43 SMG</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceSMGC</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>3.9</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.21</SwayFactor>
+                        <Bulk>7.5</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalySMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.05</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>23</range>
+                           <burstShotCount>8</burstShotCount>
+                           <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>20</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_9x19mmPara</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= Italian Breda 30 LMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2ItalianServiceLMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2ItalianServiceLMG</defName>
+                     <label>Italian Breda 30 LMG</label>
+                     <description>Possibly the worst light machine gun ever adopted to military service.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/Italy/WW2ItalianServiceLMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>10.6</Mass>
+                        <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.53</SwayFactor>
+                        <Bulk>15.7</Bulk>
+                        <WorkToMake>32000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_MachineGun</li>
+                        <li>CE_AI_LMG</li>
+                        <li>CE_AI_Suppressive</li>
+                        <li>K4GWW2ItalyTrading</li>
+                        <li>K4GWW2ItalyLMG</li>
+                        <li>K4GWW2FranceLMGSharedExile</li>
+                        <li>K4GWW2GermanyLMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>70</Steel>
+                        <WoodLog>10</WoodLog>
+                        <ComponentIndustrial>4</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2LightMachineGuns</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>6</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.22</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_65x52mmCarcano_FMJ</defaultProjectile>
+                           <warmupTime>1.3</warmupTime>
+                           <range>62</range>
+                           <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+                           <burstShotCount>6</burstShotCount>
+                           <soundCast>Shot_Minigun</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                           <targetParams>
+                              <canTargetLocations>true</canTargetLocations>
+                           </targetParams>
+                           <recoilPattern>Mounted</recoilPattern>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>20</magazineSize>
+                           <reloadTime>7.5</reloadTime>
+                           <ammoSet>AmmoSet_65x52mmCarcano</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>SuppressFire</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>
