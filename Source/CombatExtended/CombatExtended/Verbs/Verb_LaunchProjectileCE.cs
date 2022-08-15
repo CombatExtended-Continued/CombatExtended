@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
 using System.Net.Mail;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -51,7 +52,7 @@ namespace CombatExtended
 
 	private bool shootingAtDowned = false;
 	private LocalTargetInfo lastTarget = null;
-	private IntVec3 lastTargetPos = null;
+	private IntVec3 lastTargetPos = IntVec3.Invalid;
 
         #endregion
 
@@ -757,21 +758,38 @@ namespace CombatExtended
             return true;
         }
 
-	private bool Retarget() {
-	    TargetScanFlags targetScanFlags = TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable;
-
-	    if (currentTarget != lastTarget) {
+	private bool Retarget()
+	{
+	    if (currentTarget != lastTarget)
+	    {
 		lastTarget = currentTarget;
 		lastTargetPos = currentTarget.Cell;
 		shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
 		return true;
 	    }
-	    if (shootingAtDowned) {
+	    if (shootingAtDowned)
+	    {
 		return true;
 	    }
-	    if (currentTarget.Pawn?.Downed ?? true) {
-		Thing newTarget = (Thing)AttackTargetFinder.BestAttackTarget(Caster, targetScanFlags, (Thing x) => true, 0f, 5, lastTargetPos, 5, false, true, false);
-		if (newTarget != null) {
+	    if (currentTarget.Pawn?.Downed ?? true)
+	    {
+
+		Pawn newTarget = null;
+		Thing caster = Caster;
+		
+
+		foreach (Pawn possibleTarget in Caster.Position.PawnsNearSegment(lastTargetPos, caster.Map, 3, false))
+		{
+		    if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
+		    {
+			newTarget = possibleTarget;
+			break;
+		    }
+		}
+		    
+		
+		if (newTarget != null)
+		{
 		    currentTarget = new LocalTargetInfo(newTarget);
 		    lastTarget = currentTarget;
 		    lastTargetPos = currentTarget.Cell;
