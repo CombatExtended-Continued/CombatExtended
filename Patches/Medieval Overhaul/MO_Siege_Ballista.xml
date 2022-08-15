@@ -8,7 +8,15 @@
     </mods>
     <match Class="PatchOperationSequence">
         <operations>
-			
+
+		<!--Adjust castle embrasure fill.-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName = "DankPyon_CastleWallEmbrasures"]/fillPercent</xpath>
+			<value>
+				<fillPercent>0.70</fillPercent>
+			</value>
+		</li>
+
 		<!--Clean and Replace-->
 		<li Class="PatchOperationRemove">
 			<xpath>Defs/ThingDef[defName = "DankPyon_Turret_Ballista"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>

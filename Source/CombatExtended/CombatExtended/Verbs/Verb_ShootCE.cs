@@ -235,18 +235,6 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Reset selected fire mode back to default when gun is dropped
-        /// </summary>
-        public override void Notify_EquipmentLost()
-        {
-            base.Notify_EquipmentLost();
-            if (CompFireModes != null)
-            {
-                CompFireModes.ResetModes();
-            }
-        }
-
-        /// <summary>
         /// Checks to see if enemy is blind before shooting
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)

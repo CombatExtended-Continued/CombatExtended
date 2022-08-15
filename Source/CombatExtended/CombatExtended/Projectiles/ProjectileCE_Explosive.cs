@@ -3,6 +3,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 using System.Collections.Generic;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -25,6 +26,18 @@ namespace CombatExtended
                 {
                     //Explosions are all handled in base
                     base.Impact(null);
+                    return;
+                }
+                if (landed)
+                {
+                    if (def.projectile.damageDef.harmsHealth)
+                    {
+                        var suppressThings = new List<Pawn>();
+                        suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map,
+                            SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f)));
+                        foreach (var thing in suppressThings)
+                            ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay));
+                    }
                 }
             }
         }
@@ -41,12 +54,16 @@ namespace CombatExtended
             if (def.projectile.explosionDelay == 0)
             {
                 //Explosions are all handled in base
-                base.Impact(null);
+                base.Impact(hitThing);
                 return;
             }
             landed = true;
             ticksToDetonation = def.projectile.explosionDelay;
-            GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
+            if (def.projectile.damageDef.harmsHealth)
+            {
+                DangerTracker.Notify_DangerRadiusAt(Position, def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f), def.projectile.damageAmountBase * explosionDangerFactor);
+                GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
+            }
         }
     }
 }

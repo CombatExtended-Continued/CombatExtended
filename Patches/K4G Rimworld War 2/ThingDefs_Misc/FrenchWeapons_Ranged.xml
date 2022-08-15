@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>[K4G] RimWorld War 2</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= French MAS 1873 Revolver ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRevolver"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRevolver</defName>
+                     <label>French MAS 1873 Revolver</label>
+                     <description>An old pattern double-action revolver used during WW2. It's not very powerful, but it has a decent range for a pistol and is quick on the draw. It works quite well on deserters.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRevolver</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <WorkToMake>5000</WorkToMake>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.18</ShotSpread>
+                        <SwayFactor>1.2</SwayFactor>
+                        <Bulk>2.2</Bulk>
+                        <Mass>1.1</Mass>
+                        <RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FrancePistol</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2ChainOfCommand</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>3</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_765x20mmLongue_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Revolver</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_765x20mmLongue</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Model 1892 Revolver ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRevolverB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRevolverB</defName>
+                     <label>French Model 1892 Revolver</label>
+                     <description>An old pattern double-action revolver used during WW2. It's not very powerful, but it has a decent range for a pistol and is quick on the draw. It works quite well on deserters.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRevolverB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <WorkToMake>8500</WorkToMake>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.18</ShotSpread>
+                        <SwayFactor>1.1</SwayFactor>
+                        <Bulk>2.2</Bulk>
+                        <Mass>1.1</Mass>
+                        <RangedWeapon_Cooldown>0.50</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FrancePistol</li>
+                        <li>K4GWW2GermanyPistolSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2ChainOfCommand</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>3</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_765x20mmLongue_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Revolver</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>6</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_765x20mmLongue</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French MAB Model D Pistol ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServicePistol"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServicePistol</defName>
+                     <label>French MAB Model D Pistol</label>
+                     <description>An old pattern blowback-operated self-loading pistol used during WW2. It lacks stopping power and range, but is quick to fire.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServicePistol</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Revolver</soundInteract>
+                     <statBases>
+                        <Mass>0.87</Mass>
+                        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+                        <SightsEfficiency>0.7</SightsEfficiency>
+                        <ShotSpread>0.16</ShotSpread>
+                        <SwayFactor>1.07</SwayFactor>
+                        <Bulk>1.9</Bulk>
+                        <WorkToMake>5000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_Sidearm</li>
+                        <li>CE_OneHandedWeapon</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FrancePistol</li>
+                        <li>K4GWW2GermanyPistolSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>25</Steel>
+                        <ComponentIndustrial>3</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>4</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_765x20mmLongue_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>16</range>
+                           <soundCast>Shot_Autopistol</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_765x20mmLongue</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>grip</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>2</power>
+                           <cooldownTime>1.54</cooldownTime>
+                           <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Lebel M1886 Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRifle"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRifle</defName>
+                     <label>French Lebel M1886 Rifle</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRifle</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.19</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.39</SwayFactor>
+                        <Bulk>12.60</Bulk>
+                        <WorkToMake>12000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French MAS-36 Rifle ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRifleB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRifleB</defName>
+                     <label>French MAS-36 Rifle</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRifleB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.19</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.39</SwayFactor>
+                        <Bulk>12.60</Bulk>
+                        <WorkToMake>12000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2StandardIssueEquipment</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_75x54mmFrench_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_75x54mmFrench</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Lebel M1886 Rifle (Bayonet) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRifleBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRifleBayonet</defName>
+                     <label>French Lebel M1886 Rifle (Bayonet)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRifleBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.6</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.39</SwayFactor>
+                        <Bulk>12.60</Bulk>
+                        <WorkToMake>13000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Lebel M1886 Rifle (Bayonet B) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRifleBayonetB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRifleBayonetB</defName>
+                     <label>French Lebel M1886 Rifle (Bayonet B)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRifleBayonetB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.6</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.39</SwayFactor>
+                        <Bulk>12.60</Bulk>
+                        <WorkToMake>13500</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>55</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>8</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.38</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.45</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French MAS-36 Rifle (Bayonet) ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceRifleBBayonet"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceRifleBBayonet</defName>
+                     <label>French MAS-36 Rifle (Bayonet)</label>
+                     <description>A versatile, reliable design of rifle that saw extensive service during WW2. Its range and low fire rate make it great for warfare, or hunting. This one is equipped with a bayonet.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceRifleBBayonet</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.6</Mass>
+                        <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.39</SwayFactor>
+                        <Bulk>12.60</Bulk>
+                        <WorkToMake>13000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                        <li>NoSwitch</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>15</WoodLog>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>1</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2Bayonets</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_75x54mmFrench_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>55</range>
+                           <soundCast>Shot_BoltActionRifle</soundCast>
+                           <soundCastTail>GunTail_Heavy</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4.3</reloadTime>
+                           <ammoSet>AmmoSet_75x54mmFrench</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>blade</label>
+                           <capacities>
+                              <li>Cut</li>
+                           </capacities>
+                           <power>10</power>
+                           <cooldownTime>1.18</cooldownTime>
+                           <chanceFactor>0.5</chanceFactor>
+                           <armorPenetrationBlunt>0.36</armorPenetrationBlunt>
+                           <armorPenetrationSharp>0.32</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>point</label>
+                           <capacities>
+                              <li>Stab</li>
+                           </capacities>
+                           <power>18</power>
+                           <cooldownTime>1.19</cooldownTime>
+                           <chanceFactor>1.00</chanceFactor>
+                           <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                           <armorPenetrationSharp>1.5</armorPenetrationSharp>
+                           <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Berthier M1916 Carbine ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceCarbine"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceCarbine</defName>
+                     <label>French Berthier M1916 Carbine</label>
+                     <description>A more versatile variant of the Service Rifle, the Service Carbine has an increased fire rate but is not as accurate.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceCarbine</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <WorkToMake>17500</WorkToMake>
+                        <SightsEfficiency>1</SightsEfficiency>
+                        <ShotSpread>0.06</ShotSpread>
+                        <SwayFactor>1.25</SwayFactor>
+                        <Bulk>9</Bulk>
+                        <Mass>2.4</Mass>
+                        <RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_AI_SR</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceRifle</li>
+                        <li>K4GWW2GermanyRifleSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>50</Steel>
+                        <ComponentIndustrial>2</ComponentIndustrial>
+                        <WoodLog>15</WoodLog>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2SemiAutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.3</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+                           <warmupTime>1.1</warmupTime>
+                           <range>42</range>
+                           <soundCast>Shot_AssaultRifle</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>5</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiAimMode>AimedShot</aiAimMode>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French MAS-38 SMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceSMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceSMG</defName>
+                     <label>French MAS-38 SMG</label>
+                     <description>A compact, quickly firing weapon used during WW2. It's got a very short range, but it packs a punch and handles quite well.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceSMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <Mass>4.3</Mass>
+                        <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                        <SightsEfficiency>1.00</SightsEfficiency>
+                        <ShotSpread>0.14</ShotSpread>
+                        <SwayFactor>1.16</SwayFactor>
+                        <Bulk>8.43</Bulk>
+                        <WorkToMake>27000</WorkToMake>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_SMG</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceSMG</li>
+                        <li>K4GWW2GermanySMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <WoodLog>10</WoodLog>
+                        <Steel>40</Steel>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2AutomaticWeaponry</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>5</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>0.90</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_765x20mmLongue_FMJ</defaultProjectile>
+                           <warmupTime>0.6</warmupTime>
+                           <range>27</range>
+                           <burstShotCount>6</burstShotCount>
+                           <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                           <soundCast>Shot_HeavySMG</soundCast>
+                           <soundCastTail>GunTail_Light</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>32</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_765x20mmLongue</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>Snapshot</aiAimMode>
+                           <aimedBurstShotCount>3</aimedBurstShotCount>
+                        </li>
+                     </comps>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French FM 24/29 LMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceLMG"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceLMG</defName>
+                     <label>French FM 24/29 LMG</label>
+                     <description>A gas-operated light machine gun used during WW2. While it is somewhat unwieldy and inaccurate, its bipod and long bursts of fire make it an effective weapon against enemy groups.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceLMG</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <WorkToMake>30500</WorkToMake>
+                        <Mass>8.68</Mass>
+                        <Bulk>16.56</Bulk>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.42</SwayFactor>
+                        <SightsEfficiency>1.2</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_MachineGun</li>
+                        <li>CE_AI_LMG</li>
+                        <li>CE_AI_Suppressive</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceLMG</li>
+                        <li>K4GWW2GermanyLMGSharedAxis</li>
+                        <li>K4GWW2ItalyLMGSharedCoBelligerentAllies</li>
+                        <li>K4GWW2ItalyLMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>70</Steel>
+                        <WoodLog>10</WoodLog>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2LightMachineGuns</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>6</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.28</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_75x54mmFrench_FMJ</defaultProjectile>
+                           <warmupTime>1.3</warmupTime>
+                           <range>62</range>
+                           <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+                           <burstShotCount>10</burstShotCount>
+                           <soundCast>Shot_Minigun</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                           <targetParams>
+                              <canTargetLocations>true</canTargetLocations>
+                           </targetParams>
+                           <recoilPattern>Mounted</recoilPattern>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>25</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_75x54mmFrench</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aimedBurstShotCount>5</aimedBurstShotCount>
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>SuppressFire</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+            <!-- ======= French Chauchat LMG ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="K4G_Gun_WW2FrenchServiceLMGB"]</xpath>
+               <value>
+                  <ThingDef ParentName="BaseHumanMakeableGun">
+                     <defName>K4G_Gun_WW2FrenchServiceLMGB</defName>
+                     <label>French Chauchat LMG</label>
+                     <description>A gas-operated light machine gun used during WW2. While it is somewhat unwieldy and inaccurate, its bipod and long bursts of fire make it an effective weapon against enemy groups.</description>
+                     <graphicData>
+                        <texPath>Things/Item/Equipment/WeaponRanged/France/WW2FrenchServiceLMGB</texPath>
+                        <graphicClass>Graphic_Single</graphicClass>
+                     </graphicData>
+                     <soundInteract>Interact_Rifle</soundInteract>
+                     <statBases>
+                        <WorkToMake>30500</WorkToMake>
+                        <Mass>8.68</Mass>
+                        <Bulk>16.56</Bulk>
+                        <ShotSpread>0.05</ShotSpread>
+                        <SwayFactor>1.42</SwayFactor>
+                        <SightsEfficiency>1.2</SightsEfficiency>
+                        <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+                     </statBases>
+                     <weaponTags>
+                        <li>CE_MachineGun</li>
+                        <li>CE_AI_LMG</li>
+                        <li>CE_AI_Suppressive</li>
+                        <li>K4GWW2FranceTrading</li>
+                        <li>K4GWW2FranceLMG</li>
+                        <li>K4GWW2GermanyLMGSharedAxis</li>
+                        <li>K4GWW2ItalyLMGSharedAxis</li>
+                     </weaponTags>
+                     <costList>
+                        <Steel>70</Steel>
+                        <WoodLog>10</WoodLog>
+                        <ComponentIndustrial>5</ComponentIndustrial>
+                     </costList>
+                     <recipeMaker>
+                        <researchPrerequisite>K4G_WW2LightMachineGuns</researchPrerequisite>
+                        <skillRequirements>
+                           <Crafting>6</Crafting>
+                        </skillRequirements>
+                     </recipeMaker>
+                     <verbs>
+                        <li Class="CombatExtended.VerbPropertiesCE">
+                           <recoilAmount>1.32</recoilAmount>
+                           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                           <hasStandardCommand>true</hasStandardCommand>
+                           <defaultProjectile>Bullet_8x50mmRLebel_FMJ</defaultProjectile>
+                           <warmupTime>1.3</warmupTime>
+                           <range>65</range>
+                           <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+                           <burstShotCount>10</burstShotCount>
+                           <soundCast>Shot_Minigun</soundCast>
+                           <soundCastTail>GunTail_Medium</soundCastTail>
+                           <muzzleFlashScale>9</muzzleFlashScale>
+                           <targetParams>
+                              <canTargetLocations>true</canTargetLocations>
+                           </targetParams>
+                           <recoilPattern>Mounted</recoilPattern>
+                        </li>
+                     </verbs>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_AmmoUser">
+                           <magazineSize>19</magazineSize>
+                           <reloadTime>4</reloadTime>
+                           <ammoSet>AmmoSet_8x50mmRLebel</ammoSet>
+                        </li>
+                        <li Class="CombatExtended.CompProperties_FireModes">
+                           <aimedBurstShotCount>5</aimedBurstShotCount>
+                           <aiUseBurstMode>FALSE</aiUseBurstMode>
+                           <aiAimMode>SuppressFire</aiAimMode>
+                        </li>
+                        <li Class="CompOversizedWeapon.CompProperties_OversizedWeapon">
+                           <!-- X / Z / Y -->
+                           <eastOffset>(0.10,0,-0.05)</eastOffset>
+                           <westOffset>(-0.10,0,-0.05)</westOffset>
+                        </li>
+                     </comps>
+                     <equippedAngleOffset>45</equippedAngleOffset>
+                     <tools>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>stock</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <chanceFactor>1.5</chanceFactor>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>barrel</label>
+                           <capacities>
+                              <li>Blunt</li>
+                           </capacities>
+                           <power>5</power>
+                           <cooldownTime>2.02</cooldownTime>
+                           <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                        </li>
+                        <li Class="CombatExtended.ToolCE">
+                           <label>muzzle</label>
+                           <capacities>
+                              <li>Poke</li>
+                           </capacities>
+                           <power>8</power>
+                           <cooldownTime>1.55</cooldownTime>
+                           <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                           <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                        </li>
+                     </tools>
+                  </ThingDef>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>
