@@ -19,6 +19,7 @@ namespace CombatExtended
         private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
+	private bool newComp = true;
         public TargettingMode targetMode = TargettingMode.torso;
 
         #endregion
@@ -137,6 +138,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
             Scribe_Values.Look(ref targetMode, "currentTargettingMode", TargettingMode.torso);
+	    Scribe_Values.Look(ref newComp, "newComp", false);
         }
 
         public void InitAvailableFireModes()
@@ -169,8 +171,9 @@ namespace CombatExtended
             }
 
             // Sanity check in case def changed
-            if (!availableFireModes.Contains(currentFireModeInt) || !availableAimModes.Contains(currentAimModeInt))
+            if (newComp || !availableFireModes.Contains(currentFireModeInt) || !availableAimModes.Contains(currentAimModeInt))
             {
+		newComp = false;
                 ResetModes();
             }
         }
@@ -221,11 +224,11 @@ namespace CombatExtended
         /// </summary>
         public void ResetModes()
         {
-            //Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
+	    //Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
             if (availableFireModes.Count > 0)
                 currentFireModeInt = availableFireModes.ElementAt(0);
 
-            currentAimModeInt = availableAimModes.ElementAt(0);
+            currentAimModeInt = Props.aiAimMode;
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
