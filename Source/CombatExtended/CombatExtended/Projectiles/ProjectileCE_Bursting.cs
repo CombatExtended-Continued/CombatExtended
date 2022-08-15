@@ -32,11 +32,13 @@ namespace CombatExtended
                 float cosine = (float)Math.Cos((double)shotAngle);
 
                 float fuzeTiming = distance / ((shotSpeed / 60) * cosine);
-                //Log.Message("Distance    = " + distance);
-                //Log.Message("ShotSpeed   = " + shotSpeed / 60);
-                //Log.Message("Cosine      = " + cosine);
-                // Log.Message("Fuse timing = " + fuzeTiming);
-                //Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
+#if DEBUG
+                Log.Message("Distance    = " + distance);
+                Log.Message("ShotSpeed   = " + shotSpeed / 60);
+                Log.Message("Cosine      = " + cosine);
+                Log.Message("Fuse timing = " + fuzeTiming);
+                Log.Message("Launched ProjectileCEBursting with ticks to burst = " + fuzeTiming);
+#endif
 
                 ticksToBurst = (int)fuzeTiming;
             }
@@ -48,11 +50,6 @@ namespace CombatExtended
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
             Launch(launcher, origin, equipment);
             this.ticksToImpact = IntTicksToImpact;
-        }
-
-        public override void Launch(Thing launcher, Vector2 origin, Thing equipment = null)
-        {
-            base.Launch(launcher, origin, equipment);
         }
 
         public override void Tick()

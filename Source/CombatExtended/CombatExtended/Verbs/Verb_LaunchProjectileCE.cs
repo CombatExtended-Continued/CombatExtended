@@ -485,12 +485,11 @@ namespace CombatExtended
 
                     }
                     targetHeight = VerbPropsCE.ignorePartialLoSBlocker ? 0 : targetRange.Average;
-                    //Log.Message("targetHeight = " + targetHeight);
+                    
                     if(projectilePropsCE != null)
                     {
                         targetHeight += projectilePropsCE.aimHeightOffset;
                     }
-                    //Log.Message("targetHeight = " + targetHeight);
                 }
                 if (projectilePropsCE.isInstant)
                 {

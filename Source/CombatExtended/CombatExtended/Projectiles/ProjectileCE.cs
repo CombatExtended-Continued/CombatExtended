@@ -438,6 +438,7 @@ namespace CombatExtended
         }
         #endregion
 
+        #region Raycast
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
         {
 
@@ -536,14 +537,14 @@ namespace CombatExtended
             }
         }
 
-	private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+	    private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
 	{
 	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
 	    {
 		ApplySuppression(pawn);
 	    }
 	}
-
+        #endregion
 
         #region Launch
         /// <summary>

@@ -37,11 +37,8 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
-
-            //Log.Message("fragAngleRange = " + fragAngleRange.min + " to " + fragAngleRange.max + " degrees.");
+            //fun calculus and trigonometry stuff
             FloatRange fragAngleSinRange = new FloatRange(Mathf.Sin(fragAngleRange.min * Mathf.Deg2Rad), Mathf.Sin(fragAngleRange.max * Mathf.Deg2Rad));  //Fix fragment distribution being biased towards the poles of the sphere.
-            //Log.Message("fragAngleSinRange = " + fragAngleSinRange.min + " to " + fragAngleSinRange.max);
-            //Log.Message("Arcsine of fragAngleSinRange = " + Mathf.Asin(fragAngleSinRange.min) + " to " + Mathf.Asin(fragAngleSinRange.max));
 
 
             while (fragToSpawn-- > 0)
@@ -55,13 +52,11 @@ namespace CombatExtended
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
 
-                //Log.Message(elevAngle + "");
 
                 projectile.Launch(
                     instigator,
                     exactOrigin,
                     elevAngle,
-                    //fragAngleRange.RandomInRange * Mathf.Deg2Rad,
                     (fragXZAngleRange.RandomInRange + 360) % 360,
                     height,
                     fragSpeedFactor * projectile.def.projectile.speed,
