@@ -55,15 +55,7 @@ namespace CombatExtended
         public override void Tick()
         {
             base.Tick();
-            if (this.ticksToBurst >= 0)
-            {
-                this.ticksToBurst--;
-                if (this.ticksToBurst <= 0)
-                {
-                    //Explosions are all handled in base
-                    base.Impact(null);
-                }
-            }
+            if (--this.ticksToBurst == 0) { base.Impact(null); }
         }
     }
 }
