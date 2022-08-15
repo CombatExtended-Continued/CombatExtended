@@ -284,7 +284,6 @@ namespace CombatExtended
 		if (glow / dist < 0.1f) {
 		    return false;
 		}
-		return base.CanHitTargetFrom(root, targ);
 	    }
             return base.CanHitTargetFrom(root, targ);
         }
