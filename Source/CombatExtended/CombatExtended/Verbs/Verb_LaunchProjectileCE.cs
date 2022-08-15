@@ -794,6 +794,10 @@ namespace CombatExtended
 		    lastTarget = currentTarget;
 		    lastTargetPos = currentTarget.Cell;
 		    shootingAtDowned = false;
+		    if (caster is Building_TurretGunCE bt) {
+			float curRotation = (currentTarget.Cell.ToVector3Shifted() - bt.DrawPos).AngleFlat();
+			bt.top.CurRotation = curRotation;
+		    }
 		    return true;
 		}
 		return false;
