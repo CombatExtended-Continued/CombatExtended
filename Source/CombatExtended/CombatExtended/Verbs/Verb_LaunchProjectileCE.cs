@@ -10,6 +10,7 @@ using Verse.Grammar;
 using UnityEngine;
 using CombatExtended.AI;
 using System.Net.Mail;
+using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
@@ -48,6 +49,10 @@ namespace CombatExtended
         private float angleRadians = 0f;
 
         //private int lastTauntTick;
+
+	private bool shootingAtDowned = false;
+	private LocalTargetInfo lastTarget = null;
+	private IntVec3 lastTargetPos = IntVec3.Invalid;
 
         #endregion
 
@@ -753,12 +758,63 @@ namespace CombatExtended
             return true;
         }
 
+	private bool Retarget()
+	{
+	    if (currentTarget != lastTarget)
+	    {
+		lastTarget = currentTarget;
+		lastTargetPos = currentTarget.Cell;
+		shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
+		return true;
+	    }
+	    if (shootingAtDowned)
+	    {
+		return true;
+	    }
+	    if (currentTarget.Pawn?.Downed ?? true)
+	    {
+
+		Pawn newTarget = null;
+		Thing caster = Caster;
+		
+
+		foreach (Pawn possibleTarget in Caster.Position.PawnsNearSegment(lastTargetPos, caster.Map, 3, false))
+		{
+		    if ((possibleTarget.Faction == currentTarget.Pawn?.Faction) && possibleTarget.Faction.HostileTo(caster.Faction) && !possibleTarget.Downed && CanHitFromCellIgnoringRange(Caster.Position, possibleTarget, out IntVec3 dest))
+		    {
+			newTarget = possibleTarget;
+			break;
+		    }
+		}
+		    
+		
+		if (newTarget != null)
+		{
+		    currentTarget = new LocalTargetInfo(newTarget);
+		    lastTarget = currentTarget;
+		    lastTargetPos = currentTarget.Cell;
+		    shootingAtDowned = false;
+		    if (caster is Building_TurretGunCE bt) {
+			float curRotation = (currentTarget.Cell.ToVector3Shifted() - bt.DrawPos).AngleFlat();
+			bt.top.CurRotation = curRotation;
+		    }
+		    return true;
+		}
+		return false;
+	    }
+	    return true;
+	}
+
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
+	    if (!Retarget()) {
+		return false;
+	    }
+	    
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;
