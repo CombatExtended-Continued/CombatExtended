@@ -83,8 +83,6 @@ namespace CombatExtended
                 return Caster as Pawn;
             }
         }
-        private Faction _factionFireMode = null;
-        private bool _initCurrentFireMode = false;
 
         private bool IsTurretMannable = false;
 
@@ -104,41 +102,24 @@ namespace CombatExtended
         {
             get
             {
-                if ((!_initCurrentFireMode || _factionFireMode != Caster.Faction) && useAIModes && Props.aiUseBurstMode && availableFireModes.Contains(FireMode.BurstFire))
-                {
-                    _initCurrentFireMode = true;
-                    _factionFireMode = Caster.Faction;
-                    currentFireModeInt = FireMode.BurstFire;
-                }
                 return currentFireModeInt;
             }
             set
             {
-                _factionFireMode = Caster.Faction;
                 currentFireModeInt = value;
             }
         }
-        private Faction _factionAimMode = null;
-        private bool _initCurrentAimMode = false;
         public AimMode CurrentAimMode
         {
             get
             {
-                if ((!_initCurrentAimMode || _factionAimMode != Caster.Faction) && useAIModes && availableAimModes.Contains(Props.aiAimMode))
-                {
-                    _initCurrentAimMode = true;
-                    _factionAimMode = Caster.Faction;
-                    currentAimModeInt = Props.aiAimMode;
-                }
                 return currentAimModeInt;
             }
             set
             {
-                _factionAimMode = Caster.Faction;
                 currentAimModeInt = value;
             }
         }
-        private bool useAIModes => Caster.Faction != Faction.OfPlayer;
 
         #endregion
 
