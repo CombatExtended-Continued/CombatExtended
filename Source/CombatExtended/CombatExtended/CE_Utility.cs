@@ -784,7 +784,7 @@ namespace CombatExtended
 
             var factors = BoundsInjector.ForPawn(pawn);
 
-            if (pawn.GetPosture() != PawnPosture.Standing)
+            if (pawn.GetPosture() != PawnPosture.Standing || pawn.Downed)
             {
                 RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 
@@ -797,6 +797,9 @@ namespace CombatExtended
 
                 factors.x *= shape.widthLaying / shape.width;
                 factors.y *= shape.heightLaying / shape.height;
+		if (pawn.Downed) {
+		    factor.y *= shape.heightLaying;
+		}
             }
 
             return factors;
