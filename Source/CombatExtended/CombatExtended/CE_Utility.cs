@@ -798,7 +798,7 @@ namespace CombatExtended
                 factors.x *= shape.widthLaying / shape.width;
                 factors.y *= shape.heightLaying / shape.height;
 		if (pawn.Downed) {
-		    factor.y *= shape.heightLaying;
+		    factors.y *= shape.heightLaying;
 		}
             }
 
