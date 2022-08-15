@@ -49,6 +49,10 @@ namespace CombatExtended
 
         //private int lastTauntTick;
 
+	private bool shootingAtDowned = false;
+	private LocalTargetInfo lastTarget = null;
+	private IntVec3 lastTargetPos = null;
+
         #endregion
 
         #region Properties
@@ -753,12 +757,42 @@ namespace CombatExtended
             return true;
         }
 
+	private bool Retarget() {
+	    TargetScanFlags targetScanFlags = TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat | TargetScanFlags.NeedAutoTargetable;
+
+	    if (currentTarget != lastTarget) {
+		lastTarget = currentTarget;
+		lastTargetPos = currentTarget.Cell;
+		shootingAtDowned = currentTarget.Pawn?.Downed ?? true;
+		return true;
+	    }
+	    if (shootingAtDowned) {
+		return true;
+	    }
+	    if (currentTarget.Pawn?.Downed ?? true) {
+		Thing newTarget = (Thing)AttackTargetFinder.BestAttackTarget(Caster, targetScanFlags, (Thing x) => true, 0f, 5, lastTargetPos, 5, false, true, false);
+		if (newTarget != null) {
+		    currentTarget = new LocalTargetInfo(newTarget);
+		    lastTarget = currentTarget;
+		    lastTargetPos = currentTarget.Cell;
+		    shootingAtDowned = false;
+		    return true;
+		}
+		return false;
+	    }
+	    return true;
+	}
+
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
+	    if (!Retarget()) {
+		return false;
+	    }
+	    
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;
