@@ -35,6 +35,8 @@ namespace CombatExtended
 
 	private bool unlimitParryDamage = false;
 
+	private bool fragmentsFromWalls = false;
+
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
@@ -121,6 +123,8 @@ namespace CombatExtended
 	public bool EnableRaceAutopatcher => enableRaceAutopatcher;
 	public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
 
+	public bool FragmentsFromWalls => fragmentsFromWalls;
+
 	#endregion
 
         private bool lastAmmoSystemStatus;
@@ -183,6 +187,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
             Scribe_Values.Look(ref autosetup, "autosetup", true);
 
+	    Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
+
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -208,6 +214,8 @@ namespace CombatExtended
 	    list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
 
 	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref unlimitParryDamage, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
+
+	    list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
