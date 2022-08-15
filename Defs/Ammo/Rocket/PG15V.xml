@@ -2,8 +2,8 @@
 <Defs>
 
   <ThingCategoryDef>
-    <defName>Ammo73mmSovietRockets</defName>
-    <label>73mm Soviet rocket</label>
+    <defName>AmmoPG15VRockets</defName>
+    <label>PG15V rocket</label>
     <parent>AmmoRockets</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
   </ThingCategoryDef>
@@ -11,20 +11,20 @@
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_73mmSovietRocket</defName>
-    <label>73mm Soviet Rocket</label>
+    <defName>AmmoSet_PG15VRocket</defName>
+    <label>PG15V Rocket</label>
     <ammoTypes>
-      <Ammo_73mmSovietRocket_HEAT>Bullet_73mmSovietRocket_HEAT</Ammo_73mmSovietRocket_HEAT>
-      <Ammo_73mmSovietRocket_Thermobaric>Bullet_73mmSovietRocket_Thermobaric</Ammo_73mmSovietRocket_Thermobaric>
-      <Ammo_73mmSovietRocket_Frag>Bullet_73mmSovietRocket_Frag</Ammo_73mmSovietRocket_Frag>
-      <Ammo_73mmSovietRocket_EMP>Bullet_73mmSovietRocket_EMP</Ammo_73mmSovietRocket_EMP>
+      <Ammo_PG15VRocket_HEAT>Bullet_PG15VRocket_HEAT</Ammo_PG15VRocket_HEAT>
+      <Ammo_PG15VRocket_Thermobaric>Bullet_PG15VRocket_Thermobaric</Ammo_PG15VRocket_Thermobaric>
+      <Ammo_PG15VRocket_Frag>Bullet_PG15VRocket_Frag</Ammo_PG15VRocket_Frag>
+      <Ammo_PG15VRocket_EMP>Bullet_PG15VRocket_EMP</Ammo_PG15VRocket_EMP>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="73mmSovietRocketBase" ParentName="AmmoBase" Abstract="True">
-    <description>Tube launched rocket-propelled grenade used by SPG-9 recoilless launcher and the BMP-1's 2A28 Grom cannon. After being fired a rocket motor kicks in to propel the grenade further.</description>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="PG15VRocketBase" ParentName="AmmoBase" Abstract="True">
+    <description>Tube launched rocket-propelled grenade used by SPG-9 recoilless launcher and the BMP-1's 2A28 Grom cannon. After being fired, a rocket motor kicks in to propel the grenade further.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
     </statBases>
@@ -33,18 +33,18 @@
       <li>CE_AutoEnableCrafting_TableMachining</li>
     </tradeTags>
     <thingCategories>
-      <li>Ammo73mmSovietRockets</li>
+      <li>AmmoPG15VRockets</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>40</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="73mmSovietRocketBase">
-    <defName>Ammo_73mmSovietRocket_HEAT</defName>
-    <label>73mm Soviet Rocket (HEAT)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="PG15VRocketBase">
+    <defName>Ammo_PG15VRocket_HEAT</defName>
+    <label>PG15V Rocket (HEAT)</label>
     <graphicData>
-      <texPath>Things/Ammo/Rocket/73mmSovietRocket/HEAT</texPath>
+      <texPath>Things/Ammo/Rocket/PG15V/HEAT</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -53,14 +53,14 @@
       <Bulk>11.5</Bulk>
     </statBases>
     <ammoClass>RocketHEAT</ammoClass>
-	<detonateProjectile>Bullet_73mmSovietRocket_HEAT</detonateProjectile>
+	<detonateProjectile>Bullet_PG15VRocket_HEAT</detonateProjectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="73mmSovietRocketBase">
-    <defName>Ammo_73mmSovietRocket_Thermobaric</defName>
-    <label>73mm Soviet Rocket (Thermobaric)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="PG15VRocketBase">
+    <defName>Ammo_PG15VRocket_Thermobaric</defName>
+    <label>PG15V Rocket (Thermobaric)</label>
     <graphicData>
-      <texPath>Things/Ammo/Rocket/73mmSovietRocket/Thermobaric</texPath>
+      <texPath>Things/Ammo/Rocket/PG15V/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -69,14 +69,14 @@
       <Bulk>12.99</Bulk>
     </statBases>
     <ammoClass>RocketThermobaric</ammoClass>
-	<detonateProjectile>Bullet_73mmSovietRocket_Thermobaric</detonateProjectile>
+	<detonateProjectile>Bullet_PG15VRocket_Thermobaric</detonateProjectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="73mmSovietRocketBase">
-    <defName>Ammo_73mmSovietRocket_Frag</defName>
-    <label>73mm Soviet Rocket (HE)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="PG15VRocketBase">
+    <defName>Ammo_PG15VRocket_Frag</defName>
+    <label>PG15V Rocket (HE)</label>
     <graphicData>
-      <texPath>Things/Ammo/Rocket/73mmSovietRocket/Frag</texPath>
+      <texPath>Things/Ammo/Rocket/PG15V/Frag</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -85,14 +85,14 @@
       <Bulk>11.5</Bulk>
     </statBases>
     <ammoClass>RocketFrag</ammoClass>
-	<detonateProjectile>Bullet_73mmSovietRocket_Frag</detonateProjectile>
+	<detonateProjectile>Bullet_PG15VRocket_Frag</detonateProjectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="73mmSovietRocketBase">
-    <defName>Ammo_73mmSovietRocket_EMP</defName>
-    <label>73mm Soviet Rocket (EMP)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="PG15VRocketBase">
+    <defName>Ammo_PG15VRocket_EMP</defName>
+    <label>PG15V Rocket (EMP)</label>
     <graphicData>
-      <texPath>Things/Ammo/Rocket/73mmSovietRocket/EMP</texPath>
+      <texPath>Things/Ammo/Rocket/PG15V/EMP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -101,12 +101,12 @@
       <Bulk>11.5</Bulk>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-	<detonateProjectile>Bullet_73mmSovietRocket_EMP</detonateProjectile>
+	<detonateProjectile>Bullet_PG15VRocket_EMP</detonateProjectile>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base73mmSovietRocket" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="BasePG15VRocket" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
@@ -116,11 +116,11 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base73mmSovietRocket">
-    <defName>Bullet_73mmSovietRocket_HEAT</defName>
-    <label>73mm Soviet Rocket (HEAT)</label>
+  <ThingDef ParentName="BasePG15VRocket">
+    <defName>Bullet_PG15VRocket_HEAT</defName>
+    <label>PG15V Rocket (HEAT)</label>
     <graphicData>
-      <texPath>Things/Projectile/Rocket/73mmSovietRocket/HEAT</texPath>
+      <texPath>Things/Projectile/Rocket/PG15V/HEAT</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -147,12 +147,12 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base73mmSovietRocket">
-    <defName>Bullet_73mmSovietRocket_Thermobaric</defName>
-    <label>73mm Soviet Rocket (Thermobaric)</label>
+  <ThingDef ParentName="BasePG15VRocket">
+    <defName>Bullet_PG15VRocket_Thermobaric</defName>
+    <label>PG15V Rocket (Thermobaric)</label>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/Rocket/73mmSovietRocket/Thermobaric</texPath>
+      <texPath>Things/Projectile/Rocket/PG15V/Thermobaric</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -166,12 +166,12 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base73mmSovietRocket">
-    <defName>Bullet_73mmSovietRocket_Frag</defName>
+  <ThingDef ParentName="BasePG15VRocket">
+    <defName>Bullet_PG15VRocket_Frag</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>73mm Soviet Rocket (HE)</label>
+    <label>PG15V Rocket (HE)</label>
     <graphicData>
-      <texPath>Things/Projectile/Rocket/73mmSovietRocket/Frag</texPath>
+      <texPath>Things/Projectile/Rocket/PG15V/Frag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -193,12 +193,12 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="Base73mmSovietRocket">
-    <defName>Bullet_73mmSovietRocket_EMP</defName>
+  <ThingDef ParentName="BasePG15VRocket">
+    <defName>Bullet_PG15VRocket_EMP</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-    <label>73mm Soviet Rocket (EMP)</label>
+    <label>PG15V Rocket (EMP)</label>
     <graphicData>
-      <texPath>Things/Projectile/Rocket/73mmSovietRocket/EMP</texPath>
+      <texPath>Things/Projectile/Rocket/PG15V/EMP</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -214,10 +214,10 @@
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_73mmSovietRocket_HEAT</defName>
-    <label>make 73mm Soviet HEAT rockets x5</label>
-    <description>Craft 5 73mm Soviet HEAT rockets.</description>
-    <jobString>Making 73mm Soviet HEAT rockets.</jobString>
+    <defName>MakeAmmo_PG15VRocket_HEAT</defName>
+    <label>make PG15V HEAT rockets x5</label>
+    <description>Craft 5 PG15V HEAT rockets.</description>
+    <jobString>Making PG15V HEAT rockets.</jobString>
     <workAmount>9200</workAmount>
     <ingredients>
       <li>
@@ -253,15 +253,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_73mmSovietRocket_HEAT>5</Ammo_73mmSovietRocket_HEAT>
+      <Ammo_PG15VRocket_HEAT>5</Ammo_PG15VRocket_HEAT>
     </products>
   </RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_73mmSovietRocket_Thermobaric</defName>
-    <label>make 73mm Soviet thermobaric rockets x5</label>
-    <description>Craft 5 73mm Soviet thermobaric rockets.</description>
-    <jobString>Making 73mm Soviet thermobaric rockets.</jobString>
+    <defName>MakeAmmo_PG15VRocket_Thermobaric</defName>
+    <label>make PG15V thermobaric rockets x5</label>
+    <description>Craft 5 PG15V thermobaric rockets.</description>
+    <jobString>Making PG15V thermobaric rockets.</jobString>
     <workAmount>20400</workAmount>
     <ingredients>
       <li>
@@ -306,15 +306,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_73mmSovietRocket_Thermobaric>5</Ammo_73mmSovietRocket_Thermobaric>
+      <Ammo_PG15VRocket_Thermobaric>5</Ammo_PG15VRocket_Thermobaric>
     </products>
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_73mmSovietRocket_Frag</defName>
-    <label>make 73mm Soviet HE rockets x5</label>
-    <description>Craft 5 73mm Soviet HE rockets.</description>
-    <jobString>Making 73mm Soviet HE rockets.</jobString>
+    <defName>MakeAmmo_PG15VRocket_Frag</defName>
+    <label>make PG15V HE rockets x5</label>
+    <description>Craft 5 PG15V HE rockets.</description>
+    <jobString>Making PG15V HE rockets.</jobString>
     <workAmount>5400</workAmount>
     <ingredients>
       <li>
@@ -350,15 +350,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_73mmSovietRocket_Frag>5</Ammo_73mmSovietRocket_Frag>
+      <Ammo_PG15VRocket_Frag>5</Ammo_PG15VRocket_Frag>
     </products>
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_73mmSovietRocket_EMP</defName>
-    <label>make 73mm Soviet EMP rockets x5</label>
-    <description>Craft 5 73mm Soviet EMP rockets.</description>
-    <jobString>Making 73mm Soviet EMP rockets.</jobString>
+    <defName>MakeAmmo_PG15VRocket_EMP</defName>
+    <label>make PG15V EMP rockets x5</label>
+    <description>Craft 5 PG15V EMP rockets.</description>
+    <jobString>Making PG15V EMP rockets.</jobString>
     <workAmount>5400</workAmount>
     <ingredients>
       <li>
@@ -386,7 +386,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_73mmSovietRocket_EMP>5</Ammo_73mmSovietRocket_EMP>
+      <Ammo_PG15VRocket_EMP>5</Ammo_PG15VRocket_EMP>
     </products>
   </RecipeDef>
 
