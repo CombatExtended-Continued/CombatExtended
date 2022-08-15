@@ -41,6 +41,7 @@ namespace CombatExtended.HarmonyCE
 			num *= dinfo.Def.buildingDamageFactorPassable;
 		    }
 		    float hitPoints = victim.HitPoints;
+		    float maxHitPoints = victim.MaxHitPoints;
 		    bool max = false;
 		    if (num > hitPoints)
 		    {
@@ -62,29 +63,48 @@ namespace CombatExtended.HarmonyCE
 			smallFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Small").First();
 			largeFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Large").First();
 		    }
-		    var xzRange = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
-		    if (max) {
-			pos = victim.Position.ToVector3Shifted();
-			xzRange = new FloatRange(0, 360);
-		    }
+		    var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270); 
+		    var backArc = new FloatRange(dinfo.Angle - 60, dinfo.Angle + 60);
 
 		    var map = victim.Map;
 		    var height = new FloatRange(0, new CollisionVertical(victim).Max).RandomInRange;
+		    if (max)
+		    {
+			backArc = new FloatRange(dinfo.Angle - 90, dinfo.Angle + 90);
+		    }
 
 		    if (smallFragments > 0)
 		    {
-			var fr = CompFragments.FragRoutine(pos,
-							   map,
-							   height,
-							   victim,
-							   new ThingDefCountClass(smallFragment, smallFragments),
-							   1,
-							   0.2f,
-							   new FloatRange(0.5f, 5),
-							   xzRange,
-							   1f,
-							   false);
-			while (fr.MoveNext()) { }
+			int reflectedFrags = (int) (smallFragments * (hitPoints / maxHitPoints));
+			smallFragments -= reflectedFrags;
+			if (reflectedFrags > 0) {
+			    var fr = CompFragments.FragRoutine(pos,
+							       map,
+							       height,
+							       victim,
+							       new ThingDefCountClass(smallFragment, smallFragments),
+							       1,
+							       0.2f,
+							       new FloatRange(0.5f, 5),
+							       frontArc,
+							       1f,
+							       false);
+			    while (fr.MoveNext()) { }
+			}
+			{
+			    var fr = CompFragments.FragRoutine(pos,
+							       map,
+							       height,
+							       victim,
+							       new ThingDefCountClass(smallFragment, smallFragments),
+							       1,
+							       0.2f,
+							       new FloatRange(0.5f, 5),
+							       backArc,
+							       1f,
+							       false);
+			    while (fr.MoveNext()) { }
+			}
 
 		    }
 		    if (largeFragments > 0)
@@ -97,7 +117,7 @@ namespace CombatExtended.HarmonyCE
 							   1,
 							   0.2f,
 							   new FloatRange(0.5f, 5),
-							   xzRange,
+							   backArc,
 							   1f,
 							   false);
 			
