@@ -489,6 +489,9 @@ namespace CombatExtended
 
                     }
                     targetHeight = targetRange.Average;
+		    if (targetHeight > CollisionVertical.WallCollisionHeight) {
+			targetHeight = CollisionVertical.WallCollisionHeight;
+		    }
                 }
                 if (projectilePropsCE.isInstant)
                 {
