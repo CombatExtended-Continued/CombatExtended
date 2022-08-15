@@ -480,7 +480,11 @@ namespace CombatExtended
                     Position = ExactPosition.ToIntVec3();
                     break;
                 }
-                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3()))
+		var iv3 = tp.ToIntVec3();
+		if (!iv3.InBounds(map)) {
+		    continue;
+		}
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
                 {
                     if (this == thing)
                     {
