@@ -74,7 +74,7 @@ namespace CombatExtended
         {
             get
             {
-                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving;
+                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stunner == null || !targetPawn.stunner.Stunned);
             }
         }
         private float leadDistInt = -1f;
