@@ -76,13 +76,18 @@ namespace CombatExtended
             }
         }
 
-        public override float SwayAmplitude
+        public override float SwayAmplitude // TODO: Fix SwayAmplitude and SwayAmplitudeFor code re-use
         {
             get
             {
                 var sway = base.SwayAmplitude;
+		float sightsEfficiency = SightsEfficiency;
+		if (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+		{
+		    sightsEfficiency = 0;
+		}
                 if (ShouldAim)
-                    return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency);
+                    return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, sightsEfficiency);
                 else if (IsSuppressed)
                     return sway * SuppressionSwayFactor;
                 return sway;
@@ -107,8 +112,13 @@ namespace CombatExtended
         public float SwayAmplitudeFor(AimMode mode)
         {
             float sway = base.SwayAmplitude;
+	    float sightsEfficiency = SightsEfficiency;
+	    if (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+	    {
+		sightsEfficiency = 0;
+	    }
             if (ShouldAimFor(mode))
-                return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, SightsEfficiency);
+                return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, sightsEfficiency);
             else if (IsSuppressed)
                 return sway * SuppressionSwayFactor;
             return sway;
@@ -219,6 +229,10 @@ namespace CombatExtended
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
+	    if  (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+	    {
+		report.sightsEfficiency = 0;
+	    }
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
@@ -239,7 +253,26 @@ namespace CombatExtended
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
-            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+	    {
+		if (!ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Hearing))
+		{
+		    // blind and deaf;
+		    return false;
+		}
+		// blind but not deaf
+		float dist = targ.Cell.DistanceTo(root);
+		if (dist < 5f)
+		{
+		    return base.CanHitTargetFrom(root, targ);
+		}
+		Map map = ShooterPawn.Map;
+		LightingTracker tracker = map.GetLightingTracker();
+		float glow = tracker.GetGlowForCell(targ.Cell);
+		if (glow / dist < 0.1f) {
+		    return false;
+		}
+	    }
             return base.CanHitTargetFrom(root, targ);
         }
 

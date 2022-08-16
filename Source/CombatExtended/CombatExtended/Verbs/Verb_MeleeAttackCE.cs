@@ -287,7 +287,7 @@ namespace CombatExtended
             BodyPartGroupDef bodyPartGroupDef = null;
             HediffDef hediffDef = null;
 
-            if (EquipmentSource != null)
+            if (EquipmentSource != null && EquipmentSource != CasterPawn)
             {
 				//crits force a max damage variation roll
                 if (isCrit)
