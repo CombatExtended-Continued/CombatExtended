@@ -129,6 +129,7 @@ namespace CombatExtended
         public Thing cover = null;
         public float smokeDensity = 0f;
 	public bool blindFiring = false;
+	public bool roofed = false;
 
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
@@ -148,6 +149,7 @@ namespace CombatExtended
             cover = report.cover;
             smokeDensity = report.smokeDensity;
 	    blindFiring = report.blindFiring;
+	    roofed = report.roofed;
         }
 
         public ShiftVecReport()

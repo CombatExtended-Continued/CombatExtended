@@ -489,6 +489,9 @@ namespace CombatExtended
 
                     }
                     targetHeight = targetRange.Average;
+		    if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed ) {
+			targetHeight = CollisionVertical.WallCollisionHeight;
+		    }
                 }
                 if (projectilePropsCE.isInstant)
                 {
@@ -570,10 +573,12 @@ namespace CombatExtended
             report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
             Thing cover;
             float smokeDensity;
+	    bool roofed;
 
-            GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity);
+            GetHighestCoverAndSmokeForTarget(target, out cover, out smokeDensity, out roofed);
             report.cover = cover;
             report.smokeDensity = smokeDensity;
+	    report.roofed = roofed;
             return report;
         }
 
@@ -583,7 +588,7 @@ namespace CombatExtended
                If we're shooting at something tall, we might not need to rise at all, if we're shooting at 
                something short, we might need to rise *more* than just above the cover.  This at least handles 
                cases where we're below cover, but the taret is taller than the cover */
-            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke);
+            GetHighestCoverAndSmokeForTarget(target, out Thing cover, out float smoke, out bool roofed);
             var shooterHeight = CE_Utility.GetBoundsFor(caster).max.y;
             var coverHeight = CE_Utility.GetBoundsFor(cover).max.y;
             var centerOfVisibleTarget = (CE_Utility.GetBoundsFor(target.Thing).max.y - coverHeight) / 2 + coverHeight;
@@ -610,12 +615,13 @@ namespace CombatExtended
         /// <param name="target">The target of which to find cover of</param>
         /// <param name="cover">Output parameter, filled with the highest cover object found</param>
         /// <returns>True if cover was found, false otherwise</returns>
-        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity)
+        private bool GetHighestCoverAndSmokeForTarget(LocalTargetInfo target, out Thing cover, out float smokeDensity, out bool roofed)
         {
             Map map = caster.Map;
             Thing targetThing = target.Thing;
             Thing highestCover = null;
             float highestCoverHeight = 0f;
+	    roofed = false;
 
             smokeDensity = 0;
 
@@ -645,6 +651,11 @@ namespace CombatExtended
                 {
                     smokeDensity += gas.def.gas.accuracyPenalty;
                 }
+		if (!roofed)
+		{
+		    roofed = map.roofGrid.RoofAt(cell) != null;
+		}
+
 
                 // Check for cover in the second half of LoS
                 if (instant || i <= cells.Length / 2)
