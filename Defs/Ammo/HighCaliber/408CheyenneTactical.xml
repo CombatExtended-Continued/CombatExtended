@@ -15,11 +15,12 @@
     <label>.408 Cheyenne Tactical</label>
     <ammoTypes>
       <Ammo_408CheyenneTactical_FMJ>Bullet_408CheyenneTactical_FMJ</Ammo_408CheyenneTactical_FMJ>
+      <Ammo_408CheyenneTactical_AP>Bullet_408CheyenneTactical_AP</Ammo_408CheyenneTactical_AP>
       <Ammo_408CheyenneTactical_Incendiary>Bullet_408CheyenneTactical_Incendiary</Ammo_408CheyenneTactical_Incendiary>
-			<Ammo_408CheyenneTactical_HE>Bullet_408CheyenneTactical_HE</Ammo_408CheyenneTactical_HE>
-			<Ammo_408CheyenneTactical_Sabot>Bullet_408CheyenneTactical_Sabot</Ammo_408CheyenneTactical_Sabot>	         
+      <Ammo_408CheyenneTactical_HE>Bullet_408CheyenneTactical_HE</Ammo_408CheyenneTactical_HE>
+      <Ammo_408CheyenneTactical_Sabot>Bullet_408CheyenneTactical_Sabot</Ammo_408CheyenneTactical_Sabot>	         
     </ammoTypes>
-		<similarTo>AmmoSet_RifleMagnum</similarTo>
+    <similarTo>AmmoSet_RifleMagnum</similarTo>
   </CombatExtended.AmmoSetDef>
   
   <!-- ==================== Ammo ========================== -->
@@ -54,6 +55,20 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo408CheyenneTacticalBase">
+    <defName>Ammo_408CheyenneTactical_AP</defName>
+    <label>.408 Cheyenne Tactical cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.32</MarketValue>
+    </statBases>
+  	<ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_408CheyenneTactical_AP</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo408CheyenneTacticalBase">
     <defName>Ammo_408CheyenneTactical_Incendiary</defName>
     <label>.408 Cheyenne Tactical cartridge (AP-I)</label>
     <graphicData>
@@ -71,11 +86,11 @@
 		<defName>Ammo_408CheyenneTactical_HE</defName>
 		<label>.408 Cheyenne Tactical cartridge (HE)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/HE</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>0.58</MarketValue>
+			<MarketValue>0.58</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_408CheyenneTactical_HE</cookOffProjectile>
@@ -85,8 +100,8 @@
 		<defName>Ammo_408CheyenneTactical_Sabot</defName>
 		<label>.408 Cheyenne Tactical cartridge (Sabot)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>0.37</MarketValue>
@@ -116,6 +131,16 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>34</damageAmountBase>
       <armorPenetrationSharp>12</armorPenetrationSharp>
+      <armorPenetrationBlunt>242</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base408CheyenneTacticalBullet">
+    <defName>Bullet_408CheyenneTactical_AP</defName>
+    <label>.408 Cheyenne Tactical bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>21</damageAmountBase>
+      <armorPenetrationSharp>24</armorPenetrationSharp>
       <armorPenetrationBlunt>242</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
@@ -187,6 +212,32 @@
     </fixedIngredientFilter>
     <products>
       <Ammo_408CheyenneTactical_FMJ>200</Ammo_408CheyenneTactical_FMJ>
+    </products>
+    <workAmount>3200</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_408CheyenneTactical_AP</defName>
+    <label>make .408 Cheyenne Tactical (AP) cartridge x200</label>
+    <description>Craft 200 .408 Cheyenne Tactical (AP) cartridges.</description>
+    <jobString>Making .408 Cheyenne Tactical (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_408CheyenneTactical_AP>200</Ammo_408CheyenneTactical_AP>
     </products>
     <workAmount>3200</workAmount>
   </RecipeDef>

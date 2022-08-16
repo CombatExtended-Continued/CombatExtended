@@ -15,11 +15,12 @@
 		<label>2-Bore</label>
 		<ammoTypes>
 			<Ammo_2Bore_FMJ>Bullet_2Bore_FMJ</Ammo_2Bore_FMJ>
+			<Ammo_2Bore_AP>Bullet_2Bore_AP</Ammo_2Bore_AP>
 			<Ammo_2Bore_Incendiary>Bullet_2Bore_Incendiary</Ammo_2Bore_Incendiary>
 			<Ammo_2Bore_HE>Bullet_2Bore_HE</Ammo_2Bore_HE>
 			<Ammo_2Bore_Sabot>Bullet_2Bore_Sabot</Ammo_2Bore_Sabot>	   			
 		</ammoTypes>
-    <similarTo>AmmoSet_AntiMateriel</similarTo>
+		<similarTo>AmmoSet_AntiMateriel</similarTo>
 	</CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
@@ -52,6 +53,20 @@
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
 		<cookOffProjectile>Bullet_2Bore_FMJ</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
+		<defName>Ammo_2Bore_AP</defName>
+		<label>2-Bore cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.91</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_2Bore_AP</cookOffProjectile>
 	</ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
@@ -116,8 +131,18 @@
 		<label>2-Bore bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>57</damageAmountBase>
-      <armorPenetrationSharp>12</armorPenetrationSharp>
-      <armorPenetrationBlunt>345.26</armorPenetrationBlunt>
+			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationBlunt>345.26</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base2BoreBullet">
+		<defName>Bullet_2Bore_AP</defName>
+		<label>2-Bore bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>36</damageAmountBase>
+			<armorPenetrationSharp>24</armorPenetrationSharp>
+			<armorPenetrationBlunt>345.26</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -158,9 +183,9 @@
     <label>2-Bore bullet (Sabot)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
 	    <speed>117</speed>
-      <damageAmountBase>30</damageAmountBase>
-      <armorPenetrationSharp>44</armorPenetrationSharp>
-      <armorPenetrationBlunt>734.84</armorPenetrationBlunt>
+	    <damageAmountBase>30</damageAmountBase>
+	    <armorPenetrationSharp>44</armorPenetrationSharp>
+	    <armorPenetrationBlunt>734.84</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -188,6 +213,32 @@
 		</fixedIngredientFilter>
 		<products>
 			<Ammo_2Bore_FMJ>200</Ammo_2Bore_FMJ>
+		</products>
+    <workAmount>19200</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_2Bore_AP</defName>
+		<label>make 2-Bore (AP) cartridge x200</label>
+		<description>Craft 100 2-Bore (AP) cartridges.</description>
+		<jobString>Making 2-Bore (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>192</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_2Bore_AP>200</Ammo_2Bore_AP>
 		</products>
     <workAmount>19200</workAmount>
 	</RecipeDef>
