@@ -438,6 +438,7 @@ namespace CombatExtended
         }
         #endregion
 
+        #region Raycast
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
         {
 
@@ -550,14 +551,14 @@ namespace CombatExtended
             }
         }
 
-	private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+	    private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
 	{
 	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
 	    {
 		ApplySuppression(pawn);
 	    }
 	}
-
+        #endregion
 
         #region Launch
         /// <summary>
@@ -570,7 +571,8 @@ namespace CombatExtended
         /// <param name="shotHeight">The shot height, usually the max height of the non-pawn caster, a portion of the height of the pawn caster OR zero. (default: 0)</param>
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null)
+        /// <param name="distance">The distance to the estimated intercept point</param>
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
