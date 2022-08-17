@@ -35,6 +35,8 @@ namespace CombatExtended
 
         #endregion
 
+        public int armingDelay = 0;
+        public float aimHeightOffset = 0;
 
         public float empShieldBreakChance = 1f;
         public float Gravity => CE_Utility.GravityConst * gravityFactor;

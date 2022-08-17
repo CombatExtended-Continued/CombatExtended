@@ -15,11 +15,12 @@
     <label>14.5x114mm</label>
     <ammoTypes>
       <Ammo_145x114mm_FMJ>Bullet_145x114mm_FMJ</Ammo_145x114mm_FMJ>
+      <Ammo_145x114mm_AP>Bullet_145x114mm_AP</Ammo_145x114mm_AP>
       <Ammo_145x114mm_Incendiary>Bullet_145x114mm_Incendiary</Ammo_145x114mm_Incendiary>
       <Ammo_145x114mm_HE>Bullet_145x114mm_HE</Ammo_145x114mm_HE>
-	  <Ammo_145x114mm_Sabot>Bullet_145x114mm_Sabot</Ammo_145x114mm_Sabot>	  
+      <Ammo_145x114mm_Sabot>Bullet_145x114mm_Sabot</Ammo_145x114mm_Sabot>	  
     </ammoTypes>
-		<similarTo>AmmoSet_AntiMateriel</similarTo>
+    <similarTo>AmmoSet_AntiMateriel</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
@@ -52,6 +53,20 @@
     </statBases>
     <ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_145x114mm_FMJ</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
+    <defName>Ammo_145x114mm_AP</defName>
+    <label>14.5x114mm cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.76</MarketValue>
+    </statBases>
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_145x114mm_AP</cookOffProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo145x114mmBase">
@@ -122,6 +137,16 @@
   </ThingDef>
 
   <ThingDef ParentName="Base145x114mmBullet">
+    <defName>Bullet_145x114mm_AP</defName>
+    <label>14.5x114mm bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>33</damageAmountBase>
+      <armorPenetrationSharp>36</armorPenetrationSharp>
+      <armorPenetrationBlunt>634</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base145x114mmBullet">
     <defName>Bullet_145x114mm_Incendiary</defName>
     <label>14.5x114mm bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -163,6 +188,7 @@
       <armorPenetrationBlunt>820.360</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
+
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -187,6 +213,32 @@
     </fixedIngredientFilter>
     <products>
       <Ammo_145x114mm_FMJ>200</Ammo_145x114mm_FMJ>
+    </products>
+    <workAmount>7600</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_145x114mm_AP</defName>
+    <label>make 14.5x114mm (AP) cartridge x200</label>
+    <description>Craft 200 14.5x114mm (AP) cartridges.</description>
+    <jobString>Making 14.5x114mm (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>76</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_145x114mm_AP>200</Ammo_145x114mm_AP>
     </products>
     <workAmount>7600</workAmount>
   </RecipeDef>

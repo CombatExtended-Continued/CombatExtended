@@ -438,6 +438,7 @@ namespace CombatExtended
         }
         #endregion
 
+        #region Raycast
         public virtual void RayCast(Thing launcher, VerbProperties verbProps, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, float spreadDegrees = 0f, float aperatureSize = 0.03f, Thing equipment = null)
         {
 
@@ -480,7 +481,22 @@ namespace CombatExtended
                     Position = ExactPosition.ToIntVec3();
                     break;
                 }
-                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(tp.ToIntVec3()))
+		var iv3 = tp.ToIntVec3();
+		if (!iv3.InBounds(map)) {
+		    tp = ray.GetPoint(i-1);
+		    ExactPosition = tp;
+		    destination = tp;
+		    landed = true;
+                    LastPos = destination;
+                    Position = ExactPosition.ToIntVec3();
+
+                    lbce.SpawnBeam(muzzle, destination);
+		    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+                    lbce.Impact(null, muzzle);
+		    return;
+
+		}
+                foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
                 {
                     if (this == thing)
                     {
@@ -514,7 +530,6 @@ namespace CombatExtended
                     destination = tp;
                     landed = true;
                     LastPos = destination;
-                    ExactPosition = destination;
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
@@ -536,14 +551,14 @@ namespace CombatExtended
             }
         }
 
-	private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+	    private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
 	{
 	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
 	    {
 		ApplySuppression(pawn);
 	    }
 	}
-
+        #endregion
 
         #region Launch
         /// <summary>
@@ -556,7 +571,8 @@ namespace CombatExtended
         /// <param name="shotHeight">The shot height, usually the max height of the non-pawn caster, a portion of the height of the pawn caster OR zero. (default: 0)</param>
         /// <param name="shotSpeed">The shot speed (default: def.projectile.speed)</param>
         /// <param name="equipment">The equipment used to fire the projectile.</param>
-        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null)
+        /// <param name="distance">The distance to the estimated intercept point</param>
+        public virtual void Launch(Thing launcher, Vector2 origin, float shotAngle, float shotRotation, float shotHeight = 0f, float shotSpeed = -1f, Thing equipment = null, float distance = -1)
         {
             this.shotAngle = shotAngle;
             this.shotHeight = shotHeight;
@@ -1177,7 +1193,7 @@ namespace CombatExtended
                             explosionSuppressionRadius));
                     }
                 }
-                else if (explodingComp != null)
+                if (explodingComp != null)
                 {
                     dangerAmount = (explodingComp.props as CompProperties_ExplosiveCE).damageAmountBase;
                     explodingComp.Explode(this, explodePos, Map, 1f, dir, ignoredThings);
