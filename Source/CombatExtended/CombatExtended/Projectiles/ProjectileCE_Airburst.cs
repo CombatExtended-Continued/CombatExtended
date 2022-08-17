@@ -9,35 +9,33 @@ using CombatExtended.Utilities;
 
 namespace CombatExtended
 {
-    public class ProjectileCE_Airburst : ProjectileCE
+   public class ProjectileCE_Airburst : ProjectileCE
     {
         public int updateRate => props.updateRate;
 
+        //basically arming distance
         public int timer = -10;
-        
-        public bool detonated;
+
+        public bool detonated = false;
 
         public ModExtension_Airburst props => this.def.GetModExtension<ModExtension_Airburst>();
         public override void Tick()
         {
-            if (timer >= updateRate)
+            if (!detonated)
             {
-                 if (!detonated)
+                if (timer >= updateRate)
                 {
-                    if (timer >= updateRate)
-                    {
-                        UpdateDistance();
-                        timer = 0;
-                    }
-                    timer++;
-                    base.Tick();
+                    UpdateDistance();
+                    timer = 0;
                 }
+                timer++;
+                base.Tick();
             }
         }
 
         public virtual void UpdateDistance()
         {
-             if (
+            if (
                 detonated || 
                 this.Position.DistanceTo(this.intendedTarget.Cell) <= props.distToExplode
                 ||
