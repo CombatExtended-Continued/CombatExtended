@@ -11,6 +11,14 @@ namespace CombatExtended
 {
     public class StatWorker_UBGLStats : StatWorker
     {
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            var comp = req.Thing?.TryGetComp<CompUnderBarrel>()?.Props ?? null;
+            if (comp == null)
+                comp = ((ThingDef)req.Def)?.GetCompProperties<CompProperties_UnderBarrel>() ?? null;
+            return base.ShouldShowFor(req) && comp != null;
+        }
+    
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {
             var comp = req.Thing?.TryGetComp<CompUnderBarrel>()?.Props ?? null;
