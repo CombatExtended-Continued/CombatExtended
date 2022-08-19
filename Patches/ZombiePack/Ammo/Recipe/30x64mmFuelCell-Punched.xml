@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Pack A Punch</li>
+        	<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+  <RecipeDef ParentName="AmmoRecipePunched">
+    <defName>MakeAmmo_30x64mmFuel_Incendiary_Punched</defName>
+    <label>make 30x64mm fuel cell (Incendiary) (Punched) x50</label>
+    <description>Craft 50 30x64mm incendiary fuel cells (Punched).</description>
+    <jobString>Making incendiary fuel cells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Ammo_30x64mmFuel_Incendiary</li>
+          </thingDefs>
+        </filter>
+        <count>200</count>
+      </li> 
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Ammo_30x64mmFuel_Incendiary</li>	  
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30x64mmFuel_Incendiary_Punched>50</Ammo_30x64mmFuel_Incendiary_Punched>
+    </products>
+    <workAmount>7600</workAmount>		
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipePunched">
+    <defName>MakeAmmo_30x64mmFuel_Thermobaric_Punched</defName>
+    <label>make 30x64mm fuel cell (Thermobaric) (Punched) x50</label>
+    <description>Craft 50 30x64mm thermobaric fuel cells (Punched).</description>
+    <jobString>Making thermobaric fuel cells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Ammo_30x64mmFuel_Thermobaric</li>
+          </thingDefs>
+        </filter>
+        <count>200</count>
+      </li>  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Ammo_30x64mmFuel_Thermobaric</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30x64mmFuel_Thermobaric_Punched>50</Ammo_30x64mmFuel_Thermobaric_Punched>
+    </products>
+    <workAmount>10400</workAmount>		
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipePunched">
+    <defName>MakeAmmo_30x64mmFuel_Foam_Punched</defName>
+    <label>make 30x64mm fuel cell (Foam) (Punched) x50</label>
+    <description>Craft 50 30x64mm foam fuel cells (Punched).</description>
+    <jobString>Making foam fuel cells.</jobString>
+    <researchPrerequisite>Firefoam</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Ammo_30x64mmFuel_Foam</li>
+          </thingDefs>
+        </filter>
+        <count>200</count>
+      </li>	  
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Ammo_30x64mmFuel_Foam</li>		
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_30x64mmFuel_Foam_Punched>50</Ammo_30x64mmFuel_Foam_Punched>
+    </products>
+    <workAmount>11400</workAmount>	
+  </RecipeDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

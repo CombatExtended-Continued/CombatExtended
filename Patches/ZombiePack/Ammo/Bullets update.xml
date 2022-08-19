@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Call of Duty: Wonder Weapons</li>
+        <li>Call of Duty: Zombies Pack</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+    <operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+                                        defName="Bullet_Acidgat_Buck" or
+                                        defName="Bullet_Acidgat_Slug"]/projectile/damageDef</xpath>
+					<value>
+						<damageDef>CodZP_Toxic_Burn</damageDef>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Winters_Cryo"]/projectile/damageDef</xpath>
+					<value>
+						<damageDef>CodZP_Frostbite</damageDef>
+					</value>
+				</li>
+    </operations>
+    </match>
+    </Operation>
+</Patch>

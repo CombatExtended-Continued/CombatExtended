@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Pack A Punch</li>
+      		<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+  <RecipeDef Name="AmmoRecipePunched" ParentName="AmmoRecipeBase" Abstract="true">
+  	<researchPrerequisite>CodZP_PackAPunch</researchPrerequisite>
+  </RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

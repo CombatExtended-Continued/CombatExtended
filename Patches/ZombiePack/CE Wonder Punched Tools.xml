@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Call of Duty: Zombies Pack</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+            <!--===== Must construct additional tools =====-->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[
+                                            defName="CodZP_Gun_RayGun-PAP" or
+                                            defName="CodZP_Gun_RayGunMkThree-PAP" or
+                                            defName="CODZP_Gun_Zapgun_Red-PAP" or
+                                            defName="CODZP_Gun_Zapgun_Blue-PAP" or
+                                            defName="CodZP_Gun_WintersHowl-PAP" or
+                                            defName="CodZP_Gun_GKZ-PAP"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>grip</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>2</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Blundergat-PAP" or
+                                            defName="CodZP_Gun_Acidgat-PAP" or
+                                            defName="CodZP_Gun_Magmagat-PAP" or
+                                            defName="CodZP_Gun_RayGunMkTwo-PAP" or
+                                            defName="CodZP_Gun_RayGunMkTwo-V-PAP" or
+                                            defName="CodZP_Gun_RayGunMkTwo-X-PAP" or
+                                            defName="CodZP_Gun_RayGunMkTwo-Y-PAP" or
+                                            defName="CodZP_Gun_RayGunMkTwo-Z-PAP" or
+                                            defName="CodZP_Gun_Wunderwaffe-PAP" or
+                                            defName="CodZP_Gun_Wunderwaffe_Scharf-PAP" or
+                                            defName="CodZP_Gun_Wavegun-PAP"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>stock</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Thundergun-PAP" or
+                                            defName="CodZP_Gun_Tundragun-PAP"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>12</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Staff-Ice-PAP" or
+                                            defName="CodZP_Gun_Staff-Wind-PAP" or
+                                            defName="CodZP_Gun_Staff-Fire-PAP" or
+                                            defName="CodZP_Gun_Staff-Lightning-PAP"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>Sekhmet's Vigor</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>1</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="CodZP_Hells_Retriever-PAP"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>Retriever's Cinder</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>60</power>
+                                <cooldownTime>9</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>
