@@ -25,23 +25,62 @@
             </value>
         </li>
 
-        <!-- === Crossbow === -->
-
-        <!-- WIP arbalesters with shields
-        <li Class="PatchOperationRemove">
-            <xpath>Defs/ThingDef[defName = "DankPyon_CrossbowHeavy"]/weaponClasses/li[2]</xpath>
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName="Bow_War" or defName="DankPyon_Bow_Hunting"]/tools</xpath>
+            <value>
+            <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <capacities>
+                        <li>Blunt</li>
+                    </capacities>
+                    <power>7</power>
+                    <cooldownTime>1.6</cooldownTime>
+                    <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+                </li>
+            </tools>
+            </value>
         </li>
 
-        <li Class="PatchOperationAdd">
-            <xpath>Defs/ThingDef[defName = "DankPyon_Crossbow"]</xpath>
+        <li Class="PatchOperationReplace">
+            <xpath>Defs/ThingDef[defName = "DankPyon_Handgonne"]/tools</xpath>
             <value>
-                <modExtensions>
-                    <li Class="VFECore.ThingDefExtension">
-                        <usableWithShields>true</usableWithShields>
-                    </li>
-                </modExtensions>
+                <tools>
+                <li Class="CombatExtended.ToolCE">
+                    <label>stock</label>
+                    <capacities>
+                    <li>Blunt</li>
+                    </capacities>
+                    <power>8</power>
+                    <cooldownTime>1.55</cooldownTime>
+                    <chanceFactor>1.5</chanceFactor>
+                    <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>barrel</label>
+                    <capacities>
+                    <li>Blunt</li>
+                    </capacities>
+                    <power>5</power>
+                    <cooldownTime>2.02</cooldownTime>
+                    <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                    <label>muzzle</label>
+                    <capacities>
+                    <li>Poke</li>
+                    </capacities>
+                    <power>8</power>
+                    <cooldownTime>1.55</cooldownTime>
+                    <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                    <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                </li>
+                </tools>
             </value>
-        </li>-->
+        </li>
+
+        <!-- === Crossbow === -->
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
             <defName>DankPyon_Crossbow</defName>
@@ -148,22 +187,6 @@
             <AllowWithRunAndGun>false</AllowWithRunAndGun>
         </li>
 
-        <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="DankPyon_Bow_Hunting"]/tools</xpath>
-            <value>
-            <tools>
-                <li Class="CombatExtended.ToolCE">
-                    <capacities>
-                        <li>Blunt</li>
-                    </capacities>
-                    <power>7</power>
-                    <cooldownTime>1.6</cooldownTime>
-                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-                </li>
-            </tools>
-            </value>
-        </li>
-
         <!-- ========== War bow ========== -->
 
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -197,19 +220,51 @@
             <AllowWithRunAndGun>false</AllowWithRunAndGun>
         </li>
 
-        <li Class="PatchOperationReplace">
-            <xpath>Defs/ThingDef[defName="Bow_War"]/tools</xpath>
+        <!-- === Handgonne === -->
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+            <defName>DankPyon_Handgonne</defName>
+            <statBases>
+                <Bulk>8</Bulk>
+                <SwayFactor>1.22</SwayFactor>
+                <ShotSpread>0.36</ShotSpread>
+                <SightsEfficiency>0.85</SightsEfficiency>
+                <RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+            </statBases>
+            <Properties>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>True</hasStandardCommand>
+                <defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+                <warmupTime>1.66</warmupTime>
+                <range>12</range>
+                <soundCast>Shot_Shotgun</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <muzzleFlashScale>9</muzzleFlashScale>
+            </Properties>
+            <AmmoUser>
+                <magazineSize>1</magazineSize>
+                <reloadTime>7.35</reloadTime>
+                <ammoSet>AmmoSet_FastMusketBall</ammoSet>
+            </AmmoUser>
+            <FireModes>
+                <aiAimMode>AimedShot</aiAimMode>
+            </FireModes>
+            <weaponTags>
+                <li>CE_OneHandedWeapon</li>
+            </weaponTags>
+        </li>
+
+        <!-- === Let musket ammo by made at Medieval Overhaul anvil. === -->
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[@Name="MusketBallBase"]/tradeTags</xpath>
             <value>
-            <tools>
-                <li Class="CombatExtended.ToolCE">
-                    <capacities>
-                        <li>Blunt</li>
-                    </capacities>
-                    <power>7</power>
-                    <cooldownTime>1.6</cooldownTime>
-                    <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-                </li>
-            </tools>
+                <li>CE_AutoEnableCrafting_DankPyon_Anvil</li>
+            </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+            <xpath>/Defs/RecipeDef[defName="MakeAmmo_MusketBall"]</xpath>
+            <value>
+                <researchPrerequisite>DankPyon_Gunpowder</researchPrerequisite>
             </value>
         </li>
 

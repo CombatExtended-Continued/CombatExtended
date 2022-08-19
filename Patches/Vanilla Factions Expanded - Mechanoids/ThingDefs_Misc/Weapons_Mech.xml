@@ -36,7 +36,7 @@
         <SightsEfficiency>1</SightsEfficiency>
         <ShotSpread>0.07</ShotSpread>
         <SwayFactor>0.82</SwayFactor>
-        <Bulk>10.00</Bulk>
+        <Bulk>8.00</Bulk>
       </statBases>
       <Properties>
         <recoilAmount>0.76</recoilAmount>
@@ -55,11 +55,15 @@
       <AmmoUser>
         <magazineSize>50</magazineSize>
         <reloadTime>7.8</reloadTime>
+	<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
       </AmmoUser>      
       <FireModes>
         <aiAimMode>AimedShot</aiAimMode>
-		<aimedBurstShotCount>5</aimedBurstShotCount>
+        <aimedBurstShotCount>5</aimedBurstShotCount>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
@@ -86,34 +90,38 @@
       <defName>VFE_Gun_RaiderMechanoidGun</defName>
       <statBases>
         <Mass>12</Mass>
-        <Bulk>22</Bulk>
-        <SwayFactor>4.00</SwayFactor>
-        <ShotSpread>0.01</ShotSpread>
+        <Bulk>18</Bulk>
+        <SwayFactor>1.6</SwayFactor>
+        <ShotSpread>0.1</ShotSpread>
         <SightsEfficiency>1.0</SightsEfficiency>
         <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
       </statBases>
       <Properties>
-        <recoilAmount>1.66</recoilAmount>
+        <recoilAmount>1.75</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_338Norma_FMJ</defaultProjectile>
+        <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
         <warmupTime>1.6</warmupTime>
-        <range>54</range>
-        <ticksBetweenBurstShots>11</ticksBetweenBurstShots>
+        <range>62</range>
+        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
         <burstShotCount>10</burstShotCount>
-        <soundCast>MediumMG</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
+        <soundCast>HeavyMG</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>10</muzzleFlashScale>
         <recoilPattern>Mounted</recoilPattern>
       </Properties>
       <AmmoUser>
         <magazineSize>80</magazineSize>
         <reloadTime>7.8</reloadTime>
+	<ammoSet>AmmoSet_50BMG</ammoSet>
       </AmmoUser>
       <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
         <aimedBurstShotCount>5</aimedBurstShotCount>
-        <aiAimMode>SuppressFire</aiAimMode>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
@@ -167,12 +175,16 @@
       <AmmoUser>
         <magazineSize>60</magazineSize>
         <reloadTime>5</reloadTime>
+	<ammoSet>AmmoSet_Flamethrower</ammoSet>
       </AmmoUser>
       <FireModes>
         <aiUseBurstMode>FALSE</aiUseBurstMode>
         <aiAimMode>SuppressFire</aiAimMode>
         <noSingleShot>true</noSingleShot>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
@@ -263,6 +275,9 @@
         <aimedBurstShotCount>3</aimedBurstShotCount>
         <aiUseBurstMode>TRUE</aiUseBurstMode>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
 	
 	  <!--Increased burst count and 20% reduced recoil-->
@@ -300,6 +315,9 @@
         <aimedBurstShotCount>5</aimedBurstShotCount>
         <aiUseBurstMode>TRUE</aiUseBurstMode>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
 
     <!-- ========== Inferno spewer ========== -->
@@ -341,6 +359,9 @@
         <aiAimMode>SuppressFire</aiAimMode>
         <noSingleShot>true</noSingleShot>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
 
     <!-- ========== Advanced inferno spewer ========== -->
@@ -382,6 +403,9 @@
         <aiAimMode>SuppressFire</aiAimMode>
         <noSingleShot>true</noSingleShot>
       </FireModes>
+      <weaponTags>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
 	
     <!-- ========== Remove VFE Advanced Needle Gun and patch in replacement. ========== -->
@@ -416,6 +440,7 @@
           <destroyOnDrop>true</destroyOnDrop>    
           <weaponTags>
             <li>VFE_AdvMechanoidGunLongRange</li>  
+            <li>NoSwitch</li>
           </weaponTags>
           <verbs>
           <li Class="CombatExtended.VerbPropertiesCE">
@@ -512,6 +537,7 @@
       </FireModes>
       <weaponTags>
         <li>VFE_Gun_AdvancedChargeLance</li>
+        <li>NoSwitch</li>
       </weaponTags>
     </li>
 
@@ -552,7 +578,7 @@
 		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  <hasStandardCommand>true</hasStandardCommand>
 		  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-		  <warmupTime>1.3</warmupTime>
+		  <warmupTime>2.0</warmupTime>
 		  <range>75</range>
 		  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 		  <burstShotCount>30</burstShotCount>
@@ -571,6 +597,7 @@
 		</FireModes>
 		<weaponTags>
 		  <li>VFE_AdvMechanoidGunHeavy</li>
+		  <li>NoSwitch</li>
 		</weaponTags>
 	</li>
 	
@@ -582,7 +609,7 @@
 		<defName>VFE_Gun_AdvancedInfernoCannon</defName>
 		<statBases>
 		  <Mass>300.00</Mass>
-		  <RangedWeapon_Cooldown>2.53</RangedWeapon_Cooldown>
+		  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 		  <SightsEfficiency>1</SightsEfficiency>
 		  <ShotSpread>0.01</ShotSpread>
 		  <SwayFactor>0.82</SwayFactor>
@@ -591,8 +618,8 @@
 		<Properties>
 		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  <hasStandardCommand>true</hasStandardCommand>
-		  <defaultProjectile>Bullet_80x256mmFuel_Thermobaric</defaultProjectile>
-		  <warmupTime>3.5</warmupTime>
+		  <defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
+		  <warmupTime>3.0</warmupTime>
 		  <range>86</range>
 		  <burstShotCount>1</burstShotCount>
 		  <soundCast>InfernoCannon_Fire</soundCast>
@@ -612,6 +639,7 @@
 		</FireModes>
 		<weaponTags>
 		  <li>VFE_AdvMechanoidGunHeavy</li>
+		  <li>NoSwitch</li>
 		</weaponTags>
 	</li>
     
@@ -651,6 +679,7 @@
     </FireModes>
     <weaponTags>
       <li>CE_AI_Launcher</li>
+      <li>NoSwitch</li>
     </weaponTags>
   </li>
 

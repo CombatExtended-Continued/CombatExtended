@@ -9,7 +9,7 @@
         <operations>
 
             <li Class="PatchOperationReplace">
-                <xpath>Defs/ThingDef[defName = "DankPyon_Turret_Trebuchet"]/thingClass</xpath>
+                <xpath>Defs/ThingDef[@Name = "DankPyon_BaseTrebuchetBuilding"]/thingClass</xpath>
                 <value>
                     <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
                 </value>
@@ -22,16 +22,15 @@
             </li>
             
             <li Class="PatchOperationAdd">
-                <xpath>/Defs/ThingDef[defName="DankPyon_Artillery_Trebuchet"]/statBases</xpath>
+                <xpath>/Defs/ThingDef[@Name = "DankPyon_BaseTrebuchetBuilding"]/statBases</xpath>
                 <value>
                     <SightsEfficiency>0.5</SightsEfficiency>
                 </value>
             </li>
 
-            <!--<li Class="PatchOperationRemove">
+            <li Class="PatchOperationRemove">
                 <xpath>/Defs/ThingDef[defName="DankPyon_Artillery_Trebuchet"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
-                
-            </li>-->
+            </li>
 
             <li Class="PatchOperationAdd">
                 <xpath>/Defs/ThingDef[defName = "DankPyon_Artillery_Trebuchet"]/comps</xpath>
@@ -78,10 +77,11 @@
 
             <li Class="PatchOperationAdd">
             <xpath>/Defs/ThingDef[defName = "DankPyon_Artillery_Trebuchet"]/weaponTags</xpath>
-            <value>
-                <li>TurretGun</li>
-            </value>
+                <value>
+                    <li>TurretGun</li>
+                </value>
             </li>
+
         </operations>
     </match>
 </Operation>

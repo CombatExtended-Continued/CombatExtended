@@ -148,8 +148,8 @@ namespace CombatExtended
 
 	public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq, bool finalized = true)
         {
-	    if (this.stat == global::RimWorld.StatDefOf.ArmorRating_Blunt ||
-		    this.stat == global::RimWorld.StatDefOf.ArmorRating_Sharp) {
+	    if (Controller.settings.PartialStat && (this.stat == global::RimWorld.StatDefOf.ArmorRating_Blunt ||
+		 this.stat == global::RimWorld.StatDefOf.ArmorRating_Sharp)) {
 
 		if(optionalReq != null) {
 		    if (optionalReq.Thing is Apparel apparel) {

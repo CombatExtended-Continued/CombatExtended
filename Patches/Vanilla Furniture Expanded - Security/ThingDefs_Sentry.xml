@@ -22,19 +22,32 @@
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 		</li>
 
-		<!-- Replace vanilla thingClass -->
-		<li Class="PatchOperationReplace">
+		<!-- Remove Explosive comp -->
+		<li Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[
-			defName = "VFES_Turret_ChargeRailgunTurret" or 
-			defName = "VFES_Turret_ChargeTurret" or		
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_ChargeTurret" or
 			defName = "VFES_Turret_AutocannonDouble" or
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or	
-			defName = "VFES_Turret_FloorTurret" or		      			
+			defName = "VFES_Turret_MilitaryTurret" or
+			defName = "VFES_Turret_TriRocket"
+		]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		</li>
+
+		<!-- Replace vanilla thingClass -->
+		<li Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_ChargeTurret" or
+			defName = "VFES_Turret_AutocannonDouble" or
+			defName = "VFES_Turret_EMPTurret" or
+			defName = "VFES_Turret_Flame" or
+			defName = "VFES_Turret_SentryGun" or
+			defName = "VFES_Turret_MilitaryTurret" or
 			defName = "VFES_Turret_TriRocket" or
-			defName = "VFES_Turret_FloorTurret"		        		
+			defName = "VFES_Turret_FloorTurret"
 		]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -285,6 +298,11 @@
 		  <reloadTime>7.8</reloadTime>
 		  <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
 		</AmmoUser>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
 		<weaponTags Inherit="false">
 		  <li>TurretGun</li>
 		</weaponTags>
@@ -364,6 +382,11 @@
 		  <reloadTime>9.2</reloadTime>
 		  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
 		</AmmoUser>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
 		<weaponTags Inherit="false">
 		  <li>TurretGun</li>
 		</weaponTags>
@@ -439,6 +462,11 @@
 		  <muzzleFlashScale>9</muzzleFlashScale>
 		  <recoilPattern>Mounted</recoilPattern>
 		</Properties>
+		<FireModes>
+		  <aiAimMode>AimedShot</aiAimMode>
+		  <noSnapshot>true</noSnapshot>
+		  <noSingleShot>true</noSingleShot>
+		</FireModes>
 		<weaponTags Inherit="false">
 		  <li>TurretGun</li>
 		</weaponTags>

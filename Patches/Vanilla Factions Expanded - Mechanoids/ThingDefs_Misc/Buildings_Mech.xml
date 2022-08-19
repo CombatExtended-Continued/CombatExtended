@@ -8,6 +8,7 @@
 
     <match Class="PatchOperationSequence">
       <operations>
+
 			<!-- ========== Ship Charge Blaster ========== -->
 
 			<li Class="PatchOperationReplace">
@@ -64,7 +65,7 @@
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-				  <warmupTime>2.5</warmupTime>
+				  <warmupTime>3.0</warmupTime>
 				  <range>75</range>
 				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 				  <burstShotCount>20</burstShotCount>
@@ -119,7 +120,7 @@
 				</value>
 			</li>
 			
-			<!--It's supposed to presumably be the same threat as a HCB turret, so we'll have it use railgun sabot shots-->
+			<!--It's supposed to presumably be the same threat as a HCB turret, so we'll have it use 12x64mm Hyper shots-->
 			
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>VFE_Gun_ChargeLanceCannon</defName>
@@ -134,14 +135,14 @@
 				<Properties>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>Bullet_12mmRailgun_Sabot</defaultProjectile>
+				  <defaultProjectile>Bullet_12x64mmHyper</defaultProjectile>
 				  <warmupTime>4.2</warmupTime>
 				  <range>86</range>
 				  <burstShotCount>1</burstShotCount>
 				  <soundCast>ChargeLance_Fire</soundCast>
 				  <soundCastTail>GunTail_Heavy</soundCastTail>
 				  <muzzleFlashScale>9</muzzleFlashScale>
-				  <minRange>5</minRange>
+				  <minRange>1.9</minRange>
 				</Properties>
 				<FireModes>
 				  <aiAimMode>AimedShot</aiAimMode>
@@ -196,7 +197,7 @@
 				<defName>VFE_Gun_InfernoArtillery</defName>
 				<statBases>
 				  <Mass>300.00</Mass>
-				  <RangedWeapon_Cooldown>12.53</RangedWeapon_Cooldown>
+				  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1</SightsEfficiency>
 				  <ShotSpread>0.01</ShotSpread>
 				  <SwayFactor>0.82</SwayFactor>
@@ -206,7 +207,7 @@
 				  <recoilAmount>3.5</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
-				  <defaultProjectile>Bullet_80x256mmFuel_Thermobaric</defaultProjectile>
+				  <defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
 				  <warmupTime>4.3</warmupTime>
 				  <range>86</range>
 				  <ticksBetweenBurstShots>60</ticksBetweenBurstShots>
@@ -215,7 +216,7 @@
 				  <soundCastTail>GunTail_Light</soundCastTail>
 				  <muzzleFlashScale>14</muzzleFlashScale>
 				  <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
-				  <minRange>5</minRange>
+				  <minRange>4.9</minRange>
 				  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 				  <recoilPattern>Mounted</recoilPattern>
 				</Properties>
@@ -410,6 +411,7 @@
 				  <soundCast>VFE_Shot_ChargeRailgun</soundCast>
 				  <soundCastTail>GunTail_Heavy</soundCastTail>
 				  <muzzleFlashScale>16</muzzleFlashScale>
+				  <minRange>8.9</minRange>
 				</Properties>
 				<FireModes>
 				  <aiAimMode>AimedShot</aiAimMode>

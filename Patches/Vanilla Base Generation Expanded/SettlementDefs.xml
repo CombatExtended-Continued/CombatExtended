@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Base Generation Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- === Remove the patched-out weapons === -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/KCSG.SettlementLayoutDef[
+						defName="VBGE_OutlanderDefence" or
+						defName="VBGE_PiratesDefence" or
+						defName="VBGE_EmpireDefence"
+					]/stockpileOptions/fillWithDefs/li[.="Gun_SmokeLauncher"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/KCSG.SettlementLayoutDef[
+						defName="VBGE_OutlanderDefence" or
+						defName="VBGE_PiratesDefence" or
+						defName="VBGE_EmpireDefence"
+					]/stockpileOptions/fillWithDefs/li[.="Gun_EmpLauncher"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/KCSG.SettlementLayoutDef[defName="VBGE_TribalDefence"]/stockpileOptions/fillWithDefs/li[.="ThrumboHorn"]</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/KCSG.SettlementLayoutDef[defName="VBGE_TribalDefence"]/stockpileOptions/fillWithDefs/li[.="ElephantTusk"]</xpath>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

@@ -8,7 +8,7 @@ namespace CombatExtended
         public bool aiUseBurstMode = false;
         public bool noSingleShot = false;
         public bool noSnapshot = false;
-        public AimMode aiAimMode = AimMode.Snapshot;
+        public AimMode aiAimMode = AimMode.AimedShot;
 
         public CompProperties_FireModes()
         {

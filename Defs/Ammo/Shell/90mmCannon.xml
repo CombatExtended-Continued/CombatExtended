@@ -16,6 +16,7 @@
     <ammoTypes>
       <Ammo_90mmCannonShell_HEAT>Bullet_90mmCannonShell_HEAT</Ammo_90mmCannonShell_HEAT>
       <Ammo_90mmCannonShell_HE>Bullet_90mmCannonShell_HE</Ammo_90mmCannonShell_HE>
+	    <Ammo_90mmCannonShell_HE_TFuzed>Bullet_90mmCannonShell_HE_TFuzed</Ammo_90mmCannonShell_HE_TFuzed>
       <Ammo_90mmCannonShell_EMP>Bullet_90mmCannonShell_EMP</Ammo_90mmCannonShell_EMP>
     </ammoTypes>
     <isMortarAmmoSet>true</isMortarAmmoSet>
@@ -77,6 +78,33 @@
       <MarketValue>109.83</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+		<damageAmountBase>285</damageAmountBase>
+		<explosiveDamageType>Bomb</explosiveDamageType>
+		<explosiveRadius>2.5</explosiveRadius>
+		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  </li>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>53</Fragment_Large>
+			<Fragment_Small>96</Fragment_Small>
+		</fragments>
+	  </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="90mmCannonShellBase">
+    <defName>Ammo_90mmCannonShell_HE_TFuzed</defName>
+    <label>90mm cannon shell (HE Time Fuzed)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Cannon/Flak/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>139.83</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHETF</ammoClass>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>285</damageAmountBase>
@@ -189,6 +217,36 @@
 	  </li>
     </comps>
   </ThingDef>
+  
+    <ThingDef ParentName="Base90mmCannonShell">
+    <defName>Bullet_90mmCannonShell_HE_TFuzed</defName>
+    <label>90mm cannon shell (HE Time Fuse)</label>
+    <thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Cannon/HE</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>152</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <explosionRadius>2.5</explosionRadius>
+      <soundExplode>MortarBomb_Explode</soundExplode>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  <aimHeightOffset>3</aimHeightOffset>
+	  <armingDelay>3</armingDelay>
+    </projectile>
+    <comps>
+	  <li Class="CombatExtended.CompProperties_Fragments">
+		<fragments>
+			<Fragment_Large>53</Fragment_Large>
+			<Fragment_Small>96</Fragment_Small>
+		</fragments>
+		<fragAngleRange>-89~-10</fragAngleRange>
+	  </li>
+    </comps>
+  </ThingDef>
 
   <ThingDef ParentName="Base90mmCannonShell">
     <defName>Bullet_90mmCannonShell_EMP</defName>
@@ -294,6 +352,51 @@
     </fixedIngredientFilter>
     <products>
       <Ammo_90mmCannonShell_HE>5</Ammo_90mmCannonShell_HE>
+    </products>
+  </RecipeDef>
+  
+    <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_90mmCannonShell_HE_TFuzed</defName>
+    <label>make 90mm HE airburst cannon shells x5</label>
+    <description>Craft 5 90mm HE airburst cannon shells.</description>
+    <jobString>Making 90mm HE airburst cannon shells.</jobString>
+    <workAmount>26400</workAmount>
+    <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>192</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_90mmCannonShell_HE_TFuzed>5</Ammo_90mmCannonShell_HE_TFuzed>
     </products>
   </RecipeDef>
 

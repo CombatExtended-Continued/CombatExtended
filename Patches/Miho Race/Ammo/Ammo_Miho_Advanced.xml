@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	  <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Miho, the celestial fox</li>
+		</mods>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+			
+			<!-- Ammoset -->
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_MihoPlasma</defName>
+				<label>Rifle Plasma Cell</label>
+				<ammoTypes>
+					<Ammo_PlasmaCellRifle>Bullet_MihoPlasma</Ammo_PlasmaCellRifle>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_MihoPlasmaSniper</defName>
+				<label>Rifle Plasma Cell</label>
+				<ammoTypes>
+					<Ammo_PlasmaCellRifle>Bullet_MihoPlasmaSniper</Ammo_PlasmaCellRifle>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+
+			<!-- Projectile -->
+			<ThingDef ParentName="Base556x45mmNATOBullet">
+				<defName>Bullet_MihoPlasma</defName>
+				<label>Plasma Bolt</label>
+				<graphicData>
+					<texPath>Things/Projectile/MihoPlasma</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>100</speed>
+					<damageAmountBase>10</damageAmountBase>
+					<damageDef>MihoPlasma</damageDef>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>200</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="Base556x45mmNATOBullet">
+				<defName>Bullet_MihoPlasmaSniper</defName>
+				<label>Plasma Bolt</label>
+				<graphicData>
+					<texPath>Things/Projectile/MihoPlasma</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>100</speed>
+					<damageAmountBase>30</damageAmountBase>
+					<damageDef>MihoPlasma</damageDef>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>400</armorPenetrationBlunt>
+				</projectile>
+				<comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<damageAmountBase>120</damageAmountBase>
+					<explosiveDamageType>MihoPlasma</explosiveDamageType>
+					<explosiveRadius>1.7</explosiveRadius>
+					<explosionSound>Explosion_Bomb</explosionSound>
+					<applyDamageToExplosionCellsNeighbors>false</applyDamageToExplosionCellsNeighbors>
+					</li>
+				</comps>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+				<defName>Bullet_Laser_MihoMiniGun</defName>
+				<label>laser beam</label>  
+				<graphicData>
+				<color>(255,160,46)</color>
+				</graphicData>  
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>MihoPlasma</damageDef>
+				<damageAmountBase>7</damageAmountBase>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+				<armorPenetrationBlunt>200</armorPenetrationBlunt>
+				</projectile>         
+			</ThingDef>
+
+			<ThingDef ParentName="BaseBullet">
+				<defName>Bullet_60x180mmMiho_Thermobaric</defName>
+				<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+				<label>60x180mm fuel shell (Thermobaric)</label>
+				<graphicData>
+					<texPath>Things/Projectile/LauncherShot</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<shaderType>TransparentPostLight</shaderType>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Thermobaric</damageDef>
+					<damageAmountBase>160</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+					<speed>60</speed>
+					<flyOverhead>false</flyOverhead>
+					<explosionRadius>3.5</explosionRadius>
+					<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.5</preExplosionSpawnChance>
+					<soundExplode>MortarIncendiary_Explode</soundExplode>
+					<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					<soundAmbient>MortarRound_Ambient</soundAmbient>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<ai_IsIncendiary>true</ai_IsIncendiary>
+				</projectile>
+			</ThingDef>
+
+			</value>
+		</match>	
+	  </Operation>
+</Patch>

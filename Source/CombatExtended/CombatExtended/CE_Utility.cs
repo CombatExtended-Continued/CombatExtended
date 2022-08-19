@@ -784,7 +784,7 @@ namespace CombatExtended
 
             var factors = BoundsInjector.ForPawn(pawn);
 
-            if (pawn.GetPosture() != PawnPosture.Standing)
+            if (pawn.GetPosture() != PawnPosture.Standing || pawn.Downed)
             {
                 RacePropertiesExtensionCE props = pawn.def.GetModExtension<RacePropertiesExtensionCE>() ?? new RacePropertiesExtensionCE();
 
@@ -797,6 +797,9 @@ namespace CombatExtended
 
                 factors.x *= shape.widthLaying / shape.width;
                 factors.y *= shape.heightLaying / shape.height;
+		if (pawn.Downed) {
+		    factors.y *= shape.heightLaying;
+		}
             }
 
             return factors;
@@ -981,6 +984,17 @@ namespace CombatExtended
                 dz = point.z - closest.z;
             }
             return Mathf.Sqrt(dx * dx + dz * dz);
+        }
+
+        public static Vector3 ToVec3Gridified(this Vector3 originalVec3)
+        {
+            Vector2 tempVec2 = new Vector2(originalVec3.normalized.x, originalVec3.normalized.z);
+            float factor = Math.Max(Mathf.Abs(tempVec2.x), Mathf.Abs(tempVec2.y));
+            // If factor <= 0.6f, something has definitely gone wrong (or the vector is a zero vector);
+            if (factor <= 0.6f)
+                return originalVec3;
+            //Log.Warning("ToVec3Gridified " + (new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord)).ToString());
+            return new Vector3(originalVec3.x / factor, originalVec3.y, originalVec3.z / factor);
         }
     }
 }

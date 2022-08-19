@@ -15,9 +15,10 @@
     <label>7.92x94mm Patronen</label>
     <ammoTypes>
       <Ammo_792x94mmPatronen_FMJ>Bullet_792x94mmPatronen_FMJ</Ammo_792x94mmPatronen_FMJ>
+      <Ammo_792x94mmPatronen_AP>Bullet_792x94mmPatronen_AP</Ammo_792x94mmPatronen_AP>
       <Ammo_792x94mmPatronen_Incendiary>Bullet_792x94mmPatronen_Incendiary</Ammo_792x94mmPatronen_Incendiary>
       <Ammo_792x94mmPatronen_HE>Bullet_792x94mmPatronen_HE</Ammo_792x94mmPatronen_HE>
-	    <Ammo_792x94mmPatronen_Sabot>Bullet_792x94mmPatronen_Sabot</Ammo_792x94mmPatronen_Sabot>	  
+      <Ammo_792x94mmPatronen_Sabot>Bullet_792x94mmPatronen_Sabot</Ammo_792x94mmPatronen_Sabot>	  
     </ammoTypes>
     <similarTo>AmmoSet_AntiMateriel</similarTo>
   </CombatExtended.AmmoSetDef>
@@ -52,6 +53,20 @@
     </statBases>
     <ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_792x94mmPatronen_FMJ</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo792x94mmPatronenBase">
+    <defName>Ammo_792x94mmPatronen_AP</defName>
+    <label>7.92x94mm Patronen cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.50</MarketValue>
+    </statBases>
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_792x94mmPatronen_AP</cookOffProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo792x94mmPatronenBase">
@@ -122,6 +137,16 @@
   </ThingDef>
 
   <ThingDef ParentName="Base792x94mmPatronenBullet">
+    <defName>Bullet_792x94mmPatronen_AP</defName>
+    <label>7.92x94mm Patronen bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>19</damageAmountBase>
+      <armorPenetrationSharp>44</armorPenetrationSharp>
+      <armorPenetrationBlunt>213.06</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base792x94mmPatronenBullet">
     <defName>Bullet_792x94mmPatronen_Incendiary</defName>
     <label>7.92x94mm Patronen bullet (AP-I)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -163,6 +188,7 @@
       <armorPenetrationBlunt>276.06</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
+
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="AmmoRecipeBase">
@@ -187,6 +213,32 @@
     </fixedIngredientFilter>
     <products>
       <Ammo_792x94mmPatronen_FMJ>200</Ammo_792x94mmPatronen_FMJ>
+    </products>
+    <workAmount>5000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_792x94mmPatronen_AP</defName>
+    <label>make 7.92x94mm Patronen (AP) cartridge x200</label>
+    <description>Craft 200 7.92x94mm Patronen (AP) cartridges.</description>
+    <jobString>Making 7.92x94mm Patronen (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_792x94mmPatronen_AP>200</Ammo_792x94mmPatronen_AP>
     </products>
     <workAmount>5000</workAmount>
   </RecipeDef>

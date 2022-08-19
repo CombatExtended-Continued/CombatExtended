@@ -53,7 +53,8 @@
 						defName = "Gun_OrassanSniper" or
 						defName = "Gun_OrassanDMR" or
 						defName = "Gun_OrassanGMG" or
-						defName = "Gun_OrassanBattleRifle"
+						defName = "Gun_OrassanBattleRifle" or
+						defName = "Gun_OrassanGrenadeLauncher"
 						]/tools
 					</xpath>
 					<value>
@@ -140,7 +141,7 @@
 						<muzzleFlashScale>9</muzzleFlashScale>
 					</Properties>
 					<AmmoUser>
-						<magazineSize>20</magazineSize>
+						<magazineSize>10</magazineSize>
 						<reloadTime>2</reloadTime>
 						<ammoSet>AmmoSet_6mmRailgunOE</ammoSet>
 					</AmmoUser>
@@ -547,6 +548,60 @@
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Gun_CryoLauncher</defName>
 					<statBases>
+						<Bulk>5.75</Bulk>
+						<Mass>3.8</Mass>
+						<SwayFactor>0.9</SwayFactor>
+						<ShotSpread>0.15</ShotSpread>
+						<SightsEfficiency>2</SightsEfficiency>
+						<RangedWeapon_Cooldown>.32</RangedWeapon_Cooldown>
+						<WorkToMake>32000</WorkToMake>
+						<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
+					</statBases>
+					<costList>
+						<Plasteel>50</Plasteel>
+						<Uranium>20</Uranium>
+						<Steel>75</Steel>
+						<ComponentSpacer>4</ComponentSpacer>
+						<ComponentIndustrial>4</ComponentIndustrial>
+					</costList>
+					<Properties>
+						<recoilAmount>0.0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_ChemicalCompoundOE_Cryo</defaultProjectile>
+						<warmupTime>.8</warmupTime>
+						<range>52</range>
+						<minRange>4</minRange>
+						<soundCast>OLaunchers</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<onlyManualCast>true</onlyManualCast>
+						<stopBurstWithoutLos>false</stopBurstWithoutLos>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>12</magazineSize>
+						<reloadTime>5.5</reloadTime>
+						<ammoSet>AmmoSet_ChemicalCompoundOE</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>SuppressFire</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>AdvancedGun</li>
+						<li>OrassanCryo</li>
+						<li>CE_AI_AOE</li>
+					</weaponTags>
+				</li>
+
+				<!-- === Grenade Launcher === -->
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>Gun_OrassanGrenadeLauncher</defName>
+					<statBases>
 						<Bulk>5.2</Bulk>
 						<Mass>3.5</Mass>
 						<SwayFactor>0.9</SwayFactor>
@@ -557,10 +612,10 @@
 						<NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
 					</statBases>
 					<costList>
-						<Plasteel>50</Plasteel>
+						<Plasteel>40</Plasteel>
 						<Uranium>20</Uranium>
-						<Steel>75</Steel>
-						<ComponentSpacer>4</ComponentSpacer>
+						<Steel>80</Steel>
+						<ComponentSpacer>3</ComponentSpacer>
 						<ComponentIndustrial>4</ComponentIndustrial>
 					</costList>
 					<Properties>
@@ -592,7 +647,7 @@
 					</FireModes>
 					<weaponTags>
 						<li>AdvancedGun</li>
-						<li>OrassanCryo</li>
+						<li>OrassanGrenade</li>
 						<li>CE_AI_AOE</li>
 					</weaponTags>
 				</li>
@@ -710,6 +765,8 @@
 					</value>
 				</li>
 				
+				<!-- === Orassan Combat Knife === -->
+				
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="OrassanCombatKnife"]/statBases</xpath>
 					<value>
@@ -758,8 +815,8 @@
 						</capacities>
 						<power>10</power>
 						<cooldownTime>.85</cooldownTime>
-						<armorPenetrationBlunt>5</armorPenetrationBlunt>
-						<armorPenetrationSharp>5</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.8</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
 						</li>
 						<li Class="CombatExtended.ToolCE">
@@ -770,14 +827,74 @@
 						<power>12</power>
 						<cooldownTime>0.85</cooldownTime>
 						<chanceFactor>1.88</chanceFactor>
-						<armorPenetrationBlunt>10</armorPenetrationBlunt>
-						<armorPenetrationSharp>10</armorPenetrationSharp>
+						<armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+						<armorPenetrationSharp>0.8</armorPenetrationSharp>
 						<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
 						</li>
 					</tools>
 					</value>
 				</li>
 
+				<!-- === Orassan Telescoping Warhammer === -->
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/statBases</xpath>
+					<value>
+					<Bulk>1</Bulk>
+					<MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]</xpath>
+					<value>
+					<equippedStatOffsets>
+						<MeleeCritChance>0.40</MeleeCritChance>
+					</equippedStatOffsets>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/weaponTags</xpath>
+					<value>
+					<li>CE_Sidearm_Melee</li>
+					<li>CE_OneHandedWeapon</li>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/ThingDef[defName="OrassanWarHammer"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>4</power>
+								<cooldownTime>0.8</cooldownTime>
+								<chanceFactor>0.10</chanceFactor>
+								<armorPenetrationBlunt>5</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>1.2</cooldownTime>
+								<chanceFactor>0.30</chanceFactor>
+								<!-- Designed to damage most powered armor -->
+								<armorPenetrationBlunt>60</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- === Cat's Eye berry juice (bottle) === -->
+				
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Catberryjuice"]/tools</xpath>
 					<value>
@@ -824,14 +941,20 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationConditional">
-					<xpath>/Defs/ThingDef[defName="Catberryjuice"]/weaponTags</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/ThingDef[defName="Catberryjuice"]</xpath>
-						<value>
-							<weaponTags />
-						</value>
-					</nomatch>
+				<li Class="PatchOperationSequence">
+					<success>Always</success>
+					<operations>
+						<li Class="PatchOperationTest">
+							<xpath>Defs/ThingDef[defName="Catberryjuice"]/weaponTags</xpath>
+							<success>Invert</success>
+						</li>
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="Catberryjuice"]</xpath>
+							<value>
+								<weaponTags />
+							</value>
+						</li>
+					</operations>
 				</li>
 
 				<li Class="PatchOperationAdd">

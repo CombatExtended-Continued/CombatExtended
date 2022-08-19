@@ -15,12 +15,12 @@
     <label>.338 Lapua Magnum</label>
     <ammoTypes>
       <Ammo_338Lapua_FMJ>Bullet_338Lapua_FMJ</Ammo_338Lapua_FMJ>
-<!--       <Ammo_338Lapua_HP>Bullet_338Lapua_HP</Ammo_338Lapua_HP> -->
+      <Ammo_338Lapua_AP>Bullet_338Lapua_AP</Ammo_338Lapua_AP>
       <Ammo_338Lapua_Incendiary>Bullet_338Lapua_Incendiary</Ammo_338Lapua_Incendiary>
-	    <Ammo_338Lapua_HE>Bullet_338Lapua_HE</Ammo_338Lapua_HE>
-	    <Ammo_338Lapua_Sabot>Bullet_338Lapua_Sabot</Ammo_338Lapua_Sabot>
+      <Ammo_338Lapua_HE>Bullet_338Lapua_HE</Ammo_338Lapua_HE>
+      <Ammo_338Lapua_Sabot>Bullet_338Lapua_Sabot</Ammo_338Lapua_Sabot>
     </ammoTypes>
-		<similarTo>AmmoSet_RifleMagnum</similarTo>
+    <similarTo>AmmoSet_RifleMagnum</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
@@ -54,19 +54,19 @@
     <cookOffProjectile>Bullet_338Lapua_FMJ</cookOffProjectile>
   </ThingDef>
 
-<!--   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
-    <defName>Ammo_338Lapua_HP</defName>
-    <label>.338 Lapua Magnum cartridge (HP)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
+    <defName>Ammo_338Lapua_AP</defName>
+    <label>.338 Lapua Magnum cartridge (AP)</label>
     <graphicData>
-      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
     </statBases>
-    <ammoClass>HollowPoint</ammoClass>
-    <cookOffProjectile>Bullet_338Lapua_HP</cookOffProjectile>
-  </ThingDef> -->
+    <ammoClass>ArmorPiercing</ammoClass>
+    <cookOffProjectile>Bullet_338Lapua_AP</cookOffProjectile>
+  </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo338LapuaBase">
     <defName>Ammo_338Lapua_Incendiary</defName>
@@ -135,15 +135,15 @@
     </projectile>
   </ThingDef>
 
-<!--   <ThingDef ParentName="Base338LapuaBullet">
-    <defName>Bullet_338Lapua_HP</defName>
-    <label>.338 Lapua Magnum bullet (HP)</label>
+  <ThingDef ParentName="Base338LapuaBullet">
+    <defName>Bullet_338Lapua_AP</defName>
+    <label>.338 Lapua Magnum bullet (AP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>33</damageAmountBase>
-      <armorPenetrationSharp>6</armorPenetrationSharp>
+      <damageAmountBase>16</damageAmountBase>
+      <armorPenetrationSharp>22</armorPenetrationSharp>
       <armorPenetrationBlunt>134.160</armorPenetrationBlunt>
     </projectile>
-  </ThingDef> -->
+  </ThingDef>
 
   <ThingDef ParentName="Base338LapuaBullet">
     <defName>Bullet_338Lapua_Incendiary</defName>
@@ -184,7 +184,7 @@
       <damageAmountBase>14</damageAmountBase>
       <armorPenetrationSharp>39</armorPenetrationSharp>
       <armorPenetrationBlunt>173.980</armorPenetrationBlunt>
-     <speed>273</speed>	  
+      <speed>273</speed>	  
     </projectile>
   </ThingDef>
 
@@ -216,11 +216,11 @@
     <workAmount>2000</workAmount>
   </RecipeDef>
 
-<!--   <RecipeDef ParentName="AmmoRecipeBase">
-    <defName>MakeAmmo_338Lapua_HP</defName>
-    <label>make .338 Lapua Magnum (HP) cartridge x200</label>
-    <description>Craft 200 .338 Lapua Magnum (HP) cartridges.</description>
-    <jobString>Making .338 Lapua Magnum (HP) cartridges.</jobString>
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_338Lapua_AP</defName>
+    <label>make .338 Lapua Magnum (AP) cartridge x200</label>
+    <description>Craft 200 .338 Lapua Magnum (AP) cartridges.</description>
+    <jobString>Making .338 Lapua Magnum (AP) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -237,10 +237,10 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_338Lapua_HP>200</Ammo_338Lapua_HP>
+      <Ammo_338Lapua_AP>200</Ammo_338Lapua_AP>
     </products>
     <workAmount>2000</workAmount>
-  </RecipeDef> -->
+  </RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_338Lapua_Incendiary</defName>

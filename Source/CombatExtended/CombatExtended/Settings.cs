@@ -28,11 +28,14 @@ namespace CombatExtended
 	private bool genericammo = false;
         private bool partialstats = true;
 
-	private bool showExtraTooltips = false;
+
+        private bool showExtraTooltips = false;
 
 	private bool showExtraStats = false;
 
 	private bool unlimitParryDamage = false;
+
+	private bool fragmentsFromWalls = false;
 
         public bool ShowCasings => showCasings;
 
@@ -58,12 +61,12 @@ namespace CombatExtended
 
         // Ammo settings
         private bool enableAmmoSystem = true;
-        private bool rightClickAmmoSelect = false;
+        private bool rightClickAmmoSelect = true;
         private bool autoReloadOnChangeAmmo = true;
         private bool autoTakeAmmo = true;
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
-        private bool realisticCookOff = false;
+        private bool realisticCookOff = true;
         private bool enableSimplifiedAmmo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
@@ -86,6 +89,8 @@ namespace CombatExtended
         private bool debugShowTreeCollisionChance = false;
         private bool debugShowSuppressionBuildup = false;
         private bool debugDrawInterceptChecks = false;
+        private bool debugDisplayDangerBuildup = false;
+        private bool debugDisplayCellCoverRating = false;
 
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
@@ -97,15 +102,17 @@ namespace CombatExtended
         public bool DebugShowTreeCollisionChance => debugShowTreeCollisionChance && debuggingMode;
         public bool DebugShowSuppressionBuildup => debugShowSuppressionBuildup && debuggingMode;
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
+        public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
+        public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
         #endregion
 
-	#region Autopatcher
-	private bool debugAutopatcherLogger = false;
+        #region Autopatcher
+        private bool debugAutopatcherLogger = false;
 
 	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
 
-	private bool enableApparelAutopatcher = true;
-	private bool enableWeaponAutopatcher = true;
+	private bool enableApparelAutopatcher = false;
+	private bool enableWeaponAutopatcher = false;
 	private bool enableWeaponToughnessAutopatcher = true;
 	private bool enableRaceAutopatcher = true;
 	private bool enablePawnKindAutopatcher = true;
@@ -115,6 +122,8 @@ namespace CombatExtended
 	public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
 	public bool EnableRaceAutopatcher => enableRaceAutopatcher;
 	public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
+
+	public bool FragmentsFromWalls => fragmentsFromWalls;
 
 	#endregion
 
@@ -150,23 +159,25 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
             Scribe_Values.Look(ref debugShowTreeCollisionChance, "debugShowTreeCollisionChance", false);
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
+            Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
+            Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
 #endif
-	    Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
+            Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 	    
-	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", true);
+	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", false);
 	    Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
-	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", true);
+	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", false);
 	    Scribe_Values.Look(ref enableRaceAutopatcher, "enableRaceAutopatcher", true);
 	    Scribe_Values.Look(ref enablePawnKindAutopatcher, "enablePawnKindAutopatcher", true);
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
-            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", false);
+            Scribe_Values.Look(ref rightClickAmmoSelect, "rightClickAmmoSelect", true);
             Scribe_Values.Look(ref autoReloadOnChangeAmmo, "autoReloadOnChangeAmmo", true);
             Scribe_Values.Look(ref autoTakeAmmo, "autoTakeAmmo", true);
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
-            Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", false);
+            Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
 	    Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
@@ -175,6 +186,8 @@ namespace CombatExtended
             //Bipod settings
             Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
             Scribe_Values.Look(ref autosetup, "autosetup", true);
+
+	    Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
@@ -202,12 +215,14 @@ namespace CombatExtended
 
 	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref unlimitParryDamage, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
 
+
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
             if (Current.Game == null)
             {
                 list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
+		list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
             }
             else
             {
@@ -257,6 +272,8 @@ namespace CombatExtended
                 list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
                 list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
                 list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
+                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
+                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
             }
             else
             {

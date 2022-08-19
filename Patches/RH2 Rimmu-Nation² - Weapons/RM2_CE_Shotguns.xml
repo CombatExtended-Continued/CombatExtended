@@ -564,6 +564,54 @@
 				</weaponTags>
 			</li>
 
+			<!-- ========== Pancor Jackhammer ========== -->
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RNGun_PancorJackhammer_Shotgun</defName>
+				<statBases>
+					<Mass>7.90</Mass>
+					<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.14</ShotSpread>
+					<SwayFactor>1.58</SwayFactor>
+					<Bulk>7.87</Bulk>
+					<WorkToMake>33000</WorkToMake>
+				</statBases>
+				<costList>
+					<Chemfuel>10</Chemfuel>
+					<Steel>60</Steel>
+					<ComponentIndustrial>6</ComponentIndustrial>
+				</costList>
+				<Properties>
+					<recoilAmount>1.94</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_12Gauge_Buck</defaultProjectile>
+					<warmupTime>0.6</warmupTime>
+					<range>16</range>
+					<burstShotCount>3</burstShotCount>
+					<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+					<soundCast>RNShotUSAS</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+
+				<AmmoUser>
+					<magazineSize>10</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_12Gauge</ammoSet>
+				</AmmoUser>
+
+				<FireModes>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>Snapshot</aiAimMode>
+					<aimedBurstShotCount>2</aimedBurstShotCount>
+				</FireModes>
+
+				<weaponTags>
+					<li>CE_AI_BROOM</li>
+				</weaponTags>
+			</li>
 
 			<!-- == Shared patches for firearm melee tools == -->
 
@@ -581,7 +629,8 @@
 					defName="RNGun_SPAS12_Shotgun" or
 					defName="RNGun_USAS12_Shotgun" or
 					defName="RNGun_M1014_Shotgun" or
-					defName="RNGun_SpartanMarine_Shotgun"
+					defName="RNGun_SpartanMarine_Shotgun" or
+					defName="RNGun_PancorJackhammer_Shotgun"
 				]/tools</xpath>
 				<value>
 					<tools>

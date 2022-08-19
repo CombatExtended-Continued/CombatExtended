@@ -18,7 +18,7 @@ assignees: ''
 **Link to mod download (preferably Steam workshop or Github):**
 
 **Description:**
-Provide a brief overview of what content the mod adds or modifies. Specify what content in particular you believe require a patch to be compatibly with Combat Extended.
+Provide a brief overview of what content the mod adds or modifies. Specify what content in particular you believe requires a patch to be compatibly with Combat Extended.
 
 **Content:**
 What does the new mod contain? Check all that apply.
