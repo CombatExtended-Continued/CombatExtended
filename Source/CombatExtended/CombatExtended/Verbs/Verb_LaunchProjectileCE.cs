@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -269,6 +269,7 @@ namespace CombatExtended
         /// </summary>
         public override void WarmupComplete()
         {
+	    lastTarget = null;
             if (ShooterPawn != null && ShooterPawn.pather == null)
             {
                 return; //Pawn has started a jump pack animation, or otherwise became despawned temporarily
@@ -782,7 +783,7 @@ namespace CombatExtended
             return true;
         }
 
-	private bool Retarget()
+	protected bool Retarget()
 	{
 	    if (currentTarget != lastTarget)
 	    {
@@ -797,7 +798,6 @@ namespace CombatExtended
 	    }
 	    if (currentTarget.Pawn?.Downed ?? true)
 	    {
-
 		Pawn newTarget = null;
 		Thing caster = Caster;
 		
@@ -824,6 +824,7 @@ namespace CombatExtended
 		    }
 		    return true;
 		}
+		shootingAtDowned = true;
 		return false;
 	    }
 	    return true;
@@ -835,10 +836,6 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-	    if (!Retarget()) {
-		return false;
-	    }
-	    
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;

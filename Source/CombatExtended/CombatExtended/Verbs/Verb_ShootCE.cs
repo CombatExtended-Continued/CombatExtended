@@ -278,6 +278,10 @@ namespace CombatExtended
 
         public override bool TryCastShot()
         {
+	    if (!Retarget())
+	    {
+		return false;
+	    }
             //Reduce ammunition
             if (CompAmmo != null)
             {
