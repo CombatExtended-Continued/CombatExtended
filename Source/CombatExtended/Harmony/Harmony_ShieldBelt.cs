@@ -32,7 +32,7 @@ namespace CombatExtended.HarmonyCE
 	    }
 	    float bc = 1.0f;
 	    bool isEMP = dinfo.Def == DamageDefOf.EMP;
-	    if (dinfo.Weapon.projectile is ProjectilePropertiesCE pce)
+	    if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
 	    {
 		bc = pce.empShieldBreakChance;
 		isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
