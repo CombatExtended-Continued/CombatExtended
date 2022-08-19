@@ -782,7 +782,7 @@ namespace CombatExtended
             return true;
         }
 
-	private bool Retarget()
+	protected bool Retarget()
 	{
 	    if (currentTarget != lastTarget)
 	    {
@@ -835,10 +835,6 @@ namespace CombatExtended
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-	    if (!Retarget()) {
-		return false;
-	    }
-	    
             if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
             {
                 return false;
