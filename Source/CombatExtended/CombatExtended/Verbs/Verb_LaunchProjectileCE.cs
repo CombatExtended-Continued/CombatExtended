@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -797,7 +797,6 @@ namespace CombatExtended
 	    }
 	    if (currentTarget.Pawn?.Downed ?? true)
 	    {
-
 		Pawn newTarget = null;
 		Thing caster = Caster;
 		
@@ -824,6 +823,7 @@ namespace CombatExtended
 		    }
 		    return true;
 		}
+		shootingAtDowned = true;
 		return false;
 	    }
 	    return true;
