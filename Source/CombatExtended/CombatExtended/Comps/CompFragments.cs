@@ -37,6 +37,10 @@ namespace CombatExtended
             var fragPerTick = Mathf.CeilToInt((float)fragToSpawn / TicksToSpawnAllFrag);
             var fragSpawnedInTick = 0;
 
+            //fun calculus and trigonometry stuff
+            FloatRange fragAngleSinRange = new FloatRange(Mathf.Sin(fragAngleRange.min * Mathf.Deg2Rad), Mathf.Sin(fragAngleRange.max * Mathf.Deg2Rad));  //Fix fragment distribution being biased towards the poles of the sphere.
+
+
             while (fragToSpawn-- > 0)
             {
                 var projectile = (ProjectileCE)ThingMaker.MakeThing(frag.thingDef);
@@ -46,11 +50,14 @@ namespace CombatExtended
                 projectile.minCollisionDistance = minCollisionDistance;
                 projectile.castShadow = (Rand.Value < fragShadowChance);
                 projectile.logMisses = false;
+                float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
+
+
                 projectile.Launch(
                     instigator,
                     exactOrigin,
-                    fragAngleRange.RandomInRange * Mathf.Deg2Rad,
-		    (fragXZAngleRange.RandomInRange + 360) % 360,
+                    elevAngle,
+                    (fragXZAngleRange.RandomInRange + 360) % 360,
                     height,
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
@@ -83,23 +90,24 @@ namespace CombatExtended
                     Log.Warning("CombatExtended :: Tried to throw fragments out of bounds");
                     return;
                 }
-		float height;
-		FloatRange fragXZAngleRange;
-		if (parent is ProjectileCE projCE)
-		{
-		    height = projCE.Height;
-		    fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
-		}
-		else
-		{
-		    height = 0;
-		    fragXZAngleRange = PropsCE.fragXZAngleRange;
-		}
-                /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
-		{
-		    var edificeHeight = new CollisionVertical(edifice).Max;
-		    height = Mathf.Max(height, edificeHeight);
-		}*/
+
+		        float height;
+		        FloatRange fragXZAngleRange;
+		        if (parent is ProjectileCE projCE)
+		        {
+		            height = projCE.Height;
+		            fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+		        }
+		        else
+		        {
+		            height = 0;
+		            fragXZAngleRange = PropsCE.fragXZAngleRange;
+		        }
+                        /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
+		        {
+		            var edificeHeight = new CollisionVertical(edifice).Max;
+		            height = Mathf.Max(height, edificeHeight);
+		        }*/
 
                 foreach (var fragment in PropsCE.fragments)
                 {

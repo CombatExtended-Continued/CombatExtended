@@ -15,7 +15,8 @@
 		<label>.950 JDJ</label>
 		<ammoTypes>
 			<Ammo_950JDJ_FMJ>Bullet_950JDJ_FMJ</Ammo_950JDJ_FMJ>
-      		<Ammo_50JDJ_Incendiary>Bullet_50JDJ_Incendiary</Ammo_50JDJ_Incendiary>
+			<Ammo_950JDJ_AP>Bullet_950JDJ_AP</Ammo_950JDJ_AP>
+			<Ammo_50JDJ_Incendiary>Bullet_50JDJ_Incendiary</Ammo_50JDJ_Incendiary>
 			<Ammo_50JDJ_HE>Bullet_50JDJ_HE</Ammo_50JDJ_HE>
 			<Ammo_50JDJ_Sabot>Bullet_50JDJ_Sabot</Ammo_50JDJ_Sabot>				
 		</ammoTypes>
@@ -54,14 +55,28 @@
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
+		<defName>Ammo_950JDJ_AP</defName>
+		<label>.950 JDJ cartridge (AP)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>1.29</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_950JDJ_AP</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo950JDJBase">
 		<defName>Ammo_50JDJ_Incendiary</defName>
 		<label>.950 JDJ cartridge (AP-I)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>2.05</MarketValue>
+			<MarketValue>2.05</MarketValue>
 		</statBases>
 		<ammoClass>IncendiaryAP</ammoClass>
 		<cookOffProjectile>Bullet_50JDJ_Incendiary</cookOffProjectile>
@@ -71,11 +86,11 @@
 		<defName>Ammo_50JDJ_HE</defName>
 		<label>.950 JDJ cartridge (HE)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/HE</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-		<MarketValue>3.52</MarketValue>
+			<MarketValue>3.52</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_50JDJ_HE</cookOffProjectile>
@@ -85,8 +100,8 @@
 		<defName>Ammo_50JDJ_Sabot</defName>
 		<label>.950 JDJ cartridge (Sabot)</label>
 		<graphicData>
-		<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
-		<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1.55</MarketValue>
@@ -114,9 +129,19 @@
 		<defName>Bullet_950JDJ_FMJ</defName>
 		<label>.950 JDJ bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageAmountBase>75</damageAmountBase>
-		<armorPenetrationSharp>18</armorPenetrationSharp>
-		<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base950JDJBullet">
+		<defName>Bullet_950JDJ_AP</defName>
+		<label>.950 JDJ bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>47</damageAmountBase>
+			<armorPenetrationSharp>36</armorPenetrationSharp>
+			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -124,15 +149,15 @@
 		<defName>Bullet_50JDJ_Incendiary</defName>
 		<label>.950 JDJ bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageAmountBase>47</damageAmountBase>
-		<armorPenetrationSharp>36</armorPenetrationSharp>
-		<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
-		<secondaryDamage>
-			<li>
-			<def>Flame_Secondary</def>
-			<amount>29</amount>
-			</li>
-		</secondaryDamage>
+			<damageAmountBase>47</damageAmountBase>
+			<armorPenetrationSharp>36</armorPenetrationSharp>
+			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Flame_Secondary</def>
+				<amount>29</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -140,15 +165,15 @@
 		<defName>Bullet_50JDJ_HE</defName>
 		<label>.950 JDJ bullet (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<damageAmountBase>75</damageAmountBase>
-		<armorPenetrationSharp>18</armorPenetrationSharp>
-		<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
-		<secondaryDamage>
-			<li>
-			<def>Bomb_Secondary</def>
-			<amount>45</amount>
-			</li>
-		</secondaryDamage>
+			<damageAmountBase>75</damageAmountBase>
+			<armorPenetrationSharp>18</armorPenetrationSharp>
+			<armorPenetrationBlunt>1045.94</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+				<def>Bomb_Secondary</def>
+				<amount>45</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 
@@ -156,10 +181,10 @@
 		<defName>Bullet_50JDJ_Sabot</defName>
 		<label>.950 JDJ bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<speed>201</speed>
-		<damageAmountBase>40</damageAmountBase>
-		<armorPenetrationSharp>63</armorPenetrationSharp>
-		<armorPenetrationBlunt>1341.42</armorPenetrationBlunt>
+			<speed>201</speed>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>63</armorPenetrationSharp>
+			<armorPenetrationBlunt>1341.42</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -188,7 +213,33 @@
 		<products>
 			<Ammo_950JDJ_FMJ>200</Ammo_950JDJ_FMJ>
 		</products>
-    <workAmount>13000</workAmount>
+		<workAmount>13000</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_950JDJ_AP</defName>
+		<label>make .950 JDJ (AP) cartridge x200</label>
+		<description>Craft 200 .950 JDJ (AP) cartridges.</description>
+		<jobString>Making .950 JDJ (AP) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>130</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_950JDJ_AP>200</Ammo_950JDJ_AP>
+		</products>
+		<workAmount>13000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">

@@ -24,13 +24,12 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(ref bool __result, DamageInfo dinfo, ShieldBelt __instance)
         {
+	    __result = false;
 
 	    if (__instance.ShieldState != ShieldState.Active)
 	    {
-		__result = false;
 		return false;
 	    }
-	    __result = true;
 	    float bc = 1.0f;
 	    bool isEMP = dinfo.Def == DamageDefOf.EMP;
 	    if (dinfo.Weapon.projectile is ProjectilePropertiesCE pce)
@@ -42,10 +41,12 @@ namespace CombatExtended.HarmonyCE
 	    {
 		__instance.energy = 0f;
 		__instance.Break();
+		__result = true;
 		return false;
 	    }
 	    if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
 	    {
+		__result = true;
 		__instance.energy -= dinfo.Amount * __instance.EnergyLossPerDamage * (isEMP ? (1+bc) : 1);
 		if (__instance.energy < 0f)
 		{

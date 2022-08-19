@@ -15,8 +15,7 @@
     <label>.470 Nitro Express</label>
     <ammoTypes>
 		<Ammo_470NitroExpress_FMJ>Bullet_470NitroExpress_FMJ</Ammo_470NitroExpress_FMJ>
-<!-- 		<Ammo_470NitroExpress_AP>Bullet_470NitroExpress_AP</Ammo_470NitroExpress_AP>
-		<Ammo_470NitroExpress_HP>Bullet_470NitroExpress_HP</Ammo_470NitroExpress_HP> -->
+		<Ammo_470NitroExpress_AP>Bullet_470NitroExpress_AP</Ammo_470NitroExpress_AP>
 		<Ammo_470NitroExpress_Incendiary>Bullet_470NitroExpress_Incendiary</Ammo_470NitroExpress_Incendiary>
 		<Ammo_470NitroExpress_HE>Bullet_470NitroExpress_HE</Ammo_470NitroExpress_HE>
 		<Ammo_470NitroExpress_Sabot>Bullet_470NitroExpress_Sabot</Ammo_470NitroExpress_Sabot>		
@@ -55,11 +54,11 @@
     <cookOffProjectile>Bullet_470NitroExpress_FMJ</cookOffProjectile>
   </ThingDef>
 
-<!-- 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo470NitroExpressBase">
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo470NitroExpressBase">
 		<defName>Ammo_470NitroExpress_AP</defName>
 		<label>.470 Nitro Express cartridge (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<texPath>Things/Ammo/HighCaliber/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -68,20 +67,6 @@
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_470NitroExpress_AP</cookOffProjectile>
 	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo470NitroExpressBase">
-		<defName>Ammo_470NitroExpress_HP</defName>
-		<label>.470 Nitro Express cartridge (HP)</label>
-		<graphicData>
-			<texPath>Things/Ammo/Rifle/HP</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
-		</graphicData>
-		<statBases>
-			<MarketValue>0.24</MarketValue>
-		</statBases>
-		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_470NitroExpress_HP</cookOffProjectile>
-	</ThingDef> -->
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo470NitroExpressBase">
     <defName>Ammo_470NitroExpress_Incendiary</defName>
@@ -150,7 +135,7 @@
     </projectile>
   </ThingDef>
 
-<!-- 	<ThingDef ParentName="Base470NitroExpressBullet">
+ 	<ThingDef ParentName="Base470NitroExpressBullet">
 		<defName>Bullet_470NitroExpress_AP</defName>
 		<label>.470 Nitro Express bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
@@ -159,16 +144,6 @@
 			<armorPenetrationBlunt>139.4</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
-
-	<ThingDef ParentName="Base470NitroExpressBullet">
-		<defName>Bullet_470NitroExpress_HP</defName>
-		<label>.470 Nitro Express bullet (HP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>37</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
-			<armorPenetrationBlunt>139.4</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef> -->
 
 	  <ThingDef ParentName="Base470NitroExpressBullet">
 		<defName>Bullet_470NitroExpress_Incendiary</defName>
@@ -241,7 +216,7 @@
     <workAmount>6000</workAmount>
   </RecipeDef>
 
-<!-- 	<RecipeDef ParentName="AmmoRecipeBase">
+ 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_470NitroExpress_AP</defName>
 		<label>make .470 Nitro Express (AP) cartridge x500</label>
 		<description>Craft 500 .470 Nitro Express (AP) cartridges.</description>
@@ -266,32 +241,6 @@
 		</products>
     <workAmount>6000</workAmount>		
 	</RecipeDef>
-
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_470NitroExpress_HP</defName>
-		<label>make .470 Nitro Express (HP) cartridge x500</label>
-		<description>Craft 500 .470 Nitro Express (HP) cartridges.</description>
-		<jobString>Making .470 Nitro Express (HP) cartridges.</jobString>
-		<ingredients>
-			<li>
-				<filter>
-					<thingDefs>
-						<li>Steel</li>
-					</thingDefs>
-				</filter>
-				<count>60</count>
-			</li>
-		</ingredients>
-		<fixedIngredientFilter>
-			<thingDefs>
-				<li>Steel</li>
-			</thingDefs>
-		</fixedIngredientFilter>
-		<products>
-			<Ammo_470NitroExpress_HP>500</Ammo_470NitroExpress_HP>
-		</products>
-    <workAmount>6000</workAmount>		
-	</RecipeDef> -->
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_470NitroExpress_Incendiary</defName>
