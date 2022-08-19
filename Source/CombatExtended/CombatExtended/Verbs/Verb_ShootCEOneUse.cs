@@ -44,7 +44,7 @@ namespace CombatExtended
             }
             if (inventory != null && ShooterPawn?.jobs.curJob.def != CE_JobDefOf.OpportunisticAttack)
             {
-                var newGun = inventory.rangedWeaponList.FirstOrDefault(t => t.def == EquipmentSource.def);
+                var newGun = inventory.rangedWeaponList.FirstOrDefault(t => t.def == EquipmentSource?.def);
                 if (newGun != null)
                 {
                     inventory.TrySwitchToWeapon(newGun);
