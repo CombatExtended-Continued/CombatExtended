@@ -269,6 +269,7 @@ namespace CombatExtended
         /// </summary>
         public override void WarmupComplete()
         {
+	    lastTarget = null;
             if (ShooterPawn != null && ShooterPawn.pather == null)
             {
                 return; //Pawn has started a jump pack animation, or otherwise became despawned temporarily
