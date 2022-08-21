@@ -397,16 +397,29 @@ namespace CombatExtended
                 return t;
             }
             TargetScanFlags targetScanFlags = TargetScanFlags.NeedThreat;
-            if (!this.AttackVerb.ProjectileFliesOverhead())
+            if (!Projectile.projectile.flyOverhead)
             {
                 targetScanFlags |= TargetScanFlags.NeedLOSToAll;
                 targetScanFlags |= TargetScanFlags.LOSBlockableByGas;
             }
+            else
+            {
+                targetScanFlags |= TargetScanFlags.NeedNotUnderThickRoof;
+            }
+
             if (this.AttackVerb.IsIncendiary())
             {
                 targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }
-            return (Thing)AttackTargetFinder.BestShootTargetFromCurrentPosition(attackTargetSearcher, targetScanFlags, new Predicate<Thing>(this.IsValidTarget), 0f, 9999f);
+            return (Thing)AttackTargetFinder.BestShootTargetFromCurrentPosition(
+                attackTargetSearcher,
+                targetScanFlags,
+                this.IsValidTarget,
+                minDistance: 0f,
+                // Only consider targets within the maximum range of this turret
+                // to avoid iterating over potential targets that it can't reach.
+                maxDistance: range
+            );
         }
 
         private IAttackTargetSearcher TargSearcher()    // Core method
@@ -418,20 +431,11 @@ namespace CombatExtended
             return this;
         }
 
-        private bool IsValidTarget(Thing t)             // Projectile flyoverhead check instead of verb
+        private bool IsValidTarget(Thing t)
         {
             Pawn pawn = t as Pawn;
             if (pawn != null)
             {
-                //if (this.GunCompEq.PrimaryVerb.verbProps.projectileDef.projectile.flyOverhead)
-                if (Projectile.projectile.flyOverhead)
-                {
-                    RoofDef roofDef = base.Map.roofGrid.RoofAt(t.Position);
-                    if (roofDef != null && roofDef.isThickRoof)
-                    {
-                        return false;
-                    }
-                }
                 if (this.mannableComp == null)
                 {
                     return !GenAI.MachinesLike(base.Faction, pawn);
