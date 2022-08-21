@@ -14,8 +14,8 @@ namespace CombatExtended
         public override bool ShouldShowFor(StatRequest req)
         {
             var comp = req.Thing?.TryGetComp<CompUnderBarrel>()?.Props ?? null;
-            if (comp == null)
-                comp = ((ThingDef)req.Def)?.GetCompProperties<CompProperties_UnderBarrel>() ?? null;
+            if (comp == null && req.Def != null)
+                comp = (req.Def as ThingDef)?.GetCompProperties<CompProperties_UnderBarrel>() ?? null;
             return base.ShouldShowFor(req) && comp != null;
         }
     
