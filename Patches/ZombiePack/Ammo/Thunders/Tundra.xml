@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Wonder Weapons</li>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<ThingCategoryDef>
+		<defName>AmmoTundra</defName>
+		<label>Tundra</label>
+		<parent>AmmoWonders</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Tundra</defName>
+		<label>Tundra</label>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TundraBase" ParentName="SmallAmmoBase" Abstract="True">
+		<statBases>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TundraBase">
+		<defName>Ammo_Tundra</defName>
+		<label>Tundra Cannister</label>
+		<description>A large compressed air cannister used for the Tundragun</description>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_Tundra</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoTundra</li>
+		</thingCategories>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
+		<defName>MakeAmmo_Tundra</defName>
+		<label>make Tundra Cannister x5</label>
+		<description>Craft 500 Tundra Cannister.</description>
+		<jobString>Making Tundra Cannister.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Tundra>5</Ammo_Tundra>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

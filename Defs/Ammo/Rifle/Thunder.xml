@@ -1,18 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
  
-	<!-- ================== Projectiles ================== -->
-
 	<ThingDef Name="ThunderBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
+		</graphicData>	
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>300</speed>
 			<dropsCasings>false</dropsCasings>
-		</projectile>
+		</projectile>		
 	</ThingDef>
 
 	<ThingDef ParentName="ThunderBullet">
@@ -22,6 +18,8 @@
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>27</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>Bullet</damageDef>
+			<speed>300</speed>
 		</projectile>
 	</ThingDef>
 
@@ -32,7 +30,35 @@
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>27</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>Frostbite</damageDef>
+			<speed>300</speed>
 		</projectile>
 	</ThingDef>
-	  
+
+<!--Punched: Doubles the damage-->
+
+	<ThingDef ParentName="ThunderBullet">
+		<defName>Bullet_Thunder_Punched</defName>
+		<label>Air Projectile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>27</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>Bullet</damageDef>
+			<speed>345</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="ThunderBullet">
+		<defName>Bullet_Tundra_Punched</defName>
+		<label>Chilled Air Projectile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>27</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>Frostbite</damageDef>
+			<speed>345</speed>
+		</projectile>
+	</ThingDef>
+
 </Defs>

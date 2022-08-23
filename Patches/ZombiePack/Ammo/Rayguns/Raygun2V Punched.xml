@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<ThingCategoryDef>
+		<defName>AmmoRaygun_two_v_Punched</defName>
+		<label>Raygun Mk.2 V Cartridge</label>
+		<parent>AmmoWonders_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Raygun_two_v_Punched</defName>
+		<label>Raygun Mk.2 V Cartridge</label>
+		<ammoTypes>
+			<Ammo_Raygun_two_v_Punched>Bullet_Raygun_two_v_Punched</Ammo_Raygun_two_v_Punched>
+		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_two_vPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Pistol cartridge favoured for its above average stopping power.</description>
+		<statBases>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>AmmoRaygun_two_v_Punched</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_two_vPunched">
+		<defName>Ammo_Raygun_two_v_Punched</defName>
+		<label>Raygun Mk.2 V Cartridge</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_Raygun_two_v_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_Raygun_two_v_Punched</defName>
+		<label>make Raygun Mk.2 V Cartridge x500</label>
+		<description>Craft 500 Raygun Mk.2 V Cartridges.</description>
+		<jobString>Making Raygun Mk.2 V Cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Raygun_two_v_Punched>500</Ammo_Raygun_two_v_Punched>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

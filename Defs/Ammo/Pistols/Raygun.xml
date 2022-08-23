@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-	<!-- ================== Projectiles ================== -->
-
 	<ThingDef Name="BaseRaygunBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
+			<damageDef>Bullet</damageDef>
 			<speed>54</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
@@ -23,6 +21,21 @@
 			<armorPenetrationSharp>3</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>107</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseRaygunBullet">
@@ -33,6 +46,21 @@
 			<armorPenetrationSharp>6</armorPenetrationSharp>
 			<armorPenetrationBlunt>20.860</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>214</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 		<ThingDef ParentName="BaseRaygunBullet">
@@ -63,6 +91,21 @@
 			<armorPenetrationSharp>3</armorPenetrationSharp>
 			<armorPenetrationBlunt>10.860</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>107</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseRaygunBullet">
@@ -73,6 +116,21 @@
 			<armorPenetrationSharp>6</armorPenetrationSharp>
 			<armorPenetrationBlunt>20.860</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>214</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 </Defs>

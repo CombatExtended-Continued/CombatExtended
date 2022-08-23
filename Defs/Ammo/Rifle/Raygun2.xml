@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
  
-	<!-- ================== Projectiles ================== -->
-
 	<ThingDef Name="Raygun2Bullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
@@ -29,6 +27,7 @@
 		<defName>Bullet_Raygun_two_v</defName>
 		<label>Raygun Mk.2 V Plasma</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Electrical</damageDef>
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>27</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
@@ -49,10 +48,26 @@
 		<defName>Bullet_Raygun_two_y</defName>
 		<label>Raygun Mk.2 Y Plasma</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>27</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>107</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>3</Fragment_Large>
+					<Fragment_Small>27</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<ThingDef ParentName="Raygun2Bullet">
@@ -62,7 +77,83 @@
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>27</armorPenetrationSharp>
 			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<pelletCount>3</pelletCount>
 		</projectile>
 	</ThingDef>
-	  
+
+<!--Punched: Doubles the damage-->
+
+	<ThingDef Name="Raygun2BulletPunched" ParentName="Raygun2Bullet" Abstract="true">
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>345</speed>
+		</projectile>
+	</ThingDef>
+
+		<ThingDef ParentName="Raygun2BulletPunched">
+		<defName>Bullet_Raygun_two_Punched</defName>
+		<label>Raygun Mk.2 Plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Raygun2BulletPunched">
+		<defName>Bullet_Raygun_two_v_Punched</defName>
+		<label>Raygun Mk.2 V Plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Electrical</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Raygun2BulletPunched">
+		<defName>Bullet_Raygun_two_x_Punched</defName>
+		<label>Raygun Mk.2 X Plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Raygun2BulletPunched">
+		<defName>Bullet_Raygun_two_y_Punched</defName>
+		<label>Raygun Mk.2 Y Plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>214</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>6</Fragment_Large>
+					<Fragment_Small>54</Fragment_Small>
+				</fragments>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="Raygun2BulletPunched">
+		<defName>Bullet_Raygun_two_z_Punched</defName>
+		<label>Raygun Mk.2 Z Plasma</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>40</damageAmountBase>
+			<armorPenetrationSharp>54</armorPenetrationSharp>
+			<armorPenetrationBlunt>8.8</armorPenetrationBlunt>
+			<pelletCount>3</pelletCount>
+		</projectile>
+	</ThingDef>
 </Defs>

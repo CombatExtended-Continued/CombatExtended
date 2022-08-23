@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+  <ThingCategoryDef>
+    <defName>AmmoMagmagat_Punched</defName>
+    <label>Magmagat</label>
+    <parent>AmmoWonders_Punched</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_Magmagat_Punched</defName>
+    <label>Magmagat</label>
+    <ammoTypes>
+      <Ammo_Magmagat_Buck_Punched>Bullet_Magmagat_Buck_Punched</Ammo_Magmagat_Buck_Punched>
+      <Ammo_Magmagat_Slug_Punched>Bullet_Magmagat_Slug_Punched</Ammo_Magmagat_Slug_Punched>
+    </ammoTypes>
+		<similarTo>AmmoSet_Blundergat_Punched</similarTo>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- ==================== Ammo ========================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="MagmagatPunched" ParentName="SmallAmmoBase" Abstract="True">
+    <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
+    <statBases>
+      <Mass>0.023</Mass>
+      <Bulk>0.06</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoMagmagat_Punched</li>
+    </thingCategories>
+    <stackLimit>5000</stackLimit>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
+    <defName>Ammo_Magmagat_Buck_Punched</defName>
+    <label>12 gauge shell (Buck)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <color>(255,200,200)</color>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <ammoClass>BuckShot</ammoClass>
+    <cookOffProjectile>Bullet_Magmagat_Buck_Punched</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
+    <defName>Ammo_Magmagat_Slug_Punched</defName>
+    <label>12 gauge shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <color>(255,200,200)</color>
+    </graphicData>
+    <statBases>
+      <Mass>0.048</Mass>
+      <MarketValue>0.4</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+    <cookOffProjectile>Bullet_Magmagat_Slug_Punched</cookOffProjectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="CODZP_AmmoRecipeAmmo">
+    <defName>MakeAmmo_Magmagat_Buck_Punched</defName>
+    <label>make Magmagat (Buck) shell x20</label>
+    <description>Craft 20 Magmagat (Buck) shells .</description>
+    <jobString>Making Magmagat (Buck) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_Magmagat_Buck_Punched>20</Ammo_Magmagat_Buck_Punched>
+    </products>
+    <workAmount>1000</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="CODZP_AmmoRecipeAmmo">
+    <defName>MakeAmmo_Magmagat_Slug_Punched</defName>
+    <label>make Magmagat (Slug) shell x20</label>
+    <description>Craft 20 Magmagat (Slug) shells .</description>
+    <jobString>Making Magmagat (Slug) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_Magmagat_Slug_Punched>20</Ammo_Magmagat_Slug_Punched>
+    </products>
+    <workAmount>1000</workAmount>
+  </RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

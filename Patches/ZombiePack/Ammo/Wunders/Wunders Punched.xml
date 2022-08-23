@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<ThingCategoryDef>
+		<defName>AmmoWunder_Punched</defName>
+		<label>Wunder</label>
+		<parent>AmmoWonders_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Wunder_Punched</defName>
+		<label>Wunder</label>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="WunderPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<statBases>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WunderPunched">
+		<defName>Ammo_Wunder_Punched</defName>
+		<label>Wunder Bulbs</label>
+		<description>A large compressed air Bulbs used for the Wundergun</description>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_Wunder_Punched</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoWunder_Punched</li>
+		</thingCategories>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
+		<defName>MakeAmmo_Wunder_Punched</defName>
+		<label>make Wunder Bulbs x5</label>
+		<description>Craft 500 Wunder Bulbs.</description>
+		<jobString>Making Wunder Bulbs.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>22</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Wunder_Punched>5</Ammo_Wunder_Punched>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
