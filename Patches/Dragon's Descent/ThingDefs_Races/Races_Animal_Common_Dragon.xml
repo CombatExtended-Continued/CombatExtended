@@ -99,6 +99,16 @@
 								<armorPenetrationBlunt>21.725</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Horns</linkedBodyPartsGroup>
 							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>DD_Knockback</label>
+								<capacities>
+									<li>DD_Knockback</li>
+								</capacities>
+								<power>110</power>
+								<armorPenetrationBlunt>115.115</armorPenetrationBlunt>
+								<chanceFactor>0.2</chanceFactor>
+								<cooldownTime>4.0</cooldownTime>
+								<linkedBodyPartsGroup>Tail</linkedBodyPartsGroup>
 						</tools>
 					</value>
 				</li>
@@ -121,6 +131,40 @@
 						</li>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Black_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>.1</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
 				<!-- == Blue Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Blue_Dragon"]/tools</xpath>
@@ -137,6 +181,40 @@
 							<armorPenetrationBlunt>460.97</armorPenetrationBlunt>
 							<chanceFactor>0.2</chanceFactor>
 						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Blue_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
 					</value>
 				</li>
 				<!-- == Green Dragon == -->
@@ -157,6 +235,40 @@
 						</li>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Green_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
 				<!-- == Purple Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="Purple_Dragon"]/tools</xpath>
@@ -165,7 +277,7 @@
 							<cooldownTime>5.48</cooldownTime>
 							<power>120</power>
 							<capacities>
-								<li>Blunt</li>
+								<li>Skull_Bash</li>
 							</capacities>
 							<surpriseAttack>
 							  <extraMeleeDamages>
@@ -199,6 +311,40 @@
 							<armorPenetrationBlunt>54.611</armorPenetrationBlunt>
 							<chanceFactor>0.1</chanceFactor>
 						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Purple_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
 					</value>
 				</li>
 				<!-- == Red Dragon == -->
@@ -238,6 +384,40 @@
 						</li>
 					</value>
 				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Red_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
+					</value>
+				</li>
 				<!-- == White Dragon == -->
 				<li Class="PatchOperationAdd">
 					<xpath>/Defs/ThingDef[defName="White_Dragon"]/tools</xpath>
@@ -258,7 +438,7 @@
 							<cooldownTime>8.81</cooldownTime>
 							<power>147</power>
 							<capacities>
-								<li>Blunt</li>
+								<li>Skull_Bash</li>
 							</capacities>
 							<surpriseAttack>
 							  <extraMeleeDamages>
@@ -273,6 +453,59 @@
 							<armorPenetrationBlunt>75.26</armorPenetrationBlunt>
 							<chanceFactor>0.1</chanceFactor>
 						</li>
+						<li Class="CombatExtended.ToolCE">
+							<cooldownTime>4.66</cooldownTime>
+							<power>107</power>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<surpriseAttack>
+							  <extraMeleeDamages>
+								<li>
+								  <def>Stun</def>
+								  <amount>20</amount>
+								</li>
+							  </extraMeleeDamages>
+							</surpriseAttack>
+							<linkedBodyPartsGroup>Tail</linkedBodyPartsGroup>
+							<label>tail</label>
+							<armorPenetrationBlunt>54.611</armorPenetrationBlunt>
+							<chanceFactor>0.1</chanceFactor>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="White_Dragon"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
 					</value>
 				</li>
 				<!-- == Yellow Dragon == -->
@@ -283,7 +516,7 @@
 							<cooldownTime>5.67</cooldownTime>
 							<power>136</power>
 							<capacities>
-								<li>Blunt</li>
+								<li>Skull_Bash</li>
 							</capacities>
 							<surpriseAttack>
 							  <extraMeleeDamages>
@@ -319,36 +552,71 @@
 						</li>
 					</value>
 				</li>
-
-				<!-- ====== Wildness (descending order) ====== -->
-				<!-- ==== Black Dragon and Red Dragon ==== -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Black_Dragon" or defName="Red_Dragon"]/race/wildness</xpath>
+					<xpath>Defs/ThingDef[defName="Yellow_Dragon"]/verbs</xpath>
 					<value>
-						<wildness>0.99</wildness>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_RedDragonBreath_Fire_CE</defaultProjectile>
+								<warmupTime>1.5</warmupTime>
+								<burstShotCount>1</burstShotCount>
+								<minRange>3</minRange>
+								<range>18</range>
+								<soundCast>DragonBreathShot</soundCast>
+								<muzzleFlashScale>2</muzzleFlashScale>
+								<label>Fire Breath</label>
+								<commonality>0.7</commonality>
+							</li>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Projectile_DragonSpitBlunt</defaultProjectile>
+								<warmupTime>2.5</warmupTime>
+								<minRange>9</minRange>
+								<range>32</range>
+								<burstShotCount>2</burstShotCount>
+								<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+								<soundCast>DragonBreathFire</soundCast>
+								<muzzleFlashScale>1</muzzleFlashScale>
+								<label>Dragon Spit</label>
+								<commonality>0.9</commonality>
+							</li>
+						</verbs>
 					</value>
 				</li>
+
+				<!-- I think the edits underneath are unneeded for a CE patch imo -->
+				<!-- ====== Wildness (descending order) ====== -->
+				<!-- ==== Black Dragon and Red Dragon ==== -->
+				<!-- <li Class="PatchOperationReplace"> -->
+					<!-- <xpath>/Defs/ThingDef[defName="Black_Dragon" or defName="Red_Dragon"]/race/wildness</xpath> -->
+					<!-- <value> -->
+						<!-- <wildness>0.99</wildness> -->
+					<!-- </value> -->
+				<!-- </li> -->
 				<!-- ==== Green Dragon ==== -->
-				<li Class="PatchOperationReplace">
+				<!-- <li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Green_Dragon"]/race/wildness</xpath>
 					<value>
 						<wildness>0.97</wildness>
 					</value>
-				</li>
+				</li> -->
 				<!-- ==== Purple Dragon ==== -->
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="Purple_Dragon"]/race/wildness</xpath>
-					<value>
-						<wildness>0.94</wildness>
-					</value>
-				</li>
+				<!-- <li Class="PatchOperationReplace"> -->
+					<!-- <xpath>/Defs/ThingDef[defName="Purple_Dragon"]/race/wildness</xpath> -->
+					<!-- <value> -->
+						<!-- <wildness>0.94</wildness> -->
+					<!-- </value> -->
+				<!-- </li> -->
 				<!-- ==== Blue Dragon and White Dragon and Yellow Dragon ==== -->
-				<li Class="PatchOperationReplace">
+				<!-- <li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="Blue_Dragon" or defName="White_Dragon" or defName="Yellow_Dragon"]/race/wildness</xpath>
 					<value>
 						<wildness>0.89</wildness>
 					</value>
-				</li>
+				</li> -->
 			</operations>
 		</match>
 	</Operation>

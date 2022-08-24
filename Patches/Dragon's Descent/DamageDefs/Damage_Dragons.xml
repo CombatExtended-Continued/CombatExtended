@@ -18,6 +18,14 @@
 						</li>
 					</value>
 				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
 
 				<!-- === Remove vanilla DamageWorker === -->
 				<li Class="PatchOperationReplace">
@@ -27,7 +35,6 @@
 						<workerClass>DamageWorker_AddInjury</workerClass>
 					</value>
 				</li>
-
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/DamageDef[defName="Skull_Bash"]/workerClass</xpath>
 					
@@ -35,6 +42,20 @@
 						<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
 					</value>
 				</li>
+				<!-- Previous patch contributor changed the workerClass for bites 
+				doing that for the toxic too -->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="Toxic_Bite"]/workerClass</xpath>
+					<value>
+						<workerClass>DamageWorker_AddInjury</workerClass>
+					</value>
+				</li>
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]/defaultArmorPenetration</xpath>
+					<value>
+						<defaultArmorPenetration>1</defaultArmorPenetration>
+					</value>
 			</operations>
 		</match>
 	</Operation>
