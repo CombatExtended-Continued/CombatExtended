@@ -6,8 +6,7 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-			<!-- Fire Breath -->
-			<!--
+			<!-- Spit Blunt -->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Projectile_DragonSpitBlunt"]/thingClass</xpath>
 				<value>
@@ -19,19 +18,18 @@
 				<value>
 					<projectile Class="CombatExtended.ProjectilePropertiesCE">
 						<speed>26</speed>
-						<flyOverhead>false</flyOverhead>
-						<damageDef>Flame</damageDef>
+						<damageDef>DraconicExplosion</damageDef>
 						<damageAmountBase>5</damageAmountBase>
 						<soundExplode>DragonBreathFire</soundExplode>
 					    <preExplosionSpawnThingDef>Filth_Dirt</preExplosionSpawnThingDef>
 					    <preExplosionSpawnChance>0.3</preExplosionSpawnChance>
-						<explosionRadius>2</explosionRadius>
+						<explosionRadius>4</explosionRadius>
 						<ai_IsIncendiary>true</ai_IsIncendiary>
 						<shadowSize>1</shadowSize>
 					</projectile>
 				</value>
-			</li> 
-			-->
+			</li>
+			
 			<!-- Fire Spit -->
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="Projectile_DragonSpit"]/thingClass</xpath>
