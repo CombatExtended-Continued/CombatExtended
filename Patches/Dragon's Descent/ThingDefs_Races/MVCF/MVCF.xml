@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragons Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- === I do not know if this is actually needed, saw magical menag and AA use it === -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/MVCF.ModDef[defName="DD_DragonsDescent"/Features</xpath>
+					<value>
+						<HediffVerbs>true</HediffVerbs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
