@@ -144,7 +144,7 @@ Dishonored Assassin Mask |
 DOOM - Faction (Continued) |
 DMWands |
 Dragonian Race	|
-Dragon's Descent    |
+Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
@@ -346,6 +346,7 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
+Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
 RimHammer40k - Dreadnought |

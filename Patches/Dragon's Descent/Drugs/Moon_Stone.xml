@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	<!-- Hooray, more updating -->
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Dragons Descent</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+				<!-- ======== MoonStone ======== -->
+				<!-- ====== statBases ====== -->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ScenarioDef[defName="DragonThieves"]/scenario/parts</xpath>
+					<xpath>Defs/ThingDef[defName="MoonStone"]/statBases</xpath>
 					<value>
-						<li Class="ScenPart_StartingThing_Defined">
-						  <def>StartingThing_Defined</def>
-						  <thingDef>Ammo_Arrow_Stone</thingDef>
-						  <count>100</count>
-						</li>
+						<Bulk>0.2</Bulk>
 					</value>
 				</li>
 			</operations>
