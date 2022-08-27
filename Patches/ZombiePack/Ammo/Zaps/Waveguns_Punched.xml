@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoRaygun_two_v_Punched</defName>
-		<label>Raygun Mk.2 V Cartridge</label>
+		<defName>AmmoWavegun_Punched</defName>
+		<label>Wavegun</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,17 +21,17 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Raygun_two_v_Punched</defName>
-		<label>Raygun Mk.2 V Cartridge</label>
+		<defName>AmmoSet_Wavegun_Punched</defName>
+		<label>Wavegun</label>
 		<ammoTypes>
-			<Ammo_Raygun_two_v_Punched>Bullet_Raygun_two_v_Punched</Ammo_Raygun_two_v_Punched>
+			<Ammo_Wavegun_Punched>Bullet_Wavegun_Punched</Ammo_Wavegun_Punched>
 		</ammoTypes>
 		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_two_vPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="WavegunPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
 			<Mass>0.02</Mass>
@@ -41,13 +41,13 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoRaygun_two_v_Punched</li>
+			<li>AmmoWavegun_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_two_vPunched">
-		<defName>Ammo_Raygun_two_v_Punched</defName>
-		<label>Raygun Mk.2 V Cartridge</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WavegunPunched">
+		<defName>Ammo_Wavegun_Punched</defName>
+		<label>Wavegun cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,16 +56,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Raygun_two_v_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Wavegun_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Raygun_two_v_Punched</defName>
-		<label>make Raygun Mk.2 V Cartridge x500</label>
-		<description>Craft 500 Raygun Mk.2 V Cartridges.</description>
-		<jobString>Making Raygun Mk.2 V Cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Wavegun_Punched</defName>
+		<label>make Wavegun cartridge x500</label>
+		<description>Craft 500 Wavegun cartridges.</description>
+		<jobString>Making Wavegun cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -82,7 +82,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Raygun_two_v_Punched>500</Ammo_Raygun_two_v_Punched>
+			<Ammo_Wavegun_Punched>500</Ammo_Wavegun_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

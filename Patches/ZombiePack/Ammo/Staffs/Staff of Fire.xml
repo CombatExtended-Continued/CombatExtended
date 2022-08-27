@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
+			<li>Call of Duty: Wonder Weapons</li>
 			<li>Call of Duty: Zombies Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
@@ -12,35 +14,46 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoThunder_Punched</defName>
-		<label>Thunder</label>
-		<parent>AmmoWonders_Punched</parent>
+		<defName>AmmoElementalStaff</defName>
+		<label>Elemental Staffs</label>
+		<parent>AmmoWonders</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoElementalStaff_Fire</defName>
+		<label>Fire Staff</label>
+		<parent>AmmoElementalStaff</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder_Punched</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Elemental_Staff_Fire</defName>
+		<label>Elemental fire crystal set</label>
+		<ammoTypes>
+			<Ammo_Elemental_Staff_Fire>Bullet_Elemental_Staff_Fire</Ammo_Elemental_Staff_Fire>
+		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="ElementalStaffBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A Blue Gem</description>
 		<statBases>
 			<Mass>0.2</Mass>
 			<Bulk>0.2</Bulk>
 		</statBases>
 		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderPunched">
-		<defName>Ammo_Thunder_Punched</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffBase">
+		<defName>Ammo_Elemental_Staff_Fire</defName>
+		<label>Elemental Fire Crystal</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -49,19 +62,19 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Elemental_Staff_Fire</cookOffProjectile>
 		<thingCategories>
-			<li>AmmoThunder_Punched</li>
+			<li>AmmoElementalStaff_Fire</li>
 		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder_Punched</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+		<defName>MakeAmmo_Elemental_Staff_Fire</defName>
+		<label>make Elemental Fire Crystal x5</label>
+		<description>Craft 5 Elemental Fire Crystals.</description>
+		<jobString>Making Elemental Fire Crystals.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -78,7 +91,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder_Punched>5</Ammo_Thunder_Punched>
+			<Ammo_Elemental_Staff_Fire>5</Ammo_Elemental_Staff_Fire>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -12,35 +12,27 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoWunder_s_Punched</defName>
-		<label>Wunder_s</label>
-		<parent>AmmoWonders_Punched</parent>
+		<defName>AmmoElementalStaff_Wind_Punched</defName>
+		<label>Wind Staff</label>
+		<parent>AmmoElementalStaff_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Wunder_s_Punched</defName>
-		<label>Wunder_s</label>
+		<defName>AmmoSet_Elemental_Staff_Wind_Punched</defName>
+		<label>Empowered elemental wind crystal set</label>
+		<ammoTypes>
+			<Ammo_Elemental_Staff_Wind_Punched>Bullet_Elemental_Staff_Wind_Punched</Ammo_Elemental_Staff_Wind_Punched>
+		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Wunder_sPunched" ParentName="SmallAmmoBase" Abstract="True">
-		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Wunder_sPunched">
-		<defName>Ammo_Wunder_s_Punched</defName>
-		<label>Wunder_s Bulbs</label>
-		<description>A large compressed air Bulbs used for the Wunder_sgun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffPunched">
+		<defName>Ammo_Elemental_Staff_Wind_Punched</defName>
+		<label>Empowered Elemental Wind Crystal</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -49,36 +41,36 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Wunder_s_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Elemental_Staff_Wind_Punched</cookOffProjectile>
 		<thingCategories>
-			<li>AmmoWunder_s_Punched</li>
+			<li>AmmoElementalStaff_Wind_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Wunder_s_Punched</defName>
-		<label>make Wunder_s Bulbs x5</label>
-		<description>Craft 500 Wunder_s Bulbs.</description>
-		<jobString>Making Wunder_s Bulbs.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Elemental_Staff_Wind_Punched</defName>
+		<label>make Empowered elemental wind crystal x5</label>
+		<description>Craft 5 Empowered elemental wind crystals.</description>
+		<jobString>Making Empowered elemental wind crystals.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Elemental_Staff_Wind</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Elemental_Staff_Wind</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Wunder_s_Punched>5</Ammo_Wunder_s_Punched>
+			<Ammo_Elemental_Staff_Wind_Punched>5</Ammo_Elemental_Staff_Wind_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

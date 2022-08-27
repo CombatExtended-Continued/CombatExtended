@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoWinters_Punched</defName>
-		<label>Winters</label>
+		<defName>AmmoRaygun_two_x_Punched</defName>
+		<label>Raygun Mk.2 X</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,17 +21,17 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Winters_Punched</defName>
-		<label>Winters</label>
+		<defName>AmmoSet_Raygun_two_x_Punched</defName>
+		<label>Punched Raygun Mk.2 X Cartridge</label>
 		<ammoTypes>
-			<Ammo_Winters_Cryo_Punched>Bullet_Winters_Cryo_Punched</Ammo_Winters_Cryo_Punched>
+			<Ammo_Raygun_two_x_Punched>Bullet_Raygun_two_x_Punched</Ammo_Raygun_two_x_Punched>
 		</ammoTypes>
 		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="WintersPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_two_xPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
 			<Mass>0.02</Mass>
@@ -41,13 +41,13 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoWinters_Punched</li>
+			<li>AmmoRaygun_two_x_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WintersPunched">
-		<defName>Ammo_Winters_Cryo_Punched</defName>
-		<label>Winters cartridge (Cryo)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_two_xPunched">
+		<defName>Ammo_Raygun_two_x_Punched</defName>
+		<label>Punched Raygun Mk.2 X Cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,16 +56,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Winters_Cryo_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Raygun_two_x_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Winters_Cryo_Punched</defName>
-		<label>make Winters (Cryo) cartridge x500</label>
-		<description>Craft 500 Winters (Cryo) cartridges.</description>
-		<jobString>Making Winters (Cryo) cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Raygun_two_x_Punched</defName>
+		<label>make Punched Raygun Mk.2 X Cartridge x500</label>
+		<description>Craft 500 Punched Raygun Mk.2 X Cartridges.</description>
+		<jobString>Making Punched Raygun Mk.2 X Cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -82,7 +82,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Winters_Cryo_Punched>500</Ammo_Winters_Cryo_Punched>
+			<Ammo_Raygun_two_x_Punched>500</Ammo_Raygun_two_x_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+
+	<ThingCategoryDef>
+		<defName>AmmoElementalStaff_Punched</defName>
+		<label>Elemental Staffs</label>
+		<parent>AmmoWonders_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>AmmoElementalStaff_Fire_Punched</defName>
+		<label>Fire Staff</label>
+		<parent>AmmoElementalStaff_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_Elemental_Staff_Fire_Punched</defName>
+		<label>Empowered elemental fire crystal set</label>
+		<ammoTypes>
+			<Ammo_Elemental_Staff_Fire_Punched>Bullet_Elemental_Staff_Fire_Punched</Ammo_Elemental_Staff_Fire_Punched>
+		</ammoTypes>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="ElementalStaffPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A Blue Gem</description>
+		<statBases>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffPunched">
+		<defName>Ammo_Elemental_Staff_Fire_Punched</defName>
+		<label>Empowered Elemental Fire Crystal</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.09</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_Elemental_Staff_Fire_Punched</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoElementalStaff_Fire_Punched</li>
+		</thingCategories>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Elemental_Staff_Fire_Punched</defName>
+		<label>make Empowered Elemental Fire Crystal x5</label>
+		<description>Craft 5 Empowered Elemental Fire Crystals.</description>
+		<jobString>Making Empowered Elemental Fire Crystals.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Ammo_Elemental_Staff_Fire</li>
+					</thingDefs>
+				</filter>
+				<count>20</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Ammo_Elemental_Staff_Fire</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_Elemental_Staff_Fire_Punched>5</Ammo_Elemental_Staff_Fire_Punched>
+		</products>
+		<workAmount>2200</workAmount>
+	</RecipeDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

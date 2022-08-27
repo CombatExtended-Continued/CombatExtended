@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Call of Duty: Wonder Weapons</li>
 			<li>Call of Duty: Zombies Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
@@ -14,39 +12,43 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoThunder</defName>
-		<label>Thunder</label>
-		<parent>AmmoWonders</parent>
+		<defName>AmmoRaygun_three_Punched</defName>
+		<label>Eris</label>
+		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Raygun_three_Punched</defName>
+		<label>Eris Cartridge</label>
 		<ammoTypes>
-			<Ammo_Thunder>Bullet_Thunder</Ammo_Thunder>
+			<Ammo_Raygun_three_Punched>Bullet_Raygun_three_Punched</Ammo_Raygun_three_Punched>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_threePunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
+		<thingCategories>
+			<li>AmmoRaygun_three_Punched</li>
+		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderBase">
-		<defName>Ammo_Thunder</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_threePunched">
+		<defName>Ammo_Raygun_three_Punched</defName>
+		<label>Eris Cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -55,36 +57,33 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder</cookOffProjectile>
-		<thingCategories>
-			<li>AmmoThunder</li>
-		</thingCategories>
+		<cookOffProjectile>Bullet_Raygun_three_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Raygun_three_Punched</defName>
+		<label>make Eris cartridge x50</label>
+		<description>Craft 50 Eris cartridges.</description>
+		<jobString>Making Eris cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Raygun_three</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>200</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Raygun_three</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder>5</Ammo_Thunder>
+			<Ammo_Raygun_three_Punched>50</Ammo_Raygun_three_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Call of Duty: Wonder Weapons</li>
 			<li>Call of Duty: Zombies Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
@@ -14,43 +12,38 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoZapgun</defName>
-		<label>Zapgun</label>
-		<parent>AmmoWonders</parent>
+		<defName>AmmoWunder_Punched</defName>
+		<label>Wunder</label>
+		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Zapgun</defName>
-		<label>Zapgun</label>
+		<defName>AmmoSet_Wunder_Punched</defName>
+		<label>Wunder</label>
 		<ammoTypes>
-			<Ammo_Zapgun>Bullet_Zapgun</Ammo_Zapgun>
+			<Ammo_Wunder_Punched>Bullet_Wunder_Punched</Ammo_Wunder_Punched>
 		</ammoTypes>
-		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ZapgunBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Pistol cartridge favoured for its above average stopping power.</description>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="WunderPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<statBases>
-			<Mass>0.02</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
 		</statBases>
 		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
-		<thingCategories>
-			<li>AmmoZapgun</li>
-		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ZapgunBase">
-		<defName>Ammo_Zapgun</defName>
-		<label>Zapgun cartridge</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WunderPunched">
+		<defName>Ammo_Wunder_Punched</defName>
+		<label>Wunder Bulbs</label>
+		<description>A large compressed air Bulbs used for the Wundergun</description>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -59,16 +52,19 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Zapgun</cookOffProjectile>
+		<cookOffProjectile>Bullet_Wunder_Punched</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoWunder_Punched</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Zapgun</defName>
-		<label>make Zapgun cartridge x500</label>
-		<description>Craft 500 Zapgun cartridges.</description>
-		<jobString>Making Zapgun cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Wunder_Punched</defName>
+		<label>make Wunder Bulbs x5</label>
+		<description>Craft 500 Wunder Bulbs.</description>
+		<jobString>Making Wunder Bulbs.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -85,7 +81,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Zapgun>500</Ammo_Zapgun>
+			<Ammo_Wunder_Punched>5</Ammo_Wunder_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

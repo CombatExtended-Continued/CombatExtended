@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoRaygun_two_z_Punched</defName>
-		<label>Raygun Mk.2 Z Cartridge</label>
+		<defName>AmmoRaygun_three_GKZ_Punched</defName>
+		<label>Maelstorm</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,33 +21,34 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Raygun_two_z_Punched</defName>
-		<label>Raygun Mk.2 Z Cartridge</label>
+		<defName>AmmoSet_Raygun_three_GKZ_Punched</defName>
+		<label>Maelstorm Cartridge</label>
 		<ammoTypes>
-			<Ammo_Raygun_two_z_Punched>Bullet_Raygun_two_z_Punched</Ammo_Raygun_two_z_Punched>
+			<Ammo_Raygun_three_GKZ_Punched>Bullet_Raygun_three_GKZ_Punched</Ammo_Raygun_three_GKZ_Punched>
 		</ammoTypes>
 		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_two_zPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_three_GKZPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
 			<Mass>0.02</Mass>
 			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoRaygun_two_z_Punched</li>
+			<li>AmmoRaygun_three_GKZ_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_two_zPunched">
-		<defName>Ammo_Raygun_two_z_Punched</defName>
-		<label>Raygun Mk.2 Z Cartridge</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_three_GKZPunched">
+		<defName>Ammo_Raygun_three_GKZ_Punched</defName>
+		<label>Maelstorm cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,16 +57,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Raygun_two_z_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Raygun_three_GKZ_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Raygun_two_z_Punched</defName>
-		<label>make Raygun Mk.2 Z Cartridge x500</label>
-		<description>Craft 500 Raygun Mk.2 Z Cartridges.</description>
-		<jobString>Making Raygun Mk.2 Z Cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Raygun_three_GKZ_Punched</defName>
+		<label>make Maelstorm cartridge x500</label>
+		<description>Craft 500 Maelstorm cartridges.</description>
+		<jobString>Making Maelstorm cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -82,7 +83,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Raygun_two_z_Punched>500</Ammo_Raygun_two_z_Punched>
+			<Ammo_Raygun_three_GKZ_Punched>500</Ammo_Raygun_three_GKZ_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoWavegun_Punched</defName>
-		<label>Wavegun</label>
+		<defName>AmmoWinters_Punched</defName>
+		<label>Winter's Fury</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,17 +21,17 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Wavegun_Punched</defName>
-		<label>Wavegun</label>
+		<defName>AmmoSet_Winters_Punched</defName>
+		<label>Winter's Fury set</label>
 		<ammoTypes>
-			<Ammo_Wavegun_Punched>Bullet_Wavegun_Punched</Ammo_Wavegun_Punched>
+			<Ammo_Winters_Cryo_Punched>Bullet_Winters_Cryo_Punched</Ammo_Winters_Cryo_Punched>
 		</ammoTypes>
 		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="WavegunPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="WintersPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
 			<Mass>0.02</Mass>
@@ -41,13 +41,13 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>AmmoWavegun_Punched</li>
+			<li>AmmoWinters_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WavegunPunched">
-		<defName>Ammo_Wavegun_Punched</defName>
-		<label>Wavegun cartridge</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WintersPunched">
+		<defName>Ammo_Winters_Cryo_Punched</defName>
+		<label>Winter's Fury cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,33 +56,33 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Wavegun_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Winters_Cryo_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Wavegun_Punched</defName>
-		<label>make Wavegun cartridge x500</label>
-		<description>Craft 500 Wavegun cartridges.</description>
-		<jobString>Making Wavegun cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Winters_Cryo_Punched</defName>
+		<label>make Winter's Fury cartridge x75</label>
+		<description>Craft 75 Winter's Fury cartridges.</description>
+		<jobString>Making Winter's Fury cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Winters_Cryo</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>300</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Winters_Cryo</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Wavegun_Punched>500</Ammo_Wavegun_Punched>
+			<Ammo_Winters_Cryo_Punched>75</Ammo_Winters_Cryo_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoWunder_Punched</defName>
-		<label>Wunder</label>
+		<defName>AmmoRaygun_two_y_Punched</defName>
+		<label>Raygun Mk.2 Y</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,26 +21,33 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Wunder_Punched</defName>
-		<label>Wunder</label>
+		<defName>AmmoSet_Raygun_two_y_Punched</defName>
+		<label>Punched Raygun Mk.2 Y Cartridge</label>
+		<ammoTypes>
+			<Ammo_Raygun_two_y_Punched>Bullet_Raygun_two_y_Punched</Ammo_Raygun_two_y_Punched>
+		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="WunderPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_two_yPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
+		<thingCategories>
+			<li>AmmoRaygun_two_y_Punched</li>
+		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WunderPunched">
-		<defName>Ammo_Wunder_Punched</defName>
-		<label>Wunder Bulbs</label>
-		<description>A large compressed air Bulbs used for the Wundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_two_yPunched">
+		<defName>Ammo_Raygun_two_y_Punched</defName>
+		<label>Punched Raygun Mk.2 Y Cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -49,19 +56,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Wunder_Punched</cookOffProjectile>
-		<thingCategories>
-			<li>AmmoWunder_Punched</li>
-		</thingCategories>
+		<cookOffProjectile>Bullet_Raygun_two_y_Punched</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Wunder_Punched</defName>
-		<label>make Wunder Bulbs x5</label>
-		<description>Craft 500 Wunder Bulbs.</description>
-		<jobString>Making Wunder Bulbs.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Raygun_two_y_Punched</defName>
+		<label>make Punched Raygun Mk.2 Y Cartridge x500</label>
+		<description>Craft 500 Punched Raygun Mk.2 Y Cartridges.</description>
+		<jobString>Making Punched Raygun Mk.2 Y Cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -78,7 +82,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Wunder_Punched>5</Ammo_Wunder_Punched>
+			<Ammo_Raygun_two_y_Punched>500</Ammo_Raygun_two_y_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

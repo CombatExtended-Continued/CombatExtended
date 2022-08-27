@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Call of Duty: Wonder Weapons</li>
 			<li>Call of Duty: Zombies Pack</li>
 		</mods>
 		<match Class="PatchOperationSequence">
@@ -14,39 +12,38 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoThunder</defName>
-		<label>Thunder</label>
-		<parent>AmmoWonders</parent>
+		<defName>AmmoWunder_s_Punched</defName>
+		<label>DG-Scharfschutze</label>
+		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Wunder_s_Punched</defName>
+		<label>Punched DG-Scharfschutze</label>
 		<ammoTypes>
-			<Ammo_Thunder>Bullet_Thunder</Ammo_Thunder>
+			<Ammo_Wunder_s_Punched>Bullet_Wunder_s_Punched</Ammo_Wunder_s_Punched>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Wunder_sPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<statBases>
 			<Mass>0.2</Mass>
 			<Bulk>0.2</Bulk>
 		</statBases>
 		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderBase">
-		<defName>Ammo_Thunder</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Wunder_sPunched">
+		<defName>Ammo_Wunder_s_Punched</defName>
+		<label>Punched DG-Scharfschutze Bulbs</label>
+		<description>A large compressed air Bulbs used for the Wunder_sgun</description>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -55,19 +52,19 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder</cookOffProjectile>
+		<cookOffProjectile>Bullet_Wunder_s_Punched</cookOffProjectile>
 		<thingCategories>
-			<li>AmmoThunder</li>
+			<li>AmmoWunder_s_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Wunder_s_Punched</defName>
+		<label>make Punched DG-Scharfschutze Bulbs x5</label>
+		<description>Craft 500 Punched DG-Scharfschutze Bulbs.</description>
+		<jobString>Making Punched DG-Scharfschutze Bulbs.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -84,7 +81,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder>5</Ammo_Thunder>
+			<Ammo_Wunder_s_Punched>5</Ammo_Wunder_s_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

@@ -12,42 +12,27 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoRaygun_Punched</defName>
-		<label>Raygun</label>
-		<parent>AmmoWonders_Punched</parent>
+		<defName>AmmoElementalStaff_Ice_Punched</defName>
+		<label>Ice Staff</label>
+		<parent>AmmoElementalStaff_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Raygun_Punched</defName>
-		<label>Raygun</label>
+		<defName>AmmoSet_Elemental_Staff_Ice_Punched</defName>
+		<label>Empowered elemental ice crystal set</label>
 		<ammoTypes>
-			<Ammo_Raygun_Punched>Bullet_Raygun_Punched</Ammo_Raygun_Punched>
+			<Ammo_Elemental_Staff_Ice_Punched>Bullet_Elemental_Staff_Ice_Punched</Ammo_Elemental_Staff_Ice_Punched>
 		</ammoTypes>
-		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="RaygunPunched" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Pistol cartridge favoured for its above average stopping power.</description>
-		<statBases>
-			<Mass>0.02</Mass>
-			<Bulk>0.02</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-		<thingCategories>
-			<li>AmmoRaygun_Punched</li>
-		</thingCategories>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="RaygunPunched">
-		<defName>Ammo_Raygun_Punched</defName>
-		<label>Raygun cartridge </label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffPunched">
+		<defName>Ammo_Elemental_Staff_Ice_Punched</defName>
+		<label>Empowered Elemental Ice Crystal</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,33 +41,36 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Raygun_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Elemental_Staff_Ice_Punched</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoElementalStaff_Ice_Punched</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Raygun_Punched</defName>
-		<label>make Raygun cartridge x500</label>
-		<description>Craft 500 Raygun cartridges.</description>
-		<jobString>Making Raygun cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Elemental_Staff_Ice_Punched</defName>
+		<label>make Empowered Elemental Ice Crystal x5</label>
+		<description>Craft 5 Empowered Elemental Ice Crystals.</description>
+		<jobString>Making Empowered Elemental Ice Crystals.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Elemental_Staff_Ice</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Elemental_Staff_Ice</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Raygun_Punched>500</Ammo_Raygun_Punched>
+			<Ammo_Elemental_Staff_Ice_Punched>5</Ammo_Elemental_Staff_Ice_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

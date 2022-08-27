@@ -14,8 +14,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoThunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoZapgun</defName>
+		<label>Blue Zapgun</label>
 		<parent>AmmoWonders</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -23,30 +23,34 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Zapgun_blue</defName>
+		<label>Blue Zapgun Cartridge</label>
 		<ammoTypes>
-			<Ammo_Thunder>Bullet_Thunder</Ammo_Thunder>
+			<Ammo_Zapgun_blue>Bullet_Zapgun_blue</Ammo_Zapgun_blue>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="ZapgunBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Pistol cartridge favoured for its above average stopping power.</description>
 		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
+		<thingCategories>
+			<li>AmmoZapgun</li>
+		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderBase">
-		<defName>Ammo_Thunder</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ZapgunBase">
+		<defName>Ammo_Zapgun_blue</defName>
+		<label>Blue Zapgun cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -55,19 +59,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder</cookOffProjectile>
-		<thingCategories>
-			<li>AmmoThunder</li>
-		</thingCategories>
+		<cookOffProjectile>Bullet_Zapgun_blue</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+		<defName>MakeAmmo_Zapgun_blue</defName>
+		<label>make Blue Zapgun cartridge x500</label>
+		<description>Craft 500 Blue Zapgun cartridges.</description>
+		<jobString>Making Blue Zapgun cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -84,7 +85,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder>5</Ammo_Thunder>
+			<Ammo_Zapgun_blue>500</Ammo_Zapgun_blue>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

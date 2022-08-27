@@ -14,39 +14,27 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoThunder</defName>
-		<label>Thunder</label>
-		<parent>AmmoWonders</parent>
+		<defName>AmmoElementalStaff_Wind</defName>
+		<label>Wind Staff</label>
+		<parent>AmmoElementalStaff</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Elemental_Staff_Wind</defName>
+		<label>Elemental wind crystal set</label>
 		<ammoTypes>
-			<Ammo_Thunder>Bullet_Thunder</Ammo_Thunder>
+			<Ammo_Elemental_Staff_Wind>Bullet_Elemental_Staff_Wind</Ammo_Elemental_Staff_Wind>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderBase" ParentName="SmallAmmoBase" Abstract="True">
-		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderBase">
-		<defName>Ammo_Thunder</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffBase">
+		<defName>Ammo_Elemental_Staff_Wind</defName>
+		<label>Elemental Wind Crystal</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -55,19 +43,19 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder</cookOffProjectile>
+		<cookOffProjectile>Bullet_Elemental_Staff_Wind</cookOffProjectile>
 		<thingCategories>
-			<li>AmmoThunder</li>
+			<li>AmmoElementalStaff_Wind</li>
 		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+		<defName>MakeAmmo_Elemental_Staff_Wind</defName>
+		<label>make Elemental Wind Crystal x5</label>
+		<description>Craft 5 Elemental Wind Crystals.</description>
+		<jobString>Making Elemental Wind Crystals.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -84,7 +72,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder>5</Ammo_Thunder>
+			<Ammo_Elemental_Staff_Wind>5</Ammo_Elemental_Staff_Wind>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

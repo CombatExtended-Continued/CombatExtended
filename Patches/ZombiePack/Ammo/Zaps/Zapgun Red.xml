@@ -13,40 +13,22 @@
 			<xpath>Defs</xpath>
 			<value>
 
-	<ThingCategoryDef>
-		<defName>AmmoThunder</defName>
-		<label>Thunder</label>
-		<parent>AmmoWonders</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
-	</ThingCategoryDef>
-
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Thunder</defName>
-		<label>Thunder</label>
+		<defName>AmmoSet_Zapgun_red</defName>
+		<label>Red Zapgun Cartridge</label>
 		<ammoTypes>
-			<Ammo_Thunder>Bullet_Thunder</Ammo_Thunder>
+			<Ammo_Zapgun_red>Bullet_Zapgun_red</Ammo_Zapgun_red>
 		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ThunderBase" ParentName="SmallAmmoBase" Abstract="True">
-		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ThunderBase">
-		<defName>Ammo_Thunder</defName>
-		<label>Thunder Cannister</label>
-		<description>A large compressed air cannister used for the Thundergun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ZapgunBase">
+		<defName>Ammo_Zapgun_red</defName>
+		<label>Red Zapgun Cartridge</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -55,19 +37,16 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Thunder</cookOffProjectile>
-		<thingCategories>
-			<li>AmmoThunder</li>
-		</thingCategories>
+		<cookOffProjectile>Bullet_Zapgun_red</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Thunder</defName>
-		<label>make Thunder Cannister x5</label>
-		<description>Craft 500 Thunder Cannister.</description>
-		<jobString>Making Thunder Cannister.</jobString>
+		<defName>MakeAmmo_Zapgun_red</defName>
+		<label>make Red Zapgun cartridge x500</label>
+		<description>Craft 500 Red Zapgun cartridges.</description>
+		<jobString>Making Red Zapgun cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>
@@ -84,7 +63,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Thunder>5</Ammo_Thunder>
+			<Ammo_Zapgun_red>500</Ammo_Zapgun_red>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

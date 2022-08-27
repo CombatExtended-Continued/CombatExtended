@@ -12,8 +12,8 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoRaygun_three_GKZ_Punched</defName>
-		<label>Raygun_three_GKZ_Punched</label>
+		<defName>AmmoTundra_Punched</defName>
+		<label>Boreas Blizzard</label>
 		<parent>AmmoWonders_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
@@ -21,34 +21,29 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Raygun_three_GKZ_Punched</defName>
-		<label>Raygun_three_GKZ_Punched</label>
+		<defName>AmmoSet_Tundra_Punched</defName>
+		<label>Boreas Blizzard set</label>
 		<ammoTypes>
-			<Ammo_Raygun_three_GKZ_Punched>Bullet_Raygun_three_GKZ_Punched</Ammo_Raygun_three_GKZ_Punched>
+			<Ammo_Tundra_Punched>Bullet_Tundra_Punched</Ammo_Tundra_Punched>
 		</ammoTypes>
-		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Raygun_three_GKZPunched" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Pistol cartridge favoured for its above average stopping power.</description>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="TundraPunched" ParentName="SmallAmmoBase" Abstract="True">
 		<statBases>
-			<Mass>0.02</Mass>
-			<Bulk>0.02</Bulk>
+			<Mass>0.2</Mass>
+			<Bulk>0.2</Bulk>
 		</statBases>
 		<tradeTags>
-			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
-		<thingCategories>
-			<li>AmmoRaygun_three_GKZ_Punched</li>
-		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Raygun_three_GKZPunched">
-		<defName>Ammo_Raygun_three_GKZ_Punched</defName>
-		<label>Raygun_three_GKZ cartridge</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TundraPunched">
+		<defName>Ammo_Tundra_Punched</defName>
+		<label>Boreas Blizzard Cannister</label>
+		<description>A large compressed air cannister used for the Boreas Blizzard</description>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -57,33 +52,36 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Raygun_three_GKZ_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Tundra_Punched</cookOffProjectile>
+		<thingCategories>
+			<li>AmmoTundra_Punched</li>
+		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_Raygun_three_GKZ_Punched</defName>
-		<label>make Raygun_three_GKZ cartridge x500</label>
-		<description>Craft 500 Raygun_three_GKZ cartridges.</description>
-		<jobString>Making Raygun_three_GKZ cartridges.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Tundra_Punched</defName>
+		<label>make Boreas Blizzard Cannister x5</label>
+		<description>Craft 5 Boreas Blizzard Cannister.</description>
+		<jobString>Making Boreas Blizzard Cannister.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Tundra</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>50</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Tundra</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Raygun_three_GKZ_Punched>500</Ammo_Raygun_three_GKZ_Punched>
+			<Ammo_Tundra_Punched>5</Ammo_Tundra_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

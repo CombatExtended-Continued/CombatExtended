@@ -12,35 +12,27 @@
 			<value>
 
 	<ThingCategoryDef>
-		<defName>AmmoTundra_Punched</defName>
-		<label>Tundra</label>
-		<parent>AmmoWonders_Punched</parent>
+		<defName>AmmoElementalStaff_Lightning_Punched</defName>
+		<label>Lightning Staff</label>
+		<parent>AmmoElementalStaff_Punched</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_Tundra_Punched</defName>
-		<label>Tundra</label>
+		<defName>AmmoSet_Elemental_Staff_Lightning_Punched</defName>
+		<label>Empowered elemental lightning crystal set</label>
+		<ammoTypes>
+			<Ammo_Elemental_Staff_Lightning_Punched>Bullet_Elemental_Staff_Lightning_Punched</Ammo_Elemental_Staff_Lightning_Punched>
+		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="TundraPunched" ParentName="SmallAmmoBase" Abstract="True">
-		<statBases>
-			<Mass>0.2</Mass>
-			<Bulk>0.2</Bulk>
-		</statBases>
-		<tradeTags>
-			<li>CE_AutoEnableCrafting</li>
-		</tradeTags>
-	</ThingDef>
-
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="TundraPunched">
-		<defName>Ammo_Tundra_Punched</defName>
-		<label>Tundra Cannister</label>
-		<description>A large compressed air cannister used for the Tundragun</description>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="ElementalStaffPunched">
+		<defName>Ammo_Elemental_Staff_Lightning_Punched</defName>
+		<label>Empowered Elemental Lightning Crystal</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -49,36 +41,36 @@
 			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_Tundra_Punched</cookOffProjectile>
+		<cookOffProjectile>Bullet_Elemental_Staff_Lightning_Punched</cookOffProjectile>
 		<thingCategories>
-			<li>AmmoTundra_Punched</li>
+			<li>AmmoElementalStaff_Lightning_Punched</li>
 		</thingCategories>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="CODZP_AmmoRecipeWonder">
-		<defName>MakeAmmo_Tundra_Punched</defName>
-		<label>make Tundra Cannister x5</label>
-		<description>Craft 500 Tundra Cannister.</description>
-		<jobString>Making Tundra Cannister.</jobString>
+	<RecipeDef ParentName="AmmoRecipePunched">
+		<defName>MakeAmmo_Elemental_Staff_Lightning_Punched</defName>
+		<label>make Empowered elemental lightning crystal x5</label>
+		<description>Craft 5 Empowered elemental lightning crystals.</description>
+		<jobString>Making Empowered elemental lightning crystals.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Elemental_Staff_Lightning</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Elemental_Staff_Lightning</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Tundra_Punched>5</Ammo_Tundra_Punched>
+			<Ammo_Elemental_Staff_Lightning_Punched>5</Ammo_Elemental_Staff_Lightning_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>
