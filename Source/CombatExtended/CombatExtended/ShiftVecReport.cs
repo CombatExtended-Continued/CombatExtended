@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 if (enviromentShiftInt < 0)
                 {
-                    enviromentShiftInt = ((blindFiring ? 1 : lightingShift) * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
+                    enviromentShiftInt = (lightingShift * 3.5f + weatherShift * 1.5f) * CE_Utility.LightingRangeMultiplier(shotDist) + smokeDensity;
                 }
                 return enviromentShiftInt;
             }
@@ -60,13 +60,9 @@ namespace CombatExtended
         {
             get
             {
-		if (visibilityShiftInt < 0)
+                if (visibilityShiftInt < 0)
                 {
-		    float se = sightsEfficiency;
-		    if (se < 0.02f) {
-			se = 0.02f;
-		    }
-                    visibilityShiftInt = enviromentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                    visibilityShiftInt = enviromentShift * (shotDist / 50 / sightsEfficiency) * (2 - aimingAccuracy);
                 }
                 return visibilityShiftInt;
             }
@@ -78,7 +74,7 @@ namespace CombatExtended
         {
             get
             {
-                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving && (targetPawn.stances.stunner == null || !targetPawn.stances.stunner.Stunned);
+                return targetPawn != null && targetPawn.pather != null && targetPawn.pather.Moving;
             }
         }
         private float leadDistInt = -1f;
@@ -107,8 +103,8 @@ namespace CombatExtended
             get
             {
                 return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
-                    + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f: 2.0f))
-                    + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
+                    + Mathf.Min(lightingShift * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, 2.0f)
+                    + Mathf.Min(smokeDensity * 0.5f, 2.0f);
             }
         }
 
@@ -119,17 +115,15 @@ namespace CombatExtended
         {
             get
             {
-                return shotDist * (shotDist / maxRange) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
+                return shotDist * (shotDist / Math.Max(maxRange, 20)) * Mathf.Min(accuracyFactor * 0.5f, 0.8f);
             }
         }
 
-        public bool isAiming = false;
+        public bool isAiming = false;   
         public float swayDegrees = 0f;
         public float spreadDegrees = 0f;
         public Thing cover = null;
         public float smokeDensity = 0f;
-	public bool blindFiring = false;
-	public bool roofed = false;
 
         // Copy-constructor
         public ShiftVecReport(ShiftVecReport report)
@@ -148,8 +142,6 @@ namespace CombatExtended
             spreadDegrees = report.spreadDegrees;
             cover = report.cover;
             smokeDensity = report.smokeDensity;
-	    blindFiring = report.blindFiring;
-	    roofed = report.roofed;
         }
 
         public ShiftVecReport()
@@ -170,10 +162,6 @@ namespace CombatExtended
 
         public Vector2 GetRandLeadVec()
         {
-	    if (blindFiring)
-	    {
-		return new Vector2(0, 0);
-	    }
             Vector3 moveVec = new Vector3();
             if (targetIsMoving)
             {
