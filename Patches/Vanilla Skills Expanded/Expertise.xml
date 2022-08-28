@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Skills Expanded</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- Aiming expertise -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="CloseQuarters"]/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<AimingDelayFactor>-0.025</AimingDelayFactor>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Reloading expertise -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Gunner"]/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<ReloadSpeed>0.025</ReloadSpeed>
+						</statOffsets>
+					</value>
+				</li>
+
+				<!-- Piercing expertise -->
+				<!-- <li Class="PatchOperationReplace">
+					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Sharp"]/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<MeleePenetrationFactor>0.025</MeleePenetrationFactor>
+						</statOffsets>
+					</value>
+				</li> -->
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
