@@ -8,6 +8,17 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<!-- Sharpshooting expertise -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Precision"]/statOffsets</xpath>
+					<value>
+						<statOffsets>
+							<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
+							<AimingAccuracy>0.025</AimingAccuracy>
+						</statOffsets>
+					</value>
+				</li>
+
 				<!-- Aiming expertise -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="CloseQuarters"]/statOffsets</xpath>
@@ -29,14 +40,14 @@
 				</li>
 
 				<!-- Piercing expertise -->
-				<!-- <li Class="PatchOperationReplace">
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/VSE.Expertise.ExpertiseDef[defName="Sharp"]/statOffsets</xpath>
 					<value>
 						<statOffsets>
-							<MeleePenetrationFactor>0.025</MeleePenetrationFactor>
+							<MeleeCritChance>0.05</MeleeCritChance>
 						</statOffsets>
 					</value>
-				</li> -->
+				</li>
 
 			</operations>
 		</match>
