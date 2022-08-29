@@ -21,6 +21,11 @@ namespace CombatExtended.HarmonyCE
         [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
         internal static class Harmony_AttackTargetFinder_BestAttackTarget
         {
+            /// <summary>
+            /// List of potential attack targets used by <see cref="FindAttackTargetForRangedAttack"/>.
+            /// </summary>
+            private static List<IAttackTarget> validTargets = new List<IAttackTarget>();
+
             private static bool EMPOnlyTargetsMechanoids()
             {
                 return false;
@@ -39,6 +44,51 @@ namespace CombatExtended.HarmonyCE
                         break;
                     }
                 }
+
+                // Replace the vanilla logic to determine the best target to be engaged with a ranged attack
+                // with an optimized equivalent that avoids redundant and duplicate validation.
+                var hasRangedAttack = AccessTools.Method(typeof(AttackTargetFinder), nameof(AttackTargetFinder.HasRangedAttack));
+                var innerValidatorField = AccessTools.FindIncludingInnerTypes(
+                    typeof(AttackTargetFinder),
+                    (type) => AccessTools.DeclaredField(type, "innerValidator")
+                );
+                var instructionsToInsert = new List<CodeInstruction>() {
+                    new CodeInstruction(OpCodes.Ldarg_1), // targetScanFlags
+                    new CodeInstruction(OpCodes.Ldarg_0), // searcher
+                    new CodeInstruction(OpCodes.Ldloc_0),
+                    new CodeInstruction(OpCodes.Ldfld, innerValidatorField),
+                    new CodeInstruction(OpCodes.Ldarg_S, 4), // maxDist
+                    new CodeInstruction(OpCodes.Ldarg_S, 7), // canBashDoors
+                    new CodeInstruction(OpCodes.Ldarg_S, 9), // canBashFences
+                    new CodeInstruction(
+                        OpCodes.Call,
+                        AccessTools.Method(
+                            typeof(Harmony_AttackTargetFinder_BestAttackTarget),
+                            nameof(Harmony_AttackTargetFinder_BestAttackTarget.FindAttackTargetForRangedAttack)
+                        )
+                    ),
+                    new CodeInstruction(OpCodes.Ret)
+                };
+
+                for (var i = 0; i < codes.Count; i++)
+                {
+                    if (codes[i].Branches(out Label? label) && codes[i - 1].Calls(hasRangedAttack))
+                    {
+                        var blockEnd = codes.FindIndex(instr => instr.labels.Contains(label.Value));
+                        var blockEndInstr = codes[blockEnd];
+
+                        var blockStart = 1 + codes.FindLastIndex(instr => instr.Branches(out Label? blockEndLabel) && blockEndInstr.labels.Contains(blockEndLabel.Value));
+                        var blockStartInstr = codes[blockStart];
+
+                        codes.RemoveRange(blockStart, blockEnd - blockStart - 1);
+                        codes.InsertRange(blockStart, instructionsToInsert);
+
+                        blockStartInstr.MoveLabelsTo(codes[blockStart]);
+
+                        break;
+                    }
+                }
+
                 return codes;
             }
 
@@ -48,6 +98,68 @@ namespace CombatExtended.HarmonyCE
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
                                                .Select(t => t.TryGetComp<CompProjectileInterceptor>())
                                                .ToList() ?? new List<CompProjectileInterceptor>();
+            }
+
+            /// <summary>
+            /// Find the best target for a ranged attacker (which may require the attacker to change their shooting position).
+            /// </summary>
+            /// <remarks>
+            /// This is an optimized equivalent of the vanilla logic in <see cref="AttackTargetFinder.BestAttackTarget"/>.
+            /// </remarks>
+            private static IAttackTarget FindAttackTargetForRangedAttack(
+                TargetScanFlags targetScanFlags,
+                IAttackTargetSearcher searcher,
+                Predicate<IAttackTarget> attackTargetValidator,
+                float maxDist,
+                bool canBashDoors,
+                bool canBashFences
+            )
+            {
+                validTargets.Clear();
+
+                var searcherThing = searcher.Thing;
+                var potentialAttackTargets = searcherThing.Map.attackTargetsCache.GetPotentialTargetsFor(searcher);
+                var searcherPos = searcherThing.Position;
+
+                for (int i = 0; i < potentialAttackTargets.Count; i++)
+                {
+                    var target = potentialAttackTargets[i];
+                    // Optimization: Check if the target is within the allowed maximum distance before running expensive validation logic
+                    if (target.Thing.Position.InHorDistOf(searcherPos, maxDist) && attackTargetValidator(potentialAttackTargets[i]))
+                    {
+                        validTargets.Add(target);
+                    }
+                }
+
+                // No valid targets exist for this attack, so abort early
+                if (validTargets.Count == 0)
+                {
+                    return null;
+                }
+
+                var targetToHit = AttackTargetFinder.GetRandomShootingTargetByScore(validTargets, searcher, searcher.CurrentEffectiveVerb);
+
+                // If a valid target can be fired on from the current position, prioritize engaging that.
+                // Otherwise attempt to find the closest valid target (which may trigger the searcher to move in to engage / change position),
+                // unless the searcher is a turret or a pawn operating a turret, which is ipso facto immobile.
+                if (targetToHit != null || searcher is Building_Turret || (searcher is Pawn searcherPawn && searcherPawn.CurJobDef == JobDefOf.ManTurret))
+                {
+                    return targetToHit;
+                }
+
+                var checkForReachability = (targetScanFlags & TargetScanFlags.NeedReachableIfCantHitFromMyPos) != 0 || (targetScanFlags & TargetScanFlags.NeedReachable) != 0;
+
+                if (checkForReachability)
+                {
+                    return (IAttackTarget)Verse.GenClosest.ClosestThing_Global(
+                        searcherPos,
+                        validTargets,
+                        maxDist,
+                        (Thing target) => AttackTargetFinder.CanReach(searcherThing, target, canBashDoors, canBashFences)
+                    );
+                }
+
+                return (IAttackTarget)Verse.GenClosest.ClosestThing_Global(searcherPos, validTargets, maxDist);
             }
         }
 
