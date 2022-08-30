@@ -37,8 +37,13 @@ namespace CombatExtended
 		public override IEnumerable<Toil> MakeNewToils()
 		{
 			var Pawn = GetActor();
+			
+			var pawnSkill = Pawn.GetStatValue(StatDefOf.ShootingAccuracyPawn) * 0.5f;
+			
+			if(pawnSkill == 0)
+				pawnSkill = 0.25f;
 
-			int timeToSetUpTrue = Mathf.Clamp((int)(Bipod.Props.ticksToSetUp / ( Pawn.GetStatValue(StatDefOf.ShootingAccuracyPawn) * 0.5f)), 1, Bipod.Props.ticksToSetUp * 3);
+			int timeToSetUpTrue = Mathf.Clamp((int)(Bipod.Props.ticksToSetUp / ( pawnSkill )), 1, Bipod.Props.ticksToSetUp * 3);
 
 			var cells = Pawn.CellsAdjacent8WayAndInside();
 
