@@ -403,9 +403,9 @@ namespace CombatExtended
 
             if (stat == StatDefOf.ArmorRating_Sharp)
             {
-                if (pawn.TryGetComp<CompMechArmorDurability>() != null)
+                if (pawn.TryGetComp<CompArmorDurability>() != null)
                 {
-                    var component = pawn.TryGetComp<CompMechArmorDurability>().ERA?.Find(x => x.part == part.def || (part.depth == BodyPartDepth.Inside && (part.parent?.def ?? null) == x.part));
+                    var component = pawn.TryGetComp<CompArmorDurability>().ERA?.Find(x => x.part == part.def || (part.depth == BodyPartDepth.Inside && (part.parent?.def ?? null) == x.part));
 
 
 
