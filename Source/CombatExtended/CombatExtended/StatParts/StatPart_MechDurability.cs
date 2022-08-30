@@ -26,7 +26,7 @@ namespace CombatExtended
         public override void TransformValue(StatRequest req, ref float val)
         {
 
-            var comp = (req.Thing?.TryGetComp<CompMechArmorDurability>() ?? null);
+            var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
             if (comp != null)
             {
                 var mech = (Pawn)req.Thing;
@@ -37,7 +37,7 @@ namespace CombatExtended
 
         public override string ExplanationPart(StatRequest req)
         {
-            var comp = (req.Thing?.TryGetComp<CompMechArmorDurability>() ?? null);
+            var comp = (req.Thing?.TryGetComp<CompArmorDurability>() ?? null);
             if (comp != null)
             {
                 var mech = (Pawn)req.Thing;
