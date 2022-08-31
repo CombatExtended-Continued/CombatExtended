@@ -138,7 +138,7 @@ namespace CombatExtended
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-            curDurability -= (dinfo.Amount / this.parent?.GetStatValue(StatDefOf.IncomingDamageFactor) ?? 1f);
+            curDurability -= dinfo.Amount;
             if (curDurability < 0)
             {
                 curDurability = 0;
