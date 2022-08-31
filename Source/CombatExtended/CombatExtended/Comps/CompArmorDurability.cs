@@ -147,17 +147,21 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            if (durabilityProps.Repairable)
+            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count))
+            if(ingredientsA.Any())
             {
-                yield return new FloatMenuOption("Fix natural armor", delegate
+                if (durabilityProps.Repairable)
                 {
-                    selPawn.jobs.StartJob(new Job(
-                        CE_JobDefOf.RepairNaturalArmor,
-                        this.parent,
-                        Find.CurrentMap.listerThings.AllThings.Find(x => x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count)
-                        ), JobCondition.InterruptForced);
-                });
+                    yield return new FloatMenuOption("Fix natural armor", delegate
+                    {
+                        selPawn.jobs.StartJob(new Job(
+                            CE_JobDefOf.RepairNaturalArmor,
+                            this.parent,
+                            ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position)), JobCondition.InterruptForced);
+                    });
+                }
             }
+           
         }
     }
 
@@ -198,9 +202,9 @@ namespace CombatExtended
             bool canReachTargetC = TargetC.Thing == null;
 
             if (!canReachTargetC)
-                canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some);
-            return actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some)
-                && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some)
+                canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+            return actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
+                && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
                 && (canReachTargetC)
                 ;
         }
