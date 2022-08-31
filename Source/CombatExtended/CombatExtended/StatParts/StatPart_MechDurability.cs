@@ -42,7 +42,7 @@ namespace CombatExtended
             {
                 var mech = (Pawn)req.Thing;
 
-                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent();
+                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent() + "\n" + comp.curDurability.ToString() + "/" + comp.maxDurability.ToString();
             }
             return null;
         }
