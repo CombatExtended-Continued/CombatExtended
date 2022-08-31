@@ -12,7 +12,7 @@ using Verse.AI;
 namespace CombatExtended
 {
     /// The file has a few classes but they are all extremely closely related to splitting them to files would only hinder working on it.
-     
+
     public class ERAComponent : IExposable
     {
         public BodyPartDef part;
@@ -109,14 +109,14 @@ namespace CombatExtended
 
         public override void CompTick()
         {
-            if (regens)
+            if (durabilityProps.Regenerates)
             {
                 timer++;
 
                 if (timer == durabilityProps.RegenInterval)
                 {
                     if (curDurability < maxDurability)
-                        curDurability += Mathf.Min(durabilityProps.RegenValue, maxDurability - curDurability);
+                        curDurability += durabilityProps.RegenValue;
                 }
             }
             base.CompTick();
@@ -138,30 +138,38 @@ namespace CombatExtended
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-            curDurability -= dinfo.Amount;
             if (curDurability < 0)
             {
                 curDurability = 0;
+            }
+            else
+            {
+                curDurability -= dinfo.Amount;
             }
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count))
-            if(ingredientsA.Any())
+            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
+            if (ingredientsA.Any())
             {
                 if (durabilityProps.Repairable)
                 {
                     yield return new FloatMenuOption("Fix natural armor", delegate
                     {
-                        selPawn.jobs.StartJob(new Job(
+                        selPawn.jobs.StartJob(new Job
+                            (
                             CE_JobDefOf.RepairNaturalArmor,
                             this.parent,
-                            ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position)), JobCondition.InterruptForced);
+                            ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
+                            ),
+                            JobCondition.InterruptForced
+                            )
+                            ;
                     });
                 }
             }
-           
+
         }
     }
 
@@ -233,7 +241,7 @@ namespace CombatExtended
             var toilWait = Toils_General.Wait(natArmor.durabilityProps.RepairTime).WithProgressBarToilDelay(TargetIndex.A);
 
             toilWait.AddFinishAction(
-                delegate 
+                delegate
                 {
                     TargetBThing.Destroy();
                     if (TargetCThing != null)
@@ -251,7 +259,7 @@ namespace CombatExtended
                         {
                             natArmor.curDurability += natArmor.durabilityProps.RepairValue;
                         }
-                       
+
                     }
                     else
                     {
@@ -264,7 +272,7 @@ namespace CombatExtended
                             natArmor.curDurability += natArmor.durabilityProps.RepairValue;
                         }
                     }
-                       
+
                 });
 
             yield return toilWait;
