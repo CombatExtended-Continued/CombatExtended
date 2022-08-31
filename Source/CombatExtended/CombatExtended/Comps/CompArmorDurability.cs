@@ -94,8 +94,6 @@ namespace CombatExtended
 
     public class CompArmorDurability : ThingComp
     {
-        public List<ERAComponent> ERA => this.parent.def.GetModExtension<ERAModExt>().ERA;
-
         public MechArmorDurabilityExt durabilityProps => this.parent.def.GetModExtension<MechArmorDurabilityExt>();
 
         public float maxDurability => durabilityProps.Durability;
@@ -171,11 +169,6 @@ namespace CombatExtended
             }
 
         }
-    }
-
-    public class ERAModExt : DefModExtension
-    {
-        public List<ERAComponent> ERA;
     }
 
     public class MechArmorDurabilityExt : DefModExtension
