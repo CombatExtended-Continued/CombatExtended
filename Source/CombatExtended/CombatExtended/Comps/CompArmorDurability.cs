@@ -148,7 +148,7 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
+            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
             if (ingredientsA.Any())
             {
                 if (durabilityProps.Repairable)
