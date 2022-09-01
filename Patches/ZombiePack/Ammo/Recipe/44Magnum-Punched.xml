@@ -10,6 +10,88 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
+
+	<ThingCategoryDef>
+		<defName>Ammo44Magnum_Punched</defName>
+		<label>Punched .44 Magnum</label>
+		<parent>AmmoPistols_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_44Magnum_Punched</defName>
+		<label>Punched .44 Magnum</label>
+		<ammoTypes>
+			<Ammo_44Magnum_FMJ_Punched>Bullet_44Magnum_FMJ_Punched</Ammo_44Magnum_FMJ_Punched>
+			<Ammo_44Magnum_AP_Punched>Bullet_44Magnum_AP_Punched</Ammo_44Magnum_AP_Punched>
+			<Ammo_44Magnum_HP_Punched>Bullet_44Magnum_HP_Punched</Ammo_44Magnum_HP_Punched>
+		</ammoTypes>
+		<similarTo>AmmoSet_44Magnum</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="44MagnumPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Ancient pistol cartridge originally designed for revolvers.</description>
+		<statBases>
+			<Mass>0.023</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo44Magnum_Punched</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44MagnumPunched">
+		<defName>Ammo_44Magnum_FMJ_Punched</defName>
+		<label>.44 Magnum cartridge (FMJ) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_44Magnum_FMJ_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44MagnumPunched">
+		<defName>Ammo_44Magnum_AP_Punched</defName>
+		<label>.44 Magnum cartridge (AP) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_44Magnum_AP_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="44MagnumPunched">
+		<defName>Ammo_44Magnum_HP_Punched</defName>
+		<label>.44 Magnum cartridge (HP) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.2</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_44Magnum_HP_Punched</cookOffProjectile>
+	</ThingDef>
+
   <RecipeDef ParentName="AmmoRecipePunched">
 		<defName>MakeAmmo_44Magnum_FMJ_Punched</defName>
 		<label>make .44 Magnum (FMJ) cartridge (Punched) x500</label>

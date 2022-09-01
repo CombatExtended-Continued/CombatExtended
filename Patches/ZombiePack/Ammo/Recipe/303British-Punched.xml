@@ -10,6 +10,137 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs</xpath>
 					<value>
+
+	<ThingCategoryDef>
+		<defName>Ammo303British_Punched</defName>
+		<label>Punched .303 British</label>
+		<parent>AmmoRifles_Punched</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_303British_Punched</defName>
+		<label>Punched .303 British</label>
+		<ammoTypes>
+			<Ammo_303British_FMJ_Punched>Bullet_303British_FMJ_Punched</Ammo_303British_FMJ_Punched>
+			<Ammo_303British_AP_Punched>Bullet_303British_AP_Punched</Ammo_303British_AP_Punched>
+			<Ammo_303British_HP_Punched>Bullet_303British_HP_Punched</Ammo_303British_HP_Punched>
+		    <Ammo_303British_Incendiary_Punched>Bullet_303British_Incendiary_Punched</Ammo_303British_Incendiary_Punched>
+			<Ammo_303British_HE_Punched>Bullet_303British_HE_Punched</Ammo_303British_HE_Punched>
+			<Ammo_303British_Sabot_Punched>Bullet_303British_Sabot_Punched</Ammo_303British_Sabot_Punched>				
+		</ammoTypes>
+		<similarTo>AmmoSet_303British</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="303BritishPunched" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
+		<statBases>
+			<Mass>0.026</Mass>
+			<Bulk>0.03</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo303British_Punched</li>
+		</thingCategories>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_FMJ_Punched</defName>
+		<label>.303 British cartridge (FMJ) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/FMJ</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.24</MarketValue>
+		</statBases>
+		<ammoClass>FullMetalJacket</ammoClass>
+		<cookOffProjectile>Bullet_303British_FMJ_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_AP_Punched</defName>
+		<label>.303 British cartridge (AP) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/AP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.24</MarketValue>
+		</statBases>
+		<ammoClass>ArmorPiercing</ammoClass>
+		<cookOffProjectile>Bullet_303British_AP_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_HP_Punched</defName>
+		<label>.303 British cartridge (HP) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HP</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.24</MarketValue>
+		</statBases>
+		<ammoClass>HollowPoint</ammoClass>
+		<cookOffProjectile>Bullet_303British_HP_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_Incendiary_Punched</defName>
+		<label>.303 British cartridge (AP-I) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.30</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_303British_Incendiary_Punched</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_HE_Punched</defName>
+		<label>.303 British cartridge (HE) (Punched)</label>
+		<graphicData>
+			<texPath>Things/Ammo/Rifle/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>0.52</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_303British_HE_Punched</cookOffProjectile>
+	</ThingDef>
+	
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="303BritishPunched">
+		<defName>Ammo_303British_Sabot_Punched</defName>
+		<label>.303 British cartridge (Sabot) (Punched)</label>
+			<graphicData>
+			<texPath>Things/Ammo/Rifle/Sabot</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
+		</graphicData>
+			<statBases>
+			<MarketValue>0.28</MarketValue>
+			<Mass>0.022</Mass>
+		</statBases>
+		<ammoClass>Sabot</ammoClass>
+		<cookOffProjectile>Bullet_303British_Sabot_Punched</cookOffProjectile>
+	</ThingDef>
+
   <RecipeDef ParentName="AmmoRecipePunched">
 		<defName>MakeAmmo_303British_FMJ_Punched</defName>
 		<label>make .303 British (FMJ) cartridge (Punched) x500</label>
