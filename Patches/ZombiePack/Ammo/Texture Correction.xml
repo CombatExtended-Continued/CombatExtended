@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Call of Duty: Wonder Weapons</li>
+        <li>Call of Duty: Zombies Pack</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+	   <!--Wunderwaffes and Zapguns-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="WunderBullet" or @Name="BaseZapGun"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_ShockBolt</texPath>
+			</value>
+		</li>
+	   <!--Raygun, 3 & GKZ-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="BaseRaygunBullet"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Normal</texPath>
+			</value>
+		</li>
+	   <!--Elemental staffs and Winters-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="BaseElementalStaffBullet" or @Name="BaseWintersBullet"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_StaffProjectile</texPath>
+			</value>
+		</li>
+	   <!--Thunders and Tundras-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[@Name="ThunderBullet"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_ThunderShot</texPath>
+			</value>
+		</li>
+	   <!--Raygun Mark 2s-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_v"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Straight</texPath>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two" or defName="Bullet_Raygun_two_x"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Normal</texPath>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_y"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Trail</texPath>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_z"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Ringed</texPath>
+			</value>
+		</li>
+		
+		<!--Hells-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Hells_Retriever_Punched"]/graphicData</xpath>
+			<value>
+				<graphicData>
+					<texPath>Things/Projectile/CODZP_Hell_Retriever</texPath>
+					<graphicClass>Graphic_Random</graphicClass>
+				</graphicData>
+			</value>
+		</li>	
+      </operations>
+    </match>
+  </Operation>
+</Patch>

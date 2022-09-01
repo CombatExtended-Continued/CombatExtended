@@ -6,20 +6,56 @@
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-                                        defName="Bullet_Acidgat_Buck_Punched" or
-                                        defName="Bullet_Acidgat_Slug_Punched"]/projectile/damageDef</xpath>
-					<value>
-						<damageDef>CodZP_Toxic_Burn</damageDef>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Bullet_Winters_Cryo_Punched"]/projectile/damageDef</xpath>
-					<value>
-						<damageDef>CodZP_Frostbite</damageDef>
-					</value>
-				</li>
+	<!--Damage Correction-->
+      <!--Update to Toxic-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[
+            		                defName="Bullet_Acidgat_Buck_Punched" or
+            		                defName="Bullet_Acidgat_Slug_Punched"
+                            		]/projectile/damageDef</xpath>
+				<value>
+					<damageDef>CodZP_Toxic_Burn</damageDef>
+				</value>
+			</li>
+
+      <!--Update to Frostbite-->
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+                              defName="Bullet_Winters_Cryo_Punched" or 
+                              defName="Bullet_Tundra_Punched" or
+                              defName="Bullet_Elemental_Staff_Ice_Punched"
+                              ]/projectile/damageDef</xpath>
+				<value>
+					<damageDef>CodZP_Frostbite</damageDef>
+				</value>
+			</li>
+
+      <!--Update to Stun-->
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Thunder_Punched"]/projectile/damageDef</xpath>
+			<value>
+				<damageDef>CodZP_Stun_Bullet</damageDef>
+			</value>
+		</li>
+
+      <!--Update to Explosions-->
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[
+								defName="Bullet_Raygun_Punched" or
+								defName="Bullet_Wavegun_Punched"
+								]/comps/li/explosiveDamageType</xpath>
+			<value>
+				<explosiveDamageType>CodZP_RaygunRedBomb</explosiveDamageType>
+			</value>
+		</li>
+        <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_three_GKZ_Punched"]/comps/li/explosiveDamageType</xpath>
+			<value>
+				<explosiveDamageType>CodZP_RaygunYellowBomb</explosiveDamageType>
+			</value>
+		</li>
+	<!--Texture Correction-->
+	
 			</operations>
 		</match>
 	</Operation>

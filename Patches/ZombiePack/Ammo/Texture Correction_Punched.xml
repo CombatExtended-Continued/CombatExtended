@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>Call of Duty: Zombies Pack</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+	   <!--Raygun Mark 2s-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_v_Punched"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Straight</texPath>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_Punched" or defName="Bullet_Raygun_two_x_Punched"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Normal</texPath>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_y_Punched"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Trail</texPath>
+			</value>
+		</li>
+
+	   <li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Raygun_two_z_Punched"]/graphicData/texPath</xpath>
+			<value>
+				<texPath>Things/Projectile/CodZP_Bullet_Plasma_Ringed</texPath>
+			</value>
+		</li>
+		
+		<!--Hells-->
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="Bullet_Hells_Retriever_Punched"]/graphicData</xpath>
+			<value>
+				<graphicData>
+					<texPath>Things/Projectile/CODZP_Hell_Redeemer</texPath>
+					<graphicClass>Graphic_Random</graphicClass>
+				</graphicData>
+			</value>
+		</li>		
+      </operations>
+    </match>
+  </Operation>
+</Patch>
