@@ -14,7 +14,7 @@
 
   <ThingCategoryDef>
     <defName>AmmoAcidgat_Punched</defName>
-    <label>Acidgat</label>
+    <label>Vitriolic Withering</label>
     <parent>AmmoWonders_Punched</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
   </ThingCategoryDef>
@@ -23,7 +23,7 @@
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_Acidgat_Punched</defName>
-    <label>Acidgat</label>
+    <label>Vitriolic Withering Ammo Set</label>
     <ammoTypes>
       <Ammo_Acidgat_Buck_Punched>Bullet_Acidgat_Buck_Punched</Ammo_Acidgat_Buck_Punched>
       <Ammo_Acidgat_Slug_Punched>Bullet_Acidgat_Slug_Punched</Ammo_Acidgat_Slug_Punched>
@@ -34,7 +34,7 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="AcidgatPunched" ParentName="SmallAmmoBase" Abstract="True">
-    <description>A Modified Blundergat Ammunition to work only within the Acidgat weapon</description>
+    <description>A Modified Blundergat Ammunition to work only within the Vitriolic Withering weapon</description>
     <statBases>
       <Mass>0.023</Mass>
       <Bulk>0.06</Bulk>
@@ -50,7 +50,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AcidgatPunched">
     <defName>Ammo_Acidgat_Buck_Punched</defName>
-    <label>Punched Acidgat shell (Buck)</label>
+    <label>Vitriolic Withering shell (Buck)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Shot</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -65,7 +65,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AcidgatPunched">
     <defName>Ammo_Acidgat_Slug_Punched</defName>
-    <label>Punched Acidgat shell (Slug)</label>
+    <label>Vitriolic Withering shell (Slug)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Slug</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -81,33 +81,24 @@
 
   <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonderAmmo_Punched">
     <defName>MakeAmmo_Acidgat_Buck_Punched</defName>
-    <label>make Acidgat (Buck) shell  x200</label>
-    <description>Craft 200 Acidgat (Buck) shells .</description>
-    <jobString>Making Acidgat (Buck) shells.</jobString>
+    <label>make Vitriolic Withering (Buck) shell x20</label>
+    <description>Craft 20 Vitriolic Withering (Buck) shells .</description>
+    <jobString>Making Vitriolic Withering (Buck) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Acidgat_Buck</li>
           </thingDefs>
         </filter>
-        <count>20</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Uranium</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
-        <li>Uranium</li>
+        <li>Ammo_Acidgat_Buck</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -116,24 +107,24 @@
     <workAmount>1000</workAmount>
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonderAmmo_Punched">
     <defName>MakeAmmo_Acidgat_Slug_Punched</defName>
-    <label>make Acidgat (Slug) shell x20</label>
-    <description>Craft 20 Acidgat (Slug) shells .</description>
-    <jobString>Making Acidgat (Slug) shells.</jobString>
+    <label>make Vitriolic Withering (Slug) shell x20</label>
+    <description>Craft 20 Vitriolic Withering (Slug) shells .</description>
+    <jobString>Making Vitriolic Withering (Slug) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Ammo_Acidgat_Buck_Punched</li>
+            <li>Ammo_Acidgat_Slug</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Ammo_Acidgat_Buck_Punched</li>
+        <li>Ammo_Acidgat_Slug</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

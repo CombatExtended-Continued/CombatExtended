@@ -17,7 +17,6 @@
 		<defName>AmmoTundra</defName>
 		<label>Tundragun</label>
 		<parent>AmmoWonders</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -48,7 +47,7 @@
 		<label>Tundragun Cannister</label>
 		<description>A large compressed air cannister used for the Tundragun</description>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<texPath>ThirdParty/Cod Zombies Pack/Thunder</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -66,20 +65,29 @@
 	<RecipeDef ParentName="CODZP_AmmoRecipeAmmo">
 		<defName>MakeAmmo_Tundra</defName>
 		<label>make Tundragun Cannister x5</label>
-		<description>Craft 500 Tundragun Cannister.</description>
+		<description>Craft 5 Tundragun Cannister.</description>
 		<jobString>Making Tundragun Cannister.</jobString>
 		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Ammo_Thunder</li>
+					</thingDefs>
+				</filter>
+				<count>5</count>
+			</li>
 			<li>
 				<filter>
 					<thingDefs>
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>5</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
+				<li>Ammo_Thunder</li>
 				<li>Steel</li>
 			</thingDefs>
 		</fixedIngredientFilter>

@@ -14,7 +14,7 @@
 
   <ThingCategoryDef>
     <defName>AmmoBlundergat_Punched</defName>
-    <label>Blundergat</label>
+    <label>Sweeper</label>
     <parent>AmmoWonders_Punched</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
   </ThingCategoryDef>
@@ -23,7 +23,7 @@
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_Blundergat_Punched</defName>
-    <label>Blundergat</label>
+    <label>Sweeper Ammo Set</label>
     <ammoTypes>
       <Ammo_Blundergat_Buck_Punched>Bullet_Blundergat_Buck_Punched</Ammo_Blundergat_Buck_Punched>
       <Ammo_Blundergat_Slug_Punched>Bullet_Blundergat_Slug_Punched</Ammo_Blundergat_Slug_Punched>
@@ -49,7 +49,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BlundergatPunched">
     <defName>Ammo_Blundergat_Buck_Punched</defName>
-    <label>12 gauge shell (Buck)</label>
+    <label>Sweeper shell (Buck)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Shot</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -63,7 +63,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BlundergatPunched">
     <defName>Ammo_Blundergat_Slug_Punched</defName>
-    <label>12 gauge shell (Slug)</label>
+    <label>Sweeper shell (Slug)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Slug</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -78,33 +78,24 @@
 
   <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonder_Punched">
     <defName>MakeAmmo_Blundergat_Buck_Punched</defName>
-    <label>make Blundergat (Buck) shell x20</label>
-    <description>Craft 20 Blundergat (Buck) shells .</description>
-    <jobString>Making Blundergat (Buck) shells.</jobString>
+    <label>make Sweeper (Buck) shell x20</label>
+    <description>Craft 20 Sweeper (Buck) shells .</description>
+    <jobString>Making Sweeper (Buck) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Blundergat_Buck</li>
           </thingDefs>
         </filter>
-        <count>20</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
+        <li>Ammo_Blundergat_Buck</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -113,24 +104,24 @@
     <workAmount>1000</workAmount>
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonder_Punched">
     <defName>MakeAmmo_Blundergat_Slug_Punched</defName>
-    <label>make Blundergat (Slug) shell x20</label>
-    <description>Craft 20 Blundergat (Slug) shells .</description>
-    <jobString>Making Blundergat (Slug) shells.</jobString>
+    <label>make Sweeper (Slug) shell x20</label>
+    <description>Craft 20 Sweeper (Slug) shells .</description>
+    <jobString>Making Sweeper (Slug) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Blundergat_Slug</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
+        <li>Ammo_Blundergat_Slug</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

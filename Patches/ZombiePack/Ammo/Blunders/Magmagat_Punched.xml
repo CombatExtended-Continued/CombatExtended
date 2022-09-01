@@ -14,7 +14,7 @@
 
   <ThingCategoryDef>
     <defName>AmmoMagmagat_Punched</defName>
-    <label>Magmagat</label>
+    <label>Magmus Operandi</label>
     <parent>AmmoWonders_Punched</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
   </ThingCategoryDef>
@@ -23,7 +23,7 @@
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_Magmagat_Punched</defName>
-    <label>Magmagat</label>
+    <label>Magmus Operandi Ammo Set</label>
     <ammoTypes>
       <Ammo_Magmagat_Buck_Punched>Bullet_Magmagat_Buck_Punched</Ammo_Magmagat_Buck_Punched>
       <Ammo_Magmagat_Slug_Punched>Bullet_Magmagat_Slug_Punched</Ammo_Magmagat_Slug_Punched>
@@ -50,7 +50,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
     <defName>Ammo_Magmagat_Buck_Punched</defName>
-    <label>Punched Magmagat shell (Buck)</label>
+    <label>Magmus Operandi shell (Buck)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Shot</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -65,7 +65,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
     <defName>Ammo_Magmagat_Slug_Punched</defName>
-    <label>Punched Magmagat shell (Slug)</label>
+    <label>Magmus Operandi shell (Slug)</label>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Slug</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -81,33 +81,24 @@
 
   <!-- ==================== Recipes ========================== -->
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonderAmmo_Punched">
     <defName>MakeAmmo_Magmagat_Buck_Punched</defName>
-    <label>make Magmagat (Buck) shell x20</label>
-    <description>Craft 20 Magmagat (Buck) shells .</description>
-    <jobString>Making Magmagat (Buck) shells.</jobString>
+    <label>make Magmus Operandi (Buck) shell x20</label>
+    <description>Craft 20 Magmus Operandi (Buck) shells .</description>
+    <jobString>Making Magmus Operandi (Buck) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Magmagat_Buck</li>
           </thingDefs>
         </filter>
-        <count>20</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
+        <li>Ammo_Magmagat_Buck</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
@@ -116,33 +107,24 @@
     <workAmount>1000</workAmount>
   </RecipeDef>
 
-  <RecipeDef ParentName="AmmoRecipePunched">
+  <RecipeDef ParentName="CODZP_AmmoRecipeWonderAmmo_Punched">
     <defName>MakeAmmo_Magmagat_Slug_Punched</defName>
-    <label>make Magmagat (Slug) shell x20</label>
-    <description>Craft 20 Magmagat (Slug) shells .</description>
-    <jobString>Making Magmagat (Slug) shells.</jobString>
+    <label>make Magmus Operandi (Slug) shell x20</label>
+    <description>Craft 20 Magmus Operandi (Slug) shells .</description>
+    <jobString>Making Magmus Operandi (Slug) shells.</jobString>
     <ingredients>
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Magmagat_Slug</li>
           </thingDefs>
         </filter>
-        <count>20</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
+        <count>80</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
-        <li>Prometheum</li>
+        <li>Ammo_Magmagat_Slug</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

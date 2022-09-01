@@ -7,20 +7,38 @@
     </mods>
     <match Class="PatchOperationSequence">
     <operations>
+      <!--Update to Toxic-->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
-                                        defName="Bullet_Acidgat_Buck" or
-                                        defName="Bullet_Acidgat_Slug"]/projectile/damageDef</xpath>
+                              defName="Bullet_Acidgat_Buck" or
+                              defName="Bullet_Acidgat_Slug"
+                              ]/projectile/damageDef</xpath>
 					<value>
 						<damageDef>CodZP_Toxic_Burn</damageDef>
 					</value>
 				</li>
-                <li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Bullet_Winters_Cryo"]/projectile/damageDef</xpath>
+      <!--Update to Frostbite-->
+        <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[
+                              defName="Bullet_Winters_Cryo" or 
+                              defName="Bullet_Tundra" or
+                              defName="Bullet_Elemental_Staff_Ice"
+                              ]/projectile/damageDef</xpath>
 					<value>
 						<damageDef>CodZP_Frostbite</damageDef>
 					</value>
 				</li>
+      <!--Update to Stun-->
+        <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Thunder"]/projectile/damageDef</xpath>
+					<value>
+						<damageDef>CodZP_Stun_Bullet</damageDef>
+					</value>
+				</li>
+      <!--Update to Green Explosion-->
+      <!--Update to Red Explosion-->
+      <!--Update to Yellow Explosion-->
+      <!--Update to Purple Explosion-->
     </operations>
     </match>
     </Operation>

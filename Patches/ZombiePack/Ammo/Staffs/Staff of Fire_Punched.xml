@@ -15,14 +15,12 @@
 		<defName>AmmoElementalStaff_Punched</defName>
 		<label>Elemental Staffs</label>
 		<parent>AmmoWonders_Punched</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>AmmoElementalStaff_Fire_Punched</defName>
 		<label>Fire Staff</label>
 		<parent>AmmoElementalStaff_Punched</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
@@ -37,7 +35,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="ElementalStaffPunched" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="ElementalStaffPunched" ParentName="SpacerSmallAmmoBase" Abstract="True">
 		<description>A Blue Gem</description>
 		<statBases>
 			<Mass>0.2</Mass>
@@ -52,8 +50,9 @@
 		<defName>Ammo_Elemental_Staff_Fire_Punched</defName>
 		<label>Empowered Elemental Fire Crystal</label>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<texPath>ThirdParty/Cod Zombies Pack/Crystal_Fire</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
+			<color>(255,200,200)</color>
 		</graphicData>
 		<statBases>
 			<MarketValue>0.09</MarketValue>
@@ -67,7 +66,7 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipePunched">
+	<RecipeDef ParentName="CODZP_AmmoRecipeWonder_Punched">
 		<defName>MakeAmmo_Elemental_Staff_Fire_Punched</defName>
 		<label>make Empowered Elemental Fire Crystal x5</label>
 		<description>Craft 5 Empowered Elemental Fire Crystals.</description>

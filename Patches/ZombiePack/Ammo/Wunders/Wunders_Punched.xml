@@ -13,16 +13,15 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoWunder_Punched</defName>
-		<label>Wunder</label>
+		<label>Wunderwaffe DG-3 JZ</label>
 		<parent>AmmoWonders_Punched</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_Wunder_Punched</defName>
-		<label>Wunder</label>
+		<label>Wunderwaffe DG-3 JZ Ammo Set</label>
 		<ammoTypes>
 			<Ammo_Wunder_Punched>Bullet_Wunder_Punched</Ammo_Wunder_Punched>
 		</ammoTypes>
@@ -42,10 +41,10 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="WunderPunched">
 		<defName>Ammo_Wunder_Punched</defName>
-		<label>Wunder Bulbs</label>
+		<label>Wunderwaffe DG-3 JZ Bulbs</label>
 		<description>A large compressed air Bulbs used for the Wundergun</description>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<texPath>ThirdParty/Cod Zombies Pack/Wunder</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -60,28 +59,28 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipePunched">
+	<RecipeDef ParentName="CODZP_AmmoRecipeWonder_Punched">
 		<defName>MakeAmmo_Wunder_Punched</defName>
-		<label>make Wunder Bulbs x5</label>
-		<description>Craft 500 Wunder Bulbs.</description>
-		<jobString>Making Wunder Bulbs.</jobString>
+		<label>make Wunderwaffe DG-3 JZ Bulbs x20</label>
+		<description>Craft 20 Wunderwaffe DG-3 JZ Bulbs.</description>
+		<jobString>Making Wunderwaffe DG-3 JZ Bulbs.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Wunder</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>80</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Wunder</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_Wunder_Punched>5</Ammo_Wunder_Punched>
+			<Ammo_Wunder_Punched>20</Ammo_Wunder_Punched>
 		</products>
 		<workAmount>2200</workAmount>
 	</RecipeDef>

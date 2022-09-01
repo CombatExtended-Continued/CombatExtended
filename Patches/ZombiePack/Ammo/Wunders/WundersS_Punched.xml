@@ -13,16 +13,15 @@
 
 	<ThingCategoryDef>
 		<defName>AmmoWunder_s_Punched</defName>
-		<label>DG-Scharfschutze</label>
+		<label>DG-Funkenschutze</label>
 		<parent>AmmoWonders_Punched</parent>
-		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
 	</ThingCategoryDef>
 
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_Wunder_s_Punched</defName>
-		<label>Punched DG-Scharfschutze</label>
+		<label>DG-Funkenschutze Ammo Set</label>
 		<ammoTypes>
 			<Ammo_Wunder_s_Punched>Bullet_Wunder_s_Punched</Ammo_Wunder_s_Punched>
 		</ammoTypes>
@@ -42,10 +41,10 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Wunder_sPunched">
 		<defName>Ammo_Wunder_s_Punched</defName>
-		<label>Punched DG-Scharfschutze Bulbs</label>
-		<description>A large compressed air Bulbs used for the Wunder_sgun</description>
+		<label>DG-Funkenschutze Bulbs</label>
+		<description>Bulbs used for the Funkenschutze</description>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<texPath>ThirdParty/Cod Zombies Pack/Wunder</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
@@ -60,24 +59,24 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipePunched">
+	<RecipeDef ParentName="CODZP_AmmoRecipeWonderAmmo_Punched">
 		<defName>MakeAmmo_Wunder_s_Punched</defName>
-		<label>make Punched DG-Scharfschutze Bulbs x5</label>
-		<description>Craft 500 Punched DG-Scharfschutze Bulbs.</description>
-		<jobString>Making Punched DG-Scharfschutze Bulbs.</jobString>
+		<label>make DG-Scharfschutze Bulbs x5</label>
+		<description>Craft 5 DG-Funkenschutze Bulbs.</description>
+		<jobString>Making DG-Funkenschutze Bulbs.</jobString>
 		<ingredients>
 			<li>
 				<filter>
 					<thingDefs>
-						<li>Steel</li>
+						<li>Ammo_Wunder_s</li>
 					</thingDefs>
 				</filter>
-				<count>22</count>
+				<count>20</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
 			<thingDefs>
-				<li>Steel</li>
+				<li>Ammo_Wunder_s</li>
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
