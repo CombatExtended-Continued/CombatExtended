@@ -148,26 +148,67 @@ namespace CombatExtended
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
-            if (ingredientsA.Any())
+            if (durabilityProps.Repairable)
             {
-                if (durabilityProps.Repairable)
+                var ingredientsA = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.First().thingDef && x.stackCount >= durabilityProps.RepairIngredients.First().count);
+                var ingredientsB = new List<Thing>();
+                bool ingredientsBBool = false;
+
+                //The system supports only 2 ingredients at max
+                if (durabilityProps.RepairIngredients.Count > 1)
                 {
-                    yield return new FloatMenuOption("Fix natural armor", delegate
+                    ingredientsB = Find.CurrentMap.listerThings.AllThings.FindAll(x => !x.IsForbidden(selPawn) && x.def == durabilityProps.RepairIngredients.Last().thingDef && x.stackCount >= durabilityProps.RepairIngredients.Last().count);
+                    ingredientsBBool = ingredientsB.Any();
+                }
+
+
+                if (!ingredientsA.NullOrEmpty() && curDurability < maxDurability + durabilityProps.MaxOverHeal)
+                {
+                    if (ingredientsBBool)
                     {
-                        selPawn.jobs.StartJob(new Job
-                            (
-                            CE_JobDefOf.RepairNaturalArmor,
-                            this.parent,
-                            ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
-                            ),
-                            JobCondition.InterruptForced
-                            )
-                            ;
-                    });
+                        yield return new FloatMenuOption("Fix natural armor", delegate
+                        {
+                            selPawn.jobs.StartJob(new Job
+                                (
+                                CE_JobDefOf.RepairNaturalArmor,
+                                this.parent,
+                                ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
+                                )
+                                {
+                                targetC = ingredientsB.MinBy(x => x.Position.DistanceTo(selPawn.Position)
+                                )}
+                                ,
+                                JobCondition.InterruptForced
+                                )
+                                ;
+                        });
+
+                    }
+                    else
+                    {
+                        yield return new FloatMenuOption("Fix natural armor", delegate
+                        {
+                            selPawn.jobs.StartJob(new Job
+                                (
+                                CE_JobDefOf.RepairNaturalArmor,
+                                this.parent,
+                                ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
+                                ),
+                                JobCondition.InterruptForced
+                                )
+                                ;
+                        });
+                    }
+                }
+                else if (this.curDurability >= maxDurability + durabilityProps.MaxOverHeal)
+                {
+                    yield return new FloatMenuOption("Can't repair natural armor, armor is undamaged", null);
+                }
+                else
+                {
+                    yield return new FloatMenuOption("Can't repair natural armor, no resources", null);
                 }
             }
-
         }
     }
 
@@ -204,8 +245,10 @@ namespace CombatExtended
 
             if (!canReachTargetC)
                 canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
-            return actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
-                && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
+
+            bool canReachTargetsAB = actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
+                && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+            return canReachTargetsAB
                 && (canReachTargetC)
                 ;
         }
@@ -214,32 +257,76 @@ namespace CombatExtended
         {
             var natArmor = (TargetA.Thing as ThingWithComps).TryGetComp<CompArmorDurability>();
 
-            var TargetBThing = TargetB.Thing;
+            pawn.Reserve(TargetB, this.job, 1, 1);
 
-            var TargetCThing = TargetC.Thing;
+            pawn.Reserve(TargetC, this.job, 1 , 1);
 
-            yield return Toils_Goto.GotoCell(TargetB.Cell, PathEndMode.ClosestTouch);
-
-            yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.First().count);
-
-            if (TargetCThing != null)
+            var TargetThingC = TargetC.Thing;
+            yield return Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch);
+            yield return Toils_General.Do(
+            delegate
             {
-                yield return Toils_Goto.GotoCell(TargetB.Cell, PathEndMode.ClosestTouch);
+                //left in code for explanation as to why it was replaced. This caused an error to apear every time it was called
+                //yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.First().count);
+                int ingrCount = natArmor.durabilityProps.RepairIngredients.First().count;
+                if (ingrCount < TargetThingB.stackCount)
+                {
+                    TargetThingB.stackCount -= ingrCount;
+                }
+                else if (ingrCount == TargetThingB.stackCount)
+                {
+                    TargetThingB.Destroy();
+                }
+                else
+                {
+                    Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
+                }
+                var newthing = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.First().thingDef);
+                newthing.stackCount = ingrCount;
+                pawn.inventory.TryAddItemNotForSale(newthing);
 
-                yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.Last().count);
+            });
+            if (TargetThingC != null)
+            {
+                yield return Toils_Goto.GotoCell(TargetC.Cell, PathEndMode.ClosestTouch);
+
+                yield return Toils_General.Do(
+                delegate
+                {
+                    //yield return Toils_Haul.TakeToInventory(TargetIndex.C, natArmor.durabilityProps.RepairIngredients.Last().count);
+                    int ingrCount2 = natArmor.durabilityProps.RepairIngredients.First().count;
+                    if (ingrCount2 < TargetThingC.stackCount)
+                    {
+                        TargetThingC.stackCount -= ingrCount2;
+                    }
+                    else if (ingrCount2 == TargetThingC.stackCount)
+                    {
+                        TargetThingC.Destroy();
+                    }
+                    else
+                    {
+                        Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
+                    }
+                    var newthing2 = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.First().thingDef);
+                    newthing2.stackCount = ingrCount2;
+                    pawn.inventory.TryAddItemNotForSale(newthing2);
+                });
             }
+            var toil = Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
 
-            yield return Toils_Goto.GotoThing(TargetIndex.A, TargetThingA.Position);
+            toil.AddPreInitAction(delegate { (TargetA.Thing as Pawn).jobs.StopAll(); });
 
-            var toilWait = Toils_General.Wait(natArmor.durabilityProps.RepairTime).WithProgressBarToilDelay(TargetIndex.A);
+            yield return toil;
+
+            var toilWait = Toils_General.Wait(natArmor.durabilityProps.RepairTime, TargetIndex.A).WithProgressBarToilDelay(TargetIndex.A);
 
             toilWait.AddFinishAction(
                 delegate
                 {
-                    TargetBThing.Destroy();
-                    if (TargetCThing != null)
+                    pawn.inventory.innerContainer.Where(x => x.def == TargetThingB.def).First().Destroy();
+                    if (TargetThingC != null)
                     {
-                        TargetCThing.Destroy();
+                        pawn.inventory.innerContainer.Where(x => x.def == TargetThingC.def).First().Destroy();
                     }
                     natArmor.curDurability += natArmor.durabilityProps.RepairValue;
                     if (natArmor.durabilityProps.CanOverHeal)
