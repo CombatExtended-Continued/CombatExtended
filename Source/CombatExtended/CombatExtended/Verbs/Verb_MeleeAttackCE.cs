@@ -79,6 +79,15 @@ namespace CombatExtended
 
         bool isCrit;
 
+        /// <summary>
+        /// Backing field for <see cref="CompMeleeTargettingGizmo"/>.
+        /// </summary>
+        private CompMeleeTargettingGizmo compMeleeTargettingGizmo;
+        /// <summary>
+        /// Whether <see cref="compMeleeTargettingGizmo"/> was initialized and is up to date for the current tick.
+        /// </summary>
+        private bool meleeTargettingInitialized;
+
         #endregion
 
         #region Methods
@@ -91,18 +100,36 @@ namespace CombatExtended
         public override bool IsUsableOn(Thing target)
         {            
             return Enabled && base.IsUsableOn(target);
-        }      
-        
-        public CompMeleeTargettingGizmo gizmoComp
+        }
+
+        /// <summary>
+        /// Obtain the melee targetting gizmo for the current caster, if applicable.
+        /// </summary>
+        public CompMeleeTargettingGizmo CompMeleeTargettingGizmo
         {
             get
             {
-                if (CasterIsPawn)
+                if (!meleeTargettingInitialized)
                 {
-                    return CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                    meleeTargettingInitialized = true;
+                    // Disable melee targeting in social fights to reduce the chance of a lethal outcome
+                    if (CasterIsPawn && CasterPawn.MentalStateDef != MentalStateDefOf.SocialFighting)
+                    {
+                        compMeleeTargettingGizmo = CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                    }
                 }
-                return null;
+
+                return compMeleeTargettingGizmo;
             }
+        }
+
+        /// <summary>
+        /// Clear out the cached <see cref="CompMeleeTargettingGizmo"/> for the caster.
+        /// </summary>
+        public override void WarmupComplete()
+        {
+            meleeTargettingInitialized = false;
+            base.WarmupComplete();
         }
 
         /// <summary>
@@ -260,9 +287,9 @@ namespace CombatExtended
         {
             var result = BodyPartHeight.Undefined;
 
-            if (gizmoComp != null && this.CurrentTarget.Thing is Pawn pawn)
+            if (CompMeleeTargettingGizmo != null && this.CurrentTarget.Thing is Pawn pawn)
             {
-                return gizmoComp.finalHeight(pawn);
+                return CompMeleeTargettingGizmo.finalHeight(pawn);
             }
 
             return result;
@@ -343,7 +370,7 @@ namespace CombatExtended
                     bodyRegion = BodyPartHeight.Middle;
                 }
                 //specific part hits
-                if (gizmoComp?.SkillReqBP ?? false && gizmoComp.targetBodyPart != null)
+                if (CompMeleeTargettingGizmo?.SkillReqBP ?? false && CompMeleeTargettingGizmo.targetBodyPart != null)
                 {
                     
                     // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level   
@@ -358,9 +385,9 @@ namespace CombatExtended
                         targetSkillDecrease = 0f;
                     }
 
-                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == gizmoComp.targetBodyPart).FirstOrFallback();
+                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == CompMeleeTargettingGizmo.targetBodyPart).FirstOrFallback();
 
-                    if (Rand.Chance(gizmoComp.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
+                    if (Rand.Chance(CompMeleeTargettingGizmo.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
                     {
                         damageInfo.SetHitPart(partToHit);
                     }
