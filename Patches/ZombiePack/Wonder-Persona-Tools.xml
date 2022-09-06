@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+    <mods><li>Call of Duty: Zombies Pack</li></mods> 
+    <match Class="PatchOperationSequence">
+    	<operations>
+		<li Class="PatchOperationFindMod">
+        <mods><li>Persona Bond Forge</li></mods> 
+        <match Class="PatchOperationSequence">
+            <operations>
+            <!--===== Must construct additional tools =====-->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[
+                                            defName="CodZP_Gun_RayGun-Persona" or
+                                            defName="CodZP_Gun_RayGunMkThree-Persona" or
+                                            defName="CODZP_Gun_Zapgun_Red-Persona" or
+                                            defName="CODZP_Gun_Zapgun_Blue-Persona" or
+                                            defName="CodZP_Gun_WintersHowl-Persona" or
+                                            defName="CodZP_Gun_GKZ-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>grip</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>2</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Blundergat-Persona" or
+                                            defName="CodZP_Gun_Acidgat-Persona" or
+                                            defName="CodZP_Gun_Magmagat-Persona" or
+                                            defName="CodZP_Gun_RayGunMkTwo-Persona" or
+                                            defName="CodZP_Gun_RayGunMkTwo-V-Persona" or
+                                            defName="CodZP_Gun_RayGunMkTwo-X-Persona" or
+                                            defName="CodZP_Gun_RayGunMkTwo-Y-Persona" or
+                                            defName="CodZP_Gun_RayGunMkTwo-Z-Persona" or
+                                            defName="CodZP_Gun_Wunderwaffe-Persona" or
+                                            defName="CodZP_Gun_Wunderwaffe_Scharf-Persona" or
+                                            defName="CodZP_Gun_Wavegun-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>stock</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Thundergun-Persona" or
+                                            defName="CodZP_Gun_Tundragun-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>12</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[
+                                            defName="CodZP_Gun_Staff-Ice-Persona" or
+                                            defName="CodZP_Gun_Staff-Wind-Persona" or
+                                            defName="CodZP_Gun_Staff-Fire-Persona" or
+                                            defName="CodZP_Gun_Staff-Lightning-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>Sekhmet's Vigor</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>1</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="CodZP_Hells_Retriever-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>Retriever's Cinder</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>60</power>
+                                <cooldownTime>9</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+            </operations>
+        </match>
+		</li>
+    	</operations>
+    </match>
+    </Operation>
+</Patch>

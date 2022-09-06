@@ -34,28 +34,28 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="MagmagatPunched" ParentName="SmallAmmoBase" Abstract="True">
-    <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
+    <description>Extremely flamable, burning everything in it's wake.</description>
     <statBases>
       <Mass>0.023</Mass>
       <Bulk>0.06</Bulk>
     </statBases>
+    <graphicData>
+      <texPath>ThirdParty/Cod Zombies Pack/Magmagat</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <color>(200,200,200)</color>
+    </graphicData>
     <tradeTags>
       <li>CE_AutoEnableCrafting</li>
     </tradeTags>
     <thingCategories>
       <li>AmmoMagmagat_Punched</li>
     </thingCategories>
-    <stackLimit>5000</stackLimit>
+    <stackLimit>150</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
     <defName>Ammo_Magmagat_Buck_Punched</defName>
     <label>Magmus Operandi shell (Buck)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Shot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <color>(255,200,200)</color>
-    </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
     </statBases>
@@ -66,11 +66,6 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="MagmagatPunched">
     <defName>Ammo_Magmagat_Slug_Punched</defName>
     <label>Magmus Operandi shell (Slug)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Slug</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <color>(255,200,200)</color>
-    </graphicData>
     <statBases>
       <Mass>0.048</Mass>
       <MarketValue>0.4</MarketValue>

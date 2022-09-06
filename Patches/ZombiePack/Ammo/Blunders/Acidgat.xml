@@ -35,28 +35,27 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="AcidgatBase" ParentName="SmallAmmoBase" Abstract="True">
-    <description>A Modified Blundergat Ammunition to work only within the Acidgat weapon</description>
+    <description>Wear protective goggles when using in battle.</description>
     <statBases>
       <Mass>0.023</Mass>
       <Bulk>0.06</Bulk>
     </statBases>
+    <graphicData>
+      <texPath>ThirdParty/Cod Zombies Pack/Acidgat</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
     <tradeTags>
       <li>CE_AutoEnableCrafting</li>
     </tradeTags>
     <thingCategories>
       <li>AmmoAcidgat</li>
     </thingCategories>
-    <stackLimit>5000</stackLimit>
+    <stackLimit>100</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AcidgatBase">
     <defName>Ammo_Acidgat_Buck</defName>
     <label>Acidgat shell (Buck)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Shot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <color>(200,255,200)</color>
-    </graphicData>
     <statBases>
       <MarketValue>0.2</MarketValue>
     </statBases>
@@ -67,11 +66,6 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="AcidgatBase">
     <defName>Ammo_Acidgat_Slug</defName>
     <label>Acidgat shell (Slug)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Slug</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-      <color>(200,255,200)</color>
-    </graphicData>
     <statBases>
       <Mass>0.048</Mass>
       <MarketValue>0.4</MarketValue>
@@ -91,7 +85,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Steel</li>
+            <li>Ammo_Blundergat_Buck</li>
           </thingDefs>
         </filter>
         <count>20</count>
@@ -102,12 +96,12 @@
             <li>Uranium</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>5</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Steel</li>
+        <li>Ammo_Blundergat_Buck</li>
         <li>Uranium</li>
       </thingDefs>
     </fixedIngredientFilter>
@@ -126,15 +120,24 @@
       <li>
         <filter>
           <thingDefs>
-            <li>Ammo_Acidgat_Buck</li>
+            <li>Ammo_Blundergat_Slug</li>
           </thingDefs>
         </filter>
         <count>20</count>
       </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>Ammo_Acidgat_Buck</li>
+        <li>Ammo_Blundergat_Slug</li>
+        <li>Uranium</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>

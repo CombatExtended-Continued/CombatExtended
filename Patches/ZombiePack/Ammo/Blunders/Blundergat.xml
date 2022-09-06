@@ -34,27 +34,27 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="BlundergatBase" ParentName="SmallAmmoBase" Abstract="True">
-    <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
+    <description>Not heavily different from a 12-Guage.</description>
     <statBases>
       <Mass>0.023</Mass>
       <Bulk>0.06</Bulk>
     </statBases>
+    <graphicData>
+      <texPath>ThirdParty/Cod Zombies Pack/Blundergat</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
     <tradeTags>
       <li>CE_AutoEnableCrafting</li>
     </tradeTags>
     <thingCategories>
       <li>AmmoBlundergat</li>
     </thingCategories>
-    <stackLimit>5000</stackLimit>
+    <stackLimit>100</stackLimit>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BlundergatBase">
     <defName>Ammo_Blundergat_Buck</defName>
-    <label>12 gauge shell (Buck)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Shot</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
+    <label>Blundergat shell (Buck)</label>
     <statBases>
       <MarketValue>0.2</MarketValue>
     </statBases>
@@ -64,11 +64,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="BlundergatBase">
     <defName>Ammo_Blundergat_Slug</defName>
-    <label>12 gauge shell (Slug)</label>
-    <graphicData>
-      <texPath>Things/Ammo/Shotgun/Slug</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
+    <label>Blundergat shell (Slug)</label>
     <statBases>
       <Mass>0.048</Mass>
       <MarketValue>0.4</MarketValue>
@@ -93,19 +89,10 @@
         </filter>
         <count>20</count>
       </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Prometheum</li>
-          </thingDefs>
-        </filter>
-        <count>3</count>
-      </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Prometheum</li>
       </thingDefs>
     </fixedIngredientFilter>
     <products>
