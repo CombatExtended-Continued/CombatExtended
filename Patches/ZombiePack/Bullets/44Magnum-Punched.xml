@@ -1,20 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Defs>
-
-	<!-- ================== Projectiles ================== -->
-
-	<ThingDef Name="Punched44MagnumBullet" ParentName="BaseBullet" Abstract="true">
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Small</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>TransparentPostLight</shaderType>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>90</speed>
-			<dropsCasings>true</dropsCasings>
-		</projectile>
-	</ThingDef>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Pack A Punch</li>
+      <li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
 
 	<ThingDef ParentName="Punched44MagnumBullet">
 		<defName>Bullet_44Magnum_FMJ_Punched</defName>
@@ -46,4 +41,9 @@
 		</projectile>
 	</ThingDef>
 
-</Defs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

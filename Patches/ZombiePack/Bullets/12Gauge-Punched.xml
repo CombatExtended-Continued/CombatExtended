@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Defs>
-
-  <!-- ================== Projectiles ================== -->
-
-  <ThingDef Name="Punched12GaugeBullet" ParentName="BaseBullet" Abstract="true">
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bullet</damageDef>
-      <speed>83</speed>
-      <dropsCasings>true</dropsCasings>
-      <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
-    </projectile>
-  </ThingDef>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Pack A Punch</li>
+      <li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
 
   <ThingDef ParentName="Punched12GaugeBullet">
     <defName>Bullet_12Gauge_Buck_Punched</defName>
@@ -63,4 +62,9 @@
     </projectile>
   </ThingDef>
 
-</Defs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

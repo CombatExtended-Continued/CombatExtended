@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Wonder Weapons</li>
+			<li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs</xpath>
+			<value>
+ 
+	<ThingDef ParentName="ThunderBullet">
+		<defName>Bullet_Thunder</defName>
+		<label>Air Projectile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>27</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>CodZP_Stun_Bullet</damageDef>
+			<speed>300</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="ThunderBullet">
+		<defName>Bullet_Tundra</defName>
+		<label>Chilled Air Projectile</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>27</armorPenetrationSharp>
+			<armorPenetrationBlunt>4.4</armorPenetrationBlunt>
+			<damageDef>CodZP_Frostbite</damageDef>
+			<speed>300</speed>
+		</projectile>
+	</ThingDef>
+
+			</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

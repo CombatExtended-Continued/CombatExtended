@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Defs>
-
-  <!-- ================== Projectiles ================== -->
-
-  <ThingDef Name="punched30x64mmFuelBullet" ParentName="BaseBullet" Abstract="true">
-    <graphicData>
-      <texPath>Things/Projectile/LauncherShot</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>TransparentPostLight</shaderType>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>46</speed>
-      <flyOverhead>false</flyOverhead>
-    </projectile>
-  </ThingDef>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Call of Duty: Pack A Punch</li>
+      <li>Call of Duty: Zombies Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
 
   <ThingDef ParentName="punched30x64mmFuelBullet">
     <defName>Bullet_30x64mmFuel_Incendiary_Punched</defName>
@@ -61,4 +57,9 @@
     </projectile>
   </ThingDef>
 
-</Defs>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
