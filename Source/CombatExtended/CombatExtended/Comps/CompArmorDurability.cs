@@ -294,7 +294,7 @@ namespace CombatExtended
                 delegate
                 {
                     //yield return Toils_Haul.TakeToInventory(TargetIndex.C, natArmor.durabilityProps.RepairIngredients.Last().count);
-                    int ingrCount2 = natArmor.durabilityProps.RepairIngredients.First().count;
+                    int ingrCount2 = natArmor.durabilityProps.RepairIngredients.Last().count;
                     if (ingrCount2 < TargetThingC.stackCount)
                     {
                         TargetThingC.stackCount -= ingrCount2;
