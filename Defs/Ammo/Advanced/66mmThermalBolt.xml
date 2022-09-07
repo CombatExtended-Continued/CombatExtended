@@ -14,7 +14,7 @@
     <defName>AmmoSet_66mmThermalBolt</defName>
     <label>66mm thermal bolts</label>
     <ammoTypes>
-      <Ammo_66mmMortar_HE-I>Bullet_66mmThermalBolt_HE-I</Ammo_66mmMortar_HE-I>     
+      <Ammo_66mmThermalBolt_HE-I>Bullet_66mmThermalBolt_HE-I</Ammo_66mmThermalBolt_HE-I>     
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -39,7 +39,7 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="66mmThermalBoltBase">
-    <defName>Ammo_66mmMortar_HE-I</defName>
+    <defName>Ammo_66mmThermalBolt_HE-I</defName>
     <label>66mm Thermal Bolt (HE-I)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/Incendiary</texPath>
@@ -49,15 +49,15 @@
       <MarketValue>13.32</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
-    <detonateProjectile>Bullet_66mmThermalBolt_HE-I</detonateProjectile>
+	<detonateProjectile>Bullet_66mmThermalBolt_HE-I</detonateProjectile>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>0</damageAmountBase>
 		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveRadius>2.9</explosiveRadius>
-		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-		<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
-		<explosionSound>MortarIncendiary_Explode</explosionSound>
+        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+        <preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+        <explosionSound>MortarIncendiary_Explode</explosionSound>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 	  </li>
     </comps>
@@ -77,7 +77,7 @@
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
       <dropsCasings>false</dropsCasings>
-      <gravityFactor>5</gravityFactor>
+	  <gravityFactor>5</gravityFactor>
     </projectile>
   </ThingDef>
 
