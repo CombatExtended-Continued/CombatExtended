@@ -109,13 +109,13 @@ namespace CombatExtended
         {
             if (durabilityProps.Regenerates)
             {
-                timer++;
-
                 if (timer == durabilityProps.RegenInterval)
                 {
                     if (curDurability < maxDurability)
                         curDurability += durabilityProps.RegenValue;
+                    timer = 0'
                 }
+                timer++;
             }
             base.CompTick();
         }
@@ -307,7 +307,7 @@ namespace CombatExtended
                     {
                         Log.Error("Ingredient stack count lower than needed. This shouldn't be possible to happen. Returning.");
                     }
-                    var newthing2 = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.First().thingDef);
+                    var newthing2 = ThingMaker.MakeThing(natArmor.durabilityProps.RepairIngredients.Last().thingDef);
                     newthing2.stackCount = ingrCount2;
                     pawn.inventory.TryAddItemNotForSale(newthing2);
                 });
