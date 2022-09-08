@@ -109,11 +109,11 @@ namespace CombatExtended
         {
             if (durabilityProps.Regenerates)
             {
-                if (timer == durabilityProps.RegenInterval)
+                if (timer >= durabilityProps.RegenInterval)
                 {
                     if (curDurability < maxDurability)
                         curDurability += durabilityProps.RegenValue;
-                    timer = 0'
+                    timer = 0;
                 }
                 timer++;
             }
@@ -314,7 +314,7 @@ namespace CombatExtended
             }
             var toil = Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
 
-            toil.AddPreInitAction(delegate { (TargetA.Thing as Pawn).jobs.StopAll(); });
+            //toil.AddPreInitAction(delegate { (TargetA.Thing as Pawn).jobs.StopAll(); });
 
             yield return toil;
 
