@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Alpha Animals</li>
+        </mods>
+
+			<match Class="PatchOperationFindMod">
+				<mods>
+					<li>Vanilla Psycasts Expanded</li>
+				</mods>
+
+					<match Class="PatchOperationSequence">
+						<operations>
+
+							<!-- ======= Ability Range Adjustment ======= -->
+
+							<!-- ===== Herald Path ===== -->
+							<li Class="PatchOperationReplace">
+							   <xpath>Defs/HediffDef[defName="AAVPE_StrengthenBlackHive"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+							   <value>
+								  <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+							   </value>
+							</li>
+
+							<li Class="PatchOperationReplace">
+							   <xpath>Defs/HediffDef[defName="AAVPE_StrengthenBlackHive"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+							   <value>
+								  <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+							   </value>
+							</li>
+
+							<!-- ===== Xenoseer Path ===== -->
+							<li Class="PatchOperationReplace">
+							   <xpath>Defs/HediffDef[defName="AAVPE_FungalSkin"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+							   <value>
+								  <ArmorRating_Blunt>3.75</ArmorRating_Blunt>
+							   </value>
+							</li>
+
+							<li Class="PatchOperationReplace">
+							   <xpath>Defs/HediffDef[defName="AAVPE_FungalSkin"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+							   <value>
+								  <ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+							   </value>
+							</li>
+
+						</operations>
+					</match>
+			</match>
+    </Operation>
+
+</Patch>
