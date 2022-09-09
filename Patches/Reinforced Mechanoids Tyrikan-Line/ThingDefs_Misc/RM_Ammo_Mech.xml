@@ -13,13 +13,13 @@
 
                         <!-- ===== Ammo Sets ===== -->
 
-						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_5x35mmHV</defName>
-							<label>5x35mm Hyper</label>
-							<ammoTypes>
-								<Ammo_5x35mmCharged>Bullet_5x35mmHV</Ammo_5x35mmCharged>
-							</ammoTypes>
-						</CombatExtended.AmmoSetDef>
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_5x35mmS</defName>
+                            <label>5x35mm Super</label>
+                            <ammoTypes>
+                                <Ammo_5x35mmCharged>Bullet_5x35mmS</Ammo_5x35mmCharged>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
 
                         <CombatExtended.AmmoSetDef>
                             <defName>AmmoSet_RM_CoilPistolGun</defName>
@@ -46,29 +46,29 @@
                         </CombatExtended.AmmoSetDef>
 
                         <!-- ===== High velocity 5x35mm Projectile ===== -->
-						<ThingDef ParentName="Base5x35mmChargedBullet">
-							<defName>Bullet_5x35mmHV</defName>
-							<label>5x35mm high-velocity bullet</label>
-							<graphicData>
-								<texPath>Things/Projectile/ChargeLanceShot</texPath>
-								<graphicClass>Graphic_Single</graphicClass>
-								<shaderType>TransparentPostLight</shaderType>
-								<drawSize>(3,3)</drawSize>
-							</graphicData>
-							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<damageDef>Bullet</damageDef>
-								<damageAmountBase>14</damageAmountBase>
-								<speed>280</speed>
-								<secondaryDamage>
-									<li>
-										<def>Bomb_Secondary</def>
-										<amount>2</amount>
-									</li>
-								</secondaryDamage>
-								<armorPenetrationSharp>36</armorPenetrationSharp>
-								<armorPenetrationBlunt>78.4</armorPenetrationBlunt>
-							</projectile>
-						</ThingDef>	
+                        <ThingDef ParentName="Base5x35mmChargedBullet">
+                            <defName>Bullet_5x35mmS</defName>
+                            <label>5x35mm Super bullet</label>
+                            <graphicData>
+                                <texPath>Things/Projectile/ChargeLanceShot</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                                <shaderType>TransparentPostLight</shaderType>
+                                <drawSize>(3,3)</drawSize>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageDef>Bullet</damageDef>
+                                <damageAmountBase>13</damageAmountBase>
+                                <speed>240</speed>
+                                <secondaryDamage>
+                                    <li>
+                                        <def>Bomb_Secondary</def>
+                                        <amount>2</amount>
+                                    </li>
+                                </secondaryDamage>
+                                <armorPenetrationSharp>33</armorPenetrationSharp>
+                                <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
+                            </projectile>
+                        </ThingDef>	
 
                         <!-- ===== Reinforced Tesla/Coil Projectiles ===== -->
                         <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletWhite">
