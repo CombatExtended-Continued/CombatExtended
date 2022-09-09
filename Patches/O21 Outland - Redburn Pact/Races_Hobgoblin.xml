@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Forgotten Realms</li>
+			<li>Outland - Redburn Pact</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-
+				<!-- Hobgoblin -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -16,54 +17,15 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationConditional">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/comps</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]</xpath>
-						<value>
-						<comps />
-						</value>
-					</nomatch>
-				</li>
-
-				<!-- Goblins are cowardly, cruel, and brutal. This extendeds to their larger breathern. -->
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
-					<value>
-						<li>
-							<defName>Beauty</defName>
-							<degree>-1</degree>
-							<chance>20</chance>
-						</li>
-						<li>
-							<defName>Greedy</defName>
-							<chance>10</chance>
-						</li>
-						<li>
-							<defName>Xenophobia</defName>
-							<degree>-1</degree>
-							<chance>10</chance>
-						</li>
-					</value>
-				</li>
-
-				<!-- The typical hobgoblin stands slightly taller than the average human. -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/race/baseBodySize</xpath>
-					<value>
-						<baseBodySize>1.15</baseBodySize>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/statBases/MoveSpeed</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]/statBases/MoveSpeed</xpath>
 					<value>
 						<MoveSpeed>4.3</MoveSpeed>
 					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/statBases</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.90</MeleeDodgeChance>
 						<MeleeCritChance>1.1</MeleeCritChance>
@@ -73,7 +35,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/tools</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -122,8 +84,18 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Hobgoblin"]/comps</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Hobgoblin"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -131,8 +103,8 @@
 						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

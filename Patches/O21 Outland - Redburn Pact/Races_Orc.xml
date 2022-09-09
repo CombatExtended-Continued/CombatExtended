@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Forgotten Realms</li>
+			<li>Outland - Redburn Pact</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
-
-				<!-- You just *know* there's a human bard somewhere out there that's responsible for this. -->
+				<!-- Orc -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
@@ -17,34 +17,22 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationConditional">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/comps</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]</xpath>
-						<value>
-						<comps />
-						</value>
-					</nomatch>
-				</li>
-
-				<!-- The average half-orc is both larger and taller than your average human. -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/race/baseBodySize</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/race/baseBodySize</xpath>
 					<value>
 						<baseBodySize>1.1</baseBodySize>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/statBases/MoveSpeed</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/statBases/MoveSpeed</xpath>
 					<value>
 						<MoveSpeed>4.35</MoveSpeed>
 					</value>
 				</li>
 
-				<!-- Half-orcs benefit from their hybrid parents, mixing human agility with orc strength. -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/statBases</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.95</MeleeDodgeChance>
 						<MeleeCritChance>1.05</MeleeCritChance>
@@ -56,7 +44,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/tools</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -105,8 +93,18 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/comps</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]</xpath>
+						<value>
+							<comps />
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_HalfOrc"]/comps</xpath>
+					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Outland_Orc"]/comps</xpath>
 					<value>
 						<li>
 							<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -114,8 +112,8 @@
 						<li Class="CombatExtended.CompProperties_Suppressable" />
 					</value>
 				</li>
-
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
