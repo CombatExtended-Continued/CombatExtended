@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">	
+		<mods>
+			<li>Astra Militarum Imperial Guard Core Mod v2.3</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Thudd Mortar Ammo -->			
+		<li Class="PatchOperationRemove">
+			<xpath>/Defs/ThingDef[defName="IG_Ammo_Thudd"]</xpath>
+		</li>
+
+		<!-- Resource Base -->		
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="IGResourceBase"]/statBases</xpath>
+			<value>			
+				<Bulk>0.03</Bulk>
+			</value>
+		</li>
+
+		<!-- Ceramite -->			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Ceramite"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>1.4</StuffPower_Armor_Sharp>
+			</value>			
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Ceramite"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>2.1</StuffPower_Armor_Blunt>
+			</value>			
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Ceramite"]/stuffProps/categories</xpath>
+			<value>
+				<li>Metallic_Weapon</li>
+				<li>Steeled</li>
+			</value>
+		</li>
+
+		<!-- Adamantium -->			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Adamantium"]/statBases/StuffPower_Armor_Sharp</xpath>
+			<value>
+				<StuffPower_Armor_Sharp>2.3</StuffPower_Armor_Sharp>
+			</value>			
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Adamantium"]/statBases/StuffPower_Armor_Blunt</xpath>
+			<value>
+				<StuffPower_Armor_Blunt>4</StuffPower_Armor_Blunt>
+			</value>			
+		</li>
+
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Adamantium"]/stuffProps/categories</xpath>
+			<value>
+				<li>Metallic_Weapon</li>
+				<li>Steeled</li>
+			</value>
+		</li>
+
+		<!-- Promethium -->			
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Promethium"]/statBases</xpath>
+			<value>
+				<Bulk>0.05</Bulk>
+			</value>			
+		</li>
+
+		<!-- Relabel CE Prometheum for clarity's sake. -->		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[defName="Prometheum"]/label</xpath>
+			<value>
+				<label>refined prometheum</label>
+			</value>			
+		</li>
+
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>

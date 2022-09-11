@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Astra Militarum Imperial Guard Core Mod v2.3</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- Rogue Trader -->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/TraderKindDef[defName="QXIGC_RogueTrader"]/stockGenerators</xpath>
+				<value>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>FSX</thingDef>
+						<countRange>
+							<min>10</min>
+							<max>50</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_SingleDef">
+						<thingDef>Prometheum</thingDef>
+						<countRange>
+							<min>10</min>
+							<max>50</max>
+						</countRange>
+					</li>
+					<li Class="StockGenerator_Tag">
+						<tradeTag>CE_PreIndustrialAmmo</tradeTag>
+						<countRange>
+							<min>60</min>
+							<max>300</max>
+						</countRange>
+						<price>Cheap</price>
+						<thingDefCountRange>
+							<min>1</min>
+							<max>4</max>
+						</thingDefCountRange>
+					</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

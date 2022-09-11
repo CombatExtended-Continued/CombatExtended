@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">	
+		<mods>
+			<li>Astra Militarum Imperial Guard Core Mod v2.3</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+		<operations>
+
+		<!-- Augmetic Hand -->			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_Aug_HAND"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/verbs</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>1.11</cooldownTime>
+						<armorPenetrationBlunt>1.688</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- Augmetic Arm -->			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_Aug_ARM"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>fist</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>9</power>
+						<cooldownTime>2.43</cooldownTime>
+						<armorPenetrationBlunt>3.00</armorPenetrationBlunt>
+					</li>
+				</tools>
+			</value>
+		</li>
+
+		<!-- SynthSkin Augmentation -->			
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_SSAA"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+			<value>
+				<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_SSAA"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+			<value>
+				<ArmorRating_Blunt>1</ArmorRating_Blunt>
+			</value>
+		</li>
+
+		<!-- Respiratory Augmetic -->			
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_RESPI"]/stages/li/statOffsets</xpath>
+			<value>
+				<SmokeSensitivity>-0.5</SmokeSensitivity>
+			</value>
+		</li>
+
+		<!-- Occulobe Augmentation -->			
+		<li Class="PatchOperationAdd">
+			<xpath>/Defs/HediffDef[defName="IG_HediffDef_OCCU"]/stages/li/statOffsets</xpath>
+			<value>
+				<NightVisionEfficiency_Implant>0.35</NightVisionEfficiency_Implant>
+			</value>
+		</li>
+
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
