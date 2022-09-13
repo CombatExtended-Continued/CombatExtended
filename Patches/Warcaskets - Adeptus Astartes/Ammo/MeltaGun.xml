@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Warcaskets: Adeptus Astartes</li>
+    </mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+		<!-- "Whatever happens, we have got The Emperor's blessing. They have not." -->
+
+        <!-- === Ammo Sets === -->
+        <CombatExtended.AmmoSetDef>
+          <defName>AmmoSet_MeltaCharge</defName>
+          <label>melta charge</label>
+          <ammoTypes>
+            <Ammo_Flamethrower_Prometheum>Bullet_Laser_MeltaCharge</Ammo_Flamethrower_Prometheum>
+          </ammoTypes>
+        </CombatExtended.AmmoSetDef>
+
+        <!-- === Projectiles === -->
+        <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+          <defName>Bullet_Laser_MeltaCharge</defName>
+          <label>melta beam</label>            
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>Bullet</damageDef>
+            <damageAmountBase>150</damageAmountBase>
+            <armorPenetrationSharp>500</armorPenetrationSharp>
+            <armorPenetrationBlunt>0.001</armorPenetrationBlunt> <!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
+          </projectile>      
+        </ThingDef>
+
+		</value>
+	</match>
+	</Operation>
+</Patch>
