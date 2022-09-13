@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Warcaskets: Adeptus Astartes</li>
+    </mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+		<ThingCategoryDef>
+			<defName>AmmoBolter75</defName>
+			<label>.75 Cal Bolter</label>
+			<parent>AmmoHighCaliber</parent>
+			<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+		</ThingCategoryDef>
+
+		<!-- ==================== AmmoSet ========================== -->
+
+		<CombatExtended.AmmoSetDef>
+			<defName>AmmoSet_Bolter75</defName>
+			<label>.75 Cal Bolter</label>
+			<ammoTypes>
+				<Ammo_Bolter75_AP>Bullet_Bolter75_AP-HE</Ammo_Bolter75_AP>		
+				<Ammo_Bolter75_Incendiary>Bullet_Bolter75_Incendiary</Ammo_Bolter75_Incendiary>
+				<Ammo_Bolter75_HE>Bullet_Bolter75_HE</Ammo_Bolter75_HE>
+				<Ammo_Bolter75_Sabot>Bullet_Bolter75_Sabot</Ammo_Bolter75_Sabot>
+			</ammoTypes>
+			<similarTo>AmmoSet_Autocannon</similarTo>
+		</CombatExtended.AmmoSetDef>
+
+		<!-- ==================== Ammo ========================== -->
+
+		<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBolter75Base" ParentName="SmallAmmoBase" Abstract="True">
+			<description>Large caliber cartridge used by autocannons.</description>
+			<statBases>
+				<Mass>0.151</Mass>
+				<Bulk>0.06</Bulk>
+			</statBases>
+			<tradeTags>
+				<li>CE_AutoEnableTrade</li>
+				<li>CE_AutoEnableCrafting</li>
+			</tradeTags>
+			<thingCategories>
+				<li>AmmoBolter75</li>
+			</thingCategories>
+			<stackLimit>5000</stackLimit>
+		</ThingDef>
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter75Base">
+			<defName>Ammo_Bolter75_AP</defName>
+			<label>.75 Cal Bolter cartridge (AP)</label>
+			<graphicData>
+				<texPath>Things/Ammo/HighCaliber/AP</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>1.04</MarketValue>
+			</statBases>
+			<ammoClass>ArmorPiercing</ammoClass>
+			<cookOffProjectile>Bullet_Bolter75_AP</cookOffProjectile>
+		</ThingDef>
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter75Base">
+			<defName>Ammo_Bolter75_Incendiary</defName>
+			<label>.75 Cal Bolter cartridge (AP-I)</label>
+			<graphicData>
+				<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>1.35</MarketValue>
+			</statBases>
+			<ammoClass>IncendiaryAP</ammoClass>
+			<cookOffProjectile>Bullet_Bolter75_Incendiary</cookOffProjectile>
+		</ThingDef>
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter75Base">
+			<defName>Ammo_Bolter75_HE</defName>
+			<label>.75 Cal Bolter cartridge (HE)</label>
+			<graphicData>
+				<texPath>Things/Ammo/HighCaliber/HE</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<MarketValue>2.02</MarketValue>
+			</statBases>
+			<ammoClass>ExplosiveAP</ammoClass>
+			<cookOffProjectile>Bullet_Bolter75_HE</cookOffProjectile>
+		</ThingDef>
+
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter75Base">
+			<defName>Ammo_Bolter75_Sabot</defName>
+			<label>.75 Cal Bolter cartridge (Sabot)</label>
+			<graphicData>
+				<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+				<graphicClass>Graphic_StackCount</graphicClass>
+			</graphicData>
+			<statBases>
+				<Mass>0.213</Mass>
+				<MarketValue>1.17</MarketValue>
+			</statBases>
+			<ammoClass>Sabot</ammoClass>
+			<cookOffProjectile>Bullet_Bolter75_Sabot</cookOffProjectile>
+		</ThingDef>
+
+		<!-- ================== Projectiles ================== -->
+
+		<ThingDef Name="BaseBolter75Bullet" ParentName="BaseBullet" Abstract="true">
+			<graphicData>
+				<texPath>Things/Projectile/Bullet_Big</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+			</graphicData>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<speed>80</speed>
+				<dropsCasings>true</dropsCasings>
+			</projectile>
+		</ThingDef>
+
+		<ThingDef ParentName="BaseBolter75Bullet">
+			<defName>Bullet_Bolter75_AP-HE</defName>
+			<label>.75 Cal Bolter bullet (AP-HE)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>37</damageAmountBase>
+				<armorPenetrationSharp>12</armorPenetrationSharp>
+				<armorPenetrationBlunt>2.931</armorPenetrationBlunt>
+				<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>22</amount>
+					</li>
+				</secondaryDamage>				
+			</projectile>
+		</ThingDef>
+
+
+		<!-- ==================== Recipes ========================== -->
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_Bolter75_AP</defName>
+			<label>make .75 Cal Bolter (AP) cartridge x200</label>
+			<description>Craft 200 .75 Cal Bolter (AP) cartridges.</description>
+			<jobString>Making .75 Cal Bolter (AP) cartridges.</jobString>
+			<ingredients>
+				<li>
+					<filter>
+						<thingDefs>
+							<li>Steel</li>
+						</thingDefs>
+					</filter>
+					<count>104</count>
+				</li>
+			</ingredients>
+			<fixedIngredientFilter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_Bolter75_AP>200</Ammo_Bolter75_AP>
+			</products>
+			<workAmount>10400</workAmount>
+		</RecipeDef>
+
+		</value>
+	</match>
+	</Operation>
+</Patch>
