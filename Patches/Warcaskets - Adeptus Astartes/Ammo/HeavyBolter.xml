@@ -9,8 +9,8 @@
 		<value>
 
 		<ThingCategoryDef>
-			<defName>Ammo20x102mmNATO</defName>
-			<label>20x102mm NATO</label>
+			<defName>AmmoBolter998</defName>
+			<label>.998 Cal Bolter</label>
 			<parent>AmmoHighCaliber</parent>
 			<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
 		</ThingCategoryDef>
@@ -18,299 +18,375 @@
 		<!-- ==================== AmmoSet ========================== -->
 
 		<CombatExtended.AmmoSetDef>
-			<defName>AmmoSet_20x102mmNATO</defName>
-			<label>20x102mm NATO</label>
+			<defName>AmmoSet_Bolter998</defName>
+			<label>.998 Cal Bolter</label>
 			<ammoTypes>
-				<Ammo_20x102mmNATO_AP>Bullet_20x102mmNATO_AP</Ammo_20x102mmNATO_AP>		
-				<Ammo_20x102mmNATO_Incendiary>Bullet_20x102mmNATO_Incendiary</Ammo_20x102mmNATO_Incendiary>
-				<Ammo_20x102mmNATO_HE>Bullet_20x102mmNATO_HE</Ammo_20x102mmNATO_HE>
-				<Ammo_20x102mmNATO_Sabot>Bullet_20x102mmNATO_Sabot</Ammo_20x102mmNATO_Sabot>
+				<Ammo_Bolter998_Standard>Bullet_Bolter998_Standard</Ammo_Bolter998_Standard>		
+				<Ammo_Bolter998_Inferno>Bullet_Bolter998_Inferno</Ammo_Bolter998_Inferno>
+				<Ammo_Bolter998_MetalStorm>Bullet_Bolter998_MetalStorm</Ammo_Bolter998_MetalStorm>		
+				<Ammo_Bolter998_Kraken>Bullet_Bolter998_Kraken</Ammo_Bolter998_Kraken>
 			</ammoTypes>
 			<similarTo>AmmoSet_Autocannon</similarTo>
 		</CombatExtended.AmmoSetDef>
 
 		<!-- ==================== Ammo ========================== -->
 
-		<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x102mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
-			<description>Large caliber cartridge used by autocannons.</description>
+		<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBolter998Base" ParentName="SmallAmmoBase" Abstract="True">
+			<description>A .998 caliber, gryojet-stabilized projectile with an explosive charge and hardened tip, fired from most patterns of Astartes heavy bolters.</description>
 			<statBases>
-				<Mass>0.254</Mass>
-				<Bulk>0.34</Bulk>
+				<Mass>0.385</Mass>
+				<Bulk>0.15</Bulk>
 			</statBases>
 			<tradeTags>
 				<li>CE_AutoEnableTrade</li>
 				<li>CE_AutoEnableCrafting</li>
 			</tradeTags>
 			<thingCategories>
-				<li>Ammo20x102mmNATO</li>
+				<li>AmmoBolter998</li>
 			</thingCategories>
-			<stackLimit>1000</stackLimit>
+			<stackLimit>2000</stackLimit>
 		</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-			<defName>Ammo_20x102mmNATO_AP</defName>
-			<label>20x102mm NATO cartridge (AP)</label>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+			<defName>Ammo_Bolter998_Standard</defName>
+			<label>.998 cal bolter shell (Standard)</label>
 			<graphicData>
-				<texPath>Things/Ammo/HighCaliber/AP</texPath>
+				<texPath>ThirdParty/Warhammer/HeavyBolter/Standard</texPath>
 				<graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
-				<MarketValue>1.04</MarketValue>
+				<MarketValue>4.44</MarketValue>
 			</statBases>
-			<ammoClass>ArmorPiercing</ammoClass>
-			<cookOffProjectile>Bullet_20x102mmNATO_AP</cookOffProjectile>
+			<ammoClass>Standard</ammoClass>
+			<cookOffProjectile>Bullet_Bolter998_Standard</cookOffProjectile>
 		</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-			<defName>Ammo_20x102mmNATO_Incendiary</defName>
-			<label>20x102mm NATO cartridge (AP-I)</label>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+			<defName>Ammo_Bolter998_Inferno</defName>
+			<label>.998 cal bolter shell (Inferno)</label>
 			<graphicData>
-				<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+				<texPath>ThirdParty/Warhammer/HeavyBolter/Inferno</texPath>
 				<graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
-				<MarketValue>1.35</MarketValue>
+				<MarketValue>2.28</MarketValue>
 			</statBases>
-			<ammoClass>IncendiaryAP</ammoClass>
-			<cookOffProjectile>Bullet_20x102mmNATO_Incendiary</cookOffProjectile>
+			<ammoClass>Inferno</ammoClass>
+			<cookOffProjectile>Bullet_Bolter998_Inferno</cookOffProjectile>
 		</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-			<defName>Ammo_20x102mmNATO_HE</defName>
-			<label>20x102mm NATO cartridge (HE)</label>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+			<defName>Ammo_Bolter998_MetalStorm</defName>
+			<label>.998 cal bolter shell (Metal Storm)</label>
 			<graphicData>
-				<texPath>Things/Ammo/HighCaliber/HE</texPath>
+				<texPath>ThirdParty/Warhammer/HeavyBolter/MetalStorm</texPath>
 				<graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
-				<MarketValue>2.02</MarketValue>
+				<MarketValue>2.70</MarketValue>
 			</statBases>
-			<ammoClass>ExplosiveAP</ammoClass>
-			<cookOffProjectile>Bullet_20x102mmNATO_HE</cookOffProjectile>
+			<ammoClass>MetalStorm</ammoClass>
+			<cookOffProjectile>Bullet_Bolter998_MetalStorm</cookOffProjectile>
 		</ThingDef>
 
-		<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-			<defName>Ammo_20x102mmNATO_Sabot</defName>
-			<label>20x102mm NATO cartridge (Sabot)</label>
+		<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBolter998Base">
+			<defName>Ammo_Bolter998_Kraken</defName>
+			<label>.998 cal bolter shell (Kraken)</label>
 			<graphicData>
-				<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+				<texPath>ThirdParty/Warhammer/HeavyBolter/Kraken</texPath>
 				<graphicClass>Graphic_StackCount</graphicClass>
 			</graphicData>
 			<statBases>
-				<Mass>0.213</Mass>
-				<MarketValue>1.17</MarketValue>
+				<MarketValue>2.37</MarketValue>
 			</statBases>
-			<ammoClass>Sabot</ammoClass>
-			<cookOffProjectile>Bullet_20x102mmNATO_Sabot</cookOffProjectile>
+			<ammoClass>Kraken</ammoClass>
+			<cookOffProjectile>Bullet_Bolter998_Kraken</cookOffProjectile>
 		</ThingDef>
 
 		<!-- ================== Projectiles ================== -->
 
-		<ThingDef Name="Base20x102mmNATOBullet" ParentName="BaseBullet" Abstract="true">
+		<ThingDef Name="BaseBolter998Bullet" ParentName="BaseBullet" Abstract="true">
 			<graphicData>
 				<texPath>Things/Projectile/Bullet_Big</texPath>
 				<graphicClass>Graphic_Single</graphicClass>
 			</graphicData>
+			<thingClass>CombatExtended.BulletCE</thingClass>			
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>Bullet</damageDef>
-				<speed>206</speed>
+				<speed>96</speed>
 				<dropsCasings>true</dropsCasings>
+				<casingMoteDefname>Mote_HeavyBolterCasing</casingMoteDefname>
 			</projectile>
 		</ThingDef>
 
-		<ThingDef ParentName="Base20x102mmNATOBullet">
-			<defName>Bullet_20x102mmNATO_AP</defName>
-			<label>20x102mm NATO bullet (AP)</label>
+		<ThingDef ParentName="BaseBolter998Bullet">
+			<defName>Bullet_Bolter998_Standard</defName>
+			<label>.998 cal bolt (Standard)</label>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageAmountBase>44</damageAmountBase>
-				<armorPenetrationSharp>30</armorPenetrationSharp>
-				<armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef ParentName="Base20x102mmNATOBullet">
-			<defName>Bullet_20x102mmNATO_Incendiary</defName>
-			<label>20x102mm NATO bullet (AP-I)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageAmountBase>44</damageAmountBase>
-				<armorPenetrationSharp>30</armorPenetrationSharp>
-				<armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
-				<secondaryDamage>
-					<li>
-						<def>Flame_Secondary</def>
-						<amount>27</amount>
-					</li>
-				</secondaryDamage>
-			</projectile>
-		</ThingDef>
-
-		<ThingDef ParentName="Base20x102mmNATOBullet">
-			<defName>Bullet_20x102mmNATO_HE</defName>
-			<label>20x102mm NATO bullet (HE)</label>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageAmountBase>70</damageAmountBase>
-				<armorPenetrationSharp>15</armorPenetrationSharp>
-				<armorPenetrationBlunt>1029.080</armorPenetrationBlunt>
+				<damageAmountBase>64</damageAmountBase>
+				<armorPenetrationSharp>20</armorPenetrationSharp>
+				<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
 				<secondaryDamage>
 					<li>
 						<def>Bomb_Secondary</def>
-						<amount>42</amount>
+						<amount>38</amount>
 					</li>
-				</secondaryDamage>
+				</secondaryDamage>				
 			</projectile>
 		</ThingDef>
 
-		<ThingDef ParentName="Base20x102mmNATOBullet">
-			<defName>Bullet_20x102mmNATO_Sabot</defName>
-			<label>20x102mm NATO bullet (Sabot)</label>
+		<ThingDef ParentName="BaseBolter998Bullet">
+			<defName>Bullet_Bolter998_Inferno</defName>
+			<label>.998 cal bolt (Inferno)</label>
+			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageAmountBase>37</damageAmountBase>
-				<armorPenetrationSharp>53</armorPenetrationSharp>
-				<armorPenetrationBlunt>1320.02</armorPenetrationBlunt>
-				<speed>309</speed>
+				<damageDef>PrometheumFlame</damageDef>
+				<damageAmountBase>0</damageAmountBase>
+				<armorPenetrationSharp>0</armorPenetrationSharp>
+				<armorPenetrationBlunt>0</armorPenetrationBlunt>
+				<explosionRadius>1.5</explosionRadius>
+				<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.7</preExplosionSpawnChance>
+				<soundExplode>MortarIncendiary_Explode</soundExplode>
 			</projectile>
+			<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>7</damageAmountBase>
+				<explosiveDamageType>Thermobaric</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarIncendiary_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			</comps>
+		</ThingDef>
+
+		<ThingDef ParentName="BaseBolter998Bullet">
+			<defName>Bullet_Bolter998_MetalStorm</defName>
+			<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+			<label>.998 cal bolt (Metal Storm)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<explosionRadius>1</explosionRadius >
+				<damageDef>Bomb</damageDef>
+				<damageAmountBase>17</damageAmountBase>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+				<aimHeightOffset>1.05</aimHeightOffset>
+				<armingDelay>1.75</armingDelay>
+			</projectile>
+			<comps>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>6</Fragment_Small>
+				</fragments>
+				<fragAngleRange>-89~-5</fragAngleRange>
+			</li>
+			</comps>
+		</ThingDef>
+
+		<ThingDef ParentName="BaseBolter998Bullet">
+			<defName>Bullet_Bolter998_Kraken</defName>
+			<label>.998 cal bolt (Kraken)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageDef>Bullet</damageDef>
+				<damageAmountBase>142</damageAmountBase>
+				<armorPenetrationSharp>46</armorPenetrationSharp>
+				<armorPenetrationBlunt>5.101</armorPenetrationBlunt>
+			</projectile>
+			<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>17</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+			</comps>
 		</ThingDef>
 
 		<!-- ==================== Recipes ========================== -->
 
 		<RecipeDef ParentName="AmmoRecipeBase">
-			<defName>MakeAmmo_20x102mmNATO_AP</defName>
-			<label>make 20x102mm NATO (AP) cartridge x200</label>
-			<description>Craft 200 20x102mm NATO (AP) cartridges.</description>
-			<jobString>Making 20x102mm NATO (AP) cartridges.</jobString>
+			<defName>MakeAmmo_Bolter998_Standard</defName>
+			<label>make .998 Cal Bolter (standard) shell x200</label>
+			<description>Craft 200 .998 Cal Bolter (standard) shells.</description>
+			<jobString>Making .998 Cal Bolter (standard) shells.</jobString>
 			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>104</count>
-				</li>
-			</ingredients>
-			<fixedIngredientFilter>
+			<li>
+				<filter>
 				<thingDefs>
 					<li>Steel</li>
 				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_20x102mmNATO_AP>200</Ammo_20x102mmNATO_AP>
-			</products>
-			<workAmount>10400</workAmount>
-		</RecipeDef>
-
-		<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-			<defName>MakeAmmo_20x102mmNATO_Incendiary</defName>
-			<label>make 20x102mm NATO (AP-I) cartridge x200</label>
-			<description>Craft 200 20x102mm NATO (AP-I) cartridges.</description>
-			<jobString>Making 20x102mm NATO (AP-I) cartridges.</jobString>
-			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>104</count>
-				</li>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Prometheum</li>
-						</thingDefs>
-					</filter>
-					<count>10</count>
-				</li>
-			</ingredients>
-			<fixedIngredientFilter>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
 				<thingDefs>
-					<li>Steel</li>
-					<li>Prometheum</li>
-				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_20x102mmNATO_Incendiary>200</Ammo_20x102mmNATO_Incendiary>
-			</products>
-			<workAmount>14400</workAmount>
-		</RecipeDef>
-
-		<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-			<defName>MakeAmmo_20x102mmNATO_HE</defName>
-			<label>make 20x102mm NATO (HE) cartridge x200</label>
-			<description>Craft 200 20x102mm NATO (HE) cartridges.</description>
-			<jobString>Making 20x102mm NATO (HE) cartridges.</jobString>
-			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>104</count>
-				</li>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>FSX</li>
-						</thingDefs>
-					</filter>
-					<count>19</count>
-				</li>
-			</ingredients>
-			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
 					<li>FSX</li>
 				</thingDefs>
-			</fixedIngredientFilter>
-			<products>
-				<Ammo_20x102mmNATO_HE>200</Ammo_20x102mmNATO_HE>
-			</products>
-			<workAmount>18000</workAmount>
-		</RecipeDef>
-
-		<RecipeDef ParentName="AdvancedAmmoRecipeBase">
-			<defName>MakeAmmo_20x102mmNATO_Sabot</defName>
-			<label>make 20x102mm NATO (Sabot) cartridge x200</label>
-			<description>Craft 200 20x102mm NATO (Sabot) cartridges.</description>
-			<jobString>Making 20x102mm NATO (Sabot) cartridges.</jobString>
-			<ingredients>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Steel</li>
-						</thingDefs>
-					</filter>
-					<count>64</count>
-				</li>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Uranium</li>
-						</thingDefs>
-					</filter>
-					<count>12</count>
-				</li>
-				<li>
-					<filter>
-						<thingDefs>
-							<li>Chemfuel</li>
-						</thingDefs>
-					</filter>
-					<count>12</count>
-				</li>
+				</filter>
+				<count>18</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</filter>
+				<count>4</count>
+			</li>      
 			</ingredients>
 			<fixedIngredientFilter>
-				<thingDefs>
-					<li>Steel</li>
-					<li>Uranium</li>
-					<li>Chemfuel</li>
-				</thingDefs>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>        
+			</thingDefs>
 			</fixedIngredientFilter>
 			<products>
-				<Ammo_20x102mmNATO_Sabot>200</Ammo_20x102mmNATO_Sabot>
+				<Ammo_Bolter998_Standard>200</Ammo_Bolter998_Standard>
 			</products>
-			<workAmount>13600</workAmount>
+			<workAmount>36600</workAmount>
+		</RecipeDef>
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_Bolter998_Inferno</defName>
+			<label>make .998 Cal Bolter (inferno) shell x200</label>
+			<description>Craft 200 .998 Cal Bolter (inferno) shells.</description>
+			<jobString>Making .998 Cal Bolter (inferno) shells.</jobString>
+			<ingredients>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Prometheum</li>
+				</thingDefs>
+				</filter>
+				<count>12</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>        
+			</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_Bolter998_Inferno>200</Ammo_Bolter998_Inferno>
+			</products>
+			<workAmount>19400</workAmount>
+		</RecipeDef>
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_Bolter998_MetalStorm</defName>
+			<label>make .998 Cal Bolter (metal storm) shell x200</label>
+			<description>Craft 200 .998 Cal Bolter (metal storm) shells.</description>
+			<jobString>Making .998 Cal Bolter (metal storm) shells.</jobString>
+			<ingredients>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>FSX</li>
+				</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>      
+			</ingredients>
+			<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>        
+			</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_Bolter998_MetalStorm>200</Ammo_Bolter998_MetalStorm>
+			</products>
+			<workAmount>21800</workAmount>
+		</RecipeDef>
+
+		<RecipeDef ParentName="AmmoRecipeBase">
+			<defName>MakeAmmo_Bolter998_Kraken</defName>
+			<label>make .998 Cal Bolter (kraken) shell x200</label>
+			<description>Craft 200 .998 Cal Bolter (kraken) shells.</description>
+			<jobString>Making .998 Cal Bolter (kraken) shells.</jobString>
+			<ingredients>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>Steel</li>
+				</thingDefs>
+				</filter>
+				<count>154</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>FSX</li>
+				</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+				<thingDefs>
+					<li>ComponentIndustrial</li>
+				</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Uranium</li>
+					</thingDefs>
+				</filter>
+				<count>8</count>
+			</li>			      
+			</ingredients>
+			<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+				<li>ComponentIndustrial</li>
+				<li>Uranium</li>				        
+			</thingDefs>
+			</fixedIngredientFilter>
+			<products>
+				<Ammo_Bolter998_Kraken>200</Ammo_Bolter998_Kraken>
+			</products>
+			<workAmount>20600</workAmount>
 		</RecipeDef>
 
 		</value>
