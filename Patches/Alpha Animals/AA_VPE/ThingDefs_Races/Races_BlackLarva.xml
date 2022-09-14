@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Vanilla Psycasts Expanded</li>
+			</mods>
+
+				<match Class="PatchOperationSequence">
+					<operations>
+
+						<li Class="PatchOperationAdd">
+						  <xpath>/Defs/ThingDef[defName="AA_BlackLarvae"]/statBases</xpath>
+						  <value>
+							<MeleeDodgeChance>0.06</MeleeDodgeChance>
+							<MeleeCritChance>0.02</MeleeCritChance>
+							<MeleeParryChance>0.04</MeleeParryChance>
+						  </value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+						  <xpath>/Defs/ThingDef[defName="AA_BlackLarvae"]/race/baseHealthScale</xpath>
+						  <value>
+							<baseHealthScale>0.2</baseHealthScale>
+						  </value>
+						</li>
+
+						<li Class="PatchOperationReplace">
+						  <xpath>/Defs/ThingDef[defName="AA_BlackLarvae"]/tools</xpath>
+						  <value>
+							<tools>
+							  <li Class="CombatExtended.ToolCE">
+								<label>mandibles</label>
+								<capacities>
+								  <li>Bite</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadClaw</linkedBodyPartsGroup>
+								<armorPenetrationSharp>0.01</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.031</armorPenetrationBlunt>
+							  </li>
+							  <li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+								  <li>Blunt</li>
+								</capacities>
+								<power>1</power>
+								<cooldownTime>2.12</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>0.031</armorPenetrationBlunt>
+							  </li>
+							</tools>
+						  </value>
+						</li>
+
+					</operations>
+				</match>
+		</match>
+	</Operation>
+</Patch>
