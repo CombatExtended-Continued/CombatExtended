@@ -8,60 +8,127 @@
 	<xpath>Defs</xpath>
 	<value>
 
-    <!-- "Whatever happens, we have got The Emperor's blessing. They have not." -->
+	<ThingCategoryDef>
+		<defName>AmmoPlasmaCannon</defName>
+		<label>Plasma canister</label>
+		<parent>AmmoAdvanced</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
 
     <!-- === Ammo Sets === -->
     <CombatExtended.AmmoSetDef>
-      <defName>AmmoSet_PlasmaCanister</defName>
+      <defName>AmmoSet_PlasmaCanister_Astartes</defName>
       <label>plasma canister</label>
       <ammoTypes>
-        <Ammo_Flamethrower_Prometheum>Bullet_PlasmaCannon</Ammo_Flamethrower_Prometheum>
+        <Ammo_PlasmaCannon_Astartes>Bullet_PlasmaCannon_Astartes</Ammo_PlasmaCannon_Astartes>
       </ammoTypes>
     </CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo20x102mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Large caliber cartridge used by autocannons.</description>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoPlasmaCannonBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A canister of pressurized hydrogen that serves as a containment vessel for the ionization of the gas into plasma.</description>
 		<statBases>
-			<Mass>0.254</Mass>
-			<Bulk>0.34</Bulk>
+			<Mass>0.15</Mass>
+			<Bulk>0.5</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>Ammo20x102mmNATO</li>
+			<li>AmmoPlasmaCannon</li>
 		</thingCategories>
-		<stackLimit>1000</stackLimit>
+		<stackLimit>200</stackLimit>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
-		<defName>Ammo_20x102mmNATO_AP</defName>
-		<label>20x102mm NATO cartridge (AP)</label>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoPlasmaCannonBase">
+		<defName>Ammo_PlasmaCannon_Astartes</defName>
+		<label>plasma canister</label>
 		<graphicData>
-			<texPath>Things/Ammo/HighCaliber/AP</texPath>
+			<texPath>ThirdParty/Warhammer/PlasmaCanister</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MarketValue>1.04</MarketValue>
 		</statBases>
-		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_20x102mmNATO_AP</cookOffProjectile>
+		<ammoClass>Plasma</ammoClass>
+		<comps>
+		<li Class="CompProperties_Explosive">
+			<explosiveRadius>0.5</explosiveRadius>
+			<explosiveDamageType>Bomb</explosiveDamageType>
+			<explosiveExpandPerStackcount>0.033</explosiveExpandPerStackcount>
+			<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<explodeOnKilled>True</explodeOnKilled>
+			<wickTicks>60~90</wickTicks>
+		</li>
+		</comps>		
 	</ThingDef>
 
     <!-- === Projectiles === -->
-    <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
-      <defName>Bullet_PlasmaCannon</defName>
-      <label>melta beam</label>            
-      <projectile Class="CombatExtended.ProjectilePropertiesCE">
-        <damageDef>Bullet</damageDef>
-        <damageAmountBase>150</damageAmountBase>
-        <armorPenetrationSharp>500</armorPenetrationSharp>
-        <armorPenetrationBlunt>0.001</armorPenetrationBlunt> <!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
-      </projectile>      
+    <ThingDef ParentName="BaseBullet">
+		<defName>Bullet_PlasmaCannon_Astartes</defName>
+		<label>plasma cannon bolt</label>
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>		 
+		<graphicData>
+			<texPath>Things/Projectiles/Plasma_Projectile</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+			<drawSize>1.5</drawSize>
+		</graphicData>	         
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>110</speed>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>248</damageAmountBase>
+			<armorPenetrationSharp>80</armorPenetrationSharp>
+		</projectile>
+		<comps>
+		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+			<damageAmountBase>65</damageAmountBase>
+			<explosiveDamageType>Burn</explosiveDamageType>
+			<explosiveRadius>1.5</explosiveRadius>
+			<explosionSound>MortarBomb_Explode</explosionSound>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+		  </li>
+		</comps>		  
     </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeAmmo_PlasmaCannon_Astartes</defName>
+		<label>make plasma canister x50</label>
+		<description>Craft 50 plasma canisters.</description>
+		<jobString>Making plasma canisters.</jobString>
+		<ingredients>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Chemfuel</li>
+			</thingDefs>
+			</filter>
+			<count>50</count>
+		</li>
+		<li>
+			<filter>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+			</filter>
+			<count>25</count>
+		</li>	  
+		</ingredients>
+		<fixedIngredientFilter>
+		<thingDefs>
+			<li>Chemfuel</li>
+			<li>Steel</li>		
+		</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_PlasmaCannon_Astartes>50</Ammo_PlasmaCannon_Astartes>
+		</products>
+	</RecipeDef>
 
 	</value>
 	</match>
