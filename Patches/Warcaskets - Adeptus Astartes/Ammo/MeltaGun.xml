@@ -20,21 +20,34 @@
     </CombatExtended.AmmoSetDef>
 
     <!-- === Projectiles === -->
-    <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletBlue">
+    <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="BaseBullet">
       <defName>Bullet_Laser_MeltaCharge</defName>
       <label>melta beam</label>
+      <thingClass>CombatExtended.Lasers.LaserBeamCE</thingClass>      
       <graphicData>
-        <texPath>Things/Projectile/Bullet_Small</texPath>
+        <texPath>ThirdParty/Warhammer/MeltaBeam</texPath>
         <graphicClass>Graphic_Single</graphicClass>
-        <shaderType>TransparentPostLight</shaderType>
-        <drawSize>10</drawSize>
-      </graphicData>                  
+        <shaderType>Transparent</shaderType>
+        <drawSize>2</drawSize>
+        <color>(5,195,221)</color>
+      </graphicData> 
+      <textures>
+        <li>ThirdParty/Warhammer/MeltaBeam</li>
+      </textures>                              
       <projectile Class="CombatExtended.ProjectilePropertiesCE">
         <damageDef>Bullet</damageDef>
         <damageAmountBase>150</damageAmountBase>
         <armorPenetrationSharp>500</armorPenetrationSharp>
         <armorPenetrationBlunt>0.001</armorPenetrationBlunt> <!-- The overall pressure exerted by a laser beam striking something is, unsuprisingly, negligable. -->
-      </projectile>      
+      </projectile>
+      <modExtensions>
+        <li Class="ProjectileImpactFX.EffectProjectileExtension">
+          <explosionMote>true</explosionMote>
+          <explosionMoteSize>0.25</explosionMoteSize>
+          <ImpactMoteDef>Mote_MeltaFlash</ImpactMoteDef>
+          <ImpactMoteSize>1</ImpactMoteSize>
+        </li>
+      </modExtensions>         
     </ThingDef>
 
 		</value>
