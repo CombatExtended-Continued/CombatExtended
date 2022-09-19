@@ -5,7 +5,7 @@
 		<defName>Ammo40x53mmGrenades</defName>
 		<label>40x53mm Grenade</label>
 		<parent>AmmoGrenades</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -15,7 +15,7 @@
     <label>40x53mm Grenades</label>
     <ammoTypes>
       <Ammo_40x53mmGrenade_HE>Bullet_40x53mmGrenade_HE</Ammo_40x53mmGrenade_HE>
-	  <Ammo_40x53mmGrenade_HE_TFuzed>Bullet_40x53mmGrenade_HE_TFuzed</Ammo_40x53mmGrenade_HE_TFuzed>
+      <Ammo_40x53mmGrenade_HE_TFuzed>Bullet_40x53mmGrenade_HE_TFuzed</Ammo_40x53mmGrenade_HE_TFuzed>
       <Ammo_40x53mmGrenade_HEDP>Bullet_40x53mmGrenade_HEDP</Ammo_40x53mmGrenade_HEDP>
       <Ammo_40x53mmGrenade_EMP>Bullet_40x53mmGrenade_EMP</Ammo_40x53mmGrenade_EMP>
       <Ammo_40x53mmGrenade_Smoke>Bullet_40x53mmGrenade_Smoke</Ammo_40x53mmGrenade_Smoke>	        
@@ -53,7 +53,7 @@
       <MarketValue>3.75</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-	<detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
+    <detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
   </ThingDef>
   
     <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmGrenadeBase">
@@ -67,7 +67,7 @@
       <MarketValue>2.37</MarketValue>
     </statBases>
     <ammoClass>GrenadeHETF</ammoClass>
-	<detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
+    <detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
   </ThingDef>
 
 
@@ -82,7 +82,7 @@
       <MarketValue>3.4</MarketValue>
     </statBases>
     <ammoClass>GrenadeHEDP</ammoClass>
-	<detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
+    <detonateProjectile>Bullet_40x53mmGrenade_HE</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmGrenadeBase">
@@ -105,7 +105,7 @@
 	  <li Class="CombatExtended.CompProperties_Fragments">
 		<fragments>
 			<Fragment_Large>1</Fragment_Large>
-        </fragments>
+		</fragments>
       </li>
     </comps>
   </ThingDef>
@@ -130,7 +130,7 @@
 	  <li Class="CombatExtended.CompProperties_Fragments">
 		<fragments>
 			<Fragment_Large>1</Fragment_Large>
-        </fragments>
+		</fragments>
       </li>
     </comps>
   </ThingDef>
@@ -155,12 +155,12 @@
 			<explosionRadius>1</explosionRadius >
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>20</damageAmountBase>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-          <Fragment_Small>35</Fragment_Small>
+					<Fragment_Small>35</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -175,15 +175,15 @@
       <damageDef>Bomb</damageDef>
       <damageAmountBase>20</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-	  <aimHeightOffset>1.4</aimHeightOffset>
-	  <armingDelay>2</armingDelay>
+      <aimHeightOffset>1.4</aimHeightOffset>
+      <armingDelay>2</armingDelay>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
           <Fragment_Small>35</Fragment_Small>
         </fragments>
-		    <fragAngleRange>-89~-5</fragAngleRange>
+        <fragAngleRange>-89~-5</fragAngleRange>
       </li>
     </comps>
   </ThingDef>
@@ -196,32 +196,32 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>22</damageAmountBase>
       <armorPenetrationSharp>76</armorPenetrationSharp>
-      <armorPenetrationBlunt>5.94</armorPenetrationBlunt>
+      <armorPenetrationBlunt>8.348</armorPenetrationBlunt>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <damageAmountBase>15</damageAmountBase>
+        <damageAmountBase>28</damageAmountBase>
         <explosiveDamageType>Bomb</explosiveDamageType>
         <explosiveRadius>0.5</explosiveRadius>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-          <Fragment_Small>15</Fragment_Small>
+          <Fragment_Small>20</Fragment_Small>
         </fragments>
       </li>
     </comps>
   </ThingDef>
 
-	<ThingDef ParentName="Base40x53mmGrenadeBullet">
-		<defName>Bullet_40x53mmGrenade_EMP</defName>
-		<label>40x53mm grenade (EMP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>1.5</explosionRadius>
-			<damageDef>EMP</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-		</projectile>
-	</ThingDef>
+  <ThingDef ParentName="Base40x53mmGrenadeBullet">
+    <defName>Bullet_40x53mmGrenade_EMP</defName>
+    <label>40x53mm grenade (EMP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.5</explosionRadius>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>20</damageAmountBase>
+    </projectile>
+  </ThingDef>
 
   <ThingDef ParentName="Base40x53mmGrenadeBullet">
     <defName>Bullet_40x53mmGrenade_Smoke</defName>
@@ -366,7 +366,7 @@
     <products>
       <Ammo_40x53mmGrenade_HEDP>100</Ammo_40x53mmGrenade_HEDP>
     </products>
-    <workAmount>11600</workAmount>
+    <workAmount>13600</workAmount>
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">

@@ -38,6 +38,7 @@ Mod |
 [O21] Outland - Core    |
 [O21] Outland - Eastborn Empire    |
 [O21] Outland - Motz Coalition  |
+[O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
