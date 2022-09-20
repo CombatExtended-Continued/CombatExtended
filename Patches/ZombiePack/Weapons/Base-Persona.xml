@@ -8,7 +8,95 @@
         <mods><li>Persona Bond Forge</li></mods> 
         <match Class="PatchOperationSequence">
     <operations>
-             <!--Pistols-->
+            <!-- tools -->
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[
+                                            defName="CodZP_Gun_Revolver-Persona" or
+                                            defName="CodZP_Gun_Autopistol-Persona" or 
+                                            defName="CodZP_Gun_MachinePistol-Persona" or
+                                            defName="CodZP_Gun_HeavySMG-Persona" or
+                                            defName="CodZP_Gun_AssaultRifle-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>grip</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                    <li>Poke</li>
+                                </capacities>
+                                <power>2</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[
+                                            defName="CodZP_Gun_IncendiaryLauncher-Persona" or                    
+                                            defName="CodZP_Gun_BoltActionRifle-Persona" or
+                                            defName="CodZP_Gun_PumpShotgun-Persona" or
+                                            defName="CodZP_Gun_ChainShotgun-Persona" or
+                                            defName="CodZP_Gun_LMG-Persona" or
+                                            defName="CodZP_Gun_SniperRifle-Persona" or
+                                            defName="CodZP_Gun_ChargeRifle-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>stock</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <chanceFactor>1.5</chanceFactor>
+                                <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                            </li>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>9</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>Defs/ThingDef[
+                                            defName="CodZP_Gun_Minigun-Persona"]/tools</xpath>
+                    <value>
+                        <tools>
+                            <li Class="CombatExtended.ToolCE">
+                                <label>barrel</label>
+                                <capacities>
+                                    <li>Blunt</li>
+                                </capacities>
+                                <power>12</power>
+                                <cooldownTime>2</cooldownTime>
+                                <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                            </li>
+                        </tools>
+                    </value>
+                </li>
+            <!--Pistols-->
                 <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
                     <defName>CodZP_Gun_Revolver-Persona</defName>
                     <statBases>
@@ -158,11 +246,19 @@
                  </li>
               <!-- Remove Smoke and EMP Launchers -->
                 <li Class="PatchOperationRemove">
-                    <xpath>/Defs/ThingDef[defName="CodZP_Gun_SmokeLauncher-PAP"]</xpath>
+                    <xpath>Defs/ThingDef[defName="CodZP_Gun_SmokeLauncher-Persona"]</xpath>
+                 </li>
+                
+                <li Class="PatchOperationRemove">
+                    <xpath>Defs/RecipeDef[defName="CodZP_make_BondPAPSmokeLauncher"]</xpath>
                  </li>
 
                 <li Class="PatchOperationRemove">
-                    <xpath>/Defs/ThingDef[defName="CodZP_Gun_EmpLauncher-PAP"]</xpath>
+                    <xpath>Defs/ThingDef[defName="CodZP_Gun_EmpLauncher-Persona"]</xpath>
+                 </li>
+
+                <li Class="PatchOperationRemove">
+                    <xpath>Defs/RecipeDef[defName="CodZP_make_BondPAPEMPLauncher"]</xpath>
                  </li>
              <!--Snipers-->
                 <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
