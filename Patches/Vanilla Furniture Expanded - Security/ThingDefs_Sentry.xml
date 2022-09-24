@@ -73,22 +73,30 @@
 
 		<li Class="PatchOperationAdd">
 	  	<xpath>Defs/ThingDef[
-			defName = "VFES_Turret_ChargeRailgunTurret" or 
-			defName = "VFES_Turret_ChargeTurret" or		
-			defName = "VFES_Turret_AutocannonDouble" or
-			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or				
+			defName = "VFES_Turret_MilitaryTurret" or
 			defName = "VFES_Turret_TriRocket" or
-			defName = "VFES_Turret_FloorTurret" or		        
-		defName = "VFES_Turret_Searchlight"			  
+			defName = "VFES_Turret_FloorTurret" or
+			defName = "VFES_Turret_Searchlight"
 		]/statBases</xpath>
 	  	<value>
 	  		<AimingAccuracy>0.25</AimingAccuracy>
 	  	</value>
 		</li>
-  
+
+		<li Class="PatchOperationAdd">
+	  	<xpath>Defs/ThingDef[
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_ChargeTurret" or
+			defName = "VFES_Turret_AutocannonDouble" or
+			defName = "VFES_Turret_EMPTurret"
+		]/statBases</xpath>
+	  	<value>
+	  		<AimingAccuracy>0.5</AimingAccuracy>
+	  	</value>
+		</li>
+
 		<li Class="PatchOperationReplace">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_EMPTurret" or
@@ -103,14 +111,20 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-	  	<xpath>Defs/ThingDef[
-			defName = "VFES_Turret_ChargeTurret" or		      
-			defName = "VFES_Turret_ChargeRailgunTurret" or 
-			defName = "VFES_Turret_AutocannonDouble" or     				
-			defName = "VFES_Turret_TriRocket"			  
-		]/statBases/ShootingAccuracyTurret</xpath>
+	  	<xpath>Defs/ThingDef[defName = "VFES_Turret_TriRocket"]/statBases/ShootingAccuracyTurret</xpath>
 	  	<value>
 	  		<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
+	  	</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[
+			defName = "VFES_Turret_ChargeTurret" or
+			defName = "VFES_Turret_ChargeRailgunTurret" or
+			defName = "VFES_Turret_AutocannonDouble"
+		]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 	  	</value>
 		</li>
 
@@ -165,7 +179,6 @@
 			  <SightsEfficiency>1</SightsEfficiency>
 			  <ShotSpread>3.0</ShotSpread>
 			  <SwayFactor>1.59</SwayFactor>
-			  <Bulk>15.54</Bulk>
 			</statBases>
 			<Properties>
 			  <recoilAmount>0.85</recoilAmount>
@@ -183,7 +196,7 @@
 			</Properties>
 			<AmmoUser>
 			  <magazineSize>75</magazineSize>
-			  <reloadTime>15</reloadTime>
+			  <reloadTime>9.8</reloadTime>
 			  <ammoSet>AmmoSet_Flamethrower</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -204,16 +217,15 @@
 			  <SightsEfficiency>1</SightsEfficiency>
 			  <ShotSpread>0.07</ShotSpread>
 			  <SwayFactor>0.82</SwayFactor>
-			  <Bulk>10.00</Bulk>
 			</statBases>
 			<Properties>
-			  <recoilAmount>0.76</recoilAmount>
+			  <recoilAmount>1.1</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>true</hasStandardCommand>
 			  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
 			  <warmupTime>1.3</warmupTime>
 			  <range>54</range>
-			  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			  <burstShotCount>20</burstShotCount>
 			  <soundCast>GunShotA</soundCast>
 			  <soundCastTail>GunTail_Light</soundCastTail>
@@ -222,7 +234,7 @@
 			</Properties>
 			<AmmoUser>
 			  <magazineSize>200</magazineSize>
-			  <reloadTime>12</reloadTime>
+			  <reloadTime>7.8</reloadTime>
 			  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -240,7 +252,6 @@
 			  <SightsEfficiency>1</SightsEfficiency>
 			  <ShotSpread>0.07</ShotSpread>
 			  <SwayFactor>0.82</SwayFactor>
-			  <Bulk>10.00</Bulk>
 			</statBases>
 			<Properties>
 			  <recoilAmount>0.76</recoilAmount>
@@ -249,7 +260,7 @@
 			  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
 			  <warmupTime>1.3</warmupTime>
 			  <range>54</range>
-			  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+			  <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 			  <burstShotCount>20</burstShotCount>
 			  <soundCast>GunShotA</soundCast>
 			  <soundCastTail>GunTail_Light</soundCastTail>
@@ -258,7 +269,7 @@
 			</Properties>
 			<AmmoUser>
 			  <magazineSize>200</magazineSize>
-			  <reloadTime>12</reloadTime>
+			  <reloadTime>7.8</reloadTime>
 			  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -311,14 +322,13 @@
 		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>VFES_TurretDoubleAutocannon_Top</defName>
 			<statBases>
-			  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			  <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 			  <SightsEfficiency>1</SightsEfficiency>
-			  <ShotSpread>0.20</ShotSpread>
+			  <ShotSpread>0.05</ShotSpread>
 			  <SwayFactor>1.72</SwayFactor>
-			  <Bulk>25.54</Bulk>
 			</statBases>
 			<Properties>
-			  <recoilAmount>1.56</recoilAmount>
+			  <recoilAmount>2.03</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>True</hasStandardCommand>
 			  <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
@@ -336,7 +346,11 @@
 			  <reloadTime>9.8</reloadTime>
 			  <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
 			</AmmoUser>
-			<FireModes />
+			<FireModes>
+			  <aiAimMode>AimedShot</aiAimMode>
+			  <noSnapshot>true</noSnapshot>
+			  <noSingleShot>true</noSingleShot>
+			</FireModes>
 			<weaponTags Inherit="false">
 			  <li>TurretGun</li>
 			</weaponTags>
@@ -359,13 +373,14 @@
 			  <SwayFactor>1.32</SwayFactor>
 			</statBases>
 			<Properties>
+			  <recoilAmount>0.3</recoilAmount>
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>True</hasStandardCommand>
 			  <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
 			  <warmupTime>2.3</warmupTime>
 			  <range>62</range>
 			  <burstShotCount>50</burstShotCount>
-			  <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+			  <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 			  <soundCast>Shot_Minigun</soundCast>
 			  <soundCastTail>GunTail_Medium</soundCastTail>
 			  <muzzleFlashScale>9</muzzleFlashScale>
