@@ -111,11 +111,94 @@
 				</value>
 			</li>
 			 
-			 
-				<!--<FireModes>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.25</AimingAccuracy>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/statBases/Mass</xpath>
+				<value>
+					<Mass>1000</Mass>
+				</value>
+			</li>
+			<!--
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[@Name="PN_BaseArtilleryBuilding" ]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+			</li>
+			-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Base_Core"]/building/turretBurstCooldownTime</xpath>
+				<value>
+					<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+				</value>
+			</li>
+			
+			<!-- ==========  Paniel Cannon  =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>PN_Railgun_Turret</defName>
+				<statBases>
+					<SightsEfficiency>1.0</SightsEfficiency>
+					<ShotSpread>0.01</ShotSpread>
+					<SwayFactor>0.80</SwayFactor>
+					<Bulk>22.00</Bulk>
+					<Mass>18.50</Mass>
+					<RangedWeapon_Cooldown>1.55</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.12</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_PanielRail</defaultProjectile>
+					<warmupTime>4</warmupTime>
+					<minRange>5</minRange>
+					<range>86</range>
+					<soundAiming>PN_PrototypeRailGun_Warmup_Sound</soundAiming>
+					<soundCast>PN_PrototypeRailGun_Fire_Sound</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>16</muzzleFlashScale>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</Properties>
+				<AmmoUser>
+				  <magazineSize>1</magazineSize>
+				  <reloadTime>7.8</reloadTime>
+				  <reloadOneAtATime>true</reloadOneAtATime>
+				  <ammoSet>AmmoSet_PanielRailShell</ammoSet>
+				</AmmoUser>
+				<FireModes>
 				  <aiAimMode>AimedShot</aiAimMode>
-				  <noSnapshot>true</noSnapshot>
-				</FireModes>-->
+				</FireModes>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Turret"]/building/fixedStorageSettings</xpath>
+			</li>
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Turret"]/building/defaultStorageSettings</xpath>
+			</li>
+			
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="PN_Railgun_Turret" ]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+			</li>
 			
 		</operations>
 		</match>	
