@@ -10,6 +10,52 @@
 
 		<!-- "The Emperor protects!" (But a few centimeters of ceramite never hurt, either.) -->
 
+		<!-- ========== Swap ShootingAccuracy for AimingAccuracy ========== -->
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarine"
+			]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.15</AimingAccuracy>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarOne" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarTwo" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineWings" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineKnight" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineMkVI"	
+			]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.18</AimingAccuracy>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisSgt" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimarisCpt" or
+			defName="VFEP_WarcasketHelmet_SpaceMarinePrimaris_VarThree" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineWings" or
+			defName="VFEP_WarcasketHelmet_SpaceMarineKnightVet"		
+			]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.21</AimingAccuracy>
+			</value>
+		</li>
+
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/VFEPirates.WarcasketDef[
+			defName="VFEP_WarcasketHelmet_SpaceMarineTerminator"
+			]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
+			<value>
+				<AimingAccuracy>0.39</AimingAccuracy>
+			</value>
+		</li>
+
 		<!-- ========== Space Marine Warcasket (Standard) ========== -->
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="HP_Warcasket_SpaceMarine"]/statBases</xpath>
