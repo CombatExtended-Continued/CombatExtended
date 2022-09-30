@@ -452,6 +452,7 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
+Warcaskets: Adeptus Astartes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|
