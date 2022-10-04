@@ -15,18 +15,10 @@
 
         <!-- ==================== AmmoSet ========================== -->
 
-		<CombatExtended.AmmoSetDef>
-			<defName>AmmoSet_5x35mmHyper</defName>
-			<label>5x35mm Hyper</label>
-			<ammoTypes>
-				<Ammo_5x35mmCharged>Bullet_5x35mmHyper</Ammo_5x35mmCharged>
-			</ammoTypes>
-		</CombatExtended.AmmoSetDef>
-
         <!-- ================== Projectiles ================== -->
 
-		<ThingDef ParentName="BaseBullet">
-			<defName>Bullet_5x35mmHyper</defName>
+		<ThingDef ParentName="Base5x35mmChargedBullet">
+			<defName>VFE_Bullet_5x35mmHyper</defName>
 			<label>5x35mm Hyper bullet</label>
 			<graphicData>
 				<texPath>Things/Projectile/ChargeLanceShot</texPath>
@@ -34,7 +26,7 @@
 				<shaderType>TransparentPostLight</shaderType>
 				<drawSize>(3,3)</drawSize>
 			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<projectile Class="CombatExtended.ProjectilePropertiesCE" Inherit="False">
 				<damageDef>Bullet</damageDef>
 				<damageAmountBase>14</damageAmountBase>
 				<speed>280</speed>
@@ -48,29 +40,6 @@
 				<armorPenetrationBlunt>78.4</armorPenetrationBlunt>
 			</projectile>
 		</ThingDef>	
-
-		<ThingDef ParentName="BaseBullet">
-			<defName>Bullet_12x64mmHyper</defName>
-			<label>12x64mm Hyper bullet</label>
-			<graphicData>
-				<texPath>Things/Projectile/ChargeLanceShot</texPath>
-				<graphicClass>Graphic_Single</graphicClass>
-				<shaderType>TransparentPostLight</shaderType>
-			</graphicData>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>Bullet</damageDef>
-				<damageAmountBase>48</damageAmountBase>
-				<speed>240</speed>
-				<secondaryDamage>
-					<li>
-						<def>Bomb_Secondary</def>
-						<amount>14</amount>
-					</li>
-				</secondaryDamage>
-				<armorPenetrationSharp>40</armorPenetrationSharp>
-				<armorPenetrationBlunt>576</armorPenetrationBlunt>
-			</projectile>
-		</ThingDef>
 
 		<ThingDef ParentName="Base90mmCannonShell">
 			<defName>VFE_Bullet_ChargeRailgun_CE</defName>

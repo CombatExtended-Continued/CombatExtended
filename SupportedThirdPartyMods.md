@@ -250,6 +250,7 @@ Littluna Race |
 Logann Race	|
 Magical Menagerie	|
 Magic Wands |
+Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
@@ -451,6 +452,7 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
+Warcaskets: Adeptus Astartes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|

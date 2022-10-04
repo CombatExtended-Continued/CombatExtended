@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		<li>Warcaskets: Adeptus Astartes</li>
+    </mods>
+	<match Class="PatchOperationAdd">
+		<xpath>Defs</xpath>
+		<value>
+
+		<!-- === Casings === -->
+		<FleckDef ParentName="FleckBase_Thrown">
+			<defName>Mote_BolterCasing</defName>
+			<graphicData>
+				<texPath>ThirdParty/Warhammer/Casings/Mote_CasingBolterSmall</texPath>
+			</graphicData>
+			<altitudeLayer>MoteOverhead</altitudeLayer>
+			<solidTime>1.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<landSound>C_Impact_BulletCasing</landSound>
+			<collide>true</collide>
+		</FleckDef>
+
+		<FleckDef ParentName="FleckBase_Thrown">
+			<defName>Mote_HeavyBolterCasing</defName>
+			<graphicData>
+				<texPath>ThirdParty/Warhammer/Casings/Mote_CasingBolterLarge</texPath>
+			</graphicData>
+			<altitudeLayer>MoteOverhead</altitudeLayer>
+			<solidTime>1.0</solidTime>
+			<fadeOutTime>0.2</fadeOutTime>
+			<landSound>C_Impact_BulletCasing</landSound>
+			<collide>true</collide>
+		</FleckDef>
+
+		<!-- === Melta Gun === -->
+		<ThingDef ParentName="MoteBase">
+			<defName>Mote_MeltaFlash</defName>
+			<altitudeLayer>MoteOverhead</altitudeLayer>
+			<mote>
+				<landSound></landSound>
+				<solidTime>0.15</solidTime>
+				<fadeOutTime>0.2</fadeOutTime>
+			</mote>
+			<graphicData>
+				<texPath>ThirdParty/Warhammer/MeltaProjectile</texPath>
+				<shaderType>MoteGlow</shaderType>
+			</graphicData>
+		</ThingDef>
+
+		</value>
+	</match>
+	</Operation>
+</Patch>
