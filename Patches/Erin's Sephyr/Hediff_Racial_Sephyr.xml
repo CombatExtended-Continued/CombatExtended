@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>Erin's Sephyr</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= Adjust Hediff Stats ======= -->
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/HediffDef[defName="ERN_SephyrToughen"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+               <value>
+                  <ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/HediffDef[defName="ERN_SephyrToughen"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+               <value>
+                  <ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/HediffDef[defName="ERN_SephyrToughen"]/stages/li/statOffsets/ArmorRating_Heat</xpath>
+               <value>
+                  <ArmorRating_Heat>0.35</ArmorRating_Heat>
+               </value>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>
