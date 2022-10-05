@@ -23,7 +23,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="80x256mmFuelBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Large fuel container for incendiary shot cannons.</description>
     <statBases>
-      <Mass>0.256</Mass>
+      <Mass>0.85</Mass>
       <Bulk>3.87</Bulk>
     </statBases>
     <thingCategories>
@@ -43,21 +43,21 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>10.97</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>11.86</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
 	<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
 	<comps>
-    <li Class="CompProperties_Explosive">
-        <explosiveRadius>1.9</explosiveRadius>
+	    <li Class="CompProperties_Explosive">
+		<explosiveRadius>1.9</explosiveRadius>
 		<damageAmountBase>5</damageAmountBase>
-        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
+		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
-        <startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+		<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		<explodeOnKilled>True</explodeOnKilled>
-        <wickTicks>60~300</wickTicks>
-    </li>
+		<wickTicks>60~300</wickTicks>
+	    </li>
 	</comps>
   </ThingDef>
 
