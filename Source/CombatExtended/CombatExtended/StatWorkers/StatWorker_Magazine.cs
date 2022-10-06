@@ -50,7 +50,7 @@ namespace CombatExtended
             if (!optionalReq.HasThing)
             {
                 var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-                return ammoProps.magazineSize.ToString() + " " + "Rounds".Translate() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+                return ammoProps.magazineSize.ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
             }
             else
             {
