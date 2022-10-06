@@ -2,8 +2,8 @@
 <Defs>
 
   <ThingCategoryDef>
-    <defName>Ammo66mmExplosiveBolts</defName>
-    <label>66mm Explosive Bolt</label>
+    <defName>Ammo66mmThermalBolts</defName>
+    <label>66mm Thermal Bolt</label>
     <parent>AmmoAdvanced</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
   </ThingCategoryDef>
@@ -11,17 +11,17 @@
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_66mmExplosiveBolt</defName>
-    <label>66mm explosive bolts</label>
+    <defName>AmmoSet_66mmThermalBolt</defName>
+    <label>66mm thermal bolts</label>
     <ammoTypes>
-      <Ammo_66mmExplosiveBolt_HE-I>Bullet_66mmExplosiveBolt_HE-I</Ammo_66mmExplosiveBolt_HE-I>     
+      <Ammo_66mmThermalBolt_Incendiary>Bullet_66mmThermalBolt_Incendiary</Ammo_66mmThermalBolt_Incendiary>     
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="66mmExplosiveBoltBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
-    <description>Mechanoid-built low-velocity explosive bolt designed to be fired from a mortar.</description>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="66mmThermalBoltBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+    <description>Mechanoid-built low-velocity thermal bolt designed to be fired from a mortar.</description>
     <graphicData>
       <drawSize>0.80</drawSize>
     </graphicData>    
@@ -31,16 +31,16 @@
       <Bulk>4.11</Bulk>	  
     </statBases>
     <thingCategories>
-      <li>Ammo66mmExplosiveBolts</li>
+      <li>Ammo66mmThermalBolts</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>30</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="66mmExplosiveBoltBase">
-    <defName>Ammo_66mmExplosiveBolt_HE-I</defName>
-    <label>66mm explosive bolt (HE-I)</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="66mmThermalBoltBase">
+    <defName>Ammo_66mmThermalBolt_Incendiary</defName>
+    <label>66mm thermal bolt (Incendiary)</label>
     <graphicData>
       <texPath>Things/Ammo/Mortar/Charged</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -48,13 +48,13 @@
     <statBases>
       <MarketValue>13.32</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
-    <ammoClass>GrenadeHE</ammoClass>
-    <detonateProjectile>Bullet_66mmExplosiveBolt_HE-I</detonateProjectile>
+    <ammoClass>GrenadeIncendiary</ammoClass>
+    <detonateProjectile>Bullet_66mmThermalBolt_Incendiary</detonateProjectile>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base66mmExplosiveBolt" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base66mmThermalBolt" ParentName="BaseBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -70,34 +70,30 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef ParentName="Base66mmExplosiveBolt">
-    <defName>Bullet_66mmExplosiveBolt_HE-I</defName>
-    <label>66mm explosive bolt (HE-I)</label>
+  <ThingDef ParentName="Base66mmThermalBolt">
+    <defName>Bullet_66mmThermalBolt_Incendiary</defName>
+    <label>66mm thermal bolt (Incendiary)</label>
     <graphicData>
       <texPath>Things/Projectile/Mortar/Charged</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bomb</damageDef>
-      <damageAmountBase>87</damageAmountBase>
-      <explosionRadius>1.5</explosionRadius>
-      <soundExplode>MortarBomb_Explode</soundExplode>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      <ai_IsIncendiary>true</ai_IsIncendiary>
+      <damageDef>PrometheumFlame</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <explosionRadius>4.9</explosionRadius>
+      <flyOverhead>true</flyOverhead>
+      <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
+      <soundExplode>MortarIncendiary_Explode</soundExplode>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
-        <damageAmountBase>0</damageAmountBase>
-        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
-        <explosiveRadius>3.5</explosiveRadius>
-        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-        <preExplosionSpawnChance>0.2</preExplosionSpawnChance>
-      </li>
-      <li Class="CombatExtended.CompProperties_Fragments">
-        <fragments>
-          <Fragment_Large>5</Fragment_Large>
-          <Fragment_Small>20</Fragment_Small>
-        </fragments>
+        <damageAmountBase>75</damageAmountBase>
+        <explosiveDamageType>Thermobaric</explosiveDamageType>
+        <explosiveRadius>1.5</explosiveRadius>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
     </comps>
   </ThingDef>
