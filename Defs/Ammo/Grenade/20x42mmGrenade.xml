@@ -15,7 +15,7 @@
     <label>20x42mm Grenades</label>
     <ammoTypes>
     	<Ammo_20x42mmGrenade_HE>Bullet_20x42mmGrenade_HE</Ammo_20x42mmGrenade_HE>
-		<Ammo_20x42mmGrenade_HEAB>Bullet_20x42mmGrenade_HEAB</Ammo_20x42mmGrenade_HEAB>
+		<Ammo_20x42mmGrenade_HE_TFuzed>Bullet_20x42mmGrenade_HE_TFuzed</Ammo_20x42mmGrenade_HE_TFuzed>
     	<Ammo_20x42mmGrenade_EMP>Bullet_20x42mmGrenade_EMP</Ammo_20x42mmGrenade_EMP>
 		<Ammo_20x42mmGrenade_Smoke>Bullet_20x42mmGrenade_Smoke</Ammo_20x42mmGrenade_Smoke>	      
     </ammoTypes>
@@ -55,8 +55,8 @@
   </ThingDef>  
   
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
-    <defName>Ammo_20x42mmGrenade_HEAB</defName>
-    <label>20x42mm grenade (HEAB)</label>
+    <defName>Ammo_20x42mmGrenade_HE_TFuzed</defName>
+    <label>20x42mm grenade (HE-Airburst)</label>
     <graphicData>
       <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -65,7 +65,7 @@
       <MarketValue>2.31</MarketValue>
     </statBases>
     <ammoClass>GrenadeHETF</ammoClass>
-	<detonateProjectile>Bullet_20x42mmGrenade_HEAB</detonateProjectile>
+	<detonateProjectile>Bullet_20x42mmGrenade_HE</detonateProjectile>
   </ThingDef>  
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
@@ -151,8 +151,8 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="Base20x42mmGrenadeBullet">
-		<defName>Bullet_20x42mmGrenade_HEAB</defName>
-		<label>20mm grenade (HEAB)</label>
+		<defName>Bullet_20x42mmGrenade_HE_TFuzed</defName>
+		<label>20mm grenade (HE-Airburst)</label>
 		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
@@ -240,10 +240,10 @@
   </RecipeDef>
   
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_20x42mmGrenade_HEAB</defName>
-    <label>make 20x42mm HEAB grenades x100</label>
-    <description>Craft 100 20x42mm HEAB grenades.</description>
-    <jobString>Making 20x42mm HEAB grenades.</jobString>
+    <defName>MakeAmmo_20x42mmGrenade_HE_TFuzed</defName>
+    <label>make 20x42mm HE-Airburst grenades x100</label>
+    <description>Craft 100 20x42mm HE-Airburst grenades.</description>
+    <jobString>Making 20x42mm HE-Airburst grenades.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -278,7 +278,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_20x42mmGrenade_HEAB>100</Ammo_20x42mmGrenade_HEAB>
+      <Ammo_20x42mmGrenade_HE_TFuzed>100</Ammo_20x42mmGrenade_HE_TFuzed>
     </products>
     <workAmount>6800</workAmount>    
   </RecipeDef>
