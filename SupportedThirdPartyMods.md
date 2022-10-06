@@ -164,6 +164,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Sephyr   |
 Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
