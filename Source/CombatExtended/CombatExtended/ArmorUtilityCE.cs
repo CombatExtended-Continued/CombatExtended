@@ -230,12 +230,7 @@ namespace CombatExtended
         /// <param name="armor">The armor apparel</param>
         /// <param name="partDensity">When penetrating body parts, the body part density</param>
         /// <returns>False if the attack is deflected, true otherwise</returns>
-        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0) {
-            float maxDamage = float.MaxValue;
-            return TryPenetrateArmor(def, armorAmount, ref penAmount, ref dmgAmount, ref maxDamage, armor, partDensity);
-        }
-    
-        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, ref float maxDamage, Thing armor = null, float partDensity = 0)
+        private static bool TryPenetrateArmor(DamageDef def, float armorAmount, ref float penAmount, ref float dmgAmount, Thing armor = null, float partDensity = 0)
         {
             // Calculate deflection
             var isSharpDmg = def.armorCategory == DamageArmorCategoryDefOf.Sharp;
@@ -263,12 +258,6 @@ namespace CombatExtended
                     if (isSharpDmg)
                     {
                         armorDamage = Mathf.Max(dmgAmount * SoftArmorMinDamageFactor, dmgAmount - newDmgAmount);
-                        if (armorDamage > maxDamage) {
-                            armorDamage = maxDamage;
-                        }
-                        if (armorDamage > 0) {
-                            maxDamage -= armorDamage;
-                        }
                         TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                     }
                 }
@@ -287,13 +276,6 @@ namespace CombatExtended
                         armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
                     }
 
-                    if (armorDamage > maxDamage) {
-                        armorDamage = maxDamage;
-                        newDmgAmount = maxDamage;
-                    }
-                    if (armorDamage > 0) {
-                        maxDamage -= armorDamage;
-                    }
                     TryDamageArmor(def, penAmount, armorAmount, ref armorDamage, armor);
                 }
             }
@@ -393,12 +375,7 @@ namespace CombatExtended
         /// <param name="hitPart">The originally hit part</param>
         /// <param name="partialPen">Is this is supposed to be a partial penetration</param>
         /// <returns>DamageInfo copied from dinfo with Def and forceHitPart adjusted</returns>
-        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, bool partialPen = false) {
-            float maxDamage = float.MaxValue;
-            return GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
-        }
-
-        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, ref float maxDamage, bool partialPen = false)
+        private static DamageInfo GetDeflectDamageInfo(DamageInfo dinfo, BodyPartRecord hitPart, ref float dmgAmount, ref float penAmount, bool partialPen = false)
         {
             if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
             {
@@ -457,12 +434,6 @@ namespace CombatExtended
                 localDmgAmount *= dinfo.Amount / (float)dinfo.Weapon.projectile.damageAmountBase;
             }
 
-            if (localDmgAmount > maxDamage) {
-                localDmgAmount = maxDamage;
-            }
-            if (localDmgAmount > 0) {
-                maxDamage -= localDmgAmount;
-            }
         
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
                 localDmgAmount,
@@ -517,11 +488,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="dinfo">DamageInfo to apply to parryThing</param>
         /// <param name="parryThing">Thing taking the damage</param>
-        public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing) {
-            float maxDamage = float.MaxValue;
-            ApplyParryDamage(dinfo, parryThing, ref maxDamage);
-        }
-        public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing, ref float maxDamage)
+        public static void ApplyParryDamage(DamageInfo dinfo, Thing parryThing)
         {
             var pawn = parryThing as Pawn;
             if (pawn != null)
@@ -540,12 +507,6 @@ namespace CombatExtended
             {
                 float parryThingArmor;
                 var dmgAmount = dinfo.Amount * 0.5f;
-                if (maxDamage == float.MaxValue) {
-                    maxDamage = dinfo.Amount * 0.1f;
-                }
-                if (Controller.settings.UnlimitParryDamage) {
-                    maxDamage = float.MaxValue;
-                }
             
                 // For apparel
                 if (parryThing.def.IsApparel)
@@ -561,12 +522,12 @@ namespace CombatExtended
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
 
-                bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, ref maxDamage, parryThing);
+                bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing);
 
                 if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dmgAmount > 0) {
-                    var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, ref maxDamage, partialPen);
+                    var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, partialPen);
                     if (dmgAmount > 0) {
-                        ApplyParryDamage(ndi, parryThing, ref maxDamage);
+                        ApplyParryDamage(ndi, parryThing);
                     }
                 }
 

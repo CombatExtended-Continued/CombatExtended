@@ -33,8 +33,6 @@ namespace CombatExtended
 
 	private bool showExtraStats = false;
 
-	private bool unlimitParryDamage = false;
-
 	private bool fragmentsFromWalls = false;
 
         public bool ShowCasings => showCasings;
@@ -55,7 +53,6 @@ namespace CombatExtended
 	public bool ShowExtraTooltips => showExtraTooltips;
 
 	public bool ShowExtraStats => showExtraStats;
-	public bool UnlimitParryDamage => unlimitParryDamage;
 
         public bool ShowTutorialPopup = true;
 
@@ -147,7 +144,6 @@ namespace CombatExtended
 	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
 	    Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
-	    Scribe_Values.Look(ref unlimitParryDamage, "unlimitParryDamage", false);
 	    
 
 #if DEBUG
@@ -212,8 +208,6 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
 	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
 	    list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
-
-	    list.CheckboxLabeled("CE_Settings_UnlimitNewParryDamage_Title".Translate(), ref unlimitParryDamage, "CE_Settings_UnlimitNewParryDamage_Desc".Translate());
 
 
             // Only Allow these settings to be changed in the main menu since doing while a
