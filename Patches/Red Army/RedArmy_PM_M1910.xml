@@ -7,6 +7,18 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="MaximRounds"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="BaseSovietEmplacedMG"]/building/fixedStorageSettings</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="BaseSovietEmplacedMG"]/building/defaultStorageSettings</xpath>
+        </li>
+
         <li Class="PatchOperationInsert">
           <xpath>Defs/ThingDef[defName="Maxim_HMG"]</xpath>
           <value>
