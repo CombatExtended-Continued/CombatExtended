@@ -6,6 +6,23 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[defName="MaximRounds"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/RecipeDef[defName="MakeMaximCrate"]</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="BaseSovietEmplacedMG"]/building/fixedStorageSettings</xpath>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>Defs/ThingDef[@Name="BaseSovietEmplacedMG"]/building/defaultStorageSettings</xpath>
+        </li>
+
         <li Class="PatchOperationInsert">
           <xpath>Defs/ThingDef[defName="Maxim_HMG"]</xpath>
           <value>
@@ -32,6 +49,7 @@
             </ThingDef>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Maxim_HMG</defName>
           <statBases>
@@ -44,7 +62,7 @@
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_Maxim</defaultProjectile>
+            <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
             <warmupTime>1.5</warmupTime>
             <range>35</range>
             <minRange>2</minRange>
@@ -67,39 +85,35 @@
             <li>CE_Turret</li>
           </weaponTags>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Turret_Maxim"]/label</xpath>
           <value>
             <label>PM M1910</label>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Maxim_HMG"]/label</xpath>
           <value>
             <label>PM M1910</label>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Turret_Maxim"]</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
-        <!--
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>0.25</AimingAccuracy>
-			<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
-		</value>
-	</li>
-	-->
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Turret_Maxim"]</xpath>
           <value>
             <fillPercent>0.85</fillPercent>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>

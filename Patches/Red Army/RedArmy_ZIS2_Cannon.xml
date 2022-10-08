@@ -6,6 +6,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+      
         <li Class="PatchOperationInsert">
           <xpath>Defs/ThingDef[defName="Artillery_zis"]</xpath>
           <value>
@@ -32,6 +33,7 @@
             </ThingDef>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Artillery_zis</defName>
           <statBases>
@@ -44,16 +46,14 @@
           <Properties>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_Zis</defaultProjectile>
+            <defaultProjectile>Bullet_90mmCannonShell_HE</defaultProjectile>
             <warmupTime>1.5</warmupTime>
             <minRange>5</minRange>
             <range>75</range>
             <ticksBetweenBurstShots>45</ticksBetweenBurstShots>
-            <burstShotCount>1</burstShotCount>
             <soundCast>Zis_Fire1</soundCast>
             <muzzleFlashScale>12</muzzleFlashScale>
             <recoilAmount>0.78</recoilAmount>
-            <forcedMissRadius>3</forcedMissRadius>
             <recoilPattern>Mounted</recoilPattern>
           </Properties>
           <AmmoUser>
@@ -68,27 +68,21 @@
             <li>CE_Turret</li>
           </weaponTags>
         </li>
-        <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="Turret_Zis"]</xpath>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="BaseSovietArtillery"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
         </li>
-        <!--
-	<li Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_Zis"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>0.25</AimingAccuracy>
-			<ShootingAccuracyPawn>0.5</ShootingAccuracyPawn>
-		</value>
-	</li>
-	-->
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Turret_Zis"]</xpath>
           <value>
             <fillPercent>0.85</fillPercent>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>
