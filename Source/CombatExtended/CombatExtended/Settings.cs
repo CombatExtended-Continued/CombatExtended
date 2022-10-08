@@ -252,10 +252,6 @@ namespace CombatExtended
 	    list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
 	    list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
 
-#if DEBUG
-
-#endif
-
             // Do ammo settings
             list.NewColumn();
 
@@ -296,7 +292,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
-
+#if DEBUG
             // Do Debug settings
             list.GapLine();
             Text.Font = GameFont.Medium;
@@ -323,7 +319,7 @@ namespace CombatExtended
             //{
             //    list.Gap();
             //}
-
+#endif
             list.End();
 
             // Update ammo if setting changes
