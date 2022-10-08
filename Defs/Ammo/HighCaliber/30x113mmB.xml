@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingCategoryDef>
+		<defName>Ammo30x113mmB</defName>
+		<label>30x113mmB</label>
+		<parent>AmmoHighCaliber</parent>
+		<iconPath>UI/Icons/ThingCategories/CaliberHighCaliber</iconPath>
+	</ThingCategoryDef>
+
+	<!-- ==================== AmmoSet ========================== -->
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_30x113mmB</defName>
+		<label>30x113mmB</label>
+		<ammoTypes>
+			<Ammo_30x113mmB_Incendiary>Bullet_30x113mmB_Incendiary</Ammo_30x113mmB_Incendiary>
+			<Ammo_30x113mmB_HE>Bullet_30x113mmB_HE</Ammo_30x113mmB_HE>
+		</ammoTypes>
+		<similarTo>AmmoSet_Autocannon</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<!-- ==================== Ammo ========================== -->
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo30x113mmBBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>Large caliber cartridge used by autocannons.</description>
+		<statBases>
+			<Mass>0.45</Mass>
+			<Bulk>0.55</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo30x113mmB</li>
+		</thingCategories>
+		<stackLimit>150</stackLimit>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmB_Incendiary</defName>
+		<label>30x113mmB cartridge (AP-I)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>2.65</MarketValue>
+		</statBases>
+		<ammoClass>IncendiaryAP</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmB_Incendiary</cookOffProjectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
+		<defName>Ammo_30x113mmB_HE</defName>
+		<label>30x113mmB cartridge (HE)</label>
+		<graphicData>
+			<texPath>Things/Ammo/HighCaliber/HE</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>4.21</MarketValue>
+		</statBases>
+		<ammoClass>ExplosiveAP</ammoClass>
+		<cookOffProjectile>Bullet_30x113mmB_HE</cookOffProjectile>
+	</ThingDef>
+
+	<!-- ================== Projectiles ================== -->
+
+	<ThingDef Name="Base30x113mmBBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>161</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmB_Incendiary</defName>
+		<label>30x113mmB bullet (AP-I)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>59</damageAmountBase>
+			<armorPenetrationSharp>60</armorPenetrationSharp>
+			<armorPenetrationBlunt>1587.66</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Flame_Secondary</def>
+					<amount>37</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x113mmBBullet">
+		<defName>Bullet_30x113mmB_HE</defName>
+		<label>30x113mmB bullet (HE)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>93</damageAmountBase>
+			<armorPenetrationSharp>60</armorPenetrationSharp>
+			<armorPenetrationBlunt>1587.66</armorPenetrationBlunt>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>56</amount>
+				</li>
+			</secondaryDamage>
+		</projectile>
+	</ThingDef>
+
+	<!-- ==================== Recipes ========================== -->
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmB_Incendiary</defName>
+		<label>make 30x113mmB (AP-I) cartridge x100</label>
+		<description>Craft 100 .30x113mmB (AP-I) cartridges.</description>
+		<jobString>Making .30x113mmB (AP-I) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>92</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>13</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmB_Incendiary>100</Ammo_30x113mmB_Incendiary>
+		</products>
+		<workAmount>14400</workAmount>
+	</RecipeDef>
+
+	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
+		<defName>MakeAmmo_30x113mmB_HE</defName>
+		<label>make 30x113mmB (HE) cartridge x100</label>
+		<description>Craft 100 .30x113mmB (HE) cartridges.</description>
+		<jobString>Making .30x113mmB (HE) cartridges.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>92</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>23</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_30x113mmB_HE>100</Ammo_30x113mmB_HE>
+		</products>
+		<workAmount>18400</workAmount>
+	</RecipeDef>
+
+</Defs>
