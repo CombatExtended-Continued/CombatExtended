@@ -190,16 +190,18 @@ namespace CombatExtended
                     var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
+			var deflectChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance);
                         // Attack is parried
                         Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
                         bool isShieldBlock = shield != null && Rand.Chance(ShieldBlockChance);
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary ?? defender;
 
-                        if (Rand.Chance(GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
+			bool deflected = Rand.Chance(deflectChance);
+                        if (Rand.Chance(deflectChance))
                         {
                             // Do a riposte
-                            DoParry(defender, parryThing, true);
+                            DoParry(defender, parryThing, true, deflected);
                             moteText = "CE_TextMote_Riposted".Translate();
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDeflect, false); //placeholder
 
@@ -208,8 +210,12 @@ namespace CombatExtended
                         else
                         {
                             // Do a parry
-                            DoParry(defender, parryThing);
-                            moteText = "CE_TextMote_Parried".Translate();
+                            DoParry(defender, parryThing, false, deflected);
+                            moteText = "CE_TextMote_Blocked".Translate();
+			    if (deflected)
+			    {
+				moteText = "CE_TextMote_Parried".Translate();
+			    }	
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
@@ -567,15 +573,19 @@ namespace CombatExtended
         /// <param name="defender">Pawn doing the parrying</param>
         /// <param name="parryThing">Thing used to parry the blow (weapon/shield)</param>
         /// <param name="isRiposte">Whether to do a riposte</param>
-        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false)
+	/// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
+        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
         {
             if (parryThing != null)
             {
                 foreach (var dinfo in DamageInfosToApply(defender))
                 {
-                    LastAttackVerb = this;
-                    ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
-                    LastAttackVerb = null;
+		    if (!deflected)
+		    {
+			LastAttackVerb = this;
+			ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
+			LastAttackVerb = null;
+		    }
                 }
             }
             if (isRiposte)
