@@ -272,7 +272,7 @@ namespace CombatExtended
             // such as the cocoon bite of giant spiders from VAE: Caves
             if (defender != null && !defender.Dead && defender.Spawned)
             {
-                defender.stances.StaggerFor(95);
+                defender.stances.stagger.StaggerFor(95);
                 if (casterPawn.MentalStateDef != MentalStateDefOf.SocialFighting || defender.MentalStateDef != MentalStateDefOf.SocialFighting)
                 {
                     defender.mindState.meleeThreat = casterPawn;

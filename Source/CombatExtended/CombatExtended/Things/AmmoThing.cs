@@ -119,13 +119,39 @@ namespace CombatExtended
 
                     if (detProps != null)
                     {
-                        GenExplosionCE.DoExplosion(Position, Map, detProps.explosionRadius, detProps.damageDef,
-                            this, detProps.GetDamageAmount(1), detProps.GetExplosionArmorPenetration(),
+                        GenExplosionCE.DoExplosion(
+                            Position,
+                            Map,
+                            detProps.explosionRadius,
+                            detProps.damageDef,
+                            instigator: this,
+                            detProps.GetDamageAmount(1),
+                            detProps.GetExplosionArmorPenetration(),
                             detProps.soundExplode,
-                            null, def, null, detProps.postExplosionSpawnThingDef, detProps.postExplosionSpawnChance,
-                            detProps.postExplosionSpawnThingCount, detProps.applyDamageToExplosionCellsNeighbors,
-                            detProps.preExplosionSpawnThingDef, detProps.preExplosionSpawnChance, detProps.preExplosionSpawnThingCount,
-                            detProps.explosionChanceToStartFire, detProps.explosionDamageFalloff, null, new List<Thing>() { this }, 0f, Mathf.Pow(stackCountScale, 0.333f));
+                            weapon: null,
+                            projectile: def,
+                            intendedTarget: null,
+                            detProps.postExplosionSpawnThingDef,
+                            detProps.postExplosionSpawnChance,
+                            detProps.postExplosionSpawnThingCount,
+                            detProps.postExplosionGasType,
+                            detProps.applyDamageToExplosionCellsNeighbors,
+                            detProps.preExplosionSpawnThingDef,
+                            detProps.preExplosionSpawnChance,
+                            detProps.preExplosionSpawnThingCount,
+                            detProps.explosionChanceToStartFire,
+                            detProps.explosionDamageFalloff,
+                            null,
+                            new List<Thing>() { this },
+                            affectedAngle: null,
+                            doVisualEffects: true,
+                            propagationSpeed: 1f,
+                            excludeRadius: 0,
+                            doSoundEffects: true,
+                            detProps.postExplosionSpawnThingDefWater,
+                            detProps.screenShakeFactor,
+                            height: 0f,
+                            Mathf.Pow(stackCountScale, 0.333f));
                     }
                 }
 

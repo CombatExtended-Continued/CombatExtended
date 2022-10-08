@@ -9,22 +9,22 @@ namespace CombatExtended.HarmonyCE
     /// <summary>
     /// Prevent using ranged verbs other than binoculars (artillery spotting) for shield belt users.
     /// </summary>
-    [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.AllowVerbCast))]
-    internal static class ShieldBelt_PatchAllowVerbCast
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.CompAllowVerbCast))]
+    internal static class CompShield_PatchCompAllowVerbCast
     {
-        internal static bool Prefix(ref bool __result, Verb verb, ShieldBelt __instance)
+        internal static bool Prefix(ref bool __result, Verb verb, CompShield __instance)
         {
             __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
             return false;
         }
     }
 
-    [HarmonyPatch(typeof(ShieldBelt), nameof(ShieldBelt.CheckPreAbsorbDamage))]
-    internal static class ShieldBelt_PatchCheckPreAbsorbDamage
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.PostPreApplyDamage))]
+    internal static class CompShield_PatchCheckPreAbsorbDamage
     {
-        internal static bool Prefix(ref bool __result, DamageInfo dinfo, ShieldBelt __instance)
+        internal static bool Prefix(out bool absorbed, DamageInfo dinfo, CompShield __instance)
         {
-	    __result = false;
+            absorbed = false;
 
 	    if (__instance.ShieldState != ShieldState.Active)
 	    {
@@ -41,13 +41,13 @@ namespace CombatExtended.HarmonyCE
 	    {
 		__instance.energy = 0f;
 		__instance.Break();
-		__result = true;
+                absorbed = true;
 		return false;
 	    }
 	    if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
 	    {
-		__result = true;
-		__instance.energy -= dinfo.Amount * __instance.EnergyLossPerDamage * (isEMP ? (1+bc) : 1);
+                absorbed = true;
+                __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * (isEMP ? (1 + bc) : 1);
 		if (__instance.energy < 0f)
 		{
 		    __instance.Break();
@@ -61,17 +61,17 @@ namespace CombatExtended.HarmonyCE
 	}
     }
 
-    [HarmonyPatch(typeof(ShieldBelt), "Tick")]
-    internal static class ShieldBelt_DisableOnOperateTurret
+    [HarmonyPatch(typeof(CompShield), nameof(CompShield.CompTick))]
+    internal static class CompShield_DisableOnOperateTurret
     {
         private const int SHORT_SHIELD_RECHARGE_TIME = 2 * GenTicks.TicksPerRealSecond;
-        internal static void Postfix(ShieldBelt __instance, ref int ___ticksToReset, int ___StartingTicksToReset)
+        internal static void Postfix(CompShield __instance, ref int ___ticksToReset)
         {
             if (!Controller.settings.TurretsBreakShields)
             {
                 return;
             }
-            if (__instance.Wearer?.CurJob?.def == JobDefOf.ManTurret && (__instance.Wearer?.jobs?.curDriver?.OnLastToil ?? false))
+            if (__instance.PawnOwner?.CurJobDef == JobDefOf.ManTurret && (__instance.PawnOwner?.jobs?.curDriver?.OnLastToil ?? false))
             {
                 if (__instance.ShieldState == ShieldState.Active)
                 {
