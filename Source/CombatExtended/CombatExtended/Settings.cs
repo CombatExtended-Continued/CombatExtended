@@ -253,32 +253,7 @@ namespace CombatExtended
 	    list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
 
 #if DEBUG
-            // Do Debug settings
-            list.GapLine();
-            Text.Font = GameFont.Medium;
-            list.Label("Debug");
-            list.Gap();
-            Text.Font = GameFont.Small;
-            list.CheckboxLabeled("Enable debugging", ref debuggingMode, "This will enable all debugging features.");
-            if (debuggingMode)
-            {
-                list.GapLine();
-                list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
-                list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
-                list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
-                list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
-                list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
-                list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
-                list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
-                list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
-                list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
-                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
-                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
-            }
-            else
-            {
-                list.Gap();
-            }
+
 #endif
 
             // Do ammo settings
@@ -321,6 +296,33 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             list.CheckboxLabeled("CE_Settings_BipodMechanics_Title".Translate(), ref bipodMechanics, "CE_Settings_BipodMechanics_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_BipodAutoSetUp_Title".Translate(), ref autosetup, "CE_Settings_BipodAutoSetUp_Desc".Translate());
+
+            // Do Debug settings
+            list.GapLine();
+            Text.Font = GameFont.Medium;
+            list.Label("Debug");
+            list.Gap();
+            Text.Font = GameFont.Small;
+            list.CheckboxLabeled("Enable debugging", ref debuggingMode, "This will enable all debugging features.");
+            if (debuggingMode)
+            {
+                list.GapLine();
+                list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
+                list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
+                list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
+                list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
+                list.CheckboxLabeled("Draw target cover checks", ref debugDrawTargetCoverChecks, "Displays highest cover of target as it is selected.");
+                list.CheckboxLabeled("Enable inventory validation", ref debugEnableInventoryValidation, "Inventory will refresh its cache every tick and log any discrepancies.");
+                list.CheckboxLabeled("Display tree collision chances", ref debugShowTreeCollisionChance, "Projectiles will display chances of coliding with trees as they pass by.");
+                list.CheckboxLabeled("Display suppression buildup", ref debugShowSuppressionBuildup, "Pawns will display buildup numbers when taking suppression.");
+                list.CheckboxLabeled("Display light intensity affected by muzzle flash", ref debugMuzzleFlash);
+                list.CheckboxLabeled("Display danger buildup within cells", ref debugDisplayDangerBuildup);
+                list.CheckboxLabeled("Display cover rating of cells of suppressed pawns", ref debugDisplayCellCoverRating);
+            }
+            //else
+            //{
+            //    list.Gap();
+            //}
 
             list.End();
 
