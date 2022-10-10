@@ -144,7 +144,7 @@ namespace CombatExtended
             return mode == AimMode.AimedShot;
         }
 
-        public virtual int ShotsPerBurstFor(FireMode mode)
+        public int ShotsPerBurstFor(FireMode mode)
         {            
             if (CompFireModes != null)
             {
