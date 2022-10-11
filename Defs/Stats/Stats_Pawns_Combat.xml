@@ -4,58 +4,6 @@
   <!-- ================================== Shooting =======================================-->
 
   <StatDef>
-    <defName>AimingDelayFactor</defName>
-    <label>aiming time</label>
-    <description>How long it takes to shoot after choosing a target.</description>
-    <category>PawnCombat</category>
-    <displayPriorityInCategory>4049</displayPriorityInCategory>
-    <defaultBaseValue>1</defaultBaseValue>
-    <minValue>0.5</minValue>
-    <toStringStyle>PercentZero</toStringStyle>
-    <showOnAnimals>false</showOnAnimals>
-    <skillNeedFactors>
-      <li Class="SkillNeed_Direct">
-        <skill>Shooting</skill>
-        <valuesPerLevel>
-          <li>1.25</li>
-          <li>1.2</li>
-          <li>1.17</li>
-          <li>1.15</li>
-          <li>1.12</li>
-          <li>1.09</li>
-          <li>1.06</li>
-          <li>1.03</li>
-          <li>1.0</li>
-          <li>0.98</li>
-          <li>0.96</li>
-          <li>0.94</li>
-          <li>0.92</li>
-          <li>0.90</li>
-          <li>0.88</li> 
-          <li>0.86</li>
-          <li>0.84</li>
-          <li>0.82</li>
-          <li>0.80</li> 
-          <li>0.78</li> 
-          <li>0.75</li>
-        </valuesPerLevel>
-      </li>
-    </skillNeedFactors>
-    <capacityFactors>
-      <li>
-        <capacity>Manipulation</capacity>
-        <weight>1</weight>
-        <useReciprocal>true</useReciprocal>
-      </li>
-      <li>
-        <capacity>Sight</capacity>
-        <weight>0.7</weight>
-        <useReciprocal>true</useReciprocal>
-      </li>
-    </capacityFactors>
-  </StatDef>
-
-  <StatDef>
     <defName>AimingAccuracy</defName>
     <label>aiming accuracy</label>
     <description>How well a shooter can lead moving targets and estimate range in combination with the weapon's aiming efficiency.\n\nThe final modifier is calculated via this formula:\n(1.5 - aiming accuracy) / aiming efficiency\n\nLead error is calculated by multiplying this factor against total lead distance in cells. Range error is calculated by multiplying it against the total distance to the target divided by 4.\n\nAiming accuracy influences the the sway reduction during aimed shots. For example, at 75% aiming accuracy sway will be reduced to 25%.</description>
@@ -230,48 +178,6 @@
       <li>
         <capacity>Manipulation</capacity>
         <weight>1</weight>
-      </li>
-    </capacityFactors>
-    <postProcessCurve>
-      <points>
-        <li>(0.0, 0.0)</li>
-        <li>(0.3, 0.3)</li>
-        <li>(0.6, 0.45)</li>
-        <li>(1.2, 0.6)</li>
-        <li>(2.4, 0.75)</li>
-        <li>(3.2, 0.8)</li>
-      </points>
-    </postProcessCurve>
-  </StatDef>
-
-  <StatDef>
-    <defName>MeleeDodgeChance</defName>
-    <label>melee dodge chance</label>
-    <description>Chance to dodge a melee attack that would've otherwise hit. Characters will not dodge while aiming or firing a ranged weapon.</description>
-    <category>PawnCombat</category>
-    <workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
-    <displayPriorityInCategory>99</displayPriorityInCategory>
-    <defaultBaseValue>1</defaultBaseValue>
-    <minValue>0</minValue>
-    <maxValue>3.2</maxValue>
-    <toStringStyle>PercentZero</toStringStyle>
-    <neverDisabled>true</neverDisabled>
-    <skillNeedFactors>
-      <li Class="SkillNeed_BaseBonus">
-        <skill>Melee</skill>
-        <baseValue>0.05</baseValue>
-        <bonusPerLevel>0.0175</bonusPerLevel>
-      </li>
-    </skillNeedFactors>
-    <capacityFactors>
-      <li>
-        <capacity>Moving</capacity>
-        <weight>1</weight>
-      </li>
-      <li>
-        <capacity>Sight</capacity>
-        <weight>0.7</weight>
-        <max>1</max>
       </li>
     </capacityFactors>
     <postProcessCurve>
