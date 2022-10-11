@@ -246,6 +246,7 @@ Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
+Kurin, The Three Tailed Fox [Deluxe Edition]    |
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
