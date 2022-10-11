@@ -93,6 +93,7 @@ Anima Animals - Community Pack  |
 Anima Bionics   |
 Anima Gear  |
 AnimalCollabProj	|
+Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anthro Race |
