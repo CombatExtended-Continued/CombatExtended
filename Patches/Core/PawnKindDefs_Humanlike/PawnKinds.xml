@@ -899,6 +899,20 @@
    </match>
   </Operation>
 
+  <!-- Combat drugs for tribals  -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/PawnKindDef[
+        defName="Tribal_Berserker" or
+        defName="Tribal_HeavyArcher" or
+        @Name="TribalChiefBase"
+      ]</xpath>
+      <value>
+        <combatEnhancingDrugsChance>0.3</combatEnhancingDrugsChance>
+        <combatEnhancingDrugsCount>1~2</combatEnhancingDrugsCount>
+      </value>
+  </Operation>
+
   <!-- Stranger in Black -->
   <Operation Class="PatchOperationAddModExtension">
     <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]</xpath>
