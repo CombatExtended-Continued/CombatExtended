@@ -163,7 +163,6 @@
 		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]</xpath>
 		<value>
 			<workerClass>CombatExtended.StatWorker_MoveSpeed</workerClass>
-			<displayPriorityInCategory>99</displayPriorityInCategory>
 			<maxValue>3.2</maxValue>
 		</value>
 	</Operation>
@@ -175,31 +174,31 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]/skillNeedFactors</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]</xpath>
 		<value>
 		    <skillNeedFactors>
 		      <li Class="SkillNeed_BaseBonus">
-			<skill>Melee</skill>
-			<baseValue>0.05</baseValue>
-			<bonusPerLevel>0.0175</bonusPerLevel>
+				<skill>Melee</skill>
+				<baseValue>0.05</baseValue>
+				<bonusPerLevel>0.0175</bonusPerLevel>
 		      </li>
 		    </skillNeedFactors>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]/capacityFactors</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]</xpath>
 		<value>
 		    <capacityFactors>
 		      <li>
-			<capacity>Moving</capacity>
-			<weight>1</weight>
-		      </li>
-		      <li>
-			<capacity>Sight</capacity>
-			<weight>0.7</weight>
-			<max>1</max>
+				<capacity>Moving</capacity>
+				<weight>1</weight>
+				</li>
+				<li>
+				<capacity>Sight</capacity>
+				<weight>0.7</weight>
+				<max>1</max>
 		      </li>
 		    </capacityFactors>
 		</value>
@@ -210,12 +209,12 @@
 		<value>
 		    <postProcessCurve>
 		      <points>
-			<li>(0.0, 0.0)</li>
-			<li>(0.3, 0.3)</li>
-			<li>(0.6, 0.45)</li>
-			<li>(1.2, 0.6)</li>
-			<li>(2.4, 0.75)</li>
-			<li>(3.2, 0.8)</li>
+				<li>(0.0, 0.0)</li>
+				<li>(0.3, 0.3)</li>
+				<li>(0.6, 0.45)</li>
+				<li>(1.2, 0.6)</li>
+				<li>(2.4, 0.75)</li>
+				<li>(3.2, 0.8)</li>
 		      </points>
 		    </postProcessCurve>
 		</value>
@@ -325,12 +324,6 @@
 		<xpath>Defs/StatDef[defName="AimingDelayFactor"]</xpath>
 		<value>
 			<maxValue>2.0</maxValue>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/StatDef[defName="AimingDelayFactor"]</xpath>
-		<value>
 		    <skillNeedFactors>
 		      <li Class="SkillNeed_Direct">
 			<skill>Shooting</skill>
@@ -377,7 +370,7 @@
 			<li>(0.75, 0.75)</li>
 			<li>(1.0, 1.0)</li>
 			<li>(1.25, 1.25)</li>
-			<li>(2.0, 1.5/li>
+			<li>(2.0, 1.5)</li>
 		      </points>
 		    </postProcessCurve>
 		</value>
