@@ -174,31 +174,31 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]/skillNeedOffsets</xpath>
 		<value>
 		    <skillNeedFactors>
 		      <li Class="SkillNeed_BaseBonus">
-				<skill>Melee</skill>
-				<baseValue>0.05</baseValue>
-				<bonusPerLevel>0.0175</bonusPerLevel>
+			<skill>Melee</skill>
+			<baseValue>0.05</baseValue>
+			<bonusPerLevel>0.0175</bonusPerLevel>
 		      </li>
 		    </skillNeedFactors>
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]/capacityOffsets</xpath>
 		<value>
 		    <capacityFactors>
 		      <li>
-				<capacity>Moving</capacity>
-				<weight>1</weight>
-				</li>
-				<li>
-				<capacity>Sight</capacity>
-				<weight>0.7</weight>
-				<max>1</max>
+			<capacity>Moving</capacity>
+			<weight>1</weight>
+		      </li>
+		      <li>
+			<capacity>Sight</capacity>
+			<weight>0.7</weight>
+			<max>1</max>
 		      </li>
 		    </capacityFactors>
 		</value>
@@ -209,14 +209,21 @@
 		<value>
 		    <postProcessCurve>
 		      <points>
-				<li>(0.0, 0.0)</li>
-				<li>(0.3, 0.3)</li>
-				<li>(0.6, 0.45)</li>
-				<li>(1.2, 0.6)</li>
-				<li>(2.4, 0.75)</li>
-				<li>(3.2, 0.8)</li>
+			<li>(0.0, 0.0)</li>
+			<li>(0.3, 0.3)</li>
+			<li>(0.6, 0.45)</li>
+			<li>(1.2, 0.6)</li>
+			<li>(2.4, 0.75)</li>
+			<li>(3.2, 0.8)</li>
 		      </points>
 		    </postProcessCurve>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/StatDef[defName="MeleeDodgeChance"]/displayPriorityInCategory</xpath>
+		<value>
+			<displayPriorityInCategory>99</displayPriorityInCategory>
 		</value>
 	</Operation>
 
@@ -323,7 +330,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/StatDef[defName="AimingDelayFactor"]</xpath>
 		<value>
-			<maxValue>2.0</maxValue>
+		    <maxValue>2.0</maxValue>
 		    <skillNeedFactors>
 		      <li Class="SkillNeed_Direct">
 			<skill>Shooting</skill>
