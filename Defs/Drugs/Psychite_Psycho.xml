@@ -29,7 +29,7 @@
     <ingestible>
       <foodType>Processed</foodType>
       <joyKind>Chemical</joyKind>
-      <joy>1.0</joy>
+      <joy>0.5</joy>
       <drugCategory>Hard</drugCategory>
       <baseIngestTicks>60</baseIngestTicks>
       <ingestSound>Ingest_Snort</ingestSound>
@@ -50,16 +50,13 @@
         </li>
         <li Class="IngestionOutcomeDoer_OffsetNeed">
           <need>Rest</need>
-          <offset>0.6</offset>
+          <offset>0.4</offset>
           <toleranceChemical>Psychite</toleranceChemical>
         </li>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>PsychiteTolerance</hediffDef>
           <severity>0.1</severity>
           <divideByBodySize>true</divideByBodySize>
-        </li>
-        <li Class="IngestionOutcomeDoer_OffsetPsyfocus">
-          <offset>0.25</offset>
         </li>
       </outcomeDoers>
     </ingestible>
@@ -76,7 +73,7 @@
     <comps>
       <li Class="CompProperties_Drug">
         <chemical>Psychite</chemical>
-        <addictiveness>0.2</addictiveness>
+        <addictiveness>0.1</addictiveness>
         <existingAddictionSeverityOffset>0.25</existingAddictionSeverityOffset>
         <needLevelOffset>1.0</needLevelOffset>
         <isCombatEnhancingDrug>true</isCombatEnhancingDrug>
@@ -108,7 +105,7 @@
           <hediffGivers>
             <li Class="HediffGiver_Random">
               <hediff>PsychoCrash</hediff>
-              <mtbDays>0.025</mtbDays>
+              <mtbDays>0.02</mtbDays>
               <partsToAffect>
                 <li>Brain</li>
               </partsToAffect>
@@ -144,7 +141,7 @@
           <capMods>
             <li>
               <capacity>Consciousness</capacity>
-              <offset>0.20</offset>
+              <offset>0.15</offset>
             </li>
             <li>
               <capacity>Sight</capacity>
@@ -170,18 +167,18 @@
     <stages>
       <li>
         <label>coming down from psycho</label>
-        <description>Something is wrong.</description>
+        <description>Something is wrong...</description>
         <baseMoodEffect>0</baseMoodEffect>
       </li>
       <li>
         <label>barely high on psycho</label>
         <description>I still feel so good.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
       <li>
         <label>high on psycho</label>
         <description>I AM GOD!</description>
-        <baseMoodEffect>30</baseMoodEffect>
+        <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -202,47 +199,38 @@
     <stages>
       <li>
         <label>recovering</label>
-          <capMods>
-            <li>
-              <capacity>Consciousness</capacity>
-              <offset>-0.2</offset>
-            </li>
-          </capMods>
+        <vomitMtbDays>0.4</vomitMtbDays>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.8</postFactor>
+          </li>
+        </capMods>
       </li>
       <li>
+        <label>major</label>
         <minSeverity>0.2</minSeverity>
-        <label>serious</label>
         <vomitMtbDays>0.5</vomitMtbDays>
-          <capMods>
-            <li>
-              <capacity>Consciousness</capacity>
-              <offset>-0.4</offset>
-            </li>
-          </capMods>
+        <painOffset>0.3</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.4</postFactor>
+          </li>
+        </capMods>
       </li>
       <li>
-        <minSeverity>0.4</minSeverity>
-        <label>extreme</label>
-        <painFactor>0.1</painFactor>
-        <vomitMtbDays>0.2</vomitMtbDays>
-          <capMods>
-            <li>
-              <capacity>Consciousness</capacity>
-              <offset>-0.4</offset>
-              <setMax>0.1</setMax>
-            </li>
-          </capMods>
-      </li>
-      <li>
-        <minSeverity>0.8</minSeverity>
         <label>initial</label>
-        <vomitMtbDays>0.5</vomitMtbDays>
-          <capMods>
-            <li>
-              <capacity>Consciousness</capacity>
-              <offset>-0.1</offset>
-            </li>
-          </capMods>
+        <minSeverity>0.8</minSeverity>
+        <vomitMtbDays>0.2</vomitMtbDays>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.7</postFactor>
+          </li>
+        </capMods>
       </li>
     </stages>
   </HediffDef>
@@ -254,19 +242,14 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>mild psycho comedown</label>
+        <label>recovering from psycho comedown</label>
         <description>Let's not do this again...</description>
-        <baseMoodEffect>-5</baseMoodEffect>
+        <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
-        <label>serious psycho comedown</label>
-        <description>I might survive this after all.</description>
+        <label>major psycho comedown</label>
+        <description>I might be dying.</description>
         <baseMoodEffect>-10</baseMoodEffect>
-      </li>
-      <li>
-        <label>lethal psycho comedown</label>
-        <description>It feels like I'm dying.</description>
-        <baseMoodEffect>-20</baseMoodEffect>
       </li>
       <li>
         <label>initial psycho comedown</label>
