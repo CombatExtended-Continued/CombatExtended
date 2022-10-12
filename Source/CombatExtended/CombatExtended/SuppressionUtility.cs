@@ -136,7 +136,7 @@ namespace CombatExtended
             // Line of sight is extremely important;
             if (!GenSight.LineOfSight(shooterPos, cell, pawn.Map))
             {
-                cellRating = 15f;
+                cellRating = 20f;
             }
             else
             {
@@ -195,8 +195,14 @@ namespace CombatExtended
                 cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
                 //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
-                if (!GenSight.LineOfSight(pawn.Position, cell, pawn.Map))
-                    pathCost *= 4f;
+                foreach (var pathCell in GenSightCE.PointsOnLineOfSight(pawn.Position.ToVector3(), cell.ToVector3()))
+                {
+                    if (!pathCell.Standable(pawn.Map))
+                    {
+                        pathCost *= 2f;
+                        break;
+                    }
+                }
                 cellRating = cellRating - (pathCost * pathCostMultiplier);
             }
 
