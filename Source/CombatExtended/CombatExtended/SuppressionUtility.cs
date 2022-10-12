@@ -195,7 +195,7 @@ namespace CombatExtended
                 cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
                 //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
-                foreach (var pathCell in GenSightCE.PointsOnLineOfSight(pawn.Position.ToVector3(), cell.ToVector3()))
+                foreach (var pathCell in GenSight.PointsOnLineOfSight(pawn.Position, cell))
                 {
                     if (!pathCell.Standable(pawn.Map))
                     {
