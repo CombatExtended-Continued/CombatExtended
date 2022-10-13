@@ -6,6 +6,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- ========== Wall MiniGun Turret ========== -->
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="WallTurretMiniGun"]/statBases</xpath>
@@ -13,12 +14,14 @@
             <AimingAccuracy>0.25</AimingAccuracy>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="WallTurretMiniGun"]/statBases/ShootingAccuracyTurret</xpath>
           <value>
             <ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="WallTurretMiniGun"]/researchPrerequisites</xpath>
           <value>
@@ -27,6 +30,7 @@
             </researchPrerequisites>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Gun_WallTurretMiniGun</defName>
           <statBases>
@@ -56,6 +60,7 @@
             <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
           </AmmoUser>
         </li>
+        
       </operations>
     </match>
   </Operation>

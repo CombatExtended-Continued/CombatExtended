@@ -16,6 +16,7 @@ namespace CombatExtended.HarmonyCE
     {
 	private static ThingDef smallFragment = null;
 	private static ThingDef largeFragment = null;
+	private static DamageDef demolish = null;
 	public static bool Prefix(DamageWorker __instance, DamageInfo dinfo, Thing victim)
 	{
 	    if (!Controller.settings.FragmentsFromWalls)
@@ -26,6 +27,15 @@ namespace CombatExtended.HarmonyCE
 	    {
 		if (victim.def.category == ThingCategory.Building)
 		{
+		    if (smallFragment == null)
+		    {
+			smallFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Small").First();
+			largeFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Large").First();
+			demolish = DefDatabase<DamageDef>.AllDefsListForReading.Where(d => d.defName == "Demolish").First();
+		    }
+		    if (dinfo.Def == demolish) {
+			return true;
+		    }
 		    bool isSharp = dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp;
 		    Vector3 pos;
 		    pos = victim.Position.ToVector3Shifted();
@@ -58,11 +68,7 @@ namespace CombatExtended.HarmonyCE
 		    
 		    smallFragments += 4 * ((largeFragments / 2) + largeFragments % 2);
 		    largeFragments /= 2;
-		    if (smallFragment == null)
-		    {
-			smallFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Small").First();
-			largeFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Large").First();
-		    }
+
 		    var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270); 
 		    var backArc = new FloatRange(dinfo.Angle - 60, dinfo.Angle + 60);
 

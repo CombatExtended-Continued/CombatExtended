@@ -1,15 +1,23 @@
-all: Assemblies/0CombatExtendedLoader.dll Assemblies/CombatExtended.dll CompatAssemblies
+PUBLICIZER := /tmp/AssemblyPublicizer
+
+
+all: Assemblies/0CombatExtendedLoader.dll Assemblies/CombatExtended.dll CompatAssemblies AssembliesCompat $(PUBLICIZER)
+
+$(PUBLICIZER):
+	git clone https://github.com/CombatExtended-Continued/AssemblyPublicizer --depth=1 $(PUBLICIZER)
 
 .PHONY: all CompatAssemblies
 
-PUBLICIZER := /tmp/AssemblyPublicizer
 
-Assemblies/0CombatExtendedLoader.dll: Source/Loader/Loader.csproj $(wildcard Source/Loader/Loader/*.cs)
-	python Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --reference /tmp/rwreference --all-libs $(DOWNLOAD_LIBS)
+AssembliesCompat: $(PUBLICIZER)
+	mkdir -p AssembliesCompat
 
-Assemblies/CombatExtended.dll: Assemblies/0CombatExtendedLoader.dll Source/CombatExtended/CombatExtended.csproj $(wildcard Source/CombatExtended/*/*.cs) $(wildcard Source/CombatExtended/*/*/*.cs)
-	python Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --reference /tmp/rwreference --all-libs $(DOWNLOAD_LIBS) --publicizer $(PUBLICIZER)
+Assemblies/0CombatExtendedLoader.dll: Source/Loader/Loader.csproj $(wildcard Source/Loader/Loader/*.cs) $(PUBLICIZER)
+	python3 Make.py --csproj Source/Loader/Loader.csproj --output Assemblies/0CombatExtendedLoader.dll --reference /tmp/rwreference --all-libs $(DOWNLOAD_LIBS)
+
+Assemblies/CombatExtended.dll: Assemblies/0CombatExtendedLoader.dll Source/CombatExtended/CombatExtended.csproj $(wildcard Source/CombatExtended/*/*.cs) $(wildcard Source/CombatExtended/*/*/*.cs) $(PUBLICIZER)
+	python3 Make.py --csproj Source/CombatExtended/CombatExtended.csproj --output Assemblies/CombatExtended.dll --reference /tmp/rwreference --all-libs $(DOWNLOAD_LIBS) --publicizer $(PUBLICIZER)
 
 
 CompatAssemblies:
-	DOWNLOAD_LIBS="--reference=/tmp/rwreference" PUBLICIZER=$(PUBLICIZER) python BuildCompat.py -j
+	DOWNLOAD_LIBS="--reference=/tmp/rwreference" PUBLICIZER=$(PUBLICIZER) python3 BuildCompat.py -j

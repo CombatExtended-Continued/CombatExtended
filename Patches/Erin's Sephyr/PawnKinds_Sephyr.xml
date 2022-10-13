@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Erin's Sephyr</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- ======= Give ammo to Pawnkinds ======= -->
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/PawnKindDef[@Name="ERN_SephyrTribalBase"] </xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>12</min>
+                <max>20</max>
+              </primaryMagazineCount>
+              <sidearms>
+                <li>
+                  <sidearmMoney>
+                    <min>100</min>
+                    <max>600</max>
+                  </sidearmMoney>
+                  <weaponTags>
+                    <li>NeolithicMeleeBasic</li>
+                  </weaponTags>
+                </li>
+              </sidearms>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/PawnKindDef[
+          @Name="ERN_SephyrOutlanderBase" or 
+          @Name="ERN_SephyrMercenaryBase" or 
+          @Name="ERN_SephyrPirateBase" or 
+          defName="ERN_SephyrAncientSoldier"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>5</min>
+                <max>8</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
