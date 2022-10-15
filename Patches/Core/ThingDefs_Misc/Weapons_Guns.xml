@@ -845,8 +845,13 @@
 
   <!-- ========== Minigun ========== -->
 
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName ="Gun_Minigun"]/weaponTags/li[.="GunHeavy"]</xpath>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName ="Gun_Minigun"]/weaponTags</xpath>
+    <value>
+      <weaponTags>
+        <li>GunMinigun</li>
+      </weaponTags>
+    </value>
   </Operation>
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
