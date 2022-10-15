@@ -2,14 +2,14 @@ name: Build Branch
 on:
   workflow_dispatch:
   push:
-    branches: [ master, Development ]
+    branches: [ master, Development, Rimworld-Version-1.4 ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: prebuild
       run: |
         rm -rf AssemblyPublicizer
