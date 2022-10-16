@@ -6,40 +6,25 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>		
+
 		<!-- ========== Remove Unneccessary ========== -->
+
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACPistol"]</xpath>
+          <xpath>/Defs/ThingDef[
+			defName="Bullet_UACPistol" or
+			defName="Bullet_UACCombatShotgun" or
+			defName="UAC_BulletSuperShotgun" or
+			defName="Bullet_UACHeavyAssaultRifle" or
+			defName="Bullet_UACChaingun" or
+			defName="UAC_GAUSSBEAM" or
+			defName="Bullet_UACPlasmaGun" or
+			defName="UAC_RocketLauncher" or
+			defName="Bullet_UACHellshot" or
+			defName="Bullet_UACVortexRifle" or
+			defName="Proj_UACBFG"
+			]</xpath>
         </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACCombatShotgun"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="UAC_BulletSuperShotgun"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACHeavyAssaultRifle"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACChaingun"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="UAC_GAUSSBEAM"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACPlasmaGun"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="UAC_RocketLauncher"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACHellshot"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Bullet_UACVortexRifle"]</xpath>
-        </li>
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Proj_UACBFG"]</xpath>
-        </li>
+
         <li Class="PatchOperationRemove">
           <xpath>/Defs/ThingDef[defName="Gun_UACChaingun"]/recipeMaker/researchPrerequisite</xpath>
         </li>
@@ -51,6 +36,7 @@
             <Bulk>5</Bulk>
           </value>
         </li>
+		
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="MeleeWeapon_UACSaw"]/tools</xpath>
           <value>
@@ -172,6 +158,7 @@
 				<li>CE_AI_AssaultWeapon</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Super Shotgun ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_SuperShotgun</defName>
@@ -208,6 +195,7 @@
 				<li>CE_AI_AssaultWeapon</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Heavy Assault Rifle ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_HeavyAssaultRifle</defName>
@@ -247,6 +235,7 @@
 				<li>CE_AI_AssaultWeapon</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Chaingun ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>Gun_UACChaingun</defName>
@@ -285,6 +274,7 @@
 				<li>UAC_Sheperd</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Plasma Rifle ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_PlasmaGun</defName>
@@ -324,6 +314,7 @@
 				<li>UAC_EliteLight</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Hellshot ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_Hellshot</defName>
@@ -358,6 +349,7 @@
 				<li>UAC_EliteLight</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Vortex Rifle ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_VortexRifle</defName>
@@ -392,6 +384,7 @@
 				<li>UAC_EliteSniper</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Gauss cannon ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>Gun_GAUSSCannon</defName>
@@ -427,6 +420,7 @@
 				<li>UAC_EliteHeavy</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== Rocket Launcher ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>Gun_UACRocketLauncher</defName>
@@ -461,6 +455,7 @@
 				<li>UAC_EliteHeavy</li>
 			</weaponTags>
         </li>
+
 		<!-- ========== BFG ========== -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 			<defName>UAC_BFG</defName>
@@ -497,6 +492,7 @@
 				<li>CE_AI_Launcher</li>
 			</weaponTags>
         </li>
+
       </operations>
     </match>
   </Operation>

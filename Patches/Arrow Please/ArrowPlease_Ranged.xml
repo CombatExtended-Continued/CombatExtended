@@ -7,9 +7,14 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-        <!-- === Ranged_Crossbow === -->
+        <!-- === Melee Tools === -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="Ranged_Crossbow"]/tools</xpath>
+          <xpath>/Defs/ThingDef[
+          defName="Ranged_Crossbow" or
+          defName="Ranged_Arbalest" or
+          defName="Ranged_Waistcrossbow" or
+          defName="Ranged_Repeatingcrossbow"
+          ]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -24,6 +29,7 @@
           </value>
         </li>
 
+        <!-- === Ranged_Crossbow === -->
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Ranged_Crossbow</defName>
           <statBases>
@@ -56,22 +62,6 @@
         </li>
 
         <!-- === Ranged_Arbalest === -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="Ranged_Arbalest"]/tools</xpath>
-          <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>9</power>
-                <cooldownTime>2</cooldownTime>
-                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-              </li>
-            </tools>
-          </value>
-        </li>
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Ranged_Arbalest</defName>
           <statBases>
@@ -104,22 +94,6 @@
         </li>
 
         <!-- === Ranged_Waistcrossbow === -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="Ranged_Waistcrossbow"]/tools</xpath>
-          <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>9</power>
-                <cooldownTime>2.2</cooldownTime>
-                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-              </li>
-            </tools>
-          </value>
-        </li>
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Ranged_Waistcrossbow</defName>
           <statBases>
@@ -152,22 +126,6 @@
         </li>
 
         <!-- === Ranged_Repeatingcrossbow === -->
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="Ranged_Repeatingcrossbow"]/tools</xpath>
-          <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>9</power>
-                <cooldownTime>2.2</cooldownTime>
-                <armorPenetrationBlunt>0.65</armorPenetrationBlunt>
-              </li>
-            </tools>
-          </value>
-        </li>
-
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Ranged_Repeatingcrossbow</defName>
           <statBases>

@@ -93,6 +93,7 @@ Anima Animals - Community Pack  |
 Anima Bionics   |
 Anima Gear  |
 AnimalCollabProj	|
+Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anthro Race |
@@ -156,6 +157,7 @@ Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
 Erin's Azaphrae |
+Erin's Chocobos |
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
@@ -163,6 +165,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Sephyr   |
 Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
@@ -243,6 +246,7 @@ Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
+Kurin, The Three Tailed Fox [Deluxe Edition]    |
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|

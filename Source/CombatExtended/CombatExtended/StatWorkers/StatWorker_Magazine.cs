@@ -39,9 +39,9 @@ namespace CombatExtended
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
         {            
             StringBuilder stringBuilder = new StringBuilder();
-            //var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
+            var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
             stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
-            //stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
+            stringBuilder.AppendLine("CE_ReloadTime".Translate() + ": " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate());
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
@@ -50,14 +50,12 @@ namespace CombatExtended
             if (!optionalReq.HasThing)
             {
                 var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-                return ammoProps.magazineSize.ToString();
-                //+ " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+                return ammoProps.magazineSize.ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
             }
             else
             {
-                //var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
-                return GetMagSize(optionalReq).ToString();
-                //" / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
+                var ammoProps = GunDef(optionalReq)?.GetCompProperties<CompProperties_AmmoUser>();
+                return GetMagSize(optionalReq).ToString() + " / " + GenText.ToStringByStyle((ammoProps.reloadTime), ToStringStyle.FloatTwo) + " " + "LetterSecond".Translate();
             }
         }
 

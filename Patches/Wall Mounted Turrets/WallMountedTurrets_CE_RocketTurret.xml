@@ -6,6 +6,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <!-- ========== Wall Rocket Turret ========== -->
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="WallRocketTurret"]/building/turretBurstCooldownTime</xpath>
@@ -13,18 +14,21 @@
             <turretBurstCooldownTime>3.8</turretBurstCooldownTime>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="WallRocketTurret"]/statBases</xpath>
           <value>
             <AimingAccuracy>0.25</AimingAccuracy>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="WallRocketTurret"]/statBases/ShootingAccuracyTurret</xpath>
           <value>
             <ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="WallRocketTurret"]/researchPrerequisites</xpath>
           <value>
@@ -33,6 +37,7 @@
             </researchPrerequisites>
           </value>
         </li>
+
         <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
           <defName>Gun_WallTurretRocket</defName>
           <statBases>
@@ -68,6 +73,7 @@
             <noSingleShot>true</noSingleShot>
           </FireModes>
         </li>
+        
       </operations>
     </match>
   </Operation>

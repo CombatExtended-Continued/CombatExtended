@@ -15,6 +15,7 @@
     <label>25x40mm Grenades</label>
     <ammoTypes>
       <Ammo_25x40mmGrenade_HE>Bullet_25x40mmGrenade_HE</Ammo_25x40mmGrenade_HE>
+	  <Ammo_25x40mmGrenade_HE_TFuzed>Bullet_25x40mmGrenade_HE_TFuzed</Ammo_25x40mmGrenade_HE_TFuzed>
       <Ammo_25x40mmGrenade_EMP>Bullet_25x40mmGrenade_EMP</Ammo_25x40mmGrenade_EMP>
 	  <Ammo_25x40mmGrenade_Smoke>Bullet_25x40mmGrenade_Smoke</Ammo_25x40mmGrenade_Smoke>	      
     </ammoTypes>
@@ -51,6 +52,20 @@
       <MarketValue>1.81</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_25x40mmGrenade_HE</detonateProjectile>
+  </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="25x40mmGrenadeBase">
+    <defName>Ammo_25x40mmGrenade_HE_TFuzed</defName>
+    <label>25x40mm grenade (HE-Airburst)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.88</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHETF</ammoClass>
 	<detonateProjectile>Bullet_25x40mmGrenade_HE</detonateProjectile>
   </ThingDef>
 
@@ -135,6 +150,27 @@
       </li>
     </comps>
   </ThingDef>
+  
+    <ThingDef ParentName="Base25x40mmGrenadeBullet">
+    <defName>Bullet_25x40mmGrenade_HE_TFuzed</defName>
+    <label>25mm grenade (HE-Airburst)</label>
+    <thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>17</damageAmountBase>
+      <explosionRadius>1</explosionRadius>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+	  <aimHeightOffset>0.5</aimHeightOffset>
+	  <armingDelay>2</armingDelay>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>39</Fragment_Small>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
 
   <ThingDef ParentName="Base25x40mmGrenadeBullet">
     <defName>Bullet_25x40mmGrenade_EMP</defName>
@@ -203,6 +239,51 @@
     </products>
 	<workAmount>6400</workAmount>
   </RecipeDef>
+  
+    <RecipeDef ParentName="LauncherAmmoRecipeBase">
+    <defName>MakeAmmo_25x40mmGrenade_HE_TFuzed</defName>
+    <label>make 25x40mm HE-Airburst grenades x100</label>
+    <description>Craft 100 25x40mm HE-Airburst grenades.</description>
+    <jobString>Making 25x40mm HE-Airburst grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>30</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_25x40mmGrenade_HE_TFuzed>100</Ammo_25x40mmGrenade_HE_TFuzed>
+    </products>
+	<workAmount>8000</workAmount>
+  </RecipeDef>
+
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_25x40mmGrenade_EMP</defName>
