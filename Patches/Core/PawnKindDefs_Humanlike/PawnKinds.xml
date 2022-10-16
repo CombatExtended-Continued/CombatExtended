@@ -525,25 +525,6 @@
 
   <!-- ========== Spacer ========== -->
 
-  <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]/skills</xpath>
-   <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]</xpath>
-     <value>
-       <skills>
-         <li>
-           <skill>Shooting</skill>
-           <range>6~12</range>
-         </li>
-         <li>
-           <skill>Melee</skill>
-           <range>4~12</range>
-         </li>
-       </skills>
-     </value>
-   </nomatch>
-  </Operation>
-
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="AncientSoldier"]/weaponMoney</xpath>
     <value>
@@ -569,7 +550,7 @@
         <shieldTags>
           <li>OutlanderShield</li>
         </shieldTags>
-        <shieldChance>0.9</shieldChance>
+        <shieldChance>0.5</shieldChance>
         <sidearms>
           <li>
             <sidearmMoney>
@@ -931,21 +912,6 @@
      <value>
        <li>Apparel_Backpack</li>
      </value>
-  </Operation>
-
-  <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]/skills</xpath>
-   <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]</xpath>
-     <value>
-       <skills>
-         <li>
-           <skill>Shooting</skill>
-           <range>4~12</range>
-         </li>
-       </skills>
-     </value>
-   </nomatch>
   </Operation>
 
 </Patch>
