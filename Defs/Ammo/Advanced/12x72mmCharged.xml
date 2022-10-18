@@ -26,7 +26,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="12x72mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>High-caliber charged shot ammo used by advanced heavy machine guns and anti-materiel rifles.</description>
     <statBases>
-      <Mass>0.054</Mass>
+      <Mass>0.058</Mass>
       <Bulk>0.04</Bulk>
     </statBases>
     <tradeTags>
@@ -47,7 +47,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>6.15</MarketValue>
+      <MarketValue>6.78</MarketValue>
     </statBases>
     <ammoClass>Charged</ammoClass>
   </ThingDef>
@@ -60,7 +60,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>6.15</MarketValue>
+      <MarketValue>6.78</MarketValue>
     </statBases>
     <ammoClass>ChargedAP</ammoClass>
   </ThingDef>
@@ -73,10 +73,10 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>6.15</MarketValue>
+      <MarketValue>6.78</MarketValue>
     </statBases>
     <ammoClass>Ionized</ammoClass>
-    <generateAllowChance>0.25</generateAllowChance>
+    <generateAllowChance>0.5</generateAllowChance>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
@@ -85,6 +85,7 @@
     <graphicData>
       <texPath>Things/Projectile/Charge_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.3,1.3)</drawSize>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Bullet</damageDef>
@@ -97,15 +98,15 @@
     <defName>Bullet_12x72mmCharged</defName>
     <label>12x72mm Charged bullet</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>38</damageAmountBase>
+      <damageAmountBase>39</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>11</amount>
+          <amount>12</amount>
         </li>
       </secondaryDamage>
       <armorPenetrationSharp>30</armorPenetrationSharp>
-      <armorPenetrationBlunt>291.6</armorPenetrationBlunt>
+      <armorPenetrationBlunt>324</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -114,15 +115,15 @@
     <defName>Bullet_12x72mmCharged_AP</defName>
     <label>12x72mm Charged bullet (Conc.)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>27</damageAmountBase>
+      <damageAmountBase>31</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>Bomb_Secondary</def>
-          <amount>4</amount>
+          <amount>5</amount>
         </li>
       </secondaryDamage>
       <armorPenetrationSharp>60</armorPenetrationSharp>
-      <armorPenetrationBlunt>291.6</armorPenetrationBlunt>
+      <armorPenetrationBlunt>324</armorPenetrationBlunt>
     </projectile>
   </ThingDef>
 
@@ -131,15 +132,15 @@
     <defName>Bullet_12x72mmCharged_Ion</defName>
     <label>12x72mm Charged bullet (Ion)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageAmountBase>27</damageAmountBase>
+      <damageAmountBase>31</damageAmountBase>
       <secondaryDamage>
         <li>
           <def>EMP</def>
-          <amount>16</amount>
+          <amount>18</amount>
         </li>
       </secondaryDamage>
       <armorPenetrationSharp>45</armorPenetrationSharp>
-      <armorPenetrationBlunt>291.6</armorPenetrationBlunt>
+      <armorPenetrationBlunt>324</armorPenetrationBlunt>
       <empShieldBreakChance>1</empShieldBreakChance>
     </projectile>
   </ThingDef>
@@ -148,8 +149,8 @@
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_12x72mmCharged</defName>
-    <label>make 12x72mm Charged cartridge x500</label>
-    <description>Craft 500 12x72mm Charged cartridges.</description>
+    <label>make 12x72mm Charged cartridge x200</label>
+    <description>Craft 200 12x72mm Charged cartridges.</description>
     <jobString>Making 12x72mm Charged cartridges.</jobString>
     <ingredients>
       <li>
@@ -158,7 +159,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -174,7 +175,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -187,13 +188,13 @@
     <products>
       <Ammo_12x72mmCharged>200</Ammo_12x72mmCharged>
     </products>
-    <workAmount>29800</workAmount>		
+    <workAmount>32800</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
     <defName>MakeAmmo_12x72mmCharged_AP</defName>
-    <label>make 12x72mm Charged (Conc.) cartridge x500</label>
-    <description>Craft 500 12x72mm Charged (Conc.) cartridges.</description>
+    <label>make 12x72mm Charged (Conc.) cartridge x200</label>
+    <description>Craft 200 12x72mm Charged (Conc.) cartridges.</description>
     <jobString>Making 12x72mm Charged (Conc.) cartridges.</jobString>
     <ingredients>
       <li>
@@ -202,7 +203,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -218,7 +219,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -231,7 +232,7 @@
     <products>
       <Ammo_12x72mmCharged_AP>200</Ammo_12x72mmCharged_AP>
     </products>
-    <workAmount>29800</workAmount>		
+    <workAmount>32800</workAmount>		
   </RecipeDef>
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase">
@@ -246,7 +247,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
       <li>
         <filter>
@@ -262,7 +263,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>29</count>
+        <count>32</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -275,7 +276,7 @@
     <products>
       <Ammo_12x72mmCharged_Ion>200</Ammo_12x72mmCharged_Ion>
     </products>
-    <workAmount>29800</workAmount>	
+    <workAmount>32800</workAmount>	
   </RecipeDef>
 
 </Defs>

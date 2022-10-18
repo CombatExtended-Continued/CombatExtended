@@ -6,6 +6,7 @@
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Chisel"]/tools</xpath>
           <value>
@@ -35,6 +36,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chisel"]/statBases</xpath>
           <value>
@@ -42,6 +44,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chisel"]/equippedStatOffsets</xpath>
           <value>
@@ -49,27 +52,24 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Chisel"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Chisel"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Chisel"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Chisel"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chisel"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/tools</xpath>
           <value>
@@ -112,6 +112,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/statBases</xpath>
           <value>
@@ -119,6 +120,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/equippedStatOffsets</xpath>
           <value>
@@ -126,27 +128,24 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Chefs_Knife"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Chefs_Knife"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Pillow"]/tools</xpath>
           <value>
@@ -165,6 +164,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Pillow"]/statBases</xpath>
           <value>
@@ -172,6 +172,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Blanket"]/tools</xpath>
           <value>
@@ -190,6 +191,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Blanket"]/statBases</xpath>
           <value>
@@ -197,6 +199,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Leash"]/tools</xpath>
           <value>
@@ -215,6 +218,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Leash"]/statBases</xpath>
           <value>
@@ -222,6 +226,7 @@
             <MeleeCounterParryBonus>1.1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Leash"]/equippedStatOffsets</xpath>
           <value>
@@ -229,27 +234,24 @@
             <MeleeParryChance>0.05</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Leash"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Leash"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Leash"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Leash"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Leash"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Bandage"]/tools</xpath>
           <value>
@@ -268,6 +270,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Bandage"]/statBases</xpath>
           <value>
@@ -275,6 +278,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Bandage"]/equippedStatOffsets</xpath>
           <value>
@@ -282,27 +286,24 @@
             <MeleeParryChance>0.05</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Bandage"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Bandage"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Bandage"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Bandage"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Bandage"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]/tools</xpath>
           <value>
@@ -321,6 +322,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]/statBases</xpath>
           <value>
@@ -328,6 +330,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]/equippedStatOffsets</xpath>
           <value>
@@ -335,27 +338,24 @@
             <MeleeParryChance>0.30</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Walking_Cane"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Walking_Cane"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Walking_Cane"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Whip"]/tools</xpath>
           <value>
@@ -374,6 +374,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Whip"]/statBases</xpath>
           <value>
@@ -381,33 +382,31 @@
             <MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Whip"]/equippedStatOffsets</xpath>
           <value>
             <MeleeCritChance>0.60</MeleeCritChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Whip"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Whip"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Whip"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Whip"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Whip"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_First_Aid_Kit"]/tools</xpath>
           <value>
@@ -426,6 +425,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_First_Aid_Kit"]/statBases</xpath>
           <value>
@@ -433,27 +433,24 @@
             <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_First_Aid_Kit"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_First_Aid_Kit"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_First_Aid_Kit"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_First_Aid_Kit"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_First_Aid_Kit"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Flowers"]/tools</xpath>
           <value>
@@ -472,6 +469,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Flowers"]/statBases</xpath>
           <value>
@@ -479,27 +477,24 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Flowers"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Flowers"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Flowers"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Flowers"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Flowers"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Fan"]/tools</xpath>
           <value>
@@ -518,6 +513,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Fan"]/statBases</xpath>
           <value>
@@ -525,27 +521,24 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Fan"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Fan"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Fan"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Fan"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Fan"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Encyclopedia"]/tools</xpath>
           <value>
@@ -564,6 +557,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Encyclopedia"]/statBases</xpath>
           <value>
@@ -571,27 +565,24 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Encyclopedia"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Encyclopedia"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Encyclopedia"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Encyclopedia"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Encyclopedia"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_How_To"]/tools</xpath>
           <value>
@@ -610,6 +601,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_How_To"]/statBases</xpath>
           <value>
@@ -617,27 +609,24 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_How_To"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_How_To"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_How_To"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_How_To"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_How_To"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Coupon_Book"]/tools</xpath>
           <value>
@@ -656,6 +645,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Coupon_Book"]/statBases</xpath>
           <value>
@@ -663,27 +653,24 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Coupon_Book"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Coupon_Book"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Coupon_Book"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Coupon_Book"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Coupon_Book"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Laptop"]/tools</xpath>
           <value>
@@ -702,6 +689,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Laptop"]/statBases</xpath>
           <value>
@@ -709,6 +697,7 @@
             <MeleeCounterParryBonus>0.4</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Saw"]/tools</xpath>
           <value>
@@ -739,6 +728,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Saw"]/statBases</xpath>
           <value>
@@ -746,6 +736,7 @@
             <MeleeCounterParryBonus>1.1</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Saw"]/equippedStatOffsets</xpath>
           <value>
@@ -753,27 +744,24 @@
             <MeleeParryChance>0.25</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Saw"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Saw"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Saw"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Saw"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Saw"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Brick_Saw"]/tools</xpath>
           <value>
@@ -804,6 +792,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Brick_Saw"]/statBases</xpath>
           <value>
@@ -811,6 +800,7 @@
             <MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Brick_Saw"]/equippedStatOffsets</xpath>
           <value>
@@ -819,6 +809,7 @@
             <MeleeDodgeChance>-0.20</MeleeDodgeChance>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]/tools</xpath>
           <value>
@@ -849,6 +840,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]/statBases</xpath>
           <value>
@@ -856,6 +848,7 @@
             <MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]/equippedStatOffsets</xpath>
           <value>
@@ -863,27 +856,24 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Power_Drill"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Power_Drill"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Power_Drill"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Jackhammer"]/tools</xpath>
           <value>
@@ -914,6 +904,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Jackhammer"]/statBases</xpath>
           <value>
@@ -921,6 +912,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Jackhammer"]/equippedStatOffsets</xpath>
           <value>
@@ -929,6 +921,7 @@
             <MeleeDodgeChance>-0.20</MeleeDodgeChance>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Toolkit"]/tools</xpath>
           <value>
@@ -947,6 +940,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Toolkit"]/statBases</xpath>
           <value>
@@ -954,27 +948,24 @@
             <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Toolkit"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Toolkit"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Toolkit"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Toolkit"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Toolkit"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Thimble"]/tools</xpath>
           <value>
@@ -993,6 +984,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Thimble"]/statBases</xpath>
           <value>
@@ -1000,6 +992,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Thimble"]/equippedStatOffsets</xpath>
           <value>
@@ -1007,27 +1000,24 @@
             <MeleeParryChance>0.05</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Thimble"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Thimble"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Thimble"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Thimble"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="Tool_Leash"]/weaponTags</xpath>
+          <xpath>Defs/ThingDef[defName="Tool_Thimble"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Whistle"]/tools</xpath>
           <value>
@@ -1046,6 +1036,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Whistle"]/statBases</xpath>
           <value>
@@ -1053,33 +1044,31 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Whistle"]/equippedStatOffsets</xpath>
           <value>
             <MeleeCritChance>0.05</MeleeCritChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Whistle"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Whistle"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Whistle"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Whistle"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
-          <xpath>Defs/ThingDef[defName="Tool_Leash"]/weaponTags</xpath>
+          <xpath>Defs/ThingDef[defName="Tool_Whistle"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]/tools</xpath>
           <value>
@@ -1110,6 +1099,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]/statBases</xpath>
           <value>
@@ -1117,6 +1107,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]/equippedStatOffsets</xpath>
           <value>
@@ -1124,27 +1115,24 @@
             <MeleeParryChance>0.2</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Screwdriver"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Screwdriver"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Screwdriver"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Axe"]/tools</xpath>
           <value>
@@ -1175,6 +1163,7 @@
             </tools>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Axe"]/statBases</xpath>
           <value>
@@ -1182,6 +1171,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Axe"]/equippedStatOffsets</xpath>
           <value>
@@ -1189,6 +1179,7 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Skill_Saw"]/tools</xpath>
           <value>
@@ -1219,6 +1210,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Skill_Saw"]/statBases</xpath>
           <value>
@@ -1226,6 +1218,7 @@
             <MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Skill_Saw"]/equippedStatOffsets</xpath>
           <value>
@@ -1234,6 +1227,7 @@
             <MeleeDodgeChance>-0.20</MeleeDodgeChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Fork"]/tools</xpath>
           <value>
@@ -1252,6 +1246,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Fork"]/statBases</xpath>
           <value>
@@ -1259,27 +1254,24 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Fork"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Fork"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Fork"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Fork"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Fork"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Cleaver"]/tools</xpath>
           <value>
@@ -1310,6 +1302,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Cleaver"]/statBases</xpath>
           <value>
@@ -1317,6 +1310,7 @@
             <MeleeCounterParryBonus>1.1</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Cleaver"]/equippedStatOffsets</xpath>
           <value>
@@ -1324,27 +1318,24 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Cleaver"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Cleaver"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+        
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Cleaver"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Cleaver"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Cleaver"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]/tools</xpath>
           <value>
@@ -1375,6 +1366,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]/statBases</xpath>
           <value>
@@ -1382,6 +1374,7 @@
             <MeleeCounterParryBonus>1.0</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]/equippedStatOffsets</xpath>
           <value>
@@ -1389,27 +1382,24 @@
             <MeleeParryChance>0.15</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Skinning_Knife"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Skinning_Knife"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Skinning_Knife"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Pickaxe"]/tools</xpath>
           <value>
@@ -1440,6 +1430,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Pickaxe"]/statBases</xpath>
           <value>
@@ -1447,6 +1438,7 @@
             <MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Pickaxe"]/equippedStatOffsets</xpath>
           <value>
@@ -1454,6 +1446,7 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Scapel"]/tools</xpath>
           <value>
@@ -1484,6 +1477,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Scapel"]/statBases</xpath>
           <value>
@@ -1491,33 +1485,31 @@
             <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Scapel"]/equippedStatOffsets</xpath>
           <value>
             <MeleeCritChance>0.40</MeleeCritChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Scapel"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Scapel"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Scapel"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Scapel"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Scapel"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Sickle"]/tools</xpath>
           <value>
@@ -1548,6 +1540,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Sickle"]/statBases</xpath>
           <value>
@@ -1555,6 +1548,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Sickle"]/equippedStatOffsets</xpath>
           <value>
@@ -1562,27 +1556,24 @@
             <MeleeParryChance>0.25</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Sickle"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Sickle"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Sickle"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Sickle"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Sickle"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Scythe"]/tools</xpath>
           <value>
@@ -1625,6 +1616,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Scythe"]/statBases</xpath>
           <value>
@@ -1632,6 +1624,7 @@
             <MeleeCounterParryBonus>1.2</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Scythe"]/equippedStatOffsets</xpath>
           <value>
@@ -1639,6 +1632,7 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Crowbar"]/tools</xpath>
           <value>
@@ -1657,6 +1651,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Crowbar"]/statBases</xpath>
           <value>
@@ -1664,6 +1659,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Crowbar"]/equippedStatOffsets</xpath>
           <value>
@@ -1671,27 +1667,24 @@
             <MeleeParryChance>0.25</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Crowbar"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Crowbar"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Crowbar"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Crowbar"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Crowbar"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Forge_Hammer"]/tools</xpath>
           <value>
@@ -1721,6 +1714,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Forge_Hammer"]/statBases</xpath>
           <value>
@@ -1728,12 +1722,14 @@
             <MeleeCounterParryBonus>1.4</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Forge_Hammer"]/equippedStatOffsets</xpath>
           <value>
             <MeleeCritChance>0.40</MeleeCritChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Spoon"]/tools</xpath>
           <value>
@@ -1752,6 +1748,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Spoon"]/statBases</xpath>
           <value>
@@ -1759,27 +1756,24 @@
             <MeleeCounterParryBonus>0.8</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Spoon"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Spoon"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Spoon"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Spoon"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Spoon"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Trowel"]/tools</xpath>
           <value>
@@ -1833,6 +1827,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Trowel"]/statBases</xpath>
           <value>
@@ -1840,27 +1835,24 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Trowel"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Trowel"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Trowel"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Trowel"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Chefs_Knife"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Shovel"]/tools</xpath>
           <value>
@@ -1914,6 +1906,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Shovel"]/statBases</xpath>
           <value>
@@ -1921,6 +1914,7 @@
             <MeleeCounterParryBonus>1.1</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Shovel"]/equippedStatOffsets</xpath>
           <value>
@@ -1928,6 +1922,7 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Hammer"]/tools</xpath>
           <value>
@@ -1957,6 +1952,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Hammer"]/statBases</xpath>
           <value>
@@ -1964,6 +1960,7 @@
             <MeleeCounterParryBonus>1</MeleeCounterParryBonus>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Hammer"]/equippedStatOffsets</xpath>
           <value>
@@ -1971,27 +1968,24 @@
             <MeleeParryChance>0.20</MeleeParryChance>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Hammer"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Hammer"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Hammer"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Hammer"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Hammer"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="Tool_Animal_Husbandry"]/tools</xpath>
           <value>
@@ -2010,6 +2004,7 @@
             </tools>
           </value>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Animal_Husbandry"]/statBases</xpath>
           <value>
@@ -2017,27 +2012,24 @@
             <MeleeCounterParryBonus>0.7</MeleeCounterParryBonus>
           </value>
         </li>
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>Defs/ThingDef[defName="Tool_Animal_Husbandry"]/weaponTags</xpath>
-              <success>Invert</success>
-            </li>
-            <li Class="PatchOperationAdd">
-              <xpath>Defs/ThingDef[defName="Tool_Animal_Husbandry"]</xpath>
-              <value>
-                <weaponTags />
-              </value>
-            </li>
-          </operations>
+
+        <li Class="PatchOperationConditional">
+        <xpath>/Defs/ThingDef[defName = "Tool_Animal_Husbandry"]/weaponTags</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/ThingDef[defName = "Tool_Animal_Husbandry"]</xpath>
+            <value>
+              <weaponTags />
+            </value>
+          </nomatch>
         </li>
+        
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="Tool_Animal_Husbandry"]/weaponTags</xpath>
           <value>
             <li>CE_OneHandedWeapon</li>
           </value>
         </li>
+        
       </operations>
     </match>
   </Operation>

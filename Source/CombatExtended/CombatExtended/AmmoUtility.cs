@@ -9,7 +9,7 @@ namespace CombatExtended
         /// <summary>
         /// Multiplier used to scale the armor penetration of a given projectile's explosion
         /// </summary>
-        private const float ExplosiveArmorPenetrationMultiplier = 0.25f;
+        private const float ExplosiveArmorPenetrationMultiplier = 0.33f;
 
         /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for

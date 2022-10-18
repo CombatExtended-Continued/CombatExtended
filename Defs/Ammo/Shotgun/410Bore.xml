@@ -10,12 +10,30 @@
 
   <!-- ==================== AmmoSet ========================== -->
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_410Bore</defName>
+		<label>.410 bore</label>
+		<ammoTypes>
+			<Ammo_410Bore_Buck>Bullet_410Bore_Buck</Ammo_410Bore_Buck>
+		</ammoTypes>
+		<similarTo>AmmoSet_RevolverShotgun</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_410Bore_SB</defName>
+		<label>.410 bore</label>
+		<ammoTypes>
+		  <Ammo_410Bore_Buck>Bullet_410Bore_Buck_SB</Ammo_410Bore_Buck>
+		</ammoTypes>
+		<similarTo>AmmoSet_RevolverShotgun</similarTo>
+	</CombatExtended.AmmoSetDef>
+
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="410BoreBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Low caliber shotgun shell. Its small diameter allows it to be fired from many of the same firearms as the .45 Colt cartridge.</description>
     <statBases>
-      <Mass>0.009</Mass>
+      <Mass>0.027</Mass>
       <Bulk>0.03</Bulk>
     </statBases>
     <tradeTags>
@@ -36,7 +54,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.04</MarketValue>
+      <MarketValue>0.12</MarketValue>
     </statBases>
     <ammoClass>BuckShot</ammoClass>
     <cookOffProjectile>Bullet_410Bore_Buck</cookOffProjectile>
@@ -100,7 +118,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>4</count>
+        <count>12</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -111,7 +129,7 @@
     <products>
       <Ammo_410Bore_Buck>200</Ammo_410Bore_Buck>
     </products>
-    <workAmount>400</workAmount>
+    <workAmount>1200</workAmount>
   </RecipeDef>
 
 </Defs>

@@ -79,6 +79,15 @@ namespace CombatExtended
 
         bool isCrit;
 
+        /// <summary>
+        /// Backing field for <see cref="CompMeleeTargettingGizmo"/>.
+        /// </summary>
+        private CompMeleeTargettingGizmo compMeleeTargettingGizmo;
+        /// <summary>
+        /// Whether <see cref="compMeleeTargettingGizmo"/> was initialized and is up to date for the current tick.
+        /// </summary>
+        private bool meleeTargettingInitialized;
+
         #endregion
 
         #region Methods
@@ -91,18 +100,36 @@ namespace CombatExtended
         public override bool IsUsableOn(Thing target)
         {            
             return Enabled && base.IsUsableOn(target);
-        }      
-        
-        public CompMeleeTargettingGizmo gizmoComp
+        }
+
+        /// <summary>
+        /// Obtain the melee targetting gizmo for the current caster, if applicable.
+        /// </summary>
+        public CompMeleeTargettingGizmo CompMeleeTargettingGizmo
         {
             get
             {
-                if (CasterIsPawn)
+                if (!meleeTargettingInitialized)
                 {
-                    return CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                    meleeTargettingInitialized = true;
+                    // Disable melee targeting in social fights to reduce the chance of a lethal outcome
+                    if (CasterIsPawn && CasterPawn.MentalStateDef != MentalStateDefOf.SocialFighting)
+                    {
+                        compMeleeTargettingGizmo = CasterPawn.TryGetComp<CompMeleeTargettingGizmo>();
+                    }
                 }
-                return null;
+
+                return compMeleeTargettingGizmo;
             }
+        }
+
+        /// <summary>
+        /// Clear out the cached <see cref="CompMeleeTargettingGizmo"/> for the caster.
+        /// </summary>
+        public override void WarmupComplete()
+        {
+            meleeTargettingInitialized = false;
+            base.WarmupComplete();
         }
 
         /// <summary>
@@ -163,16 +190,18 @@ namespace CombatExtended
                     var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
+			var deflectChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance);
                         // Attack is parried
                         Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
                         bool isShieldBlock = shield != null && Rand.Chance(ShieldBlockChance);
                         Thing parryThing = isShieldBlock ? shield
                             : defender.equipment?.Primary ?? defender;
 
-                        if (Rand.Chance(GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance)))
+			bool deflected = Rand.Chance(deflectChance);
+                        if (Rand.Chance(deflectChance))
                         {
                             // Do a riposte
-                            DoParry(defender, parryThing, true);
+                            DoParry(defender, parryThing, true, deflected);
                             moteText = "CE_TextMote_Riposted".Translate();
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesDeflect, false); //placeholder
 
@@ -181,8 +210,12 @@ namespace CombatExtended
                         else
                         {
                             // Do a parry
-                            DoParry(defender, parryThing);
-                            moteText = "CE_TextMote_Parried".Translate();
+                            DoParry(defender, parryThing, false, deflected);
+                            moteText = "CE_TextMote_Blocked".Translate();
+			    if (deflected)
+			    {
+				moteText = "CE_TextMote_Parried".Translate();
+			    }	
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
@@ -260,9 +293,9 @@ namespace CombatExtended
         {
             var result = BodyPartHeight.Undefined;
 
-            if (gizmoComp != null && this.CurrentTarget.Thing is Pawn pawn)
+            if (CompMeleeTargettingGizmo != null && this.CurrentTarget.Thing is Pawn pawn)
             {
-                return gizmoComp.finalHeight(pawn);
+                return CompMeleeTargettingGizmo.finalHeight(pawn);
             }
 
             return result;
@@ -343,7 +376,7 @@ namespace CombatExtended
                     bodyRegion = BodyPartHeight.Middle;
                 }
                 //specific part hits
-                if (gizmoComp?.SkillReqBP ?? false && gizmoComp.targetBodyPart != null)
+                if (CompMeleeTargettingGizmo?.SkillReqBP ?? false && CompMeleeTargettingGizmo.targetBodyPart != null)
                 {
                     
                     // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level   
@@ -358,9 +391,9 @@ namespace CombatExtended
                         targetSkillDecrease = 0f;
                     }
 
-                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == gizmoComp.targetBodyPart).FirstOrFallback();
+                    var partToHit = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == CompMeleeTargettingGizmo.targetBodyPart).FirstOrFallback();
 
-                    if (Rand.Chance(gizmoComp.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
+                    if (Rand.Chance(CompMeleeTargettingGizmo.SkillBodyPartAttackChance(partToHit) - targetSkillDecrease))
                     {
                         damageInfo.SetHitPart(partToHit);
                     }
@@ -540,15 +573,19 @@ namespace CombatExtended
         /// <param name="defender">Pawn doing the parrying</param>
         /// <param name="parryThing">Thing used to parry the blow (weapon/shield)</param>
         /// <param name="isRiposte">Whether to do a riposte</param>
-        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false)
+	/// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
+        private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
         {
             if (parryThing != null)
             {
                 foreach (var dinfo in DamageInfosToApply(defender))
                 {
-                    LastAttackVerb = this;
-                    ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
-                    LastAttackVerb = null;
+		    if (!deflected)
+		    {
+			LastAttackVerb = this;
+			ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
+			LastAttackVerb = null;
+		    }
                 }
             }
             if (isRiposte)

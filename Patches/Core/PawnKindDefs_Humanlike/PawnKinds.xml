@@ -17,6 +17,13 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]/combatPower</xpath>
+    <value>
+      <combatPower>180</combatPower>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
     <xpath>Defs/PawnKindDef[defName="Mech_Lancer" or defName="Mech_Centipede"]</xpath>
     <value>
@@ -789,22 +796,6 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Tribal_ChiefMelee"]</xpath>
-    <value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <shieldMoney>
-          <min>120</min>
-          <max>160</max>
-        </shieldMoney>
-        <shieldTags>
-          <li>TribalShield</li>
-        </shieldTags>
-        <shieldChance>0.9</shieldChance>
-      </li>
-    </value>
-  </Operation>
-
   <Operation Class="PatchOperationConditional">
    <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefMelee"]/skills</xpath>
    <nomatch Class="PatchOperationAdd">
@@ -820,8 +811,15 @@
    </nomatch>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Tribal_ChiefMelee"]/weaponTags</xpath>
+    <value>
+      <li>MedievalMeleeDecent</li>
+    </value>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]</xpath>
+    <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -835,7 +833,7 @@
         <shieldTags>
           <li>TribalShield</li>
         </shieldTags>
-        <shieldChance>0.9</shieldChance>
+        <shieldChance>0.5</shieldChance>
         <sidearms>
           <li>
             <sidearmMoney>
@@ -899,6 +897,20 @@
       <li>Apparel_TribalBackpack</li>
     </value>
    </match>
+  </Operation>
+
+  <!-- Combat drugs for tribals  -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/PawnKindDef[
+        defName="Tribal_Berserker" or
+        defName="Tribal_HeavyArcher" or
+        @Name="TribalChiefBase"
+      ]</xpath>
+      <value>
+        <combatEnhancingDrugsChance>0.3</combatEnhancingDrugsChance>
+        <combatEnhancingDrugsCount>1~2</combatEnhancingDrugsCount>
+      </value>
   </Operation>
 
   <!-- Stranger in Black -->

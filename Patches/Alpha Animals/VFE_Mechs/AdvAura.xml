@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-					<mods>
-						<li>Alpha Animals</li>
-					</mods>
+		<mods>
+			<li>Alpha Animals</li>
+		</mods>
+
 		<match Class="PatchOperationFindMod">
-					<mods>
-						<li>Vanilla Factions Expanded - Mechanoids</li>
-					</mods>
+			<mods>
+				<li>Vanilla Factions Expanded - Mechanoids</li>
+			</mods>
 					
 			<match Class="PatchOperationSequence">
 				<operations>
@@ -20,13 +21,14 @@
 					</li>
 				</value>
 			</li>
-		<!-- Assign armor values, change replace and add depending on what exists or not -->
+
+			<!-- Assign armor values, change replace and add depending on what exists or not -->
 					
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFE_Mech_Advanced_Aura"]</xpath>
 				<value>
 					<statBases> <!-- Ok this is pissing me off -->
-					        <MoveSpeed>5.5</MoveSpeed>
+						<MoveSpeed>5.5</MoveSpeed>
 						<ArmorRating_Blunt>10</ArmorRating_Blunt>
 						<ArmorRating_Sharp>6</ArmorRating_Sharp>
 						<MeleeDodgeChance>0.66</MeleeDodgeChance>
@@ -46,23 +48,23 @@
 							<capacities>
 							  <li>Cut</li>
 							</capacities>
-							<power>28</power>
-							<cooldownTime>0.66</cooldownTime>
+							<power>44</power>
+							<cooldownTime>1.65</cooldownTime>
 							<linkedBodyPartsGroup>AA_WingBlades</linkedBodyPartsGroup>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							<armorPenetrationBlunt>30</armorPenetrationBlunt>
-							<armorPenetrationSharp>15</armorPenetrationSharp>
+							<armorPenetrationBlunt>9</armorPenetrationBlunt>
+							<armorPenetrationSharp>3.5</armorPenetrationSharp>
 						</li>
 						<li Class="CombatExtended.ToolCE">
 							<label>wing blade</label>
 							<capacities>
 							  <li>Stab</li>
 							</capacities>
-							<power>21</power>
-							<cooldownTime>0.66</cooldownTime>
+							<power>18</power>
+							<cooldownTime>1.33</cooldownTime>
 							<linkedBodyPartsGroup>AA_WingBlades</linkedBodyPartsGroup>
 							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-							<armorPenetrationBlunt>30</armorPenetrationBlunt>
+							<armorPenetrationBlunt>20</armorPenetrationBlunt>
 							<armorPenetrationSharp>40</armorPenetrationSharp>
 						</li>
       						<li Class="CombatExtended.ToolCE">
@@ -80,6 +82,7 @@
 					</tools>
 				</value>
 			</li>
+
 				</operations>
 			</match>					
 		</match>			

@@ -38,6 +38,7 @@ Mod |
 [O21] Outland - Core    |
 [O21] Outland - Eastborn Empire    |
 [O21] Outland - Motz Coalition  |
+[O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
 [RH] Faction: Alliegence	|
@@ -92,6 +93,7 @@ Anima Animals - Community Pack  |
 Anima Bionics   |
 Anima Gear  |
 AnimalCollabProj	|
+Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anthro Race |
@@ -144,7 +146,7 @@ Dishonored Assassin Mask |
 DOOM - Faction (Continued) |
 DMWands |
 Dragonian Race	|
-Dragon's Descent    |
+Dragons Descent    |
 Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
@@ -155,6 +157,7 @@ Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
 Erin's Azaphrae |
+Erin's Chocobos |
 Erin's Critter Collection |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
@@ -162,6 +165,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Sephyr   |
 Erin's Viera    |
 EvolvedOrgansRedux |
 Exotic Arsenal |
@@ -242,6 +246,7 @@ Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
+Kurin, The Three Tailed Fox [Deluxe Edition]    |
 Leeani Playable Race	|
 Lemolim Race    |
 Let's Have a Cat!	|
@@ -249,6 +254,7 @@ Littluna Race |
 Logann Race	|
 Magical Menagerie	|
 Magic Wands |
+Makeshift Melee Weapons |
 Marilyn the Mincho Worshipper Witch |
 Mass Effect - Playable Geth |
 Martens - Nature's Most Adorable Assassins  |
@@ -346,6 +352,7 @@ Rimefeller	|
 RimEffect - Asari of the Rims	|
 Rim-Hivers!	|
 Rim Flood	|
+Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
 RimHammer40k - Dreadnought |
@@ -426,6 +433,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
 Vanilla Weapons Expanded - Coilguns |
@@ -448,6 +456,7 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
+Warcaskets: Adeptus Astartes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |
 WWII Soviet Faction	|

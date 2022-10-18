@@ -26,22 +26,21 @@
             <recoilAmount>0.60</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Bullet_Cannonball_CE</defaultProjectile>
+            <defaultProjectile>Bullet_CannonBall_Round</defaultProjectile>
             <warmupTime>4.6</warmupTime>
             <range>40</range>
             <soundCast>Shot_ChargeRifle</soundCast>
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
             <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
-            <burstShotCount>1</burstShotCount>
             <targetParams>
               <canTargetLocations>true</canTargetLocations>
             </targetParams>
           </Properties>
           <AmmoUser>
             <magazineSize>1</magazineSize>
-            <reloadTime>3.75</reloadTime>
-            <ammoSet>AmmoSet_Cannonball</ammoSet>
+            <reloadTime>6.75</reloadTime>
+            <ammoSet>AmmoSet_CannonBall</ammoSet>
           </AmmoUser>
           <FireModes>
             <aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -77,57 +76,72 @@
           </value>
         </li>
 
-        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-          <defName>Javelin</defName>
-          <statBases>
-            <Mass>2</Mass>
-            <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
-            <SightsEfficiency>0.5</SightsEfficiency>
-            <ShotSpread>0.1</ShotSpread>
-            <SwayFactor>1</SwayFactor>
-            <Bulk>5</Bulk>
-            <WorkToMake>13000</WorkToMake>
-          </statBases>
-          <costList>
-            <WoodLog>70</WoodLog>
-          </costList>
-          <Properties>
-            <recoilAmount>0</recoilAmount>
-            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-            <hasStandardCommand>true</hasStandardCommand>
-            <defaultProjectile>Javelin_Thrown_CE</defaultProjectile>
-            <warmupTime>2</warmupTime>
-            <range>18</range>
-            <soundCast>Interact_BeatFire</soundCast>
-          </Properties>
-          <FireModes>
-            <aiUseBurstMode>FALSE</aiUseBurstMode>
-          </FireModes>
-        </li>
-
         <li Class="PatchOperationReplace">
-          <xpath>Defs/ThingDef[defName="Javelin"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="Javelin"]</xpath>
           <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <label>shaft</label>
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>8</power>
-                <cooldownTime>1.6</cooldownTime>
-                <armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-              </li>
-              <li Class="CombatExtended.ToolCE">
-                <label>point</label>
-                <capacities>
-                  <li>Poke</li>
-                </capacities>
-                <power>10</power>
-                <cooldownTime>1.6</cooldownTime>
-                <armorPenetrationSharp>0.555</armorPenetrationSharp>
-              </li>
-            </tools>
+            <ThingDef Class="CombatExtended.AmmoDef" ParentName="BaseWeaponAndAmmoNeolithic">
+              <defName>Javelin</defName>
+              <label>javelin</label>
+              <description>light spears designed for throwing. Its weight allows for quick throwing, useful for skirmishing at close range.</description>
+              <graphicData>
+                <texPath>Things/Item/Equipment/WeaponRanged/Javelin</texPath>
+                <graphicClass>Graphic_Single</graphicClass>
+                <onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+              </graphicData>
+              <soundInteract>Interact_BeatFire</soundInteract>
+              <statBases>
+                <MarketValue>7.26</MarketValue>
+                <SightsEfficiency>0.45</SightsEfficiency>
+                <ShotSpread>1.5</ShotSpread>
+                <SwayFactor>2.5</SwayFactor>
+                <Bulk>3.5</Bulk>
+                <Mass>2.00</Mass>
+                <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+              </statBases>
+              <equippedAngleOffset>30</equippedAngleOffset>
+              <stackLimit>25</stackLimit>
+              <weaponTags>
+                <li>NeolithicRangedHeavy</li>
+                <li>CE_Pila</li>
+                <li>CE_OneHandedWeapon</li>
+              </weaponTags>
+              <tradeability>All</tradeability>
+              <verbs>
+                <li Class="CombatExtended.VerbPropertiesCE">
+                  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>Javelin_Thrown_CE</defaultProjectile>
+                  <warmupTime>0.8</warmupTime>
+                  <range>14</range>
+                  <!--<soundCast>Interact_BeatFire</soundCast>-->
+                </li>
+              </verbs>
+              <tools>
+                <li Class="CombatExtended.ToolCE">
+                  <label>shaft</label>
+                  <capacities>
+                    <li>Blunt</li>
+                  </capacities>
+                  <power>7</power>
+                  <cooldownTime>1.35</cooldownTime>
+                  <armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+                  <linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+                </li>
+                <li Class="CombatExtended.ToolCE">
+                  <label>point</label>
+                  <capacities>
+                    <li>Stab</li>
+                  </capacities>
+                  <power>15</power>
+                  <cooldownTime>1.37</cooldownTime>
+                  <chanceFactor>1.5</chanceFactor>
+                  <armorPenetrationBlunt>1.69</armorPenetrationBlunt>
+                  <armorPenetrationSharp>0.34</armorPenetrationSharp>
+                  <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                </li>
+              </tools>
+              <ammoClass>Javelin</ammoClass>
+            </ThingDef>
           </value>
         </li>
 
@@ -152,6 +166,10 @@
             <soundAiming>Sling_Aiming</soundAiming>
             <soundCast>Sling_Firing</soundCast>
           </Properties>
+          <AmmoUser>
+            <magazineSize>1</magazineSize>
+            <reloadTime>3.25</reloadTime>
+          </AmmoUser>
           <FireModes>
             <aiUseBurstMode>FALSE</aiUseBurstMode>
           </FireModes>
@@ -217,7 +235,6 @@
             <MeleeParryChance>0.25</MeleeParryChance>
           </value>
         </li>
-        <!-- Add tags -->
 
         <li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatMaul"]/weaponTags</xpath>
@@ -268,7 +285,6 @@
             <MeleeParryChance>0.25</MeleeParryChance>
           </value>
         </li>
-        <!-- Add tags -->
 
         <li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatClub"]/weaponTags</xpath>
@@ -287,8 +303,6 @@
           </value>
         </li>
 
-        <!-- ========== Knife ========== -->
-        <!-- Patch stats -->
         <li Class="PatchOperationReplace">
           <xpath>Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/tools</xpath>
           <value>
@@ -322,8 +336,6 @@
           </value>
         </li>
 
-        <!-- Add tags -->
-
         <li Class="PatchOperationConditional">
           <xpath>/Defs/ThingDef[defName="MeleeWeapon_GreatAxe"]/weaponTags</xpath>
           <nomatch Class="PatchOperationAdd">
@@ -340,6 +352,7 @@
             <li>GiantMelee</li>
           </value>
         </li>
+
       </operations>
     </match>
   </Operation>

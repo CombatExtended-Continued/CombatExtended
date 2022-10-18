@@ -108,4 +108,80 @@
 		</recipeUsers>	
 	</RecipeDef>
 
+	<RecipeDef>
+		<defName>RecycleMechAmmo</defName>
+		<label>recycle materials from mechanoid ammo</label>
+		<description>Use advanced fabrication tools to recycle mechanoid ammo into useful resources.</description>
+		<jobString>Recycling mechanoid ammo.</jobString>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Smelt</soundWorking>
+		<workAmount>3500</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredients>
+		  <li>
+			<filter>
+				<thingDefs>
+					<li>Ammo_5x35mmCharged</li>
+					<li>Ammo_6x22mmCharged</li>
+					<li>Ammo_12x64mmCharged</li>
+				</thingDefs>
+			</filter>
+			<count>200</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Ammo_5x35mmCharged</li>
+				<li>Ammo_6x22mmCharged</li>
+				<li>Ammo_12x64mmCharged</li>
+			</thingDefs>		
+		</fixedIngredientFilter>
+		<products>
+			<Plasteel>5</Plasteel>
+			<Steel>20</Steel>
+		</products>
+		<recipeUsers Inherit="false">
+			<li>FabricationBench</li>
+		</recipeUsers>	
+	</RecipeDef>
+
+	<RecipeDef>
+		<defName>RecycleMechExplosives</defName>
+		<label>recycle materials from mechanoid explosive ammo</label>
+		<description>Use advanced fabrication tools meticulously to recycle explosive mechanoid ammo into useful resources.</description>
+		<jobString>Recycling mechanoid explosive ammo.</jobString>
+		<effectWorking>Smelt</effectWorking>
+		<soundWorking>Recipe_Smelt</soundWorking>
+		<workAmount>6000</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<ingredients>
+		  <li>
+			<filter>
+				<thingDefs>
+					<li>Ammo_80x256mmFuel_Incendiary</li>
+					<li>Ammo_164x284mmDemo</li>
+				</thingDefs>
+			</filter>
+			<count>5</count>
+		  </li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Ammo_80x256mmFuel_Incendiary</li>
+				<li>Ammo_164x284mmDemo</li>
+			</thingDefs>		
+		</fixedIngredientFilter>
+		<products>
+			<Plasteel>10</Plasteel>
+			<Steel>20</Steel>
+			<FSX>1</FSX>
+			<Prometheum>1</Prometheum>
+		</products>
+		<recipeUsers Inherit="false">
+			<li>FabricationBench</li>
+		</recipeUsers>	
+	</RecipeDef>
+
 </Defs>

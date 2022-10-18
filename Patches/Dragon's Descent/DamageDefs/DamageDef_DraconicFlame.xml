@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragons Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--=== Draconic Flame ===-->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+				<!-- Supposedly draconic flame is a buffed fire damage def that can pen /shrug -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]/defaultArmorPenetration</xpath>
+					<value>
+						<defaultArmorPenetration>2</defaultArmorPenetration>
+					</value>
+				</li>
+				<!-- I think buffing damage is probably good -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]/minDamageToFragment</xpath>
+					<value>
+						<minDamageToFragment>10</minDamageToFragment>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]/defaultDamage</xpath>
+					<value>
+						<defaultDamage>8</defaultDamage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicFlame"]/explosionHeatEnergyPerCell</xpath>
+					<value>
+						<explosionHeatEnergyPerCell>10</explosionHeatEnergyPerCell>
+					</value>
+				</li>
+				<!--=== Draconic Explosion ===-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicExplosion"]/workerClass</xpath>
+					<value>
+						<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
+					</value>
+				</li>	
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicExplosion"]/defaultArmorPenetration</xpath>
+					<value>
+						<defaultArmorPenetration>35</defaultArmorPenetration>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="DraconicExplosion"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<!-- <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers> -->
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+				<!-- I think buffing damage is probably good -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicExplosion"]/minDamageToFragment</xpath>
+					<value>
+						<minDamageToFragment>25</minDamageToFragment>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicExplosion"]/defaultDamage</xpath>
+					<value>
+						<defaultDamage>17</defaultDamage>
+					</value>
+				</li>
+				<!--=== Draconic Blunt (Probably not used) ===-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicBlunt"]/workerClass</xpath>
+					<value>
+						<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicBlunt"]/defaultArmorPenetration</xpath>
+					<value>
+						<defaultArmorPenetration>25</defaultArmorPenetration>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="DraconicBlunt"]/armorCategory</xpath>
+					<value>
+						<armorCategory>Blunt</armorCategory>
+					</value>
+				</li>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="DraconicBlunt"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

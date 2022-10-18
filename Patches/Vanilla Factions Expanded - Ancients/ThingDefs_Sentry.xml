@@ -53,12 +53,16 @@
 	  </li>
 
 	  <li Class="PatchOperationReplace">
-	  	<xpath>Defs/ThingDef[
-			defName = "VFEA_Turret_AncientSecurityTurret" or		
-			defName = "VFEA_Turret_AncientPointDefense"		  
-		]/statBases/ShootingAccuracyTurret</xpath>
+	  	<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientSecurityTurret"]/statBases/ShootingAccuracyTurret</xpath>
 	  	<value>
 	  		<ShootingAccuracyTurret>1.1</ShootingAccuracyTurret>
+	  	</value>
+	  </li>
+
+	  <li Class="PatchOperationReplace">
+	  	<xpath>Defs/ThingDef[defName = "VFEA_Turret_AncientPointDefense"]/statBases/ShootingAccuracyTurret</xpath>
+	  	<value>
+	  		<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 	  	</value>
 	  </li>
 
@@ -133,17 +137,18 @@
 	      <statBases>
 		<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		<SightsEfficiency>1</SightsEfficiency>
-		<ShotSpread>0.09</ShotSpread>
+		<ShotSpread>0.05</ShotSpread>
 		<SwayFactor>1.32</SwayFactor>
 	      </statBases>
 	      <Properties>
+		<recoilAmount>0.25</recoilAmount>
 		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		<hasStandardCommand>True</hasStandardCommand>
 		<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
 		<warmupTime>2.3</warmupTime>
 		<range>62</range>
 		<burstShotCount>50</burstShotCount>
-		<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+		<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
 		<soundCast>Shot_Minigun</soundCast>
 		<soundCastTail>GunTail_Heavy</soundCastTail>
 		<muzzleFlashScale>9</muzzleFlashScale>
@@ -161,7 +166,7 @@
 		<li>TurretGun</li>
 	      </weaponTags>
 	      <FireModes>
-		<aiAimMode>SuppressFire</aiAimMode>
+		<aiAimMode>AimedShot</aiAimMode>
 		<noSnapshot>true</noSnapshot>
 		<noSingleShot>true</noSingleShot>
 	      </FireModes>      

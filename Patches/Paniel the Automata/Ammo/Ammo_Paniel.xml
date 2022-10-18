@@ -34,6 +34,31 @@
 						</ammoTypes>
 						<isMortarAmmoSet>true</isMortarAmmoSet>		
 					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_PanielLSWMulti</defName>
+						<label>Paniel Multi-Launcher munitions</label>
+						<ammoTypes>
+						  <Ammo_40x53mmGrenade_HE>Bullet_40x53mmGrenade_HE</Ammo_40x53mmGrenade_HE>
+						  <Ammo_40x53mmGrenade_HE_TFuzed>Bullet_40x53mmGrenade_HE_TFuzed</Ammo_40x53mmGrenade_HE_TFuzed>
+						  <Ammo_40x53mmGrenade_HEDP>Bullet_40x53mmGrenade_HEDP</Ammo_40x53mmGrenade_HEDP>
+						  <Ammo_40x53mmGrenade_EMP>Bullet_40x53mmGrenade_EMP</Ammo_40x53mmGrenade_EMP>
+						  <Ammo_40x53mmGrenade_Smoke>Bullet_40x53mmGrenade_Smoke</Ammo_40x53mmGrenade_Smoke>	
+						  <Ammo_30x64mmFuel_Incendiary>Bullet_30x64mmFuel_Incendiary</Ammo_30x64mmFuel_Incendiary>
+						  <Ammo_30x64mmFuel_Thermobaric>Bullet_30x64mmFuel_Thermobaric</Ammo_30x64mmFuel_Thermobaric>
+						  <Ammo_30x64mmFuel_Foam>Bullet_30x64mmFuel_Foam</Ammo_30x64mmFuel_Foam>
+						</ammoTypes>
+						<isMortarAmmoSet>false</isMortarAmmoSet>		
+					</CombatExtended.AmmoSetDef>
+					
+					<CombatExtended.AmmoSetDef>
+						<defName>AmmoSet_PanielRailShell</defName>
+						<label>Paniel Railgun shells</label>
+						<ammoTypes>
+							<Ammo_PanielRailShell>Bullet_PanielRail</Ammo_PanielRailShell>
+						</ammoTypes>	
+						<isMortarAmmoSet>false</isMortarAmmoSet>	
+					</CombatExtended.AmmoSetDef>
 
 					<!-- ==================== Ammo ========================== -->
 
@@ -168,6 +193,25 @@
 						</statBases>
 						<ammoClass>Antigrain</ammoClass>
 						<detonateProjectile>Bullet_PanielHowitzerShell_Anti</detonateProjectile>
+					</ThingDef>
+					
+					<ThingDef Class="CombatExtended.AmmoDef" ParentName="105mmHowitzerShellBase">
+						<defName>Ammo_PanielRailShell</defName>
+						<label>Paniel Railgun shell</label>
+						<graphicData>
+							<texPath>Things/Item/PNShell/PNShellAP</texPath>
+							<graphicClass>Graphic_StackCount</graphicClass>
+							<drawSize>0.90</drawSize>
+						</graphicData>
+						<tradeTags inherit="false">
+						  <li>CE_HeavyAmmo</li>
+						  <li>CE_AutoEnableTrade</li>
+						</tradeTags>
+						<statBases>
+							<MarketValue>225</MarketValue>
+						</statBases>
+						<ammoClass>Antigrain</ammoClass>
+						<detonateProjectile>Bullet_PanielRail</detonateProjectile>
 					</ThingDef>
 
 					<!-- ================== Projectiles ================== -->
@@ -730,6 +774,45 @@
 					</RecipeDef>
 					
 					<RecipeDef ParentName="AmmoRecipeBase">
+						<defName>MakeAmmo_PanielHowitzerShell_Anti</defName>
+						<label>make Paniel Antigrain Howitzer shell</label>
+						<description>Craft Paniel antigrain Howitzer shell.</description>
+						<jobString>Making Paniel antigrain Howitzer shell.</jobString>
+						<workAmount>1200</workAmount>
+						<recipeUsers inherit="false">
+							<li>PN_AutomatonBench</li>
+						</recipeUsers>
+						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<ingredients>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Steel</li>
+									</thingDefs>
+								</filter>
+								<count>10</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>Shell_AntigrainWarhead</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
+							</li>
+						</ingredients>
+						<fixedIngredientFilter>
+							<thingDefs>
+								<li>Steel</li>
+								<li>Shell_AntigrainWarhead</li>
+							</thingDefs>
+						</fixedIngredientFilter>
+						<products>
+							<Ammo_PanielHowitzerShell_Anti>1</Ammo_PanielHowitzerShell_Anti>
+						</products>
+					</RecipeDef>
+					
+					<RecipeDef ParentName="AmmoRecipeBase">
 						<defName>MakeAmmo_PanielHowitzerShell_AP</defName>
 						<label>make Paniel AP Howitzer shells x2</label>
 						<description>Craft 2 Paniel ap Howitzer shells.</description>
@@ -778,15 +861,15 @@
 					</RecipeDef>
 					
 					<RecipeDef ParentName="AmmoRecipeBase">
-						<defName>MakeAmmo_PanielHowitzerShell_Anti</defName>
-						<label>make Paniel Antigrain Howitzer shell</label>
-						<description>Craft Paniel antigrain Howitzer shell.</description>
-						<jobString>Making Paniel antigrain Howitzer shell.</jobString>
-						<workAmount>1200</workAmount>
+						<defName>MakeAmmo_PanielRailShell</defName>
+						<label>make Paniel Railgun Shell</label>
+						<description>Craft Paniel Railgun Shell.</description>
+						<jobString>Making Paniel Railgun Shell.</jobString>
+						<workAmount>16000</workAmount>
 						<recipeUsers inherit="false">
 							<li>PN_AutomatonBench</li>
 						</recipeUsers>
-						<researchPrerequisite>PNRP_AutoArtillery</researchPrerequisite>
+						<researchPrerequisite Inherit="false">PNRP_Railgun</researchPrerequisite>
 						<ingredients>
 							<li>
 								<filter>
@@ -794,25 +877,34 @@
 										<li>Steel</li>
 									</thingDefs>
 								</filter>
-								<count>10</count>
+								<count>50</count>
 							</li>
 							<li>
 								<filter>
 									<thingDefs>
-										<li>Shell_AntigrainWarhead</li>
+										<li>Uranium</li>
 									</thingDefs>
 								</filter>
-								<count>16</count>
+								<count>30</count>
+							</li>
+							<li>
+								<filter>
+									<thingDefs>
+										<li>ComponentSpacer</li>
+									</thingDefs>
+								</filter>
+								<count>1</count>
 							</li>
 						</ingredients>
 						<fixedIngredientFilter>
 							<thingDefs>
 								<li>Steel</li>
-								<li>Shell_AntigrainWarhead</li>
+								<li>Uranium</li>
+								<li>ComponentSpacer</li>
 							</thingDefs>
 						</fixedIngredientFilter>
 						<products>
-							<Ammo_PanielHowitzerShell_Anti>1</Ammo_PanielHowitzerShell_Anti>
+							<Ammo_PanielRailShell>1</Ammo_PanielRailShell>
 						</products>
 					</RecipeDef>
 				</value>

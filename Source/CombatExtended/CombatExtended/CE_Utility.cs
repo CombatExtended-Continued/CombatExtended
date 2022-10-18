@@ -400,39 +400,6 @@ namespace CombatExtended
                     }
                 }
             }
-
-            if (stat == StatDefOf.ArmorRating_Sharp)
-            {
-                if (pawn.TryGetComp<CompMechArmorDurability>() != null)
-                {
-                    var component = pawn.TryGetComp<CompMechArmorDurability>().ERA?.Find(x => x.part == part.def || (part.depth == BodyPartDepth.Inside && (part.parent?.def ?? null) == x.part));
-
-
-
-                    if (component != null)
-                    {
-                        if (
-                            damage >= component.damageTreshold
-                            && AP >= component.APTreshold
-                            &&
-                            !component.triggered
-                            )
-                        {
-                            result = component.armor;
-                            component.triggered = true;
-                            if (component.frags != null)
-                            {
-                                component.fragComp.Throw(pawn.Position.ToVector3(), pawn.Map, pawn, 1);
-                            }
-                            GenExplosionCE.DoExplosion
-                                (
-                                pawn.Position, pawn.Map, 3f, DamageDefOf.Bomb, pawn, 1, 0, preExplosionSpawnChance: 1f, preExplosionSpawnThingDef: ThingDefOf.Gas_Smoke
-                                );
-                        }
-                    }
-                }
-            }
-
             return result;
         }
 
