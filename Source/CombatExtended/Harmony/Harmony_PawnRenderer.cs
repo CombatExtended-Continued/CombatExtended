@@ -382,15 +382,14 @@ namespace CombatExtended.HarmonyCE
                 equipment = eq;
             }
 
-            private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {              
+            private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
+            {
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
-                matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
+                matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
                 if(eq is WeaponPlatform platform)                
                     platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
                 else
@@ -408,6 +407,7 @@ namespace CombatExtended.HarmonyCE
                 codes.InsertRange(codes.Count - 2, new[]
                 {
                     new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Ldarg_2),
                     new CodeInstruction(OpCodes.Ldarg_3)
                 });
                 return codes;
