@@ -655,9 +655,10 @@ namespace CombatExtended
 
                 // Check for smoke
                 var gas = cell.GetGas(map);
-                if (gas != null)
+                // TODO 1.4: Figure out how the new hardcoded gas system will work for our smoke and custom gases
+                if (cell.AnyGas(map, GasType.BlindSmoke))
                 {
-                    smokeDensity += gas.def.gas.accuracyPenalty;
+                    smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
                 }
 		if (!roofed)
 		{
