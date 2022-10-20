@@ -19,7 +19,11 @@ using Verse.AI;
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(Verb), nameof(Verb.TryStartCastOn), new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool), typeof(bool) })]
+    [HarmonyPatch(
+        typeof(Verb),
+        nameof(Verb.TryStartCastOn),
+        new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool), typeof(bool), typeof(bool) })
+    ]
     static class Harmony_Verb_TryStartCastOn
     {
         private static MethodBase mCausesTimeSlowdown = AccessTools.Method(typeof(Verb), "CausesTimeSlowdown");
