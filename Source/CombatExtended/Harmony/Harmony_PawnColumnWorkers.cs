@@ -113,7 +113,8 @@ namespace CombatExtended.HarmonyCE
 
             foreach (var method in targetMethods)
             {
-                HarmonyBase.instance.Patch(method, null, null, transpiler);
+                // TODO 1.4
+                // HarmonyBase.instance.Patch(method, null, null, transpiler);
             }
         }
 
