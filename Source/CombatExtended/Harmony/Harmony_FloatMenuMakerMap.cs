@@ -21,34 +21,49 @@ namespace CombatExtended.HarmonyCE
     static class FloatMenuMakerMap_PatchKnowledge
     {
 
-        const string ClassNamePart = "DisplayClass9_19";   //1.0: "AddHumanLikeOrders" to target <AddHumanLikeOrders>c__AnonStoreyB
-        const string MethodNamePart = "g__Equip";       //1.0: "m__" to target <>m__0()
+        private static MethodBase knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+        private static FieldInfo equippingWeapons = AccessTools.Field(typeof(ConceptDefOf), nameof(ConceptDefOf.EquippingWeapons));
 
-        // Target the class containing several KnowledgeDemonstrated, MakeFleckMote, FleckDefOf.FeedbackEquip ..
-        // 1.0: FloatMenuMakerMap.<AddHumanLikeOrders>c__AnonStoreyB.<>m__0(),
-        // 1.1: FloatMenuMakerMap.<>c__DisplayClass5_11.g__Equip|11()()
-        // 1.3: FloatMenuMakerMap.<>c__DisplayClass9_19.g__Equip|25()()
         static MethodBase TargetMethod()
         {
-            List<Type> classes = typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all).ToList();
-            MethodBase target = null; //classes.First().GetMethods().First(); // a bailout so that harmony doesn't choke.
-            foreach (Type clas in classes.Where(c => c.Name.Contains(ClassNamePart)))
+            foreach (var clas in typeof(FloatMenuMakerMap).GetNestedTypes(AccessTools.all))
             {
-                FieldInfo info = AccessTools.Field(clas, "equipment");
-                if (info != null && info.FieldType == typeof(ThingWithComps))
+                var equipmentField = AccessTools.Field(clas, "equipment");
+                if (equipmentField?.FieldType == typeof(ThingWithComps))
                 {
-                    target = clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains(MethodNamePart));
-                    break;
+                    return clas.GetMethods(AccessTools.all).FirstOrDefault(m => m.Name.Contains("Equip"));
                 }
             }
-            return target;
+
+            return null;
         }
 
-        // __instance required, don't need to interface with any properties/fields.
-        // __result isn't apt, target return is void.
-        static void Postfix()
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_AimingSystem, OpportunityType.GoodToKnow);
+            var instructionsList = instructions.ToList();
+            var knowledgeDemonstrated = AccessTools.Method(typeof(PlayerKnowledgeDatabase), nameof(PlayerKnowledgeDatabase.KnowledgeDemonstrated));
+            for (var i = 0; i < instructionsList.Count; i++)
+            {
+                yield return instructionsList[i];
+
+                // Use the vanilla call to KnowledgeDemonstrated() with ConceptDefOf.EquippingWeapons as an anchor
+                // so we can insert our own lesson activation about the aiming system after it.
+                if (instructionsList[i].Calls(knowledgeDemonstrated))
+                {
+                    if (instructionsList[i - 1].opcode == OpCodes.Ldc_I4_6 && instructionsList[i - 2].LoadsField(equippingWeapons))
+                    {
+                        var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
+                        var teachOpportunity = AccessTools.Method(
+                            typeof(LessonAutoActivator),
+                            nameof(LessonAutoActivator.TeachOpportunity),
+                            new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
+                        );
+                        yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
+                        yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
+                        yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
+                    }
+                }
+            }
         }
 
     }
