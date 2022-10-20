@@ -1175,13 +1175,33 @@ namespace CombatExtended
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
                 {
-                    GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
-                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetExplosionArmorPenetration(),
-                        def.projectile.soundExplode, equipmentDef,
-                        def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
-                        def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,
-                        def.projectile.preExplosionSpawnThingCount, def.projectile.explosionChanceToStartFire, def.projectile.explosionDamageFalloff,
-                        dir, ignoredThings, explodePos.y);
+                    GenExplosionCE.DoExplosion(
+                        explodePos.ToIntVec3(),
+                        Map,
+                        def.projectile.explosionRadius,
+                        def.projectile.damageDef,
+                        launcher,
+                        def.projectile.GetDamageAmount(1),
+                        def.projectile.GetExplosionArmorPenetration(),
+                        def.projectile.soundExplode,
+                        equipmentDef,
+                        def,
+                        intendedTarget: null,
+                        def.projectile.postExplosionSpawnThingDef,
+                        def.projectile.postExplosionSpawnChance,
+                        def.projectile.postExplosionSpawnThingCount,
+                        def.projectile.postExplosionGasType,
+                        def.projectile.applyDamageToExplosionCellsNeighbors,
+                        def.projectile.preExplosionSpawnThingDef,
+                        def.projectile.preExplosionSpawnChance,
+                        def.projectile.preExplosionSpawnThingCount,
+                        def.projectile.explosionChanceToStartFire,
+                        def.projectile.explosionDamageFalloff,
+                        dir,
+                        ignoredThings,
+                        postExplosionSpawnThingDefWater: def.projectile.postExplosionSpawnThingDefWater,
+                        screenShakeFactor: def.projectile.screenShakeFactor,
+                        height: explodePos.y);
 
                     dangerAmount = def.projectile.damageAmountBase;
 
