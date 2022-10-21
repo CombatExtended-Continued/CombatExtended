@@ -655,9 +655,10 @@ namespace CombatExtended
 
                 // Check for smoke
                 var gas = cell.GetGas(map);
-                if (gas != null)
+                // TODO 1.4: Figure out how the new hardcoded gas system will work for our smoke and custom gases
+                if (cell.AnyGas(map, GasType.BlindSmoke))
                 {
-                    smokeDensity += gas.def.gas.accuracyPenalty;
+                    smokeDensity += GasUtility.BlindingGasAccuracyPenalty;
                 }
 		if (!roofed)
 		{
@@ -753,7 +754,7 @@ namespace CombatExtended
                     foreach (Apparel current in wornApparel)
                     {
                         //pawns can use turrets while wearing shield belts, but the shield is disabled for the duration via Harmony patch (see Harmony-ShieldBelt.cs)
-                        if (!current.AllowVerbCast(this) && !(current is ShieldBelt && isTurretOperator))
+                        if (!current.AllowVerbCast(this) && !(current.TryGetComp<CompShield>() != null && isTurretOperator))
                         {
                             report = "Shooting disallowed by " + current.LabelShort;
                             return false;

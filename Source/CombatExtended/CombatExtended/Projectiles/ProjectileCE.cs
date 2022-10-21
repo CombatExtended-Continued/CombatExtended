@@ -645,11 +645,11 @@ namespace CombatExtended
                 var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
                 if (def.projectile.damageDef == DamageDefOf.EMP)
                 {
-                    interceptorComp.BreakShield(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
+                    interceptorComp.BreakShieldEmp(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
                 }
                 else if (firstEMPSecondaryDamage != null)
                 {
-                    interceptorComp.BreakShield(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
+                    interceptorComp.BreakShieldEmp(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
                 }
             }
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
@@ -903,7 +903,7 @@ namespace CombatExtended
         {
             if (!def.projectile.damageDef.harmsHealth)
                 return;
-            ShieldBelt shield = null;
+            CompShield shield = pawn.TryGetComp<CompShield>();
             if (pawn.RaceProps.Humanlike)
             {
                 // check for shield user
@@ -911,7 +911,7 @@ namespace CombatExtended
                 var wornApparel = pawn.apparel.WornApparel;
                 for (var i = 0; i < wornApparel.Count; i++)
                 {
-                    var personalShield = wornApparel[i] as ShieldBelt;
+                    var personalShield = wornApparel[i].TryGetComp<CompShield>();
                     if (personalShield != null)
                     {
                         shield = personalShield;
@@ -1175,13 +1175,33 @@ namespace CombatExtended
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)
                 {
-                    GenExplosionCE.DoExplosion(explodePos.ToIntVec3(), Map, def.projectile.explosionRadius,
-                        def.projectile.damageDef, launcher, def.projectile.GetDamageAmount(1), def.projectile.GetExplosionArmorPenetration(),
-                        def.projectile.soundExplode, equipmentDef,
-                        def, null, def.projectile.postExplosionSpawnThingDef, def.projectile.postExplosionSpawnChance, def.projectile.postExplosionSpawnThingCount,
-                        def.projectile.applyDamageToExplosionCellsNeighbors, def.projectile.preExplosionSpawnThingDef, def.projectile.preExplosionSpawnChance,
-                        def.projectile.preExplosionSpawnThingCount, def.projectile.explosionChanceToStartFire, def.projectile.explosionDamageFalloff,
-                        dir, ignoredThings, explodePos.y);
+                    GenExplosionCE.DoExplosion(
+                        explodePos.ToIntVec3(),
+                        Map,
+                        def.projectile.explosionRadius,
+                        def.projectile.damageDef,
+                        launcher,
+                        def.projectile.GetDamageAmount(1),
+                        def.projectile.GetExplosionArmorPenetration(),
+                        def.projectile.soundExplode,
+                        equipmentDef,
+                        def,
+                        intendedTarget: null,
+                        def.projectile.postExplosionSpawnThingDef,
+                        def.projectile.postExplosionSpawnChance,
+                        def.projectile.postExplosionSpawnThingCount,
+                        def.projectile.postExplosionGasType,
+                        def.projectile.applyDamageToExplosionCellsNeighbors,
+                        def.projectile.preExplosionSpawnThingDef,
+                        def.projectile.preExplosionSpawnChance,
+                        def.projectile.preExplosionSpawnThingCount,
+                        def.projectile.explosionChanceToStartFire,
+                        def.projectile.explosionDamageFalloff,
+                        dir,
+                        ignoredThings,
+                        postExplosionSpawnThingDefWater: def.projectile.postExplosionSpawnThingDefWater,
+                        screenShakeFactor: def.projectile.screenShakeFactor,
+                        height: explodePos.y);
 
                     dangerAmount = def.projectile.damageAmountBase;
 
