@@ -139,18 +139,6 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationReplace">
-   <xpath>/Defs/PawnKindDef[@Name="MercenaryGunnerBase"]/skills</xpath>
-   <value>
-     <skills>
-       <li>
-         <skill>Shooting</skill>
-         <range>4~16</range>
-       </li>
-     </skills>
-   </value>
-  </Operation>
-
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[defName="Mercenary_Gunner"]</xpath>
     <value>
@@ -202,18 +190,6 @@
         </sidearms>
       </li>
     </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-   <xpath>/Defs/PawnKindDef[@Name="MercenarySniperBase"]/skills</xpath>
-   <value>
-     <skills>
-       <li>
-         <skill>Shooting</skill>
-         <range>6~18</range>
-       </li>
-     </skills>
-   </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
@@ -524,6 +500,16 @@
   </Operation>
 
   <!-- ========== Spacer ========== -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]/skills</xpath>
+    <value>
+      <li>
+        <skill>Melee</skill>
+        <range>4~12</range>
+      </li>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="AncientSoldier"]/weaponMoney</xpath>
