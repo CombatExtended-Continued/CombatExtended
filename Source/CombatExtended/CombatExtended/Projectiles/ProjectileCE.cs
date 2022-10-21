@@ -1141,7 +1141,7 @@ namespace CombatExtended
                 }
             }
 
-            var explodePos = hitThing?.DrawPos ?? ExactPosition;
+            var explodePos = ExactPosition;
 
             if (!explodePos.ToIntVec3().IsValid)
             {
