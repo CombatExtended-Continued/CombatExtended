@@ -238,9 +238,9 @@ namespace CombatExtended
             BackCompatibility.PostExposeData(this);
         }
 
-        public override bool ClaimableBy(Faction by)        // Core method
+        public override bool ClaimableBy(Faction by, StringBuilder reason = null)        // Core method
         {
-            return base.ClaimableBy(by) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
+            return base.ClaimableBy(by, reason) && (this.mannableComp == null || this.mannableComp.ManningPawn == null) && (!this.Active || this.mannableComp != null) && (((this.dormantComp == null || this.dormantComp.Awake) && (this.initiatableComp == null || this.initiatableComp.Initiated)) || (this.powerComp != null && !this.powerComp.PowerOn));
         }
 
         [Compatibility.Multiplayer.SyncMethod]
@@ -407,7 +407,7 @@ namespace CombatExtended
                 targetScanFlags |= TargetScanFlags.NeedNotUnderThickRoof;
             }
 
-            if (this.AttackVerb.IsIncendiary())
+            if (this.AttackVerb.IsIncendiary_Ranged())
             {
                 targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }

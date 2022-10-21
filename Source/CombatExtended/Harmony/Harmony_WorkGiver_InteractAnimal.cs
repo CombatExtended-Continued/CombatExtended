@@ -25,7 +25,8 @@ namespace CombatExtended.HarmonyCE
                 CompInventory inventory = pawn.TryGetComp<CompInventory>();
 
                 float minNutrition = JobDriver_InteractAnimal.RequiredNutritionPerFeed(tamee);
-                int requiredThingCount = Mathf.CeilToInt(minNutrition / FoodUtility.GetNutrition(__result.targetA.Thing, FoodUtility.GetFinalIngestibleDef(__result.targetA.Thing)));
+                ThingDef foodDef = FoodUtility.GetFinalIngestibleDef(__result.targetA.Thing);
+                int requiredThingCount = Mathf.CeilToInt(minNutrition / FoodUtility.GetNutrition(tamee, __result.targetA.Thing, foodDef));
                 
                 if (inventory != null)
                 {
