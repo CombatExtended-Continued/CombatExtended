@@ -26,7 +26,7 @@ namespace CombatExtended
                     : PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists.RandomElement();
 
                 var label = "CE_MechWarningLabel".Translate();
-                var text = "CE_MechWarningText".Translate(suggestingPawn?.LabelShort ?? "CE_MechWarningText_UnnamedColonist".Translate(), CE_ThingDefOf.Mech_Centipede.GetStatValueAbstract(StatDefOf.ArmorRating_Sharp));
+                var text = "CE_MechWarningText".Translate(suggestingPawn?.LabelShort ?? "CE_MechWarningText_UnnamedColonist".Translate(), CE_ThingDefOf.Mech_CentipedeBlaster.GetStatValueAbstract(StatDefOf.ArmorRating_Sharp));
 
                 Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NegativeEvent);
                 _sentMechWarning = true;
