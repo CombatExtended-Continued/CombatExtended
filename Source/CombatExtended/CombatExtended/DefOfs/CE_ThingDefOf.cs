@@ -32,7 +32,7 @@ namespace CombatExtended
 
         public static ThingDef Gas_BlackSmoke;
 
-        public static ThingDef Mech_Centipede;
+        public static ThingDef Mech_CentipedeBlaster;
 
         public static ThingDef Gun_BinocularsRadio;
     }

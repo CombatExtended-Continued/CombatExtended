@@ -252,7 +252,30 @@ namespace CombatExtended.Lasers
             float postExplosionSpawnChance = this.def.projectile.postExplosionSpawnChance;
             int postExplosionSpawnThingCount = this.def.projectile.postExplosionSpawnThingCount;
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
-            GenExplosion.DoExplosion(center, map2, explosionRadius, damageDef, launcher, damageAmount, 0f, soundExplode, equipmentDef, def, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, this.def.projectile.applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, this.def.projectile.preExplosionSpawnChance, this.def.projectile.preExplosionSpawnThingCount, this.def.projectile.explosionChanceToStartFire, this.def.projectile.explosionDamageFalloff);
+
+            GenExplosion.DoExplosion(
+                center,
+                map2,
+                explosionRadius,
+                damageDef,
+                launcher,
+                damageAmount,
+                armorPenetration: 0f,
+                soundExplode,
+                equipmentDef,
+                def,
+                intendedTarget: null,
+                postExplosionSpawnThingDef,
+                postExplosionSpawnChance,
+                postExplosionSpawnThingCount,
+                postExplosionGasType: null,
+                this.def.projectile.applyDamageToExplosionCellsNeighbors,
+                preExplosionSpawnThingDef,
+                this.def.projectile.preExplosionSpawnChance,
+                this.def.projectile.preExplosionSpawnThingCount,
+                this.def.projectile.explosionChanceToStartFire,
+                this.def.projectile.explosionDamageFalloff
+            );
         }
 
 	static LaserBeamGraphicCE() {
