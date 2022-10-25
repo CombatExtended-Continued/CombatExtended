@@ -6,7 +6,6 @@
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_ChargeBlasterTurret</defName>
     <statBases>
-      <RangedWeapon_Cooldown>3.2</RangedWeapon_Cooldown> <!-- Same as the mech cluster Charge Blaster turret -->
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.08</ShotSpread>
       <SwayFactor>0.56</SwayFactor>
@@ -16,17 +15,15 @@
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-      <warmupTime>1.3</warmupTime>
       <range>55</range>
       <burstShotCount>1</burstShotCount>
-      <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
       <soundCast>Shot_ChargeBlaster</soundCast>
       <soundCastTail>GunTail_Heavy</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
+      <defaultCooldownTime>5.0</defaultCooldownTime> <!-- Combined warmup and cooldown time of the HCB turret -->
+      <linkedBodyPartsGroup>BulbTurret</linkedBodyPartsGroup>
+      <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
     </Properties>
-    <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
   </Operation>
 
 </Patch>
