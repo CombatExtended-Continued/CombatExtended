@@ -4,13 +4,15 @@
   <!--========================= Barbed Wire =============================-->
 
   <ThingDef ParentName="BuildingBase">
-    <defName>BarbedWire</defName>
+    <defName>CE_BarbedWire</defName>
     <label>barbed wire</label>
+    <description>Cheap defence system that slows down enemies.</description>
     <thingClass>Building</thingClass>
     <category>Building</category>
     <graphicData>
       <texPath>Things/Building/BarbedWire/BarbedWire_Atlas</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
       <linkType>Basic</linkType>
       <linkFlags>
         <li>Custom1</li>
@@ -20,8 +22,15 @@
     <altitudeLayer>Building</altitudeLayer>
     <pathCost>80</pathCost>
     <passability>PassThroughOnly</passability>
-    <castEdgeShadows>true</castEdgeShadows>
     <fillPercent>0.0</fillPercent>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>1</costStuffCount>
+    <costList>
+      <Steel>1</Steel>
+    </costList>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
       <Beauty>-30</Beauty>
@@ -32,16 +41,12 @@
       <isInert>true</isInert>
       <ai_chillDestination>false</ai_chillDestination>
       <blueprintGraphicData>
-        <texPath>Things/Building/Linked/Sandbags_Blueprint_Atlas</texPath>
+        <texPath>Things/Building/Linked/Fence_Blueprint</texPath>
+        <graphicClass>Graphic_Appearances</graphicClass>
       </blueprintGraphicData>
     </building>
-    <description>Cheap defence system that slows down enemies.</description>
     <placingDraggableDimensions>1</placingDraggableDimensions>
-    <costList>
-      <WoodLog>1</WoodLog>
-      <Steel>1</Steel>
-    </costList>
-    <filthLeaving>SandbagRubble</filthLeaving>
+    <filthLeaving>SlagRubble</filthLeaving>
     <rotatable>false</rotatable>
     <selectable>true</selectable>
     <neverMultiSelect>true</neverMultiSelect>
@@ -55,7 +60,7 @@
   <!--========================= Embrasures =============================-->
 
   <ThingDef ParentName="BuildingBase">
-    <defName>Embrasure</defName>
+    <defName>CE_Embrasure</defName>
     <label>embrasure</label>
     <thingClass>Building</thingClass>
     <category>Building</category>
