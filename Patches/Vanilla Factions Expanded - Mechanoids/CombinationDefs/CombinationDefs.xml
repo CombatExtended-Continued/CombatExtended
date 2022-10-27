@@ -87,13 +87,15 @@
 					<yield>5</yield>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_EMP"]/secondItems</xpath>
+
+			<!--EMP : The factory stuff is very sensitive about input count. 20 chemfuel is a nice discount compared to the 2 extra components-->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ItemProcessor.CombinationDef[defName="VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Shell_EMP"]</xpath>
 				<value>
-					<secondItems>
+					<thirdItems>
 						<li>ComponentIndustrial</li>
-					</secondItems>
+					</thirdItems>
 				</value>
 			</li>
 			
@@ -102,7 +104,8 @@
 				<value>
 					<amount>
 						<li>54</li>
-						<li>14</li>
+						<li>2</li>
+						<li>12</li>
 					</amount>
 				</value>
 			</li>
@@ -182,11 +185,15 @@
 							<li>Steel</li>
 						</items>	
 						<secondItems>
-							<li>ComponentIndustrial</li>
+							<li>Chemfuel</li>
 						</secondItems>
+						<thirdItems>
+							<li>ComponentIndustrial</li>
+						</thirdItems>
 						<amount>
 							<li>20</li>
-							<li>6</li>
+							<li>20</li>
+							<li>4</li>
 						</amount>
 						<outputLimitControlled>true</outputLimitControlled>
 						<maxTotalOutput>100</maxTotalOutput>
@@ -259,11 +266,15 @@
 							<li>Steel</li>
 						</items>	
 						<secondItems>
-							<li>ComponentIndustrial</li>
+							<li>Chemfuel</li>
 						</secondItems>
+						<thirdItems>
+							<li>ComponentIndustrial</li>
+						</thirdItems>
 						<amount>
 							<li>192</li>
-							<li>13</li>
+							<li>20</li>
+							<li>11</li>
 						</amount>
 						<outputLimitControlled>true</outputLimitControlled>
 						<maxTotalOutput>100</maxTotalOutput>
@@ -345,11 +356,15 @@
 									<li>Steel</li>
 								</items>	
 								<secondItems>
-									<li>ComponentIndustrial</li>
+									<li>Chemfuel</li>
 								</secondItems>
+								<thirdItems>
+									<li>ComponentIndustrial</li>
+								</thirdItems>
 								<amount>
 									<li>90</li>
-									<li>8</li>
+									<li>20</li>
+									<li>6</li>
 								</amount>
 								<outputLimitControlled>true</outputLimitControlled>
 								<maxTotalOutput>100</maxTotalOutput>
@@ -439,7 +454,7 @@
 									<li>ComponentIndustrial</li>
 								</thirdItems>
 								<amount>
-									<li>60/li>
+									<li>60</li>
 									<li>3</li>
 									<li>2</li>
 								</amount>
@@ -458,11 +473,15 @@
 									<li>Steel</li>
 								</items>	
 								<secondItems>
-									<li>ComponentIndustrial</li>
+									<li>Chemfuel</li>
 								</secondItems>
+								<thirdItems>
+									<li>ComponentIndustrial</li>
+								</thirdItems>
 								<amount>
-									<li>60/li>
-									<li>10/li>
+									<li>76</li>
+									<li>20</li>
+									<li>7</li>
 								</amount>
 								<outputLimitControlled>true</outputLimitControlled>
 								<maxTotalOutput>25</maxTotalOutput>
@@ -506,7 +525,7 @@
 								</thirdItems>
 								<amount>
 									<li>94</li>
-									<li>17/li>
+									<li>17</li>
 									<li>2</li>
 								</amount>
 								<outputLimitControlled>true</outputLimitControlled>
@@ -546,14 +565,15 @@
 								<defName>VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry_Ammo_155mmHowitzerShell_EMP</defName>
 								<building>VFEM_MunitionsAndArmamentFactory_ArtilleryFoundry</building>
 								<items>
-									<li>Steel</li>
-								</items>	
-								<secondItems>
-									<li>ComponentIndustrial</li>
+									<li>Chemfuel</li>
 								</secondItems>
+								<thirdItems>
+									<li>ComponentIndustrial</li>
+								</thirdItems>
 								<amount>
 									<li>94</li>
-									<li>15</li>
+									<li>20</li>
+									<li>12</li>
 								</amount>
 								<outputLimitControlled>true</outputLimitControlled>
 								<maxTotalOutput>25</maxTotalOutput>
