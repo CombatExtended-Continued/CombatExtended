@@ -229,7 +229,7 @@ namespace CombatExtended.HarmonyCE
                 return true;
             }
 
-            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool hideHair)
+            private static void DrawHeadApparel(PawnRenderer renderer, Pawn pawn, Vector3 rootLoc, Vector3 headLoc, Vector3 headOffset, Rot4 bodyFacing, Quaternion quaternion, PawnRenderFlags flags, Rot4 headFacing, ref bool shouldRenderHair)
             {
                 if (flags.FlagSet(PawnRenderFlags.Portrait) && Prefs.HatsOnlyOnMap)
                     return;
@@ -250,7 +250,7 @@ namespace CombatExtended.HarmonyCE
                     ApparelGraphicRecord apparelRecord = apparelGraphics[i];
                     if (apparelRecord.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead && !apparelRecord.sourceApparel.def.apparel.hatRenderedFrontOfFace)
                     {
-                        hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
+                        shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
                     }
                     else if (apparelRecord.sourceApparel.def.apparel.LastLayer.GetModExtension<ApparelLayerExtension>()?.IsHeadwear ?? false)
                     {
@@ -268,7 +268,7 @@ namespace CombatExtended.HarmonyCE
                         {
                             Matrix4x4 matrix = new Matrix4x4();
                             if(!quickFast_Loaded)
-                                hideHair = apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? true;
+                                shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
                             headwearPos.y += interval;
                             matrix.SetTRS(headwearPos, quaternion, customScale);
                             GenDraw.DrawMeshNowOrLater(mesh, matrix, apparelMat, flags.FlagSet(PawnRenderFlags.DrawNow));
@@ -353,7 +353,7 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Ldloc_0); // PawnRenderFlags flags
                         yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(displayType, "headFacing"));
 
-                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool hideHair
+                        yield return new CodeInstruction(OpCodes.Ldloca_S, 2);  // ref bool shouldRenderHair
 
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_PawnRenderer_DrawHeadHair), nameof(DrawHeadApparel)));
                         code.labels = new List<Label>();
@@ -382,15 +382,14 @@ namespace CombatExtended.HarmonyCE
                 equipment = eq;
             }
 
-            private static void DrawMesh(Mesh mesh, Vector3 position, Quaternion rotation, Material mat, int layer, Thing eq, float aimAngle)
-            {              
+            private static void DrawMesh(Mesh mesh, Matrix4x4 matrix, Material mat, int layer, Thing eq, Vector3 position, float aimAngle)
+            {
                 GunDrawExtension drawData = eq.def.GetModExtension<GunDrawExtension>() ?? new GunDrawExtension();
-                Matrix4x4 matrix = new Matrix4x4();                
                 Vector3 scale = new Vector3(drawData.DrawSize.x, 1, drawData.DrawSize.y);
                 Vector3 posVec = new Vector3(drawData.DrawOffset.x, 0, drawData.DrawOffset.y);
                 if (aimAngle > 200 && aimAngle < 340)
                     posVec.x *= -1;
-                matrix.SetTRS(position + posVec.RotatedBy(rotation.eulerAngles.y), rotation, scale);
+                matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
                 if(eq is WeaponPlatform platform)                
                     platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
                 else
@@ -408,6 +407,7 @@ namespace CombatExtended.HarmonyCE
                 codes.InsertRange(codes.Count - 2, new[]
                 {
                     new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Ldarg_2),
                     new CodeInstruction(OpCodes.Ldarg_3)
                 });
                 return codes;

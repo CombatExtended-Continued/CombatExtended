@@ -18,7 +18,7 @@ namespace CombatExtended.Compatibility
     public class Harmony_CompLongRangeArtillery_ResetWarmupTicks {
         public static bool Prefix(CompLongRangeArtillery __instance) {
             if (__instance.parent is Building_TurretGunCE btgce) {
-                __instance.warmupTicksLeft = Mathf.Max(1, btgce.def.building.turretBurstWarmupTime.SecondsToTicks());;
+                __instance.warmupTicksLeft = Mathf.Max(1, btgce.def.building.turretBurstWarmupTime.RandomInRange.SecondsToTicks());
                 return false;
             }
             return true;
