@@ -93,6 +93,34 @@ namespace CombatExtended
             }
         }
 
+        /// <summary>
+        /// Backing field for <see cref="DamageAmount"/>.
+        /// </summary>
+        private float? damageAmount;
+
+        /// <summary>
+        /// Return the damage dealt by this projectile scaled by the quality multiplier of its launcher.
+        /// </summary>
+        public virtual float DamageAmount
+        {
+            get
+            {
+                if (this.damageAmount == null)
+                {
+                    // Apply a multiplier to bullet damage based on the quality of the weapon that fired it
+                    var weaponDamageMultiplier = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+                    this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
+                }
+
+                return (float)this.damageAmount;
+            }
+        }
+
+        /// <summary>
+        /// Reference to the weapon that fired this projectile, may be null.
+        /// </summary>
+        public Thing equipment;
+
         public ThingDef equipmentDef;
         public Thing launcher;
         public LocalTargetInfo intendedTarget;
@@ -415,6 +443,7 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
             Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_References.Look<Thing>(ref equipment, "equipment");
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
 
@@ -456,6 +485,7 @@ namespace CombatExtended
             this.shotRotation = shotRotation;
             this.launcher = launcher;
             this.origin = origin;
+            this.equipment = equipment;
             equipmentDef = equipment?.def ?? null;
             Ray ray = new Ray(origin3, direction);
             var lbce = this as LaserBeamCE;
@@ -482,8 +512,9 @@ namespace CombatExtended
                     break;
                 }
 		var iv3 = tp.ToIntVec3();
-		if (!iv3.InBounds(map)) {
-		    tp = ray.GetPoint(i-1);
+                if (!iv3.InBounds(map))
+                {
+                    tp = ray.GetPoint(i - 1);
 		    ExactPosition = tp;
 		    destination = tp;
 		    landed = true;
@@ -586,6 +617,7 @@ namespace CombatExtended
         {
             this.launcher = launcher;
             this.origin = origin;
+            this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
@@ -874,7 +906,8 @@ namespace CombatExtended
 		    Destroy(DestroyMode.Vanish);
 		    return true;
 		}
-		else {
+                else
+                {
 		    Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
 		}
 	    }
@@ -1181,7 +1214,7 @@ namespace CombatExtended
                         def.projectile.explosionRadius,
                         def.projectile.damageDef,
                         launcher,
-                        def.projectile.GetDamageAmount(1),
+                        Mathf.FloorToInt(DamageAmount),
                         def.projectile.GetExplosionArmorPenetration(),
                         def.projectile.soundExplode,
                         equipmentDef,
