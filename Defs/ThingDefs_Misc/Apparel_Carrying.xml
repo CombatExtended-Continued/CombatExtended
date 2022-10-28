@@ -73,7 +73,7 @@
       <li>Leathery</li>
     </stuffCategories>
     <apparel>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <careIfWornByCorpse>true</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
@@ -93,12 +93,12 @@
     </tradeTags>
   </ThingDef>
 
-  <ThingDef ParentName="ApparelCarryGearBase">
+  <ThingDef Name="ApparelBackpackBase" ParentName="ApparelCarryGearBase">
     <defName>CE_Apparel_Backpack</defName>
     <label>backpack</label>
     <description>A comfortable and spacious backpack for storing all kinds of items.</description>
     <graphicData>
-      <texPath>Things/Apparel/Backpack/CE_Backpack</texPath>
+      <texPath>Things/Apparel/KidBackpack/CE_KidBackpack</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <possessionCount>1</possessionCount>
@@ -122,7 +122,7 @@
     <apparel>
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfDamaged>false</careIfDamaged>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <careIfWornByCorpse>true</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
@@ -136,7 +136,7 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags>
-      <wornGraphicPath>Things/Apparel/Backpack/CE_Backpack</wornGraphicPath>
+      <wornGraphicPath>Things/Apparel/KidBackpack/CE_KidBackpack</wornGraphicPath>
       <wornGraphicData>
       <renderUtilityAsPack>true</renderUtilityAsPack>
         <east>
@@ -171,6 +171,45 @@
     <tradeTags>
       <li>Clothing</li>
     </tradeTags>
+  </ThingDef>
+
+  <ThingDef ParentName="ApparelBackpackBase">
+    <defName>CE_Apparel_KidBackpack</defName>
+    <label>kid backpack</label>
+    <description>A small backpack sized for a child.</description>
+    <graphicData>
+      <texPath>Things/Apparel/Backpack/CE_Backpack</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <statBases>
+      <WorkToMake>4000</WorkToMake>
+      <Mass>0.5</Mass>
+      <Bulk>1.5</Bulk>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryBulk>15</CarryBulk>
+    </equippedStatOffsets>
+    <costStuffCount>20</costStuffCount>
+    <apparel>
+      <developmentalStageFilter>Child</developmentalStageFilter>
+      <tags inherit="false">
+        <li>IndustrialBasic</li>
+      </tags>
+      <wornGraphicPath>Things/Apparel/Backpack/CE_Backpack</wornGraphicPath>
+      <wornGraphicData inherit="false">
+      <renderUtilityAsPack>true</renderUtilityAsPack>
+        <east>
+          <offset>(0.1,-0)</offset>
+        </east>
+        <west>
+          <offset>(-0.1,0)</offset>
+        </west>
+        <north>
+          <offset>(0,0)</offset>
+        </north>
+      </wornGraphicData>
+    </apparel>
   </ThingDef>
 
   <ThingDef ParentName="ApparelCarryGearBase">
@@ -208,7 +247,7 @@
     <apparel>
       <countsAsClothingForNudity>false</countsAsClothingForNudity>
       <careIfDamaged>false</careIfDamaged>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <careIfWornByCorpse>true</careIfWornByCorpse>
       <bodyPartGroups>
         <li>Shoulders</li>
       </bodyPartGroups>
