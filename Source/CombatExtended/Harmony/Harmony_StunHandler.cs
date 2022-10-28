@@ -92,7 +92,7 @@ namespace CombatExtended.HarmonyCE
                 var dmgAmount = dinfo.Amount;
                 if (__instance.parent is Pawn p && (p.RaceProps?.IsFlesh ?? false)) dmgAmount = Mathf.RoundToInt(dmgAmount * 0.25f);
                 var newDinfo = new DamageInfo(CE_DamageDefOf.Electrical, dmgAmount, 9999, // Hack to avoid double-armor application (EMP damage reduced -> proportional electric damage reduced again)
-                    dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category);
+                    dinfo.Angle, dinfo.Instigator, dinfo.HitPart, dinfo.Weapon, dinfo.Category, instigatorGuilty: dinfo.InstigatorGuilty);
                 __instance.parent.TakeDamage(newDinfo);
             }
         }
