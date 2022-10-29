@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+  <!-- ========== Tools ========== -->
+
   <Operation Class="PatchOperationReplace">
-    <xpath>
-      Defs/ThingDef[
-        defName="Gun_ToxicNeedle"
-      ]/tools
-    </xpath>
+    <xpath>Defs/ThingDef[defName="Gun_BeamGraser"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -16,6 +14,24 @@
           </capacities>
           <power>10</power>
           <cooldownTime>2.44</cooldownTime>
+          <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_ToxicNeedle"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>10</power>
+          <cooldownTime>3.0</cooldownTime>
           <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
           <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
         </li>
