@@ -17,13 +17,6 @@ namespace CombatExtended
         private static RulePackDef cookOffDamageEvent = null;
 
         public static RulePackDef CookOff => cookOffDamageEvent ?? (cookOffDamageEvent = DefDatabase<RulePackDef>.GetNamed("DamageEvent_CookOff"));
-        public virtual float DamageAmount
-        {
-            get
-            {
-                return def.projectile.GetDamageAmount(1);
-            }
-        }
 
         public virtual float PenetrationAmount
         {
