@@ -708,7 +708,7 @@ namespace CombatExtended
                 {
                     interceptorComp.currentHitPoints = 0;
                     interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
-                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, (float)damageAmount));
+                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, (float)this.damageAmount));
                     return true;
                 }
             }
