@@ -134,7 +134,7 @@ namespace CombatExtended
         public int ticksToImpact;
         private Sustainer ambientSustainer;
 
-        public virtual float DamageAmount => def.projectile.GetDamageAmount(1);
+        /// public virtual float DamageAmount => def.projectile.GetDamageAmount(1);
 
         #endregion
 
@@ -702,13 +702,13 @@ namespace CombatExtended
             // and break it if we manage to decrease its hitpoints to zero or lower.
             if (interceptorComp.currentHitPoints > 0)
             {
-                interceptorComp.currentHitPoints -= Mathf.FloorToInt(this.DamageAmount);
+                interceptorComp.currentHitPoints -= Mathf.FloorToInt((float)this.damageAmount);
 
                 if (interceptorComp.currentHitPoints <= 0)
                 {
                     interceptorComp.currentHitPoints = 0;
                     interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
-                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
+                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, (float)damageAmount));
                     return true;
                 }
             }
