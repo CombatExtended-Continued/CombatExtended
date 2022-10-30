@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -22,6 +23,10 @@ namespace CombatExtended.Lasers
         Material materialBeam;
         Mesh mesh;
         Thing launcher;
+        /// <summary>
+        /// The weapon firing this laser beam.
+        /// </summary>
+        Thing equipment;
         ThingDef equipmentDef;
         public List<Mesh> meshes = new List<Mesh>();
 
@@ -41,6 +46,8 @@ namespace CombatExtended.Lasers
             Scribe_Values.Look(ref a, "a");
             Scribe_Values.Look(ref b, "b");
             Scribe_Defs.Look(ref projDef, "projectileDef");
+
+            Scribe_References.Look<Thing>(ref equipment, "equipment");
         }
 
         public override void Tick()
@@ -77,7 +84,7 @@ namespace CombatExtended.Lasers
             }
         }
 
-        public void Setup(Thing launcher, Vector3 origin, Vector3 destination)
+        public void Setup(Thing launcher, Thing equipment, Vector3 origin, Vector3 destination)
         {
             //SetColor(launcher);
             this.launcher = launcher;
@@ -244,7 +251,9 @@ namespace CombatExtended.Lasers
             float explosionRadius = this.def.projectile.explosionRadius;
             DamageDef damageDef = this.def.projectile.damageDef;
             Thing launcher = this.launcher;
-            int damageAmount = this.def.projectile.GetDamageAmount(1f, null);
+            // Apply a multiplier to bullet damage based on the quality of the weapon that fired it
+            var weaponDamageMultiplier = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+            int damageAmount = this.def.projectile.GetDamageAmount(weaponDamageMultiplier, null);
             SoundDef soundExplode = this.def.projectile.soundExplode;
             ThingDef equipmentDef = this.equipmentDef;
             ThingDef def = this.def;
