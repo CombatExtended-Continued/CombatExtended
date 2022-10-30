@@ -4,14 +4,25 @@
   <!-- ========== Tools ========== -->
 
   <Operation Class="PatchOperationReplace">
-    <xpath>
-      Defs/ThingDef[
-        defName="Gun_MiniShotgun" or 
-        defName="Gun_Slugthrower" or 
-        defName="Gun_Spiner" or
-        defName="Gun_MiniFlameblaster"
-      ]/tools
-    </xpath>
+    <xpath>Defs/ThingDef[@Name="LightMechanoidGun"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>barrel</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>6</power>
+          <cooldownTime>2.0</cooldownTime>
+          <armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+        </li>
+      </tools>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_Slugthrower"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -57,7 +68,7 @@
       <ammoSet>AmmoSet_16Gauge</ammoSet>
     </AmmoUser>
     <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
+      <aiAimMode>Snapshot</aiAimMode>
     </FireModes>
     <weaponTags>
       <li>CE_AI_BROOM</li>
@@ -82,7 +93,7 @@
       <hasStandardCommand>true</hasStandardCommand>
       <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
       <warmupTime>1.3</warmupTime>
-      <range>40</range>
+      <range>35</range>
       <burstShotCount>1</burstShotCount>
       <soundCast>Shot_Slugthrower</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
@@ -94,7 +105,7 @@
       <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
     </AmmoUser>
     <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
+      <aiAimMode>Snapshot</aiAimMode>
     </FireModes>
     <weaponTags>
       <li>CE_AI_AR</li>
@@ -103,6 +114,21 @@
   </Operation>
 
   <!-- ========== Spiner ========== -->
+
+  <Operation Class="PatchOperationAdd">   <!-- Same as 5.7x28mm FMJ round -->
+    <xpath>Defs</xpath>
+    <value>
+      <ThingDef ParentName="BaseFN57x28mmBullet">
+        <defName>Bullet_Spiner_CE</defName>
+        <label>spine</label>
+        <projectile Class="CombatExtended.ProjectilePropertiesCE">
+          <damageAmountBase>9</damageAmountBase>
+          <armorPenetrationSharp>5</armorPenetrationSharp>
+          <armorPenetrationBlunt>11</armorPenetrationBlunt>
+        </projectile>
+      </ThingDef>
+    </value>
+  </Operation>
 
   <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
     <defName>Gun_Spiner</defName>
@@ -117,7 +143,7 @@
       <recoilAmount>1.38</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_FN57x28mm_FMJ</defaultProjectile>
+      <defaultProjectile>Bullet_Spiner_CE</defaultProjectile>
       <warmupTime>0.8</warmupTime>
       <range>12</range>
       <burstShotCount>1</burstShotCount>
@@ -125,12 +151,8 @@
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
     </Properties>
-    <AmmoUser>
-      <magazineSize>20</magazineSize>
-      <reloadTime>4</reloadTime>
-    </AmmoUser>
     <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
+      <aiAimMode>Snapshot</aiAimMode>
     </FireModes>
     <weaponTags>
       <li>CE_AI_BROOM</li>
@@ -149,20 +171,6 @@
       <SwayFactor>0.53</SwayFactor>
       <Bulk>6.00</Bulk>
     </statBases>
-    <Properties>
-      <recoilAmount>0.35</recoilAmount>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
-      <warmupTime>0.8</warmupTime>
-      <range>10</range>
-      <minRange>1.9</minRange>
-      <ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
-      <burstShotCount>5</burstShotCount>
-      <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
-      <soundCast>Shot_MiniFlameblaster</soundCast>
-      <muzzleFlashScale>9</muzzleFlashScale>
-    </Properties>
     <AmmoUser>
       <magazineSize>30</magazineSize>
       <reloadTime>4</reloadTime>
@@ -175,6 +183,28 @@
       <li>CE_AI_AOE</li>
       <li>NoSwitch</li>
     </weaponTags>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_MiniFlameblaster"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <recoilAmount>0.35</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>10</range>
+          <minRange>1.9</minRange>
+          <ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+          <burstShotCount>5</burstShotCount>
+          <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+          <soundCast>Shot_MiniFlameblaster</soundCast>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </li>
+      </verbs>
+    </value>
   </Operation>
 
 </Patch>
