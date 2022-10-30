@@ -91,7 +91,6 @@
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<speed>12</speed>
-				<gravityFactor>2</gravityFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -152,24 +151,17 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Weapon_GrenadeFrag"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeFrag"]/comps</xpath>
 		<value>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>56</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>1.5</explosiveRadius>
-		  </li>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>56</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1.5</explosiveRadius>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			  </li>
+			</comps>
 		</value>
 	</Operation>
 	
@@ -239,7 +231,7 @@
 				<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
 				<speed>12</speed>
 				<ai_IsIncendiary>true</ai_IsIncendiary>
-				<gravityFactor>2</gravityFactor>
+				<screenShakeFactor>0</screenShakeFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -286,26 +278,19 @@
 		<value>CombatExtended.AmmoDef</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Weapon_GrenadeMolotov"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeMolotov"]/comps</xpath>
 		<value>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>1</damageAmountBase>
-			<explosiveDamageType>Flame</explosiveDamageType>
-			<explosiveRadius>1</explosiveRadius>
-			<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-			<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
-		  </li>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>1</damageAmountBase>
+				<explosiveDamageType>Flame</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>0.8</preExplosionSpawnChance>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			  </li>
+			</comps>
 		</value>
 	</Operation>
 
@@ -371,19 +356,9 @@
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
 				<speed>12</speed>
-				<gravityFactor>2</gravityFactor>
+				<screenShakeFactor>0</screenShakeFactor>
 			</projectile>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Proj_GrenadeEMP"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Proj_GrenadeEMP"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
 	</Operation>
 
 	<!-- Grenade -->
@@ -425,6 +400,20 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/smeltable</xpath>
 		<value>
 			<smeltable>false</smeltable>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Weapon_GrenadeEMP"]/comps</xpath>
+		<value>
+			<comps>
+			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>56</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>3</explosiveRadius>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			  </li>
+			</comps>
 		</value>
 	</Operation>
 
