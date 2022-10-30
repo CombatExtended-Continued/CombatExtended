@@ -14,7 +14,16 @@ namespace CombatExtended.HarmonyCE
     {
         internal static bool Prefix(ref bool __result, Verb verb, CompShield __instance)
         {
-            __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            if (__instance.Props.blocksRangedWeapons)
+            {
+                __result = (__instance.ShieldState != ShieldState.Active) || verb is Verb_MarkForArtillery || !(verb is Verb_LaunchProjectileCE || verb is Verb_LaunchProjectile);
+            }
+            else
+            {
+                // Let pawns use ranged weapons with Biotech's ranged shield belts
+                __result = true;
+            }
+
             return false;
         }
     }
