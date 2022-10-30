@@ -134,7 +134,7 @@ namespace CombatExtended
                     FleckMaker.Static(this.ExactPosition, map, FleckDefOf.ShotHit_Dirt, 1f);
                     if (base.Position.GetTerrain(map).takeSplashes)
                     {
-                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(def.projectile.GetDamageAmount(this.launcher)) * 1f, 4f);
+                        FleckMaker.WaterSplash(this.ExactPosition, map, Mathf.Sqrt(DamageAmount), 4f);
                     }
                     Rand.PopState();
                 }
