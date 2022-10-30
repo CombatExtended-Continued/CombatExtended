@@ -290,16 +290,17 @@
     <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
-  <!-- ==================== Explosive Bolt Launcher ==================== -->
+  <!-- ==================== Thermal Bolt Launcher ==================== -->
 
   <ThingDef ParentName="BaseGunWithQuality">
-    <defName>CE_ExplosiveBoltProjector</defName>
-    <label>explosive bolt projector</label>
-    <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+    <defName>CE_ThermalBoltProjector</defName>
+    <label>thermal bolt projector</label>
+    <description>A low-velocity, high-trajectory fire support system deployed by the Pikeman mechanoid. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
+      <texPath>Things/Weapons/ExplosiveBoltProjector</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <equippedAngleOffset>-45</equippedAngleOffset>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
       <SightsEfficiency>1</SightsEfficiency>
@@ -314,14 +315,15 @@
     <tradeability>None</tradeability>
     <destroyOnDrop>true</destroyOnDrop>
     <weaponTags>
-      <li>MechanoidGunLongRange</li>
+      <li>MechanoidGunIndirect</li>
+      <li>NoSwitch</li>
     </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+        <defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
         <warmupTime>3</warmupTime>
         <minRange>10</minRange>
         <range>45</range>
@@ -347,7 +349,7 @@
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>5</magazineSize>
         <reloadTime>12</reloadTime>
-        <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+        <ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
         <aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -368,8 +370,7 @@
     </tools>
     <modExtensions>
       <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>1.2,1.4</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
+        <DrawOffset>-0.3,0.0</DrawOffset>
       </li>
       <li Class="CombatExtended.ThingDefExtensionCE">
         <MenuHidden>True</MenuHidden>
