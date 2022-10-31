@@ -64,7 +64,7 @@
       <MarketValue>29.2</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-	<detonateProjectile>Bullet_60mmMortarShell_HE</detonateProjectile>
+    <detonateProjectile>Bullet_60mmMortarShell_HE</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
@@ -83,9 +83,9 @@
 		<damageAmountBase>0</damageAmountBase>
 		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveRadius>4.5</explosiveRadius>
-        <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-        <preExplosionSpawnChance>0.25</preExplosionSpawnChance>
-        <explosionSound>MortarIncendiary_Explode</explosionSound>
+		<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+		<preExplosionSpawnChance>0.25</preExplosionSpawnChance>
+		<explosionSound>MortarIncendiary_Explode</explosionSound>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 	  </li>
     </comps>
@@ -114,7 +114,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
     <defName>Shell_60mmMortar_Firefoam</defName>
     <label>60mm mortar shell (Foam)</label>
-    <generateAllowChance>0</generateAllowChance>	
+    <generateAllowChance>0</generateAllowChance>
     <graphicData>
       <texPath>Things/Ammo/Mortar/Firefoam</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -123,14 +123,14 @@
       <MarketValue>23.97</MarketValue>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
-	<detonateProjectile>Bullet_60mmMortarShell_Firefoam</detonateProjectile>
+    <detonateProjectile>Bullet_60mmMortarShell_Firefoam</detonateProjectile>
     <comps>
 	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
 		<damageAmountBase>7</damageAmountBase>
 		<explosiveDamageType>Extinguish</explosiveDamageType>
-        <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
-        <postExplosionSpawnChance>1</postExplosionSpawnChance>
-        <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+		<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+		<postExplosionSpawnChance>1</postExplosionSpawnChance>
+		<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 	  </li>
     </comps>
@@ -139,7 +139,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="60mmMortarShellBaseCraftableBase">
     <defName>Shell_60mmMortar_Smoke</defName>
     <label>60mm mortar shell (Smoke)</label>
-    <generateAllowChance>0</generateAllowChance>	    
+    <generateAllowChance>0</generateAllowChance>
     <graphicData>
       <texPath>Things/Ammo/Mortar/Smoke</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -152,14 +152,14 @@
     <ammoClass>Smoke</ammoClass>
 	<detonateProjectile>Bullet_60mmMortarShell_60mmMortar_Smoke</detonateProjectile>
     <comps>
-		<!-- Vanilla values -->
+    <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>4.5</explosiveRadius>
         <explosiveDamageType>Smoke</explosiveDamageType>
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
-        <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+        <postExplosionGasType>BlindSmoke</postExplosionGasType>
         <preExplosionSpawnChance>1</preExplosionSpawnChance>
-		    <explodeOnKilled>True</explodeOnKilled>
+        <explodeOnKilled>True</explodeOnKilled>
         <wickTicks>30~60</wickTicks>
       </li>
     </comps>
@@ -180,7 +180,7 @@
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
       <dropsCasings>false</dropsCasings>
-	  <gravityFactor>5</gravityFactor>
+      <gravityFactor>5</gravityFactor>
     </projectile>
   </ThingDef>
 
@@ -192,8 +192,8 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-	  <damageDef>Bomb</damageDef>
-	  <explosionRadius>2</explosionRadius>	  
+      <damageDef>Bomb</damageDef>
+      <explosionRadius>2</explosionRadius>	  
       <damageAmountBase>76</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
@@ -291,7 +291,7 @@
       <soundExplode>Explosion_EMP</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
-      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <explosionEffect>ExtinguisherExplosion</explosionEffect>

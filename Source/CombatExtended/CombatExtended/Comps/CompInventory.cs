@@ -495,7 +495,8 @@ namespace CombatExtended
             {
                 if (ammoUser.CurAmmoProjectile?.projectile?.damageDef != DamageDefOf.Smoke)
                     return false;
-                if (ammoUser.CurAmmoProjectile?.projectile?.postExplosionSpawnThingDef != ThingDefOf.Gas_Smoke)
+
+                if (ammoUser.CurAmmoProjectile?.projectile?.postExplosionGasType != GasType.BlindSmoke)
                     return false;
             }
             return true;

@@ -78,15 +78,6 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-			<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="AB_RawFishBase"]</xpath>
-			<value>
-				<weaponTags>
-				<li>CE_OneHandedWeapon</li>
-				</weaponTags>
-			</value>
-			</li>
-
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="GU_RedWood" or defName="AB_MushroomWoodLog" or defName="AB_CrystalWood"]/equippedStatOffsets</xpath>
 				<value>
@@ -152,104 +143,7 @@
 
 		</operations>
 		</nomatch>
-		</li>								
-
-        <!-- === Misc. Raw Fish === -->
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[
-		  defName="VCEF_AbyssalEel" or
-		  defName="VCEF_BloodLeech" or
-		  defName="VCEF_BorealSardine" or
-		  defName="VCEF_DuskySprat" or
-		  defName="VCEF_ForsakenAnglerfish" or
-		  defName="VCEF_FrigidSwimmer" or
-		  defName="VCEF_GiantPolarPrawn" or
-		  defName="VCEF_HabdakLongfin" or
-		  defName="VCEF_Jellyfungus" or
-		  defName="VCEF_MudSplasherCarp" or
-		  defName="VCEF_MutantFlatfish" or
-		  defName="VCEF_OcularFish" or
-		  defName="VCEF_PinkBlobfish" or
-		  defName="VCEF_PropaneBag" or
-		  defName="VCEF_ShadowFry" or
-		  defName="VCEF_Slimefish" or
-		  defName="VCEF_Spiderfish" or
-		  defName="VCEF_Spinyfish" or
-		  defName="VCEF_Sturgeon"
-		  ]/tools</xpath>
-          <value>
-            <tools>
-              <li Class="CombatExtended.ToolCE">
-                <label>raw fish</label>
-                <capacities>
-                  <li>Blunt</li>
-                </capacities>
-                <power>3</power>
-                <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
-                <cooldownTime>2</cooldownTime>
-              </li>
-            </tools>
-          </value>
-        </li>
-
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[
-		  defName="VCEF_AbyssalEel" or
-		  defName="VCEF_BloodLeech" or
-		  defName="VCEF_BorealSardine" or
-		  defName="VCEF_DuskySprat" or
-		  defName="VCEF_ForsakenAnglerfish" or
-		  defName="VCEF_FrigidSwimmer" or
-		  defName="VCEF_GiantPolarPrawn" or
-		  defName="VCEF_HabdakLongfin" or
-		  defName="VCEF_Jellyfungus" or
-		  defName="VCEF_MudSplasherCarp" or
-		  defName="VCEF_MutantFlatfish" or
-		  defName="VCEF_OcularFish" or
-		  defName="VCEF_PinkBlobfish" or
-		  defName="VCEF_PropaneBag" or
-		  defName="VCEF_ShadowFry" or
-		  defName="VCEF_Slimefish" or
-		  defName="VCEF_Spiderfish" or
-		  defName="VCEF_Spinyfish" or
-		  defName="VCEF_Sturgeon"
-		  ]/statBases</xpath>
-          <value>
-            <MeleeCounterParryBonus>0.33</MeleeCounterParryBonus>
-          </value>
-        </li>
-
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[
-		  defName="VCEF_AbyssalEel" or
-		  defName="VCEF_BloodLeech" or
-		  defName="VCEF_BorealSardine" or
-		  defName="VCEF_DuskySprat" or
-		  defName="VCEF_ForsakenAnglerfish" or
-		  defName="VCEF_FrigidSwimmer" or
-		  defName="VCEF_GiantPolarPrawn" or
-		  defName="VCEF_HabdakLongfin" or
-		  defName="VCEF_Jellyfungus" or
-		  defName="VCEF_MudSplasherCarp" or
-		  defName="VCEF_MutantFlatfish" or
-		  defName="VCEF_OcularFish" or
-		  defName="VCEF_PinkBlobfish" or
-		  defName="VCEF_PropaneBag" or
-		  defName="VCEF_ShadowFry" or
-		  defName="VCEF_Slimefish" or
-		  defName="VCEF_Spiderfish" or
-		  defName="VCEF_Spinyfish" or
-		  defName="VCEF_Sturgeon"
-		  ]</xpath>
-          <value>
-            <equippedStatOffsets>
-              <MeleeCritChance>0.1</MeleeCritChance>
-              <MeleeParryChance>0.33</MeleeParryChance>
-              <MeleeDodgeChance>0.07</MeleeDodgeChance>
-            </equippedStatOffsets>
-          </value>
-        </li>
+		</li>
 
 		</operations>
 		</match>

@@ -8,7 +8,7 @@
     <label>grenade launcher</label>
     <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
     <graphicData>
-      <texPath>Things/Weapons/GrenadeLauncher</texPath>
+      <texPath>Things/Weapons/CE_GrenadeLauncher</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -110,7 +110,7 @@
     <label>disposable rocket launcher</label>
     <description>A lightweight single-use anti-tank launcher. Designed to provide soldiers in the field with a compact anti-armor weapon.</description>
     <graphicData>
-      <texPath>Things/Weapons/M72</texPath>
+      <texPath>Things/Weapons/CE_M72</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
@@ -290,16 +290,17 @@
     <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
-  <!-- ==================== Explosive Bolt Launcher ==================== -->
+  <!-- ==================== Thermal Bolt Launcher ==================== -->
 
   <ThingDef ParentName="BaseGunWithQuality">
-    <defName>CE_ExplosiveBoltProjector</defName>
-    <label>explosive bolt projector</label>
-    <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
+    <defName>CE_ThermalBoltProjector</defName>
+    <label>thermal bolt projector</label>
+    <description>A low-velocity, high-trajectory fire support system deployed by the Pikeman mechanoid. While inaccurate and slow-firing, it remains a potent weapon against static targets.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/NeedleGun</texPath>
+      <texPath>Things/Weapons/ExplosiveBoltProjector</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <equippedAngleOffset>-45</equippedAngleOffset>
     <soundInteract>Interact_Rifle</soundInteract>
     <statBases>
       <SightsEfficiency>1</SightsEfficiency>
@@ -314,14 +315,15 @@
     <tradeability>None</tradeability>
     <destroyOnDrop>true</destroyOnDrop>
     <weaponTags>
-      <li>MechanoidGunLongRange</li>
+      <li>MechanoidGunIndirect</li>
+      <li>NoSwitch</li>
     </weaponTags>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
         <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
-        <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
+        <defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
         <warmupTime>3</warmupTime>
         <minRange>10</minRange>
         <range>45</range>
@@ -347,7 +349,7 @@
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>5</magazineSize>
         <reloadTime>12</reloadTime>
-        <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+        <ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
         <aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -380,7 +382,7 @@
     <label>flare gun</label>
     <description>An ancient, single-shot flare gun, used for signaling or illumination. Loaded from the breech, its barrel is too thin to fire anything but flares.</description>
     <graphicData>
-      <texPath>Things/Weapons/FlareGun</texPath>
+      <texPath>Things/Weapons/CE_FlareGun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <soundInteract>Interact_Autopistol</soundInteract>

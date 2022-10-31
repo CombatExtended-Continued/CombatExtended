@@ -169,6 +169,12 @@ namespace CombatExtended
         #region Methods
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
+            // Don't let people control melee targeting for non-colonist pawns or colonists in a mental state
+            if (!PawnParent.IsColonist || PawnParent.InAggroMentalState)
+            {
+                yield break;
+            }
+
             if (SkillReqA)
             {
                 yield return new Command_Action
