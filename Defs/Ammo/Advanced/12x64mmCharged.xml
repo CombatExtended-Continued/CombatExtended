@@ -31,6 +31,7 @@
     </thingCategories>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </tradeTags>
     <stackLimit>5000</stackLimit>		
   </ThingDef>
@@ -75,5 +76,49 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_12x64mmCharged</defName>
+    <label>make 12x64mm Charged cartridge x200</label>
+    <description>Craft 200 12x64mm Charged cartridges.</description>
+    <jobString>Making 12x64mm Charged cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+    </products>
+    <workAmount>36080</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>

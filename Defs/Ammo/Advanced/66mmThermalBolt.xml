@@ -32,6 +32,7 @@
     </statBases>
     <thingCategories>
       <li>Ammo66mmThermalBolts</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </thingCategories>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>30</cookOffFlashScale>
@@ -99,5 +100,49 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_66mmThermalBolt</defName>
+    <label>make 66mm Thermal Bolt x5</label>
+    <description>Craft 5 66mm Thermal Bolts.</description>
+    <jobString>Making 66mm Thermal Bolts.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>26</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Prometheum</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_66mmThermalBolt_Incendiary>5</Ammo_66mmThermalBolt_Incendiary>
+    </products>
+    <workAmount>5060</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>
