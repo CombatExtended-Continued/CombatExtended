@@ -134,8 +134,6 @@ namespace CombatExtended
         public int ticksToImpact;
         private Sustainer ambientSustainer;
 
-        /// public virtual float DamageAmount => def.projectile.GetDamageAmount(1);
-
         #endregion
 
         private float suppressionAmount;
