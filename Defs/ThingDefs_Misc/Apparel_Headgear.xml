@@ -77,7 +77,7 @@
 		</tradeTags>
     </ThingDef>
 
-    <ThingDef ParentName="ArmorHelmetMakeableBase">
+    <ThingDef ParentName="HatMakeableBase">
         <defName>CE_Apparel_GasMask</defName>
         <label>gas mask</label>
         <description>Sealed rubber mask with a filter attached. Will protect against smoke inhalation and airborne toxins.</description>
@@ -87,12 +87,14 @@
         </graphicData>
         <possessionCount>1</possessionCount>
         <techLevel>Industrial</techLevel>
-        <generateAllowChance>0.2</generateAllowChance>
+        <generateAllowChance>0.5</generateAllowChance>
         <recipeMaker>
-            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <skillRequirements>
-                <Crafting>8</Crafting>
-            </skillRequirements>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
+            <researchPrerequisite>Machining</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
+            <recipeUsers Inherit="False">
+                <li>TableMachining</li>
+            </recipeUsers>
         </recipeMaker>
         <costList>
             <ComponentIndustrial>2</ComponentIndustrial>
@@ -112,6 +114,8 @@
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+            <immuneToToxGasExposure>true</immuneToToxGasExposure>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -124,10 +128,7 @@
                 <li>IndustrialMilitaryAdvanced</li>
                 <li>GasMask</li>
             </tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
-              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+            <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
         </apparel>
         <modExtensions>
             <li Class="CombatExtended.ApparelHediffExtension">
@@ -138,9 +139,6 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
-        <thingCategories Inherit="false">
-            <li>Headgear</li>
-        </thingCategories>
         <tradeTags>
             <li>Clothing</li>
         </tradeTags>
@@ -156,18 +154,16 @@
         </graphicData>
         <possessionCount>1</possessionCount>
         <techLevel>Neolithic</techLevel>
-        <generateAllowChance>0.1</generateAllowChance>
+        <generateAllowChance>0.25</generateAllowChance>
         <recipeMaker>
-            <skillRequirements>
-                <Crafting>6</Crafting>
-            </skillRequirements>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
             <recipeUsers>
                 <li>CraftingSpot</li>
             </recipeUsers>
         </recipeMaker>
         <costList>
             <WoodLog>4</WoodLog>
-            <Cloth>40</Cloth>
+            <Cloth>20</Cloth>
         </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
@@ -183,6 +179,7 @@
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -191,9 +188,6 @@
             <layers>
                 <li>StrappedHead</li>
             </layers>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
             <tags>
                 <li>GasMask</li>
             </tags>
