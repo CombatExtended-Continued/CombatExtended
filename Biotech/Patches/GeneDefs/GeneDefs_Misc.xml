@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- ========== Nearsighted ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/GeneDef[defName="Nearsighted"]/statFactors</xpath>
+    <value>
+      <statFactors>
+        <ShootingAccuracyPawn>0.75</ShootingAccuracyPawn>
+        <AimingAccuracy>0.75</AimingAccuracy>
+      </statFactors>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/GeneDef[defName="DarkVision"]</xpath>
+    <value>
+      <statOffsets>
+        <NightVisionEfficiency>0.8</NightVisionEfficiency>
+      </statOffsets>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/GeneDef[defName="Unstoppable"]/statFactors</xpath>
+    <value>
+      <statFactors>
+        <Suppressability>0</Suppressability>
+      </statFactors>
+    </value>
+  </Operation>
+
+</Patch>
