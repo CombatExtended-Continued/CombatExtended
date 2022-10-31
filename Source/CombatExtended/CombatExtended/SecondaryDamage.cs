@@ -35,7 +35,8 @@ namespace CombatExtended
                             primaryDinfo.Angle,
                             primaryDinfo.Instigator,
                             primaryDinfo.HitPart,
-                            primaryDinfo.Weapon);
+                            primaryDinfo.Weapon,
+                            instigatorGuilty: primaryDinfo.InstigatorGuilty);
             dinfo.SetBodyRegion(primaryDinfo.Height, primaryDinfo.Depth);
             return dinfo;
         }

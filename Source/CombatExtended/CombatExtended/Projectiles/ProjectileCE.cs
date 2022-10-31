@@ -84,6 +84,14 @@ namespace CombatExtended
         }
         #endregion
 
+        /// <summary>
+        /// Determine whether the pawn that fired this projectile (if it was a pawn)
+        /// should be considered guilty if this projectile hits a friendly target.
+        /// </summary>
+        /// <remarks>
+        /// This effectively aims to prevent people drafting pawns and ordering them to attack friendly targets to cheese guilt.
+        /// </remarks>
+        protected bool InstigatorGuilty => !(launcher is Pawn launcherPawn && launcherPawn.Drafted);
 
         public Thing intendedTargetThing
         {
