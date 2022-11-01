@@ -34,6 +34,11 @@ namespace CombatExtended
         public bool damageFalloff = true;
         public float chanceToStartFire;
 
+        /// <summary>
+        /// The type of built-in core game gas to spawn on detonation.
+        /// </summary>
+        public GasType? postExplosionGasType;
+
         public CompProperties_ExplosiveCE()
         {
             compClass = typeof(CompExplosiveCE);

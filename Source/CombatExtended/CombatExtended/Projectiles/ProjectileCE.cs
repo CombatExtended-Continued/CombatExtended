@@ -84,6 +84,14 @@ namespace CombatExtended
         }
         #endregion
 
+        /// <summary>
+        /// Determine whether the pawn that fired this projectile (if it was a pawn)
+        /// should be considered guilty if this projectile hits a friendly target.
+        /// </summary>
+        /// <remarks>
+        /// This effectively aims to prevent people drafting pawns and ordering them to attack friendly targets to cheese guilt.
+        /// </remarks>
+        protected bool InstigatorGuilty => !(launcher is Pawn launcherPawn && launcherPawn.Drafted);
 
         public Thing intendedTargetThing
         {
@@ -92,6 +100,34 @@ namespace CombatExtended
                 return intendedTarget.Thing;
             }
         }
+
+        /// <summary>
+        /// Backing field for <see cref="DamageAmount"/>.
+        /// </summary>
+        private float? damageAmount;
+
+        /// <summary>
+        /// Return the damage dealt by this projectile scaled by the quality multiplier of its launcher.
+        /// </summary>
+        public virtual float DamageAmount
+        {
+            get
+            {
+                if (this.damageAmount == null)
+                {
+                    // Apply a multiplier to bullet damage based on the quality of the weapon that fired it
+                    var weaponDamageMultiplier = equipment?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
+                    this.damageAmount = def.projectile.GetDamageAmount(weaponDamageMultiplier);
+                }
+
+                return (float)this.damageAmount;
+            }
+        }
+
+        /// <summary>
+        /// Reference to the weapon that fired this projectile, may be null.
+        /// </summary>
+        public Thing equipment;
 
         public ThingDef equipmentDef;
         public Thing launcher;
@@ -105,6 +141,7 @@ namespace CombatExtended
         public bool landed;
         public int ticksToImpact;
         private Sustainer ambientSustainer;
+
         #endregion
 
         private float suppressionAmount;
@@ -415,6 +452,7 @@ namespace CombatExtended
             Scribe_Values.Look<int>(ref ticksToImpact, "ticksToImpact", 0, true);
             Scribe_TargetInfo.Look(ref intendedTarget, "intendedTarget");
             Scribe_References.Look<Thing>(ref launcher, "launcher");
+            Scribe_References.Look<Thing>(ref equipment, "equipment");
             Scribe_Defs.Look<ThingDef>(ref equipmentDef, "equipmentDef");
             Scribe_Values.Look<bool>(ref landed, "landed");
 
@@ -456,6 +494,7 @@ namespace CombatExtended
             this.shotRotation = shotRotation;
             this.launcher = launcher;
             this.origin = origin;
+            this.equipment = equipment;
             equipmentDef = equipment?.def ?? null;
             Ray ray = new Ray(origin3, direction);
             var lbce = this as LaserBeamCE;
@@ -482,8 +521,9 @@ namespace CombatExtended
                     break;
                 }
 		var iv3 = tp.ToIntVec3();
-		if (!iv3.InBounds(map)) {
-		    tp = ray.GetPoint(i-1);
+                if (!iv3.InBounds(map))
+                {
+                    tp = ray.GetPoint(i - 1);
 		    ExactPosition = tp;
 		    destination = tp;
 		    landed = true;
@@ -586,6 +626,7 @@ namespace CombatExtended
         {
             this.launcher = launcher;
             this.origin = origin;
+            this.equipment = equipment;
             //For explosives/bullets, equipmentDef is important
             equipmentDef = (equipment != null) ? equipment.def : null;
 
@@ -639,19 +680,45 @@ namespace CombatExtended
             }
             interceptorComp.lastInterceptAngle = lastExactPos.AngleToFlat(interceptorThing.TrueCenter());
             interceptorComp.lastInterceptTicks = Find.TickManager.TicksGame;
-            var areWeLucky = Rand.Chance((def.projectile as ProjectilePropertiesCE)?.empShieldBreakChance ?? 0);
+
+            var projectileProperties = def.projectile as ProjectilePropertiesCE;
+            var areWeLucky = Rand.Chance(projectileProperties?.empShieldBreakChance ?? 0);
             if (areWeLucky)
             {
-                var firstEMPSecondaryDamage = (def.projectile as ProjectilePropertiesCE)?.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP);
-                if (def.projectile.damageDef == DamageDefOf.EMP)
+                // If the chance check for this EMP projectile succeeds, break the shield using the appropriate damage type
+                // (primary if the primary damage is EMP itself and secondary if EMP damage is only a secondary effect.)
+                // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
+                // may still technically pass the chance check.
+                var empDamageDef = def.projectile.damageDef == DamageDefOf.EMP
+                    ? def.projectile.damageDef
+                    : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
+
+                if (empDamageDef != null)
                 {
-                    interceptorComp.BreakShieldEmp(new DamageInfo(def.projectile.damageDef, def.projectile.damageDef.defaultDamage));
-                }
-                else if (firstEMPSecondaryDamage != null)
-                {
-                    interceptorComp.BreakShieldEmp(new DamageInfo(firstEMPSecondaryDamage.def, firstEMPSecondaryDamage.def.defaultDamage));
+                    interceptorComp.BreakShieldEmp(new DamageInfo(empDamageDef, empDamageDef.defaultDamage));
+
+                    // Ensure we reset hit points for Biotech's new shields if broken by EMP
+                    interceptorComp.currentHitPoints = 0;
                 }
             }
+
+            // Handle Biotech's new shields used e.g. on the Centurion mech, which, unlike mech cluster shields, can only take
+            // a finite amount of damage before breaking.
+            // This simply mirrors the corresponding vanilla logic - we apply the incoming damage from our projectile to the shield
+            // and break it if we manage to decrease its hitpoints to zero or lower.
+            if (interceptorComp.currentHitPoints > 0)
+            {
+                interceptorComp.currentHitPoints -= Mathf.FloorToInt(this.DamageAmount);
+
+                if (interceptorComp.currentHitPoints <= 0)
+                {
+                    interceptorComp.currentHitPoints = 0;
+                    interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
+                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
+                    return true;
+                }
+            }
+
             Effecter eff = new Effecter(EffecterDefOf.Interceptor_BlockedProjectile);
             eff.Trigger(new TargetInfo(newExactPos.ToIntVec3(), interceptorThing.Map, false), TargetInfo.Invalid);
             eff.Cleanup();
@@ -874,7 +941,8 @@ namespace CombatExtended
 		    Destroy(DestroyMode.Vanish);
 		    return true;
 		}
-		else {
+                else
+                {
 		    Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
 		}
 	    }
@@ -1181,7 +1249,7 @@ namespace CombatExtended
                         def.projectile.explosionRadius,
                         def.projectile.damageDef,
                         launcher,
-                        def.projectile.GetDamageAmount(1),
+                        Mathf.FloorToInt(DamageAmount),
                         def.projectile.GetExplosionArmorPenetration(),
                         def.projectile.soundExplode,
                         equipmentDef,

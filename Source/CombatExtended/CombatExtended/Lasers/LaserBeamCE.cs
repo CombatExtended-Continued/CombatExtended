@@ -49,7 +49,7 @@ namespace CombatExtended.Lasers
             if (graphic == null) return;
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = laserBeamDef;
-            graphic.Setup(launcher, a, b);
+            graphic.Setup(launcher, equipment, a, b);
             GenSpawn.Spawn(graphic, Origin.ToIntVec3(), Map, WipeMode.Vanish);
         }
 

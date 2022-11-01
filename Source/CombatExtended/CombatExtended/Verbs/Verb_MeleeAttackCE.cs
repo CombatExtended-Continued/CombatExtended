@@ -357,9 +357,13 @@ namespace CombatExtended
             DamageDef def = damDef;
             //END 1:1 COPY
             BodyPartHeight bodyRegion = GetAttackedPartHeightCE(); //Caula: Changed to the comp selector
-                                                                  //GetBodyPartHeightFor(target);   //Custom // Add check for body height
-                                                                  //START 1:1 COPY
-            DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null); //Alteration
+                                                                   //GetBodyPartHeightFor(target);   //Custom // Add check for body height
+                                                                   //START 1:1 COPY
+
+            // Don't let players draft people and order them to punch/assault another pawn
+            // as a gamey way of making them guilty for purposes of banishment and the like.
+            var instigatorGuilty = !CasterPawn?.Drafted ?? true;
+            DamageInfo damageInfo = new DamageInfo(def, damAmount, armorPenetration, -1f, caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null, instigatorGuilty); //Alteration
 
             if (target.Thing is Pawn pawn)
             {
@@ -437,7 +441,7 @@ namespace CombatExtended
                     {
                         damAmount = extraDamage.amount;
                         damAmount = Rand.Range(damAmount * 0.8f, damAmount * 1.2f);
-                        var extraDamageInfo = new DamageInfo(extraDamage.def, damAmount, extraDamage.AdjustedArmorPenetration(this, this.CasterPawn), -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                        var extraDamageInfo = new DamageInfo(extraDamage.def, damAmount, extraDamage.AdjustedArmorPenetration(this, this.CasterPawn), -1f, this.caster, null, source, DamageInfo.SourceCategory.ThingOrUnknown, null, instigatorGuilty);
                         extraDamageInfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                         extraDamageInfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                         extraDamageInfo.SetWeaponHediff(hediffDef);
@@ -461,7 +465,7 @@ namespace CombatExtended
             {
                 var critAmount = GenMath.RoundRandom(damageInfo.Amount * 0.25f);
                 var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration,
-                    -1, caster, null, source);
+                    -1, caster, null, source, instigatorGuilty: instigatorGuilty);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                 critDinfo.SetWeaponHediff(hediffDef);
@@ -593,8 +597,10 @@ namespace CombatExtended
                 SoundDef sound = null;
                 if (parryThing is Apparel_Shield)
                 {
+                    // Ensure damage from a successful parry won't make the defender guilty if they were drafted by the player
+                    bool instigatorGuilty = !defender.Drafted;
                     // Shield bash
-                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, parryThing.GetStatValue(CE_StatDefOf.MeleePenetrationFactor), -1, defender, null, parryThing.def);
+                    DamageInfo dinfo = new DamageInfo(DamageDefOf.Blunt, 6, parryThing.GetStatValue(CE_StatDefOf.MeleePenetrationFactor), -1, defender, null, parryThing.def, instigatorGuilty: instigatorGuilty);
                     dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                     dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);

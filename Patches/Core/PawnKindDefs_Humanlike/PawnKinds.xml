@@ -1,65 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- ========== Mechanoid ========== -->
-  
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName="Mech_Lancer"]</xpath>
-    <value>
-      <aiAvoidCover>false</aiAvoidCover>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[@Name="MechCentipedeBase"]/combatPower</xpath>
-    <value>
-      <combatPower>580</combatPower>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]/combatPower</xpath>
-    <value>
-      <combatPower>180</combatPower>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Mech_Lancer" or @Name="MechCentipedeBase"]</xpath>
-    <value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>9</min>
-          <max>10</max>
-        </primaryMagazineCount>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
-    <value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>3</min>
-          <max>5</max>
-        </primaryMagazineCount>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[defName="Mech_Termite_Breach"]</xpath>
-  	<value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>8</min>
-          <max>15</max>
-        </primaryMagazineCount>
-      </li>
-  	</value>
-  </Operation>
-
   <!-- ========== Mercenary ========== -->
 
   <Operation Class="PatchOperationAddModExtension">
@@ -854,14 +795,14 @@
     <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]</xpath>
     <value>
       <apparelRequired>
-        <li>Apparel_TribalBackpack</li>
+        <li>CE_Apparel_TribalBackpack</li>
       </apparelRequired>
     </value>
    </nomatch>
    <match Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
     <value>
-      <li>Apparel_TribalBackpack</li>
+      <li>CE_Apparel_TribalBackpack</li>
     </value>
    </match>
   </Operation>
@@ -896,7 +837,7 @@
   <Operation Class="PatchOperationAdd">
    <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]/apparelRequired</xpath>
      <value>
-       <li>Apparel_Backpack</li>
+       <li>CE_Apparel_Backpack</li>
      </value>
   </Operation>
 
