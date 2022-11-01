@@ -71,7 +71,8 @@ namespace CombatExtended
                           ExactRotation.eulerAngles.y,
                           launcher,
                           null,
-                          def);
+                          def,
+                          instigatorGuilty: InstigatorGuilty);
 
                 // Set impact height
                 BodyPartDepth partDepth = damDefCE.harmOnlyOutsideLayers ? BodyPartDepth.Outside : BodyPartDepth.Undefined;
