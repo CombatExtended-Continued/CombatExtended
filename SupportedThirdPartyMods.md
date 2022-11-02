@@ -103,6 +103,7 @@ Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
 Archotech Expanded  |
+Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech+ (Continued)  |
 Arasaka Corporation [1.3]	|
@@ -116,6 +117,8 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Biotech Expansion - Mammalia  |
+Biotech Expansion - Mythic  |
 Birds Beyond: Temperate Forest  |
 Black Widows	|
 Bori Race	|
