@@ -10,10 +10,18 @@
 
 			<!-- === Javelin === -->
 
+			<!-- This dummy parent just provides a workaround so VFE - Classical can be loaded before CE. -->
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs</xpath>
+				<value>
+					<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="JavelinBase_VFEC" Abstract="True" />
+				</value>				
+			</li>	
+
 			<li Class="PatchOperationAttributeSet">
 				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<attribute>ParentName</attribute>
-				<value>BaseWeaponAndAmmoNeolithic</value>				
+				<value>JavelinBase_VFEC</value>				
 			</li>	
 
 			<li Class="PatchOperationAttributeAdd">
