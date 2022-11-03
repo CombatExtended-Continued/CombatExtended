@@ -21,18 +21,22 @@
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="66mmThermalBoltBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
-    <description>Mechanoid-built low-velocity thermal bolt designed to be fired from a mortar.</description>
+    <description>Mechanoid-built medium-velocity thermal bolt designed to be fired from a mortar.</description>
     <graphicData>
       <drawSize>0.80</drawSize>
     </graphicData>    
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
-      <Mass>2.5</Mass>
+      <Mass>2.0</Mass>
       <Bulk>4.11</Bulk>	  
     </statBases>
     <thingCategories>
       <li>Ammo66mmThermalBolts</li>
     </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>30</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
@@ -46,7 +50,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>13.32</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>12.13</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
     <detonateProjectile>Bullet_66mmThermalBolt_Incendiary</detonateProjectile>
@@ -66,7 +70,7 @@
       <soundAmbient>MortarRound_Ambient</soundAmbient>
       <flyOverhead>true</flyOverhead>
       <dropsCasings>false</dropsCasings>
-      <gravityFactor>5</gravityFactor>
+      <gravityFactor>20</gravityFactor> <!-- value intentionally increased to maek the shells land faster -->
     </projectile>
   </ThingDef>
 
@@ -99,5 +103,49 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_66mmThermalBolt_Incendiary</defName>
+    <label>make 66mm Thermal Bolt x5</label>
+    <description>Craft 5 66mm Thermal Bolts.</description>
+    <jobString>Making 66mm Thermal Bolts.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Prometheum</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_66mmThermalBolt_Incendiary>5</Ammo_66mmThermalBolt_Incendiary>
+    </products>
+    <workAmount>4400</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>
