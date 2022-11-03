@@ -32,6 +32,7 @@
     <stackLimit>25</stackLimit>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </tradeTags>
   </ThingDef>
 
@@ -43,7 +44,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>11.86</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>10.38</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
 	<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
@@ -99,5 +100,49 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_80x256mmFuel_Incendiary</defName>
+    <label>make 80x256mm Fuel Cell x5</label>
+    <description>Craft 5 80x256mm Fuel Cells.</description>
+    <jobString>Making 80x256mm Fuel Cells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Prometheum</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_80x256mmFuel_Incendiary>5</Ammo_80x256mmFuel_Incendiary>
+    </products>
+    <workAmount>3730</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>
