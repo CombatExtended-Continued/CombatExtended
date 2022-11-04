@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
  <Patch>
-  
     <Operation Class="PatchOperationFindMod">
 		<mods>
 		<li>[RH2] Faction: The Rangers</li>
@@ -11,14 +9,14 @@
         <!-- ========== In-built Shield Patch ========== -->
 
         <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/comps/li[@Class="JetPacks.CompProperties_ShieldBelt"]/EnergyShieldRechargeRate</xpath>
+            <xpath>/Defs/ThingDef[@ParentName="RHApparel_Armor_VigilanteBase"]/statBases/EnergyShieldRechargeRate</xpath>
             <value>
                 <EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
             </value>
         </li>
 
         <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/comps/li[@Class="JetPacks.CompProperties_ShieldBelt"]/EnergyShieldEnergyMax</xpath>
+            <xpath>/Defs/ThingDef[@ParentName="RHApparel_Armor_VigilanteBase"]/statBases/EnergyShieldEnergyMax</xpath>
             <value>
                 <EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
             </value>
@@ -84,7 +82,7 @@
             <equippedStatOffsets>
                 <PsychicSensitivity>-0.2</PsychicSensitivity>
                 <AimingAccuracy>0.15</AimingAccuracy>
-                <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+                <ToxicResistance>0.50</ToxicResistance>
                 <SmokeSensitivity>-1</SmokeSensitivity>
             </equippedStatOffsets>
             </value>
@@ -164,7 +162,7 @@
             <value>
             <equippedStatOffsets>
                 <CarryWeight>25</CarryWeight>
-                <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+                <ToxicResistance>0.50</ToxicResistance>
                 <MoveSpeed>0.4</MoveSpeed>
             </equippedStatOffsets>
             </value>
