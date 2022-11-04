@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
  <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Risk of Rain: UES Contact Light Armory (Continued)</li>
     </mods>
     <match Class="PatchOperationSequence">
-      <success>Always</success>
       <operations>
         <!-- Add new layer coverage to all Helmets -->
         <li Class="PatchOperationAdd">
@@ -13,7 +12,6 @@
           <value>
             <li>OnHead</li>
             <li>StrappedHead</li>
-            <li>MiddleHead</li>
           </value>
         </li>
         <!-- Add SmokeSensitivity to all Helmets -->
@@ -55,7 +53,7 @@
           <value>
             <MeleeCritChance>0.20</MeleeCritChance>
             <MeleeParryChance>0.25</MeleeParryChance>
-            <ToxicSensitivity>-0.20</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.80</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -95,7 +93,7 @@
           <value>
             <CarryWeight>75</CarryWeight>
             <CarryBulk>10</CarryBulk>
-            <ToxicSensitivity>-0.20</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
             <MeleeCritChance>0.55</MeleeCritChance>
             <MeleeParryChance>0.5</MeleeParryChance>
           </value>
@@ -144,7 +142,7 @@
           <xpath>Defs/ThingDef[defName="RoRA_Conscript_Helmet"]/equippedStatOffsets</xpath>
           <value>
             <AimingAccuracy>0.08</AimingAccuracy>
-            <ToxicSensitivity>-0.10</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.9</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -175,7 +173,7 @@
           <value>
             <CarryWeight>60</CarryWeight>
             <CarryBulk>15</CarryBulk>
-            <ToxicSensitivity>-0.10</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.10</ToxicEnvironmentResistance>
             <ReloadSpeed>0.5</ReloadSpeed>
           </value>
         </li>
@@ -235,7 +233,7 @@
           <xpath>Defs/ThingDef[defName="RoRA_Enforcer_Helmet"]/equippedStatOffsets</xpath>
           <value>
             <Suppressability>-0.25</Suppressability>
-            <ToxicSensitivity>-0.20</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.80</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -278,7 +276,7 @@
           <value>
             <CarryWeight>90</CarryWeight>
             <CarryBulk>15</CarryBulk>
-            <ToxicSensitivity>-0.20</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
             <Suppressability>-0.50</Suppressability>
             <ReloadSpeed>0.25</ReloadSpeed>
           </value>
@@ -326,7 +324,7 @@
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="RoRA_Engineer_Helmet"]/equippedStatOffsets</xpath>
           <value>
-            <ToxicSensitivity>-0.30</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.70</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -369,7 +367,7 @@
           <value>
             <CarryWeight>85</CarryWeight>
             <CarryBulk>10</CarryBulk>
-            <ToxicSensitivity>-0.50</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationAdd">
@@ -417,7 +415,7 @@
           <value>
             <AimingAccuracy>0.25</AimingAccuracy>
             <Suppressability>-0.15</Suppressability>
-            <ToxicSensitivity>-0.40</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -460,7 +458,7 @@
           <value>
             <CarryWeight>100</CarryWeight>
             <CarryBulk>25</CarryBulk>
-            <ToxicSensitivity>-0.50</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
             <Suppressability>-0.35</Suppressability>
             <ReloadSpeed>0.25</ReloadSpeed>
           </value>
@@ -484,6 +482,13 @@
           <xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/statBases/MaxHitPoints</xpath>
           <value>
             <MaxHitPoints>200</MaxHitPoints>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RoRA_Ranger_Helmet"]/equippedStatOffsets</xpath>
+          <value>
+            <AimingAccuracy>0.25</AimingAccuracy>
+            <ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationReplace">
@@ -542,6 +547,7 @@
           <value>
             <CarryWeight>75</CarryWeight>
             <CarryBulk>10</CarryBulk>
+            <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
           </value>
         </li>
         <li Class="PatchOperationAdd">
@@ -584,6 +590,13 @@
             <WornBulk>1</WornBulk>
           </value>
         </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="RoRA_Miner_Helmet"]/equippedStatOffsets</xpath>
+          <value>
+            <AimingAccuracy>0.10</AimingAccuracy>
+            <ToxicEnvironmentResistance>0.60</ToxicEnvironmentResistance>
+          </value>
+        </li>
         <li Class="PatchOperationReplace">
           <!-- Miner Armor -->
           <xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/statBases/MaxHitPoints</xpath>
@@ -624,8 +637,10 @@
           <value>
             <CarryWeight>90</CarryWeight>
             <CarryBulk>20</CarryBulk>
+            <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
           </value>
         </li>
+		
         <li Class="PatchOperationAdd">
           <xpath>Defs/ThingDef[defName="RoRA_Miner_Armor"]/apparel/bodyPartGroups</xpath>
           <value>
