@@ -28,12 +28,15 @@
     <statBases>
       <MaxHitPoints>200</MaxHitPoints>
       <Mass>2.0</Mass>
-      <Bulk>4.11</Bulk>	  
+      <Bulk>3.08</Bulk>	  
     </statBases>
     <thingCategories>
       <li>Ammo66mmThermalBolts</li>
-      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </thingCategories>
+    <tradeTags>
+      <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
+    </tradeTags>
     <stackLimit>25</stackLimit>
     <cookOffFlashScale>30</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
@@ -47,7 +50,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>11.74</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>12.13</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
     <detonateProjectile>Bullet_66mmThermalBolt_Incendiary</detonateProjectile>
@@ -102,7 +105,7 @@
   <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
-    <defName>MakeAmmo_66mmThermalBolt</defName>
+    <defName>MakeAmmo_66mmThermalBolt_Incendiary</defName>
     <label>make 66mm Thermal Bolt x5</label>
     <description>Craft 5 66mm Thermal Bolts.</description>
     <jobString>Making 66mm Thermal Bolts.</jobString>
@@ -121,7 +124,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
+        <count>22</count>
       </li>
       <li>
         <filter>
@@ -142,7 +145,7 @@
     <products>
       <Ammo_66mmThermalBolt_Incendiary>5</Ammo_66mmThermalBolt_Incendiary>
     </products>
-    <workAmount>4400</workAmount>  <!-- 10% more work -->
+    <workAmount>4620</workAmount>  <!-- 10% more work -->
   </RecipeDef>
 
 </Defs>
