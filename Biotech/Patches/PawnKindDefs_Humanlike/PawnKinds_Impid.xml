@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- ========== Archer Fire ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Tribal_Archer_Fire"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension" inherit="false">
+				<primaryMagazineCount>
+					<min>8</min>
+					<max>14</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName = "Tribal_Archer_Fire"]/weaponTags</xpath>
+		<value>
+			<li>NeolithicRangedBasic</li>
+			<li>NeolithicRangedDecent</li>
+		</value>
+	</Operation>
+
+  <!-- ========== Hunter Fire ========== -->
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Tribal_Hunter_Fire"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension" inherit="false">
+				<primaryMagazineCount>
+					<min>12</min>
+					<max>24</max>
+				</primaryMagazineCount>
+				<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName = "Tribal_Hunter_Fire"]/weaponTags</xpath>
+		<value>
+			<li>NeolithicRangedDecent</li>
+			<li>NeolithicRangedHeavy</li>			
+		</value>
+	</Operation>
+
+
+</Patch>
