@@ -56,7 +56,7 @@ namespace CombatExtended.HarmonyCE
         /// Intended to allow an easy point that allow other mods or CE to patch the rendering in runtime
         /// </summary>                
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Mesh GetHeadMesh(PawnRenderFlags renderFlags, Pawn pawn, Rot4 headFacing, PawnGraphicSet graphics)
+        public static GraphicMeshSet GetHumanlikeHeadSetForPawnHelper(float lifeStageFactor, Pawn pawn)
         {
             return null;
         }
@@ -243,7 +243,10 @@ namespace CombatExtended.HarmonyCE
                 Vector3 customScale = Vec2ToVec3(GetHeadCustomSize(pawn.def));
                 Vector3 headwearPos = headLoc + Vec2ToVec3(GetHeadCustomOffset(pawn.def));
 
-                Mesh mesh = GetHeadMesh(flags, pawn, headFacing, renderer.graphics) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
+                // Let other mods such as HAR inject an alternative graphic for the hair/head
+                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodySizeFactor;
+                GraphicMeshSet gms = GetHumanlikeHeadSetForPawnHelper(lifeStageFactor, pawn);
+                Mesh mesh = gms?.MeshAt(bodyFacing) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
 
                 for (int i = 0; i < apparelGraphics.Count; i++)
                 {
