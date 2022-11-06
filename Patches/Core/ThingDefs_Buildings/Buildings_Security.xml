@@ -24,7 +24,6 @@
   
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/description</xpath>
-    
     <value>
       <description>A portable automatic turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
     </value>
@@ -265,6 +264,22 @@
 		</costList>  
 		</value>
     </Operation>
+
+	<!-- ========== Foam Turret ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Turret_FoamTurret"]/comps/li[@Class = "CompProperties_Refuelable"]/fuelMultiplier</xpath>
+		<value>
+			<fuelMultiplier>0.20</fuelMultiplier>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName = "Turret_FoamTurret"]/comps/li[@Class = "CompProperties_Refuelable"]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Ammo_30x64mmFuel_Foam</li>	
+		</value>
+	</Operation>
 
 	<!-- ========== Mortar Base ========== -->
 
