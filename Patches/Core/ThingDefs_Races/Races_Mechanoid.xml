@@ -449,4 +449,19 @@
 		</value>
 	</Operation>
 
+	<!--Only apply if Biotech isn't loaded-->
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+		<nomatch Class="PatchOperationReplace">
+			<xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]/weaponTags</xpath>
+			<value>
+				<weaponTags>
+					<li>MechanoidGunIndirect</li>
+				</weaponTags>
+			</value>
+		</nomatch>
+	</Operation>
+
 </Patch>
