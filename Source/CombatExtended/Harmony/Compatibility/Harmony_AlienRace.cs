@@ -105,7 +105,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
         }
 
         [HarmonyPatch]
-        public static class Harmony_AlienPartGenerator_GetPawnHairMesh
+        public static class Harmony_AlienPartGenerator_GetHumanlikeHeadSetForPawnHelper
         {
             public static bool Prepare()
             {
@@ -114,16 +114,14 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
             public static MethodBase TargetMethod()
             {
-                return AccessTools.Method(typeof(Harmony_PawnRenderer), nameof(Harmony_PawnRenderer.GetHeadMesh));
+                return AccessTools.Method(typeof(Harmony_PawnRenderer), nameof(Harmony_PawnRenderer.GetHumanlikeHeadSetForPawnHelper));
             }
 
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
-                yield return new CodeInstruction(OpCodes.Ldarg_0);
-                yield return new CodeInstruction(OpCodes.Ldarg_1);
-                yield return new CodeInstruction(OpCodes.Ldarg_2);
-                yield return new CodeInstruction(OpCodes.Ldarg_3);
-                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetPawnHairMesh"));
+                yield return new CodeInstruction(OpCodes.Ldarg_0); // lifeStageFactor
+                yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
+                yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetHumanlikeHeadSetForPawnHelper"));
                 yield return new CodeInstruction(OpCodes.Ret);
             }
         }
