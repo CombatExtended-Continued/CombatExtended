@@ -130,7 +130,18 @@ namespace CombatExtended
             list.Add(thing);
 
             //If turrets are near-empty or empty, call in ammo droppod
-            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, true);
+            DropPodUtility.DropThingsNear(
+                cell,
+                parent.Map,
+                list,
+                openDelay: 110,
+                canInstaDropDuringInit: false,
+                leaveSlag: false,
+                canRoofPunch: true,
+                forbid: true,
+                // Use the mechanoid faction as the faction for the drop pods, to match style
+                faction: parent.Faction
+            );
         }
     }
 }
