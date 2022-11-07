@@ -689,11 +689,14 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
-            yield return ammoStatusGizmo;
             var mannableComp = turret?.GetMannable();
-            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
+            var isPlayerControlled = Wielder?.IsColonistPlayerControlled ?? (turret?.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo));
+
+            if (isPlayerControlled)
             {
+                GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+                yield return ammoStatusGizmo;
+
                 Action action = null;
                 if (IsEquippedGun) action = SyncedTryStartReload;
                 else if (mannableComp != null) action = SyncedTryForceReload;
