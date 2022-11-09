@@ -6,7 +6,7 @@
 	<!-- ============= Category ============= -->
 
   <ThingCategoryDef>
-    <defName>AmmoMechRifle</defName>
+    <defName>AmmoMechCharged</defName>
     <label>Mech Rifle Ammo</label>
     <parent>AmmoAdvanced</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberCharge</iconPath>
@@ -22,10 +22,10 @@
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
-    <defName>AmmoSet_MechRifle</defName>
-    <label>mech rifle ammo</label>
+    <defName>AmmoSet_MechCharged</defName>
+    <label>mech charged ammo</label>
     <ammoTypes>
-      <Ammo_MechRifle>Bullet_5x35mmCharged</Ammo_MechRifle>
+      <Ammo_MechCharged>Bullet_5x35mmCharged</Ammo_MechCharged>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
@@ -41,7 +41,7 @@
 
   <!-- Mech Rifle -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="MechRifleAmmo" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="MechChargedAmmo" ParentName="SpacerSmallAmmoBase" Abstract="True">
     <description>Charged shot ammo used by mechanoid weaponry.</description>
     <statBases>
       <Mass>0.013</Mass>
@@ -52,14 +52,14 @@
       <li>CE_AutoEnableTrade_Sellable</li>
     </tradeTags>
     <thingCategories>
-      <li>AmmoMechRifle</li>
+      <li>AmmoMechCharged</li>
     </thingCategories>
     <stackLimit>5000</stackLimit>	
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MechRifleAmmo">
-    <defName>Ammo_MechRifle</defName>
-    <label>mech rifle cartridge</label>
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="MechChargedAmmo">
+    <defName>Ammo_MechCharged</defName>
+    <label>mech charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Regular</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
