@@ -206,7 +206,12 @@ Frontline - Trenches (Continued)    |
 Frontline - Additional Guns for Trenches (Continued)    |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
+Genetic Rim |
 Gimmicks    |
+Genetic Rim Alpha Animal Patch |
+GeneticRim Cosmic Horrors Patch |
+GeneticRim Dinosauria Patch |
+GeneticRim Megafauna Patch |
 Gimmicks (Continued)    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|

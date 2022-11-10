@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Genetic Rim</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+					
+					<!-- Buffing some Hediffs -->
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_LightToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.006</severityPerDamageDealt>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_VeryToxicBite"]/additionalHediffs/li[hediff="ToxicBuildup"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.033</severityPerDamageDealt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_HairballProjectileDamage"]/additionalHediffs/li[hediff="GR_HairballDamage"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.09</severityPerDamageDealt>
+						</value>
+					</li>
+					
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_GreatHairballProjectileDamage"]/additionalHediffs/li[hediff="GR_HairballDamage"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.09</severityPerDamageDealt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_ToxicExplosion"]/additionalHediffs/li[hediff="GR_ToxicDamage"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.07</severityPerDamageDealt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_HairballExplosion"]/additionalHediffs/li[hediff="GR_HairballDamage"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.0002</severityPerDamageDealt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+					<xpath>/Defs/DamageDef[defName="GR_PlagueBite"]/additionalHediffs/li[hediff="Plague"]/severityPerDamageDealt</xpath>
+						<value>
+							<severityPerDamageDealt>0.0125</severityPerDamageDealt>
+						</value>
+					</li>
+					
+				</operations>
+			</match>
+	</Operation>
+</Patch>
