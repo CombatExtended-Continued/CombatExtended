@@ -3,14 +3,14 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Forsakens: Fauna</li>
+			<li>Alpha Animals</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Birdlike</bodyShape>
@@ -19,7 +19,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>1.0</AimingAccuracy>
 						<ShootingAccuracyPawn>1</ShootingAccuracyPawn>
@@ -29,62 +29,56 @@
 					</value>
 				</li>
 				
-		<li Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="FO_RBehemoth"]</xpath>
-		<value>
-			<butcherProducts>
-			<Prometheum>25</Prometheum>
-			<FSX>15</FSX>
-			</butcherProducts>
-		</value>
-			</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/race/baseHealthScale</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AA_Behemoth"]</xpath>
 					<value>
-						<baseHealthScale>6</baseHealthScale>
+						<butcherProducts>
+							<Prometheum>25</Prometheum>
+							<FSX>15</FSX>
+						</butcherProducts>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/statBases/ArmorRating_Blunt</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>15</ArmorRating_Blunt>
+						<ArmorRating_Blunt>21</ArmorRating_Blunt>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/statBases/ArmorRating_Sharp</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>12</ArmorRating_Sharp>
+						<ArmorRating_Sharp>14</ArmorRating_Sharp>
 					</value>
 				</li>
 
-
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/verbs/li/range</xpath>
-						<value>
-							<range>22</range>
-						</value>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0.6</ArmorRating_Heat>
+					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/verbs/li/warmupTime</xpath>
-						<value>
-							<warmupTime>2</warmupTime>
-						</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RBehemoth"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Behemoth"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
 								<label>left dragonclaw</label>
 								<capacities>
-									<li>Scratch</li><li>Stab</li>
+									<li>Scratch</li>
+									<li>Stab</li>
 								</capacities>
 								<power>55</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
 								<cooldownTime>2.4</cooldownTime>
 								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 								<armorPenetrationSharp>16</armorPenetrationSharp>
@@ -93,9 +87,18 @@
 							<li Class="CombatExtended.ToolCE">
 								<label>Right dragonclaw</label>
 								<capacities>
-									<li>Scratch</li><li>Stab</li>
+									<li>Scratch</li>
+									<li>Stab</li>
 								</capacities>
 								<power>55</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
 								<cooldownTime>2.4</cooldownTime>
 								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 								<armorPenetrationSharp>16</armorPenetrationSharp>
@@ -104,17 +107,26 @@
 							<li Class="CombatExtended.ToolCE">
 								<label>razorfangs</label>
 								<capacities>
-									<li>Bite</li><li>Stab</li>
+									<li>Bite</li>
+									<li>Stab</li>
 								</capacities>
 								<power>80</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>22</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
 								<cooldownTime>4</cooldownTime>
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 								<armorPenetrationBlunt>90</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<chanceFactor>0.66</chanceFactor>
+								<chanceFactor>0.6</chanceFactor>
 							</li>
 							<li Class="CombatExtended.ToolCE">
-								<label>head</label>
+								<label>devour</label>
 								<capacities>
 									<li>Blunt</li>
 								</capacities>
@@ -122,11 +134,12 @@
 								<cooldownTime>3</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>40.55</armorPenetrationBlunt>
-								<chanceFactor>0.6</chanceFactor>
+								<chanceFactor>0.1</chanceFactor>
 							</li>
 						</tools>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
