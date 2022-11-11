@@ -306,9 +306,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Turret_RocketswarmLauncher"]/comps/li[@Class = "CompProperties_Activable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName = "Turret_RocketswarmLauncher"]/costList/Chemfuel</xpath>
 	</Operation>
 
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName = "Turret_RocketswarmLauncher"]/placeWorkers/li[.="PlaceWorker_ShowTurretRadius"]</xpath>
+	</Operation>
 
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/statBases</xpath>
@@ -317,44 +324,70 @@
 		</value>
 	</Operation>
 
-	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
-		<defName>Gun_RocketswarmLauncher</defName>
-		<statBases>
-			<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
-			<SightsEfficiency>2.5</SightsEfficiency>
-			<ShotSpread>0.33</ShotSpread>
-			<SwayFactor>1.38</SwayFactor>
-		</statBases>
-		<Properties>
-			<recoilAmount>2.34</recoilAmount>
-			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_70mmAPKWS_HEAT</defaultProjectile>
-			<warmupTime>3.7</warmupTime>
-			<range>62</range>
-			<burstShotCount>4</burstShotCount>
-			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-			<soundCast>RocketswarmLauncher_Fire</soundCast>
-			<soundCastTail>GunTail_Heavy</soundCastTail>
-			<muzzleFlashScale>12</muzzleFlashScale>
-			<targetParams>
-				<canTargetLocations>true</canTargetLocations>
-			</targetParams>
-			<recoilPattern>Mounted</recoilPattern>
-		</Properties>
-		<AmmoUser>
-			<magazineSize>12</magazineSize>
-			<reloadTime>12</reloadTime>
-			<ammoSet>AmmoSet_70mmAPKWS</ammoSet>
-		</AmmoUser>
-		<FireModes>
-			<aiAimMode>AimedShot</aiAimMode>
-			<noSnapshot>true</noSnapshot>
-			<noSingleShot>true</noSingleShot>					
-		</FireModes>
-		<weaponTags>
-			<li>TurretGun</li>
-		</weaponTags>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>4.2</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Gun_RocketswarmLauncher"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>			
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>25</magazineSize>
+				<reloadTime>8.5</reloadTime>
+				<ammoSet>AmmoSet_50mmRocket</ammoSet>
+			</li>								
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+				<recoilAmount>1.73</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<requireLineOfSight>false</requireLineOfSight>
+					<defaultProjectile>Bullet_50mmRocket_HE</defaultProjectile>
+					<warmupTime>3.6</warmupTime>
+					<range>86</range>
+					<minRange>14</minRange>
+					<burstShotCount>5</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>RocketswarmLauncher_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>39</muzzleFlashScale>
+					<circularError>2</circularError>
+					<indirectFirePenalty>0.25</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
 	</Operation>
 
 	<!-- ========== Mortar Base ========== -->
