@@ -3,16 +3,29 @@
 
   <!-- ========== Archer Fire ========== -->
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Tribal_Archer_Fire"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName = "Tribal_Archer_Fire"]</xpath>
 		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension" inherit="false">
-				<primaryMagazineCount>
-					<min>8</min>
-					<max>14</max>
-				</primaryMagazineCount>
-				<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
-			</li>
+			<modExtensions Inherit="false">
+				<li Class="CombatExtended.LoadoutPropertiesExtension" >
+					<primaryMagazineCount>
+						<min>20</min>
+						<max>40</max>
+					</primaryMagazineCount>
+					<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
+					<sidearms>
+					<li>
+						<sidearmMoney>
+						<min>80</min>
+						<max>160</max>
+						</sidearmMoney>
+						<weaponTags>
+						<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+					</sidearms>				
+				</li>
+			</modExtensions>
 		</value>
 	</Operation>
 
@@ -26,16 +39,29 @@
 
   <!-- ========== Hunter Fire ========== -->
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Tribal_Hunter_Fire"]</xpath>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName = "Tribal_Hunter_Fire"]</xpath>
 		<value>
-			<li Class="CombatExtended.LoadoutPropertiesExtension" inherit="false">
-				<primaryMagazineCount>
-					<min>12</min>
-					<max>24</max>
-				</primaryMagazineCount>
-				<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
-			</li>
+			<modExtensions Inherit="false">
+				<li Class="CombatExtended.LoadoutPropertiesExtension" >
+					<primaryMagazineCount>
+						<min>25</min>
+						<max>50</max>
+					</primaryMagazineCount>
+					<forcedAmmoCategory>FlameArrow</forcedAmmoCategory>
+					<sidearms>
+					<li>
+						<sidearmMoney>
+						<min>80</min>
+						<max>240</max>
+						</sidearmMoney>
+						<weaponTags>
+						<li>CE_Sidearm_Tribal</li>
+						</weaponTags>
+					</li>
+					</sidearms>					
+				</li>
+			</modExtensions>
 		</value>
 	</Operation>
 
