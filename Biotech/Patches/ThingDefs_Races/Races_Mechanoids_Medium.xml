@@ -111,7 +111,6 @@
 					<power>7</power>
 					<cooldownTime>1.11</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
@@ -123,7 +122,6 @@
 					<power>7</power>
 					<cooldownTime>1.11</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
@@ -136,7 +134,6 @@
 					<cooldownTime>1.85</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
 				</li>
 			</tools>
@@ -157,11 +154,23 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>36</ArmorRating_Blunt>
-			<ArmorRating_Sharp>16</ArmorRating_Sharp>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>30</CarryBulk>
-			<MaxHitPoints>300</MaxHitPoints>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -180,13 +189,6 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>2.0</baseHealthScale>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/tools</xpath>
 		<value>
 			<tools>
@@ -199,7 +201,6 @@
 					<cooldownTime>2.0</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 				</li>
 			</tools>
