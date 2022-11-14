@@ -12,23 +12,6 @@
 					
 			<match Class="PatchOperationSequence">
 				<operations>
-              
-        <!-- === verbClass === -->
-        <li Class="PatchOperationReplace">
-          <xpath>
-            /Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/verbs/li/verbClass
-          </xpath>
-          <value>
-            <verbClass>Verb_Shoot</verbClass>
-          </value>
-        </li>
-
-        <!-- === CompOversizedWeapon === -->
-        <li Class="PatchOperationRemove">
-          <xpath>
-            /Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/comps/li[compClass="CompOversizedWeapon.CompOversizedWeapon"]
-          </xpath>
-        </li>
 
         <!-- === Tools === -->
 
@@ -96,13 +79,6 @@
             <noSingleShot>true</noSingleShot>
           </FireModes>
           <AllowWithRunAndGun>false</AllowWithRunAndGun>
-        </li>
-
-        <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName = "VWEFT_Gun_HandheldGatlingGun"]/recipeMaker/researchPrerequisite</xpath>
-          <value>
-            <researchPrerequisite>VWEFT_FrontierWeapons</researchPrerequisite>
-          </value>
         </li>
 
         <li Class="PatchOperationAddModExtension">
