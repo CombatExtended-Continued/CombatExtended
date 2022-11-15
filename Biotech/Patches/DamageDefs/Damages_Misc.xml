@@ -3,17 +3,13 @@
 
 	<!-- ========== Beam ========== -->
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="Beam"]/defaultDamage</xpath>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Beam"]</xpath>
 		<value>
-			<defaultDamage>15</defaultDamage>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="Beam"]/defaultArmorPenetration</xpath>
-		<value>
-			<defaultArmorPenetration>0.25</defaultArmorPenetration>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
 		</value>
 	</Operation>
 
