@@ -24,6 +24,20 @@
 		<similarTo>AmmoSet_RifleIntermediate</similarTo>		
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_556x45mmNATO_SB</defName>
+		<label>5.56x45mm NATO</label>
+		<ammoTypes>
+			<Ammo_556x45mmNATO_FMJ>Bullet_556x45mmNATO_FMJ_SB</Ammo_556x45mmNATO_FMJ>
+			<Ammo_556x45mmNATO_AP>Bullet_556x45mmNATO_AP_SB</Ammo_556x45mmNATO_AP>
+			<Ammo_556x45mmNATO_HP>Bullet_556x45mmNATO_HP_SB</Ammo_556x45mmNATO_HP>
+			<Ammo_556x45mmNATO_Incendiary>Bullet_556x45mmNATO_Incendiary_SB</Ammo_556x45mmNATO_Incendiary>
+			<Ammo_556x45mmNATO_HE>Bullet_556x45mmNATO_HE_SB</Ammo_556x45mmNATO_HE>
+			<Ammo_556x45mmNATO_Sabot>Bullet_556x45mmNATO_Sabot_SB</Ammo_556x45mmNATO_Sabot>				
+		</ammoTypes>
+		<similarTo>AmmoSet_RifleIntermediate</similarTo>		
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="556x45mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
@@ -212,6 +226,86 @@
 		  <speed>277</speed>
 		</projectile>
 	  </ThingDef>
+	  
+		<!-- Short barrel -->	
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_FMJ_SB</defName>
+			<label>5.56mm NATO bullet (FMJ)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>12</damageAmountBase>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<armorPenetrationBlunt>21.6</armorPenetrationBlunt>
+				<speed>147</speed>
+			</projectile>
+		</ThingDef>
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_AP_SB</defName>
+			<label>5.56mm NATO bullet (AP)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>7</damageAmountBase>
+				<armorPenetrationSharp>10</armorPenetrationSharp>
+				<armorPenetrationBlunt>21.6</armorPenetrationBlunt>
+				<speed>147</speed>
+			</projectile>
+		</ThingDef>
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_HP_SB</defName>
+			<label>5.56mm NATO bullet (HP)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>15</damageAmountBase>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+				<armorPenetrationBlunt>21.6</armorPenetrationBlunt>
+				<speed>147</speed>
+			</projectile>
+		</ThingDef>
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_Incendiary_SB</defName>
+			<label>5.56mm NATO bullet (AP-I)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>7</damageAmountBase>
+				<armorPenetrationSharp>10</armorPenetrationSharp>
+				<armorPenetrationBlunt>21.6</armorPenetrationBlunt>
+				<secondaryDamage>
+					<li>
+						<def>Flame_Secondary</def>
+						<amount>5</amount>
+					</li>
+				</secondaryDamage>
+				<speed>147</speed>
+			</projectile>
+		</ThingDef>
+		
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_HE_SB</defName>
+			<label>5.56mm NATO bullet (HE)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>12</damageAmountBase>
+				<armorPenetrationSharp>5</armorPenetrationSharp>
+				<armorPenetrationBlunt>21.6</armorPenetrationBlunt>
+				<secondaryDamage>
+					<li>
+						<def>Bomb_Secondary</def>
+						<amount>7</amount>
+					</li>
+				</secondaryDamage>
+				<speed>147</speed>
+			</projectile>
+		</ThingDef>
+
+		<ThingDef ParentName="Base556x45mmNATOBullet">
+			<defName>Bullet_556x45mmNATO_Sabot_SB</defName>
+			<label>5.56mm NATO bullet (Sabot)</label>
+			<projectile Class="CombatExtended.ProjectilePropertiesCE">
+				<damageAmountBase>6</damageAmountBase>
+				<armorPenetrationSharp>17.5</armorPenetrationSharp>
+				<armorPenetrationBlunt>27.96</armorPenetrationBlunt>
+				<speed>220</speed>
+			</projectile>
+		</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
 
