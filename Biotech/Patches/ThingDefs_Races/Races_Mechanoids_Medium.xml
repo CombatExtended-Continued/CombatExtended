@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+	<!-- ========== Adjust combatPower ========== -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]/combatPower</xpath>
 		<value>
 			<combatPower>200</combatPower>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]/weaponTags</xpath>
-		<value>
-			<weaponTags>
-				<li>MechanoidGunIndirect</li>
-			</weaponTags>
 		</value>
 	</Operation>
 
@@ -23,6 +16,8 @@
 			<combatPower>900</combatPower>
 		</value>
 	</Operation>
+
+	<!-- ========== Loadouts ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]</xpath>
@@ -49,6 +44,15 @@
 	</Operation>
 
 	<!-- ========== Legionary & Tesseron ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>MechanoidGunIndirect</li>
+			</weaponTags>
+		</value>
+	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]</xpath>
@@ -174,6 +178,30 @@
 			<MaxHitPoints>600</MaxHitPoints>
 		</value>
 	</Operation>
+
+	<!-- Temporary conditional checks. Remove after the unstable build rolls into stable. -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Sharp</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
+			<value>
+				<ArmorRating_Sharp />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
+			<value>
+				<ArmorRating_Blunt />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
