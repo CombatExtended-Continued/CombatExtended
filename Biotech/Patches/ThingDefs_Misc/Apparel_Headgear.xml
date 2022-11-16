@@ -104,10 +104,27 @@
 					<hediff>WearingGasMask</hediff>
 				</li>
 				<li Class="CombatExtended.ApperalRenderingExtension">
-					<HideHair>true</HideHair>
+					<HideHair>false</HideHair>
 					<HideBeard>true</HideBeard>
 				</li>
 			</modExtensions>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_GasMask"]/apparel/hatRenderedFrontOfFace</xpath>
+		<value>
+			<hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+		</value>	
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Apparel_GasMask"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Eyes</li>
+				<li>Teeth</li>
+			</bodyPartGroups>
 		</value>
 	</Operation>
 
