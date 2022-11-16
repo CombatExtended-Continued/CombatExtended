@@ -3,14 +3,14 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Forsakens: Fauna</li>
+			<li>Alpha Animals</li>
 		</mods>
 
 		<match Class="PatchOperationSequence">
 			<operations>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Murkling"]</xpath>
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>QuadrupedLow</bodyShape>
@@ -19,7 +19,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]/statBases</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Murkling"]/statBases</xpath>
 					<value>
 						<MeleeDodgeChance>0.6</MeleeDodgeChance>
 						<MeleeCritChance>0.01</MeleeCritChance>
@@ -27,7 +27,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="FO_RMurkling"]/tools</xpath>
+					<xpath>/Defs/ThingDef[defName="AA_Murkling"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -35,7 +35,7 @@
 								<capacities>
 									<li>Scratch</li>
 								</capacities>
-								<power>3</power>
+								<power>4</power>
 								<cooldownTime>1.1</cooldownTime>
 								<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
 								<armorPenetrationSharp>0.06</armorPenetrationSharp>
@@ -46,7 +46,7 @@
 								<capacities>
 									<li>Scratch</li>
 								</capacities>
-								<power>3</power>
+								<power>4</power>
 								<cooldownTime>1.1</cooldownTime>
 								<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
 								<armorPenetrationSharp>0.06</armorPenetrationSharp>
@@ -62,7 +62,7 @@
 								<armorPenetrationSharp>0.33</armorPenetrationSharp>
 								<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
 								<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-								<chanceFactor>0.8</chanceFactor>
+								<chanceFactor>0.7</chanceFactor>
 							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>poisonous bite</label>
@@ -81,15 +81,16 @@
 								<capacities>
 									<li>Blunt</li>
 								</capacities>
-								<power>3</power>
+								<power>2</power>
 								<cooldownTime>2</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>1</armorPenetrationBlunt>
+								<armorPenetrationBlunt>2</armorPenetrationBlunt>
 								<chanceFactor>0.1</chanceFactor>
 							</li>
 						</tools>
 					</value>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
