@@ -216,7 +216,7 @@ namespace CombatExtended
                 return;
             }
             // Determine ammo
-            IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
+            IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && (a.ammo.generateAllowChance > 0f && a.ammo.ammoClass != this.forcedAmmoCategory)).Select(a => a.ammo); //Running out of options. alwaysHaulable does exist in xml.
 
             AmmoDef ammoToLoad = availableAmmo.RandomElementByWeight(a => a.generateAllowChance);
 
@@ -256,7 +256,7 @@ namespace CombatExtended
 
                 if (forcedAmmoCategory != null)
                 {
-                    IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo);
+                    IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && (a.ammo.generateAllowChance > 0f && a.ammo.ammoClass != this.forcedAmmoCategory)).Select(a => a.ammo);
                     if (availableAmmo.Any(x => x.ammoClass == forcedAmmoCategory))
                     {
                         thingToAdd = availableAmmo.Where(x => x.ammoClass == forcedAmmoCategory).FirstOrFallback();
