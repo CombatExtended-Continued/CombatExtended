@@ -253,17 +253,17 @@ namespace CombatExtended
                 // Generate currently loaded ammo
                 thingToAdd = compAmmo.CurrentAmmo;
                 unitCount = Mathf.Max(1, compAmmo.MagSize);  // Guns use full magazines as units
-            }
 
-            if (forcedAmmoCategory != null)
-            {
-                IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo);
-                if (availableAmmo.Any(x => x.ammoClass == forcedAmmoCategory))
+                if (forcedAmmoCategory != null)
                 {
-                    thingToAdd = availableAmmo.Where(x => x.ammoClass == forcedAmmoCategory).FirstOrFallback();
+                    IEnumerable<AmmoDef> availableAmmo = compAmmo.Props.ammoSet.ammoTypes.Where(a => a.ammo.alwaysHaulable && !a.ammo.menuHidden && a.ammo.generateAllowChance > 0f).Select(a => a.ammo);
+                    if (availableAmmo.Any(x => x.ammoClass == forcedAmmoCategory))
+                    {
+                        thingToAdd = availableAmmo.Where(x => x.ammoClass == forcedAmmoCategory).FirstOrFallback();
+                    }
                 }
             }
-
+            
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
             ammoThing.stackCount = ammoCount * unitCount;
             int maxCount;
