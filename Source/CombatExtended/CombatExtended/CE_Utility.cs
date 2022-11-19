@@ -963,5 +963,59 @@ namespace CombatExtended
             //Log.Warning("ToVec3Gridified " + (new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord)).ToString());
             return new Vector3(originalVec3.x / factor, originalVec3.y, originalVec3.z / factor);
         }
+
+	public static object LaunchProjectileCE(ThingDef projectileDef,
+						Vector2 origin,
+						LocalTargetInfo target,
+						Thing shooter,
+						float shotAngle,
+						float shotRotation,
+						float shotHeight,
+						float shotSpeed)
+	{
+	    projectileDef = projectileDef.GetProjectile();
+	    ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
+	    GenSpawn.Spawn(projectile, shooter.Position, shooter.Map);
+
+	    projectile.ExactPosition = origin;
+	    projectile.canTargetSelf = false;
+	    projectile.minCollisionDistance = 1;
+	    projectile.intendedTarget = target;
+	    projectile.mount = null;
+	    projectile.AccuracyFactor = 1;
+
+
+	    projectile.Launch(
+			      shooter,
+			      origin,
+			      shotAngle,
+			      shotRotation,
+			      shotHeight,
+			      shotSpeed,
+			      shooter);
+	    return projectile;
+	}
+
+	public static ThingDef GetProjectile(this ThingDef thingDef)
+	{
+            if (thingDef.projectile != null) {
+                return thingDef;
+            }
+            if (thingDef is AmmoDef ammoDef) {
+                ThingDef user;
+                if ((user = ammoDef.Users.FirstOrFallback(null)) != null) {
+                    CompProperties_AmmoUser props = user.GetCompProperties<CompProperties_AmmoUser>();
+                    AmmoSetDef asd = props.ammoSet;
+                    AmmoLink ammoLink;
+                    if ((ammoLink = asd.ammoTypes.FirstOrFallback(null)) != null) {
+                        return ammoLink.projectile;
+                    }
+                }
+                else {
+                    return ammoDef.detonateProjectile;
+                }
+            }
+            return thingDef;
+	}
     }
 }
