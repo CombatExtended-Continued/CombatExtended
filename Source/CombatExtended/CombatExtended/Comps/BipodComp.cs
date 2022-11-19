@@ -183,7 +183,7 @@ namespace CombatExtended
 
 			AssignVerbProps(source, changed);
 			
-			BipodDefsOfs.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map, false));
+			BipodDefsOfs.Interact_Bipod.PlayOneShot(new TargetInfo(source.PositionHeld, source.Map));
 		}
 
 		public void SetUpStart(Pawn pawn = null)
