@@ -25,9 +25,14 @@ namespace CombatExtended.HarmonyCE
 		    var u = pawn.TrueCenter();
 		    var sourceLoc = new Vector2();
 		    sourceLoc.Set(u.x, u.z);
-						
-		    ProjectileCE.GetShotAngle(projectileDef.projectile.speed, (target.Cell - pawn.Position).LengthHorizontal, 0, false, ppce.Gravity);
-		    CE_Utility.LaunchProjectileCE(projectileDef, sourceLoc, target, pawn, 0, 0, 1, 80);
+		    var targetLocation = new Vector2();
+		    targetLocation.Set(target.Pawn.TrueCenter().x, target.Pawn.TrueCenter().z);
+
+		    var w = (targetLocation - sourceLoc);
+		    float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+
+		    var angle = ProjectileCE.GetShotAngle(projectileDef.projectile.speed, (target.Cell - pawn.Position).LengthHorizontal, 0, false, ppce.Gravity);
+		    CE_Utility.LaunchProjectileCE(projectileDef, sourceLoc, target, pawn, angle, shotRotation, 1, 80);
 		    return false;		    
 		}
 	    }
