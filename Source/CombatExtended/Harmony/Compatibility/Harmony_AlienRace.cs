@@ -119,7 +119,9 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
             {
-                yield return new CodeInstruction(OpCodes.Ldarg_0); // lifeStageFactor
+                // GetHumanlikeHeadSetForPawnHelper() now expects an object rather than a float, so explicitly box lifeStageFactor before forwarding it
+                yield return new CodeInstruction(OpCodes.Ldarg_0);
+                yield return new CodeInstruction(OpCodes.Box, typeof(float));
                 yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
                 yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(TypeOf_HarmonyPatches, "GetHumanlikeHeadSetForPawnHelper"));
                 yield return new CodeInstruction(OpCodes.Ret);
