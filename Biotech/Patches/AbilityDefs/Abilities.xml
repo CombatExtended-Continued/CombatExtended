@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/AbilityDef[defName="PiercingSpine"]/verbProperties/range</xpath>
+    <value>
+      <range>5.9</range>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/damageDef</xpath>
+    <value>
+      <damageDef>Stab</damageDef>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/damageAmountBase</xpath>
+    <value>
+      <damageAmountBase>20</damageAmountBase>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/armorPenetrationBase</xpath>
+    <value>
+      <armorPenetrationBase>10</armorPenetrationBase>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/stoppingPower</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Proj_Acid"]/projectile/stoppingPower</xpath>
+  </Operation>
+
+</Patch>

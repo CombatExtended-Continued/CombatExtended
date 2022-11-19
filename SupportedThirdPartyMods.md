@@ -119,6 +119,7 @@ Beeralope Squad	|
 Better Infestations	|
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
+Biotech Prestige Mechlord Armor |
 Birds Beyond: Temperate Forest  |
 Black Widows	|
 Bori Race	|
