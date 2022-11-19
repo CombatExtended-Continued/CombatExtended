@@ -188,7 +188,7 @@ namespace CombatExtended
                 findItem = t => curSlot.genericDef.lambda(t.GetInnerIfMinified().def);
             else
                 findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
-            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
+            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t, 10, 1) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
 
             // look for a thing near the pawn.
             curThing = GenClosest.ClosestThingReachable(
@@ -310,9 +310,9 @@ namespace CombatExtended
                         {
                             return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
-                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
-                        job.MakeDriver(pawn);
+                        Job job = JobMaker.MakeJob(JobDefOf.TakeCountToInventory, closestThing);
                         job.count = Mathf.Min(closestThing.stackCount, count);
+                        job.MakeDriver(pawn);
                         return job;
                     }
                     else
