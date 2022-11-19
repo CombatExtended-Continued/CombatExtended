@@ -13,4 +13,27 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AcidBurn"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/DamageDef[defName="Vaporize"]</xpath>
+		<value>
+			<li Class="CombatExtended.DamageDefExtensionCE">
+				<isAmbientDamage>true</isAmbientDamage>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="Vaporize"]/defaultDamage</xpath>
+		<value>
+			<defaultDamage>1000</defaultDamage>
+		</value>
+	</Operation>
+
 </Patch>
