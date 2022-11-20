@@ -9,30 +9,18 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/damageDef</xpath>
+    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile</xpath>
     <value>
-      <damageDef>Stab</damageDef>
+      <projectile Class="CombatExtended.ProjectilePropertiesCE">
+        <damageDef>RangedStab</damageDef>
+        <speed>30</speed>      
+        <damageAmountBase>20</damageAmountBase>
+        <armorPenetrationSharp>6</armorPenetrationSharp>
+        <armorPenetrationBlunt>8</armorPenetrationBlunt>
+      </projectile>
     </value>
   </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/damageAmountBase</xpath>
-    <value>
-      <damageAmountBase>20</damageAmountBase>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/armorPenetrationBase</xpath>
-    <value>
-      <armorPenetrationBase>10</armorPenetrationBase>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/ThingDef[defName="PiercingSpine"]/projectile/stoppingPower</xpath>
-  </Operation>
-
+ 
   <Operation Class="PatchOperationRemove">
     <xpath>Defs/ThingDef[defName="Proj_Acid"]/projectile/stoppingPower</xpath>
   </Operation>
