@@ -32,12 +32,21 @@
 	</li>
 
 
-	  <!-- Advanced mechs retain their original heat armor to represent proper sealing of sensitive electronics. Minor improvement to EMP resistance as well-->
-	  
+	<!-- Advanced mechs retain some heat armor to represent sealing of sensitive electronics. Minor improvement to EMP resistance as well-->
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases/ArmorRating_Heat</xpath>
+      <value>
+        <ArmorRating_Heat>0.5</ArmorRating_Heat>
+      </value>
+    </li>
+
 	<li Class="PatchOperationAdd">
     <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases</xpath>
       <value>
+        <SmokeSensitivity>0</SmokeSensitivity>
         <ArmorRating_Electric>0.10</ArmorRating_Electric>
+        <NightVisionEfficiency>0.85</NightVisionEfficiency>
       </value>
     </li>
 
