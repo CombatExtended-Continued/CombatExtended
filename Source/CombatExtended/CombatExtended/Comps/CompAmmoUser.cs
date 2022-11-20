@@ -731,8 +731,16 @@ namespace CombatExtended
                 };
                 yield return reloadCommandGizmo;
 
+                // God mode gizmos for emptying and filling the magazine
                 if (DebugSettings.godMode)
                 {
+                    Command_Action devSetAmmoToMinCommandGizmo = new Command_Action
+                    {
+                        action = delegate { CurMagCount = 0; },
+                        defaultLabel = "DEV: Set ammo to 0"
+                    };
+                    yield return devSetAmmoToMinCommandGizmo;
+
                     Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
                     {
                         action = delegate { ResetAmmoCount(); },
