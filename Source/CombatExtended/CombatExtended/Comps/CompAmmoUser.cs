@@ -730,6 +730,16 @@ namespace CombatExtended
                     tutorTag = tag
                 };
                 yield return reloadCommandGizmo;
+
+                if (DebugSettings.godMode)
+                {
+                    Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
+                    {
+                        action = delegate { ResetAmmoCount(); },
+                        defaultLabel = "DEV: Set ammo to max"
+                    };
+                    yield return devSetAmmoToMaxCommandGizmo;
+                }
             }
         }
 
