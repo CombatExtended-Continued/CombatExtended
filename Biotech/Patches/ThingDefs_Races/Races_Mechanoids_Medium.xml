@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+	<!-- ========== Adjust combatPower ========== -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/PawnKindDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]/combatPower</xpath>
 		<value>
 			<combatPower>200</combatPower>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]/weaponTags</xpath>
-		<value>
-			<weaponTags>
-				<li>MechanoidGunIndirect</li>
-			</weaponTags>
 		</value>
 	</Operation>
 
@@ -23,6 +16,8 @@
 			<combatPower>900</combatPower>
 		</value>
 	</Operation>
+
+	<!-- ========== Loadouts ========== -->
 
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]</xpath>
@@ -50,6 +45,15 @@
 
 	<!-- ========== Legionary & Tesseron ========== -->
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mech_Legionary"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>MechanoidGunIndirect</li>
+			</weaponTags>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="Mech_Legionary" or defName="Mech_Tesseron"]</xpath>
 		<value>
@@ -64,6 +68,9 @@
 		<value>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>40</CarryBulk>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
+			<MeleeCritChance>0.11</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
 		</value>
 	</Operation>
 
@@ -99,6 +106,15 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/statBases</xpath>
+		<value>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			<MeleeCritChance>0.12</MeleeCritChance>
+			<MeleeParryChance>0.09</MeleeParryChance>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/tools</xpath>
 		<value>
@@ -111,7 +127,6 @@
 					<power>7</power>
 					<cooldownTime>1.11</cooldownTime>
 					<linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
@@ -123,7 +138,6 @@
 					<power>7</power>
 					<cooldownTime>1.11</cooldownTime>
 					<linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>1.75</armorPenetrationBlunt>
 					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 				</li>
@@ -136,7 +150,6 @@
 					<cooldownTime>1.85</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>0.7</armorPenetrationBlunt>
 				</li>
 			</tools>
@@ -157,11 +170,50 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases</xpath>
 		<value>
-			<ArmorRating_Blunt>36</ArmorRating_Blunt>
-			<ArmorRating_Sharp>16</ArmorRating_Sharp>
 			<CarryWeight>60</CarryWeight>
 			<CarryBulk>30</CarryBulk>
-			<MaxHitPoints>300</MaxHitPoints>
+			<MeleeDodgeChance>0.07</MeleeDodgeChance>
+			<MeleeCritChance>0.13</MeleeCritChance>
+			<MeleeParryChance>0.13</MeleeParryChance>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<!-- Temporary conditional checks. Remove after the unstable build rolls into stable. -->
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Sharp</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
+			<value>
+				<ArmorRating_Sharp />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
+			<value>
+				<ArmorRating_Blunt />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>24</ArmorRating_Sharp>
 		</value>
 	</Operation>
 
@@ -180,13 +232,6 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/race/baseHealthScale</xpath>
-		<value>
-			<baseHealthScale>2.0</baseHealthScale>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/tools</xpath>
 		<value>
 			<tools>
@@ -199,7 +244,6 @@
 					<cooldownTime>2.0</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 				</li>
 			</tools>
