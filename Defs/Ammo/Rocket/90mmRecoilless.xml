@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
   <ThingCategoryDef>
     <defName>Ammo90mmRecoilless</defName>
     <label>90mm recoilless rockets</label>
     <parent>AmmoRockets</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
   </ThingCategoryDef>
+
   <!-- ==================== AmmoSet ========================== -->
+
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_90mmRecoilless</defName>
     <label>90mm Recoilless Rockets</label>
@@ -15,7 +18,9 @@
       <Ammo_90mmRCR_CAN>Bullet_90mmRCR_CAN</Ammo_90mmRCR_CAN>
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
+
   <!-- ==================== Ammo ==================== -->
+
   <ThingDef Class="CombatExtended.AmmoDef" Name="Base90mmRecoillessAmmo" ParentName="AmmoBase" Abstract="True">
     <description>Rocket-propelled ammunition desinged for use with the M67 recoilless rifle</description>
     <statBases>
@@ -32,6 +37,7 @@
     <cookOffFlashScale>40</cookOffFlashScale>
     <cookOffSound>MortarBomb_Explode</cookOffSound>
   </ThingDef>
+
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmRecoillessAmmo">
     <defName>Ammo_90mmRCR_HEAT</defName>
     <label>90mm recoilless rifle round (HEAT)</label>
@@ -47,6 +53,7 @@
     <ammoClass>RocketHEAT</ammoClass>
     <detonateProjectile>Bullet_90mmRCR_HEAT</detonateProjectile>
   </ThingDef>
+
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base90mmRecoillessAmmo">
     <defName>Ammo_90mmRCR_CAN</defName>
     <label>90mm recoilless rifle round (CAN)</label>
@@ -62,7 +69,9 @@
     <ammoClass>Grapeshot</ammoClass>
     <detonateProjectile>Bullet_90mmRCR_CAN</detonateProjectile>
   </ThingDef>
+
   <!-- ================== Projectiles ================== -->
+
   <ThingDef Name="Base90mmRecoillessBullet" ParentName="BaseBullet" Abstract="true">
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -72,6 +81,7 @@
       <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
     </projectile>
   </ThingDef>
+
   <ThingDef ParentName="Base90mmRecoillessBullet">
     <defName>Bullet_90mmRCR_HEAT</defName>
     <label>90mm recoilless rocket (HEAT)</label>
@@ -101,7 +111,8 @@
       </li>
     </comps>
   </ThingDef>
-  <ThingDef ParentName="Base12GaugeBullet">
+
+  <ThingDef ParentName="BaseBullet">
     <defName>Bullet_90mmRCR_CAN</defName>
     <label>Flechette</label>
     <graphicData>
@@ -111,14 +122,15 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>77</speed>
       <damageAmountBase>27</damageAmountBase>
-      <pelletCount>120</pelletCount>
-      <!--Originally 2400 flechettes are present, changed to 120 buffed projectile-->
+      <pelletCount>120</pelletCount>       <!-- Originally 2400 flechettes are present, changed to 120 buffed projectile -->
       <armorPenetrationSharp>5</armorPenetrationSharp>
       <armorPenetrationBlunt>14.52</armorPenetrationBlunt>
-      <spreadMult>44.4</spreadMult>
+      <spreadMult>35.6</spreadMult>       <!-- x4 the normal spread -->
     </projectile>
   </ThingDef>
+
   <!-- ==================== Recipes ========================== -->
+
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_90mmRCR_HEAT</defName>
     <label>make 90mm recoilless HEAT rockets x5</label>
@@ -162,6 +174,7 @@
       <Ammo_90mmRCR_HEAT>5</Ammo_90mmRCR_HEAT>
     </products>
   </RecipeDef>
+
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_90mmRCR_CAN</defName>
     <label>Make 90mm recoilless canister shells x5</label>
@@ -196,4 +209,5 @@
       <Ammo_90mmRCR_CAN>5</Ammo_90mmRCR_CAN>
     </products>
   </RecipeDef>
+
 </Defs>
