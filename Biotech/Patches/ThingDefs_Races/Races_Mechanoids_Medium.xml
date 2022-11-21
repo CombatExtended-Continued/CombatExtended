@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
+	<!-- ========== Cover-Seeking Behavior ========== -->
+  
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/PawnKindDef[defName="Mech_Legionary" or defName="Mech_Tesseron" or defName="Mech_Apocriton"]</xpath>
+		<value>
+			<aiAvoidCover>false</aiAvoidCover>
+		</value>
+	</Operation>
+
 	<!-- ========== Adjust combatPower ========== -->
 
 	<Operation Class="PatchOperationReplace">
