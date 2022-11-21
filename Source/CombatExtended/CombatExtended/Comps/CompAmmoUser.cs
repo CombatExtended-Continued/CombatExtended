@@ -743,7 +743,7 @@ namespace CombatExtended
 
                     Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
                     {
-                        action = delegate { ResetAmmoCount(); },
+                        action = delegate { CurMagCount = MagSize; },
                         defaultLabel = "DEV: Set ammo to max"
                     };
                     yield return devSetAmmoToMaxCommandGizmo;
