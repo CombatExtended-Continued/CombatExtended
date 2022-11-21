@@ -52,10 +52,10 @@ Mod |
 [RH] Faction: UAC	|
 [RH] Faction: UAC Kit	|
 [RH] Faction: Umbra Company	|
-[RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
+[RH2] Faction: V.O.I.D.	|
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
 [RH2] Rimmu-Nation² - Weapons	|
@@ -119,6 +119,7 @@ Beeralope Squad	|
 Better Infestations	|
 Biotech Expansion - Mammalia  |
 Biotech Expansion - Mythic  |
+Biotech Prestige Mechlord Armor |
 Birds Beyond: Temperate Forest  |
 Black Widows	|
 Bori Race	|
@@ -208,12 +209,7 @@ Frontline - Trenches (Continued)    |
 Frontline - Additional Guns for Trenches (Continued)    |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
-Genetic Rim |
 Gimmicks    |
-Genetic Rim Alpha Animal Patch |
-GeneticRim Cosmic Horrors Patch |
-GeneticRim Dinosauria Patch |
-GeneticRim Megafauna Patch |
 Gimmicks (Continued)    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|

@@ -243,8 +243,10 @@ namespace CombatExtended.HarmonyCE
                 Vector3 customScale = Vec2ToVec3(GetHeadCustomSize(pawn.def));
                 Vector3 headwearPos = headLoc + Vec2ToVec3(GetHeadCustomOffset(pawn.def));
 
-                // Let other mods such as HAR inject an alternative graphic for the hair/head
-                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodySizeFactor;
+                // Let other mods such as HAR inject an alternative graphic for the hair/head.
+                // Note that in the absence of a specific bodyWidth multiplier (Biotech/HAR) for this pawn,
+                // we must use MeshPool.HumanlikeHeadAverageWidth (1.5f) to ensure proper headgear sizing.
+                float lifeStageFactor = pawn.ageTracker.CurLifeStage.bodyWidth ?? MeshPool.HumanlikeHeadAverageWidth;
                 GraphicMeshSet gms = GetHumanlikeHeadSetForPawnHelper(lifeStageFactor, pawn);
                 Mesh mesh = gms?.MeshAt(bodyFacing) ?? renderer.graphics.HairMeshSet.MeshAt(bodyFacing);
 
