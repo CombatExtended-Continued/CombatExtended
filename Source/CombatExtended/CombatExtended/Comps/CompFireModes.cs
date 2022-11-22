@@ -233,7 +233,7 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (CasterPawn != null && CasterPawn.Faction.Equals(Faction.OfPlayer))
+            if (CasterPawn?.Faction == Faction.OfPlayer)
             {
                 foreach (Command com in GenerateGizmos())
                 {

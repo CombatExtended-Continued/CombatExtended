@@ -16,9 +16,9 @@
     <ammoTypes>
       <Ammo_40x46mmGrenade_HE>Bullet_40x46mmGrenade_HE</Ammo_40x46mmGrenade_HE>
       <Ammo_40x46mmGrenade_HE_TFuzed>Bullet_40x46mmGrenade_HE_TFuzed</Ammo_40x46mmGrenade_HE_TFuzed>
-      <Ammo_40x46mmGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_40x46mmGrenade_HEDP>	  
+      <Ammo_40x46mmGrenade_HEDP>Bullet_40x46mmGrenade_HEDP</Ammo_40x46mmGrenade_HEDP>
       <Ammo_40x46mmGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_40x46mmGrenade_EMP>
-      <Ammo_40x46mmGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_40x46mmGrenade_Smoke>    
+      <Ammo_40x46mmGrenade_Smoke>Bullet_40x46mmGrenade_Smoke</Ammo_40x46mmGrenade_Smoke>
     </ammoTypes>
     <similarTo>AmmoSet_LauncherGrenade</similarTo>
   </CombatExtended.AmmoSetDef>
@@ -95,18 +95,7 @@
       <MarketValue>4.25</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>0.75</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-		</fragments>
-      </li>
-    </comps>
+    <detonateProjectile>Bullet_40x46mmGrenade_EMP</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
@@ -119,19 +108,24 @@
     <statBases>
       <MarketValue>1.84</MarketValue>
     </statBases>
-    <ammoClass>Smoke</ammoClass><generateAllowChance>0</generateAllowChance>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>0.75</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-		</fragments>
-      </li>
-    </comps>
+    <ammoClass>Smoke</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+    <detonateProjectile>Bullet_40x46mmGrenade_Smoke</detonateProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Ammo_40x46mmGrenade_Tox</defName>
+    <label>40x46mm grenade (Tox)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/Tox</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.84</MarketValue>
+    </statBases>
+    <ammoClass>Toxic</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+    <detonateProjectile>Bullet_40x46mmGrenade_Tox</detonateProjectile>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
@@ -139,8 +133,9 @@
   <ThingDef Name="Base40x46mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.5,0.5)</drawSize>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>20</speed>
@@ -228,7 +223,18 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2</explosionRadius>
       <damageDef>Smoke</damageDef>
-      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base40x46mmGrenadeBullet" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Bullet_40x46mmGrenade_Tox</defName>
+    <label>40x46mm grenade (Tox)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.9</explosionRadius>
+      <damageDef>ToxGas</damageDef>
+      <postExplosionGasType>ToxGas</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
@@ -443,6 +449,54 @@
     </fixedIngredientFilter>
     <products>
       <Ammo_40x46mmGrenade_Smoke>100</Ammo_40x46mmGrenade_Smoke>
+    </products>
+    <workAmount>7400</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="LauncherAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_40x46mmGrenade_Tox</defName>
+    <label>make 40x46mm tox grenades x100</label>
+    <description>Craft 100 40x46mm tox grenades.</description>
+    <jobString>Making 40x46mm tox grenades.</jobString>
+    <researchPrerequisites>
+      <li>CE_Launchers</li>
+      <li>ToxGas</li>
+    </researchPrerequisites>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>      
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x46mmGrenade_Tox>100</Ammo_40x46mmGrenade_Tox>
     </products>
     <workAmount>7400</workAmount>
   </RecipeDef>

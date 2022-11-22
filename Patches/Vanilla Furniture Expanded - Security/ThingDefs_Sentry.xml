@@ -17,8 +17,7 @@
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or	      			
-			defName = "VFES_Turret_TriRocket"
+			defName = "VFES_Turret_MilitaryTurret"
 		]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 		</li>
 
@@ -31,8 +30,7 @@
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or
-			defName = "VFES_Turret_TriRocket"
+			defName = "VFES_Turret_MilitaryTurret"
 		]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 		</li>
 
@@ -46,7 +44,6 @@
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
 			defName = "VFES_Turret_MilitaryTurret" or
-			defName = "VFES_Turret_TriRocket" or
 			defName = "VFES_Turret_FloorTurret"
 		]/thingClass</xpath>
 		<value>
@@ -63,8 +60,7 @@
 			defName = "VFES_Turret_EMPTurret" or
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
-			defName = "VFES_Turret_MilitaryTurret" or				
-			defName = "VFES_Turret_TriRocket"		
+			defName = "VFES_Turret_MilitaryTurret"
 		]/fillPercent</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
@@ -76,7 +72,6 @@
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
 			defName = "VFES_Turret_MilitaryTurret" or
-			defName = "VFES_Turret_TriRocket" or
 			defName = "VFES_Turret_FloorTurret" or
 			defName = "VFES_Turret_Searchlight"
 		]/statBases</xpath>
@@ -110,13 +105,6 @@
 	  	</value>
 		</li>
 
-		<li Class="PatchOperationAdd">
-	  	<xpath>Defs/ThingDef[defName = "VFES_Turret_TriRocket"]/statBases</xpath>
-	  	<value>
-	  		<ShootingAccuracyTurret>1</ShootingAccuracyTurret>
-	  	</value>
-		</li>
-
 		<li Class="PatchOperationReplace">
 	  	<xpath>Defs/ThingDef[
 			defName = "VFES_Turret_ChargeTurret" or
@@ -137,8 +125,7 @@
 			defName = "VFES_Turret_Flame" or
 			defName = "VFES_Turret_SentryGun" or
 			defName = "VFES_Turret_MilitaryTurret" or
-			defName = "VFES_Turret_FloorTurret" or		        				
-			defName = "VFES_Turret_TriRocket"			 
+			defName = "VFES_Turret_FloorTurret"
 		]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
@@ -332,7 +319,7 @@
 			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			  <hasStandardCommand>True</hasStandardCommand>
 			  <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
-			  <warmupTime>4.3</warmupTime>
+			  <warmupTime>2.3</warmupTime>
 			  <range>78</range>
 			  <burstShotCount>12</burstShotCount>
 			  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
@@ -343,7 +330,7 @@
 			</Properties>
 			<AmmoUser>
 			  <magazineSize>120</magazineSize>
-			  <reloadTime>9.8</reloadTime>
+			  <reloadTime>7.8</reloadTime>
 			  <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
 			</AmmoUser>
 			<FireModes>
@@ -393,52 +380,6 @@
 			  <magazineSize>500</magazineSize>
 			  <reloadTime>9.2</reloadTime>
 			  <ammoSet>AmmoSet_556x45mmNATO</ammoSet>
-			</AmmoUser>
-			<FireModes>
-			  <aiAimMode>AimedShot</aiAimMode>
-			  <noSnapshot>true</noSnapshot>
-			  <noSingleShot>true</noSingleShot>
-			</FireModes>
-			<weaponTags Inherit="false">
-			  <li>TurretGun</li>
-			</weaponTags>
-		</li>
-
-		<!-- Tri-Rocket Turret -->
-
-		<li Class="PatchOperationRemove">
-		  <xpath>Defs/ThingDef[defName="VFES_Turret_TriRocket"]/costList/Shell_HighExplosive</xpath>
-		</li>
-
-		<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-			<defName>VFES_TurretTriRocket_Top</defName>
-			<statBases>
-			  <RangedWeapon_Cooldown>5.2</RangedWeapon_Cooldown>
-			  <SightsEfficiency>1</SightsEfficiency>
-			  <ShotSpread>0.05</ShotSpread>
-			  <SwayFactor>1.59</SwayFactor>
-			  <Bulk>25.54</Bulk>
-			</statBases>
-			<Properties>
-			  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			  <hasStandardCommand>True</hasStandardCommand>
-			  <defaultProjectile>Bullet_RPG32Rocket_HEAT</defaultProjectile>
-			  <warmupTime>1.2</warmupTime>
-			  <range>70</range>
-			  <burstShotCount>3</burstShotCount>
-			  <ticksBetweenBurstShots>18</ticksBetweenBurstShots>
-			  <soundCast>InfernoCannon_Fire</soundCast>
-			  <soundCastTail>GunTail_Heavy</soundCastTail>
-			  <muzzleFlashScale>16</muzzleFlashScale>
-			  <recoilPattern>Mounted</recoilPattern>
-			  <targetParams>
-				<canTargetLocations>True</canTargetLocations>
-			  </targetParams>
-			</Properties>
-			<AmmoUser>
-			  <magazineSize>12</magazineSize>
-			  <reloadTime>10.5</reloadTime>
-			  <ammoSet>AmmoSet_RPG32Rocket</ammoSet>
 			</AmmoUser>
 			<FireModes>
 			  <aiAimMode>AimedShot</aiAimMode>

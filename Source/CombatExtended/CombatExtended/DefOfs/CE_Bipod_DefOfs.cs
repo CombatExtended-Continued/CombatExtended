@@ -14,5 +14,7 @@ namespace CombatExtended
 		public static JobDef JobDef_SetUpBipod;
 
 		public static StatDef BipodStats;
+		
+		public static SoundDef Interact_Bipod;
 	}
 }

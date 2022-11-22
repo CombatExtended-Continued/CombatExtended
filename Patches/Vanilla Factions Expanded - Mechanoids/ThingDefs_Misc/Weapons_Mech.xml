@@ -254,7 +254,7 @@
         <WorkToMake>48000</WorkToMake>
       </statBases>
       <Properties>
-        <recoilAmount>1.51</recoilAmount>
+        <recoilAmount>1.16</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_6x22mmCharged</defaultProjectile>
@@ -294,7 +294,7 @@
         <WorkToMake>48000</WorkToMake>
       </statBases>
       <Properties>
-        <recoilAmount>1.21</recoilAmount>
+        <recoilAmount>0.93</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_6x22mmCharged</defaultProjectile>
@@ -408,38 +408,91 @@
       </weaponTags>
     </li>
 	
-    <!-- ========== Remove VFE Advanced Needle Gun and patch in replacement. ========== -->
+    <!-- ========== Advanced Needle Gun ========== -->
 
-    <li Class="PatchOperationRemove">
-      <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedNeedle"]</xpath>
+    <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+      <defName>VFE_Gun_AdvancedNeedle</defName>
+      <statBases>
+        <RangedWeapon_Cooldown>0.38</RangedWeapon_Cooldown>
+        <SightsEfficiency>1</SightsEfficiency>
+        <ShotSpread>0.01</ShotSpread>
+        <SwayFactor>0.81</SwayFactor>
+        <Bulk>15.00</Bulk>
+      </statBases>
+      <Properties>
+        <recoilAmount>1.80</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_5x100mmCaseless_Sabot</defaultProjectile>
+        <warmupTime>1.3</warmupTime>
+        <range>86</range>
+        <burstShotCount>1</burstShotCount>
+        <soundCast>Shot_NeedleGun</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </Properties>
+      <AmmoUser>
+        <magazineSize>10</magazineSize>
+        <reloadTime>4</reloadTime>
+        <ammoSet>AmmoSet_5x100mmCaseless</ammoSet>
+      </AmmoUser>
+      <FireModes>
+        <aiAimMode>AimedShot</aiAimMode>
+      </FireModes>
+      <weaponTags>
+        <li>CE_AI_Rifle</li>
+        <li>NoSwitch</li>
+      </weaponTags>
     </li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedNeedle"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>barrel</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>10</power>
+            <cooldownTime>2.44</cooldownTime>
+            <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+          </li>
+        </tools>
+     </value>
+    </li>
+
+    <!-- ========== Add the Advanced Thermal Bolt Projector ========== -->
 
     <li Class="PatchOperationAdd">
       <xpath>/Defs</xpath>
       <value>
-        <ThingDef ParentName="BaseGunWithQuality">
-          <defName>VFE_AdvancedExplosiveBoltProjector</defName>
-          <label>explosive bolt projector</label>
-          <description>A low-velocity, high-trajectory fire support system deployed by mechanoid Pikeman. The advanced variant features a triple shot system, permitting saturation bombardment.</description>
+        <ThingDef ParentName="BaseGun">
+          <defName>VFE_AdvancedThermalBoltProjector</defName>
+          <label>advanced thermal bolt projector</label>
+          <description>A medium-velocity, low-trajectory fire support system deployed by mechanoids. The advanced variant features a triple shot system, permitting saturation bombardment.</description>
+          <relicChance>0</relicChance>
           <graphicData>
-            <texPath>Things/Item/Equipment/WeaponRanged/AdvancedNeedlegun</texPath>
+            <texPath>Things/Weapons/ExplosiveBoltProjector</texPath>
             <graphicClass>Graphic_Single</graphicClass>
           </graphicData>
+          <equippedAngleOffset>-45</equippedAngleOffset>
           <soundInteract>Interact_Rifle</soundInteract>
           <statBases>
             <SightsEfficiency>1</SightsEfficiency>
             <ShotSpread>0.16</ShotSpread>
             <SwayFactor>1.00</SwayFactor>
-            <Bulk>7.31</Bulk>
-            <Mass>20.00</Mass>
-            <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+            <Bulk>8.50</Bulk>
+            <Mass>12.00</Mass>
+            <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
             <MarketValue>1600</MarketValue>      
           </statBases>
           <techLevel>Spacer</techLevel>
           <tradeability>None</tradeability>
           <destroyOnDrop>true</destroyOnDrop>    
           <weaponTags>
-            <li>VFE_AdvMechanoidGunLongRange</li>  
+            <li>VFE_AdvMechanoidGunIndirect</li>  
             <li>NoSwitch</li>
           </weaponTags>
           <verbs>
@@ -447,10 +500,10 @@
           <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
           <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
           <hasStandardCommand>true</hasStandardCommand>
-          <defaultProjectile>Bullet_60mmMortarShell_HE</defaultProjectile>
-          <warmupTime>3</warmupTime>
+          <defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+          <warmupTime>3.3</warmupTime>
           <minRange>10</minRange>
-          <range>54</range>
+          <range>62</range>
           <burstShotCount>3</burstShotCount>
           <soundCast>Mortar_LaunchA</soundCast>
           <muzzleFlashScale>16</muzzleFlashScale>
@@ -473,11 +526,10 @@
             <li Class="CombatExtended.CompProperties_AmmoUser">
               <magazineSize>6</magazineSize>
               <reloadTime>12</reloadTime>
-              <ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+              <ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
             </li>
             <li Class="CombatExtended.CompProperties_FireModes">
               <aiUseBurstMode>FALSE</aiUseBurstMode>
-              <aiAimMode>SuppressFire</aiAimMode>
             </li>
           </comps>
           <tools>
@@ -494,8 +546,8 @@
           </tools>
           <modExtensions>
             <li Class="CombatExtended.GunDrawExtension">
-              <DrawSize>1.2,1.4</DrawSize>
-              <DrawOffset>0.0,0.0</DrawOffset>
+              <DrawSize>1.05,1.05</DrawSize>
+              <DrawOffset>-0.3,0.0</DrawOffset>
             </li>
             <li Class="CombatExtended.ThingDefExtensionCE">
               <MenuHidden>True</MenuHidden>
@@ -517,6 +569,7 @@
         <Bulk>14.00</Bulk>
       </statBases>
       <Properties>
+        <recoilAmount>0.72</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_5x35mmCharged</defaultProjectile>
@@ -566,7 +619,7 @@
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFE_Gun_AdvancedChargeBlasterHeavy</defName>
 		<statBases>
-		  <Mass>35.00</Mass>
+		  <Mass>40.00</Mass>
 		  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 		  <SightsEfficiency>1</SightsEfficiency>
 		  <ShotSpread>0.01</ShotSpread>
@@ -574,7 +627,7 @@
 		  <Bulk>13.00</Bulk>
 		</statBases>
 		<Properties>
-		  <recoilAmount>1.1</recoilAmount>
+		  <recoilAmount>1.01</recoilAmount>
 		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  <hasStandardCommand>true</hasStandardCommand>
 		  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
@@ -608,7 +661,7 @@
 	<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>VFE_Gun_AdvancedInfernoCannon</defName>
 		<statBases>
-		  <Mass>300.00</Mass>
+		  <Mass>250.00</Mass>
 		  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 		  <SightsEfficiency>1</SightsEfficiency>
 		  <ShotSpread>0.01</ShotSpread>
@@ -616,6 +669,7 @@
 		  <Bulk>20.00</Bulk>
 		</statBases>
 		<Properties>
+		  <recoilAmount>0.90</recoilAmount>
 		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  <hasStandardCommand>true</hasStandardCommand>
 		  <defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
@@ -645,71 +699,72 @@
     
 	 <!-- ========== Advanced Thump cannon ========== -->
 
-  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-    <defName>VFE_Gun_AdvancedThumpCannon</defName>
-    <statBases>
-      <Mass>300.00</Mass>
-      <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
-      <SightsEfficiency>1</SightsEfficiency>
-      <ShotSpread>0.01</ShotSpread>
-      <SwayFactor>0.82</SwayFactor>
-      <Bulk>20.00</Bulk>
-    </statBases>
-    <Properties>
-      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
-      <hasStandardCommand>true</hasStandardCommand>
-      <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
-      <warmupTime>2.5</warmupTime>
-      <range>42</range>
-      <burstShotCount>1</burstShotCount>
-      <soundCast>ThumpCannon_Fire</soundCast>
-      <soundCastTail>GunTail_Heavy</soundCastTail>
-      <muzzleFlashScale>14</muzzleFlashScale>
-      <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
-      <minRange>4</minRange>
-      <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-    </Properties>
-    <AmmoUser>
-      <magazineSize>4</magazineSize>
-      <reloadTime>9.8</reloadTime>
-      <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
-    </AmmoUser>
-    <FireModes>
-      <aiAimMode>AimedShot</aiAimMode>
-    </FireModes>
-    <weaponTags>
-      <li>CE_AI_Launcher</li>
-      <li>NoSwitch</li>
-    </weaponTags>
-  </li>
+	  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	    <defName>VFE_Gun_AdvancedThumpCannon</defName>
+	    <statBases>
+	      <Mass>300.00</Mass>
+	      <RangedWeapon_Cooldown>2.13</RangedWeapon_Cooldown>
+	      <SightsEfficiency>1</SightsEfficiency>
+	      <ShotSpread>0.01</ShotSpread>
+	      <SwayFactor>0.82</SwayFactor>
+	      <Bulk>20.00</Bulk>
+	    </statBases>
+	    <Properties>
+	      <recoilAmount>0.05</recoilAmount>
+	      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+	      <hasStandardCommand>true</hasStandardCommand>
+	      <defaultProjectile>Bullet_164x284mmDemo</defaultProjectile>
+	      <warmupTime>2.5</warmupTime>
+	      <range>42</range>
+	      <burstShotCount>1</burstShotCount>
+	      <soundCast>ThumpCannon_Fire</soundCast>
+	      <soundCastTail>GunTail_Heavy</soundCastTail>
+	      <muzzleFlashScale>14</muzzleFlashScale>
+	      <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+	      <minRange>4</minRange>
+	      <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+	    </Properties>
+	    <AmmoUser>
+	      <magazineSize>4</magazineSize>
+	      <reloadTime>9.8</reloadTime>
+	      <ammoSet>AmmoSet_164x284mmDemo</ammoSet>
+	    </AmmoUser>
+	    <FireModes>
+	      <aiAimMode>AimedShot</aiAimMode>
+	    </FireModes>
+	    <weaponTags>
+	      <li>CE_AI_Launcher</li>
+	      <li>NoSwitch</li>
+	    </weaponTags>
+	  </li>
 
-  <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]/tools</xpath>
-    <value>
-      <tools>
-        <li Class="CombatExtended.ToolCE">
-          <label>barrel</label>
-          <capacities>
-            <li>Blunt</li>
-          </capacities>
-          <power>10</power>
-          <cooldownTime>2.44</cooldownTime>
-          <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
-          <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-        </li>
-      </tools>
-    </value>
-  </li>
+	  <li Class="PatchOperationReplace">
+	    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]/tools</xpath>
+	    <value>
+	      <tools>
+		<li Class="CombatExtended.ToolCE">
+		  <label>barrel</label>
+		  <capacities>
+		    <li>Blunt</li>
+		  </capacities>
+		  <power>10</power>
+		  <cooldownTime>2.44</cooldownTime>
+		  <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+		  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+		</li>
+	      </tools>
+	    </value>
+	  </li>
 
-  <li Class="PatchOperationAddModExtension">
-    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]</xpath>
-    <value>
-      <li Class="CombatExtended.GunDrawExtension">
-        <DrawSize>1.95,1.95</DrawSize>
-        <DrawOffset>0.0,0.0</DrawOffset>
-      </li>
-    </value>
-  </li>
+	  <li Class="PatchOperationAddModExtension">
+	    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]</xpath>
+	    <value>
+	      <li Class="CombatExtended.GunDrawExtension">
+		<DrawSize>1.95,1.95</DrawSize>
+		<DrawOffset>0.0,0.0</DrawOffset>
+	      </li>
+	    </value>
+	  </li>
   
       </operations>
     </match>

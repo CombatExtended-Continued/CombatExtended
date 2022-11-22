@@ -11,6 +11,7 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
+
     public class ITab_Inventory : ITab_Pawn_Gear
     {
         #region Fields
@@ -21,7 +22,7 @@ namespace CombatExtended
         private const float _thingLeftX = 36f;
         private const float _thingRowHeight = 28f;
         private const float _topPadding = 20f;
-        private static Texture2D _iconEditAttachments;
+        private static readonly CachedTexture _iconEditAttachments = new CachedTexture("UI/Icons/gear");
         private const float _standardLineHeight = 22f;
         private static readonly Color _highlightColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         private Vector2 _scrollPosition = Vector2.zero;
@@ -86,13 +87,6 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
-
-        public override void OnOpen()
-        {            
-            _iconEditAttachments ??= ContentFinder<Texture2D>.Get("UI/Icons/gear");
-
-            base.OnOpen();
-        }
 
         public override void FillTab()
         {            
@@ -269,7 +263,7 @@ namespace CombatExtended
             {
                 Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
                 TooltipHandler.TipRegion(rect3, "CE_EditWeapon".Translate());
-                if (Widgets.ButtonImage(rect3, _iconEditAttachments))
+                if (Widgets.ButtonImage(rect3, _iconEditAttachments.Texture))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera(null);
                     if (!Find.WindowStack.IsOpen<Window_AttachmentsEditor>())

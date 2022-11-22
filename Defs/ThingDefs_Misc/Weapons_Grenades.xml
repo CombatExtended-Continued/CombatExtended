@@ -71,12 +71,12 @@
       <explosionDelay>150</explosionDelay>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0.5</screenShakeFactor>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-            <Fragment_Small>9</Fragment_Small>
+            <Fragment_Small>6</Fragment_Small>
         </fragments>
       </li>
     </comps>
@@ -150,7 +150,7 @@
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
       <speed>10</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
     </projectile>
   </ThingDef>
 
@@ -209,7 +209,6 @@
     </comps>
   </ThingDef>
 
-
   <!-- ==================== Stick bomb ========================== -->
 
   <ThingDef ParentName="BaseGrenadeProjectile">
@@ -226,7 +225,6 @@
       <explosionDelay>90</explosionDelay>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <speed>8</speed>
-      <gravityFactor>2</gravityFactor>
     </projectile>
   </ThingDef>
 
@@ -293,10 +291,10 @@
       <explosionDelay>30</explosionDelay>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
-      <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
     </projectile>
   </ThingDef>
 
@@ -347,7 +345,7 @@
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <damageAmountBase>4</damageAmountBase>
         <explosiveDamageType>Smoke</explosiveDamageType>
-        <postExplosionSpawnThingDef>Gas_Smoke</postExplosionSpawnThingDef>
+        <postExplosionGasType>BlindSmoke</postExplosionGasType>
         <preExplosionSpawnChance>1</preExplosionSpawnChance>
       </li>
     </comps>
@@ -371,7 +369,7 @@
       <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
     </projectile>
   </ThingDef>
 
@@ -420,7 +418,7 @@
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <explosiveDamageType>Extinguish</explosiveDamageType>
-        <explosiveRadius>6.5</explosiveRadius>
+        <explosiveRadius>3.5</explosiveRadius>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>

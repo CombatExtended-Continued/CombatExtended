@@ -689,11 +689,19 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
-            yield return ammoStatusGizmo;
             var mannableComp = turret?.GetMannable();
-            if ((IsEquippedGun && Wielder.Faction == Faction.OfPlayer) || (turret != null && turret.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo)))
+
+            // Only show ammo status for colonists under player control (i.e. not mental breaking / slave rebelling) and colony mechs.
+            // Note that we use IsColonyMech rather than IsColonyMechPlayerControlled for checking whether the pawn is a colony mech,
+            // as the latter would only apply to mechs currently controlled by a mechanitor.
+            var isColonyMechOrColonist = Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech);
+            var isPlayerControlled = isColonyMechOrColonist || (turret?.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo));
+
+            if (isPlayerControlled)
             {
+                GizmoAmmoStatus ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+                yield return ammoStatusGizmo;
+
                 Action action = null;
                 if (IsEquippedGun) action = SyncedTryStartReload;
                 else if (mannableComp != null) action = SyncedTryForceReload;

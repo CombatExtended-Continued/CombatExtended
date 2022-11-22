@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_Bascinet</defName>
-        <label>bascinet</label>
+        <defName>CE_Apparel_PlateHelmet</defName>
+        <label>plate helmet</label>
         <description>A medieval helmet that provides full coverage of the head. Somewhat protective, but restricts the wearer's field of view which affects attack accuracy.</description>
         <graphicData>
-            <texPath>Things/Apparel/Bascinet/Bascinet</texPath>
+            <texPath>Things/Apparel/PlateHelmet/CE_PlateHelmet</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <possessionCount>1</possessionCount>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -41,9 +43,11 @@
             <bodyPartGroups>
                 <li>FullHead</li>
             </bodyPartGroups>
-            <wornGraphicPath>Things/Apparel/Bascinet/Bascinet</wornGraphicPath>
+            <wornGraphicPath>Things/Apparel/PlateHelmet/CE_PlateHelmet</wornGraphicPath>
             <layers>
                 <li>Overhead</li>
+                <li>OnHead</li>
+                <li>StrappedHead</li>                
             </layers>
             <tags>
                 <li>MedievalMilitary</li>                
@@ -70,23 +74,28 @@
 				</stats>
 			</li>
 		</modExtensions>
+		<tradeTags>
+			<li>Armor</li>
+		</tradeTags>
     </ThingDef>
 
-    <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_GasMask</defName>
+    <ThingDef ParentName="HatMakeableBase">
+        <defName>CE_Apparel_GasMask</defName>
         <label>gas mask</label>
         <description>Sealed rubber mask with a filter attached. Will protect against smoke inhalation and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/GasMask/CE_GasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <possessionCount>1</possessionCount>
         <techLevel>Industrial</techLevel>
-        <generateAllowChance>0.2</generateAllowChance>
+        <generateAllowChance>0.5</generateAllowChance>
         <recipeMaker>
-            <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
-            <skillRequirements>
-                <Crafting>8</Crafting>
-            </skillRequirements>
+            <researchPrerequisite>Machining</researchPrerequisite>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
+            <recipeUsers Inherit="False">
+                <li>TableMachining</li>
+            </recipeUsers>
         </recipeMaker>
         <costList>
             <ComponentIndustrial>2</ComponentIndustrial>
@@ -101,11 +110,13 @@
             <EquipDelay>0.5</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <ToxicSensitivity>-0.5</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.8</ToxicEnvironmentResistance>
             <SmokeSensitivity>-1</SmokeSensitivity>
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+            <immuneToToxGasExposure>true</immuneToToxGasExposure>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -115,13 +126,10 @@
                 <li>StrappedHead</li>
             </layers>
             <tags>
-                <li>IndustrialMilitaryAdvanced</li>
+                <li>IndustrialMilitaryBasic</li>
                 <li>GasMask</li>
             </tags>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
-              <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
+            <hatRenderedFrontOfFace>false</hatRenderedFrontOfFace>
         </apparel>
         <modExtensions>
             <li Class="CombatExtended.ApparelHediffExtension">
@@ -132,32 +140,31 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
-        <thingCategories Inherit="false">
-            <li>Headgear</li>
-        </thingCategories>
+        <tradeTags>
+            <li>Clothing</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="HatMakeableBase">
-        <defName>Apparel_ImprovGasMask</defName>
+        <defName>CE_Apparel_ImprovGasMask</defName>
         <label>improvised gas mask</label>
         <description>Crude gas mask fashioned from thick cloth and charcoal. Provides some limited protection against smoke and airborne toxins.</description>
         <graphicData>
             <texPath>Things/Apparel/ImprovGasMask/CE_ImprovGasMask</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <possessionCount>1</possessionCount>
         <techLevel>Neolithic</techLevel>
-        <generateAllowChance>0.1</generateAllowChance>
+        <generateAllowChance>0.25</generateAllowChance>
         <recipeMaker>
-            <skillRequirements>
-                <Crafting>6</Crafting>
-            </skillRequirements>
+            <unfinishedThingDef>UnfinishedMask</unfinishedThingDef>
             <recipeUsers>
                 <li>CraftingSpot</li>
             </recipeUsers>
         </recipeMaker>
         <costList>
             <WoodLog>4</WoodLog>
-            <Cloth>40</Cloth>
+            <Cloth>20</Cloth>
         </costList>
         <statBases>
             <WorkToMake>8000</WorkToMake>
@@ -168,11 +175,12 @@
             <EquipDelay>1</EquipDelay>
         </statBases>
         <equippedStatOffsets>
-            <ToxicSensitivity>-0.3</ToxicSensitivity>
+            <ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
             <SmokeSensitivity>-0.6</SmokeSensitivity>
         </equippedStatOffsets>
         <apparel>
             <countsAsClothingForNudity>false</countsAsClothingForNudity>
+            <developmentalStageFilter>Child, Adult</developmentalStageFilter>
             <bodyPartGroups>
                 <li>Eyes</li>
                 <li>Teeth</li>
@@ -181,9 +189,6 @@
             <layers>
                 <li>StrappedHead</li>
             </layers>
-            <defaultOutfitTags>
-                <li>Soldier</li>
-            </defaultOutfitTags>
             <tags>
                 <li>GasMask</li>
             </tags>
@@ -198,16 +203,20 @@
                 <HideBeard>true</HideBeard>
             </li>
         </modExtensions>
+        <tradeTags>
+            <li>Clothing</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_SimpleNightVision</defName>
+        <defName>CE_Apparel_SimpleNightVision</defName>
         <label>night vision monocular</label>
         <description>A simple, monocular night vision device, worn strapped to the head.</description>
         <graphicData>
             <texPath>Things/Apparel/SimpleNightVision/CE_SimpleNightVision</texPath>
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
+        <possessionCount>1</possessionCount>
         <techLevel>Industrial</techLevel>
         <generateAllowChance>0.2</generateAllowChance>
         <recipeMaker>
@@ -256,10 +265,13 @@
         <thingCategories Inherit="false">
             <li>Headgear</li>
         </thingCategories>
+        <tradeTags>
+            <li>Armor</li>
+        </tradeTags>
     </ThingDef>
 
     <ThingDef ParentName="ArmorHelmetMakeableBase">
-        <defName>Apparel_AdvancedNightVision</defName>
+        <defName>CE_Apparel_AdvancedNightVision</defName>
         <label>advanced night vision goggles</label>
         <description>An set of advanced night vision goggles offering detailed, panoramic vision when fighting in the dark.</description>
         <graphicData>
@@ -315,6 +327,9 @@
         <thingCategories Inherit="false">
             <li>Headgear</li>
         </thingCategories>
+        <tradeTags>
+            <li>Armor</li>
+        </tradeTags>
     </ThingDef>
 
 </Defs>

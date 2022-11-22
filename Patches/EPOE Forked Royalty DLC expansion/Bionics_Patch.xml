@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+        <li>EPOE-Forked: Royalty DLC expansion</li>
+    </mods>
+	<match Class="PatchOperationSequence">
+		
+		<operations>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedDrillArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>drill arm</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>8</power>
+							<cooldownTime>1.88</cooldownTime>
+							<armorPenetrationSharp>0.04</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.32</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>		
+							<soundMeleeHit>MeleeHit_DrillArm</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_DrillArm</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedFieldHand"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>knuckle</label>
+							<capacities>
+								<li>Blunt</li>
+							</capacities>
+							<power>3</power>
+							<cooldownTime>1.66</cooldownTime>
+							<armorPenetrationSharp>0.00</armorPenetrationSharp>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_FieldHand</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_FieldHand</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedHandTalon"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>talon</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.0</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>talon</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>13</power>
+							<cooldownTime>1.0</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.6</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedHandTalon"]/stages/li/statOffsets</xpath>
+				<value>
+					<statOffsets>
+						<MeleeHitChance>5</MeleeHitChance>
+					</statOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedElbowBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>12</power>
+							<cooldownTime>1.0</cooldownTime>
+							<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.3</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_AdvancedKneeSpike"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>spike</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.0</cooldownTime>
+							<armorPenetrationBlunt>0.75</armorPenetrationBlunt>
+							<armorPenetrationSharp>1.0</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_ScytherHandTalon"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>talon</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>9</power>
+							<cooldownTime>1.1</cooldownTime>
+							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.25</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>talon</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>11</power>
+							<cooldownTime>1.1</cooldownTime>
+							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.5</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_ScytherHandTalon"]/stages/li/statOffsets</xpath>
+				<value>
+					<statOffsets>
+						<MeleeHitChance>2.5</MeleeHitChance>
+					</statOffsets>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_ScytherElbowBlade"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+								<li>Cut</li>
+							</capacities>
+							<power>10</power>
+							<cooldownTime>1.1</cooldownTime>
+							<armorPenetrationBlunt>0.3</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.25</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="EPOE_ScytherKneeSpike"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>spike</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>15</power>
+							<cooldownTime>1.1</cooldownTime>
+							<armorPenetrationBlunt>0.65</armorPenetrationBlunt>
+							<armorPenetrationSharp>0.75</armorPenetrationSharp>
+							<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							<soundMeleeHit>MeleeHit_BionicSlash</soundMeleeHit>
+							<soundMeleeMiss>MeleeMiss_BionicSlash</soundMeleeMiss>
+						</li>
+					</tools>
+				</value>
+			</li>
+
+		</operations>
+	</match>
+	</Operation>
+	
+</Patch>
+

@@ -53,6 +53,13 @@
 	<!-- ========== Auto mini-turret ========== -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_AutoMiniTurret"]/label</xpath>
+		<value>
+			<label>mini-blaster turret</label>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_AutoMiniTurret"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
@@ -293,6 +300,11 @@
 			      <li>90</li>
 			    </chargeSpeeds>
 			  </li>
+			  <li Class="CombatExtended.CompProperties_AmmoUser">
+			    <magazineSize>10</magazineSize>
+			    <reloadTime>9.8</reloadTime>
+			    <ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
+			  </li>
 			</comps>			  
 		</value>
 	</Operation>
@@ -312,7 +324,7 @@
 			    <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 			    <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 			    <hasStandardCommand>true</hasStandardCommand>
-			    <defaultProjectile>Bullet_ChargeMortarShell</defaultProjectile>
+			    <defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
 			    <warmupTime>11</warmupTime>
 			    <minRange>32</minRange>
 			    <range>700</range>

@@ -28,7 +28,9 @@
 			defName="VFE_Mech_Centipede" or
 			defName="VFE_Mech_AdvancedCentipede" or			 
 			defName="VFE_Mech_AdvancedLancer" or
-			defName="VFE_Mech_Lancer"
+			defName="VFE_Mech_Lancer" or
+			defName="VFE_Mech_Pikeman" or
+			defName="VFE_Mech_AdvancedPikeman"
 			]</xpath>
 			<value>
 			  <li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -43,8 +45,7 @@
 		  <li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[
 			defName="VFE_Mech_Knight" or 
-			defName="VFE_Mech_AdvancedKnight" or
-			defName="VFE_Mech_Pikeman"
+			defName="VFE_Mech_AdvancedKnight"
 			]</xpath>
 			<value>
 			  <li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -70,18 +71,6 @@
 			  </li>
 			</value>
 		  </li>
-
-		  <li Class="PatchOperationAddModExtension">
-			<xpath>Defs/PawnKindDef[defName="VFE_Mech_AdvancedPikeman"]</xpath>
-			<value>
-			  <li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-				  <min>6</min>
-				  <max>8</max>
-				</primaryMagazineCount>
-			  </li>
-			</value>
-		  </li>
 		  
 		  <li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[defName="VFE_Mech_Termite" or defName="VFE_Mech_AdvTermite"]</xpath>
@@ -94,6 +83,34 @@
 			  </li>
 			</value>
 		  </li>
+
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+			<nomatch Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="VFE_Mech_Pikeman"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>MechanoidGunIndirect</li>
+					</weaponTags>
+				</value>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Biotech</li>
+			</mods>
+			<nomatch Class="PatchOperationReplace">
+				<xpath>Defs/PawnKindDef[defName="VFE_Mech_AdvancedPikeman"]/weaponTags</xpath>
+				<value>
+					<weaponTags>
+						<li>VFE_AdvMechanoidGunIndirect</li>
+					</weaponTags>
+				</value>
+			</nomatch>
+		</li>
 
       </operations>
     </match>

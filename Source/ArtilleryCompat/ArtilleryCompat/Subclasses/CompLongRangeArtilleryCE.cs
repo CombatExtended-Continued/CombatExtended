@@ -64,7 +64,7 @@ namespace CombatExtended.Compatibility.Artillery
 
         private new void ResetWarmupTicks()
         {
-            warmupTicksLeft = Mathf.Max(1, Turret.def.building.turretBurstWarmupTime.SecondsToTicks());
+            warmupTicksLeft = Mathf.Max(1, Turret.def.building.turretBurstWarmupTime.RandomInRange.SecondsToTicks());
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
