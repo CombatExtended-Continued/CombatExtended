@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]/combatPower</xpath>
 		<value>
-			<combatPower>90</combatPower>
+			<combatPower>60</combatPower>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor" or defName="Mech_Constructoid" or defName="Mech_Fabricor"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -121,14 +121,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Constructoid"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Constructoid"]/tools</xpath>
 		<value>
@@ -138,11 +130,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>10</power>
+					<power>7</power>
 					<cooldownTime>3.0</cooldownTime>
 					<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -156,14 +148,6 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
 			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Fabricor"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
 		</value>
 	</Operation>
 
