@@ -179,30 +179,6 @@
 		</value>
 	</Operation>
 
-	<!-- Temporary conditional checks. Remove after the unstable build rolls into stable. -->
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Sharp</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
-			<value>
-				<ArmorRating_Sharp />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName = "Mech_Apocriton"]/statBases</xpath>
-			<value>
-				<ArmorRating_Blunt />
-			</value>
-		</nomatch>
-	</Operation>
-
-	<!-- -->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Apocriton"]/statBases/ArmorRating_Blunt</xpath>
 		<value>
