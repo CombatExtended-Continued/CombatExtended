@@ -20,6 +20,8 @@ namespace CombatExtended
 		public bool IsSetUpRn;
 
 		private int starts = 5;
+		
+		public bool CanSetUp = false;
 
         #endregion
 
@@ -133,6 +135,13 @@ namespace CombatExtended
 		{
 			IsSetUpRn = false;
 			ResetVerbProps(this.parent);
+			CanSetUp = false;
+		}
+
+
+		public override void Notify_Equipped(Pawn pawn)
+		{
+			CanSetUp = true;
 		}
 
 		public CompProperties_BipodComp Props => (CompProperties_BipodComp)this.props;
@@ -188,7 +197,7 @@ namespace CombatExtended
 
 		public void SetUpStart(Pawn pawn = null)
 		{
-			if (!(pawn?.Drafted ?? false))
+			if (!(pawn?.Drafted ?? false) || !CanSetUp)
 			{
 				return;
 			}
