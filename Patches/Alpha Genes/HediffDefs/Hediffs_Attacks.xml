@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Genes</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/HediffDef[defName="AG_HornAttack"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>horn</label>
+									<capacities>
+										<li>Stab</li>
+									</capacities>
+									<power>16</power>
+									<cooldownTime>1.5</cooldownTime>
+									<armorPenetrationSharp>1.0</armorPenetrationSharp>
+									<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/HediffDef[defName="AG_ChainsawHands"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>chainsaw</label>
+									<capacities>
+										<li>Cut</li>
+									</capacities>
+									<power>26</power>
+									<cooldownTime>1.5</cooldownTime>
+									<armorPenetrationSharp>0.5</armorPenetrationSharp>
+									<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+	</Operation>
+
+</Patch>
