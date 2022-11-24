@@ -42,16 +42,16 @@ namespace CombatExtended
                             return false;
                         }
                     }
-		    else
-		    {
-			return false;
-		    }
+                    else
+                    {
+                        return false;
+                    }
                     var t = verb.verbClass;
                     if (t != typeof(Verb_ShootOneUse)  && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
                     {
                         return false;
                     }
-                    
+
                 }
                 return true;
             }
@@ -59,11 +59,11 @@ namespace CombatExtended
         }
         static GunAutoPatcher()
         {
-	    if (!Controller.settings.EnableWeaponAutopatcher)
-	    {
-		return;
-	    }
-	    
+            if (!Controller.settings.EnableWeaponAutopatcher)
+            {
+                return;
+            }
+
             var unpatchedGuns = DefDatabase<ThingDef>.AllDefs.Where(shouldPatch);
 
             var patcherDefs = DefDatabase<GunPatcherPresetDef>.AllDefs;
@@ -72,16 +72,16 @@ namespace CombatExtended
 
             foreach (var preset in patcherDefs)
             {
-		try
-		{
-		    unpatchedGuns.PatchGunsFromPreset(preset);
-		}
-		catch (Exception e)
-		{
-		    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
-		    Log.Error($"Unhandled exception handling {preset}");
+                try
+                {
+                    unpatchedGuns.PatchGunsFromPreset(preset);
+                }
+                catch (Exception e)
+                {
+                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                    Log.Error($"Unhandled exception handling {preset}");
 
-		}
+                }
             }
 
             if (unpatchedGuns.Count() > 0)
@@ -91,20 +91,20 @@ namespace CombatExtended
                     try
                     {
                         gun.PatchGunFromPreset
+                        (
+                            patcherDefs.MaxBy
                             (
-                             patcherDefs.MaxBy
-                             (
-                              //random range is there to avoid elements with same values
-                              x =>
-                              (
-                               x.DamageRange.Average
-                               +
-                               x.RangeRange.Average
-                               +
-                               x.ProjSpeedRange.Average
-                               +
-                               x.WarmupRange.Average
-                               )));
+                                //random range is there to avoid elements with same values
+                                x =>
+                                (
+                                    x.DamageRange.Average
+                                    +
+                                    x.RangeRange.Average
+                                    +
+                                    x.ProjSpeedRange.Average
+                                    +
+                                    x.WarmupRange.Average
+                                )));
                     }
                     catch (Exception e)
                     {
@@ -124,7 +124,7 @@ namespace CombatExtended
                     {
                         newTool = tool.ConvertTool();
                     }
-                    catch 
+                    catch
                     {
                         Log.Error($"Failed to autoconvert tool {tool} in {toolMisser}.  Using original");
                         newTool = tool;

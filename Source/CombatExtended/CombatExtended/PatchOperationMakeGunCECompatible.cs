@@ -11,19 +11,19 @@ namespace CombatExtended
         public string defName;
         public string texPath;
         public bool isWeaponPlatform = false;
-        public bool AllowWithRunAndGun = true;        
+        public bool AllowWithRunAndGun = true;
         public XmlContainer statBases;
         public XmlContainer Properties;
         public XmlContainer AmmoUser;
         public XmlContainer FireModes;
         public XmlContainer weaponTags;
         public XmlContainer costList;
-        public XmlContainer researchPrerequisite;        
+        public XmlContainer researchPrerequisite;
         public XmlContainer attachmentLinks;
         public XmlContainer defaultGraphicParts;
-                
+
         public override bool ApplyWorker(XmlDocument xml)
-        {            
+        {
             bool result = false;
 
             if (defName.NullOrEmpty())
@@ -33,7 +33,7 @@ namespace CombatExtended
             foreach (var current in xml.SelectNodes("Defs/ThingDef[defName=\"" + defName + "\"]"))
             {
                 result = true;
-                
+
                 var xmlNode = current as XmlNode;
                 if(isWeaponPlatform || (attachmentLinks?.node.HasChildNodes ?? false) || (defaultGraphicParts?.node.HasChildNodes ?? false))
                 {
@@ -79,8 +79,8 @@ namespace CombatExtended
                 if (ModLister.HasActiveModWithName("RunAndGun") && !AllowWithRunAndGun)
                 {
                     AddRunAndGunExtension(xml, xmlNode);
-                }                
-            }         
+                }
+            }
             return result;
         }
 
@@ -90,9 +90,9 @@ namespace CombatExtended
             if (element.Name.Contains("WeaponPlatformDef"))
             {
                 return;
-            }            
+            }
             element.SetAttribute("Class", "CombatExtended.WeaponPlatformDef"); // change node def type
-            
+
             GetOrCreateNode(xml, xmlNode, "thingClass", out XmlElement thingClassElement); // change thingClass
             if (!thingClassElement.InnerText.StartsWith("CombatExtended"))
             {
@@ -101,12 +101,12 @@ namespace CombatExtended
 
             GetOrCreateNode(xml, xmlNode, "drawerType", out XmlElement drawerTypeElement); // change thingClass
             drawerTypeElement.InnerText = "RealtimeOnly";
-        }       
+        }
 
         private void AddOrReplaceAttachmentLinks(XmlDocument xml, XmlNode xmlNode)
         {
             GetOrCreateNode(xml, xmlNode, nameof(WeaponPlatformDef.attachmentLinks), out XmlElement element);
-            
+
             Populate(xml, this.attachmentLinks.node, ref element);
         }
 
@@ -121,7 +121,7 @@ namespace CombatExtended
         {
             GetOrCreateNode(xml, xmlNode, "graphicData", out XmlElement elementGData);
 
-            GetOrCreateNode(xml, elementGData, "texPath", out XmlElement elementTexPath);            
+            GetOrCreateNode(xml, elementGData, "texPath", out XmlElement elementTexPath);
             elementTexPath.InnerText = texPath;
 
             GetOrCreateNode(xml, elementGData, "graphicClass", out XmlElement elementGClass);

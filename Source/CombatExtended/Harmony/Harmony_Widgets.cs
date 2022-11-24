@@ -25,6 +25,6 @@ namespace CombatExtended.HarmonyCE
                 return false;
             }
             return true;
-        }        
+        }
     }
 }

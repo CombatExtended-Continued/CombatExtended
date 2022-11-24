@@ -20,12 +20,12 @@ namespace CombatExtended
     }
 
     /// <summary>
-	/// Primary responsibility of HoldTracker concept is to remember any items that the Pawn was instructed (forced) to pickup while having a loadout.
-	/// </summary>
-	/// <remarks>
-	/// Secondarily is also the primary party to consult when looking to automatically drop items since it is aware of HoldTracker concept as well as Loadout(Specific/Generic) concepts.
-	/// </remarks>
-	static class Utility_HoldTracker
+    /// Primary responsibility of HoldTracker concept is to remember any items that the Pawn was instructed (forced) to pickup while having a loadout.
+    /// </summary>
+    /// <remarks>
+    /// Secondarily is also the primary party to consult when looking to automatically drop items since it is aware of HoldTracker concept as well as Loadout(Specific/Generic) concepts.
+    /// </remarks>
+    static class Utility_HoldTracker
     {
         #region Fields
         static private int _tickLastPurge = 0;
@@ -43,7 +43,9 @@ namespace CombatExtended
         {
             // if the pawn doesn't have a normal loadout, nothing to do...
             if (pawn.GetLoadout().defaultLoadout)
+            {
                 return;
+            }
 
             // find out if we are already remembering this thing on this pawn...
             List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
@@ -89,7 +91,9 @@ namespace CombatExtended
         {
             List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
             if (recs != null && recs.Any(hr => hr.thingDef == thing.def))
+            {
                 return true;
+            }
             return false;
         }
 
@@ -102,7 +106,9 @@ namespace CombatExtended
         {
             List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
             if (recs == null || recs.NullOrEmpty())
+            {
                 return false;
+            }
             return recs.Any(r => r.pickedUp);
         }
 
@@ -126,12 +132,16 @@ namespace CombatExtended
             List<HoldRecord> recs = LoadoutManager.GetHoldRecords(pawn);
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
             if (recs == null || inventory == null)
+            {
                 return;
+            }
 
             for (int i = recs.Count - 1; i > 0; i--)
             {
                 if (recs[i].pickedUp && inventory.container.TotalStackCountOfDef(recs[i].thingDef) <= 0)
+                {
                     recs.RemoveAt(i);
+                }
             }
         }
 
@@ -150,7 +160,9 @@ namespace CombatExtended
             }
             HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
             if (rec != null)
+            {
                 recs.RemoveAt(recs.IndexOf(rec));
+            }
         }
 
         /// <summary>
@@ -180,7 +192,7 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Similar to GetExcessThing though narrower in scope.  If there is NOT a loadout which covers the equipped item, it should be dropped. 
+        /// Similar to GetExcessThing though narrower in scope.  If there is NOT a loadout which covers the equipped item, it should be dropped.
         /// </summary>
         /// <param name="pawn"></param>
         /// <param name="dropEquipment">Thing which should be unequiped.</param>
@@ -190,7 +202,9 @@ namespace CombatExtended
             Loadout loadout = pawn.GetLoadout();
             dropEquipment = null;
             if (loadout == null || (loadout != null && loadout.Slots.NullOrEmpty()) || pawn.equipment?.Primary == null)
+            {
                 return false;
+            }
 
             if (pawn.IsItemQuestLocked(pawn.equipment?.Primary))
             {
@@ -199,7 +213,7 @@ namespace CombatExtended
 
             //Check if equipment is part of the loadout
             LoadoutSlot eqSlot = loadout.Slots.FirstOrDefault(s => s.count >= 1 && ((s.thingDef != null && s.thingDef == pawn.equipment.Primary.def)
-                                                                                    || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
+                                 || (s.genericDef != null && s.genericDef.lambda(pawn.equipment.Primary.def))));
 
             //Check if equipment is in the forced pick-up items list
             HoldRecord eqRecord = pawn.GetHoldRecords()?.FirstOrDefault(s => s.count >= 1 && s.thingDef != null && s.thingDef == pawn.equipment.Primary.def);
@@ -226,7 +240,7 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Called when trying to find something to drop (ie coming back from a caravan).  This is useful even on pawns without a loadout. 
+        /// Called when trying to find something to drop (ie coming back from a caravan).  This is useful even on pawns without a loadout.
         /// </summary>
         /// <param name="dropThing">Thing to be dropped from inventory.</param>
         /// <param name="dropCount">Amount to drop from inventory.</param>
@@ -237,7 +251,9 @@ namespace CombatExtended
             dropCount = 0;
 
             if (pawn.inventory == null || pawn.inventory.innerContainer == null)
+            {
                 return false;
+            }
 
             Loadout loadout = pawn.GetLoadout();
             if (loadout == null || loadout.Slots.NullOrEmpty())
@@ -302,22 +318,30 @@ namespace CombatExtended
                 storage.Add(pawn.equipment.Primary.def, new Integer(1));
                 gun = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
                 if (gun != null && gun.UseAmmo && gun.CurrentAmmo != null)
+                {
                     storage.Add(gun.CurrentAmmo, new Integer(gun.CurMagCount));
+                }
             }
             // get the pawn's inventory
             foreach (Thing thing in pawn.inventory.innerContainer)
             {
                 Thing thing2 = thing.GetInnerIfMinified();
                 if (thing2 != null && !storage.ContainsKey(thing2.def))
+                {
                     storage.Add(thing2.def, new Integer(0));
+                }
                 storage[thing2.def].value += thing2.stackCount;
                 gun = thing2.TryGetComp<CompAmmoUser>();
                 if (gun != null && gun.UseAmmo && gun.CurrentAmmo != null)
                 {
                     if (storage.ContainsKey(gun.CurrentAmmo))
+                    {
                         storage[gun.CurrentAmmo].value += gun.CurMagCount;
+                    }
                     else
+                    {
                         storage.Add(gun.CurrentAmmo, new Integer(gun.CurMagCount));
+                    }
                 }
             }
 
@@ -343,7 +367,9 @@ namespace CombatExtended
             dropCount = 0;
 
             if (inventory == null || inventory.container == null || loadout == null || loadout.Slots.NullOrEmpty())
+            {
                 return false;
+            }
 
             Dictionary<ThingDef, Integer> listing = GetStorageByThingDef(pawn);
 
@@ -354,7 +380,9 @@ namespace CombatExtended
                 {
                     listing[slot.thingDef].value -= slot.count;
                     if (listing[slot.thingDef].value <= 0)
+                    {
                         listing.Remove(slot.thingDef);
+                    }
                 }
                 if (slot.genericDef != null)
                 {
@@ -376,7 +404,9 @@ namespace CombatExtended
                     }
                     // cleanup dictionary.
                     foreach (ThingDef def in killKeys)
+                    {
                         listing.Remove(def);
+                    }
                 }
             }
 

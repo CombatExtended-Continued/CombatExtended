@@ -14,7 +14,10 @@ namespace CombatExtended
         {
             var comp = pawn.TryGetComp<CompSuppressable>();
 
-            if (comp == null) return null;
+            if (comp == null)
+            {
+                return null;
+            }
 
             Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
 

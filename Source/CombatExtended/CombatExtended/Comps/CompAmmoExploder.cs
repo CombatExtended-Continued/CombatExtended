@@ -29,7 +29,7 @@ namespace CombatExtended
                     Rand.Chance(damExt.triggerChance)
                     &&
                     damExt.allowedDamageDefs.Contains(damageDef)
-                    )
+                )
                 {
                     DetonateCarriedAmmo();
                 }
@@ -48,28 +48,28 @@ namespace CombatExtended
                         if (proj.explosionRadius > 0f)
                         {
                             GenExplosionCE.DoExplosion
-                                (
-                                    this.parent.Position,
-                                    this.parent.Map,
-                                    proj.explosionRadius,
-                                    proj.damageDef,
-                                    null,
-                                    proj.GetDamageAmount(1f),
-                                    proj.armorPenetrationSharp,
-                                    postExplosionSpawnChance: proj.postExplosionSpawnChance,
-                                    postExplosionSpawnThingCount: proj.postExplosionSpawnThingCount,
-                                    postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
-                                    preExplosionSpawnChance: proj.preExplosionSpawnChance,
-                                    preExplosionSpawnThingCount: proj.preExplosionSpawnThingCount,
-                                    preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef
+                            (
+                                this.parent.Position,
+                                this.parent.Map,
+                                proj.explosionRadius,
+                                proj.damageDef,
+                                null,
+                                proj.GetDamageAmount(1f),
+                                proj.armorPenetrationSharp,
+                                postExplosionSpawnChance: proj.postExplosionSpawnChance,
+                                postExplosionSpawnThingCount: proj.postExplosionSpawnThingCount,
+                                postExplosionSpawnThingDef: proj.postExplosionSpawnThingDef,
+                                preExplosionSpawnChance: proj.preExplosionSpawnChance,
+                                preExplosionSpawnThingCount: proj.preExplosionSpawnThingCount,
+                                preExplosionSpawnThingDef: proj.preExplosionSpawnThingDef
 
-                                );
+                            );
                         }
                     }
 
                 }
             }
-            
+
         }
     }
 }

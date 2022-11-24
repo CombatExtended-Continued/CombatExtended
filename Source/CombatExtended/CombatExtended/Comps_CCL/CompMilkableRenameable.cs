@@ -3,7 +3,7 @@ using Verse;
 
 namespace CombatExtended
 {
-    
+
     public class CompMilkableRenameable : CompMilkable
     {
 

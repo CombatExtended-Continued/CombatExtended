@@ -13,17 +13,17 @@ namespace CombatExtended.Compatibility
     {
         static RaceAutoPatcher()
         {
-	    if (!Controller.settings.EnableRaceAutopatcher)
-	    {
-		return;
-	    }
+            if (!Controller.settings.EnableRaceAutopatcher)
+            {
+                return;
+            }
             #region Animal patching
             var animalsUnpatched = DefDatabase<ThingDef>.AllDefs.Where(x =>
-                   x.race != null &&
-                   x.race.Animal &&
-                   x.tools != null &&
-                   x.tools.Any(y => y != null && !(y is ToolCE))
-                );
+                                   x.race != null &&
+                                   x.race.Animal &&
+                                   x.tools != null &&
+                                   x.tools.Any(y => y != null && !(y is ToolCE))
+                                                                      );
 
             int patchCount = 0;
             foreach (ThingDef animal in animalsUnpatched)
@@ -75,7 +75,7 @@ namespace CombatExtended.Compatibility
                     animal.statBases.Add(RatingSharpBP);
                 }
 
-                
+
 
                 var RatingBlunt = animal.statBases.Find(y => y.stat == StatDefOf.ArmorRating_Blunt);
 
@@ -112,7 +112,7 @@ namespace CombatExtended.Compatibility
                 RaceUtil.PatchHARs();
             }
 
-           
+
 
             #endregion
 

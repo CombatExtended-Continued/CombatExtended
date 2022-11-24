@@ -24,14 +24,14 @@ namespace CombatExtended
             }
             switch (pawn.playerSettings.hostilityResponse)
             {
-                case HostilityResponseMode.Ignore:
-                    return null;
-                case HostilityResponseMode.Attack:
-                    return TryGetAttackNearbyEnemyJob(pawn);
-                case HostilityResponseMode.Flee:
-                    return TryGetFleeJob(pawn);
-                default:
-                    return null;
+            case HostilityResponseMode.Ignore:
+                return null;
+            case HostilityResponseMode.Attack:
+                return TryGetAttackNearbyEnemyJob(pawn);
+            case HostilityResponseMode.Flee:
+                return TryGetFleeJob(pawn);
+            default:
+                return null;
             }
         }
 
@@ -52,7 +52,7 @@ namespace CombatExtended
             // TODO evaluate if this is necessary?
             Pawn o = thing as Pawn;
             if (o != null) if
-                    (o.Downed || o.health.InPainShock)
+                (o.Downed || o.health.InPainShock)
                 {
                     return null;
                 }
@@ -78,7 +78,9 @@ namespace CombatExtended
                     {
                         Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary);
                         if (job != null)
+                        {
                             return job;
+                        }
                     }
 
                     return JobMaker.MakeJob(JobDefOf.AttackMelee, thing);

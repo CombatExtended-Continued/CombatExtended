@@ -16,10 +16,13 @@ namespace CombatExtended
         private Verb verbInt = null;
 
         private List<FireMode> availableFireModes = new List<FireMode>(Enum.GetNames(typeof(FireMode)).Length);
-        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length) { AimMode.AimedShot };
+        private List<AimMode> availableAimModes = new List<AimMode>(Enum.GetNames(typeof(AimMode)).Length)
+        {
+            AimMode.AimedShot
+        };
         private FireMode currentFireModeInt;
         private AimMode currentAimModeInt;
-	private bool newComp = true;
+        private bool newComp = true;
         public TargettingMode targetMode = TargettingMode.torso;
 
         #endregion
@@ -66,7 +69,7 @@ namespace CombatExtended
                     {
                         Log.ErrorOnce(parent.LabelCap + " has CompFireModes but no CompEquippable", 50020);
                     }
-                }                
+                }
                 return verbInt;
             }
         }
@@ -138,7 +141,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
             Scribe_Values.Look(ref currentAimModeInt, "currentAimMode", AimMode.AimedShot);
             Scribe_Values.Look(ref targetMode, "currentTargettingMode", TargettingMode.torso);
-	    Scribe_Values.Look(ref newComp, "newComp", false);
+            Scribe_Values.Look(ref newComp, "newComp", false);
         }
 
         public void InitAvailableFireModes()
@@ -173,7 +176,7 @@ namespace CombatExtended
             // Sanity check in case def changed
             if (newComp || !availableFireModes.Contains(currentFireModeInt) || !availableAimModes.Contains(currentAimModeInt))
             {
-		newComp = false;
+                newComp = false;
                 ResetModes();
             }
         }
@@ -187,7 +190,10 @@ namespace CombatExtended
             int currentFireModeNum = availableFireModes.IndexOf(currentFireModeInt);
             currentFireModeNum = (currentFireModeNum + 1) % availableFireModes.Count;
             currentFireModeInt = availableFireModes.ElementAt(currentFireModeNum);
-            if (availableFireModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_FireModes, KnowledgeAmount.Total);
+            if (availableFireModes.Count > 1)
+            {
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_FireModes, KnowledgeAmount.Total);
+            }
         }
 
         [Compatibility.Multiplayer.SyncMethod]
@@ -196,7 +202,10 @@ namespace CombatExtended
             int currentAimModeNum = availableAimModes.IndexOf(currentAimModeInt);
             currentAimModeNum = (currentAimModeNum + 1) % availableAimModes.Count;
             currentAimModeInt = availableAimModes.ElementAt(currentAimModeNum);
-            if (availableAimModes.Count > 1) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimModes, KnowledgeAmount.Total);
+            if (availableAimModes.Count > 1)
+            {
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_AimModes, KnowledgeAmount.Total);
+            }
         }
 
         [Compatibility.Multiplayer.SyncMethod]
@@ -204,18 +213,18 @@ namespace CombatExtended
         {
             switch (targetMode)
             {
-                case TargettingMode.torso:
-                    targetMode = TargettingMode.head;
-                    break;
-                case TargettingMode.head:
-                    targetMode = TargettingMode.legs;
-                    break;
-                case TargettingMode.legs:
-                    targetMode = TargettingMode.automatic;
-                    break;
-                case TargettingMode.automatic:
-                    targetMode = TargettingMode.torso;
-                    break;
+            case TargettingMode.torso:
+                targetMode = TargettingMode.head;
+                break;
+            case TargettingMode.head:
+                targetMode = TargettingMode.legs;
+                break;
+            case TargettingMode.legs:
+                targetMode = TargettingMode.automatic;
+                break;
+            case TargettingMode.automatic:
+                targetMode = TargettingMode.torso;
+                break;
             }
         }
 
@@ -224,9 +233,11 @@ namespace CombatExtended
         /// </summary>
         public void ResetModes()
         {
-	    //Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
+            //Required since availableFireModes.Capacity is set but its contents aren't so ElementAt(0) causes errors in some instances
             if (availableFireModes.Count > 0)
+            {
                 currentFireModeInt = availableFireModes.ElementAt(0);
+            }
 
             currentAimModeInt = Props.aiAimMode;
         }
@@ -250,18 +261,18 @@ namespace CombatExtended
 
                 switch (targetMode)
                 {
-                    case TargettingMode.torso:
-                        mode_name = "center";
-                        break;
-                    case TargettingMode.legs:
-                        mode_name = "legs";
-                        break;
-                    case TargettingMode.head:
-                        mode_name = "head";
-                        break;
-                    case TargettingMode.automatic:
-                        mode_name = "auto";
-                        break;
+                case TargettingMode.torso:
+                    mode_name = "center";
+                    break;
+                case TargettingMode.legs:
+                    mode_name = "legs";
+                    break;
+                case TargettingMode.head:
+                    mode_name = "head";
+                    break;
+                case TargettingMode.automatic:
+                    mode_name = "auto";
+                    break;
                 }
 
                 return ContentFinder<Texture2D>.Get("UI/Buttons/Targetting/" + mode_name);
@@ -314,7 +325,7 @@ namespace CombatExtended
                         action = ChangeTargetMode
                     };
                 }
-            } 
+            }
         }
 
         /*

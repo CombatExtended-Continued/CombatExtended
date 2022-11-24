@@ -18,7 +18,7 @@ using Verse.AI;
  *  L_000b: brtrue Label #2
  *  L_0010: ldnull
  *  L_0011: br Label #0
- * 
+ *
  */
 
 namespace CombatExtended.HarmonyCE
@@ -76,7 +76,9 @@ namespace CombatExtended.HarmonyCE
             }
 
             if (patchPhase < 2)
+            {
                 Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
+            }
         }
     }
 }

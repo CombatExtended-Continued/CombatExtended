@@ -86,14 +86,14 @@ namespace CombatExtended
                         result += "- " + AimMode.AimedShot.ToString() + "\n";
                         result += "- " + AimMode.SuppressFire.ToString() + "\n";
                     }
-                    
+
                 }
 
                 result += "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
 
                 result += "Recoil: " + Math.Round ( (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
                 result += "\n";
-               
+
                 result += "Sway: " + Math.Round( (req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
                 result += "\n";
 
@@ -184,7 +184,7 @@ namespace CombatExtended
             {
                 return null;
             }
-            
+
         }
 
         public override bool ShouldShowFor(StatRequest req)

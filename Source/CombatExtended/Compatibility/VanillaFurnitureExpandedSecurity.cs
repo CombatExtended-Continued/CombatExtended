@@ -36,13 +36,16 @@ namespace CombatExtended.Compatibility
             // Only do this after we're sure that Building_Shield is a thing.
             var type = typeof(Building_Shield);
             if (type != null)
+            {
                 CanFunctionPropertyGetter = MethodInvoker.GetHandler(AccessTools.PropertyGetter(typeof(Building_Shield), "CanFunction"));
+            }
 
             BlockerRegistry.RegisterCheckForCollisionCallback(CheckCollision);
             BlockerRegistry.RegisterImpactSomethingCallback(ImpactSomething);
         }
 
-        public IEnumerable<string> GetCompatList() {
+        public IEnumerable<string> GetCompatList()
+        {
             yield return "ArtilleryCompat";
         }
 
@@ -67,10 +70,10 @@ namespace CombatExtended.Compatibility
                     continue;
                 }
 
-		projectile.ExactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
-									    exactPosition,
-									    new Vector3(shield.Position.x, 0, shield.Position.z),
-									    shield.ShieldRadius * shield.ShieldRadius);
+                projectile.ExactPosition = BlockerRegistry.GetExactPosition(projectile.OriginIV3.ToVector3(),
+                                           exactPosition,
+                                           new Vector3(shield.Position.x, 0, shield.Position.z),
+                                           shield.ShieldRadius * shield.ShieldRadius);
 
                 if (!(projectile is ProjectileCE_Explosive))
                 {
@@ -103,15 +106,15 @@ namespace CombatExtended.Compatibility
                 return false;
             }
 
-	    if (shield.coveredCells.Contains(launcher.Position))
-	    {
-	      return false;
-	    }
-	    if (!shield.coveredCells.Contains(projectile.Position))
-	    {
-	      return false;
-	    }
-	    return true;
+            if (shield.coveredCells.Contains(launcher.Position))
+            {
+                return false;
+            }
+            if (!shield.coveredCells.Contains(projectile.Position))
+            {
+                return false;
+            }
+            return true;
         }
 
         private static void refreshShields(Map map)
@@ -121,8 +124,8 @@ namespace CombatExtended.Compatibility
             {
                 // Can't use AllBuildingsColonstOfClass because type may not exist.
 
-		IEnumerable<Building> ls = map.GetComponent<ListerThingsExtended>().listerShieldGens;
-		shields = ls.ToHashSet();
+                IEnumerable<Building> ls = map.GetComponent<ListerThingsExtended>().listerShieldGens;
+                shields = ls.ToHashSet();
                 lastCacheTick = thisTick;
                 lastCacheMap = map;
             }

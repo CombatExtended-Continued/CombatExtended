@@ -10,7 +10,7 @@ using Verse.AI;
 namespace CombatExtended
 {
     public class WeaponPlatform : ThingWithComps
-    {        
+    {
         public readonly List<AttachmentLink> attachments = new List<AttachmentLink>();
 
         private Quaternion drawQat;
@@ -26,7 +26,7 @@ namespace CombatExtended
         public List<AttachmentDef> TargetConfig
         {
             get
-            {                
+            {
                 return _targetConfig.ToList();
             }
             set
@@ -34,7 +34,7 @@ namespace CombatExtended
                 _targetConfig = value;
                 UpdateConfiguration();
             }
-        }      
+        }
 
         private AttachmentLink[] _curLinks;
         /// <summary>
@@ -45,10 +45,12 @@ namespace CombatExtended
             get
             {
                 if (_curLinks == null || _curLinks.Length != attachments.Count)
+                {
                     _curLinks = attachments.ToArray();
+                }
                 return _curLinks;
             }
-        }       
+        }
 
         /// <summary>
         /// Wether the target config match the current loadout
@@ -56,7 +58,7 @@ namespace CombatExtended
         public bool ConfigApplied
         {
             get
-            {                                
+            {
                 return _additionList.Count == 0 && _removalList.Count == 0;
             }
         }
@@ -67,7 +69,9 @@ namespace CombatExtended
             get
             {
                 if (_compEquippable == null)
+                {
                     _compEquippable = GetComp<CompEquippable>();
+                }
                 return _compEquippable;
             }
         }
@@ -80,11 +84,13 @@ namespace CombatExtended
             get
             {
                 if (false
-                    || CompEquippable == null
-                    || CompEquippable.PrimaryVerb == null
-                    || CompEquippable.PrimaryVerb.caster == null
-                    || ((CompEquippable?.parent?.ParentHolder as Pawn_EquipmentTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))                
-                    return null;                
+                        || CompEquippable == null
+                        || CompEquippable.PrimaryVerb == null
+                        || CompEquippable.PrimaryVerb.caster == null
+                        || ((CompEquippable?.parent?.ParentHolder as Pawn_EquipmentTracker)?.pawn is Pawn holderPawn && holderPawn != CompEquippable?.PrimaryVerb?.CasterPawn))
+                {
+                    return null;
+                }
                 return CompEquippable.PrimaryVerb.CasterPawn;
             }
         }
@@ -116,18 +122,22 @@ namespace CombatExtended
             get
             {
                 if (_defaultPart == null)
+                {
                     _defaultPart = new List<WeaponPlatformDef.WeaponGraphicPart>();
+                }
                 return _defaultPart;
             }
         }
-      
+
         private WeaponPlatformDef _platformDef;
         public WeaponPlatformDef Platform
         {
             get
             {
                 if (_platformDef == null)
+                {
                     _platformDef = (WeaponPlatformDef)def;
+                }
                 return _platformDef;
             }
         }
@@ -141,21 +151,23 @@ namespace CombatExtended
                 {
                     _LinkByDef.Clear();
                     foreach (AttachmentLink link in Platform.attachmentLinks)
+                    {
                         _LinkByDef.Add(link.attachment, link);
+                    }
                 }
                 return _LinkByDef;
             }
         }
 
         public WeaponPlatform()
-        {                        
-        }        
+        {
+        }
 
         public override void ExposeData()
         {
-            base.ExposeData();                      
+            base.ExposeData();
             // start - scribe the current attachments
-            List<AttachmentDef> defs = this.attachments.Select(l => l.attachment).ToList();            
+            List<AttachmentDef> defs = this.attachments.Select(l => l.attachment).ToList();
             Scribe_Collections.Look(ref defs, "attachments", LookMode.Def);
             if(Scribe.mode != LoadSaveMode.Saving && defs != null)
             {
@@ -165,16 +177,24 @@ namespace CombatExtended
             // scribe the remaining content
             Scribe_Collections.Look(ref _additionList, "additionList", LookMode.Def);
             if (_additionList == null)
+            {
                 _additionList = new List<AttachmentDef>();
+            }
             Scribe_Collections.Look(ref _removalList, "removalList", LookMode.Def);
             if (_removalList == null)
+            {
                 _removalList = new List<AttachmentDef>();
+            }
             // scribe the current config
             Scribe_Collections.Look(ref this._targetConfig, "targetConfig", LookMode.Def);
             if (this._targetConfig == null)
+            {
                 this._targetConfig = new List<AttachmentDef>();
+            }
             if (Scribe.mode != LoadSaveMode.Saving)
+            {
                 UpdateConfiguration();
+            }
         }
 
         /// <summary>
@@ -183,9 +203,9 @@ namespace CombatExtended
         /// <returns></returns>
         public IEnumerable<AttachmentDef> GetModificationList()
         {
-            return AdditionList.Concat(RemovalList);            
-        }                
-         
+            return AdditionList.Concat(RemovalList);
+        }
+
         public override void PostPostMake()
         {
             base.PostPostMake();
@@ -206,7 +226,9 @@ namespace CombatExtended
             List<InspectTabBase> tabs = base.GetInspectTabs()?.ToList() ?? new List<InspectTabBase>();
             // check if our tab is not in the inspectTabs
             if (!tabs.Any(t => t is ITab_AttachmentView))
+            {
                 tabs.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
+            }
             return tabs;
         }
 
@@ -221,7 +243,7 @@ namespace CombatExtended
                 _drawMat = new Matrix4x4();
                 _drawMat.SetTRS(drawLoc, drawQat, Vector3.one);
                 _drawLoc = drawLoc;
-            }            
+            }
             DrawPlatform(_drawMat, false);
         }
 
@@ -236,7 +258,7 @@ namespace CombatExtended
         }
 
         private List<Pair<Material, Mesh>> _graphicCache;
-        private List<Pair<Material, Mesh>> _graphicFlipCache;       
+        private List<Pair<Material, Mesh>> _graphicFlipCache;
 
         /// <summary>
         /// Used to render the actual weapon.
@@ -247,7 +269,9 @@ namespace CombatExtended
         public void DrawPlatform(Matrix4x4 matrix, bool flip = false, int layer = 0)
         {
             if (_graphicCache == null)
+            {
                 UpdateDrawCache();
+            }
             List<Pair<Material, Mesh>> cache = !flip ? _graphicCache : _graphicFlipCache;
             for (int i = 0; i < cache.Count; i++)
             {
@@ -260,11 +284,11 @@ namespace CombatExtended
         /// Used to update the internel config lists
         /// </summary>
         public void UpdateConfiguration()
-        {            
+        {
             _removalList.Clear();
             _additionList.Clear();
             /*
-             * <=========   attachments =========> 
+             * <=========   attachments =========>
              */
             _curLinks = attachments.Select(t => LinkByDef[t.attachment]).ToArray();
 
@@ -273,13 +297,17 @@ namespace CombatExtended
                 AttachmentDef def = link.attachment;
                 bool inConfig = _targetConfig.Any(d => d.index == def.index);
                 bool inContainer = attachments.Any(l => l.attachment.index == def.index);
-                if (inConfig && !inContainer)                
-                    _additionList.Add(def);                    
+                if (inConfig && !inContainer)
+                {
+                    _additionList.Add(def);
+                }
                 else if (!inConfig && inContainer)
-                    _removalList.Add(def);                                    
+                {
+                    _removalList.Add(def);
+                }
             }
             /*
-             * <========= default parts =========> 
+             * <========= default parts =========>
              */
             _defaultPart.Clear();
             foreach (WeaponPlatformDef.WeaponGraphicPart part in Platform.defaultGraphicParts)
@@ -287,15 +315,17 @@ namespace CombatExtended
                 /*
                  * We add default parts that enable use to change the graphics of the weapon
                  */
-                if (part.slotTags == null || part.slotTags.All(s => _curLinks.All(l => !l.attachment.slotTags.Contains(s))))                
+                if (part.slotTags == null || part.slotTags.All(s => _curLinks.All(l => !l.attachment.slotTags.Contains(s))))
+                {
                     _defaultPart.Add(part);
+                }
             }
             /*
-             * <========= graphic cache =========> 
+             * <========= graphic cache =========>
              */
             _graphicCache = null;
             _graphicFlipCache = null;
-        }               
+        }
 
         /// <summary>
         /// Used to rebuild rendering internel cache
@@ -345,6 +375,6 @@ namespace CombatExtended
                     _graphicFlipCache.Add(new Pair<Material, Mesh>(link.AttachmentMat, link.meshFlipTop));
                 }
             }
-        }        
+        }
     }
 }

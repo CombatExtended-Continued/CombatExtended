@@ -135,7 +135,7 @@ namespace CombatExtended
                     {
                         burstSwitcherPair.second--;
                     }
-                    
+
                 }
             }
             return base.TryCastShot();

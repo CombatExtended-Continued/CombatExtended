@@ -51,11 +51,11 @@ namespace CombatExtended.RocketGUI
         private static GUITextState GetGUIState(string text, float width)
         {
             return new GUITextState(
-                text,
-                Text.Font,
-                width,
-                Prefs.UIScale,
-                Text.CurFontStyle.fontSize);
+                       text,
+                       Text.Font,
+                       width,
+                       Prefs.UIScale,
+                       Text.CurFontStyle.fontSize);
         }
     }
 }

@@ -11,14 +11,14 @@ namespace CombatExtended.Lasers
     public class LaserBeamCE : BulletCE
     {
 
-	public override float DamageAmount
-	{
-	    get
-	    {
-		return base.DamageAmount * DamageModifier;
-	    }
-	}
-	
+        public override float DamageAmount
+        {
+            get
+            {
+                return base.DamageAmount * DamageModifier;
+            }
+        }
+
         public float DamageModifier = 1.0f;
         public LaserBeamDefCE laserBeamDef => base.def as LaserBeamDefCE;
 
@@ -26,7 +26,7 @@ namespace CombatExtended.Lasers
         {
 
         }
-        
+
         void TriggerEffect(EffecterDef effect, Vector3 position, Thing hitThing = null)
         {
             TriggerEffect(effect, IntVec3.FromVector3(position));
@@ -34,7 +34,10 @@ namespace CombatExtended.Lasers
 
         void TriggerEffect(EffecterDef effect, IntVec3 dest)
         {
-            if (effect == null) return;
+            if (effect == null)
+            {
+                return;
+            }
 
             var targetInfo = new TargetInfo(dest, Map, false);
 
@@ -46,7 +49,10 @@ namespace CombatExtended.Lasers
         public void SpawnBeam(Vector3 a, Vector3 b)
         {
             LaserBeamGraphicCE graphic = ThingMaker.MakeThing(laserBeamDef.beamGraphic, null) as LaserBeamGraphicCE;
-            if (graphic == null) return;
+            if (graphic == null)
+            {
+                return;
+            }
             graphic.ticksToDetonation = this.def.projectile.explosionDelay;
             graphic.projDef = laserBeamDef;
             graphic.Setup(launcher, equipment, a, b);
@@ -115,27 +121,32 @@ namespace CombatExtended.Lasers
             */
             Pawn pawn = launcher as Pawn;
             IDrawnWeaponWithRotation weapon = null;
-            if (pawn != null && pawn.equipment != null) weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
-            if (weapon == null) {
+            if (pawn != null && pawn.equipment != null)
+            {
+                weapon = pawn.equipment.Primary as IDrawnWeaponWithRotation;
+            }
+            if (weapon == null)
+            {
                 Building_LaserGunCE turret = launcher as Building_LaserGunCE;
-                if (turret != null) {
+                if (turret != null)
+                {
                     weapon = turret.Gun as IDrawnWeaponWithRotation;
                 }
             }
 
-	    if (hitThing is Pawn && shielded)
-	    {
-		DamageModifier *= laserBeamDef.shieldDamageMultiplier;
-	      	SpawnBeamReflections(muzzle, b, 5);
-	    }
-	    base.Impact(hitThing);
-            
+            if (hitThing is Pawn && shielded)
+            {
+                DamageModifier *= laserBeamDef.shieldDamageMultiplier;
+                SpawnBeamReflections(muzzle, b, 5);
+            }
+            base.Impact(hitThing);
+
         }
 
 
-	
 
 
-        
+
+
     }
 }

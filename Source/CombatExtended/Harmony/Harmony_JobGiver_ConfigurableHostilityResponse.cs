@@ -16,13 +16,15 @@ namespace CombatExtended.HarmonyCE
                 // Check for reload
                 var ammoComp = pawn.equipment.Primary?.TryGetComp<CompAmmoUser>();
                 if (ammoComp == null)
+                {
                     return;
+                }
 
                 if (!ammoComp.CanBeFiredNow)
                 {
                     __result = ammoComp.HasAmmo && !(pawn.jobs?.curDriver is IJobDriver_Tactical) ?
-                        JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) :
-                        JobMaker.MakeJob(JobDefOf.AttackMelee, __result.targetA);
+                               JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary) :
+                               JobMaker.MakeJob(JobDefOf.AttackMelee, __result.targetA);
                 }
             }
         }

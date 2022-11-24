@@ -14,13 +14,13 @@ namespace CombatExtended.HarmonyCE.Compatibility
     {
         /*
          * IF YOU ARE A MODDER PLEASE READ THIS...
-         * 
-         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value. 
+         *
+         * In order to make compatiblity with CE easier, we've implemented several empty functions that return a default value.
          * These are to be patched by either other mods or by CE it self inorder to make the process of changing simple things in CE a bit simpler.
-         * 
-         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>                  
+         *
+         * <==================================== Example of adding support for customHeadDrawSize form HAR in CE ====================================>
          */
-        // 
+        //
         //private static Type TypeOf_PartGenerator
         //{
         //    get
@@ -69,8 +69,8 @@ namespace CombatExtended.HarmonyCE.Compatibility
         //    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         //    {
         //        var local = generator.DeclareLocal(TypeOf_ThingDef_AlienRace);  // You must asign after Isinst so you can access stuff from the subclass
-        //        var l1 = generator.DefineLabel();       
-        //      
+        //        var l1 = generator.DefineLabel();
+        //
         //        yield return new CodeInstruction(OpCodes.Ldarg_0);
         //        yield return new CodeInstruction(OpCodes.Isinst, TypeOf_ThingDef_AlienRace);  // We check if the passed def is ThingDef_AlienRace
         //        yield return new CodeInstruction(OpCodes.Stloc_S, local);
@@ -93,7 +93,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
         //    }
         //}
         //
-        //<==================================== Example end ====================================>                  
+        //<==================================== Example end ====================================>
         //
 
         private static Type TypeOf_HarmonyPatches

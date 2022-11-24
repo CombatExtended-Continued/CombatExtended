@@ -14,7 +14,9 @@ namespace CombatExtended.HarmonyCE
             foreach (var code in instructions)
             {
                 if (code.opcode == OpCodes.Ldc_I4_S && (sbyte) code.operand == 45)
+                {
                     code.operand = 8;
+                }
                 yield return code;
             }
         }

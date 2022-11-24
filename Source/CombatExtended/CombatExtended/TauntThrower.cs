@@ -38,7 +38,9 @@ namespace CombatExtended
         public void TryThrowTaunt(RulePackDef rulePack, Pawn pawn)
         {
             if (!AllowThrowTauntNow(pawn))
+            {
                 return;
+            }
 
             string taunt = GrammarResolver.Resolve(rulePack.RulesPlusIncludes[0].keyword, new GrammarRequest { Includes = { rulePack } });
             if (taunt.NullOrEmpty())

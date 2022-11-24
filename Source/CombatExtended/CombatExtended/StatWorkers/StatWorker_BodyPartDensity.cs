@@ -6,7 +6,10 @@ namespace CombatExtended
 {
     public abstract class StatWorker_BodyPartDensity : StatWorker
     {
-        public abstract string UnitString { get; }
+        public abstract string UnitString
+        {
+            get;
+        }
 
         public abstract new float GetBaseValueFor(StatRequest req);
 

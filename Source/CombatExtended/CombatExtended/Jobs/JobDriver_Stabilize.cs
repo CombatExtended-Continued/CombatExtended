@@ -13,8 +13,20 @@ namespace CombatExtended
     {
         private const float baseTendDuration = 60f;
 
-        private Pawn Patient { get { return pawn.CurJob.targetA.Thing as Pawn; } }
-        private Medicine Medicine { get { return pawn.CurJob.targetB.Thing as Medicine; } }
+        private Pawn Patient
+        {
+            get
+            {
+                return pawn.CurJob.targetA.Thing as Pawn;
+            }
+        }
+        private Medicine Medicine
+        {
+            get
+            {
+                return pawn.CurJob.targetB.Thing as Medicine;
+            }
+        }
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -27,9 +39,12 @@ namespace CombatExtended
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             this.FailOnDestroyedNullOrForbidden(TargetIndex.B);
             this.FailOnNotDowned(TargetIndex.A);
-            this.AddEndCondition(delegate 
+            this.AddEndCondition(delegate
             {
-                if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized())) return JobCondition.Ongoing;
+                if (Patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
+                {
+                    return JobCondition.Ongoing;
+                }
                 Medicine.Destroy();
                 return JobCondition.Incompletable;
             });

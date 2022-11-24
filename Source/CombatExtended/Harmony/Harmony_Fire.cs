@@ -84,9 +84,9 @@ namespace CombatExtended.HarmonyCE
         internal static void Postfix(Fire __instance)
         {
             if (__instance.Spawned
-                && Controller.settings.SmokeEffects
-                && __instance.IsHashIntervalTick(Smoke.UpdateIntervalTicks)
-                && __instance.Position.Roofed(__instance.Map))
+                    && Controller.settings.SmokeEffects
+                    && __instance.IsHashIntervalTick(Smoke.UpdateIntervalTicks)
+                    && __instance.Position.Roofed(__instance.Map))
             {
                 if (__instance.Position.GetGas(__instance.Map) is Smoke existingSmoke)
                 {
@@ -154,7 +154,8 @@ namespace CombatExtended.HarmonyCE
                 }
                 mult /= coverageAbs;
                 __instance.fireSize += 0.00055f * mult * 1.5f;
-                if (__instance.fireSize < Fire.MinFireSize) {
+                if (__instance.fireSize < Fire.MinFireSize)
+                {
                     __instance.Destroy(DestroyMode.Vanish);
                 }
             }
@@ -202,13 +203,15 @@ namespace CombatExtended.HarmonyCE
 
             var tracker = fire.Map.GetComponent<WeatherTracker>();
             var angleDelta = spreadFar
-                ? _angleCurveNarrow.Evaluate(tracker.GetWindStrengthAt(fire.Position) * FireSpread.values.windSpeedMultiplier)
-                : _angleCurveWide.Evaluate(tracker.GetWindStrengthAt(fire.Position) * FireSpread.values.windSpeedMultiplier);
+                             ? _angleCurveNarrow.Evaluate(tracker.GetWindStrengthAt(fire.Position) * FireSpread.values.windSpeedMultiplier)
+                             : _angleCurveWide.Evaluate(tracker.GetWindStrengthAt(fire.Position) * FireSpread.values.windSpeedMultiplier);
             angleDelta *= 0.5f;
             var angle = Rand.Range(-angleDelta, angleDelta);
             var vec = tracker.WindDirection.RotatedBy(angle);
             if (spreadFar)
+            {
                 vec *= Rand.Range(1, Mathf.Max(2, tracker.GetWindStrengthAt(fire.Position) * FireSpread.values.windSpeedMultiplier));
+            }
 
             return vec.ToIntVec3();
         }
@@ -232,8 +235,8 @@ namespace CombatExtended.HarmonyCE
                 {
                     codes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     codes.Add(passedRadPattern
-                        ? new CodeInstruction(OpCodes.Ldc_I4_1)
-                        : new CodeInstruction(OpCodes.Ldc_I4_0));
+                              ? new CodeInstruction(OpCodes.Ldc_I4_1)
+                              : new CodeInstruction(OpCodes.Ldc_I4_0));
                     codes.Add(new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(Harmony_Fire_TrySpread), nameof(GetRandWindShift))));
 
                     passedRadPattern = true;

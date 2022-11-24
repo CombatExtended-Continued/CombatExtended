@@ -25,7 +25,10 @@ namespace CombatExtended.Lasers
         static bool Prefix(TurretTop __instance, float ___curRotationInt, Building_Turret ___parentTurret, Vector3 recoilDrawOffset, float recoilAngleOffset)
         {
             Building_LaserGunCE turret = ___parentTurret as Building_LaserGunCE;
-            if (turret == null) return true;
+            if (turret == null)
+            {
+                return true;
+            }
             float rotation = ___curRotationInt;
             if (turret.TargetCurrentlyAimingAt.HasThing)
             {
@@ -33,7 +36,10 @@ namespace CombatExtended.Lasers
             }
 
             IDrawnWeaponWithRotation gunRotation = turret.Gun as IDrawnWeaponWithRotation;
-            if (gunRotation != null) rotation += gunRotation.RotationOffset;
+            if (gunRotation != null)
+            {
+                rotation += gunRotation.RotationOffset;
+            }
 
             Material material = ___parentTurret.def.building.turretTopMat;
             SpinningLaserGunTurret spinningGun = turret.Gun as SpinningLaserGunTurret;

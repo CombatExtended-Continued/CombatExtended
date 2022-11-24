@@ -16,26 +16,29 @@ namespace CombatExtended
         public static Settings settings;
         public static Controller instant;
         public static ModContentPack content;
-	private static Patches patches;
+        private static Patches patches;
 
-	public Type GetSettingsType() {
-	    return typeof(Settings);
-	}
-
-	public Controller() {
-	    patches = new Patches();
-	}
-
-	public IEnumerable<string> GetCompatList() {
-	    return patches.GetCompatList();
-	}
-	
-	public void PostLoad(ModContentPack content, ISettingsCE settings)
+        public Type GetSettingsType()
         {
-	    Controller.instant = this;
+            return typeof(Settings);
+        }
+
+        public Controller()
+        {
+            patches = new Patches();
+        }
+
+        public IEnumerable<string> GetCompatList()
+        {
+            return patches.GetCompatList();
+        }
+
+        public void PostLoad(ModContentPack content, ISettingsCE settings)
+        {
+            Controller.instant = this;
             Controller.content = content;
             Controller.settings = (Settings) settings;
-            
+
             // Apply Harmony patches
             HarmonyBase.InitPatches();
 
@@ -55,7 +58,9 @@ namespace CombatExtended
 
             // Tutorial popup
             if (Controller.settings.ShowTutorialPopup && !Prefs.AdaptiveTrainingEnabled)
+            {
                 LongEventHandler.QueueLongEvent(DoTutorialPopup, "CE_LongEvent_TutorialPopup", false, null);
+            }
 
             LongEventHandler.QueueLongEvent(patches.Install, "CE_LongEvent_CompatibilityPatches", false, null);
 
@@ -76,7 +81,7 @@ namespace CombatExtended
             });
 
             var dialog = new Dialog_MessageBox("CE_EnableTutorText".Translate(), "CE_EnableTutorDisable".Translate(), disableAction, "CE_EnableTutorEnable".Translate(),
-                enableAction, null, true);
+                                               enableAction, null, true);
             Find.WindowStack.Add(dialog);
         }
 

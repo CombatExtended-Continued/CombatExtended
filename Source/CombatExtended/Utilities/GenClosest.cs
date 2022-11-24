@@ -83,7 +83,7 @@ namespace CombatExtended.Utilities
             return ThingsReachableFrom(thing.Map, tracker.SimilarInRangeOf(thing, range), thing, pathEndMode, traverseMode, danger);
         }
 
-	public static IEnumerable<Thing> PawnsNearSegment(this IntVec3 origin, IntVec3 destination, Map map, float range, bool behind=false)
+        public static IEnumerable<Thing> PawnsNearSegment(this IntVec3 origin, IntVec3 destination, Map map, float range, bool behind=false)
         {
             ThingsTracker tracker = map.GetThingTracker();
             return tracker.ThingsNearSegment(TrackedThingsRequestCategory.Pawns, origin, destination, range, behind).Select(t => t as Pawn);

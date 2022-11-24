@@ -23,12 +23,12 @@ namespace CombatExtended
             {
                 return new Vector2(1000, 675);
             }
-        }        
+        }
 
         public Window_AttachmentsEditor(WeaponPlatform weapon)
         {
             this.weapon = weapon;
-            this.weaponDef = weapon.Platform;            
+            this.weaponDef = weapon.Platform;
             this.editor = new Fragment_AttachmentEditor(weapon);
             this.layer = WindowLayer.Dialog;
             this.resizer = new WindowResizer();
@@ -39,10 +39,10 @@ namespace CombatExtended
         }
 
         public Window_AttachmentsEditor(WeaponPlatformDef weaponDef, List<AttachmentLink> attachments, Action<List<AttachmentLink>> applyAction)
-        {           
+        {
             this.applyAction = applyAction;
             this.weaponDef = weaponDef;
-            this.editor = new Fragment_AttachmentEditor(weaponDef, attachments?.ToList());            
+            this.editor = new Fragment_AttachmentEditor(weaponDef, attachments?.ToList());
             this.layer = WindowLayer.Dialog;
             this.resizer = new WindowResizer();
             this.forcePause = true;
@@ -54,7 +54,7 @@ namespace CombatExtended
         public override void DoWindowContents(Rect inRect)
         {
             GUIUtility.ExecuteSafeGUIAction(() =>
-            {                
+            {
                 Rect titleRect = inRect;
                 Text.Font = GameFont.Medium;
                 titleRect.xMin += 5;
@@ -67,14 +67,14 @@ namespace CombatExtended
             Rect rect = inRect;
             rect.height = 550;
             editor.DoContents(rect);
-            inRect.yMin += 550 + 5;           
+            inRect.yMin += 550 + 5;
             GUIUtility.ExecuteSafeGUIAction(() =>
             {
                 Text.Font = GameFont.Small;
                 Rect actionRect = inRect;
                 actionRect.yMin += 5;
                 actionRect.width = 300;
-                actionRect = actionRect.CenteredOnXIn(inRect);                
+                actionRect = actionRect.CenteredOnXIn(inRect);
                 GUI.color = Color.red;
                 if (Widgets.ButtonText(actionRect.RightPartPixels(146), "CE_Close".Translate()))
                 {
@@ -93,7 +93,7 @@ namespace CombatExtended
         /// Used to apply the current selections
         /// </summary>
         private void Apply()
-        {            
+        {
             List<AttachmentLink> selected = editor.CurConfig;
             // Set the weapons config
             if (weapon != null)
@@ -105,7 +105,9 @@ namespace CombatExtended
                 {
                     Job job = WorkGiver_ModifyWeapon.TryGetModifyWeaponJob(weapon.Wielder, weapon);
                     if (job != null)
+                    {
                         weapon.Wielder.jobs.StartJob(job, JobCondition.InterruptOptional);
+                    }
                 }
                 // if god mode is on insta apply everything
                 if (Prefs.DevMode && DebugSettings.godMode)
@@ -115,8 +117,10 @@ namespace CombatExtended
                     weapon.UpdateConfiguration();
                 }
             }
-            if(applyAction != null)            
-               applyAction(selected);            
+            if(applyAction != null)
+            {
+                applyAction(selected);
+            }
         }
     }
 }

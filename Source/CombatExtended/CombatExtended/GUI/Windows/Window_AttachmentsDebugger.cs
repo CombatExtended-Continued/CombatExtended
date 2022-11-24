@@ -29,13 +29,13 @@ namespace CombatExtended
         private string searchText = "";
 
         public Window_AttachmentsDebugger(WeaponPlatformDef weaponDef)
-        {            
+        {
             this.links = weaponDef.attachmentLinks.ToList();
-            this.layer = WindowLayer.Super;            
+            this.layer = WindowLayer.Super;
             this.resizer = new WindowResizer();
-            this.forcePause = true;            
+            this.forcePause = true;
             this.doCloseButton = false;
-            this.doCloseX = false;           
+            this.doCloseX = false;
             this.weaponDef = (WeaponPlatformDef)weaponDef;
             foreach (AttachmentLink link in links)
             {
@@ -45,13 +45,15 @@ namespace CombatExtended
             foreach (AttachmentDef def in DefDatabase<AttachmentDef>.AllDefs)
             {
                 if (links.Any(l => l.attachment == def))
+                {
                     continue;
+                }
                 AttachmentLink link = new AttachmentLink();
                 link.attachment = def;
                 link.PrepareTexture(weaponDef);
                 links.Add(link);
                 this.fake.Add(link, true);
-                this.hidden.Add(link, true);                
+                this.hidden.Add(link, true);
             }
             this.UpdateRenderingCache();
         }
@@ -72,7 +74,9 @@ namespace CombatExtended
             {
                 GUIUtility.RestoreGUIState();
                 if (error != null)
+                {
                     throw error;
+                }
             }
         }
 
@@ -81,7 +85,9 @@ namespace CombatExtended
             base.Close(doCloseSound);
             this.weaponDef.attachmentLinks = links.Where(l => weaponDef.attachmentLinks.Contains(l)).ToList();
             foreach (AttachmentLink link in this.weaponDef.attachmentLinks)
+            {
                 link.PrepareTexture(this.weaponDef);
+            }
         }
 
         private int _counter = 0;
@@ -90,10 +96,12 @@ namespace CombatExtended
         {
             base.WindowOnGUI();
             if (_counter++ % 60 == 0)
-            {               
+            {
                 this.weaponDef.attachmentLinks = links.Where(l => weaponDef.attachmentLinks.Contains(l)).ToList();
                 foreach (AttachmentLink link in this.weaponDef.attachmentLinks)
+                {
                     link.PrepareTexture(this.weaponDef);
+                }
                 this.UpdateRenderingCache();
             }
         }
@@ -118,9 +126,11 @@ namespace CombatExtended
             foreach (AttachmentLink link in links)
             {
                 if (true
-                    && !searchString.NullOrEmpty()
-                    && !link.attachment.label.ToLower().Contains(searchString))
+                        && !searchString.NullOrEmpty()
+                        && !link.attachment.label.ToLower().Contains(searchString))
+                {
                     continue;
+                }
                 if(!suggestionsStarted && fake[link])
                 {
                     suggestionsStarted = true;
@@ -130,18 +140,20 @@ namespace CombatExtended
                 }
                 bool showen = !this.hidden[link];
                 if (collapsible.CheckboxLabeled($"{link.attachment.label}", ref showen, fontSize: GameFont.Small))
+                {
                     UpdateRenderingCache();
+                }
                 this.hidden[link] = !showen;
                 if (showen)
                 {
                     collapsible.Gap(2);
                     collapsible.Label($"current drawOffset value:", fontSize: GameFont.Tiny);
                     collapsible.Lambda(18, (rect) =>
-                     {
-                         Text.Font = GameFont.Tiny;
-                         GUI.color = Color.green;
-                         Widgets.TextField(rect, $"({Math.Round(link.drawOffset.x, 3)},{Math.Round(link.drawOffset.y, 3)})");
-                     }, useMargins: true);
+                    {
+                        Text.Font = GameFont.Tiny;
+                        GUI.color = Color.green;
+                        Widgets.TextField(rect, $"({Math.Round(link.drawOffset.x, 3)},{Math.Round(link.drawOffset.y, 3)})");
+                    }, useMargins: true);
                     collapsible.Gap(2);
                     collapsible.Lambda(20, (rect) =>
                     {
@@ -187,14 +199,16 @@ namespace CombatExtended
             foreach (WeaponPlatformDef.WeaponGraphicPart part in weaponDef.defaultGraphicParts)
             {
                 if (!links.Any(l => l.attachment.slotTags?.Any(s => part.slotTags?.Contains(s) ?? false) ?? false))
-                    parts.Add(part);                    
+                {
+                    parts.Add(part);
+                }
             }
         }
 
         private void DoLeftPanel(Rect inRect)
         {
             DoPreview(inRect);
-        }        
+        }
 
         private void DoPreview(Rect inRect)
         {
@@ -202,10 +216,10 @@ namespace CombatExtended
             rect.width = Mathf.Min(inRect.width, inRect.height);
             rect.height = rect.width;
             rect = rect.CenteredOnXIn(inRect);
-            rect = rect.CenteredOnYIn(inRect);            
+            rect = rect.CenteredOnYIn(inRect);
             Widgets.DrawBoxSolid(rect, Widgets.MenuSectionBGBorderColor);
             Widgets.DrawBoxSolid(rect.ContractedBy(1), new Color(0.2f, 0.2f, 0.2f));
             GUIUtility.DrawWeaponWithAttachments(rect, weaponDef, links.Where(l => !hidden[l]).ToHashSet(), parts: parts);
-        }        
+        }
     }
 }

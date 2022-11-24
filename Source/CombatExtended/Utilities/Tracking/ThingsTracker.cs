@@ -35,7 +35,9 @@ namespace CombatExtended.Utilities
                 return tracker;
             }
             else if (fallbackMode)
+            {
                 throw new Exception($"GetTracker has failed twice for index {index}");
+            }
             Map[] tempMaps = new Map[Math.Max(maps.Length * 2, index + 1)];
             ThingsTracker[] tempComps = new ThingsTracker[Math.Max(comps.Length * 2, index + 1)];
             Array.Copy(maps, 0, tempMaps, 0, maps.Length);
@@ -47,12 +49,12 @@ namespace CombatExtended.Utilities
 
         private ThingsTrackingModel[][] trackers;
         private ThingsTrackingModel pawnsTracker;
-        private ThingsTrackingModel weaponsTracker;        
+        private ThingsTrackingModel weaponsTracker;
         private ThingsTrackingModel apparelTracker;
         private ThingsTrackingModel ammoTracker;
         private ThingsTrackingModel medicineTracker;
         private ThingsTrackingModel flaresTracker;
-        private ThingsTrackingModel attachmentTracker;        
+        private ThingsTrackingModel attachmentTracker;
 
         public ThingsTracker(Map map) : base(map)
         {
@@ -62,85 +64,145 @@ namespace CombatExtended.Utilities
             apparelTracker = new ThingsTrackingModel(null, map, this);
             medicineTracker = new ThingsTrackingModel(null, map, this);
             flaresTracker = new ThingsTrackingModel(null, map, this);
-            attachmentTracker = new ThingsTrackingModel(null, map, this); ;            
+            attachmentTracker = new ThingsTrackingModel(null, map, this); ;
 
             trackers = new ThingsTrackingModel[DefDatabase<ThingDef>.AllDefs.Max((def) => def.index) + 1][];
             for (int i = 0; i < trackers.Length; i++)
+            {
                 trackers[i] = new ThingsTrackingModel[2];
+            }
 
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.race != null || d.category == ThingCategory.Pawn))
+            {
                 trackers[def.index][1] = pawnsTracker;
+            }
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsWeapon))
+            {
                 trackers[def.index][1] = weaponsTracker;
+            }
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsApparel))
+            {
                 trackers[def.index][1] = apparelTracker;
+            }
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.thingClass == typeof(Flare)))
+            {
                 trackers[def.index][1] = flaresTracker;
+            }
             foreach (var def in DefDatabase<ThingDef>.AllDefs.Where(d => d.IsMedicine))
+            {
                 trackers[def.index][1] = medicineTracker;
+            }
             foreach (var def in DefDatabase<AmmoDef>.AllDefs)
+            {
                 trackers[def.index][1] = ammoTracker;
+            }
             foreach (var def in DefDatabase<AttachmentDef>.AllDefs)
-                trackers[def.index][1] = attachmentTracker;            
+            {
+                trackers[def.index][1] = attachmentTracker;
+            }
 
             if (validDefs != null)
+            {
                 return;
+            }
 
             validDefs = new bool[ushort.MaxValue];
             foreach (var def in DefDatabase<ThingDef>.AllDefs)
             {
                 if (def.thingClass == typeof(Flare))
+                {
                     validDefs[def.index] = true;
+                }
                 else if (def.thingClass == typeof(WeaponPlatform))
+                {
                     validDefs[def.index] = true;
+                }
                 else if (def.category == ThingCategory.Mote)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Filth)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Building)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Gas)
-                    validDefs[def.index] = false;                
+                {
+                    validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Ethereal)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Projectile)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Plant)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.PsychicEmitter)
+                {
                     validDefs[def.index] = false;
+                }
                 else if (def.category == ThingCategory.Attachment)
+                {
                     validDefs[def.index] = false;
+                }
                 else
+                {
                     validDefs[def.index] = true;
+                }
             }
             foreach (var def in DefDatabase<FleckDef>.AllDefs)
+            {
                 validDefs[def.index] = false;
+            }
         }
 
         public override void MapComponentOnGUI()
         {
             base.MapComponentOnGUI();
             if (!Controller.settings.DebugGenClosetPawn)
+            {
                 return;
+            }
             if (Find.Selector.SelectedObjects.Count == 0)
+            {
                 return;
+            }
             var thing = Find.Selector.SelectedObjects.Where(s => s is Thing).Select(s => s as Thing).First();
             if (IsValidTrackableThing(thing))
             {
                 IEnumerable<Thing> others;
                 if (thing is Pawn)
+                {
                     others = GenClosest.PawnsInRange(thing.Position, map, 50);
+                }
                 else if (thing is AmmoThing)
+                {
                     others = GenClosest.AmmoInRange(thing.Position, map, 50);
+                }
                 else if (thing.def.IsApparel)
+                {
                     others = GenClosest.ApparelInRange(thing.Position, map, 50);
+                }
                 else if (thing.def.IsWeapon)
+                {
                     others = GenClosest.WeaponsInRange(thing.Position, map, 50);
+                }
                 else if (thing.def is AttachmentDef)
+                {
                     others = GenClosest.AttachmentsInRange(thing.Position, map, 50);
+                }
                 else
+                {
                     others = GenClosest.SimilarInRange(thing, 50);
+                }
                 Vector2 a = UI.MapToUIPosition(thing.DrawPos);
                 Vector2 b;
                 Vector2 mid;
@@ -162,7 +224,7 @@ namespace CombatExtended.Utilities
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> SimilarInRangeOf(Thing thing, float range) => ThingsInRangeOf(thing.def, thing.Position, range);
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Thing> ThingsNearSegment(TrackedThingsRequestCategory category, IntVec3 origin, IntVec3 destination, float range, bool behind=false)
         {
             ThingsTrackingModel tracker = GetModelFor(category);
@@ -179,7 +241,9 @@ namespace CombatExtended.Utilities
         public IEnumerable<Thing> ThingsInRangeOf(ThingDef def, IntVec3 cell, float range)
         {
             if (!IsValidTrackableDef(def))
+            {
                 throw new NotSupportedException();
+            }
             ThingsTrackingModel[] trackers = GetModelsFor(def);
             return trackers[0].ThingsInRangeOf(cell, range);
         }
@@ -187,19 +251,27 @@ namespace CombatExtended.Utilities
         public void Register(Thing thing)
         {
             if (!IsValidTrackableThing(thing))
+            {
                 return;
+            }
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
+            {
                 trackers[i]?.Register(thing);
+            }
         }
 
         public void Remove(Thing thing)
         {
             if (!IsValidTrackableThing(thing))
+            {
                 return;
+            }
             ThingsTrackingModel[] trackers = GetModelsFor(thing);
             for (int i = 0; i < trackers.Length; i++)
+            {
                 trackers[i]?.DeRegister(thing);
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -209,7 +281,9 @@ namespace CombatExtended.Utilities
         {
             var result = trackers[def.index];
             if (result[0] != null)
+            {
                 return result;
+            }
             result[0] = new ThingsTrackingModel(def, map, this);
             return result;
         }
@@ -219,22 +293,22 @@ namespace CombatExtended.Utilities
         {
             switch (category)
             {
-                case TrackedThingsRequestCategory.Pawns:
-                    return pawnsTracker;
-                case TrackedThingsRequestCategory.Ammo:
-                    return ammoTracker;
-                case TrackedThingsRequestCategory.Apparel:
-                    return apparelTracker;
-                case TrackedThingsRequestCategory.Weapons:
-                    return weaponsTracker;
-                case TrackedThingsRequestCategory.Medicine:
-                    return medicineTracker;
-                case TrackedThingsRequestCategory.Flares:
-                    return flaresTracker;
-                case TrackedThingsRequestCategory.Attachments:
-                    return attachmentTracker;
-                default:
-                    throw new NotSupportedException();
+            case TrackedThingsRequestCategory.Pawns:
+                return pawnsTracker;
+            case TrackedThingsRequestCategory.Ammo:
+                return ammoTracker;
+            case TrackedThingsRequestCategory.Apparel:
+                return apparelTracker;
+            case TrackedThingsRequestCategory.Weapons:
+                return weaponsTracker;
+            case TrackedThingsRequestCategory.Medicine:
+                return medicineTracker;
+            case TrackedThingsRequestCategory.Flares:
+                return flaresTracker;
+            case TrackedThingsRequestCategory.Attachments:
+                return attachmentTracker;
+            default:
+                throw new NotSupportedException();
             }
         }
 
@@ -245,26 +319,34 @@ namespace CombatExtended.Utilities
         public static bool IsValidTrackableDef(ThingDef def) => def?.index >= 0 && def.index < validDefs.Length && validDefs[def.index];
 
         public void Notify_Spawned(Thing thing)
-        {            
+        {
             if (!IsValidTrackableThing(thing))
+            {
                 return;
+            }
             Register(thing);
         }
 
         public void Notify_DeSpawned(Thing thing)
         {
             if (!IsValidTrackableThing(thing))
+            {
                 return;
+            }
             Remove(thing);
         }
 
         public void Notify_PositionChanged(Thing thing)
         {
             if (!IsValidTrackableThing(thing))
+            {
                 return;
+            }
             ThingsTrackingModel[] trackers = GetModelsFor(thing.def);
             for (int i = 0; i < trackers.Length; i++)
+            {
                 trackers[i]?.Notify_ThingPositionChanged(thing);
+            }
         }
     }
 }

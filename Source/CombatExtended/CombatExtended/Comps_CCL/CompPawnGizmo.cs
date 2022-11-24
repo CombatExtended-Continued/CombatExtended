@@ -9,8 +9,8 @@ namespace CombatExtended
         {
             var pawn = parent as Pawn;
             var equip = pawn != null
-                ? pawn.equipment.Primary
-                : null;
+                        ? pawn.equipment.Primary
+                        : null;
 
             if(
                 ( equip != null )&&

@@ -31,7 +31,7 @@ namespace CombatExtended.HarmonyCE
                     __result = JobGiver_Reload.MakeReloadJob(compReloadable, droppedAmmo);
                     return false;
                 }
-                
+
             }
             return true;
         }

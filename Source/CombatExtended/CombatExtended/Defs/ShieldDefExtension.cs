@@ -20,14 +20,20 @@ namespace CombatExtended
             {
                 foreach(BodyPartGroupDef group in shieldCoverage)
                 {
-                    if (part.IsInGroup(group)) return true;
+                    if (part.IsInGroup(group))
+                    {
+                        return true;
+                    }
                 }
             }
             if (!crouchCoverage.NullOrEmpty() && pawn.IsCrouching())
             {
                 foreach(BodyPartGroupDef group in crouchCoverage)
                 {
-                    if (part.IsInGroup(group)) return true;
+                    if (part.IsInGroup(group))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

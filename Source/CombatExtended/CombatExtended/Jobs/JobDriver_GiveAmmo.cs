@@ -19,27 +19,27 @@ namespace CombatExtended
         {
             yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch);
             yield return Toils_General.Do(
-                delegate
+                             delegate
+            {
+                var targetPawn = (Pawn)TargetA.Thing;
+
+                var ammoGiverComp = targetPawn.TryGetComp<CompAmmoGiver>();
+
+                var newThing = ThingMaker.MakeThing(TargetB.Thing.def);
+
+                newThing.HitPoints = TargetB.Thing.HitPoints;
+
+                newThing.stackCount = ammoGiverComp.ammoAmountToGive;
+
+                TargetB.Thing.stackCount -= ammoGiverComp.ammoAmountToGive;
+
+                if (TargetB.Thing.stackCount <= 0)
                 {
-                    var targetPawn = (Pawn)TargetA.Thing;
+                    TargetB.Thing.Destroy();
+                }
 
-                    var ammoGiverComp = targetPawn.TryGetComp<CompAmmoGiver>();
-
-                    var newThing = ThingMaker.MakeThing(TargetB.Thing.def);
-
-                    newThing.HitPoints = TargetB.Thing.HitPoints;
-
-                    newThing.stackCount = ammoGiverComp.ammoAmountToGive;
-
-                    TargetB.Thing.stackCount -= ammoGiverComp.ammoAmountToGive;
-
-                    if (TargetB.Thing.stackCount <= 0)
-                    {
-                        TargetB.Thing.Destroy();
-                    }
-
-                    targetPawn.inventory.TryAddItemNotForSale(newThing);
-                });
+                targetPawn.inventory.TryAddItemNotForSale(newThing);
+            });
         }
     }
 }

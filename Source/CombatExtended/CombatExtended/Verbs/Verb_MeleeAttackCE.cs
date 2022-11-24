@@ -10,12 +10,12 @@ using Verse.Sound;
 namespace CombatExtended
 {
     /* Copied from Verb_MeleeAttack
-     * 
-     * Added dodge/parry mechanics, crits, height check. 
-     * 
-     * Unmodified methods should be kept up-to-date with vanilla between Alphas (at least as far as logic is concerned) so long as they don't interfere with our own. 
+     *
+     * Added dodge/parry mechanics, crits, height check.
+     *
+     * Unmodified methods should be kept up-to-date with vanilla between Alphas (at least as far as logic is concerned) so long as they don't interfere with our own.
      * Please tag changes you're making from vanilla.
-     * 
+     *
      * -NIA
      */
     public class Verb_MeleeAttackCE : Verb_MeleeAttack
@@ -30,14 +30,14 @@ namespace CombatExtended
         private const float HitXP = 200;    // Vanilla is 250
         private const float DodgeXP = 50;
         private const float ParryXP = 50;
-        private const float CritXP = 100;        
+        private const float CritXP = 100;
 
         /* Base stats
-         * 
+         *
          * These are the baseline stats we want for crit/dodge/parry for pawns of equal skill. These need to be the same as set in the base factors set in the
          * stat defs. Ideally we would access them from the defs but the relevant values are all set to private and there is no real way to get at them that I
          * can see.
-         * 
+         *
          * -NIA
          */
 
@@ -51,7 +51,11 @@ namespace CombatExtended
 
         public ToolCE ToolCE => (tool as ToolCE);
 
-        public static Verb_MeleeAttackCE LastAttackVerb { get; private set; }   // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
+        public static Verb_MeleeAttackCE LastAttackVerb
+        {
+            get;    // Hack to get around DamageInfo not passing the tool to ArmorUtilityCE
+            private set;
+        }
 
         public float ArmorPenetrationSharp => (tool as ToolCE)?.armorPenetrationSharp * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
         public float ArmorPenetrationBlunt => (tool as ToolCE)?.armorPenetrationBlunt * (EquipmentSource?.GetStatValue(CE_StatDefOf.MeleePenetrationFactor) ?? 1) ?? 0;
@@ -69,7 +73,9 @@ namespace CombatExtended
                     for (int i = 0; i < links.Length; i++)
                     {
                         if (links[i].attachment == ToolCE.requiredAttachment)
+                        {
                             return true;
+                        }
                     }
                     return false;
                 }
@@ -93,12 +99,12 @@ namespace CombatExtended
         #region Methods
 
         public override bool Available()
-        {            
+        {
             return Enabled && base.Available();
         }
 
         public override bool IsUsableOn(Thing target)
-        {            
+        {
             return Enabled && base.IsUsableOn(target);
         }
 
@@ -190,14 +196,14 @@ namespace CombatExtended
                     var parryChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeParryChance, BaseParryChance, counterParryBonus);
                     if (!surpriseAttack && defender != null && CanDoParry(defender) && Rand.Chance(parryChance))
                     {
-			var deflectChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance);
+                        var deflectChance = GetComparativeChanceAgainst(defender, casterPawn, CE_StatDefOf.MeleeCritChance, BaseCritChance);
                         // Attack is parried
                         Apparel shield = defender.apparel.WornApparel.FirstOrDefault(x => x is Apparel_Shield);
                         bool isShieldBlock = shield != null && Rand.Chance(ShieldBlockChance);
                         Thing parryThing = isShieldBlock ? shield
-                            : defender.equipment?.Primary ?? defender;
+                                           : defender.equipment?.Primary ?? defender;
 
-			bool deflected = Rand.Chance(deflectChance);
+                        bool deflected = Rand.Chance(deflectChance);
                         if (Rand.Chance(deflectChance))
                         {
                             // Do a riposte
@@ -212,10 +218,10 @@ namespace CombatExtended
                             // Do a parry
                             DoParry(defender, parryThing, false, deflected);
                             moteText = "CE_TextMote_Blocked".Translate();
-			    if (deflected)
-			    {
-				moteText = "CE_TextMote_Parried".Translate();
-			    }	
+                            if (deflected)
+                            {
+                                moteText = "CE_TextMote_Parried".Translate();
+                            }
                             CreateCombatLog((ManeuverDef maneuver) => maneuver.combatLogRulesMiss, false); //placeholder
 
                             defender.skills?.Learn(SkillDefOf.Melee, ParryXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
@@ -313,8 +319,8 @@ namespace CombatExtended
             float damAmount = verbProps.AdjustedMeleeDamageAmount(this, CasterPawn);
             var critModifier = isCrit && verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp &&
                                !CasterPawn.def.race.Animal
-                ? 2
-                : 1;
+                               ? 2
+                               : 1;
             var armorPenetration = (verbProps.meleeDamageDef.armorCategory == DamageArmorCategoryDefOf.Sharp ? ArmorPenetrationSharp : ArmorPenetrationBlunt) * critModifier;
             DamageDef damDef = verbProps.meleeDamageDef;
             BodyPartGroupDef bodyPartGroupDef = null;
@@ -322,12 +328,16 @@ namespace CombatExtended
 
             if (EquipmentSource != null && EquipmentSource != CasterPawn)
             {
-				//crits force a max damage variation roll
+                //crits force a max damage variation roll
                 if (isCrit)
+                {
                     damAmount *= StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn);
+                }
                 //melee weapon damage variation
                 else
+                {
                     damAmount *= Rand.Range(StatWorker_MeleeDamage.GetDamageVariationMin(CasterPawn), StatWorker_MeleeDamage.GetDamageVariationMax(CasterPawn));
+                }
             }
             else if (!CE_StatDefOf.UnarmedDamage.Worker.IsDisabledFor(CasterPawn))  //ancient soldiers can punch even if non-violent, this prevents the disabled stat from being used
             {
@@ -357,8 +367,8 @@ namespace CombatExtended
             DamageDef def = damDef;
             //END 1:1 COPY
             BodyPartHeight bodyRegion = GetAttackedPartHeightCE(); //Caula: Changed to the comp selector
-                                                                   //GetBodyPartHeightFor(target);   //Custom // Add check for body height
-                                                                   //START 1:1 COPY
+            //GetBodyPartHeightFor(target);   //Custom // Add check for body height
+            //START 1:1 COPY
 
             // Don't let players draft people and order them to punch/assault another pawn
             // as a gamey way of making them guilty for purposes of banishment and the like.
@@ -371,7 +381,7 @@ namespace CombatExtended
                 if (caster.def.race.predator && IsTargetImmobile(target))
                 {
                     var neck = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Top, BodyPartDepth.Outside)
-                        .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
+                               .FirstOrDefault(r => r.def == BodyPartDefOf.Neck);
                     damageInfo.SetHitPart(neck);
                 }
                 //for some reason, when all parts of height are missing their incode count is 3
@@ -382,8 +392,8 @@ namespace CombatExtended
                 //specific part hits
                 if (CompMeleeTargettingGizmo?.SkillReqBP ?? false && CompMeleeTargettingGizmo.targetBodyPart != null)
                 {
-                    
-                    // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level   
+
+                    // 50f might be too little, since it'd mean no hits are possible for some bodyparts at certain pawn level
                     float targetSkillDecrease = (pawn.skills?.GetSkill(SkillDefOf.Melee).Level ?? 0f) / 50f;
 
                     if (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving) > 0f)
@@ -404,7 +414,7 @@ namespace CombatExtended
                 }
             }
 
-           
+
 
             //everything related to internal organ penetration
             BodyPartDepth finalDepth = BodyPartDepth.Outside;
@@ -456,16 +466,16 @@ namespace CombatExtended
                     }
                 }
             }
-           
 
-            
+
+
 
             // Apply critical damage
             if (isCrit && !CasterPawn.def.race.Animal && verbProps.meleeDamageDef.armorCategory != DamageArmorCategoryDefOf.Sharp && target.Thing.def.race.IsFlesh)
             {
                 var critAmount = GenMath.RoundRandom(damageInfo.Amount * 0.25f);
                 var critDinfo = new DamageInfo(DamageDefOf.Stun, critAmount, armorPenetration,
-                    -1, caster, null, source, instigatorGuilty: instigatorGuilty);
+                                               -1, caster, null, source, instigatorGuilty: instigatorGuilty);
                 critDinfo.SetBodyRegion(bodyRegion, BodyPartDepth.Outside);
                 critDinfo.SetWeaponBodyPartGroup(bodyPartGroupDef);
                 critDinfo.SetWeaponHediff(hediffDef);
@@ -491,16 +501,16 @@ namespace CombatExtended
 
                 switch (GetAttackedPartHeightCE())
                 {
-                    case BodyPartHeight.Bottom:
-                        chance *= 0.8f;
-                        break;
-                    case BodyPartHeight.Middle:
-                        break;
-                    case BodyPartHeight.Undefined:
-                        break;
-                    case BodyPartHeight.Top:
-                        chance *= 0.7f;
-                        break;
+                case BodyPartHeight.Bottom:
+                    chance *= 0.8f;
+                    break;
+                case BodyPartHeight.Middle:
+                    break;
+                case BodyPartHeight.Undefined:
+                    break;
+                case BodyPartHeight.Top:
+                    chance *= 0.7f;
+                    break;
                 }
 
                 return chance;
@@ -552,12 +562,12 @@ namespace CombatExtended
         private bool CanDoParry(Pawn pawn)
         {
             if (pawn == null
-                || pawn.Dead
-                || !pawn.RaceProps.Humanlike
-                || pawn.WorkTagIsDisabled(WorkTags.Violent)
-                || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
-                || IsTargetImmobile(pawn)
-                || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
+                    || pawn.Dead
+                    || !pawn.RaceProps.Humanlike
+                    || pawn.WorkTagIsDisabled(WorkTags.Violent)
+                    || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
+                    || IsTargetImmobile(pawn)
+                    || pawn.MentalStateDef == MentalStateDefOf.SocialFighting)
             {
                 return false;
             }
@@ -577,19 +587,19 @@ namespace CombatExtended
         /// <param name="defender">Pawn doing the parrying</param>
         /// <param name="parryThing">Thing used to parry the blow (weapon/shield)</param>
         /// <param name="isRiposte">Whether to do a riposte</param>
-	/// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
+        /// <param name="deflectChance">Chance of the weapon taking no damage from parrying</param>
         private void DoParry(Pawn defender, Thing parryThing, bool isRiposte = false, bool deflected = false)
         {
             if (parryThing != null)
             {
                 foreach (var dinfo in DamageInfosToApply(defender))
                 {
-		    if (!deflected)
-		    {
-			LastAttackVerb = this;
-			ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
-			LastAttackVerb = null;
-		    }
+                    if (!deflected)
+                    {
+                        LastAttackVerb = this;
+                        ArmorUtilityCE.ApplyParryDamage(dinfo, parryThing);
+                        LastAttackVerb = null;
+                    }
                 }
             }
             if (isRiposte)
@@ -605,7 +615,9 @@ namespace CombatExtended
                     dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                     caster.TakeDamage(dinfo);
                     if (!parryThing.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                    {
                         sound = parryThing.Stuff.stuffProps.soundMeleeHitBlunt;
+                    }
                 }
                 else
                 {
@@ -638,7 +650,9 @@ namespace CombatExtended
         private static float GetComparativeChanceAgainst(Pawn attacker, Pawn defender, StatDef stat, float baseChance, float defenderSkillMult = 1)
         {
             if (attacker == null || defender == null)
+            {
                 return 0;
+            }
             var offSkill = stat.Worker.IsDisabledFor(attacker) ? 0 : attacker.GetStatValue(stat);
             var defSkill = stat.Worker.IsDisabledFor(defender) ? 0 : defender.GetStatValue(stat) * defenderSkillMult;
             var chance = Mathf.Clamp01(baseChance + offSkill - defSkill);

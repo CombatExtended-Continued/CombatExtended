@@ -27,7 +27,7 @@ namespace CombatExtended.HarmonyCE
                 float minNutrition = JobDriver_InteractAnimal.RequiredNutritionPerFeed(tamee);
                 ThingDef foodDef = FoodUtility.GetFinalIngestibleDef(__result.targetA.Thing);
                 int requiredThingCount = Mathf.CeilToInt(minNutrition / FoodUtility.GetNutrition(tamee, __result.targetA.Thing, foodDef));
-                
+
                 if (inventory != null)
                 {
                     if (inventory.CanFitInInventory(__result.targetA.Thing, out int maxCount) && requiredThingCount <= maxCount)

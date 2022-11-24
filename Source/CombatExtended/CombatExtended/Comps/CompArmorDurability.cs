@@ -29,7 +29,10 @@ namespace CombatExtended
 
         public List<DamageDef> ignoredDmgDefs;
 
-        public CompFragments fragComp => new CompFragments() { props = frags };
+        public CompFragments fragComp => new CompFragments()
+        {
+            props = frags
+        };
 
         public void LoadDataFromXmlCustom(XmlNode xmlRoot)
         {
@@ -37,51 +40,54 @@ namespace CombatExtended
             {
                 switch (node.Name.ToLower())
                 {
-                    case "armor":
-                        armor = ParseHelper.ParseFloat(node.InnerText);
-                        break;
-                    case "damagetreshold":
-                        damageTreshold = ParseHelper.ParseFloat(node.InnerText);
-                        break;
-                    case "aptreshold":
-                        damageTreshold = ParseHelper.ParseFloat(node.InnerText);
-                        break;
-                    case "part":
-                        DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "part", node.InnerText, null, null);
-                        break;
-                    case "triggered":
-                        triggered = ParseHelper.ParseBool(node.InnerText);
-                        break;
-                    case "frags":
-                        frags = new CompProperties_Fragments() { fragments = new List<ThingDefCountClass>() };
+                case "armor":
+                    armor = ParseHelper.ParseFloat(node.InnerText);
+                    break;
+                case "damagetreshold":
+                    damageTreshold = ParseHelper.ParseFloat(node.InnerText);
+                    break;
+                case "aptreshold":
+                    damageTreshold = ParseHelper.ParseFloat(node.InnerText);
+                    break;
+                case "part":
+                    DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "part", node.InnerText, null, null);
+                    break;
+                case "triggered":
+                    triggered = ParseHelper.ParseBool(node.InnerText);
+                    break;
+                case "frags":
+                    frags = new CompProperties_Fragments()
+                    {
+                        fragments = new List<ThingDefCountClass>()
+                    };
 
-                        foreach (XmlNode node2 in node.ChildNodes)
+                    foreach (XmlNode node2 in node.ChildNodes)
+                    {
+                        if (node2.Name == "fragments")
                         {
-                            if (node2.Name == "fragments")
+                            foreach (XmlNode node3 in node2.ChildNodes)
                             {
-                                foreach (XmlNode node3 in node2.ChildNodes)
-                                {
-                                    ThingDefCountClass count = new ThingDefCountClass();
+                                ThingDefCountClass count = new ThingDefCountClass();
 
-                                    count.LoadDataFromXmlCustom(node3);
+                                count.LoadDataFromXmlCustom(node3);
 
-                                    frags.fragments.Add(count);
-                                }
-                            }
-                            if (node2.Name == "fragSpeedFactor")
-                            {
-                                frags.fragSpeedFactor = ParseHelper.ParseFloat(node2.InnerText);
+                                frags.fragments.Add(count);
                             }
                         }
-                        break;
-                    case "ignoreddmgdefs":
-                        ignoredDmgDefs = new List<DamageDef>();
-
-                        foreach (XmlNode node2 in node.ChildNodes)
+                        if (node2.Name == "fragSpeedFactor")
                         {
-                            DirectXmlCrossRefLoader.RegisterListWantsCrossRef(ignoredDmgDefs, node2.InnerText);
+                            frags.fragSpeedFactor = ParseHelper.ParseFloat(node2.InnerText);
                         }
-                        break;
+                    }
+                    break;
+                case "ignoreddmgdefs":
+                    ignoredDmgDefs = new List<DamageDef>();
+
+                    foreach (XmlNode node2 in node.ChildNodes)
+                    {
+                        DirectXmlCrossRefLoader.RegisterListWantsCrossRef(ignoredDmgDefs, node2.InnerText);
+                    }
+                    break;
                 }
             }
         }
@@ -112,7 +118,9 @@ namespace CombatExtended
                 if (timer >= durabilityProps.RegenInterval)
                 {
                     if (curDurability < maxDurability)
+                    {
                         curDurability += Math.Min(durabilityProps.RegenValue, maxDurability- curDurability);
+                    }
                     timer = 0;
                 }
                 timer++;
@@ -169,18 +177,19 @@ namespace CombatExtended
                         yield return new FloatMenuOption("Fix natural armor", delegate
                         {
                             selPawn.jobs.StartJob(new Job
-                                (
-                                CE_JobDefOf.RepairNaturalArmor,
-                                this.parent,
-                                ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
-                                )
-                                {
+                                                  (
+                                                      CE_JobDefOf.RepairNaturalArmor,
+                                                      this.parent,
+                                                      ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
+                                                  )
+                            {
                                 targetC = ingredientsB.MinBy(x => x.Position.DistanceTo(selPawn.Position)
-                                )}
-                                ,
-                                JobCondition.InterruptForced
-                                )
-                                ;
+                                                            )
+                            }
+                            ,
+                            JobCondition.InterruptForced
+                                                 )
+                            ;
                         });
 
                     }
@@ -189,14 +198,14 @@ namespace CombatExtended
                         yield return new FloatMenuOption("Fix natural armor", delegate
                         {
                             selPawn.jobs.StartJob(new Job
-                                (
-                                CE_JobDefOf.RepairNaturalArmor,
-                                this.parent,
-                                ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
-                                ),
-                                JobCondition.InterruptForced
-                                )
-                                ;
+                                                  (
+                                                      CE_JobDefOf.RepairNaturalArmor,
+                                                      this.parent,
+                                                      ingredientsA.MinBy(x => x.Position.DistanceTo(selPawn.Position))
+                                                  ),
+                                                  JobCondition.InterruptForced
+                                                 )
+                            ;
                         });
                     }
                 }
@@ -244,13 +253,15 @@ namespace CombatExtended
             bool canReachTargetC = TargetC.Thing == null;
 
             if (!canReachTargetC)
+            {
                 canReachTargetC = actor.CanReserveAndReach(TargetC, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+            }
 
             bool canReachTargetsAB = actor.CanReserveAndReach(TargetA, PathEndMode.ClosestTouch, Danger.Some, 1, 1)
-                && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
+                                     && actor.CanReserveAndReach(TargetB, PathEndMode.ClosestTouch, Danger.Some, 1, 1);
             return canReachTargetsAB
-                && (canReachTargetC)
-                ;
+                   && (canReachTargetC)
+                   ;
         }
 
         public override IEnumerable<Toil> MakeNewToils()
@@ -259,12 +270,12 @@ namespace CombatExtended
 
             pawn.Reserve(TargetB, this.job, 1, 1);
 
-            pawn.Reserve(TargetC, this.job, 1 , 1);
+            pawn.Reserve(TargetC, this.job, 1, 1);
 
             var TargetThingC = TargetC.Thing;
             yield return Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch);
             yield return Toils_General.Do(
-            delegate
+                             delegate
             {
                 //left in code for explanation as to why it was replaced. This caused an error to apear every time it was called
                 //yield return Toils_Haul.TakeToInventory(TargetIndex.B, natArmor.durabilityProps.RepairIngredients.First().count);
@@ -291,7 +302,7 @@ namespace CombatExtended
                 yield return Toils_Goto.GotoCell(TargetC.Cell, PathEndMode.ClosestTouch);
 
                 yield return Toils_General.Do(
-                delegate
+                                 delegate
                 {
                     //yield return Toils_Haul.TakeToInventory(TargetIndex.C, natArmor.durabilityProps.RepairIngredients.Last().count);
                     int ingrCount2 = natArmor.durabilityProps.RepairIngredients.Last().count;
@@ -322,38 +333,38 @@ namespace CombatExtended
 
             toilWait.AddFinishAction(
                 delegate
+            {
+                pawn.inventory.innerContainer.Where(x => x.def == TargetThingB.def).First().Destroy();
+                if (TargetThingC != null)
                 {
-                    pawn.inventory.innerContainer.Where(x => x.def == TargetThingB.def).First().Destroy();
-                    if (TargetThingC != null)
+                    pawn.inventory.innerContainer.Where(x => x.def == TargetThingC.def).First().Destroy();
+                }
+                natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                if (natArmor.durabilityProps.CanOverHeal)
+                {
+                    if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
                     {
-                        pawn.inventory.innerContainer.Where(x => x.def == TargetThingC.def).First().Destroy();
-                    }
-                    natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                    if (natArmor.durabilityProps.CanOverHeal)
-                    {
-                        if (natArmor.curDurability > natArmor.durabilityProps.MaxOverHeal + natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
-
+                        natArmor.curDurability = natArmor.maxDurability + natArmor.durabilityProps.MaxOverHeal;
                     }
                     else
                     {
-                        if (natArmor.curDurability > natArmor.maxDurability)
-                        {
-                            natArmor.curDurability = natArmor.maxDurability;
-                        }
-                        else
-                        {
-                            natArmor.curDurability += natArmor.durabilityProps.RepairValue;
-                        }
+                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
                     }
 
-                });
+                }
+                else
+                {
+                    if (natArmor.curDurability > natArmor.maxDurability)
+                    {
+                        natArmor.curDurability = natArmor.maxDurability;
+                    }
+                    else
+                    {
+                        natArmor.curDurability += natArmor.durabilityProps.RepairValue;
+                    }
+                }
+
+            });
 
             yield return toilWait;
 

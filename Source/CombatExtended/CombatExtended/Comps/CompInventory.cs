@@ -16,9 +16,9 @@ namespace CombatExtended
 
         private int age = 0;
         private Pawn parentPawnInt = null;
-        private const int CLEANUPTICKINTERVAL = 2100;        
+        private const int CLEANUPTICKINTERVAL = 2100;
         private float currentWeightCached;
-        private float currentBulkCached;                        
+        private float currentBulkCached;
         private List<Thing> ammoListCached = new List<Thing>();
         private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
@@ -33,7 +33,7 @@ namespace CombatExtended
             {
                 return (CompProperties_Inventory)props;
             }
-        }       
+        }
         public float currentWeight
         {
             get
@@ -122,15 +122,19 @@ namespace CombatExtended
                 if (meleeWeaponList != null)
                 {
                     foreach (ThingWithComps weapon in meleeWeaponList)
+                    {
                         yield return weapon;
+                    }
                 }
                 if (rangedWeaponList != null)
                 {
                     foreach (ThingWithComps weapon in rangedWeaponList)
+                    {
                         yield return weapon;
+                    }
                 }
             }
-        }       
+        }
         public ThingOwner container
         {
             get
@@ -149,7 +153,7 @@ namespace CombatExtended
         #endregion Properties
 
         #region Methods
- 
+
         /// <summary>
         /// WARNING this is very slow. Return the available weight.
         /// </summary>
@@ -158,7 +162,9 @@ namespace CombatExtended
         public float GetAvailableWeight(bool updateInventory = true)
         {
             if(updateInventory)
+            {
                 UpdateInventory();
+            }
             return availableWeight;
         }
 
@@ -170,7 +176,9 @@ namespace CombatExtended
         public float GetAvailableBulk(bool updateInventory = true)
         {
             if (updateInventory)
+            {
                 UpdateInventory();
+            }
             return availableBulk;
         }
 
@@ -220,7 +228,9 @@ namespace CombatExtended
                     newBulk += apparelBulk;
                     newWeight += apparelWeight;
                     if (age > CLEANUPTICKINTERVAL && apparelBulk > 0 && (parentPawn?.Spawned ?? false) && (parentPawn.factionInt?.IsPlayer ?? false))
+                    {
                         LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_WornBulk, OpportunityType.GoodToKnow);
+                    }
                 }
             }
 
@@ -269,7 +279,9 @@ namespace CombatExtended
                     {
                         HoldRecord rec = recs.FirstOrDefault(hr => hr.thingDef == thing.def);
                         if (rec != null && !rec.pickedUp)
+                        {
                             rec.pickedUp = true;
+                        }
                     }
                 }
             }
@@ -322,7 +334,7 @@ namespace CombatExtended
             float amountByBulk = thingBulk <= 0 ? 1 : (availableBulk + eqBulk) / thingBulk;
             count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, 1));
             return count > 0;
-        }            
+        }
 
         /// <summary>
         /// Determines if and how many of an item currently fit into the inventory with regards to weight/bulk constraints.
@@ -404,7 +416,9 @@ namespace CombatExtended
 
             // Stop current job
             if (parentPawn.jobs != null && stopJob)
+            {
                 parentPawn.jobs.StopAll();
+            }
 
             // Cycle through available ranged weapons
             foreach (ThingWithComps gun in rangedWeaponListCached)
@@ -413,7 +427,9 @@ namespace CombatExtended
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
                     if ((!useAOE && gun.def.IsAOEWeapon()) || gun.def.IsIlluminationDevice())
+                    {
                         continue;
+                    }
                     if ((predicate?.Invoke(gun, compAmmo) ?? true) && compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
                     {
                         newEq = gun;
@@ -423,15 +439,21 @@ namespace CombatExtended
             }
             // If no ranged weapon was found, use first available melee weapons
             if (newEq == null)
+            {
                 newEq = (predicate == null ? meleeWeaponListCached : meleeWeaponListCached.Where(w => predicate.Invoke(w, null))).FirstOrDefault();
+            }
 
             // Equip the weapon
             if (newEq != null)
             {
                 if (!stopJob)
+                {
                     parentPawn.jobs.StartJob(JobMaker.MakeJob(CE_JobDefOf.EquipFromInventory, newEq), JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                }
                 else
+                {
                     TrySwitchToWeapon(newEq, stopJob);
+                }
                 return true;
             }
             else if (useFists)
@@ -471,7 +493,9 @@ namespace CombatExtended
                 {
                     CompAmmoUser ammoUser = gun.TryGetComp<CompAmmoUser>();
                     if (ammoUser != null && !ammoUser.HasAmmoOrMagazine)
+                    {
                         continue;
+                    }
                 }
                 if (parentPawn.equipment != null && parentPawn.equipment.Primary != gun)
                 {
@@ -489,15 +513,21 @@ namespace CombatExtended
         {
             grenade = (ThingWithComps)container.FirstOrFallback(t => t.def.weaponTags?.Contains("GrenadeSmoke") ?? false, null);
             if (grenade == null)
+            {
                 return false;
+            }
             CompAmmoUser ammoUser = grenade.TryGetComp<CompAmmoUser>();
             if (ammoUser != null)
             {
                 if (ammoUser.CurAmmoProjectile?.projectile?.damageDef != DamageDefOf.Smoke)
+                {
                     return false;
+                }
 
                 if (ammoUser.CurAmmoProjectile?.projectile?.postExplosionGasType != GasType.BlindSmoke)
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -512,7 +542,9 @@ namespace CombatExtended
                 {
                     CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
                     if ((!useAOE && gun.def.IsAOEWeapon()) || gun.def.IsIlluminationDevice())
+                    {
                         continue;
+                    }
                     if ((predicate?.Invoke(gun, compAmmo) ?? true) && compAmmo == null || compAmmo.HasAndUsesAmmoOrMagazine)
                     {
                         weapon = gun;
@@ -522,7 +554,9 @@ namespace CombatExtended
             }
             // If no ranged weapon was found, use first available melee weapons
             if (weapon == null)
+            {
                 weapon = (predicate == null ? meleeWeaponListCached : meleeWeaponListCached.Where(w => predicate.Invoke(w, null))).FirstOrDefault();
+            }
             return weapon != null;
         }
 
@@ -534,7 +568,9 @@ namespace CombatExtended
                 {
                     CompAmmoUser ammoUser = gun.TryGetComp<CompAmmoUser>();
                     if (ammoUser != null && !ammoUser.HasAmmoOrMagazine)
+                    {
                         continue;
+                    }
                 }
                 if (gun.def.IsIlluminationDevice())
                 {
@@ -558,7 +594,9 @@ namespace CombatExtended
             }
             // Stop current job
             if (parentPawn.jobs != null && stopJob)
+            {
                 parentPawn.jobs.StopAll();
+            }
 
             if (parentPawn.equipment.Primary != null)
             {
@@ -577,7 +615,9 @@ namespace CombatExtended
             }
             parentPawn.equipment.AddEquipment((ThingWithComps)container.Take(newEq, 1));
             if (newEq.def.soundInteract != null)
+            {
                 newEq.def.soundInteract.PlayOneShot(new TargetInfo(parent.Position, parent.MapHeld, false));
+            }
         }
 
         public override void CompTick()
@@ -615,7 +655,10 @@ namespace CombatExtended
             }
             */
 
-            if (Controller.settings.DebugEnableInventoryValidation) ValidateCache();
+            if (Controller.settings.DebugEnableInventoryValidation)
+            {
+                ValidateCache();
+            }
         }
 
         /// <summary>

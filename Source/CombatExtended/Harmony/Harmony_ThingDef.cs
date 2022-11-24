@@ -65,11 +65,13 @@ namespace CombatExtended.HarmonyCE
                     // Determine collision height
                     var def = thisField(__instance);
                     if (def.plant?.IsTree ?? false)
+                    {
                         return;
+                    }
 
                     var height = def.Fillage == FillCategory.Full
-                        ? CollisionVertical.WallCollisionHeight
-                        : def.fillPercent;
+                                 ? CollisionVertical.WallCollisionHeight
+                                 : def.fillPercent;
                     height *= CollisionVertical.MeterPerCellHeight;
 
                     var newEntry = new StatDrawEntry(entry.category, "CE_CoverHeight".Translate(), height.ToStringByStyle(ToStringStyle.FloatMaxTwo) + " m", (string)"CE_CoverHeightExplanation".Translate(), entry.DisplayPriorityWithinCategory);
@@ -98,18 +100,18 @@ namespace CombatExtended.HarmonyCE
             if (turretGunDef != null)
             {
                 var statRequestGun = StatRequest.For(turretGunDef, null);
-                
+
                 var cache = __result;
                 // :/
                 var newStats1 = DefDatabase<StatDef>.AllDefs
-                    .Where(x => x.category == StatCategoryDefOf.Weapon
-                        && x.Worker.ShouldShowFor(statRequestGun)
-                        && !x.Worker.IsDisabledFor(req.Thing)
-                        && !(x.Worker is StatWorker_MeleeStats))
-                    .Where(x => !cache.Any(y => y.stat == x))
-                    .Select(x => new StatDrawEntry(StatCategoryDefOf.Weapon, x, turretGunDef.GetStatValueAbstract(x), statRequestGun, ToStringNumberSense.Undefined))
-                    .Where(x => x.ShouldDisplay);
-                
+                                .Where(x => x.category == StatCategoryDefOf.Weapon
+                                       && x.Worker.ShouldShowFor(statRequestGun)
+                                       && !x.Worker.IsDisabledFor(req.Thing)
+                                       && !(x.Worker is StatWorker_MeleeStats))
+                                .Where(x => !cache.Any(y => y.stat == x))
+                                .Select(x => new StatDrawEntry(StatCategoryDefOf.Weapon, x, turretGunDef.GetStatValueAbstract(x), statRequestGun, ToStringNumberSense.Undefined))
+                                .Where(x => x.ShouldDisplay);
+
                 __result = __result.Concat(newStats1);
             }
         }

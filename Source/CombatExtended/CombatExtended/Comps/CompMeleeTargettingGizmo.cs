@@ -116,7 +116,7 @@ namespace CombatExtended
 
             return BodyPartHeight.Undefined;
         }
-            
+
 
 
         public bool SkillReqA
@@ -199,29 +199,29 @@ namespace CombatExtended
                             if (!parts.Contains(posTarget.def))
                             {
                                 if(posTarget.depth == BodyPartDepth.Outside
-                                && posTarget.height == heightInt
-                                && !posTarget.def.label.Contains("toe")
-                                && !posTarget.def.label.Contains("finger")
-                                && !posTarget.def.label.Contains("utility")
-                                )
+                                        && posTarget.height == heightInt
+                                        && !posTarget.def.label.Contains("toe")
+                                        && !posTarget.def.label.Contains("finger")
+                                        && !posTarget.def.label.Contains("utility")
+                                  )
                                 {
                                     parts.Add(posTarget.def);
                                 }
                             }
 
-                            
 
-                           
+
+
                         }
 
                         foreach (BodyPartDef def in parts)
                         {
                             options.Add(new FloatMenuOption(def.label,
-                                   delegate
-                                   {
-                                       ChangeCurrentPart(def);
-                                   }
-                                   ));
+                                                            delegate
+                            {
+                                ChangeCurrentPart(def);
+                            }
+                                                           ));
                         }
 
                         options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { ChangeCurrentPart(null); }));
@@ -245,22 +245,22 @@ namespace CombatExtended
         {
             switch (heightInt)
             {
-                case BodyPartHeight.Bottom:
-                    heightInt = BodyPartHeight.Middle;
-                    targetBodyPart = null;
-                    break;
-                case BodyPartHeight.Middle:
-                    heightInt = BodyPartHeight.Top;
-                    targetBodyPart = null;
-                    break;
-                case BodyPartHeight.Top:
-                    heightInt = BodyPartHeight.Undefined;
-                    targetBodyPart = null;
-                    break;
-                case BodyPartHeight.Undefined:
-                    heightInt = BodyPartHeight.Bottom;
-                    targetBodyPart = null;
-                    break;
+            case BodyPartHeight.Bottom:
+                heightInt = BodyPartHeight.Middle;
+                targetBodyPart = null;
+                break;
+            case BodyPartHeight.Middle:
+                heightInt = BodyPartHeight.Top;
+                targetBodyPart = null;
+                break;
+            case BodyPartHeight.Top:
+                heightInt = BodyPartHeight.Undefined;
+                targetBodyPart = null;
+                break;
+            case BodyPartHeight.Undefined:
+                heightInt = BodyPartHeight.Bottom;
+                targetBodyPart = null;
+                break;
             }
         }
 

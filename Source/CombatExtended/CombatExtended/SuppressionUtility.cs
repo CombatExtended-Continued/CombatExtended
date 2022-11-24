@@ -30,16 +30,26 @@ namespace CombatExtended
             foreach (Pawn other in pawn.Position.PawnsInRange(map, 8))
             {
                 if (other.Faction != pawn.Faction)
+                {
                     continue;
+                }
                 if (other.jobs?.curDriver is IJobDriver_Tactical)
+                {
                     continue;
+                }
                 if (!(other.TryGetComp<CompInventory>()?.TryFindSmokeWeapon(out grenade) ?? false))
+                {
                     continue;
+                }
                 CompSuppressable otherSup = other.TryGetComp<CompSuppressable>();
                 if ((otherSup?.isSuppressed ?? true) || otherSup.CurrentSuppression > curLevel)
+                {
                     continue;
+                }
                 if (!GenSight.LineOfSight(pawn.Position, other.Position, map))
+                {
                     continue;
+                }
                 Job job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, grenade, pawn.Position);
                 job.maxNumStaticAttacks = 1;
                 other.jobs.StartJob(job, JobCondition.InterruptForced);
@@ -120,16 +130,16 @@ namespace CombatExtended
 
         private static float GetCellCoverRatingForPawn(Pawn pawn, IntVec3 cell, IntVec3 shooterPos)
         {
-            // Check for invalid locations            
+            // Check for invalid locations
             if (!cell.IsValid || !cell.Standable(pawn.Map) || !pawn.CanReserveAndReach(cell, PathEndMode.OnCell, Danger.Deadly) || cell.ContainsStaticFire(pawn.Map))
             {
                 return -1000f;
             }
             float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
-                pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
-                pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
-                pawnLowestCrouchFillPercent = pawnHeightFactor * CollisionVertical.BodyRegionBottomHeight + pawnVisibleOverCoverFillPercent,
-                pawnCrouchFillPercent = pawnLowestCrouchFillPercent;
+                  pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
+                  pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
+                  pawnLowestCrouchFillPercent = pawnHeightFactor * CollisionVertical.BodyRegionBottomHeight + pawnVisibleOverCoverFillPercent,
+                  pawnCrouchFillPercent = pawnLowestCrouchFillPercent;
 
             Vector3 coverVec = (shooterPos - cell).ToVector3().normalized;
 
@@ -162,14 +172,18 @@ namespace CombatExtended
             {
                 Thing cover = pos.GetCover(pawn.Map);
                 if (cover == null)
+                {
                     continue;
+                }
                 // Check if the pawn already has hard cover and the cover currently is hard cover; then do custom formula for increasing cell rating;
                 if (!(cover is Gas || cover is Plant))
                 {
                     // A pawn crouches down only next to nearby cover, therefore they can hide behind distanced cover that is higher than their current crouch height;
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
                     if (distancedCoverRating * 10f > cellRating)
+                    {
                         cellRating = Mathf.Min(distancedCoverRating, 1.25f) * 10f;
+                    }
                 }
                 else
                 {
@@ -183,7 +197,9 @@ namespace CombatExtended
             {
                 CompProjectileInterceptor interceptor = interceptors[i];
                 if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
+                {
                     cellRating += 15f;
+                }
             }
 
             // Avoid bullets and other danger sources.
@@ -207,17 +223,28 @@ namespace CombatExtended
             }
 
             if (Controller.settings.DebugDisplayCellCoverRating)
+            {
                 pawn.Map.debugDrawer.FlashCell(cell, cellRating, $"{cellRating}");
+            }
             return cellRating;
         }
 
         private static float GetCoverRating(Thing cover)
         {
             // Higher values mean more effective at being considered cover.
-            if (cover == null) return 0f;
-            if (cover is Gas) return 0.2f;
+            if (cover == null)
+            {
+                return 0f;
+            }
+            if (cover is Gas)
+            {
+                return 0.2f;
+            }
             // Plant cover has a random chance to block projectiles and span a long height, therefore efficiency stacks
-            if (cover.def.category == ThingCategory.Plant) return 0.45f * cover.def.fillPercent;
+            if (cover.def.category == ThingCategory.Plant)
+            {
+                return 0.45f * cover.def.fillPercent;
+            }
             return 0f;
         }
 
@@ -226,17 +253,23 @@ namespace CombatExtended
             job = null;
             ThingWithComps grenade = null;
             if (!pawn.TryGetComp<CompInventory>()?.TryFindSmokeWeapon(out grenade) ?? true)
+            {
                 return false;
+            }
             var range = 5;
             var castTarget = pawn.Position;
             foreach (IntVec3 cell in GenSightCE.PartialLineOfSights(pawn, suppressorLoc))
             {
                 if (cell.DistanceTo(pawn.Position) >= range)
+                {
                     break;
+                }
                 castTarget = cell;
             }
             if (!castTarget.IsValid)
+            {
                 castTarget = pawn.Position;
+            }
             job = JobMaker.MakeJob(CE_JobDefOf.OpportunisticAttack, grenade, castTarget);
             job.maxNumStaticAttacks = 1;
             return true;
@@ -249,8 +282,8 @@ namespace CombatExtended
 
             // Panic break
             if (!(traits.HasTrait(TraitDefOf.Bloodlust)
-                || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
-                || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
+                    || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
+                    || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
             {
                 breaks.Add(pawn.IsColonist ? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
                 breaks.Add(CE_MentalStateDefOf.ShellShock);
@@ -258,8 +291,8 @@ namespace CombatExtended
 
             // Attack break
             if (!(pawn.WorkTagIsDisabled(WorkTags.Violent)
-                  || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
-                  || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
+                    || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
+                    || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
             {
                 breaks.Add(CE_MentalStateDefOf.CombatFrenzy);
             }

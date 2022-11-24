@@ -40,17 +40,17 @@ namespace CombatExtended
 
                 stringBuilder.AppendLine("  " + "Tool".Translate() + ": " + tool.ToString() + " " + maneuverString);
                 stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
-                    "CE_DescSharpPenetration".Translate(),
-                    tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationSharp * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    "CE_mmRHA".Translate()));
+                                                       "CE_DescSharpPenetration".Translate(),
+                                                       tool.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                       penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                                                       (tool.armorPenetrationSharp * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                       "CE_mmRHA".Translate()));
                 stringBuilder.AppendLine(string.Format("    {0}: {1} x {2} = {3} {4}",
-                    "CE_DescBluntPenetration".Translate(),
-                    tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
-                    (tool.armorPenetrationBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    "CE_MPa".Translate()));
+                                                       "CE_DescBluntPenetration".Translate(),
+                                                       tool.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                       penetrationFactor.ToStringByStyle(ToStringStyle.FloatMaxThree),
+                                                       (tool.armorPenetrationBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                       "CE_MPa".Translate()));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
@@ -90,8 +90,8 @@ namespace CombatExtended
             var penetrationFactor = GetPenetrationFactor(optionalReq);
 
             return (totalAveragePenSharp * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_mmRHA".Translate()
-                + ", "
-                + (totalAveragePenBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
+                   + ", "
+                   + (totalAveragePenBlunt * penetrationFactor).ToStringByStyle(ToStringStyle.FloatMaxTwo) + " " + "CE_MPa".Translate();
         }
 
         private float GetPenetrationFactor(StatRequest req)

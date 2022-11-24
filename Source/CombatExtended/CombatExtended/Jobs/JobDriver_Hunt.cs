@@ -42,13 +42,13 @@ namespace CombatExtended
                 jobStartTick = Find.TickManager.TicksGame;
             };
             yield return init;
-            
+
             yield return Toils_Combat.TrySetJobToUseAttackVerb(TargetIndex.A);
 
             var comp = (pawn.equipment != null && pawn.equipment.Primary != null) ? pawn.equipment.Primary.TryGetComp<CompAmmoUser>() : null;
             var startCollectCorpse = StartCollectCorpseToil();
             var gotoCastPos = GotoCastPosition(VictimInd, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse).FailOn(() => Find.TickManager.TicksGame > jobStartTick + MaxHuntTicks);
-            
+
             yield return gotoCastPos;
 
             //var moveIfCannotHit = Toils_Jump.JumpIfTargetNotHittable(VictimInd, gotoCastPos);
@@ -62,13 +62,13 @@ namespace CombatExtended
                 }
                 return !verb.CanHitTarget(Victim);
             });
-            
+
             yield return moveIfCannotHit;
-            
+
             yield return Toils_Jump.JumpIfTargetDespawnedOrNull(VictimInd, startCollectCorpse);
 
             var startExecuteDowned = Toils_Goto.GotoThing(VictimInd, PathEndMode.Touch).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
-            
+
             yield return Toils_Jump.JumpIf(startExecuteDowned, () => Victim.Downed && Victim.RaceProps.executionRange <= 2);
 
             if (pawn?.equipment?.PrimaryEq?.PrimaryVerb?.IsMeleeAttack ?? false)
@@ -81,17 +81,17 @@ namespace CombatExtended
             else
             {
                 yield return Toils_Combat.CastVerb(VictimInd, false).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse)
-                    .FailOn(() =>
+                             .FailOn(() =>
+                {
+                    if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
                     {
-                        if (Find.TickManager.TicksGame <= jobStartTick + MaxHuntTicks)
+                        if (comp == null || comp.HasAndUsesAmmoOrMagazine)
                         {
-                            if (comp == null || comp.HasAndUsesAmmoOrMagazine)
-                            {
-                                return false;
-                            }
+                            return false;
                         }
-                        return true;
-                    });
+                    }
+                    return true;
+                });
 
                 yield return Toils_Jump.Jump(moveIfCannotHit);
             }
@@ -100,9 +100,9 @@ namespace CombatExtended
 
             // Execute downed animal - adapted from JobDriver_Slaughter
             yield return startExecuteDowned;
-            
+
             yield return Toils_General.WaitWith(VictimInd, 180, true).JumpIfDespawnedOrNull(VictimInd, startCollectCorpse);
-            
+
             yield return new Toil
             {
                 initAction = delegate
@@ -174,11 +174,11 @@ namespace CombatExtended
                 var pawnVictim = thing as Pawn;
 
                 if (!CastPositionFinder.TryFindCastPosition(new CastPositionRequest
-                {
-                    caster = toil.actor,
-                    target = thing,
-                    verb = curJob.verbToUse,
-                    maxRangeFromTarget = GetOptimalHuntRange(actor, pawnVictim),
+            {
+                caster = toil.actor,
+                target = thing,
+                verb = curJob.verbToUse,
+                maxRangeFromTarget = GetOptimalHuntRange(actor, pawnVictim),
                     wantCoverFromTarget = false
                 }, out var intVec))
                 {
@@ -197,30 +197,30 @@ namespace CombatExtended
         {
             var curJob = hunter.CurJob;
             var victimProps = victim.RaceProps;
-            
+
             if (victim.Downed)
             {
                 // TODO: How to detect boombats?
                 return Mathf.Min(curJob.verbToUse.verbProps.range, victimProps.executionRange);
             }
-            
+
             var normalRange = HuntRangePerBodysize(victimProps.baseBodySize, victimProps.executionRange, curJob.verbToUse.verbProps.range);
 
             if (victimProps.manhunterOnDamageChance > 0)
             {
-		// Get a little bit closer when target is small. (Smaller targets don't attack that hard so it's ok from safety standpoint) 
+                // Get a little bit closer when target is small. (Smaller targets don't attack that hard so it's ok from safety standpoint)
                 // For reference, Megasloth is 4, and squirrel is 0.2
                 float bodySizeFactor = Mathf.Clamp01(victimProps.baseBodySize);
-                
+
                 // If the hunter's shooting skill is below skillThreshold, hunter gets closer to not miss their shots
-                // I assumed level 10 is a good enough shooter to stay at maximum distance and don't miss 
+                // I assumed level 10 is a good enough shooter to stay at maximum distance and don't miss
                 const float skillThreshold = 5f;
                 float skillFactor = Mathf.Clamp01(hunter.skills.GetSkill(SkillDefOf.Shooting).Level / skillThreshold);
-                
+
                 float weaponRange = curJob.verbToUse.verbProps.range;
-                    
+
                 float optimal = weaponRange * bodySizeFactor * skillFactor;
-                
+
                 // In some cases optimal range gets lower than the normal range that we calculated for non-manhunting animals.
                 // For example when the hunter has 0 shooting skill, optimal range will be negative.
                 // In that case we just go back to normal calculated range.
@@ -228,7 +228,7 @@ namespace CombatExtended
             }
 
             return normalRange;
-            
+
             //Fit for an attack range per body size curve.
             float HuntRangePerBodysize(float x, float executionRange, float gunRange)
             {

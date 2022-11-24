@@ -19,7 +19,7 @@ namespace CombatExtended
             }
 
             parts.Where(p => p.depth == BodyPartDepth.Outside || p.def.IsSolid(p, pawn.health.hediffSet.hediffs))
-                .TryRandomElementByWeight(p => p.coverageAbs * p.def.GetHitChanceFactorFor(dinfo.Def), out var result);
+            .TryRandomElementByWeight(p => p.coverageAbs * p.def.GetHitChanceFactorFor(dinfo.Def), out var result);
 
             return result;
         }

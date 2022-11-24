@@ -28,7 +28,9 @@ namespace CombatExtended
                 {
                     Fire fire = (Fire)thing.GetAttachment(ThingDefOf.Fire);
                     if (fire != null)
+                    {
                         fire.fireSize = maxFireSize;
+                    }
                 }
                 else
                 {
@@ -42,7 +44,9 @@ namespace CombatExtended
             if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam))
             {
                 if (!Destroyed)
+                {
                     Destroy();
+                }
             }
             else
             {

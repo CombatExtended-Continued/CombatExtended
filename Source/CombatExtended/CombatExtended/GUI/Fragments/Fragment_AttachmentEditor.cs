@@ -14,7 +14,7 @@ namespace CombatExtended
     /// A container used for rendering the attachment editor in any place.
     /// </summary>
     public class Fragment_AttachmentEditor
-    {        
+    {
         public readonly WeaponPlatform weapon;
         public readonly WeaponPlatformDef weaponDef;
 
@@ -36,13 +36,13 @@ namespace CombatExtended
         private List<WeaponPlatformDef.WeaponGraphicPart> visibleDefaultParts = new List<WeaponPlatformDef.WeaponGraphicPart>();
 
         private List<AttachmentLink> links = new List<AttachmentLink>();
-        private List<AttachmentLink> target = new List<AttachmentLink>();        
+        private List<AttachmentLink> target = new List<AttachmentLink>();
 
         private Dictionary<string, List<AttachmentLink>> linksByTag = new Dictionary<string, List<AttachmentLink>>();
 
         private readonly Listing_Collapsible collapsible_radios = new Listing_Collapsible(true, true);
         private readonly Listing_Collapsible collapsible_stats = new Listing_Collapsible(true, true);
-        private readonly Listing_Collapsible collapsible_center = new Listing_Collapsible(true, true);        
+        private readonly Listing_Collapsible collapsible_center = new Listing_Collapsible(true, true);
 
         public List<AttachmentLink> CurConfig
         {
@@ -100,7 +100,9 @@ namespace CombatExtended
                 this.AddAttachment(link, update: false);
             }
             foreach (StatDef stat in displayStats)
+            {
                 statBases[stat] = weaponDef.GetWeaponStatAbstractWith(stat, config);
+            }
             this.Update();
         }
 
@@ -109,12 +111,12 @@ namespace CombatExtended
         /// </summary>
         /// <param name="weapon"></param>
         public Fragment_AttachmentEditor(WeaponPlatform weapon)
-        {                        
+        {
             this.InitializeFragment();
             this.links = weapon.Platform.attachmentLinks;
             this.weapon = weapon;
             this.weaponDef = weapon.Platform;
-            
+
             foreach (AttachmentLink link in weaponDef.attachmentLinks)
             {
                 string tag = link.attachment.slotTags.First();
@@ -132,7 +134,9 @@ namespace CombatExtended
             foreach (AttachmentLink link in weapon.Platform.attachmentLinks.Where(l => weapon.TargetConfig.Any(a => a == l.attachment)))
             {
                 if(weapon.attachments.Any(l => l.attachment.index == link.attachment.index))
-                    this.attachedByAt[link] = true;                
+                {
+                    this.attachedByAt[link] = true;
+                }
                 this.AddAttachment(link, update: false);
             }
             List<AttachmentDef> tempConfig = weapon.TargetConfig;
@@ -142,12 +146,19 @@ namespace CombatExtended
                 {
                     this.attachedByAt[link] = true;
                     if (!tempConfig.Contains(link.attachment))
+                    {
                         this.removalByAt[link] = true;
-                }else if(tempConfig.Contains(link.attachment))
+                    }
+                }
+                else if(tempConfig.Contains(link.attachment))
+                {
                     this.additionByAt[link] = true;
+                }
             }
             foreach (StatDef stat in displayStats)
+            {
                 statBases[stat] = weapon.GetWeaponStatWith(stat, null, true);
+            }
             this.Update();
         }
 
@@ -180,7 +191,7 @@ namespace CombatExtended
                     CE_StatDefOf.MuzzleFlash,
                     CE_StatDefOf.MagazineCapacity,
                     CE_StatDefOf.ShotSpread,
-                    CE_StatDefOf.SwayFactor,                    
+                    CE_StatDefOf.SwayFactor,
                 };
                 positiveStats = new List<StatDef>()
                 {
@@ -194,8 +205,8 @@ namespace CombatExtended
                 negativeStats = new List<StatDef>()
                 {
                     StatDefOf.Mass,
-                    StatDefOf.RangedWeapon_Cooldown,                    
-                    CE_StatDefOf.TicksBetweenBurstShots,                    
+                    StatDefOf.RangedWeapon_Cooldown,
+                    CE_StatDefOf.TicksBetweenBurstShots,
                     CE_StatDefOf.ReloadTime,
                     CE_StatDefOf.Recoil,
                     CE_StatDefOf.Bulk,
@@ -213,12 +224,12 @@ namespace CombatExtended
         public void DoContents(Rect inRect)
         {
             float width = inRect.width;
-            hoveringOver = null;                      
+            hoveringOver = null;
             DoRightPanel(inRect.RightPartPixels(width * 0.3f).ContractedBy(2));
-            inRect.xMax -= width * 0.3f;           
+            inRect.xMax -= width * 0.3f;
             DoCenterPanel(inRect.RightPartPixels(width * 0.4f).ContractedBy(2));
             inRect.xMax -= width * 0.4f;
-            DoLeftPanel(inRect.ContractedBy(2));            
+            DoLeftPanel(inRect.ContractedBy(2));
         }
 
         /// <summary>
@@ -233,7 +244,7 @@ namespace CombatExtended
             collapsible_radios.Label("CE_Attachments_Options".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.white, hightlightIfMouseOver: false);
             collapsible_radios.Gap(2);
             collapsible_radios.Label("CE_Attachments_Options_Tip".Translate());
-            collapsible_radios.Gap(1);            
+            collapsible_radios.Gap(1);
             bool started = false;
             bool stop = false;
             foreach (string tag in tags)
@@ -257,7 +268,7 @@ namespace CombatExtended
                         Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), attachment);
                         rect.xMin += 25;
                         Color color = (attachedByAt[link] && !removalByAt[link]) ? Color.white : (additionByAt[link] ? Color.green : (removalByAt[link] ?  Color.red : Color.white));
-                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), color, ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);                        
+                        GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), color, ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
                         if (checkOn != visible)
                         {
                             if (checkOn)
@@ -277,10 +288,16 @@ namespace CombatExtended
                         }
                     }, useMargins: true, hightlightIfMouseOver: true);
                     collapsible_radios.Gap(2);
-                    if (stop) break;
+                    if (stop)
+                    {
+                        break;
+                    }
                 }
                 started = true;
-                if (stop) break;
+                if (stop)
+                {
+                    break;
+                }
             }
             collapsible_radios.End(ref inRect);
         }
@@ -336,7 +353,9 @@ namespace CombatExtended
                     {
                         GUI.color = Color.cyan;
                         if (Widgets.ButtonText(rect.TopPartPixels(20).LeftPartPixels(75), "edit offsets"))
+                        {
                             Find.WindowStack.Add(new Window_AttachmentsDebugger(weaponDef));
+                        }
                     });
                 }
             });
@@ -355,7 +374,7 @@ namespace CombatExtended
             collapsible_stats.Gap(2);
             collapsible_stats.Label("CE_Attachments_Information_Tip".Translate(), hightlightIfMouseOver: false);
             collapsible_stats.Gap(4);
-            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray, hightlightIfMouseOver: false);            
+            collapsible_stats.Label("CE_EditAttachmentsStats".Translate(), fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft, color: Color.gray, hightlightIfMouseOver: false);
             collapsible_stats.Line(1);
             foreach (StatDef stat in displayStats)
             {
@@ -398,13 +417,13 @@ namespace CombatExtended
             collapsible_stats.End(ref inRect);
         }
 
-        /// <summary>        
+        /// <summary>
         /// </summary>
         /// <param name="inRect"></param>
         private void DoLoadoutPanel(Rect inRect)
         {
             Widgets.DrawMenuSection(inRect);
-        }      
+        }
 
         /// <summary>
         /// Add an attachment to the current selection list. Please avoid spaming updates.
@@ -416,11 +435,16 @@ namespace CombatExtended
             foreach (AttachmentLink other in links)
             {
                 if ((attachedByAt[other] || additionByAt[other]) && !removalByAt[other] && !attachmentLink.CompatibleWith(other))
+                {
                     RemoveAttachment(other, update: false);
+                }
             }
             removalByAt[attachmentLink] = false;
             additionByAt[attachmentLink] = true;
-            if (update) Update();
+            if (update)
+            {
+                Update();
+            }
         }
 
         /// <summary>
@@ -431,13 +455,19 @@ namespace CombatExtended
         private void RemoveAttachment(AttachmentLink attachmentLink, bool update = true)
         {
             additionByAt[attachmentLink] = false;
-            if (attachedByAt[attachmentLink]) removalByAt[attachmentLink] = true;
-            if (update) Update();
+            if (attachedByAt[attachmentLink])
+            {
+                removalByAt[attachmentLink] = true;
+            }
+            if (update)
+            {
+                Update();
+            }
         }
 
         /// <summary>
         /// Should be called on any change in attachedByAt, removalByAt, additionByAt or stats.
-        /// Update the window internel states. This include recaching stats, finding what default graphics parts should be visible.        
+        /// Update the window internel states. This include recaching stats, finding what default graphics parts should be visible.
         /// </summary>
         private void Update()
         {
@@ -482,9 +512,13 @@ namespace CombatExtended
         {
             float diff = stats[stat];
             if (positiveStats.Contains(stat))
+            {
                 return diff > 0 ? Color.green : (diff == 0 ? Color.white : Color.red);
+            }
             if (negativeStats.Contains(stat))
+            {
                 return diff > 0 ? Color.red : (diff == 0 ? Color.white : Color.green);
+            }
             throw new NotImplementedException();
         }
     }

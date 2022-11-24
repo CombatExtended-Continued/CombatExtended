@@ -14,7 +14,7 @@ using CombatExtended.CombatExtended.Jobs.Utils;
 namespace CombatExtended
 {
     /* Class is cloned from Building_TurretGun with various changes made to support fire modes and ammo
-     * 
+     *
      * Unmodified methods should be kept up-to-date with vanilla class so long as they don't conflict with changes made. Please mark any changes you make from vanilla.
      * -NIA
      */
@@ -68,9 +68,9 @@ namespace CombatExtended
         private bool IsMortarOrProjectileFliesOverhead => Projectile.projectile.flyOverhead || IsMortar;
         //Not included: CanExtractShell
         private bool MannedByColonist => mannableComp != null && mannableComp.ManningPawn != null
-            && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
+        && mannableComp.ManningPawn.Faction == Faction.OfPlayer;
         private bool MannedByNonColonist => mannableComp != null && mannableComp.ManningPawn != null
-            && mannableComp.ManningPawn.Faction != Faction.OfPlayer;
+        && mannableComp.ManningPawn.Faction != Faction.OfPlayer;
 
         // New properties
         public Thing Gun
@@ -113,7 +113,10 @@ namespace CombatExtended
         {
             get
             {
-                if (compChangeable == null && Gun != null) compChangeable = Gun.TryGetComp<CompChangeableProjectile>();
+                if (compChangeable == null && Gun != null)
+                {
+                    compChangeable = Gun.TryGetComp<CompChangeableProjectile>();
+                }
                 return compChangeable;
             }
         }
@@ -122,7 +125,10 @@ namespace CombatExtended
         {
             get
             {
-                if (compAmmo == null && Gun != null) compAmmo = Gun.TryGetComp<CompAmmoUser>();
+                if (compAmmo == null && Gun != null)
+                {
+                    compAmmo = Gun.TryGetComp<CompAmmoUser>();
+                }
                 return compAmmo;
             }
         }
@@ -131,7 +137,10 @@ namespace CombatExtended
         {
             get
             {
-                if (compFireModes == null && Gun != null) compFireModes = Gun.TryGetComp<CompFireModes>();
+                if (compFireModes == null && Gun != null)
+                {
+                    compFireModes = Gun.TryGetComp<CompFireModes>();
+                }
                 return compFireModes;
             }
         }
@@ -175,7 +184,9 @@ namespace CombatExtended
 
                 //Delay auto-reload for a few seconds after spawn, so player can operate the turret right after placing it, before other colonists start reserving it for reload jobs
                 if (mannableComp != null)
+                {
                     ticksUntilAutoReload = minTicksBeforeAutoReload;
+                }
             }
 
             // if (CompAmmo == null || CompAmmo.Props == null || CompAmmo.Props.ammoSet == null || CompAmmo.Props.ammoSet.ammoTypes.NullOrEmpty())
@@ -281,7 +292,10 @@ namespace CombatExtended
         public override void Tick()     //Autoreload code and IsReloading check
         {
             base.Tick();
-            if (ticksUntilAutoReload > 0) ticksUntilAutoReload--;   // Reduce time until we can auto-reload
+            if (ticksUntilAutoReload > 0)
+            {
+                ticksUntilAutoReload--;    // Reduce time until we can auto-reload
+            }
 
             if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
             {
@@ -341,10 +355,10 @@ namespace CombatExtended
         {
             // Check for ammo first
             if (!Spawned
-                || (holdFire && CanToggleHoldFire)
-                || (Projectile.projectile.flyOverhead && Map.roofGrid.Roofed(Position))
-                //|| !AttackVerb.Available()  -- Check replaced by the following:
-                || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
+                    || (holdFire && CanToggleHoldFire)
+                    || (Projectile.projectile.flyOverhead && Map.roofGrid.Roofed(Position))
+                    //|| !AttackVerb.Available()  -- Check replaced by the following:
+                    || (CompAmmo != null && (isReloading || (mannableComp == null && CompAmmo.CurMagCount <= 0))))
             {
                 ResetCurrentTarget();
                 return;
@@ -388,8 +402,8 @@ namespace CombatExtended
             float range = this.AttackVerb.verbProps.range;
             Building t;
             if (Rand.Value < 0.5f && this.AttackVerb.ProjectileFliesOverhead() && faction.HostileTo(Faction.OfPlayer) && base.Map.listerBuildings.allBuildingsColonist.Where(delegate (Building x)
-            {
-                float num = this.AttackVerb.verbProps.EffectiveMinRange(x, this);
+        {
+            float num = this.AttackVerb.verbProps.EffectiveMinRange(x, this);
                 float num2 = (float)x.Position.DistanceToSquared(this.Position);
                 return num2 > num * num && num2 < range * range;
             }).TryRandomElement(out t))
@@ -412,14 +426,14 @@ namespace CombatExtended
                 targetScanFlags |= TargetScanFlags.NeedNonBurning;
             }
             return (Thing)AttackTargetFinder.BestShootTargetFromCurrentPosition(
-                attackTargetSearcher,
-                targetScanFlags,
-                this.IsValidTarget,
-                minDistance: 0f,
-                // Only consider targets within the maximum range of this turret
-                // to avoid iterating over potential targets that it can't reach.
-                maxDistance: range
-            );
+                       attackTargetSearcher,
+                       targetScanFlags,
+                       this.IsValidTarget,
+                       minDistance: 0f,
+                       // Only consider targets within the maximum range of this turret
+                       // to avoid iterating over potential targets that it can't reach.
+                       maxDistance: range
+                   );
         }
 
         private IAttackTargetSearcher TargSearcher()    // Core method
@@ -571,7 +585,9 @@ namespace CombatExtended
                 foreach (Command com in CompAmmo.CompGetGizmosExtra())
                 {
                     if (!PlayerControlled && Prefs.DevMode && com is GizmoAmmoStatus)
+                    {
                         (com as GizmoAmmoStatus).prefix = "DEV: ";
+                    }
 
                     yield return com;
                 }
@@ -699,7 +715,9 @@ namespace CombatExtended
         public Thing InventoryAmmo(CompInventory inventory)
         {
             if (inventory == null)
+            {
                 return null;
+            }
 
             Thing ammo = inventory.container.FirstOrDefault(x => x.def == CompAmmo.SelectedAmmo);
 
@@ -716,7 +734,9 @@ namespace CombatExtended
         {
             //No reload necessary at all --
             if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
+            {
                 return;
+            }
 
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
@@ -726,7 +746,9 @@ namespace CombatExtended
 
             //Only have manningPawn reload after a long time of no firing
             if (!forced && Reloadable && (compAmmo.CurMagCount != 0 || ticksUntilAutoReload > 0))
+            {
                 return;
+            }
 
             //Already reserved for manning
             Pawn manningPawn = mannableComp.ManningPawn;

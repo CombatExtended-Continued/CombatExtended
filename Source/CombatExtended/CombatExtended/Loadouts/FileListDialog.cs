@@ -201,7 +201,7 @@ namespace CombatExtended
                 return false;
             }
         }
-        
+
         private static bool TryGetFileInfo(string storageTypeName, string fileName, out FileInfo fi)
         {
             string path;

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace CombatExtended
 {
-    // Variant of the vanilla Graphic_StackCount class, which changes the graphic displayed for an item 
+    // Variant of the vanilla Graphic_StackCount class, which changes the graphic displayed for an item
     // based on the current stack count, but with customizable upper limit for each subgraphic taken
     // from their respective filenames.
     //
@@ -23,7 +23,7 @@ namespace CombatExtended
 
     public class Graphic_StackCountRanged : Graphic_Collection
     {
-		public override Material MatSingle
+        public override Material MatSingle
         {
             get
             {
@@ -77,52 +77,53 @@ namespace CombatExtended
         {
             switch (this.subGraphics.Length)
             {
-                case 1:
+            case 1:
+                return this.subGraphics[0];
+            case 2:
+                if (stackCount == 1)
+                {
                     return this.subGraphics[0];
-                case 2:
-                    if (stackCount == 1)
+                }
+                return this.subGraphics[1];
+            default:
+            {
+                // Create a lookup table, pairing each subgraphic with their corresponding upper stack limit value
+                var graphicsAndUpperLimitsList = new List<KeyValuePair<int, Graphic>>();
+                foreach (Graphic currentGraphic in this.subGraphics)
+                {
+                    // Extract the upper limit value from the last set of digits in the subgraphic filename
+                    // This safely ignores any numbers elsewhere (e.g. in the folder name)
+                    int currentLimit = int.Parse(Regex.Match(currentGraphic.path, @"\d+(?!\D*\d)").Value);
+                    graphicsAndUpperLimitsList.Add(new KeyValuePair<int, Graphic>(currentLimit, currentGraphic));
+                }
+
+                // By default, the subgraphics filenames are ordered from lowest to highest
+                // We reverse it so that we can start comparing from highest to lowest
+                graphicsAndUpperLimitsList.Reverse();
+
+                // Start by pre-emptively using the subgraphic with the highest upper stack limit value
+                // This helps catch an edge case where a modder accidentally defines a max stack size greater than
+                // the subgraphic with the highest upper stack limit, which would otherwise cause our subsequent
+                // stack count comparison loop to fail
+                Graphic finalSubGraphic = graphicsAndUpperLimitsList[0].Value;
+
+                // Compare our current stack count with each upper stack limit value
+                foreach (KeyValuePair<int, Graphic> currentItem in graphicsAndUpperLimitsList)
+                {
+                    if (stackCount <= currentItem.Key)
                     {
-                        return this.subGraphics[0];
+                        // Use the current subgraphic for now, and then keep checking
+                        finalSubGraphic = currentItem.Value;
                     }
-                    return this.subGraphics[1];
-                default:
+                    else
                     {
-                        // Create a lookup table, pairing each subgraphic with their corresponding upper stack limit value
-                        var graphicsAndUpperLimitsList = new List<KeyValuePair<int, Graphic>>();
-                        foreach (Graphic currentGraphic in this.subGraphics)
-                        {
-                            // Extract the upper limit value from the last set of digits in the subgraphic filename
-                            // This safely ignores any numbers elsewhere (e.g. in the folder name)
-                            int currentLimit = int.Parse(Regex.Match(currentGraphic.path, @"\d+(?!\D*\d)").Value);
-                            graphicsAndUpperLimitsList.Add(new KeyValuePair<int, Graphic>(currentLimit, currentGraphic));
-                        }
-
-                        // By default, the subgraphics filenames are ordered from lowest to highest
-                        // We reverse it so that we can start comparing from highest to lowest
-                        graphicsAndUpperLimitsList.Reverse();
-
-                        // Start by pre-emptively using the subgraphic with the highest upper stack limit value
-                        // This helps catch an edge case where a modder accidentally defines a max stack size greater than
-                        // the subgraphic with the highest upper stack limit, which would otherwise cause our subsequent
-                        // stack count comparison loop to fail
-                        Graphic finalSubGraphic = graphicsAndUpperLimitsList[0].Value;
-
-                        // Compare our current stack count with each upper stack limit value
-                        foreach (KeyValuePair<int, Graphic> currentItem in graphicsAndUpperLimitsList)
-                        {
-                            if (stackCount <= currentItem.Key)
-                            {
-                                // Use the current subgraphic for now, and then keep checking
-                                finalSubGraphic = currentItem.Value;
-                            }
-                            else {
-                                // We have found our final subgraphic, break out of the foreach loop
-                                break;
-                            }
-                        }
-
-                        return finalSubGraphic;
+                        // We have found our final subgraphic, break out of the foreach loop
+                        break;
                     }
+                }
+
+                return finalSubGraphic;
+            }
             }
         }
 

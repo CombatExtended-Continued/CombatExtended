@@ -19,19 +19,23 @@ namespace CombatExtended.HarmonyCE
         public static MethodBase TargetMethod()
         {
             var targets = typeof(PlaceWorker_ShowTurretRadius).GetNestedTypes(AccessTools.all)
-                .Where(x => x.Name.Contains(className));
+                          .Where(x => x.Name.Contains(className));
 
             if (!targets.Any())
+            {
                 Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find part `"+ className + "`");
+            }
 
             var method = targets.SelectMany(x => x.GetMethods(AccessTools.all)).FirstOrDefault(x => x.Name.Contains(methodName));
 
             if (method == null)
+            {
                 Log.Error("CombatExtended :: Harmony_PlaceWorker_ShowTurretRadius couldn't find `<>c` sub-class containing `"+ methodName + "`");
+            }
 
             return method;
         }
-        
+
         [HarmonyPostfix]
         public static void PostFix(VerbProperties v, ref bool __result)
         {

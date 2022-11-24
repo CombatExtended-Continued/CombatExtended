@@ -42,7 +42,9 @@ namespace CombatExtended.AI
         public override Job TryGiveTacticalJob()
         {
             if (SelPawn.Faction.IsPlayerSafe())
+            {
                 return null;
+            }
             if (TendJobIssuedRecently || TendJobCheckedRecently || SelPawn.jobs?.curJob?.def == CE_JobDefOf.TendSelf)
             {
                 return null;

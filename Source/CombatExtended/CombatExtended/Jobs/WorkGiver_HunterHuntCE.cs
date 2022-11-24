@@ -22,7 +22,10 @@ namespace CombatExtended
                 List<Apparel> wornApparel = p.apparel.WornApparel;
                 foreach (Apparel apparel in wornApparel)
                 {
-                    if (apparel is Apparel_Shield) return true;
+                    if (apparel is Apparel_Shield)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

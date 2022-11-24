@@ -73,60 +73,60 @@ namespace CombatExtended
 
             foreach (var gun in unpatchedGuns)
             {
-		try
-		{
-		    bool shouldPatch = false;
-		    if (gun.label.ToLower().Replace("-", "").Split(' ').Any(y => preset.names?.Contains(y) ?? false))
-		    {
-			shouldPatch = true;
-		    }
-		    else if (preset.names?.Contains(gun.label.ToLower()) ?? false)
-		    {
-			shouldPatch = true;
-		    }
-		    else if (gun.DiscardDesignationsMatch(preset))
-		    {
-			shouldPatch = true;
-		    }
-		    else if (gun.MatchesVerbProps(preset))
-		    {
-			shouldPatch = true;
-		    }
-		    else if (preset.tags != null && gun.weaponTags != null && preset.tags.Intersect(gun.weaponTags).Any())
-		    {
-			shouldPatch = true;
-		    }
-		    else if (preset.specialGuns.Any
-			(
-			 y =>
-			 y.names.Contains(gun.label)
-			 ||
-			 y.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ')).Any()
-			 )
-			)
-		    {
-			shouldPatch = true;
-		    }
+                try
+                {
+                    bool shouldPatch = false;
+                    if (gun.label.ToLower().Replace("-", "").Split(' ').Any(y => preset.names?.Contains(y) ?? false))
+                    {
+                        shouldPatch = true;
+                    }
+                    else if (preset.names?.Contains(gun.label.ToLower()) ?? false)
+                    {
+                        shouldPatch = true;
+                    }
+                    else if (gun.DiscardDesignationsMatch(preset))
+                    {
+                        shouldPatch = true;
+                    }
+                    else if (gun.MatchesVerbProps(preset))
+                    {
+                        shouldPatch = true;
+                    }
+                    else if (preset.tags != null && gun.weaponTags != null && preset.tags.Intersect(gun.weaponTags).Any())
+                    {
+                        shouldPatch = true;
+                    }
+                    else if (preset.specialGuns.Any
+                             (
+                                 y =>
+                                 y.names.Contains(gun.label)
+                                 ||
+                                 y.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ')).Any()
+                             )
+                            )
+                    {
+                        shouldPatch = true;
+                    }
 
-		    if (shouldPatch)
-		    {
-			gun.PatchGunFromPreset(preset);
-		    }
-		}
-		catch (Exception e)
-		{
-		    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
-		    Log.Error($"Unhandled exception patching gun {gun} from preset {preset}");
-		}
+                    if (shouldPatch)
+                    {
+                        gun.PatchGunFromPreset(preset);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                    Log.Error($"Unhandled exception patching gun {gun} from preset {preset}");
+                }
             }
         }
 
         public static void PatchGunFromPreset(this ThingDef gun, GunPatcherPresetDef preset)
         {
-	    if (Controller.settings.DebugAutopatcherLogger)
-	    {
-		Log.Message($"Auto-patching {gun} ({gun.label})");
-	    }
+            if (Controller.settings.DebugAutopatcherLogger)
+            {
+                Log.Message($"Auto-patching {gun} ({gun.label})");
+            }
 
             var OldProj = gun.Verbs[0].defaultProjectile;
 
@@ -140,8 +140,8 @@ namespace CombatExtended
 
             var oldTools = gun.tools;
 
-	    var oldTags = gun.weaponTags;
-	    gun.weaponTags = new List<string>(oldTags);
+            var oldTags = gun.weaponTags;
+            gun.weaponTags = new List<string>(oldTags);
 
             gun.verbs = new List<VerbProperties>();
 
@@ -178,7 +178,7 @@ namespace CombatExtended
             try
             {
                 #region stat curves
-                
+
                 if (preset.MassCurve != null)
                 {
                     finalMass = preset.MassCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.Mass));
@@ -190,13 +190,13 @@ namespace CombatExtended
                 {
                     specialGun = preset.specialGuns.Find(x => x.names.Intersect(gun.label.ToLower().Replace("-", "").Split(' ').ToList<string>()).Any());
                     gun.comps.Add(new CompProperties_AmmoUser
-                            {
-                                ammoSet = specialGun.caliber,
-                                reloadTime = specialGun.reloadTime,
-                                magazineSize = specialGun.magCap,
-                                reloadOneAtATime = preset.reloadOneAtATime
+                    {
+                        ammoSet = specialGun.caliber,
+                        reloadTime = specialGun.reloadTime,
+                        magazineSize = specialGun.magCap,
+                        reloadOneAtATime = preset.reloadOneAtATime
 
-                            });
+                    });
 
 
 
@@ -209,13 +209,13 @@ namespace CombatExtended
                 else
                 {
                     gun.comps.Add(new CompProperties_AmmoUser
-                            {
-                                ammoSet = preset.setCaliber,
-                                reloadTime = preset.ReloadTime,
-                                magazineSize = preset.AmmoCapacity,
-                                reloadOneAtATime = preset.reloadOneAtATime
+                    {
+                        ammoSet = preset.setCaliber,
+                        reloadTime = preset.ReloadTime,
+                        magazineSize = preset.AmmoCapacity,
+                        reloadOneAtATime = preset.reloadOneAtATime
 
-                            });
+                    });
                 }
 
                 if (preset.DetermineCaliber)
@@ -223,12 +223,12 @@ namespace CombatExtended
                     var comp = gun.comps.Find(x => x is CompProperties_AmmoUser) as CompProperties_AmmoUser;
 
                     comp.ammoSet = preset.CaliberRanges.Find
-                        (
-                         x =>
-                         x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
-                         &&
-                         x.SpeedRange.Includes(OldProj.projectile.speed)
-                         )?.AmmoSet ?? comp.ammoSet;
+                                   (
+                                       x =>
+                                       x.DamageRange.Includes(OldProj.projectile.GetDamageAmount(1f))
+                                       &&
+                                       x.SpeedRange.Includes(OldProj.projectile.speed)
+                                   )?.AmmoSet ?? comp.ammoSet;
                 }
 
                 if (preset.cooldownCurve != null)
@@ -236,13 +236,13 @@ namespace CombatExtended
                     FinalCooldown = preset.cooldownCurve.Evaluate(gun.GetStatValueAbstract(StatDefOf.RangedWeapon_Cooldown));
                 }
 
-		if (preset.addTags != null)
-		{
-		    foreach(string tag in preset.addTags)
-		    {
-			gun.weaponTags.Add(tag);
-		    }
-		}
+                if (preset.addTags != null)
+                {
+                    foreach(string tag in preset.addTags)
+                    {
+                        gun.weaponTags.Add(tag);
+                    }
+                }
                 #region patching tools
 
                 if (gun.tools != null)
@@ -278,7 +278,7 @@ namespace CombatExtended
             }
             catch (Exception e)
             {
-                try 
+                try
                 {
                     Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
                 }
@@ -290,7 +290,7 @@ namespace CombatExtended
                 gun.comps = oldComps;
                 gun.tools = oldTools;
                 gun.verbs = oldVerbs;
-		gun.weaponTags = oldTags;
+                gun.weaponTags = oldTags;
             }
             #region addings stats
             gun.comps.Add(preset.fireModes);
@@ -330,17 +330,17 @@ namespace CombatExtended
                 if (bipodDef != null)
                 {
                     gun.comps.Add(new CompProperties_BipodComp
-                            {
-                                catDef = bipodDef,
-                                warmupPenalty = bipodDef.warmup_mult_NOT_setup,
-                                warmupMult = bipodDef.warmup_mult_setup,
-                                ticksToSetUp = bipodDef.setuptime,
-                                recoilMultoff = bipodDef.recoil_mult_NOT_setup,
-                                recoilMulton = bipodDef.recoil_mult_setup,
-                                additionalrange = bipodDef.ad_Range,
-                                swayMult = bipodDef.swayMult,
-                                swayPenalty = bipodDef.swayPenalty
-                            });
+                    {
+                        catDef = bipodDef,
+                        warmupPenalty = bipodDef.warmup_mult_NOT_setup,
+                        warmupMult = bipodDef.warmup_mult_setup,
+                        ticksToSetUp = bipodDef.setuptime,
+                        recoilMultoff = bipodDef.recoil_mult_NOT_setup,
+                        recoilMulton = bipodDef.recoil_mult_setup,
+                        additionalrange = bipodDef.ad_Range,
+                        swayMult = bipodDef.swayMult,
+                        swayPenalty = bipodDef.swayPenalty
+                    });
                     gun.statBases.Add(new StatModifier { value = 0f, stat = BipodDefsOfs.BipodStats });
                 }
             }

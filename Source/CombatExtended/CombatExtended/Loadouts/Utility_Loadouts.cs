@@ -47,7 +47,9 @@ namespace CombatExtended
             get
             {
                 if (_overburdenedTex == null)
+                {
                     _overburdenedTex = SolidColorMaterials.NewSolidColorTexture(Color.red);
+                }
                 return _overburdenedTex;
             }
         }
@@ -62,12 +64,16 @@ namespace CombatExtended
             Rect labelRect = new Rect(canvas);
             Rect barRect = new Rect(canvas);
             if (label != "")
+            {
                 barRect.xMin += LabelSize;
+            }
             labelRect.width = LabelSize;
 
             // label
             if (label != "")
+            {
                 Widgets.Label(labelRect, label);
+            }
 
             // bar
             bool overburdened = current > capacity;
@@ -78,11 +84,15 @@ namespace CombatExtended
                 DrawBarThreshold(barRect, capacity / current, 1f);
             }
             else
+            {
                 Widgets.FillableBar(barRect, fillPercentage);
+            }
 
             // tooltip
             if (tooltip != "")
+            {
                 TooltipHandler.TipRegion(canvas, tooltip);
+            }
         }
 
         public static void DrawBarThreshold(Rect barRect, float pct, float curLevel = 1f)
@@ -110,9 +120,9 @@ namespace CombatExtended
             float workSpeedFactor = MassBulkUtility.WorkSpeedFactor(loadout.Bulk, medianBulkCapacity);
 
             return "CE_DetailedBaseBulkTip".Translate(
-                CE_StatDefOf.CarryBulk.ValueToString(medianBulkCapacity, CE_StatDefOf.CarryBulk.toStringNumberSense),
-                CE_StatDefOf.CarryBulk.ValueToString(loadout.Bulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
-                workSpeedFactor.ToStringPercent());
+                       CE_StatDefOf.CarryBulk.ValueToString(medianBulkCapacity, CE_StatDefOf.CarryBulk.toStringNumberSense),
+                       CE_StatDefOf.CarryBulk.ValueToString(loadout.Bulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
+                       workSpeedFactor.ToStringPercent());
         }
 
         public static string GetBulkTip(this Pawn pawn)
@@ -120,9 +130,11 @@ namespace CombatExtended
             CompInventory comp = pawn.TryGetComp<CompInventory>();
             if (comp != null)
                 return "CE_DetailedBulkTip".Translate(CE_StatDefOf.CarryBulk.ValueToString(comp.capacityBulk, CE_StatDefOf.CarryBulk.toStringNumberSense), CE_StatDefOf.CarryBulk.ValueToString(comp.currentBulk, CE_StatDefOf.CarryBulk.toStringNumberSense),
-                                                       comp.workSpeedFactor.ToStringPercent());
+                                                      comp.workSpeedFactor.ToStringPercent());
             else
+            {
                 return String.Empty;
+            }
         }
 
         public static string GetBulkTip(this Thing thing, int count = 1)
@@ -140,7 +152,9 @@ namespace CombatExtended
         public static Loadout GetLoadout(this Pawn pawn)
         {
             if (pawn == null)
+            {
                 throw new ArgumentNullException("pawn");
+            }
 
             Loadout loadout;
             if (!LoadoutManager.AssignedLoadouts.TryGetValue(pawn, out loadout))
@@ -174,14 +188,14 @@ namespace CombatExtended
         public static string GetWeightAndBulkTip(this ThingDef def, int count = 1)
         {
             return def.LabelCap +
-                (count != 1 ? " x" + count : "") +
-                "\n" + def.GetWeightTip(count) + "\n" + def.GetBulkTip(count);
+                   (count != 1 ? " x" + count : "") +
+                   "\n" + def.GetWeightTip(count) + "\n" + def.GetBulkTip(count);
         }
 
         public static string GetWeightAndBulkTip(this LoadoutGenericDef def, int count = 1)
         {
             return "CE_Weight".Translate() + ": " + StatDefOf.Mass.ValueToString(def.mass * count, StatDefOf.Mass.toStringNumberSense) + "\n" +
-                "CE_Bulk".Translate() + ": " + CE_StatDefOf.Bulk.ValueToString(def.bulk * count, CE_StatDefOf.Bulk.toStringNumberSense);
+                   "CE_Bulk".Translate() + ": " + CE_StatDefOf.Bulk.ValueToString(def.bulk * count, CE_StatDefOf.Bulk.toStringNumberSense);
         }
 
         public static string GetWeightTip(this ThingDef def, int count = 1)
@@ -204,8 +218,8 @@ namespace CombatExtended
             float encumberPenalty = MassBulkUtility.EncumberPenalty(loadout.Weight, medianWeightCapacity);
 
             return "CE_DetailedBaseWeightTip".Translate(CE_StatDefOf.CarryWeight.ValueToString(medianWeightCapacity, CE_StatDefOf.CarryWeight.toStringNumberSense), CE_StatDefOf.CarryWeight.ValueToString(loadout.Weight, CE_StatDefOf.CarryWeight.toStringNumberSense),
-                                                 moveSpeedFactor.ToStringPercent(),
-                                                 encumberPenalty.ToStringPercent());
+                    moveSpeedFactor.ToStringPercent(),
+                    encumberPenalty.ToStringPercent());
         }
 
         public static string GetWeightTip(this Pawn pawn)
@@ -213,28 +227,38 @@ namespace CombatExtended
             CompInventory comp = pawn.TryGetComp<CompInventory>();
             if (comp != null)
                 return "CE_DetailedWeightTip".Translate(CE_StatDefOf.CarryWeight.ValueToString(comp.capacityWeight, CE_StatDefOf.CarryWeight.toStringNumberSense), CE_StatDefOf.CarryWeight.ValueToString(comp.currentWeight, CE_StatDefOf.CarryWeight.toStringNumberSense),
-                                                     comp.moveSpeedFactor.ToStringPercent(),
-                                                     comp.encumberPenalty.ToStringPercent());
+                                                        comp.moveSpeedFactor.ToStringPercent(),
+                                                        comp.encumberPenalty.ToStringPercent());
             else
+            {
                 return "";
+            }
         }
 
         public static void SetLoadout(this Pawn pawn, Loadout loadout)
         {
             if (pawn == null)
+            {
                 throw new ArgumentNullException("pawn");
+            }
 
             if (LoadoutManager.AssignedLoadouts.ContainsKey(pawn))
+            {
                 LoadoutManager.AssignedLoadouts[pawn] = loadout;
+            }
             else
+            {
                 LoadoutManager.AssignedLoadouts.Add(pawn, loadout);
+            }
         }
 
         public static void SetLoadoutById(this Pawn pawn, int loadoutId)
         {
             Loadout loadout = LoadoutManager.GetLoadoutById(loadoutId);
             if (loadout == null)
+            {
                 throw new ArgumentNullException("loadout");
+            }
 
             SetLoadout(pawn, loadout);
         }
@@ -268,9 +292,13 @@ namespace CombatExtended
                 return 0;
             }
             else if (ys.Length % 2 == 0)
+            {
                 return (ys[(int)(ys.Length / 2) - 1] + ys[(int)(ys.Length / 2)]) / 2;
+            }
             else
+            {
                 return ys[Mathf.FloorToInt(ys.Length / 2f)];
+            }
         }
 
         /// <summary>
@@ -284,7 +312,9 @@ namespace CombatExtended
             string newName = string.Concat(pawn.Name.ToStringShort, " ", "CE_DefaultLoadoutName".Translate());
             Regex reNum = new Regex(@"^(.*?)\d+$");
             if (reNum.IsMatch(newName))
+            {
                 newName = reNum.Replace(newName, @"$1");
+            }
             newName = LoadoutManager.GetUniqueLabel(newName);
 
             // set basic loadout properties.
@@ -339,7 +369,9 @@ namespace CombatExtended
                 if (slot != null)
                 {
                     if (slot.count < slot.genericDef.defaultCount)
+                    {
                         slot.count = slot.genericDef.defaultCount;
+                    }
                 }
                 else
                 {
@@ -358,7 +390,7 @@ namespace CombatExtended
                 return false;
             }
             return (thing is Apparel eqApparel && (pawn.apparel?.IsLocked(eqApparel) ?? false))
-                || (thing.def.IsWeapon && pawn.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, pawn));
+                   || (thing.def.IsWeapon && pawn.IsQuestLodger() && !EquipmentUtility.QuestLodgerCanUnequip(thing, pawn));
         }
 
         #endregion Methods

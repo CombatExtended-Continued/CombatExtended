@@ -11,10 +11,10 @@ namespace CombatExtended
 {
     public struct CollisionVertical
     {
-    	public const float ThickRoofThicknessMultiplier = 2f;
-    	public const float NaturalRoofThicknessMultiplier = 2f;
+        public const float ThickRoofThicknessMultiplier = 2f;
+        public const float NaturalRoofThicknessMultiplier = 2f;
         public const float MeterPerCellHeight = 1.75f;
-    	public const float WallCollisionHeight = 2f;       // Walls are this tall
+        public const float WallCollisionHeight = 2f;       // Walls are this tall
         public const float BodyRegionBottomHeight = 0.45f;  // Hits below this percentage will impact the corresponding body region
         public const float BodyRegionMiddleHeight = 0.85f;  // This also sets the altitude at which pawns hold their guns
 
@@ -31,7 +31,7 @@ namespace CombatExtended
         {
             CalculateHeightRange(thing, out heightRange, out shotHeight);
         }
-        
+
         private static void CalculateHeightRange(Thing thing, out FloatRange heightRange, out float shotHeight)
         {
             shotHeight = 0;
@@ -40,22 +40,22 @@ namespace CombatExtended
             {
                 return;
             }
-            
+
             var plant = thing as Plant;
             if (plant != null)
             {
-            		//Height matches up exactly with visual size
-            	heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).y);
+                //Height matches up exactly with visual size
+                heightRange = new FloatRange(0f, BoundsInjector.ForPlant(plant).y);
                 return;
             }
-            
+
             if (thing is Building)
             {
                 if (thing is Building_Door door && door.Open)
-            	{
-            		return;		//returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)
-            	}
-            	
+                {
+                    return;     //returns heightRange = (0,0) & shotHeight = 0. If not open, doors have FillCategory.Full so returns (0, WallCollisionHeight)
+                }
+
                 if (thing.def.Fillage == FillCategory.Full)
                 {
                     heightRange = new FloatRange(0, WallCollisionHeight);
@@ -67,7 +67,7 @@ namespace CombatExtended
                 shotHeight = fillPercent;
                 return;
             }
-            
+
             float collisionHeight = 0f;
             float shotHeightOffset = 0;
             float heightAdjust = CETrenches.GetHeightAdjust(thing.Position, thing.Map);
@@ -76,14 +76,14 @@ namespace CombatExtended
             if (pawn != null)
             {
                 collisionHeight = CE_Utility.GetCollisionBodyFactors(pawn).y;
-            	
+
                 shotHeightOffset = collisionHeight * (1 - BodyRegionMiddleHeight);
-				
+
                 // Humanlikes in combat crouch to reduce their profile
                 if (pawn.IsCrouching())
                 {
                     float crouchHeight = BodyRegionBottomHeight * collisionHeight;  // Minimum height we can crouch down to
-                    
+
                     // Find the highest adjacent cover
                     Map map = pawn.Map;
                     foreach(IntVec3 curCell in GenAdjFast.AdjacentCells8Way(pawn.Position))
@@ -94,7 +94,10 @@ namespace CombatExtended
                             if (cover != null && cover.def.Fillage == FillCategory.Partial && !cover.IsPlant())
                             {
                                 var coverHeight = new CollisionVertical(cover).Max - heightAdjust;
-                                if (coverHeight > crouchHeight) crouchHeight = coverHeight;
+                                if (coverHeight > crouchHeight)
+                                {
+                                    crouchHeight = coverHeight;
+                                }
                             }
                         }
                     }
@@ -126,8 +129,14 @@ namespace CombatExtended
         /// <returns>BodyPartHeight between Bottom and Top.</returns>
         public BodyPartHeight GetCollisionBodyHeight(float projectileHeight)
         {
-            if (projectileHeight < BottomHeight) return BodyPartHeight.Bottom;
-            else if (projectileHeight < MiddleHeight) return BodyPartHeight.Middle;
+            if (projectileHeight < BottomHeight)
+            {
+                return BodyPartHeight.Bottom;
+            }
+            else if (projectileHeight < MiddleHeight)
+            {
+                return BodyPartHeight.Middle;
+            }
             return BodyPartHeight.Top;
         }
 

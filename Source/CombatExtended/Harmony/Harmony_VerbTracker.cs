@@ -15,7 +15,7 @@ namespace CombatExtended.HarmonyCE
      *      if (verbCE != null)
      *          verbCE.VerbTickCE();
      *  }
-     * 
+     *
      * The entire IL is short so here...
      * L_0000: Local var #0 System.Int32
      * L_0000: ldarg.0
