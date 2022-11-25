@@ -38,6 +38,16 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]</xpath>
 				<value>

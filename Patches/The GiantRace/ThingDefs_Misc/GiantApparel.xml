@@ -260,7 +260,17 @@
 					<ArmorRating_Blunt>72</ArmorRating_Blunt>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="GI_Powerhelmet"]/equippedStatOffsets</xpath>
 				<value>
