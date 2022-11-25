@@ -445,7 +445,17 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_DDhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_DDhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="Moyo_DDhelmet"]/equippedStatOffsets/MoveSpeed</xpath>
 				<value>
@@ -628,7 +638,17 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_LDhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_LDhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_LDhelmet"]</xpath>
 				<value>
