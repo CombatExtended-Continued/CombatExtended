@@ -77,6 +77,7 @@ ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
 Alpha Animals |
 Alpha Biomes |
+Alpha Genes |
 Alpha Ships |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
