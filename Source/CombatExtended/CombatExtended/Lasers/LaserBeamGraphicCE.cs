@@ -305,7 +305,7 @@ namespace CombatExtended.Lasers
         static LaserBeamGraphicCE()
         {
             BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
-            BeamEndMat  = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+            BeamEndMat = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
             MatPropertyBlock = new MaterialPropertyBlock();
         }
 

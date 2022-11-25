@@ -269,6 +269,7 @@ namespace CombatExtended
                     {
                         Thing ammoListGun = null;
                         if (!ListGun.TryGetComp<CompAmmoUser>().HasAmmoOrMagazine)
+                        {
                             foreach (AmmoLink link in ListGun.TryGetComp<CompAmmoUser>().Props.ammoSet.ammoTypes)
                             {
                                 if (inventory.ammoList.Find(thing => thing.def == link.ammo) == null)
@@ -277,6 +278,8 @@ namespace CombatExtended
                                     break;
                                 }
                             }
+                        }
+
                         if (ammoListGun != null)
                         {
                             Thing droppedWeapon;

@@ -209,8 +209,8 @@ namespace CombatExtended
             {
                 Widgets.ListSeparator(ref num, viewRect.width, "Apparel".Translate());
                 foreach (Apparel current2 in from ap in SelPawnForGear.apparel.WornApparel
-                         orderby ap.def.apparel.bodyPartGroups[0].listOrder descending
-                         select ap)
+                                             orderby ap.def.apparel.bodyPartGroups[0].listOrder descending
+                                             select ap)
                 {
                     DrawThingRowCE(ref num, viewRect.width, current2);
                 }
@@ -488,7 +488,7 @@ namespace CombatExtended
                     float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
                     if (wornApparel != null)
                     {
-                        foreach(var apparel in wornApparel)
+                        foreach (var apparel in wornApparel)
                         {
                             if (apparel.def.apparel.CoversBodyPart(part))
                             {
@@ -607,7 +607,7 @@ namespace CombatExtended
             p.SetLoadout(loadout);
 
             if (Compatibility.Multiplayer.IsExecutingCommandsIssuedBySelf)
-                // Opening this window is the same way as if from the assign tab so should be correct.
+            // Opening this window is the same way as if from the assign tab so should be correct.
             {
                 Find.WindowStack.Add(new Dialog_ManageLoadouts(p.GetLoadout()));
             }

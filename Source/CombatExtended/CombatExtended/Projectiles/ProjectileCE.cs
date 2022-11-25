@@ -1274,7 +1274,7 @@ namespace CombatExtended
 
                 var suppressThings = new List<Pawn>();
                 float dangerAmount = 0f;
-                var dir = new float? (origin.AngleTo(Vec2Position()));
+                var dir = new float?(origin.AngleTo(Vec2Position()));
 
                 // Opt-out for things without explosionRadius
                 if (def.projectile.explosionRadius > 0f)

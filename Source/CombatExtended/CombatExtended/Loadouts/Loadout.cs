@@ -128,7 +128,7 @@ namespace CombatExtended
             dest.defaultLoadout = source.defaultLoadout;
             dest.canBeDeleted = source.canBeDeleted;
             dest._slots = new List<LoadoutSlot>();
-            foreach(LoadoutSlot slot in source.Slots)
+            foreach (LoadoutSlot slot in source.Slots)
             {
                 dest.AddSlot(slot.Copy());
             }

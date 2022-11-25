@@ -153,11 +153,11 @@ namespace CombatExtended
             {
                 if (intVec3.InBounds(map) && intVec3.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell1 = new IntVec3? (intVec3);
+                    needLOSToCell1 = new IntVec3?(intVec3);
                 }
                 if (intVec.InBounds(map) && intVec.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell2 = new IntVec3? (intVec);
+                    needLOSToCell2 = new IntVec3?(intVec);
                     return;
                 }
             }
@@ -165,11 +165,11 @@ namespace CombatExtended
             {
                 if (intVec.InBounds(map) && intVec.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell1 = new IntVec3? (intVec);
+                    needLOSToCell1 = new IntVec3?(intVec);
                 }
                 if (intVec4.InBounds(map) && intVec4.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell2 = new IntVec3? (intVec4);
+                    needLOSToCell2 = new IntVec3?(intVec4);
                     return;
                 }
             }
@@ -177,11 +177,11 @@ namespace CombatExtended
             {
                 if (intVec4.InBounds(map) && intVec4.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell1 = new IntVec3? (intVec4);
+                    needLOSToCell1 = new IntVec3?(intVec4);
                 }
                 if (intVec2.InBounds(map) && intVec2.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell2 = new IntVec3? (intVec2);
+                    needLOSToCell2 = new IntVec3?(intVec2);
                     return;
                 }
             }
@@ -189,11 +189,11 @@ namespace CombatExtended
             {
                 if (intVec2.InBounds(map) && intVec2.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell1 = new IntVec3? (intVec2);
+                    needLOSToCell1 = new IntVec3?(intVec2);
                 }
                 if (intVec3.InBounds(map) && intVec3.CanBeSeenOverFast(map))
                 {
-                    needLOSToCell2 = new IntVec3? (intVec3);
+                    needLOSToCell2 = new IntVec3?(intVec3);
                 }
             }
         }

@@ -7,7 +7,7 @@ namespace CombatExtended
     public class CompMilkableRenameable : CompMilkable
     {
 
-        private string                      growthLabel = "MilkFullness".Translate();
+        private string growthLabel = "MilkFullness".Translate();
 
         private CompProperties_MilkableRenameable properties
         {
@@ -17,21 +17,21 @@ namespace CombatExtended
             }
         }
 
-        public override void                Initialize( CompProperties props )
+        public override void Initialize(CompProperties props)
         {
-            base.Initialize( props );
-            if(
-                ( properties != null ) &&
-                ( !properties.growthLabel.NullOrEmpty() )
+            base.Initialize(props);
+            if (
+                (properties != null) &&
+                (!properties.growthLabel.NullOrEmpty())
             )
             {
                 growthLabel = properties.growthLabel;
             }
         }
 
-        public override string              CompInspectStringExtra()
+        public override string CompInspectStringExtra()
         {
-            if( !Active )
+            if (!Active)
             {
                 return (string)null;
             }

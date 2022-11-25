@@ -88,7 +88,7 @@ namespace CombatExtended
                 {
                     thingDef = td,
                     isGreyedOut = (Find.CurrentMap.listerThings.AllThings.Find(thing => thing.GetInnerIfMinified().def == td && !thing.def.Minifiable) == null)
-                                  //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
+                    //!thing.PositionHeld.Fogged(thing.MapHeld) //check Thing is visible on map. CPU expensive!
                 });
             }
             SetSource(SourceSelection.Ranged);
@@ -174,7 +174,7 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
 
             const int BUTTON_COUNT = 6;
-            const float BUTTON_STRETCH_FACTOR = 0.8f / (float) BUTTON_COUNT;
+            const float BUTTON_STRETCH_FACTOR = 0.8f / (float)BUTTON_COUNT;
             float buttonWidth = canvas.width * BUTTON_STRETCH_FACTOR;
 
             // SET UP RECTS
@@ -572,7 +572,7 @@ namespace CombatExtended
             {
                 RocketGUI.GUIUtility.DropDownMenu<int>((i) =>
                 {
-                    if(i == 0)
+                    if (i == 0)
                     {
                         return "CE_AttachmentsEditLoadout".Translate();
                     }
@@ -584,7 +584,7 @@ namespace CombatExtended
                 },
                 (i) =>
                 {
-                    if(i == 0)
+                    if (i == 0)
                     {
                         if (Find.WindowStack.IsOpen<Window_AttachmentsEditor>())
                         {
@@ -602,7 +602,7 @@ namespace CombatExtended
                             }));
                         }
                     }
-                    if(i == 1)
+                    if (i == 1)
                     {
                         slot.attachments.Clear();
                     }
@@ -641,7 +641,7 @@ namespace CombatExtended
                 // make sure there's an ammoset defined
                 AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
-                bool ? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
+                bool? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
 
                 if (temp ?? false)
                 {
@@ -660,10 +660,12 @@ namespace CombatExtended
                         // Add in the generic for this gun.
                         LoadoutGenericDef generic = DefDatabase<LoadoutGenericDef>.GetNamed("GenericAmmo-" + slot.thingDef.defName);
                         if (generic != null)
+                        {
                             options.Add(new FloatMenuOption(generic.LabelCap, delegate
                         {
                             AddLoadoutSlotGeneric(CurrentLoadout, generic);
                         }));
+                        }
 
                         Find.WindowStack.Add(new FloatMenu(options, "CE_AddAmmoFor".Translate(slot.thingDef.LabelCap)));
                     }

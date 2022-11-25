@@ -50,7 +50,9 @@ namespace CombatExtended.Compatibility
 
                         // Stuffable weapons get the multiplier stat
                         if (def.MadeFromStuff)
+                        {
                             def.statBases.Add(new StatModifier { stat = CE_StatDefOf.StuffEffectMultiplierToughness, value = weaponThickness });
+                        }
                         // Non-stuffable weapons get the rating value
                         else
                         {

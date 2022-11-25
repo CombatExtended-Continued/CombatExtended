@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 return 0f;
             }
-            if(!_throttle.TryGetValue(pawn.thingIDNumber, out int ticks) || GenTicks.TicksGame - ticks > TicksThrottleCooldown)
+            if (!_throttle.TryGetValue(pawn.thingIDNumber, out int ticks) || GenTicks.TicksGame - ticks > TicksThrottleCooldown)
             {
                 return 30f;
             }

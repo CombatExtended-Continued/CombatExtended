@@ -11,7 +11,7 @@ namespace CombatExtended.Compatibility.Artillery
 {
     public class ArtilleryStrikeArrivalAction_PeaceTalksCE : ArtilleryStrikeArrivalAction_PeaceTalks
     {
-        public ArtilleryStrikeArrivalAction_PeaceTalksCE() {}
+        public ArtilleryStrikeArrivalAction_PeaceTalksCE() { }
 
         public ArtilleryStrikeArrivalAction_PeaceTalksCE(Map source)
         {

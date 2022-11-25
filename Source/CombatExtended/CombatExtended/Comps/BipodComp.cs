@@ -81,7 +81,7 @@ namespace CombatExtended
                             {
                                 yield return new Command_Action
                                 {
-                                    action = delegate {},
+                                    action = delegate { },
                                     defaultLabel = "CE_Bipod_Set_Up".Translate(),
                                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/open_bipod")
                                 };

@@ -98,8 +98,8 @@ namespace CombatExtended.HarmonyCE
 
         #region Utility_Methods
 
-// Remarked the following block since time is a factor, played with it yesterday but it will probably eat too much time to finish and is probably a better fit for
-// a Harmony PR.
+        // Remarked the following block since time is a factor, played with it yesterday but it will probably eat too much time to finish and is probably a better fit for
+        // a Harmony PR.
         /*
         /// <summary>
         /// Returns a bool indicating if the types are compatible (castable).  Optional bool does implicit specific check.  That is that one can cast from into to.

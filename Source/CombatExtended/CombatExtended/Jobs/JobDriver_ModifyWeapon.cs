@@ -171,7 +171,7 @@ namespace CombatExtended
         /// <returns></returns>
         private bool TryRefundIngredient(AttachmentDef attachmentDef)
         {
-            foreach(ThingDefCountClass countClass in attachmentDef.costList)
+            foreach (ThingDefCountClass countClass in attachmentDef.costList)
             {
                 Thing ingredient = ThingMaker.MakeThing(countClass.thingDef, countClass.thingDef.defaultStuff);
                 ingredient.stackCount = countClass.count;

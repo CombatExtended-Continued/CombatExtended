@@ -43,12 +43,12 @@ namespace CombatExtended
             {
                 for (int i = 0; i < stat.parts.Count; i++)
                 {
-                    if(!(stat.parts[i] is StatPart_Attachments))
+                    if (!(stat.parts[i] is StatPart_Attachments))
                     {
                         stat.parts[i].TransformValue(req, ref val);
                     }
                 }
-                if(links != null)
+                if (links != null)
                 {
                     stat.TransformValue(links, ref val);
                 }
@@ -135,7 +135,7 @@ namespace CombatExtended
             StringBuilder sb = new StringBuilder();
             bool anyOffsets = false;
             bool anyFactors = false;
-            foreach(AttachmentLink link in links)
+            foreach (AttachmentLink link in links)
             {
                 StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null)
@@ -194,11 +194,13 @@ namespace CombatExtended
             {
                 for (int i = 0; i < stat.parts.Count; i++)
                 {
-                    if(stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
-                        stat.parts[i].TransformValue(new StatRequest()
+                    if (stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
                     {
-                        qualityCategoryInt = QualityCategory.Normal
-                    }, ref val);
+                        stat.parts[i].TransformValue(new StatRequest()
+                        {
+                            qualityCategoryInt = QualityCategory.Normal
+                        }, ref val);
+                    }
                 }
                 if (links != null)
                 {
@@ -236,7 +238,7 @@ namespace CombatExtended
         /// <returns>Wether you can attach without conflicts</returns>
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
         {
-            foreach(AttachmentLink link in platform.attachments)
+            foreach (AttachmentLink link in platform.attachments)
             {
                 if (!platform.Platform.AttachmentsCompatible(link.attachment, attachment))
                 {

@@ -21,7 +21,7 @@ namespace CombatExtended
 
                 float tiles_penetration = props.fuze_delay;
 
-                if(props.HP_penetration)
+                if (props.HP_penetration)
                 {
                     tiles_penetration /= (hitThing.HitPoints / props.HP_penetration_ratio);
                 }

@@ -238,7 +238,7 @@ namespace CombatExtended
 
                 if (preset.addTags != null)
                 {
-                    foreach(string tag in preset.addTags)
+                    foreach (string tag in preset.addTags)
                     {
                         gun.weaponTags.Add(tag);
                     }

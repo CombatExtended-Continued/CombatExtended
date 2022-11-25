@@ -35,11 +35,11 @@ namespace CombatExtended
                 result = true;
 
                 var xmlNode = current as XmlNode;
-                if(isWeaponPlatform || (attachmentLinks?.node.HasChildNodes ?? false) || (defaultGraphicParts?.node.HasChildNodes ?? false))
+                if (isWeaponPlatform || (attachmentLinks?.node.HasChildNodes ?? false) || (defaultGraphicParts?.node.HasChildNodes ?? false))
                 {
                     MakeWeaponPlatform(xml, xmlNode);
                 }
-                if(texPath != null)
+                if (texPath != null)
                 {
                     AddOrReplaceTexPath(xml, xmlNode);
                 }

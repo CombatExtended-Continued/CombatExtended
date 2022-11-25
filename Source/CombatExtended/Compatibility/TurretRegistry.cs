@@ -15,9 +15,9 @@ namespace CombatExtended.Compatibility
     using GetReloadingFunction = Func<Building_Turret, bool>;
     using SetReloadingFunction = Action<Building_Turret, bool>;
 
-    using GetAmmoFunction   = Func<Building_Turret, CompAmmoUser>;
+    using GetAmmoFunction = Func<Building_Turret, CompAmmoUser>;
 
-    using GetGunFunction    = Func<Building_Turret, Thing>;
+    using GetGunFunction = Func<Building_Turret, Thing>;
 
     public static class TurretRegistry
     {
@@ -32,8 +32,8 @@ namespace CombatExtended.Compatibility
             enabled = true;
             setReloading = new Dictionary<Type, SetReloadingFunction>();
             getReloading = new Dictionary<Type, GetReloadingFunction>();
-            getAmmo      = new Dictionary<Type, GetAmmoFunction>();
-            getGun       = new Dictionary<Type, GetGunFunction>();
+            getAmmo = new Dictionary<Type, GetAmmoFunction>();
+            getGun = new Dictionary<Type, GetGunFunction>();
 
         }
 
@@ -163,7 +163,7 @@ namespace CombatExtended.Compatibility
         {
             if (turret is Building_TurretGunCE ceturret)
             {
-                ceturret.TryOrderReload(forced);;
+                ceturret.TryOrderReload(forced); ;
                 return;
             }
             var compAmmo = turret.GetAmmo();

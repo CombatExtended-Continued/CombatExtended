@@ -161,7 +161,7 @@ namespace CombatExtended
         /// <returns></returns>
         public float GetAvailableWeight(bool updateInventory = true)
         {
-            if(updateInventory)
+            if (updateInventory)
             {
                 UpdateInventory();
             }

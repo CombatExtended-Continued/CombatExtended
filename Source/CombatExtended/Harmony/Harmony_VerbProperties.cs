@@ -20,7 +20,7 @@ namespace CombatExtended.HarmonyCE
             {
                 if (!cache.TryGetValue(__instance, out __result))
                 {
-                    lock(cache)
+                    lock (cache)
                     {
                         __result = typeof(Verb_LaunchProjectileCE).IsAssignableFrom(__instance.verbClass);
                         cache[__instance] = __result;

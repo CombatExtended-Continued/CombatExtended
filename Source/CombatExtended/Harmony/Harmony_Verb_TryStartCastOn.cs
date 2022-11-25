@@ -69,7 +69,7 @@ namespace CombatExtended.HarmonyCE
             if (__instance.CasterIsPawn)
             {
                 var manager = __instance.CasterPawn.GetTacticalManager();
-                if(manager != null)
+                if (manager != null)
                 {
                     return manager.TryStartCastChecks(__instance, castTarg, destTarg);
                 }

@@ -48,7 +48,7 @@ namespace CombatExtended.Compatibility.Artillery
 
         public static void ArtilleryTick(ArtilleryComp artilleryComp, ThingDef shellDef)
         {
-            artilleryComp.bombardmentDurationTicks -= (int) (shellDef.BaseMarketValue * ((int)shellDef.techLevel) * artilleryComp.artilleryCount);
+            artilleryComp.bombardmentDurationTicks -= (int)(shellDef.BaseMarketValue * ((int)shellDef.techLevel) * artilleryComp.artilleryCount);
             if (artilleryComp.bombardmentDurationTicks < 1)
             {
                 artilleryComp.bombardmentDurationTicks = 1;

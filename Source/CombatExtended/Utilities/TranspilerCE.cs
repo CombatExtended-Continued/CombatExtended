@@ -57,7 +57,7 @@ namespace CombatExtended.Utilities
 
             while (count-- > 0)
             {
-                foreach(var code in SeekStart(iterInstructions, startTarget))
+                foreach (var code in SeekStart(iterInstructions, startTarget))
                 {
                     yield return code;
                 }
@@ -66,7 +66,7 @@ namespace CombatExtended.Utilities
                     iterInstructions.MoveNext();
                     yield return iterInstructions.Current;
                 }
-                foreach(var code in patch)
+                foreach (var code in patch)
                 {
                     yield return code;
                 }

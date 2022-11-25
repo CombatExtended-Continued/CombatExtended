@@ -147,7 +147,7 @@ namespace CombatExtended
         {
             get
             {
-                if(_LinkByDef.Count != Platform.attachmentLinks.Count)
+                if (_LinkByDef.Count != Platform.attachmentLinks.Count)
                 {
                     _LinkByDef.Clear();
                     foreach (AttachmentLink link in Platform.attachmentLinks)
@@ -169,7 +169,7 @@ namespace CombatExtended
             // start - scribe the current attachments
             List<AttachmentDef> defs = this.attachments.Select(l => l.attachment).ToList();
             Scribe_Collections.Look(ref defs, "attachments", LookMode.Def);
-            if(Scribe.mode != LoadSaveMode.Saving && defs != null)
+            if (Scribe.mode != LoadSaveMode.Saving && defs != null)
             {
                 attachments.Clear();
                 attachments.AddRange(defs.Select(a => Platform.attachmentLinks.First(l => l.attachment == a)));

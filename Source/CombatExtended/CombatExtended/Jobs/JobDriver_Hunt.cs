@@ -174,11 +174,11 @@ namespace CombatExtended
                 var pawnVictim = thing as Pawn;
 
                 if (!CastPositionFinder.TryFindCastPosition(new CastPositionRequest
-            {
-                caster = toil.actor,
-                target = thing,
-                verb = curJob.verbToUse,
-                maxRangeFromTarget = GetOptimalHuntRange(actor, pawnVictim),
+                {
+                    caster = toil.actor,
+                    target = thing,
+                    verb = curJob.verbToUse,
+                    maxRangeFromTarget = GetOptimalHuntRange(actor, pawnVictim),
                     wantCoverFromTarget = false
                 }, out var intVec))
                 {
@@ -230,7 +230,7 @@ namespace CombatExtended
             return normalRange;
 
             //Fit for an attack range per body size curve.
-            float HuntRangePerBodysize(float x, float executionRange, float gunRange)
+            static float HuntRangePerBodysize(float x, float executionRange, float gunRange)
             {
                 return Mathf.Min(Mathf.Clamp(1 + 20 * (1 - Mathf.Exp(-0.65f * x)), executionRange, 20), gunRange);
             }

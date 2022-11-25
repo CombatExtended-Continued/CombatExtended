@@ -37,7 +37,7 @@ namespace CombatExtended
         {
             Controller.instant = this;
             Controller.content = content;
-            Controller.settings = (Settings) settings;
+            Controller.settings = (Settings)settings;
 
             // Apply Harmony patches
             HarmonyBase.InitPatches();

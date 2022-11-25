@@ -18,7 +18,7 @@ namespace CombatExtended
         {
             if (!shieldCoverage.NullOrEmpty())
             {
-                foreach(BodyPartGroupDef group in shieldCoverage)
+                foreach (BodyPartGroupDef group in shieldCoverage)
                 {
                     if (part.IsInGroup(group))
                     {
@@ -28,7 +28,7 @@ namespace CombatExtended
             }
             if (!crouchCoverage.NullOrEmpty() && pawn.IsCrouching())
             {
-                foreach(BodyPartGroupDef group in crouchCoverage)
+                foreach (BodyPartGroupDef group in crouchCoverage)
                 {
                     if (part.IsInGroup(group))
                     {

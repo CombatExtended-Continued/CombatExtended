@@ -86,7 +86,7 @@ namespace CombatExtended
 
                     // Find the highest adjacent cover
                     Map map = pawn.Map;
-                    foreach(IntVec3 curCell in GenAdjFast.AdjacentCells8Way(pawn.Position))
+                    foreach (IntVec3 curCell in GenAdjFast.AdjacentCells8Way(pawn.Position))
                     {
                         if (curCell.InBounds(map))
                         {

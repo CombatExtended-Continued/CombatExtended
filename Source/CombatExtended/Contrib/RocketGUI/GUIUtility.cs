@@ -30,9 +30,12 @@ namespace CombatExtended.RocketGUI
             if (exception != null && !catchExceptions)
             {
                 if (fallbackAction != null)
+                {
                     exception = ExecuteSafeGUIAction(
                                     fallbackAction,
                                     catchExceptions: false);
+                }
+
                 if (exception != null)
                 {
                     throw exception;
@@ -223,7 +226,8 @@ namespace CombatExtended.RocketGUI
                     DrawTex(inRect, highlight, highlight.UIAttachmentTex, colorMat);
                 }
             });
-            void DrawTex(Rect rect, AttachmentLink link, Texture2D texture, Material mat)
+
+            static void DrawTex(Rect rect, AttachmentLink link, Texture2D texture, Material mat)
             {
                 if (link.HasDrawOffset)
                 {
@@ -326,7 +330,7 @@ namespace CombatExtended.RocketGUI
                 Rect iconRect = new Rect(0f, 0f, iconWidth, iconWidth);
                 iconRect.center = rect.RightPartPixels(iconWidth).center;
                 Color color = GUI.color;
-                if(radioColor != Color.white)
+                if (radioColor != Color.white)
                 {
                     GUI.color = radioColor;
                 }
@@ -334,7 +338,7 @@ namespace CombatExtended.RocketGUI
                 {
                     GUI.color = Widgets.InactiveColor;
                 }
-                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position : iconRect);
+                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);
                 if (disabled || monotone)
                 {
                     GUI.color = color;

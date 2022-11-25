@@ -158,7 +158,7 @@ namespace CombatExtended
             while (array[i].a < alphaThreshold)
             {
                 i += width;             // pixel one above (w, v, .. , a)
-                if (i >  width * height - 1)    // last pixel was highest in the column (a)
+                if (i > width * height - 1)    // last pixel was highest in the column (a)
                 {
                     widthRange.min++;   // nothing found in this column, shift one to the right
                     i = widthRange.min; // pixel one to the right of the lowest in the previous column (1)

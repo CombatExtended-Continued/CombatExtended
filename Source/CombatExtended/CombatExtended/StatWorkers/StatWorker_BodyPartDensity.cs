@@ -31,7 +31,7 @@ namespace CombatExtended
             stringBuilder.AppendLine($"{"CE_StatsReport_BaseValue".Translate()}: {GetBaseValueFor(req)} {UnitString}");
             stringBuilder.AppendLine();
 
-            var pawn = (Pawn) req.Thing;
+            var pawn = (Pawn)req.Thing;
             stringBuilder.AppendLine($"{"StatsReport_HealthMultiplier".Translate(pawn.HealthScale)}: x{pawn.HealthScale.ToStringPercent()}");
             stringBuilder.AppendLine();
 

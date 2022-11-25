@@ -35,7 +35,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="def">ThingDef to look for</param>
         /// <param name="count">int indicating number of items of ThingDef to store.</param>
-        public LoadoutSlot( ThingDef def, int count = 1 )
+        public LoadoutSlot(ThingDef def, int count = 1)
         {
             _type = typeof(ThingDef);
             _count = count;
@@ -52,7 +52,7 @@ namespace CombatExtended
         public LoadoutSlot(LoadoutGenericDef def, int count = 0)
         {
             _type = typeof(LoadoutGenericDef);
-            if ( count < 1)
+            if (count < 1)
             {
                 count = def.defaultCount;
             }
@@ -236,7 +236,7 @@ namespace CombatExtended
         /// <remarks>passed by ref since during load the contents of the variable is restored from the save.</remarks>
         public void ExposeData()
         {
-            Scribe_Values.Look( ref _count, "count", _defaultCount );
+            Scribe_Values.Look(ref _count, "count", _defaultCount);
             Scribe_Values.Look(ref _type, "DefType");
             Scribe_Collections.Look(ref _attachments, "Attachments", LookMode.Def);
             if (_attachments == null)

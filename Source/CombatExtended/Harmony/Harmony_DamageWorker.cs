@@ -58,7 +58,7 @@ namespace CombatExtended.HarmonyCE
                     {
                         max = true;
                     }
-                    int fragmentDamage = (int) (Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
+                    int fragmentDamage = (int)(Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
                     if (isSharp)
                     {
                         fragmentDamage /= 2;
@@ -82,7 +82,7 @@ namespace CombatExtended.HarmonyCE
 
                     if (smallFragments > 0)
                     {
-                        int reflectedFrags = (int) (smallFragments * (hitPoints / maxHitPoints));
+                        int reflectedFrags = (int)(smallFragments * (hitPoints / maxHitPoints));
                         smallFragments -= reflectedFrags;
                         if (reflectedFrags > 0)
                         {
@@ -129,7 +129,7 @@ namespace CombatExtended.HarmonyCE
                                                            1f,
                                                            false);
 
-                        while (fr.MoveNext()) {}
+                        while (fr.MoveNext()) { }
 
                     }
                 }

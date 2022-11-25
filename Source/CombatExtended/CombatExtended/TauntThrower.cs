@@ -21,7 +21,7 @@ namespace CombatExtended
 
         private bool AllowThrowTauntNow(Pawn pawn)
         {
-            if(!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
+            if (!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
             {
                 return false;
             }

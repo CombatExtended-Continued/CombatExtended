@@ -13,7 +13,7 @@ namespace CombatExtended.HarmonyCE
 
         public static bool Prefix(Rect rect, Def def, float scale, Color? color)
         {
-            if(def is WeaponPlatformDef platform)
+            if (def is WeaponPlatformDef platform)
             {
                 float dx = rect.width * (1 - scale) / 2f;
                 rect.xMin += dx;

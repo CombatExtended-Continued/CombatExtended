@@ -261,7 +261,7 @@ namespace CombatExtended.RocketGUI
         {
             Gap(height: 5);
             GUI.color = this.CollapsibleBGBorderColor;
-            if(drawBorder)
+            if (drawBorder)
             {
                 Widgets.DrawBox(new Rect(inXMin, inYMin, inXMax - inXMin, curYMin - inYMin));
             }

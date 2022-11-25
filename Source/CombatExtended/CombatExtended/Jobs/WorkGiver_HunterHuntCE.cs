@@ -17,7 +17,7 @@ namespace CombatExtended
 
         public static bool HasMeleeShieldAndTwoHandedWeapon(Pawn p)
         {
-            if(p.equipment.Primary != null && !(p.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false))
+            if (p.equipment.Primary != null && !(p.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false))
             {
                 List<Apparel> wornApparel = p.apparel.WornApparel;
                 foreach (Apparel apparel in wornApparel)

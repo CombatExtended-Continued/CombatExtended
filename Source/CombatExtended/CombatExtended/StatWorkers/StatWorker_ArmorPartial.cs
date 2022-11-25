@@ -152,7 +152,7 @@ namespace CombatExtended
                                                     this.stat == global::RimWorld.StatDefOf.ArmorRating_Sharp))
             {
 
-                if(optionalReq != null)
+                if (optionalReq != null)
                 {
                     if (optionalReq.Thing is Apparel apparel)
                     {

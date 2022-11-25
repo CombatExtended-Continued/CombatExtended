@@ -41,7 +41,7 @@ namespace CombatExtended.Compatibility
                 #region Tool patching
                 foreach (Tool tool in animal.tools)
                 {
-                    if ( !(tool is ToolCE) )
+                    if (!(tool is ToolCE))
                     {
                         newTools.Add(tool.ConvertTool());
                     }
@@ -93,7 +93,7 @@ namespace CombatExtended.Compatibility
 
                     animal.statBases.Add(RatingBlunt);
 
-                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = 1f};
+                    var RatingBluntBP = new StatModifier { stat = CE_StatDefOf.BodyPartBluntArmor, value = 1f };
 
                     animal.statBases.Add(RatingBluntBP);
                 }

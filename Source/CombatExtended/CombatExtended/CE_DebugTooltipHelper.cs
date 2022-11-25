@@ -92,7 +92,7 @@ namespace CombatExtended
         private void TryMapTooltips(Rect mouseRect, IntVec3 mouseCell)
         {
             bool bracketShown = false;
-            for(int i = 0; i < mapCallbacks.Count; i++)
+            for (int i = 0; i < mapCallbacks.Count; i++)
             {
                 Pair<Func<Map, IntVec3, string>, KeyCode> callback = mapCallbacks[i];
                 if (Input.GetKey(callback.Second == KeyCode.None ? KeyCode.LeftShift : callback.Second))

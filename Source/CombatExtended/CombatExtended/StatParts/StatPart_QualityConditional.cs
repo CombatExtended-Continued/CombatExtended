@@ -78,7 +78,7 @@ namespace CombatExtended
         private float QualityMultiplier(QualityCategory qc)
         {
             return qc switch
-        {
+            {
                 QualityCategory.Awful => factorAwful,
                 QualityCategory.Poor => factorPoor,
                 QualityCategory.Normal => factorNormal,
@@ -93,7 +93,7 @@ namespace CombatExtended
         private float MaxGain(QualityCategory qc)
         {
             return qc switch
-        {
+            {
                 QualityCategory.Awful => maxGainAwful,
                 QualityCategory.Poor => maxGainPoor,
                 QualityCategory.Normal => maxGainNormal,

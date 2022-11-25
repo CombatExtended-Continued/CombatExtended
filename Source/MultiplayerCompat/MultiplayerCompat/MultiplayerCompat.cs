@@ -13,7 +13,7 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
 {
     public class MultiplayerCompat : IModPart
     {
-        public MultiplayerCompat() {}
+        public MultiplayerCompat() { }
         public Type GetSettingsType()
         {
             return null;

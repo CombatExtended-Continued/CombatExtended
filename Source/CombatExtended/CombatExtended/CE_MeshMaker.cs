@@ -21,7 +21,7 @@ namespace CombatExtended
 
         static CE_MeshMaker()
         {
-            plane10Top = NewPlaneMesh(Vector2.zero, Vector2.one,  depth: -0.000f);
+            plane10Top = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.000f);
             plane10Mid = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.015f);
             plane10Bot = NewPlaneMesh(Vector2.zero, Vector2.one, depth: -0.03f);
 

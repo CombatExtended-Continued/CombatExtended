@@ -91,10 +91,10 @@ namespace CombatExtended
 
                 result += "\n" + "Stats when set up: ".Colorize(Color.green) + "\n";
 
-                result += "Recoil: " + Math.Round ( (VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
+                result += "Recoil: " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMulton), 2);
                 result += "\n";
 
-                result += "Sway: " + Math.Round( (req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
+                result += "Sway: " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayMult), 2);
                 result += "\n";
 
                 result += "Range: " + (BipodCompProps.additionalrange + VerbPropsCE.range);
@@ -105,11 +105,11 @@ namespace CombatExtended
 
                 result += "Stats when NOT set up: ".Colorize(Color.red) + "\n";
 
-                result += "Recoil: " + Math.Round( (VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
+                result += "Recoil: " + Math.Round((VerbPropsCE.recoilAmount * BipodCompProps.recoilMultoff), 2);
 
                 result += "\n";
 
-                result += "Sway: " + Math.Round( (req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
+                result += "Sway: " + Math.Round((req.Thing.def.statBases.Find(x => x.stat == CE_StatDefOf.SwayFactor).value * BipodCompProps.swayPenalty), 2);
 
                 result += "\n";
 

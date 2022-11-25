@@ -235,31 +235,39 @@ namespace CombatExtended
 
             float ticksBetweenBurstShots = def.verbs.Max(v => v.ticksBetweenBurstShots);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.TicksBetweenBurstShots))
-                def.statBases.Add(new StatModifier()
             {
-                stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots
-            });
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.TicksBetweenBurstShots, value = ticksBetweenBurstShots
+                });
+            }
 
             float burstShotCount = def.verbs.Max(v => v.burstShotCount);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.BurstShotCount))
-                def.statBases.Add(new StatModifier()
             {
-                stat = CE_StatDefOf.BurstShotCount, value = burstShotCount
-            });
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.BurstShotCount, value = burstShotCount
+                });
+            }
 
             float recoil = def.verbs.Max(v => v is VerbPropertiesCE verbCE ? verbCE.recoilAmount : 0);
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.Recoil))
-                def.statBases.Add(new StatModifier()
             {
-                stat = CE_StatDefOf.Recoil, value = recoil
-            });
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.Recoil, value = recoil
+                });
+            }
 
             float reloadTime = def.GetCompProperties<CompProperties_AmmoUser>().reloadTime;
             if (!def.statBases.Any(s => s.stat == CE_StatDefOf.ReloadTime))
-                def.statBases.Add(new StatModifier()
             {
-                stat = CE_StatDefOf.ReloadTime, value = reloadTime
-            });
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.ReloadTime, value = reloadTime
+                });
+            }
         }
 
         /// <summary>

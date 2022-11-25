@@ -40,8 +40,8 @@ namespace CombatExtended
             Predicate<ThingDef> isWeapon = (ThingDef td) => td.equipmentType == EquipmentType.Primary && !td.weaponTags.NullOrEmpty<string>();
             allWeaponPairs = ThingStuffPair.AllWith(isWeapon);
             foreach (ThingDef thingDef in from td in DefDatabase<ThingDef>.AllDefs
-                     where isWeapon(td)
-                     select td)
+                                          where isWeapon(td)
+                                          select td)
             {
                 float num = allWeaponPairs.Where((ThingStuffPair pa) => pa.thing == thingDef).Sum((ThingStuffPair pa) => pa.Commonality);
                 float num2 = thingDef.generateCommonality / num;
@@ -92,7 +92,7 @@ namespace CombatExtended
                 // Inventory load changed, need to update
                 inventory.UpdateInventory();
                 // Try add attachments to the main weapon
-                if(primaryAttachments != null && primary is WeaponPlatform platform)
+                if (primaryAttachments != null && primary is WeaponPlatform platform)
                 {
                     TryGenerateAttachments(inventory, platform, primaryAttachments);
                 }

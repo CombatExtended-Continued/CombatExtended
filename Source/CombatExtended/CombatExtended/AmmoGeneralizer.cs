@@ -65,7 +65,7 @@ namespace CombatExtended
                 }
 
                 var toFixScenarios = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.scenario.AllParts.Any(y => y.def == ScenPartDefOf.ScatterThingsAnywhere | y.def == ScenPartDefOf.ScatterThingsNearPlayerStart | y.def == ScenPartDefOf.StartingThing_Defined));
-                foreach(ScenarioDef def in toFixScenarios)
+                foreach (ScenarioDef def in toFixScenarios)
                 {
                     var PartAmmos = def.scenario.AllParts.Where(y => y is ScenPart_StartingThing_Defined
                                     && ((ScenPart_StartingThing_Defined)y).thingDef is AmmoDef).Select(x => x as ScenPart_StartingThing_Defined);
@@ -76,7 +76,7 @@ namespace CombatExtended
 
                         var ammoreplaced = ammodef.AmmoSetDefs?.FirstOrFallback()?.ammoTypes?.Find(x => x.ammo.ammoClass == ammodef.ammoClass)?.ammo ?? null;
 
-                        if(ammoreplaced != null)
+                        if (ammoreplaced != null)
                         {
                             scene.thingDef = ammoreplaced;
                         }

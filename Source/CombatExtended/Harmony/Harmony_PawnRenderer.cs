@@ -290,7 +290,7 @@ namespace CombatExtended.HarmonyCE
                         else
                         {
                             Matrix4x4 matrix = new Matrix4x4();
-                            if(!quickFast_Loaded)
+                            if (!quickFast_Loaded)
                             {
                                 shouldRenderHair = !apparelRecord.sourceApparel?.def?.GetModExtension<ApperalRenderingExtension>()?.HideHair ?? false;
                             }
@@ -423,7 +423,7 @@ namespace CombatExtended.HarmonyCE
                     posVec.x *= -1;
                 }
                 matrix.SetTRS(position + posVec.RotatedBy(matrix.rotation.eulerAngles.y), matrix.rotation, scale);
-                if(eq is WeaponPlatform platform)
+                if (eq is WeaponPlatform platform)
                 {
                     platform.DrawPlatform(matrix, mesh == MeshPool.plane10Flip, layer);
                 }

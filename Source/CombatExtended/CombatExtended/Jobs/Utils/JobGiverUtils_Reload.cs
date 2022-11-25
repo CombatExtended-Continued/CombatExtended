@@ -142,16 +142,16 @@ namespace CombatExtended.CombatExtended.Jobs.Utils
             {
                 //Turret's selected ammo not available, and magazine is empty. Pick a new ammo from the set to load.
                 foreach (AmmoSetDef set in requestedAmmo.AmmoSetDefs)
+                {
+                    foreach (AmmoLink link in set.ammoTypes)
                     {
-                        foreach (AmmoLink link in set.ammoTypes)
+                        bestAmmo = FindBestAmmo(pawn, link.ammo);
+                        if (bestAmmo != null)
                         {
-                            bestAmmo = FindBestAmmo(pawn, link.ammo);
-                            if (bestAmmo != null)
-                            {
-                                return bestAmmo;
-                            }
+                            return bestAmmo;
                         }
                     }
+                }
             }
             return bestAmmo;
         }

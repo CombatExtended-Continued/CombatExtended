@@ -21,7 +21,7 @@ namespace CombatExtended.HarmonyCE
             if (projectileClass.IsSubclassOf(typeof(ProjectileCE)) || projectileClass == typeof(ProjectileCE))
             {
                 ThingDef projectileDef = __instance.Props.projectileDef.GetProjectile();
-                if (projectileDef.projectile is ProjectilePropertiesCE ppce )
+                if (projectileDef.projectile is ProjectilePropertiesCE ppce)
                 {
                     Pawn pawn = __instance.parent.pawn;
                     var u = pawn.TrueCenter();

@@ -6,11 +6,11 @@ using Verse;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(typeof(Command), nameof(Command.DrawIcon))]
-    public  static class Harmony_Command
+    public static class Harmony_Command
     {
         public static bool Prefix(Command __instance, Rect rect, GizmoRenderParms parms, Material buttonMat)
         {
-            if(__instance is Command_VerbTarget command && command.verb?.EquipmentSource is WeaponPlatform platform)
+            if (__instance is Command_VerbTarget command && command.verb?.EquipmentSource is WeaponPlatform platform)
             {
                 RocketGUI.GUIUtility.ExecuteSafeGUIAction(() =>
                 {

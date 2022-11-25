@@ -131,7 +131,7 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                if(!suggestionsStarted && fake[link])
+                if (!suggestionsStarted && fake[link])
                 {
                     suggestionsStarted = true;
                     collapsible.Label("<color=red>Warning</color>", fontSize: GameFont.Small, fontStyle: FontStyle.Bold);

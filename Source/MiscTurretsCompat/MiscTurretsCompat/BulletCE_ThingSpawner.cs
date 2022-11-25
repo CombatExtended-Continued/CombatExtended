@@ -31,7 +31,7 @@ namespace CombatExtended.Compatibility
                                                   map, out cell, 2);
 
             Thing thing = GenSpawn.Spawn(this.Def.spawnDef, cell, map);
-            thing.SetFactionDirect( launcher.Faction );
+            thing.SetFactionDirect(launcher.Faction);
 
             //CellRect cellRect = CellRect.CenteredOn(base.Position, 2);
             //cellRect.ClipInsideMap(base.Map);

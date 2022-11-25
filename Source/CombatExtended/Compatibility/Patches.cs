@@ -12,17 +12,17 @@ namespace CombatExtended.Compatibility
         {
             patches = new List<IPatch>();
             Type iPatch = typeof(IPatch);
-            foreach(Type patchType in AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes())
+            foreach (Type patchType in AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes())
                     .Where(x => iPatch.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract))
             {
-                IPatch patch = ((IPatch)patchType.GetConstructor(new Type[] {}).Invoke(new object[] {}));
+                IPatch patch = ((IPatch)patchType.GetConstructor(new Type[] { }).Invoke(new object[] { }));
                 patches.Add(patch);
             }
         }
 
         public void Install()
         {
-            foreach(IPatch patch in patches)
+            foreach (IPatch patch in patches)
             {
                 if (patch.CanInstall())
                 {
@@ -33,11 +33,11 @@ namespace CombatExtended.Compatibility
 
         public IEnumerable<string> GetCompatList()
         {
-            foreach(IPatch patch in patches)
+            foreach (IPatch patch in patches)
             {
                 if (patch.CanInstall())
                 {
-                    foreach(string s in patch.GetCompatList())
+                    foreach (string s in patch.GetCompatList())
                     {
                         yield return s;
                     }

@@ -18,7 +18,7 @@ namespace CombatExtended.Compatibility.Artillery
 
     public class ArtilleryStrikeArrivalAction_InsectoidCE : ArtilleryStrikeArrivalAction_Insectoid
     {
-        public ArtilleryStrikeArrivalAction_InsectoidCE() {}
+        public ArtilleryStrikeArrivalAction_InsectoidCE() { }
 
         public ArtilleryStrikeArrivalAction_InsectoidCE(WorldObject worldObject, Map sourceMap)
         {

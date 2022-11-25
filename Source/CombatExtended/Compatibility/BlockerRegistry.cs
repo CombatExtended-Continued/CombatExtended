@@ -84,7 +84,7 @@ namespace CombatExtended.Compatibility
             {
                 return curPosition;
             }
-            float scalar  = (float) (2 * c / (-b + Math.Sqrt(det)));
+            float scalar = (float)(2 * c / (-b + Math.Sqrt(det)));
             return velocity * scalar + origin;
         }
     }

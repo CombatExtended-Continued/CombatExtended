@@ -64,7 +64,7 @@ namespace CombatExtended
             {
                 float xp = (!Patient.RaceProps.Animal) ? 125f : 50f * Medicine.def.MedicineTendXpGainFactor;
                 pawn.skills.Learn(SkillDefOf.Medicine, xp);
-                foreach(Hediff curInjury in from x in Patient.health.hediffSet.GetHediffsTendable() orderby x.BleedRate descending select x)
+                foreach (Hediff curInjury in from x in Patient.health.hediffSet.GetHediffsTendable() orderby x.BleedRate descending select x)
                 {
                     if (curInjury.CanBeStabilized())
                     {

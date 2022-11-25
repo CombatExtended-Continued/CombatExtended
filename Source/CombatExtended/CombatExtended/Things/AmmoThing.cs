@@ -122,10 +122,12 @@ namespace CombatExtended
                 if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
                 {
                     if (comp != null)
+                    {
                         comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(stackCountScale, 0.333f), null, new List<Thing>()
                     {
                         this
                     });
+                    }
                     else
                     {
                         this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this);    //Mathf.Pow(scale, 0.333f));

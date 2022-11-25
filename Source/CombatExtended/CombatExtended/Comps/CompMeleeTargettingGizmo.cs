@@ -14,7 +14,7 @@ namespace CombatExtended
     {
         static MeleeTargettingAdd()
         {
-            foreach(ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
+            foreach (ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
             {
                 if (humanlike.comps == null)
                 {
@@ -198,7 +198,7 @@ namespace CombatExtended
                         {
                             if (!parts.Contains(posTarget.def))
                             {
-                                if(posTarget.depth == BodyPartDepth.Outside
+                                if (posTarget.depth == BodyPartDepth.Outside
                                         && posTarget.height == heightInt
                                         && !posTarget.def.label.Contains("toe")
                                         && !posTarget.def.label.Contains("finger")

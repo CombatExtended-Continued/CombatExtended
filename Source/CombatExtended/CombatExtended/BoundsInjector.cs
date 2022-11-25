@@ -66,7 +66,7 @@ namespace CombatExtended
             {
                 vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path + "_side", ex);
             }
@@ -80,7 +80,7 @@ namespace CombatExtended
             {
                 hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path + "_front", ex);
             }
@@ -94,7 +94,7 @@ namespace CombatExtended
             {
                 vBoundsHead = Def_Extensions.CropVertical((headGraphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidthHead, out vHeightHead), vWidthHead, vHeightHead);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + headGraphic.path + "_side", ex);
             }
@@ -114,7 +114,7 @@ namespace CombatExtended
             {
                 hBoundsHead = Def_Extensions.CropHorizontal((headGraphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidthHead, out hHeightHead), hWidthHead, hHeightHead);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + headGraphic.path + "_front", ex);
             }
@@ -141,7 +141,7 @@ namespace CombatExtended
             {
                 vBounds = Def_Extensions.CropVertical((graphic.MatEast.mainTexture as Texture2D).GetColorSafe(out vWidth, out vHeight), vWidth, vHeight);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path + "_side", ex);
             }
@@ -165,7 +165,7 @@ namespace CombatExtended
             {
                 hBounds = Def_Extensions.CropHorizontal((graphic.MatSouth.mainTexture as Texture2D).GetColorSafe(out hWidth, out hHeight), hWidth, hHeight);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path + "_front", ex);
             }

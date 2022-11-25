@@ -46,7 +46,7 @@ namespace CombatExtended.HarmonyCE
             HarmonyBase.instance.Patch(constructor, null, null, new HarmonyMethod(typeof(Harmony_GenRadial_RadialPatternCount), "Transpiler_RadialPatternCount"));
 
             // patch all the methods.
-            foreach(MethodInfo method in methods)
+            foreach (MethodInfo method in methods)
             {
                 HarmonyBase.instance.Patch(method, null, null, new HarmonyMethod(typeof(Harmony_GenRadial_RadialPatternCount), "Transpiler_RadialPatternCount"));
                 if (method.Name == "SetupRadialPattern")
@@ -95,7 +95,7 @@ namespace CombatExtended.HarmonyCE
 
                 if (foundNeg < 2 && instruction.opcode == OpCodes.Ldc_I4_S && (SByte)instruction.operand == -defaultVal)
                 {
-                    instruction.operand = (sbyte) - newRadialRange;
+                    instruction.operand = (sbyte)-newRadialRange;
                     foundNeg++;
                 }
 

@@ -252,26 +252,32 @@ namespace CombatExtended
                 foreach (StatModifier modifier in link.attachment.statReplacers)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier()
                     {
-                        value = modifier.stat.defaultBaseValue, stat = modifier.stat
-                    });
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 foreach (StatModifier modifier in link.attachment.statOffsets)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier()
                     {
-                        value = modifier.stat.defaultBaseValue, stat = modifier.stat
-                    });
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 foreach (StatModifier modifier in link.attachment.statMultipliers)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier()
                     {
-                        value = modifier.stat.defaultBaseValue, stat = modifier.stat
-                    });
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 // offset the textures
                 link.PrepareTexture(this);

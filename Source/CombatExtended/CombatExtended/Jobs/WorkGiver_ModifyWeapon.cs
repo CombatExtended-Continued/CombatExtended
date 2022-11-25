@@ -183,7 +183,7 @@ namespace CombatExtended
         /// <param name="chosenIngThings">Ingredients</param>
         /// <param name="haulOffJob">Hauling job for clearing the target workbench</param>
         /// <returns></returns>
-        private static Job TryCreateModifyJob(Pawn pawn, WeaponPlatform weapon, AttachmentDef attachmentDef, Thing bench,  IBillGiver billGiver, List<ThingCount> chosenIngThings, out Job haulOffJob)
+        private static Job TryCreateModifyJob(Pawn pawn, WeaponPlatform weapon, AttachmentDef attachmentDef, Thing bench, IBillGiver billGiver, List<ThingCount> chosenIngThings, out Job haulOffJob)
         {
             haulOffJob = WorkGiverUtility.HaulStuffOffBillGiverJob(pawn, billGiver, weapon);
             JobCE job = new JobCE();
@@ -285,7 +285,7 @@ namespace CombatExtended
                 return remainingTotalCost == 0;
             };
             RegionTraverser.BreadthFirstTraverse(rootReg, entryCondition, regionProcessor, 200);
-            if(remainingTotalCost != 0)
+            if (remainingTotalCost != 0)
             {
                 chosenIngThings.Clear();
                 return false;

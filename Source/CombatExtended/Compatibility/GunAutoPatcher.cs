@@ -47,7 +47,7 @@ namespace CombatExtended
                         return false;
                     }
                     var t = verb.verbClass;
-                    if (t != typeof(Verb_ShootOneUse)  && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
+                    if (t != typeof(Verb_ShootOneUse) && t != typeof(Verb_Shoot) && t != typeof(Verb_LaunchProjectile) && t != typeof(Verb_LaunchProjectileStatic))
                     {
                         return false;
                     }
@@ -117,7 +117,7 @@ namespace CombatExtended
             foreach (var toolMisser in toolMissers)
             {
                 List<Tool> newTools = new List<Tool>();
-                foreach(var tool in toolMisser.tools)
+                foreach (var tool in toolMisser.tools)
                 {
                     Tool newTool;
                     try

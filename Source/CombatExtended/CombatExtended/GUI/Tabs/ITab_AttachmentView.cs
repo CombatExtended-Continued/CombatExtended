@@ -76,7 +76,7 @@ namespace CombatExtended
             collapsible.Line(1);
             collapsible.Gap(1);
             AttachmentLink[] links = Weapon.CurLinks;
-            for(int i = 0; i < links.Length; i++)
+            for (int i = 0; i < links.Length; i++)
             {
                 AttachmentLink link = links[i];
                 collapsible.Lambda(28, (rect) =>
@@ -98,7 +98,7 @@ namespace CombatExtended
             collapsible.Gap(4);
             collapsible.Label("CE_AttachmentsAdditions".Translate(), Color.gray, fontSize: GameFont.Small, anchor: TextAnchor.LowerLeft);
             collapsible.Line(1);
-            foreach(AttachmentDef attachment in Weapon.AdditionList)
+            foreach (AttachmentDef attachment in Weapon.AdditionList)
             {
                 collapsible.Lambda(28, (rect) =>
                 {

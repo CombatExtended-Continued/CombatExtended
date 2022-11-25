@@ -207,7 +207,7 @@ namespace CombatExtended
             get
             {
                 float recoil = VerbPropsCE.recoilAmount;
-                if(EquipmentSource != null)
+                if (EquipmentSource != null)
                 {
                     float modified = EquipmentSource.GetStatValue(CE_StatDefOf.Recoil);
                     if (modified > 0)
@@ -502,11 +502,11 @@ namespace CombatExtended
                     }
 
                     targetHeight = targetRange.Average;
-                    if(projectilePropsCE != null)
+                    if (projectilePropsCE != null)
                     {
                         targetHeight += projectilePropsCE.aimHeightOffset;
                     }
-                    if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed )
+                    if (targetHeight > CollisionVertical.WallCollisionHeight && report.roofed)
                     {
                         targetHeight = CollisionVertical.WallCollisionHeight;
                     }

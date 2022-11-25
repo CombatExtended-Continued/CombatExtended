@@ -117,7 +117,7 @@ namespace CombatExtended
                     weapon.UpdateConfiguration();
                 }
             }
-            if(applyAction != null)
+            if (applyAction != null)
             {
                 applyAction(selected);
             }

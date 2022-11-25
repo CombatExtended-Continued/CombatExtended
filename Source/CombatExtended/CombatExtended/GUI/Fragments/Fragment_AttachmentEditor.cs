@@ -133,7 +133,7 @@ namespace CombatExtended
             this.tags.SortBy(x => x);
             foreach (AttachmentLink link in weapon.Platform.attachmentLinks.Where(l => weapon.TargetConfig.Any(a => a == l.attachment)))
             {
-                if(weapon.attachments.Any(l => l.attachment.index == link.attachment.index))
+                if (weapon.attachments.Any(l => l.attachment.index == link.attachment.index))
                 {
                     this.attachedByAt[link] = true;
                 }
@@ -150,7 +150,7 @@ namespace CombatExtended
                         this.removalByAt[link] = true;
                     }
                 }
-                else if(tempConfig.Contains(link.attachment))
+                else if (tempConfig.Contains(link.attachment))
                 {
                     this.additionByAt[link] = true;
                 }
@@ -267,7 +267,7 @@ namespace CombatExtended
                         bool checkOn = visible;
                         Widgets.DefIcon(rect.LeftPartPixels(20).ContractedBy(2), attachment);
                         rect.xMin += 25;
-                        Color color = (attachedByAt[link] && !removalByAt[link]) ? Color.white : (additionByAt[link] ? Color.green : (removalByAt[link] ?  Color.red : Color.white));
+                        Color color = (attachedByAt[link] && !removalByAt[link]) ? Color.white : (additionByAt[link] ? Color.green : (removalByAt[link] ? Color.red : Color.white));
                         GUIUtility.CheckBoxLabeled(rect, attachment.label.CapitalizeFirst(), color, ref checkOn, texChecked: Widgets.RadioButOnTex, texUnchecked: Widgets.RadioButOffTex, drawHighlightIfMouseover: false, font: GameFont.Small);
                         if (checkOn != visible)
                         {
@@ -487,13 +487,13 @@ namespace CombatExtended
             }
             // recache the cost
             cost.Clear();
-            foreach(AttachmentLink link in CurAdditions)
+            foreach (AttachmentLink link in CurAdditions)
             {
-                foreach(ThingDefCountClass countClass in link.attachment.costList)
+                foreach (ThingDefCountClass countClass in link.attachment.costList)
                 {
                     // try not to add the same thing twice
                     ThingDefCountClass counter = cost.FirstOrFallback(c => c.thingDef == countClass.thingDef, null);
-                    if(counter == null)
+                    if (counter == null)
                     {
                         counter = new ThingDefCountClass(countClass.thingDef, 0);
                         cost.Add(counter);
