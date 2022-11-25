@@ -115,7 +115,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, "" + e, StackTraceUtility.ExtractStringFromException(e)));
                     Log.Error($"Unhandled exception patching gun {gun} from preset {preset}");
                 }
             }
@@ -280,7 +280,7 @@ namespace CombatExtended
             {
                 try
                 {
-                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, ""+e, StackTraceUtility.ExtractStringFromException(e)));
+                    Log.messageQueue.Enqueue(new LogMessage(LogMessageType.Error, "" + e, StackTraceUtility.ExtractStringFromException(e)));
                 }
                 catch (Exception e1)
                 {

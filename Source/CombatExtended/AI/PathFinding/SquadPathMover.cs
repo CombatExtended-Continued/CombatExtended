@@ -202,7 +202,7 @@ namespace CombatExtended.AI
 
         #region END EVENTS-----------------------------------------------------------------------------------------
 
-        public virtual void OnEnemyNearPawns(Pawn pawn,Pawn enemy)
+        public virtual void OnEnemyNearPawns(Pawn pawn, Pawn enemy)
         {
 
         }

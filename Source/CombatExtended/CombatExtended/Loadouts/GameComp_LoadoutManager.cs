@@ -46,7 +46,7 @@ namespace CombatExtended
         #endregion Constructors
 
         #region Properties
-        public static Dictionary<Pawn, Loadout> AssignedLoadouts => _current != null ? _current._assignedLoadouts : new Dictionary<Pawn,Loadout>();
+        public static Dictionary<Pawn, Loadout> AssignedLoadouts => _current != null ? _current._assignedLoadouts : new Dictionary<Pawn, Loadout>();
 
         public static Loadout DefaultLoadout
         {

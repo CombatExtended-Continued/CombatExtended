@@ -132,7 +132,7 @@ namespace CombatExtended.HarmonyCE
                 __instance.fireSize -= pawn.GetStatValue(StatDefOf.Flammability, true) * 150 * 0.00055f;
                 float mult = 0.0f;
                 var apparel = pawn.apparel?.WornApparel ?? null;
-                if (apparel==null)
+                if (apparel == null)
                 {
                     return;
                 }

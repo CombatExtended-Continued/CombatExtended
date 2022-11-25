@@ -27,7 +27,7 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
 
         public void PostLoad(ModContentPack content, ISettingsCE _)
         {
-            LongEventHandler.QueueLongEvent(()=>this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
+            LongEventHandler.QueueLongEvent(() => this.SlowInit(content), "CE_LongEvent_CompatibilityPatches", false, null);
         }
         public void SlowInit(ModContentPack content)
         {
@@ -65,7 +65,7 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
 
             MP.RegisterAll();
 
-            global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((()=>MP.IsInMultiplayer), (()=>MP.IsExecutingSyncCommandIssuedBySelf));
+            global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommandIssuedBySelf));
         }
 
 

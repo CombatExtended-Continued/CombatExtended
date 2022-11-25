@@ -252,7 +252,7 @@ namespace CombatExtended
         /// <param name="stat">StatDef</param>
         /// <param name="links">The current attachment links</param>
         /// <param name="val">Val</param>
-        public static void TransformValue(this StatDef stat, List<AttachmentLink> links,ref float val)
+        public static void TransformValue(this StatDef stat, List<AttachmentLink> links, ref float val)
         {
             if (links == null || links.Count == 0)
             {

@@ -332,9 +332,9 @@ namespace CombatExtended
         /// </summary>
         public void UpdateDrawCache()
         {
-            _graphicCache ??= new List<Pair<Material, Mesh>>();
+            _graphicCache ?? = new List<Pair<Material, Mesh>>();
             _graphicCache.Clear();
-            _graphicFlipCache ??= new List<Pair<Material, Mesh>>();
+            _graphicFlipCache ?? = new List<Pair<Material, Mesh>>();
             _graphicFlipCache.Clear();
             for (int i = 0; i < _defaultPart.Count; i++)
             {

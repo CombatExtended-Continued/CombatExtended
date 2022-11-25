@@ -202,7 +202,7 @@ namespace CombatExtended
                                             _buttonSize,
                                             _buttonSize);
             Rect forcedHoldRect = new Rect(labelLoadoutRect.xMax + _buttonSize + _margin * 2,
-                                           loadoutRect.yMin + ((loadoutRect.height - _buttonSize) /2),
+                                           loadoutRect.yMin + ((loadoutRect.height - _buttonSize) / 2),
                                            _buttonSize,
                                            _buttonSize);
 

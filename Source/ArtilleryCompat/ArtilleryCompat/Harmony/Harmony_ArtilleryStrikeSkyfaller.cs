@@ -21,7 +21,7 @@ namespace CombatExtended.Compatibility
         {
             List<CodeInstruction> ins = instructions.ToList();
             int idx = ins.Count() - 4;
-            while (idx< ins.Count())
+            while (idx < ins.Count())
             {
                 yield return ins[idx++];
             }

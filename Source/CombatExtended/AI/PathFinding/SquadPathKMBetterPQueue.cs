@@ -22,10 +22,10 @@ namespace CombatExtended.AI
             heap = new MinHeap<HeapKey>();
         }
 
-        public void Push(T item,float Score)
+        public void Push(T item, float Score)
         {
             var NewKey =
-                new HeapKey(Guid.NewGuid(),Score, item);
+                new HeapKey(Guid.NewGuid(), Score, item);
 
             this.heap.Add(NewKey);
         }
@@ -47,7 +47,7 @@ namespace CombatExtended.AI
 
         private class HeapKey : IComparable<HeapKey>
         {
-            public HeapKey(Guid id, float value,T objPointer)
+            public HeapKey(Guid id, float value, T objPointer)
             {
                 Id = id;
                 Value = value;

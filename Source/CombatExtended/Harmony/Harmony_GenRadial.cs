@@ -95,7 +95,7 @@ namespace CombatExtended.HarmonyCE
 
                 if (foundNeg < 2 && instruction.opcode == OpCodes.Ldc_I4_S && (SByte)instruction.operand == -defaultVal)
                 {
-                    instruction.operand = (sbyte)-newRadialRange;
+                    instruction.operand = (sbyte) - newRadialRange;
                     foundNeg++;
                 }
 

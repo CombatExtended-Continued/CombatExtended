@@ -65,7 +65,7 @@ namespace CombatExtended
             if (density > DensityDissipationThreshold)   //very low density smoke clouds eventually dissipate on their own
             {
                 destroyTick++;
-                if (Rand.Range(0,10) == 5)
+                if (Rand.Range(0, 10) == 5)
                 {
                     float d = density * 0.0001f;
                     if (density > 300)

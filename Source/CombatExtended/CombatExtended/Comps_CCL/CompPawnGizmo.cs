@@ -13,7 +13,7 @@ namespace CombatExtended
                         : null;
 
             if(
-                ( equip != null )&&
+                ( equip != null ) &&
                 ( !equip.AllComps.NullOrEmpty() )
             )
             {
@@ -21,7 +21,7 @@ namespace CombatExtended
                 {
                     var gizmoGiver = comp as CompRangedGizmoGiver;
                     if(
-                        ( gizmoGiver != null )&&
+                        ( gizmoGiver != null ) &&
                         ( gizmoGiver.isRangedGiver )
                     )
                     {

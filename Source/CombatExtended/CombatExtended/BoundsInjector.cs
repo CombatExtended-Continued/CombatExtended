@@ -23,7 +23,7 @@ namespace CombatExtended
 
         public static Vector2 BoundMap(Graphic graphic, GraphicType type, Graphic headGraphic, Vector2 headOffset)
         {
-            string path = graphic.path + (headGraphic == null ? "" : "+"+headGraphic.path);
+            string path = graphic.path + (headGraphic == null ? "" : "+" + headGraphic.path);
             if (!boundMap.ContainsKey(path))
             {
                 try
@@ -68,7 +68,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path+"_side",ex);
+                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path + "_side", ex);
             }
 
             int hWidth;
@@ -82,7 +82,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path+"_front",ex);
+                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path + "_front", ex);
             }
 
             int vWidthHead;
@@ -96,7 +96,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + headGraphic.path+"_side",ex);
+                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + headGraphic.path + "_side", ex);
             }
 
             vBoundsHead.min -= (int)(headOffset.y * (float)vHeightHead);
@@ -116,7 +116,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + headGraphic.path+"_front",ex);
+                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + headGraphic.path + "_front", ex);
             }
 
             hBoundsHead.min += (int)(headOffset.x * (float)hWidthHead);
@@ -143,7 +143,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path+"_side",ex);
+                throw new Exception("Combat Extended :: CropVertical error while cropping Textures/" + graphic.path + "_side", ex);
             }
 
             //Plants only care for verts
@@ -167,7 +167,7 @@ namespace CombatExtended
             }
             catch(Exception ex)
             {
-                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path+"_front",ex);
+                throw new Exception("Combat Extended :: CropHorizontal error while cropping Textures/" + graphic.path + "_front", ex);
             }
 
             return new Vector2(
@@ -192,7 +192,7 @@ namespace CombatExtended
                     }
                     catch (Exception e)
                     {
-                        throw new Exception(def+".lifeStages["+i+"].bodyGraphicData", e);
+                        throw new Exception(def + ".lifeStages[" + i + "].bodyGraphicData", e);
                     }
 
                     try
@@ -204,7 +204,7 @@ namespace CombatExtended
                     }
                     catch (Exception e)
                     {
-                        throw new Exception(def+".lifeStages["+i+"].femaleGraphicData", e);
+                        throw new Exception(def + ".lifeStages[" + i + "].femaleGraphicData", e);
                     }
 
                     try
@@ -216,7 +216,7 @@ namespace CombatExtended
                     }
                     catch (Exception e)
                     {
-                        throw new Exception(def+".lifeStages["+i+"].dessicatedBodyGraphicData", e);
+                        throw new Exception(def + ".lifeStages[" + i + "].dessicatedBodyGraphicData", e);
                     }
 
                     try
@@ -228,7 +228,7 @@ namespace CombatExtended
                     }
                     catch (Exception e)
                     {
-                        throw new Exception(def+".lifeStages["+i+"].femaleDessicatedBodyGraphicData", e);
+                        throw new Exception(def + ".lifeStages[" + i + "].femaleDessicatedBodyGraphicData", e);
                     }
                 }
             }
@@ -244,7 +244,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(def+".graphicData", e);
+                    throw new Exception(def + ".graphicData", e);
                 }
 
                 try
@@ -256,7 +256,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(def+".plant.leaflessGraphic", e);
+                    throw new Exception(def + ".plant.leaflessGraphic", e);
                 }
 
                 try
@@ -268,7 +268,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(def+".plant.immatureGraphic", e);
+                    throw new Exception(def + ".plant.immatureGraphic", e);
                 }
             }
 
@@ -293,7 +293,7 @@ namespace CombatExtended
         {
             if (pawn.RaceProps.Humanlike)
             {
-                return new Vector2(0.5f,1);
+                return new Vector2(0.5f, 1);
 
                 // Disabling sprite bounds for humans for balance and game design reasons -NIA
                 /*
@@ -365,7 +365,7 @@ namespace CombatExtended
 
                 if (graphic == null)
                 {
-                    Log.Error(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]."+name+" could not be found");
+                    Log.Error(pawn + ".lifeStage[" + pawn.ageTracker.CurLifeStageIndex + "]." + name + " could not be found");
                     return Vector2.zero;
                 }
                 else

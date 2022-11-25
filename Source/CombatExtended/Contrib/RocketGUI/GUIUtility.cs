@@ -334,7 +334,7 @@ namespace CombatExtended.RocketGUI
                 {
                     GUI.color = Widgets.InactiveColor;
                 }
-                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);
+                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position : iconRect);
                 if (disabled || monotone)
                 {
                     GUI.color = color;

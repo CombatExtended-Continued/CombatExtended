@@ -582,7 +582,7 @@ namespace CombatExtended
                     }
                     throw new NotImplementedException();
                 },
-                (i)=>
+                (i) =>
                 {
                     if(i == 0)
                     {
@@ -641,7 +641,7 @@ namespace CombatExtended
                 // make sure there's an ammoset defined
                 AmmoSetDef ammoSet = ((slot.thingDef.GetCompProperties<CompProperties_AmmoUser>() == null) ? null : slot.thingDef.GetCompProperties<CompProperties_AmmoUser>().ammoSet);
 
-                bool? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
+                bool ? temp = !((((ammoSet == null) ? null : ammoSet.ammoTypes)).NullOrEmpty());
 
                 if (temp ?? false)
                 {

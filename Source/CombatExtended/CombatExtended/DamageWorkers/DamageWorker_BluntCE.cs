@@ -14,7 +14,7 @@ namespace CombatExtended
                 parts = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, dinfo.Depth);
                 if (!parts.Any())
                 {
-                    parts= pawn.health.hediffSet.GetNotMissingParts();
+                    parts = pawn.health.hediffSet.GetNotMissingParts();
                 }
             }
 

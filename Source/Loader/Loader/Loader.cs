@@ -39,21 +39,21 @@ namespace CombatExtended.Loader
         private Assembly _loadCompatAssembly(string name)
         {
             DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCompat").FirstOrFallback(null);
-            if (locationInfo==null)
+            if (locationInfo == null)
             {
                 Log.Error("Combat Extended :: Cannot find compat assembly directory");
             }
-            FileInfo file = locationInfo.GetFiles(name+".dll").FirstOrFallback(null);
+            FileInfo file = locationInfo.GetFiles(name + ".dll").FirstOrFallback(null);
             if (file == null)
             {
-                Log.Error("Combat Extended :: Cannot find compat assembly for "+name);
+                Log.Error("Combat Extended :: Cannot find compat assembly for " + name);
             }
             return _loadAssembly(file);
         }
 
         private Assembly _loadAssembly(FileInfo file)
         {
-            Log.Message("Combat Extended :: Loading "+file.FullName);
+            Log.Message("Combat Extended :: Loading " + file.FullName);
             byte[] rawAssembly = File.ReadAllBytes(file.FullName);
 
             Assembly assembly;
@@ -136,7 +136,7 @@ namespace CombatExtended.Loader
             {
                 Type settingsType = modPart.GetSettingsType();
                 ISettingsCE settings = null;
-                if (settingsType!=null)
+                if (settingsType != null)
                 {
                     settings = (ISettingsCE) typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
                     settingList.Add(settings);

@@ -574,7 +574,7 @@ namespace CombatExtended
             report.sightsEfficiency = SightsEfficiency;
             report.blindFiring = ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight);
 
-            if (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
             {
                 report.sightsEfficiency = 0;
             }

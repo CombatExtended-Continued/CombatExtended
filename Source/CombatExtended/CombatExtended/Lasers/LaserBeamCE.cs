@@ -65,15 +65,15 @@ namespace CombatExtended.Lasers
             {
                 Vector3 dir = (b - a).normalized;
                 Rand.PushState();
-                Vector3 c = b - dir.RotatedBy(Rand.Range(-22.5f,22.5f)) * Rand.Range(1f,4f);
+                Vector3 c = b - dir.RotatedBy(Rand.Range(-22.5f, 22.5f)) * Rand.Range(1f, 4f);
                 Rand.PopState();
 
                 SpawnBeam(b, c);
             }
         }
         //    public new ThingDef equipmentDef => base.equipmentDef
-        public Vector3 destination => new Vector3(base.Destination.x,0, base.Destination.y);
-        public Vector3 Origin => new Vector3(base.origin.x,0, base.origin.y);
+        public Vector3 destination => new Vector3(base.Destination.x, 0, base.Destination.y);
+        public Vector3 Origin => new Vector3(base.origin.x, 0, base.origin.y);
 
 
         public override void Impact(Thing hitThing)

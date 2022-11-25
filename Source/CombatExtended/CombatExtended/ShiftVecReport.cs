@@ -108,7 +108,7 @@ namespace CombatExtended
             get
             {
                 return leadDist * Mathf.Min(accuracyFactor * 0.25f, 2.5f)
-                       + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f: 2.0f))
+                       + Mathf.Min((blindFiring ? 1 : lightingShift) * CE_Utility.LightingRangeMultiplier(shotDist) * leadDist * 0.25f, (blindFiring ? 100f : 2.0f))
                        + Mathf.Min((blindFiring ? 0 : smokeDensity) * 0.5f, 2.0f);
             }
         }

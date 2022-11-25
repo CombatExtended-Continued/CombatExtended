@@ -457,7 +457,7 @@ namespace CombatExtended
                                           dinfo.Instigator,
                                           GetOuterMostParent(hitPart),
                                           partialPen ? null : dinfo.Weapon, //To not apply the secondary damage twice on partial penetrations.
-                                          instigatorGuilty: dinfo.InstigatorGuilty);
+                                          instigatorGuilty : dinfo.InstigatorGuilty);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);

@@ -70,14 +70,14 @@ namespace CombatExtended.Compatibility.Artillery
 
             var c = ilist.Count();
 
-            yield return ilist[c-5];
-            yield return ilist[c-4];
+            yield return ilist[c - 5];
+            yield return ilist[c - 4];
 
             yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Harmony_ArtilleryStrikeIncoming_Impact), nameof(Harmony_ArtilleryStrikeIncoming_Impact.Impact)));
 
-            yield return ilist[c-3];
-            yield return ilist[c-2];
-            yield return ilist[c-1];
+            yield return ilist[c - 3];
+            yield return ilist[c - 2];
+            yield return ilist[c - 1];
 
         }
 

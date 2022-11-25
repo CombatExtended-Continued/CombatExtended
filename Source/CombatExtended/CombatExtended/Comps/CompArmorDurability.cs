@@ -119,7 +119,7 @@ namespace CombatExtended
                 {
                     if (curDurability < maxDurability)
                     {
-                        curDurability += Math.Min(durabilityProps.RegenValue, maxDurability- curDurability);
+                        curDurability += Math.Min(durabilityProps.RegenValue, maxDurability - curDurability);
                     }
                     timer = 0;
                 }

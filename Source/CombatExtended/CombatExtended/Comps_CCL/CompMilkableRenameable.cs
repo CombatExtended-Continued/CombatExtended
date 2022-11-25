@@ -21,7 +21,7 @@ namespace CombatExtended
         {
             base.Initialize( props );
             if(
-                ( properties != null )&&
+                ( properties != null ) &&
                 ( !properties.growthLabel.NullOrEmpty() )
             )
             {

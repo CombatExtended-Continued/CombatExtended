@@ -46,7 +46,7 @@ namespace CombatExtended
                 }
                 catch (Exception e)
                 {
-                    Log.Error("Combat Extended :: IconTexture(" + def.ToString()+") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
+                    Log.Error("Combat Extended :: IconTexture(" + def.ToString() + ") - pawnKindDef check - resulted in the following error [defaulting to non-cropped texture]: " + e.ToString());
                     _cachedDefIcons[def.defName] = (pdef.lifeStages.Last().bodyGraphicData.Graphic.MatSouth.mainTexture as Texture2D);
                     return _cachedDefIcons[def.defName];
                 }
@@ -66,13 +66,13 @@ namespace CombatExtended
             {
                 try
                 {
-                    _cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture().Crop();
+                    _cachedDefIcons[def.defName] = tdef.entityDefToBuild.IconTexture().Crop();
                     return _cachedDefIcons[def.defName];
                 }
                 catch (Exception e)
                 {
-                    Log.Error("Combat Extended :: IconTexture(" + def.ToString()+") - entityDefToBuild check - resulted in the following error [defaulting to non-cropped texture]: "+e.ToString());
-                    _cachedDefIcons[def.defName]= tdef.entityDefToBuild.IconTexture();
+                    Log.Error("Combat Extended :: IconTexture(" + def.ToString() + ") - entityDefToBuild check - resulted in the following error [defaulting to non-cropped texture]: " + e.ToString());
+                    _cachedDefIcons[def.defName] = tdef.entityDefToBuild.IconTexture();
                     return _cachedDefIcons[def.defName];
                 }
             }
@@ -131,7 +131,7 @@ namespace CombatExtended
                     heightRange.max--;  // nothing found in this row, shift one up (B-t-T) / down (T-t-B)
                     if (i > width * height - 1)
                     {
-                        throw new ArgumentException("Color[] has no pixels with alpha < "+alphaThreshold);
+                        throw new ArgumentException("Color[] has no pixels with alpha < " + alphaThreshold);
                     }
                 }
             }
@@ -164,7 +164,7 @@ namespace CombatExtended
                     i = widthRange.min; // pixel one to the right of the lowest in the previous column (1)
                     if (i > width - 1)
                     {
-                        throw new ArgumentException("Color[] has no pixels with alpha >= "+alphaThreshold);
+                        throw new ArgumentException("Color[] has no pixels with alpha >= " + alphaThreshold);
                     }
                 }
             }
@@ -204,7 +204,7 @@ namespace CombatExtended
 
             if (rect == Rect.zero)
             {
-                throw new ArgumentException("Texture2D has no pixels with alpha >= "+alphaThreshold, "tex");
+                throw new ArgumentException("Texture2D has no pixels with alpha >= " + alphaThreshold, "tex");
             }
 
             return tex.BlitCrop(rect);

@@ -61,7 +61,7 @@ namespace CombatExtended
                 return false;
             }
             // reserve all the ingredients
-            for (int i =0; i < job.targetQueueB.Count; i++)
+            for (int i = 0; i < job.targetQueueB.Count; i++)
             {
                 if (!pawn.Reserve(job.targetQueueB[i], job, 1, job.countQueue[i], null, errorOnFailed))
                 {

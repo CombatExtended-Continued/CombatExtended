@@ -17,7 +17,7 @@ namespace CombatExtended.Lasers
         {
             get
             {
-                Speed = (float) (baseSpeed + speedJitter * Math.Sin(Math.PI * (Find.TickManager.TicksGame*18f + speedJitterOffset) / 180.0));
+                Speed = (float) (baseSpeed + speedJitter * Math.Sin(Math.PI * (Find.TickManager.TicksGame * 18f + speedJitterOffset) / 180.0));
 
                 if (beam != null)
                 {

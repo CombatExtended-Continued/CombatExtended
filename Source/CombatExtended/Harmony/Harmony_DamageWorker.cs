@@ -58,7 +58,7 @@ namespace CombatExtended.HarmonyCE
                     {
                         max = true;
                     }
-                    int fragmentDamage = (int) (Mathf.Max(num/10f, Mathf.Clamp01(num / hitPoints) * num));
+                    int fragmentDamage = (int) (Mathf.Max(num / 10f, Mathf.Clamp01(num / hitPoints) * num));
                     if (isSharp)
                     {
                         fragmentDamage /= 2;

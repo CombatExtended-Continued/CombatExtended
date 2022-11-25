@@ -456,9 +456,9 @@ namespace CombatExtended.AI
                     //,node.CurrentRegion.extentsLimit.Cells.Last(),
                     //TODO Need to be Tested for which one is right LOL
                     node.CurrentRegion.extentsClose.TopRight
-                    ,node.CurrentRegion.extentsClose.BottomLeft
-                    ,node.CurrentRegion.extentsClose.Cells.First()
-                        ,node.CurrentRegion.extentsClose.Cells.Last()
+                    , node.CurrentRegion.extentsClose.BottomLeft
+                    , node.CurrentRegion.extentsClose.Cells.First()
+                        , node.CurrentRegion.extentsClose.Cells.Last()
                     })
                     {
                         if (cell.IsValid)

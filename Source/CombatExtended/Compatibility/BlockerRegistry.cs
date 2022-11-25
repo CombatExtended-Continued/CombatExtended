@@ -12,17 +12,17 @@ namespace CombatExtended.Compatibility
     static class BlockerRegistry
     {
         private static bool enabled = false;
-        private static List<Func<ProjectileCE,IntVec3,Thing,bool>> checkCellForCollisionCallbacks;
-        private static List<Func<ProjectileCE,Thing,bool>> impactSomethingCallbacks;
+        private static List<Func<ProjectileCE, IntVec3, Thing, bool>> checkCellForCollisionCallbacks;
+        private static List<Func<ProjectileCE, Thing, bool>> impactSomethingCallbacks;
 
         private static void Enable()
         {
             enabled = true;
-            impactSomethingCallbacks = new List<Func<ProjectileCE,Thing,bool>>();
-            checkCellForCollisionCallbacks = new List<Func<ProjectileCE,IntVec3,Thing,bool>>();
+            impactSomethingCallbacks = new List<Func<ProjectileCE, Thing, bool>>();
+            checkCellForCollisionCallbacks = new List<Func<ProjectileCE, IntVec3, Thing, bool>>();
         }
 
-        public static void RegisterCheckForCollisionCallback(Func<ProjectileCE,IntVec3,Thing,bool> f)
+        public static void RegisterCheckForCollisionCallback(Func<ProjectileCE, IntVec3, Thing, bool> f)
         {
             if (!enabled)
             {
@@ -31,7 +31,7 @@ namespace CombatExtended.Compatibility
             checkCellForCollisionCallbacks.Add(f);
         }
 
-        public static void RegisterImpactSomethingCallback(Func<ProjectileCE,Thing,bool> f)
+        public static void RegisterImpactSomethingCallback(Func<ProjectileCE, Thing, bool> f)
         {
             if (!enabled)
             {
@@ -79,7 +79,7 @@ namespace CombatExtended.Compatibility
             double a = velocity.sqrMagnitude;
             double b = 2 * (velocity.x * (origin.x - shieldPosition.x) + velocity.z * (origin.z - shieldPosition.z));
             double c = (shieldPosition - origin).sqrMagnitude - radiusSq;
-            double det = b*b - 4 * a * c;
+            double det = b * b - 4 * a * c;
             if (det < 0)
             {
                 return curPosition;

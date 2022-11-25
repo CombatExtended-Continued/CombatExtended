@@ -76,7 +76,7 @@ namespace CombatExtended.HarmonyCE
 
             if (!classTargets.Any())
             {
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `"+ className + "`");
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `" + className + "`");
             }
 
             var methodTarget = classTargets.SelectMany(x => x.GetMethods(AccessTools.all))
@@ -84,7 +84,7 @@ namespace CombatExtended.HarmonyCE
 
             if (methodTarget == null)
             {
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `"+ methodName + "` in subclasses with part `"+ className + "`");
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `" + methodName + "` in subclasses with part `" + className + "`");
             }
 
             return methodTarget;

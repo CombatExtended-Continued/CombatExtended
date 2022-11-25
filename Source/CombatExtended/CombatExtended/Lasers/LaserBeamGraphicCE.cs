@@ -9,7 +9,7 @@ using Verse;
 namespace CombatExtended.Lasers
 {
     [StaticConstructorOnStartup]
-    public class LaserBeamGraphicCE :Thing
+    public class LaserBeamGraphicCE : Thing
     {
         public LaserBeamDefCE projDef;
         float beamWidth;
@@ -52,7 +52,7 @@ namespace CombatExtended.Lasers
 
         public override void Tick()
         {
-            if (def==null || ticks++ > projDef.lifetime)
+            if (def == null || ticks++ > projDef.lifetime)
             {
                 Destroy(DestroyMode.Vanish);
             }
@@ -84,7 +84,7 @@ namespace CombatExtended.Lasers
             {
                 colorIndex = gun.BeamColor;
             }
-            if (gun !=null)
+            if (gun != null)
             {
                 this.equipmentDef = pawn.equipment.Primary.def;
             }
@@ -152,7 +152,7 @@ namespace CombatExtended.Lasers
         {
             base.SpawnSetup(map, respawningAfterLoad);
 
-            if (def==null || projDef.decorations == null || respawningAfterLoad)
+            if (def == null || projDef.decorations == null || respawningAfterLoad)
             {
                 return;
             }

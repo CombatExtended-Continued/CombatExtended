@@ -161,7 +161,7 @@ namespace CombatExtended.RocketGUI
             {
                 return;
             }
-            base.Label(text, color,tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
+            base.Label(text, color, tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
         }
 
         public bool CheckboxLabeled(TaggedString text, ref bool checkOn, string tooltip = null, bool invert = false, bool disabled = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal)

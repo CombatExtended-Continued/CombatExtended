@@ -30,7 +30,7 @@ namespace CombatExtended
             {
                 return 9f;
             }
-            if (turret.GetMannable()==null)
+            if (turret.GetMannable() == null)
             {
                 return 5f;
             }

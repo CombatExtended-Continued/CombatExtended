@@ -98,7 +98,7 @@ namespace CombatExtended.Compatibility
                 yield return c;
             }
             var ammo = GetAmmo();
-            if (ammo!=null)
+            if (ammo != null)
             {
                 foreach (Command com in ammo.CompGetGizmosExtra())
                 {
@@ -111,7 +111,7 @@ namespace CombatExtended.Compatibility
                 }
 
             }
-            if (gun!=null)
+            if (gun != null)
             {
                 if (CompFireModes != null)
                 {

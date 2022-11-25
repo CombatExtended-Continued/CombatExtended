@@ -69,7 +69,7 @@ namespace CombatExtended
                     drawVec.y = Wearer.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.LayingPawn).y;
                     if (Wearer.Downed)  // Wearer.Spawned == false when Pawn.Dead == true.
                     {
-                        float? newAngle = (((((Wearer.Drawer == null) ? null : Wearer.Drawer.renderer) == null) ? null : Wearer.Drawer.renderer.wiggler) == null) ? (float?)null : Wearer.Drawer.renderer.wiggler.downedAngle;
+                        float ? newAngle = (((((Wearer.Drawer == null) ? null : Wearer.Drawer.renderer) == null) ? null : Wearer.Drawer.renderer.wiggler) == null) ? (float ? )null : Wearer.Drawer.renderer.wiggler.downedAngle;
                         if (newAngle != null)
                         {
                             angle = newAngle.Value;

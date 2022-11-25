@@ -12,12 +12,12 @@ using Verse.AI;
 
 namespace CombatExtended.Compatibility
 {
-    using GetReloadingFunction = Func<Building_Turret,bool>;
-    using SetReloadingFunction = Action<Building_Turret,bool>;
+    using GetReloadingFunction = Func<Building_Turret, bool>;
+    using SetReloadingFunction = Action<Building_Turret, bool>;
 
-    using GetAmmoFunction   = Func<Building_Turret,CompAmmoUser>;
+    using GetAmmoFunction   = Func<Building_Turret, CompAmmoUser>;
 
-    using GetGunFunction    = Func<Building_Turret,Thing>;
+    using GetGunFunction    = Func<Building_Turret, Thing>;
 
     public static class TurretRegistry
     {
@@ -37,7 +37,7 @@ namespace CombatExtended.Compatibility
 
         }
 
-        public static void RegisterReloadableTurret(Type turretType, SetReloadingFunction setReload, GetReloadingFunction getReload, GetGunFunction gun, GetAmmoFunction ammo=null)
+        public static void RegisterReloadableTurret(Type turretType, SetReloadingFunction setReload, GetReloadingFunction getReload, GetGunFunction gun, GetAmmoFunction ammo = null)
         {
             if (!enabled)
             {
@@ -66,7 +66,7 @@ namespace CombatExtended.Compatibility
                     return;
                 }
             }
-            CELogger.Warn("Asked to set reloading on an unknown turret type: "+turret);
+            CELogger.Warn("Asked to set reloading on an unknown turret type: " + turret);
         }
 
         public static bool GetReloading(this Building_Turret turret)
@@ -83,7 +83,7 @@ namespace CombatExtended.Compatibility
                     return func(turret);
                 }
             }
-            CELogger.Warn("Asked to get reloading on an unknown turret type: "+turret);
+            CELogger.Warn("Asked to get reloading on an unknown turret type: " + turret);
             return false;
         }
 
@@ -107,7 +107,7 @@ namespace CombatExtended.Compatibility
                 }
 
             }
-            CELogger.Warn("Asked to get ammo on an unknown turret type: "+turret);
+            CELogger.Warn("Asked to get ammo on an unknown turret type: " + turret);
             return null;
         }
 
@@ -126,7 +126,7 @@ namespace CombatExtended.Compatibility
                 }
 
             }
-            CELogger.Warn("Asked to get gun on an unknown turret type: "+turret);
+            CELogger.Warn("Asked to get gun on an unknown turret type: " + turret);
             return null;
         }
 
@@ -144,10 +144,10 @@ namespace CombatExtended.Compatibility
             return turret.GetAmmo()?.HasMagazine ?? false;
         }
 
-        public static bool ShouldReload(this Building_Turret turret, float threshold=0.5f, bool ensureAmmoType=true)
+        public static bool ShouldReload(this Building_Turret turret, float threshold = 0.5f, bool ensureAmmoType = true)
         {
             var ammo = turret.GetAmmo();
-            if (ammo==null)
+            if (ammo == null)
             {
                 return false;
             }

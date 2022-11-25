@@ -58,7 +58,7 @@ namespace CombatExtended
             {
                 weaponRect = rect;
             });
-            collapsible.Lambda(20, (rect)=>
+            collapsible.Lambda(20, (rect) =>
             {
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.LowerRight;

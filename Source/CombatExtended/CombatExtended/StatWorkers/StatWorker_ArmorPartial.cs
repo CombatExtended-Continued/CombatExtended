@@ -93,7 +93,7 @@ namespace CombatExtended
                                 }
                                 else
                                 {
-                                    result += "\n" + "CE_SetValPartial".Translate()+ " " + partstat.staticValue.ToStringPercent();
+                                    result += "\n" + "CE_SetValPartial".Translate() + " " + partstat.staticValue.ToStringPercent();
                                 }
 
                                 foreach (var bp in partstat.parts)

@@ -57,7 +57,7 @@ namespace CombatExtended.HarmonyCE
         {
             foreach (CodeInstruction instruction in instructions)
             {
-                if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float?).HasValue && (instruction.operand as float?).Value.Equals(orgMinWidth))
+                if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float? ).HasValue && (instruction.operand as float? ).Value.Equals(orgMinWidth))
                 {
                     instruction.operand = PawnColumnWorker_Loadout._MinWidth;
                 }
@@ -73,7 +73,7 @@ namespace CombatExtended.HarmonyCE
         {
             foreach (CodeInstruction instruction in instructions)
             {
-                if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float?).HasValue && (instruction.operand as float?).Value.Equals(orgOptimalWidth))
+                if (instruction.opcode == OpCodes.Ldc_R4 && (instruction.operand as float? ).HasValue && (instruction.operand as float? ).Value.Equals(orgOptimalWidth))
                 {
                     instruction.operand = PawnColumnWorker_Loadout._OptimalWidth;
                 }

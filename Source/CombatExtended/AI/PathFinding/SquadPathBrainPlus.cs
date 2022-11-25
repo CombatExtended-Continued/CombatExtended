@@ -18,7 +18,7 @@ namespace CombatExtended.AI
 
         private List<Pawn> squadPawns;
 
-        private Dictionary<Pawn,IntVec3> targets;
+        private Dictionary<Pawn, IntVec3> targets;
 
         private SquadPath path;
 
@@ -26,7 +26,7 @@ namespace CombatExtended.AI
 
         private enum states
         {
-            moving = 1,ideal = 2,findingPath = 3
+            moving = 1, ideal = 2, findingPath = 3
         }
 
         private states state =
@@ -232,7 +232,7 @@ namespace CombatExtended.AI
             Log.Message("nodes Counts " + this.path.nodes.Count);
         }
 
-        private void AssignJobToPawn(Job job,Pawn pawn)
+        private void AssignJobToPawn(Job job, Pawn pawn)
         {
             if (pawn.drafter != null)
             {
