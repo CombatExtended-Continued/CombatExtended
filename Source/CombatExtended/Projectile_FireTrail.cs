@@ -48,19 +48,19 @@ namespace Combat_Realism
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
             float explosionSpawnChance = this.def.projectile.explosionSpawnChance;
             GenExplosion.DoExplosion(base.Position,
-                this.def.projectile.explosionRadius,
-                this.def.projectile.damageDef,
-                this.launcher,
-                this.def.projectile.soundExplode,
-                this.def,
-                this.equipmentDef,
-                this.def.projectile.postExplosionSpawnThingDef,
-                this.def.projectile.explosionSpawnChance,
-                1,
-                propsCR == null ? false : propsCR.damageAdjacentTiles,
-                preExplosionSpawnThingDef,
-                this.def.projectile.explosionSpawnChance,
-                1);
+                                     this.def.projectile.explosionRadius,
+                                     this.def.projectile.damageDef,
+                                     this.launcher,
+                                     this.def.projectile.soundExplode,
+                                     this.def,
+                                     this.equipmentDef,
+                                     this.def.projectile.postExplosionSpawnThingDef,
+                                     this.def.projectile.explosionSpawnChance,
+                                     1,
+                                     propsCR == null ? false : propsCR.damageAdjacentTiles,
+                                     preExplosionSpawnThingDef,
+                                     this.def.projectile.explosionSpawnChance,
+                                     1);
             CompExplosiveCR comp = this.TryGetComp<CompExplosiveCR>();
             if (comp != null)
             {

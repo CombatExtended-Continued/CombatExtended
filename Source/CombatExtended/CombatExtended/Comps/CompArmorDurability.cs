@@ -40,54 +40,54 @@ namespace CombatExtended
             {
                 switch (node.Name.ToLower())
                 {
-                case "armor":
-                    armor = ParseHelper.ParseFloat(node.InnerText);
-                    break;
-                case "damagetreshold":
-                    damageTreshold = ParseHelper.ParseFloat(node.InnerText);
-                    break;
-                case "aptreshold":
-                    damageTreshold = ParseHelper.ParseFloat(node.InnerText);
-                    break;
-                case "part":
-                    DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "part", node.InnerText, null, null);
-                    break;
-                case "triggered":
-                    triggered = ParseHelper.ParseBool(node.InnerText);
-                    break;
-                case "frags":
-                    frags = new CompProperties_Fragments()
-                    {
-                        fragments = new List<ThingDefCountClass>()
-                    };
-
-                    foreach (XmlNode node2 in node.ChildNodes)
-                    {
-                        if (node2.Name == "fragments")
+                    case "armor":
+                        armor = ParseHelper.ParseFloat(node.InnerText);
+                        break;
+                    case "damagetreshold":
+                        damageTreshold = ParseHelper.ParseFloat(node.InnerText);
+                        break;
+                    case "aptreshold":
+                        damageTreshold = ParseHelper.ParseFloat(node.InnerText);
+                        break;
+                    case "part":
+                        DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, "part", node.InnerText, null, null);
+                        break;
+                    case "triggered":
+                        triggered = ParseHelper.ParseBool(node.InnerText);
+                        break;
+                    case "frags":
+                        frags = new CompProperties_Fragments()
                         {
-                            foreach (XmlNode node3 in node2.ChildNodes)
+                            fragments = new List<ThingDefCountClass>()
+                        };
+
+                        foreach (XmlNode node2 in node.ChildNodes)
+                        {
+                            if (node2.Name == "fragments")
                             {
-                                ThingDefCountClass count = new ThingDefCountClass();
+                                foreach (XmlNode node3 in node2.ChildNodes)
+                                {
+                                    ThingDefCountClass count = new ThingDefCountClass();
 
-                                count.LoadDataFromXmlCustom(node3);
+                                    count.LoadDataFromXmlCustom(node3);
 
-                                frags.fragments.Add(count);
+                                    frags.fragments.Add(count);
+                                }
+                            }
+                            if (node2.Name == "fragSpeedFactor")
+                            {
+                                frags.fragSpeedFactor = ParseHelper.ParseFloat(node2.InnerText);
                             }
                         }
-                        if (node2.Name == "fragSpeedFactor")
-                        {
-                            frags.fragSpeedFactor = ParseHelper.ParseFloat(node2.InnerText);
-                        }
-                    }
-                    break;
-                case "ignoreddmgdefs":
-                    ignoredDmgDefs = new List<DamageDef>();
+                        break;
+                    case "ignoreddmgdefs":
+                        ignoredDmgDefs = new List<DamageDef>();
 
-                    foreach (XmlNode node2 in node.ChildNodes)
-                    {
-                        DirectXmlCrossRefLoader.RegisterListWantsCrossRef(ignoredDmgDefs, node2.InnerText);
-                    }
-                    break;
+                        foreach (XmlNode node2 in node.ChildNodes)
+                        {
+                            DirectXmlCrossRefLoader.RegisterListWantsCrossRef(ignoredDmgDefs, node2.InnerText);
+                        }
+                        break;
                 }
             }
         }

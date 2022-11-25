@@ -213,18 +213,18 @@ namespace CombatExtended
         {
             switch (targetMode)
             {
-            case TargettingMode.torso:
-                targetMode = TargettingMode.head;
-                break;
-            case TargettingMode.head:
-                targetMode = TargettingMode.legs;
-                break;
-            case TargettingMode.legs:
-                targetMode = TargettingMode.automatic;
-                break;
-            case TargettingMode.automatic:
-                targetMode = TargettingMode.torso;
-                break;
+                case TargettingMode.torso:
+                    targetMode = TargettingMode.head;
+                    break;
+                case TargettingMode.head:
+                    targetMode = TargettingMode.legs;
+                    break;
+                case TargettingMode.legs:
+                    targetMode = TargettingMode.automatic;
+                    break;
+                case TargettingMode.automatic:
+                    targetMode = TargettingMode.torso;
+                    break;
             }
         }
 
@@ -261,18 +261,18 @@ namespace CombatExtended
 
                 switch (targetMode)
                 {
-                case TargettingMode.torso:
-                    mode_name = "center";
-                    break;
-                case TargettingMode.legs:
-                    mode_name = "legs";
-                    break;
-                case TargettingMode.head:
-                    mode_name = "head";
-                    break;
-                case TargettingMode.automatic:
-                    mode_name = "auto";
-                    break;
+                    case TargettingMode.torso:
+                        mode_name = "center";
+                        break;
+                    case TargettingMode.legs:
+                        mode_name = "legs";
+                        break;
+                    case TargettingMode.head:
+                        mode_name = "head";
+                        break;
+                    case TargettingMode.automatic:
+                        mode_name = "auto";
+                        break;
                 }
 
                 return ContentFinder<Texture2D>.Get("UI/Buttons/Targetting/" + mode_name);

@@ -558,25 +558,25 @@ namespace CombatExtended
             {
                 switch (pawn.CurJob.locomotionUrgency)
                 {
-                case LocomotionUrgency.Amble:
-                    movePerTick *= 3;
-                    if (movePerTick < 60)
-                    {
-                        movePerTick = 60;
-                    }
-                    break;
-                case LocomotionUrgency.Walk:
-                    movePerTick *= 2;
-                    if (movePerTick < 50)
-                    {
-                        movePerTick = 50;
-                    }
-                    break;
-                case LocomotionUrgency.Jog:
-                    break;
-                case LocomotionUrgency.Sprint:
-                    movePerTick = Mathf.RoundToInt(movePerTick * 0.75f);
-                    break;
+                    case LocomotionUrgency.Amble:
+                        movePerTick *= 3;
+                        if (movePerTick < 60)
+                        {
+                            movePerTick = 60;
+                        }
+                        break;
+                    case LocomotionUrgency.Walk:
+                        movePerTick *= 2;
+                        if (movePerTick < 50)
+                        {
+                            movePerTick = 50;
+                        }
+                        break;
+                    case LocomotionUrgency.Jog:
+                        break;
+                    case LocomotionUrgency.Sprint:
+                        movePerTick = Mathf.RoundToInt(movePerTick * 0.75f);
+                        break;
                 }
             }
             return 60 / movePerTick;

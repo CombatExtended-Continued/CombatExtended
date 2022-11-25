@@ -501,16 +501,16 @@ namespace CombatExtended
 
                 switch (GetAttackedPartHeightCE())
                 {
-                case BodyPartHeight.Bottom:
-                    chance *= 0.8f;
-                    break;
-                case BodyPartHeight.Middle:
-                    break;
-                case BodyPartHeight.Undefined:
-                    break;
-                case BodyPartHeight.Top:
-                    chance *= 0.7f;
-                    break;
+                    case BodyPartHeight.Bottom:
+                        chance *= 0.8f;
+                        break;
+                    case BodyPartHeight.Middle:
+                        break;
+                    case BodyPartHeight.Undefined:
+                        break;
+                    case BodyPartHeight.Top:
+                        chance *= 0.7f;
+                        break;
                 }
 
                 return chance;

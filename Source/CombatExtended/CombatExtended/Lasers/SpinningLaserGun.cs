@@ -30,44 +30,44 @@ namespace CombatExtended.Lasers
 
             switch (state)
             {
-            case State.Idle:
-                warmup = stance as Stance_Warmup;
-                if (warmup != null)
-                {
-                    state = State.Spinup;
-                    ReachRotationSpeed(def.rotationSpeed, warmup.ticksLeft);
-                }
-                break;
-            case State.Spinup:
-                if (IsBrusting(holder.pawn))
-                {
-                    state = State.Spinning;
-                }
-                else
-                {
+                case State.Idle:
                     warmup = stance as Stance_Warmup;
-                    if (warmup == null)
+                    if (warmup != null)
                     {
-                        state = State.Idle;
-                        ReachRotationSpeed(0.0f, 30);
+                        state = State.Spinup;
+                        ReachRotationSpeed(def.rotationSpeed, warmup.ticksLeft);
                     }
-                }
-                break;
-            case State.Spinning:
-                if (!IsBrusting(holder.pawn))
-                {
-                    state = State.Idle;
-                    Stance_Cooldown cooldown = stance as Stance_Cooldown;
-                    if (cooldown != null)
+                    break;
+                case State.Spinup:
+                    if (IsBrusting(holder.pawn))
                     {
-                        ReachRotationSpeed(0.0f, cooldown.ticksLeft);
+                        state = State.Spinning;
                     }
                     else
                     {
-                        ReachRotationSpeed(0.0f, 0);
+                        warmup = stance as Stance_Warmup;
+                        if (warmup == null)
+                        {
+                            state = State.Idle;
+                            ReachRotationSpeed(0.0f, 30);
+                        }
                     }
-                }
-                break;
+                    break;
+                case State.Spinning:
+                    if (!IsBrusting(holder.pawn))
+                    {
+                        state = State.Idle;
+                        Stance_Cooldown cooldown = stance as Stance_Cooldown;
+                        if (cooldown != null)
+                        {
+                            ReachRotationSpeed(0.0f, cooldown.ticksLeft);
+                        }
+                        else
+                        {
+                            ReachRotationSpeed(0.0f, 0);
+                        }
+                    }
+                    break;
             }
         }
     }

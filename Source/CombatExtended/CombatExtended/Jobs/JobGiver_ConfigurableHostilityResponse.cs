@@ -24,14 +24,14 @@ namespace CombatExtended
             }
             switch (pawn.playerSettings.hostilityResponse)
             {
-            case HostilityResponseMode.Ignore:
-                return null;
-            case HostilityResponseMode.Attack:
-                return TryGetAttackNearbyEnemyJob(pawn);
-            case HostilityResponseMode.Flee:
-                return TryGetFleeJob(pawn);
-            default:
-                return null;
+                case HostilityResponseMode.Ignore:
+                    return null;
+                case HostilityResponseMode.Attack:
+                    return TryGetAttackNearbyEnemyJob(pawn);
+                case HostilityResponseMode.Flee:
+                    return TryGetFleeJob(pawn);
+                default:
+                    return null;
             }
         }
 

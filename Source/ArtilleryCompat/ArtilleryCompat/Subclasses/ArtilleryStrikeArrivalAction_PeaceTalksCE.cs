@@ -17,9 +17,9 @@ namespace CombatExtended.Compatibility.Artillery
         {
             sourceMap = source;
         }
-	public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
-	{
-	    if (Find.WorldObjects.WorldObjectAt(tile, RimWorld.WorldObjectDefOf.PeaceTalks) is PeaceTalks peaceTalks)
+        public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
+        {
+            if (Find.WorldObjects.WorldObjectAt(tile, RimWorld.WorldObjectDefOf.PeaceTalks) is PeaceTalks peaceTalks)
             {
                 if (Utility.HarmfulStrikes(artilleryStrikes).Any())
                 {
@@ -45,9 +45,11 @@ namespace CombatExtended.Compatibility.Artillery
                     Find.WorldObjects.Remove(peaceTalks);
 
                     if (ArtilleryComp != null)
+                    {
                         ArtilleryComp.ResetForcedTarget();
+                    }
                 }
             }
-	}
+        }
     }
 }

@@ -267,14 +267,14 @@ namespace CombatExtended.HarmonyCE
             // the first 4 are easy...  (ProfoundDarkness)NOTE: I've only ever observed these with null operands.
             switch (index)
             {
-            case 0:
-                return new CodeInstruction(OpCodes.Ldloc_0);
-            case 1:
-                return new CodeInstruction(OpCodes.Ldloc_1);
-            case 2:
-                return new CodeInstruction(OpCodes.Ldloc_2);
-            case 3:
-                return new CodeInstruction(OpCodes.Ldloc_3);
+                case 0:
+                    return new CodeInstruction(OpCodes.Ldloc_0);
+                case 1:
+                    return new CodeInstruction(OpCodes.Ldloc_1);
+                case 2:
+                    return new CodeInstruction(OpCodes.Ldloc_2);
+                case 3:
+                    return new CodeInstruction(OpCodes.Ldloc_3);
             }
 
             object objIndex;

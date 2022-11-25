@@ -86,14 +86,14 @@ namespace CombatExtended.AI
         {
             switch (tick_counts++ % 30)
             {
-            case 0:
-                this.CheckPathSafty();
-                break;
-            case 1:
-                this.CheckForEnemyPawns();
-                break;
-            default:
-                break;
+                case 0:
+                    this.CheckPathSafty();
+                    break;
+                case 1:
+                    this.CheckForEnemyPawns();
+                    break;
+                default:
+                    break;
             }
 
             if (tick_counts % 100 == 0)

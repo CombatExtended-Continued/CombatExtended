@@ -91,16 +91,16 @@ namespace CombatExtended
                     _drawMode = value;
                     switch (_drawMode)
                     {
-                    case FlareDrawMode.FlyOver:
-                        _startingAltitude = _startingAltitude <= 0 ?
-                                            DEFAULT_FLYOVER_START_ALT : _startingAltitude;
-                        _finalAltitude = _finalAltitude <= 0 ?
-                                         DEFAULT_FLYOVER_FINAL_ALT : _finalAltitude;
-                        break;
-                    case FlareDrawMode.Direct:
-                        _startingAltitude = DEFAULT_DIRECT_ALT;
-                        _finalAltitude = DEFAULT_DIRECT_ALT;
-                        break;
+                        case FlareDrawMode.FlyOver:
+                            _startingAltitude = _startingAltitude <= 0 ?
+                                                DEFAULT_FLYOVER_START_ALT : _startingAltitude;
+                            _finalAltitude = _finalAltitude <= 0 ?
+                                             DEFAULT_FLYOVER_FINAL_ALT : _finalAltitude;
+                            break;
+                        case FlareDrawMode.Direct:
+                            _startingAltitude = DEFAULT_DIRECT_ALT;
+                            _finalAltitude = DEFAULT_DIRECT_ALT;
+                            break;
                     }
                 }
             }

@@ -449,36 +449,36 @@ namespace CombatExtended
 
             switch (source)
             {
-            case SourceSelection.Ranged:
-                _source = _selectableItems.Where(row => row.thingDef.IsRangedWeapon).ToList();
-                _sourceType = SourceSelection.Ranged;
-                break;
+                case SourceSelection.Ranged:
+                    _source = _selectableItems.Where(row => row.thingDef.IsRangedWeapon).ToList();
+                    _sourceType = SourceSelection.Ranged;
+                    break;
 
-            case SourceSelection.Melee:
-                _source = _selectableItems.Where(row => row.thingDef.IsMeleeWeapon).ToList();
-                _sourceType = SourceSelection.Melee;
-                break;
+                case SourceSelection.Melee:
+                    _source = _selectableItems.Where(row => row.thingDef.IsMeleeWeapon).ToList();
+                    _sourceType = SourceSelection.Melee;
+                    break;
 
-            case SourceSelection.Ammo:
-                _source = _selectableItems.Where(row => row.thingDef is AmmoDef).ToList();
-                _sourceType = SourceSelection.Ammo;
-                break;
+                case SourceSelection.Ammo:
+                    _source = _selectableItems.Where(row => row.thingDef is AmmoDef).ToList();
+                    _sourceType = SourceSelection.Ammo;
+                    break;
 
-            case SourceSelection.Minified:
-                _source = _selectableItems.Where(row => row.thingDef.Minifiable).ToList();
-                _sourceType = SourceSelection.Minified;
-                break;
+                case SourceSelection.Minified:
+                    _source = _selectableItems.Where(row => row.thingDef.Minifiable).ToList();
+                    _sourceType = SourceSelection.Minified;
+                    break;
 
-            case SourceSelection.Generic:
-                _sourceType = SourceSelection.Generic;
-                initGenericVisibilityDictionary();
-                break;
+                case SourceSelection.Generic:
+                    _sourceType = SourceSelection.Generic;
+                    initGenericVisibilityDictionary();
+                    break;
 
-            case SourceSelection.All:
-            default:
-                _source = _selectableItems;
-                _sourceType = SourceSelection.All;
-                break;
+                case SourceSelection.All:
+                default:
+                    _source = _selectableItems;
+                    _sourceType = SourceSelection.All;
+                    break;
             }
 
             if (!_source.NullOrEmpty())

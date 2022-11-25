@@ -293,22 +293,22 @@ namespace CombatExtended.Utilities
         {
             switch (category)
             {
-            case TrackedThingsRequestCategory.Pawns:
-                return pawnsTracker;
-            case TrackedThingsRequestCategory.Ammo:
-                return ammoTracker;
-            case TrackedThingsRequestCategory.Apparel:
-                return apparelTracker;
-            case TrackedThingsRequestCategory.Weapons:
-                return weaponsTracker;
-            case TrackedThingsRequestCategory.Medicine:
-                return medicineTracker;
-            case TrackedThingsRequestCategory.Flares:
-                return flaresTracker;
-            case TrackedThingsRequestCategory.Attachments:
-                return attachmentTracker;
-            default:
-                throw new NotSupportedException();
+                case TrackedThingsRequestCategory.Pawns:
+                    return pawnsTracker;
+                case TrackedThingsRequestCategory.Ammo:
+                    return ammoTracker;
+                case TrackedThingsRequestCategory.Apparel:
+                    return apparelTracker;
+                case TrackedThingsRequestCategory.Weapons:
+                    return weaponsTracker;
+                case TrackedThingsRequestCategory.Medicine:
+                    return medicineTracker;
+                case TrackedThingsRequestCategory.Flares:
+                    return flaresTracker;
+                case TrackedThingsRequestCategory.Attachments:
+                    return attachmentTracker;
+                default:
+                    throw new NotSupportedException();
             }
         }
 

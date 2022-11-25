@@ -35,20 +35,20 @@ namespace CombatExtended.AI
             }
             switch (role)
             {
-            default:
-                return false;
-            case CombatRole.Melee:
-                return CanBeMelee(pawn, comp);
-            case CombatRole.Assault:
-                return CanBeAssault(pawn, comp);
-            case CombatRole.Sniper:
-                return CanBeSniper(pawn, comp);
-            case CombatRole.Suppressor:
-                return CanBeSuppressor(pawn, comp);
-            case CombatRole.Grenadier:
-                return CanBeGrenadier(pawn, comp);
-            case CombatRole.Rocketeer:
-                return CanBeRocketeer(pawn, comp);
+                default:
+                    return false;
+                case CombatRole.Melee:
+                    return CanBeMelee(pawn, comp);
+                case CombatRole.Assault:
+                    return CanBeAssault(pawn, comp);
+                case CombatRole.Sniper:
+                    return CanBeSniper(pawn, comp);
+                case CombatRole.Suppressor:
+                    return CanBeSuppressor(pawn, comp);
+                case CombatRole.Grenadier:
+                    return CanBeGrenadier(pawn, comp);
+                case CombatRole.Rocketeer:
+                    return CanBeRocketeer(pawn, comp);
             }
         }
 

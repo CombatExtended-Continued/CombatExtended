@@ -79,14 +79,14 @@ namespace CombatExtended
         {
             return qc switch
         {
-            QualityCategory.Awful => factorAwful,
-            QualityCategory.Poor => factorPoor,
-            QualityCategory.Normal => factorNormal,
-            QualityCategory.Good => factorGood,
-            QualityCategory.Excellent => factorExcellent,
-            QualityCategory.Masterwork => factorMasterwork,
-            QualityCategory.Legendary => factorLegendary,
-            _ => throw new ArgumentOutOfRangeException(),
+                QualityCategory.Awful => factorAwful,
+                QualityCategory.Poor => factorPoor,
+                QualityCategory.Normal => factorNormal,
+                QualityCategory.Good => factorGood,
+                QualityCategory.Excellent => factorExcellent,
+                QualityCategory.Masterwork => factorMasterwork,
+                QualityCategory.Legendary => factorLegendary,
+                _ => throw new ArgumentOutOfRangeException(),
             };
         }
 
@@ -94,14 +94,14 @@ namespace CombatExtended
         {
             return qc switch
         {
-            QualityCategory.Awful => maxGainAwful,
-            QualityCategory.Poor => maxGainPoor,
-            QualityCategory.Normal => maxGainNormal,
-            QualityCategory.Good => maxGainGood,
-            QualityCategory.Excellent => maxGainExcellent,
-            QualityCategory.Masterwork => maxGainMasterwork,
-            QualityCategory.Legendary => maxGainLegendary,
-            _ => throw new ArgumentOutOfRangeException(),
+                QualityCategory.Awful => maxGainAwful,
+                QualityCategory.Poor => maxGainPoor,
+                QualityCategory.Normal => maxGainNormal,
+                QualityCategory.Good => maxGainGood,
+                QualityCategory.Excellent => maxGainExcellent,
+                QualityCategory.Masterwork => maxGainMasterwork,
+                QualityCategory.Legendary => maxGainLegendary,
+                _ => throw new ArgumentOutOfRangeException(),
             };
         }
     }

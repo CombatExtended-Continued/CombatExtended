@@ -151,28 +151,28 @@ namespace CombatExtended
             {
                 switch (Wearer.thingIDNumber % 4)
                 {
-                case 0:
-                    return Rot4.South;
-                case 1:
-                    return Rot4.South;
-                case 2:
-                    return Rot4.East;
-                case 3:
-                    return Rot4.West;
+                    case 0:
+                        return Rot4.South;
+                    case 1:
+                        return Rot4.South;
+                    case 2:
+                        return Rot4.East;
+                    case 3:
+                        return Rot4.West;
                 }
             }
             else
             {
                 switch (Wearer.thingIDNumber % 4)
                 {
-                case 0:
-                    return Rot4.South;
-                case 1:
-                    return Rot4.East;
-                case 2:
-                    return Rot4.West;
-                case 3:
-                    return Rot4.West;
+                    case 0:
+                        return Rot4.South;
+                    case 1:
+                        return Rot4.East;
+                    case 2:
+                        return Rot4.West;
+                    case 3:
+                        return Rot4.West;
                 }
             }
             return Rot4.Random;

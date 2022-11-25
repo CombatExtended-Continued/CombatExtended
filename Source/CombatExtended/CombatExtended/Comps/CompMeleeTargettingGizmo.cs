@@ -245,22 +245,22 @@ namespace CombatExtended
         {
             switch (heightInt)
             {
-            case BodyPartHeight.Bottom:
-                heightInt = BodyPartHeight.Middle;
-                targetBodyPart = null;
-                break;
-            case BodyPartHeight.Middle:
-                heightInt = BodyPartHeight.Top;
-                targetBodyPart = null;
-                break;
-            case BodyPartHeight.Top:
-                heightInt = BodyPartHeight.Undefined;
-                targetBodyPart = null;
-                break;
-            case BodyPartHeight.Undefined:
-                heightInt = BodyPartHeight.Bottom;
-                targetBodyPart = null;
-                break;
+                case BodyPartHeight.Bottom:
+                    heightInt = BodyPartHeight.Middle;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Middle:
+                    heightInt = BodyPartHeight.Top;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Top:
+                    heightInt = BodyPartHeight.Undefined;
+                    targetBodyPart = null;
+                    break;
+                case BodyPartHeight.Undefined:
+                    heightInt = BodyPartHeight.Bottom;
+                    targetBodyPart = null;
+                    break;
             }
         }
 

@@ -30,16 +30,16 @@ namespace CombatExtended.Compatibility
                         // Tech level improves toughness
                         switch (def.techLevel)
                         {
-                        //Plasteel
-                        case (TechLevel.Spacer):
-                            weaponThickness *= 2f;
-                            break;
-                        case (TechLevel.Ultra):
-                            weaponThickness *= 4f;
-                            break;
-                        case (TechLevel.Archotech):
-                            weaponThickness *= 8f;
-                            break;
+                            //Plasteel
+                            case (TechLevel.Spacer):
+                                weaponThickness *= 2f;
+                                break;
+                            case (TechLevel.Ultra):
+                                weaponThickness *= 4f;
+                                break;
+                            case (TechLevel.Archotech):
+                                weaponThickness *= 8f;
+                                break;
                         }
 
                         // Blunt weapons get double thickness because edges are easier to damage. Note that ranged weapons are excluded

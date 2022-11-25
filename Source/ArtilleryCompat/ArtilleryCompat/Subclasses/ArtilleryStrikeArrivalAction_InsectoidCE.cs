@@ -18,19 +18,19 @@ namespace CombatExtended.Compatibility.Artillery
 
     public class ArtilleryStrikeArrivalAction_InsectoidCE : ArtilleryStrikeArrivalAction_Insectoid
     {
-	public ArtilleryStrikeArrivalAction_InsectoidCE() {}
+        public ArtilleryStrikeArrivalAction_InsectoidCE() {}
 
-	public ArtilleryStrikeArrivalAction_InsectoidCE(WorldObject worldObject, Map sourceMap)
+        public ArtilleryStrikeArrivalAction_InsectoidCE(WorldObject worldObject, Map sourceMap)
         {
             this.worldObject = worldObject;
             this.sourceMap = sourceMap;
         }
 
-	public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
-	{
-	    this.ArrivedCE(artilleryStrikes, tile);
-	}
-	public override void StrikeAction(ActiveArtilleryStrike strike, CellRect mapRect, CellRect baseRect, ref bool destroyed)
+        public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
+        {
+            this.ArrivedCE(artilleryStrikes, tile);
+        }
+        public override void StrikeAction(ActiveArtilleryStrike strike, CellRect mapRect, CellRect baseRect, ref bool destroyed)
         {
             var radialCells = GenRadial.RadialCellsAround(mapRect.RandomCell, strike.shellDef.GetProjectileProperties().explosionRadius, true);
             int cellsInRect = radialCells.Count(c => baseRect.Contains(c));

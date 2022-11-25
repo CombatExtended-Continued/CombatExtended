@@ -23,12 +23,12 @@ namespace CombatExtended.Compatibility
         public override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
-            
+
             Map map = this.launcher.Map;
             IntVec3 cell;
-            RCellFinder.TryFindRandomCellNearWith(base.Position, ((IntVec3 x) => x.GetTerrain(map).affordances.Contains(TerrainAffordanceDefOf.Light) && 
-                                                                                 x.GetEdifice(map) == null && x.Standable(map)),
-                                                                                map, out cell, 2);
+            RCellFinder.TryFindRandomCellNearWith(base.Position, ((IntVec3 x) => x.GetTerrain(map).affordances.Contains(TerrainAffordanceDefOf.Light) &&
+                                                  x.GetEdifice(map) == null && x.Standable(map)),
+                                                  map, out cell, 2);
 
             Thing thing = GenSpawn.Spawn(this.Def.spawnDef, cell, map);
             thing.SetFactionDirect( launcher.Faction );
@@ -38,7 +38,7 @@ namespace CombatExtended.Compatibility
             //for (int i = 0; i < 10; i++)
             //{
             //    IntVec3 randomCell = cellRect.RandomCell;
-                
+
             //}
         }
 
