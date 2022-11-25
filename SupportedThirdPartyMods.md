@@ -17,7 +17,6 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
 [FSF] More Psycast Powers   |
-[Fuu] Uncompromising Tribal Faction |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
