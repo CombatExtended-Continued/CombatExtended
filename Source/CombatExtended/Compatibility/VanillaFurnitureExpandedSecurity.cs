@@ -10,7 +10,7 @@ using VFESecurity;
 
 namespace CombatExtended.Compatibility
 {
-    public class VanillaFurnitureExpandedSecurity: IPatch
+    public class VanillaFurnitureExpandedSecurity : IPatch
     {
         private static int lastCacheTick = 0;
         private static Map lastCacheMap = null;

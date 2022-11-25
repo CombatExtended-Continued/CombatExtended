@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class ProjectRimFactoryCompat: IPatch
+    public class ProjectRimFactoryCompat : IPatch
     {
         public bool CanInstall()
         {

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class BetterTurrets: IPatch
+    public class BetterTurrets : IPatch
     {
         public bool CanInstall()
         {

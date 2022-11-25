@@ -12,7 +12,7 @@ using VFESecurity;
 namespace CombatExtended.Compatibility.Artillery
 {
     [StaticConstructorOnStartup]
-    public class ArtilleryCompat: IModPart
+    public class ArtilleryCompat : IModPart
     {
         private static Harmony harmony;
         public Type GetSettingsType()

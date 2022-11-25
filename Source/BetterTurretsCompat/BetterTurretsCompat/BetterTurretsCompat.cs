@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class BetterTurretsCompat: IModPart
+    public class BetterTurretsCompat : IModPart
     {
         public Type GetSettingsType()
         {
