@@ -18,12 +18,12 @@
 				</CombatExtended.AmmoCategoryDef>
 			</value>
 		</li>
-		
-		<li Class="PatchOperationAdd">
-			<xpath>Defs</xpath>
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="AB_Shell_Tar"]</xpath>
 			<value>
 				<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
-					<defName>Tar_shell_81mm</defName>
+					<defName>AB_Shell_Tar</defName>
 					<label>81mm mortar shell (Tar)</label>
 					<graphicData>
 					  <texPath>Things/Item/Resource/AB_Shell_Tar</texPath>
@@ -45,7 +45,7 @@
 			<value>
 				<ThingDef ParentName="Base81mmMortarShell">
 					<defName>Bullet_81mmMortarShell_Tar</defName>
-					<label>81mm mortar shell Tar</label>
+					<label>81mm mortar shell (Tar)</label>
 					<graphicData>
 						<texPath>Things/Projectile/ShellHighExplosive</texPath>
 						<graphicClass>Graphic_Single</graphicClass>
@@ -70,7 +70,7 @@
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
 			<value>
-				<Tar_shell_81mm>Bullet_81mmMortarShell_Tar</Tar_shell_81mm>
+				<AB_Shell_Tar>Bullet_81mmMortarShell_Tar</AB_Shell_Tar>
 			</value>
 		</li>
 		
@@ -78,7 +78,7 @@
 			<xpath>Defs</xpath>
 			<value>
 				<RecipeDef ParentName="AmmoRecipeBase">
-					<defName>MakeTar_shell_81mm</defName>
+					<defName>MakeAB_Shell_Tar</defName>
 					<label>make 81mm tar mortar shell x2</label>
 					<description>Craft 2 tar shells.</description>
 					<jobString>Making 81mm tar shells.</jobString>
@@ -116,16 +116,12 @@
 					</thingDefs>
 					</fixedIngredientFilter>
 					<products>
-						<Tar_shell_81mm>2</Tar_shell_81mm>
+						<AB_Shell_Tar>2</AB_Shell_Tar>
 					</products>
 					<workAmount>3000</workAmount>
 					<researchPrerequisite>Mortars</researchPrerequisite>
 				</RecipeDef>
 			</value>
-		</li>
-		
-		<li Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="AB_Shell_Tar"]</xpath>
 		</li>
 		
 		</operations>

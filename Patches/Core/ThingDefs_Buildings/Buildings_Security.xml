@@ -3,16 +3,6 @@
 
 	<!-- ========== Sandbags ========== -->
 
-	<!-- 1.1 sandbags now cost cloth/leather instead of steel
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Sandbags"]</xpath>
-		<value>
-			<costList>
-				<Steel>2</Steel>
-			</costList>
-		</value>
-	</Operation>-->
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Sandbags" or defName="Barricade"]/fillPercent</xpath>
 		<value>
@@ -24,7 +14,6 @@
   
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/description</xpath>
-    
     <value>
       <description>A portable automatic turret. Its dumb AI brain can't be directly controlled, so beware of friendly fire.</description>
     </value>
@@ -77,7 +66,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/building/turretBurstCooldownTime</xpath>
 		<value>
-			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
@@ -100,65 +89,39 @@
 		</value>
 	</Operation>
 
-	<!-- Patch build costs -->
-
-<!--
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/costList/Steel</xpath>
-		<value>
-			<Steel>175</Steel>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/costList/ComponentIndustrial</xpath>
-		<value>
-			<ComponentIndustrial>8</ComponentIndustrial>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/stuffCategories</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_MiniTurret"]/costStuffCount</xpath>
-	</Operation>
--->
-
 	<!-- ========== Sniper turret ========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -168,21 +131,21 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
     <Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/building/turretBurstCooldownTime</xpath>
 		<value>
-			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
     </Operation>
 
     <Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Sniper"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Sniper"]/costList</xpath>
 		<value>
 			<costList>
 				<Steel>465</Steel>
@@ -196,36 +159,36 @@
 	<!-- ========== Autocannon turret ========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]</xpath>
 		<value>
 			<fillPercent>0.85</fillPercent>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.75</AimingAccuracy>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/comps/li[@Class="CompProperties_Power"]</xpath>
 		<value>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>
@@ -235,28 +198,28 @@
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "AutocannonTurret"]/statBases/MaxHitPoints</xpath>
+		<xpath>Defs/ThingDef[@Name="AutocannonTurret"]/statBases/MaxHitPoints</xpath>
 		<value>
 			<MaxHitPoints>750</MaxHitPoints>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/statBases/ShootingAccuracyTurret</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/statBases/ShootingAccuracyTurret</xpath>
 		<value>
 			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
 		</value>
 	</Operation>
 
     <Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/building/turretBurstCooldownTime</xpath>
 		<value>
-			<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
+			<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 		</value>
     </Operation>
 
     <Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Turret_Autocannon"]/costList</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_Autocannon"]/costList</xpath>
 		<value>
 		<costList>
 			<Steel>425</Steel>
@@ -266,12 +229,151 @@
 		</value>
     </Operation>
 
+	<!-- ========== Foam Turret ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/comps/li[@Class = "CompProperties_Refuelable"]/fuelMultiplier</xpath>
+		<value>
+			<fuelMultiplier>0.20</fuelMultiplier>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/comps/li[@Class = "CompProperties_Refuelable"]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Ammo_30x64mmFuel_Foam</li>	
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/comps/li[@Class = "CompProperties_Refuelable"]/initialFuelPercent</xpath>
+		<value>
+			<initialFuelPercent>0</initialFuelPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Turret_FoamTurret"]/costList/Chemfuel</xpath>
+	</Operation>
+
+	<!-- ========== Rocketswarm Turret ========== -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/comps/li[@Class = "CompProperties_Activable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/costList/Chemfuel</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/placeWorkers/li[.="PlaceWorker_ShowTurretRadius"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/statBases/ShootingAccuracyTurret</xpath>
+		<value>
+			<ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>1.0</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="Turret_RocketswarmLauncher"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>4.2</turretBurstCooldownTime>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyTouch 
+			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyShort
+			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyMedium
+			| Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/statBases/AccuracyLong</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[defName="Gun_RocketswarmLauncher"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>20</li>
+					<li>30</li>
+					<li>40</li>
+					<li>50</li>
+					<li>60</li>			
+				</chargeSpeeds>
+			</li>
+			<li Class="CombatExtended.CompProperties_AmmoUser">
+				<magazineSize>12</magazineSize>
+				<reloadTime>6.5</reloadTime>
+				<ammoSet>AmmoSet_50mmRocket</ammoSet>
+			</li>								
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_RocketswarmLauncher"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<recoilAmount>1.73</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+					<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+					<hasStandardCommand>true</hasStandardCommand>
+					<requireLineOfSight>false</requireLineOfSight>
+					<defaultProjectile>Bullet_50mmRocket_HE</defaultProjectile>
+					<warmupTime>3.6</warmupTime>
+					<range>86</range>
+					<minRange>14</minRange>
+					<burstShotCount>4</burstShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<soundCast>RocketswarmLauncher_Fire</soundCast>
+					<soundCastTail>GunTail_Heavy</soundCastTail>
+					<muzzleFlashScale>39</muzzleFlashScale>
+					<circularError>1</circularError>
+					<indirectFirePenalty>0.25</indirectFirePenalty>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
 	<!-- ========== Mortar Base ========== -->
 
 	<!-- Patch weapon -->
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]</xpath>
 		<value>
 			<statBases>
 				<SightsEfficiency>0.5</SightsEfficiency>
@@ -280,7 +382,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]/comps</xpath>
 		<value>
 			  <li Class="CombatExtended.CompProperties_Charges">
 			    <chargeSpeeds>
@@ -299,14 +401,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]/weaponTags</xpath>
 		<value>
 			<li>TurretGun</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Artillery_Mortar"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_Mortar"]/verbs</xpath>
 		<value>
 			<verbs>
 			  <li Class="CombatExtended.VerbPropertiesCE">
@@ -333,21 +435,21 @@
 	<!-- Patch base -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/thingClass</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>2</turretBurstCooldownTime>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/building</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding"]/building</xpath>
 		<value>
 			<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
 		</value>
@@ -361,7 +463,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding"]/inspectorTabs</xpath>
+		<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding"]/inspectorTabs</xpath>
 	</Operation>
 
 	<!-- ========== Actual Mortars ========== -->

@@ -690,7 +690,12 @@ namespace CombatExtended
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             var mannableComp = turret?.GetMannable();
-            var isPlayerControlled = Wielder?.IsColonistPlayerControlled ?? (turret?.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo));
+
+            // Only show ammo status for colonists under player control (i.e. not mental breaking / slave rebelling) and colony mechs.
+            // Note that we use IsColonyMech rather than IsColonyMechPlayerControlled for checking whether the pawn is a colony mech,
+            // as the latter would only apply to mechs currently controlled by a mechanitor.
+            var isColonyMechOrColonist = Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech);
+            var isPlayerControlled = isColonyMechOrColonist || (turret?.Faction == Faction.OfPlayer && (mannableComp != null || UseAmmo));
 
             if (isPlayerControlled)
             {
@@ -725,6 +730,24 @@ namespace CombatExtended
                     tutorTag = tag
                 };
                 yield return reloadCommandGizmo;
+
+                // God mode gizmos for emptying and filling the magazine
+                if (DebugSettings.godMode)
+                {
+                    Command_Action devSetAmmoToMinCommandGizmo = new Command_Action
+                    {
+                        action = delegate { CurMagCount = 0; },
+                        defaultLabel = "DEV: Set ammo to 0"
+                    };
+                    yield return devSetAmmoToMinCommandGizmo;
+
+                    Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
+                    {
+                        action = delegate { CurMagCount = MagSize; },
+                        defaultLabel = "DEV: Set ammo to max"
+                    };
+                    yield return devSetAmmoToMaxCommandGizmo;
+                }
             }
         }
 

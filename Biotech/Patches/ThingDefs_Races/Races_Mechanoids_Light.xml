@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]</xpath>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]/combatPower</xpath>
 		<value>
-			<combatPower>90</combatPower>
+			<combatPower>60</combatPower>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/PawnKindDef[defName="Mech_Militor" or defName="Mech_Constructoid" or defName="Mech_Fabricor"]</xpath>
+		<xpath>Defs/PawnKindDef[defName="Mech_Militor"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -60,7 +60,6 @@
 					<cooldownTime>2.0</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
 					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
 				</li>
 			</tools>
@@ -85,9 +84,9 @@
 			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
 			<AimingAccuracy>1.0</AimingAccuracy>
 			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
-			<MeleeDodgeChance>0.19</MeleeDodgeChance>
-			<MeleeCritChance>0.22</MeleeCritChance>
-			<MeleeParryChance>0.09</MeleeParryChance>
+			<MeleeDodgeChance>0.13</MeleeDodgeChance>
+			<MeleeCritChance>0.05</MeleeCritChance>
+			<MeleeParryChance>0.05</MeleeParryChance>
 			<MaxHitPoints>150</MaxHitPoints>
 		</value>
 	</Operation>
@@ -122,14 +121,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Constructoid"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Mech_Constructoid"]/tools</xpath>
 		<value>
@@ -139,12 +130,11 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>10</power>
+					<power>7</power>
 					<cooldownTime>3.0</cooldownTime>
 					<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationSharp>0</armorPenetrationSharp>
-					<armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+					<armorPenetrationBlunt>2.0</armorPenetrationBlunt>
 				</li>
 			</tools>
 		</value>
@@ -158,14 +148,6 @@
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Humanoid</bodyShape>
 			</li>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Mech_Fabricor"]/statBases</xpath>
-		<value>
-			<AimingAccuracy>1.0</AimingAccuracy>
-			<ShootingAccuracyPawn>1.25</ShootingAccuracyPawn>
 		</value>
 	</Operation>
 
