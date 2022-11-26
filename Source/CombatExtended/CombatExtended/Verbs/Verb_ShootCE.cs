@@ -303,12 +303,33 @@ namespace CombatExtended
             return base.CanHitTargetFrom(root, targ);
         }
 
+        public override void RecalculateWarmupTicks()
+        {
+            Vector3 u = caster.TrueCenter();
+            Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+            if (currentTarget.Pawn is Pawn dtPawn)
+            {
+                v += dtPawn.Drawer.leaner.LeanOffset * 0.5f;
+            }
+
+            var d = v - u;
+            var w = new Vector2();
+            w.Set(d.x, d.z);
+            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+            var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
+            lastRecoilDeg = 0;
+            var maxReduction = storedShotReduction ?? (CompFireModes.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
+            var reduction = Mathf.Max(maxReduction, delta / 45f);
+            storedShotReduction = reduction;
+            if (reduction < 1.0f)
+            {
+                this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+            }
+
+        }
+
         public override bool TryCastShot()
         {
-            if (!Retarget())
-            {
-                return false;
-            }
             //Reduce ammunition
             if (CompAmmo != null)
             {
