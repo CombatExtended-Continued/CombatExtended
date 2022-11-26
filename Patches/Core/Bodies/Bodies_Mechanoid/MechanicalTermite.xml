@@ -16,9 +16,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]</xpath>
+			<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -26,9 +26,9 @@
 	</Operation>
 
   	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="MechanicalTermiteBodyThirdRing"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]</xpath>
+			<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="MechanicalTermiteBodyThirdRing"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -38,28 +38,28 @@
   <!-- ========== Add armor coverage ========== -->
 
 	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/groups</xpath>
+  	<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/groups</xpath>
+  	<xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalHead"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
 	</Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]/groups</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/groups</xpath>
     <value>
       <li>CoveredByNaturalArmor</li>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]/groups</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="MechanicalTermiteBodyThirdRing"]/groups</xpath>
     <value>
       <li>CoveredByNaturalArmor</li>
     </value>
@@ -68,28 +68,28 @@
   <!-- ========== Modify coverage ========== -->
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/coverage</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalHead"]/coverage</xpath>
     <value>
       <coverage>0.08</coverage>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SightSensor"]/coverage</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/coverage</xpath>
     <value>
       <coverage>0.15</coverage>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "HearingSensor"]/coverage</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalHead"]/parts/li[def="HearingSensor"]/coverage</xpath>
     <value>
       <coverage>0.05</coverage>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalHead"]/parts/li[def = "SmellSensor"]/coverage</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalHead"]/parts/li[def="SmellSensor"]/coverage</xpath>
     <value>
       <coverage>0.05</coverage>
     </value>
@@ -98,17 +98,17 @@
   <!-- ========== Remove unwanted vanilla body parts ========== -->
 
   <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="Reactor"]</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="Reactor"]</xpath>
   </Operation>
 
   <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li/parts/li/parts/li[def="FluidReprocessor"]</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li/parts/li/parts/li[def="FluidReprocessor"]</xpath>
   </Operation>
 
   <!-- ========== Add new body parts ========== -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts</xpath>
     <value>
       <li>
         <def>MechanicalCapacitor</def>
@@ -119,7 +119,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def = "MechanicalTermiteBodySecondRing"]/parts</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts</xpath>
     <value>
       <li>
         <def>MechanicalWeaponActuator</def>
@@ -135,7 +135,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName = "MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def = "MechanicalTermiteBodyThirdRing"]/parts</xpath>
+    <xpath>Defs/BodyDef[defName="MechanicalTermite"]/corePart/parts/li[def="MechanicalTermiteBodySecondRing"]/parts/li[def="MechanicalTermiteBodyThirdRing"]/parts</xpath>
     <value>
       <li>
         <def>MechanicalPowerCore</def>
@@ -151,4 +151,3 @@
   </Operation>
 
 </Patch>
-
