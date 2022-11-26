@@ -88,7 +88,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_AutoMiniTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_AutoMiniTurret"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -143,7 +143,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_AutoChargeBlaster"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_AutoChargeBlaster"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -198,7 +198,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="Turret_AutoInferno"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+		<xpath>Defs/ThingDef[defName="Turret_AutoInferno"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
@@ -278,9 +278,9 @@
 	<!-- Glitter Tech Fix -->
 
 	<Operation Class="PatchOperationConditional">
-    		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/statBases</xpath>
+    		<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]/statBases</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
+			<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]</xpath>
 			<value>
 				<statBases>
 					<SightsEfficiency>0.5</SightsEfficiency>
@@ -288,7 +288,7 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]/statBases</xpath>
 			<value>
 				<SightsEfficiency>0.5</SightsEfficiency>
 			</value>
@@ -296,7 +296,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]</xpath>
 		<value>
 			<comps>
 			  <li Class="CombatExtended.CompProperties_Charges">
@@ -317,14 +317,14 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/weaponTags</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]/weaponTags</xpath>
 		<value>
 			<li>TurretGun</li>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName = "Artillery_AutoMortar"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="Artillery_AutoMortar"]/verbs</xpath>
 		<value>
 			<verbs>
 			  <li Class="CombatExtended.VerbPropertiesCE">
