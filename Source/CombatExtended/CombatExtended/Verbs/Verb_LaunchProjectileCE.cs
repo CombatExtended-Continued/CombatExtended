@@ -578,12 +578,12 @@ namespace CombatExtended
             float minY = -recoil / 3;
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
-	    float nextRecoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired + 1) / 6.25f));
+            float nextRecoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired + 1) / 6.25f));
 
             rotation += recoilMagnitude * Rand.Range(minX, maxX);
-	    var trd = Rand.Range(minY, maxY);
+            var trd = Rand.Range(minY, maxY);
             angle += recoilMagnitude * Mathf.Deg2Rad * trd;
-	    lastRecoilDeg += nextRecoilMagnitude * trd;
+            lastRecoilDeg += nextRecoilMagnitude * trd;
         }
 
         /// <summary>
