@@ -82,7 +82,7 @@ namespace CombatExtended.Loader
             bool found = false;
             Dictionary<string, Assembly> assemblies = new Dictionary<string, Assembly>();
 
-            foreach(Assembly assembly in content.assemblies.loadedAssemblies)
+            foreach (Assembly assembly in content.assemblies.loadedAssemblies)
             {
                 string name = assembly.GetName().Name;
                 assemblies[name] = assembly;
@@ -96,7 +96,7 @@ namespace CombatExtended.Loader
             DirectoryInfo locationInfo = new DirectoryInfo(content.RootDir).GetDirectories("AssembliesCore").FirstOrFallback(null);
             if (locationInfo != null)
             {
-                foreach(FileInfo fileInfo in locationInfo.GetFiles())
+                foreach (FileInfo fileInfo in locationInfo.GetFiles())
                 {
                     if (fileInfo.Name.EndsWith(".dll"))
                     {
@@ -116,9 +116,9 @@ namespace CombatExtended.Loader
 
                 foreach (Type t in assembly.GetTypes().Where(x => typeof(IModPart).IsAssignableFrom(x) && !x.IsAbstract))
                 {
-                    IModPart imp = ((IModPart)t.GetConstructor(new Type[] {}).Invoke(new object[] {}));
+                    IModPart imp = ((IModPart)t.GetConstructor(new Type[] { }).Invoke(new object[] { }));
                     modParts.Add(imp);
-                    foreach(string compatPart in imp.GetCompatList())
+                    foreach (string compatPart in imp.GetCompatList())
                     {
                         if (!compatParts.Contains(compatPart))
                         {
@@ -138,7 +138,7 @@ namespace CombatExtended.Loader
                 ISettingsCE settings = null;
                 if (settingsType != null)
                 {
-                    settings = (ISettingsCE) typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
+                    settings = (ISettingsCE)typeof(Loader).GetMethod(nameof(Loader.GetSettings)).MakeGenericMethod(settingsType).Invoke(instance, null);
                     settingList.Add(settings);
                 }
 
