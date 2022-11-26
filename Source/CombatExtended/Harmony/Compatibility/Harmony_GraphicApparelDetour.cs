@@ -63,7 +63,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             {
                 foreach (var mod_ass in mod.assemblies.loadedAssemblies)
                 {
-                    if(target_asses.Contains(mod_ass))
+                    if (target_asses.Contains(mod_ass))
                     {
                         offending_mods.Add(mod.Name);
                     }

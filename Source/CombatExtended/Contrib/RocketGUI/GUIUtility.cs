@@ -30,11 +30,16 @@ namespace CombatExtended.RocketGUI
             if (exception != null && !catchExceptions)
             {
                 if (fallbackAction != null)
+                {
                     exception = ExecuteSafeGUIAction(
-                        fallbackAction,
-                        catchExceptions: false);
+                                    fallbackAction,
+                                    catchExceptions: false);
+                }
+
                 if (exception != null)
+                {
                     throw exception;
+                }
             }
             return exception;
         }
@@ -56,7 +61,9 @@ namespace CombatExtended.RocketGUI
                 Rect contentRect = new Rect(0, 0, showScrollbars ? rect.width - 23 : rect.width, 0);
                 IEnumerable<T> elementsInt = orderByLambda == null ? elements : elements.OrderBy(orderByLambda);
                 if (_heights.Length < elementsInt.Count())
+                {
                     _heights = new float[elementsInt.Count() * 2];
+                }
                 float h;
                 float w = showScrollbars ? rect.width - 16 : rect.width;
                 int j = 0;
@@ -80,15 +87,21 @@ namespace CombatExtended.RocketGUI
                     }
                     currentRect.height = _heights[j];
                     if (false
-                        || scrollPosition.y - 50 > currentRect.yMax
-                        || scrollPosition.y + 50 + rect.height < currentRect.yMin)
+                            || scrollPosition.y - 50 > currentRect.yMax
+                            || scrollPosition.y + 50 + rect.height < currentRect.yMin)
+                    {
                         inView = false;
+                    }
                     if (inView)
                     {
                         if (drawBackground && k % 2 == 0)
+                        {
                             Widgets.DrawBoxSolid(currentRect, _altGray);
+                        }
                         if (drawMouseOverHighlights)
+                        {
                             Widgets.DrawHighlightIfMouseover(currentRect);
+                        }
                         elementLambda.Invoke(currentRect, element);
                     }
                     currentRect.y += _heights[j];
@@ -108,7 +121,9 @@ namespace CombatExtended.RocketGUI
                 Widgets.EndScrollView();
             }
             if (exception != null && !catchExceptions)
+            {
                 throw exception;
+            }
         }
 
         public static void GridView<T>(Rect rect, int columns, List<T> elements, Action<Rect, T> cellLambda, bool drawBackground = true, bool drawVerticalDivider = false)
@@ -141,11 +156,15 @@ namespace CombatExtended.RocketGUI
         private static readonly Color _hColor = new Color(0.2f, 0.2f, 0.2f, 1.0f);
 
         public static void DrawTexture(Rect rect, Texture2D texture, Material material = null)
-        {            
+        {
             if (material == null)
+            {
                 GUI.DrawTexture(rect, texture);
+            }
             else if (Event.current.type == EventType.Repaint)
+            {
                 Graphics.DrawTexture(rect, texture, _r1, 0, 0, 0, 0, new Color(GUI.color.r * 0.5f, GUI.color.g * 0.5f, GUI.color.b * 0.5f, GUI.color.a * 0.5f), material);
+            }
         }
 
         public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatformDef platform, IEnumerable<AttachmentLink> attachments, IEnumerable<WeaponPlatformDef.WeaponGraphicPart> parts = null, AttachmentLink highlight = null, Color? color = null, Material colorMat = null)
@@ -157,42 +176,59 @@ namespace CombatExtended.RocketGUI
                 foreach (AttachmentLink link in attachments)
                 {
                     if (link.HasOutline && (highlight == null || link.CompatibleWith(highlight)))
+                    {
                         DrawTex(inRect, link, link.UIOutlineTex, colorMat);
+                    }
                 }
                 if (highlight?.HasOutline ?? false)
+                {
                     DrawTex(inRect, highlight, highlight.UIOutlineTex, colorMat);
+                }
                 if (parts != null)
                 {
                     foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
                     {
                         if (part.HasOutline && (highlight == null || part.slotTags.All(s => !highlight.attachment.slotTags.Contains(s))))
+                        {
                             GUI.DrawTexture(inRect, part.UIOutlineTex, ScaleMode.StretchToFill);
+                        }
                     }
                 }
                 if (highlight != null)
+                {
                     GUI.color = _hColor;
+                }
                 if (color != null && color.HasValue)
+                {
                     GUI.color = color.Value;
+                }
                 DrawTexture(inRect, weaponTex, colorMat);
                 if (parts != null)
                 {
                     foreach (WeaponPlatformDef.WeaponGraphicPart part in parts)
                     {
                         if (part.HasPartMat && (highlight == null || part.slotTags.All(s => !highlight.attachment.slotTags.Contains(s))))
+                        {
                             GUI.DrawTexture(inRect, part.UIPartTex, ScaleMode.StretchToFill);
+                        }
                     }
                 }
                 foreach (AttachmentLink link in attachments)
                 {
                     if (link.HasAttachmentMat && (highlight == null || link.CompatibleWith(highlight)))
+                    {
                         DrawTex(inRect, link, link.UIAttachmentTex, colorMat);
+                    }
                 }
                 GUI.color = originalColor;
                 if (highlight?.HasAttachmentMat ?? false)
+                {
                     DrawTex(inRect, highlight, highlight.UIAttachmentTex, colorMat);
+                }
             });
-            void DrawTex(Rect rect, AttachmentLink link, Texture2D texture, Material mat)
-            {                
+
+            static void DrawTex(Rect rect, AttachmentLink link, Texture2D texture, Material mat)
+            {
                 if (link.HasDrawOffset)
                 {
                     rect.x -= rect.width * link.drawOffset.x;
@@ -202,7 +238,7 @@ namespace CombatExtended.RocketGUI
                 rect.yMin = rect.yMax - rect.height * link.drawScale.y;
                 DrawTexture(rect, texture, mat);
             }
-        }     
+        }
 
         public static void DrawWeaponWithAttachments(Rect inRect, WeaponPlatform weapon, AttachmentLink highlight = null, Color? color = null, Material colorMat = null)
         {
@@ -221,15 +257,15 @@ namespace CombatExtended.RocketGUI
             {
                 Text.Font = GameFont.Small;
                 FloatMenuUtility.MakeMenu(options,
-                    (option) =>
-                    {
-                        return labelLambda(option);
-                    },
-                    (option) =>
-                    {
-                        return () => selectedLambda(option);
-                    }
-                );
+                                          (option) =>
+                {
+                    return labelLambda(option);
+                },
+                (option) =>
+                {
+                    return () => selectedLambda(option);
+                }
+                                         );
             });
         }
 
@@ -294,15 +330,15 @@ namespace CombatExtended.RocketGUI
                 Rect iconRect = new Rect(0f, 0f, iconWidth, iconWidth);
                 iconRect.center = rect.RightPartPixels(iconWidth).center;
                 Color color = GUI.color;
-                if(radioColor != Color.white)
+                if (radioColor != Color.white)
                 {
                     GUI.color = radioColor;
                 }
                 else if (disabled || monotone)
                 {
                     GUI.color = Widgets.InactiveColor;
-                }               
-                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);                
+                }
+                GUI.DrawTexture(image: (checkOnInt) ? ((texChecked != null) ? texChecked : Widgets.CheckboxOnTex) : ((texUnchecked != null) ? texUnchecked : Widgets.CheckboxOffTex), position: iconRect);
                 if (disabled || monotone)
                 {
                     GUI.color = color;

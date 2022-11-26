@@ -11,7 +11,7 @@ namespace CombatExtended.HarmonyCE
     {
         /*
          * Used to make backpack a utility layer
-         * 
+         *
          * Note this is experimental
          */
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -19,7 +19,9 @@ namespace CombatExtended.HarmonyCE
         {
             // check the settings to see if backpacks are enabled
             if (Controller.settings.ShowBackpacks)
+            {
                 __result = __result || __instance == CE_ApparelLayerDefOf.Backpack;
+            }
         }
     }
 }

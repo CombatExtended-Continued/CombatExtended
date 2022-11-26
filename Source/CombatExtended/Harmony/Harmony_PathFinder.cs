@@ -29,10 +29,10 @@ namespace CombatExtended.HarmonyCE
 
             // Run normal if we're not being suppressed, running for cover, crouch-walking or not actually moving to another cell
             if (comp == null
-                || !comp.isSuppressed
-                || comp.IsCrouchWalking
-                || pawn.CurJob?.def == CE_JobDefOf.RunForCover
-                || start == dest.Cell && peMode == PathEndMode.OnCell)
+                    || !comp.isSuppressed
+                    || comp.IsCrouchWalking
+                    || pawn.CurJob?.def == CE_JobDefOf.RunForCover
+                    || start == dest.Cell && peMode == PathEndMode.OnCell)
             {
                 crouching = comp?.IsCrouchWalking ?? false;
                 return true;
@@ -46,7 +46,7 @@ namespace CombatExtended.HarmonyCE
         /*
          * Search for the vairable that is initialized by the value from the avoid grid or search for
          * ((i > 3) ? num9 : num8) + num15;
-         * 
+         *
          * DISABLED: reason is it need a bit more constant tuning but never the less the code is 100% working
          */
         //public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)

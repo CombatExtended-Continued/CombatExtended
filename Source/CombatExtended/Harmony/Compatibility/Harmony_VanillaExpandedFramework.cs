@@ -37,7 +37,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 {
                     __result = false;
                 }
-                // Enable toggling webbing rendering             
+                // Enable toggling webbing rendering
                 else if (def == CE_ApparelLayerDefOf.Webbing && !Controller.settings.ShowTacticalVests)
                 {
                     __result = false;

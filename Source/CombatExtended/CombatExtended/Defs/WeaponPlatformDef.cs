@@ -46,9 +46,11 @@ namespace CombatExtended
             public Texture2D UIPartTex
             {
                 get
-                {                    
+                {
                     if (_UIPartTex == null && HasPartMat)
+                    {
                         _UIPartTex = (Texture2D)PartMat.mainTexture;
+                    }
                     return _UIPartTex;
                 }
             }
@@ -59,7 +61,9 @@ namespace CombatExtended
                 get
                 {
                     if (_UIOutlineTex == null && HasOutline)
+                    {
                         _UIOutlineTex = (Texture2D)OutlineMat.mainTexture;
+                    }
                     return _UIOutlineTex;
                 }
             }
@@ -79,7 +83,7 @@ namespace CombatExtended
                     return outlineGraphicData.Graphic.MatSingle;
                 }
             }
-        }        
+        }
 
         /// <summary>
         /// Contain attachmentlinks which are the binder for attachments
@@ -95,30 +99,40 @@ namespace CombatExtended
         public Texture2D UIWeaponTex
         {
             get
-            {                
+            {
                 if (_UIWeaponTex == null)
+                {
                     _UIWeaponTex = (Texture2D)graphic.MatSingle.mainTexture;
+                }
                 return _UIWeaponTex;
             }
         }
 
         public override void PostLoad()
-        {            
+        {
             if (defaultGraphicParts == null)
+            {
                 defaultGraphicParts = new List<WeaponGraphicPart>();
+            }
             if (attachmentLinks == null)
+            {
                 attachmentLinks = new List<AttachmentLink>();
+            }
 
             base.PostLoad();
             // Add the inspect tab for attachments
             if (inspectorTabs == null)
+            {
                 inspectorTabs = new List<Type>();
+            }
             inspectorTabs.Add(typeof(ITab_AttachmentView));
 
             if (inspectorTabsResolved == null)
-                inspectorTabsResolved = new List<InspectTabBase>();            
+            {
+                inspectorTabsResolved = new List<InspectTabBase>();
+            }
             inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(typeof(ITab_AttachmentView)));
-        }        
+        }
 
         /// <summary>
         /// Compatibility cache
@@ -132,12 +146,16 @@ namespace CombatExtended
         /// <param name="second">Second</param>
         /// <returns>Wether if they are compatible</returns>
         public bool AttachmentsCompatible(AttachmentDef first, AttachmentDef second)
-        {           
-            if (first.index > second.index)            
-                return AttachmentsCompatible(second, first);            
+        {
+            if (first.index > second.index)
+            {
+                return AttachmentsCompatible(second, first);
+            }
             Pair<AttachmentDef, AttachmentDef> key = new Pair<AttachmentDef, AttachmentDef>(first, second);
             if (_compatibilite.TryGetValue(key, out bool compatible))
+            {
                 return compatible;
+            }
             return _compatibilite[key] = first.slotTags.All(s => !second.slotTags.Contains(s));
         }
 
@@ -150,13 +168,15 @@ namespace CombatExtended
         /// <param name="second">Second</param>
         /// <returns>Wether if they are compatible</returns>
         public bool AttachmentRemoves(AttachmentDef attachment, WeaponGraphicPart part)
-        {                        
+        {
             Pair<AttachmentDef, WeaponGraphicPart> key = new Pair<AttachmentDef, WeaponGraphicPart>(attachment, part);
             if (_removes.TryGetValue(key, out bool removes))
+            {
                 return removes;
+            }
             return _removes[key] = attachment.slotTags.Any(s => part.slotTags.Contains(s));
         }
-    
+
         /// <summary>
         /// Used to to cache the stat modifiers in links so we don't have to search for what is overriden
         /// </summary>
@@ -176,7 +196,9 @@ namespace CombatExtended
                 AttachmentLink link = attachmentLinks[i];
                 // validate stats incase this was called before the attachment def has excuted postload
                 if (!link.attachment.statsValidated)
+                {
                     link.attachment.ValidateStats();
+                }
                 if (link.statReplacers == null)
                 {
                     link.statReplacers = link.attachment.statReplacers.ToList() ?? new List<StatModifier>();
@@ -189,7 +211,9 @@ namespace CombatExtended
                     foreach (StatModifier modifier in link.attachment.statReplacers)
                     {
                         if (link.statReplacers.All(m => m.stat != modifier.stat))
-                            link.statReplacers.Add(modifier);                        
+                        {
+                            link.statReplacers.Add(modifier);
+                        }
                     }
                 }
                 if (link.statOffsets == null)
@@ -208,33 +232,52 @@ namespace CombatExtended
                     foreach (StatModifier modifier in link.attachment.statOffsets)
                     {
                         if (link.statOffsets.All(m => m.stat != modifier.stat))
+                        {
                             link.statOffsets.Add(modifier);
+                        }
                     }
                 }
                 if (processMultipliers)
                 {
                     // copy StatModifier not in this link to this link
                     foreach (StatModifier modifier in link.attachment.statMultipliers)
-                    {                        
+                    {
                         if (link.statMultipliers.All(m => m.stat != modifier.stat))
+                        {
                             link.statMultipliers.Add(modifier);
+                        }
                     }
                 }
                 // add a stat base with default value if it doesn't exists
                 foreach (StatModifier modifier in link.attachment.statReplacers)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue , stat = modifier.stat });
+                    {
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 foreach (StatModifier modifier in link.attachment.statOffsets)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue, stat = modifier.stat });
+                    {
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 foreach (StatModifier modifier in link.attachment.statMultipliers)
                 {
                     if (statBases.All(s => s.stat != modifier.stat))
-                        statBases.Add(new StatModifier() { value = modifier.stat.defaultBaseValue, stat = modifier.stat });
+                    {
+                        statBases.Add(new StatModifier()
+                        {
+                            value = modifier.stat.defaultBaseValue, stat = modifier.stat
+                        });
+                    }
                 }
                 // offset the textures
                 link.PrepareTexture(this);

@@ -8,11 +8,11 @@ namespace CombatExtended
     public class CompProperties_ShearableRenameable : CompProperties_Shearable
     {
 
-        public string                       growthLabel = "";
+        public string growthLabel = "";
 
         public CompProperties_ShearableRenameable()
         {
-            this.compClass = typeof( CompShearableRenameable );
+            this.compClass = typeof(CompShearableRenameable);
         }
 
     }

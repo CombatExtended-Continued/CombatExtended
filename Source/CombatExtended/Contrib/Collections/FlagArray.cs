@@ -5,11 +5,11 @@ namespace CombatExtended
 {
     /*
      * Taken RocketMan by Karim
-     * 
+     *
      * https://github.com/kbatbouta/RimWorld-RocketMan/blob/development-1.3-unstable/Source/Cosmodrome/Core/Collections/FlagsArray.cs
-     * 
+     *
      * Reasoning:
-     * 
+     *
      * This provide a very efficent way to store a lot of flags for defs.
      */
     public class FlagArray
@@ -76,8 +76,8 @@ namespace CombatExtended
         public FlagArray Set(int key, bool value)
         {
             map[key / ChunkSize] = value ?
-                map[key / ChunkSize] | GetOp(key) :
-                map[key / ChunkSize] & ~GetOp(key);
+                                   map[key / ChunkSize] | GetOp(key) :
+                                   map[key / ChunkSize] & ~GetOp(key);
             return this;
         }
 

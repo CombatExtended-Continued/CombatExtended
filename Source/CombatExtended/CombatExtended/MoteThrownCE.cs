@@ -17,7 +17,10 @@ namespace CombatExtended
         {
             get
             {
-                if (_moteGraphic == null) _moteGraphic = (Graphic_Mote)Graphic;
+                if (_moteGraphic == null)
+                {
+                    _moteGraphic = (Graphic_Mote)Graphic;
+                }
                 return _moteGraphic;
             }
         }
@@ -50,7 +53,7 @@ namespace CombatExtended
         public override void Draw()
         {
             /*
-             * Required to allow rendering without setting y to 0 
+             * Required to allow rendering without setting y to 0
              */
             float alpha = this.Alpha;
             if (!(alpha <= 0f))

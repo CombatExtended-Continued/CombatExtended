@@ -16,10 +16,16 @@ namespace CombatExtended.Lasers
         [HarmonyPrefix, HarmonyPriority(Priority.First)]
         static void Prefix(Pawn ___pawn, ref Thing eq, ref Vector3 drawLoc, ref float aimAngle, PawnRenderer __instance)
         {
-            if (___pawn == null) return;
+            if (___pawn == null)
+            {
+                return;
+            }
 
             IDrawnWeaponWithRotation gun = eq as IDrawnWeaponWithRotation;
-            if (gun == null) return;
+            if (gun == null)
+            {
+                return;
+            }
 
             Stance_Busy stance_Busy = ___pawn.stances.curStance as Stance_Busy;
             if (stance_Busy != null && !stance_Busy.neverAimWeapon && stance_Busy.focusTarg.IsValid)

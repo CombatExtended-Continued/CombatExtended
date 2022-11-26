@@ -60,7 +60,9 @@ namespace CombatExtended
             CompInventory inventoryA = a.TryGetComp<CompInventory>();
             CompInventory inventoryB = b.TryGetComp<CompInventory>();
             if (inventoryA == null || inventoryB == null)
+            {
                 return 0;
+            }
 
             if (def.defName.Equals(BarBulk))
             {

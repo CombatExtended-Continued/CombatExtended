@@ -21,7 +21,10 @@ namespace CombatExtended
 
         public override string InspectStringAddon
         {
-            get { return "CE_MarkedForArtillery".Translate() + " " + ((int)(lifetimeTicks / 60)).ToString() + " s"; }
+            get
+            {
+                return "CE_MarkedForArtillery".Translate() + " " + ((int)(lifetimeTicks / 60)).ToString() + " s";
+            }
         }
 
         public override void ExposeData()

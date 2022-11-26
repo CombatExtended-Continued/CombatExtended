@@ -249,6 +249,16 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>/Defs/ThingDef[defName="VAE_Headgear_HeavyMarineHelmet"]/equippedStatOffsets</xpath>
 					<value>
@@ -260,6 +270,16 @@
 							<MeleeDodgeChance>-0.15</MeleeDodgeChance>
 						</equippedStatOffsets>
 					</value>
+				</li>
+
+				<li Class="PatchOperationConditional" MayRequire="ludeon.rimworld.royalty">
+					<xpath>Defs/ThingDef[defName="VAE_Headgear_RoyalSiegeHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VAE_Headgear_RoyalSiegeHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationReplace" MayRequire="ludeon.rimworld.royalty">

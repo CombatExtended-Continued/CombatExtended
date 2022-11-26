@@ -10,7 +10,9 @@ namespace CombatExtended
         public override void TransformValue(StatRequest req, ref float val)
         {
             if (TryGetValue(req, out float num))
+            {
                 val += num;
+            }
         }
 
         public override string ExplanationPart(StatRequest req)
@@ -29,7 +31,9 @@ namespace CombatExtended
                     num = ammoUser.CurrentAmmo.GetStatValueAbstract(parentStat) * ammoUser.CurMagCount;
 
                     if (parentStat == CE_StatDefOf.Bulk)
+                    {
                         num *= ammoUser.Props.loadedAmmoBulkFactor;
+                    }
                 }
             }
             return num != 0f;
