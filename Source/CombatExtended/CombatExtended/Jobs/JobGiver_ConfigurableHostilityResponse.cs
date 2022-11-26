@@ -51,11 +51,14 @@ namespace CombatExtended
             Thing thing = (Thing)AttackTargetFinder.BestAttackTarget(pawn, TargetScanFlags.NeedLOSToPawns | TargetScanFlags.NeedLOSToNonPawns | TargetScanFlags.NeedReachableIfCantHitFromMyPos | TargetScanFlags.NeedThreat, null, 0f, maxDist, default(IntVec3), 3.40282347E+38f, false);
             // TODO evaluate if this is necessary?
             Pawn o = thing as Pawn;
-            if (o != null) if
-                    (o.Downed || o.health.InPainShock)
+            if (o != null)
+            {
+                if
+                (o.Downed || o.health.InPainShock)
                 {
                     return null;
                 }
+            }
 
             if (thing == null)
             {
@@ -78,7 +81,9 @@ namespace CombatExtended
                     {
                         Job job = JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, pawn, pawn.equipment.Primary);
                         if (job != null)
+                        {
                             return job;
+                        }
                     }
 
                     return JobMaker.MakeJob(JobDefOf.AttackMelee, thing);

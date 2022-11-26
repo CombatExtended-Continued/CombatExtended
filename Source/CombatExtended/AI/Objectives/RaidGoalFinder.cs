@@ -9,6 +9,6 @@ namespace CombatExtended.AI
 {
     public abstract class RaidGoalFinder
     {
-        
+
     }
 }

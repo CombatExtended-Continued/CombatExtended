@@ -22,7 +22,9 @@ namespace CombatExtended.Compatibility.Artillery
                 {
                     var obj = selectedObjects[i];
                     if (obj is Thing thing && thing.TryGetComp<CompLongRangeArtilleryCE>() is CompLongRangeArtilleryCE artilleryComp)
+                    {
                         yield return artilleryComp;
+                    }
                 }
             }
         }
@@ -34,7 +36,7 @@ namespace CombatExtended.Compatibility.Artillery
         private new CompMannable MannableComp => parent.GetComp<CompMannable>();
 
         public new bool CanLaunch => (PowerComp == null || PowerComp.PowerOn) && (RefuelableComp == null || RefuelableComp.HasFuel) && (Turret.CompAmmo == null || Turret.CompAmmo.HasAmmoOrMagazine)
-            && (MannableComp == null || MannableComp.MannedNow) && Turret.burstCooldownTicksLeft <= 0 && !parent.OccupiedRect().Cells.Any(c => c.Roofed(parent.Map));
+        && (MannableComp == null || MannableComp.MannedNow) && Turret.burstCooldownTicksLeft <= 0 && !parent.OccupiedRect().Cells.Any(c => c.Roofed(parent.Map));
 
 
         public override void CompTick()
@@ -53,13 +55,17 @@ namespace CombatExtended.Compatibility.Artillery
                         ResetWarmupTicks();
                     }
                     else
+                    {
                         warmupTicksLeft--;
+                    }
                 }
             }
 
             // Set warmup ticks if the turret is unmanned
             if (MannableComp != null && !MannableComp.MannedNow)
+            {
                 ResetWarmupTicks();
+            }
         }
 
         private new void ResetWarmupTicks()
@@ -69,7 +75,7 @@ namespace CombatExtended.Compatibility.Artillery
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-	    // Don't want to do this to enemy artillery :P
+            // Don't want to do this to enemy artillery :P
             if (Turret.Faction == Faction.OfPlayer)
             {
                 // Target other map tiles
@@ -149,7 +155,9 @@ namespace CombatExtended.Compatibility.Artillery
                 if (floatMenuOptions.Count() == 1)
                 {
                     if (!floatMenuOptions.First().Disabled)
+                    {
                         floatMenuOptions.First().action();
+                    }
                     return false;
                 }
 
@@ -186,7 +194,10 @@ namespace CombatExtended.Compatibility.Artillery
                         // Settlement - cause badwill, potentially cause an artillery retaliation and potentially destroy
                         if (worldObject is Settlement settlement && settlement.Faction != Faction.OfPlayer)
                         {
-                            yield return new FloatMenuOption("VFESecurity.TargetSettlement".Translate(), () => {SetTargetedTile(worldObject);});
+                            yield return new FloatMenuOption("VFESecurity.TargetSettlement".Translate(), () =>
+                            {
+                                SetTargetedTile(worldObject);
+                            });
                             anything = true;
                         }
 
@@ -240,18 +251,24 @@ namespace CombatExtended.Compatibility.Artillery
                 if (worldObject != null)
                 {
                     if (worldObject is MapParent mapParent && mapParent.HasMap)
+                    {
                         return new ArtilleryStrikeArrivalAction_Map(mapParent);
+                    }
 
                     // Peace talks - cause badwill and potentially cause a raid
                     if (worldObject is PeaceTalks talks)
+                    {
                         return new ArtilleryStrikeArrivalAction_PeaceTalksCE(parent.Map);
+                    }
 
                     // Settlement - cause badwill, potentially cause an artillery retaliation and potentially destroy
                     if (worldObject is Settlement settlement && settlement.Faction != Faction.OfPlayer)
                     {
                         // Special case: Insectoids from Vanilla Factions Expanded
                         if (ModCompatibilityCheck.VanillaFactionsExpandedInsectoids && settlement.Faction.def == FactionDefNamed.VFEI_Insect)
+                        {
                             return new ArtilleryStrikeArrivalAction_InsectoidCE(settlement, parent.Map);
+                        }
 
                         // Standard
                         return new ArtilleryStrikeArrivalAction_SettlementCE(settlement);
@@ -261,7 +278,9 @@ namespace CombatExtended.Compatibility.Artillery
                     {
                         // Bandit camp - potentially destroy
                         if (site.parts.Any(p => p.def == VFESecurity.SitePartDefOf.BanditCamp))
+                        {
                             return new ArtilleryStrikeArrivalAction_OutpostCE(site);
+                        }
                     }
                 }
 
@@ -274,14 +293,20 @@ namespace CombatExtended.Compatibility.Artillery
             var arrivalAction = CurrentArrivalAction;
 
             if (arrivalAction != null)
+            {
                 arrivalAction.source = parent;
+            }
 
             // Play sounds
             var verb = Turret.CurrentEffectiveVerb;
             if (verb.verbProps.soundCast != null)
+            {
                 verb.verbProps.soundCast.PlayOneShot(new TargetInfo(parent.Position, parent.Map));
+            }
             if (verb.verbProps.soundCastTail != null)
+            {
                 verb.verbProps.soundCastTail.PlayOneShotOnCamera(parent.Map);
+            }
 
             // Make active artillery strike thing
             var activeArtilleryStrike = (ActiveArtilleryStrike)ThingMaker.MakeThing(VFESecurity.ThingDefOf.VFES_ActiveArtilleryStrike);
@@ -291,18 +316,19 @@ namespace CombatExtended.Compatibility.Artillery
             if (Turret.CompAmmo != null)
             {
 
-		var compCharges = Turret.TryGetComp<CompCharges>();
-		if (compCharges != null)
-		{
-		    if (compCharges.GetChargeBracket(1000, 1, ((ProjectilePropertiesCE)Turret.CompAmmo.CurrentAmmo.GetProjectileProperties()).Gravity, out var bracket))
+                var compCharges = Turret.TryGetComp<CompCharges>();
+                if (compCharges != null)
+                {
+                    if (compCharges.GetChargeBracket(1000, 1, ((ProjectilePropertiesCE)Turret.CompAmmo.CurrentAmmo.GetProjectileProperties()).Gravity, out var bracket))
                     {
                         activeArtilleryStrike.missRadius = bracket.x;
                     }
 
-		}
-		else {
-		    activeArtilleryStrike.missRadius = 150;
-		}
+                }
+                else
+                {
+                    activeArtilleryStrike.missRadius = 150;
+                }
                 activeArtilleryStrike.shellDef = Turret.CompAmmo.CurrentAmmo;
                 activeArtilleryStrike.shellCount = 1;
                 Turret.CompAmmo.Notify_ShotFired();
@@ -321,7 +347,9 @@ namespace CombatExtended.Compatibility.Artillery
                 {
                     activeArtilleryStrike.shellCount++;
                     if (verb.verbProps.consumeFuelPerShot > 0 && RefuelableComp != null)
+                    {
                         RefuelableComp.ConsumeFuel(verb.verbProps.consumeFuelPerShot);
+                    }
                 }
             }
             Turret.BurstComplete();

@@ -18,7 +18,9 @@ namespace CombatExtended
             var def = req.Def as ThingDef;
 
             if (def?.building?.IsTurret ?? false)
+            {
                 def = def.building.turretGunDef;
+            }
 
             return def;
         }
@@ -30,7 +32,10 @@ namespace CombatExtended
 
         public override bool ShouldShowFor(StatRequest req)
         {
-            if (!base.ShouldShowFor(req)) return false;
+            if (!base.ShouldShowFor(req))
+            {
+                return false;
+            }
 
             AmmoSetDef ammoSet = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
             if (ShouldDisplayAmmoSet(ammoSet))
@@ -75,7 +80,9 @@ namespace CombatExtended
                 var projectiles = GunDef(req)?.Verbs?.Where(x => x.defaultProjectile != null).Select(x => x.defaultProjectile);
 
                 foreach (var cur in projectiles)
+                {
                     stringBuilder.AppendLine(cur.LabelCap + ":\n" + cur.GetProjectileReadout(Gun(req)));
+                }
             }
 
             return stringBuilder.ToString().TrimEndNewlines();

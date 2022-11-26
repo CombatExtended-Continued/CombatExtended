@@ -34,7 +34,10 @@ namespace CombatExtended
             Predicate<Thing> _isTurretThatNeedsReloadingNow = (Thing t) =>
             {
                 var turret = t as Building_Turret;
-                if (turret == null) { return false; }
+                if (turret == null)
+                {
+                    return false;
+                }
 
                 // Optimization: Check if the turret should be reloaded given its current magazine fullness first,
                 // as CanReload() may trigger a potentially expensive ammo search.
@@ -42,15 +45,15 @@ namespace CombatExtended
             };
 
             var hopefullyTurret = pawn.Map.GetComponent<TurretTracker>().ClosestTurret(
-                pawn.Position,
-                PathEndMode.Touch,
-                TraverseParms.For(pawn),
-                100f,
-                _isTurretThatNeedsReloadingNow);
+                                      pawn.Position,
+                                      PathEndMode.Touch,
+                                      TraverseParms.For(pawn),
+                                      100f,
+                                      _isTurretThatNeedsReloadingNow);
 
             return hopefullyTurret as Building_TurretGunCE;
         }
 
-    
+
     }
 }

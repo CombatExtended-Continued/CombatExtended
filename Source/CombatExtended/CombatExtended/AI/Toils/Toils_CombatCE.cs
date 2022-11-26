@@ -11,12 +11,15 @@ namespace CombatExtended.AI
     {
         public static Toil ReloadEquipedWeapon(IJobDriver_Tactical driver, TargetIndex progressIndex, Thing ammo = null)
         {
-            // fields            
+            // fields
             CompAmmoUser compAmmo = null;
             int reloadingTime = 0;
             int startTick = 0;
             // reloading toil
-            Toil waitToil = new Toil() { actor = driver.pawn };
+            Toil waitToil = new Toil()
+            {
+                actor = driver.pawn
+            };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             waitToil.defaultDuration = 300;
             waitToil.AddPreInitAction(() =>
@@ -32,7 +35,7 @@ namespace CombatExtended.AI
                     driver.EndJobWith(JobCondition.Incompletable);
                     return;
                 }
-                startTick = GenTicks.TicksGame;                
+                startTick = GenTicks.TicksGame;
                 reloadingTime = Mathf.CeilToInt(compAmmo.parent.GetStatValue(CE_StatDefOf.ReloadTime).SecondsToTicks() / driver.pawn.GetStatValue(CE_StatDefOf.ReloadSpeed));
             });
             waitToil.tickAction = () =>

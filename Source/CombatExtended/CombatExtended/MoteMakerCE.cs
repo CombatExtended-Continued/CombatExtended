@@ -13,7 +13,7 @@ namespace CombatExtended
             Rand.PopState();
         }
 
-        public static void ThrowText(Vector3 loc,  Map map, string text, Color color, float timeBeforeStartFadeout = -1f)
+        public static void ThrowText(Vector3 loc, Map map, string text, Color color, float timeBeforeStartFadeout = -1f)
         {
             Rand.PushState();
             MoteMaker.ThrowText(loc, map, text, color, timeBeforeStartFadeout);

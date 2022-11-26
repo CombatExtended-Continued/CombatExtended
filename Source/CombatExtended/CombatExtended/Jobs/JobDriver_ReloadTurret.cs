@@ -78,9 +78,13 @@ namespace CombatExtended
             text = text.Replace("TurretType", turretType);
             text = text.Replace("TargetA", TargetThingA.def.label);
             if (compReloader.UseAmmo)
+            {
                 text = text.Replace("TargetB", TargetThingB.def.label);
+            }
             else
+            {
                 text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
+            }
             return text;
         }
 
@@ -112,9 +116,13 @@ namespace CombatExtended
 
             // Set fail condition on turret.
             if (pawn.Faction != Faction.OfPlayer)
+            {
                 this.FailOnDestroyedOrNull(TargetIndex.A);
+            }
             else
+            {
                 this.FailOnDestroyedNullOrForbidden(TargetIndex.A);
+            }
 
             // If someone else magically reloaded our turret while we were reloading, fail.
             // This happens when Project RimFactory's refueling machine is set up.
@@ -128,8 +136,14 @@ namespace CombatExtended
 
                 if (TargetThingB is AmmoThing)
                 {
-                    toilGoToCell.AddEndCondition(delegate { return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing; });
-                    toilCarryThing.AddEndCondition(delegate { return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing; });
+                    toilGoToCell.AddEndCondition(delegate
+                    {
+                        return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing;
+                    });
+                    toilCarryThing.AddEndCondition(delegate
+                    {
+                        return (TargetThingB as AmmoThing).IsCookingOff ? JobCondition.Incompletable : JobCondition.Ongoing;
+                    });
                 }
 
                 if (pawn.Faction != Faction.OfPlayer)
@@ -154,10 +168,16 @@ namespace CombatExtended
             yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
 
             //If pawn fails reloading from this point, reset isReloading
-            this.AddFinishAction(delegate { turret.SetReloading(false); });
+            this.AddFinishAction(delegate
+            {
+                turret.SetReloading(false);
+            });
 
             // Wait in place
-            Toil waitToil = new Toil() { actor = pawn };
+            Toil waitToil = new Toil()
+            {
+                actor = pawn
+            };
             waitToil.initAction = delegate
             {
                 // Initial relaod process activities.

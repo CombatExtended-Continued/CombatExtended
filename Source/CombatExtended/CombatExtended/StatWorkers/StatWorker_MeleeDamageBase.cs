@@ -46,8 +46,9 @@ namespace CombatExtended
             {
                 return false;
             }
-            if ((pawn?.skills?.GetSkill(SkillDefOf.Melee) ?? null) == null)     //Pawns that can equip weapons but don't use skill (mechanoids, custom races) 
-            {                                                                   //No damage variation applied (same as animals for unarmed damage)
+            if ((pawn?.skills?.GetSkill(SkillDefOf.Melee) ?? null) == null)     //Pawns that can equip weapons but don't use skill (mechanoids, custom races)
+            {
+                //No damage variation applied (same as animals for unarmed damage)
                 unskilledReturnValue = 1.0f;
                 return false;
             }

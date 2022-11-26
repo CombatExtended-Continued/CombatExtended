@@ -24,30 +24,42 @@ namespace CombatExtended.AI
         {
             base.TickRarer();
             if (ticks % 2 == 0)
+            {
                 UpdateGasMask();
+            }
             ticks++;
         }
 
         public void UpdateGasMask()
         {
             if (SelPawn.Faction.IsPlayerSafe())
+            {
                 return;
+            }
             if (!SelPawn.Spawned)
+            {
                 return;
+            }
             if (SelPawn.Downed || SelPawn.apparel?.wornApparel == null)
+            {
                 return;
+            }
             if (ticks % 4 == 0)
+            {
                 CheckForMask();
+            }
             if (lastSmokeTick < GenTicks.TicksGame && maskEquiped)
+            {
                 RemoveMask();
+            }
         }
 
         public void Notify_ShouldEquipGasMask()
         {
             if (lastSmokeTick < GenTicks.TicksGame
-                && !SelPawn.Faction.IsPlayerSafe()
-                && !SelPawn.Downed
-                && SelPawn.apparel?.wornApparel != null)
+                    && !SelPawn.Faction.IsPlayerSafe()
+                    && !SelPawn.Downed
+                    && SelPawn.apparel?.wornApparel != null)
             {
                 WearMask();
                 lastSmokeTick = GenTicks.TicksGame + SMOKE_TICKS_OFFSET;

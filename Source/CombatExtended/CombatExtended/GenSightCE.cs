@@ -71,25 +71,25 @@ namespace CombatExtended
                 {
                     //the 0.0001f offsets to X and Z are to ensure we select the correct cell when traversing the vector in a negative direction.
                     yield return new IntVec3(
-                        (int)(currentPos.x + (0.0001f * stepX)),
-                        (int)currentPos.y,
-                        (int)(currentPos.z + (0.0001f * stepZ))
-                    );
+                                     (int)(currentPos.x + (0.0001f * stepX)),
+                                     (int)currentPos.y,
+                                     (int)(currentPos.z + (0.0001f * stepZ))
+                                 );
 
                     //If the current position is a corner, we need not only the 2 cells along the vector's path,
                     //but also the other two touching the corner. (prevents diagonal LOS through walls)
                     if (NearlyEqual(currentPos.x, Mathf.RoundToInt(currentPos.x)) && NearlyEqual(currentPos.z, Mathf.RoundToInt(currentPos.z)))
                     {
                         yield return new IntVec3(
-                            (int)(currentPos.x + (0.0001f * stepX) - stepX),
-                            (int)currentPos.y,
-                            (int)(currentPos.z + (0.0001f * stepZ))
-                        );
+                                         (int)(currentPos.x + (0.0001f * stepX) - stepX),
+                                         (int)currentPos.y,
+                                         (int)(currentPos.z + (0.0001f * stepZ))
+                                     );
                         yield return new IntVec3(
-                            (int)(currentPos.x + (0.0001f * stepX)),
-                            (int)currentPos.y,
-                            (int)(currentPos.z + (0.0001f * stepZ) - stepZ)
-                        );
+                                         (int)(currentPos.x + (0.0001f * stepX)),
+                                         (int)currentPos.y,
+                                         (int)(currentPos.z + (0.0001f * stepZ) - stepZ)
+                                     );
                     }
                 }
             }
@@ -105,13 +105,15 @@ namespace CombatExtended
             IntVec3 startPos = source.Cell;
             IntVec3 endPos = targetFacing.Cell;
             foreach (IntVec3 cell in GenSight.PointsOnLineOfSight(startPos, new IntVec3(
-                    (int)((startPos.x * 3 + endPos.x) / 4f),
-                    (int)((startPos.y * 3 + endPos.y) / 4f),
-                    (int)((startPos.z * 3 + endPos.z) / 4f))))
+                         (int)((startPos.x * 3 + endPos.x) / 4f),
+                         (int)((startPos.y * 3 + endPos.y) / 4f),
+                         (int)((startPos.z * 3 + endPos.z) / 4f))))
             {
                 Thing cover = cell.GetCover(map);
                 if (cover != null && cover.def.Fillage == FillCategory.Full)
+                {
                     yield break;
+                }
                 yield return cell;
             }
         }

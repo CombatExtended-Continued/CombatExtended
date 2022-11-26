@@ -22,7 +22,7 @@ namespace CombatExtended.HarmonyCE
                     exploder.PostDamageResult(__result);
                 }
             }
-            
+
         }
     }
 }

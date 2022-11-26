@@ -62,7 +62,9 @@ namespace CombatExtended
         {
             Job job = pawn.thinker?.GetMainTreeThinkNode<JobGiver_UpdateLoadout>()?.TryGiveJob(pawn);
             if (job != null)
+            {
                 pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            }
         }
 
         public override void DoHeader(Rect rect, PawnTable table)
@@ -134,7 +136,10 @@ namespace CombatExtended
                     string text = "CE_ForcedHold".Translate() + ":\n";
                     foreach (HoldRecord rec in LoadoutManager.GetHoldRecords(pawn))
                     {
-                        if (!rec.pickedUp) continue;
+                        if (!rec.pickedUp)
+                        {
+                            continue;
+                        }
                         text = text + "\n   " + rec.thingDef.LabelCap + " x" + rec.count;
                     }
                     return text;

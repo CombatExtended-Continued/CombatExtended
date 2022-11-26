@@ -10,14 +10,20 @@ namespace CombatExtended.Lasers
     {
         bool IsBrusting(Pawn pawn)
         {
-            if (pawn.CurrentEffectiveVerb == null) return false;
+            if (pawn.CurrentEffectiveVerb == null)
+            {
+                return false;
+            }
             return pawn.CurrentEffectiveVerb.Bursting;
         }
 
         public override void UpdateState()
         {
             var holder = ParentHolder as Pawn_EquipmentTracker;
-            if (holder == null) return;
+            if (holder == null)
+            {
+                return;
+            }
 
             Stance stance = holder.pawn.stances.curStance;
             Stance_Warmup warmup;
@@ -53,9 +59,13 @@ namespace CombatExtended.Lasers
                         state = State.Idle;
                         Stance_Cooldown cooldown = stance as Stance_Cooldown;
                         if (cooldown != null)
+                        {
                             ReachRotationSpeed(0.0f, cooldown.ticksLeft);
+                        }
                         else
+                        {
                             ReachRotationSpeed(0.0f, 0);
+                        }
                     }
                     break;
             }

@@ -18,7 +18,7 @@ namespace CombatExtended
 
             /*
 
-#if DEBUG
+            #if DEBUG
             Log.Message( "Inspector tab types on humans:" );
             foreach ( var tab in itabs )
             {
@@ -29,7 +29,7 @@ namespace CombatExtended
             {
                 Log.Message( "\t" + tab.labelKey.Translate() );
             }
-#endif
+            #endif
             */
 
             // replace ITab in the unresolved list

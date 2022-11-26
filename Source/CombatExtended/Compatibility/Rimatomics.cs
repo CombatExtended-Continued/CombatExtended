@@ -13,7 +13,7 @@ using Rimatomics;
 
 namespace CombatExtended.Compatibility
 {
-    class Rimatomics: IPatch
+    class Rimatomics : IPatch
     {
         public static SoundDef HitSoundDef = null;
 
@@ -25,18 +25,19 @@ namespace CombatExtended.Compatibility
 
         public bool CanInstall()
         {
-	    return ModLister.HasActiveModWithName("Dubs Rimatomics");
+            return ModLister.HasActiveModWithName("Dubs Rimatomics");
         }
         public void Install()
         {
-	    BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
+            BlockerRegistry.RegisterCheckForCollisionCallback(Rimatomics.CheckForCollisionCallback);
             BlockerRegistry.RegisterImpactSomethingCallback(Rimatomics.ImpactSomethingCallback);
         }
 
-	public IEnumerable<string> GetCompatList() {
-	    yield break;
-	}
-	
+        public IEnumerable<string> GetCompatList()
+        {
+            yield break;
+        }
+
         public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             Map map = projectile.Map;
@@ -44,9 +45,10 @@ namespace CombatExtended.Compatibility
             IntVec3 origin = projectile.OriginIV3;
             getShields(map);
 
-	    if (projectile.launcher == null) {
-		return false;
-	    }
+            if (projectile.launcher == null)
+            {
+                return false;
+            }
 
             foreach (ThingComp thingComp in shields)
             {
@@ -59,9 +61,9 @@ namespace CombatExtended.Compatibility
                 {
                     continue;
                 }
-		bool interceptOutgoing = shield.Props.interceptOutgoingProjectiles;
-		
-		
+                bool interceptOutgoing = shield.Props.interceptOutgoingProjectiles;
+
+
                 int fieldRadius = (int)shield.Radius;
                 int fieldRadiusSq = fieldRadius * fieldRadius;
                 float DistanceSq = projectile.Position.DistanceToSquared(shield.parent.Position) - fieldRadiusSq;
@@ -69,9 +71,9 @@ namespace CombatExtended.Compatibility
                 if (DistanceSq > 0)
                 {
                     if (!interceptOutgoing || originDistanceSq >= 0)
-		    {
-			continue;
-		    }
+                    {
+                        continue;
+                    }
                 }
                 else if (originDistanceSq < 0)
                 {
@@ -80,7 +82,7 @@ namespace CombatExtended.Compatibility
                 Vector3 shieldPosition2D = new Vector3(shield.parent.Position.x, 0, shield.parent.Position.z);
                 Quaternion targetAngle = projectile.ExactRotation;
                 Quaternion shieldProjAng = Quaternion.LookRotation(exactPosition - shieldPosition2D);
-		var angle = Quaternion.Angle(targetAngle, shieldProjAng);
+                var angle = Quaternion.Angle(targetAngle, shieldProjAng);
                 if (angle > 90 || (interceptOutgoing && angle < 90))
                 {
                     int damage = (projectile.def.projectile.GetDamageAmount(launcher));
@@ -90,19 +92,19 @@ namespace CombatExtended.Compatibility
                     projectile.ExactPosition = exactPosition;
 
 
-		    Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
-		    effecter.Trigger(new TargetInfo(IntVec3Utility.ToIntVec3(exactPosition), shield.parent.Map, false), TargetInfo.Invalid);
-		    effecter.Cleanup();
-		    shield.energy -= damage * shield.EnergyLossPerDamage;
-		    if (shield.energy < 0f)
-		    {
-			DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
-			shield.BreakShield(dinfo);
-		    }
+                    Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
+                    effecter.Trigger(new TargetInfo(IntVec3Utility.ToIntVec3(exactPosition), shield.parent.Map, false), TargetInfo.Invalid);
+                    effecter.Cleanup();
+                    shield.energy -= damage * shield.EnergyLossPerDamage;
+                    if (shield.energy < 0f)
+                    {
+                        DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
+                        shield.BreakShield(dinfo);
+                    }
 
 
 
-		    
+
                     return true;
                 }
             }
@@ -120,7 +122,7 @@ namespace CombatExtended.Compatibility
             Vector3 destination = projectile.ExactPosition;
             foreach (CompRimatomicsShield shield in shields)
             {
-		if (!shield.Active || shield.ShieldState != ShieldState.Active)
+                if (!shield.Active || shield.ShieldState != ShieldState.Active)
                 {
                     continue;
                 }
@@ -138,14 +140,14 @@ namespace CombatExtended.Compatibility
 
                 int damage = (projectile.def.projectile.GetDamageAmount(launcher));
                 Effecter effecter = new Effecter(shield.Props.interceptEffect ?? EffecterDefOf.Interceptor_BlockedProjectile);
-		effecter.Trigger(new TargetInfo(projectile.Position, shield.parent.Map, false), TargetInfo.Invalid);
-		effecter.Cleanup();
-		shield.energy -= damage * shield.EnergyLossPerDamage;
-		if (shield.energy < 0f)
-		{
-		    DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
-		    shield.BreakShield(dinfo);
-		}
+                effecter.Trigger(new TargetInfo(projectile.Position, shield.parent.Map, false), TargetInfo.Invalid);
+                effecter.Cleanup();
+                shield.energy -= damage * shield.EnergyLossPerDamage;
+                if (shield.energy < 0f)
+                {
+                    DamageInfo dinfo = new DamageInfo(projectile.def.projectile.damageDef, (float)damage, 0f, -1f, null, null, null, 0, null, true, true);
+                    shield.BreakShield(dinfo);
+                }
                 return true;
             }
             return false;
@@ -158,13 +160,13 @@ namespace CombatExtended.Compatibility
             if (lastCacheTick != thisTick || lastCacheMap != map)
             {
                 IEnumerable<Building> buildings = map.listerBuildings.allBuildingsColonist.Where(b => b is Building_ShieldArray);
-		shields = new List<ThingComp>();
-		foreach (Building b in buildings)
-		{
-		    shields.Add((b as Building_ShieldArray).CompShield);
-		}
-		
-		lastCacheTick = thisTick;
+                shields = new List<ThingComp>();
+                foreach (Building b in buildings)
+                {
+                    shields.Add((b as Building_ShieldArray).CompShield);
+                }
+
+                lastCacheTick = thisTick;
                 lastCacheMap = map;
             }
         }

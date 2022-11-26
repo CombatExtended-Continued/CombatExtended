@@ -15,35 +15,39 @@ namespace CombatExtended.HarmonyCE
     /// <summary>
     /// Replaces DoExplosion on BUILDINGS, PAWNS, AMMO with the CE version that has correct AP and damage
     /// </summary>
-    [HarmonyPatch(typeof(CompExplosive),"Detonate")]
+    [HarmonyPatch(typeof(CompExplosive), "Detonate")]
     public class Harmony_CompExplosive_Detonate_Transpiler
     {
         internal static void ThrowFragments(ThingWithComps parent, Map map, Thing instigator)
         {
             var fragComp = parent.TryGetComp<CompFragments>();
             if (fragComp != null)
-                fragComp.Throw(parent.PositionHeld.ToVector3(), map, instigator);//Mathf.Pow(parent.stackCount, 0.333f));
+            {
+                fragComp.Throw(parent.PositionHeld.ToVector3(), map, instigator);    //Mathf.Pow(parent.stackCount, 0.333f));
+            }
         }
-        
+
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             bool codeFound = false;
             int parentCalls = 0;
             bool codeChanged = false;
             bool storeDestructionCall = false;
-            
+
             foreach (var code in instructions)
             {
                 if (storeDestructionCall)
                 {
                     if (code.opcode == OpCodes.Callvirt)
+                    {
                         storeDestructionCall = false;
-                    
+                    }
+
                     continue;
                 }
 
                 if (code.opcode == OpCodes.Stfld && code.operand is FieldInfo info
-                    && info == AccessTools.Field(typeof(CompExplosive), "destroyedThroughDetonation"))
+                        && info == AccessTools.Field(typeof(CompExplosive), "destroyedThroughDetonation"))
                 {
                     yield return code;
                     storeDestructionCall = true;
@@ -54,10 +58,10 @@ namespace CombatExtended.HarmonyCE
                 {
                     parentCalls++;
                 }
-                
+
                 // Replace GenExplosion.DoExplosion with GenExplosionCE.DoExplosion, populate extra four fields with "0f" and "Mathf.Pow(this.parent.stackCount, 0.333f)", "this.destroyedThroughDetonation" and "this.parent"
                 if (codeChanged && !codeFound && code.opcode == OpCodes.Call && code.operand is MethodInfo info2
-                    && info2 == AccessTools.Method(typeof(GenExplosion), "DoExplosion"))
+                        && info2 == AccessTools.Method(typeof(GenExplosion), "DoExplosion"))
                 {
                     codeFound = true;
 
@@ -73,7 +77,7 @@ namespace CombatExtended.HarmonyCE
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingComp), "parent"));                //Send along parent, e.g the thing that should be destroyed
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GenExplosionCE), "DoExplosion"));
-                    
+
                     continue;
                 }
 
@@ -91,12 +95,16 @@ namespace CombatExtended.HarmonyCE
 
                 yield return code;
             }
-            
+
             if (!codeFound)
+            {
                 Log.Warning("CombatExtended :: Could not find doExplosionInfo");
+            }
 
             if (!codeChanged)
+            {
                 Log.Warning("CombatExtended :: Could not insert ThrowFragments call");
+            }
         }
     }
 }

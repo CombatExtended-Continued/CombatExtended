@@ -74,9 +74,9 @@ namespace CombatExtended
                 }
             }
 
-           
 
-           
+
+
         }
     }
 }

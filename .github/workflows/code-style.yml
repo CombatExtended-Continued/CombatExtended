@@ -1,0 +1,24 @@
+﻿name: Code Style Checks
+on:
+  pull_request:
+    branches: [ master, Development, Rimworld-Version-1.4 ]
+
+# Restrict the permissions of the ephemeral GitHub token used by this workflow
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.x'
+    - name: Check C# code style
+      run: |
+        dotnet format --verify-no-changes Source/CombatExtendedLoader.sln
+        dotnet format --verify-no-changes Source/CombatExtended.sln

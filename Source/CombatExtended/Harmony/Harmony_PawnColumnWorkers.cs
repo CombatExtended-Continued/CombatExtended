@@ -26,13 +26,15 @@ namespace CombatExtended.HarmonyCE
         /// </summary>
         public static void Patch()
         {
-            Type[] targetTypes = {
+            Type[] targetTypes =
+            {
                 typeof(PawnColumnWorker_Outfit),
                 typeof(PawnColumnWorker_DrugPolicy),
                 typeof(PawnColumnWorker_FoodRestriction)
             };
             string[] targetNames = new string[] { "GetMinWidth", "GetOptimalWidth" };
-            HarmonyMethod[] transpilers = new HarmonyMethod[] {
+            HarmonyMethod[] transpilers = new HarmonyMethod[]
+            {
                 new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "MinWidth"),
                 new HarmonyMethod(typeof(PawnColumnWorkers_Resize), "OptWidth")
             };
@@ -85,7 +87,7 @@ namespace CombatExtended.HarmonyCE
      * and modifying the size (Rect) of the stock buttons to fit icon size.
      * It then modifies the last Rect objects (1 or 2) to fit icon size instead of text button size as well as using icons instead of text buttons.
      * Finally it appends the last Rect object (edit button) with a tooltip since the original button didn't have one.
-     * 
+     *
      * This is a bit of a complicated one in that it's a single patcher for both methods and one of the PawnColumnWorkers needs 2 iterations
      * of SOME of the patch code.  On paper it's pretty simple as it's basically an insertion, 2 multi opcode replacements (possibly twice) and another insertion.
      * The PawnColumnWorker_Loadout.DoCell() should be kept VERY similar to how RimWorld's code for the other two Column Workers work, that will make maintenance of this
@@ -153,7 +155,7 @@ namespace CombatExtended.HarmonyCE
 
                 // Watch for calls to rect.y + 2f, we replace them with our num4 (see PawnColumnWorker_Loadout)
                 if (curCode.opcode == OpCodes.Call &&
-                    ReferenceEquals(curCode.operand, typeof(Rect).GetMethod("get_y", AccessTools.all)))
+                        ReferenceEquals(curCode.operand, typeof(Rect).GetMethod("get_y", AccessTools.all)))
                 {
                     if (passedFirstRectYCall && i + 1 < codes.Count && codes[i + 1].opcode == OpCodes.Ldc_R4 && codes[i + 1].operand.Equals(2f))
                     {
@@ -202,7 +204,7 @@ namespace CombatExtended.HarmonyCE
                 var code = codes[index];
                 code.opcode = OpCodes.Call;
                 code.operand = typeof(PawnColumnWorker_Loadout).GetProperty(nameof(PawnColumnWorker_Loadout.EditImage), AccessTools.all)
-                    .GetGetMethod();
+                               .GetGetMethod();
                 // Null out unneeded bool arguments
                 foreach (var cur in codes.GetRange(index + 1, 4))
                 {
@@ -211,7 +213,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 // Replace method call ButtonText->ButtonImage
                 codes[index + 6].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
-                    new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
+                                           new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
             }
             foreach (var index in clearButtonIndices)
             {
@@ -219,7 +221,7 @@ namespace CombatExtended.HarmonyCE
                 var code = codes[index];
                 code.opcode = OpCodes.Call;
                 code.operand = typeof(PawnColumnWorker_Loadout).GetProperty(nameof(PawnColumnWorker_Loadout.ClearImage), AccessTools.all)
-                    .GetGetMethod();
+                               .GetGetMethod();
                 // Null out unneeded bool arguments
                 foreach (var cur in codes.GetRange(index + 1, 4))
                 {
@@ -228,7 +230,7 @@ namespace CombatExtended.HarmonyCE
                 }
                 // Replace method call ButtonText->ButtonImage
                 codes[index + 6].operand = typeof(Widgets).GetMethod(nameof(Widgets.ButtonImage),
-                    new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
+                                           new[] { typeof(Rect), typeof(Texture2D), typeof(bool) });
             }
 
             // Replace rect.y + 2f with rect.y + (rect.height - IconSize) / 2
@@ -272,7 +274,7 @@ namespace CombatExtended.HarmonyCE
         {
             return rect.y + (rect.height - PawnColumnWorker_Loadout.IconSize) / 2f;
         }
-        
+
         /// <summary>
         /// This is a helper method inserted by the transpiler above.  This handles creating the tooltip since doing that in IL would be hard for others to maintain.
         /// </summary>
