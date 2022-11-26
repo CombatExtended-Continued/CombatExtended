@@ -960,17 +960,17 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
-		if (firingWithoutTarget)
-		{
-		    shotAngle = lastShotAngle;
-		    shotRotation = lastShotRotation;
-		    GetSwayVec(ref shotRotation, ref shotAngle);
-		    GetRecoilVec(ref shotRotation, ref shotAngle);
+                if (firingWithoutTarget)
+                {
+                    shotAngle = lastShotAngle;
+                    shotRotation = lastShotRotation;
+                    GetSwayVec(ref shotRotation, ref shotAngle);
+                    GetRecoilVec(ref shotRotation, ref shotAngle);
 
-		}
-		this.lastShotAngle = shotAngle;
-		this.lastShotRotation = shotRotation;
-		this.lastShootLine = shootLine;
+                }
+                this.lastShotAngle = shotAngle;
+                this.lastShotRotation = shotRotation;
+                this.lastShootLine = shootLine;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;
