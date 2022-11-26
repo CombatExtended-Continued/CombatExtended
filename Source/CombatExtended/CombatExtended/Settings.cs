@@ -35,7 +35,7 @@ namespace CombatExtended
 
         private bool fragmentsFromWalls = false;
 
-	private bool fasterRepeatShots = false;
+        private bool fasterRepeatShots = false;
 
         public bool ShowCasings => showCasings;
 
@@ -124,7 +124,7 @@ namespace CombatExtended
 
         public bool FragmentsFromWalls => fragmentsFromWalls;
 
-	public bool FasterRepeatShots => fasterRepeatShots;
+        public bool FasterRepeatShots => fasterRepeatShots;
 
         #endregion
 
@@ -188,7 +188,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref autosetup, "autosetup", true);
 
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
-	    Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
+            Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
@@ -213,7 +213,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
-	    list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
