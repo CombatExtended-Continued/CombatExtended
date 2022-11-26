@@ -256,8 +256,8 @@ namespace CombatExtended
             repeating = false;
             storedShotReduction = null;
         }
-
-        public override void ExposeData() {
+        public override void ExposeData()
+        {
             base.ExposeData();
             Scribe_Values.Look<bool>(ref this.shootingAtDowned, "shootingAtDowned", false, false);
             Scribe_TargetInfo.Look(ref this.lastTarget, "lastTarget");
