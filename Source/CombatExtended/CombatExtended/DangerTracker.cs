@@ -12,6 +12,7 @@ namespace CombatExtended
         //private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 150;
         public const int DANGER_TICKS_MAX = 300; // 1s in real life = 60 ticks in game;
+		public const float DANGER_MULTIPLIER = 0.5f; // Magical danger amount multiplier;
         //private const float DANGER_BULLET_MAX_DIST = 20f;
 
         private const float WEIGHTS_DIG = 0.8f;
@@ -152,6 +153,7 @@ namespace CombatExtended
 
         private void IncreaseAt(IntVec3 pos, int amount)
         {
+            amount = Mathf.FloorToInt(amount * DANGER_MULTIPLIER);
             int index = map.cellIndices.CellToIndex(pos);
             int value = dangerArray[index];
             int ticks = GenTicks.TicksGame;
