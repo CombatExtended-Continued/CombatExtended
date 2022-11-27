@@ -1310,7 +1310,7 @@ namespace CombatExtended
                 {
                     foreach (var thing in suppressThings)
                     {
-                        ApplySuppression(thing, explosionSuppressionFactor);
+                        ApplySuppression(thing);
                     }
                     if (dangerAmount > 0f)
                     {
