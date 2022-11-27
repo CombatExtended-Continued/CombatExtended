@@ -84,6 +84,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC300a"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
+				</li>
+
 
 				<!-- ==================== CMC300 helmet =====================-->
 
@@ -142,11 +165,27 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicSensitivity</xpath>
-					<value>
-						<ToxicSensitivity>-0.5</ToxicSensitivity>
-					</value>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC300H" or defName="CMC300Ha" or defName="CMC300Hb"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationReplace">

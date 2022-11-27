@@ -87,6 +87,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC405a"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
+				</li>
+
 				<!-- ==================== CMC-405 helmet =====================-->
 
 				<!--100% night vision because of "integrated x ray"-->
@@ -147,8 +170,30 @@
 						<PsychicSensitivity>-0.2</PsychicSensitivity>
 						<AimingAccuracy>0.15</AimingAccuracy>
 						<SmokeSensitivity>-1</SmokeSensitivity>
-						<ToxicSensitivity>-0.5</ToxicSensitivity>
 					</value>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					<match Class="PatchOperationRemove">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicSensitivity</xpath>
+					</match>
+				</li>
+
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets/ToxicEnvironmentResistance</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</match>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="CMC405H"]/equippedStatOffsets</xpath>
+						<value>
+							<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
+						</value>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationReplace">
