@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +13,9 @@ namespace CombatExtended
         // public float armorPenetration = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
+        public float suppressionFactor = 1; // How much suppression is applied by the projectile overall
+        public float airborneSuppressionFactor = 1; // How much suppression is applied by the projectile midair
+        public float dangerFactor = 1; // How much danger the projectile applies to cells
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
         public bool damageAdjacentTiles = false;
         public bool dropsCasings = false;

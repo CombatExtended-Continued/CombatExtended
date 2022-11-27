@@ -63,7 +63,7 @@ namespace CombatExtended
             ticksToDetonation = def.projectile.explosionDelay;
             if (def.projectile.damageDef.harmsHealth)
             {
-                DangerTracker.Notify_DangerRadiusAt(Position, def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f), def.projectile.damageAmountBase * explosionDangerFactor);
+                DangerTracker.Notify_DangerRadiusAt(Position, def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f), def.projectile.damageAmountBase * (def.projectile as ProjectilePropertiesCE).dangerFactor);
                 GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
             }
         }

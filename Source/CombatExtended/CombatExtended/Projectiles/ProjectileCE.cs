@@ -27,26 +27,6 @@ namespace CombatExtended
         /// </summary>
         protected const int collisionCheckSize = 5;
 
-        /// <summary>
-        /// Additional suppression multiplier for suppression caused by an explosion.
-        /// </summary>
-        protected const float explosionSuppressionFactor = 3f;
-
-        /// <summary>
-        /// By how much is the damage of the projectile multiplied before being sent as danger amount.
-        /// </summary>
-        protected const float projectileDangerFactor = 0.5f;
-
-        /// <summary>
-        /// By how much is the damage of an explosive projectile is multiplied upon impact before being sent as danger amount.
-        /// </summary>
-        protected const float explosionDangerFactor = 1f;
-
-        /// <summary>
-        /// Additional suppression multiplier for airborne projectiles with a fuse.
-        /// </summary>
-        protected const float airborneFuseSuppressionFactor = 0.25f;
-
         #region Origin destination
         public bool OffMapOrigin = false;
 
@@ -985,18 +965,17 @@ namespace CombatExtended
         #endregion
 
         /// <summary>
-        /// Applies suppression based off of damage and suppression multiplier to pawns which don't have a shield belt or one is broken;
-        /// Returns nothing early if the weapon cannot harm health (firefoam grenades, for example).
+        /// Applies suppression to pawns which don't have a shield belt (or it is broken) based off of the projectile's damage and suppression factor and an additional suppression multiplier;
         /// </summary>
         /// <param name="pawn">Which pawn to suppress</param>
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
-
         {
-            if (!def.projectile.damageDef.harmsHealth)
-            {
+            var propsCE = def.projectile as ProjectilePropertiesCE;
+
+            if (propsCE.suppressionFactor == 0 || (!landed && propsCE.airborneSuppressionFactor == 0))
                 return;
-            }
+
             CompShield shield = pawn.TryGetComp<CompShield>();
             if (pawn.RaceProps.Humanlike)
             {
@@ -1013,16 +992,20 @@ namespace CombatExtended
                     }
                 }
             }
+
             //Add suppression
             var compSuppressable = pawn.TryGetComp<CompSuppressable>();
             if (compSuppressable != null
                     && pawn.Faction != launcher?.Faction
                     && (shield == null || shield.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.damageAmountBase;
-                var propsCE = def.projectile as ProjectilePropertiesCE;
-                var explodeRadius = propsCE.explosionRadius;
+                suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
 
+                suppressionAmount *= propsCE.suppressionFactor;
+                if (!landed)
+                    suppressionAmount *= propsCE.airborneSuppressionFactor;
+
+                var explodeRadius = propsCE.explosionRadius;
                 if (explodeRadius == 0f)
                 {
                     var comp = this.TryGetComp<CompExplosiveCE>()?.props as CompProperties_ExplosiveCE;
@@ -1033,8 +1016,6 @@ namespace CombatExtended
                     }
                 }
 
-                suppressionAmount *= suppressionMultiplier;
-
                 if (explodeRadius == 0f)
                 {
                     var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
@@ -1043,10 +1024,6 @@ namespace CombatExtended
                 }
                 else
                 {
-                    if (!landed && def.projectile.explosionDelay > 0)
-                    {
-                        suppressionAmount *= airborneFuseSuppressionFactor;
-                    }
                     // Larger suppression amount at distances compared to linear interpolation.
                     var dPosX = ExactPosition.x - pawn.DrawPos.x;
                     var dPosZ = ExactPosition.z - pawn.DrawPos.z;
@@ -1111,9 +1088,7 @@ namespace CombatExtended
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
             if (ExactPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3 && def.projectile.damageDef.harmsHealth)
-            {
-                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * projectileDangerFactor);
-            }
+                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * (def.projectile as ProjectilePropertiesCE).dangerFactor);
         }
 
         /// <summary>
@@ -1333,18 +1308,14 @@ namespace CombatExtended
                 if (def.projectile.damageDef.harmsHealth)
                 {
                     foreach (var thing in suppressThings)
-                    {
-                        ApplySuppression(thing, explosionSuppressionFactor);
-                    }
+                        ApplySuppression(thing);
                     if (dangerAmount > 0f)
-                    {
-                        DangerTracker.Notify_DangerRadiusAt(Position, explosionSuppressionRadius - SuppressionRadius, dangerAmount * explosionDangerFactor);
-                    }
+                        DangerTracker.Notify_DangerRadiusAt(Position, explosionSuppressionRadius - SuppressionRadius, dangerAmount * (def.projectile as ProjectilePropertiesCE).dangerFactor);
                 }
             }
             else
             {
-                DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * projectileDangerFactor);
+                DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * (def.projectile as ProjectilePropertiesCE).dangerFactor);
             }
 
             Destroy();
