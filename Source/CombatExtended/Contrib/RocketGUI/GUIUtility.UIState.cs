@@ -47,7 +47,8 @@ namespace CombatExtended.RocketGUI
                 return new GUIState()
                 {
                     gameFont = Text.Font,
-                    fonts = new FontState[3] {
+                    fonts = new FontState[3]
+                    {
                         new FontState(GameFont.Tiny),
                         new FontState(GameFont.Small),
                         new FontState(GameFont.Medium),

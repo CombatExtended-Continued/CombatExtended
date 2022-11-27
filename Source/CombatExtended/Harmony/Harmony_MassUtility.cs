@@ -16,7 +16,9 @@ namespace CombatExtended.HarmonyCE
         static void Postfix(ref float __result, Pawn p)
         {
             if (__result != 0)
+            {
                 __result = p.GetStatValue(CE_StatDefOf.CarryWeight);
+            }
         }
     }
 }

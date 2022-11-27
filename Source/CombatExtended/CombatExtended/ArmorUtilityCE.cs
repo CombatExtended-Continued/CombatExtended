@@ -42,14 +42,14 @@ namespace CombatExtended
             shieldAbsorbed = false;
             armorDeflected = false;
             armorReduced = false;
-            
+
             var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
 
             if (originalDinfo.Def.armorCategory == null
-                || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
-                    && Verb_MeleeAttackCE.LastAttackVerb == null
-                    && originalDinfo.Weapon == null
-                    && originalDinfo.Instigator == null))
+                    || (!(originalDinfo.Weapon?.projectile is ProjectilePropertiesCE)
+                        && Verb_MeleeAttackCE.LastAttackVerb == null
+                        && originalDinfo.Weapon == null
+                        && originalDinfo.Instigator == null))
             {
                 return originalDinfo;
             }
@@ -113,7 +113,10 @@ namespace CombatExtended
                         {
                             foreach (var sec in props.secondaryDamage)
                             {
-                                if (shield.Destroyed || !Rand.Chance(sec.chance)) break;
+                                if (shield.Destroyed || !Rand.Chance(sec.chance))
+                                {
+                                    break;
+                                }
                                 var secDinfo = sec.GetDinfo();
                                 var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
                                 var dmg = (float)secDinfo.Amount;
@@ -130,8 +133,8 @@ namespace CombatExtended
                 {
                     var app = apparel[i];
                     if (app != null
-                        && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
+                            && app.def.apparel.CoversBodyPart(hitPart)
+                            && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                     {
                         if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                         {
@@ -145,7 +148,9 @@ namespace CombatExtended
                         //armorReduced = true;
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
                         if (app == apparel.ElementAtOrDefault(i))   //Check whether the "deflecting" apparel is still in the WornApparel - if not, the next loop checks again and errors out because the index is out of range
+                        {
                             i++;    // We apply this piece of apparel twice on conversion, this means we can't use deflection on Blunt or else we get an infinite loop of eternal deflection
+                        }
                     }
                     if (dmgAmount <= 0)
                     {
@@ -157,7 +162,10 @@ namespace CombatExtended
             }
 
             // Apply natural armor
-            var partsToHit = new List<BodyPartRecord>() { hitPart };
+            var partsToHit = new List<BodyPartRecord>()
+            {
+                hitPart
+            };
             if (dinfo.Def.harmAllLayersUntilOutside)
             {
                 var curPart = hitPart;
@@ -170,8 +178,8 @@ namespace CombatExtended
 
             var isSharp = dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp;
             var partDensityStat = isSharp
-                ? CE_StatDefOf.BodyPartSharpArmor
-                : CE_StatDefOf.BodyPartBluntArmor;
+                                  ? CE_StatDefOf.BodyPartSharpArmor
+                                  : CE_StatDefOf.BodyPartBluntArmor;
             var partDensity = pawn.GetStatValue(partDensityStat);   // How much armor is provided by sheer meat
             for (var i = partsToHit.Count - 1; i >= 0; i--)
             {
@@ -271,7 +279,7 @@ namespace CombatExtended
                     {
                         armorDamage = 0;
                     }
-                    else 
+                    else
                     {
                         armorDamage = (dmgAmount - newDmgAmount) * Mathf.Min(1.0f, (penAmount * penAmount) / (armorAmount * armorAmount)) + newDmgAmount * Mathf.Clamp01(armorAmount / penAmount);
                     }
@@ -299,7 +307,8 @@ namespace CombatExtended
         /// <returns>Returns true if the armor takes damage, false if it doesn't.</returns>
         private static bool TryDamageArmor(DamageDef def, float penAmount, float armorAmount, ref float armorDamage, Thing armor)
         {
-            if (armorDamage == 0) {
+            if (armorDamage == 0)
+            {
                 return false;
             }
 
@@ -337,13 +346,19 @@ namespace CombatExtended
                 dmgMult -= pawn.GetStatValue(armorRatingStat);
             }
 
-            if (dmgMult <= 0) return 0;
+            if (dmgMult <= 0)
+            {
+                return 0;
+            }
             if (pawn.apparel != null && !pawn.apparel.WornApparel.NullOrEmpty())
             {
                 var apparelList = pawn.apparel.WornApparel;
                 foreach (var apparel in apparelList)
                 {
-                    if (apparel.def.apparel.CoversBodyPart(part)) dmgMult -= apparel.GetStatValue(armorRatingStat);
+                    if (apparel.def.apparel.CoversBodyPart(part))
+                    {
+                        dmgMult -= apparel.GetStatValue(armorRatingStat);
+                    }
                     if (dmgMult <= 0)
                     {
                         dmgMult = 0;
@@ -351,20 +366,20 @@ namespace CombatExtended
                     }
                 }
             }
-            
+
             var deflectionComp = pawn.TryGetComp<Comp_BurnDamageCalc>();
-              if (deflectionComp != null)
-              {
+            if (deflectionComp != null)
+            {
                 if (armorRatingStat == StatDefOf.ArmorRating_Heat)
                 {
                     if (deflectionComp.deflectedSharp)
                     {
-                            dmgMult /= 2f;
+                        dmgMult /= 2f;
                     }
                 }
                 deflectionComp.deflectedSharp = false;
-             }
-            
+            }
+
             return (float)Math.Floor(dmgAmount * dmgMult);
         }
 
@@ -425,7 +440,7 @@ namespace CombatExtended
                 }
             }
             localDmgAmount = Mathf.Pow(localPenAmount * 10000, 1 / 3f) / 10;
-            
+
             //Fragment damage from large fragments often splits up into multiple attacks with reduced damage, which have the same sharp pen I believe,
             //therefore the deflected damage should also be with reduced damage, but the same blunt pen.
             //The damage info's damage amount isn't set anywhere within this class, therefore it is a good gauge on how many times the damage split.
@@ -434,15 +449,15 @@ namespace CombatExtended
                 localDmgAmount *= dinfo.Amount / (float)dinfo.Weapon.projectile.damageAmountBase;
             }
 
-        
+
             var newDinfo = new DamageInfo(DamageDefOf.Blunt,
-                localDmgAmount,
-                localPenAmount,
-                dinfo.Angle,
-                dinfo.Instigator,
-                GetOuterMostParent(hitPart),
-                partialPen ? null : dinfo.Weapon, //To not apply the secondary damage twice on partial penetrations.
-                instigatorGuilty: dinfo.InstigatorGuilty);
+                                          localDmgAmount,
+                                          localPenAmount,
+                                          dinfo.Angle,
+                                          dinfo.Instigator,
+                                          GetOuterMostParent(hitPart),
+                                          partialPen ? null : dinfo.Weapon, //To not apply the secondary damage twice on partial penetrations.
+                                          instigatorGuilty: dinfo.InstigatorGuilty);
             newDinfo.SetBodyRegion(dinfo.Height, dinfo.Depth);
             newDinfo.SetWeaponBodyPartGroup(dinfo.WeaponBodyPartGroup);
             newDinfo.SetWeaponHediff(dinfo.WeaponLinkedHediff);
@@ -508,26 +523,32 @@ namespace CombatExtended
             {
                 float parryThingArmor;
                 var dmgAmount = dinfo.Amount * 0.5f;
-            
+
                 // For apparel
                 if (parryThing.def.IsApparel)
+                {
                     parryThingArmor = parryThing.GetStatValue(dinfo.Def.armorCategory.armorRatingStat);
+                }
                 // Special case for weapons
                 else
                 {
                     parryThingArmor = parryThing.GetStatValue(CE_StatDefOf.ToughnessRating);
                     // Compensation for blunt damage against weapons
                     if (dinfo.Def.armorCategory != DamageArmorCategoryDefOf.Sharp)
+                    {
                         parryThingArmor *= 1.5f;
+                    }
                 }
 
                 var penAmount = dinfo.ArmorPenetrationInt; //GetPenetrationValue(dinfo);
 
                 bool partialPen = TryPenetrateArmor(dinfo.Def, parryThingArmor, ref penAmount, ref dmgAmount, parryThing);
 
-                if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dmgAmount > 0) {
+                if (dinfo.Def.armorCategory == DamageArmorCategoryDefOf.Sharp && dmgAmount > 0)
+                {
                     var ndi = GetDeflectDamageInfo(dinfo, dinfo.HitPart, ref dmgAmount, ref penAmount, partialPen);
-                    if (dmgAmount > 0) {
+                    if (dmgAmount > 0)
+                    {
                         ApplyParryDamage(ndi, parryThing);
                     }
                 }

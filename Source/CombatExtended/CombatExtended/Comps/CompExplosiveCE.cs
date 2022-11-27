@@ -30,12 +30,12 @@ namespace CombatExtended
                 Log.Warning("Tried to explodeCE out of bounds");
                 return;
             }
-            
+
             //Try to throw fragments -- increase count by scaleFactor
             parent.TryGetComp<CompFragments>()?.Throw(pos, map, instigator);//scaleFactor);
 
             if (Props.explosiveRadius > 0 //&& Props.damageAmountBase > 0 Disabled to allow flame explosions etc
-                && parent.def != null)
+                    && parent.def != null)
             {
                 //Call GenExplosionCE for main explosion
                 GenExplosionCE.DoExplosion(

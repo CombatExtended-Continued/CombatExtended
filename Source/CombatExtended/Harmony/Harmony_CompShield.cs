@@ -35,39 +35,39 @@ namespace CombatExtended.HarmonyCE
         {
             absorbed = false;
 
-	    if (__instance.ShieldState != ShieldState.Active)
-	    {
-		return false;
-	    }
-	    float bc = 1.0f;
-	    bool isEMP = dinfo.Def == DamageDefOf.EMP;
-	    if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
-	    {
-		bc = pce.empShieldBreakChance;
-		isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
-	    }
-	    if (isEMP && Rand.Chance(bc))
-	    {
-		__instance.energy = 0f;
-		__instance.Break();
+            if (__instance.ShieldState != ShieldState.Active)
+            {
+                return false;
+            }
+            float bc = 1.0f;
+            bool isEMP = dinfo.Def == DamageDefOf.EMP;
+            if (dinfo.Weapon?.projectile is ProjectilePropertiesCE pce)
+            {
+                bc = pce.empShieldBreakChance;
+                isEMP = isEMP || pce.secondaryDamage?.FirstOrDefault(sd => sd.def == DamageDefOf.EMP) != null;
+            }
+            if (isEMP && Rand.Chance(bc))
+            {
+                __instance.energy = 0f;
+                __instance.Break();
                 absorbed = true;
-		return false;
-	    }
-	    if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
-	    {
+                return false;
+            }
+            if (dinfo.Def.isRanged || dinfo.Def.isExplosive)
+            {
                 absorbed = true;
                 __instance.energy -= dinfo.Amount * __instance.Props.energyLossPerDamage * (isEMP ? (1 + bc) : 1);
-		if (__instance.energy < 0f)
-		{
-		    __instance.Break();
-		}
-		else
-		{
-		    __instance.AbsorbedDamage(dinfo);
-		}
-	    }
-	    return false;
-	}
+                if (__instance.energy < 0f)
+                {
+                    __instance.Break();
+                }
+                else
+                {
+                    __instance.AbsorbedDamage(dinfo);
+                }
+            }
+            return false;
+        }
     }
 
     [HarmonyPatch(typeof(CompShield), nameof(CompShield.CompTick))]

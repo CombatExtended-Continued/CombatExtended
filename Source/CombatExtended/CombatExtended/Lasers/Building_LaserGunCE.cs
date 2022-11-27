@@ -25,8 +25,14 @@ namespace CombatExtended.Lasers
 
         public int BeamColor
         {
-            get { return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this); }
-            set { beamColorIndex = value; }
+            get
+            {
+                return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
+            }
+            set
+            {
+                beamColorIndex = value;
+            }
         }
 
         public override void ExposeData()
@@ -61,7 +67,10 @@ namespace CombatExtended.Lasers
                 }
             }
 
-            if (!(isCharged || burstCooldownTicksLeft > 1)) return;
+            if (!(isCharged || burstCooldownTicksLeft > 1))
+            {
+                return;
+            }
 
             int ticksLeft = burstWarmupTicksLeft;
             base.Tick();
@@ -76,15 +85,24 @@ namespace CombatExtended.Lasers
 
         public float AvailablePower()
         {
-            if (powerComp.PowerNet == null) return 0;
+            if (powerComp.PowerNet == null)
+            {
+                return 0;
+            }
 
-	    return powerComp.PowerNet.CurrentStoredEnergy();
+            return powerComp.PowerNet.CurrentStoredEnergy();
 
         }
         public bool Drain(float amount)
         {
-            if (amount <= 0) return true;
-            if (AvailablePower() < amount) return false;
+            if (amount <= 0)
+            {
+                return true;
+            }
+            if (AvailablePower() < amount)
+            {
+                return false;
+            }
             powerComp.PowerNet.ChangeStoredEnergy(-amount);
             return true;
         }

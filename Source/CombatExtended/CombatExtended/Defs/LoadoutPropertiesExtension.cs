@@ -11,13 +11,13 @@ namespace CombatExtended
     public class LoadoutPropertiesExtension : DefModExtension
     {
         #region Fields
-        
+
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public AttachmentOption primaryAttachments;
 
         public FloatRange shieldMoney = FloatRange.Zero;
-        public List<string> shieldTags;        
-        public float shieldChance = 0;        
+        public List<string> shieldTags;
+        public float shieldChance = 0;
         public SidearmOption forcedSidearm;
         public List<SidearmOption> sidearms;
         public AmmoCategoryDef forcedAmmoCategory;
@@ -65,9 +65,11 @@ namespace CombatExtended
         public void GenerateLoadoutFor(Pawn pawn)
         {
             if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
-               || (pawn.WorkTagIsDisabled(WorkTags.Violent))
-               || !pawn.RaceProps.ToolUser)
+                    || (pawn.WorkTagIsDisabled(WorkTags.Violent))
+                    || !pawn.RaceProps.ToolUser)
+            {
                 return;
+            }
 
             var inventory = pawn.TryGetComp<CompInventory>();
             if (inventory == null)
@@ -88,13 +90,13 @@ namespace CombatExtended
             {
                 LoadWeaponWithRandAmmo(primary);
                 // Inventory load changed, need to update
-                inventory.UpdateInventory();   
+                inventory.UpdateInventory();
                 // Try add attachments to the main weapon
-                if(primaryAttachments != null && primary is WeaponPlatform platform)
+                if (primaryAttachments != null && primary is WeaponPlatform platform)
                 {
                     TryGenerateAttachments(inventory, platform, primaryAttachments);
                 }
-                TryGenerateAmmoFor(pawn.equipment.Primary, inventory, Mathf.RoundToInt(primaryMagazineCount.RandomInRange));                
+                TryGenerateAmmoFor(pawn.equipment.Primary, inventory, Mathf.RoundToInt(primaryMagazineCount.RandomInRange));
             }
 
             // Generate shield
@@ -111,7 +113,7 @@ namespace CombatExtended
         }
 
         public void TryGenerateAttachments(CompInventory inventory, WeaponPlatform weapon, AttachmentOption option)
-        {            
+        {
             selectedAttachments.Clear();
             attachmentLinks.Clear();
             // First grab every possible attachment for this weapon
@@ -121,32 +123,32 @@ namespace CombatExtended
             {
                 // Remove attachments that are not in the options.
                 attachmentLinks.RemoveAll(l => l.attachment.attachmentTags.All(s => !option.attachmentTags.Contains(s)));
-            }            
+            }
             float availableWeight = inventory.GetAvailableWeight();
             float availableBulk = inventory.GetAvailableBulk();
             foreach (AttachmentLink link in attachmentLinks.InRandomOrder())
-            {                
+            {
                 if (selectedAttachments.Count >= option.attachmentCount.max || availableWeight <= 0 || availableBulk <= 0)
                 {
                     break;
                 }
                 float weight = link.attachment.GetStatValueAbstract(StatDefOf.Mass);
-                float bulk = link.attachment.GetStatValueAbstract(CE_StatDefOf.Bulk);                
+                float bulk = link.attachment.GetStatValueAbstract(CE_StatDefOf.Bulk);
                 if (availableWeight < weight || availableBulk < bulk || selectedAttachments.Any(l => !l.CompatibleWith(link)))
                 {
                     continue;
-                }                               
+                }
                 if (option.attachmentCount.min > selectedAttachments.Count || (Rand.ChanceSeeded(weapon.def.generateAllowChance, weapon.thingIDNumber ^ (int)weapon.def.shortHash ^ 28554824)))
                 {
                     selectedAttachments.Add(link);
                     availableWeight -= weight;
                     availableBulk -= bulk;
-                }                             
+                }
             }
             // Add the selected attachments to the weapons
             weapon.TargetConfig = selectedAttachments.Select(l => l.attachment).ToList();
-            weapon.attachments.Clear();            
-            weapon.attachments.AddRange(selectedAttachments);            
+            weapon.attachments.Clear();
+            weapon.attachments.AddRange(selectedAttachments);
             // Recalcuate internal states.
             weapon.UpdateConfiguration();
         }
@@ -185,7 +187,7 @@ namespace CombatExtended
             if (workingWeapons.TryRandomElementByWeight((ThingStuffPair w) => w.Commonality * w.Price, out thingStuffPair))
             {
                 // Create the actual weapon and put it into inventory
-                ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);                
+                ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
                 LoadWeaponWithRandAmmo(thingWithComps); //Custom
                 int count; //Custom
                 if (inventory.CanFitInInventory(thingWithComps, out count)) //Custom
@@ -200,7 +202,7 @@ namespace CombatExtended
                         {
                             TryGenerateAttachments(inventory, platform, option.attachments);
                         }
-                    }                    
+                    }
                 }
             }
             workingWeapons.Clear();
@@ -209,7 +211,10 @@ namespace CombatExtended
         private void LoadWeaponWithRandAmmo(ThingWithComps gun)
         {
             CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-            if (compAmmo == null) return;
+            if (compAmmo == null)
+            {
+                return;
+            }
             if (!compAmmo.UseAmmo)
             {
                 compAmmo.ResetAmmoCount();
@@ -233,7 +238,10 @@ namespace CombatExtended
 
         private void TryGenerateAmmoFor(ThingWithComps gun, CompInventory inventory, int ammoCount)
         {
-            if (ammoCount <= 0) return;
+            if (ammoCount <= 0)
+            {
+                return;
+            }
             ThingDef thingToAdd;
             int unitCount = 1;  // How many ammo things to add per ammoCount
             var compAmmo = gun.TryGetComp<CompAmmoUser>();
@@ -263,13 +271,16 @@ namespace CombatExtended
                     }
                 }
             }
-            
+
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
             ammoThing.stackCount = ammoCount * unitCount;
             int maxCount;
             if (inventory.CanFitInInventory(ammoThing, out maxCount))
             {
-                if (maxCount < ammoThing.stackCount) ammoThing.stackCount = maxCount - (maxCount % unitCount);
+                if (maxCount < ammoThing.stackCount)
+                {
+                    ammoThing.stackCount = maxCount - (maxCount % unitCount);
+                }
                 inventory.container.TryAdd(ammoThing);
             }
         }
@@ -277,24 +288,29 @@ namespace CombatExtended
         private void TryGenerateShieldFor(Pawn pawn, CompInventory inventory, ThingWithComps primary)
         {
             if ((primary != null && !primary.def.weaponTags.Contains(Apparel_Shield.OneHandedTag))
-                || shieldTags.NullOrEmpty()
-                || pawn.apparel == null
-                || !Rand.Chance(shieldChance))
+                    || shieldTags.NullOrEmpty()
+                    || pawn.apparel == null
+                    || !Rand.Chance(shieldChance))
+            {
                 return;
+            }
 
             var money = shieldMoney.RandomInRange;
             foreach (ThingStuffPair cur in allShieldPairs)
             {
                 if (cur.Price < money
-                    && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
-                    && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
-                    && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
-                    && ApparelUtility.HasPartsToWear(pawn, cur.thing))
+                        && shieldTags.Any(t => cur.thing.apparel.tags.Contains(t))
+                        && (cur.thing.generateAllowChance >= 1f || Rand.ValueSeeded(pawn.thingIDNumber ^ 68715844) <= cur.thing.generateAllowChance)
+                        && pawn.apparel.CanWearWithoutDroppingAnything(cur.thing)
+                        && ApparelUtility.HasPartsToWear(pawn, cur.thing))
                 {
                     workingShields.Add(cur);
                 }
             }
-            if (workingShields.Count == 0) return;
+            if (workingShields.Count == 0)
+            {
+                return;
+            }
             ThingStuffPair pair;
             if (workingShields.TryRandomElementByWeight(p => p.Commonality * p.Price, out pair))
             {

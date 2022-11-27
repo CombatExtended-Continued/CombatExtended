@@ -10,7 +10,7 @@ using Verse;
  * The GameComponent works a little different from MapComponent.
  * While a Game is being started it's possible for other code to try and use LoadoutManager, until FinalizeInit is called on us we shouldn't be responding to
  * requests.  This is because some information can leak from current game to loaded game if we don't block access to the object appropriately.
- * 
+ *
  * I ended up maintaining the interface between how things used to work and how things would work with a proper instance system.  There may have been a proper
  * way to retrieve the current instance of the current game QUICKLY but I didn't see it so instead all the static methods have a chance of returning nothing
  * without having done any work.  (They hide what's going on.)
@@ -46,9 +46,15 @@ namespace CombatExtended
         #endregion Constructors
 
         #region Properties
-        public static Dictionary<Pawn, Loadout> AssignedLoadouts => _current != null ? _current._assignedLoadouts : new Dictionary<Pawn,Loadout>();
+        public static Dictionary<Pawn, Loadout> AssignedLoadouts => _current != null ? _current._assignedLoadouts : new Dictionary<Pawn, Loadout>();
 
-        public static Loadout DefaultLoadout { get { return _current != null ? _current._loadouts.First(l => l.defaultLoadout) : MakeDefaultLoadout(); } }
+        public static Loadout DefaultLoadout
+        {
+            get
+            {
+                return _current != null ? _current._loadouts.First(l => l.defaultLoadout) : MakeDefaultLoadout();
+            }
+        }
 
         public static List<Loadout> Loadouts => _current != null ? _current._loadouts : null;
 
@@ -101,7 +107,10 @@ namespace CombatExtended
         /// <returns>Loadout which is the Empty Loadout.</returns>
         private static Loadout MakeDefaultLoadout()
         {
-            return new Loadout("CE_EmptyLoadoutName".Translate(), 1) { canBeDeleted = false, defaultLoadout = true };
+            return new Loadout("CE_EmptyLoadoutName".Translate(), 1)
+            {
+                canBeDeleted = false, defaultLoadout = true
+            };
         }
 
         /// <summary>
@@ -111,10 +120,15 @@ namespace CombatExtended
         /// <returns>List of HoldRecords or null if the pawn has none.</returns>
         public static List<HoldRecord> GetHoldRecords(Pawn pawn) // Rename Try?
         {
-            if (_current == null) return null;
+            if (_current == null)
+            {
+                return null;
+            }
             Tracker tracker;
             if (_current._assignedTrackers.TryGetValue(pawn, out tracker))
+            {
                 return tracker.recs;
+            }
             return null;
         }
 
@@ -123,16 +137,25 @@ namespace CombatExtended
         /// </summary>
         public static void PurgeHoldTrackerRolls()
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             List<Pawn> removeList = new List<Pawn>(_current._assignedTrackers.Keys.Count);
             foreach (Pawn pawn in _current._assignedTrackers.Keys)
             {
                 if (pawn.Dead)
-                    removeList.Add(pawn); // remove dead pawns from the rolls
+                {
+                    removeList.Add(pawn);    // remove dead pawns from the rolls
+                }
                 else if (!_current._assignedTrackers[pawn].recs.Any())
-                    removeList.Add(pawn); // remove pawns with no HoldRecords stored.
+                {
+                    removeList.Add(pawn);    // remove pawns with no HoldRecords stored.
+                }
                 else if (pawn.DestroyedOrNull())
-                    removeList.Add(pawn); // remove pawns have been destroyed or are null.
+                {
+                    removeList.Add(pawn);    // remove pawns have been destroyed or are null.
+                }
             }
             foreach (Pawn pawn in removeList)
             {
@@ -147,17 +170,26 @@ namespace CombatExtended
         /// </summary>
         public static void PurgeLoadoutRolls()
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             List<Pawn> removeList = new List<Pawn>(_current._assignedLoadouts.Keys.Count);
             foreach (Pawn pawn in _current._assignedLoadouts.Keys)
             {
                 if (pawn.Dead)
-                    removeList.Add(pawn);   // remove dead pawns from the rolls, they should become null pawns on game save.
+                {
+                    removeList.Add(pawn);    // remove dead pawns from the rolls, they should become null pawns on game save.
+                }
                 else if (pawn.DestroyedOrNull())
-                    removeList.Add(pawn);   // remove pawns that have been destroyed or are null.
+                {
+                    removeList.Add(pawn);    // remove pawns that have been destroyed or are null.
+                }
             }
             foreach (Pawn pawn in removeList)
+            {
                 _current._assignedLoadouts.Remove(pawn);
+            }
         }
 
         /// <summary>
@@ -167,7 +199,10 @@ namespace CombatExtended
         /// <param name="newRecords">List of HoldRecord that should be attached to pawn.</param>
         public static void AddHoldRecords(Pawn pawn, List<HoldRecord> newRecords)
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             Tracker tracker = new Tracker(newRecords);
             _current._trackers.Add(tracker);
             _current._assignedTrackers.Add(pawn, tracker);
@@ -175,17 +210,25 @@ namespace CombatExtended
 
         public static void AddLoadout(Loadout loadout)
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             _current._loadouts.Add(loadout);
         }
 
         public static void RemoveLoadout(Loadout loadout)
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             // assign default loadout to pawns that used to use this loadout
             List<Pawn> obsolete = AssignedLoadouts.Where(kvp => kvp.Value == loadout).Select(kvp => kvp.Key).ToList(); // ToList separates this from the dictionary, ienumerable in this case would break as we change the relationship.
             foreach (Pawn id in obsolete)
+            {
                 AssignedLoadouts[id] = DefaultLoadout;
+            }
 
             _current._loadouts.Remove(loadout);
         }
@@ -195,7 +238,10 @@ namespace CombatExtended
         /// </summary>
         public static void SortLoadouts()
         {
-            if (_current == null) return;
+            if (_current == null)
+            {
+                return;
+            }
             _current._loadouts.Sort();
         }
 
@@ -207,18 +253,26 @@ namespace CombatExtended
         {
             LoadoutManager manager = Current.Game.GetComponent<LoadoutManager>();
             if (manager != null && manager._assignedTrackers.Values.Any())
+            {
                 return manager._assignedTrackers.Values.Max(t => t.uniqueID) + 1;
+            }
             else
+            {
                 return 1;
+            }
         }
 
         internal static int GetUniqueLoadoutID()
         {
             LoadoutManager manager = Current.Game.GetComponent<LoadoutManager>();
             if (manager != null && manager._loadouts.Any())
+            {
                 return manager._loadouts.Max(l => l.uniqueID) + 1;
+            }
             else
+            {
                 return 1;
+            }
         }
 
         internal static string GetUniqueLabel()
@@ -249,14 +303,20 @@ namespace CombatExtended
                     label = head + i++;
                 }
                 while (manager._loadouts.Any(l => l.label == label));
-            } else
+            }
+            else
+            {
                 label = head + i++;
+            }
             return label;
         }
 
         internal static Loadout GetLoadoutById(int id)
         {
-            if (_current == null) return null;
+            if (_current == null)
+            {
+                return null;
+            }
             return Loadouts.Find(x => x.uniqueID == id);
         }
         #endregion Methods

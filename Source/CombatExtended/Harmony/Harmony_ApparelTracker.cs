@@ -12,7 +12,9 @@ namespace CombatExtended.HarmonyCE
         {
             var hediffDef = apparel.def.GetModExtension<ApparelHediffExtension>()?.hediff;
             if (hediffDef == null)
+            {
                 return;
+            }
 
             var pawn = __instance.pawn;
             pawn.health.AddHediff(hediffDef);
@@ -26,7 +28,9 @@ namespace CombatExtended.HarmonyCE
         {
             var hediffDef = apparel.def.GetModExtension<ApparelHediffExtension>()?.hediff;
             if (hediffDef == null)
+            {
                 return;
+            }
 
             var pawn = __instance.pawn;
             var hediff = pawn.health.hediffSet.hediffs.FirstOrDefault(h => h.def == hediffDef);

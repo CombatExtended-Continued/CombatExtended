@@ -18,12 +18,12 @@ using Verse.AI;
  *  L_000b: brtrue Label #2
  *  L_0010: ldnull
  *  L_0011: br Label #0
- * 
+ *
  */
 
 namespace CombatExtended.HarmonyCE
 {
-    [HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) } )]
+    [HarmonyPatch(typeof(JobGiver_UnloadYourInventory), "TryGiveJob", new Type[] { typeof(Pawn) })]
     static class Harmony_JobGiver_UnloadYourInventory
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase source, ILGenerator il)
@@ -76,7 +76,9 @@ namespace CombatExtended.HarmonyCE
             }
 
             if (patchPhase < 2)
+            {
                 Log.Warning("CombatExtended :: Harmony-JobGiver_UnloadYourInventory patch failed to complete all its steps");
+            }
         }
     }
 }

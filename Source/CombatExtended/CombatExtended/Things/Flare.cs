@@ -93,9 +93,9 @@ namespace CombatExtended
                     {
                         case FlareDrawMode.FlyOver:
                             _startingAltitude = _startingAltitude <= 0 ?
-                                DEFAULT_FLYOVER_START_ALT : _startingAltitude;
+                                                DEFAULT_FLYOVER_START_ALT : _startingAltitude;
                             _finalAltitude = _finalAltitude <= 0 ?
-                                DEFAULT_FLYOVER_FINAL_ALT : _finalAltitude;
+                                             DEFAULT_FLYOVER_FINAL_ALT : _finalAltitude;
                             break;
                         case FlareDrawMode.Direct:
                             _startingAltitude = DEFAULT_DIRECT_ALT;
@@ -164,7 +164,10 @@ namespace CombatExtended
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
-            if (spawnTick == -1) spawnTick = GenTicks.TicksGame;
+            if (spawnTick == -1)
+            {
+                spawnTick = GenTicks.TicksGame;
+            }
             /*
              * Must have a properly configured flare before spawning
              * Will default to flyover
@@ -199,7 +202,10 @@ namespace CombatExtended
                  * Incase this breaks use the fleck system below.
                  */
 
-                if (Compatibility.Multiplayer.InMultiplayer) Rand.PushState();
+                if (Compatibility.Multiplayer.InMultiplayer)
+                {
+                    Rand.PushState();
+                }
                 MoteThrownCE smokeMote = (MoteThrownCE)ThingMaker.MakeThing(CE_ThingDefOf.Mote_FlareSmoke);
                 smokeMote.Scale = Rand.Range(1.5f, 2.5f) * Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE) * HeightDrawScale;
                 smokeMote.rotationRate = Rand.Range(-30f, 30f);
@@ -228,9 +234,12 @@ namespace CombatExtended
                 {
                     FleckMaker.WaterSplash(Position.ToVector3Shifted(), Map, Rand.Range(0.8f, 1.2f) * WATERSPLASH_SIZE * (1f - (CurAltitude - FinalAltitude) / (WATERSPLASH_MIN_ALTITUDE - FinalAltitude)), WATERSPLASH_VELOCITY);
                 }
-                if (Compatibility.Multiplayer.InMultiplayer) Rand.PopState();
+                if (Compatibility.Multiplayer.InMultiplayer)
+                {
+                    Rand.PopState();
+                }
                 /*
-                 * Use incase motes start breaking                                 
+                 * Use incase motes start breaking
                  */
                 // FleckMaker.ThrowSmoke(DrawPos, Map, Rand.Range(SMOKE_MIN_SIZE, SMOKE_MAX_SIZE));
                 // FleckMaker.ThrowFireGlow(DrawPos, Map, 0.6f);
@@ -238,7 +247,10 @@ namespace CombatExtended
                 nextSmokePuff = Rand.Range(SMOKE_MIN_INTERVAL, SMOKE_MAX_INTERVAL);
             }
             nextSmokePuff--;
-            if (Progress >= 0.99f) Destroy();
+            if (Progress >= 0.99f)
+            {
+                Destroy();
+            }
         }
 
         public override void Draw()

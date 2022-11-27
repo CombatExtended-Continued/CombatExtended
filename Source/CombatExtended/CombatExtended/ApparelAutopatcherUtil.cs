@@ -32,11 +32,11 @@ namespace CombatExtended
             result =
                 matchee.apparel.layers.All(x => matcher.neededLayers.Contains(x))
                 && matchee.apparel.bodyPartGroups.All(x => matcher.neededGroups.Contains(x))
-                && 
+                &&
                 (
-                matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.ArmorRating_Sharp))
-                ||
-                matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor))
+                    matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.ArmorRating_Sharp))
+                    ||
+                    matcher.vanillaArmorRatingRange.Includes(matchee.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor))
                 )
                 ;
 

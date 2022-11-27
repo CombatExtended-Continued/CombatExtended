@@ -91,23 +91,23 @@ namespace CombatExtended
                     return;
                 }
 
-		        float height;
-		        FloatRange fragXZAngleRange;
-		        if (parent is ProjectileCE projCE)
-		        {
-		            height = projCE.Height;
-		            fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
-		        }
-		        else
-		        {
-		            height = 0;
-		            fragXZAngleRange = PropsCE.fragXZAngleRange;
-		        }
-                        /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
-		        {
-		            var edificeHeight = new CollisionVertical(edifice).Max;
-		            height = Mathf.Max(height, edificeHeight);
-		        }*/
+                float height;
+                FloatRange fragXZAngleRange;
+                if (parent is ProjectileCE projCE)
+                {
+                    height = projCE.Height;
+                    fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
+                }
+                else
+                {
+                    height = 0;
+                    fragXZAngleRange = PropsCE.fragXZAngleRange;
+                }
+                /*if (pos.ToIntVec3().GetEdifice(map) is Building edifice)
+                {
+                var edificeHeight = new CollisionVertical(edifice).Max;
+                height = Mathf.Max(height, edificeHeight);
+                }*/
 
                 foreach (var fragment in PropsCE.fragments)
                 {
@@ -116,7 +116,9 @@ namespace CombatExtended
 
                     var routine = FragRoutine(pos, map, height, instigator, fragment, PropsCE.fragSpeedFactor, PropsCE.fragShadowChance, PropsCE.fragAngleRange, fragXZAngleRange);
                     if (!Compatibility.Multiplayer.InMultiplayer)
+                    {
                         _monoDummy.GetComponent<MonoDummy>().StartCoroutine(routine);
+                    }
                     else
                     {
                         // Multiplayer really dislikes coroutines

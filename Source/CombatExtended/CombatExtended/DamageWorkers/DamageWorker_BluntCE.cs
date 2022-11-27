@@ -14,12 +14,12 @@ namespace CombatExtended
                 parts = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, dinfo.Depth);
                 if (!parts.Any())
                 {
-                    parts= pawn.health.hediffSet.GetNotMissingParts();
+                    parts = pawn.health.hediffSet.GetNotMissingParts();
                 }
             }
 
             parts.Where(p => p.depth == BodyPartDepth.Outside || p.def.IsSolid(p, pawn.health.hediffSet.hediffs))
-                .TryRandomElementByWeight(p => p.coverageAbs * p.def.GetHitChanceFactorFor(dinfo.Def), out var result);
+            .TryRandomElementByWeight(p => p.coverageAbs * p.def.GetHitChanceFactorFor(dinfo.Def), out var result);
 
             return result;
         }

@@ -10,6 +10,6 @@ namespace CombatExtended.AI
 {
     public class SquadBrainManager
     {
-       
+
     }
 }

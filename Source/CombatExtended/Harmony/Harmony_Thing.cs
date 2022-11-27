@@ -23,7 +23,7 @@ namespace CombatExtended.HarmonyCE
                 var ammoThing = ThingMaker.MakeThing(ammoUser.CurrentAmmo, null);
                 ammoThing.stackCount = ammoUser.CurMagCount;
                 __result = __result.AddItem(ammoThing);
-            }            
+            }
         }
     }
 
@@ -34,7 +34,7 @@ namespace CombatExtended.HarmonyCE
         private static FieldInfo fPosition = AccessTools.Field(typeof(Thing), "positionInt");
 
         // The goal is to notify the things tracker of a thing entering a new cell
-        // 
+        //
         // ]-------------------------------------------------------[
         // The patch target Thing.Postion (setter)
         //
@@ -99,7 +99,13 @@ namespace CombatExtended.HarmonyCE
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ThingsTracker), nameof(ThingsTracker.Notify_PositionChanged)));
 
                         yield return new CodeInstruction(OpCodes.Br_S, l1);
-                        yield return new CodeInstruction(OpCodes.Pop) { labels = new List<Label>() { l2} };
+                        yield return new CodeInstruction(OpCodes.Pop)
+                        {
+                            labels = new List<Label>()
+                            {
+                                l2
+                            }
+                        };
 
                         codes[i + 1].labels.Add(l1);
                         continue;

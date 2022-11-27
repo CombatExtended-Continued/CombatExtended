@@ -15,7 +15,9 @@ namespace CombatExtended.AI
             get
             {
                 if (_compSuppressable == null)
+                {
                     _compSuppressable = pawn.TryGetComp<CompSuppressable>();
+                }
                 return _compSuppressable;
             }
         }
@@ -25,7 +27,10 @@ namespace CombatExtended.AI
         {
             get
             {
-                if (_compInventory == null) _compInventory = pawn.TryGetComp<CompInventory>();
+                if (_compInventory == null)
+                {
+                    _compInventory = pawn.TryGetComp<CompInventory>();
+                }
                 return _compInventory;
             }
         }
