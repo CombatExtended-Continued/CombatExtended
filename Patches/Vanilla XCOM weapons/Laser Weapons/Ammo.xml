@@ -1,0 +1,174 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla XCOM Laser Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<!-- laser rifle-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserRifle</defName>
+							<label>laser</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>XCOM_Bullet_LaserRifleCE</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+							<defName>XCOM_Bullet_LaserRifleCE</defName>
+							<label>laser beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>12</damageAmountBase>
+								<armorPenetrationSharp>17.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>6</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- Laser sniper-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserSniperRifle</defName>
+							<label>laser</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>XCOM_Bullet_LaserSniperRifleCE</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+							<defName>XCOM_Bullet_LaserSniperRifleCE</defName>
+							<label>laser beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>16</damageAmountBase>
+								<armorPenetrationSharp>18.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>8</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- scatter Laser-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserShotgun</defName>
+							<label>laser</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>XCOM_Bullet_LaserShotgunCE</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+							<defName>XCOM_Bullet_LaserShotgunCE</defName>
+							<label>laser beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>6</damageAmountBase>
+								<armorPenetrationSharp>15.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<pelletCount>7</pelletCount>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>3</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- Laser cannon (bruh)-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserCannon</defName>
+							<label>laser</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>XCOM_Bullet_LaserCannonCE</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+							<defName>XCOM_Bullet_LaserCannonCE</defName>
+							<label>laser beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationSharp>16</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>5</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- Laser pistol-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserPistol</defName>
+							<label>laser</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>XCOM_Bullet_Laser_PistolCE</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletRed">
+							<defName>XCOM_Bullet_Laser_PistolCE</defName>
+							<label>laser beam</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>6</damageAmountBase>
+								<armorPenetrationSharp>17.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<secondaryDamage>
+									<li>
+										<def>Flame_Secondary</def>
+										<amount>4</amount>
+									</li>
+								</secondaryDamage>
+							</projectile>
+						</ThingDef>
+
+						<!-- rail gun-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_XCOM_Gun_LaserRailgun</defName>
+							<label>12mm Railgun</label>
+							<ammoTypes>
+								<Ammo_12mmRailgun_Sabot>XCOM_Bullet_LaserRailgunCE</Ammo_12mmRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
+							<defName>XCOM_Bullet_LaserRailgunCE</defName>
+							<label>12mm Railgun bullet (Sabot)</label>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>73</damageAmountBase>
+								<armorPenetrationSharp>130</armorPenetrationSharp>
+								<armorPenetrationBlunt>7250</armorPenetrationBlunt>
+							</projectile>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

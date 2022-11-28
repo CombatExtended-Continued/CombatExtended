@@ -71,6 +71,7 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[XND] Vanilla-Friendly Animal Surgery (Continued)
 A Dog Said...	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
@@ -226,6 +227,7 @@ Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
+Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -337,6 +339,7 @@ Redcoat Apparel	|
 Reinforced Mechanoids: Tyrikan-Line |
 Remote Detonator	|
 Revia Race |
+Revia Race - biotech |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
@@ -383,6 +386,7 @@ Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 Stalingrad – Uniforms   |
+Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
@@ -450,9 +454,9 @@ Vanilla Weapons Expanded - Laser |
 Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
-Vanilla-Friendly Animal Surgery	|
 Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
+Vanilla XCOM Weapons  |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |

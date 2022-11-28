@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla XCOM Laser Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[
+						defName="XCOM_Gun_LaserRifle" or
+						defName="XCOM_Gun_LaserSniperRifle" or
+						defName="XCOM_Gun_LaserShotgun" or
+						defName="XCOM_Gun_LaserCannon" or
+						defName="XCOM_Gun_LaserRailgun"
+						]/tools
+					</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>stock</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>barrel</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>5</power>
+								<cooldownTime>2.02</cooldownTime>
+								<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="XCOM_Gun_LaserPistol"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>grip</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<chanceFactor>1.5</chanceFactor>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>muzzle</label>
+								<capacities>
+									<li>Poke</li>
+								</capacities>
+								<power>2</power>
+								<cooldownTime>1.54</cooldownTime>
+								<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<!-- XCOM laser Rifle -->
+				<!-- so, faster firing single shot gun-->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserRifle</defName>
+					<statBases>
+						<Mass>3.50</Mass>
+						<Bulk>10.00</Bulk>
+						<SwayFactor>1.35</SwayFactor>
+						<ShotSpread>0.08</ShotSpread>
+						<SightsEfficiency>1.10</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.3</RangedWeapon_Cooldown>
+						<WorkToMake>45000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>70</Plasteel>
+						<ComponentSpacer>3</ComponentSpacer>
+					</costList>
+					<Properties>
+						<hasStandardCommand>true</hasStandardCommand>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<soundAiming>Laser_Warmup</soundAiming>
+						<recoilAmount>0</recoilAmount>
+						<defaultProjectile>XCOM_Bullet_LaserRifleCE</defaultProjectile>
+						<warmupTime>0.9</warmupTime>
+						<range>46</range>
+						<soundCast>Laser_Rifle</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>20</magazineSize>
+						<reloadTime>4</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserRifle</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_AR</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+				</li>
+
+				<!-- XCOM laser sniper-->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserSniperRifle</defName>
+					<statBases>
+						<Mass>4.20</Mass>
+						<Bulk>13.00</Bulk>
+						<SwayFactor>1.19</SwayFactor>
+						<ShotSpread>0.04</ShotSpread>
+						<SightsEfficiency>2.48</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+						<NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
+						<WorkToMake>60000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>100</Plasteel>
+						<ComponentSpacer>5</ComponentSpacer>
+					</costList>
+					<Properties>
+						<hasStandardCommand>true</hasStandardCommand>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<recoilAmount>0</recoilAmount>
+						<soundAiming>Laser_LoudWarmup</soundAiming>
+						<defaultProjectile>XCOM_Bullet_LaserSniperRifleCE</defaultProjectile>
+						<warmupTime>2</warmupTime>
+						<range>62</range>
+						<soundCast>Laser_SniperRifle</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>8</magazineSize>
+						<reloadTime>5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserSniperRifle</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_SR</li>
+						<li>Bipod_DMR</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- XCOM scatter laser -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserShotgun</defName>
+					<statBases>
+						<Mass>3.50</Mass>
+						<Bulk>9.10</Bulk>
+						<SwayFactor>1.26</SwayFactor>
+						<ShotSpread>0.5</ShotSpread>
+						<SightsEfficiency>1.00</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+						<WorkToMake>45000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>55</Plasteel>
+						<ComponentSpacer>5</ComponentSpacer>
+					</costList>
+					<Properties>
+						<hasStandardCommand>true</hasStandardCommand>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<recoilAmount>0</recoilAmount>
+						<soundAiming>Laser_LoudWarmup</soundAiming>
+						<defaultProjectile>XCOM_Bullet_LaserShotgunCE</defaultProjectile>
+						<warmupTime>1</warmupTime>
+						<range>12</range>
+						<soundCast>Laser_Shotgun</soundCast>
+						<soundCastTail>GunTail_Medium</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>5</magazineSize>
+						<reloadTime>4.5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserShotgun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_BROOM</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+				</li>
+
+				<!-- XCOM Laser Cannon -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserCannon</defName>
+					<statBases>
+						<Mass>16.00</Mass>
+						<Bulk>10.40</Bulk>
+						<SwayFactor>2.64</SwayFactor>
+						<ShotSpread>0.06</ShotSpread>
+						<SightsEfficiency>1</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+						<WorkToMake>80000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>120</Plasteel>
+						<ComponentSpacer>9</ComponentSpacer>
+					</costList>
+					<Properties>
+						<recoilAmount>0</recoilAmount>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>XCOM_Bullet_LaserCannonCE</defaultProjectile>
+						<soundAiming>Laser_Warmup</soundAiming>
+						<warmupTime>1.75</warmupTime>
+						<burstShotCount>25</burstShotCount>
+						<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+						<range>46</range>
+						<soundCast>Laser_Cannon</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>75</magazineSize>
+						<reloadTime>7.5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserCannon</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>SuppressFire</aiAimMode>
+						<noSingleShot>true</noSingleShot>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Suppressive</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+
+				<!-- XCOM Laser Pistol -->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserPistol</defName>
+					<statBases>
+						<Mass>1.20</Mass>
+						<Bulk>2.30</Bulk>
+						<SwayFactor>1.17</SwayFactor>
+						<ShotSpread>0.2</ShotSpread>
+						<SightsEfficiency>0.8</SightsEfficiency>
+						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+						<WorkToMake>35000</WorkToMake>
+					</statBases>
+					<costList>
+						<Plasteel>45</Plasteel>
+						<ComponentSpacer>2</ComponentSpacer>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<recoilAmount>0</recoilAmount>
+						<soundAiming>Laser_Warmup</soundAiming>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>XCOM_Bullet_Laser_PistolCE</defaultProjectile>
+						<warmupTime>0.8</warmupTime>
+						<range>12</range>
+						<soundCast>Laser_Pistol</soundCast>
+						<soundCastTail>GunTail_Light</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>15</magazineSize>
+						<reloadTime>4.6</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserPistol</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiUseBurstMode>FALSE</aiUseBurstMode>
+						<aiAimMode>Snapshot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_Sidearm</li>
+						<li>CE_AI_BROOM</li>
+						<li>CE_OneHandedWeapon</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+				</li>
+
+				<!-- Brun recoilless railgun-->
+
+				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+					<defName>XCOM_Gun_LaserRailgun</defName>
+					<statBases>
+						<WorkToMake>125000</WorkToMake>
+						<SightsEfficiency>1</SightsEfficiency>
+						<ShotSpread>0.01</ShotSpread>
+						<SwayFactor>2.2</SwayFactor>
+						<Bulk>55.90</Bulk>
+						<Mass>28.30</Mass>
+						<RangedWeapon_Cooldown>1.47</RangedWeapon_Cooldown>
+					</statBases>
+					<costList>
+						<Plasteel>300</Plasteel>
+						<ComponentSpacer>12</ComponentSpacer>
+					</costList>
+					<Properties>
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<soundAiming>Laser_Warmup</soundAiming>
+						<recoilAmount>1</recoilAmount>
+						<defaultProjectile>XCOM_Bullet_LaserRailgunCE</defaultProjectile>
+						<burstShotCount>3</burstShotCount>
+						<ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+						<warmupTime>2</warmupTime>
+						<range>55</range>
+						<soundCast>Laser_Railgun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>12</muzzleFlashScale>
+					</Properties>
+					<AmmoUser>
+						<magazineSize>18</magazineSize>
+						<reloadTime>7.5</reloadTime>
+						<ammoSet>AmmoSet_XCOM_Gun_LaserRailgun</ammoSet>
+					</AmmoUser>
+					<FireModes>
+						<aiAimMode>AimedShot</aiAimMode>
+					</FireModes>
+					<weaponTags>
+						<li>CE_AI_Rifle</li>
+						<li>Bipod_LMG</li>
+					</weaponTags>
+					<researchPrerequisite>XCOM_LaserWeapons</researchPrerequisite>
+					<AllowWithRunAndGun>false</AllowWithRunAndGun>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
