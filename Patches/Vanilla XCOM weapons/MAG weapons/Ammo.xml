@@ -1,0 +1,312 @@
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla XCOM Magnetic Weapons</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- So we don't have rail pistol in base CE. slap the stats of 3HST 4MMRAIL then-->
+				<!-- I mean, for fuck's sane we have rail pistol ammo texture but nothing use it-->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingCategoryDef>
+							<defName>Ammo4mmRailgun</defName>
+							<label>4mm Railgun</label>
+							<parent>AmmoAdvanced</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRailgunPistol</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_4mmRailgunXCOM</defName>
+							<label>4mm Railgun</label>
+							<ammoTypes>
+								<Ammo_4mmRailgun_Sabot>Bullet_XCOM4mmRailgun_Sabot</Ammo_4mmRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+							<defName>Ammo_4mmRailgun_Sabot</defName>
+							<label>4mm Railgun cartridge (Sabot)</label>
+							<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles.</description>
+							<statBases>
+								<Mass>0.01</Mass>
+								<Bulk>0.008</Bulk>
+								<MarketValue>0.06</MarketValue>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_FabricationBench</li>
+								<!-- Railgun ammo isn't handloaded because it contains no propellant, and the sabots must be precision-machined anyway -->
+							</tradeTags>
+							<thingCategories>
+								<li>Ammo4mmRailgun</li>
+							</thingCategories>
+							<graphicData>
+								<texPath>Things/Ammo/Railgun/Pistol</texPath>
+								<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+							</graphicData>
+							<ammoClass>RailgunSabot</ammoClass>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<!-- Why BaseBullet don't work while Base9x19mmParaBullet work? I don't fucking know-->
+
+						<ThingDef ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_XCOM4mmRailgun_Sabot</defName>
+							<label>4mm Railgun bullet (Sabot)</label>
+							<graphicData>
+								<texPath>Bullet_Mag_Small</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>0.6</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>15</damageAmountBase>
+								<armorPenetrationSharp>14.8</armorPenetrationSharp>
+								<armorPenetrationBlunt>177.46</armorPenetrationBlunt>
+								<speed>250</speed>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_4mmRailgun_Sabot</defName>
+							<label>make 4mm Railgun cartridge (Sabot) x500</label>
+							<description>Craft 500 4mm Railgun (Sabot) cartridges.</description>
+							<jobString>Making 4mm Railgun (Sabot) cartridges.</jobString>
+							<workAmount>1000</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>1</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Uranium</li>
+										</thingDefs>
+									</filter>
+									<count>2</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+									<li>Uranium</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_4mmRailgun_Sabot>500</Ammo_4mmRailgun_Sabot>
+							</products>
+						</RecipeDef>
+
+						<!-- They have custom projectile texture that isn't cringe, so I'm arsed enough to keep them-->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_6mmRailgunXCOM</defName>
+							<label>6mm Railgun</label>
+							<ammoTypes>
+								<Ammo_6mmRailgun_Sabot>Bullet_XCOM6mmRailgun_Sabot</Ammo_6mmRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- you know what? I always worried about my 3HST railguns are too imba until I saw the stats CE gave for railguns. So I'll take my liberty here as I'm gonna rewrite the projectile anyway. I don't really buy the "fromtloaded cost" explanation-->
+
+						<ThingDef ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_XCOM6mmRailgun_Sabot</defName>
+							<label>6mm Railgun bullet (Sabot)</label>
+							<graphicData>
+								<texPath>Bullet_Mag_Small</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>1.1</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>18</damageAmountBase>
+								<armorPenetrationSharp>44</armorPenetrationSharp>
+								<armorPenetrationBlunt>290.80</armorPenetrationBlunt>
+								<speed>300</speed>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_8mmRailgunXCOM</defName>
+							<label>8mm Railgun</label>
+							<ammoTypes>
+								<Ammo_8mmRailgun_Sabot>Bullet_XCOM8mmRailgun_Sabot</Ammo_8mmRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- well...3HST 9mm is another story, and 3HST 20mm is just worse.-->
+
+						<ThingDef ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_XCOM8mmRailgun_Sabot</defName>
+							<label>8mm Railgun bullet (Sabot)</label>
+							<graphicData>
+								<texPath>Bullet_Mag_Big</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>20</damageAmountBase>
+								<armorPenetrationSharp>75</armorPenetrationSharp>
+								<armorPenetrationBlunt>252.720</armorPenetrationBlunt>
+								<speed>360</speed>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_12mmRailgunXCOM</defName>
+							<label>12mm Railgun</label>
+							<ammoTypes>
+								<Ammo_12mmRailgun_Sabot>Bullet_XCOM12mmRailgun_Sabot</Ammo_12mmRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<ThingDef ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_XCOM12mmRailgun_Sabot</defName>
+							<label>12mm Railgun bullet (Sabot)</label>
+							<graphicData>
+								<texPath>Bullet_Mag_Big</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>1.5</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>73</damageAmountBase>
+								<armorPenetrationSharp>130</armorPenetrationSharp>
+								<armorPenetrationBlunt>7250</armorPenetrationBlunt>
+								<speed>500</speed>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<!-- and...rail shotgun, slapping 3HST 20mm NCQ canister stats here-->
+
+						<ThingCategoryDef>
+							<defName>Ammo12GaugeRailgun</defName>
+							<label>12 Gauge scatter railgun</label>
+							<parent>AmmoAdvanced</parent>
+							<iconPath>UI/Icons/ThingCategories/CaliberRailgunRifle</iconPath>
+						</ThingCategoryDef>
+
+						<!-- ==================== AmmoSet ========================== -->
+
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_ScatterRailgunXCOM</defName>
+							<label>12 Gauge scatter railgun</label>
+							<ammoTypes>
+								<Ammo_12GaugeRailgun_Sabot>Bullet_XCOMScatterRailgun_Sabot</Ammo_12GaugeRailgun_Sabot>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- ==================== Ammo ========================== -->
+
+						<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+							<defName>Ammo_12GaugeRailgun_Sabot</defName>
+							<label>12 Gauge railgun bullet (Sabot)</label>
+							<description>Fin-stabilized tungsten carbide penetrator with discarding sabot, designed for railgun rifles.</description>
+							<statBases>
+								<Mass>0.051</Mass>
+								<Bulk>0.06</Bulk>
+								<MarketValue>0.06</MarketValue>
+							</statBases>
+							<tradeTags>
+								<li>CE_AutoEnableTrade</li>
+								<li>CE_AutoEnableCrafting_FabricationBench</li>
+								<!-- Railgun ammo isn't handloaded because it contains no propellant, and the sabots must be precision-machined anyway -->
+							</tradeTags>
+							<thingCategories>
+								<li>Ammo12GaugeRailgun</li>
+							</thingCategories>
+							<graphicData>
+								<texPath>Things/Ammo/Railgun/HighCaliber</texPath>
+								<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+							</graphicData>
+							<ammoClass>XCOM_MAGShotgun</ammoClass>
+						</ThingDef>
+
+						<!-- ================== Projectiles ================== -->
+
+						<ThingDef ParentName="Base9x19mmParaBullet">
+							<defName>Bullet_XCOMScatterRailgun_Sabot</defName>
+							<label>12 Gauge railgun bullet (Sabot)</label>
+							<graphicData>
+								<texPath>Bullet_Mag_Small</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+								<drawSize>0.3</drawSize>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<speed>250</speed>
+								<damageDef>Bullet</damageDef>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationSharp>10</armorPenetrationSharp>
+								<armorPenetrationBlunt>25.88</armorPenetrationBlunt>
+								<spreadMult>23.8</spreadMult>
+								<pelletCount>12</pelletCount>
+								<dropsCasings>false</dropsCasings>
+							</projectile>
+						</ThingDef>
+
+						<!-- ==================== Recipes ========================== -->
+
+						<RecipeDef ParentName="AmmoRecipeBase">
+							<defName>MakeAmmo_12GaugeRailgun_Sabot</defName>
+							<label>make 12 Gauge railgun cartridge (Sabot) x200</label>
+							<description>Craft 500 12 Gauge railgun (Sabot) cartridges.</description>
+							<jobString>Making 12 Gauge railgun (Sabot) cartridges.</jobString>
+							<workAmount>2500</workAmount>
+							<ingredients>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Steel</li>
+										</thingDefs>
+									</filter>
+									<count>5</count>
+								</li>
+								<li>
+									<filter>
+										<thingDefs>
+											<li>Uranium</li>
+										</thingDefs>
+									</filter>
+									<count>10</count>
+								</li>
+							</ingredients>
+							<fixedIngredientFilter>
+								<thingDefs>
+									<li>Steel</li>
+									<li>Uranium</li>
+								</thingDefs>
+							</fixedIngredientFilter>
+							<products>
+								<Ammo_12GaugeRailgun_Sabot>200</Ammo_12GaugeRailgun_Sabot>
+							</products>
+						</RecipeDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
