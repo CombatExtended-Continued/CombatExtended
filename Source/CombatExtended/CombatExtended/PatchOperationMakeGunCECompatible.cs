@@ -182,6 +182,10 @@ namespace CombatExtended
             {
                 // remove Verb_Shoot
                 var verb_shoot_nodes = verbs.SelectNodes("li[verbClass=\"Verb_Shoot\" or verbClass=\"Verb_ShootOneUse\" or verbClass=\"Verb_LaunchProjectile\"]");
+                if (ModLister.HasActiveModWithName("Vanilla Weapons Expanded - Makeshift"))
+                {
+                    verb_shoot_nodes = verbs.SelectNodes("li[verbClass=\"Verb_Shoot\" or verbClass=\"Verb_ShootOneUse\" or verbClass=\"Verb_LaunchProjectile\" or verbClass=\"VWEMakeshift.Verb_MakeshiftShoot\"]");
+                }
                 foreach (var verb_shoot_current in verb_shoot_nodes)
                 {
                     var verb_shoot = verb_shoot_current as XmlNode;
