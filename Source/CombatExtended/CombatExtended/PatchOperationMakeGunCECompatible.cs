@@ -185,7 +185,7 @@ namespace CombatExtended
                     "li[verbClass=\"Verb_Shoot\" or " +
                     "verbClass=\"Verb_ShootOneUse\" or " +
                     "verbClass=\"Verb_LaunchProjectile\" or " +
-                    "verbClass=\"VWEMakeshift.Verb_MakeshiftShoot\"]");
+                    "verbClass=\"VWEMakeshift.Verb_MakeshiftShoot\"]"); // Vanilla Weapons Expanded - Makeshift
 
                 foreach (var verb_shoot_current in verb_shoot_nodes)
                 {
