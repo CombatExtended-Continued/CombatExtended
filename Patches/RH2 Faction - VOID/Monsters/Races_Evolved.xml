@@ -46,7 +46,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>5.4</cooldownTime>
+								<cooldownTime>3.8</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>2.5</armorPenetrationSharp>
@@ -65,7 +65,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>5</cooldownTime>
+								<cooldownTime>3.5</cooldownTime>
 								<linkedBodyPartsGroup>RH_RightClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>2.5</armorPenetrationSharp>
@@ -76,7 +76,7 @@
 									<li>ToxicBite</li>
 								</capacities>
 								<power>16</power>
-								<cooldownTime>7.2</cooldownTime>
+								<cooldownTime>5.2</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4Teeth</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -146,7 +146,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>4.8</cooldownTime>
+								<cooldownTime>3.8</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftArmBlade</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>0.5</armorPenetrationSharp>
@@ -154,7 +154,7 @@
 							<li Class="CombatExtended.ToolCE">
 								<label>right arm blade</label>
 								<capacities>
-									<li>Blunt</li>
+									<li>Cut</li>
 								</capacities>
 								<power>15</power>
 								<surpriseAttack>
@@ -165,9 +165,9 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>4</cooldownTime>
+								<cooldownTime>3</cooldownTime>
 								<linkedBodyPartsGroup>RH_RightBlade</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>25</armorPenetrationBlunt>
+								<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>0.5</armorPenetrationSharp>
 							</li>
 							<li Class="CombatExtended.ToolCE">
@@ -176,7 +176,7 @@
 									<li>ToxicBite</li>
 								</capacities>
 								<power>17</power>
-								<cooldownTime>4.2</cooldownTime>
+								<cooldownTime>5.2</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4Teeth</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -205,6 +205,106 @@
 					<xpath>Defs/PawnKindDef[defName="RH_DF_EvolvedLongArms"]/combatPower</xpath>
 					<value>
 						<combatPower>185</combatPower>
+					</value>
+				</li>
+
+				<!-- ========== Volatile long arm ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RH_DF_IrridiatedLongArms"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RH_DF_IrridiatedLongArms"]/statBases</xpath>
+					<value>	
+						<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						<MeleeCritChance>2.0</MeleeCritChance>
+						<MeleeParryChance>0.37</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_IrridiatedLongArms"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left arm blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>67</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>50</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<cooldownTime>4.0</cooldownTime>
+								<linkedBodyPartsGroup>RH_LeftArmBlade</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.5</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right arm blade</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>71</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>60</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<cooldownTime>4.4</cooldownTime>
+								<linkedBodyPartsGroup>RH_RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>ToxicBite</li>
+								</capacities>
+								<power>87</power>
+								<cooldownTime>8.2</cooldownTime>
+								<linkedBodyPartsGroup>RH_N4Teeth</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>25.0</armorPenetrationBlunt>
+								<armorPenetrationSharp>5.0</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_IrridiatedLongArms"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>16</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_IrridiatedLongArms"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>30</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="RH_DF_IrridiatedLongArms"]/combatPower</xpath>
+					<value>
+						<combatPower>700</combatPower>
 					</value>
 				</li>
 
@@ -246,7 +346,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>5.7</cooldownTime>
+								<cooldownTime>3.7</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4LeftHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>40</armorPenetrationBlunt>
 								<armorPenetrationSharp>8</armorPenetrationSharp>
@@ -265,7 +365,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>4.0</cooldownTime>
+								<cooldownTime>3.5</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4RightHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>40</armorPenetrationBlunt>
 								<armorPenetrationSharp>8</armorPenetrationSharp>
@@ -276,10 +376,9 @@
 									<li>Cut</li>
 								</capacities>
 								<power>700</power>
-								<cooldownTime>7</cooldownTime>
+								<cooldownTime>4.2</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeaperTongue</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-								<chanceFactor>0.2</chanceFactor>
 								<armorPenetrationBlunt>100</armorPenetrationBlunt>
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 							</li>
@@ -346,7 +445,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>6.8</cooldownTime>
+								<cooldownTime>4.8</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4LeftHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>45</armorPenetrationBlunt>
 							</li>
@@ -364,7 +463,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>6.4</cooldownTime>
+								<cooldownTime>3.4</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4RightHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>50</armorPenetrationBlunt>
 							</li>
@@ -374,7 +473,7 @@
 									<li>Blunt</li>
 								</capacities>
 								<power>100</power>
-								<cooldownTime>8.2</cooldownTime>
+								<cooldownTime>4.2</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -402,6 +501,106 @@
 					<xpath>Defs/PawnKindDef[defName="RH_BlackTitan"]/combatPower</xpath>
 					<value>
 						<combatPower>800</combatPower>
+					</value>
+				</li>
+
+				<!-- ========== Black Wraith ========== -->
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="RH_DF_BlackWraith"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RH_DF_BlackWraith"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.66</MeleeDodgeChance>
+						<MeleeCritChance>2.0</MeleeCritChance>
+						<MeleeParryChance>1.11</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_BlackWraith"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>tentacle</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>97</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>85</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<cooldownTime>3.5</cooldownTime>
+								<linkedBodyPartsGroup>RH_LeftTentacle</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>100</armorPenetrationBlunt>
+								<armorPenetrationSharp>36</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>tentacle</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>110</power>
+								<surpriseAttack>
+									<extraMeleeDamages>
+										<li>
+											<def>Stun</def>
+											<amount>85</amount>
+										</li>
+									</extraMeleeDamages>
+								</surpriseAttack>
+								<cooldownTime>3.8</cooldownTime>
+								<linkedBodyPartsGroup>RH_RightTentacle</linkedBodyPartsGroup>
+								<armorPenetrationBlunt>110</armorPenetrationBlunt>
+								<armorPenetrationSharp>38</armorPenetrationSharp>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>ToxicBite</li>
+								</capacities>
+								<power>90</power>
+								<cooldownTime>3.5</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>30</armorPenetrationBlunt>
+								<armorPenetrationSharp>6</armorPenetrationSharp>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_BlackWraith"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>27</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RH_DF_BlackWraith"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>40</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/PawnKindDef[defName="RH_BlackWraith"]/combatPower</xpath>
+					<value>
+						<combatPower>900</combatPower>
 					</value>
 				</li>
 
@@ -443,7 +642,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>11.0</cooldownTime>
+								<cooldownTime>5.5</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4LeftHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>30</armorPenetrationBlunt>
 								<armorPenetrationSharp>6</armorPenetrationSharp>
@@ -462,7 +661,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>10.4</cooldownTime>
+								<cooldownTime>5.4</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4RightHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>32.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>6.5</armorPenetrationSharp>
@@ -473,7 +672,7 @@
 									<li>Cut</li>
 								</capacities>
 								<power>600</power>
-								<cooldownTime>12.7</cooldownTime>
+								<cooldownTime>6.7</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeaperTongue</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -543,7 +742,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>4.6</cooldownTime>
+								<cooldownTime>3.6</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>75</armorPenetrationBlunt>
 								<armorPenetrationSharp>15</armorPenetrationSharp>
@@ -562,7 +761,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>3</cooldownTime>
+								<cooldownTime>3.1</cooldownTime>
 								<linkedBodyPartsGroup>RH_RightClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>75</armorPenetrationBlunt>
 								<armorPenetrationSharp>15</armorPenetrationSharp>
@@ -573,7 +772,7 @@
 									<li>ToxicBite</li>
 								</capacities>
 								<power>125</power>
-								<cooldownTime>7.7</cooldownTime>
+								<cooldownTime>4.7</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4Teeth</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -643,7 +842,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>7.0</cooldownTime>
+								<cooldownTime>2.0</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftTentacle</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -662,7 +861,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>6.3</cooldownTime>
+								<cooldownTime>2.3</cooldownTime>
 								<linkedBodyPartsGroup>RH_RightTentacle</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>11.25</armorPenetrationBlunt>
 								<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -673,7 +872,7 @@
 									<li>ToxicBite</li>
 								</capacities>
 								<power>12</power>
-								<cooldownTime>9.0</cooldownTime>
+								<cooldownTime>4.0</cooldownTime>
 								<linkedBodyPartsGroup>RH_N4Teeth</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
@@ -743,7 +942,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>8.0</cooldownTime>
+								<cooldownTime>2.5</cooldownTime>
 								<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>7.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -762,7 +961,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>7.0</cooldownTime>
+								<cooldownTime>2.7</cooldownTime>
 								<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>11.25</armorPenetrationBlunt>
 								<armorPenetrationSharp>4.5</armorPenetrationSharp>
@@ -800,7 +999,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/PawnKindDef[defName="RH_DF_Bone"]/combatPower</xpath>
 					<value>
-						<combatPower>60</combatPower>
+						<combatPower>80</combatPower>
 					</value>
 				</li>
 
@@ -842,7 +1041,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>8.5</cooldownTime>
+								<cooldownTime>3.0</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>15</armorPenetrationBlunt>
 								<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -861,7 +1060,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>7.1</cooldownTime>
+								<cooldownTime>2.8</cooldownTime>
 								<linkedBodyPartsGroup>RH_RightClaw</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>15</armorPenetrationBlunt>
 								<armorPenetrationSharp>3</armorPenetrationSharp>
@@ -942,7 +1141,7 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>6.0</cooldownTime>
+								<cooldownTime>2.2</cooldownTime>
 								<linkedBodyPartsGroup>RH_LeftClawAB</linkedBodyPartsGroup>
 								<armorPenetrationBlunt>12.5</armorPenetrationBlunt>
 								<armorPenetrationSharp>2.5</armorPenetrationSharp>
@@ -952,7 +1151,7 @@
 								<capacities>
 									<li>Cut</li>
 								</capacities>
-								<power>18</power>
+								<power>21</power>
 								<surpriseAttack>
 									<extraMeleeDamages>
 										<li>
@@ -961,11 +1160,11 @@
 										</li>
 									</extraMeleeDamages>
 								</surpriseAttack>
-								<cooldownTime>8.7</cooldownTime>
+								<cooldownTime>2.6</cooldownTime>
 								<chanceFactor>0.9</chanceFactor>
 								<linkedBodyPartsGroup>RH_RightBlade</linkedBodyPartsGroup>
-								<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
-								<armorPenetrationSharp>0.75</armorPenetrationSharp>
+								<armorPenetrationBlunt>10</armorPenetrationBlunt>
+								<armorPenetrationSharp>2</armorPenetrationSharp>
 							</li>
 							<li Class="CombatExtended.ToolCE">
 								<label>head</label>
