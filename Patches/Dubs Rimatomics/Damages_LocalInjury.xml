@@ -10,7 +10,16 @@
 				<operations>       
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>Defs/DamageDef[@Name="EnergyWepBurnBase"]</xpath>
+					<xpath>Defs/DamageDef[defName="ArcDischarge"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="LaserDischarge"]</xpath>
 					<value>
 						<li Class="CombatExtended.DamageDefExtensionCE">
 							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
