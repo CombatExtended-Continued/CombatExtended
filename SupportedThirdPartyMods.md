@@ -52,6 +52,7 @@ Mod |
 [RH] Faction: UAC Kit	|
 [RH] Faction: Umbra Company	|
 [RH] Faction: War Mongrels	|
+[RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: V.O.I.D.	|
