@@ -207,23 +207,32 @@ namespace CombatExtended
             if (currentSuppression > SuppressionThreshold)
             {
                 isSuppressed = true;
-                Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
-                if (reactJob == null && IsHunkering)
+
+                var curJobDef = pawn.CurJobDef;
+
+                // If this pawn is not already attempting to run for cover, try to find an appropriate location with cover to run to
+                if (curJobDef != CE_JobDefOf.RunForCover)
                 {
-                    reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
-                }
-                if (reactJob != null && reactJob.def != pawn.CurJob?.def)
-                {
-                    // Only reserve destination when we know for certain the pawn isn't already running for cover
-                    pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
-                    pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
-                    LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
-                }
-                else
-                {
-                    // Crouch-walk
-                    isCrouchWalking = true;
+                    Job reactJob = SuppressionUtility.GetRunForCoverJob(pawn);
+                    if (reactJob == null && IsHunkering)
+                    {
+                        // no good locations with cover found, so hunker down
+                        reactJob = JobMaker.MakeJob(CE_JobDefOf.HunkerDown, pawn);
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_Hunkering, pawn, OpportunityType.Critical);
+                    }
+
+                    if (reactJob != null && reactJob.def != curJobDef)
+                    {
+                        // Only reserve destination when we know for certain the pawn isn't already running for cover
+                        pawn.Map.pawnDestinationReservationManager.Reserve(pawn, reactJob, reactJob.GetTarget(TargetIndex.A).Cell);
+                        pawn.jobs.StartJob(reactJob, JobCondition.InterruptForced, null, pawn.jobs.curJob?.def == JobDefOf.ManTurret);
+                        LessonAutoActivator.TeachOpportunity(CE_ConceptDefOf.CE_SuppressionReaction, pawn, OpportunityType.Critical);
+                    }
+                    else
+                    {
+                        // Crouch-walk
+                        isCrouchWalking = true;
+                    }
                 }
                 // Throw taunt
                 if (Rand.Chance(0.01f))
