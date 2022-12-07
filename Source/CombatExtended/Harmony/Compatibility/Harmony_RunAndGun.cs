@@ -14,7 +14,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
     {
         static readonly string logPrefix = Assembly.GetExecutingAssembly().GetName().Name + " :: ";
         static readonly Assembly ass = AppDomain.CurrentDomain.GetAssemblies().
-                                        SingleOrDefault(assembly => assembly.GetName().Name == "RunAndGun");
+                                       SingleOrDefault(assembly => assembly.GetName().Name == "RunAndGun");
         static MethodBase targetMethod = null;
         static Type Stance_RunAndGun = null;
 
@@ -52,7 +52,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
             Log.Message($"{logPrefix}Applying compatibility patch for {ass.FullName}");
             return targetMethod;
         }
-        
+
         internal static IEnumerable<CodeInstruction> Transpiler(ILGenerator gen, IEnumerable<CodeInstruction> instructions)
         {
             bool patched = false;
@@ -70,7 +70,7 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 yield return code;
                 if (!patched)
                 {
-		  if (code.opcode == OpCodes.Isinst && ReferenceEquals(code.operand, Stance_RunAndGun))
+                    if (code.opcode == OpCodes.Isinst && ReferenceEquals(code.operand, Stance_RunAndGun))
                     {
                         ready = true;
                     }

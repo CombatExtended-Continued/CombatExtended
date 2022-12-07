@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace CombatExtended
 {
-    // Variant of the vanilla Graphic_StackCount class, which changes the graphic displayed for an item 
+    // Variant of the vanilla Graphic_StackCount class, which changes the graphic displayed for an item
     // based on the current stack count, but with customizable upper limit for each subgraphic taken
     // from their respective filenames.
     //
@@ -23,7 +23,7 @@ namespace CombatExtended
 
     public class Graphic_StackCountRanged : Graphic_Collection
     {
-		public override Material MatSingle
+        public override Material MatSingle
         {
             get
             {
@@ -115,7 +115,8 @@ namespace CombatExtended
                                 // Use the current subgraphic for now, and then keep checking
                                 finalSubGraphic = currentItem.Value;
                             }
-                            else {
+                            else
+                            {
                                 // We have found our final subgraphic, break out of the foreach loop
                                 break;
                             }

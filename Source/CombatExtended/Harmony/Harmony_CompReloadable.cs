@@ -20,15 +20,20 @@ namespace CombatExtended.HarmonyCE
                 yield return g;
             }
 
-            yield return new Command_ReloadArmor
+            // Don't show the "reload worn armor" gizmo for non-colonist pawns / pawns in a mental break etc.
+            if (__instance.Wearer.IsColonistPlayerControlled)
             {
-                compReloadable = __instance,
-                action = () => TryReloadArmor(__instance),
-                defaultLabel = (string)"CE_ReloadLabel".Translate() + " worn armor",
-                defaultDesc = "CE_ReloadDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true)
 
-            };
+                yield return new Command_ReloadArmor
+                {
+                    compReloadable = __instance,
+                    action = () => TryReloadArmor(__instance),
+                    defaultLabel = (string)"CE_ReloadLabel".Translate() + " worn armor",
+                    defaultDesc = "CE_ReloadDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true)
+
+                };
+            }
 
         }
 

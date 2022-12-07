@@ -20,7 +20,7 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Constants  
+        #region Constants
 
         private const int TicksThrottleCooldown = 1800;
         private const int ProximitySearchRadius = 20;
@@ -48,7 +48,7 @@ namespace CombatExtended
             {
                 return 0f;
             }
-            if(!_throttle.TryGetValue(pawn.thingIDNumber, out int ticks) || GenTicks.TicksGame - ticks > TicksThrottleCooldown)
+            if (!_throttle.TryGetValue(pawn.thingIDNumber, out int ticks) || GenTicks.TicksGame - ticks > TicksThrottleCooldown)
             {
                 return 30f;
             }
@@ -115,7 +115,9 @@ namespace CombatExtended
                                 listing[curSlot.thingDef].value -= amount;
                                 wantCount -= amount;
                                 if (listing[curSlot.thingDef].value <= 0)
+                                {
                                     listing.Remove(curSlot.thingDef);
+                                }
                             }
                         }
                         if (curSlot.genericDef != null)
@@ -128,12 +130,18 @@ namespace CombatExtended
                                 listing[def].value -= amount;
                                 wantCount -= amount;
                                 if (listing[def].value <= 0)
+                                {
                                     killKeys.Add(def);
+                                }
                                 if (wantCount <= 0)
+                                {
                                     break;
+                                }
                             }
                             foreach (ThingDef def in killKeys) // oddly enough removing a dictionary entry while enumerating hasn't caused a problem but this is the 'correct' way based on reading.
+                            {
                                 listing.Remove(def);
+                            }
                         }
                         if (wantCount > 0)
                         {
@@ -146,7 +154,9 @@ namespace CombatExtended
                                 count = count >= wantCount ? wantCount : count;
                                 closestThing = curThing;
                                 if (curCarrier != null)
+                                {
                                     carriedBy = curCarrier;
+                                }
                             }
                             if (priority >= ItemPriority.LowStock)
                             {
@@ -180,43 +190,54 @@ namespace CombatExtended
             // Hint: The following block defines how to find items... pay special attention to the Predicates below.
             ThingRequest req;
             if (curSlot.genericDef != null)
+            {
                 req = ThingRequest.ForGroup(curSlot.genericDef.thingRequestGroup);
+            }
             else
+            {
                 req = curSlot.thingDef.Minifiable ? ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing) : ThingRequest.ForDef(curSlot.thingDef);
+            }
             Predicate<Thing> findItem;
             if (curSlot.genericDef != null)
+            {
                 findItem = t => curSlot.genericDef.lambda(t.GetInnerIfMinified().def);
+            }
             else
+            {
                 findItem = t => t.GetInnerIfMinified().def == curSlot.thingDef;
-            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
+            }
+            Predicate<Thing> search = t => findItem(t) && !t.IsForbidden(pawn) && pawn.CanReserve(t, 10, 1) && !isFoodInPrison(t) && AllowedByBiocode(t, pawn);
 
             // look for a thing near the pawn.
             curThing = GenClosest.ClosestThingReachable(
-                pawn.Position,
-                pawn.Map,
-                req,
-                PathEndMode.ClosestTouch,
-                TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
-                ProximitySearchRadius,
-                search);
-            if (curThing != null) curPriority = ItemPriority.Proximity;
+                           pawn.Position,
+                           pawn.Map,
+                           req,
+                           PathEndMode.ClosestTouch,
+                           TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
+                           ProximitySearchRadius,
+                           search);
+            if (curThing != null)
+            {
+                curPriority = ItemPriority.Proximity;
+            }
             else
             {
                 // look for a thing basically anywhere on the map.
                 curThing = GenClosest.ClosestThingReachable(
-                    pawn.Position,
-                    pawn.Map,
-                    req,
-                    PathEndMode.ClosestTouch,
-                    TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
-                    MaximumSearchRadius,
-                    search);
+                               pawn.Position,
+                               pawn.Map,
+                               req,
+                               PathEndMode.ClosestTouch,
+                               TraverseParms.For(pawn, Danger.None, TraverseMode.ByPawn),
+                               MaximumSearchRadius,
+                               search);
                 if (curThing == null && pawn.Map != null)
                 {
                     // look for a thing inside caravan pack animals and prisoners.  EXCLUDE other colonists to avoid looping state.
                     List<Pawn> carriers = pawn.Map.mapPawns.AllPawns.Where(
-                        p => (p.inventory?.innerContainer?.InnerListForReading?.Any() ?? false) && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)
-                        && pawn.CanReserveAndReach(p, PathEndMode.ClosestTouch, Danger.Deadly, int.MaxValue, 0)).ToList();
+                                              p => (p.inventory?.innerContainer?.InnerListForReading?.Any() ?? false) && (p.RaceProps.packAnimal && p.Faction == pawn.Faction || p.IsPrisoner && p.HostFaction == pawn.Faction)
+                                              && pawn.CanReserveAndReach(p, PathEndMode.ClosestTouch, Danger.Deadly, int.MaxValue, 0)).ToList();
                     foreach (Pawn carrier in carriers)
                     {
                         Thing thing = carrier.inventory.innerContainer.FirstOrDefault(t => findItem(t));
@@ -230,8 +251,14 @@ namespace CombatExtended
                 }
                 if (curThing != null)
                 {
-                    if (!curThing.def.IsNutritionGivingIngestible && (float)findCount / curSlot.count >= 0.5f) curPriority = ItemPriority.LowStock;
-                    else curPriority = ItemPriority.Low;
+                    if (!curThing.def.IsNutritionGivingIngestible && (float)findCount / curSlot.count >= 0.5f)
+                    {
+                        curPriority = ItemPriority.LowStock;
+                    }
+                    else
+                    {
+                        curPriority = ItemPriority.Low;
+                    }
                 }
             }
         }
@@ -250,10 +277,15 @@ namespace CombatExtended
         public static Job GetUpdateLoadoutJob(Pawn pawn)
         {
             // Get inventory
-            CompInventory inventory = pawn.TryGetComp<CompInventory>();            
-            if (inventory == null) return null;
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            if (inventory == null)
+            {
+                return null;
+            }
             if (pawn.equipment?.Primary is WeaponPlatform platform)
+            {
                 platform.TrySyncPlatformLoadout(pawn);
+            }
 
             Loadout loadout = pawn.GetLoadout();
             if (loadout != null)
@@ -265,7 +297,9 @@ namespace CombatExtended
                     if (pawn.equipment.TryDropEquipment(pawn.equipment.Primary, out droppedEq, pawn.Position, false))
                     {
                         if (droppedEq != null)
+                        {
                             return HaulAIUtility.HaulToStorageJob(pawn, droppedEq);
+                        }
                         Log.Error(string.Concat(pawn, " tried dropping ", dropEq, " from loadout but resulting thing is null"));
                     }
                 }
@@ -295,11 +329,11 @@ namespace CombatExtended
                 if (closestThing != null)
                 {
                     if (closestThing.TryGetComp<CompEquippable>() != null
-                        && !(pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
-                        && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-                        && (!pawn.IsItemQuestLocked(pawn.equipment?.Primary))
-                        && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
-                                                                                                               && s.genericDef.lambda(pawn.equipment.Primary.def)))))
+                            && !(pawn.story != null && pawn.WorkTagIsDisabled(WorkTags.Violent))
+                            && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                            && (!pawn.IsItemQuestLocked(pawn.equipment?.Primary))
+                            && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.thingDef == pawn.equipment.Primary.def || (s.genericDef != null && s.countType == LoadoutCountType.pickupDrop
+                                    && s.genericDef.lambda(pawn.equipment.Primary.def)))))
                     {
                         doEquip = true;
                     }
@@ -310,9 +344,9 @@ namespace CombatExtended
                         {
                             return JobMaker.MakeJob(JobDefOf.Equip, closestThing);
                         }
-                        Job job = JobMaker.MakeJob(JobDefOf.TakeInventory, closestThing);
-                        job.MakeDriver(pawn);
+                        Job job = JobMaker.MakeJob(JobDefOf.TakeCountToInventory, closestThing);
                         job.count = Mathf.Min(closestThing.stackCount, count);
+                        job.MakeDriver(pawn);
                         return job;
                     }
                     else
@@ -323,17 +357,17 @@ namespace CombatExtended
                         return job;
                     }
                 }
-            }            
+            }
             return pawn.thinker?.TryGetMainTreeThinkNode<JobGiver_OptimizeApparel>()?.TryGiveJob(pawn);
         }
-      
+
 
         public override Job TryGiveJob(Pawn pawn)
         {
             Job job = GetUpdateLoadoutJob(pawn);
-            _throttle[pawn.thingIDNumber] = job == null ? GenTicks.TicksGame : (GenTicks.TicksGame - TicksThrottleCooldown - 1);           
+            _throttle[pawn.thingIDNumber] = job == null ? GenTicks.TicksGame : (GenTicks.TicksGame - TicksThrottleCooldown - 1);
             return job;
-        }        
+        }
 
         #endregion
     }

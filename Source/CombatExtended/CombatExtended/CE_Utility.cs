@@ -38,32 +38,48 @@ namespace CombatExtended
         public static float GetWeaponStatWith(this WeaponPlatform platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
         {
             StatRequest req = StatRequest.For(platform);
-            float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);           
+            float val = stat.Worker.GetValueUnfinalized(StatRequest.For(platform), true);
             if (stat.parts != null)
             {
                 for (int i = 0; i < stat.parts.Count; i++)
                 {
-                    if(!(stat.parts[i] is StatPart_Attachments))
+                    if (!(stat.parts[i] is StatPart_Attachments))
+                    {
                         stat.parts[i].TransformValue(req, ref val);
+                    }
                 }
-                if(links != null)
+                if (links != null)
+                {
                     stat.TransformValue(links, ref val);
+                }
             }
-            if (applyPostProcess && stat.postProcessCurve != null)            
-                val = stat.postProcessCurve.Evaluate(val);            
+            if (applyPostProcess && stat.postProcessCurve != null)
+            {
+                val = stat.postProcessCurve.Evaluate(val);
+            }
             if (applyPostProcess && stat.postProcessStatFactors != null)
             {
-                for (int j = 0; j < stat.postProcessStatFactors.Count; j++)                
-                    val *= req.Thing.GetStatValue(stat.postProcessStatFactors[j]);                
+                for (int j = 0; j < stat.postProcessStatFactors.Count; j++)
+                {
+                    val *= req.Thing.GetStatValue(stat.postProcessStatFactors[j]);
+                }
             }
-            if (Find.Scenario != null)            
-                val *= Find.Scenario.GetStatFactor(stat);            
-            if (Mathf.Abs(val) > stat.roundToFiveOver)            
-                val = Mathf.Round(val / 5f) * 5f;            
-            if (stat.roundValue)            
-                val = Mathf.RoundToInt(val);            
-            if (applyPostProcess)            
-                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);            
+            if (Find.Scenario != null)
+            {
+                val *= Find.Scenario.GetStatFactor(stat);
+            }
+            if (Mathf.Abs(val) > stat.roundToFiveOver)
+            {
+                val = Mathf.Round(val / 5f) * 5f;
+            }
+            if (stat.roundValue)
+            {
+                val = Mathf.RoundToInt(val);
+            }
+            if (applyPostProcess)
+            {
+                val = Mathf.Clamp(val, stat.minValue, stat.maxValue);
+            }
             return val;
         }
 
@@ -73,14 +89,18 @@ namespace CombatExtended
         /// <param name="pawn"></param>
         /// <returns></returns>
         public static bool TrySyncPlatformLoadout(this WeaponPlatform platform, Pawn pawn)
-        {            
+        {
             Loadout loadout = pawn.GetLoadout();
             if (loadout == null)
+            {
                 return false;
+            }
             LoadoutSlot slot = loadout.Slots.FirstOrFallback(s => s.weaponPlatformDef == platform.Platform);
             // if no slot mention this or it allows everything return false
             if (slot == null || slot.allowAllAttachments)
+            {
                 return false;
+            }
             bool update = false;
             // check if the current setup include everything we need.
             foreach (AttachmentDef def in slot.attachments)
@@ -94,7 +114,7 @@ namespace CombatExtended
             if (update)
             {
                 // sync the loadout with the weapon.
-                platform.TargetConfig = slot.attachments;                
+                platform.TargetConfig = slot.attachments;
                 platform.UpdateConfiguration();
             }
             return update;
@@ -109,15 +129,19 @@ namespace CombatExtended
         public static string ExplainAttachmentsStat(this StatDef stat, IEnumerable<AttachmentLink> links)
         {
             if (links == null || links.Count() == 0)
+            {
                 return null;
+            }
             StringBuilder sb = new StringBuilder();
             bool anyOffsets = false;
             bool anyFactors = false;
-            foreach(AttachmentLink link in links)
-            {                
+            foreach (AttachmentLink link in links)
+            {
                 StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null)
+                {
                     continue;
+                }
                 // stop since we found an override modifier.
                 sb.AppendLine("Replaced with " + link.attachment.LabelCap + ": " + modifier.value);
                 break;
@@ -126,7 +150,9 @@ namespace CombatExtended
             {
                 StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null || modifier.value == 0)
+                {
                     continue;
+                }
                 if (!anyOffsets)
                 {
                     sb.AppendLine("Attachment offsets:");
@@ -135,10 +161,12 @@ namespace CombatExtended
                 sb.AppendLine("    " + link.attachment.LabelCap + ": " + stat.Worker.ValueToString(modifier.value, finalized: false, ToStringNumberSense.Offset));
             }
             foreach (AttachmentLink link in links)
-            {                                
+            {
                 StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null || modifier.value == 0 || modifier.value == 1)
+                {
                     continue;
+                }
                 if (!anyFactors)
                 {
                     sb.AppendLine("Attachment factors:");
@@ -158,30 +186,47 @@ namespace CombatExtended
         /// <param name="applyPostProcess"></param>
         /// <returns></returns>
         public static float GetWeaponStatAbstractWith(this WeaponPlatformDef platform, StatDef stat, List<AttachmentLink> links, bool applyPostProcess = true)
-        {            
-            platform.statBases.FirstOrFallback(s => s.stat == stat);            
+        {
+            platform.statBases.FirstOrFallback(s => s.stat == stat);
             StatModifier statBase = platform.statBases.FirstOrFallback(s => s.stat == stat);
-            float val = statBase != null ? statBase.value : stat.defaultBaseValue;            
+            float val = statBase != null ? statBase.value : stat.defaultBaseValue;
             if (stat.parts != null)
-            {                
+            {
                 for (int i = 0; i < stat.parts.Count; i++)
                 {
-                    if(stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
-                        stat.parts[i].TransformValue(new StatRequest() { qualityCategoryInt = QualityCategory.Normal}, ref val);                                            
+                    if (stat.parts[i] is StatPart_Quality || stat.parts[i] is StatPart_Quality_Offset)
+                    {
+                        stat.parts[i].TransformValue(new StatRequest()
+                        {
+                            qualityCategoryInt = QualityCategory.Normal
+                        }, ref val);
+                    }
                 }
                 if (links != null)
+                {
                     stat.TransformValue(links, ref val);
+                }
             }
             if (applyPostProcess && stat.postProcessCurve != null)
-                val = stat.postProcessCurve.Evaluate(val);           
+            {
+                val = stat.postProcessCurve.Evaluate(val);
+            }
             if (Find.Scenario != null)
+            {
                 val *= Find.Scenario.GetStatFactor(stat);
+            }
             if (Mathf.Abs(val) > stat.roundToFiveOver)
+            {
                 val = Mathf.Round(val / 5f) * 5f;
+            }
             if (stat.roundValue)
+            {
                 val = Mathf.RoundToInt(val);
+            }
             if (applyPostProcess)
+            {
                 val = Mathf.Clamp(val, stat.minValue, stat.maxValue);
+            }
             return val;
         }
 
@@ -192,50 +237,61 @@ namespace CombatExtended
         /// <param name="platform">Weapon</param>
         /// <returns>Wether you can attach without conflicts</returns>
         public static bool CanAttachTo(this AttachmentDef attachment, WeaponPlatform platform)
-        {            
-            foreach(AttachmentLink link in platform.attachments) { 
+        {
+            foreach (AttachmentLink link in platform.attachments)
+            {
                 if (!platform.Platform.AttachmentsCompatible(link.attachment, attachment))
+                {
                     return false;
+                }
             }
             return true;
         }
 
         /// <summary>
-        /// Used to tranform a stat for a given attachment link list. It will first check for overriden stats then apply offsets and multipliers.        
+        /// Used to tranform a stat for a given attachment link list. It will first check for overriden stats then apply offsets and multipliers.
         /// </summary>
         /// <param name="stat">StatDef</param>
         /// <param name="links">The current attachment links</param>
-        /// <param name="val">Val</param>        
-        public static void TransformValue(this StatDef stat, List<AttachmentLink> links,ref float val)
+        /// <param name="val">Val</param>
+        public static void TransformValue(this StatDef stat, List<AttachmentLink> links, ref float val)
         {
             if (links == null || links.Count == 0)
+            {
                 return;
+            }
             for (int i = 0; i < links.Count; i++)
             {
                 AttachmentLink link = links[i];
                 StatModifier modifier = link.statReplacers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null)
+                {
                     continue;
+                }
                 // stop since we found an override modifier.
-                val = modifier.value;                
+                val = modifier.value;
                 return;
             }
-            for (int i = 0;i < links.Count; i++)
+            for (int i = 0; i < links.Count; i++)
             {
-                AttachmentLink link = links[i];               
+                AttachmentLink link = links[i];
                 StatModifier modifier = link.statOffsets?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null)
+                {
                     continue;
+                }
                 val += modifier.value;
             }
             for (int i = 0; i < links.Count; i++)
             {
-                AttachmentLink link = links[i];                
+                AttachmentLink link = links[i];
                 StatModifier modifier = link.statMultipliers?.FirstOrFallback(m => m.stat == stat, null) ?? null;
                 if (modifier == null || modifier.value <= 0)
+                {
                     continue;
+                }
                 val *= modifier.value;
-            }            
+            }
         }
 
         #endregion
@@ -256,12 +312,12 @@ namespace CombatExtended
             texture.filterMode = FilterMode.Point;
 
             RenderTexture rt = RenderTexture
-                .GetTemporary(rtSize[0],                        //render width
-                           rtSize[1],                       //render height
-                           0,                               //no depth buffer
-                           RenderTextureFormat.Default,     //default (=automatic) color mode
-                           RenderTextureReadWrite.Default,  //default (=automatic) r/w mode
-                           1);                              //no anti-aliasing (1=none,2=2x,4=4x,8=8x)
+                               .GetTemporary(rtSize[0],                        //render width
+                                             rtSize[1],                       //render height
+                                             0,                               //no depth buffer
+                                             RenderTextureFormat.Default,     //default (=automatic) color mode
+                                             RenderTextureReadWrite.Default,  //default (=automatic) r/w mode
+                                             1);                              //no anti-aliasing (1=none,2=2x,4=4x,8=8x)
 
             rt.filterMode = FilterMode.Point;
 
@@ -343,7 +399,10 @@ namespace CombatExtended
         /// </summary>
         public static float PartialStat(this Apparel apparel, StatDef stat, BodyPartRecord part)
         {
-	    if (!apparel.def.apparel.CoversBodyPart(part)) { return 0; }
+            if (!apparel.def.apparel.CoversBodyPart(part))
+            {
+                return 0;
+            }
 
             float result = apparel.GetStatValue(stat);
 
@@ -560,7 +619,10 @@ namespace CombatExtended
         /// <returns>True if the pawn has a shield equipped</returns>
         public static bool HasShield(this Pawn pawn)
         {
-            if ((pawn.apparel?.WornApparelCount ?? 0) == 0) return false;
+            if ((pawn.apparel?.WornApparelCount ?? 0) == 0)
+            {
+                return false;
+            }
             return pawn.apparel.WornApparel.Any(a => a is Apparel_Shield);
         }
 
@@ -570,7 +632,10 @@ namespace CombatExtended
         /// <returns>True if the pawn has equipped a two handed weapon</returns>
         public static bool HasTwoWeapon(this Pawn pawn)
         {
-            if (pawn.equipment?.Primary == null) return false;
+            if (pawn.equipment?.Primary == null)
+            {
+                return false;
+            }
             return !(pawn.equipment.Primary.def.weaponTags?.Contains(Apparel_Shield.OneHandedTag) ?? false);
         }
 
@@ -590,7 +655,10 @@ namespace CombatExtended
         public static bool HasAmmo(this ThingWithComps gun)
         {
             CompAmmoUser comp = gun.TryGetComp<CompAmmoUser>();
-            if (comp == null) return true;
+            if (comp == null)
+            {
+                return true;
+            }
             return !comp.UseAmmo || comp.CurMagCount > 0 || comp.HasAmmo;
         }
 
@@ -668,15 +736,21 @@ namespace CombatExtended
         public static Bounds GetBoundsFor(IntVec3 cell, RoofDef roof)
         {
             if (roof == null)
+            {
                 return new Bounds();
+            }
 
             float height = CollisionVertical.WallCollisionHeight;
 
             if (roof.isNatural)
+            {
                 height *= CollisionVertical.NaturalRoofThicknessMultiplier;
+            }
 
             if (roof.isThickRoof)
+            {
                 height *= CollisionVertical.ThickRoofThicknessMultiplier;
+            }
 
             height = Mathf.Max(0.1f, height - CollisionVertical.WallCollisionHeight);
 
@@ -722,10 +796,10 @@ namespace CombatExtended
         public static float GetCollisionWidth(Thing thing)
         {
             /* Possible solution for fixing tree widths
-			if (thing.IsTree())
-        	{
-        		return (thing as Plant).def.graphicData.shadowData.volume.x;
-        	}*/
+            if (thing.IsTree())
+            {
+                return (thing as Plant).def.graphicData.shadowData.volume.x;
+            }*/
 
             var pawn = thing as Pawn;
             if (pawn != null)
@@ -764,9 +838,10 @@ namespace CombatExtended
 
                 factors.x *= shape.widthLaying / shape.width;
                 factors.y *= shape.heightLaying / shape.height;
-		if (pawn.Downed) {
-		    factors.y *= shape.heightLaying;
-		}
+                if (pawn.Downed)
+                {
+                    factors.y *= shape.heightLaying;
+                }
             }
 
             return factors;
@@ -835,9 +910,13 @@ namespace CombatExtended
             CompInventory compInventory = pawn.TryGetComp<CompInventory>();
             // check is this pawn has a CompInventory
             if (compInventory == null)
+            {
                 return false;
+            }
             if (rebuildInvetory)
+            {
                 compInventory.UpdateInventory();
+            }
             // Add all weapons in the inventory
             weapons = (predicate == null ? compInventory.weapons : compInventory.weapons.Where(w => predicate.Invoke(w)));
             return true;
@@ -863,7 +942,9 @@ namespace CombatExtended
         {
             int index = map?.Index ?? -1;
             if (index < 0)
+            {
                 return null;
+            }
             if (index >= _mapsLighting.Length)
             {
                 int expandedLength = Mathf.Max(_mapsLighting.Length * 2, index + 1);
@@ -875,7 +956,9 @@ namespace CombatExtended
                 _lightingTrackers = trackers;
             }
             if (_mapsLighting[index] == map)
+            {
                 return _lightingTrackers[index];
+            }
             return _lightingTrackers[index] = (_mapsLighting[index] = map).GetComponent<LightingTracker>();
         }
 
@@ -886,7 +969,9 @@ namespace CombatExtended
         {
             int index = map?.Index ?? -1;
             if (index < 0)
+            {
                 return null;
+            }
             if (index >= _mapsDanger.Length)
             {
                 int expandedLength = Mathf.Max(_mapsDanger.Length * 2, index + 1);
@@ -898,7 +983,9 @@ namespace CombatExtended
                 _DangerTrackers = trackers;
             }
             if (_mapsDanger[index] == map)
+            {
                 return _DangerTrackers[index];
+            }
             return _DangerTrackers[index] = (_mapsDanger[index] = map).GetComponent<DangerTracker>();
         }
 
@@ -959,9 +1046,70 @@ namespace CombatExtended
             float factor = Math.Max(Mathf.Abs(tempVec2.x), Mathf.Abs(tempVec2.y));
             // If factor <= 0.6f, something has definitely gone wrong (or the vector is a zero vector);
             if (factor <= 0.6f)
+            {
                 return originalVec3;
+            }
             //Log.Warning("ToVec3Gridified " + (new Vector3(originalVec3.x / highestNormalCoord, originalVec3.y, originalVec3.z / highestNormalCoord)).ToString());
             return new Vector3(originalVec3.x / factor, originalVec3.y, originalVec3.z / factor);
+        }
+
+        public static object LaunchProjectileCE(ThingDef projectileDef,
+                                                Vector2 origin,
+                                                LocalTargetInfo target,
+                                                Thing shooter,
+                                                float shotAngle,
+                                                float shotRotation,
+                                                float shotHeight,
+                                                float shotSpeed)
+        {
+            projectileDef = projectileDef.GetProjectile();
+            ProjectileCE projectile = (ProjectileCE)ThingMaker.MakeThing(projectileDef, null);
+            GenSpawn.Spawn(projectile, shooter.Position, shooter.Map);
+
+            projectile.ExactPosition = origin;
+            projectile.canTargetSelf = false;
+            projectile.minCollisionDistance = 1;
+            projectile.intendedTarget = target;
+            projectile.mount = null;
+            projectile.AccuracyFactor = 1;
+
+
+            projectile.Launch(
+                shooter,
+                origin,
+                shotAngle,
+                shotRotation,
+                shotHeight,
+                shotSpeed,
+                shooter);
+            return projectile;
+        }
+
+        public static ThingDef GetProjectile(this ThingDef thingDef)
+        {
+            if (thingDef.projectile != null)
+            {
+                return thingDef;
+            }
+            if (thingDef is AmmoDef ammoDef)
+            {
+                ThingDef user;
+                if ((user = ammoDef.Users.FirstOrFallback(null)) != null)
+                {
+                    CompProperties_AmmoUser props = user.GetCompProperties<CompProperties_AmmoUser>();
+                    AmmoSetDef asd = props.ammoSet;
+                    AmmoLink ammoLink;
+                    if ((ammoLink = asd.ammoTypes.FirstOrFallback(null)) != null)
+                    {
+                        return ammoLink.projectile;
+                    }
+                }
+                else
+                {
+                    return ammoDef.detonateProjectile;
+                }
+            }
+            return thingDef;
         }
     }
 }

@@ -35,7 +35,9 @@ namespace CombatExtended.AI
             get
             {
                 if (_compSuppressable == null)
+                {
                     _compSuppressable = SelPawn.TryGetComp<CompSuppressable>();
+                }
                 return _compSuppressable;
             }
         }
@@ -45,7 +47,10 @@ namespace CombatExtended.AI
         {
             get
             {
-                if (_compInventory == null) _compInventory = SelPawn.TryGetComp<CompInventory>();
+                if (_compInventory == null)
+                {
+                    _compInventory = SelPawn.TryGetComp<CompInventory>();
+                }
                 return _compInventory;
             }
         }
@@ -58,12 +63,16 @@ namespace CombatExtended.AI
             get
             {
                 if (_AmmoUser_ThingWithComps == CurrentWeapon)
+                {
                     return _AmmoUser_CompAmmoUser;
+                }
 
                 _AmmoUser_ThingWithComps = CurrentWeapon;
 
                 if (_AmmoUser_ThingWithComps == null)
+                {
                     return _AmmoUser_CompAmmoUser = null;
+                }
 
                 return _AmmoUser_CompAmmoUser = _AmmoUser_ThingWithComps.TryGetComp<CompAmmoUser>();
             }
@@ -125,7 +134,9 @@ namespace CombatExtended.AI
         public void Notify_StartCastChecksFailed(ICompTactics failedComp)
         {
             if (failedComp != this)
+            {
                 OnStartCastFailed();
+            }
         }
 
         public void Notify_StartCastChecksSuccess(Verb verb)

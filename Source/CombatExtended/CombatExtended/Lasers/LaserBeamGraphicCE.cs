@@ -9,7 +9,7 @@ using Verse;
 namespace CombatExtended.Lasers
 {
     [StaticConstructorOnStartup]
-    public class LaserBeamGraphicCE :Thing
+    public class LaserBeamGraphicCE : Thing
     {
         public LaserBeamDefCE projDef;
         float beamWidth;
@@ -52,7 +52,7 @@ namespace CombatExtended.Lasers
 
         public override void Tick()
         {
-            if (def==null || ticks++ > projDef.lifetime)
+            if (def == null || ticks++ > projDef.lifetime)
             {
                 Destroy(DestroyMode.Vanish);
             }
@@ -71,14 +71,20 @@ namespace CombatExtended.Lasers
             IBeamColorThing gun = null;
 
             Pawn pawn = launcher as Pawn;
-            if (pawn != null && pawn.equipment != null) gun = pawn.equipment.Primary as IBeamColorThing;
-            if (gun == null) gun = launcher as IBeamColorThing;
+            if (pawn != null && pawn.equipment != null)
+            {
+                gun = pawn.equipment.Primary as IBeamColorThing;
+            }
+            if (gun == null)
+            {
+                gun = launcher as IBeamColorThing;
+            }
 
             if (gun != null && gun.BeamColor != -1)
             {
                 colorIndex = gun.BeamColor;
             }
-            if (gun !=null)
+            if (gun != null)
             {
                 this.equipmentDef = pawn.equipment.Primary.def;
             }
@@ -94,7 +100,10 @@ namespace CombatExtended.Lasers
 
         public void SetupDrawing()
         {
-            if (mesh != null) return;
+            if (mesh != null)
+            {
+                return;
+            }
 
             materialBeam = projDef.GetBeamMaterial(colorIndex) ?? LaserBeamGraphicCE.BeamMat;
 
@@ -131,7 +140,7 @@ namespace CombatExtended.Lasers
                     Mesh m = LightningLaserBoltMeshMaker.NewBoltMesh(-(distance + 0.25f), projDef.LightningVariance, beamWidth);
                     meshes.Add(m);
                 }
-            //    this.mesh = LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), def.LightningVariance);
+                //    this.mesh = LightningBoltMeshMakerOG.NewBoltMesh(new Vector2(0, -(distance + 0.25f)), def.LightningVariance);
             }
             else
             {
@@ -143,7 +152,10 @@ namespace CombatExtended.Lasers
         {
             base.SpawnSetup(map, respawningAfterLoad);
 
-            if (def==null || projDef.decorations == null || respawningAfterLoad) return;
+            if (def == null || projDef.decorations == null || respawningAfterLoad)
+            {
+                return;
+            }
 
             foreach (var decoration in projDef.decorations)
             {
@@ -160,7 +172,10 @@ namespace CombatExtended.Lasers
                 while (length > 0)
                 {
                     MoteLaserDectorationCE moteThrown = ThingMaker.MakeThing(decoration.mote, null) as MoteLaserDectorationCE;
-                    if (moteThrown == null) break;
+                    if (moteThrown == null)
+                    {
+                        break;
+                    }
 
                     moteThrown.beam = this;
                     moteThrown.airTimeLeft = projDef.lifetime;
@@ -287,12 +302,13 @@ namespace CombatExtended.Lasers
             );
         }
 
-	static LaserBeamGraphicCE() {
-	     BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
-	     BeamEndMat  = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
-	     MatPropertyBlock = new MaterialPropertyBlock();
-	}
-	
+        static LaserBeamGraphicCE()
+        {
+            BeamMat = MaterialPool.MatFrom("Other/OrbitalBeam", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+            BeamEndMat = MaterialPool.MatFrom("Other/OrbitalBeamEnd", ShaderDatabase.MoteGlow, MapMaterialRenderQueues.OrbitalBeam);
+            MatPropertyBlock = new MaterialPropertyBlock();
+        }
+
         private static Material BeamMat;
         private static Material BeamEndMat;
         private static MaterialPropertyBlock MatPropertyBlock;

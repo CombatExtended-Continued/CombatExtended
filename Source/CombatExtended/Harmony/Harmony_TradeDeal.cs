@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace CombatExtended.HarmonyCE
 {
-	/* Dev Notes:
+    /* Dev Notes:
      * Goal is to change the RoundToInt into RoundToCeil.
      */
 

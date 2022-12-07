@@ -17,7 +17,7 @@ namespace CombatExtended.HarmonyCE
 
     // Question from ProfoundDarkness: Are the "Cancel current job (use verb, etc.)" necessary?
 
-    // They're needed to avoid bugs where pawns switch to another weapon but still use the old one 
+    // They're needed to avoid bugs where pawns switch to another weapon but still use the old one
     // -NIA
 
 
@@ -40,7 +40,9 @@ namespace CombatExtended.HarmonyCE
         {
             // Cancel current job (use verb, etc.)
             if (___pawn.Spawned)
+            {
                 ___pawn.stances.CancelBusyStanceSoft();
+            }
         }
     }
 
@@ -51,20 +53,22 @@ namespace CombatExtended.HarmonyCE
         {
             // Cancel current job (use verb, etc.)
             if (___pawn.Spawned)
+            {
                 ___pawn.stances.CancelBusyStanceSoft();
+            }
         }
     }
 
-    /* Dev Notes: 
+    /* Dev Notes:
      * This one can't simply be done as a postfix.
      * The return does verb.TryStartCastOn() which changes game state.
      * On the other hand should be do-able with a method replacer...
      */
 
-     /*
-      * Commented out for A18 as the method seems to have been removed. Need to figure out where it went/whether this patch is still needed
-      * -NIA
-      */
+    /*
+     * Commented out for A18 as the method seems to have been removed. Need to figure out where it went/whether this patch is still needed
+     * -NIA
+     */
 
     /*
     [HarmonyPatch(typeof(Pawn_EquipmentTracker), "TryStartAttack")]
@@ -85,7 +89,7 @@ namespace CombatExtended.HarmonyCE
             foreach (CodeInstruction instruction in instructions)
             {
                 // locate the callvirt verb...
-                if (instruction.opcode == OpCodes.Callvirt && HarmonyBase.doCast((instruction.operand as MethodInfo)?.Name.Equals("TryStartCastOn")) 
+                if (instruction.opcode == OpCodes.Callvirt && HarmonyBase.doCast((instruction.operand as MethodInfo)?.Name.Equals("TryStartCastOn"))
                     && HarmonyBase.doCast((instruction.operand as MethodInfo).MemberType.Equals(typeof(Verb))))
                 {
                     // insert the instance, arg0
@@ -103,7 +107,7 @@ namespace CombatExtended.HarmonyCE
         {
             // this is no longer valid: ThingWithComps primaryInt = Traverse.Create(__instance).Field("primaryInt").GetValue() as ThingWithComps;
             ThingOwner<ThingWithComps> equipment = Traverse.Create(__instance).Field("equipment").GetValue<ThingOwner<ThingWithComps>>();
-            
+
 
             if (equipment != null && __instance.PrimaryEq != null && verb != null && verb == __instance.PrimaryEq.PrimaryVerb)
             {

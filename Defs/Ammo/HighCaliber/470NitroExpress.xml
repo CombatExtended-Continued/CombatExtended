@@ -20,7 +20,7 @@
 		<Ammo_470NitroExpress_HE>Bullet_470NitroExpress_HE</Ammo_470NitroExpress_HE>
 		<Ammo_470NitroExpress_Sabot>Bullet_470NitroExpress_Sabot</Ammo_470NitroExpress_Sabot>		
     </ammoTypes>
-		<similarTo>AmmoSet_RifleMagnum</similarTo>
+    <similarTo>AmmoSet_RifleMagnum</similarTo>
   </CombatExtended.AmmoSetDef>
   
   <!-- ==================== Ammo ========================== -->
@@ -48,7 +48,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.24</MarketValue>
+      <MarketValue>0.26</MarketValue>
     </statBases>
   	<ammoClass>FullMetalJacket</ammoClass>
     <cookOffProjectile>Bullet_470NitroExpress_FMJ</cookOffProjectile>
@@ -62,7 +62,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.24</MarketValue>
+			<MarketValue>0.26</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_470NitroExpress_AP</cookOffProjectile>
@@ -76,7 +76,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.34</MarketValue>
+      <MarketValue>0.39</MarketValue>
     </statBases>
     <ammoClass>IncendiaryAP</ammoClass>
     <cookOffProjectile>Bullet_470NitroExpress_Incendiary</cookOffProjectile>
@@ -84,13 +84,13 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo470NitroExpressBase">
     <defName>Ammo_470NitroExpress_HE</defName>
-    <label>.470 Nitro Express cartridge (HE)</label>
+    <label>.470 Nitro Express cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.57</MarketValue>
+      <MarketValue>0.62</MarketValue>
     </statBases>
     <ammoClass>ExplosiveAP</ammoClass>
     <cookOffProjectile>Bullet_470NitroExpress_HE</cookOffProjectile>
@@ -104,7 +104,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.29</MarketValue>
+      <MarketValue>0.3</MarketValue>
 	  <Mass>0.046</Mass>
     </statBases>
     <ammoClass>Sabot</ammoClass>
@@ -163,7 +163,7 @@
 	  
 	  <ThingDef ParentName="Base470NitroExpressBullet">
 		<defName>Bullet_470NitroExpress_HE</defName>
-		<label>.470 Nitro Express bullet (HE)</label>
+		<label>.470 Nitro Express bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>29</damageAmountBase>
 		  <armorPenetrationSharp>11</armorPenetrationSharp>
@@ -192,8 +192,8 @@
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_470NitroExpress_FMJ</defName>
-    <label>make .470 Nitro Express (FMJ) cartridge x350</label>
-    <description>Craft 500 .470 Nitro Express (FMJ) cartridges.</description>
+    <label>make .470 Nitro Express (FMJ) cartridge x200</label>
+    <description>Craft 200 .470 Nitro Express (FMJ) cartridges.</description>
     <jobString>Making .470 Nitro Express (FMJ) cartridges.</jobString>
     <ingredients>
       <li>
@@ -202,7 +202,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>60</count>
+        <count>26</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -211,15 +211,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_470NitroExpress_FMJ>500</Ammo_470NitroExpress_FMJ>
+      <Ammo_470NitroExpress_FMJ>200</Ammo_470NitroExpress_FMJ>
     </products>
-    <workAmount>6000</workAmount>
+    <workAmount>2600</workAmount>
   </RecipeDef>
 
  	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_470NitroExpress_AP</defName>
-		<label>make .470 Nitro Express (AP) cartridge x500</label>
-		<description>Craft 500 .470 Nitro Express (AP) cartridges.</description>
+		<label>make .470 Nitro Express (AP) cartridge x200</label>
+		<description>Craft 200 .470 Nitro Express (AP) cartridges.</description>
 		<jobString>Making .470 Nitro Express (AP) cartridges.</jobString>
 		<ingredients>
 			<li>
@@ -228,7 +228,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>60</count>
+				<count>26</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -237,15 +237,15 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_470NitroExpress_AP>500</Ammo_470NitroExpress_AP>
+			<Ammo_470NitroExpress_AP>200</Ammo_470NitroExpress_AP>
 		</products>
-    <workAmount>6000</workAmount>		
+    <workAmount>3120</workAmount>		
 	</RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_470NitroExpress_Incendiary</defName>
-    <label>make .470 Nitro Express (AP-I) cartridge x500</label>
-    <description>Craft 500 .470 Nitro Express (AP-I) cartridges.</description>
+    <label>make .470 Nitro Express (AP-I) cartridge x200</label>
+    <description>Craft 200 .470 Nitro Express (AP-I) cartridges.</description>
     <jobString>Making .470 Nitro Express (AP-I) cartridges.</jobString>
     <ingredients>
       <li>
@@ -254,7 +254,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>60</count>
+        <count>26</count>
       </li>
       <li>
         <filter>
@@ -262,7 +262,7 @@
             <li>Prometheum</li>
           </thingDefs>
         </filter>
-        <count>8</count>
+        <count>4</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -272,16 +272,16 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_470NitroExpress_Incendiary>500</Ammo_470NitroExpress_Incendiary>
+      <Ammo_470NitroExpress_Incendiary>200</Ammo_470NitroExpress_Incendiary>
     </products>
-    <workAmount>9200</workAmount>
+    <workAmount>4200</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_470NitroExpress_HE</defName>
-    <label>make .470 Nitro Express (HE) cartridge x500</label>
-    <description>Craft 500 .470 Nitro Express (HE) cartridges.</description>
-    <jobString>Making .470 Nitro Express (HE) cartridges.</jobString>
+    <label>make .470 Nitro Express (AP-HE) cartridge x200</label>
+    <description>Craft 200 .470 Nitro Express (AP-HE) cartridges.</description>
+    <jobString>Making .470 Nitro Express (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -289,7 +289,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>60</count>
+        <count>26</count>
       </li>
       <li>
         <filter>
@@ -297,7 +297,7 @@
             <li>FSX</li>
           </thingDefs>
         </filter>
-        <count>16</count>
+        <count>7</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -307,15 +307,15 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_470NitroExpress_HE>500</Ammo_470NitroExpress_HE>
+      <Ammo_470NitroExpress_HE>200</Ammo_470NitroExpress_HE>
     </products>
-    <workAmount>12400</workAmount>
+    <workAmount>5400</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_470NitroExpress_Sabot</defName>
-    <label>make .470 Nitro Express (Sabot) cartridge x500</label>
-    <description>Craft 500 .470 Nitro Express (Sabot) cartridges.</description>
+    <label>make .470 Nitro Express (Sabot) cartridge x200</label>
+    <description>Craft 200 .470 Nitro Express (Sabot) cartridges.</description>
     <jobString>Making .470 Nitro Express (Sabot) cartridges.</jobString>
     <ingredients>
       <li>
@@ -324,7 +324,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>28</count>
+        <count>12</count>
       </li>
       <li>
         <filter>
@@ -332,7 +332,7 @@
             <li>Uranium</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>4</count>
       </li>
       <li>
         <filter>
@@ -340,7 +340,7 @@
             <li>Chemfuel</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>4</count>
       </li>		  
     </ingredients>
     <fixedIngredientFilter>
@@ -351,9 +351,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_470NitroExpress_Sabot>500</Ammo_470NitroExpress_Sabot>
+      <Ammo_470NitroExpress_Sabot>200</Ammo_470NitroExpress_Sabot>
     </products>
-    <workAmount>8800</workAmount>
+    <workAmount>3600</workAmount>
   </RecipeDef>
   
 </Defs>

@@ -20,11 +20,20 @@ namespace CombatExtended
             CELogger.Message($"pawn: {pawn}. t: {t}. forced: {forced}");
             Building_Turret turret = t as Building_Turret;
 
-	    
 
-            if (!((turret as Building_TurretGunCE)?.Active ?? true)) return 1f;
-            if (turret.GetAmmo()?.EmptyMagazine ?? false) return 9f;
-            if (turret.GetMannable()==null) return 5f;
+
+            if (!((turret as Building_TurretGunCE)?.Active ?? true))
+            {
+                return 1f;
+            }
+            if (turret.GetAmmo()?.EmptyMagazine ?? false)
+            {
+                return 9f;
+            }
+            if (turret.GetMannable() == null)
+            {
+                return 5f;
+            }
             return 1f;
         }
 
@@ -61,19 +70,19 @@ namespace CombatExtended
         /// <param name="t">Can be non-turret</param>
         /// <param name="forced">Generally not true</param>
         /// <returns></returns>
-        
+
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             // Should never happen anymore, as only BuildingTurrets should be returned from PotentialWorkThingsGlobal
-	    if (!(t is Building_Turret turret))
-	    {
+            if (!(t is Building_Turret turret))
+            {
                 return false;
             }
-            
+
             var priority = GetThingPriority(pawn, t, forced);
             CELogger.Message($"Priority check completed. Got {priority}");
 
-	        var ammo = turret.GetAmmo();
+            var ammo = turret.GetAmmo();
             CELogger.Message($"Turret uses ammo? {ammo?.UseAmmo}");
             if (!turret.GetReloadable())
             {
@@ -91,7 +100,7 @@ namespace CombatExtended
         //      - !ShouldSkip(pawn, false)
         //      - MissingRequiredCapacity(pawn) == null
         // - !t.IsForbidden(pawn)
-        // - this.PotentialWorkThingRequest.Accepts(t), 
+        // - this.PotentialWorkThingRequest.Accepts(t),
         /// <summary>
         /// Called after HasJobOnThing by WorkGiver_Scanner, or by Building_TurretGunCE when turret tryReload with manningPawn
         /// </summary>

@@ -9,15 +9,15 @@ using Verse;
 namespace CombatExtended
 {
     public class AttachmentLink
-    {        
+    {
         public AttachmentDef attachment;
         public Vector2 drawScale = Vector2.one;
-        public Vector2 drawOffset = Vector2.zero;        
+        public Vector2 drawOffset = Vector2.zero;
 
         public List<StatModifier> statOffsets;
         public List<StatModifier> statMultipliers;
-        public List<StatModifier> statReplacers;        
-      
+        public List<StatModifier> statReplacers;
+
         private WeaponPlatformDef parent;
 
         public Mesh meshTop;
@@ -80,7 +80,9 @@ namespace CombatExtended
             get
             {
                 if (_UIAttachmentTex == null)
+                {
                     _UIAttachmentTex = (Texture2D)AttachmentMat.mainTexture;
+                }
                 return _UIAttachmentTex;
             }
         }
@@ -91,10 +93,12 @@ namespace CombatExtended
             get
             {
                 if (_UIOutlineTex == null)
-                    _UIOutlineTex = (Texture2D)OutlineMat.mainTexture;                
+                {
+                    _UIOutlineTex = (Texture2D)OutlineMat.mainTexture;
+                }
                 return _UIOutlineTex;
             }
-        }        
+        }
 
         /// <summary>
         /// Used to prepare and update the meshs used in rendering so we can apply both scaling and offsets at the level of vertices.
@@ -103,11 +107,11 @@ namespace CombatExtended
         /// <param name="parent"></param>
         public void PrepareTexture(WeaponPlatformDef parent)
         {
-            this.parent = parent;                       
+            this.parent = parent;
             this.meshTop = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_TOP);
             this.meshBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT);
             this.meshFlipTop = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_TOP, true);
-            this.meshFlipBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT, true);          
+            this.meshFlipBot = CE_MeshMaker.NewPlaneMesh(offset: this.drawOffset, scale: this.drawScale, CE_MeshMaker.DEPTH_BOT, true);
         }
 
         /// <summary>
@@ -124,13 +128,13 @@ namespace CombatExtended
         //
         // Put the code below in PrepareTexture
         //
-        // attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);                       
+        // attachmentMat = new Material(attachment.attachmentGraphicData.Graphic.MatSingle);
         // attachmentMat.mainTextureOffset = drawOffset;
-        // attachmentMat.mainTextureScale = new Vector2(2f - drawScale, 2f -  drawScale);            
+        // attachmentMat.mainTextureScale = new Vector2(2f - drawScale, 2f -  drawScale);
         //
         // if (HasOutline)
-        // {                
-        //    outlineMat = new Material(attachment.outlineGraphicData.Graphic.MatSingle);                
+        // {
+        //    outlineMat = new Material(attachment.outlineGraphicData.Graphic.MatSingle);
         //    outlineMat.mainTextureOffset = drawOffset;
         //    outlineMat.mainTextureScale = new Vector2(2f -  drawScale, 2f - drawScale);                ;
         // }
@@ -140,10 +144,10 @@ namespace CombatExtended
         // private static readonly Color zeros = new Color(0f, 0f, 0f, 0f);
         //
         // private static Texture2D LoadAndScale(string path, float scale)
-        // {                        
+        // {
         //    Texture2D scaled = LoadTexture(path);
         //    Texture2D tex = new Texture2D(scaled.width, scaled.height, TextureFormat.Alpha8, mipChain: true);
-        //    scaled = ScaleTexture(scaled, (int)(scaled.width * scale), (int)(scaled.height * scale));            
+        //    scaled = ScaleTexture(scaled, (int)(scaled.width * scale), (int)(scaled.height * scale));
         //    int iMax = (int)Math.Min(tex.width, scaled.width);
         //    int jMax = (int)Math.Min(tex.height, scaled.height);
         //    for (int i = 0; i < tex.width; i++)
@@ -152,11 +156,11 @@ namespace CombatExtended
         //            tex.SetPixel(i, j, zeros);
         //    }
         //    for (int i = 0;i < iMax; i++)
-        //    {                
-        //        for (int j = 0; j < jMax; j++)                                   
-        //            tex.SetPixel(i, j, scaled.GetPixel(i, j));                
+        //    {
+        //        for (int j = 0; j < jMax; j++)
+        //            tex.SetPixel(i, j, scaled.GetPixel(i, j));
         //    }
-        //    tex.Compress(highQuality: true);            
+        //    tex.Compress(highQuality: true);
         //    tex.Apply(updateMipmaps: true, makeNoLongerReadable: false);
         //    return tex;
         // }
@@ -190,7 +194,7 @@ namespace CombatExtended
         //        byte[] data = File.ReadAllBytes(path);
         //        texture2D = new Texture2D(2, 2, TextureFormat.Alpha8, mipChain: true);
         //        texture2D.LoadImage(data);
-        //        texture2D.Compress(highQuality: true);                
+        //        texture2D.Compress(highQuality: true);
         //        texture2D.Apply(updateMipmaps: true, makeNoLongerReadable: false);
         //    }
         //    return texture2D;

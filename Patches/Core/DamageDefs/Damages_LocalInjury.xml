@@ -5,14 +5,14 @@
 
 <!--
 	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/DamageDef[workerClass = "DamageWorker_AddInjury"]/workerClass</xpath>
+  	<xpath>Defs/DamageDef[workerClass="DamageWorker_AddInjury"]/workerClass</xpath>
   	<value>
       <workerClass>CombatExtended.DamageWorker_AddInjuryCE</workerClass>
   	</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/DamageDef[workerClass = "DamageWorker_Flame"]/workerClass</xpath>
+  	<xpath>Defs/DamageDef[workerClass="DamageWorker_Flame"]/workerClass</xpath>
   	<value>
       <workerClass>CombatExtended.DamageWorker_FlameCE</workerClass>
   	</value>
@@ -188,7 +188,7 @@
 <!-- ========== Patch-out vanilla melee stun mechanic from blunt damage ========== -->
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>/Defs/DamageDef[@Name="BluntBase"]/*[self::bluntStunDuration or self::bluntStunChancePerDamagePctOfCorePartToHeadCurve or self::bluntStunChancePerDamagePctOfCorePartToBodyCurve]</xpath>
+		<xpath>Defs/DamageDef[@Name="BluntBase"]/*[self::bluntStunDuration or self::bluntStunChancePerDamagePctOfCorePartToHeadCurve or self::bluntStunChancePerDamagePctOfCorePartToBodyCurve]</xpath>
 	</Operation>	
 
   <!-- ========== Add electric armor to EMP damage ========== -->
@@ -251,5 +251,12 @@
     </value>
   </Operation>
 	
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DamageDef[defName="RangedStab"]</xpath>
+    <value>
+      <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    </value>
+  </Operation>
+  
 </Patch>
 

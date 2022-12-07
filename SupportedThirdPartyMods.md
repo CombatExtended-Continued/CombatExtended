@@ -17,7 +17,6 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
 [FSF] More Psycast Powers   |
-[Fuu] Uncompromising Tribal Faction |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
@@ -52,10 +51,11 @@ Mod |
 [RH] Faction: UAC	|
 [RH] Faction: UAC Kit	|
 [RH] Faction: Umbra Company	|
-[RH] Faction: VOID	|
 [RH] Faction: War Mongrels	|
+[RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
+[RH2] Faction: V.O.I.D.	|
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |
 [RH2] Rimmu-Nation² - Weapons	|
@@ -72,12 +72,14 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[XND] Vanilla-Friendly Animal Surgery (Continued)
 A Dog Said...	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
 Alpha Animals |
 Alpha Biomes |
+Alpha Genes |
 Alpha Ships |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
@@ -103,6 +105,7 @@ Apex: Rimworld Legends (Continued)  |
 Apparello 2	|
 Arachne Race	|
 Archotech Expanded  |
+Archotech Expanded Prosthetics  |
 Archotech PowerArmor    |
 Archotech+ (Continued)  |
 Arasaka Corporation [1.3]	|
@@ -116,6 +119,9 @@ Bastyon  |
 Beast Man Tribes  |
 Beeralope Squad	|
 Better Infestations	|
+Biotech Expansion - Mammalia  |
+Biotech Expansion - Mythic  |
+Biotech Prestige Mechlord Armor |
 Birds Beyond: Temperate Forest  |
 Black Widows	|
 Bori Race	|
@@ -195,7 +201,6 @@ Forgelings race	|
 Forgotten Realms - Lizardfolk	|
 Forgotten Realms - Minotaur	|
 Forsakens	|
-Forsakens Fauna |  
 Fort's Firefighter gadget   |
 Fortifications - Industrial |
 Frontline Collection  |
@@ -206,12 +211,7 @@ Frontline - Trenches (Continued)    |
 Frontline - Additional Guns for Trenches (Continued)    |
 Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
-Genetic Rim |
 Gimmicks    |
-Genetic Rim Alpha Animal Patch |
-GeneticRim Cosmic Horrors Patch |
-GeneticRim Dinosauria Patch |
-GeneticRim Megafauna Patch |
 Gimmicks (Continued)    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
@@ -228,6 +228,7 @@ Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
+Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -339,6 +340,7 @@ Redcoat Apparel	|
 Reinforced Mechanoids: Tyrikan-Line |
 Remote Detonator	|
 Revia Race |
+Revia Race - biotech |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
@@ -385,6 +387,7 @@ Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 Stalingrad – Uniforms   |
+Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
@@ -412,6 +415,10 @@ Ultratech: Altered Carbon Remastered |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
+Vanilla Animals Expanded - Caves |
+Vanilla Animals Expanded - Endangered |
+Vanilla Animals Expanded - Royal Animals |
+Vanilla Animals Expanded - Vehicles |
 Vanilla Apparel Expanded	|
 Vanilla Apparel Expanded — Accessories  |
 Vanilla Armour Expanded	|
@@ -434,6 +441,8 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Races Expanded - Hussar  |
+Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
@@ -446,9 +455,9 @@ Vanilla Weapons Expanded - Laser |
 Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
-Vanilla-Friendly Animal Surgery	|
 Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
+Vanilla XCOM Weapons  |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |

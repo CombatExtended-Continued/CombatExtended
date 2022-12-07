@@ -13,7 +13,7 @@ namespace CombatExtended
     {
         static AmmoGeneralizer()
         {
-            /* 
+            /*
              * Generic ammosetdefs need projectiles for the code to work, but what the projectiles are doesn't matter
              * Also generic ammosetdefs need their own recipes for ammo, the similarTo caliber's will have their recipes hidden
              */
@@ -54,9 +54,9 @@ namespace CombatExtended
                         }
 
                         link.ammo.AmmoSetDefs.Add(ammoSource);
-                        
 
-                        
+
+
                     }
 
                     amset.label = ammoSource.label;
@@ -65,10 +65,10 @@ namespace CombatExtended
                 }
 
                 var toFixScenarios = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.scenario.AllParts.Any(y => y.def == ScenPartDefOf.ScatterThingsAnywhere | y.def == ScenPartDefOf.ScatterThingsNearPlayerStart | y.def == ScenPartDefOf.StartingThing_Defined));
-                foreach(ScenarioDef def in toFixScenarios)
+                foreach (ScenarioDef def in toFixScenarios)
                 {
                     var PartAmmos = def.scenario.AllParts.Where(y => y is ScenPart_StartingThing_Defined
-                    && ((ScenPart_StartingThing_Defined)y).thingDef is AmmoDef).Select(x => x as ScenPart_StartingThing_Defined);
+                                    && ((ScenPart_StartingThing_Defined)y).thingDef is AmmoDef).Select(x => x as ScenPart_StartingThing_Defined);
 
                     foreach (ScenPart_StartingThing_Defined scene in PartAmmos)
                     {
@@ -76,12 +76,12 @@ namespace CombatExtended
 
                         var ammoreplaced = ammodef.AmmoSetDefs?.FirstOrFallback()?.ammoTypes?.Find(x => x.ammo.ammoClass == ammodef.ammoClass)?.ammo ?? null;
 
-                        if(ammoreplaced != null)
+                        if (ammoreplaced != null)
                         {
                             scene.thingDef = ammoreplaced;
                         }
 
-                        
+
                     }
                 }
 
@@ -89,7 +89,7 @@ namespace CombatExtended
 
                 foreach (var def in toFixComps)
                 {
-                    
+
                     var compProps = def.GetCompProperties<CompProperties_Reloadable>();
                     if (compProps.ammoDef is AmmoDef am)
                     {
@@ -124,7 +124,7 @@ namespace CombatExtended
                 }
             }
 
-           
+
         }
     }
 }

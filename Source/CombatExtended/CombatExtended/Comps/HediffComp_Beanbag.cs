@@ -12,7 +12,9 @@ namespace CombatExtended
             base.CompPostPostAdd(dinfo);
 
             if (parent.pawn.RaceProps.IsMechanoid)
+            {
                 return;
+            }
 
             var severity = Props.BaseSeverityPerDamage * parent.Severity / Mathf.Pow(parent.pawn.HealthScale, 2);
             HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.MuscleSpasms, severity);

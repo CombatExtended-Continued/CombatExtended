@@ -9,23 +9,23 @@ namespace CombatExtended
         {
             var pawn = parent as Pawn;
             var equip = pawn != null
-                ? pawn.equipment.Primary
-                : null;
+                        ? pawn.equipment.Primary
+                        : null;
 
-            if(
-                ( equip != null )&&
-                ( !equip.AllComps.NullOrEmpty() )
+            if (
+                (equip != null) &&
+                (!equip.AllComps.NullOrEmpty())
             )
             {
-                foreach( var comp in equip.AllComps )
+                foreach (var comp in equip.AllComps)
                 {
                     var gizmoGiver = comp as CompRangedGizmoGiver;
-                    if(
-                        ( gizmoGiver != null )&&
-                        ( gizmoGiver.isRangedGiver )
+                    if (
+                        (gizmoGiver != null) &&
+                        (gizmoGiver.isRangedGiver)
                     )
                     {
-                        foreach( var gizmo in gizmoGiver.CompGetGizmosExtra() )
+                        foreach (var gizmo in gizmoGiver.CompGetGizmosExtra())
                         {
                             yield return gizmo;
                         }

@@ -12,7 +12,10 @@ namespace CombatExtended.Lasers
 
         public override void UpdateState()
         {
-            if (turret == null) return;
+            if (turret == null)
+            {
+                return;
+            }
 
             switch (state)
             {

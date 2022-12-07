@@ -13,7 +13,7 @@ using Jaxxa.EnhancedDevelopment.Shields.Shields;
 
 namespace CombatExtended.Compatibility
 {
-    class EDShields: IPatch
+    class EDShields : IPatch
     {
         public static SoundDef HitSoundDef = null;
 
@@ -38,10 +38,11 @@ namespace CombatExtended.Compatibility
             Type t = Type.GetType("Jaxxa.EnhancedDevelopment.Shields.Shields.ShieldManagerMapComp, ED-Shields");
             HitSoundDef = (SoundDef)t.GetField("HitSoundDef", BindingFlags.Static | BindingFlags.Public).GetValue(null);
         }
-	public IEnumerable<string> GetCompatList() {
-	    yield break;
-	}
-	public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
+        public IEnumerable<string> GetCompatList()
+        {
+            yield break;
+        }
+        public static bool CheckForCollisionCallback(ProjectileCE projectile, IntVec3 cell, Thing launcher)
         {
             /* Check if an active shield can block this projectile, we don't check if the projectile flies overhead, as those projectiles don't call this function
              */

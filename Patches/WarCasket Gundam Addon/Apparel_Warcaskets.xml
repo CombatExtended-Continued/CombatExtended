@@ -103,7 +103,17 @@
 				<NightVisionEfficiency_Apparel>0.5</NightVisionEfficiency_Apparel>
 			</value>
 		</li>
-  
+
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
 		<li Class="PatchOperationAdd">
 			<xpath>/Defs/VFEPirates.WarcasketDef[defName="VFEP_WarcasketHelmet_Barbatos"]/equippedStatOffsets</xpath>
 			<value>
