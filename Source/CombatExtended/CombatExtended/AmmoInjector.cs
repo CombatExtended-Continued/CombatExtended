@@ -238,7 +238,6 @@ namespace CombatExtended
                                         }
                                     }
                                 }
-                                
                                 ToggleRecipeOnBench(recipe, bench, ammoEnabled);
                                 if (benchVFE != null)
                                 {
