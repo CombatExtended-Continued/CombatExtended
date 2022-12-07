@@ -196,6 +196,7 @@ namespace CombatExtended
                             foreach (string curTag in craftingTags)
                             {
                                 ThingDef bench;
+                                ThingDef benchVFE = null;
                                 if (curTag == enableCraftingTag)
                                 {
                                     bench = CE_ThingDefOf.AmmoBench;
@@ -215,8 +216,34 @@ namespace CombatExtended
                                         Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
                                         continue;
                                     }
+                                    if (ModLister.HasActiveModWithName("Vanilla Furniture Expanded - Production"))
+                                    {
+                                        if (curTag != "CE_AutoEnableCrafting_FabricationBench" && curTag != "CE_AutoEnableCrafting_CraftingSpot")
+                                        {
+                                            var benchNameVFE = "VFE_" + curTag.Remove(0, enableCraftingTag.Length + 1) + "Large";
+                                            if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
+                                            {
+                                                benchNameVFE = "VFE_TableSmithyLarge";
+                                            }
+                                            if (curTag == "CE_AutoEnableCrafting_DrugLab")
+                                            {
+                                                benchNameVFE = "VFE_TableDrugLabElectric";
+                                            }
+                                            benchVFE = DefDatabase<ThingDef>.GetNamed(benchNameVFE, false);
+                                            if (benchVFE == null)
+                                            {
+                                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
+                                                continue;
+                                            }
+                                        }
+                                    }
                                 }
+                                
                                 ToggleRecipeOnBench(recipe, bench, ammoEnabled);
+                                if (benchVFE != null)
+                                {
+                                    ToggleRecipeOnBench(recipe, benchVFE, ammoEnabled);
+                                }
                                 /*
                                 // Toggle recipe
                                 if (enabled)
