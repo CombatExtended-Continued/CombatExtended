@@ -14,7 +14,7 @@ using UnityEngine;
 namespace CombatExtended.Compatibility.VehiclesCompat
 {
     [StaticConstructorOnStartup]
-    public class VehiclesCompat: IModPart
+    public class VehiclesCompat : IModPart
     {
         public Type GetSettingsType()
         {
