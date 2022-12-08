@@ -12,7 +12,7 @@ using RimWorld;
 
 namespace CombatExtended.Compatibility
 {
-    public class Vehicles: IPatch
+    public class Vehicles : IPatch
     {
         private static bool active = false;
 
