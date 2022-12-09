@@ -360,6 +360,7 @@ Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
+RimFantasy - Medieval Overhaul Edition   |
 RimHammer40k - Dreadnought |
 RimSec Security |
 Rimsenal - Core |
