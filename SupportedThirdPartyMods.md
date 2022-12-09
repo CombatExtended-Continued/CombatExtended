@@ -165,6 +165,7 @@ Erin's Au Ra    |
 Erin's Azaphrae |
 Erin's Chocobos |
 Erin's Critter Collection |
+Erin's Final Fantasy Races |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
