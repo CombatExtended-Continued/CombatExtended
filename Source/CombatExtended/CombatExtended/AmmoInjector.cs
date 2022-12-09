@@ -23,7 +23,7 @@ namespace CombatExtended
     {
         public static readonly FieldInfo _allRecipesCached = typeof(ThingDef).GetField("allRecipesCached", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public const string destroyWithAmmoDisabledTag = "CE_Ammo";               // The trade tag which automatically deleted this ammo with the ammo system disabled
+        public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
         // these ammo classes are disabled when simplified ammo is turned on
