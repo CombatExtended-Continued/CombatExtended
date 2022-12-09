@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace CombatExtended
 {
-    static class CE_Utility
+    public static class CE_Utility
     {
         #region Camera
 

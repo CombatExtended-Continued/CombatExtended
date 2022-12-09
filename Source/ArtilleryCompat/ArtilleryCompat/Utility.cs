@@ -14,36 +14,9 @@ namespace CombatExtended.Compatibility.Artillery
             return artilleryStrikes.Where(s => (s.shellDef.projectile?.damageDef?.harmsHealth ?? false) || ((s.shellDef is AmmoDef) && ((AmmoDef)s.shellDef).detonateProjectile.projectile.damageDef.harmsHealth)).ToList();
         }
 
-        public static ThingDef GetProjectile(this ThingDef thingDef)
-        {
-            if (thingDef.projectile != null)
-            {
-                return thingDef;
-            }
-            if (thingDef is AmmoDef ammoDef)
-            {
-                ThingDef user;
-                if ((user = ammoDef.Users.FirstOrFallback(null)) != null)
-                {
-                    CompProperties_AmmoUser props = user.GetCompProperties<CompProperties_AmmoUser>();
-                    AmmoSetDef asd = props.ammoSet;
-                    AmmoLink ammoLink;
-                    if ((ammoLink = asd.ammoTypes.FirstOrFallback(null)) != null)
-                    {
-                        return ammoLink.projectile;
-                    }
-                }
-                else
-                {
-                    return ammoDef.detonateProjectile;
-                }
-            }
-            return thingDef;
-        }
-
         public static ProjectileProperties GetProjectileProperties(this ThingDef thingDef)
         {
-            return GetProjectile(thingDef)?.projectile;
+            return thingDef.GetProjectile()?.projectile;
         }
 
         public static void ArtilleryTick(ArtilleryComp artilleryComp, ThingDef shellDef)
