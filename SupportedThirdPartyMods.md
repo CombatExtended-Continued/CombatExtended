@@ -157,14 +157,16 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 ED-Shields	|
-Edge of Descension  |
+Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
 Erin's Critter Collection |
+Erin's Final Fantasy Races |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
@@ -267,6 +269,7 @@ Mechanoid Bench 3   |
 Mechanoid Master Blaster (Continued)    |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
@@ -359,6 +362,7 @@ Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
+RimFantasy - Medieval Overhaul Edition   |
 RimHammer40k - Dreadnought |
 RimSec Security |
 Rimsenal - Core |
