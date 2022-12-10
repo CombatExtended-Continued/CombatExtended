@@ -19,7 +19,7 @@ namespace CombatExtended.Compatibility
                         return lint;
                     }
 
-                    if (UnityEngine.Random.Range(0, 1001) == 1000)
+                    if (UnityEngine.Random.Range(0, 1000) == 1000)
                     {
                         GenExplosionCE.DoExplosion(caster.Position, caster.Map, 2f, DamageDefOf.Bomb, null, 5, 0f, SoundDefOf.Psycast_Skip_Exit, null, null, null, null, 0, 0, null, true, null, 0f, 0, 0f, false);
                     }
