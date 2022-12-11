@@ -1,494 +1,110 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Vanilla Factions Expanded - Pirates</li>
-		</mods>
-		<match Class="PatchOperationFindMod">
-			<mods>
-				<li>Vanilla Weapons Expanded - Laser</li>
-			</mods>
-			<match Class="PatchOperationFindMod">
-				<mods>
-					<li>Vanilla Weapons Expanded - Quickdraw</li>
-				</mods>
-				<match Class="PatchOperationSequence">
-					<operations>
-						<li Class="PatchOperationConditional">
-							<xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_SalvagedLaserEradicator"]</xpath>
-							<nomatch Class="PatchOperationAdd">
-								<xpath>Defs</xpath>
-								<value>
-									<ThingDef ParentName="VFEP_BaseWarcasketGun">
-										<defName>VFEP_WarcasketGun_SalvagedLaserEradicator</defName>
-										<label>warcasket salvaged laser eradicator</label>
-										<description>A rather complicated piece of laser technology that was primarily developed as a siege weapon to generate explosions within hardened bunkers. In order to miniaturize an emplacement weapon without needing a massive power unit, the shoulder-mounted laser fires in irregular pulses with a frequency between kHz and MHz. The results are hard to dispute as it can cause a devastating blast, however it has a limited effective range and a long warm-up period to charge the capacitor banks.</description>
-										<techLevel>Ultra</techLevel>
-										<graphicData>
-											<texPath>Things/Item/Weapons/WarcasketSalvagedLaserEradicator</texPath>
-											<graphicClass>Graphic_Single</graphicClass>
-										</graphicData>
-										<soundInteract>VWE_Interact_UnstableLaserGun</soundInteract>
-										<statBases>
-											<MarketValue>4100</MarketValue>
-											<WorkToMake>125000</WorkToMake>
-											<Mass>40</Mass>
-											<AccuracyTouch>0.78</AccuracyTouch>
-											<AccuracyShort>0.72</AccuracyShort>
-											<AccuracyMedium>0.70</AccuracyMedium>
-											<AccuracyLong>0.64</AccuracyLong>
-											<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
-										</statBases>
-										<costList>
-											<Steel>100</Steel>
-											<Plasteel>80</Plasteel>
-											<ComponentSpacer>16</ComponentSpacer>
-										</costList>
-										<weaponTags>
-											<li>WarcasketVeteran</li>
-										</weaponTags>
-										<verbs>
-											<li>
-												<verbClass>Verb_Shoot</verbClass>
-												<hasStandardCommand>true</hasStandardCommand>
-												<defaultProjectile>VWEP_Bullet_WarcasketSalvagedLaserEradicator</defaultProjectile>
-												<warmupTime>4.4</warmupTime>
-												<range>21.9</range>
-												<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-												<burstShotCount>1</burstShotCount>
-												<soundCast>VWE_UnstableLaserShot_Heavy</soundCast>
-												<soundCastTail>GunTail_Heavy</soundCastTail>
-												<muzzleFlashScale>14</muzzleFlashScale>
-											</li>
-										</verbs>
-										<tools>
-											<li>
-												<label>barrel</label>
-												<capacities>
-													<li>Blunt</li>
-												</capacities>
-												<power>11.7</power>
-												<cooldownTime>2.6</cooldownTime>
-											</li>
-										</tools>
-										<comps>
-											<li Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor">
-												<UiIconPath>UI/EnableWarmup/EnableWarmup</UiIconPath>
-												<WarmUpReductionPerShot>2</WarmUpReductionPerShot>
-												<Overheats>true</Overheats>
-												<OverheatDestroys>false</OverheatDestroys>
-												<OverheatBlastDamageDef>Burn</OverheatBlastDamageDef>
-												<OverheatBlastExtraDamage>8</OverheatBlastExtraDamage>
-												<OverheatBlastRadius>2</OverheatBlastRadius>
-												<OverheatChance>0.1</OverheatChance>
-												<OverheatMoteThrown>HeatGlow</OverheatMoteThrown>
-												<OverheatMoteSize>1</OverheatMoteSize>
-											</li>
-										</comps>
-										<modExtensions>
-											<li Class="VFECore.FloorGraphicExtension">
-												<graphicData>
-													<graphicClass>Graphic_Single</graphicClass>
-													<texPath>Things/Item/WeaponsBoxed/WarcasketSalvagedLaserEradicator_OnFloor</texPath>
-													<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
-													<drawSize>1</drawSize>
-												</graphicData>
-											</li>
-											<li Class="VFECore.ThingDefExtension">
-												<weaponCarryDrawOffsets>
-													<north>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</north>
-													<east>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</east>
-													<south>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</south>
-													<west>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</west>
-												</weaponCarryDrawOffsets>
-											</li>
-										</modExtensions>
-									</ThingDef>
-									<ThingDef ParentName="VFEP_WarcasketWeaponBoxBase">
-										<defName>VFEP_Box_SalvagedLaserEradicator</defName>
-										<label>warcasket salvaged laser eradicator</label>
-										<description>A rather complicated piece of laser technology that was primarily developed as a siege weapon to generate explosions within hardened bunkers. In order to miniaturize an emplacement weapon without needing a massive power unit, the shoulder-mounted laser fires in irregular pulses with a frequency between kHz and MHz. The results are hard to dispute as it can cause a devastating blast, however it has a limited effective range and a long warm-up period to charge the capacitor banks.</description>
-										<graphicData>
-											<texPath>Things/Item/WeaponsBoxed/WarcasketSalvagedLaserEradicator_OnFloor</texPath>
-										</graphicData>
-										<costList>
-											<Steel>100</Steel>
-											<Plasteel>80</Plasteel>
-											<ComponentSpacer>16</ComponentSpacer>
-										</costList>
-										<statBases>
-											<MarketValue>4100</MarketValue>
-											<Mass>40</Mass>
-											<WorkToBuild>125000</WorkToBuild>
-										</statBases>
-										<researchPrerequisites>
-											<li>VWE_LaserWeapons</li>
-										</researchPrerequisites>
-										<comps>
-											<li Class="VFEPirates.CompProperties_WeaponBox">
-												<weaponToEquip>VFEP_WarcasketGun_SalvagedLaserEradicator</weaponToEquip>
-											</li>
-										</comps>
-									</ThingDef>
-									<ThingDef ParentName="VWEL_Bullet_LaserGeneric" Class="VanillaWeaponsExpandedLaser.LaserBeamDef">
-										<defName>VWEP_Bullet_WarcasketSalvagedLaserEradicator</defName>
-										<label>unstable laser shot</label>
-										<description>An unstable laser beam.</description>
-										<textures>
-											<li>Things/Projectile/Shot_SalvagedLaserSniperRifle</li>
-										</textures>
-										<seam>0.1</seam>
-										<causefireChance>0.2</causefireChance>
-										<beamWidth>1.5</beamWidth>
-										<lifetime>120</lifetime>
-										<projectile>
-											<damageDef>Bomb</damageDef>
-											<explosionRadius>2.9</explosionRadius>
-											<damageAmountBase>40</damageAmountBase>
-											<armorPenetrationBase>0.5</armorPenetrationBase>
-											<stoppingPower>1</stoppingPower>
-										</projectile>
-									</ThingDef>
-								</value>
-							</nomatch>
-						</li>
-						<li Class="PatchOperationConditional">
-							<xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_LaserBlaster"]</xpath>
-							<nomatch Class="PatchOperationAdd">
-								<xpath>Defs</xpath>
-								<value>
-									<!-- laser blaster -->
-									<ThingDef ParentName="VFEP_BaseWarcasketGun">
-										<defName>VFEP_WarcasketGun_LaserBlaster</defName>
-										<label>warcasket laser blaster</label>
-										<description>An enlarged laser weapon, combining both modern and antique methods into a compact package. Taking advantage of a greater weight tolerance, this system includes a revolver cylinder using advanced battery cells instead of cartridges. This allows the weapon to fire more powerful shots at a slower warmup reduction, meaning safer sustained fire for the operator.</description>
-										<techLevel>Ultra</techLevel>
-										<graphicData>
-											<texPath>Things/Item/Weapons/WarcasketLaserBolter</texPath>
-											<graphicClass>Graphic_Single</graphicClass>
-										</graphicData>
-										<soundInteract>VWE_Interact_LaserGun</soundInteract>
-										<statBases>
-											<MarketValue>3200</MarketValue>
-											<WorkToMake>100000</WorkToMake>
-											<Mass>30</Mass>
-											<AccuracyTouch>0.70</AccuracyTouch>
-											<AccuracyShort>0.83</AccuracyShort>
-											<AccuracyMedium>0.86</AccuracyMedium>
-											<AccuracyLong>0.72</AccuracyLong>
-											<RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
-										</statBases>
-										<costList>
-											<Steel>75</Steel>
-											<Plasteel>100</Plasteel>
-											<ComponentSpacer>8</ComponentSpacer>
-										</costList>
-										<weaponTags>
-											<li>WarcasketVeteran</li>
-										</weaponTags>
-										<tradeTags>
-											<li>VFEP_WarcasketWeaponExotic</li>
-										</tradeTags>
-										<thingSetMakerTags>
-											<li>RewardStandardLowFreq</li>
-										</thingSetMakerTags>
-										<verbs>
-											<li>
-												<verbClass>Verb_Shoot</verbClass>
-												<hasStandardCommand>true</hasStandardCommand>
-												<defaultProjectile>VWEL_Bullet_LaserRifle</defaultProjectile>
-												<warmupTime>2.6</warmupTime>
-												<range>24.9</range>
-												<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-												<burstShotCount>1</burstShotCount>
-												<soundCast>VWE_LaserShot_Rifle</soundCast>
-												<soundCastTail>GunTail_Heavy</soundCastTail>
-												<muzzleFlashScale>14</muzzleFlashScale>
-											</li>
-										</verbs>
-										<tools>
-											<li>
-												<label>barrel</label>
-												<capacities>
-													<li>Blunt</li>
-												</capacities>
-												<power>11.7</power>
-												<cooldownTime>2.6</cooldownTime>
-											</li>
-										</tools>
-										<comps>
-											<li Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor">
-												<UiIconPath>UI/EnableWarmup/EnableWarmup</UiIconPath>
-												<WarmUpReductionPerShot>0.225</WarmUpReductionPerShot>
-												<Overheats>true</Overheats>
-												<OverheatDestroys>false</OverheatDestroys>
-												<OverheatBlastDamageDef>Burn</OverheatBlastDamageDef>
-												<OverheatBlastExtraDamage>3</OverheatBlastExtraDamage>
-												<OverheatBlastRadius>1.5</OverheatBlastRadius>
-												<OverheatChance>0.05</OverheatChance>
-												<OverheatMoteThrown>HeatGlow</OverheatMoteThrown>
-												<OverheatMoteSize>0.5</OverheatMoteSize>
-											</li>
-										</comps>
-										<modExtensions>
-											<li Class="VFECore.FloorGraphicExtension">
-												<graphicData>
-													<graphicClass>Graphic_Single</graphicClass>
-													<texPath>Things/Item/WeaponsBoxed/WarcasketLaserBolter_OnFloor</texPath>
-													<onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
-													<drawSize>1</drawSize>
-												</graphicData>
-											</li>
-											<li Class="VFECore.ThingDefExtension">
-												<weaponCarryDrawOffsets>
-													<north>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</north>
-													<east>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</east>
-													<south>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</south>
-													<west>
-														<drawOffset>(0,0,-0.18)</drawOffset>
-													</west>
-												</weaponCarryDrawOffsets>
-											</li>
-										</modExtensions>
-									</ThingDef>
-									<ThingDef ParentName="VWEL_Bullet_LaserGeneric" Class="VanillaWeaponsExpandedLaser.LaserBeamDef">
-										<defName>VWEL_Bullet_LaserRifle</defName>
-										<label>laser shot</label>
-										<description>A focused laser beam.</description>
-										<textures>
-											<li>Things/Projectile/Shot_LaserRifle</li>
-										</textures>
-										<seam>0</seam>
-										<causefireChance>1.0</causefireChance>
-										<projectile>
-											<damageDef>Bullet</damageDef>
-											<damageAmountBase>12</damageAmountBase>
-											<armorPenetrationBase>0.60</armorPenetrationBase>
-											<stoppingPower>1.5</stoppingPower>
-										</projectile>
-									</ThingDef>
-								</value>
-							</nomatch>
-						</li>
-						<li Class="PatchOperationConditional">
-							<xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_SalvagedLaserEradicator"]</xpath>
-							<match Class="PatchOperationConditional">
-								<xpath>Defs/ThingDef[defName="VFEP_WarcasketGun_LaserBlaster"]</xpath>
-								<match Class="PatchOperationSequence">
-									<operations>
-										<li Class="PatchOperationReplace">
-											<xpath>
-												Defs/ThingDef[
-													defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or 
-													defName = "VFEP_WarcasketGun_LaserBlaster"]/tools
-											</xpath>
-											<value>
-												<tools>
-													<li Class="CombatExtended.ToolCE">
-														<label>barrel</label>
-														<capacities>
-															<li>Blunt</li>
-														</capacities>
-														<power>35</power>
-														<cooldownTime>2.44</cooldownTime>
-														<armorPenetrationBlunt>16</armorPenetrationBlunt>
-														<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-													</li>
-												</tools>
-											</value>
-										</li>
-										<li Class="PatchOperationRemove">
-											<xpath>
-												Defs/ThingDef[
-													defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or 
-													defName = "VFEP_WarcasketGun_LaserBlaster"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]
-											</xpath>
-										</li>
-										<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-											<defName>VFEP_WarcasketGun_SalvagedLaserEradicator</defName>
-											<statBases>
-												<Mass>30</Mass>
-												<Bulk>40</Bulk>
-												<SwayFactor>2.85</SwayFactor>
-												<ShotSpread>0.08</ShotSpread>
-												<SightsEfficiency>2.20</SightsEfficiency>
-												<RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
-											</statBases>
-											<Properties>
-												<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-												<hasStandardCommand>True</hasStandardCommand>
-												<defaultProjectile>Bullet_Laser_SalvagedLaserEradicatorCE</defaultProjectile>
-												<ammoConsumedPerShotCount>15</ammoConsumedPerShotCount>
-												<warmupTime>4.6</warmupTime>
-												<range>68</range>
-												<minRange>3</minRange>
-												<soundCast>Shot_TurretSniper</soundCast>
-												<soundCastTail>GunTail_Heavy</soundCastTail>
-												<muzzleFlashScale>16</muzzleFlashScale>
-											</Properties>
-											<AmmoUser>
-												<magazineSize>300</magazineSize>
-												<reloadTime>7.6</reloadTime>
-												<ammoSet>AmmoSet_SalvagedLaserEradicatorCE</ammoSet>
-											</AmmoUser>
-											<FireModes>
-												<aiAimMode>AimedShot</aiAimMode>
-											</FireModes>
-										</li>
-										<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-											<defName>VFEP_WarcasketGun_LaserBlaster</defName>
-											<statBases>
-												<Mass>20</Mass>
-												<Bulk>25</Bulk>
-												<SwayFactor>2.64</SwayFactor>
-												<ShotSpread>0.06</ShotSpread>
-												<SightsEfficiency>1</SightsEfficiency>
-												<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-											</statBases>
-											<Properties>
-												<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-												<hasStandardCommand>True</hasStandardCommand>
-												<defaultProjectile>Bullet_Laser_LaserSniperRifle</defaultProjectile>
-												<burstShotCount>25</burstShotCount>
-												<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-												<warmupTime>2</warmupTime>
-												<range>75</range>
-												<soundCast>VWE_LaserShot_Rifle</soundCast>
-												<soundCastTail>GunTail_Heavy</soundCastTail>
-												<muzzleFlashScale>9</muzzleFlashScale>
-												<recoilAmount>0.01</recoilAmount>
-												<recoilPattern>Regular</recoilPattern>
-											</Properties>
-											<AmmoUser>
-												<magazineSize>200</magazineSize>
-												<reloadTime>6</reloadTime>
-												<ammoSet>AmmoSet_LaserSniperRifle</ammoSet>
-											</AmmoUser>
-											<FireModes>
-												<aiAimMode>SuppressFire</aiAimMode>
-												<aimedBurstShotCount>10</aimedBurstShotCount>
-												<noSingleShot>true</noSingleShot>
-											</FireModes>
-										</li>
-									</operations>
-								</match>
-							</match>
-						</li>
-					</operations>
-				</match>
-				<nomatch Class="PatchOperationSequence">
-					<operations>
-						<li Class="PatchOperationReplace">
-							<xpath>
-								Defs/ThingDef[
-									defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or 
-									defName = "VFEP_WarcasketGun_LaserBlaster"]/tools
-							</xpath>
-							<value>
-								<tools>
-									<li Class="CombatExtended.ToolCE">
-										<label>barrel</label>
-										<capacities>
-											<li>Blunt</li>
-										</capacities>
-										<power>35</power>
-										<cooldownTime>2.44</cooldownTime>
-										<armorPenetrationBlunt>16</armorPenetrationBlunt>
-										<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-									</li>
-								</tools>
-							</value>
-						</li>
-						<li Class="PatchOperationRemove">
-							<xpath>
-								Defs/ThingDef[
-									defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or 
-									defName = "VFEP_WarcasketGun_LaserBlaster"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]
-							</xpath>
-						</li>
-						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-							<defName>VFEP_WarcasketGun_SalvagedLaserEradicator</defName>
-							<statBases>
-								<Mass>30</Mass>
-								<Bulk>40</Bulk>
-								<SwayFactor>2.85</SwayFactor>
-								<ShotSpread>0.08</ShotSpread>
-								<SightsEfficiency>2.20</SightsEfficiency>
-								<RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
-							</statBases>
-							<Properties>
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>True</hasStandardCommand>
-								<defaultProjectile>Bullet_Laser_SalvagedLaserEradicatorCE</defaultProjectile>
-								<ammoConsumedPerShotCount>15</ammoConsumedPerShotCount>
-								<warmupTime>4.6</warmupTime>
-								<range>68</range>
-								<minRange>3</minRange>
-								<soundCast>Shot_TurretSniper</soundCast>
-								<soundCastTail>GunTail_Heavy</soundCastTail>
-								<muzzleFlashScale>16</muzzleFlashScale>
-							</Properties>
-							<AmmoUser>
-								<magazineSize>300</magazineSize>
-								<reloadTime>7.6</reloadTime>
-								<ammoSet>AmmoSet_SalvagedLaserEradicatorCE</ammoSet>
-							</AmmoUser>
-							<FireModes>
-								<aiAimMode>AimedShot</aiAimMode>
-							</FireModes>
-						</li>
-						<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-							<defName>VFEP_WarcasketGun_LaserBlaster</defName>
-							<statBases>
-								<Mass>20</Mass>
-								<Bulk>25</Bulk>
-								<SwayFactor>2.64</SwayFactor>
-								<ShotSpread>0.06</ShotSpread>
-								<SightsEfficiency>1</SightsEfficiency>
-								<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
-							</statBases>
-							<Properties>
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>True</hasStandardCommand>
-								<defaultProjectile>Bullet_Laser_LaserSniperRifle</defaultProjectile>
-								<burstShotCount>25</burstShotCount>
-								<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
-								<warmupTime>2</warmupTime>
-								<range>75</range>
-								<soundCast>VWE_LaserShot_Rifle</soundCast>
-								<soundCastTail>GunTail_Heavy</soundCastTail>
-								<muzzleFlashScale>9</muzzleFlashScale>
-								<recoilAmount>0.01</recoilAmount>
-								<recoilPattern>Regular</recoilPattern>
-							</Properties>
-							<AmmoUser>
-								<magazineSize>200</magazineSize>
-								<reloadTime>6</reloadTime>
-								<ammoSet>AmmoSet_LaserSniperRifle</ammoSet>
-							</AmmoUser>
-							<FireModes>
-								<aiAimMode>SuppressFire</aiAimMode>
-								<aimedBurstShotCount>10</aimedBurstShotCount>
-								<noSingleShot>true</noSingleShot>
-							</FireModes>
-						</li>
-					</operations>
-				</nomatch>
-			</match>
-		</match>
-	</Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Pirates</li>
+    </mods>
+    <match Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Weapons Expanded - Laser</li>
+    </mods>
+      <match Class="PatchOperationSequence">
+        <operations>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or defName = "VFEP_WarcasketGun_LaserBlaster"]/tools
+          </xpath>
+          <value>
+            <tools>
+              <li Class="CombatExtended.ToolCE">
+                <label>barrel</label>
+                <capacities>
+                  <li>Blunt</li>
+                </capacities>
+                <power>35</power>
+                <cooldownTime>2.44</cooldownTime>
+                <armorPenetrationBlunt>16</armorPenetrationBlunt>
+                <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+              </li>
+            </tools>
+          </value>
+        </li>
+
+        <li Class="PatchOperationRemove">
+          <xpath>/Defs/ThingDef[defName = "VFEP_WarcasketGun_SalvagedLaserEradicator" or defName = "VFEP_WarcasketGun_LaserBlaster"]/comps/li[@Class="VanillaWeaponsExpandedLaser.CompProperties_LaserCapacitor"]</xpath>
+        </li>
+
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_SalvagedLaserEradicator</defName>
+          <statBases>
+            <Mass>30</Mass>
+            <Bulk>40</Bulk>
+            <SwayFactor>2.85</SwayFactor>
+            <ShotSpread>0.08</ShotSpread>
+            <SightsEfficiency>2.20</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.60</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_Laser_SalvagedLaserEradicatorCE</defaultProjectile>
+            <ammoConsumedPerShotCount>15</ammoConsumedPerShotCount>
+            <warmupTime>4.6</warmupTime>
+            <range>68</range>
+            <minRange>3</minRange>
+            <soundCast>Shot_TurretSniper</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>16</muzzleFlashScale>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>300</magazineSize>
+            <reloadTime>7.6</reloadTime>
+            <ammoSet>AmmoSet_SalvagedLaserEradicatorCE</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>AimedShot</aiAimMode>
+          </FireModes>
+        </li>
+        
+        <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+          <defName>VFEP_WarcasketGun_LaserBlaster</defName>
+          <statBases>
+            <Mass>20</Mass>
+            <Bulk>25</Bulk>
+            <SwayFactor>2.64</SwayFactor>
+            <ShotSpread>0.06</ShotSpread>
+            <SightsEfficiency>1</SightsEfficiency>
+            <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+          </statBases>
+          <Properties>
+            <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+            <hasStandardCommand>True</hasStandardCommand>
+            <defaultProjectile>Bullet_Laser_LaserSniperRifle</defaultProjectile>
+            <burstShotCount>25</burstShotCount>
+            <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+            <warmupTime>2</warmupTime>
+            <range>75</range>
+            <soundCast>VWE_LaserShot_Rifle</soundCast>
+            <soundCastTail>GunTail_Heavy</soundCastTail>
+            <muzzleFlashScale>9</muzzleFlashScale>
+            <recoilAmount>0.01</recoilAmount>
+            <recoilPattern>Regular</recoilPattern>
+          </Properties>
+          <AmmoUser>
+            <magazineSize>200</magazineSize>
+            <reloadTime>6</reloadTime>
+            <ammoSet>AmmoSet_LaserSniperRifle</ammoSet>
+          </AmmoUser>
+          <FireModes>
+            <aiAimMode>SuppressFire</aiAimMode>
+            <aimedBurstShotCount>10</aimedBurstShotCount>
+            <noSingleShot>true</noSingleShot>
+          </FireModes>
+        </li>
+
+        </operations>
+      </match>
+    </match>    
+  </Operation>    
 </Patch>
