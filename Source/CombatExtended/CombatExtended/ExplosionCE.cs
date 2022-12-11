@@ -22,6 +22,9 @@ namespace CombatExtended
         public const float MaxMergeRange = 3f;           //merge within 3 tiles
         public const bool MergeExplosions = false;
 
+        List<IntVec3> postPenCells = new List<IntVec3>();
+        float postPenDamage = 0f;
+
         // New method
         public virtual bool MergeWith(ExplosionCE other, out ExplosionCE merged, out ExplosionCE nonMerged)
         {
@@ -223,6 +226,7 @@ namespace CombatExtended
         {
             get
             {
+                float maxDamage = damAmount * radius;
                 var roofed = Position.Roofed(Map);
                 var aboveRoofs = height >= CollisionVertical.WallCollisionHeight;
 
@@ -230,6 +234,25 @@ namespace CombatExtended
                 var adjWallCells = new List<IntVec3>();
 
                 var num = GenRadial.NumCellsInRadius(radius);
+
+                var barriers = new List<Building>();
+
+                for (var i = 0; i < num; i++)
+                {
+                    var intVec = Position + GenRadial.RadialPattern[i];
+                    if (!intVec.Walkable(this.Map))
+                    {
+                        var barrier = intVec.GetFirstBuilding(this.Map);
+
+                        if (barrier != null)
+                        {
+                            barriers.Add(barrier);
+                        }
+
+                        maxDamage -= barrier.HitPoints;
+                    }
+                }
+
                 for (var i = 0; i < num; i++)
                 {
                     var intVec = Position + GenRadial.RadialPattern[i];
@@ -257,6 +280,11 @@ namespace CombatExtended
                             }
                             openCells.Add(intVec);
                         }
+                        else
+                        {
+                            var sightPoints = GenSight.PointsOnLineOfSight(Position, intVec);
+                            var barrier = barriers.Find(x => sightPoints.Contains(x.Position));
+                        }
                     }
                 }
                 foreach (var intVec2 in openCells)
@@ -273,6 +301,49 @@ namespace CombatExtended
                         }
                     }
                 }
+
+                if(maxDamage > 0)
+                {
+                    var weakestBarrier = barriers.MinBy(x => x.HitPoints);
+
+                    var dir = this.Position - weakestBarrier.Position;
+
+                    var postPen = GenRadial.RadialCellsAround(weakestBarrier.Position, Mathf.Ceil(maxDamage / damAmount), false);
+
+                    if (dir.x != 0)
+                    {
+                         postPen = postPen.Where
+                        (
+                            x =>
+                            (weakestBarrier.Position - x).x >= dir.x
+                        );
+                    }
+                    else if(dir.z != 0)
+                    {
+                        postPen = postPen.Where
+                       (
+                           x =>
+                           (weakestBarrier.Position - x).z >= dir.z
+                       );
+                    }
+                    else
+                    {
+                        postPen = postPen.Where
+                       (
+                           x =>
+                           (weakestBarrier.Position - x).z >= dir.z &&
+                            (weakestBarrier.Position - x).x >= dir.x
+                       );
+                    }
+
+
+                    openCells.AddRange(postPen
+                        ) ;
+
+                    postPenCells = postPen.ToList();
+                    postPenDamage = maxDamage / Mathf.Ceil(maxDamage / damAmount);
+                }
+
                 return openCells.Concat(adjWallCells);
             }
         }
@@ -410,7 +481,12 @@ namespace CombatExtended
             }
             var t = c.DistanceTo(Position) / radius;
             t = Mathf.Pow(t, 0.333f);
-            return Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
+
+            int result = Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)damAmount, DamageAtEdge, t)), 1);
+
+            if (postPenCells?.Contains(c) ?? false) { result = Mathf.Max(GenMath.RoundRandom(Mathf.Lerp((float)postPenDamage, DamageAtEdge, t)), 1); ; }
+
+            return result;
         }
 
         public float GetArmorPenetrationAtCE(IntVec3 c) //t => t^(0.55f), penetrationAmount => damAmount * PressurePerDamage
