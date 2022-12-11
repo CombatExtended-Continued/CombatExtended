@@ -9,24 +9,27 @@
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
+    <pathCost>14</pathCost>
     <selectable>true</selectable>
+    <drawerType>MapMeshOnly</drawerType>
     <drawGUIOverlay>true</drawGUIOverlay>
+    <alwaysHaulable>true</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <altitudeLayer>Item</altitudeLayer>
+    <description>Equipment lacks desc.</description>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>2</DeteriorationRate>
-      <SellPriceFactor>0.5</SellPriceFactor>
+      <Beauty>-3</Beauty>
+      <SellPriceFactor>0.20</SellPriceFactor>
     </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <description>Equipment lacks desc.</description>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
       <li>
         <compClass>CompEquippable</compClass>
       </li>
     </comps>
-    <alwaysHaulable>true</alwaysHaulable>
-    <tickerType>Never</tickerType>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>Body</label>
@@ -39,6 +42,10 @@
         <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
       </li>
     </tools>
+    <tradeTags>
+      <li>CE_MediumAmmo</li>
+    </tradeTags>
+    <allowedArchonexusCount>5</allowedArchonexusCount>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="BaseGrenadeEquipment" ParentName="BaseEquipment" Abstract="True">
