@@ -312,19 +312,41 @@ namespace CombatExtended
 
                     if (dir.x != 0)
                     {
-                         postPen = postPen.Where
-                        (
-                            x =>
-                            (weakestBarrier.Position - x).x >= dir.x
-                        );
+                        if (dir.x < 0)
+                        {
+                            postPen = postPen.Where
+                            (
+                                x =>
+                                (weakestBarrier.Position - x).x <= dir.x
+                            );
+                        }
+                        else
+                        {
+                            postPen = postPen.Where
+                            (
+                                x =>
+                                (weakestBarrier.Position - x).x >= dir.x
+                            );
+                        }
                     }
                     else if(dir.z != 0)
                     {
-                        postPen = postPen.Where
-                       (
-                           x =>
-                           (weakestBarrier.Position - x).z >= dir.z
-                       );
+                        if (dir.x < 0)
+                        {
+                            postPen = postPen.Where
+                            (
+                               x =>
+                               (weakestBarrier.Position - x).z <= dir.z
+                            );
+                        }
+                        else
+                        {
+                            postPen = postPen.Where
+                            (
+                               x =>
+                               (weakestBarrier.Position - x).z >= dir.z
+                            );
+                        }   
                     }
                     else
                     {
