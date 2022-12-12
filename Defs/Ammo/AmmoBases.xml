@@ -32,6 +32,7 @@
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>
     <tradeTags>
+      <li>CE_AmmoInjector</li>
       <li>CE_Ammo</li>
     </tradeTags>
     <tradeability>None</tradeability>
@@ -50,19 +51,39 @@
 		</statBases>
 	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
-      <techLevel>Neolithic</techLevel>
-    </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
+		<techLevel>Neolithic</techLevel>
+	</ThingDef>
 
-    <ThingDef Class="CombatExtended.AmmoDef" Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
-      <techLevel>Spacer</techLevel>
-    </ThingDef>
-	
-    <ThingDef Class="CombatExtended.AmmoDef" Name="HeavyAmmoBase" ParentName="AmmoBase" Abstract="True">
-      <tradeTags inherit="false">
-        <li>CE_HeavyAmmo</li>
-      </tradeTags>
-    </ThingDef>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerAmmoBase" ParentName="AmmoBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerMediumAmmoBase" ParentName="AmmoBase" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<tradeTags Inherit="False">
+			<li>CE_AmmoInjector</li>
+			<li>CE_MediumAmmo</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="MediumAmmoBase" ParentName="AmmoBase" Abstract="True">
+		<tradeTags Inherit="False">
+			<li>CE_AmmoInjector</li>
+			<li>CE_MediumAmmo</li>
+		</tradeTags>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyAmmoBase" ParentName="AmmoBase" Abstract="True">
+		<tradeTags Inherit="False">
+			<li>CE_AmmoInjector</li>
+			<li>CE_HeavyAmmo</li>
+		</tradeTags>
+	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 

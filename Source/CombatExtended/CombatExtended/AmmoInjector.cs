@@ -23,7 +23,7 @@ namespace CombatExtended
     {
         public static readonly FieldInfo _allRecipesCached = typeof(ThingDef).GetField("allRecipesCached", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public const string destroyWithAmmoDisabledTag = "CE_Ammo";               // The trade tag which automatically deleted this ammo with the ammo system disabled
+        public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
         // these ammo classes are disabled when simplified ammo is turned on
@@ -218,21 +218,25 @@ namespace CombatExtended
                                     }
                                     if (ModLister.HasActiveModWithName("Vanilla Furniture Expanded - Production"))
                                     {
-                                        if (curTag != "CE_AutoEnableCrafting_FabricationBench" && curTag != "CE_AutoEnableCrafting_CraftingSpot")
+                                        string benchNameVFE = null;
+                                        if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
                                         {
-                                            var benchNameVFE = "VFE_" + curTag.Remove(0, enableCraftingTag.Length + 1) + "Large";
-                                            if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
-                                            {
-                                                benchNameVFE = "VFE_TableSmithyLarge";
-                                            }
-                                            if (curTag == "CE_AutoEnableCrafting_DrugLab")
-                                            {
-                                                benchNameVFE = "VFE_TableDrugLabElectric";
-                                            }
+                                            benchNameVFE = "VFE_TableSmithyLarge";
+                                        }
+                                        if (curTag == "CE_AutoEnableCrafting_DrugLab")
+                                        {
+                                            benchNameVFE = "VFE_TableDrugLabElectric";
+                                        }
+                                        if (curTag == "CE_AutoEnableCrafting_TableMachining")
+                                        {
+                                            benchNameVFE = "VFE_TableMachiningLarge";
+                                        }
+                                        if (benchNameVFE != null)
+                                        {
                                             benchVFE = DefDatabase<ThingDef>.GetNamed(benchNameVFE, false);
                                             if (benchVFE == null)
                                             {
-                                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
+                                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no VFE crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
                                                 continue;
                                             }
                                         }
