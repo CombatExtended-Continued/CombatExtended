@@ -227,7 +227,7 @@ namespace CombatExtended
                                         {
                                             benchNameVFE = "VFE_TableDrugLabElectric";
                                         }
-                                        if(curTag == "CE_AutoEnableCrafting_TableMachining")
+                                        if (curTag == "CE_AutoEnableCrafting_TableMachining")
                                         {
                                             benchNameVFE = "VFE_TableMachiningLarge";
                                         }
