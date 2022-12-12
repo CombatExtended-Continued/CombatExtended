@@ -234,7 +234,7 @@ namespace CombatExtended
                                         if (benchNameVFE != null)
                                         {
                                             benchVFE = DefDatabase<ThingDef>.GetNamed(benchNameVFE, false);
-                                            if (benchVFE == null) 
+                                            if (benchVFE == null)
                                             {
                                                 Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no VFE crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
                                                 continue;
