@@ -218,21 +218,25 @@ namespace CombatExtended
                                     }
                                     if (ModLister.HasActiveModWithName("Vanilla Furniture Expanded - Production"))
                                     {
-                                        if (curTag != "CE_AutoEnableCrafting_FabricationBench" && curTag != "CE_AutoEnableCrafting_CraftingSpot")
+                                        string benchNameVFE = null;
+                                        if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
                                         {
-                                            var benchNameVFE = "VFE_" + curTag.Remove(0, enableCraftingTag.Length + 1) + "Large";
-                                            if (curTag == "CE_AutoEnableCrafting_ElectricSmithy" || curTag == "CE_AutoEnableCrafting_FueledSmithy")
-                                            {
-                                                benchNameVFE = "VFE_TableSmithyLarge";
-                                            }
-                                            if (curTag == "CE_AutoEnableCrafting_DrugLab")
-                                            {
-                                                benchNameVFE = "VFE_TableDrugLabElectric";
-                                            }
+                                            benchNameVFE = "VFE_TableSmithyLarge";
+                                        }
+                                        if (curTag == "CE_AutoEnableCrafting_DrugLab")
+                                        {
+                                            benchNameVFE = "VFE_TableDrugLabElectric";
+                                        }
+                                        if (curTag == "CE_AutoEnableCrafting_TableMachining")
+                                        {
+                                            benchNameVFE = "VFE_TableMachiningLarge";
+                                        }
+                                        if (benchNameVFE != null)
+                                        {
                                             benchVFE = DefDatabase<ThingDef>.GetNamed(benchNameVFE, false);
                                             if (benchVFE == null)
                                             {
-                                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
+                                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no VFE crafting bench with defName=" + benchNameVFE + " could be found for tag " + curTag);
                                                 continue;
                                             }
                                         }
