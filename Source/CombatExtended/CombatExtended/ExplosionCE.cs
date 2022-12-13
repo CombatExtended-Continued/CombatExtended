@@ -224,7 +224,7 @@ namespace CombatExtended
         {
             get
             {
-                float maxDamage = damAmount * radius * damType.buildingDamageFactor;
+                float maxDamage = damAmount * radius;
                 var roofed = Position.Roofed(Map);
                 var aboveRoofs = height >= CollisionVertical.WallCollisionHeight;
 
@@ -249,6 +249,15 @@ namespace CombatExtended
 
                         maxDamage -= barrier.HitPoints;
                     }
+                }
+
+                if(Position.GetFirstBuilding(this.Map) != null)
+                {
+                    var barrier = Position.GetFirstBuilding(this.Map);
+                    barriers.Add(barrier);
+                    maxDamage -= barrier.HitPoints;
+
+                    Debug.Log(barrier.Label + " " + barrier.Position.ToString());
                 }
 
                 for (var i = 0; i < num; i++)
@@ -300,61 +309,15 @@ namespace CombatExtended
                     }
                 }
 
-                if (maxDamage > 0)
+                if (maxDamage > 0 && barriers.Any())
                 {
                     var weakestBarrier = barriers.MinBy(x => x.HitPoints);
 
+                  
+
                     var dir = this.Position - weakestBarrier.Position;
 
-                    var postPen = GenRadial.RadialCellsAround(weakestBarrier.Position, Mathf.Ceil(maxDamage / damAmount), false);
-
-                    if (dir.x != 0)
-                    {
-                        if (dir.x < 0)
-                        {
-                            postPen = postPen.Where
-                            (
-                                x =>
-                                (weakestBarrier.Position - x).x <= dir.x
-                            );
-                        }
-                        else
-                        {
-                            postPen = postPen.Where
-                            (
-                                x =>
-                                (weakestBarrier.Position - x).x >= dir.x
-                            );
-                        }
-                    }
-                    else if (dir.z != 0)
-                    {
-                        if (dir.x < 0)
-                        {
-                            postPen = postPen.Where
-                            (
-                               x =>
-                               (weakestBarrier.Position - x).z <= dir.z
-                            );
-                        }
-                        else
-                        {
-                            postPen = postPen.Where
-                            (
-                               x =>
-                               (weakestBarrier.Position - x).z >= dir.z
-                            );
-                        }
-                    }
-                    else
-                    {
-                        postPen = postPen.Where
-                       (
-                           x =>
-                           (weakestBarrier.Position - x).z >= dir.z &&
-                            (weakestBarrier.Position - x).x >= dir.x
-                       );
-                    }
+                    var postPen = GenRadial.RadialCellsAround(weakestBarrier.Position + dir, Mathf.Ceil(maxDamage / damAmount), false);
 
                     openCells.AddRange(postPen
                         );
@@ -362,7 +325,6 @@ namespace CombatExtended
                     postPenCells = postPen.ToList();
                     postPenDamage = maxDamage / Mathf.Ceil(maxDamage / damAmount);
                 }
-
                 return openCells.Concat(adjWallCells);
             }
         }
