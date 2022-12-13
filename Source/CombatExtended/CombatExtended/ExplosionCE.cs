@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
-using HarmonyLib;
 
 namespace CombatExtended
 {
@@ -226,7 +224,7 @@ namespace CombatExtended
         {
             get
             {
-                float maxDamage = damAmount * radius;
+                float maxDamage = damAmount * radius * damType.buildingDamageFactor;
                 var roofed = Position.Roofed(Map);
                 var aboveRoofs = height >= CollisionVertical.WallCollisionHeight;
 
@@ -302,7 +300,7 @@ namespace CombatExtended
                     }
                 }
 
-                if(maxDamage > 0)
+                if (maxDamage > 0)
                 {
                     var weakestBarrier = barriers.MinBy(x => x.HitPoints);
 
@@ -329,7 +327,7 @@ namespace CombatExtended
                             );
                         }
                     }
-                    else if(dir.z != 0)
+                    else if (dir.z != 0)
                     {
                         if (dir.x < 0)
                         {
@@ -346,7 +344,7 @@ namespace CombatExtended
                                x =>
                                (weakestBarrier.Position - x).z >= dir.z
                             );
-                        }   
+                        }
                     }
                     else
                     {
@@ -358,9 +356,8 @@ namespace CombatExtended
                        );
                     }
 
-
                     openCells.AddRange(postPen
-                        ) ;
+                        );
 
                     postPenCells = postPen.ToList();
                     postPenDamage = maxDamage / Mathf.Ceil(maxDamage / damAmount);
