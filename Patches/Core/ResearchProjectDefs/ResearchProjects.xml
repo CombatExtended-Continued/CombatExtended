@@ -2,11 +2,18 @@
 <Patch>
 
     <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/ResearchProjectDef[defName="Gunsmithing"]</xpath>
+        <xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]</xpath>
         <value>
           <hiddenPrerequisites>
             <li>CE_Gunpowder</li>
           </hiddenPrerequisites>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ResearchProjectDef[defName="Gunsmithing"]/description</xpath>
+        <value>
+          <description>Craft simple manually-operated guns like revolvers, pump shotguns, bolt-action and lever-action rifles.</description>
         </value>
     </Operation>
 
