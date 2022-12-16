@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>RimNauts 2</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--  spacesuite armor -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Body"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<WornBulk>4</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Body"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>12.5</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Body"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>25</ArmorRating_Blunt>
+					</value>
+				</li>
+				<!--  spacesuit helmet -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<WornBulk>1</WornBulk>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>16</ArmorRating_Blunt>
+					</value>
+				</li>
+				<li Class="PatchOperationConditional" MayRequire="Ludeon.RimWorld.Biotech">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/equippedStatOffsets</xpath>
+					<value>
+						<SmokeSensitivity>-1</SmokeSensitivity>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RimNauts2_Apparel_SpaceSuit_Head"]/apparel/layers</xpath>
+					<value>
+						<li>OnHead</li>
+						<li>StrappedHead</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

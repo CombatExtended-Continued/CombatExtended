@@ -364,6 +364,7 @@ Rim-Shek	|
 RimCities   |
 RimFantasy - Medieval Overhaul Edition   |
 RimHammer40k - Dreadnought |
+RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
