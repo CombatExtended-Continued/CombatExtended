@@ -341,6 +341,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+ReGrowth: Extinct Animals |
 Reinforced Mechanoids: Tyrikan-Line |
 Remote Detonator	|
 Revia Race |
