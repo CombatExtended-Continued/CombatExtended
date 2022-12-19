@@ -364,6 +364,7 @@ Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
 RimFantasy - Medieval Overhaul Edition   |
+RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimSec Security |
 Rimsenal - Core |
