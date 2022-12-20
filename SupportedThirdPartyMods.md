@@ -366,6 +366,7 @@ RimCities   |
 RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
+RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
