@@ -390,17 +390,18 @@ Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
+Solark Race |
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 Stalingrad – Uniforms   |
+Steamworld Uniforms |
 Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
 Starship Troopers Aracnids  |
-Solark Race |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
