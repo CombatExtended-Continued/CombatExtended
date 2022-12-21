@@ -256,6 +256,7 @@ Lemolim Race    |
 Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
+Logistics_Mechanoid |
 Magical Menagerie	|
 Magic Wands |
 Makeshift Melee Weapons |
