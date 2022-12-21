@@ -341,6 +341,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+ReGrowth: Extinct Animals |
 Reinforced Mechanoids: Tyrikan-Line |
 Remote Detonator	|
 Revia Race |
@@ -363,7 +364,9 @@ Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
 RimFantasy - Medieval Overhaul Edition   |
+RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
+RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -415,6 +418,7 @@ Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
+T's Conversion Staff |
 T's Samurai Faction |
 Ultratech: Altered Carbon Remastered |
 Useless Clothes |
