@@ -102,7 +102,7 @@ namespace CombatExtended.Compatibility
                 patchCount++;
                 patchedanimals += animal.ToString() + "\n";
             }
-            // Don't show log if no animals being patched in autopatcher.
+            // Don't show log if there are no animals being patched by autopatcher.
             if (patchCount > 0)
             {
                 Log.Message("CE successfully patched " + patchCount.ToString() + " animals.\nAnimal Defs autopatched:" + patchedanimals);
