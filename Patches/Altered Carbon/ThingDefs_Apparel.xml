@@ -9,9 +9,10 @@
       <operations>
 
         <!-- === Protectorate Helmet === -->
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/statBases</xpath>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases/Mass</xpath>
           <value>
+            <Mass>8</Mass>
             <Bulk>4</Bulk>
             <WornBulk>1</WornBulk>
             <NightVisionEfficiency_Apparel>0.7</NightVisionEfficiency_Apparel>
@@ -19,56 +20,57 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/statBases/Flammability</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases/Flammability</xpath>
           <value>
             <Flammability>0</Flammability>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/statBases/MaxHitPoints</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases/MaxHitPoints</xpath>
           <value>
-            <MaxHitPoints>200</MaxHitPoints>
+            <MaxHitPoints>210</MaxHitPoints>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/statBases/ArmorRating_Sharp</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>14</ArmorRating_Sharp>
+            <ArmorRating_Sharp>23</ArmorRating_Sharp>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/statBases/ArmorRating_Blunt</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/statBases/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>32</ArmorRating_Blunt>
+            <ArmorRating_Blunt>52</ArmorRating_Blunt>
           </value>
         </li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/costList</xpath>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersHelmet"]/costList/Plasteel</xpath>
           <value>
-            <DevilstrandCloth>20</DevilstrandCloth>
+            <Plasteel>150</Plasteel>
+            <DevilstrandCloth>30</DevilstrandCloth>
           </value>
         </li>
 
 		<li Class="PatchOperationConditional">
-			<xpath>Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/apparel/immuneToToxGasExposure</xpath>
+			<xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/apparel/immuneToToxGasExposure</xpath>
 			<nomatch Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/apparel</xpath>
+				<xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/apparel</xpath>
 				<value>
 					<immuneToToxGasExposure>true</immuneToToxGasExposure>
 				</value>
 			</nomatch>
 		</li>
 
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]</xpath>
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorHelmet"]/equippedStatOffsets</xpath>
           <value>
             <equippedStatOffsets>
               <PsychicSensitivity>-0.2</PsychicSensitivity>
-              <AimingAccuracy>0.15</AimingAccuracy>
+              <AimingAccuracy>1.0</AimingAccuracy>
               <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
               <SmokeSensitivity>-1</SmokeSensitivity>
             </equippedStatOffsets>
@@ -76,7 +78,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorHelmetProtectorateBase"]/apparel/layers</xpath>
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersHelmet"]/apparel/layers</xpath>
           <value>
             <li>OnHead</li>
             <li>StrappedHead</li>
@@ -85,65 +87,69 @@
 
         <!-- === Protectorate Armor === -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/statBases/Mass</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorArmor"]/statBases/Mass</xpath>
           <value>
-            <Mass>45</Mass>
-            <Bulk>90</Bulk>
-            <WornBulk>12</WornBulk>
+            <Mass>95</Mass>
+            <Bulk>100</Bulk>
+            <WornBulk>15</WornBulk>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/statBases/MaxHitPoints</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorArmor"]/statBases/MaxHitPoints</xpath>
           <value>
-            <MaxHitPoints>450</MaxHitPoints>
+            <MaxHitPoints>510</MaxHitPoints>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/statBases/Flammability</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorArmor"]/statBases/Flammability</xpath>
           <value>
             <Flammability>0</Flammability>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/statBases/ArmorRating_Sharp</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorArmor"]/statBases/ArmorRating_Sharp</xpath>
           <value>
-            <ArmorRating_Sharp>18</ArmorRating_Sharp>
+            <ArmorRating_Sharp>29</ArmorRating_Sharp>
           </value>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/statBases/ArmorRating_Blunt</xpath>
+          <xpath>Defs/ThingDef[defName="VFEU_Apparel_ProtectorArmor"]/statBases/ArmorRating_Blunt</xpath>
           <value>
-            <ArmorRating_Blunt>42</ArmorRating_Blunt>
+            <ArmorRating_Blunt>62</ArmorRating_Blunt>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersArmourBase"]/costList/Plasteel</xpath>
+          <value>
+            <Plasteel>240</Plasteel>
+            <DevilstrandCloth>60</DevilstrandCloth>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersArmourBase"]/costList/Uranium</xpath>
+          <value>
+            <Uranium>50</Uranium>
           </value>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/costList</xpath>
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersArmourBase"]/equippedStatOffsets</xpath>
           <value>
-            <DevilstrandCloth>50</DevilstrandCloth>
-          </value>
-        </li>
-
-        <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/equippedStatOffsets/MoveSpeed</xpath>
-        </li>
-
-        <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/equippedStatOffsets</xpath>
-          <value>
-            <CarryWeight>80</CarryWeight>
-            <CarryBulk>10</CarryBulk>
+            <CarryWeight>120</CarryWeight>
+            <CarryBulk>20</CarryBulk>
             <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
             <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
           </value>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UT_ApparelArmorProtectorateBase"]/apparel/bodyPartGroups</xpath>
+          <xpath>Defs/ThingDef[@Name="VFEU_HuntersArmourBase"]/apparel/bodyPartGroups</xpath>
           <value>
             <li>Hands</li>
             <li>Feet</li>
