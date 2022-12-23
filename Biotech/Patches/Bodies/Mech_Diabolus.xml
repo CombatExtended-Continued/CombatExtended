@@ -143,43 +143,4 @@
     </value>
   </Operation>
 
-  <!-- ========== Remove unwanted vanilla body parts ========== -->
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName="Mech_Diabolus"]/corePart/parts/li[def="MechanicalDiabolusBodySecondRing"]/parts/li[def="Reactor"]</xpath>
-  </Operation>
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName="Mech_Diabolus"]/corePart/parts/li/parts/li/parts/li/parts/li/parts/li/parts/li[def="FluidReprocessor"]</xpath>
-  </Operation>
-
-  <!-- ========== Add new body parts ========== -->
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName="Mech_Diabolus"]/corePart/parts/li[def="MechanicalDiabolusBodySecondRing"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalWeaponActuator</def>
-        <coverage>0.03</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalPowerCore</def>
-        <coverage>0.07</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName="Mech_Diabolus"]/corePart/parts/li[def="MechanicalDiabolusBodySecondRing"]/parts/li[def="MechanicalDiabolusBodyThirdRing"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalCoolantTank</def>
-        <coverage>0.09</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </Operation>
-
 </Patch>
