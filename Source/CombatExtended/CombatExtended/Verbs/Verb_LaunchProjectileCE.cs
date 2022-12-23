@@ -679,8 +679,8 @@ namespace CombatExtended
             smokeDensity = 0;
 
             // Iterate through all cells on line of sight and check for cover and smoke
-            var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
-            if (cells.Length < 3)
+            var cells = GenSightCE.AllPointsOnLineOfSight(target.Cell, caster.Position);
+            if (cells.Count < 3)
             {
                 cover = null;
                 return false;
@@ -690,7 +690,7 @@ namespace CombatExtended
             {
                 instant = pprop.isInstant;
             }
-            int endCell = instant ? cells.Length : cells.Length / 2;
+            int endCell = instant ? cells.Count : cells.Count / 2;
 
             for (int i = 0; i < endCell; i++)
             {
@@ -715,21 +715,25 @@ namespace CombatExtended
 
 
                 // Check for cover in the second half of LoS
-                if (instant || i <= cells.Length / 2)
+                if (instant || i <= cells.Count / 2)
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                    float newCoverHeight = new CollisionVertical(newCover).Max;
 
                     // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
                     if (newCover != null
                             && (targetThing == null || !newCover.Equals(targetThing))
-                            && (highestCover == null || highestCoverHeight < newCoverHeight)
                             && newCover.def.Fillage == FillCategory.Partial
                             && !newCover.IsPlant())
                     {
-                        highestCover = newCover;
-                        highestCoverHeight = newCoverHeight;
+                        float newCoverHeight = new CollisionVertical(newCover).Max;
+
+                        if (highestCover == null || highestCoverHeight < newCoverHeight)
+                        {
+                            highestCover = newCover;
+                            highestCoverHeight = newCoverHeight;
+                        }
+
                         if (Controller.settings.DebugDrawTargetCoverChecks)
                         {
                             map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
