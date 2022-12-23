@@ -10,6 +10,8 @@ namespace CombatExtended
 {
     public static class GenSightCE
     {
+        private static List<IntVec3> points = new List<IntVec3>();
+
         /// <summary>
         /// Equivalent of Verse.GenSight.PointsOnLineOfSight, with support for floating-point vectors.
         /// Allows for better precision when calculating cells on a shot line's path (e.g: leaning pawns).
@@ -93,6 +95,18 @@ namespace CombatExtended
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// As <see cref="GenSight.PointsOnLineOfSight(IntVec3, IntVec3)"/>, but optimized for the case
+        /// where the caller will need all points as well as the number of points on the sight line.
+        /// </summary>
+        public static List<IntVec3> AllPointsOnLineOfSight(IntVec3 startPos, IntVec3 dest)
+        {
+            points.Clear();
+            points.AddRange(GenSight.PointsOnLineOfSight(startPos, dest));
+
+            return points;
         }
 
         public static IEnumerable<IntVec3> PartialLineOfSights(this Pawn pawn, LocalTargetInfo targetFacing)
