@@ -167,26 +167,26 @@ namespace CombatExtended.Utilities
         public IEnumerable<Thing> ThingsNearSegment(IntVec3 origin, IntVec3 destination, float range, bool behind)
         {
             float rangeSq = range * range;
-            int minX;
-            int maxX;
+            float minX;
+            float maxX;
             // Find the band of cells (1-D) the line segment spans.  The band is widened on both sides by range.
             // ...<--range---x_min-----x_max---range-->...
             // ...minX-----------------------------maxX...
             if (origin.x > destination.x)
             {
-                minX = destination.x - Mathf.RoundToInt(range);
-                maxX = origin.x + Mathf.RoundToInt(range);
+                minX = destination.x - range;
+                maxX = origin.x + range;
             }
             else
             {
-                minX = origin.x - Mathf.RoundToInt(range);
-                maxX = destination.x + Mathf.RoundToInt(range);
+                minX = origin.x - range;
+                maxX = destination.x + range;
             }
 
             int bottom = 0;
             int index;
             int top = count;
-            int mid = 0;
+            int mid = (top + bottom) / 2;
             int limiter = 0;
             IntVec3 midPosition;
             IntVec3 direction = destination - origin;
@@ -236,7 +236,7 @@ namespace CombatExtended.Utilities
                 Thing t = sortedThings[index++].thing;
                 IntVec3 curPosition = t.Position;
                 // if we're outside the range of interest, we're done checking to the right.
-                if (curPosition.x < minX || curPosition.x > maxX)
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)
                 {
                     break;
                 }
@@ -280,12 +280,12 @@ namespace CombatExtended.Utilities
                 }
             }
             index = mid - 1;
-            while (index >= 0) // Same as above, but moving left.
+            while (index >= 0) // Same as above, but moving right.
             {
                 Thing t = sortedThings[index--].thing;
                 IntVec3 curPosition = t.Position;
                 // if we're outside the range of interest, we're done checking to the right.
-                if (curPosition.x < minX || curPosition.x > maxX)
+                if (curPosition.x + range < minX || curPosition.x - range > maxX)
                 {
                     break;
                 }
