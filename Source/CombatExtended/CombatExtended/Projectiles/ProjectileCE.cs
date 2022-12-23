@@ -596,9 +596,10 @@ namespace CombatExtended
             }
         }
 
-        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
         {
-            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
+            map ??= base.Map;
+            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, true).Except(destination.PawnsInRange(map, SuppressionRadius)))
             {
                 ApplySuppression(pawn);
             }
@@ -750,6 +751,8 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
+            bool collided = false;
+            Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -789,7 +792,9 @@ namespace CombatExtended
             {
                 if (CheckCellForCollision(cell))
                 {
-                    return true;
+                    newPosIV3 = cell;
+                    collided = true;
+                    break;
                 }
 
                 if (Controller.settings.DebugDrawInterceptChecks)
@@ -798,7 +803,15 @@ namespace CombatExtended
                 }
             }
 
-            return false;
+            // Apply suppression. The height here is NOT that of the bullet in CELL,
+            // it is the height at the END OF THE PATH. This is because SuppressionRadius
+            // is not considered an EXACT limit.
+            if (ExactPosition.y <= SuppressionRadius)
+            {
+                RayCastSuppression(lastPosIV3, newPosIV3, localMap);
+            }
+
+            return collided;
         }
 
         /// <summary>
@@ -859,21 +872,9 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
-                    if (TryCollideWith(thing))
+                    if (TryCollideWith(thing, cell))
                     {
                         return true;
-                    }
-                }
-
-                // Apply suppression. The height here is NOT that of the bullet in CELL,
-                // it is the height at the END OF THE PATH. This is because SuppressionRadius
-                // is not considered an EXACT limit.
-                if (ExactPosition.y < SuppressionRadius)
-                {
-                    var pawn = thing as Pawn;
-                    if (pawn != null)
-                    {
-                        ApplySuppression(pawn);
                     }
                 }
             }
@@ -923,7 +924,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="thing">What to impact</param>
         /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing)
+        private bool TryCollideWith(Thing thing, IntVec3 tryCell)
         {
             if (thing == launcher && !canTargetSelf)
             {
@@ -979,7 +980,7 @@ namespace CombatExtended
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
 
-            Impact(thing);
+            Impact(thing, tryCell);
             return true;
         }
         #endregion
@@ -1182,7 +1183,7 @@ namespace CombatExtended
 
             // FIXME : Early opt-out
             Thing thing = pos.GetFirstPawn(Map);
-            if (thing != null && TryCollideWith(thing))
+            if (thing != null && TryCollideWith(thing, pos))
             {
                 return;
             }
@@ -1192,7 +1193,7 @@ namespace CombatExtended
             {
                 foreach (var thing2 in list)
                 {
-                    if (TryCollideWith(thing2))
+                    if (TryCollideWith(thing2, pos))
                     {
                         return;
                     }
@@ -1205,6 +1206,11 @@ namespace CombatExtended
         }
 
         public virtual void Impact(Thing hitThing)
+        {
+            Impact(hitThing, IntVec3.Invalid);
+        }
+
+        public virtual void Impact(Thing hitThing, IntVec3 hitCell)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {
@@ -1344,6 +1350,10 @@ namespace CombatExtended
             }
             else
             {
+                foreach (var pawn in (hitCell.IsValid ? hitCell : explodePos.ToIntVec3()).PawnsInRange(Map, SuppressionRadius))
+                {
+                    ApplySuppression(pawn);
+                }
                 DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * projectileDangerFactor);
             }
 
