@@ -77,19 +77,26 @@
 
   <!-- ========== Add armor coverage ========== -->
 
-	<Operation Class="PatchOperationAdd">
+  <Operation Class="PatchOperationAdd">
   	<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
+  <Operation Class="PatchOperationAdd">
   	<xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+    <value>
+      <li>CoveredByNaturalArmor</li>
+    </value>
+  </Operation>
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
@@ -105,10 +112,12 @@
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+  <!-- ========== Modify coverage ========== -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BodyDef[defName="Pikeman"]/corePart/parts/li[def="Reactor"]/coverage</xpath>
     <value>
-      <li>CoveredByNaturalArmor</li>
+      <coverage>0.08</coverage>
     </value>
   </Operation>
 
