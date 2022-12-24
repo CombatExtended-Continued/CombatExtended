@@ -246,6 +246,7 @@ Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    |
+Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
