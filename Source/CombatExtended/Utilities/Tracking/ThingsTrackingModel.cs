@@ -172,7 +172,7 @@ namespace CombatExtended.Utilities
             float lengthSq = direction.x * direction.x + direction.z * direction.z;
             if (lengthSq == 0) // origin and destination cell are the same, so just return all things within range radius of origin.
             {
-                if(infront == false && behind == false) // Let's assume that every point around a point is both infront and behind it
+                if (infront == false && behind == false) // Let's assume that every point around a point is both infront and behind it
                 {
                     yield break;
                 }
@@ -275,7 +275,7 @@ namespace CombatExtended.Utilities
                 // rp_direction_dot ∈ (0, lengthSq), so curPosition is between the origin and destination
                 // Calculate the dot product of the relative (from segment origin) position and the rotated-clockwise direction vector. Used in the division-less distance from segment formula
                 float rp_cwdirection_dot = relativePosition.x * direction.z - relativePosition.z * direction.x;
-                if (rp_cwdirection_dot*rp_cwdirection_dot <= rangeSqLengthSq)
+                if (rp_cwdirection_dot * rp_cwdirection_dot <= rangeSqLengthSq)
                 {
                     yield return t;
                 }
@@ -319,7 +319,7 @@ namespace CombatExtended.Utilities
                 // rp_direction_dot ∈ (0, lengthSq), so curPosition is between the origin and destination
                 // Calculate the dot product of the relative (from segment origin) position and the rotated-clockwise direction vector. Used in the division-less distance from segment check
                 float rp_cwdirection_dot = relativePosition.x * direction.z - relativePosition.z * direction.x;
-                if (rp_cwdirection_dot*rp_cwdirection_dot <= rangeSqLengthSq)
+                if (rp_cwdirection_dot * rp_cwdirection_dot <= rangeSqLengthSq)
                 {
                     yield return t;
                 }
