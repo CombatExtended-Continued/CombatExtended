@@ -598,8 +598,12 @@ namespace CombatExtended
 
         private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
         {
+            if (muzzle == destination)
+            {
+                return;
+            }
             map ??= base.Map;
-            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, false, false).Union(destination.PawnsInRange(map, SuppressionRadius)).Except(muzzle.PawnsInRange(map, SuppressionRadius)))
+            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, false, true).Except(muzzle.PawnsInRange(map, SuppressionRadius)))
             {
                 ApplySuppression(pawn);
             }
