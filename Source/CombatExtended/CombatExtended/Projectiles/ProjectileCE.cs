@@ -599,7 +599,7 @@ namespace CombatExtended
         private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
         {
             map ??= base.Map;
-            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, true).Except(destination.PawnsInRange(map, SuppressionRadius)))
+            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, false, false).Union(destination.PawnsInRange(map, SuppressionRadius)).Except(muzzle.PawnsInRange(map, SuppressionRadius)))
             {
                 ApplySuppression(pawn);
             }
@@ -872,7 +872,7 @@ namespace CombatExtended
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
                 {
-                    if (TryCollideWith(thing, cell))
+                    if (TryCollideWith(thing))
                     {
                         return true;
                     }
@@ -924,7 +924,7 @@ namespace CombatExtended
         /// </summary>
         /// <param name="thing">What to impact</param>
         /// <returns>True if impact occured, false otherwise</returns>
-        private bool TryCollideWith(Thing thing, IntVec3 tryCell)
+        private bool TryCollideWith(Thing thing)
         {
             if (thing == launcher && !canTargetSelf)
             {
@@ -980,7 +980,7 @@ namespace CombatExtended
                 MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, "x", Color.red);
             }
 
-            Impact(thing, tryCell);
+            Impact(thing);
             return true;
         }
         #endregion
@@ -1183,7 +1183,7 @@ namespace CombatExtended
 
             // FIXME : Early opt-out
             Thing thing = pos.GetFirstPawn(Map);
-            if (thing != null && TryCollideWith(thing, pos))
+            if (thing != null && TryCollideWith(thing))
             {
                 return;
             }
@@ -1193,7 +1193,7 @@ namespace CombatExtended
             {
                 foreach (var thing2 in list)
                 {
-                    if (TryCollideWith(thing2, pos))
+                    if (TryCollideWith(thing2))
                     {
                         return;
                     }
@@ -1206,11 +1206,6 @@ namespace CombatExtended
         }
 
         public virtual void Impact(Thing hitThing)
-        {
-            Impact(hitThing, IntVec3.Invalid);
-        }
-
-        public virtual void Impact(Thing hitThing, IntVec3 hitCell)
         {
             if (def.HasModExtension<EffectProjectileExtension>())
             {
@@ -1350,10 +1345,6 @@ namespace CombatExtended
             }
             else
             {
-                foreach (var pawn in (hitCell.IsValid ? hitCell : explodePos.ToIntVec3()).PawnsInRange(Map, SuppressionRadius))
-                {
-                    ApplySuppression(pawn);
-                }
                 DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * projectileDangerFactor);
             }
 
