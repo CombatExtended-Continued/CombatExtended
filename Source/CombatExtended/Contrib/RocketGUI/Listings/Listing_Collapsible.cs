@@ -98,7 +98,7 @@ namespace CombatExtended.RocketGUI
                 GUIUtility.ExecuteSafeGUIAction(() =>
                 {
                     GUI.color = this.CollapsibleBGBorderColor;
-                    GUI.color = Color.gray;                    
+                    GUI.color = Color.gray;
                     if (drawInfo)
                     {
                         Text.Font = GameFont.Tiny;
@@ -112,7 +112,7 @@ namespace CombatExtended.RocketGUI
                     Text.CurFontStyle.fontStyle = fontStyle;
                     if (this.drawBorder && this.drawBackground)
                     {
-                        Text.CurFontStyle.fontSize = 12;                        
+                        Text.CurFontStyle.fontSize = 12;
                     }
                     Text.Anchor = TextAnchor.MiddleLeft;
                     GUI.color = this.CollapsibleBGBorderColor;
@@ -134,7 +134,7 @@ namespace CombatExtended.RocketGUI
                 {
                     Widgets.DrawBox(slice.outside, 1);
                 }
-            });            
+            });
             if (Expanded && drawBorder)
             {
                 this.Gap(2);
@@ -161,7 +161,7 @@ namespace CombatExtended.RocketGUI
             {
                 return;
             }
-            base.Label(text, color,tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
+            base.Label(text, color, tooltip, hightlightIfMouseOver, fontSize, fontStyle, anchor: anchor);
         }
 
         public bool CheckboxLabeled(TaggedString text, ref bool checkOn, string tooltip = null, bool invert = false, bool disabled = false, bool hightlightIfMouseOver = true, GameFont fontSize = GameFont.Tiny, FontStyle fontStyle = FontStyle.Normal)
@@ -224,11 +224,11 @@ namespace CombatExtended.RocketGUI
             {
                 base.Line(thickness);
             }
-        }        
+        }
 
         public override void End(ref Rect inRect)
         {
-            base.End(ref inRect);            
+            base.End(ref inRect);
         }
 
         protected override RectSlice Slice(float height, bool includeMargins = true)

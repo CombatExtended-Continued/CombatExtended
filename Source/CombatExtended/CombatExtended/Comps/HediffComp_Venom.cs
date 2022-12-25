@@ -23,7 +23,9 @@ namespace CombatExtended
         {
             base.CompPostTick(ref severityAdjustment);
             if (parent.ageTicks < _lifetime)
+            {
                 HealthUtility.AdjustSeverity(parent.pawn, CE_HediffDefOf.VenomBuildup, _venomPerTick);
+            }
         }
 
         public override void CompTended(float quality, float maxQuality, int batchPosition = 0)

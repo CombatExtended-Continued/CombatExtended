@@ -115,7 +115,10 @@ namespace ProjectileImpactFX
 
         void TriggerEffect(EffecterDef effect, IntVec3 dest, Map map)
         {
-            if (effect == null) return;
+            if (effect == null)
+            {
+                return;
+            }
 
             var targetInfo = new TargetInfo(dest, map, false);
 

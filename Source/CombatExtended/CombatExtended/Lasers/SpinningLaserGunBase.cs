@@ -26,7 +26,10 @@ namespace CombatExtended.Lasers
 
         public new SpinningLaserGunDef def
         {
-            get { return base.def as SpinningLaserGunDef; }
+            get
+            {
+                return base.def as SpinningLaserGunDef;
+            }
         }
 
         public void ReachRotationSpeed(float target, int ticksUntil)
@@ -48,7 +51,9 @@ namespace CombatExtended.Lasers
             if (rotationAccelerationTicksRemaing > 0)
             {
                 if (ticksPassed > rotationAccelerationTicksRemaing)
+                {
                     ticksPassed = rotationAccelerationTicksRemaing;
+                }
 
                 rotationAccelerationTicksRemaing -= ticksPassed;
                 rotationSpeed += ticksPassed * rotationAcceleration;
@@ -71,7 +76,10 @@ namespace CombatExtended.Lasers
         {
             get
             {
-                if (def.frames.Count == 0) return DefaultGraphic;
+                if (def.frames.Count == 0)
+                {
+                    return DefaultGraphic;
+                }
 
                 UpdateState();
 

@@ -75,19 +75,29 @@
 					</value>
 				</li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="FF_ForsakenH"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="FF_ForsakenH"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
 				<li Class="PatchOperationAdd">
    				 <xpath>Defs/ThingDef[defName="FF_ForsakenH"]/equippedStatOffsets</xpath>
     				<value>
-      				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
-      				<SmokeSensitivity>-1</SmokeSensitivity>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+						<SmokeSensitivity>-1</SmokeSensitivity>
     				</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
     				<xpath>Defs/ThingDef[defName="FF_ForsakenH"]/statBases</xpath>
-    					<value>
+    				<value>
       					<Flammability>0</Flammability>
-    					</value>
+    				</value>
 				</li>
   
 

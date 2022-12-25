@@ -18,7 +18,7 @@ namespace CombatExtended.HarmonyCE
             {
                 var patchPhase = 0;
                 var emitOriginal = true;
-                
+
                 foreach (var instruction in instructions)
                 {
                     switch (patchPhase)
@@ -26,10 +26,12 @@ namespace CombatExtended.HarmonyCE
                         // search for BodyPartRecord::coverageAbs
                         case 0:
                             if (instruction.opcode == OpCodes.Ldfld
-                                && ReferenceEquals(instruction.operand, AccessTools.Field(
-                                    typeof(BodyPartRecord),
-                                    nameof(BodyPartRecord.coverageAbs))))
+                                    && ReferenceEquals(instruction.operand, AccessTools.Field(
+                                                           typeof(BodyPartRecord),
+                                                           nameof(BodyPartRecord.coverageAbs))))
+                            {
                                 patchPhase = 1;
+                            }
                             break;
                         // search for greater than check
                         case 1:
@@ -54,7 +56,9 @@ namespace CombatExtended.HarmonyCE
                     }
 
                     if (emitOriginal)
+                    {
                         yield return instruction;
+                    }
                 }
             }
         }

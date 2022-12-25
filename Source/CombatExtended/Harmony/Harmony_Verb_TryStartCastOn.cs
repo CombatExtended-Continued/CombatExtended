@@ -20,9 +20,9 @@ using Verse.AI;
 namespace CombatExtended.HarmonyCE
 {
     [HarmonyPatch(
-        typeof(Verb),
-        nameof(Verb.TryStartCastOn),
-        new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool), typeof(bool), typeof(bool) })
+         typeof(Verb),
+         nameof(Verb.TryStartCastOn),
+         new Type[] { typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(bool), typeof(bool), typeof(bool), typeof(bool) })
     ]
     static class Harmony_Verb_TryStartCastOn
     {
@@ -62,13 +62,17 @@ namespace CombatExtended.HarmonyCE
         {
             // no work to do as the verb isn't the right kind.
             if (!(__instance is Verb_ShootCE || __instance is Verb_ShootCEOneUse))
+            {
                 return true;
+            }
             // If this verb is owned by a pawn that has the tactical manager
             if (__instance.CasterIsPawn)
             {
                 var manager = __instance.CasterPawn.GetTacticalManager();
-                if(manager != null)
-                    return manager.TryStartCastChecks(__instance, castTarg, destTarg);                
+                if (manager != null)
+                {
+                    return manager.TryStartCastChecks(__instance, castTarg, destTarg);
+                }
             }
 
             // Legacy setup
@@ -76,7 +80,9 @@ namespace CombatExtended.HarmonyCE
             // TODO update this to the modern stander
             CompAmmoUser gun = __instance.EquipmentSource.TryGetComp<CompAmmoUser>();
             if (gun == null || !gun.HasMagazine || gun.CurMagCount > 0)
-                return true; // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
+            {
+                return true;    // gun isn't an ammo user that stores ammo internally or isn't out of bullets.
+            }
 
             // we got work to do at this point.
             // Try starting the reload job.

@@ -20,11 +20,11 @@
 		<Ammo_20x42mmGrenade_Smoke>Bullet_20x42mmGrenade_Smoke</Ammo_20x42mmGrenade_Smoke>	      
     </ammoTypes>
     <similarTo>AmmoSet_LauncherGrenade</similarTo>
-  </CombatExtended.AmmoSetDef> 
+  </CombatExtended.AmmoSetDef>
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="20x42mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="20x42mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Specialized grenade developed for use in shoulder-fired grenade launchers.</description>
     <statBases>
 	  <Mass>0.125</Mass>
@@ -79,6 +79,7 @@
       <MarketValue>2.8</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
 	<detonateProjectile>Bullet_20x42mmGrenade_EMP</detonateProjectile>
   </ThingDef>  
 
@@ -268,6 +269,10 @@
     <label>make 20x42mm EMP grenades x100</label>
     <description>Craft 100 20x42mm EMP grenades.</description>
     <jobString>Making 20x42mm EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

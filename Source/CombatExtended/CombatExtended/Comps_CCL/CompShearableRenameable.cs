@@ -20,7 +20,10 @@ namespace CombatExtended
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            if (properties != null && !properties.growthLabel.NullOrEmpty()) growthLabel = properties.growthLabel;
+            if (properties != null && !properties.growthLabel.NullOrEmpty())
+            {
+                growthLabel = properties.growthLabel;
+            }
         }
 
         public override string CompInspectStringExtra()
@@ -30,7 +33,10 @@ namespace CombatExtended
                 return (string)null;
             }
             // Show we learned about explosives
-            if (properties.woolDef == CE_ThingDefOf.FSX) PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingFSX, KnowledgeAmount.FrameDisplayed);
+            if (properties.woolDef == CE_ThingDefOf.FSX)
+            {
+                PlayerKnowledgeDatabase.KnowledgeDemonstrated(CE_ConceptDefOf.CE_ObtainingFSX, KnowledgeAmount.FrameDisplayed);
+            }
             return growthLabel + ": " + Fullness.ToStringPercent();
         }
 

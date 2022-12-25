@@ -2,8 +2,8 @@
 namespace CombatExtended
 {
     public enum CE_DebugTooltipType
-    {        
+    {
         World = 1,
-        Map = 2,        
+        Map = 2,
     }
 }

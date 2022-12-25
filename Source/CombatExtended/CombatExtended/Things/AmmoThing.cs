@@ -33,7 +33,9 @@ namespace CombatExtended
                 }
                 //Assume CompExplosive destroys on kill
                 else if (this.TryGetComp<CompExplosive>() == null || !this.TryGetComp<CompExplosive>().Props.explodeOnKilled)
+                {
                     TryDetonate(stackCount);
+                }
             }
         }
 
@@ -45,8 +47,8 @@ namespace CombatExtended
                 if (shouldDestroy == -1)
                 {
                     shouldDestroy = !def.IsWeapon && (AmmoDef?.tradeTags?.Contains(AmmoInjector.destroyWithAmmoDisabledTag) ?? false)
-                        ? 1     //isn't a weapon AND has the tag
-                        : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
+                                    ? 1     //isn't a weapon AND has the tag
+                                    : 0;    //is a weapon or doesn't have the tag (shouldn't be destroyed)
                 }
                 return shouldDestroy == 1 && !AmmoUtility.IsAmmoSystemActive(AmmoDef);
             }
@@ -55,7 +57,10 @@ namespace CombatExtended
         public override void Tick()
         {
             // Self-destruct if ammo is disabled
-            if (ShouldDestroy) Destroy(DestroyMode.Vanish);
+            if (ShouldDestroy)
+            {
+                Destroy(DestroyMode.Vanish);
+            }
 
             //Calls CompExplosive _first_
             base.Tick();
@@ -94,7 +99,9 @@ namespace CombatExtended
                 var count = AmmoDef?.Users.Count ?? 0;
 
                 if (count >= 1)
+                {
                     stringBuilder.AppendLine("CE_UsedBy".Translate() + ": " + AmmoDef.Users.FirstOrDefault().LabelCap + (AmmoDef.Users.Count > 1 ? " (+" + (AmmoDef.Users.Count - 1) + ")" : ""));
+                }
             }
 
             return stringBuilder.ToString().TrimEndNewlines();
@@ -103,7 +110,9 @@ namespace CombatExtended
         private bool TryDetonate(float stackCountScale = 1)
         {
             if (Find.Maps.IndexOf(Map) < 0)
+            {
                 return false;
+            }
 
             CompExplosiveCE comp = this.TryGetComp<CompExplosiveCE>();
             var detProps = AmmoDef?.detonateProjectile?.projectile;
@@ -113,9 +122,16 @@ namespace CombatExtended
                 if (Rand.Chance(Mathf.Clamp01(0.75f - Mathf.Pow(HitPoints / MaxHitPoints, 2))))
                 {
                     if (comp != null)
-                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(stackCountScale, 0.333f), null, new List<Thing>() { this });
+                    {
+                        comp.Explode(this, Position.ToVector3Shifted(), Map, Mathf.Pow(stackCountScale, 0.333f), null, new List<Thing>()
+                    {
+                        this
+                    });
+                    }
                     else
-                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this); //Mathf.Pow(scale, 0.333f));
+                    {
+                        this.TryGetComp<CompFragments>()?.Throw(Position.ToVector3Shifted(), Map, this);    //Mathf.Pow(scale, 0.333f));
+                    }
 
                     if (detProps != null)
                     {
@@ -142,16 +158,19 @@ namespace CombatExtended
                             detProps.explosionChanceToStartFire,
                             detProps.explosionDamageFalloff,
                             null,
-                            new List<Thing>() { this },
-                            affectedAngle: null,
-                            doVisualEffects: true,
-                            propagationSpeed: 1f,
-                            excludeRadius: 0,
-                            doSoundEffects: true,
-                            detProps.postExplosionSpawnThingDefWater,
-                            detProps.screenShakeFactor,
-                            height: 0f,
-                            Mathf.Pow(stackCountScale, 0.333f));
+                            new List<Thing>()
+                        {
+                            this
+                        },
+                        affectedAngle: null,
+                        doVisualEffects: true,
+                        propagationSpeed: 1f,
+                        excludeRadius: 0,
+                        doSoundEffects: true,
+                        detProps.postExplosionSpawnThingDefWater,
+                        detProps.screenShakeFactor,
+                        height: 0f,
+                        Mathf.Pow(stackCountScale, 0.333f));
                     }
                 }
 
@@ -162,7 +181,10 @@ namespace CombatExtended
 
         private bool TryLaunchCookOffProjectile()
         {
-            if (AmmoDef == null || AmmoDef.cookOffProjectile == null || Find.Maps.IndexOf(Map) < 0) return false;
+            if (AmmoDef == null || AmmoDef.cookOffProjectile == null || Find.Maps.IndexOf(Map) < 0)
+            {
+                return false;
+            }
 
             // Spawn projectile if enabled
             if (!Controller.settings.RealisticCookOff)
@@ -175,12 +197,12 @@ namespace CombatExtended
                 projectile.minCollisionDistance = 0f;
                 projectile.logMisses = false;
                 projectile.Launch(this,
-                    new Vector2(DrawPos.x, DrawPos.z),
-                    Mathf.Acos(2 * Rand.Range(0.5f, 1f) - 1),
-                    Rand.Range(0, 360),
-                    0.1f,
-                    AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
-                    this);
+                                  new Vector2(DrawPos.x, DrawPos.z),
+                                  Mathf.Acos(2 * Rand.Range(0.5f, 1f) - 1),
+                                  Rand.Range(0, 360),
+                                  0.1f,
+                                  AmmoDef.cookOffProjectile.projectile.speed * AmmoDef.cookOffSpeed,
+                                  this);
             }
             // Create sound and flash effects
             if (AmmoDef.cookOffFlashScale > 0.01)
@@ -188,8 +210,14 @@ namespace CombatExtended
                 FleckMakerCE.Static(Position, Map, FleckDefOf.ShotFlash, AmmoDef.cookOffFlashScale);
             }
 
-            if (AmmoDef.cookOffSound != null) AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
-            if (AmmoDef.cookOffTailSound != null) AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
+            if (AmmoDef.cookOffSound != null)
+            {
+                AmmoDef.cookOffSound.PlayOneShot(new TargetInfo(Position, Map));
+            }
+            if (AmmoDef.cookOffTailSound != null)
+            {
+                AmmoDef.cookOffTailSound.PlayOneShotOnCamera();
+            }
 
             return true;
         }

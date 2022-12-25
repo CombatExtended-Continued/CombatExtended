@@ -18,14 +18,14 @@
       <Ammo_LauncherGrenade_HE>Bullet_40x53mmGrenade_HE</Ammo_LauncherGrenade_HE>
       <Ammo_LauncherGrenade_HEDP>Bullet_40x53mmGrenade_HEDP</Ammo_LauncherGrenade_HEDP>
       <Ammo_LauncherGrenade_EMP>Bullet_40x53mmGrenade_EMP</Ammo_LauncherGrenade_EMP>
-			<Ammo_LauncherGrenade_Smoke>Bullet_40x53mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>	        
+      <Ammo_LauncherGrenade_Smoke>Bullet_40x53mmGrenade_Smoke</Ammo_LauncherGrenade_Smoke>	        
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
   
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoLauncherGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoLauncherGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Low velocity grenade fired from various grenade launchers</description>
     <statBases>
       <Mass>0.26</Mass>
@@ -218,6 +218,10 @@
     <label>make launcher EMP grenades x100</label>
     <description>Craft 100 launcher EMP grenades.</description>
     <jobString>Making launcher EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

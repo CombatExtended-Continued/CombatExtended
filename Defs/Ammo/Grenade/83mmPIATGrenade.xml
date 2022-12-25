@@ -22,7 +22,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="83mmPIATGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Large spigot grenade designed to be fired at tanks.</description>
     <statBases>
 	  <Mass>3.176</Mass>
@@ -79,6 +79,7 @@
       <MarketValue>90.7</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
 	<detonateProjectile>Bullet_83mmPIATGrenade_EMP</detonateProjectile>
   </ThingDef>
 
@@ -244,6 +245,10 @@
     <label>make 83mm PIAT EMP grenades x5</label>
     <description>Craft 5 83mm PIAT EMP grenades.</description>
     <jobString>Making 83mm PIAT EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

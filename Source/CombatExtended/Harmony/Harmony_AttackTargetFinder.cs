@@ -49,25 +49,26 @@ namespace CombatExtended.HarmonyCE
                 // with an optimized equivalent that avoids redundant and duplicate validation.
                 var hasRangedAttack = AccessTools.Method(typeof(AttackTargetFinder), nameof(AttackTargetFinder.HasRangedAttack));
                 var innerValidatorField = AccessTools.FindIncludingInnerTypes(
-                    typeof(AttackTargetFinder),
-                    (type) => AccessTools.DeclaredField(type, "innerValidator")
-                );
-                var instructionsToInsert = new List<CodeInstruction>() {
+                                              typeof(AttackTargetFinder),
+                                              (type) => AccessTools.DeclaredField(type, "innerValidator")
+                                          );
+                var instructionsToInsert = new List<CodeInstruction>()
+                {
                     new CodeInstruction(OpCodes.Ldarg_1), // targetScanFlags
-                    new CodeInstruction(OpCodes.Ldarg_0), // searcher
-                    new CodeInstruction(OpCodes.Ldloc_0),
-                    new CodeInstruction(OpCodes.Ldfld, innerValidatorField),
-                    new CodeInstruction(OpCodes.Ldarg_S, 4), // maxDist
-                    new CodeInstruction(OpCodes.Ldarg_S, 7), // canBashDoors
-                    new CodeInstruction(OpCodes.Ldarg_S, 9), // canBashFences
-                    new CodeInstruction(
-                        OpCodes.Call,
-                        AccessTools.Method(
-                            typeof(Harmony_AttackTargetFinder_BestAttackTarget),
-                            nameof(Harmony_AttackTargetFinder_BestAttackTarget.FindAttackTargetForRangedAttack)
-                        )
-                    ),
-                    new CodeInstruction(OpCodes.Ret)
+                        new CodeInstruction(OpCodes.Ldarg_0), // searcher
+                        new CodeInstruction(OpCodes.Ldloc_0),
+                        new CodeInstruction(OpCodes.Ldfld, innerValidatorField),
+                        new CodeInstruction(OpCodes.Ldarg_S, 4), // maxDist
+                        new CodeInstruction(OpCodes.Ldarg_S, 7), // canBashDoors
+                        new CodeInstruction(OpCodes.Ldarg_S, 9), // canBashFences
+                        new CodeInstruction(
+                            OpCodes.Call,
+                            AccessTools.Method(
+                                typeof(Harmony_AttackTargetFinder_BestAttackTarget),
+                                nameof(Harmony_AttackTargetFinder_BestAttackTarget.FindAttackTargetForRangedAttack)
+                            )
+                        ),
+                        new CodeInstruction(OpCodes.Ret)
                 };
 
                 for (var i = 0; i < codes.Count; i++)
@@ -96,8 +97,8 @@ namespace CombatExtended.HarmonyCE
             {
                 map = searcher.Thing?.Map;
                 interceptors = searcher.Thing?.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor)
-                                               .Select(t => t.TryGetComp<CompProjectileInterceptor>())
-                                               .ToList() ?? new List<CompProjectileInterceptor>();
+                               .Select(t => t.TryGetComp<CompProjectileInterceptor>())
+                               .ToList() ?? new List<CompProjectileInterceptor>();
             }
 
             /// <summary>
@@ -152,11 +153,11 @@ namespace CombatExtended.HarmonyCE
                 if (checkForReachability)
                 {
                     return (IAttackTarget)Verse.GenClosest.ClosestThing_Global(
-                        searcherPos,
-                        validTargets,
-                        maxDist,
-                        (Thing target) => AttackTargetFinder.CanReach(searcherThing, target, canBashDoors, canBashFences)
-                    );
+                               searcherPos,
+                               validTargets,
+                               maxDist,
+                               (Thing target) => AttackTargetFinder.CanReach(searcherThing, target, canBashDoors, canBashFences)
+                           );
                 }
 
                 return (IAttackTarget)Verse.GenClosest.ClosestThing_Global(searcherPos, validTargets, maxDist);
@@ -172,7 +173,9 @@ namespace CombatExtended.HarmonyCE
                 if (target.Thing is Pawn other && searcher.Thing is Pawn pawn)
                 {
                     if ((pawn.pather?.moving ?? false) && pawn.EdgingCloser(other))
+                    {
                         __result += (verb.EffectiveRange - distance) / (verb.EffectiveRange + 1f) * 20;
+                    }
                 }
                 LocalTargetInfo currentTarget = target.TargetCurrentlyAimingAt;
                 if (currentTarget.IsValid)
@@ -183,16 +186,24 @@ namespace CombatExtended.HarmonyCE
                         if (suppressable != null)
                         {
                             if (suppressable.isSuppressed)
+                            {
                                 __result += 10f;
+                            }
                             if (suppressable.IsHunkering)
+                            {
                                 __result += 25f;
+                            }
                         }
                         if (ally.health?.HasHediffsNeedingTend() ?? false)
+                        {
                             __result += 10f;
+                        }
                     }
                 }
                 if (searcher.Thing.Map?.GetLightingTracker() is LightingTracker tracker)
+                {
                     __result += tracker.CombatGlowAt(target.Thing.Position) * 5f;
+                }
 
                 if (map != null)
                 {
@@ -207,13 +218,19 @@ namespace CombatExtended.HarmonyCE
                             if (interceptor.parent.Position.DistanceTo(target.Thing.Position) < interceptor.Props.radius)
                             {
                                 if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) < interceptor.Props.radius)
+                                {
                                     __result += 30;
+                                }
                                 else
+                                {
                                     __result -= 30f;
+                                }
                             }
                             else if (interceptor.parent.Position.DistanceTo(searcher.Thing.Position) > interceptor.Props.radius
-                                && interceptor.parent.Position.ToVector3().DistanceToSegment(srcPos, trgPos, out _) < interceptor.Props.radius)
+                                     && interceptor.parent.Position.ToVector3().DistanceToSegment(srcPos, trgPos, out _) < interceptor.Props.radius)
+                            {
                                 __result -= 30;
+                            }
                         }
                     }
                 }

@@ -265,6 +265,7 @@
       <aiAimMode>Snapshot</aiAimMode>
     </FireModes>
     <weaponTags>
+      <li>SimpleGun</li>
       <li>CE_AI_BROOM</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -379,6 +380,7 @@
       <aiAimMode>AimedShot</aiAimMode>
     </FireModes>
     <weaponTags>
+      <li>SimpleGun</li>
       <li>CE_AI_SR</li>
     </weaponTags>
     <researchPrerequisite>Gunsmithing</researchPrerequisite>
@@ -954,9 +956,9 @@
   </Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]</xpath>
+			<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]</xpath>
 			<value>
 				<comps />
 			</value>
@@ -964,7 +966,7 @@
 	</Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
+    <xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/comps</xpath>
     <value>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragSpeedFactor>1</fragSpeedFactor>
@@ -1052,9 +1054,9 @@
   </Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Bullet_Rocket"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Bullet_Rocket"]</xpath>
+			<xpath>Defs/ThingDef[defName="Bullet_Rocket"]</xpath>
 			<value>
 				<comps />
 			</value>

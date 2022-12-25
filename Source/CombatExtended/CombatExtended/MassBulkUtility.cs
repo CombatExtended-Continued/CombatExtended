@@ -26,7 +26,10 @@ namespace CombatExtended
         public static float MoveSpeedFactor(float weight, float weightCapacity)
         {
             float t = weight / weightCapacity;
-            if (float.IsNaN(t)) t = 1f;
+            if (float.IsNaN(t))
+            {
+                t = 1f;
+            }
 
             if (t <= 0.25f)
             {
@@ -88,7 +91,9 @@ namespace CombatExtended
                 return weightPercent - 1;
             }
             else
-                return 0f;      
+            {
+                return 0f;
+            }
         }
 
     }

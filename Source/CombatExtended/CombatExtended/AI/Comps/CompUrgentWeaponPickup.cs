@@ -59,28 +59,48 @@ namespace CombatExtended.AI
         private void CheckPrimaryEquipment()
         {
             if (SelPawn.Faction.IsPlayerSafe())
+            {
                 return;
+            }
             if (SelPawn.RaceProps.IsMechanoid)
+            {
                 return;
+            }
             if (!SelPawn.RaceProps.Humanlike)
+            {
                 return;
+            }
             if (SelPawn.equipment == null)
+            {
                 return;
+            }
             if (SelPawn.equipment.Primary != null)
+            {
                 return;
+            }
             if (SelPawn.Downed || SelPawn.InMentalState)
+            {
                 return;
+            }
             if (CompInventory?.SwitchToNextViableWeapon(false, true, false) ?? true)
+            {
                 return;
+            }
             if (CompInventory.rangedWeaponList == null)
+            {
                 return;
+            }
             if (SelPawn.story != null && SelPawn.WorkTagIsDisabled(WorkTags.Violent))
+            {
                 return;
+            }
             foreach (ThingWithComps thing in CompInventory.rangedWeaponList)
             {
                 CompAmmoUser compAmmo = thing.TryGetComp<CompAmmoUser>();
                 if (compAmmo == null)
+                {
                     continue;
+                }
                 if (compAmmo.TryPickupAmmo())
                 {
                     lastPrimaryOptimization = GenTicks.TicksGame;
@@ -97,23 +117,37 @@ namespace CombatExtended.AI
                 {
                     CompAmmoUser compAmmo = weapon.TryGetComp<CompAmmoUser>();
                     if (!SelPawn.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                    {
                         continue;
+                    }
                     if (!SelPawn.CanReserve(weapon))
+                    {
                         continue;
+                    }
                     if (compAmmo == null)
+                    {
                         continue;
+                    }
                     IEnumerable<AmmoDef> supportedAmmo = compAmmo.Props?.ammoSet?.ammoTypes?.Select(a => a.ammo) ?? null;
                     if (supportedAmmo == null)
+                    {
                         continue;
+                    }
 
                     foreach (AmmoThing ammo in ammos)
                     {
                         if (!supportedAmmo.Contains(ammo.AmmoDef))
+                        {
                             continue;
+                        }
                         if (!SelPawn.CanReach(ammo, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                        {
                             continue;
+                        }
                         if (!SelPawn.CanReserve(ammo))
+                        {
                             continue;
+                        }
 
                         if (CompInventory.CanFitInInventory(ammo, out int count))
                         {
@@ -133,9 +167,13 @@ namespace CombatExtended.AI
             foreach (Thing thing in SelPawn.Position.WeaponsInRange(Map, 15))
             {
                 if (!SelPawn.CanReach(thing, PathEndMode.InteractionCell, Danger.Unspecified, false, false))
+                {
                     continue;
+                }
                 if (!SelPawn.CanReserve(thing))
+                {
                     continue;
+                }
                 if (!thing.def.IsRangedWeapon)
                 {
                     lastPrimaryOptimization = GenTicks.TicksGame;

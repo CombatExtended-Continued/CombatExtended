@@ -30,6 +30,10 @@
 				<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
 			  </li>
 			</tools>
+			<tradeTags Inherit="False">
+			  <li>CE_MediumAmmo</li>
+			</tradeTags>
+			<allowedArchonexusCount>5</allowedArchonexusCount>
 		</value>
 	</Operation>
 
@@ -100,9 +104,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
+			<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 			<value>
 				<comps />
 			</value>
@@ -207,6 +211,7 @@
 			<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_AOE</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
@@ -324,6 +329,7 @@
 			<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_AOE</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
@@ -446,6 +452,7 @@
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_EMP</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>

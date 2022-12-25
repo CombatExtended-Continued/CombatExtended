@@ -44,7 +44,7 @@ namespace CombatExtended
         public override int ShotsPerBurst
         {
             get
-            {                
+            {
                 return CompFireModes != null ? ShotsPerBurstFor(CompFireModes.CurrentFireMode) : VerbPropsCE.burstShotCount;
             }
         }
@@ -59,10 +59,15 @@ namespace CombatExtended
                     {
                         // Check for hunting job
                         if (ShooterPawn.CurJob != null && ShooterPawn.CurJob.def == JobDefOf.Hunt)
+                        {
                             return true;
+                        }
 
                         // Check for suppression
-                        if (IsSuppressed) return false;
+                        if (IsSuppressed)
+                        {
+                            return false;
+                        }
 
                         // Check for RunAndGun mod
                         if (ShooterPawn.pather?.Moving ?? false)
@@ -81,15 +86,19 @@ namespace CombatExtended
             get
             {
                 var sway = base.SwayAmplitude;
-		float sightsEfficiency = SightsEfficiency;
-		if (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-		{
-		    sightsEfficiency = 0;
-		}
+                float sightsEfficiency = SightsEfficiency;
+                if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+                {
+                    sightsEfficiency = 0;
+                }
                 if (ShouldAim)
+                {
                     return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, sightsEfficiency);
+                }
                 else if (IsSuppressed)
+                {
                     return sway * SuppressionSwayFactor;
+                }
                 return sway;
             }
         }
@@ -112,15 +121,19 @@ namespace CombatExtended
         public float SwayAmplitudeFor(AimMode mode)
         {
             float sway = base.SwayAmplitude;
-	    float sightsEfficiency = SightsEfficiency;
-	    if (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-	    {
-		sightsEfficiency = 0;
-	    }
+            float sightsEfficiency = SightsEfficiency;
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            {
+                sightsEfficiency = 0;
+            }
             if (ShouldAimFor(mode))
+            {
                 return sway * Mathf.Max(0, 1 - AimingAccuracy) / Mathf.Max(1, sightsEfficiency);
+            }
             else if (IsSuppressed)
+            {
                 return sway * SuppressionSwayFactor;
+            }
             return sway;
         }
 
@@ -130,10 +143,15 @@ namespace CombatExtended
             {
                 // Check for hunting job
                 if (ShooterPawn.CurJob != null && ShooterPawn.CurJob.def == JobDefOf.Hunt)
+                {
                     return true;
+                }
 
                 // Check for suppression
-                if (IsSuppressed) return false;
+                if (IsSuppressed)
+                {
+                    return false;
+                }
 
                 // Check for RunAndGun mod
                 if (ShooterPawn.pather?.Moving ?? false)
@@ -145,18 +163,26 @@ namespace CombatExtended
         }
 
         public virtual int ShotsPerBurstFor(FireMode mode)
-        {            
+        {
             if (CompFireModes != null)
             {
-                if (mode == FireMode.SingleFire) return 1;
-                if (mode == FireMode.BurstFire && CompFireModes.Props.aimedBurstShotCount > 0) return CompFireModes.Props.aimedBurstShotCount;
+                if (mode == FireMode.SingleFire)
+                {
+                    return 1;
+                }
+                if (mode == FireMode.BurstFire && CompFireModes.Props.aimedBurstShotCount > 0)
+                {
+                    return CompFireModes.Props.aimedBurstShotCount;
+                }
             }
             float burstShotCount = VerbPropsCE.burstShotCount;
             if (EquipmentSource != null)
             {
                 float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
                 if (modified > 0)
+                {
                     burstShotCount = modified;
+                }
             }
             return (int)burstShotCount;
         }
@@ -229,10 +255,10 @@ namespace CombatExtended
             report.target = target;
             report.aimingAccuracy = AimingAccuracy;
             report.sightsEfficiency = SightsEfficiency;
-	    if  (ShooterPawn!=null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-	    {
-		report.sightsEfficiency = 0;
-	    }
+            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+            {
+                report.sightsEfficiency = 0;
+            }
             report.shotDist = (targetCell - caster.Position).LengthHorizontal;
             report.maxRange = EffectiveRange;
             report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
@@ -254,34 +280,56 @@ namespace CombatExtended
         public override bool CanHitTargetFrom(IntVec3 root, LocalTargetInfo targ)
         {
             if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-	    {
-		if (!ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Hearing))
-		{
-		    // blind and deaf;
-		    return false;
-		}
-		// blind but not deaf
-		float dist = targ.Cell.DistanceTo(root);
-		if (dist < 5f)
-		{
-		    return base.CanHitTargetFrom(root, targ);
-		}
-		Map map = ShooterPawn.Map;
-		LightingTracker tracker = map.GetLightingTracker();
-		float glow = tracker.GetGlowForCell(targ.Cell);
-		if (glow / dist < 0.1f) {
-		    return false;
-		}
-	    }
+            {
+                if (!ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Hearing))
+                {
+                    // blind and deaf;
+                    return false;
+                }
+                // blind but not deaf
+                float dist = targ.Cell.DistanceTo(root);
+                if (dist < 5f)
+                {
+                    return base.CanHitTargetFrom(root, targ);
+                }
+                Map map = ShooterPawn.Map;
+                LightingTracker tracker = map.GetLightingTracker();
+                float glow = tracker.GetGlowForCell(targ.Cell);
+                if (glow / dist < 0.1f)
+                {
+                    return false;
+                }
+            }
             return base.CanHitTargetFrom(root, targ);
+        }
+
+        public override void RecalculateWarmupTicks()
+        {
+            Vector3 u = caster.TrueCenter();
+            Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
+            if (currentTarget.Pawn is Pawn dtPawn)
+            {
+                v += dtPawn.Drawer.leaner.LeanOffset * 0.5f;
+            }
+
+            var d = v - u;
+            var w = new Vector2();
+            w.Set(d.x, d.z);
+            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+            var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
+            lastRecoilDeg = 0;
+            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
+            var reduction = Mathf.Max(maxReduction, delta / 45f);
+            storedShotReduction = reduction;
+            if (reduction < 1.0f)
+            {
+                this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+            }
+
         }
 
         public override bool TryCastShot()
         {
-	    if (!Retarget())
-	    {
-		return false;
-	    }
             //Reduce ammunition
             if (CompAmmo != null)
             {

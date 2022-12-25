@@ -29,7 +29,9 @@ namespace CombatExtended
                 skilledDamageVariationMax = GetDamageVariationMax(pawnHolder);
 
                 if (pawnHolder.skills != null)
+                {
                     meleeSkillLevel = pawnHolder.skills.GetSkill(SkillDefOf.Melee).Level;
+                }
             }
 
             var tools = (req.Def as ThingDef)?.tools;
@@ -46,8 +48,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("CE_WielderSkillLevel".Translate() + ": " + meleeSkillLevel);
             }
             stringBuilder.AppendLine(string.Format("CE_DamageVariation".Translate() + ": {0}% - {1}%",
-                (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                                                   (100 * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                   (100 * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
             stringBuilder.AppendLine("");
 
             foreach (ToolCE tool in tools)
@@ -64,8 +66,8 @@ namespace CombatExtended
                 stringBuilder.AppendLine("    " + "CE_DescBaseDamage".Translate() + ": " + tool.power.ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine("    " + "CE_AdjustedForWeapon".Translate() + ": " + adjustedToolDamage.ToStringByStyle(ToStringStyle.FloatMaxTwo));
                 stringBuilder.AppendLine(string.Format("    " + "StatsReport_FinalValue".Translate() + ": {0} - {1}",
-                    (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
-                    (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
+                                                       (adjustedToolDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo),
+                                                       (adjustedToolDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo)));
                 stringBuilder.AppendLine();
             }
             return stringBuilder.ToString();
@@ -114,8 +116,8 @@ namespace CombatExtended
             }
 
             return (lowestDamage * skilledDamageVariationMin).ToStringByStyle(ToStringStyle.FloatMaxTwo)
-                + " - "
-                + (highestDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
+                   + " - "
+                   + (highestDamage * skilledDamageVariationMax).ToStringByStyle(ToStringStyle.FloatMaxTwo);
         }
 
     }
