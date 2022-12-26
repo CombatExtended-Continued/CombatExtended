@@ -596,9 +596,14 @@ namespace CombatExtended
             }
         }
 
-        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
+        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
         {
-            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
+            if (muzzle == destination)
+            {
+                return;
+            }
+            map ??= base.Map;
+            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, false, true).Except(muzzle.PawnsInRange(map, SuppressionRadius)))
             {
                 ApplySuppression(pawn);
             }
@@ -750,6 +755,8 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
+            bool collided = false;
+            Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -789,7 +796,9 @@ namespace CombatExtended
             {
                 if (CheckCellForCollision(cell))
                 {
-                    return true;
+                    newPosIV3 = cell;
+                    collided = true;
+                    break;
                 }
 
                 if (Controller.settings.DebugDrawInterceptChecks)
@@ -798,7 +807,15 @@ namespace CombatExtended
                 }
             }
 
-            return false;
+            // Apply suppression. The height here is NOT that of the bullet in CELL,
+            // it is the height at the END OF THE PATH. This is because SuppressionRadius
+            // is not considered an EXACT limit.
+            if (ExactPosition.y <= SuppressionRadius)
+            {
+                RayCastSuppression(lastPosIV3, newPosIV3, localMap);
+            }
+
+            return collided;
         }
 
         /// <summary>
@@ -862,18 +879,6 @@ namespace CombatExtended
                     if (TryCollideWith(thing))
                     {
                         return true;
-                    }
-                }
-
-                // Apply suppression. The height here is NOT that of the bullet in CELL,
-                // it is the height at the END OF THE PATH. This is because SuppressionRadius
-                // is not considered an EXACT limit.
-                if (ExactPosition.y < SuppressionRadius)
-                {
-                    var pawn = thing as Pawn;
-                    if (pawn != null)
-                    {
-                        ApplySuppression(pawn);
                     }
                 }
             }
