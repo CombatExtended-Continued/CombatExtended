@@ -706,7 +706,7 @@ namespace CombatExtended
 
             Rand.PushState();
             FleckCreationData creationData = FleckMaker.GetDataStatic(loc, map, casingFleckDef);
-            creationData.airTimeLeft = 60;
+            creationData.airTimeLeft = 1.5f;
             creationData.scale = Rand.Range(0.5f, 0.3f) * size;
             creationData.rotation = Rand.Range(-3f, 4f);
             creationData.spawnPosition = loc;
