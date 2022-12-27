@@ -712,6 +712,7 @@ namespace CombatExtended
             creationData.spawnPosition = loc;
             creationData.velocitySpeed = Rand.Range(0.7f, 0.5f);
             creationData.velocityAngle = Rand.Range(160, 200);
+            creationData.rotationRate = (float)Rand.Range(-300, 300);
             map.flecks.CreateFleck(creationData);
             Rand.PopState();
         }
