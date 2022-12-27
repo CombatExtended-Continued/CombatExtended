@@ -42,8 +42,8 @@
 		<li Class="PatchOperationAddModExtension">
 			<xpath>Defs/PawnKindDef[
 			defName="Miho_Soldier_Firepower" or
-			defName="Miho_Soldier_PMC_Infantry" or
-			defName="Miho_Soldier_PMC_InfantryShield"
+			defName="Miho_Soldier_PMC_InfantryBasic" or
+			defName="Miho_Soldier_AssassinRanged"
 			]</xpath>
 			<value>
 				<li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -55,24 +55,10 @@
 			</value>
 		</li>
 		
-		<li Class="PatchOperationAddModExtension">
-			<xpath>Defs/PawnKindDef[
-			defName="Miho_Soldier_AssassinRanged"
-			]</xpath>
-			<value>
-				<li Class="CombatExtended.LoadoutPropertiesExtension">
-				<primaryMagazineCount>
-					<min>20</min>
-					<max>30</max>
-				</primaryMagazineCount>
-				</li>
-			</value>
-		</li>
-		
 		<!--Backpack-->
 		
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Apparel_Backpack"]/apparel/tags</xpath>
+			<xpath>Defs/ThingDef[defName="CE_Apparel_Backpack"]/apparel/tags</xpath>
 			<value>
 				<li>MihoCommonNecessary</li>
 			</value>
@@ -85,7 +71,6 @@
 			defName="Miho_Soldier_Marksman" or
 			defName="Miho_Soldier_Firepower" or
 			defName="Miho_Soldier_PMC_Infantry" or
-			defName="Miho_Soldier_PMC_InfantryShield" or
 			defName="Miho_Soldier_PMC_Sniper" or
 			defName="Miho_Soldier_AssassinRanged"
 			]/apparelRequired</xpath>
