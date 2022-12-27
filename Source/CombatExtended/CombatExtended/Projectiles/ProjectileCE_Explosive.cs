@@ -58,7 +58,7 @@ namespace CombatExtended
             landed = true;
             ticksToDetonation = def.projectile.explosionDelay;
             float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
-            if(dangerFactor > 0f)
+            if (dangerFactor > 0f)
             {
                 DangerTracker.Notify_DangerRadiusAt(Position,
                         def.projectile.explosionRadius +
