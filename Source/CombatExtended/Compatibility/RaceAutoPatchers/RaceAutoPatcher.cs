@@ -26,6 +26,7 @@ namespace CombatExtended.Compatibility
                                                                       );
 
             int patchCount = 0;
+            string patchedanimals = "";
             foreach (ThingDef animal in animalsUnpatched)
             {
                 if (animal.modExtensions == null)
@@ -99,9 +100,14 @@ namespace CombatExtended.Compatibility
                 }
 
                 patchCount++;
+                patchedanimals += animal.ToString() + "\n";
             }
-
-            Log.Message("CE successfully patched " + patchCount.ToString() + " animals");
+            // Don't show log if there are no animals being patched by autopatcher.
+            if (patchCount > 0)
+            {
+                Log.Message("CE successfully patched " + patchCount.ToString() + " animals.\nAnimal Defs autopatched:" + patchedanimals);
+            }
+            //Log.Message(patchedanimals);
 
             #endregion
 

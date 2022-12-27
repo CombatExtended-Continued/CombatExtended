@@ -24,7 +24,7 @@
 	
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="23x75mmRBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="23x75mmRBase" ParentName="AmmoBase" Abstract="True">
     <description>Large 6.27 gauge shotgun caliber designed to be fired by the KS-23 shotgun.</description>
     <statBases>
 	  <Mass>0.095</Mass>
@@ -93,10 +93,11 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>3.03</MarketValue>
       <Mass>0.186</Mass>
+      <MarketValue>3.03</MarketValue>
     </statBases>
     <ammoClass>ElectroSlug</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
     <cookOffProjectile>Bullet_23x75mmR_ElectroSlug</cookOffProjectile>
   </ThingDef>
 	
@@ -265,6 +266,7 @@
     <label>make 23x75mmR (EMP) shell x200</label>
     <description>Craft 200 23x75mmR (EMP) shells.</description>
     <jobString>Making 23x75mmR (EMP) shells.</jobString>
+    <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
     <ingredients>
       <li>
         <filter>

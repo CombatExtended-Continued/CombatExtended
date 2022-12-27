@@ -3,7 +3,7 @@
 
   <!-- ==================== Grenade Launcher ==================== -->
 
-  <ThingDef ParentName="BaseMakeableGun">
+  <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>CE_GrenadeLauncher</defName>
     <label>grenade launcher</label>
     <description>A simple, locally produced break-action grenade launcher, capable of firing a variety of different projectiles.</description>
@@ -29,7 +29,7 @@
       <ComponentIndustrial>1</ComponentIndustrial>
       <WoodLog>10</WoodLog>
     </costList>
-    <weaponTags>
+    <weaponTags Inherit="False">
       <li>GunGrenadeLauncher</li>
       <li>GunHeavy</li>
       <li>GrenadeEMP</li>
@@ -121,6 +121,7 @@
     <tickerType>Normal</tickerType>
     <resourceReadoutPriority>First</resourceReadoutPriority>
     <techLevel>Industrial</techLevel>
+    <stackLimit>25</stackLimit>
     <statBases>
       <MarketValue>91</MarketValue>
       <SightsEfficiency>1.0</SightsEfficiency>
@@ -158,7 +159,6 @@
         <aiAimMode>AimedShot</aiAimMode>
       </li>
     </comps>
-    <stackLimit>25</stackLimit>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>stock</label>
@@ -198,6 +198,9 @@
         <DrawOffset>-0.3,0.0</DrawOffset>
       </li>
     </modExtensions>
+    <tradeTags Inherit="False">
+      <li>CE_HeavyAmmo</li>
+    </tradeTags>
   </ThingDef>
 
    <RecipeDef ParentName="GrenadeRecipeBase">

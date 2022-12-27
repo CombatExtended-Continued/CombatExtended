@@ -55,6 +55,14 @@ namespace CombatExtended
         private LocalTargetInfo lastTarget = null;
         private IntVec3 lastTargetPos = IntVec3.Invalid;
 
+        protected float lastShotAngle;
+        protected float lastShotRotation;
+        protected float lastRecoilDeg;
+        protected float? storedShotReduction = null;
+        protected ShootLine lastShootLine;
+        protected bool repeating = false;
+        private bool doRetarget = true;
+
         #endregion
 
         #region Properties
@@ -237,6 +245,29 @@ namespace CombatExtended
         #endregion
 
         #region Methods
+
+        public override void Reset()
+        {
+            base.Reset();
+            shootingAtDowned = false;
+            lastTarget = null;
+            lastTargetPos = IntVec3.Invalid;
+
+            repeating = false;
+            storedShotReduction = null;
+        }
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look<bool>(ref this.shootingAtDowned, "shootingAtDowned", false, false);
+            Scribe_TargetInfo.Look(ref this.lastTarget, "lastTarget");
+            Scribe_Values.Look<IntVec3>(ref this.lastTargetPos, "lastTargetPos", IntVec3.Invalid, false);
+            Scribe_Values.Look<bool>(ref this.repeating, "repeating", false, false);
+            Scribe_Values.Look<float>(ref this.lastShotAngle, "lastShotAngle", 0f, false);
+            Scribe_Values.Look<float>(ref this.lastShotRotation, "lastShotRotation", 0f, false);
+            Scribe_Values.Look<float>(ref this.lastRecoilDeg, "lastRecoilDeg", 0f, false);
+
+        }
 
         public override bool Available()
         {
@@ -547,9 +578,12 @@ namespace CombatExtended
             float minY = -recoil / 3;
 
             float recoilMagnitude = numShotsFired == 0 ? 0 : Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+            float nextRecoilMagnitude = Mathf.Pow((5 - ShootingAccuracy), (Mathf.Min(10, numShotsFired + 1) / 6.25f));
 
             rotation += recoilMagnitude * Rand.Range(minX, maxX);
-            angle += Mathf.Deg2Rad * recoilMagnitude * Rand.Range(minY, maxY);
+            var trd = Rand.Range(minY, maxY);
+            angle += recoilMagnitude * Mathf.Deg2Rad * trd;
+            lastRecoilDeg += nextRecoilMagnitude * trd;
         }
 
         /// <summary>
@@ -645,8 +679,8 @@ namespace CombatExtended
             smokeDensity = 0;
 
             // Iterate through all cells on line of sight and check for cover and smoke
-            var cells = GenSight.PointsOnLineOfSight(target.Cell, caster.Position).ToArray();
-            if (cells.Length < 3)
+            var cells = GenSightCE.AllPointsOnLineOfSight(target.Cell, caster.Position);
+            if (cells.Count < 3)
             {
                 cover = null;
                 return false;
@@ -656,7 +690,7 @@ namespace CombatExtended
             {
                 instant = pprop.isInstant;
             }
-            int endCell = instant ? cells.Length : cells.Length / 2;
+            int endCell = instant ? cells.Count : cells.Count / 2;
 
             for (int i = 0; i < endCell; i++)
             {
@@ -681,21 +715,25 @@ namespace CombatExtended
 
 
                 // Check for cover in the second half of LoS
-                if (instant || i <= cells.Length / 2)
+                if (instant || i <= cells.Count / 2)
                 {
                     Pawn pawn = cell.GetFirstPawn(map);
                     Thing newCover = pawn == null ? cell.GetCover(map) : pawn;
-                    float newCoverHeight = new CollisionVertical(newCover).Max;
 
                     // Cover check, if cell has cover compare collision height and get the highest piece of cover, ignore if cover is the target (e.g. solar panels, crashed ship, etc)
                     if (newCover != null
                             && (targetThing == null || !newCover.Equals(targetThing))
-                            && (highestCover == null || highestCoverHeight < newCoverHeight)
                             && newCover.def.Fillage == FillCategory.Partial
                             && !newCover.IsPlant())
                     {
-                        highestCover = newCover;
-                        highestCoverHeight = newCoverHeight;
+                        float newCoverHeight = new CollisionVertical(newCover).Max;
+
+                        if (highestCover == null || highestCoverHeight < newCoverHeight)
+                        {
+                            highestCover = newCover;
+                            highestCoverHeight = newCoverHeight;
+                        }
+
                         if (Controller.settings.DebugDrawTargetCoverChecks)
                         {
                             map.debugDrawer.FlashCell(cell, highestCoverHeight, highestCoverHeight.ToString());
@@ -803,6 +841,11 @@ namespace CombatExtended
 
         protected bool Retarget()
         {
+            if (!doRetarget)
+            {
+                return true;
+            }
+            doRetarget = false;
             if (currentTarget != lastTarget)
             {
                 lastTarget = currentTarget;
@@ -849,15 +892,43 @@ namespace CombatExtended
             return true;
         }
 
+        public virtual void RecalculateWarmupTicks()
+        {
+        }
+
+        public override bool TryStartCastOn(LocalTargetInfo castTarg, LocalTargetInfo destTarg, bool surpriseAttack = false, bool canHitNonTargetPawns = true, bool preventFriendlyFire = false, bool nonInterruptingSelfCast = false)
+        {
+            bool startedCasting = base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
+            if (startedCasting)
+            {
+                if (Controller.settings.FasterRepeatShots && this.repeating && this.verbProps.warmupTime > 0f) // now warming up
+                {
+                    this.RecalculateWarmupTicks();
+                }
+            }
+            return startedCasting;
+        }
+
+
         /// <summary>
         /// Fires a projectile using the new aiming system
         /// </summary>
         /// <returns>True for successful shot, false otherwise</returns>
         public override bool TryCastShot()
         {
-            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine))
+            Retarget();
+            repeating = true;
+            doRetarget = true;
+            storedShotReduction = null;
+            bool firingWithoutTarget = false;
+            if (!TryFindCEShootLineFromTo(caster.Position, currentTarget, out var shootLine)) // If we are mid burst, keep shooting.
             {
-                return false;
+                if (numShotsFired == 0)
+                {
+                    return false;
+                }
+                shootLine = lastShootLine;
+                firingWithoutTarget = true;
             }
             if (projectilePropsCE.pelletCount < 1)
             {
@@ -893,7 +964,17 @@ namespace CombatExtended
                 projectile.intendedTarget = currentTarget;
                 projectile.mount = caster.Position.GetThingList(caster.Map).FirstOrDefault(t => t is Pawn && t != caster);
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
+                if (firingWithoutTarget)
+                {
+                    shotAngle = lastShotAngle;
+                    shotRotation = lastShotRotation;
+                    GetSwayVec(ref shotRotation, ref shotAngle);
+                    GetRecoilVec(ref shotRotation, ref shotAngle);
 
+                }
+                this.lastShotAngle = shotAngle;
+                this.lastShotRotation = shotRotation;
+                this.lastShootLine = shootLine;
                 if (instant)
                 {
                     var shotHeight = ShotHeight;

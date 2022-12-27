@@ -9,6 +9,26 @@
     <match Class="PatchOperationSequence">
       <operations>
 
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="BaseVFEMachine"]/comps</xpath>
+		<value>
+			<li>
+				<compClass>CombatExtended.CompPawnGizmo</compClass>
+			</li>
+			<li>
+				<compClass>CombatExtended.CompAmmoGiver</compClass>
+			</li>
+		</value>
+	</li>
+
+    <li Class="PatchOperationReplace">
+      <xpath>/Defs/ThingDef[@Name="BaseVFEMachine"]/statBases/ArmorRating_Heat</xpath>
+      <value>
+        <ArmorRating_Heat>0</ArmorRating_Heat>
+        <SmokeSensitivity>0</SmokeSensitivity>
+      </value>
+    </li>
+
     <li Class="PatchOperationReplace">
       <xpath>Defs/ThingDef[
         defName="VFE_Mechanoids_Autocleaner" or

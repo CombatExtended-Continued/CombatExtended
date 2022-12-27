@@ -23,7 +23,7 @@
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="PG15VRocketBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="PG15VRocketBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Tube launched rocket-propelled grenade used by SPG-9 recoilless launcher and the BMP-1's 2A28 Grom cannon. After being fired, a rocket motor kicks in to propel the grenade further.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -359,6 +359,10 @@
     <label>make PG15V EMP rockets x5</label>
     <description>Craft 5 PG15V EMP rockets.</description>
     <jobString>Making PG15V EMP rockets.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <workAmount>5400</workAmount>
     <ingredients>
       <li>

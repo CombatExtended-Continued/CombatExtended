@@ -52,6 +52,7 @@ Mod |
 [RH] Faction: UAC Kit	|
 [RH] Faction: Umbra Company	|
 [RH] Faction: War Mongrels	|
+[RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: V.O.I.D.	|
@@ -79,7 +80,9 @@ Advanced Mortar (Continued) |
 Alpha Animals |
 Alpha Biomes |
 Alpha Genes |
+Alpha Memes |
 Alpha Ships |
+Altered Carbon |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
@@ -156,14 +159,16 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 ED-Shields	|
-Edge of Descension  |
+Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
 Erin's Critter Collection |
+Erin's Final Fantasy Races |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
@@ -241,6 +246,7 @@ Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    |
+Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
@@ -253,6 +259,7 @@ Lemolim Race    |
 Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
+Logistics_Mechanoid |
 Magical Menagerie	|
 Magic Wands |
 Makeshift Melee Weapons |
@@ -266,6 +273,7 @@ Mechanoid Bench 3   |
 Mechanoid Master Blaster (Continued)    |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
@@ -309,6 +317,7 @@ Ni'Hal	|
 Nukes   |
 Nyaron Race |
 Not Only Just a Cannon  |
+Obsidia Expansion - Mothoids  |
 ODZ Suits |
 Ogam's Warbanner Mod    |
 Opossum Friends |
@@ -336,6 +345,7 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
+ReGrowth: Extinct Animals |
 Reinforced Mechanoids: Tyrikan-Line |
 Remote Detonator	|
 Revia Race |
@@ -357,7 +367,10 @@ Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
+RimFantasy - Medieval Overhaul Edition   |
+RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
+RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -381,17 +394,18 @@ Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
+Solark Race |
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 Stalingrad – Uniforms   |
+Steamworld Uniforms |
 Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
 Starship Troopers Aracnids  |
-Solark Race |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -409,8 +423,8 @@ Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
+T's Conversion Staff |
 T's Samurai Faction |
-Ultratech: Altered Carbon Remastered |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
@@ -465,6 +479,7 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
+Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |

@@ -39,7 +39,8 @@ namespace CombatExtended
                                            applyDamageToExplosionCellsNeighbors: props.applyDamageToExplosionCellsNeighbors,
                                            preExplosionSpawnThingDef: props.preExplosionSpawnThingDef,
                                            preExplosionSpawnChance: props.preExplosionSpawnChance,
-                                           preExplosionSpawnThingCount: props.preExplosionSpawnThingCount
+                                           preExplosionSpawnThingCount: props.preExplosionSpawnThingCount,
+                                           postExplosionGasType: props.postExplosionGasType
                                           );
 
                 if (this.TryGetComp<CompFragments>() != null)
