@@ -23,6 +23,10 @@ namespace CombatExtended
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
 
+        public float suppressionFactor = 1;
+        public float airborneSuppressionFactor = 1;
+        public float dangerFactor = 1;
+
         #region Bunker Buster fields
         /// <summary>
         /// Amount of tiles ProjectileCE_BunkerBuster will detonate after after penetrating an obstacle
