@@ -90,6 +90,45 @@
 			</value>
 		</li>
 		
+		<li Class="PatchOperationReplace">
+			<xpath>/Defs/ThingDef[@Name="MihoPawn"]/tools</xpath> 
+			<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>1</power>
+					<cooldownTime>1.26</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<chanceFactor>0.2</chanceFactor>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+			</value>
+		</li>
+		
 		<li Class="PatchOperationAdd">
 		 <xpath>/Defs/ThingDef[@Name="MihoPawn"]/damageMultipliers</xpath>
 			  <value>
@@ -114,6 +153,13 @@
 			<li>CE_Apparel_MeleeShield</li>
 			<li>CE_Apparel_GasMask</li>
 			<li>CE_Apparel_ImprovGasMask</li>
+			</value>
+		</li>
+		
+		<li Class="PatchOperationAdd">
+		 <xpath>/Defs/GeneDef[defName="Ears_Arctic_Miho"]/statOffsets</xpath>
+			<value>
+			<CarryWeight>10</CarryWeight>
 			</value>
 		</li>
 		

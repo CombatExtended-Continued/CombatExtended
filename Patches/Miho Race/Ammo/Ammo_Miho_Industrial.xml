@@ -169,7 +169,7 @@
 					<li>
 					<filter>
 						<thingDefs>
-						<li>Miho_HeatCeramics</li>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
 						</thingDefs>
 					</filter>
 					<count>1</count>
@@ -179,7 +179,7 @@
 					<thingDefs>
 					<li>Steel</li>
 					<li>Prometheum</li>
-					<li>Miho_HeatCeramics</li>
+					<li>Miho_MilitaryGradeBalisticCeramics</li>
 					</thingDefs>
 				</fixedIngredientFilter>
 				<products>
@@ -214,7 +214,7 @@
 					<li>
 					<filter>
 						<thingDefs>
-						<li>Miho_HeatCeramics</li>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
 						</thingDefs>
 					</filter>
 					<count>2</count>
@@ -224,7 +224,7 @@
 					<thingDefs>
 					<li>Steel</li>
 					<li>Prometheum</li>
-					<li>Miho_HeatCeramics</li>
+					<li>Miho_MilitaryGradeBalisticCeramics</li>
 					</thingDefs>
 				</fixedIngredientFilter>
 				<products>
@@ -259,7 +259,7 @@
 					<li>
 					<filter>
 						<thingDefs>
-						<li>Miho_HeatCeramics</li>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
 						</thingDefs>
 					</filter>
 					<count>2</count>
@@ -269,7 +269,7 @@
 					<thingDefs>
 					<li>Steel</li>
 					<li>Prometheum</li>
-					<li>Miho_HeatCeramics</li>
+					<li>Miho_MilitaryGradeBalisticCeramics</li>
 					</thingDefs>
 				</fixedIngredientFilter>
 				<products>
@@ -303,7 +303,7 @@
 				<li>
 					<filter>
 						<thingDefs>
-						<li>Miho_HeatCeramics</li>
+						<li>Miho_MilitaryGradeBalisticCeramics</li>
 						</thingDefs>
 					</filter>
 					<count>2</count>
@@ -313,13 +313,180 @@
 					<thingDefs>
 					<li>Steel</li>
 					<li>Prometheum</li>
-					<li>Miho_HeatCeramics</li>
+					<li>Miho_MilitaryGradeBalisticCeramics</li>
 					</thingDefs>
 				</fixedIngredientFilter>
 				<products>
 				<Ammo_132x92mmSRTuF_Miho>200</Ammo_132x92mmSRTuF_Miho>
 				</products>
 				<workAmount>9800</workAmount>
+			</RecipeDef>
+			
+			<ThingCategoryDef>
+				<defName>AmmoMiho47x285mm</defName>
+				<label>47x285mm mihoic anti-tank shell</label>
+				<parent>AmmoShells</parent>
+				<iconPath>UI/Icons/ThingCategories/CaliberAutocannonLarge</iconPath>
+			</ThingCategoryDef>
+
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSet_Miho47x285mm</defName>
+				<label>47x285mm anti-tank shell</label>
+				<ammoTypes>
+					<Ammo_Miho47x285mm_HE>Bullet_Miho47x285mm_HE</Ammo_Miho47x285mm_HE>
+					<Ammo_Miho47x285mm_AP>Bullet_Miho47x285mm_AP</Ammo_Miho47x285mm_AP>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+
+			<!-- ==================== Ammo ========================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoMiho47x285mmBase" ParentName="HeavyAmmoBase" Abstract="True">
+				<description>Large caliber cartridge used by autocannons and anti-aircraft cannons.</description>
+				<statBases>
+					<Mass>1.4</Mass>
+					<Bulk>3.98</Bulk>
+				</statBases>
+				<tradeTags>
+					<li>CE_AutoEnableTrade</li>
+					<li>CE_AutoEnableCrafting_TableMachining</li>
+				</tradeTags>
+				<thingCategories>
+					<li>AmmoMiho47x285mm</li>
+				</thingCategories>
+				<stackLimit>25</stackLimit>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho47x285mmBase">
+				<defName>Ammo_Miho47x285mm_HE</defName>
+				<label>47x285mm Mihoic anti-tank shell cartridge (HE)</label>
+				<graphicData>
+					<texPath>Things/Ammo/HighCaliber/Bofors/HE</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>22.21</MarketValue>
+				</statBases>
+				<ammoClass>ExplosiveAP</ammoClass>
+				<cookOffProjectile>Bullet_Miho47x285mm_HE</cookOffProjectile>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoMiho47x285mmBase">
+				<defName>Ammo_Miho47x285mm_AP</defName>
+				<label>47x285mm Mihoic anti-tank shell cartridge (APHE)</label>
+				<graphicData>
+					<texPath>Things/Ammo/HighCaliber/Bofors/AP</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+				</graphicData>
+				<statBases>
+					<MarketValue>8.57</MarketValue>
+				</statBases>
+				<ammoClass>ArmorPiercing</ammoClass>
+				<cookOffProjectile>Bullet_Miho47x285mm_AP</cookOffProjectile>
+			</ThingDef>
+
+			<!-- ================== Projectiles ================== -->
+
+			<ThingDef Name="BaseMiho47x285mmBullet" ParentName="BaseBullet" Abstract="true">
+				<graphicData>
+					<texPath>Things/Projectile/Bullet_Big</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>Bullet</damageDef>
+					<speed>155</speed>
+					<dropsCasings>true</dropsCasings>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="BaseMiho47x285mmBullet">
+				<defName>Bullet_Miho47x285mm_HE</defName>
+				<label>47x285mm Mihoic anti-tank bullet (HE)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>195</damageAmountBase>
+					<armorPenetrationSharp>25</armorPenetrationSharp>
+					<armorPenetrationBlunt>8555.440</armorPenetrationBlunt>
+					<secondaryDamage>
+						<li>
+							<def>Bomb_Secondary</def>
+							<amount>117</amount>
+						</li>
+					</secondaryDamage>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="BaseMiho47x285mmBullet">
+				<defName>Bullet_Miho47x285mm_AP</defName>
+				<label>47x285mm Mihoic anti-tank bullet (APHE)</label>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageAmountBase>122</damageAmountBase>
+					<armorPenetrationSharp>57</armorPenetrationSharp>
+					<armorPenetrationBlunt>8555.440</armorPenetrationBlunt>
+				</projectile>
+			</ThingDef>
+
+			<!-- ==================== Recipes ========================== -->
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho47x285mm_HE</defName>
+				<label>make 47x285mm Miho (HE) cartridge x25</label>
+				<description>Craft 25 47x285mm Miho (HE) cartridges.</description>
+				<jobString>Making 47x285mm Miho (HE) cartridges.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>108</count>
+					</li>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>FSX</li>
+							</thingDefs>
+						</filter>
+						<count>33</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+						<li>FSX</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho47x285mm_HE>25</Ammo_Miho47x285mm_HE>
+				</products>
+				<workAmount>24000</workAmount>
+			</RecipeDef>
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho47x285mm_AP</defName>
+				<label>make 47x285mm Miho (APHE) cartridge x25</label>
+				<description>Craft 25 47x285mm Miho (APHE) cartridges.</description>
+				<jobString>Making 47x285mm Miho (APHE) cartridges.</jobString>
+				<ingredients>
+					<li>
+						<filter>
+							<thingDefs>
+								<li>Steel</li>
+							</thingDefs>
+						</filter>
+						<count>108</count>
+					</li>
+				</ingredients>
+				<fixedIngredientFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho47x285mm_AP>25</Ammo_Miho47x285mm_AP>
+				</products>
+				<workAmount>10800</workAmount>
 			</RecipeDef>
 
 			</value>
