@@ -349,6 +349,7 @@ namespace CombatExtended
                 if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
                     CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
+                    CE_Utility.MakeCasingFilth(caster.Position, caster.Map, DefDatabase<ThingDef>.GetNamed(projectilePropsCE.casingFilthDefname));
                 }
                 // This needs to here for weapons without magazine to ensure their last shot plays sounds
                 if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
