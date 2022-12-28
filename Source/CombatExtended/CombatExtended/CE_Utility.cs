@@ -717,13 +717,12 @@ namespace CombatExtended
             Rand.PopState();
         }
 
-       public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
+        public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
         {
             if (!Controller.settings.CreateCasingsFilth)
             {
                 return;
             }
-
             Rand.PushState();
             float makeFilthChance = Rand.Range(0f, 1f);
             if (makeFilthChance > 0.9f && position.Walkable(map))
