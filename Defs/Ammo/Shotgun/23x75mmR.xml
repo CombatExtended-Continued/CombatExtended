@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <ThingCategoryDef>
-      <defName>Ammo23x75mmR</defName>
-      <label>23x75mmR</label>
-      <parent>AmmoShotguns</parent>
-      <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
-    </ThingCategoryDef>
-	
+  <ThingCategoryDef>
+    <defName>Ammo23x75mmR</defName>
+    <label>23x75mmR</label>
+    <parent>AmmoShotguns</parent>
+    <iconPath>UI/Icons/ThingCategories/CaliberShotgun</iconPath>
+  </ThingCategoryDef>
+
   <!-- ==================== AmmoSet ========================== -->
 
   <CombatExtended.AmmoSetDef>
@@ -21,25 +21,25 @@
     </ammoTypes>
     <similarTo>AmmoSet_Shotgun</similarTo>
   </CombatExtended.AmmoSetDef>
-	
+
   <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="23x75mmRBase" ParentName="AmmoBase" Abstract="True">
     <description>Large 6.27 gauge shotgun caliber designed to be fired by the KS-23 shotgun.</description>
     <statBases>
-	  <Mass>0.095</Mass>
-	  <Bulk>0.1</Bulk>
+      <Mass>0.095</Mass>
+      <Bulk>0.1</Bulk>
     </statBases>
-	<tradeTags>
-	  <li>CE_AutoEnableTrade</li>
-	  <li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting</li>
+    </tradeTags>
     <thingCategories>
       <li>Ammo23x75mmR</li>
     </thingCategories>
     <stackLimit>5000</stackLimit>
   </ThingDef>
-  
+
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Buck</defName>
     <label>23x75mmR shell (Buck)</label>
@@ -72,7 +72,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_Beanbag</defName>
     <label>23x75mmR shell (Bean)</label>
-	<generateAllowChance>0</generateAllowChance>
+    <generateAllowChance>0</generateAllowChance>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Beanbag</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -84,7 +84,7 @@
     <ammoClass>Beanbag</ammoClass>
     <cookOffProjectile>Bullet_23x75mmR_Beanbag</cookOffProjectile>
   </ThingDef>
-  
+
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="23x75mmRBase">
     <defName>Ammo_23x75mmR_ElectroSlug</defName>
     <label>23x75mmR shell (EMP)</label>
@@ -100,80 +100,81 @@
     <generateAllowChance>0.5</generateAllowChance>
     <cookOffProjectile>Bullet_23x75mmR_ElectroSlug</cookOffProjectile>
   </ThingDef>
-	
-	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base23x75mmRBullet" ParentName="BaseBullet" Abstract="true">
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bullet</damageDef>
-			<speed>78</speed>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
-		</projectile>
-	</ThingDef>
-	
-	<ThingDef ParentName="Base23x75mmRBullet">
-		<defName>Bullet_23x75mmR_Buck</defName>
-		<label>buckshot pellet</label>
-		<graphicData>
-			<texPath>Things/Projectile/Shotgun_Pellet</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageAmountBase>10</damageAmountBase>
-			<pelletCount>14</pelletCount>
-			<armorPenetrationSharp>5</armorPenetrationSharp>
-			<armorPenetrationBlunt>8.1</armorPenetrationBlunt>
-			<spreadMult>7.9</spreadMult>
-		</projectile>
-	</ThingDef>
+  <!-- ================== Projectiles ================== -->
 
-	<ThingDef ParentName="Base23x75mmRBullet">
-		<defName>Bullet_23x75mmR_Slug</defName>
-		<label>shotgun slug</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>114</speed>
-			<damageAmountBase>57</damageAmountBase>
-			<armorPenetrationSharp>9</armorPenetrationSharp>
-			<armorPenetrationBlunt>526.34</armorPenetrationBlunt>
-		</projectile>
-	</ThingDef>
+  <ThingDef Name="Base23x75mmRBullet" ParentName="BaseBullet" Abstract="true">
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <speed>78</speed>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+      <casingFilthDefname>Filth_ShotgunAmmoCasings</casingFilthDefname>
+    </projectile>
+  </ThingDef>
 
-	<ThingDef ParentName="Base23x75mmRBullet">
-		<defName>Bullet_23x75mmR_Beanbag</defName>
-		<label>beanbag</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>18</speed>
-			<damageDef>Beanbag</damageDef>
-			<damageAmountBase>16</damageAmountBase>
-			<armorPenetrationBlunt>13.78</armorPenetrationBlunt>
-			<spreadMult>2</spreadMult>
-		</projectile>
-	</ThingDef>
-	
-	<ThingDef ParentName="Base23x75mmRBullet">
-		<defName>Bullet_23x75mmR_ElectroSlug</defName>
-		<label>EMP slug</label>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>EMP</damageDef>
-			<damageAmountBase>29</damageAmountBase>
-		</projectile>
-	</ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
-	
+  <ThingDef ParentName="Base23x75mmRBullet">
+    <defName>Bullet_23x75mmR_Buck</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>10</damageAmountBase>
+      <pelletCount>14</pelletCount>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>8.1</armorPenetrationBlunt>
+      <spreadMult>7.9</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base23x75mmRBullet">
+    <defName>Bullet_23x75mmR_Slug</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>114</speed>
+      <damageAmountBase>57</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>
+      <armorPenetrationBlunt>526.34</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base23x75mmRBullet">
+    <defName>Bullet_23x75mmR_Beanbag</defName>
+    <label>beanbag</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>18</speed>
+      <damageDef>Beanbag</damageDef>
+      <damageAmountBase>16</damageAmountBase>
+      <armorPenetrationBlunt>13.78</armorPenetrationBlunt>
+      <spreadMult>2</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base23x75mmRBullet">
+    <defName>Bullet_23x75mmR_ElectroSlug</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>29</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
+
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_23x75mmR_Buck</defName>
     <label>make 23x75mmR (Buck) shell x200</label>
@@ -260,7 +261,7 @@
     </products>
     <workAmount>10900</workAmount>
   </RecipeDef>
-  
+
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_23x75mmR_ElectroSlug</defName>
     <label>make 23x75mmR (EMP) shell x200</label>
@@ -296,5 +297,5 @@
     </products>
     <workAmount>16000</workAmount>
   </RecipeDef>
-	
+
 </Defs>
