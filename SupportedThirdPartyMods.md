@@ -116,6 +116,9 @@ Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
 Astoriel Legacy |
+Astra Militarum Regimentum - Cadia  |
+Astra Militarum Regimentum - Krieg  |
+Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
@@ -323,6 +326,7 @@ ODZ Suits |
 Ogam's Warbanner Mod    |
 Opossum Friends |
 Orassans	|
+Ordo Tempestus - Tempestus Scions   |
 Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |

@@ -17,6 +17,7 @@ namespace CombatExtended
         public bool damageAdjacentTiles = false;
         public bool dropsCasings = false;
         public string casingMoteDefname = "Mote_EmptyCasing";
+        public string casingFilthDefname = "Filth_RifleAmmoCasings";
         public float gravityFactor = 1;
         public bool isInstant = false;
         public bool damageFalloff = true; // Damage falloff for *instant* projectiles.
