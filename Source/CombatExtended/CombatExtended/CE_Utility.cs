@@ -717,6 +717,21 @@ namespace CombatExtended
             Rand.PopState();
         }
 
+        public static void MakeCasingFilth(IntVec3 position, Map map, ThingDef casingFilthDef)
+        {
+            if (!Controller.settings.CreateCasingsFilth)
+            {
+                return;
+            }
+            Rand.PushState();
+            float makeFilthChance = Rand.Range(0f, 1f);
+            if (makeFilthChance > 0.9f && position.Walkable(map))
+            {
+                FilthMaker.TryMakeFilth(position, map, casingFilthDef, 1, FilthSourceFlags.None);
+            }
+            Rand.PopState();
+        }
+
         public static void MakeIconOverlay(Pawn pawn, ThingDef moteDef)
         {
             MoteThrownAttached moteThrown = (MoteThrownAttached)ThingMaker.MakeThing(moteDef);
