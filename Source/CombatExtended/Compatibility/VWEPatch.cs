@@ -13,7 +13,7 @@ namespace CombatExtended.Compatibility
                 if (mode == FireMode.SingleFire)
                 {
 
-                    int lint = Rand.Range(0, 2);
+                    int lint = Rand.RangeInclusive(0, 2);
                     if (lint != 0)
                     {
                         return lint;
@@ -28,10 +28,10 @@ namespace CombatExtended.Compatibility
                 }
                 if (mode == FireMode.BurstFire)
                 {
-                    return Rand.Range(0, base.CompFireModes.Props.aimedBurstShotCount + 1);
+                    return Rand.RangeInclusive(0, base.CompFireModes.Props.aimedBurstShotCount + 1);
                 }
             }
-            return Rand.Range(0, base.VerbPropsCE.burstShotCount + 1);
+            return Rand.RangeInclusive(0, base.VerbPropsCE.burstShotCount + 1);
         }
     }
     public class RandomDamage : ThingComp
