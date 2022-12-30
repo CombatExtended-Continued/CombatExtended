@@ -117,6 +117,8 @@ Arrow Please (Continued)    |
 Aspero Race |
 Astoriel Legacy |
 Astra Militarum Regimentum - Cadia  |
+Astra Militarum Regimentum - Krieg  |
+Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
