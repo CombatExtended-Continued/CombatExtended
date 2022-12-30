@@ -90,7 +90,7 @@
 
 					<!-- ================== Projectiles ================== -->
 
-					<ThingDef Name="BaseXennBullet" ParentName="BaseBullet" Abstract="true">
+					<ThingDef Name="BaseXennBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 						<graphicData>
 							<texPath>Things/Projectile/LauncherShot</texPath>
 							<graphicClass>Graphic_Single</graphicClass>
@@ -111,8 +111,6 @@
 							<damageDef>PrometheumFlame</damageDef>
 							<damageAmountBase>10</damageAmountBase>
 							<explosionRadius>0.5</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
 							<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 						</projectile>
 					</ThingDef>
@@ -123,8 +121,6 @@
 						<label>freezer bolt</label>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionRadius>0.75</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
 							<damageDef>Frostbite</damageDef>
 							<damageAmountBase>15</damageAmountBase>
 							<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>

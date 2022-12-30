@@ -9,7 +9,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseRPOGrenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseRPOGrenade" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
       <texPath>Things/Projectile/Rocket_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -27,8 +27,6 @@
 		<label>RPO-A grenade</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>5</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>Thermobaric</damageDef>
       <damageAmountBase>293</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -44,8 +42,6 @@
       <damageDef>PrometheumFlame</damageDef>
       <damageAmountBase>0</damageAmountBase>
       <explosionRadius>12.5</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.5</preExplosionSpawnChance>
       <soundExplode>MortarIncendiary_Explode</soundExplode>

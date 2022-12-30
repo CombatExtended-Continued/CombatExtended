@@ -115,7 +115,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseCannonBall" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCannonBall" ParentName="BaseExplosiveBullet" Abstract="true">
 	<graphicData>
 		<texPath>Things/Projectile/Bullet_Big</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -137,6 +137,8 @@
 			<damageAmountBase>293</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
 			<armorPenetrationBlunt>11491</armorPenetrationBlunt>
+			<suppressionFactor>1.0</suppressionFactor>
+			<dangerFactor>1.0</dangerFactor>
 		</projectile>
 	</ThingDef>
 
@@ -151,8 +153,6 @@
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>2.5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
@@ -177,8 +177,6 @@
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>4.5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
 			<soundExplode>MortarIncendiary_Explode</soundExplode>
@@ -205,7 +203,7 @@
 
 	<!-- ================== Projectiles - Mortar ================== -->
 
-	<ThingDef Name="BaseCannonBall_Mortar" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCannonBall_Mortar" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -233,6 +231,8 @@
 			<damageAmountBase>293</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
 			<armorPenetrationBlunt>11491</armorPenetrationBlunt>
+			<suppressionFactor>1.0</suppressionFactor>
+			<dangerFactor>1.0</dangerFactor>
 		</projectile>
 	</ThingDef>
 
@@ -250,8 +250,6 @@
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>2</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
@@ -279,8 +277,6 @@
 			<armorPenetrationSharp>0</armorPenetrationSharp>
 			<armorPenetrationBlunt>0</armorPenetrationBlunt>
 			<explosionRadius>1.5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<flyOverhead>true</flyOverhead>
 			<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
 			<preExplosionSpawnChance>0.25</preExplosionSpawnChance>

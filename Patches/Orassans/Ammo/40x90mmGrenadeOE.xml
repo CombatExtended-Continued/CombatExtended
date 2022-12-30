@@ -107,7 +107,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base40x90mmGrenadeOEBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base40x90mmGrenadeOEBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
@@ -123,8 +123,6 @@
     <label>40x90mm grenade OE (HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.0</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>45</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -170,8 +168,6 @@
     <label>40x90mm grenade OE (EMP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.5</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
       <damageDef>EMP</damageDef>
       <damageAmountBase>25</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -188,8 +184,6 @@
            <armorPenetrationSharp>0</armorPenetrationSharp>
            <armorPenetrationBlunt>0</armorPenetrationBlunt>
            <explosionRadius>4.0</explosionRadius>
-<suppressionFactor>3.0</suppressionFactor>
-<dangerFactor>2.0</dangerFactor>
            <postExplosionSpawnThingDef>Filth_Snow</postExplosionSpawnThingDef>
            <postExplosionSpawnChance>1</postExplosionSpawnChance>
            <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>

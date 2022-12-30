@@ -85,7 +85,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base83mmPIATGrenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base83mmPIATGrenade" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/LauncherShot</texPath>
@@ -127,8 +127,6 @@
 		<label>83mm PIAT grenade (HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>2.5</explosionRadius >
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>139</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -147,8 +145,6 @@
 		<label>83mm PIAT grenade (EMP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<damageDef>EMP</damageDef>
 			<damageAmountBase>139</damageAmountBase>
 		</projectile>

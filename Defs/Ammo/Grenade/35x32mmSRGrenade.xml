@@ -101,7 +101,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base35x32mmSRGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base35x32mmSRGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/LauncherShot</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -118,8 +118,6 @@
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>1</explosionRadius >
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>19</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -164,8 +162,6 @@
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>1.5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<damageDef>EMP</damageDef>
 			<damageAmountBase>19</damageAmountBase>
 		</projectile>

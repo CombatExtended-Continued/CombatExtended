@@ -80,7 +80,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -102,8 +102,6 @@
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>6.5</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
       <preExplosionSpawnChance>0.15</preExplosionSpawnChance>
       <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -116,8 +114,6 @@
     <label>thermobaric bolt</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.0</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>Thermobaric</damageDef>
       <damageAmountBase>48</damageAmountBase>
       <armorPenetrationSharp>0</armorPenetrationSharp>

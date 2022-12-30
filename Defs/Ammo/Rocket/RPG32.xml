@@ -72,7 +72,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseRPG32Rocket" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseRPG32Rocket" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -122,8 +122,6 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<explosionRadius>5</explosionRadius>
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
 			<damageDef>Thermobaric</damageDef>
 			<damageAmountBase>280</damageAmountBase>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>

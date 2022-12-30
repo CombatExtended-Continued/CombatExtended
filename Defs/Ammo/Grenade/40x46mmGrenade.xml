@@ -131,7 +131,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base40x46mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base40x46mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
@@ -148,8 +148,6 @@
     <label>40x46mm grenade (HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>1.0</explosionRadius >
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>20</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -169,8 +167,6 @@
     <label>40x46mm grenade (HE-Airburst)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>1.0</explosionRadius >
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>20</damageAmountBase>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
@@ -217,8 +213,6 @@
     <label>40x46mm grenade (EMP)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>1.5</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>EMP</damageDef>
       <damageAmountBase>20</damageAmountBase>
     </projectile>
@@ -242,8 +236,6 @@
     <label>40x46mm grenade (Tox)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>1.9</explosionRadius>
-      <suppressionFactor>3.0</suppressionFactor>
-      <dangerFactor>2.0</dangerFactor>
       <damageDef>ToxGas</damageDef>
       <postExplosionGasType>ToxGas</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
