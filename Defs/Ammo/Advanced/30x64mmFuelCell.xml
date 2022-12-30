@@ -80,7 +80,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -130,6 +130,8 @@
     <label>foam bolt</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <explosionRadius>3</explosionRadius>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>

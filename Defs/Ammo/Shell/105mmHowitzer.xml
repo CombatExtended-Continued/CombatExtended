@@ -134,7 +134,7 @@
 	<!-- ================== Projectiles ================== -->
 
 	<!-- indirect fire-->
-	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base105mmHowitzerShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -231,6 +231,8 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <explosionRadius>8.5</explosionRadius>
@@ -247,11 +249,11 @@
 	</ThingDef>
 
 	<!-- direct fire-->
-	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base105mmHowitzerShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
-		  </graphicData>
-		  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>154</speed>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<flyOverhead>false</flyOverhead>
@@ -369,6 +371,8 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <explosionRadius>8.5</explosionRadius>
@@ -596,4 +600,5 @@
 			<Ammo_105mmHowitzerShell_Smoke>2</Ammo_105mmHowitzerShell_Smoke>
 		</products>
 	</RecipeDef>
+
 </Defs>
