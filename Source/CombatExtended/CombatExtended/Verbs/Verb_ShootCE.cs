@@ -323,7 +323,14 @@ namespace CombatExtended
             storedShotReduction = reduction;
             if (reduction < 1.0f && this.WarmupStance != null)
             {
-                this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+                if (caster is Building_TurretGunCE turret)
+                {
+                    turret.burstWarmupTicksLeft += (int)(turret.burstWarmupTicksLeft * reduction);
+                }
+                else
+                {
+                    this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+                }
             }
 
         }
