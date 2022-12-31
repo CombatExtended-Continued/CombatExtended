@@ -325,7 +325,7 @@ namespace CombatExtended
             {
                 if (caster is Building_TurretGunCE turret)
                 {
-                    turret.burstWarmupTicksLeft += (int)(turret.burstWarmupTicksLeft * reduction);
+                    turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                 }
                 else
                 {
