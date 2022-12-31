@@ -321,7 +321,7 @@ namespace CombatExtended
             var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
             var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
-            if (reduction < 1.0f)
+            if (reduction < 1.0f && this.WarmupStance != null)
             {
                 this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
             }
