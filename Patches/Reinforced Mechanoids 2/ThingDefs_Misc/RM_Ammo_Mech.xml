@@ -15,6 +15,7 @@
 
                         <!-- ===== Ammo Sets ===== -->
 
+                        <!-- Charged -->
                         <CombatExtended.AmmoSetDef>
                             <defName>AmmoSet_RM_5x35mmS</defName>
                             <label>5x35mm Special</label>
@@ -31,6 +32,32 @@
                             </ammoTypes>
                         </CombatExtended.AmmoSetDef>
 
+                        <!-- Shard -->
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_ShardPistol</defName>
+                            <label>Crystalline Shard</label>
+                            <ammoTypes>
+                                <RM_Ammo_ShardGun>RM_Bullet_ShardPistol</RM_Ammo_ShardGun>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_ShardLance</defName>
+                            <label>Crystalline Shard</label>
+                            <ammoTypes>
+                                <RM_Ammo_ShardGun>RM_Bullet_ShardLance</RM_Ammo_ShardGun>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+
+                        <CombatExtended.AmmoSetDef>
+                            <defName>AmmoSet_ShardSwarmer</defName>
+                            <label>Crystalline Shard</label>
+                            <ammoTypes>
+                                <RM_Ammo_ShardGun>RM_Bullet_ShardSwarmer</RM_Ammo_ShardGun>
+                            </ammoTypes>
+                        </CombatExtended.AmmoSetDef>
+
+                        <!-- Coil -->
                         <CombatExtended.AmmoSetDef>
                             <defName>AmmoSet_RM_CoilPistolGun</defName>
                             <label>coil charge</label>
@@ -55,6 +82,36 @@
                             </ammoTypes>
                         </CombatExtended.AmmoSetDef>
 
+                        <!-- ===== Shard Ammo ===== -->
+                        <ThingDef Class="CombatExtended.AmmoDef" Name="RMShardBase" ParentName="SmallAmmoBase" Abstract="True">
+                            <description>Small, high-velocity crystalline bullet used in Shard weaponry system.</description>
+                            <statBases>
+                                <Mass>0.01</Mass>
+                                <Bulk>0.02</Bulk>
+                            </statBases>
+                            <tradeTags>
+                                <li>CE_AutoEnableTrade</li>
+                                <li>CE_AutoEnableCrafting</li>
+                            </tradeTags>
+                            <thingCategories>
+                                <li>AmmoShardRM</li>
+                            </thingCategories>
+                        </ThingDef>
+
+                        <ThingDef Class="CombatExtended.AmmoDef" ParentName="RMShardBase">
+                            <defName>RM_Ammo_ShardGun</defName>
+                            <label>Crystalline shard cartridge</label>
+                            <graphicData>
+                                <texPath>Things/Ammo/Railgun/Rifle</texPath>
+                                <graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
+                            </graphicData>
+                            <statBases>
+                                <MarketValue>1</MarketValue>
+                            </statBases>
+                            <ammoClass>CarbonCrystal</ammoClass>
+                            <cookOffProjectile>RM_Bullet_ShardLance</cookOffProjectile>
+                        </ThingDef>
+
                         <!-- ===== Low velocity 5x35mm Projectile ===== -->
                         <ThingDef ParentName="Base5x35mmChargedBullet">
                             <defName>RM_Bullet_5x35mmS</defName>
@@ -78,7 +135,7 @@
                                 <armorPenetrationSharp>27</armorPenetrationSharp>
                                 <armorPenetrationBlunt>25.6</armorPenetrationBlunt>
                             </projectile>
-                        </ThingDef>	
+                        </ThingDef>
 
                         <!-- ===== High velocity 5x35mm Projectile ===== -->
                         <ThingDef ParentName="Base5x35mmChargedBullet">
@@ -103,7 +160,68 @@
                                 <armorPenetrationSharp>33</armorPenetrationSharp>
                                 <armorPenetrationBlunt>57.6</armorPenetrationBlunt>
                             </projectile>
-                        </ThingDef>	
+                        </ThingDef>
+
+                        <!-- ===== Shard Projectiles ===== -->
+                        <ThingDef ParentName="Base45ACPBullet">
+                            <defName>RM_Bullet_ShardPistol</defName>
+                            <label>Shard crystal</label>
+                            <graphicData>
+                                <texPath>Things/Projectile/ShardShot</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                                <drawSize>0.5</drawSize>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageDef>RM_Damage_ShardShot</damageDef>
+                                <speed>72</speed>
+                                <dropsCasings>false</dropsCasings>
+                                <pelletCount>2</pelletCount>
+                                <spreadMult>2</spreadMult>
+                                <damageAmountBase>4</damageAmountBase>
+                                <armorPenetrationBlunt>6.4</armorPenetrationBlunt>
+                                <armorPenetrationSharp>24</armorPenetrationSharp>
+                            </projectile>
+                        </ThingDef>
+
+                        <ThingDef ParentName="Base45ACPBullet">
+                            <defName>RM_Bullet_ShardLance</defName>
+                            <label>Shard crystal</label>
+                            <graphicData>
+                                <texPath>Things/Projectile/ShardShot</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                                <drawSize>0.5</drawSize>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageDef>RM_Damage_ShardShot</damageDef>
+                                <speed>72</speed>
+                                <dropsCasings>false</dropsCasings>
+                                <pelletCount>3</pelletCount>
+                                <spreadMult>2</spreadMult>
+                                <damageAmountBase>7</damageAmountBase>
+                                <armorPenetrationBlunt>5.6</armorPenetrationBlunt>
+                                <armorPenetrationSharp>22</armorPenetrationSharp>
+                            </projectile>
+                        </ThingDef>
+
+                        <ThingDef ParentName="Base45ACPBullet">
+                            <defName>RM_Bullet_ShardSwarmer</defName>
+                            <label>Shard crystal</label>
+                            <graphicData>
+                                <texPath>Things/Projectile/ShardShot</texPath>
+                                <graphicClass>Graphic_Single</graphicClass>
+                                <drawSize>0.5</drawSize>
+                            </graphicData>
+                            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+                                <damageDef>RM_Damage_ShardShot</damageDef>
+                                <speed>72</speed>
+                                <dropsCasings>false</dropsCasings>
+                                <pelletCount>4</pelletCount>
+                                <spreadMult>2</spreadMult>
+                                <damageAmountBase>6</damageAmountBase>
+                                <armorPenetrationBlunt>5.6</armorPenetrationBlunt>
+                                <armorPenetrationSharp>22</armorPenetrationSharp>
+                            </projectile>
+                        </ThingDef>
 
                         <!-- ===== Reinforced Tesla/Coil Projectiles ===== -->
                         <ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletWhite">
