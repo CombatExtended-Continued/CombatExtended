@@ -321,13 +321,13 @@ namespace CombatExtended
             var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
             var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
-            if (reduction < 1.0f && this.WarmupStance != null)
+            if (reduction < 1.0f)
             {
                 if (caster is Building_TurretGunCE turret)
                 {
                     turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                 }
-                else
+                else if (this.WarmupStance != null)
                 {
                     this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
                 }
