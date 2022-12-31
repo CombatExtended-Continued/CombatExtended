@@ -88,9 +88,16 @@
 	<!-- ================== Projectiles ================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
-	  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<alwaysFreeIntercept>true</alwaysFreeIntercept>
-	  </projectile>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<alwaysFreeIntercept>true</alwaysFreeIntercept>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+		</projectile>
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->

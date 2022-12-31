@@ -7,7 +7,7 @@
 		<parent>AmmoRifles</parent>
     <iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
 	</ThingCategoryDef>
-	
+
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
@@ -19,18 +19,29 @@
 			<Ammo_4570Gov_HP>Bullet_4570Gov_HP</Ammo_4570Gov_HP>
 			<Ammo_4570Gov_Incendiary>Bullet_4570Gov_Incendiary</Ammo_4570Gov_Incendiary>
 			<Ammo_4570Gov_HE>Bullet_4570Gov_HE</Ammo_4570Gov_HE>
-			<Ammo_4570Gov_Sabot>Bullet_4570Gov_Sabot</Ammo_4570Gov_Sabot>					
+			<Ammo_4570Gov_Sabot>Bullet_4570Gov_Sabot</Ammo_4570Gov_Sabot>
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
-	
+
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_4570GovTrapdoor</defName>
+		<label>.45-70 Government</label>
+		<ammoTypes>
+			<Ammo_4570Gov_FMJ>Bullet_4570GovTrapdoor_FMJ</Ammo_4570Gov_FMJ>
+			<Ammo_4570Gov_AP>Bullet_4570GovTrapdoor_AP</Ammo_4570Gov_AP>
+			<Ammo_4570Gov_HP>Bullet_4570GovTrapdoor_HP</Ammo_4570Gov_HP>
+		</ammoTypes>
+		<similarTo>AmmoSet_Rifle</similarTo>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="4570GovBase" ParentName="SmallAmmoBase" Abstract="True">
-		<description>Rather large and bulky rifle cartridge propelled by a charge of 'black powder'. Good for making people imitate sacks when they are hit.</description>
+		<description>Rather large and bulky rifle cartridge traditionally loaded with blackpowder. Good for making people imitate sacks when they are hit.</description>
 		<statBases>
-		<Mass>0.037</Mass>
-		<Bulk>0.03</Bulk>
+			<Mass>0.037</Mass>
+			<Bulk>0.03</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -212,7 +223,40 @@
 		  <speed>190</speed>
 		</projectile>
 	  </ThingDef>
-  
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovTrapdoor_FMJ</defName>
+		<label>.45-70 Government cartridge (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>98</speed>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationSharp>5</armorPenetrationSharp>
+			<armorPenetrationBlunt>46.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovTrapdoor_AP</defName>
+		<label>.45-70 Government cartridge (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>98</speed>
+			<damageAmountBase>12</damageAmountBase>
+			<armorPenetrationSharp>10</armorPenetrationSharp>
+			<armorPenetrationBlunt>46.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base4570GovBullet">
+		<defName>Bullet_4570GovTrapdoor_HP</defName>
+		<label>.45-70 Government cartridge (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<speed>98</speed>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationBlunt>46.1</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">

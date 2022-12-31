@@ -32,7 +32,7 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
-  <!-- ==================== Ammo ========================== -->
+	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="CannonBallBase" ParentName="HeavyAmmoBase" Abstract="True">
 		<thingCategories>
@@ -113,9 +113,9 @@
 		<ammoClass>Grapeshot</ammoClass>
 	</ThingDef>
 
-  <!-- ================== Projectiles ================== -->
+	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseCannonBall" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCannonBall" ParentName="BaseExplosiveBullet" Abstract="true">
 	<graphicData>
 		<texPath>Things/Projectile/Bullet_Big</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
@@ -137,6 +137,8 @@
 			<damageAmountBase>293</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
 			<armorPenetrationBlunt>11491</armorPenetrationBlunt>
+			<suppressionFactor>1.0</suppressionFactor>
+			<dangerFactor>1.0</dangerFactor>
 		</projectile>
 	</ThingDef>
 
@@ -199,9 +201,9 @@
 		</projectile>
 	</ThingDef>
 
-  <!-- ================== Projectiles - Mortar ================== -->
+	<!-- ================== Projectiles - Mortar ================== -->
 
-	<ThingDef Name="BaseCannonBall_Mortar" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseCannonBall_Mortar" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -213,6 +215,7 @@
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
 	</ThingDef>
@@ -229,6 +232,8 @@
 			<damageAmountBase>293</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
 			<armorPenetrationBlunt>11491</armorPenetrationBlunt>
+			<suppressionFactor>1.0</suppressionFactor>
+			<dangerFactor>1.0</dangerFactor>
 		</projectile>
 	</ThingDef>
 
@@ -280,7 +285,7 @@
 		</projectile>
 	</ThingDef>
 
-  <!-- ==================== Recipes ========================== -->
+	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_CannonBall_Round</defName>

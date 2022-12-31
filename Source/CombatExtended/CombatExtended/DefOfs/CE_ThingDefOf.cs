@@ -20,6 +20,8 @@ namespace CombatExtended
 
         public static FleckDef Mote_EmptyCasing;
 
+        public static ThingDef Filth_RifleAmmoCasings;
+
         public static ThingDef FSX;
 
         public static ThingDef Flare;

@@ -11,6 +11,7 @@ namespace CombatExtended
         //private const int DANGER_TICKS = 450;
         //private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 150;
+        private const float PROJECTILE_DANGER_FACTOR = 0.5f;
         public const int DANGER_TICKS_MAX = 300; // 1s in real life = 60 ticks in game;
         //private const float DANGER_BULLET_MAX_DIST = 20f;
 
@@ -155,6 +156,7 @@ namespace CombatExtended
             int index = map.cellIndices.CellToIndex(pos);
             int value = dangerArray[index];
             int ticks = GenTicks.TicksGame;
+            amount = (int)Mathf.Round(((float)amount) * PROJECTILE_DANGER_FACTOR);
             dangerArray[index] = Mathf.Clamp(value + amount, ticks + amount, ticks + DANGER_TICKS_MAX);
         }
     }

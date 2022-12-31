@@ -7,9 +7,7 @@
     <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
   </ThingCategoryDef>
 
-
   <!-- ==================== AmmoSet ========================== -->
-
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_60mmMortarShell</defName>
@@ -23,9 +21,7 @@
     </ammoTypes>
   </CombatExtended.AmmoSetDef>
 
-
   <!-- ==================== Ammo ========================== -->
-
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="60mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
@@ -165,8 +161,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-
-  <ThingDef Name="Base60mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base60mmMortarShell" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -256,6 +251,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>7</explosionRadius>
@@ -281,6 +278,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>4.5</explosionRadius>
@@ -297,7 +296,6 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
-
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeShell_60mmMortar_HE</defName>
