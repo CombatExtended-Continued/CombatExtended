@@ -327,7 +327,6 @@ namespace CombatExtended
                 {
                     if (!_isAiming && turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
                     {
-                        Log.Message("Reducing warmup from " + turret.burstWarmupTicksLeft + " to " + (int)(turret.burstWarmupTicksLeft * reduction) + " for " + caster.ThingID);
                         turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                     }
                 }
