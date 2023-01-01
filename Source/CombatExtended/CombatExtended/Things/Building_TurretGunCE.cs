@@ -385,6 +385,10 @@ namespace CombatExtended
             if (AttackVerb.verbProps.warmupTime > 0f)
             {
                 burstWarmupTicksLeft = AttackVerb.verbProps.warmupTime.SecondsToTicks();
+                if (AttackVerb is Verb_ShootCE verb)
+                {
+                    verb.RecalculateWarmupTicks();
+                }
                 return;
             }
             if (canBeginBurstImmediately)
