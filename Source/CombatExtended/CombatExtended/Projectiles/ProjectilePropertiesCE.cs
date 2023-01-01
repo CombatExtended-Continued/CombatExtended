@@ -17,11 +17,16 @@ namespace CombatExtended
         public bool damageAdjacentTiles = false;
         public bool dropsCasings = false;
         public string casingMoteDefname = "Mote_EmptyCasing";
+        public string casingFilthDefname = "Filth_RifleAmmoCasings";
         public float gravityFactor = 1;
         public bool isInstant = false;
         public bool damageFalloff = true; // Damage falloff for *instant* projectiles.
         public float armorPenetrationSharp;
         public float armorPenetrationBlunt;
+
+        public float suppressionFactor = 1;
+        public float airborneSuppressionFactor = 1;
+        public float dangerFactor = 1;
 
         #region Bunker Buster fields
         /// <summary>

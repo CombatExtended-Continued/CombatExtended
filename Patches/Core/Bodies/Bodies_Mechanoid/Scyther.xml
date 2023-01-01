@@ -26,6 +26,16 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="Scyther" or defName="Lancer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="Scyther" or defName="Lancer"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]</xpath>
+			<value>
+				<groups />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="Scyther" or defName="Lancer"]/corePart/parts/li[def="MechanicalShoulder"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="Scyther" or defName="Lancer"]/corePart/parts/li[def="MechanicalShoulder"]</xpath>
@@ -219,7 +229,6 @@
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/BodyDef[defName="Scyther" or defName="Lancer"]/corePart/parts</xpath>
-
     <value>
       <li>
         <def>MechanicalPowerCore</def>

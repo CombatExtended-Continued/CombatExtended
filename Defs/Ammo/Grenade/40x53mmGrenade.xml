@@ -116,7 +116,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x53mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base40x53mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/LauncherShot</texPath>
@@ -209,12 +209,14 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
-	<!-- ==================== Recipes ========================== -->
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x53mmGrenade_HE</defName>

@@ -87,26 +87,17 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBullet" Abstract="True">
-		<category>Projectile</category>
-		<tickerType>Normal</tickerType>
-		<altitudeLayer>Projectile</altitudeLayer>
-		<thingClass>CombatExtended.BulletCE</thingClass>
-		<label>bullet</label>
-		<useHitPoints>False</useHitPoints>
-		<neverMultiSelect>True</neverMultiSelect>
-		<graphicData>
-			<shaderType>Transparent</shaderType>
-		</graphicData>
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-		  <explosionDamageFalloff>true</explosionDamageFalloff>
+			<alwaysFreeIntercept>true</alwaysFreeIntercept>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
-	  <projectile Class="CombatExtended.ProjectilePropertiesCE">
-		<alwaysFreeIntercept>true</alwaysFreeIntercept>
-	  </projectile>
+	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<suppressionFactor>3.0</suppressionFactor>
+			<dangerFactor>2.0</dangerFactor>
+		</projectile>
 	</ThingDef>
   
 	<!-- ==================== Recipes ========================== -->

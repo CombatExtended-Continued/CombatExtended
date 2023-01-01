@@ -37,6 +37,8 @@ namespace CombatExtended
 
         private bool fasterRepeatShots = false;
 
+        private bool createCasingsFilth = false;
+
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
@@ -126,6 +128,8 @@ namespace CombatExtended
 
         public bool FasterRepeatShots => fasterRepeatShots;
 
+        public bool CreateCasingsFilth => createCasingsFilth;
+
         #endregion
 
         private bool lastAmmoSystemStatus;
@@ -190,6 +194,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
+            Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", false);
+
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -214,6 +220,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.

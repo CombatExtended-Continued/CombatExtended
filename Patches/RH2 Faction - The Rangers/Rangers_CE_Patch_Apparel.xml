@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
  <Patch>
-  
     <Operation Class="PatchOperationFindMod">
 		<mods>
 		<li>[RH2] Faction: The Rangers</li>
@@ -11,17 +9,123 @@
         <!-- ========== In-built Shield Patch ========== -->
 
         <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldRechargeRate</xpath>
+        <xpath>/Defs/ThingDef[@ParentName="RHApparel_Armor_VigilanteBase"]/statBases/EnergyShieldRechargeRate</xpath>
             <value>
                 <EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
             </value>
         </li>
 
         <li Class="PatchOperationReplace">
-            <xpath>/Defs/ThingDef[defName="RHApparel_PowerArmor_Ranger"]/statBases/EnergyShieldEnergyMax</xpath>
+            <xpath>/Defs/ThingDef[@ParentName="RHApparel_Armor_VigilanteBase"]/statBases/EnergyShieldEnergyMax</xpath>
             <value>
                 <EnergyShieldEnergyMax>0.75</EnergyShieldEnergyMax>
             </value>
+        </li>
+ 
+        <!-- Add Partial Armor to Helmet -->
+        <li Class="PatchOperationAddModExtension">
+            <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
+        <value>
+        <li Class="CombatExtended.PartialArmorExt">
+            <stats>
+                <li>
+                    <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+                    <parts>
+                        <li>Eye</li>
+                    </parts>
+                </li>
+                <li>
+                    <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+                    <parts>
+                        <li>Eye</li>
+                    </parts>
+                </li>
+                <li>
+                    <ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+                    <parts>
+                        <li>Nose</li>
+                    </parts>
+                </li>
+                <li>
+                    <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+                    <parts>
+                        <li>Nose</li>
+                    </parts>
+                </li>
+                <li>
+                    <ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+                    <parts>
+                        <li>Jaw</li>
+                    </parts>
+                </li>
+                <li>
+                    <ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+                    <parts>
+                        <li>Jaw</li>
+                    </parts>
+                </li>
+            </stats>
+        </li>
+        </value>
+        </li>
+
+	    <!-- Add partial armor to Ranger Armors -->
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[@Name="RHApparel_Armor_VigilanteBase"]</xpath>
+          <value>
+		  <li Class="CombatExtended.PartialArmorExt">
+			  <stats>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Neck</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.90</ArmorRating_Sharp>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.90</ArmorRating_Blunt>
+					<parts>
+						<li>Leg</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+					<parts>
+						<li>Arm</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+				  <li>
+					<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+					<parts>
+						<li>Hand</li>
+					</parts>
+				  </li>
+			  </stats>
+		  </li>
+          </value>
         </li>
 
         <!-- ========== Ranger Helmet ========== -->
@@ -60,9 +164,8 @@
             <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
             <value>
             <equippedStatOffsets>
-                <PsychicSensitivity>-0.2</PsychicSensitivity>
                 <AimingAccuracy>0.15</AimingAccuracy>
-                <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
+                <ToxicResistance>0.50</ToxicResistance>
                 <SmokeSensitivity>-1</SmokeSensitivity>
             </equippedStatOffsets>
             </value>
@@ -71,8 +174,8 @@
         <li Class="PatchOperationReplace">
             <xpath>/Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]/costList/Plasteel</xpath>
             <value>
-            <Plasteel>60</Plasteel>
-            <DevilstrandCloth>20</DevilstrandCloth>
+                <Plasteel>60</Plasteel>
+                <DevilstrandCloth>20</DevilstrandCloth>
             </value>
         </li>
 
@@ -84,39 +187,39 @@
             </value>
         </li>
 
-	  <li Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
-		<value>
-		  <li Class="CombatExtended.PartialArmorExt">
-			<stats>
-				<li>
-					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-					<parts>
-						<li>Eye</li>
-					</parts>
-				</li>
-				<li>
-					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-					<parts>
-						<li>Eye</li>
-					</parts>
-				</li>
-				<li>
-					<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-					<parts>
-						<li>Nose</li>
-					</parts>
-				</li>
-				<li>
-					<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
-					<parts>
-						<li>Nose</li>
-					</parts>
-				</li>
-			</stats>
-		  </li>
-		</value>
-	  </li>
+        <li Class="PatchOperationAddModExtension">
+            <xpath>Defs/ThingDef[@Name="RHApparel_ArmorHelmetPower_VigilanteBase"]</xpath>
+            <value>
+            <li Class="CombatExtended.PartialArmorExt">
+                <stats>
+                    <li>
+                        <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+                        <parts>
+                            <li>Eye</li>
+                        </parts>
+                    </li>
+                    <li>
+                        <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+                        <parts>
+                            <li>Eye</li>
+                        </parts>
+                    </li>
+                    <li>
+                        <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+                        <parts>
+                            <li>Nose</li>
+                        </parts>
+                    </li>
+                    <li>
+                        <ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+                        <parts>
+                            <li>Nose</li>
+                        </parts>
+                    </li>
+                </stats>
+            </li>
+            </value>
+        </li>
 
         <!-- ========== Ranger armor ========== -->
 

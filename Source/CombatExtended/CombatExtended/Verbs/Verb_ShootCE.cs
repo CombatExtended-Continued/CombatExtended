@@ -323,7 +323,17 @@ namespace CombatExtended
             storedShotReduction = reduction;
             if (reduction < 1.0f)
             {
-                this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+                if (caster is Building_TurretGunCE turret)
+                {
+                    if (!_isAiming && turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    {
+                        turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
+                    }
+                }
+                else if (this.WarmupStance != null)
+                {
+                    this.WarmupStance.ticksLeft = (int)(this.WarmupStance.ticksLeft * reduction);
+                }
             }
 
         }
@@ -349,6 +359,7 @@ namespace CombatExtended
                 if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
                 {
                     CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
+                    CE_Utility.MakeCasingFilth(caster.Position, caster.Map, DefDatabase<ThingDef>.GetNamed(projectilePropsCE.casingFilthDefname));
                 }
                 // This needs to here for weapons without magazine to ensure their last shot plays sounds
                 if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)

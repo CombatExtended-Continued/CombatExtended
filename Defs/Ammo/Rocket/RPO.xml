@@ -9,7 +9,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseRPOGrenade" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseRPOGrenade" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
       <texPath>Things/Projectile/Rocket_Big</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -55,6 +55,8 @@
     <label>RPO-D grenade</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <explosionRadius>8</explosionRadius>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
