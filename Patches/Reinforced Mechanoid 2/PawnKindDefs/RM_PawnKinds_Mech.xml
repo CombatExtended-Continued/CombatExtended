@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Reinforced Mechanoid 2</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/PawnKindDef[@Name="RM_RemnantsHumanBase"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>3</min>
+                <max>5</max>
+              </primaryMagazineCount>
+              <shieldMoney>
+                <min>300</min>
+                <max>750</max>
+              </shieldMoney>
+              <shieldTags>
+                <li>OutlanderShield</li>
+              </shieldTags>
+              <shieldChance>0.8</shieldChance>
+              <sidearms>
+                <li>
+                  <generateChance>1</generateChance>
+                  <sidearmMoney>
+                    <min>60</min>
+                    <max>200</max>
+                  </sidearmMoney>
+                  <weaponTags>
+                    <li>CE_Sidearm_Melee</li>
+                  </weaponTags>
+                </li>
+                <li>
+                  <generateChance>0.5</generateChance>
+                  <sidearmMoney>
+                    <min>80</min>
+                    <max>200</max>
+                  </sidearmMoney>
+                  <weaponTags>
+                    <li>CE_Sidearm</li>
+                  </weaponTags>
+                </li>
+              </sidearms>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/PawnKindDef[@Name="RM_BaseDroidKind"]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>3</min>
+                <max>5</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/PawnKindDef[defName="RM_Mech_Marshal"]/combatPower</xpath>
+          <value>
+            <combatPower>240</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/PawnKindDef[defName="RM_Mech_Sentinel"]/combatPower</xpath>
+          <value>
+            <combatPower>500</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/PawnKindDef[defName="RM_Mech_Behemoth"]/combatPower</xpath>
+          <value>
+            <combatPower>580</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/PawnKindDef[defName="RM_Mech_WraithSiege" or defName="RM_Mech_Locust"]/combatPower</xpath>
+          <value>
+            <combatPower>650</combatPower>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/PawnKindDef[
+					defName="RM_Mech_Falcon" or
+					defName="RM_Mech_Gremlin" or
+					defName="RM_Mech_Harpy" or 
+					defName="RM_Mech_Ranger" or
+					defName="RM_Mech_Zealot" or
+					defName="RM_Mech_Sentinel" or
+					defName="RM_Mech_Behemoth" or
+					defName="RM_Mech_WraithSiege" or
+					defName="RM_Mech_Locust"
+					]</xpath>
+          <value>
+            <li Class="CombatExtended.LoadoutPropertiesExtension">
+              <primaryMagazineCount>
+                <min>7</min>
+                <max>10</max>
+              </primaryMagazineCount>
+            </li>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
