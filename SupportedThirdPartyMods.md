@@ -40,18 +40,6 @@ Mod |
 [O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
-[RH] Faction: Alliegence	|
-[RH] Faction: Coalition	|
-[RH] Faction: Cordis Die	|
-[RH] Faction: Elite Crew	|
-[RH] Faction: Last Man Contingent	|
-[RH] Faction: Militaires Sans Frontieres	|
-[RH] Faction: Task Force 141	|
-[RH] Faction: The Ghosts	|
-[RH] Faction: UAC	|
-[RH] Faction: UAC Kit	|
-[RH] Faction: Umbra Company	|
-[RH] Faction: War Mongrels	|
 [RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
