@@ -18,6 +18,7 @@ namespace CombatExtended
         private bool bipodMechanics = true;
         private bool autosetup = true;
         private bool showCasings = true;
+        private bool createCasingsFilth = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
@@ -28,7 +29,6 @@ namespace CombatExtended
         private bool genericammo = false;
         private bool partialstats = true;
 
-
         private bool showExtraTooltips = false;
 
         private bool showExtraStats = false;
@@ -36,8 +36,6 @@ namespace CombatExtended
         private bool fragmentsFromWalls = false;
 
         private bool fasterRepeatShots = false;
-
-        private bool createCasingsFilth = false;
 
         public bool ShowCasings => showCasings;
 
@@ -140,6 +138,7 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.Look(ref showCasings, "showCasings", true);
+            Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
@@ -194,8 +193,6 @@ namespace CombatExtended
             Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
             Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
-            Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", false);
-
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
@@ -212,6 +209,7 @@ namespace CombatExtended
             list.Gap();
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
@@ -220,7 +218,6 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
