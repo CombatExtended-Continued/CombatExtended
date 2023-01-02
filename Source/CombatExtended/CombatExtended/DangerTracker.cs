@@ -11,6 +11,7 @@ namespace CombatExtended
         //private const int DANGER_TICKS = 450;
         //private const int DANGER_TICKS_BULLET_STEP = 200;
         private const int DANGER_TICKS_SMOKE_STEP = 150;
+        private const float PROJECTILE_DANGER_FACTOR = 0.5f;
         public const int DANGER_TICKS_MAX = 300; // 1s in real life = 60 ticks in game;
         //private const float DANGER_BULLET_MAX_DIST = 20f;
 
@@ -60,9 +61,14 @@ namespace CombatExtended
             {
                 IntVec3 cell = pos + AdjCells[i];
                 if (cell.InBounds(map))
+                {
                     IncreaseAt(cell, (int)Mathf.Ceil(AdjWeights[i] * dangerAmount));
+                }
             }
-            if (Controller.settings.DebugDisplayDangerBuildup) FlashCells(pos);
+            if (Controller.settings.DebugDisplayDangerBuildup)
+            {
+                FlashCells(pos);
+            }
         }
 
         public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount)
@@ -71,14 +77,19 @@ namespace CombatExtended
             foreach (IntVec3 cell in GenRadial.RadialCellsAround(pos, radius, true))
             {
                 if (!cell.InBounds(map) && !GenSight.LineOfSight(pos, cell, this.map))
+                {
                     continue;
+                }
                 //dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / radiusSqrd));
                 IncreaseAt(cell, (int)Mathf.Ceil(dangerAmount));
 
                 if (Controller.settings.DebugDisplayDangerBuildup)
                 {
                     float value = DangerAt(cell);
-                    if (value > 0f) map.debugDrawer.FlashCell(cell, value, $"{value}");
+                    if (value > 0f)
+                    {
+                        map.debugDrawer.FlashCell(cell, value, $"{value}");
+                    }
                 }
             }
         }
@@ -89,14 +100,22 @@ namespace CombatExtended
             {
                 IntVec3 cell = pos + AdjCells[i];
                 if (cell.InBounds(map))
+                {
                     IncreaseAt(cell, (int)(DANGER_TICKS_SMOKE_STEP * AdjWeights[i]));
+                }
             }
-            if (Controller.settings.DebugDisplayDangerBuildup) FlashCells(pos);
+            if (Controller.settings.DebugDisplayDangerBuildup)
+            {
+                FlashCells(pos);
+            }
         }
 
         public float DangerAt(IntVec3 pos)
         {
-            if (pos.InBounds(map)) return (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(pos)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / (float)DANGER_TICKS_MAX;
+            if (pos.InBounds(map))
+            {
+                return (float)Mathf.Clamp(dangerArray[map.cellIndices.CellToIndex(pos)] - GenTicks.TicksGame, 0, DANGER_TICKS_MAX) / (float)DANGER_TICKS_MAX;
+            }
             return 0f;
         }
 
@@ -111,7 +130,9 @@ namespace CombatExtended
             List<int> dangerList = dangerArray.ToList();
             Scribe_Collections.Look(ref dangerList, "dangerList", LookMode.Value);
             if (dangerList == null || dangerList.Count != map.cellIndices.NumGridCells)
+            {
                 dangerArray = new int[map.cellIndices.NumGridCells];
+            }
         }
 
         private void FlashCells(IntVec3 pos)
@@ -122,7 +143,10 @@ namespace CombatExtended
                 if (cell.InBounds(map))
                 {
                     float value = DangerAt(cell);
-                    if (value > 0f) map.debugDrawer.FlashCell(cell, value, $"{value}");
+                    if (value > 0f)
+                    {
+                        map.debugDrawer.FlashCell(cell, value, $"{value}");
+                    }
                 }
             }
         }
@@ -132,6 +156,7 @@ namespace CombatExtended
             int index = map.cellIndices.CellToIndex(pos);
             int value = dangerArray[index];
             int ticks = GenTicks.TicksGame;
+            amount = (int)Mathf.Round(((float)amount) * PROJECTILE_DANGER_FACTOR);
             dangerArray[index] = Mathf.Clamp(value + amount, ticks + amount, ticks + DANGER_TICKS_MAX);
         }
     }

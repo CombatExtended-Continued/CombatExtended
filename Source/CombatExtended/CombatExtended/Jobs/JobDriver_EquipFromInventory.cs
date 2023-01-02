@@ -35,9 +35,13 @@ namespace CombatExtended
                 CompInventory.TrySwitchToWeapon(Weapon, stopJob: false);
 
                 if (pawn.equipment.Contains(Weapon))
+                {
                     this.EndJobWith(JobCondition.Succeeded);
+                }
                 else
+                {
                     this.EndJobWith(JobCondition.Incompletable);
+                }
             });
         }
 

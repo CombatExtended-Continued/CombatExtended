@@ -40,14 +40,20 @@ namespace CombatExtended.HarmonyCE
         internal static void Postfix(IntVec3 c, Map map, float fireSize, bool __result)
         {
             if (!__result)
+            {
                 return;
+            }
 
             var pawn = c.GetFirstThing<Pawn>(map);
             if (pawn == null)
+            {
                 return;
+            }
 
             if (Rand.Chance(CatchFireChance * pawn.GetStatValue(StatDefOf.Flammability)))
+            {
                 pawn.TryAttachFire(fireSize);
+            }
         }
     }
 }

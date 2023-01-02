@@ -48,7 +48,7 @@ namespace CombatExtended
 
         public string bipodTag;
 
-	public List<string> addTags;
+        public List<string> addTags;
         #endregion
 
         #region Def matching

@@ -24,7 +24,7 @@
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="10GaugeBase" ParentName="SmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="10GaugeBase" ParentName="AmmoBase" Abstract="True">
     <description>Very common shotgun caliber used mostly for big game hunting.</description>
     <statBases>
       <Mass>0.087</Mass>
@@ -97,6 +97,7 @@
       <MarketValue>1.5</MarketValue>
     </statBases>
     <ammoClass>ElectroSlug</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
     <cookOffProjectile>Bullet_10Gauge_ElectroSlug</cookOffProjectile>
   </ThingDef>
 
@@ -108,6 +109,7 @@
       <speed>67</speed>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
+      <casingFilthDefname>Filth_ShotgunAmmoCasings</casingFilthDefname>
     </projectile>
   </ThingDef>
 
@@ -270,6 +272,7 @@
     <label>make 10 gauge (EMP) shell x200</label>
     <description>Craft 200 10 gauge (EMP) shells.</description>
     <jobString>Making 10 gauge (EMP) shells.</jobString>
+    <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
     <ingredients>
       <li>
         <filter>

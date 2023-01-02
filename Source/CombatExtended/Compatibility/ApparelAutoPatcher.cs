@@ -13,41 +13,41 @@ namespace CombatExtended
     {
         static ApparelAutoPatcher()
         {
-	    if (!Controller.settings.EnableApparelAutopatcher)
-	    {
-		return;
-	    }
-	    HashSet<ThingDef> patched = new HashSet<ThingDef>();
-	    var blacklist = new HashSet<string>
-		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
-		 from b in a.modIDs
-		 select b.ToLower());
+            if (!Controller.settings.EnableApparelAutopatcher)
+            {
+                return;
+            }
+            HashSet<ThingDef> patched = new HashSet<ThingDef>();
+            var blacklist = new HashSet<string>
+            (from a in DefDatabase<ApparelModBlacklist>.AllDefs
+             from b in a.modIDs
+             select b.ToLower());
 
-	    var blacklistDefNames = new HashSet<string>
-		(from a in DefDatabase<ApparelModBlacklist>.AllDefs
-		 from b in a.defNames
-		 select b);
-	    
+            var blacklistDefNames = new HashSet<string>
+            (from a in DefDatabase<ApparelModBlacklist>.AllDefs
+             from b in a.defNames
+             select b);
 
-	    HashSet<ModContentPack> mods = new HashSet<ModContentPack>
-		(LoadedModManager.RunningMods.Where
-		 (x => !blacklist.Contains(x.PackageId)));
-	    
-	    
+
+            HashSet<ModContentPack> mods = new HashSet<ModContentPack>
+            (LoadedModManager.RunningMods.Where
+             (x => !blacklist.Contains(x.PackageId)));
+
+
             var Apparels = DefDatabase<ThingDef>.AllDefs.Where
-		(x => x.IsApparel &&
-		 mods.Contains(x.modContentPack) &&
-		 !blacklistDefNames.Contains(x.defName) &&
-		 !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
-		 !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
+                           (x => x.IsApparel &&
+                            mods.Contains(x.modContentPack) &&
+                            !blacklistDefNames.Contains(x.defName) &&
+                            !x.statBases.Any(x => x.stat == CE_StatDefOf.Bulk) &&
+                            !x.statBases.Any(x => x.stat == CE_StatDefOf.WornBulk));
 
-	    if (Controller.settings.DebugAutopatcherLogger)
-	    {
-		foreach (var apparel in Apparels)
-		{
-		    Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
-		}
-	    }
+            if (Controller.settings.DebugAutopatcherLogger)
+            {
+                foreach (var apparel in Apparels)
+                {
+                    Log.Message($"Seeking patches for {apparel} from {apparel.modContentPack.PackageId}");
+                }
+            }
 
             foreach (var preset in DefDatabase<ApparelPatcherPresetDef>.AllDefs)
             {
@@ -55,11 +55,11 @@ namespace CombatExtended
 
                 foreach (var apparel in toPatch)
                 {
-		    patched.Add(apparel);
-		    if (Controller.settings.DebugAutopatcherLogger)
-		    {
-			Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
-		    }
+                    patched.Add(apparel);
+                    if (Controller.settings.DebugAutopatcherLogger)
+                    {
+                        Log.Message($"Autopatching {apparel.label} from {apparel.modContentPack.PackageId}");
+                    }
 
                     if (apparel.statBases == null)
                     {
@@ -72,29 +72,29 @@ namespace CombatExtended
 
                     StatModifier[] ArmorRatings = new StatModifier[]
                     {
-                       new StatModifier { value = preset.FinalRatingSharp(apparel.GetStatValueDef(StatDefOf.ArmorRating_Sharp)), stat = StatDefOf.ArmorRating_Sharp },
-                       new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.ArmorRating_Blunt)), stat = StatDefOf.ArmorRating_Blunt }
+                        new StatModifier { value = preset.FinalRatingSharp(apparel.GetStatValueDef(StatDefOf.ArmorRating_Sharp)), stat = StatDefOf.ArmorRating_Sharp },
+                        new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.ArmorRating_Blunt)), stat = StatDefOf.ArmorRating_Blunt }
                     };
 
                     if (!apparel.statBases.Any(x => x.stat == StatDefOf.ArmorRating_Sharp))
                     {
                         ArmorRatings = new StatModifier[]
-                       {
-                       new StatModifier { value = preset.FinalRatingSharp(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Sharp },
-                       new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Blunt }
-                       };
+                        {
+                            new StatModifier { value = preset.FinalRatingSharp(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Sharp },
+                            new StatModifier { value = preset.FinalRatingBlunt(apparel.GetStatValueDef(StatDefOf.StuffEffectMultiplierArmor)), stat = StatDefOf.ArmorRating_Blunt }
+                        };
 
                     }
 
-                   
 
-                    apparel.statBases.RemoveAll(x => 
-                    x.stat == StatDefOf.ArmorRating_Sharp 
-                    ||
-                    x.stat == StatDefOf.ArmorRating_Blunt
-                    ||
-                    x.stat == StatDefOf.StuffEffectMultiplierArmor
-                    );
+
+                    apparel.statBases.RemoveAll(x =>
+                                                x.stat == StatDefOf.ArmorRating_Sharp
+                                                ||
+                                                x.stat == StatDefOf.ArmorRating_Blunt
+                                                ||
+                                                x.stat == StatDefOf.StuffEffectMultiplierArmor
+                                               );
                     apparel.statBases.AddRange(ArmorRatings);
 
                     var mass = apparel.statBases.Find(x => x.stat == StatDefOf.Mass);

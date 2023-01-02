@@ -97,11 +97,20 @@
                     </value>
                 </li>
 
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="Apparel_MechaHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
+
                 <li Class="PatchOperationAdd">
                     <xpath>/Defs/ThingDef[defName="Apparel_MechaHelmet"]</xpath>
                     <value>
                         <equippedStatOffsets>
-                            <PsychicSensitivity>-0.2</PsychicSensitivity>
                             <AimingAccuracy>0.20</AimingAccuracy>
                             <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
                             <SmokeSensitivity>-1</SmokeSensitivity>

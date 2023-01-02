@@ -9,17 +9,17 @@ using System.Linq;
 
 namespace CombatExtended.Compatibility.Artillery
 {
-    public class ArtilleryStrikeArrivalAction_PeaceTalksCE: ArtilleryStrikeArrivalAction_PeaceTalks
+    public class ArtilleryStrikeArrivalAction_PeaceTalksCE : ArtilleryStrikeArrivalAction_PeaceTalks
     {
-        public ArtilleryStrikeArrivalAction_PeaceTalksCE() {}
+        public ArtilleryStrikeArrivalAction_PeaceTalksCE() { }
 
         public ArtilleryStrikeArrivalAction_PeaceTalksCE(Map source)
         {
             sourceMap = source;
         }
-	public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
-	{
-	    if (Find.WorldObjects.WorldObjectAt(tile, RimWorld.WorldObjectDefOf.PeaceTalks) is PeaceTalks peaceTalks)
+        public override void Arrived(List<ActiveArtilleryStrike> artilleryStrikes, int tile)
+        {
+            if (Find.WorldObjects.WorldObjectAt(tile, RimWorld.WorldObjectDefOf.PeaceTalks) is PeaceTalks peaceTalks)
             {
                 if (Utility.HarmfulStrikes(artilleryStrikes).Any())
                 {
@@ -45,9 +45,11 @@ namespace CombatExtended.Compatibility.Artillery
                     Find.WorldObjects.Remove(peaceTalks);
 
                     if (ArtilleryComp != null)
+                    {
                         ArtilleryComp.ResetForcedTarget();
+                    }
                 }
             }
-	}
+        }
     }
 }

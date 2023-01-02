@@ -25,7 +25,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>High velocity grenade fired from mounted and crew-served grenade launchers.</description>
     <statBases>
 	  <Mass>0.375</Mass>
@@ -95,6 +95,7 @@
       <MarketValue>4.76</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
     <detonateProjectile>Bullet_40x53mmGrenade_EMP</detonateProjectile>
   </ThingDef>
 
@@ -115,7 +116,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x53mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base40x53mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/LauncherShot</texPath>
@@ -208,12 +209,14 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
   </ThingDef>
 
-	<!-- ==================== Recipes ========================== -->
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x53mmGrenade_HE</defName>
@@ -353,6 +356,10 @@
     <label>make 40x53mm EMP grenades x100</label>
     <description>Craft 100 40x53mm EMP grenades.</description>
     <jobString>Making 40x53mm EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

@@ -76,6 +76,7 @@
 				<postExplosionGasType>ToxGas</postExplosionGasType>
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<speed>12</speed>
 				<screenShakeFactor>0</screenShakeFactor>
 			</projectile>
@@ -83,9 +84,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Proj_GrenadeTox"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeTox"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Proj_GrenadeTox"]</xpath>
+			<xpath>Defs/ThingDef[defName="Proj_GrenadeTox"]</xpath>
 			<value>
 				<comps />
 			</value>

@@ -42,7 +42,7 @@ namespace CombatExtended.HarmonyCE
 
             // Get the explosive damage def.
             var explosiveDamageDef = ammoDef.GetCompProperties<CompProperties_ExplosiveCE>()?.explosiveDamageType ??
-                ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
+                                     ammoDef.GetCompProperties<CompProperties_Explosive>()?.explosiveDamageType;
 
             // Get the projectile damage def via the mortar ammo set.
             var mortarAmmoSet = DefDatabase<AmmoSetDef>.GetNamed("AmmoSet_81mmMortarShell");
@@ -72,17 +72,21 @@ namespace CombatExtended.HarmonyCE
         public static MethodBase TargetMethod()
         {
             var classTargets = typeof(TurretGunUtility).GetNestedTypes(AccessTools.all)
-                .Where(x => x.Name.Contains(className));
+                               .Where(x => x.Name.Contains(className));
 
             if (!classTargets.Any())
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `"+ className + "`");
-            
+            {
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find subclass with part `" + className + "`");
+            }
+
             var methodTarget = classTargets.SelectMany(x => x.GetMethods(AccessTools.all))
-                .FirstOrDefault(x => x.Name.Contains(methodName));
+                               .FirstOrDefault(x => x.Name.Contains(methodName));
 
             if (methodTarget == null)
-                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `"+ methodName + "` in subclasses with part `"+ className + "`");
-            
+            {
+                Log.Error("CombatExtended :: Harmony_TurretGunUtility couldn't find method with part `" + methodName + "` in subclasses with part `" + className + "`");
+            }
+
             return methodTarget;
         }
     }

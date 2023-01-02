@@ -84,38 +84,39 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-	<defName>MakeAmmo_MortarGrenade</defName>
-	<label>Make Mortar Grenade x6</label>
-	<description>Craft 6 Mortar Grenades</description>
-	<jobString>Making Mortar Grenades</jobString>
-	<ingredients>
-		<li>
-		<filter>
+		<defName>MakeAmmo_MortarGrenade</defName>
+		<label>Make Mortar Grenade x6</label>
+		<description>Craft 6 Mortar Grenades</description>
+		<jobString>Making Mortar Grenades</jobString>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+		<ingredients>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>Steel</li>
+				</thingDefs>
+			</filter>
+			<count>15</count>
+			</li>
+			<li>
+			<filter>
+				<thingDefs>
+				<li>FSX</li>
+				</thingDefs>
+			</filter>
+			<count>8</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
 			<thingDefs>
 			<li>Steel</li>
-			</thingDefs>
-		</filter>
-		<count>15</count>
-		</li>
-		<li>
-		<filter>
-			<thingDefs>
 			<li>FSX</li>
 			</thingDefs>
-		</filter>
-		<count>8</count>
-		</li>
-	</ingredients>
-	<fixedIngredientFilter>
-		<thingDefs>
-		<li>Steel</li>
-		<li>FSX</li>
-		</thingDefs>
-	</fixedIngredientFilter>
-	<products>
-		<Ammo_MortarGrenade>6</Ammo_MortarGrenade>
-	</products>
-	<workAmount>8000</workAmount>
+		</fixedIngredientFilter>
+		<products>
+			<Ammo_MortarGrenade>6</Ammo_MortarGrenade>
+		</products>
+		<workAmount>8000</workAmount>
 	</RecipeDef>
 				
 </Defs>

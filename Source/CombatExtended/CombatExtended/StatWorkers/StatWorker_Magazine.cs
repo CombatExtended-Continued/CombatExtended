@@ -17,7 +17,9 @@ namespace CombatExtended
             var def = req.Def as ThingDef;
 
             if (def?.building?.IsTurret ?? false)
+            {
                 def = def.building.turretGunDef;
+            }
 
             return def;
         }
@@ -31,13 +33,15 @@ namespace CombatExtended
         {
             compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
             if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+            {
                 return compAmmo.Props.magazineSize;
+            }
             float size = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
             return size;
         }
 
         public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense)
-        {            
+        {
             StringBuilder stringBuilder = new StringBuilder();
             var ammoProps = GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>();
             stringBuilder.AppendLine("CE_MagazineSize".Translate() + ": " + GenText.ToStringByStyle(GetMagSize(req), ToStringStyle.Integer));
@@ -63,9 +67,13 @@ namespace CombatExtended
         {
             compAmmo = req.Thing?.TryGetComp<CompAmmoUser>();
             if ((compAmmo?.Props?.ammoSet ?? null) != (((CompProperties_AmmoUser)req.Thing?.def?.comps?.Find(x => x is CompProperties_AmmoUser))?.ammoSet ?? null))
+            {
                 return compAmmo.Props.magazineSize;
+            }
             if (req.HasThing)
+            {
                 return (int)req.Thing.GetStatValue(CE_StatDefOf.MagazineCapacity);
+            }
             return GunDef(req)?.GetCompProperties<CompProperties_AmmoUser>()?.magazineSize ?? 0;
         }
     }

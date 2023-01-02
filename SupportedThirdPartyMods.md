@@ -17,7 +17,6 @@ Mod |
 [CP] The DOOM Kit - Classic	|
 [FF] Bushi!	|
 [FSF] More Psycast Powers   |
-[Fuu] Uncompromising Tribal Faction |
 [HLX] ReGrowth - Extinct Animals Pack |
 [HLX] ReGrowth - Mutated Animals Pack |
 [JDS] Castle Walls  |
@@ -41,18 +40,7 @@ Mod |
 [O21] Outland - Redburn Pact  |
 [Ods] SCP Outfits Only Edition	|
 [Pratt] WWII Weapons Pack (Vanilla)	|
-[RH] Faction: Alliegence	|
-[RH] Faction: Coalition	|
-[RH] Faction: Cordis Die	|
-[RH] Faction: Elite Crew	|
-[RH] Faction: Last Man Contingent	|
-[RH] Faction: Militaires Sans Frontieres	|
-[RH] Faction: Task Force 141	|
-[RH] Faction: The Ghosts	|
-[RH] Faction: UAC	|
-[RH] Faction: UAC Kit	|
-[RH] Faction: Umbra Company	|
-[RH] Faction: War Mongrels	|
+[RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
 [RH2] Faction: V.O.I.D.	|
@@ -72,13 +60,18 @@ Mod |
 [SYR] Harpy	|
 [SYR] Naga	|
 [SYR] Thrumkin	|
+[XND] Vanilla-Friendly Animal Surgery (Continued)
 A Dog Said...	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
 Advanced Mortar (Continued) |
 Alpha Animals |
 Alpha Biomes |
+Alpha Genes |
+Alpha Genes - Insectoid Mutations |
+Alpha Memes |
 Alpha Ships |
+Altered Carbon |
 Ancient Blade Cyborg  |
 Ancient Eastern Armory  |
 Ancient Fallout Armory  |
@@ -111,6 +104,9 @@ Argonians of Blackmarsh (Continued) |
 Arrow Please (Continued)    |
 Aspero Race |
 Astoriel Legacy |
+Astra Militarum Regimentum - Cadia  |
+Astra Militarum Regimentum - Krieg  |
+Astra Militarum Regimentum - Krieg: Officer Helmet  |
 Autocleaner	|
 Auto-Mortars	|
 Bastyon  |
@@ -155,14 +151,16 @@ Dragons!	|
 Dubs Rimatomics |
 Dumbs' Dachshunds   |
 ED-Shields	|
-Edge of Descension  |
+Edge of Descension - Monoblades  |
 Eltex Bodysuit  |
 Epona The centaur race  |
 Equiums Horse Race	|
 Erin's Au Ra    |
+Erin's Auronya - HAR Edition   |
 Erin's Azaphrae |
 Erin's Chocobos |
 Erin's Critter Collection |
+Erin's Final Fantasy Races |
 Erin's Forest Critters |
 Erin's Friendly Ferrets |
 Erin's Fox Squirrel |
@@ -216,6 +214,7 @@ Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 GouRIMet	|
+Grimworld Lasguns	|
 Gulden Mod  |
 Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
@@ -226,6 +225,7 @@ Heyra the Horned    |
 High Caliber	|
 Hive Armory |
 Idhale Race	|
+Infinity Rim: Ariadna (Continued) 	|
 Infused 2 Expansion |
 Infusion 2  |
 Iron Harvest Pkp 17 "Eisenhans" Powerarmor	|
@@ -239,6 +239,7 @@ Kenshi Armory |
 K.L.K - Styles Apparel Pack	|
 Kijin Race 2.0     	|     
 Kill la Kill Styles Pack    |
+Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
@@ -251,6 +252,7 @@ Lemolim Race    |
 Let's Have a Cat!	|
 Littluna Race |
 Logann Race	|
+Logistics_Mechanoid |
 Magical Menagerie	|
 Magic Wands |
 Makeshift Melee Weapons |
@@ -264,6 +266,7 @@ Mechanoid Bench 3   |
 Mechanoid Master Blaster (Continued)    |
 Mechanoids Extraordinaire	|
 Mechanoid Master Blaser |
+Medieval Medicines 1.4 Medieval Overhaul Edition |
 Medical System Expansion	|
 Medieval Overhaul   |
 Medieval Quest Rewards  |
@@ -307,10 +310,12 @@ Ni'Hal	|
 Nukes   |
 Nyaron Race |
 Not Only Just a Cannon  |
+Obsidia Expansion - Mothoids  |
 ODZ Suits |
 Ogam's Warbanner Mod    |
 Opossum Friends |
 Orassans	|
+Ordo Tempestus - Tempestus Scions   |
 Outer Rim - Tatooine    |
 Palm Cats   |
 Paniel the Automata |
@@ -334,9 +339,11 @@ Ratkin Apparel+ |
 Ratnik-3 Prototype Armor    |
 Red Army (Continued) |
 Redcoat Apparel	|
-Reinforced Mechanoids: Tyrikan-Line |
+ReGrowth: Extinct Animals |
+Reinforced Mechanoid 2 |
 Remote Detonator	|
 Revia Race |
+Revia Race - biotech |
 Rim Contractors Arsenal	|
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
@@ -354,7 +361,10 @@ Rim Flood	|
 Rim-Robots_	|
 Rim-Shek	|
 RimCities   |
+RimFantasy - Medieval Overhaul Edition   |
+RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
+RimNauts 2 |
 RimSec Security |
 Rimsenal - Core |
 Rimsenal - Enhanced Vanilla |
@@ -367,6 +377,7 @@ Rimworld - The Dark Descent |
 Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
+Risk of Rain: UES Contact Light Armory (Continued) |
 Saclean Race    |
 Save Our Ship 2	|
 SCP |
@@ -378,16 +389,18 @@ Silkiera Race	|
 Simple Ogre Race  |
 Simply More Melee	|
 Slime Rancher	|
+Solark Race |
 Soviet Armory	|
 Space Worms (Continued) |
 Spartan Foundry	|
 Spidercamp's Horses     |
 Stalingrad – Uniforms   |
+Steamworld Uniforms |
+Star Crafters Armory  |
 Star Wars - Droids |
 Star Wars - Factions |
 Star Wars - Factions (Continued) |
 Starship Troopers Aracnids  |
-Solark Race |
 Swords (Continued)  |
 Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
@@ -405,8 +418,8 @@ Tsar Armory	|
 Turk's Guns |
 Turret Collection	|
 Twi'lek Race    |
+T's Conversion Staff |
 T's Samurai Faction |
-Ultratech: Altered Carbon Remastered |
 Useless Clothes |
 Ushankas Glitterworld Uprising  |
 Vanilla Animals Expanded |
@@ -423,6 +436,7 @@ Vanilla Brewing Expanded    |
 Vanilla Chemfuel Expanded   |
 Vanilla Factions Expanded - Ancients    |
 Vanilla Factions Expanded - Classical   |
+Vanilla Factions Expanded - Empire  |
 Vanilla Factions Expanded - Insectoids |
 Vanilla Factions Expanded - Mechanoids	|
 Vanilla Factions Expanded - Medieval	|
@@ -436,6 +450,7 @@ Vanilla Ideology Expanded - Hats and Rags |
 Vanilla Ideology Expanded - Memes and Structures    |
 Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
+Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
@@ -449,9 +464,9 @@ Vanilla Weapons Expanded - Laser |
 Vanilla Weapons Expanded - Non-Lethal	|
 Vanilla Weapons Expanded - Quickdraw	|
 Vanilla Weapons Expanded - Tribal	|
-Vanilla-Friendly Animal Surgery	|
 Vanilla Storytellers Expanded - Perry Persistent |
 Vanilla Storytellers Expanded - Winston Waves |
+Vanilla XCOM Weapons  |
 VFE - Mechanoids : Drones |
 VFE - Mechanoids : Unoffical Add-On |
 VGP Fabrics |
@@ -460,6 +475,7 @@ Vulpine Race Pack	|
 Wall Mounted Turrets (Continued)    |
 WarCasket Expanded  |
 WarCasket Gundam Addon  |
+Warcasket Persona Weapons   |
 Warcaskets: Adeptus Astartes    |
 Weapons+	|
 WWII German Uniforms - V's Edit |

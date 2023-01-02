@@ -60,7 +60,9 @@ namespace CombatExtended
         public float GetWindStrengthAt(IntVec3 cell)
         {
             if (!cell.UsesOutdoorTemperature(map))
+            {
                 return 0;
+            }
 
             return WindStrength;
         }

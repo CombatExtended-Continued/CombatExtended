@@ -10,7 +10,7 @@ namespace CombatExtended
         public string label;
         public LoadoutSlotConfig[] slots;
     }
-    
+
     [Serializable]
     public class LoadoutSlotConfig
     {
@@ -18,5 +18,5 @@ namespace CombatExtended
         public string defName;
         public int count;
     }
-    
+
 }

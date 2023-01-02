@@ -21,7 +21,7 @@ namespace CombatExtended
 
         private bool AllowThrowTauntNow(Pawn pawn)
         {
-            if(!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
+            if (!Controller.settings.ShowTaunts || pawn == null || !pawn.def.race.Humanlike)
             {
                 return false;
             }
@@ -38,7 +38,9 @@ namespace CombatExtended
         public void TryThrowTaunt(RulePackDef rulePack, Pawn pawn)
         {
             if (!AllowThrowTauntNow(pawn))
+            {
                 return;
+            }
 
             string taunt = GrammarResolver.Resolve(rulePack.RulesPlusIncludes[0].keyword, new GrammarRequest { Includes = { rulePack } });
             if (taunt.NullOrEmpty())

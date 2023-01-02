@@ -18,7 +18,7 @@ namespace CombatExtended.HarmonyCE
             var type = AccessTools.Inner(typeof(ThingDefGenerator_Meat), "<ImpliedMeatDefs>d__0");
             return AccessTools.Method(type, "MoveNext");
         }
-        
+
         public static void Postfix(IEnumerator<ThingDef> __instance, bool __result)
         {
             if (__result)

@@ -15,20 +15,22 @@ namespace CombatExtended
 
         public float GetHolderToughnessFactor(Pawn pawn)
         {
-	    // We want the parry chance from the pawn, ignoring their gear, so remove their gear for the next function call, then put it back.
-	    var apparel = pawn.apparel;
-	    pawn.apparel = null;
-	    var equipment = pawn.equipment;
-	    pawn.equipment = null;
-	    float factor;
-	    try {
-		factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
-	    }
-	    finally {
-		pawn.apparel = apparel;
-		pawn.equipment = equipment;
-	    }
-	    return factor * parryChanceFactor;
+            // We want the parry chance from the pawn, ignoring their gear, so remove their gear for the next function call, then put it back.
+            var apparel = pawn.apparel;
+            pawn.apparel = null;
+            var equipment = pawn.equipment;
+            pawn.equipment = null;
+            float factor;
+            try
+            {
+                factor = pawn.GetStatValue(CE_StatDefOf.MeleeParryChance);
+            }
+            finally
+            {
+                pawn.apparel = apparel;
+                pawn.equipment = equipment;
+            }
+            return factor * parryChanceFactor;
         }
 
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)

@@ -235,8 +235,8 @@ namespace CombatExtended.RocketGUI
         }
 
         protected virtual void Line(float thickness)
-        {            
-            Widgets.DrawBoxSolid(!drawBorder ? this.Slice(thickness, includeMargins: true).inside : this.Slice(thickness, includeMargins: false).outside, this.CollapsibleBGBorderColor);            
+        {
+            Widgets.DrawBoxSolid(!drawBorder ? this.Slice(thickness, includeMargins: true).inside : this.Slice(thickness, includeMargins: false).outside, this.CollapsibleBGBorderColor);
         }
 
         protected virtual bool ButtonText(TaggedString text, bool disabled = false, bool drawBackground = false)
@@ -261,8 +261,10 @@ namespace CombatExtended.RocketGUI
         {
             Gap(height: 5);
             GUI.color = this.CollapsibleBGBorderColor;
-            if(drawBorder)
+            if (drawBorder)
+            {
                 Widgets.DrawBox(new Rect(inXMin, inYMin, inXMax - inXMin, curYMin - inYMin));
+            }
 
             started = true;
             previousHeight = Mathf.Abs(inYMin - curYMin);
@@ -298,7 +300,9 @@ namespace CombatExtended.RocketGUI
             }
             this.curYMin += includeMargins ? height + margins.y : height;
             if (drawBackground)
+            {
                 Widgets.DrawBoxSolid(outside, CollapsibleBGColor);
+            }
             return new RectSlice(inside, outside);
         }
     }

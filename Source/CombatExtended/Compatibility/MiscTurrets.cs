@@ -9,20 +9,23 @@ using System.Collections.Generic;
 
 namespace CombatExtended.Compatibility
 {
-    public class MiscTurrets: IPatch
+    public class MiscTurrets : IPatch
     {
-	public bool CanInstall() {
-	    Log.Message("Combat Extended :: Checking Misc Turrets");
-	    return ModLister.HasActiveModWithName("Misc. TurretBase, Objects");
-	}
+        public bool CanInstall()
+        {
+            Log.Message("Combat Extended :: Checking Misc Turrets");
+            return ModLister.HasActiveModWithName("Misc. TurretBase, Objects");
+        }
 
-	public void Install() {
-	    Log.Message("Combat Extended :: Installing Misc Turrets");
-	}
+        public void Install()
+        {
+            Log.Message("Combat Extended :: Installing Misc Turrets");
+        }
 
-	public IEnumerable<string> GetCompatList() {
-	    yield return "MiscTurretsCompat";
-	}
+        public IEnumerable<string> GetCompatList()
+        {
+            yield return "MiscTurretsCompat";
+        }
 
 
 

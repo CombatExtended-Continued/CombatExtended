@@ -23,7 +23,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="50mmGS50GrenadeBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="50mmGS50GrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Specialized high-velocity grenades with polymer casing and stabilizing fins.</description>
 		<statBases>
 			<Mass>0.44</Mass>
@@ -65,6 +65,7 @@
 			<MarketValue>7.03</MarketValue>
 		</statBases>
 		<ammoClass>GrenadeEMP</ammoClass>
+		<generateAllowChance>0.5</generateAllowChance>
 		<detonateProjectile>Bullet_50mmGS50Grenade_EMP</detonateProjectile>
 	</ThingDef>  
 
@@ -85,7 +86,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base50mmGS50GrenadeBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base50mmGS50GrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/LauncherShot</texPath>
@@ -133,6 +134,8 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		<explosionRadius>2</explosionRadius>
 		<damageDef>Smoke</damageDef>
+			<suppressionFactor>0.0</suppressionFactor>
+			<dangerFactor>0.0</dangerFactor>
 		<postExplosionGasType>BlindSmoke</postExplosionGasType>
 		<preExplosionSpawnChance>1</preExplosionSpawnChance>
 		</projectile>
@@ -189,6 +192,10 @@
 		<label>make 50mm EM-50 EMP grenades x50</label>
 		<description>Craft 50 EM-50 50mm EMP grenades.</description>
 		<jobString>Making 50mm EM-50 EMP grenades.</jobString>
+		<researchPrerequisites>
+			<li>MicroelectronicsBasics</li>
+			<li>CE_Launchers</li>
+		</researchPrerequisites>
 		<ingredients>
 			<li>
 				<filter>

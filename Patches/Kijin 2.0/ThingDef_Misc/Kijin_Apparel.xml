@@ -218,12 +218,21 @@
 				  <DevilstrandCloth>20</DevilstrandCloth>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmetDK"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmetDK"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Apparel_PowerArmorHelmetDK"]</xpath>
 				<value>
 				  <equippedStatOffsets>
-					<PsychicSensitivity>-0.2</PsychicSensitivity>
 					<AimingAccuracy>0.15</AimingAccuracy>
 					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>

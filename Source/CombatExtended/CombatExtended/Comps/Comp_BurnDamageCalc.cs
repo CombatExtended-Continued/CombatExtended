@@ -33,7 +33,9 @@ namespace CombatExtended
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(x => x.race != null))
             {
                 if (def.comps == null)
+                {
                     def.comps = new List<CompProperties>();
+                }
                 def.comps.Add(new CompProperties { compClass = typeof(Comp_BurnDamageCalc) });
             }
         }

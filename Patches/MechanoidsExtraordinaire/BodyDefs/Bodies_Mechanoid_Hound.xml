@@ -59,52 +59,6 @@
 					<li>CoveredByNaturalArmor</li>
 				</value>
 			</li>
-			<!-- ========== Modify coverage ========== -->
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "HoundME"]/corePart/parts/li[def = "MechanicalLegME"]/coverage</xpath>
-				<value>
-					<coverage>0.10</coverage>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "HoundME"]/corePart/parts/li[def = "MechanicalTailME"]/coverage</xpath>
-				<value>
-					<coverage>0.04</coverage>
-				</value>
-			</li>
-			<!-- ========== Add new body parts ========== -->
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "HoundME"]/corePart/parts/li[def = "ExtensionPortME"]/parts/li[def = "WeaponHolderME"]</xpath>
-				<value>
-					<parts>
-						<li>
-							<def>MechanicalWeaponActuator</def>
-							<coverage>0.15</coverage>
-							<depth>Inside</depth>
-						</li>
-					</parts>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "HoundME"]/corePart/parts/li[def = "MechanicalLegME"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalLowerActuator</def>
-						<coverage>0.15</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "HoundME"]/corePart/parts/li[def = "MechanicalLegME"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalLowerPiston</def>
-						<coverage>0.25</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
 
 		</operations>
 		</match>

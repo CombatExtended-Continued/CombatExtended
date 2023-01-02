@@ -14,7 +14,7 @@ namespace CombatExtended
     {
         static MeleeTargettingAdd()
         {
-            foreach(ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
+            foreach (ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
             {
                 if (humanlike.comps == null)
                 {
@@ -116,7 +116,7 @@ namespace CombatExtended
 
             return BodyPartHeight.Undefined;
         }
-            
+
 
 
         public bool SkillReqA
@@ -198,30 +198,30 @@ namespace CombatExtended
                         {
                             if (!parts.Contains(posTarget.def))
                             {
-                                if(posTarget.depth == BodyPartDepth.Outside
-                                && posTarget.height == heightInt
-                                && !posTarget.def.label.Contains("toe")
-                                && !posTarget.def.label.Contains("finger")
-                                && !posTarget.def.label.Contains("utility")
-                                )
+                                if (posTarget.depth == BodyPartDepth.Outside
+                                        && posTarget.height == heightInt
+                                        && !posTarget.def.label.Contains("toe")
+                                        && !posTarget.def.label.Contains("finger")
+                                        && !posTarget.def.label.Contains("utility")
+                                  )
                                 {
                                     parts.Add(posTarget.def);
                                 }
                             }
 
-                            
 
-                           
+
+
                         }
 
                         foreach (BodyPartDef def in parts)
                         {
                             options.Add(new FloatMenuOption(def.label,
-                                   delegate
-                                   {
-                                       ChangeCurrentPart(def);
-                                   }
-                                   ));
+                                                            delegate
+                            {
+                                ChangeCurrentPart(def);
+                            }
+                                                           ));
                         }
 
                         options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { ChangeCurrentPart(null); }));

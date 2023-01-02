@@ -27,26 +27,6 @@ namespace CombatExtended
         /// </summary>
         protected const int collisionCheckSize = 5;
 
-        /// <summary>
-        /// Additional suppression multiplier for suppression caused by an explosion.
-        /// </summary>
-        protected const float explosionSuppressionFactor = 3f;
-
-        /// <summary>
-        /// By how much is the damage of the projectile multiplied before being sent as danger amount.
-        /// </summary>
-        protected const float projectileDangerFactor = 0.5f;
-
-        /// <summary>
-        /// By how much is the damage of an explosive projectile is multiplied upon impact before being sent as danger amount.
-        /// </summary>
-        protected const float explosionDangerFactor = 1f;
-
-        /// <summary>
-        /// Additional suppression multiplier for airborne projectiles with a fuse.
-        /// </summary>
-        protected const float airborneFuseSuppressionFactor = 0.25f;
-
         #region Origin destination
         public bool OffMapOrigin = false;
 
@@ -153,7 +133,7 @@ namespace CombatExtended
         private float heightInt = 0f;
         /// <summary>
         /// If lastHeightTick is not FlightTicks, Height calculates the quadratic formula (g/2)t^2 + (-v_0y)t + (y-y0) for {g -> gravity, v_0y -> shotSpeed * Mathf.Sin(shotAngle), y0 -> shotHeight, t -> seconds} to find y rounded to the nearest 3 decimals.
-        /// 
+        ///
         /// If lastHeightTick equals FlightTicks, it returns a locally stored value heightInt which is the product of previous calculation.
         /// </summary>
         public float Height
@@ -350,12 +330,12 @@ namespace CombatExtended
                 var vx = w.x / StartingTicksToImpact;
 
                 var vy = (w.y - shotHeight) / StartingTicksToImpact
-                    + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
-                    - (GravityFactor * fTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
+                         + shotSpeed * Mathf.Sin(shotAngle) / GenTicks.TicksPerRealSecond
+                         - (GravityFactor * fTicks) / (GenTicks.TicksPerRealSecond * GenTicks.TicksPerRealSecond);
 
                 return Quaternion.AngleAxis(
-                    Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
-                    , Vector3.up);
+                           Mathf.Rad2Deg * Mathf.Atan2(-vy, vx) + 90f
+                           , Vector3.up);
             }
         }
 
@@ -397,7 +377,10 @@ namespace CombatExtended
                 if (_gravityFactor < 0)
                 {
                     _gravityFactor = CE_Utility.GravityConst;
-                    if (def.projectile is ProjectilePropertiesCE props) _gravityFactor = props.Gravity;
+                    if (def.projectile is ProjectilePropertiesCE props)
+                    {
+                        _gravityFactor = props.Gravity;
+                    }
                 }
                 return _gravityFactor;
             }
@@ -471,7 +454,9 @@ namespace CombatExtended
             {
                 Scribe_References.Look<Thing>(ref target, "intendedTarget");
                 if (target != null)
+                {
                     intendedTarget = new LocalTargetInfo(target);
+                }
             }
         }
         #endregion
@@ -520,22 +505,22 @@ namespace CombatExtended
                     Position = ExactPosition.ToIntVec3();
                     break;
                 }
-		var iv3 = tp.ToIntVec3();
+                var iv3 = tp.ToIntVec3();
                 if (!iv3.InBounds(map))
                 {
                     tp = ray.GetPoint(i - 1);
-		    ExactPosition = tp;
-		    destination = tp;
-		    landed = true;
+                    ExactPosition = tp;
+                    destination = tp;
+                    landed = true;
                     LastPos = destination;
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
-		    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+                    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
                     lbce.Impact(null, muzzle);
-		    return;
+                    return;
 
-		}
+                }
                 foreach (Thing thing in Map.thingGrid.ThingsListAtFast(iv3))
                 {
                     if (this == thing)
@@ -573,7 +558,7 @@ namespace CombatExtended
                     Position = ExactPosition.ToIntVec3();
 
                     lbce.SpawnBeam(muzzle, destination);
-		    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+                    RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
 
                     lbce.Impact(thing, muzzle);
 
@@ -585,19 +570,32 @@ namespace CombatExtended
             if (lbce != null)
             {
                 lbce.SpawnBeam(muzzle, destination);
-		RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
+                RayCastSuppression(muzzle.ToIntVec3(), destination.ToIntVec3());
                 Destroy(DestroyMode.Vanish);
                 return;
             }
         }
 
-	    private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination)
-	{
-	    foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, base.Map, SuppressionRadius, false))
-	    {
-		ApplySuppression(pawn);
-	    }
-	}
+        private void RayCastSuppression(IntVec3 muzzle, IntVec3 destination, Map map = null)
+        {
+            if (muzzle == destination)
+            {
+                return;
+            }
+
+            var projectilePropsCE = def.projectile as ProjectilePropertiesCE;
+            if (projectilePropsCE.suppressionFactor <= 0f ||
+                projectilePropsCE.airborneSuppressionFactor <= 0f)
+            {
+                return;
+            }
+
+            map ??= base.Map;
+            foreach (Pawn pawn in muzzle.PawnsNearSegment(destination, map, SuppressionRadius, false, true).Except(muzzle.PawnsInRange(map, SuppressionRadius)))
+            {
+                ApplySuppression(pawn);
+            }
+        }
         #endregion
 
         #region Launch
@@ -638,7 +636,7 @@ namespace CombatExtended
         }
         #endregion
 
-        #region Collisions        
+        #region Collisions
         private bool CheckIntercept(Thing interceptorThing, CompProjectileInterceptor interceptorComp, bool withDebug = false)
         {
             Vector3 shieldPosition = interceptorThing.Position.ToVector3ShiftedWithAltitude(0.5f);
@@ -690,8 +688,8 @@ namespace CombatExtended
                 // Note that empShieldBreakChance defaults to 1 even for non-EMP projectiles, so a non-EMP projectile
                 // may still technically pass the chance check.
                 var empDamageDef = def.projectile.damageDef == DamageDefOf.EMP
-                    ? def.projectile.damageDef
-                    : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
+                                   ? def.projectile.damageDef
+                                   : projectileProperties?.secondaryDamage?.Select(sd => sd.def).FirstOrDefault(sdDef => sdDef == DamageDefOf.EMP);
 
                 if (empDamageDef != null)
                 {
@@ -730,8 +728,14 @@ namespace CombatExtended
             var pointAInShield = (center - pointA).sqrMagnitude <= Mathf.Pow(radius, 2);
             var pointBInShield = (center - pointB).sqrMagnitude <= Mathf.Pow(radius, 2);
 
-            if (pointAInShield && pointBInShield) { return false; }
-            if (!pointAInShield && !pointBInShield) { return false; }
+            if (pointAInShield && pointBInShield)
+            {
+                return false;
+            }
+            if (!pointAInShield && !pointBInShield)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -739,6 +743,8 @@ namespace CombatExtended
         //Removed minimum collision distance
         private bool CheckForCollisionBetween()
         {
+            bool collided = false;
+            Map localMap = this.Map; // Saving the map in case CheckCellForCollision->...->Impact destroys the projectile, thus setting this.Map to null
             var lastPosIV3 = LastPos.ToIntVec3();
             var newPosIV3 = ExactPosition.ToIntVec3();
 
@@ -754,7 +760,9 @@ namespace CombatExtended
 
             #region Sanity checks
             if (ticksToImpact < 0 || def.projectile.flyOverhead)
+            {
                 return false;
+            }
 
             if (!lastPosIV3.InBounds(Map) || !newPosIV3.InBounds(Map))
             {
@@ -776,14 +784,26 @@ namespace CombatExtended
             {
                 if (CheckCellForCollision(cell))
                 {
-                    return true;
+                    newPosIV3 = cell;
+                    collided = true;
+                    break;
                 }
 
                 if (Controller.settings.DebugDrawInterceptChecks)
+                {
                     Map.debugDrawer.FlashCell(cell, 1, "o");
+                }
             }
 
-            return false;
+            // Apply suppression. The height here is NOT that of the bullet in CELL,
+            // it is the height at the END OF THE PATH. This is because SuppressionRadius
+            // is not considered an EXACT limit.
+            if (ExactPosition.y <= SuppressionRadius)
+            {
+                RayCastSuppression(lastPosIV3, newPosIV3, localMap);
+            }
+
+            return collided;
         }
 
         /// <summary>
@@ -815,7 +835,7 @@ namespace CombatExtended
                 if (curCell != cell && curCell.InBounds(Map))
                 {
                     mainThingList.AddRange(Map.thingGrid.ThingsListAtFast(curCell)
-                    .Where(x => x is Pawn));
+                                           .Where(x => x is Pawn));
 
                     if (Controller.settings.DebugDrawInterceptChecks)
                     {
@@ -836,7 +856,10 @@ namespace CombatExtended
 
             foreach (var thing in mainThingList.Distinct().OrderBy(x => (x.DrawPos - LastPos).sqrMagnitude))
             {
-                if ((thing == launcher || thing == mount) && !canTargetSelf) continue;
+                if ((thing == launcher || thing == mount) && !canTargetSelf)
+                {
+                    continue;
+                }
 
                 // Check for collision
                 if (thing == intendedTargetThing || def.projectile.alwaysFreeIntercept || thing.Position.DistanceTo(OriginIV3) >= minCollisionDistance)
@@ -844,18 +867,6 @@ namespace CombatExtended
                     if (TryCollideWith(thing))
                     {
                         return true;
-                    }
-                }
-
-                // Apply suppression. The height here is NOT that of the bullet in CELL,
-                // it is the height at the END OF THE PATH. This is because SuppressionRadius
-                // is not considered an EXACT limit.
-                if (ExactPosition.y < SuppressionRadius)
-                {
-                    var pawn = thing as Pawn;
-                    if (pawn != null)
-                    {
-                        ApplySuppression(pawn);
                     }
                 }
             }
@@ -870,7 +881,10 @@ namespace CombatExtended
 
         private bool TryCollideWithRoof(IntVec3 cell)
         {
-            if (!cell.Roofed(Map)) return false;
+            if (!cell.Roofed(Map))
+            {
+                return false;
+            }
 
             var bounds = CE_Utility.GetBoundsFor(cell, cell.GetRoof(Map));
 
@@ -898,7 +912,7 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection. 
+        /// Tries to impact the thing based on whether it intersects the given flight path. Trees have RNG chance to not collide even on intersection.
         /// </summary>
         /// <param name="thing">What to impact</param>
         /// <returns>True if impact occured, false otherwise</returns>
@@ -929,23 +943,26 @@ namespace CombatExtended
                 {
                     MoteMakerCE.ThrowText(thing.Position.ToVector3Shifted(), thing.Map, chance.ToString());
                 }
-                if (!Rand.Chance(chance)) return false;
+                if (!Rand.Chance(chance))
+                {
+                    return false;
+                }
             }
 
             var point = ShotLine.GetPoint(dist);
             if (!point.InBounds(Map))
-	    {
-		if (OffMapOrigin)
-		{
-		    landed = true;
-		    Destroy(DestroyMode.Vanish);
-		    return true;
-		}
+            {
+                if (OffMapOrigin)
+                {
+                    landed = true;
+                    Destroy(DestroyMode.Vanish);
+                    return true;
+                }
                 else
                 {
-		    Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
-		}
-	    }
+                    Log.Error("TryCollideWith out of bounds point from ShotLine: obj " + thing.ThingID + ", proj " + ThingID + ", dist " + dist + ", point " + point);
+                }
+            }
 
             ExactPosition = point;
             landed = true;
@@ -962,15 +979,18 @@ namespace CombatExtended
 
         /// <summary>
         /// Applies suppression based off of damage and suppression multiplier to pawns which don't have a shield belt or one is broken;
-        /// Returns nothing early if the weapon cannot harm health (firefoam grenades, for example).
         /// </summary>
         /// <param name="pawn">Which pawn to suppress</param>
         /// <param name="suppressionMultiplier">How much to multiply the projectile's damage by before using it as suppression</param>
         protected void ApplySuppression(Pawn pawn, float suppressionMultiplier = 1f)
-
         {
-            if (!def.projectile.damageDef.harmsHealth)
+            var propsCE = def.projectile as ProjectilePropertiesCE;
+
+            if (propsCE.suppressionFactor <= 0f || (!landed && propsCE.airborneSuppressionFactor <= 0f))
+            {
                 return;
+            }
+
             CompShield shield = pawn.TryGetComp<CompShield>();
             if (pawn.RaceProps.Humanlike)
             {
@@ -990,13 +1010,18 @@ namespace CombatExtended
             //Add suppression
             var compSuppressable = pawn.TryGetComp<CompSuppressable>();
             if (compSuppressable != null
-                && pawn.Faction != launcher?.Faction
-                && (shield == null || shield.ShieldState == ShieldState.Resetting))
+                    && pawn.Faction != launcher?.Faction
+                    && (shield == null || shield.ShieldState == ShieldState.Resetting))
             {
-                suppressionAmount = def.projectile.damageAmountBase;
-                var propsCE = def.projectile as ProjectilePropertiesCE;
-                var explodeRadius = propsCE.explosionRadius;
+                suppressionAmount = def.projectile.damageAmountBase * suppressionMultiplier;
 
+                suppressionAmount *= propsCE.suppressionFactor;
+                if (!landed)
+                {
+                    suppressionAmount *= propsCE.airborneSuppressionFactor;
+                }
+
+                var explodeRadius = propsCE.explosionRadius;
                 if (explodeRadius == 0f)
                 {
                     var comp = this.TryGetComp<CompExplosiveCE>()?.props as CompProperties_ExplosiveCE;
@@ -1007,8 +1032,6 @@ namespace CombatExtended
                     }
                 }
 
-                suppressionAmount *= suppressionMultiplier;
-
                 if (explodeRadius == 0f)
                 {
                     var penetrationAmount = propsCE?.armorPenetrationSharp ?? 0f;
@@ -1017,8 +1040,6 @@ namespace CombatExtended
                 }
                 else
                 {
-                    if (!landed && def.projectile.explosionDelay > 0)
-                        suppressionAmount *= airborneFuseSuppressionFactor;
                     // Larger suppression amount at distances compared to linear interpolation.
                     var dPosX = ExactPosition.x - pawn.DrawPos.x;
                     var dPosZ = ExactPosition.z - pawn.DrawPos.z;
@@ -1082,8 +1103,11 @@ namespace CombatExtended
                 }
             }
             float distToOrigin = originInt.DistanceTo(positionInt);
-            if (ExactPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3 && def.projectile.damageDef.harmsHealth)
-                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * projectileDangerFactor);
+            float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
+            if (dangerFactor > 0f && ExactPosition.y < CollisionVertical.WallCollisionHeight && distToOrigin > 3)
+            {
+                DangerTracker?.Notify_BulletAt(Position, def.projectile.damageAmountBase * dangerFactor);
+            }
         }
 
         /// <summary>
@@ -1163,7 +1187,9 @@ namespace CombatExtended
                 foreach (var thing2 in list)
                 {
                     if (TryCollideWith(thing2))
+                    {
                         return;
+                    }
                 }
             }
 
@@ -1177,20 +1203,20 @@ namespace CombatExtended
             if (def.HasModExtension<EffectProjectileExtension>())
             {
                 def.GetModExtension<EffectProjectileExtension>()?.ThrowMote(ExactPosition,
-                                                                            Map,
-                                                                            def.projectile.damageDef.explosionCellMote,
-                                                                            def.projectile.damageDef.explosionColorCenter,
-                                                                            def.projectile.damageDef.soundExplosion,
-                                                                            hitThing);
+                        Map,
+                        def.projectile.damageDef.explosionCellMote,
+                        def.projectile.damageDef.explosionColorCenter,
+                        def.projectile.damageDef.soundExplosion,
+                        hitThing);
             }
             var ignoredThings = new List<Thing>();
 
             //Spawn things from preExplosionSpawnThingDef != null
             if (Position.IsValid
-                && def.projectile.preExplosionSpawnChance > 0
-                && def.projectile.preExplosionSpawnThingDef != null
-                && (Controller.settings.EnableAmmoSystem || !(def.projectile.preExplosionSpawnThingDef is AmmoDef))
-                && Rand.Value < def.projectile.preExplosionSpawnChance)
+                    && def.projectile.preExplosionSpawnChance > 0
+                    && def.projectile.preExplosionSpawnThingDef != null
+                    && (Controller.settings.EnableAmmoSystem || !(def.projectile.preExplosionSpawnThingDef is AmmoDef))
+                    && Rand.Value < def.projectile.preExplosionSpawnChance)
             {
                 var thingDef = def.projectile.preExplosionSpawnThingDef;
 
@@ -1216,17 +1242,22 @@ namespace CombatExtended
                 Destroy();
                 return;
             }
-	    
+
             if (def.projectile.explosionEffect != null)
             {
                 Effecter effecter = def.projectile.explosionEffect.Spawn();
                 effecter.Trigger(new TargetInfo(explodePos.ToIntVec3(), Map, false), new TargetInfo(explodePos.ToIntVec3(), Map, false));
                 effecter.Cleanup();
             }
+
+            var projectilePropsCE = (def.projectile as ProjectilePropertiesCE);
+
             var explodingComp = this.TryGetComp<CompExplosiveCE>();
 
             if (explodingComp == null)
+            {
                 this.TryGetComp<CompFragments>()?.Throw(explodePos, Map, launcher);
+            }
 
             //If the comp exists, it'll already call CompFragments
             if (explodingComp != null || def.projectile.explosionRadius > 0f)
@@ -1234,7 +1265,9 @@ namespace CombatExtended
                 float explosionSuppressionRadius = SuppressionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f);
                 //Handle anything explosive
                 if (hitThing is Pawn pawn && pawn.Dead)
+                {
                     ignoredThings.Add(pawn.Corpse);
+                }
 
                 var suppressThings = new List<Pawn>();
                 float dangerAmount = 0f;
@@ -1277,8 +1310,12 @@ namespace CombatExtended
                     if (explodePos.y < SuppressionRadius)
                     {
                         explosionSuppressionRadius += def.projectile.explosionRadius;
-                        suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map,
-                            explosionSuppressionRadius));
+
+                        if (projectilePropsCE.suppressionFactor > 0f)
+                        {
+                            suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map,
+                                                    explosionSuppressionRadius));
+                        }
                     }
                 }
                 if (explodingComp != null)
@@ -1289,22 +1326,34 @@ namespace CombatExtended
                     if (explodePos.y < SuppressionRadius)
                     {
                         explosionSuppressionRadius += (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius;
-                        suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map,
-                            SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius));
+
+                        if (projectilePropsCE.suppressionFactor > 0f)
+                        {
+                            suppressThings.AddRange(explodePos.ToIntVec3().PawnsInRange(Map,
+                                                    SuppressionRadius + (explodingComp.props as CompProperties_ExplosiveCE).explosiveRadius));
+                        }
                     }
                 }
 
-                if (def.projectile.damageDef.harmsHealth)
+                foreach (var thing in suppressThings)
                 {
-                    foreach (var thing in suppressThings)
-                        ApplySuppression(thing, explosionSuppressionFactor);
-                    if (dangerAmount > 0f)
-                        DangerTracker.Notify_DangerRadiusAt(Position, explosionSuppressionRadius - SuppressionRadius, dangerAmount * explosionDangerFactor);
+                    ApplySuppression(thing);
+                }
+
+                if (projectilePropsCE.dangerFactor > 0f)
+                {
+                    DangerTracker.Notify_DangerRadiusAt(Position,
+                                                        explosionSuppressionRadius - SuppressionRadius,
+                                                        dangerAmount * projectilePropsCE.dangerFactor);
                 }
             }
             else
             {
-                DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(), def.projectile.damageAmountBase * projectileDangerFactor);
+                if (projectilePropsCE.dangerFactor > 0f)
+                {
+                    DangerTracker?.Notify_BulletAt(ExactPosition.ToIntVec3(),
+                                                   def.projectile.damageAmountBase * projectilePropsCE.dangerFactor);
+                }
             }
 
             Destroy();

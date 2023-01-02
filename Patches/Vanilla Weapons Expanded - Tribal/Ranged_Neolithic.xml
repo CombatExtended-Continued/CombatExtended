@@ -36,8 +36,22 @@
       </FireModes>
     </li>
 
-    <li Class="PatchOperationRemove">
+    <li Class="PatchOperationReplace">
       <xpath>/Defs/ThingDef[defName="VWE_Sling"]/tools</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>Body</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>2</power>
+            <cooldownTime>1.75</cooldownTime>
+            <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
     </li>
 
     <!-- === Throwing Shard === -->
@@ -352,6 +366,24 @@
       </RecipeDef>
     </value>
   </li>
+
+    <li Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="VWE_Weapon_FireBomb"]</xpath>
+      <value>
+        <tools>
+          <li Class="CombatExtended.ToolCE">
+            <label>Body</label>
+            <capacities>
+              <li>Blunt</li>
+            </capacities>
+            <power>2</power>
+            <cooldownTime>1.75</cooldownTime>
+            <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+            <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+          </li>
+        </tools>
+      </value>
+    </li>
 
  		</operations>
 		</match>

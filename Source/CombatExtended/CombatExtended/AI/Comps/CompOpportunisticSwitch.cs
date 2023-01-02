@@ -95,7 +95,10 @@ namespace CombatExtended.AI
             get
             {
                 if (SelPawn.factionInt != null && factionLastFlare.TryGetValue(SelPawn.factionInt, out int ticks)
-                    && GenTicks.TicksGame - ticks < COOLDOWN_FACTION_TICKS) return true;
+                        && GenTicks.TicksGame - ticks < COOLDOWN_FACTION_TICKS)
+                {
+                    return true;
+                }
                 return false;
             }
         }
@@ -114,12 +117,22 @@ namespace CombatExtended.AI
 
         public override bool StartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
-            if (!ShouldRun) return true;
-            if (OpportunisticallySwitchedRecently) return true;
+            if (!ShouldRun)
+            {
+                return true;
+            }
+            if (OpportunisticallySwitchedRecently)
+            {
+                return true;
+            }
             if (TryFlare(verb, castTarg, destTarg))
+            {
                 return false;
+            }
             if (TryUseAOE(verb, castTarg, destTarg))
+            {
                 return false;
+            }
             return true;
         }
 
@@ -131,7 +144,7 @@ namespace CombatExtended.AI
                 float distance = castTarg.Cell.DistanceTo(SelPawn.Position);
 
                 if (castTarg.HasThing &&
-                    (TargetingPawns(castTarg.Thing, distance, out targetType) || TargetingTurrets(castTarg.Thing, distance, out targetType) || Rand.Chance(0.1f)))
+                        (TargetingPawns(castTarg.Thing, distance, out targetType) || TargetingTurrets(castTarg.Thing, distance, out targetType) || Rand.Chance(0.1f)))
                 {
                     // TODO add the ability to switch to EMP ammo or weapons
                     if (targetType == TargetType.Turret)
@@ -219,10 +232,14 @@ namespace CombatExtended.AI
             {
                 lastFlared = GenTicks.TicksGame;
                 if (SelPawn.Faction != null)
+                {
                     factionLastFlare[SelPawn.Faction] = lastFlared;
+                }
             }
             if (verb.EquipmentSource?.def.IsAOEWeapon() ?? false)
+            {
                 lastUsedAEOWeapon = GenTicks.TicksGame;
+            }
         }
 
         public override void PostExposeData()
@@ -240,7 +257,9 @@ namespace CombatExtended.AI
             foreach (Pawn other in pawn.Position.PawnsInRange(pawn.Map, 4))
             {
                 if (other.Faction == null)
+                {
                     continue;
+                }
                 if (other.Faction.HostileTo(SelPawn.Faction))
                 {
                     hostiles += 1;

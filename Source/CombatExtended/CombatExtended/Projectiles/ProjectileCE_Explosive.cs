@@ -28,15 +28,13 @@ namespace CombatExtended
                     base.Impact(null);
                     return;
                 }
-                if (landed)
+                if ((def.projectile as ProjectilePropertiesCE).suppressionFactor > 0f && landed)
                 {
-                    if (def.projectile.damageDef.harmsHealth)
+                    foreach (var thing in ExactPosition.ToIntVec3().PawnsInRange(Map,
+                                SuppressionRadius + def.projectile.explosionRadius +
+                                    (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f)))
                     {
-                        var suppressThings = new List<Pawn>();
-                        suppressThings.AddRange(ExactPosition.ToIntVec3().PawnsInRange(Map,
-                            SuppressionRadius + def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f)));
-                        foreach (var thing in suppressThings)
-                            ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay));
+                        ApplySuppression(thing, 1f - (ticksToDetonation / def.projectile.explosionDelay));
                     }
                 }
             }
@@ -59,10 +57,16 @@ namespace CombatExtended
             }
             landed = true;
             ticksToDetonation = def.projectile.explosionDelay;
-            if (def.projectile.damageDef.harmsHealth)
+            float dangerFactor = (def.projectile as ProjectilePropertiesCE).dangerFactor;
+            if (dangerFactor > 0f)
             {
-                DangerTracker.Notify_DangerRadiusAt(Position, def.projectile.explosionRadius + (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f), def.projectile.damageAmountBase * explosionDangerFactor);
-                GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef, this.launcher?.Faction);
+                DangerTracker.Notify_DangerRadiusAt(Position,
+                        def.projectile.explosionRadius +
+                            (def.projectile.applyDamageToExplosionCellsNeighbors ? 1.5f : 0f),
+                        def.projectile.damageAmountBase * dangerFactor);
+
+                GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(this, this.def.projectile.damageDef,
+                        this.launcher?.Faction);
             }
         }
     }

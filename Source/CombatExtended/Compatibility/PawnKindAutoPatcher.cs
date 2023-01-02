@@ -15,12 +15,13 @@ namespace CombatExtended.Compatibility
 
         static PawnKindPatcher()
         {
-	    if (!Controller.settings.EnablePawnKindAutopatcher)
-	    {
-		return;
-	    }
+            if (!Controller.settings.EnablePawnKindAutopatcher)
+            {
+                return;
+            }
 
-            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i => {
+            List<PawnKindDef> stuff = DefDatabase<PawnKindDef>.AllDefsListForReading.FindAll(i =>
+            {
                 var hasModExtensions = i.modExtensions?.Any(tt => tt is LoadoutPropertiesExtension) ?? false;
                 var isHuman = !i.RaceProps.Animal;
                 var hasCompInv = i.race?.comps?.Any(t => t is CompProperties_Inventory) ?? false;
@@ -35,10 +36,10 @@ namespace CombatExtended.Compatibility
                 }
 
                 thin.modExtensions.Add(new LoadoutPropertiesExtension { primaryMagazineCount = new FloatRange { min = 2, max = 5 } });
-                
+
 
             }
         }
     }
-   
+
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>RimFantasy - House Doyle</li>
+      </mods>
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ======= House Doyle Shield ======= -->
+
+            <!-- === Replace Apparel Layer & BodyPart Group === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RF_HeraldicHeaterShield_Doyle"]/apparel/layers</xpath>
+               <value>
+                  <layers>
+                     <li>Shield</li>
+                  </layers>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RF_HeraldicHeaterShield_Doyle"]/apparel/bodyPartGroups</xpath>
+               <value>
+                  <bodyPartGroups>
+                     <li>LeftShoulder</li>
+                  </bodyPartGroups>
+               </value>
+            </li>
+
+            <li Class="PatchOperationRemove">
+               <xpath>Defs/ThingDef[defName="RF_HeraldicHeaterShield_Doyle"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+            </li>
+
+            <!-- === Add Bulk === -->
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="RF_HeraldicHeaterShield_Doyle"]/statBases</xpath>
+               <value>
+                  <Bulk>8</Bulk>
+                  <WornBulk>5</WornBulk>
+               </value>
+            </li>
+
+            <!-- === Replace Stuff Thickness === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RF_HeraldicHeaterShield_Doyle"]/statBases/StuffEffectMultiplierArmor</xpath>
+               <value>
+                  <StuffEffectMultiplierArmor>2.85</StuffEffectMultiplierArmor>
+               </value>
+            </li>
+
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

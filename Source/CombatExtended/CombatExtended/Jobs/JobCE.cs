@@ -21,7 +21,9 @@ namespace CombatExtended
             get
             {
                 if (_targetThingDefs == null)
+                {
                     _targetThingDefs = new List<ThingDef>();
+                }
                 return _targetThingDefs;
             }
         }
@@ -38,7 +40,9 @@ namespace CombatExtended
 
             Scribe_Collections.Look(ref _targetThingDefs, "TargetThingDef", LookMode.Def);
             if (_targetThingDefs == null)
+            {
                 _targetThingDefs = new List<ThingDef>();
+            }
         }
     }
 }

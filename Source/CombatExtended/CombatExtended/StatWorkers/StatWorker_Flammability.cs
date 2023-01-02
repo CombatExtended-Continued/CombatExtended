@@ -32,7 +32,9 @@ namespace CombatExtended
             {
                 var apparels = pawn.apparel?.WornApparel.FindAll(a => a.def.apparel.CoversBodyPart(part));
                 if (apparels == null || !apparels.Any())
+                {
                     continue;
+                }
 
                 apparels.SortBy(a => a.GetStatValue(StatDefOf.Flammability));
                 var apparel = apparels.First();
@@ -45,7 +47,9 @@ namespace CombatExtended
         {
             var flammability = base.GetValueUnfinalized(req, applyPostProcess);
             if (req.Thing is Plant plant)
+            {
                 return flammability * GetPrecipitationFactorFor(plant);
+            }
 
             if (req.Thing is Pawn pawn && pawn.apparel?.WornApparelCount > 0)
             {

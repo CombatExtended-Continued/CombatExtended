@@ -7,9 +7,7 @@
     <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
   </ThingCategoryDef>
 
-
   <!-- ==================== AmmoSet ========================== -->
-
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_81mmMortarShell</defName>
@@ -27,9 +25,7 @@
     <isMortarAmmoSet>true</isMortarAmmoSet>
   </CombatExtended.AmmoSetDef>
 
-
   <!-- ==================== Ammo ========================== -->
-
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
@@ -201,7 +197,7 @@
       <Bulk>6</Bulk>
     </statBases>
     <thingSetMakerTags>
-      <li>RewardStandardHighFreq</li>
+      <li>RewardStandardCore</li>
     </thingSetMakerTags>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
@@ -248,11 +244,9 @@
     </comps>
   </ThingDef>
 
-
   <!-- ================== Projectiles ================== -->
 
-
-  <ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base81mmMortarShell" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -265,6 +259,7 @@
       <flyOverhead>true</flyOverhead>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+      <casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
       <gravityFactor>5</gravityFactor>
     </projectile>
   </ThingDef>
@@ -343,6 +338,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>9.5</explosionRadius>
@@ -368,6 +365,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>6</explosionRadius>
@@ -522,6 +521,7 @@
     <label>make 81mm EMP mortar shells x5</label>
     <description>Craft 5 81mm EMP mortar shells.</description>
     <jobString>Making 81mm EMP mortar shells.</jobString>
+    <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
     <ingredients>
       <li>
         <filter>

@@ -21,10 +21,10 @@ namespace CombatExtended.HarmonyCE
         public static void PostFix(float points, ref List<ThingDef> __result)
         {
             if (Controller.settings.EnableAmmoSystem
-                && __result.Any(x => x.building.IsTurret
-                    && !x.building.IsMortar
-                    && x.building.turretGunDef != null
-                    && x.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
+                    && __result.Any(x => x.building.IsTurret
+                                    && !x.building.IsMortar
+                                    && x.building.turretGunDef != null
+                                    && x.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet != null))
             {
                 if (points > 3000)
                 {

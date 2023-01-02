@@ -20,10 +20,10 @@ namespace CombatExtended.HarmonyCE
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             return Transpilers.MethodReplacer(
-                instructions,
-                AccessTools.Method(typeof(Rand), nameof(Rand.Chance)),
-                AccessTools.Method(typeof(Harmony_Pawn_HealthTracker_CheckForStateChange), nameof(Harmony_Pawn_HealthTracker_CheckForStateChange.NoChance))
-            );
+                       instructions,
+                       AccessTools.Method(typeof(Rand), nameof(Rand.Chance)),
+                       AccessTools.Method(typeof(Harmony_Pawn_HealthTracker_CheckForStateChange), nameof(Harmony_Pawn_HealthTracker_CheckForStateChange.NoChance))
+                   );
         }
 
         static bool NoChance(float unusedChance)

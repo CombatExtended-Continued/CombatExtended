@@ -30,6 +30,10 @@
 				<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
 			  </li>
 			</tools>
+			<tradeTags Inherit="False">
+			  <li>CE_MediumAmmo</li>
+			</tradeTags>
+			<allowedArchonexusCount>5</allowedArchonexusCount>
 		</value>
 	</Operation>
 
@@ -93,16 +97,20 @@
 				<explosionDelay>60</explosionDelay>
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				<speed>12</speed>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 			</projectile>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
+		<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
+			<xpath>Defs/ThingDef[defName="Proj_GrenadeFrag"]</xpath>
 			<value>
 				<comps />
 			</value>
@@ -207,6 +215,7 @@
 			<ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_AOE</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
@@ -235,6 +244,9 @@
 				<speed>12</speed>
 				<ai_IsIncendiary>true</ai_IsIncendiary>
 				<screenShakeFactor>0</screenShakeFactor>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -324,6 +336,7 @@
 			<ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_AOE</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
@@ -357,8 +370,12 @@
 				<explosionDelay>60</explosionDelay>
 				<dropsCasings>true</dropsCasings>
 				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<speed>12</speed>
 				<screenShakeFactor>0</screenShakeFactor>
+				<suppressionFactor>3.0</suppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 			</projectile>
 		</value>
 	</Operation>
@@ -446,10 +463,10 @@
 			<ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
 		</Properties>
 		<weaponTags>
+			<li>CE_AI_Grenade</li>
 			<li>CE_AI_EMP</li>
 			<li>CE_OneHandedWeapon</li>
 		</weaponTags>
 	</Operation>
 
 </Patch>
-
