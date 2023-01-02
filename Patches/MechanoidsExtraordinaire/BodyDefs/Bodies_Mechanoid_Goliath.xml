@@ -59,58 +59,7 @@
 					</groups>
 				</value>
 			</li>
-			<!-- ========== Modify coverage ========== -->
-			<!--
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "GoliathME"]/corePart/parts/li[def = "MechanicalShoulder"]/coverage</xpath>
-				<value>
-					<coverage>0.15</coverage>
-				</value>
-			</li>
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/BodyDef[defName = "GoliathME"]/corePart/parts/li[def = "MechanicalLeg"]/coverage</xpath>
-				<value>
-					<coverage>0.05</coverage>
-				</value>
-			</li>
-			-->
-			<!-- ========== Add new body parts ========== -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "GoliathME"]/corePart/parts/li[def = "MechanicalShoulder"]/parts/li[def = "MechanicalArm"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalUpperActuator</def>
-						<coverage>0.15</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "GoliathME"]/corePart/parts/li[def = "MechanicalShoulder"]/parts/li[def = "MechanicalArm"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalUpperPiston</def>
-						<coverage>0.25</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName = "GoliathME"]/corePart/parts/li[def = "MechanicalLeg"]/parts</xpath>
-				<value>
-					<li>
-						<def>MechanicalLowerActuator</def>
-						<coverage>0.15</coverage>
-						<depth>Inside</depth>
-					</li>
-					<li>
-						<def>MechanicalLowerPiston</def>
-						<coverage>0.25</coverage>
-						<depth>Inside</depth>
-					</li>
-				</value>
-			</li>
+
 		</operations>
 		</match>
 	</Operation>

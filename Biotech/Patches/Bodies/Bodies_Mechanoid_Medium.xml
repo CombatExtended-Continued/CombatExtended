@@ -132,57 +132,12 @@
     </value>
   </Operation>
 
-  <!-- ========== Remove unwanted vanilla body parts ========== -->
+  <!-- ========== Modify coverage ========== -->
 
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/parts/li[def="Reactor"]</xpath>
-  </Operation>
-
-  <Operation Class="PatchOperationRemove">
-    <xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/parts/li[def="FluidReprocessor"]</xpath>
-  </Operation>
-
-  <!-- ========== Add new body parts ========== -->
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/parts</xpath>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/BodyDef[defName="Apocriton"]/corePart/parts/li[def="Reactor"]/coverage</xpath>
     <value>
-      <li>
-        <def>MechanicalPowerCore</def>
-        <coverage>0.10</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalCapacitor</def>
-        <coverage>0.02</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalHeatSink</def>
-        <coverage>0.03</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalCoolantTank</def>
-        <coverage>0.03</coverage>
-        <depth>Inside</depth>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/BodyDef[defName="Scorcher" or defName="Apocriton"]/corePart/parts/li[def="MechanicalLeg"]/parts</xpath>
-    <value>
-      <li>
-        <def>MechanicalLowerActuator</def>
-        <coverage>0.15</coverage>
-        <depth>Inside</depth>
-      </li>
-      <li>
-        <def>MechanicalLowerPiston</def>
-        <coverage>0.25</coverage>
-        <depth>Inside</depth>
-      </li>
+      <coverage>0.08</coverage>
     </value>
   </Operation>
 
