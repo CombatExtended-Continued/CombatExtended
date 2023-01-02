@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Empire</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="VFEE_CutToxblade" or defName="VFEE_StabToxblade"]/workerClass</xpath>
+        <value>
+          <workerClass>DamageWorker_AddInjury</workerClass>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/DamageDef[defName="VFEE_Fletcher"]</xpath>
+        <value>
+            <buildingDamageFactor>0.05</buildingDamageFactor>
+            <plantDamageFactor>0.05</plantDamageFactor>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ToolCapacityDef[defName="VFEE_StabToxblade"]</xpath>
+          <value>
+            <li Class="CombatExtended.ModExtensionMeleeToolPenetration">
+                <canHitInternal>true</canHitInternal>
+            </li>
+          </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    

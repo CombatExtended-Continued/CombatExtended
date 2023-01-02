@@ -144,7 +144,7 @@
                   </ThingDef>
 
                   <RecipeDef ParentName="AmmoRecipeBase">
-                     <defName>MakeAmmo_RMShardGun</defName>
+                     <defName>MakeRM_Ammo_ShardGun</defName>
                      <label>make Crystalline shard cartridge x750</label>
                      <description>Craft 750 Crystalline shard cartridges.</description>
                      <jobString>Making Crystalline Shard cartridges.</jobString>
@@ -256,9 +256,9 @@
                         <dropsCasings>false</dropsCasings>
                         <pelletCount>2</pelletCount>
                         <spreadMult>2</spreadMult>
-                        <damageAmountBase>4</damageAmountBase>
-                        <armorPenetrationBlunt>6.4</armorPenetrationBlunt>
-                        <armorPenetrationSharp>24</armorPenetrationSharp>
+                        <damageAmountBase>3</damageAmountBase>
+                        <armorPenetrationBlunt>5.6</armorPenetrationBlunt>
+                        <armorPenetrationSharp>12</armorPenetrationSharp>
                      </projectile>
                   </ThingDef>
 
@@ -276,9 +276,9 @@
                         <dropsCasings>false</dropsCasings>
                         <pelletCount>3</pelletCount>
                         <spreadMult>2</spreadMult>
-                        <damageAmountBase>7</damageAmountBase>
-                        <armorPenetrationBlunt>5.6</armorPenetrationBlunt>
-                        <armorPenetrationSharp>22</armorPenetrationSharp>
+                        <damageAmountBase>5</damageAmountBase>
+                        <armorPenetrationBlunt>6.4</armorPenetrationBlunt>
+                        <armorPenetrationSharp>16</armorPenetrationSharp>
                      </projectile>
                   </ThingDef>
 
@@ -296,9 +296,9 @@
                         <dropsCasings>false</dropsCasings>
                         <pelletCount>4</pelletCount>
                         <spreadMult>2</spreadMult>
-                        <damageAmountBase>6</damageAmountBase>
+                        <damageAmountBase>4</damageAmountBase>
                         <armorPenetrationBlunt>5.6</armorPenetrationBlunt>
-                        <armorPenetrationSharp>22</armorPenetrationSharp>
+                        <armorPenetrationSharp>14</armorPenetrationSharp>
                      </projectile>
                   </ThingDef>
 
@@ -420,21 +420,52 @@
                         <damageDef>Flame</damageDef>
                         <damageAmountBase>10</damageAmountBase>
                         <explosionDelay>180</explosionDelay>
+                        <dropsCasings>true</dropsCasings>
                         <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+                        <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
                         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
                         <speed>15</speed>
                         <gravityFactor>2</gravityFactor>
+                        <suppressionFactor>3.0</suppressionFactor>
+                        <dangerFactor>2.0</dangerFactor>
+                        <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
                      </projectile>
-                     <comps>
-                        <li Class="CombatExtended.CompProperties_ExplosiveCE">
-                           <damageAmountBase>1</damageAmountBase>
-                           <explosiveDamageType>Flame</explosiveDamageType>
-                           <explosiveRadius>2.3</explosiveRadius>
-                           <preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
-                           <preExplosionSpawnChance>0.8</preExplosionSpawnChance>
-                        </li>
-                     </comps>
                   </ThingDef>
+
+					<ThingDef ParentName="Base90mmCannonShell">
+						<defName>RM_Bullet_AncientChargeRailgun_CE</defName>
+						<label>charge railgun shot</label>
+						<graphicData>
+							<texPath>Things/Projectile/AncientChargeRailgunShot</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+							<shaderType>TransparentPostLight</shaderType>
+							<drawSize>4</drawSize>
+						</graphicData>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<speed>300</speed>
+							<flyOverhead>false</flyOverhead>
+							<dropsCasings>false</dropsCasings>
+							<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+							<damageDef>Bullet</damageDef>
+							<damageAmountBase>500</damageAmountBase>
+							<soundExplode>MortarBomb_Explode</soundExplode>
+							<armorPenetrationSharp>200</armorPenetrationSharp>
+							<armorPenetrationBlunt>20000</armorPenetrationBlunt>
+						</projectile>
+						<comps>
+							<li Class="CombatExtended.CompProperties_ExplosiveCE">
+								<damageAmountBase>300</damageAmountBase>
+								<explosiveDamageType>Bomb</explosiveDamageType>
+								<explosiveRadius>8</explosiveRadius>
+								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+							</li>
+							<li Class="CombatExtended.CompProperties_Fragments">
+								<fragments>
+									<Fragment_Large>50</Fragment_Large>
+								</fragments>
+							</li>
+						</comps>
+					</ThingDef>
 
                </value>
             </li>
