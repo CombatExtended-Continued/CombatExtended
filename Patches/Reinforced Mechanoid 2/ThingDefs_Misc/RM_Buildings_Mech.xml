@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Reinforced Mechanoid 2</li>
+    </mods>
+
+    <match Class="PatchOperationSequence">
+      <operations>
+
+			<!-- ========== Ancient Immolator Turret ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.75</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/statBases/Mass</xpath>
+				<value>
+					<Mass>50</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientImmolatorTurret"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RM_Gun_AncientImmolatorTurret</defName>
+				<statBases>
+				  <Mass>100</Mass>
+				  <RangedWeapon_Cooldown>2.51</RangedWeapon_Cooldown>
+				  <SightsEfficiency>1</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>0.82</SwayFactor>
+				</statBases>
+				<Properties>
+				  <recoilAmount>0.82</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>RM_Bullet_PlasmaCellImmolator</defaultProjectile>
+				  <warmupTime>4.0</warmupTime>
+				  <range>55</range>
+				  <ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				  <burstShotCount>3</burstShotCount>
+				  <soundCast>RM_Shot_PlasmaImmolator</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>9</muzzleFlashScale>
+				  <recoilPattern>Mounted</recoilPattern>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>
+			</li>
+
+			<!-- ========== Ancient Auto Mortar ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>0.25</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/statBases/Mass</xpath>
+				<value>
+					<Mass>75</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AutoMortarCannon"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.85</fillPercent>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
+				<value>
+					<statBases>
+						<SightsEfficiency>0.5</SightsEfficiency>
+					</statBases>
+				</value>
+			</li>
+			
+			<!--Test for comps and add if not present-->
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
+					<value>
+						<comps/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/comps</xpath>
+				<value>
+					  <li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+						  <li>30</li>
+						  <li>50</li>
+						  <li>70</li>
+						  <li>90</li>
+						</chargeSpeeds>
+					  </li>
+				</value>
+			</li>
+			
+			<!--Test for tags and add if not present-->
+			
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/weaponTags</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
+					<value>
+						<weaponTags/>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]</xpath>
+					<value>
+					</value>
+				</match>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/weaponTags</xpath>
+				<value>
+					<li>TurretGun</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Gun_AncientAutoMortarCannon"]/verbs</xpath>
+				<value>
+					<verbs>
+					  <li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
+						<warmupTime>11</warmupTime>
+						<minRange>32</minRange>
+						<range>700</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Mortar_LaunchA</soundCast>
+						<muzzleFlashScale>16</muzzleFlashScale>
+						<circularError>1</circularError>
+						<indirectFirePenalty>0.2</indirectFirePenalty>
+						<targetParams>
+						  <canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					  </li>
+					</verbs>
+				</value>
+			</li>
+
+			<!-- ========== Ancient Charge Railgun ========== -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/thingClass</xpath>
+				<value>
+					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/statBases</xpath>
+				<value>
+					<AimingAccuracy>2</AimingAccuracy>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/statBases/Mass</xpath>
+				<value>
+					<Mass>800</Mass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationRemove">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/comps/li[@Class = "CompProperties_Explosive"]</xpath>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="RM_Turret_AncientChargeRailgun"]/fillPercent</xpath>
+				<value>
+					<fillPercent>0.99</fillPercent>
+				</value>
+			</li>
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>RM_Gun_AncientChargeRailgun</defName>
+				<statBases>
+				  <Mass>300.00</Mass>
+				  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+				  <SightsEfficiency>4.5</SightsEfficiency>
+				  <ShotSpread>0.01</ShotSpread>
+				  <SwayFactor>1.33</SwayFactor>
+				</statBases>
+				<Properties>
+				  <recoilAmount>0.92</recoilAmount>
+				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				  <hasStandardCommand>true</hasStandardCommand>
+				  <defaultProjectile>RM_Bullet_AncientChargeRailgun_CE</defaultProjectile>
+				  <warmupTime>16</warmupTime>
+				  <range>500</range>
+				  <burstShotCount>1</burstShotCount>
+				  <soundCast>RM_Shot_ChargeRailgun</soundCast>
+				  <soundCastTail>GunTail_Heavy</soundCastTail>
+				  <muzzleFlashScale>16</muzzleFlashScale>
+				  <minRange>14.9</minRange>
+				</Properties>
+				<FireModes>
+				  <aiAimMode>AimedShot</aiAimMode>
+				  <noSnapshot>true</noSnapshot>
+				</FireModes>
+			</li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>
