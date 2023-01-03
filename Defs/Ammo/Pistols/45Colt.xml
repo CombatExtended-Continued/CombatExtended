@@ -22,6 +22,17 @@
 	</CombatExtended.AmmoSetDef>
 
 	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_45Colt_HV</defName>
+		<label>.45 Colt</label>
+		<ammoTypes>
+			<Ammo_45Colt_FMJ>Bullet_45Colt_HV_FMJ</Ammo_45Colt_FMJ>
+			<Ammo_45Colt_AP>Bullet_45Colt_HV_AP</Ammo_45Colt_AP>
+			<Ammo_45Colt_HP>Bullet_45Colt_HV_HP</Ammo_45Colt_HP>
+		</ammoTypes>
+		<similarTo>AmmoSet_Pistol</similarTo>
+	</CombatExtended.AmmoSetDef>
+
+	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_45Colt410Bore</defName>
 		<label>.45 Colt/.410 bore</label>
 		<ammoTypes>
@@ -145,6 +156,41 @@
 			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationSharp>2</armorPenetrationSharp>
 			<armorPenetrationBlunt>11.440</armorPenetrationBlunt>
+		</projectile>
+	</ThingDef>
+
+	<!-- ========= High velocity ========= -->
+
+	<ThingDef ParentName="Base45ColtBullet">
+		<defName>Bullet_45Colt_HV_FMJ</defName>
+		<label>.45 Colt bullet (FMJ)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
+			<armorPenetrationBlunt>26.58</armorPenetrationBlunt>
+			<speed>86</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ColtBullet">
+		<defName>Bullet_45Colt_HV_AP</defName>
+		<label>.45 Colt bullet (AP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>10</damageAmountBase>
+			<armorPenetrationSharp>8</armorPenetrationSharp>
+			<armorPenetrationBlunt>26.58</armorPenetrationBlunt>
+			<speed>86</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base45ColtBullet">
+		<defName>Bullet_45Colt_HV_HP</defName>
+		<label>.45 Colt bullet (HP)</label>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageAmountBase>21</damageAmountBase>
+			<armorPenetrationSharp>2</armorPenetrationSharp>
+			<armorPenetrationBlunt>26.58</armorPenetrationBlunt>
+			<speed>86</speed>
 		</projectile>
 	</ThingDef>
 
