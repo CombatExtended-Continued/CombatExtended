@@ -15,6 +15,9 @@
 		<label>.410 bore</label>
 		<ammoTypes>
 			<Ammo_410Bore_Buck>Bullet_410Bore_Buck</Ammo_410Bore_Buck>
+			<Ammo_410Bore_Slug>Bullet_410Bore_Slug</Ammo_410Bore_Slug>
+			<Ammo_410Bore_Beanbag>Bullet_410Bore_Beanbag</Ammo_410Bore_Beanbag>
+			<Ammo_410Bore_ElectroSlug>Bullet_410Bore_ElectroSlug</Ammo_410Bore_ElectroSlug>
 		</ammoTypes>
 		<similarTo>AmmoSet_RevolverShotgun</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -24,6 +27,9 @@
 		<label>.410 bore</label>
 		<ammoTypes>
 		  <Ammo_410Bore_Buck>Bullet_410Bore_Buck_SB</Ammo_410Bore_Buck>
+		  <Ammo_410Bore_Slug>Bullet_410Bore_Slug_SB</Ammo_410Bore_Slug>
+		  <Ammo_410Bore_Beanbag>Bullet_410Bore_Beanbag_SB</Ammo_410Bore_Beanbag>
+		  <Ammo_410Bore_ElectroSlug>Bullet_410Bore_ElectroSlug_SB</Ammo_410Bore_ElectroSlug>
 		</ammoTypes>
 		<similarTo>AmmoSet_RevolverShotgun</similarTo>
 	</CombatExtended.AmmoSetDef>
@@ -60,6 +66,53 @@
     <cookOffProjectile>Bullet_410Bore_Buck</cookOffProjectile>
   </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="410BoreBase">
+    <defName>Ammo_410Bore_Slug</defName>
+    <label>.410 Bore shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.04</Mass>
+      <MarketValue>0.18</MarketValue>
+    </statBases>
+    <ammoClass>Slug</ammoClass>
+    <cookOffProjectile>Bullet_410Bore_Slug</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="410BoreBase">
+    <defName>Ammo_410Bore_Beanbag</defName>
+    <label>.410 Bore shell (Bean)</label>
+    <generateAllowChance>0</generateAllowChance>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Beanbag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.058</Mass>
+      <MarketValue>0.32</MarketValue>
+    </statBases>
+    <ammoClass>Beanbag</ammoClass>
+    <cookOffProjectile>Bullet_410Bore_Beanbag</cookOffProjectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="410BoreBase">
+    <defName>Ammo_410Bore_ElectroSlug</defName>
+    <label>.410 Bore shell (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>0.049</Mass>
+      <MarketValue>0.53</MarketValue>
+    </statBases>
+    <ammoClass>ElectroSlug</ammoClass>
+    <generateAllowChance>0.5</generateAllowChance>
+    <cookOffProjectile>Bullet_410Bore_ElectroSlug</cookOffProjectile>
+  </ThingDef>
+
   <!-- ================== Projectiles ================== -->
 
   <ThingDef Name="Base410BoreBullet" ParentName="BaseBullet" Abstract="true">
@@ -69,23 +122,6 @@
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_ShotgunShell</casingMoteDefname>
       <casingFilthDefname>Filth_ShotgunAmmoCasings</casingFilthDefname>
-    </projectile>
-  </ThingDef>
-
-  <ThingDef ParentName="Base410BoreBullet">
-    <defName>Bullet_410Bore_Buck_SB</defName>
-    <label>buckshot pellet</label>
-    <graphicData>
-      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <speed>49</speed>
-      <damageAmountBase>7</damageAmountBase> 
-      <pelletCount>5</pelletCount>
-      <armorPenetrationSharp>2.3</armorPenetrationSharp>
-      <armorPenetrationBlunt>2.72</armorPenetrationBlunt>
-      <spreadMult>17.8</spreadMult>
     </projectile>
   </ThingDef>
 
@@ -102,6 +138,121 @@
       <armorPenetrationSharp>3</armorPenetrationSharp>
       <armorPenetrationBlunt>5.420</armorPenetrationBlunt>
       <spreadMult>8.9</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_Slug</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>110</speed>
+      <damageAmountBase>14</damageAmountBase>
+      <armorPenetrationSharp>4.5</armorPenetrationSharp>
+      <armorPenetrationBlunt>21.36</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_Beanbag</defName>
+    <label>beanbag</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>18</speed>
+      <damageDef>Beanbag</damageDef>
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0.86</armorPenetrationBlunt>
+      <spreadMult>2</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_ElectroSlug</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>30</speed>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <empShieldBreakChance>0.15</empShieldBreakChance>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_Buck_SB</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>49</speed>
+      <damageAmountBase>7</damageAmountBase> 
+      <pelletCount>5</pelletCount>
+      <armorPenetrationSharp>2.1</armorPenetrationSharp>
+      <armorPenetrationBlunt>2.72</armorPenetrationBlunt>
+      <spreadMult>17.8</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_Slug_SB</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>78</speed>
+      <damageAmountBase>11</damageAmountBase>
+      <armorPenetrationSharp>3.2</armorPenetrationSharp>
+      <armorPenetrationBlunt>10.72</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_Beanbag_SB</defName>
+    <label>beanbag</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>18</speed>
+      <damageDef>Beanbag</damageDef>
+      <damageAmountBase>4</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0.44</armorPenetrationBlunt>
+      <spreadMult>2</spreadMult>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base410BoreBullet">
+    <defName>Bullet_410Bore_ElectroSlug_SB</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>21</speed>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <empShieldBreakChance>0.15</empShieldBreakChance>
     </projectile>
   </ThingDef>
 
@@ -131,6 +282,103 @@
       <Ammo_410Bore_Buck>200</Ammo_410Bore_Buck>
     </products>
     <workAmount>1200</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_410Bore_Slug</defName>
+    <label>make .410 Bore (Slug) shell x200</label>
+    <description>Craft 200 .410 Bore (Slug) shells.</description>
+    <jobString>Making .410 Bore (Slug) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_410Bore_Slug>200</Ammo_410Bore_Slug>
+    </products>
+    <workAmount>1800</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_410Bore_Beanbag</defName>
+    <label>make .410 Bore (Beanbag) shell x200</label>
+    <description>Craft 200 .410 Bore (Beanbag) shells.</description>
+    <jobString>Making .410 Bore (Beanbag) shells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>24</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Cloth</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Cloth</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_410Bore_Beanbag>200</Ammo_410Bore_Beanbag>
+    </products>
+    <workAmount>3400</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_410Bore_ElectroSlug</defName>
+    <label>make .410 Bore (EMP) shell x200</label>
+    <description>Craft 200 .410 Bore (EMP) shells.</description>
+    <jobString>Making .410 Bore (EMP) shells.</jobString>
+    <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_410Bore_ElectroSlug>200</Ammo_410Bore_ElectroSlug>
+    </products>
+    <workAmount>3200</workAmount>
   </RecipeDef>
 
 </Defs>
