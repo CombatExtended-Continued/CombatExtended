@@ -38,7 +38,9 @@ namespace CombatExtended
             ThingWithComps ignore1;
             AmmoDef ignore2;
             if (!pawn.Drafted && DoReloadCheck(pawn, out ignore1, out ignore2))
+            {
                 return reloadPriority;
+            }
 
             return 0.0f;
         }
@@ -58,11 +60,16 @@ namespace CombatExtended
                 CompAmmoUser comp = gun.TryGetComp<CompAmmoUser>();
                 // we relied on DoReloadCheck() to do error checking of many variables.
 
-                if (!comp.TryUnload()) return null; // unload the weapon or stop trying if there was a problem.
+                if (!comp.TryUnload())
+                {
+                    return null;    // unload the weapon or stop trying if there was a problem.
+                }
 
                 // change ammo type if necessary.
                 if (comp.UseAmmo && comp.CurrentAmmo != ammo)
+                {
                     comp.SelectedAmmo = ammo;
+                }
 
                 // Get the reload job from the comp.
                 reloadJob = comp.TryMakeReloadJob();
@@ -75,14 +82,14 @@ namespace CombatExtended
         #region Methods
 
         /* Rough Algorithm
-		 * Need Things so the collection of ammo users that use magazines.  Also need a collection of ammo (ThingDef is OK here).
-		 * For each weapon (that fits above),
-		 * -If we have no ammo in inventory that the gun is loaded with, check loadouts/holdtracker for a clip's worth of ammo that the gun contains.
-		 * --Find ammo the gun uses that we have a clip's worth in inventory (should check it against loadout/holdtracker as well)
-		 * -If weapon is low on ammo and we have enough in inventory to fill it up.
-		 * 
-		 * If either of the above are true, trigger a reload.
-		 */
+         * Need Things so the collection of ammo users that use magazines.  Also need a collection of ammo (ThingDef is OK here).
+         * For each weapon (that fits above),
+         * -If we have no ammo in inventory that the gun is loaded with, check loadouts/holdtracker for a clip's worth of ammo that the gun contains.
+         * --Find ammo the gun uses that we have a clip's worth in inventory (should check it against loadout/holdtracker as well)
+         * -If weapon is low on ammo and we have enough in inventory to fill it up.
+         *
+         * If either of the above are true, trigger a reload.
+         */
         /// <summary>
         /// Check's the pawn's equipment and inventory for weapons that could use a reload.
         /// </summary>
@@ -103,16 +110,22 @@ namespace CombatExtended
             bool pawnHasLoadout = loadout != null && !loadout.Slots.NullOrEmpty();
 
             if (inventory == null)
-                return false; // There isn't any work to do since the pawn doesn't have a CE Inventory.
+            {
+                return false;    // There isn't any work to do since the pawn doesn't have a CE Inventory.
+            }
 
             if ((tmpComp = pawn.equipment?.Primary?.TryGetComp<CompAmmoUser>()) != null && tmpComp.HasMagazine)
+            {
                 guns.Add(pawn.equipment.Primary);
+            }
 
             // CompInventory doesn't track equipment and it's desired to check the pawn's equipped weapon before inventory items so need to copy stuff from Inventory Cache.
             guns.AddRange(inventory.rangedWeaponList.Where(t => t.TryGetComp<CompAmmoUser>() != null && t.GetComp<CompAmmoUser>().HasMagazine));
 
             if (guns.NullOrEmpty())
-                return false; // There isn't any work to do since the pawn doesn't have any ammo using guns.
+            {
+                return false;    // There isn't any work to do since the pawn doesn't have any ammo using guns.
+            }
 
             // look at each gun...
             foreach (ThingWithComps gun in guns)
@@ -128,10 +141,10 @@ namespace CombatExtended
                 {
                     // Do we have ammo in the inventory that the gun uses which satisfies requirements? (expensive)
                     AmmoDef matchAmmo = tmpComp.Props.ammoSet.ammoTypes
-                        .Where(al => al.ammo != ammoType)
-                        .Select(al => al.ammo)
-                        .FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize)
-                                        && inventory.AmmoCountOfDef(ad) >= magazineSize);
+                                        .Where(al => al.ammo != ammoType)
+                                        .Select(al => al.ammo)
+                                        .FirstOrDefault(ad => TrackingSatisfied(pawn, ad, magazineSize)
+                                                        && inventory.AmmoCountOfDef(ad) >= magazineSize);
 
                     if (matchAmmo != null)
                     {
@@ -178,15 +191,21 @@ namespace CombatExtended
                 if (slot.thingDef != null)
                 {
                     if (slot.thingDef == def)
+                    {
                         amount -= slot.count;
+                    }
                 }
                 else if (slot.genericDef != null)
                 {
                     if (slot.genericDef.lambda(def))
+                    {
                         amount -= slot.count;
+                    }
                 }
                 if (amount <= 0)
+                {
                     return true;
+                }
             }
 
             // if we got here, also check holdRecords.
@@ -197,7 +216,9 @@ namespace CombatExtended
                 foreach (HoldRecord rec in records)
                 {
                     if (rec.thingDef == def)
+                    {
                         amount -= rec.count;
+                    }
                 }
             }
 

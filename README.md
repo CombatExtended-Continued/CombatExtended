@@ -6,7 +6,7 @@
   <a href="https://discord.gg/safyWuA">
     <img src="https://img.shields.io/badge/join%20us-black?style=for-the-badge&logo=discord&logoColor=white">
   </a>
-  <a href="https://steamcommunity.com/workshop/filedetails/?id=1631756268">
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044">
     <img src="https://img.shields.io/badge/subscribe-black?style=for-the-badge&logo=steam">
   </a>
   <a href="https://github.com/CombatExtended-Continued/CombatExtended/releases">

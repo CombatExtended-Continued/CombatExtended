@@ -26,22 +26,56 @@ namespace CombatExtended
         const int ticksBetweenChecks = 600;    //Divide by 60 for seconds
 
         public CompProperties_AmmoResupplyOnWakeup Props => (CompProperties_AmmoResupplyOnWakeup)props;
-        
-        //Only do something if not dormant
-        //Only do something when ammo system is enabled
-        public bool IsActive => Controller.settings.EnableAmmoSystem && (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? true);
 
-        LordJob_MechanoidDefendBase parentLordJob => ((parent as Building)?.GetLord()?.LordJob as LordJob_MechanoidDefendBase);
-        public bool ClusterAlive
+        /// <summary>
+        /// Cached reference to the <see cref="Lord"/> of the mech cluster that the owner of this comp is part of.
+        /// </summary>
+        private Lord lord;
+
+        /// <summary>
+        /// Determine whether this beacon should be supplying ammo.
+        /// </summary>
+        public bool IsActive
         {
             get
             {
-                var lordJob = parentLordJob;
-
-                if (lordJob == null)
+                // No point in supplying ammo if it's not enabled
+                if (!Controller.settings.EnableAmmoSystem)
+                {
                     return false;
+                }
 
-                return !lordJob.mechClusterDefeated;
+                if (parent.TryGetComp<CompCanBeDormant>()?.Awake ?? false)
+                {
+                    return false;
+                }
+
+                // Ensure this beacon does not provide an infinite source of ammo
+                // if there are no remaining mechs that could use it to reload turrets.
+                return lord?.AnyActivePawn ?? false;
+            }
+        }
+
+        /// <summary>
+        /// Find the owning <see cref="Lord"/> (i.e. mech cluster) for this beacon after spawning.
+        /// </summary>
+        /// <remarks>
+        /// Ammo beacons are not considered to be threats like turrets or assemblers and so are not directly owned
+        /// by the <see cref="Lord"/> of the parent cluster; it is therefore necessary to find their owner manually.
+        /// </remarks>
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            var faction = parent.Faction;
+            foreach (var lord in parent.Map.lordManager.lords)
+            {
+                if (lord.faction == faction && lord.LordJob is LordJob_MechanoidDefendBase mechDefendBaseJob)
+                {
+                    if (mechDefendBaseJob.isMechCluster && mechDefendBaseJob.things.Contains(parent))
+                    {
+                        this.lord = lord;
+                        break;
+                    }
+                }
             }
         }
 
@@ -58,7 +92,9 @@ namespace CombatExtended
             // Prevent ammo being dropped if the turret is being reloaded at the time
             // or has enough ammo in its magazine
             if (turret.GetReloading() || !turret.ShouldReload(JobGiver_DefenderReloadTurret.AmmoReloadThreshold))
+            {
                 return true;
+            }
 
             var ammoComp = turret.CompAmmo;
 
@@ -81,7 +117,9 @@ namespace CombatExtended
                             availableAmmo += thingList[j].stackCount;
 
                             if (availableAmmo > minRequiredAmmoCount)
+                            {
                                 return true;
+                            }
                         }
                     }
                 }
@@ -89,19 +127,21 @@ namespace CombatExtended
 
             return false;
         }
-        
-		public override void CompTick()
-		{
-			if (parent.IsHashIntervalTick(ticksBetweenChecks))
-			{
-				TickRareWorker();
-			}
-		}
+
+        public override void CompTick()
+        {
+            if (parent.IsHashIntervalTick(ticksBetweenChecks))
+            {
+                TickRareWorker();
+            }
+        }
 
         public void TickRareWorker()
         {
             if (!IsActive)
+            {
                 return;
+            }
 
             var turretTracker = parent.Map.GetComponent<TurretTracker>();
             var beaconFaction = parent.Faction;
@@ -110,14 +150,19 @@ namespace CombatExtended
             foreach (var building in turretTracker.Turrets)
             {
                 if (building is Building_TurretGunCE turret &&
-                    turret.Faction == beaconFaction &&
-                    !turret.def.building.IsMortar &&
-                    (turret.CompAmmo?.UseAmmo ?? false) &&
-                    turret.Position.InHorDistOf(beaconPos, MaxResupplyRadius))
+                        turret.Faction == beaconFaction &&
+                        !turret.def.building.IsMortar &&
+                        (turret.CompAmmo?.UseAmmo ?? false) &&
+                        turret.Position.InHorDistOf(beaconPos, MaxResupplyRadius))
                 {
-                    if (EnoughAmmoAround(turret)) continue;
+                    if (EnoughAmmoAround(turret))
+                    {
+                        continue;
+                    }
                     if (turret.CompAmmo.CurrentAmmo != null)
+                    {
                         DropSupplies(turret.CompAmmo.CurrentAmmo, Mathf.CeilToInt(0.5f * (float)turret.CompAmmo.MagSize), turret.Position);
+                    }
                 }
             }
         }
@@ -130,7 +175,18 @@ namespace CombatExtended
             list.Add(thing);
 
             //If turrets are near-empty or empty, call in ammo droppod
-            DropPodUtility.DropThingsNear(cell, parent.Map, list, 110, false, false, true, true);
+            DropPodUtility.DropThingsNear(
+                cell,
+                parent.Map,
+                list,
+                openDelay: 110,
+                canInstaDropDuringInit: false,
+                leaveSlag: false,
+                canRoofPunch: true,
+                forbid: true,
+                // Use the mechanoid faction as the faction for the drop pods, to match style
+                faction: parent.Faction
+            );
         }
     }
 }

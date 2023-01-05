@@ -15,15 +15,20 @@ using Verse.Sound;
 namespace CombatExtended.Compatibility.Artillery
 {
     [HarmonyPatch(typeof(ActiveArtilleryStrike), "Speed", MethodType.Getter)]
-    public class Harmony_ActiveArtilleryStrike_Speed {
-        public static bool Prefix(ActiveArtilleryStrike __instance, out float __result) {
+    public class Harmony_ActiveArtilleryStrike_Speed
+    {
+        public static bool Prefix(ActiveArtilleryStrike __instance, out float __result)
+        {
             var shellDef = __instance.shellDef;
-            if (shellDef is AmmoDef ammoDef) {
+            if (shellDef is AmmoDef ammoDef)
+            {
                 __result = ammoDef.GetProjectileProperties().speed;
-		if (__result == 0) {
-		    __result = __instance.missRadius;
-		}
-                if (__result == 0) {
+                if (__result == 0)
+                {
+                    __result = __instance.missRadius;
+                }
+                if (__result == 0)
+                {
                     __result = 170f;
                 }
                 return false;

@@ -31,7 +31,7 @@ namespace CombatExtended
             {
                 var mech = (Pawn)req.Thing;
 
-                val *= comp.curDurabilityPercent;                
+                val *= comp.curDurabilityPercent;
             }
         }
 

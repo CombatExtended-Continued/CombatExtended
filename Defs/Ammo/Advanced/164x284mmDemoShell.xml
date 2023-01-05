@@ -16,14 +16,15 @@
     <ammoTypes>
       <Ammo_164x284mmDemo>Bullet_164x284mmDemo</Ammo_164x284mmDemo>
     </ammoTypes>
+    <similarTo>AmmoSet_MechShell</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="164x284mmDemoBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="164x284mmDemoBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
     <description>A high-caliber, low-velocity mechanoid demolition shell designed to destroy fortifications and structures.</description>
     <statBases>
-      <Mass>0.256</Mass>
+      <Mass>2.0</Mass>
       <Bulk>3.87</Bulk>
     </statBases>
     <thingCategories>
@@ -45,17 +46,17 @@
     <statBases>
       <MarketValue>10.97</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
-    <ammoClass>ThermobaricFuel</ammoClass>
+    <ammoClass>Demolition</ammoClass>
 	<detonateProjectile>Bullet_164x284mmDemo</detonateProjectile>
 	<comps>
     <li Class="CompProperties_Explosive">
         <explosiveRadius>1</explosiveRadius>
-		    <damageAmountBase>18</damageAmountBase>
+        <damageAmountBase>18</damageAmountBase>
         <explosiveDamageType>Thermobaric</explosiveDamageType>
-		    <explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
+        <explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
         <startWickHitPointsPercent>0.33</startWickHitPointsPercent>
-		    <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		    <explodeOnKilled>True</explodeOnKilled>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+        <explodeOnKilled>True</explodeOnKilled>
         <wickTicks>60~300</wickTicks>
     </li>
 	</comps>
@@ -63,12 +64,12 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef ParentName="BaseExplosiveBullet">
     <defName>Bullet_164x284mmDemo</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>164x284mm demolition shell</label>
     <graphicData>
-      <texPath>Things/Projectile/LauncherShot</texPath>
+      <texPath>Things/Projectile/Bullet_Thump</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
@@ -98,7 +99,7 @@
 	</comps>
   </ThingDef>
   
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef ParentName="BaseExplosiveBullet">
     <defName>Bullet_164x284mmDemo_ASA</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>164x284mm demolition shell</label>
@@ -123,18 +124,17 @@
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
-	<fragments>
-	  <Bullet_164x284mmDemo_ASB>2</Bullet_164x284mmDemo_ASB>
-	</fragments>
-	<fragXZAngleRange>-5~5</fragXZAngleRange>
-	<fragAngleRange>0~1</fragAngleRange>
-	<fragSpeedFactor>0.01</fragSpeedFactor>
+        <fragments>
+          <Bullet_164x284mmDemo_ASB>2</Bullet_164x284mmDemo_ASB>
+        </fragments>
+        <fragXZAngleRange>-5~5</fragXZAngleRange>
+        <fragAngleRange>0~1</fragAngleRange>
+        <fragSpeedFactor>0.01</fragSpeedFactor>
       </li>
     </comps>
-    
   </ThingDef>
   
-  <ThingDef ParentName="BaseBullet">
+  <ThingDef ParentName="BaseExplosiveBullet">
     <defName>Bullet_164x284mmDemo_ASB</defName>
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <label>164x284mm demolition shell</label>
@@ -158,7 +158,7 @@
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <fuze_delay>1</fuze_delay>
       <explosionDelay>15</explosionDelay>
-
+      <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
     </projectile>
   </ThingDef>
 

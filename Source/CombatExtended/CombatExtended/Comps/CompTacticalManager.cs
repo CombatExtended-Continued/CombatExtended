@@ -30,7 +30,9 @@ namespace CombatExtended
             get
             {
                 if ((_tacticalComps?.Count ?? 0) == 0)
+                {
                     ValidateComps();
+                }
                 return _tacticalComps;
             }
         }
@@ -41,7 +43,9 @@ namespace CombatExtended
             get
             {
                 if (_compSuppressable == null)
+                {
                     _compSuppressable = SelPawn.TryGetComp<CompSuppressable>();
+                }
                 return _compSuppressable;
             }
         }
@@ -51,7 +55,10 @@ namespace CombatExtended
         {
             get
             {
-                if (_compInventory == null) _compInventory = SelPawn.TryGetComp<CompInventory>();
+                if (_compInventory == null)
+                {
+                    _compInventory = SelPawn.TryGetComp<CompInventory>();
+                }
                 return _compInventory;
             }
         }
@@ -77,7 +84,9 @@ namespace CombatExtended
                             if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
                             {
                                 if (job.AnyTargetIs(parent))
+                                {
                                     _targetedByCache.Add(pawn);
+                                }
                             }
                         }
                         catch
@@ -105,7 +114,9 @@ namespace CombatExtended
                     {
                         Pawn pawn = pawns[i];
                         if (pawn.HostileTo(parent))
+                        {
                             _targetedByEnemyCache.Add(pawn);
+                        }
                     }
                 }
                 return _targetedByEnemyCache;
@@ -147,11 +158,13 @@ namespace CombatExtended
                  * Start scaning for possilbe current targets
                  */
                 if (parent.Spawned
-                    && curJob != (job = SelPawn.jobs?.curJob)
-                    && job != null && job.def.alwaysShowWeapon == false)
+                        && curJob != (job = SelPawn.jobs?.curJob)
+                        && job != null && job.def.alwaysShowWeapon == false)
                 {
                     if (SelPawn.mindState?.enemyTarget is Pawn target && target.Spawned)
+                    {
                         target.GetTacticalManager()?.Notify_BeingTargetedBy(target);
+                    }
                     /*
                      * Scan the current job to check for potential target pawns
                      */
@@ -161,7 +174,9 @@ namespace CombatExtended
                         LocalTargetInfo info = job.GetTarget(_targetIndices[i]);
 
                         if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
+                        {
                             targets.Add(pawn);
+                        }
                     }
                     if (job.targetQueueA != null)
                     {
@@ -170,7 +185,9 @@ namespace CombatExtended
                             LocalTargetInfo info = job.targetQueueA[i];
 
                             if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
+                            {
                                 targets.Add(pawn);
+                            }
                         }
                     }
                     if (job.targetQueueB != null)
@@ -180,7 +197,9 @@ namespace CombatExtended
                             LocalTargetInfo info = job.targetQueueB[i];
 
                             if (info.HasThing && info.Thing is Pawn pawn && pawn.Spawned)
+                            {
                                 targets.Add(pawn);
+                            }
                         }
                     }
 
@@ -188,7 +207,9 @@ namespace CombatExtended
                     foreach (Pawn other in targets)
                     {
                         if (other.thingIDNumber != parent.thingIDNumber)
+                        {
                             other.GetTacticalManager()?.Notify_BeingTargetedBy(other);
+                        }
                     }
                     targets.Clear();
                 }
@@ -201,7 +222,10 @@ namespace CombatExtended
         {
             base.CompTickRare();
             TryGiveTacticalJobs();
-            if (_counter++ % 2 == 0) TickRarer();
+            if (_counter++ % 2 == 0)
+            {
+                TickRarer();
+            }
         }
 
 
@@ -210,7 +234,9 @@ namespace CombatExtended
             for (int i = 0; i < targetedBy.Count; i++)
             {
                 if (targetedBy[i].Target == pawn)
+                {
                     return;
+                }
             }
             targetedBy.Add(new Verse.WeakReference<Pawn>(pawn));
         }
@@ -218,7 +244,9 @@ namespace CombatExtended
         public bool TryStartCastChecks(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg)
         {
             if (CompSuppressable == null || SelPawn.MentalState != null || CompSuppressable.IsHunkering)
+            {
                 return true;
+            }
 
             bool AllChecksPassed(Verb verb, LocalTargetInfo castTarg, LocalTargetInfo destTarg, out ICompTactics failedComp)
             {
@@ -239,13 +267,17 @@ namespace CombatExtended
             if (!CompSuppressable.IsHunkering && (SelPawn.jobs.curDriver is IJobDriver_Tactical || AllChecksPassed(verb, castTarg, destTarg, out failedComp)))
             {
                 foreach (ICompTactics comp in TacticalComps)
+                {
                     comp.Notify_StartCastChecksSuccess(verb);
+                }
                 return true;
             }
             else
             {
                 foreach (ICompTactics comp in TacticalComps)
+                {
                     comp.Notify_StartCastChecksFailed(failedComp);
+                }
                 return false;
             }
         }
@@ -322,12 +354,16 @@ namespace CombatExtended
         private void ValidateComps()
         {
             if (_tacticalComps == null)
+            {
                 _tacticalComps = new List<ICompTactics>();
+            }
             foreach (Type type in typeof(ICompTactics).AllSubclassesNonAbstract())
             {
                 ICompTactics comp;
                 if ((comp = _tacticalComps.FirstOrFallback(t => t.GetType() == type)) == null)
+                {
                     _tacticalComps.Add(comp = (ICompTactics)Activator.CreateInstance(type, new object[0]));
+                }
                 comp.Initialize(SelPawn);
             }
             _tacticalComps.SortBy(t => -1f * t.Priority);

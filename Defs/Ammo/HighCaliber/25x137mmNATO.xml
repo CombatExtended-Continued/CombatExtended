@@ -24,7 +24,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo25x137mmNATOBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo25x137mmNATOBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons.</description>
 		<statBases>
 			<Mass>0.501</Mass>
@@ -48,7 +48,7 @@
         <graphicClass>Graphic_StackCount</graphicClass>
       </graphicData>
       <statBases>
-        <MarketValue>2.01</MarketValue>
+        <MarketValue>2.02</MarketValue>
       </statBases>
       <ammoClass>ArmorPiercing</ammoClass>
       <cookOffProjectile>Bullet_25x137mmNATO_AP</cookOffProjectile>
@@ -70,7 +70,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo25x137mmNATOBase">
 		<defName>Ammo_25x137mmNATO_HE</defName>
-		<label>25x137mm NATO cartridge (HE)</label>
+		<label>25x137mm NATO cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -139,7 +139,7 @@
 
 	<ThingDef ParentName="Base25x137mmNATOBullet">
 		<defName>Bullet_25x137mmNATO_HE</defName>
-		<label>25x137mm NATO bullet (HE)</label>
+		<label>25x137mm NATO bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>98</damageAmountBase>
 			<armorPenetrationSharp>29</armorPenetrationSharp>
@@ -189,7 +189,7 @@
       <products>
         <Ammo_25x137mmNATO_AP>200</Ammo_25x137mmNATO_AP>
       </products>
-      <workAmount>20200</workAmount>
+      <workAmount>24240</workAmount>
     </RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -229,9 +229,9 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_25x137mmNATO_HE</defName>
-		<label>make 25x137mm NATO (HE) cartridge x200</label>
-		<description>Craft 200 .25x137mm NATO (HE) cartridges.</description>
-		<jobString>Making .25x137mm NATO (HE) cartridges.</jobString>
+		<label>make 25x137mm NATO (AP-HE) cartridge x200</label>
+		<description>Craft 200 .25x137mm NATO (AP-HE) cartridges.</description>
+		<jobString>Making .25x137mm NATO (AP-HE) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>

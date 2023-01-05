@@ -24,7 +24,7 @@
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="30x29mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="30x29mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Relatively small, low velocity grenade for use in grenade launchers.</description>
     <statBases>
       <Mass>0.36</Mass>
@@ -80,19 +80,8 @@
       <MarketValue>4.72</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-    <comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>5</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>0.75</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>1</Fragment_Large>
-			</fragments>
-		  </li>
-    </comps>
+    <generateAllowChance>0.5</generateAllowChance>
+	<detonateProjectile>Bullet_30x29mmGrenade_EMP</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="30x29mmGrenadeBase">
@@ -105,29 +94,19 @@
     <statBases>
       <MarketValue>2.31</MarketValue>
     </statBases>
-    <ammoClass>Smoke</ammoClass><generateAllowChance>0</generateAllowChance>
-    <comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>5</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>0.75</explosiveRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>1</Fragment_Large>
-			</fragments>
-		  </li>
-    </comps>
+    <ammoClass>Smoke</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+	<detonateProjectile>Bullet_30x29mmGrenade_Smoke</detonateProjectile>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base30x29mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base30x29mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.4,0.4)</drawSize>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <speed>37</speed>
@@ -191,6 +170,8 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
@@ -291,6 +272,10 @@
     <label>make 30x29mm EMP grenades x100</label>
     <description>Craft 100 30x29mm EMP grenades.</description>
     <jobString>Making 30x29mm EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

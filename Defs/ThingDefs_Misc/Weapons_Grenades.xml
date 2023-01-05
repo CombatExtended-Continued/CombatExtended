@@ -9,24 +9,27 @@
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
+    <pathCost>14</pathCost>
     <selectable>true</selectable>
+    <drawerType>MapMeshOnly</drawerType>
     <drawGUIOverlay>true</drawGUIOverlay>
+    <alwaysHaulable>true</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <altitudeLayer>Item</altitudeLayer>
+    <description>Equipment lacks desc.</description>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>2</DeteriorationRate>
-      <SellPriceFactor>0.5</SellPriceFactor>
+      <Beauty>-3</Beauty>
+      <SellPriceFactor>0.20</SellPriceFactor>
     </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <description>Equipment lacks desc.</description>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
       <li>
         <compClass>CompEquippable</compClass>
       </li>
     </comps>
-    <alwaysHaulable>true</alwaysHaulable>
-    <tickerType>Never</tickerType>
     <tools>
       <li Class="CombatExtended.ToolCE">
         <label>Body</label>
@@ -39,6 +42,10 @@
         <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
       </li>
     </tools>
+    <tradeTags>
+      <li>CE_MediumAmmo</li>
+    </tradeTags>
+    <allowedArchonexusCount>5</allowedArchonexusCount>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="BaseGrenadeEquipment" ParentName="BaseEquipment" Abstract="True">
@@ -70,13 +77,19 @@
       <damageAmountBase>80</damageAmountBase>
       <explosionDelay>150</explosionDelay>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0.5</screenShakeFactor>
+      <suppressionFactor>3.0</suppressionFactor>
+      <dangerFactor>2.0</dangerFactor>
+      <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
     </projectile>
     <comps>
       <li Class="CombatExtended.CompProperties_Fragments">
         <fragments>
-            <Fragment_Small>9</Fragment_Small>
+            <Fragment_Small>6</Fragment_Small>
         </fragments>
       </li>
     </comps>
@@ -149,8 +162,12 @@
       <soundExplode>Explosion_Stun</soundExplode>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
       <speed>10</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
+      <suppressionFactor>2.0</suppressionFactor>
+      <dangerFactor>1.5</dangerFactor>
+      <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
     </projectile>
   </ThingDef>
 
@@ -209,7 +226,6 @@
     </comps>
   </ThingDef>
 
-
   <!-- ==================== Stick bomb ========================== -->
 
   <ThingDef ParentName="BaseGrenadeProjectile">
@@ -226,7 +242,9 @@
       <explosionDelay>90</explosionDelay>
       <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       <speed>8</speed>
-      <gravityFactor>2</gravityFactor>
+      <suppressionFactor>3.0</suppressionFactor>
+      <dangerFactor>2.0</dangerFactor>
+      <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
     </projectile>
   </ThingDef>
 
@@ -290,13 +308,16 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>4</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <explosionDelay>30</explosionDelay>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
     </projectile>
   </ThingDef>
 
@@ -365,13 +386,16 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>6.5</explosionRadius>
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <explosionDelay>30</explosionDelay>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+      <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
       <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
       <speed>12</speed>
-      <gravityFactor>2</gravityFactor>
+      <screenShakeFactor>0</screenShakeFactor>
     </projectile>
   </ThingDef>
 
@@ -420,7 +444,7 @@
     <comps>
       <li Class="CombatExtended.CompProperties_ExplosiveCE">
         <explosiveDamageType>Extinguish</explosiveDamageType>
-        <explosiveRadius>6.5</explosiveRadius>
+        <explosiveRadius>3.5</explosiveRadius>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
         <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>

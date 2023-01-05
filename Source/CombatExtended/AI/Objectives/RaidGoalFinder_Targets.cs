@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace CombatExtended.AI
 {
-    public class RaidGoalFinder_HostilePawns 
+    public class RaidGoalFinder_HostilePawns
     {
-       
+
     }
 }

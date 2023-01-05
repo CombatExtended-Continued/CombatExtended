@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- Charged Rifle -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_5x35mmCharged" or defName="AmmoSet_6x22mmCharged"]/similarTo</xpath>
+    <value>
+      <similarTo>AmmoSet_ChargedRifle</similarTo>
+    </value>
+  </Operation>
+
+  <!-- Charged Heavy -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_12x64mmCharged"]/similarTo</xpath>
+    <value>
+      <similarTo>AmmoSet_ChargedHeavy</similarTo>
+    </value>
+  </Operation>
+
+  <!-- Charged Shotgun -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_15x65mmDiffusingCharged"]/similarTo</xpath>
+    <value>
+      <similarTo>AmmoSet_ChargedShotgun</similarTo>
+    </value>
+  </Operation>
+
+  <!-- Mech Shells -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_66mmThermalBolt" or defName="AmmoSet_80x256mmFuel"]/similarTo</xpath>
+  </Operation>
+
+</Patch>

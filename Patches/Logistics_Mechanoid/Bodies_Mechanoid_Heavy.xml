@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+    <mods>
+		  <li>Logistics_Mechanoid</li>
+    </mods>
+		<match Class="PatchOperationSequence">
+		 <operations>
+
+      <!-- ==================== Logistic Mech ==================== -->
+
+      <!-- ========== Add groups entry if it doesn't exist already ========== -->
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="PowerClaw"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="PowerClaw"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <li Class="PatchOperationConditional">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+        <nomatch Class="PatchOperationAdd">
+          <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]</xpath>
+          <value>
+            <groups />
+          </value>
+        </nomatch>
+      </li>
+
+      <!-- ========== Add armor coverage ========== -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalNeck"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalShoulder"]/parts/li[def="MechanicalArm"]/parts/li[def="PowerClaw"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/BodyDef[defName="Mech_Logistic"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+        <value>
+          <li>CoveredByNaturalArmor</li>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>			  

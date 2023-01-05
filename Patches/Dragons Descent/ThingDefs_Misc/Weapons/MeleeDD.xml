@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dragons Descent</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- horned lance -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_HornedLance"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<MeleeCounterParryBonus>1.34</MeleeCounterParryBonus>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_HornedLance"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.11</MeleeCritChance>
+							<MeleeParryChance>1.16</MeleeParryChance>
+							<MeleeDodgeChance>0.9</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_HornedLance"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>8</power>
+								<cooldownTime>1.43</cooldownTime>
+								<armorPenetrationBlunt>2.813</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>1.89</cooldownTime>
+								<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.25</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>17</power>
+								<cooldownTime>6.98</cooldownTime>
+								<armorPenetrationBlunt>1.25</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.3</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- drachen sword -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_DrachenSword"]/statBases</xpath>
+					<value>
+						<Bulk>5</Bulk>
+						<MeleeCounterParryBonus>1.04</MeleeCounterParryBonus>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_DrachenSword"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.37</MeleeCritChance>
+							<MeleeParryChance>0.78</MeleeParryChance>
+							<MeleeDodgeChance>0.47</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DD_MeleeWeapon_DrachenSword"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>handle</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>1.81</cooldownTime>
+								<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>19</power>
+								<cooldownTime>1.74</cooldownTime>
+								<armorPenetrationBlunt>0.9</armorPenetrationBlunt>
+								<armorPenetrationSharp>1.8</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>40</power>
+								<cooldownTime>1.72</cooldownTime>
+								<armorPenetrationBlunt>2.916</armorPenetrationBlunt>
+								<armorPenetrationSharp>0.65</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- thrumbo battle axe -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_ThrumboBattleAxe"]/statBases</xpath>
+					<value>
+						<Bulk>13</Bulk>
+						<MeleeCounterParryBonus>1.5</MeleeCounterParryBonus>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_ThrumboBattleAxe"]</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeCritChance>0.3</MeleeCritChance>
+							<MeleeParryChance>1.6</MeleeParryChance>
+							<MeleeDodgeChance>0.56</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_ThrumboBattleAxe"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>point</label>
+								<capacities>
+									<li>Stab</li>
+								</capacities>
+								<power>24</power>
+								<cooldownTime>1.93</cooldownTime>
+								<armorPenetrationBlunt>3.8</armorPenetrationBlunt>
+								<armorPenetrationSharp>20</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>edge</label>
+								<capacities>
+									<li>Cut</li>
+								</capacities>
+								<power>60</power>
+								<cooldownTime>4.82</cooldownTime>
+								<armorPenetrationBlunt>12</armorPenetrationBlunt>
+								<armorPenetrationSharp>18.62</armorPenetrationSharp>
+								<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<!-- focusing tome -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/statBases</xpath>
+					<value>
+						<Bulk>2</Bulk>
+						<MeleeCounterParryBonus>0.14</MeleeCounterParryBonus>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/equippedStatOffsets</xpath>
+					<value>
+							<MeleeCritChance>0.23</MeleeCritChance>
+							<MeleeParryChance>0.14</MeleeParryChance>
+							<MeleeDodgeChance>0.07</MeleeDodgeChance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>spine</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>3</power>
+								<cooldownTime>2.0</cooldownTime>
+								<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="DDMeleeWeapon_FocusingTome"]</xpath>
+					<value>
+						<weaponTags>
+							<li>CE_OneHandedWeapon</li>
+						</weaponTags>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

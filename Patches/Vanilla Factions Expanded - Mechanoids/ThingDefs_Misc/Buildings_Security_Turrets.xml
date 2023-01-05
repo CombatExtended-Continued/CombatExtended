@@ -17,6 +17,13 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoChargeBlaster"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+				</value>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoChargeBlaster"]/statBases</xpath>
 				<value>
@@ -50,7 +57,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoChargeBlaster"]/building/turretBurstCooldownTime</xpath>
 				<value>
-					<turretBurstCooldownTime>1</turretBurstCooldownTime>
+					<turretBurstCooldownTime>2.0</turretBurstCooldownTime>
 				</value>
 			</li>
 			
@@ -80,6 +87,7 @@
 				  <ShotSpread>0.01</ShotSpread>
 				  <SwayFactor>1.33</SwayFactor>
 				  <Bulk>13.00</Bulk>
+				  <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 				</statBases>
 				<Properties>
 				  <recoilAmount>1.08</recoilAmount>
@@ -89,7 +97,7 @@
 				  <warmupTime>2.0</warmupTime>
 				  <range>75</range>
 				  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-				  <burstShotCount>20</burstShotCount>
+				  <burstShotCount>10</burstShotCount>
 				  <soundCast>Shot_ChargeBlaster</soundCast>
 				  <soundCastTail>GunTail_Heavy</soundCastTail>
 				  <muzzleFlashScale>9</muzzleFlashScale>
@@ -112,6 +120,13 @@
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoChargeLance"]/thingClass</xpath>
 				<value>
 					<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoChargeLance"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.5</ShootingAccuracyTurret>
 				</value>
 			</li>
 
@@ -148,7 +163,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoChargeLance"]/building/turretBurstCooldownTime</xpath>
 				<value>
-					<turretBurstCooldownTime>0.5</turretBurstCooldownTime>
+					<turretBurstCooldownTime>1.0</turretBurstCooldownTime>
 				</value>
 			</li>
 			
@@ -163,6 +178,7 @@
 				  <ShotSpread>0.01</ShotSpread>
 				  <SwayFactor>0.44</SwayFactor>
 				  <Bulk>13.00</Bulk>
+				  <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 				</statBases>
 				<Properties>
 				  <recoilAmount>0.75</recoilAmount>
@@ -196,6 +212,13 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="VFE_Turret_AutoInfernoCannon"]/statBases/ShootingAccuracyTurret</xpath>
+				<value>
+					<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
+				</value>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoInfernoCannon"]/statBases</xpath>
 				<value>
@@ -206,7 +229,7 @@
 			<li Class="PatchOperationReplace">
 				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoInfernoCannon"]/building/turretBurstCooldownTime</xpath>
 				<value>
-					<turretBurstCooldownTime>3.5</turretBurstCooldownTime>
+					<turretBurstCooldownTime>2.5</turretBurstCooldownTime>
 				</value>
 			</li>
 			
@@ -215,15 +238,6 @@
 				<value>
 					<Mass>325</Mass>
 					<Bulk>100</Bulk>
-				</value>
-			</li>
-			
-			<!--Heavy-->
-			
-			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFE_Turret_AutoInfernoCannon"]/terrainAffordanceNeeded</xpath>
-				<value>
-					<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 				</value>
 			</li>
 
@@ -262,15 +276,16 @@
 			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>VFE_Gun_AutoInfernoCannon</defName>
 				<statBases>
-				  <Mass>300.00</Mass>
+				  <Mass>200.00</Mass>
 				  <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
 				  <SightsEfficiency>1</SightsEfficiency>
 				  <ShotSpread>0.01</ShotSpread>
 				  <SwayFactor>0.82</SwayFactor>
 				  <Bulk>20.00</Bulk>
+				  <NightVisionEfficiency_Weapon>0.4</NightVisionEfficiency_Weapon>
 				</statBases>
 				<Properties>
-				  <recoilAmount>0.08</recoilAmount>
+				  <recoilAmount>1.01</recoilAmount>
 				  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 				  <hasStandardCommand>true</hasStandardCommand>
 				  <defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
@@ -305,9 +320,16 @@
 			</li>
 
 			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="VFE_BaseAutomortarBuilding"]/statBases</xpath>
+				<value>
+					<ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[@Name="VFE_BaseAutomortarBuilding"]/statBases</xpath>
 				<value>
-					<AimingAccuracy>0.5</AimingAccuracy>
+					<AimingAccuracy>0.25</AimingAccuracy>
 				</value>
 			</li>
 			
@@ -396,7 +418,7 @@
 					  <li Class="CombatExtended.CompProperties_AmmoUser" Inherit="False">
 						<magazineSize>8</magazineSize>
 						<reloadTime>5</reloadTime>
-						<ammoSet>AmmoSet_60mmMortarShell</ammoSet>
+						<ammoSet>AmmoSet_66mmThermalBolt</ammoSet>
 					  </li>
 				</value>
 			</li>
@@ -433,7 +455,7 @@
 						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
 						<hasStandardCommand>true</hasStandardCommand>
-						<defaultProjectile>Bullet_81mmMortarShell_HE</defaultProjectile>
+						<defaultProjectile>Bullet_66mmThermalBolt_Incendiary</defaultProjectile>
 						<warmupTime>5.5</warmupTime>
 						<minRange>32</minRange>
 						<range>700</range>

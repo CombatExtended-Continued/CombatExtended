@@ -12,14 +12,14 @@ using Verse.AI;
  * Targetting the Verse.AI.JobDriver_Wait.CheckForAutoAttack()
  * Target Line:
  *  Thing thing = AttackTargetFinder.BestShootTargetFromCurrentPosition(this.pawn, null, verb.verbProps.range, verb.verbProps.minRange, targetScanFlag);
- *  
+ *
  * Basically modify that line to read something like:
  *  Thing thing = AttackTargetFinder.BestShootTargetFromCurrentPosition(this.pawn, GetValidTargetPredicate(verb), verb.verbProps.range, verb.verbProps.minRange, targetScanFlag);
- * 
+ *
  * Overall does a couple of things.  First it locates the local variable with the verb used to attack with and second it locates the null argument in the above method call
  * for Predicate and replaces that with an arg stack load of the verb and a call to create a predicate.  That call removes the verb from the call stack and replaces it
  * with a predicate (or a null).
- * 
+ *
  * A couple of helper functions to turn a bunch of ifs into a single call since IL can use one of 6 instructions for local variable load/save.
  */
 
@@ -43,7 +43,7 @@ namespace CombatExtended.HarmonyCE
 
             // turn instructions into a list so we can walk through it variably (instead of forward only).
             List<CodeInstruction> codes = instructions.ToList();
-            
+
             // walk forward to find some key information.
             for (int i = 0; i < codes.Count(); i++)
             {
@@ -51,8 +51,10 @@ namespace CombatExtended.HarmonyCE
                 {
                     MethodBase method = null;
                     if (codes[i].opcode == OpCodes.Callvirt && (method = codes[i].operand as MethodBase) != null && method.DeclaringType == typeof(Pawn) && method.Name == $"get_{nameof(Pawn.CurrentEffectiveVerb)}"
-                        && codes.Count() >= i + 1)
+                            && codes.Count() >= i + 1)
+                    {
                         verbLocalIndex = HarmonyBase.OpcodeStoreIndex(codes[i + 1]);
+                    }
                 }
 
                 // see if we've found the instruction index of the key call.

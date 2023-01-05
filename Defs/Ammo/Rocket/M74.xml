@@ -20,7 +20,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="M74Base" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="M74Base" ParentName="MediumAmmoBase" Abstract="True">
     <description>66mm incendiary rocket based upon the rocket used in the M72 LAW, for use in the quadruple-tubed M202 FLASH.</description>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
@@ -55,7 +55,7 @@
 	
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseM74" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="BaseM74" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -88,7 +88,7 @@
 				<explosionDamageDef>Bomb</explosionDamageDef>
 				<explosionRadius>1</explosionRadius>
 				<fragments>
-          <Fragment_Large>30</Fragment_Large>
+					<Fragment_Large>30</Fragment_Large>
 				</fragments>
 				<soundExplode>MortarBomb_Explode</soundExplode>
 			</li>

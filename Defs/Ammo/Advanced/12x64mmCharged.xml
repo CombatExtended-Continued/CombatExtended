@@ -16,11 +16,12 @@
     <ammoTypes>
       <Ammo_12x64mmCharged>Bullet_12x64mmCharged</Ammo_12x64mmCharged>
     </ammoTypes>
+    <similarTo>AmmoSet_MechCharged</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="12x64mmChargedBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="12x64mmChargedBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
     <description>Mechanoid-built high-caliber charged shot ammo used in heavy weapons.</description>
     <statBases>
       <Mass>0.058</Mass>
@@ -31,6 +32,7 @@
     </thingCategories>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </tradeTags>
     <stackLimit>5000</stackLimit>		
   </ThingDef>
@@ -39,11 +41,11 @@
     <defName>Ammo_12x64mmCharged</defName>
     <label>12x64mm Charged cartridge</label>
     <graphicData>
-      <texPath>Things/Ammo/Charged/Large</texPath>
+      <texPath>Things/Ammo/Charged/LargeMech</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.20</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>3.39</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>Charged</ammoClass>
   </ThingDef>
@@ -54,7 +56,7 @@
     <defName>Bullet_12x64mmCharged</defName>
     <label>12x64mm Charged bullet</label>
     <graphicData>
-      <texPath>Things/Projectile/Charge_Small</texPath>
+      <texPath>Things/Projectile/Charged/ChargeShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
       <drawSize>(1.3,1.3)</drawSize>
@@ -75,5 +77,49 @@
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_12x64mmCharged</defName>
+    <label>make 12x64mm Charged cartridge x200</label>
+    <description>Craft 200 12x64mm Charged cartridges.</description>
+    <jobString>Making 12x64mm Charged cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>32</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Plasteel</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_12x64mmCharged>200</Ammo_12x64mmCharged>
+    </products>
+    <workAmount>36080</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>

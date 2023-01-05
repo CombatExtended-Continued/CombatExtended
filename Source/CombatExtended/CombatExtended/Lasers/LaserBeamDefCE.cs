@@ -76,7 +76,9 @@ namespace CombatExtended.Lasers
         public Material GetBeamMaterial(int index)
         {
             if (materials.Count == 0 && textures.Count != 0)
+            {
                 CreateGraphics();
+            }
 
             if (materials.Count == 0)
             {
@@ -84,14 +86,19 @@ namespace CombatExtended.Lasers
             }
 
             if (index >= materials.Count || index < 0)
+            {
                 index = 0;
+            }
             materials[index].color = this.graphicData.color;
             return materials[index];
         }
 
         public bool IsWeakToShields
         {
-            get { return shieldDamageMultiplier < 1f; }
+            get
+            {
+                return shieldDamageMultiplier < 1f;
+            }
         }
 
     }

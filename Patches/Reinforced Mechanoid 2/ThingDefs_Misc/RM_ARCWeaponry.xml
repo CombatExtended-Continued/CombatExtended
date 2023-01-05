@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>Reinforced Mechanoid 2</li>
+      </mods>
+
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ===== Move Speed Penalty Removal ===== -->
+            <li Class="PatchOperationRemove">
+               <xpath>Defs/ThingDef[defName="RM_ARCRifle"]/equippedStatOffsets/MoveSpeed</xpath>
+            </li>
+
+            <!-- ===== Weapon Tools ===== -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_ARCPistol"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>stock</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>3</power>
+                        <cooldownTime>2.2</cooldownTime>
+                        <armorPenetrationBlunt>0.830</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>3.05</cooldownTime>
+                        <armorPenetrationBlunt>1.130</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>coil</label>
+                        <capacities>
+                           <li>Blunt</li>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>2.85</cooldownTime>
+                        <armorPenetrationBlunt>1.380</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_ARCRifle"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>stock</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.55</cooldownTime>
+                        <chanceFactor>1.5</chanceFactor>
+                        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>5</power>
+                        <cooldownTime>2.02</cooldownTime>
+                        <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>muzzle</label>
+                        <capacities>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>8</power>
+                        <cooldownTime>1.55</cooldownTime>
+                        <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_ARCThrower"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>9</power>
+                        <cooldownTime>2.74</cooldownTime>
+                        <armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>coil</label>
+                        <capacities>
+                           <li>Blunt</li>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>11</power>
+                        <cooldownTime>2.54</cooldownTime>
+                        <armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <!-- ===== Coil Weaponry ===== -->
+
+            <!-- === ARC Pistol === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_ARCPistol</defName>
+               <statBases>
+                  <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+                  <SightsEfficiency>0.8</SightsEfficiency>
+                  <ShotSpread>0.15</ShotSpread>
+                  <SwayFactor>1.07</SwayFactor>
+                  <Mass>1.5</Mass>
+                  <Bulk>3</Bulk>
+               </statBases>
+               <Properties>
+                  <recoilAmount>0.76</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_CoilPistol</defaultProjectile>
+                  <warmupTime>0.5</warmupTime>
+                  <range>21</range>
+                  <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+                  <burstShotCount>3</burstShotCount>
+                  <soundCast>RM_Shot_ARC</soundCast>
+                  <soundCastTail>GunTail_Light</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>24</magazineSize>
+                  <reloadTime>4.5</reloadTime>
+                  <ammoSet>AmmoSet_RM_CoilPistolGun</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunSmall</li>
+                  <li>MechanoidGunARCSmall</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+            <!-- === ARC Rifle === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_ARCRifle</defName>
+               <statBases>
+                  <Mass>5</Mass>
+                  <Bulk>11</Bulk>
+                  <SwayFactor>1</SwayFactor>
+                  <ShotSpread>0.05</ShotSpread>
+                  <SightsEfficiency>1</SightsEfficiency>
+                  <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+               </statBases>
+               <Properties>
+                  <recoilAmount>1.16</recoilAmount>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_CoilRifle</defaultProjectile>
+                  <warmupTime>1.3</warmupTime>
+                  <range>57</range>
+                  <burstShotCount>1</burstShotCount>
+                  <soundCast>RM_Shot_ARC</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                  <muzzleFlashScale>10</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>20</magazineSize>
+                  <reloadTime>4</reloadTime>
+                  <ammoSet>AmmoSet_RM_CoilRifleGun</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunMedium</li>
+                  <li>MechanoidGunARCMedium</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+            <!-- ===== ARC Thrower ===== -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_ARCThrower</defName>
+               <statBases>
+                  <Mass>8.0</Mass>
+                  <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+                  <SightsEfficiency>1</SightsEfficiency>
+                  <ShotSpread>0.02</ShotSpread>
+                  <SwayFactor>1.24</SwayFactor>
+                  <Bulk>10.0</Bulk>
+               </statBases>
+               <Properties>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_TeslaCoil</defaultProjectile>
+                  <warmupTime>0.85</warmupTime>
+                  <range>52</range>
+                  <burstShotCount>1</burstShotCount>
+                  <soundCast>RM_Shot_ARC</soundCast>
+                  <soundCastTail>GunTail_Heavy</soundCastTail>
+                  <muzzleFlashScale>9</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>10</magazineSize>
+                  <reloadTime>3</reloadTime>
+                  <ammoSet>AmmoSet_RM_TeslaGun</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunHeavy</li>
+                  <li>MechanoidGunARC</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

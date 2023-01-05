@@ -14,8 +14,14 @@ namespace CombatExtended.Lasers
 
         public int BeamColor
         {
-            get { return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this); }
-            set { beamColorIndex = value; }
+            get
+            {
+                return LaserColor.IndexBasedOnThingQuality(beamColorIndex, this);
+            }
+            set
+            {
+                beamColorIndex = value;
+            }
         }
 
         int ticksPreviously = 0;
@@ -47,10 +53,16 @@ namespace CombatExtended.Lasers
         {
             foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
             {
-                if (o != null) yield return o;
+                if (o != null)
+                {
+                    yield return o;
+                }
             }
 
-            if (!laserGunDef.supportsColors) yield break;
+            if (!laserGunDef.supportsColors)
+            {
+                yield break;
+            }
             /*
             foreach (FloatMenuOption o in LaserColor.GetChangeBeamColorFloatMenuOptions(this, pawn))
             {
@@ -62,19 +74,34 @@ namespace CombatExtended.Lasers
 
         void UpdateRotationOffset(int ticks)
         {
-            if (rotationOffset == 0) return;
-            if (ticks <= 0) return;
-            if (ticks > 30) ticks = 30;
+            if (rotationOffset == 0)
+            {
+                return;
+            }
+            if (ticks <= 0)
+            {
+                return;
+            }
+            if (ticks > 30)
+            {
+                ticks = 30;
+            }
 
             if (rotationOffset > 0)
             {
                 rotationOffset -= rotationSpeed;
-                if (rotationOffset < 0) rotationOffset = 0;
+                if (rotationOffset < 0)
+                {
+                    rotationOffset = 0;
+                }
             }
             else if (rotationOffset < 0)
             {
                 rotationOffset += rotationSpeed;
-                if (rotationOffset > 0) rotationOffset = 0;
+                if (rotationOffset > 0)
+                {
+                    rotationOffset = 0;
+                }
             }
 
             rotationSpeed += ticks * 0.01f;

@@ -5,7 +5,7 @@
 		<defName>Ammo40x53mmVOG25Grenades</defName>
 		<label>40x53mm VOG-25 Grenade</label>
 		<parent>AmmoGrenades</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -15,6 +15,7 @@
     <label>40x53mm VOG-25 Grenades</label>
     <ammoTypes>
       <Ammo_40x53mmVOG25Grenade_HE>Bullet_40x53mmVOG25Grenade_HE</Ammo_40x53mmVOG25Grenade_HE>
+      <Ammo_40x53mmVOG25Grenade_HE_TFuzed>Bullet_40x53mmVOG25Grenade_HE_TFuzed</Ammo_40x53mmVOG25Grenade_HE_TFuzed>
       <Ammo_40x53mmVOG25Grenade_EMP>Bullet_40x53mmVOG25Grenade_EMP</Ammo_40x53mmVOG25Grenade_EMP>
       <Ammo_40x53mmVOG25Grenade_Smoke>Bullet_40x53mmVOG25Grenade_Smoke</Ammo_40x53mmVOG25Grenade_Smoke>      
     </ammoTypes>
@@ -23,7 +24,7 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmVOG25GrenadeBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="40x53mmVOG25GrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Low velocity caseless grenade fired from handheld grenade launchers.</description>
     <statBases>
 	  <Mass>0.25</Mass>
@@ -53,6 +54,20 @@
     <ammoClass>GrenadeHE</ammoClass>
 	<detonateProjectile>Bullet_40x53mmVOG25Grenade_HE</detonateProjectile>
   </ThingDef>
+  
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
+    <defName>Ammo_40x53mmVOG25Grenade_HE_TFuzed</defName>
+    <label>40x53mm VOG-25 grenade (HE Time Fuzed)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>3.28</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHETF</ammoClass>
+    <detonateProjectile>Bullet_40x53mmVOG25Grenade_HE_TFuzed</detonateProjectile>
+  </ThingDef>  
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
     <defName>Ammo_40x53mmVOG25Grenade_EMP</defName>
@@ -65,18 +80,8 @@
       <MarketValue>5.55</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>1</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-        </fragments>
-      </li>
-    </comps>
+    <generateAllowChance>0.5</generateAllowChance>
+	<detonateProjectile>Bullet_40x53mmVOG25Grenade_EMP</detonateProjectile>
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x53mmVOG25GrenadeBase">
@@ -90,68 +95,82 @@
       <MarketValue>1.90</MarketValue>
     </statBases>
     <ammoClass>Smoke</ammoClass>
-	<generateAllowChance>0</generateAllowChance>
-    <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>5</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>1</explosiveRadius>
-	  </li>
-	  <li Class="CombatExtended.CompProperties_Fragments">
-		<fragments>
-			<Fragment_Large>1</Fragment_Large>
-        </fragments>
-      </li>
-    </comps>
+    <generateAllowChance>0</generateAllowChance>
+	<detonateProjectile>Bullet_40x53mmVOG25Grenade_Smoke</detonateProjectile>
   </ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseBullet" Abstract="true">
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<graphicData>
-			<texPath>Things/Projectile/Bullet_Big</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>20</speed>
-		</projectile>
-	</ThingDef>
+  <ThingDef Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
+    <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/LauncherShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.5,0.5)</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>20</speed>
+    </projectile>
+  </ThingDef>
 
-	<ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
-		<defName>Bullet_40x53mmVOG25Grenade_HE</defName>
-		<label>40x53mm VOG-25 grenade (HE)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>1</explosionRadius >
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>27</damageAmountBase>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		</projectile>
-		<comps>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Small>22</Fragment_Small>
-				</fragments>
-			</li>
-		</comps>
-		</ThingDef>
+  <ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
+    <defName>Bullet_40x53mmVOG25Grenade_HE</defName>
+    <label>40x536mm VOG-25 grenade (HE)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.0</explosionRadius >
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>27</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>22</Fragment_Small>
+        </fragments>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
+    <defName>Bullet_40x53mmVOG25Grenade_HE_TFuzed</defName>
+    <thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
+    <label>40x53mm VOG-25 grenade (HE-Airburst)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>1.0</explosionRadius >
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>27</damageAmountBase>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <aimHeightOffset>1.4</aimHeightOffset>
+      <armingDelay>2</armingDelay>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <Fragment_Small>22</Fragment_Small>
+        </fragments>
+        <fragAngleRange>-89~-5</fragAngleRange>
+      </li>
+    </comps>
+  </ThingDef>
 
-	<ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
-		<defName>Bullet_40x53mmVOG25Grenade_EMP</defName>
-		<label>40x53mm VOG-25 grenade (EMP)</label>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>2</explosionRadius>
-			<damageDef>EMP</damageDef>
-			<damageAmountBase>27</damageAmountBase>
-		</projectile>
-	</ThingDef>
+  <ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
+    <defName>Bullet_40x53mmVOG25Grenade_EMP</defName>
+    <label>40x53mm VOG-25 grenade (EMP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2</explosionRadius>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>27</damageAmountBase>
+    </projectile>
+  </ThingDef>
 
   <ThingDef ParentName="Base40x53mmVOG25GrenadeBullet">
     <defName>Bullet_40x53mmVOG25Grenade_Smoke</defName>
-    <label>40x53mmVOG25 grenade (Smoke)</label>
+    <label>40x53mm VOG-25 grenade (Smoke)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.5</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>
@@ -202,12 +221,61 @@
     </products>
     <workAmount>10600</workAmount>       
   </RecipeDef>
+  
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
+    <defName>MakeAmmo_40x53mmVOG25Grenade_HE_TFuzed</defName>
+    <label>make 40x53mm VOG-25 HE airburst grenades x100</label>
+    <description>Craft 100 40x53mm VOG-25 HE airburst grenades.</description>
+    <jobString>Making 40x53mm VOG-25 HE airburst grenades.</jobString>
+    <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>11</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x53mmVOG25Grenade_HE_TFuzed>100</Ammo_40x53mmVOG25Grenade_HE_TFuzed>
+    </products>
+    <workAmount>11000</workAmount>
+  </RecipeDef>  
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_40x53mmVOG25Grenade_EMP</defName>
     <label>make 40x53mm VOG-25 EMP grenades x100</label>
     <description>Craft 100 40x53mm VOG-25 EMP grenades.</description>
     <jobString>Making 40x53mm VOG-25 EMP grenades.</jobString>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+      <li>CE_Launchers</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

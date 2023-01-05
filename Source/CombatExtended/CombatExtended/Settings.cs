@@ -18,6 +18,7 @@ namespace CombatExtended
         private bool bipodMechanics = true;
         private bool autosetup = true;
         private bool showCasings = true;
+        private bool createCasingsFilth = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
@@ -25,21 +26,22 @@ namespace CombatExtended
         private bool turretsBreakShields = true;
         private bool showBackpacks = true;
         private bool showTacticalVests = true;
-	private bool genericammo = false;
+        private bool genericammo = false;
         private bool partialstats = true;
-
 
         private bool showExtraTooltips = false;
 
-	private bool showExtraStats = false;
+        private bool showExtraStats = false;
 
-	private bool fragmentsFromWalls = false;
+        private bool fragmentsFromWalls = false;
+
+        private bool fasterRepeatShots = false;
 
         public bool ShowCasings => showCasings;
 
         public bool BipodMechanics => bipodMechanics;
 
-	public bool GenericAmmo => genericammo;
+        public bool GenericAmmo => genericammo;
         public bool AutoSetUp => autosetup;
         public bool ShowTaunts => showTaunts;
         public bool AllowMeleeHunting => allowMeleeHunting;
@@ -50,9 +52,9 @@ namespace CombatExtended
         public bool ShowTacticalVests => showTacticalVests;
 
         public bool PartialStat => partialstats;
-	public bool ShowExtraTooltips => showExtraTooltips;
+        public bool ShowExtraTooltips => showExtraTooltips;
 
-	public bool ShowExtraStats => showExtraStats;
+        public bool ShowExtraStats => showExtraStats;
 
         public bool ShowTutorialPopup = true;
 
@@ -106,23 +108,27 @@ namespace CombatExtended
         #region Autopatcher
         private bool debugAutopatcherLogger = false;
 
-	public bool DebugAutopatcherLogger => debugAutopatcherLogger;
+        public bool DebugAutopatcherLogger => debugAutopatcherLogger;
 
-	private bool enableApparelAutopatcher = false;
-	private bool enableWeaponAutopatcher = false;
-	private bool enableWeaponToughnessAutopatcher = true;
-	private bool enableRaceAutopatcher = true;
-	private bool enablePawnKindAutopatcher = true;
-	
-	public bool EnableApparelAutopatcher => enableApparelAutopatcher;
-	public bool EnableWeaponAutopatcher => enableWeaponAutopatcher;
-	public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
-	public bool EnableRaceAutopatcher => enableRaceAutopatcher;
-	public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
+        private bool enableApparelAutopatcher = false;
+        private bool enableWeaponAutopatcher = false;
+        private bool enableWeaponToughnessAutopatcher = true;
+        private bool enableRaceAutopatcher = true;
+        private bool enablePawnKindAutopatcher = true;
 
-	public bool FragmentsFromWalls => fragmentsFromWalls;
+        public bool EnableApparelAutopatcher => enableApparelAutopatcher;
+        public bool EnableWeaponAutopatcher => enableWeaponAutopatcher;
+        public bool EnableWeaponToughnessAutopatcher => enableWeaponToughnessAutopatcher;
+        public bool EnableRaceAutopatcher => enableRaceAutopatcher;
+        public bool EnablePawnKindAutopatcher => enablePawnKindAutopatcher;
 
-	#endregion
+        public bool FragmentsFromWalls => fragmentsFromWalls;
+
+        public bool FasterRepeatShots => fasterRepeatShots;
+
+        public bool CreateCasingsFilth => createCasingsFilth;
+
+        #endregion
 
         private bool lastAmmoSystemStatus;
 
@@ -132,6 +138,7 @@ namespace CombatExtended
         {
             base.ExposeData();
             Scribe_Values.Look(ref showCasings, "showCasings", true);
+            Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
@@ -141,10 +148,10 @@ namespace CombatExtended
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
             Scribe_Values.Look(ref partialstats, "PartialArmor", true);
 
-	    Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
+            Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
-	    Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
-	    
+            Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
+
 
 #if DEBUG
             // Debug settings
@@ -159,12 +166,12 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
 #endif
             Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
-	    
-	    Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", false);
-	    Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
-	    Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", false);
-	    Scribe_Values.Look(ref enableRaceAutopatcher, "enableRaceAutopatcher", true);
-	    Scribe_Values.Look(ref enablePawnKindAutopatcher, "enablePawnKindAutopatcher", true);
+
+            Scribe_Values.Look(ref enableWeaponAutopatcher, "enableWeaponAutopatcher", false);
+            Scribe_Values.Look(ref enableWeaponToughnessAutopatcher, "enableWeaponToughnessAutopatcher", true);
+            Scribe_Values.Look(ref enableApparelAutopatcher, "enableApparelAutopatcher", false);
+            Scribe_Values.Look(ref enableRaceAutopatcher, "enableRaceAutopatcher", true);
+            Scribe_Values.Look(ref enablePawnKindAutopatcher, "enablePawnKindAutopatcher", true);
 
             // Ammo settings
             Scribe_Values.Look(ref enableAmmoSystem, "enableAmmoSystem", true);
@@ -175,7 +182,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
             Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
-	    Scribe_Values.Look(ref genericammo, "genericAmmo", false);
+            Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
@@ -183,7 +190,8 @@ namespace CombatExtended
             Scribe_Values.Look(ref bipodMechanics, "bipodMechs", true);
             Scribe_Values.Look(ref autosetup, "autosetup", true);
 
-	    Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
+            Scribe_Values.Look(ref fragmentsFromWalls, "fragmentsFromWalls", false);
+            Scribe_Values.Look(ref fasterRepeatShots, "fasterRepeatShots", false);
 
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
@@ -201,14 +209,15 @@ namespace CombatExtended
             list.Gap();
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_MergeExplosions_Title".Translate(), ref mergeExplosions, "CE_Settings_MergeExplosions_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_TurretsBreakShields_Title".Translate(), ref turretsBreakShields, "CE_Settings_TurretsBreakShields_Desc".Translate());
-	    list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
-	    list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
-
+            list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
 
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
@@ -216,7 +225,7 @@ namespace CombatExtended
             {
                 list.CheckboxLabeled("CE_Settings_ShowBackpacks_Title".Translate(), ref showBackpacks, "CE_Settings_ShowBackpacks_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ShowWebbing_Title".Translate(), ref showTacticalVests, "CE_Settings_ShowWebbing_Desc".Translate());
-		list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_FragmentsFromWalls_Title".Translate(), ref fragmentsFromWalls, "CE_Settings_FragmentsFromWalls_Desc".Translate());
             }
             else
             {
@@ -232,19 +241,19 @@ namespace CombatExtended
                 list.Gap();
             }
 
-	    list.GapLine();
-	    Text.Font = GameFont.Medium;
+            list.GapLine();
+            Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderAutopatcher".Translate());
             Text.Font = GameFont.Small;
-	    list.Gap();
+            list.Gap();
 
             list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");
 
-	    list.CheckboxLabeled("Enable apparel autopatcher", ref enableApparelAutopatcher, "This will enable the apparel autopatcher.");
-	    list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
-	    list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
-	    list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
-	    list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
+            list.CheckboxLabeled("Enable apparel autopatcher", ref enableApparelAutopatcher, "This will enable the apparel autopatcher.");
+            list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
+            list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
+            list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
+            list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
 
             // Do ammo settings
             list.NewColumn();
@@ -264,7 +273,7 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-		list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate());
+                list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate()); ;
             }
             else
@@ -328,7 +337,7 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
-       
+
         }
 
         #endregion

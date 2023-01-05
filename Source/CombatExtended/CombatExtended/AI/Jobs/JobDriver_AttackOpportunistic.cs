@@ -16,7 +16,9 @@ namespace CombatExtended.AI
             get
             {
                 if (_jobWeapon == null)
+                {
                     _jobWeapon = (ThingWithComps)TargetA.Thing;
+                }
                 return _jobWeapon;
             }
         }
@@ -27,7 +29,9 @@ namespace CombatExtended.AI
             get
             {
                 if (_jobAmmo == null)
+                {
                     _jobAmmo = TargetC.Thing;
+                }
                 return _jobAmmo;
             }
         }
@@ -52,7 +56,9 @@ namespace CombatExtended.AI
                 }
                 ThingWithComps weapon = this.JobWeapon;
                 if (weapon.stackCount > 1)
+                {
                     weapon = (ThingWithComps)weapon.SplitOff(1);
+                }
                 // Force equip the new weapon
                 this.pawn.equipment.equipment.TryAddOrTransfer(weapon);
                 this.ReadyForNextToil();
@@ -63,11 +69,15 @@ namespace CombatExtended.AI
             {
                 CompAmmoUser compAmmo = JobWeapon.TryGetComp<CompAmmoUser>();
                 if (compAmmo != null && compAmmo.UseAmmo && (compAmmo.EmptyMagazine || JobAmmo != null))
+                {
                     yield return Toils_CombatCE.ReloadEquipedWeapon(this, TargetIndex.A, JobAmmo);
+                }
             }
             // Start the attack
             foreach (Toil toil in Toils_CombatCE.AttackStatic(this, TargetIndex.B))
+            {
                 yield return toil;
+            }
 
             // switch back action
             this.AddFinishAction(() =>
@@ -76,8 +86,10 @@ namespace CombatExtended.AI
                 {
                     // Force the new weapon into inventory
                     if (pawn.equipment?.Primary != null)
+                    {
                         this.pawn.equipment.TryTransferEquipmentToContainer(pawn.equipment?.Primary, this.CompInventory.container);
-                    // Force equip the old weapon                   
+                    }
+                    // Force equip the old weapon
                     this.pawn.equipment.equipment.TryAddOrTransfer(this.oldWeapon);
                 }
             });

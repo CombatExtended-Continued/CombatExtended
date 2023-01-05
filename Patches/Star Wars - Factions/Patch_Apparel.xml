@@ -229,7 +229,7 @@
 				<equippedStatOffsets>
 					<CarryWeight>15</CarryWeight>
 					<CarryBulk>22</CarryBulk>
-					<ToxicResistance>0.40</ToxicResistance>
+					<ToxicEnvironmentResistance>0.40</ToxicEnvironmentResistance>
 					<MoveSpeed>0.1</MoveSpeed>
 				</equippedStatOffsets>
 				</value>
@@ -334,6 +334,16 @@
 			</value>
 		  </li>
 
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="PJ_STHelm" or defName="PJ_SHHelm"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="PJ_STHelm" or defName="PJ_SHHelm"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 		  <li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[
 			defName="PJ_STHelm" or
@@ -341,8 +351,7 @@
 			]</xpath>
 			<value>
 			  <equippedStatOffsets>
-				<PsychicSensitivity>-0.2</PsychicSensitivity>
-				<ToxicResistance>0.50</ToxicResistance>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				<SmokeSensitivity>-1</SmokeSensitivity>
 			  </equippedStatOffsets>
 			</value>
@@ -356,9 +365,8 @@
 			]</xpath>
 			<value>
 			  <equippedStatOffsets>
-				<PsychicSensitivity>-0.2</PsychicSensitivity>
 				<AimingAccuracy>0.1</AimingAccuracy>
-				<ToxicResistance>0.50</ToxicResistance>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				<SmokeSensitivity>-1</SmokeSensitivity>
 			  </equippedStatOffsets>
 			</value>
@@ -509,7 +517,7 @@
 					<CarryWeight>80</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</equippedStatOffsets>
 				</value>
 			</li>
@@ -572,9 +580,8 @@
 			]</xpath>
 			<value>
 			  <equippedStatOffsets>
-				<PsychicSensitivity>-0.2</PsychicSensitivity>
 				<AimingAccuracy>0.15</AimingAccuracy>
-				<ToxicResistance>0.50</ToxicResistance>
+				<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				<SmokeSensitivity>-1</SmokeSensitivity>
 			  </equippedStatOffsets>
 			</value>
@@ -822,7 +829,7 @@
 					<CarryWeight>80</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</equippedStatOffsets>
 				</value>
 			</li>

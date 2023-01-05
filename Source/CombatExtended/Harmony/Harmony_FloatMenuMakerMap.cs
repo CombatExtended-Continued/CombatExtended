@@ -54,10 +54,10 @@ namespace CombatExtended.HarmonyCE
                     {
                         var aimingSystem = AccessTools.Field(typeof(CE_ConceptDefOf), nameof(CE_ConceptDefOf.CE_AimingSystem));
                         var teachOpportunity = AccessTools.Method(
-                            typeof(LessonAutoActivator),
-                            nameof(LessonAutoActivator.TeachOpportunity),
-                            new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
-                        );
+                                                   typeof(LessonAutoActivator),
+                                                   nameof(LessonAutoActivator.TeachOpportunity),
+                                                   new Type[] { typeof(ConceptDef), typeof(OpportunityType) }
+                                               );
                         yield return new CodeInstruction(OpCodes.Ldsfld, aimingSystem);
                         yield return new CodeInstruction(OpCodes.Ldc_I4, (int)OpportunityType.GoodToKnow);
                         yield return new CodeInstruction(OpCodes.Call, teachOpportunity);
@@ -75,7 +75,7 @@ namespace CombatExtended.HarmonyCE
     {
         static readonly string logPrefix = "Combat Extended :: " + typeof(FloatMenuMakerMap_Modify_AddHumanlikeOrders).Name + " :: ";
 
-        /* 
+        /*
          * Opted for a postfix as the original Detour had the code inserted generally after other code had run and because we want the target's code
          * to always run unmodified.
          * There are two goals for this postfix, to add menu items for stabalizing a target and to add inventory pickup functions for pawns.
@@ -96,9 +96,9 @@ namespace CombatExtended.HarmonyCE
                 {
                     Pawn patient = (Pawn)curTarget.Thing;
                     if (patient.Downed
-                        //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
-                        && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
+                            //&& pawn.CanReserveAndReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            && pawn.CanReach(patient, PathEndMode.InteractionCell, Danger.Deadly)
+                            && patient.health.hediffSet.GetHediffsTendable().Any(h => h.CanBeStabilized()))
                     {
                         if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
                         {
@@ -136,7 +136,7 @@ namespace CombatExtended.HarmonyCE
                         // Pick up x
                         else if (count == 1)
                         {
-                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUp".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
+                            opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("PickUpOne".Translate(item.Label, item), () => Pickup(pawn, item), MenuOptionPriority.High, null, null, 0f, null, null), pawn, item, "ReservedBy"));
                         }
                         else
                         {
@@ -253,7 +253,7 @@ namespace CombatExtended.HarmonyCE
 
         /* Dev Notes (Don't need to read this, a short explanation is just before the method below):
          * The IL of the region I'm interested in (As of RimWorld 0.17.6351.26908, generated via Harmony debug mode):
-         * 
+         *
          * L_0b20: br Label #71 //end of previous logic block ("CannotWearBecauseOfMissingBodyParts")
          * // want to insert the new logic here...
          * L_0b25: Label #70    //Make sure this label is on our new logic block and not right here.
@@ -296,14 +296,14 @@ namespace CombatExtended.HarmonyCE
          * L_0b89: ldfld Verse.Pawn pawn
          * L_0b8e: callvirt Verse.Map get_Map()
          * L_0b93: callvirt Boolean get_IsPlayerHome()
-         * 
+         *
          * A couple of routes, opted to allow the called new method to modify the list directly but could have altered the
          * IL structure to store the returned object (or null) to the local variable, branch if not null to the list.add code.
          * The path I went with should be easier to maintain.
-         * 
+         *
          * New method call signature: (Pawn, Apparel, List<FloatMenuOption)
          * In the target method that correspods to arg1, a field of a nested class (discovered dynamically via code inspection), and arg2.
-         * 
+         *
          * Detailed Patch Notes (plan, kept in sync with the code below):
          * *Search Phase:
          * -Locate ldstr "ForceWear"
@@ -325,7 +325,7 @@ namespace CombatExtended.HarmonyCE
          * --Call the new method (expected to absorb 3 items from the stack and add 1 bool back).
          * --Branch false to label remembered in mem2.
          * --Modify the instruction we located, strip the label from it.
-         * 
+         *
          */
 
         /* The goal of this infix is to add a check for if the pawn is too loaded down with stuff (worn/inventory) before allowing them to wear
@@ -357,13 +357,15 @@ namespace CombatExtended.HarmonyCE
                 if (searchPhase == 3)
                 {
                     if (instruction.labels != null)
+                    {
                         branchLabel = instruction.labels;
+                    }
                     break;
                 }
 
                 // -Locate callvirt Void Add(Verse.FloatMenuOption)
                 if (searchPhase == 2 && instruction.opcode == OpCodes.Callvirt && (instruction.operand as MethodInfo) != null && (instruction.operand as MethodInfo).Name == "Add"
-                    && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
+                        && (previous.operand as LocalVariableInfo) != null && (previous.operand as LocalVariableInfo).LocalType == typeof(FloatMenuOption))
                 {
                     searchPhase = 3;
                 }
@@ -385,7 +387,9 @@ namespace CombatExtended.HarmonyCE
 
                 // -Start keeping a previous instruction cache.
                 if (searchPhase > 0 && searchPhase < 3)
+                {
                     previous = instruction;
+                }
             }
             if (!branchLabel.NullOrEmpty())
             {
@@ -418,7 +422,9 @@ namespace CombatExtended.HarmonyCE
                 // patch failure, just dump the data out
                 Log.Error(string.Concat(logPrefix, "Error applying patch to ForceWear, no change."));
                 foreach (CodeInstruction instruction in instructions)
+                {
                     yield return instruction;
+                }
             }
 
         }

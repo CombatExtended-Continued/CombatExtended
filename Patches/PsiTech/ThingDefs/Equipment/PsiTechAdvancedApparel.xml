@@ -48,7 +48,7 @@
 						<CarryWeight>80</CarryWeight>
 						<CarryBulk>10</CarryBulk>
 						<ShootingAccuracyPawn>0.2</ShootingAccuracyPawn>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 					</value>
 				</li>
 				<li Class="PatchOperationRemove">
@@ -105,12 +105,21 @@
 						<Mass>5.2</Mass>
 					</value>
 				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
 				<!-- equippedStatOffsets -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PTPsionicCommandoHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<AimingAccuracy>0.2</AimingAccuracy>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 					</value>
 				</li>
@@ -172,7 +181,7 @@
 						<CarryWeight>80</CarryWeight>
 						<CarryBulk>10</CarryBulk>
 						<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 					</value>
 				</li>
 				<li Class="PatchOperationRemove">
@@ -229,12 +238,21 @@
 						<Mass>4.8</Mass>
 					</value>
 				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
 				<!-- equippedStatOffsets -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PTPsionicWarriorHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<AimingAccuracy>0.15</AimingAccuracy>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 					</value>
 				</li>
@@ -296,7 +314,7 @@
 						<CarryWeight>60</CarryWeight>
 						<CarryBulk>8</CarryBulk>
 						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 					</value>
 				</li>
 				<!-- costList -->
@@ -350,12 +368,21 @@
 						<Mass>1</Mass>
 					</value>
 				</li>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/apparel</xpath>
+						<value>
+							<immuneToToxGasExposure>true</immuneToToxGasExposure>
+						</value>
+					</nomatch>
+				</li>
 				<!-- equippedStatOffsets -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="PTPsionicConduitHelmet"]/equippedStatOffsets</xpath>
 					<value>
 						<AimingAccuracy>0.05</AimingAccuracy>
-						<ToxicResistance>0.5</ToxicResistance>
+						<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 					</value>
 				</li>

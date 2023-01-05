@@ -38,14 +38,23 @@
 				</value>
 			</li>
 
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/ThingDef[defName="NS_Apparel_NanosuitHelmet"]</xpath>
 				<value>
 					<equippedStatOffsets>
 						<AimingDelayFactor>-0.05</AimingDelayFactor>
-						<PsychicSensitivity>-0.2</PsychicSensitivity>
 						<AimingAccuracy>0.1</AimingAccuracy>
-						<ToxicResistance>0.50</ToxicResistance>
+						<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 						<SmokeSensitivity>-1</SmokeSensitivity>
 						<Suppressability>-0.1</Suppressability>
 					</equippedStatOffsets>
@@ -98,7 +107,7 @@
 					<CarryWeight>60</CarryWeight>
 					<CarryBulk>80</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicResistance>0.5</ToxicResistance>
+					<ToxicEnvironmentResistance>0.5</ToxicEnvironmentResistance>
 					<MoveSpeed>1</MoveSpeed>
 					<ReloadSpeed>0.15</ReloadSpeed>
 					<Suppressability>-0.33</Suppressability>

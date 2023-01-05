@@ -11,7 +11,7 @@
       <description>Charge blaster attached to a turret mount.</description>
       <soundInteract>Interact_ChargeRifle</soundInteract>
       <statBases>
-        <MarketValue>2000</MarketValue>
+        <Mass>10</Mass>
         <SightsEfficiency>1</SightsEfficiency>
         <ShotSpread>0.08</ShotSpread>
         <SwayFactor>0.72</SwayFactor>
@@ -20,7 +20,7 @@
       </statBases>
       <verbs>
         <li Class="CombatExtended.VerbPropertiesCE">
-          <recoilAmount>1.1</recoilAmount>
+          <recoilAmount>0.85</recoilAmount>
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>true</hasStandardCommand>
           <defaultProjectile>Bullet_6x22mmCharged</defaultProjectile>
@@ -42,7 +42,7 @@
           <ammoSet>AmmoSet_6x22mmCharged</ammoSet>
         </li>
         <li Class="CombatExtended.CompProperties_FireModes">
-          <aiAimMode>SuppressFire</aiAimMode>
+          <aiAimMode>AimedShot</aiAimMode>
         </li>            
       </comps>
     </ThingDef>
@@ -51,8 +51,8 @@
 
   <ThingDef ParentName="BaseAutoTurretGun">
     <defName>Gun_ChargeBlasterHeavyTurret</defName>
-    <label>auto charge blaster turret gun</label>
-    <description>Heavy charge blaster on a turret mount.</description>
+    <label>light charge blaster turret gun</label>
+    <description>Light charge blaster on a turret mount.</description>
     <graphicData>
       <texPath>Things/Item/Equipment/WeaponRanged/ChargeBlasterLight</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -63,20 +63,19 @@
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>1.33</SwayFactor>
-      <Bulk>13.00</Bulk>
       <NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
     </statBases>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
-        <recoilAmount>1.28</recoilAmount>
+        <recoilAmount>1.08</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-        <warmupTime>2.0</warmupTime>
+        <warmupTime>2.0</warmupTime>   <!-- Intentionally increased from 1.3s -->
         <range>75</range>
         <minRange>2.9</minRange>
-        <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-        <burstShotCount>20</burstShotCount>
+        <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
         <soundCast>Shot_ChargeBlaster</soundCast>
         <soundCastTail>GunTail_Heavy</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
@@ -85,14 +84,14 @@
     <comps>
       <li Class="CombatExtended.CompProperties_AmmoUser">
         <magazineSize>200</magazineSize>
-        <reloadTime>10</reloadTime>
+        <reloadTime>9.2</reloadTime>
         <ammoSet>AmmoSet_12x64mmCharged</ammoSet>
       </li>
       <li Class="CombatExtended.CompProperties_FireModes">
-        <aiAimMode>SuppressFire</aiAimMode>
+        <aiAimMode>AimedShot</aiAimMode>
       </li>   
     </comps>
-	<tools Inherit="false" />
+	<tools Inherit="False" />
   </ThingDef>
 
   <!-- ================== Auto Inferno Cannon ================== -->
@@ -106,20 +105,20 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>	
     <statBases>
-      <Mass>300.00</Mass>
-      <RangedWeapon_Cooldown>9.8</RangedWeapon_Cooldown>
+      <Mass>200.00</Mass>
+      <RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
       <SightsEfficiency>1</SightsEfficiency>
       <ShotSpread>0.01</ShotSpread>
       <SwayFactor>0.82</SwayFactor>
-      <Bulk>20.00</Bulk>
       <NightVisionEfficiency_Weapon>0.6</NightVisionEfficiency_Weapon>
     </statBases>
     <verbs>
       <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilAmount>1.01</recoilAmount>
         <verbClass>CombatExtended.Verb_ShootCE</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>Bullet_80x256mmFuel_Incendiary</defaultProjectile>
-        <warmupTime>3.5</warmupTime>
+        <warmupTime>3.5</warmupTime>   <!-- Intentionally decreased from 4.3s -->
         <range>86</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>InfernoCannon_Fire</soundCast>
@@ -130,16 +129,16 @@
       </li>
     </verbs>	
     <comps>
-    <li Class="CombatExtended.CompProperties_AmmoUser" Inherit="false">
+    <li Class="CombatExtended.CompProperties_AmmoUser" Inherit="False">
       <magazineSize>5</magazineSize>
       <reloadTime>9.8</reloadTime>
       <ammoSet>AmmoSet_80x256mmFuel</ammoSet>
     </li>
     <li Class="CombatExtended.CompProperties_FireModes">
-      <aiAimMode>SuppressFire</aiAimMode>
+      <aiAimMode>AimedShot</aiAimMode>
     </li>         
     </comps>	
-	<tools Inherit="false" />
+	<tools Inherit="False" />
   </ThingDef>
 
 </Defs>

@@ -176,7 +176,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_ToxicBolt</damageDef>
-							<damageAmountBase>12</damageAmountBase>
+							<damageAmountBase>10</damageAmountBase>
 							<speed>27</speed>
 							<armorPenetrationSharp>2.5</armorPenetrationSharp>
 							<armorPenetrationBlunt>1.6</armorPenetrationBlunt>
@@ -190,7 +190,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_ToxicBolt</damageDef>
-							<damageAmountBase>12</damageAmountBase>
+							<damageAmountBase>6</damageAmountBase>
 							<speed>27</speed>
 							<armorPenetrationSharp>1.5</armorPenetrationSharp>
 							<armorPenetrationBlunt>1.660</armorPenetrationBlunt>
@@ -204,7 +204,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>Flame</damageDef>
-							<damageAmountBase>24</damageAmountBase>
+							<damageAmountBase>25</damageAmountBase>
 							<speed>30</speed>
 							<armorPenetrationSharp>16</armorPenetrationSharp>
 							<armorPenetrationBlunt>14.4</armorPenetrationBlunt>
@@ -218,7 +218,7 @@
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
 							<damageDef>AA_ToxicBolt</damageDef>
-							<damageAmountBase>18</damageAmountBase>
+							<damageAmountBase>15</damageAmountBase>
 							<speed>19</speed>
 							<armorPenetrationSharp>1.5</armorPenetrationSharp>
 							<armorPenetrationBlunt>3</armorPenetrationBlunt>
@@ -245,6 +245,8 @@
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionRadius>1.5</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
 							<damageDef>Bomb</damageDef>
 							<damageAmountBase>40</damageAmountBase>
 							<soundExplode>MortarBomb_Explode</soundExplode>
@@ -355,6 +357,8 @@
 							<damageDef>Flame</damageDef>
 							<damageAmountBase>8</damageAmountBase>
 							<explosionRadius>1.1</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
 							<preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
 							<preExplosionSpawnChance>0.6</preExplosionSpawnChance>
 							<ai_IsIncendiary>true</ai_IsIncendiary>
@@ -371,6 +375,8 @@
 							<damageDef>AA_ToxicBolt</damageDef>
 							<damageAmountBase>40</damageAmountBase>
 							<explosionRadius>3</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
 							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
 							<soundExplode>MortarBomb_Explode</soundExplode>
 							<soundAmbient>MortarRound_Ambient</soundAmbient>
@@ -460,7 +466,10 @@
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionDelay>1</explosionDelay>
+							<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 							<explosionRadius>2.9</explosionRadius>
+							<suppressionFactor>3.0</suppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
 							<damageDef>AA_FrostBomb</damageDef>
 							<damageAmountBase>14</damageAmountBase>
 							<postExplosionSpawnThingDef>AA_FrostPuff</postExplosionSpawnThingDef>
@@ -468,6 +477,33 @@
 							<postExplosionSpawnChance>1</postExplosionSpawnChance>
 							<speed>28</speed>
 						</projectile>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs</xpath>
+					<value>
+						<ThingDef ParentName="BaseBullet">
+							<defName>AA_FlameBreathAnimated_CE</defName>
+							<label>flame breath</label>
+							<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+							<graphicData>
+								<texPath>Things/Projectiles/AA_FieryProjectile</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>MoteGlow</shaderType>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<flyOverhead>false</flyOverhead>
+								<damageDef>Flame</damageDef>
+								<damageAmountBase>15</damageAmountBase>
+								<explosionRadius>2.5</explosionRadius>
+								<suppressionFactor>3.0</suppressionFactor>
+								<dangerFactor>2.0</dangerFactor>
+								<speed>40</speed>
+								<ai_IsIncendiary>true</ai_IsIncendiary>
+								<soundExplode>Interact_Ignite</soundExplode>
+							</projectile>
+						</ThingDef>
 					</value>
 				</li>
 

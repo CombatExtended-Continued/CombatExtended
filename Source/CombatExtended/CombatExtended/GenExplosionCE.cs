@@ -52,9 +52,13 @@ namespace CombatExtended
         {
             // Allows destroyed things to be exploded with appropriate scaleFactor
             if (scaleFactor <= 0f)
+            {
                 scaleFactor = 1f;
+            }
             else
+            {
                 scaleFactor = Mathf.Clamp(scaleFactor, MinExplosionScale, MaxExplosionScale);
+            }
 
             if (map == null)
             {
@@ -122,7 +126,9 @@ namespace CombatExtended
 
             // Needed to allow CompExplosive to use stackCount
             if (destroyAfterwards && !explosionParentToDestroy.Destroyed)
+            {
                 explosionParentToDestroy?.Kill();
+            }
         }
 
         //Exact copy (1.1)

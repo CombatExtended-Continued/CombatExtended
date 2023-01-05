@@ -378,7 +378,7 @@
 				<value>
 					<CarryBulk>10</CarryBulk>
 					<ReloadSpeed>0.10</ReloadSpeed>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
 					<CarryWeight>60</CarryWeight>
 				</value>
@@ -417,12 +417,22 @@
 			</li>
 			
 			<!--Replace handling bonus with power armor helmet functions-->
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RB_RegularInfantryhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RB_RegularInfantryhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="RB_RegularInfantryhelmet"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 				<value>
 					<AimingAccuracy>0.15</AimingAccuracy>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<SmokeSensitivity>-1</SmokeSensitivity>
 				</value>
 			</li>

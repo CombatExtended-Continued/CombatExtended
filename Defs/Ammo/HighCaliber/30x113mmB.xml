@@ -24,7 +24,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo30x113mmBBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo30x113mmBBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>Large caliber cartridge used by autocannons.</description>
 		<statBases>
 			<Mass>0.49</Mass>
@@ -48,7 +48,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1.99</MarketValue>
+			<MarketValue>2.0</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_30x113mmB_AP</cookOffProjectile>
@@ -70,7 +70,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
 		<defName>Ammo_30x113mmB_HE</defName>
-		<label>30x113mmB cartridge (HE)</label>
+		<label>30x113mmB cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -139,7 +139,7 @@
 
 	<ThingDef ParentName="Base30x113mmBBullet">
 		<defName>Bullet_30x113mmB_HE</defName>
-		<label>30x113mmB bullet (HE)</label>
+		<label>30x113mmB bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>94</damageAmountBase>
 			<armorPenetrationSharp>20</armorPenetrationSharp>
@@ -189,7 +189,7 @@
 		<products>
 			<Ammo_30x113mmB_AP>150</Ammo_30x113mmB_AP>
 		</products>
-		<workAmount>15000</workAmount>
+		<workAmount>18000</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -229,9 +229,9 @@
 
 	<RecipeDef ParentName="AdvancedAmmoRecipeBase">
 		<defName>MakeAmmo_30x113mmB_HE</defName>
-		<label>make 30x113mmB (HE) cartridge x100</label>
-		<description>Craft 100 .30x113mmB (HE) cartridges.</description>
-		<jobString>Making .30x113mmB (HE) cartridges.</jobString>
+		<label>make 30x113mmB (AP-HE) cartridge x100</label>
+		<description>Craft 100 .30x113mmB (AP-HE) cartridges.</description>
+		<jobString>Making .30x113mmB (AP-HE) cartridges.</jobString>
 		<ingredients>
 			<li>
 				<filter>

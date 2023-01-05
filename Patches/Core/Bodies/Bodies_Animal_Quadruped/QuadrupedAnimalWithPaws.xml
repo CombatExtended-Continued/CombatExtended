@@ -5,9 +5,9 @@
 
   <!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart</xpath>
 			<value>
 				<groups />
 			</value>
@@ -15,9 +15,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart</xpath>
 			<value>
 				<groups />
 			</value>
@@ -25,9 +25,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Neck"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Neck"]</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -35,9 +35,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -45,9 +45,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "Skull"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "Skull"]</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -55,34 +55,34 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "AnimalJaw"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "AnimalJaw"]</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="AnimalJaw"]</xpath>
 			<value>
 				<groups />
 			</value>
 		</nomatch>
 	</Operation>
 
-  <Operation Class="PatchOperationSequence">
-    <success>Always</success>
-    <operations>
-      <li Class="PatchOperationTest">
-        <xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg" and not(groups)]</xpath>
-      </li>
-      <li Class="PatchOperationAdd">
-        <xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg" and not(groups)]</xpath>
-        <value>
-          <groups />
-        </value>
-      </li>
-    </operations>
-  </Operation>
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg" and not(groups)]</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg" and not(groups)]</xpath>
+				<value>
+					<groups />
+				</value>
+			</li>
+		</operations>
+	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg"]/parts/li[def = "Paw"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg"]/parts/li[def = "Paw"]</xpath>
+			<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]</xpath>
 			<value>
 				<groups />
 			</value>
@@ -91,140 +91,53 @@
 
   <!-- ========== Add armor coverage ========== -->
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Neck"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Skull"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="Skull"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def="Head"]/parts/li[def="AnimalJaw"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg"]/parts/li[def = "Paw"]/groups</xpath>
+  <Operation Class="PatchOperationAdd">
+  	<xpath>Defs/BodyDef[defName="QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Leg"]/parts/li[def="Paw"]/groups</xpath>
   	<value>
       <li>CoveredByNaturalArmor</li>
   	</value>
-	</Operation>
-
-  <!-- ========== Modify coverage ========== -->
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Spine"]/coverage</xpath>
-  	<value>
-    	<coverage>0.02</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Stomach"]/coverage</xpath>
-  	<value>
-    	<coverage>0.08</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Lung"]/coverage</xpath>
-  	<value>
-    	<coverage>0.08</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Kidney"]/coverage</xpath>
-  	<value>
-    	<coverage>0.025</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Liver"]/coverage</xpath>
-  	<value>
-    	<coverage>0.07</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Neck"]/coverage</xpath>
-  	<value>
-    	<coverage>0.12</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Skull"]/coverage</xpath>
-  	<value>
-    	<coverage>0.29</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="Skull"]/parts/li[def = "Brain"]/coverage</xpath>
-  	<value>
-    	<coverage>0.9</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "Eye"]/coverage</xpath>
-  	<value>
-    	<coverage>0.08</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def = "Ear"]/coverage</xpath>
-  	<value>
-    	<coverage>0.12</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def="Neck"]/parts/li[def = "Head"]/parts/li[def="AnimalJaw"]/coverage</xpath>
-  	<value>
-    	<coverage>0.2</coverage>
-  	</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-  	<xpath>Defs/BodyDef[defName = "QuadrupedAnimalWithPaws"]/corePart/parts/li[def = "Leg"]/parts/li[def = "Paw"]/coverage</xpath>
-  	<value>
-    	<coverage>0.1</coverage>
-  	</value>
-	</Operation>
+  </Operation>
 
 </Patch>
-

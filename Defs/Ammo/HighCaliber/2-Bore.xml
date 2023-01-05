@@ -25,16 +25,16 @@
 	
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo2BoreBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="Ammo2BoreBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>An extremely large caliber sporting cartridge, almost impractical for any purpose, but capable of bringing down large targets like elephants or rhinoceroses.</description>
 		<statBases>
-		<Mass>0.477</Mass>
-		<Bulk>0.36</Bulk>
+			<Mass>0.477</Mass>
+			<Bulk>0.36</Bulk>
 		</statBases>
-	<tradeTags>
-		<li>CE_AutoEnableTrade</li>
-		<li>CE_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
 		<thingCategories>
 			<li>Ammo2Bore</li>
 		</thingCategories>
@@ -63,7 +63,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>1.91</MarketValue>
+			<MarketValue>1.92</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
 		<cookOffProjectile>Bullet_2Bore_AP</cookOffProjectile>
@@ -85,7 +85,7 @@
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo2BoreBase">
     <defName>Ammo_2Bore_HE</defName>
-    <label>2-Bore cartridge (HE)</label>
+    <label>2-Bore cartridge (AP-HE)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -164,7 +164,7 @@
   
   <ThingDef ParentName="Base2BoreBullet">
     <defName>Bullet_2Bore_HE</defName>
-    <label>2-Bore bullet (HE)</label>
+    <label>2-Bore bullet (AP-HE)</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageAmountBase>57</damageAmountBase>
       <armorPenetrationSharp>12</armorPenetrationSharp>
@@ -214,7 +214,7 @@
 		<products>
 			<Ammo_2Bore_FMJ>200</Ammo_2Bore_FMJ>
 		</products>
-    <workAmount>19200</workAmount>
+		<workAmount>19200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -240,7 +240,7 @@
 		<products>
 			<Ammo_2Bore_AP>200</Ammo_2Bore_AP>
 		</products>
-    <workAmount>19200</workAmount>
+		<workAmount>23040</workAmount>
 	</RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
@@ -280,9 +280,9 @@
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
     <defName>MakeAmmo_2Bore_HE</defName>
-    <label>make 2-Bore (HE) cartridge x200</label>
-    <description>Craft 200 2-Bore (HE) cartridges.</description>
-    <jobString>Making 2-Bore (HE) cartridges.</jobString>
+    <label>make 2-Bore (AP-HE) cartridge x200</label>
+    <description>Craft 200 2-Bore (AP-HE) cartridges.</description>
+    <jobString>Making 2-Bore (AP-HE) cartridges.</jobString>
     <ingredients>
       <li>
         <filter>

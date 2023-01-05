@@ -25,7 +25,7 @@ namespace CombatExtended
                 return (WeaponPlatform)job.targetQueueA[0].Thing;
             }
         }
-        
+
         public Building GunsmithingTable
         {
             get
@@ -33,7 +33,7 @@ namespace CombatExtended
                 return TargetA.Thing as Building;
             }
         }
-       
+
         public AttachmentDef AttachmentDef
         {
             get
@@ -45,21 +45,29 @@ namespace CombatExtended
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             /*
-             * Taken from vanilla's JobDriver_DoBill 
+             * Taken from vanilla's JobDriver_DoBill
              */
             Thing thing = job.GetTarget(TargetIndex.A).Thing;
             if (Weapon.Spawned && !pawn.Reserve(thing, job, 1, 1, null, errorOnFailed))
+            {
                 return false;
+            }
             if (!pawn.Reserve(job.GetTarget(TargetIndex.A), job, 1, -1, null, errorOnFailed))
+            {
                 return false;
+            }
             if (thing != null && thing.def.hasInteractionCell && !pawn.ReserveSittableOrSpot(thing.InteractionCell, job, errorOnFailed))
+            {
                 return false;
+            }
             // reserve all the ingredients
-            for (int i =0; i < job.targetQueueB.Count; i++)
+            for (int i = 0; i < job.targetQueueB.Count; i++)
             {
                 if (!pawn.Reserve(job.targetQueueB[i], job, 1, job.countQueue[i], null, errorOnFailed))
+                {
                     return false;
-            }            
+                }
+            }
             pawn.ReserveAsManyAsPossible(job.GetTargetQueue(TargetIndex.B), job);
             return true;
         }
@@ -67,22 +75,24 @@ namespace CombatExtended
         public override IEnumerable<Toil> MakeNewToils()
         {
             /*
-             * Inspired by vanilla's JobDriver_DoBill 
-             */            
+             * Inspired by vanilla's JobDriver_DoBill
+             */
             this.AddEndCondition(delegate
             {
                 Thing thing = GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
                 return (!(thing is Building) || thing.Spawned) ? JobCondition.Ongoing : JobCondition.Incompletable;
             });
             this.FailOn(() => Weapon.Destroyed);
-            this.FailOnDestroyedOrNull(TargetIndex.A);            
-            this.FailOnBurningImmobile(TargetIndex.A);            
+            this.FailOnDestroyedOrNull(TargetIndex.A);
+            this.FailOnBurningImmobile(TargetIndex.A);
             // go to the crafting spot
-            Toil gotoBillGiver = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);           
+            Toil gotoBillGiver = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 
             yield return Toils_Jump.JumpIf(gotoBillGiver, () => job.GetTargetQueue(TargetIndex.B).NullOrEmpty());
             foreach (Toil t in CollectIngredientsToils())
+            {
                 yield return t;
+            }
 
             yield return gotoBillGiver;
             // crafting wait time
@@ -90,17 +100,17 @@ namespace CombatExtended
             waitToil.defaultDuration = 30;
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
             yield return waitToil.WithProgressBarToilDelay(TargetIndex.A);
-            // modify the actual weapon            
+            // modify the actual weapon
             Toil modifyToil = new Toil();
-            modifyToil.defaultCompleteMode = ToilCompleteMode.Instant;            
+            modifyToil.defaultCompleteMode = ToilCompleteMode.Instant;
             modifyToil.initAction = () =>
-            {                
+            {
                 if (TryModifyWeapon())
-                {                    
-                    this.EndJobWith(JobCondition.Succeeded);                    
+                {
+                    this.EndJobWith(JobCondition.Succeeded);
                     return;
                 }
-                this.EndJobWith(JobCondition.Incompletable);                                
+                this.EndJobWith(JobCondition.Incompletable);
             };
             yield return modifyToil;
         }
@@ -134,17 +144,19 @@ namespace CombatExtended
         /// <returns>Wether modification is finished ok</returns>
         private bool TryModifyWeapon()
         {
-            AttachmentLink link = Weapon.attachments.FirstOrDefault(l => l.attachment == AttachmentDef);            
+            AttachmentLink link = Weapon.attachments.FirstOrDefault(l => l.attachment == AttachmentDef);
             if (link != null)
             {
                 if (!TryRefundIngredient(link.attachment))
-                    Log.Warning($"CE: Refunding attachment cost failed {link.attachment.label}");                
+                {
+                    Log.Warning($"CE: Refunding attachment cost failed {link.attachment.label}");
+                }
                 Weapon.attachments.Remove(link);
                 Weapon.UpdateConfiguration();
                 return true;
             }
             else if (TryConsumeIngredient())
-            {                
+            {
                 Weapon.attachments.Add(Weapon.Platform.attachmentLinks.First(l => l.attachment == AttachmentDef));
                 Weapon.UpdateConfiguration();
                 return true;
@@ -153,22 +165,24 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// Attempts to refund cost 
+        /// Attempts to refund cost
         /// </summary>
         /// <param name="attachmentDef"></param>
         /// <returns></returns>
         private bool TryRefundIngredient(AttachmentDef attachmentDef)
         {
-            foreach(ThingDefCountClass countClass in attachmentDef.costList)
-            {                             
-                Thing ingredient = ThingMaker.MakeThing(countClass.thingDef, countClass.thingDef.defaultStuff);                
+            foreach (ThingDefCountClass countClass in attachmentDef.costList)
+            {
+                Thing ingredient = ThingMaker.MakeThing(countClass.thingDef, countClass.thingDef.defaultStuff);
                 ingredient.stackCount = countClass.count;
                 // find the best cell for placing this ingredient
                 if (!GenPlace.TryFindPlaceSpotNear(pawn.Position, pawn.Rotation, pawn.Map, ingredient, true, out IntVec3 spot))
+                {
                     return false;
-                // check if we can stack this ingredient                
+                }
+                // check if we can stack this ingredient
                 // spawn the refunded ingredient
-                GenSpawn.Spawn(ingredient, spot, pawn.Map);                
+                GenSpawn.Spawn(ingredient, spot, pawn.Map);
             }
             return true;
         }
@@ -185,7 +199,9 @@ namespace CombatExtended
 
             // create counters to emulate cost that will be paid
             foreach (ThingDefCountClass countClass in AttachmentDef.costList)
+            {
                 reaminingCost[countClass.thingDef.index] = countClass.count;
+            }
 
             // start reducing the counter
             for (int i = 0; i < cells.Length; i++)
@@ -205,14 +221,18 @@ namespace CombatExtended
             foreach (ThingDefCountClass countClass in AttachmentDef.costList)
             {
                 if (reaminingCost[countClass.thingDef.index] > 0)
+                {
                     return false;
+                }
             }
 
             // destroy consumed things
             foreach (Thing thing in consumeList)
+            {
                 thing.Destroy(DestroyMode.Vanish);
-            
+            }
+
             return true;
-        }      
+        }
     }
 }

@@ -1,65 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-  <!-- ========== Mechanoid ========== -->
-  
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName="Mech_Lancer"]</xpath>
-    <value>
-      <aiAvoidCover>false</aiAvoidCover>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[@Name="MechCentipedeBase"]/combatPower</xpath>
-    <value>
-      <combatPower>580</combatPower>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]/combatPower</xpath>
-    <value>
-      <combatPower>180</combatPower>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Mech_Lancer" or @Name="MechCentipedeBase"]</xpath>
-    <value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>9</min>
-          <max>10</max>
-        </primaryMagazineCount>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName="Mech_Pikeman"]</xpath>
-    <value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>3</min>
-          <max>5</max>
-        </primaryMagazineCount>
-      </li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAddModExtension">
-  	<xpath>Defs/PawnKindDef[defName="Mech_Termite_Breach"]</xpath>
-  	<value>
-      <li Class="CombatExtended.LoadoutPropertiesExtension">
-        <primaryMagazineCount>
-          <min>8</min>
-          <max>15</max>
-        </primaryMagazineCount>
-      </li>
-  	</value>
-  </Operation>
-
   <!-- ========== Mercenary ========== -->
 
   <Operation Class="PatchOperationAddModExtension">
@@ -238,8 +179,8 @@
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
-          <min>1</min>
-          <max>4</max>
+          <min>6</min>
+          <max>14</max>
         </primaryMagazineCount>
         <forcedSidearm>
           <sidearmMoney>
@@ -271,9 +212,9 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[@Name="MercenarySlasherBase"]/skills</xpath>
+   <xpath>Defs/PawnKindDef[@Name="MercenarySlasherBase"]/skills</xpath>
    <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[@Name="MercenarySlasherBase"]</xpath>
+     <xpath>Defs/PawnKindDef[@Name="MercenarySlasherBase"]</xpath>
      <value>
        <skills>
          <li>
@@ -286,7 +227,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[defName = "Mercenary_Slasher" or defName="Mercenary_Slasher_Acidifier"]</xpath>
+    <xpath>Defs/PawnKindDef[defName="Mercenary_Slasher" or defName="Mercenary_Slasher_Acidifier"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <shieldMoney>
@@ -302,9 +243,9 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/skills</xpath>
+   <xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/skills</xpath>
    <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]</xpath>
+     <xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]</xpath>
      <value>
        <skills>
          <li>
@@ -317,7 +258,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[@Name = "MercenaryEliteTierBase"]/weaponMoney</xpath>
+    <xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponMoney</xpath>
     <value>
       <weaponMoney>
         <min>850</min>
@@ -328,14 +269,14 @@
 
   <!-- Gives all elite-tier pirates and mercs access to charge weapons. -->
   <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponTags</xpath>
+    <xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"]/weaponTags</xpath>
     <value>
       <li>SpacerGun</li>
     </value>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>Defs/PawnKindDef[@Name = "MercenaryEliteTierBase"  or defName="Mercenary_Elite_Acidifier"]</xpath>
+    <xpath>Defs/PawnKindDef[@Name="MercenaryEliteTierBase"  or defName="Mercenary_Elite_Acidifier"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -502,7 +443,7 @@
   <!-- ========== Spacer ========== -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/PawnKindDef[defName="AncientSoldier"]/skills</xpath>
+    <xpath>Defs/PawnKindDef[defName="AncientSoldier"]/skills</xpath>
     <value>
       <li>
         <skill>Melee</skill>
@@ -764,9 +705,9 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefMelee"]/skills</xpath>
+   <xpath>Defs/PawnKindDef[defName="Tribal_ChiefMelee"]/skills</xpath>
    <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefMelee"]</xpath>
+     <xpath>Defs/PawnKindDef[defName="Tribal_ChiefMelee"]</xpath>
      <value>
        <skills>
          <li>
@@ -817,9 +758,9 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefRanged"]/skills</xpath>
+   <xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]/skills</xpath>
    <nomatch Class="PatchOperationAdd">
-     <xpath>/Defs/PawnKindDef[defName="Tribal_ChiefRanged"]</xpath>
+     <xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]</xpath>
      <value>
        <skills>
          <li>
@@ -834,7 +775,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/PawnKindDef[defName="Tribal_ChiefRanged"]/weaponTags/li[.="NeolithicRangedChief"]</xpath>
     <value>
-      <li>Gun</li>
+      <li>SimpleGun</li>
     </value>
   </Operation>
 
@@ -849,7 +790,7 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
-   <xpath>/Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
+   <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]/apparelRequired</xpath>
    <nomatch Class="PatchOperationAdd">
     <xpath>Defs/PawnKindDef[@Name="TribalChiefBase"]</xpath>
     <value>
@@ -869,7 +810,7 @@
   <!-- Combat drugs for tribals  -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/PawnKindDef[
+    <xpath>Defs/PawnKindDef[
         defName="Tribal_Berserker" or
         defName="Tribal_HeavyArcher" or
         @Name="TribalChiefBase"
@@ -882,7 +823,7 @@
 
   <!-- Stranger in Black -->
   <Operation Class="PatchOperationAddModExtension">
-    <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]</xpath>
+    <xpath>Defs/PawnKindDef[defName="StrangerInBlack"]</xpath>
     <value>
       <li Class="CombatExtended.LoadoutPropertiesExtension">
         <primaryMagazineCount>
@@ -894,7 +835,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-   <xpath>/Defs/PawnKindDef[defName="StrangerInBlack"]/apparelRequired</xpath>
+   <xpath>Defs/PawnKindDef[defName="StrangerInBlack"]/apparelRequired</xpath>
      <value>
        <li>CE_Apparel_Backpack</li>
      </value>

@@ -170,7 +170,7 @@
 					<CarryWeight>85</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			
@@ -278,12 +278,22 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_GDhelmet"]/equippedStatOffsets</xpath>
 				<value>
 					<SmokeSensitivity>-1</SmokeSensitivity>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			
@@ -347,7 +357,7 @@
 					<CarryWeight>60</CarryWeight>
 					<CarryBulk>10</CarryBulk>
 					<ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 					<MoveSpeed>0.1</MoveSpeed>
 				</value>
 			</li>
@@ -456,12 +466,22 @@
 					<Flammability>0</Flammability>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/apparel/immuneToToxGasExposure</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/apparel</xpath>
+					<value>
+						<immuneToToxGasExposure>true</immuneToToxGasExposure>
+					</value>
+				</nomatch>
+			</li>
+
 			<li Class="PatchOperationAdd">
 				<xpath>Defs/ThingDef[defName="Moyo_GShelmet"]/equippedStatOffsets</xpath>
 				<value>
 					<SmokeSensitivity>-1</SmokeSensitivity>
-					<ToxicResistance>0.50</ToxicResistance>
+					<ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
 				</value>
 			</li>
 			

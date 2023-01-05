@@ -22,7 +22,7 @@
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="30x64mmFuelBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="30x64mmFuelBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
       <Mass>0.08</Mass>
@@ -80,7 +80,7 @@
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -130,7 +130,9 @@
     <label>foam bolt</label>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
-      <explosionRadius>6.5</explosionRadius>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
+      <explosionRadius>3</explosionRadius>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
@@ -173,7 +175,7 @@
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-            <li>ComponentIndustrial</li>	  
+        <li>ComponentIndustrial</li>	  
         <li>Steel</li>
         <li>Prometheum</li>
       </thingDefs>

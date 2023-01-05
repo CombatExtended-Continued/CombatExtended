@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+   <Operation Class="PatchOperationFindMod">
+      <mods>
+         <li>Reinforced Mechanoid 2</li>
+      </mods>
+
+      <match Class="PatchOperationSequence">
+         <operations>
+
+            <!-- ===== Plasma Melee Weapon ===== -->
+
+            <!-- === Graviton Mace === -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_GravitonMace"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>head</label>
+                        <capacities>
+                           <li>RM_GravitonMaceAttack</li>
+                        </capacities>
+                        <power>36</power>
+                        <cooldownTime>2.61</cooldownTime>
+                        <chanceFactor>1.5</chanceFactor>
+                        <armorPenetrationBlunt>115</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>blade</label>
+                        <capacities>
+                           <li>Cut</li>
+                        </capacities>
+                        <power>22</power>
+                        <cooldownTime>2.2</cooldownTime>
+                        <extraMeleeDamages>
+                           <li>
+                              <def>Flame</def>
+                              <amount>8</amount>
+                              <chance>0.5</chance>
+                           </li>
+                        </extraMeleeDamages>
+                        <armorPenetrationBlunt>10.180</armorPenetrationBlunt>
+                        <armorPenetrationSharp>2.76</armorPenetrationSharp>
+                        <linkedBodyPartsGroup>Blade</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>handle</label>
+                        <capacities>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>4</power>
+                        <cooldownTime>1.84</cooldownTime>
+                        <armorPenetrationBlunt>1.125</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_GravitonMace"]/statBases</xpath>
+               <value>
+                  <Bulk>8</Bulk>
+                  <MeleeCounterParryBonus>0.6</MeleeCounterParryBonus>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_GravitonMace"]</xpath>
+               <value>
+                  <equippedStatOffsets>
+                     <MeleeCritChance>0.8</MeleeCritChance>
+                     <MeleeParryChance>0.45</MeleeParryChance>
+                     <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                  </equippedStatOffsets>
+               </value>
+            </li>
+
+            <!-- ======== Royalty Add-On ======= -->
+            <li Class="PatchOperationFindMod">
+               <mods>
+                  <li>Royalty</li>
+               </mods>
+
+               <match Class="PatchOperationSequence">
+                  <operations>
+
+                     <!-- === Plasma Dagger === -->
+                     <li Class="PatchOperationReplace">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaBane"]/tools</xpath>
+                        <value>
+                           <tools>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>points</label>
+                                 <capacities>
+                                    <li>Stab</li>
+                                 </capacities>
+                                 <power>29</power>
+                                 <cooldownTime>1.46</cooldownTime>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>5</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <chanceFactor>0.20</chanceFactor>
+                                 <armorPenetrationBlunt>2.625</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>24</armorPenetrationSharp>
+                                 <linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+                              </li>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>left edge</label>
+                                 <capacities>
+                                    <li>Cut</li>
+                                 </capacities>
+                                 <power>28</power>
+                                 <cooldownTime>1.59</cooldownTime>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>5</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <chanceFactor>0.40</chanceFactor>
+                                 <armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>18</armorPenetrationSharp>
+                                 <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                              </li>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>right edge</label>
+                                 <capacities>
+                                    <li>Cut</li>
+                                 </capacities>
+                                 <power>28</power>
+                                 <cooldownTime>1.59</cooldownTime>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>5</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <chanceFactor>0.40</chanceFactor>
+                                 <armorPenetrationBlunt>3.0</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>18</armorPenetrationSharp>
+                                 <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                              </li>
+                           </tools>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaBane"]/statBases</xpath>
+                        <value>
+                           <Bulk>5</Bulk>
+                           <MeleeCounterParryBonus>0.3</MeleeCounterParryBonus>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaBane"]</xpath>
+                        <value>
+                           <equippedStatOffsets>
+                              <MeleeCritChance>0.40</MeleeCritChance>
+                              <MeleeParryChance>0.60</MeleeParryChance>
+                              <MeleeDodgeChance>0.30</MeleeDodgeChance>
+                           </equippedStatOffsets>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaBane"]/weaponTags</xpath>
+                        <value>
+                           <li>CE_OneHandedWeapon</li>
+                        </value>
+                     </li>
+
+                     <!-- === Plasma Dual Sword === -->
+                     <li Class="PatchOperationReplace">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaSword"]/tools</xpath>
+                        <value>
+                           <tools>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>point</label>
+                                 <capacities>
+                                    <li>Stab</li>
+                                 </capacities>
+                                 <power>40</power>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>10</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <cooldownTime>1.25</cooldownTime>
+                                 <armorPenetrationBlunt>1.848</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>28</armorPenetrationSharp>
+                              </li>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>left edge</label>
+                                 <capacities>
+                                    <li>Cut</li>
+                                 </capacities>
+                                 <power>32</power>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>8</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <cooldownTime>1.57</cooldownTime>
+                                 <armorPenetrationBlunt>3.76</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>22</armorPenetrationSharp>
+                                 <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                              </li>
+                              <li Class="CombatExtended.ToolCE">
+                                 <label>right edge</label>
+                                 <capacities>
+                                    <li>Cut</li>
+                                 </capacities>
+                                 <power>32</power>
+                                 <extraMeleeDamages>
+                                    <li>
+                                       <def>Flame</def>
+                                       <amount>8</amount>
+                                       <chance>0.5</chance>
+                                    </li>
+                                 </extraMeleeDamages>
+                                 <cooldownTime>1.57</cooldownTime>
+                                 <armorPenetrationBlunt>3.76</armorPenetrationBlunt>
+                                 <armorPenetrationSharp>22</armorPenetrationSharp>
+                                 <linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+                              </li>
+                           </tools>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaSword"]/statBases</xpath>
+                        <value>
+                           <Bulk>8.5</Bulk>
+                           <MeleeCounterParryBonus>1.17</MeleeCounterParryBonus>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef[defName="RM_MeleeWeapon_PlasmaSword"]</xpath>
+                        <value>
+                           <equippedStatOffsets>
+                              <MeleeCritChance>0.80</MeleeCritChance>
+                              <MeleeParryChance>0.60</MeleeParryChance>
+                              <MeleeDodgeChance>0.53</MeleeDodgeChance>
+                           </equippedStatOffsets>
+                        </value>
+                     </li>
+
+                  </operations>
+               </match>
+            </li>
+
+            <!-- ===== Weapon Tools ===== -->
+            <li Class="PatchOperationReplace">
+               <xpath>Defs/ThingDef[defName="RM_Gun_PlasmaImmolator"]/tools</xpath>
+               <value>
+                  <tools>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>barrel</label>
+                        <capacities>
+                           <li>Blunt</li>
+                        </capacities>
+                        <power>11</power>
+                        <cooldownTime>2.74</cooldownTime>
+                        <armorPenetrationBlunt>3.25</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                     <li Class="CombatExtended.ToolCE">
+                        <label>shielding</label>
+                        <capacities>
+                           <li>Blunt</li>
+                           <li>Poke</li>
+                        </capacities>
+                        <power>10</power>
+                        <cooldownTime>2.14</cooldownTime>
+                        <armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+                        <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+                     </li>
+                  </tools>
+               </value>
+            </li>
+
+            <!-- === Immolator === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_PlasmaImmolator</defName>
+               <statBases>
+                  <Mass>12.5</Mass>
+                  <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+                  <SightsEfficiency>1</SightsEfficiency>
+                  <ShotSpread>0.05</ShotSpread>
+                  <SwayFactor>1</SwayFactor>
+                  <Bulk>18.00</Bulk>
+               </statBases>
+               <Properties>
+                  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_PlasmaCellImmolator</defaultProjectile>
+                  <warmupTime>1.6</warmupTime>
+                  <range>62</range>
+                  <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                  <burstShotCount>3</burstShotCount>
+                  <soundCast>RM_Shot_PlasmaImmolator</soundCast>
+                  <soundCastTail>GunTail_Heavy</soundCastTail>
+                  <muzzleFlashScale>12</muzzleFlashScale>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>30</magazineSize>
+                  <reloadTime>3</reloadTime>
+                  <ammoSet>AmmoSet_PlasmaImmolator</ammoSet>
+               </AmmoUser>
+               <FireModes>
+                  <aiAimMode>AimedShot</aiAimMode>
+               </FireModes>
+               <weaponTags>
+                  <li>MechanoidGunBehemoth</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+            </li>
+
+            <!-- === Hellgator === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Gun_PlasmaHellgator</defName>
+               <statBases>
+                  <MarketValue>9999</MarketValue>
+                  <Bulk>20</Bulk>
+                  <SwayFactor>1.24</SwayFactor>
+                  <ShotSpread>0.10</ShotSpread>
+                  <SightsEfficiency>0.5</SightsEfficiency>
+                  <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+               </statBases>
+               <Properties>
+                  <verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+                  <hasStandardCommand>True</hasStandardCommand>
+                  <defaultProjectile>RM_Bullet_PlasmaCellHellgator</defaultProjectile>
+                  <warmupTime>3.5</warmupTime>
+                  <range>126</range>
+                  <minRange>16</minRange>
+                  <burstShotCount>1</burstShotCount>
+                  <ammoConsumedPerShotCount>10</ammoConsumedPerShotCount>
+                  <soundCast>RM_Shot_PlasmaHellgator</soundCast>
+                  <muzzleFlashScale>16</muzzleFlashScale>
+                  <circularError>1.1</circularError>
+                  <indirectFirePenalty>0.3</indirectFirePenalty>
+                  <targetParams>
+                     <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+               </Properties>
+               <AmmoUser>
+                  <magazineSize>10</magazineSize>
+                  <reloadTime>5.2</reloadTime>
+                  <ammoSet>AmmoSet_PlasmaHellgator</ammoSet>
+               </AmmoUser>
+               <weaponTags Inherit="False">
+                  <li>MechanoidGunWraithArtillery</li>
+                  <li>NoSwitch</li>
+               </weaponTags>
+               <AllowWithRunAndGun>false</AllowWithRunAndGun>
+            </li>
+
+            <li Class="PatchOperationConditional">
+               <xpath>Defs/ThingDef[defName="RM_Gun_PlasmaHellgator"]/comps</xpath>
+               <nomatch Class="PatchOperationAdd">
+                  <xpath>Defs/ThingDef[defName="RM_Gun_PlasmaHellgator"]</xpath>
+                  <value>
+                     <comps>
+                        <li Class="CombatExtended.CompProperties_Charges">
+                           <chargeSpeeds>
+                              <li>30</li>
+                              <li>50</li>
+                              <li>70</li>
+                              <li>90</li>
+                           </chargeSpeeds>
+                        </li>
+                     </comps>
+                  </value>
+               </nomatch>
+               <match Class="PatchOperationAdd">
+                  <xpath>Defs/ThingDef[defName="RM_Gun_PlasmaHellgator"]/comps</xpath>
+                  <value>
+                     <li Class="CombatExtended.CompProperties_Charges">
+                        <chargeSpeeds>
+                           <li>30</li>
+                           <li>50</li>
+                           <li>70</li>
+                           <li>90</li>
+                        </chargeSpeeds>
+                     </li>
+                  </value>
+               </match>
+            </li>
+
+            <!-- === Immolator Grenade === -->
+            <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+               <defName>RM_Weapon_GrenadePlasmaImmolator</defName>
+               <statBases>
+                  <Mass>2.1</Mass>
+                  <Bulk>3</Bulk>
+                  <MarketValue>14.05</MarketValue>
+                  <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+                  <SightsEfficiency>0.65</SightsEfficiency>
+               </statBases>
+               <Properties>
+                  <label>throw immolator grenade</label>
+                  <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+                  <hasStandardCommand>true</hasStandardCommand>
+                  <range>12.9</range>
+                  <minRange>3</minRange>
+                  <warmupTime>0.8</warmupTime>
+                  <noiseRadius>4</noiseRadius>
+                  <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                  <soundCast>ThrowGrenade</soundCast>
+                  <soundCastTail>GunTail_Medium</soundCastTail>
+                  <targetParams>
+                     <canTargetLocations>true</canTargetLocations>
+                  </targetParams>
+                  <defaultProjectile>RM_Proj_PlasmaGrenadeImmolator</defaultProjectile>
+                  <onlyManualCast>true</onlyManualCast>
+                  <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+                  <ai_AvoidFriendlyFireRadius>2</ai_AvoidFriendlyFireRadius>
+               </Properties>
+               <weaponTags>
+                  <li>MechanoidGrenadeDestructive</li>
+                  <li>EmpireGrenadeDestructive</li>
+                  <li>CE_OneHandedWeapon</li>
+               </weaponTags>
+            </li>
+
+            <li Class="PatchOperationAttributeSet">
+               <xpath>Defs/ThingDef[defName="RM_Weapon_GrenadePlasmaImmolator"]</xpath>
+               <attribute>ParentName</attribute>
+               <value>BaseWeapon</value>
+            </li>
+
+            <li Class="PatchOperationRemove">
+               <xpath>Defs/ThingDef[defName="RM_Weapon_GrenadePlasmaImmolator"]/recipeMaker</xpath>
+            </li>
+
+            <li Class="PatchOperationRemove">
+               <xpath>Defs/ThingDef[defName="RM_Weapon_GrenadePlasmaImmolator"]/costList</xpath>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="RM_Weapon_GrenadePlasmaImmolator"]</xpath>
+               <value>
+                  <thingClass>CombatExtended.AmmoThing</thingClass>
+                  <stackLimit>75</stackLimit>
+                  <resourceReadoutPriority>First</resourceReadoutPriority>
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs</xpath>
+               <value>
+
+                  <RecipeDef ParentName="GrenadeRecipeBase">
+                     <defName>RM_Make_ImmolatorGrenade</defName>
+                     <label>make immolator grenades x10</label>
+                     <description>Craft 10 immolator grenades.</description>
+                     <jobString>Making immolator grenades.</jobString>
+                     <workAmount>11000</workAmount>
+                     <researchPrerequisite>AdvancedFabrication</researchPrerequisite>
+                     <ingredients>
+                        <li>
+                           <filter>
+                              <thingDefs>
+                                 <li>Steel</li>
+                              </thingDefs>
+                           </filter>
+                           <count>20</count>
+                        </li>
+                        <li>
+                           <filter>
+                              <thingDefs>
+                                 <li>Chemfuel</li>
+                              </thingDefs>
+                           </filter>
+                           <count>80</count>
+                        </li>
+                        <li>
+                           <filter>
+                              <thingDefs>
+                                 <li>ComponentIndustrial</li>
+                              </thingDefs>
+                           </filter>
+                           <count>3</count>
+                        </li>
+                        <li>
+                           <filter>
+                              <thingDefs>
+                                 <li>Prometheum</li>
+                              </thingDefs>
+                           </filter>
+                           <count>3</count>
+                        </li>
+                     </ingredients>
+                     <fixedIngredientFilter>
+                        <thingDefs>
+                           <li>Steel</li>
+                           <li>Chemfuel</li>
+                           <li>ComponentIndustrial</li>
+                           <li>Prometheum</li>
+                        </thingDefs>
+                     </fixedIngredientFilter>
+                     <products>
+                        <RM_Weapon_GrenadePlasmaImmolator>10</RM_Weapon_GrenadePlasmaImmolator>
+                     </products>
+                     <recipeUsers>
+                        <li>FabricationBench</li>
+                     </recipeUsers>
+                  </RecipeDef>
+
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs</xpath>
+               <value>
+
+					<ThingDef ParentName="BaseWeapon">
+						<defName>RM_Weapon_GrenadePlasmaImmolator_V</defName>
+						<label>immolator grenade</label>
+						<description>A stack of antipersonnel plasma pulse grenades. The resulting explosion will ignite anything nearby.</description>
+						<graphicData>
+							<texPath>Things/Item/Equipment/WeaponRanged/MechanoidImmolatorGrenades</texPath>
+							<graphicClass>Graphic_Single</graphicClass>
+						</graphicData>
+						<tickerType>Normal</tickerType>
+						<soundInteract>Interact_Grenade</soundInteract>
+						<uiIconScale>1.3</uiIconScale>
+						<techLevel>Ultra</techLevel>
+						<statBases>
+							<Mass>4</Mass>
+							<RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+							<WorkToMake>22000</WorkToMake>
+						</statBases>
+						<weaponTags>
+							<li>MechanoidGrenadeDestructive</li>
+						</weaponTags>
+						<thingCategories>
+							<li>Grenades</li>
+						</thingCategories>
+						<verbs>
+							<li>
+								<label>throw immolator grenade</label>
+								<verbClass>Verb_LaunchProjectile</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<range>12.9</range>
+								<forcedMissRadius>1.9</forcedMissRadius>
+								<warmupTime>1.5</warmupTime>
+								<noiseRadius>4</noiseRadius>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>ThrowGrenade</soundCast>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<defaultProjectile>RM_Proj_GrenadeImmolator</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+						<comps>
+							<li Class="CompProperties_Explosive">
+								<explosiveRadius>4.66</explosiveRadius>
+								<explosiveDamageType>Flame</explosiveDamageType>
+								<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+							</li>
+						</comps>
+					</ThingDef>
+
+               </value>
+            </li>
+
+            <li Class="PatchOperationAdd">
+               <xpath>Defs/ThingDef[defName="RM_Proj_GrenadeImmolator"]/projectile</xpath>
+               <value>
+                  <damageAmountBase>10</damageAmountBase>
+               </value>
+            </li>
+
+            <!-- ======== VWE - Grenades Add-On ======= -->
+            <li Class="PatchOperationFindMod">
+               <mods>
+                  <li>Vanilla Weapons Expanded - Grenades</li>
+               </mods>
+
+               <match Class="PatchOperationSequence">
+                  <operations>
+
+                     <!-- === Immolator Grenade Belt === -->
+                     <li Class="PatchOperationReplace">
+                        <xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadePlasmaImmolator"]/costList</xpath>
+                        <value>
+                           <costList>
+                              <RM_Weapon_GrenadePlasmaImmolator>5</RM_Weapon_GrenadePlasmaImmolator>
+                           </costList>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationReplace">
+                        <xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadePlasmaImmolator"]/comps/li[@Class="CompProperties_Reloadable"]/ammoCountToRefill</xpath>
+                        <value>
+                           <ammoCountPerCharge>1</ammoCountPerCharge>
+                        </value>
+                     </li>
+
+                     <li Class="PatchOperationReplace">
+                        <xpath>Defs/ThingDef[defName="VWE_Apparel_GrenadePlasmaImmolator"]/verbs</xpath>
+                        <value>
+                           <verbs>
+                              <li Class="CombatExtended.VerbPropertiesCE">
+                                 <label>throw immolator grenade</label>
+                                 <verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+                                 <hasStandardCommand>true</hasStandardCommand>
+                                 <onlyManualCast>True</onlyManualCast>
+                                 <warmupTime>0.8</warmupTime>
+                                 <range>12.9</range>
+                                 <minRange>3</minRange>
+                                 <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+                                 <soundCast>ThrowGrenade</soundCast>
+                                 <soundCastTail>GunTail_Medium</soundCastTail>
+                                 <muzzleFlashScale>10</muzzleFlashScale>
+                                 <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+                                 <targetParams>
+                                    <canTargetLocations>true</canTargetLocations>
+                                 </targetParams>
+                                 <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+                                 <defaultProjectile>RM_Proj_PlasmaGrenadeImmolator</defaultProjectile>
+                                 <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+                              </li>
+                           </verbs>
+                        </value>
+                     </li>
+
+                  </operations>
+               </match>
+            </li>
+
+         </operations>
+      </match>
+   </Operation>
+
+</Patch>

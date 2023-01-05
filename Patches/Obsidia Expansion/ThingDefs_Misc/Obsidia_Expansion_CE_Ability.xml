@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Obsidia Expansion - Mothoids</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+			
+				<!-- ============== Atlant Pollen ================ -->
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="OE_PollenAtlant"]/verbProperties/range</xpath>
+					<value>
+					  <range>14.9</range>
+					</value>
+				</li>
+				
+				<!-- ============== Flight ================ -->
+				
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="OE_WingsFly"]/verbProperties/range</xpath>
+						<value>
+							<range>27.9</range>
+						</value>
+				</li>			
+				
+				<!-- ============== silkshot compatibility ================ -->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="OE_Silkshot"]/verbProperties/range</xpath>
+					<value>
+					  <range>11.9</range>
+					</value>
+			 </li>
+
+			 <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="OE_Silkshot_Bullet"]/projectile</xpath>
+					<value>
+					  <projectile Class="CombatExtended.ProjectilePropertiesCE">
+					  	<damageDef>Stun</damageDef>
+					  	<speed>95</speed>      
+					  	<damageAmountBase>18</damageAmountBase>
+					  	<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					  </projectile>
+					</value>
+			 </li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>

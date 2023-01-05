@@ -63,12 +63,17 @@ namespace CombatExtended.AI
         public override void OnStartCastSuccess(Verb verb)
         {
             base.OnStartCastSuccess(verb);
-            if (!ShouldRun) return;
+            if (!ShouldRun)
+            {
+                return;
+            }
 
             CompFireModes fireModes = verb.EquipmentSource?.TryGetComp<CompFireModes>() ?? null;
 
             if (verb.EquipmentSource != null && fireModes != null && _castTarg != null && _destTarg != null)
+            {
                 OptimizeModes(fireModes, verb, _castTarg.Value, _destTarg.Value);
+            }
 
             this._castTarg = null;
             this._destTarg = null;

@@ -14,7 +14,7 @@ namespace CombatExtended
     {
         static MeleeTargettingAdd()
         {
-            foreach(ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
+            foreach (ThingDef humanlike in DefDatabase<ThingDef>.AllDefs.Where(y => y.race != null && y.race.Humanlike))
             {
                 if (humanlike.comps == null)
                 {
@@ -116,7 +116,7 @@ namespace CombatExtended
 
             return BodyPartHeight.Undefined;
         }
-            
+
 
 
         public bool SkillReqA
@@ -169,6 +169,12 @@ namespace CombatExtended
         #region Methods
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
+            // Don't let people control melee targeting for non-colonist pawns or colonists in a mental state
+            if (!PawnParent.IsColonist || PawnParent.InAggroMentalState)
+            {
+                yield break;
+            }
+
             if (SkillReqA)
             {
                 yield return new Command_Action
@@ -192,30 +198,30 @@ namespace CombatExtended
                         {
                             if (!parts.Contains(posTarget.def))
                             {
-                                if(posTarget.depth == BodyPartDepth.Outside
-                                && posTarget.height == heightInt
-                                && !posTarget.def.label.Contains("toe")
-                                && !posTarget.def.label.Contains("finger")
-                                && !posTarget.def.label.Contains("utility")
-                                )
+                                if (posTarget.depth == BodyPartDepth.Outside
+                                        && posTarget.height == heightInt
+                                        && !posTarget.def.label.Contains("toe")
+                                        && !posTarget.def.label.Contains("finger")
+                                        && !posTarget.def.label.Contains("utility")
+                                  )
                                 {
                                     parts.Add(posTarget.def);
                                 }
                             }
 
-                            
 
-                           
+
+
                         }
 
                         foreach (BodyPartDef def in parts)
                         {
                             options.Add(new FloatMenuOption(def.label,
-                                   delegate
-                                   {
-                                       ChangeCurrentPart(def);
-                                   }
-                                   ));
+                                                            delegate
+                            {
+                                ChangeCurrentPart(def);
+                            }
+                                                           ));
                         }
 
                         options.Add(new FloatMenuOption("CE_NoBP".Translate(), delegate { ChangeCurrentPart(null); }));

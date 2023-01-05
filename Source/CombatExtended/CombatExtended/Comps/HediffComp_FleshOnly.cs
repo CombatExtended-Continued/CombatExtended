@@ -7,7 +7,9 @@ namespace CombatExtended
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             if (!Pawn.RaceProps.IsFlesh)
+            {
                 parent.Severity = 0;
+            }
         }
     }
 }

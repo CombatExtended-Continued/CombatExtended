@@ -22,10 +22,22 @@ namespace CombatExtended.Lasers
         /// <returns>the mesh</returns>
         public static Mesh Mesh(float st, float sv)
         {
-            if (st < 0) st = 0;
-            if (st > 0.5f) st = 0.5f;
-            if (sv < 0) sv = 0;
-            if (sv > 0.5f) sv = 0.5f;
+            if (st < 0)
+            {
+                st = 0;
+            }
+            if (st > 0.5f)
+            {
+                st = 0.5f;
+            }
+            if (sv < 0)
+            {
+                sv = 0;
+            }
+            if (sv > 0.5f)
+            {
+                sv = 0.5f;
+            }
 
             int textureSeamIndex = (int)(st / 0.5f * textureSeamPrecision);
             int geometrySeamIndex = (int)(sv / 0.5f * geometrySeamPrecision);
@@ -43,7 +55,8 @@ namespace CombatExtended.Lasers
             float rt = 1.0f - st;
             float vsf = 0.5f - sv;
 
-            Vector3[] vertices = {
+            Vector3[] vertices =
+            {
                 new Vector3(-0.5f, 0f, -0.5f),
                 new Vector3(-0.5f, 0f, -vsf),
                 new Vector3(0.5f, 0f, -vsf),
@@ -54,7 +67,8 @@ namespace CombatExtended.Lasers
                 new Vector3(0.5f, 0f, 0.5f),
             };
 
-            Vector2[] uv = {
+            Vector2[] uv =
+            {
                 new Vector2(0f, 0f),
                 new Vector2(0f, st),
                 new Vector2(1f, st),
@@ -65,7 +79,8 @@ namespace CombatExtended.Lasers
                 new Vector2(1f, 1f),
             };
 
-            int[] triangles = {
+            int[] triangles =
+            {
                 0, 1, 2,
                 0, 2, 3,
                 1, 4, 5,

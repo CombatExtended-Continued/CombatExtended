@@ -28,7 +28,7 @@ namespace CombatExtended
             EquipmentStatKey key = new EquipmentStatKey(equipment);
 
             return cachedStats.TryGetValue(key, out float value) ?
-                value : cachedStats[key] = equipment.GetStatValue(stat);
+                   value : cachedStats[key] = equipment.GetStatValue(stat);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -51,7 +51,9 @@ namespace CombatExtended
                         ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
 
                         for (int i = 0; i < wornApparel.Count; i++)
+                        {
                             value += GetEquipmentStat(wornApparel[i], apparelStat);
+                        }
 
                         result = Select(value, result);
                     }
@@ -60,7 +62,9 @@ namespace CombatExtended
                         ThingOwner<Apparel> wornApparel = pawn.apparel.wornApparel;
 
                         for (int i = 0; i < wornApparel.Count; i++)
+                        {
                             result = Select(result, GetEquipmentStat(wornApparel[i], apparelStat));
+                        }
                     }
                 }
                 if (weaponStat != null && pawn.equipment != null && pawn.equipment.Primary != null)
@@ -76,7 +80,9 @@ namespace CombatExtended
                         for (int i = 0; i < hediffs.Count; i++)
                         {
                             if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
+                            {
                                 value += GetAddedPartStat(addedpart);
+                            }
                         }
                         result = Select(value, result);
                     }
@@ -86,7 +92,9 @@ namespace CombatExtended
                         for (int i = 0; i < hediffs.Count; i++)
                         {
                             if (hediffs[i] is Hediff_AddedPart addedpart && addedpart.def.spawnThingOnRemoved != null)
+                            {
                                 result = Select(result, GetAddedPartStat(addedpart));
+                            }
                         }
                     }
                 }

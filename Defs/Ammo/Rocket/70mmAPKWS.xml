@@ -20,7 +20,7 @@
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmAPKWSBase" ParentName="AmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="70mmAPKWSBase" ParentName="MediumAmmoBase" Abstract="True">
 		<description>70mm laser-guided munition known as the Advanced Precision Kill Weapon System (APKWS), based on Hydra 70 unguided rockets.</description>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -55,7 +55,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base70mmAPKWS" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base70mmAPKWS" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -68,6 +68,7 @@
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>false</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>	
 

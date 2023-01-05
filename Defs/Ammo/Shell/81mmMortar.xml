@@ -7,9 +7,7 @@
     <iconPath>UI/Icons/ThingCategories/CaliberMortar</iconPath>
   </ThingCategoryDef>
 
-
   <!-- ==================== AmmoSet ========================== -->
-
 
   <CombatExtended.AmmoSetDef>
     <defName>AmmoSet_81mmMortarShell</defName>
@@ -22,13 +20,12 @@
       <Shell_Firefoam>Bullet_81mmMortarShell_Firefoam</Shell_Firefoam>
       <Shell_Smoke>Bullet_81mmMortarShell_Smoke</Shell_Smoke>      
       <Shell_AntigrainWarhead>Bullet_81mmMortarShell_Antigrain</Shell_AntigrainWarhead>
+      <Shell_Toxic MayRequire="Ludeon.RimWorld.Biotech">Bullet_81mmMortarShell_Tox</Shell_Toxic>
     </ammoTypes>
     <isMortarAmmoSet>true</isMortarAmmoSet>
   </CombatExtended.AmmoSetDef>
 
-
   <!-- ==================== Ammo ========================== -->
-
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="81mmMortarShellBase" ParentName="HeavyAmmoBase" Abstract="True">
     <description>Low-velocity shell designed to be fired from a mortar.</description>
@@ -65,13 +62,11 @@
       <Bulk>8.17</Bulk>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-    <detonateProjectile>Bullet_81mmMortarShell_HE</detonateProjectile>
     <comps>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>2.9</explosiveRadius>
         <explosiveDamageType>Bomb</explosiveDamageType>
-    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
         <explodeOnKilled>True</explodeOnKilled>
@@ -93,13 +88,11 @@
       <Bulk>10.01</Bulk>
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
-    <detonateProjectile>Bullet_81mmMortarShell_Incendiary</detonateProjectile>
     <comps>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>2.9</explosiveRadius>
         <explosiveDamageType>Flame</explosiveDamageType>
-    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
         <explodeOnKilled>True</explodeOnKilled>
@@ -122,17 +115,10 @@
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>34</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>5.5</explosiveRadius>
-		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-	  </li>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>11.9</explosiveRadius>
         <explosiveDamageType>EMP</explosiveDamageType>
-    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
         <explodeOnKilled>True</explodeOnKilled>
@@ -154,13 +140,11 @@
       <Bulk>10.01</Bulk>
     </statBases>
     <ammoClass>FoamFuel</ammoClass>
-    <detonateProjectile>Bullet_81mmMortarShell_Firefoam</detonateProjectile>
     <comps>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
-        <explosiveRadius>9.5</explosiveRadius>
+        <explosiveRadius>5</explosiveRadius>
         <explosiveDamageType>Extinguish</explosiveDamageType>
-    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
         <postExplosionSpawnChance>1</postExplosionSpawnChance>
@@ -186,9 +170,8 @@
       <Bulk>10.01</Bulk>
     </statBases>
     <ammoClass>Smoke</ammoClass>
-    <detonateProjectile>Bullet_81mmMortarShell_Smoke</detonateProjectile>
     <comps>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>6</explosiveRadius>
         <explosiveDamageType>Smoke</explosiveDamageType>
@@ -214,24 +197,17 @@
       <Bulk>6</Bulk>
     </statBases>
     <thingSetMakerTags>
-      <li>RewardStandardHighFreq</li>
+      <li>RewardStandardCore</li>
     </thingSetMakerTags>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
     </tradeTags>
     <ammoClass>Antigrain</ammoClass>
     <comps>
-	  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-		<damageAmountBase>800</damageAmountBase>
-		<explosiveDamageType>Bomb</explosiveDamageType>
-		<explosiveRadius>20</explosiveRadius>
-		<explosionSound>Explosion_GiantBomb</explosionSound>
-	  </li>
-		<!-- Vanilla values -->
+	  <!-- Vanilla values -->
       <li Class="CompProperties_Explosive">
         <explosiveRadius>14.9</explosiveRadius>
         <explosiveDamageType>BombSuper</explosiveDamageType>
-    <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
         <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
         <chanceToStartFire>0.22</chanceToStartFire>
         <damageFalloff>true</damageFalloff>
@@ -244,11 +220,33 @@
     </comps>
   </ThingDef>
 
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Shell_Toxic</defName>
+    <label>81mm mortar shell (Toxic)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Mortar/Toxic</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>37.03</MarketValue>
+      <Mass>4.1</Mass>
+      <Bulk>10.01</Bulk>
+    </statBases>
+    <ammoClass>Toxic</ammoClass>
+    <comps>
+	  <!-- Vanilla values -->
+      <li Class="CompProperties_Explosive">
+        <explosiveDamageType>ToxGas</explosiveDamageType>
+        <explosiveRadius>11</explosiveRadius>
+        <postExplosionGasType>ToxGas</postExplosionGasType>
+        <wickTicks>30~60</wickTicks>
+      </li>
+    </comps>
+  </ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
-
-  <ThingDef Name="Base81mmMortarShell" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base81mmMortarShell" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <shaderType>TransparentPostLight</shaderType>
@@ -261,6 +259,7 @@
       <flyOverhead>true</flyOverhead>
       <dropsCasings>true</dropsCasings>
       <casingMoteDefname>Mote_BigShell</casingMoteDefname>
+      <casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
       <gravityFactor>5</gravityFactor>
     </projectile>
   </ThingDef>
@@ -339,6 +338,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Extinguish</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>9.5</explosionRadius>
@@ -364,6 +365,8 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
       <explosionRadius>6</explosionRadius>
@@ -401,29 +404,29 @@
     </projectile>
   </ThingDef>
 
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Base81mmMortarShell">
-    <defName>Bullet_ChargeMortarShell</defName>
-    <label>charge mortar shell</label>
+  <ThingDef ParentName="Base81mmMortarShell" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Bullet_81mmMortarShell_Tox</defName>
+    <label>81mm mortar shell (Toxic)</label>
     <graphicData>
-      <texPath>Things/Projectile/Mortar/Charged</texPath>
+      <texPath>Things/Projectile/Mortar/Toxic</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <damageDef>Bomb</damageDef>
-      <damageAmountBase>156</damageAmountBase>
+      <damageDef>ToxGas</damageDef>
       <armorPenetrationSharp>0</armorPenetrationSharp>
       <armorPenetrationBlunt>0</armorPenetrationBlunt>
-      <explosionRadius>3</explosionRadius>
+      <explosionRadius>0.1</explosionRadius>
       <flyOverhead>true</flyOverhead>
-      <soundExplode>MortarBomb_Explode</soundExplode>
-      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-      <ai_IsIncendiary>true</ai_IsIncendiary>
-	  <dropsCasings>false</dropsCasings>	  
+      <soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+      <soundExplode>ToxicShellLanded</soundExplode>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <postExplosionSpawnThingDef>Shell_Toxic_Releasing</postExplosionSpawnThingDef>
+      <postExplosionSpawnThingDefWater>Shell_Toxic_Releasing_Water</postExplosionSpawnThingDefWater>
     </projectile>
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
-
 
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeShell_HighExplosive</defName>
@@ -518,6 +521,7 @@
     <label>make 81mm EMP mortar shells x5</label>
     <description>Craft 5 81mm EMP mortar shells.</description>
     <jobString>Making 81mm EMP mortar shells.</jobString>
+    <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
     <ingredients>
       <li>
         <filter>
@@ -635,6 +639,51 @@
     </fixedIngredientFilter>
     <products>
       <Shell_Smoke>5</Shell_Smoke>
+    </products>
+    <workAmount>6600</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeShell_Toxic</defName>
+    <label>make 81mm tox mortar shells x5</label>
+    <description>Craft 5 81mm tox mortar shells.</description>
+    <jobString>Making 81mm tox mortar shells.</jobString>
+    <researchPrerequisite>ToxGas</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>42</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Shell_Toxic>5</Shell_Toxic>
     </products>
     <workAmount>6600</workAmount>
   </RecipeDef>

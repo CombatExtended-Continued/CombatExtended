@@ -25,17 +25,22 @@ namespace CombatExtended
         {
             var penetration = 0f;
             if (def.isExplosive)
+            {
                 penetration = amount * SecExplosionPenPerDmg;
+            }
             else if (def.armorCategory == DamageArmorCategoryDefOf.Sharp)
+            {
                 penetration = primaryDinfo.ArmorPenetrationInt;
+            }
 
             var dinfo = new DamageInfo(def,
-                            amount,
-                            penetration,
-                            primaryDinfo.Angle,
-                            primaryDinfo.Instigator,
-                            primaryDinfo.HitPart,
-                            primaryDinfo.Weapon);
+                                       amount,
+                                       penetration,
+                                       primaryDinfo.Angle,
+                                       primaryDinfo.Instigator,
+                                       primaryDinfo.HitPart,
+                                       primaryDinfo.Weapon,
+                                       instigatorGuilty: primaryDinfo.InstigatorGuilty);
             dinfo.SetBodyRegion(primaryDinfo.Height, primaryDinfo.Depth);
             return dinfo;
         }

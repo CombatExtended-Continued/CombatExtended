@@ -113,7 +113,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base155mmHowitzerShell" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base155mmHowitzerShell" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -126,6 +126,7 @@
 			<flyOverhead>true</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
 	</ThingDef>
@@ -178,7 +179,6 @@
 			<damageAmountBase>150</damageAmountBase>
 			<explosiveDamageType>Thermobaric</explosiveDamageType>
 			<explosiveRadius>4</explosiveRadius>
-			<explosionSound>MortarIncendiary_Explode</explosionSound>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		</comps>
@@ -210,6 +210,8 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <explosionRadius>10.5</explosionRadius>
@@ -226,7 +228,7 @@
 	  </ThingDef>
 
 	<!-- direct fire-->
-	<ThingDef Name="Base155mmHowitzerShellDirectfire" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base155mmHowitzerShellDirectfire" ParentName="BaseExplosiveBullet" Abstract="true">
 		<graphicData>
 			<shaderType>TransparentPostLight</shaderType>
 		  </graphicData>
@@ -236,6 +238,7 @@
 			<flyOverhead>false</flyOverhead>
 			<dropsCasings>true</dropsCasings>
 			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 			<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -286,7 +289,6 @@
 			<damageAmountBase>150</damageAmountBase>
 			<explosiveDamageType>Thermobaric</explosiveDamageType>
 			<explosiveRadius>4</explosiveRadius>
-			<explosionSound>MortarIncendiary_Explode</explosionSound>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		  </li>
 		</comps>
@@ -317,6 +319,8 @@
 		</graphicData>
 	<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageDef>Smoke</damageDef>
+		  <suppressionFactor>0.0</suppressionFactor>
+		  <dangerFactor>0.0</dangerFactor>
 		  <armorPenetrationSharp>0</armorPenetrationSharp>
 		  <armorPenetrationBlunt>0</armorPenetrationBlunt>
 		  <explosionRadius>10.5</explosionRadius>
@@ -426,6 +430,7 @@
 		<label>make 155mm EMP Howitzer shells x1</label>
 		<description>Craft 155mm EMP Howitzer shell.</description>
 		<jobString>Making 155mm EMP Howitzer shell.</jobString>
+		<researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
 		<workAmount>13600</workAmount>
 		<ingredients>
 			<li>

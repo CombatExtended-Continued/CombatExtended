@@ -46,12 +46,22 @@
           </value>
         </li>
 
+		<li Class="PatchOperationConditional">
+			<xpath>Defs/ThingDef[defName="NOD_Militant_Helmet"]/apparel/immuneToToxGasExposure</xpath>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="NOD_Militant_Helmet"]/apparel</xpath>
+				<value>
+					<immuneToToxGasExposure>true</immuneToToxGasExposure>
+				</value>
+			</nomatch>
+		</li>
+
         <li Class="PatchOperationReplace">
           <xpath>/Defs/ThingDef[defName="NOD_Militant_Helmet"]/equippedStatOffsets</xpath>
           <value>
             <equippedStatOffsets>
               <PsychicSensitivity>-0.1</PsychicSensitivity>
-              <ToxicResistance>0.50</ToxicResistance>
+              <ToxicEnvironmentResistance>0.50</ToxicEnvironmentResistance>
               <SmokeSensitivity>-1</SmokeSensitivity>
               <ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
             </equippedStatOffsets>
@@ -142,7 +152,7 @@
           <value>
             <equippedStatOffsets>
               <CarryBulk>8</CarryBulk>
-              <ToxicResistance>0.20</ToxicResistance>
+              <ToxicEnvironmentResistance>0.20</ToxicEnvironmentResistance>
             </equippedStatOffsets>
           </value>
         </li>

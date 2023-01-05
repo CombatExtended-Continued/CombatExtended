@@ -16,14 +16,15 @@
     <ammoTypes>
       <Ammo_80x256mmFuel_Incendiary>Bullet_80x256mmFuel_Incendiary</Ammo_80x256mmFuel_Incendiary>
     </ammoTypes>
+    <similarTo>AmmoSet_MechShell</similarTo>
   </CombatExtended.AmmoSetDef>
 
   <!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="80x256mmFuelBase" ParentName="SpacerSmallAmmoBase" Abstract="True">
+  <ThingDef Class="CombatExtended.AmmoDef" Name="80x256mmFuelBase" ParentName="SpacerMediumAmmoBase" Abstract="True">
     <description>Large fuel container for incendiary shot cannons.</description>
     <statBases>
-      <Mass>0.256</Mass>
+      <Mass>0.85</Mass>
       <Bulk>3.87</Bulk>
     </statBases>
     <thingCategories>
@@ -32,6 +33,7 @@
     <stackLimit>25</stackLimit>
     <tradeTags>
       <li>CE_AutoEnableTrade_Sellable</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">CE_AutoEnableCrafting_FabricationBench</li>
     </tradeTags>
   </ThingDef>
 
@@ -43,27 +45,27 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>10.97</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
+      <MarketValue>10.38</MarketValue> <!-- value intentionally decreased to help reduce wealth bloat/free silver -->
     </statBases>
     <ammoClass>GrenadeIncendiary</ammoClass>
 	<detonateProjectile>Bullet_80x256mmFuel_Incendiary</detonateProjectile>
 	<comps>
-    <li Class="CompProperties_Explosive">
-        <explosiveRadius>1.9</explosiveRadius>
+	    <li Class="CompProperties_Explosive">
+		<explosiveRadius>1.9</explosiveRadius>
 		<damageAmountBase>5</damageAmountBase>
-        <explosiveDamageType>PrometheumFlame</explosiveDamageType>
+		<explosiveDamageType>PrometheumFlame</explosiveDamageType>
 		<explosiveExpandPerStackcount>0.10</explosiveExpandPerStackcount>
-        <startWickHitPointsPercent>0.33</startWickHitPointsPercent>
+		<startWickHitPointsPercent>0.33</startWickHitPointsPercent>
 		<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		<explodeOnKilled>True</explodeOnKilled>
-        <wickTicks>60~300</wickTicks>
-    </li>
+		<wickTicks>60~300</wickTicks>
+	    </li>
 	</comps>
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base80x256mmFuelIncendiaryBullet" ParentName="BaseBullet">
+  <ThingDef Name="Base80x256mmFuelIncendiaryBullet" ParentName="BaseExplosiveBullet">
     <defName>Bullet_80x256mmFuel_Incendiary</defName>
     <label>80x256mm fuel shell (Incendiary)</label>
     <graphicData>
@@ -93,12 +95,55 @@
         <damageAmountBase>150</damageAmountBase>
         <explosiveDamageType>Thermobaric</explosiveDamageType>
         <explosiveRadius>1.9</explosiveRadius>
-        <explosionSound>MortarIncendiary_Explode</explosionSound>
         <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
       </li>
     </comps>
   </ThingDef>
 
   <!-- ==================== Recipes ========================== -->
+
+  <RecipeDef ParentName="ChargeAmmoRecipeBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>MakeAmmo_80x256mmFuel_Incendiary</defName>
+    <label>make 80x256mm Fuel Cell x5</label>
+    <description>Craft 5 80x256mm Fuel Cells.</description>
+    <jobString>Making 80x256mm Fuel Cells.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Prometheum</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_80x256mmFuel_Incendiary>5</Ammo_80x256mmFuel_Incendiary>
+    </products>
+    <workAmount>3730</workAmount>  <!-- 10% more work -->
+  </RecipeDef>
 
 </Defs>
