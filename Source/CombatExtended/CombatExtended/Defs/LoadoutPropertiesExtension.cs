@@ -62,7 +62,7 @@ namespace CombatExtended
             allShieldPairs = ThingStuffPair.AllWith(td => td.thingClass == typeof(Apparel_Shield));
         }
 
-        public void GenerateLoadoutFor(Pawn pawn)
+        public void GenerateLoadoutFor(Pawn pawn, float biocodeWeaponChance)
         {
             if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                     || (pawn.WorkTagIsDisabled(WorkTags.Violent))
@@ -81,7 +81,7 @@ namespace CombatExtended
             // Generate forced sidearm
             if (forcedSidearm != null)
             {
-                TryGenerateWeaponWithAmmoFor(pawn, inventory, forcedSidearm);
+                TryGenerateWeaponWithAmmoFor(pawn, inventory, forcedSidearm, biocodeWeaponChance);
             }
 
             // Generate primary ammo
@@ -107,7 +107,7 @@ namespace CombatExtended
             {
                 foreach (SidearmOption current in sidearms)
                 {
-                    TryGenerateWeaponWithAmmoFor(pawn, inventory, current);
+                    TryGenerateWeaponWithAmmoFor(pawn, inventory, current, biocodeWeaponChance);
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace CombatExtended
             weapon.UpdateConfiguration();
         }
 
-        private void TryGenerateWeaponWithAmmoFor(Pawn pawn, CompInventory inventory, SidearmOption option)
+        private void TryGenerateWeaponWithAmmoFor(Pawn pawn, CompInventory inventory, SidearmOption option, float biocodeChance)
         {
             if (option.weaponTags.NullOrEmpty() || !Rand.Chance(option.generateChance))
             {
@@ -188,6 +188,10 @@ namespace CombatExtended
             {
                 // Create the actual weapon and put it into inventory
                 ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
+                if (Rand.Value < biocodeChance)
+                {
+                    thingWithComps.TryGetComp<CompBiocodable>()?.CodeFor(pawn);
+                }
                 LoadWeaponWithRandAmmo(thingWithComps); //Custom
                 int count; //Custom
                 if (inventory.CanFitInInventory(thingWithComps, out count)) //Custom
