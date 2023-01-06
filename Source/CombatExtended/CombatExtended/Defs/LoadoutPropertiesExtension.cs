@@ -161,7 +161,7 @@ namespace CombatExtended
             }
             // Generate weapon - mostly based on PawnWeaponGenerator.TryGenerateWeaponFor()
             // START 1:1 COPY
-            float randomInRange = pawn.kindDef.weaponMoney.RandomInRange;
+            float randomInRange = option.sidearmMoney.RandomInRange;
             for (int i = 0; i < allWeaponPairs.Count; i++)
             {
                 ThingStuffPair w = allWeaponPairs[i];
