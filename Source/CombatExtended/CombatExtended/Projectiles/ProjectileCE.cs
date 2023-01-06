@@ -706,13 +706,13 @@ namespace CombatExtended
             // and break it if we manage to decrease its hitpoints to zero or lower.
             if (interceptorComp.currentHitPoints > 0)
             {
-                interceptorComp.currentHitPoints -= Mathf.FloorToInt((float)this.damageAmount);
+                interceptorComp.currentHitPoints -= Mathf.FloorToInt(this.DamageAmount);
 
                 if (interceptorComp.currentHitPoints <= 0)
                 {
                     interceptorComp.currentHitPoints = 0;
                     interceptorComp.nextChargeTick = Find.TickManager.TicksGame;
-                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, (float)this.damageAmount));
+                    interceptorComp.BreakShieldHitpoints(new DamageInfo(projectileProperties.damageDef, this.DamageAmount));
                     return true;
                 }
             }
