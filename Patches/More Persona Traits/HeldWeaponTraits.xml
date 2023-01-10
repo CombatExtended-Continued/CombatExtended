@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+	<operations>
+	  <li Class="PatchOperationFindMod">
+			
+		<mods><li>More Persona Traits</li></mods>
+			
+		<match Class="PatchOperationSequence">
+		<operations>
+		
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/WeaponTraitDef[defName="MPT_Held_ArmorRatingUp"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+						<ArmorRating_Heat>0.15</ArmorRating_Heat>
+					</equippedStatOffsets>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/WeaponTraitDef[defName="MPT_Held_ArmorRatingDown"]/equippedStatOffsets</xpath>
+				<value>
+					<equippedStatOffsets>
+						<ArmorRating_Sharp>-5</ArmorRating_Sharp>
+						<ArmorRating_Blunt>-12</ArmorRating_Blunt>
+						<ArmorRating_Heat>-0.15</ArmorRating_Heat>
+					</equippedStatOffsets>
+				</value>
+			</li>
+		</operations>
+		</match>	
+	  </li>
+	</operations>	
+  </Operation>
+</Patch>
