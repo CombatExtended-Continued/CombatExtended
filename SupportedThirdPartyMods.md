@@ -285,6 +285,7 @@ Moa |
 Moonjelly Race  |
 More Consumables And Mutagens Reworked |
 More Mechanoids	|
+More Persona Traits	|
 More Practical Traits	|
 More Psycasts   |
 More Utility Packs	|
