@@ -947,6 +947,15 @@ namespace CombatExtended
                 aperatureSize = 0.03f;
             }
 
+            if (firingWithoutTarget)
+            {
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+                if (!currentTarget.IsValid)
+                {
+                    return false;
+                }
+            }
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -971,7 +980,7 @@ namespace CombatExtended
                     {
                         return false;
                     }
-                    //TODO: Make suppressive fire continue firing in the proper direction instead of randomly drifting where ever recoil+sway takes it.
+                    
                     shotAngle = lastShotAngle;
                     shotRotation = lastShotRotation;
                     GetSwayVec(ref shotRotation, ref shotAngle);
