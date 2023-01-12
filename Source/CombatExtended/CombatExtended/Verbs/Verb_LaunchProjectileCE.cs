@@ -966,11 +966,16 @@ namespace CombatExtended
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
                 if (firingWithoutTarget)
                 {
+                    //cease fire if targeting mode is not suppressive and target is null
+                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
+                    {
+                        return false;
+                    }
+                    //TODO: Make suppressive fire continue firing in the proper direction instead of randomly drifting where ever recoil+sway takes it.
                     shotAngle = lastShotAngle;
                     shotRotation = lastShotRotation;
                     GetSwayVec(ref shotRotation, ref shotAngle);
                     GetRecoilVec(ref shotRotation, ref shotAngle);
-
                 }
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
