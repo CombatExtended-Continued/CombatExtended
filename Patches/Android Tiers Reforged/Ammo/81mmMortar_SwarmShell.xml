@@ -12,9 +12,9 @@
 					<xpath>Defs</xpath>
 					<value>
 						<CombatExtended.AmmoCategoryDef>
-							<defName>GrenadeSwarmer</defName>
-							<label>swarmer</label>
-							<description>Releases a swarm of compacted mechanoids on impact.</description>
+							<defName>SwarmShell</defName>
+							<label>swarm shell</label>
+							<description>Releases several pre-programmed microscythers on impact.</description>
 							<advanced>true</advanced>
 						</CombatExtended.AmmoCategoryDef>
 					</value>
@@ -24,25 +24,32 @@
 					<xpath>Defs</xpath>
 					<value>
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
-							<defName>Nanoswarm_shell_81mm</defName>
-							<label>81mm mortar shell (Nanoswarm)</label>
+							<defName>Swarm_shell_81mm</defName>
+							<label>81mm mortar shell (Swarm)</label>
 							<graphicData>
-								<texPath>Things/Item/Nanoswarm_shell</texPath>
+								<texPath>Things/Items/Shells/Microscyther_shell</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<statBases>
-								<MarketValue>56.03</MarketValue>
+								<MarketValue>60</MarketValue>
 								<Mass>4.1</Mass>
 								<Bulk>11.34</Bulk>
 							</statBases>
-							<ammoClass>GrenadeSwarmer</ammoClass>
+							<ammoClass>SwarmShell</ammoClass>
 							<comps>
-								<li Class="CombatExtended.CompProperties_ExplosiveCE">
-									<explosiveDamageType>Extinguish</explosiveDamageType>
-									<explosiveRadius>1.9</explosiveRadius>
-									<postExplosionSpawnThingDef>MicroScytherGeneratorAI</postExplosionSpawnThingDef>
+								<li Class="CompProperties_Explosive">
+									<explosiveRadius>2</explosiveRadius>
+									<explosiveDamageType>Smoke</explosiveDamageType>
+									<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+									<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+									<postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
 									<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 									<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+									<explosionEffect>ExtinguisherExplosion</explosionEffect>
+									<wickTicks>
+										<min>10</min>
+										<max>30</max>
+									</wickTicks>
 								</li>
 							</comps>
 						</ThingDef>
@@ -53,8 +60,8 @@
 					<xpath>Defs</xpath>
 					<value>
 						<ThingDef ParentName="Base81mmMortarShell">
-							<defName>Bullet_81mmMortarShell_Nanoswarm</defName>
-							<label>81mm mortar shell (Nanoswarm)</label>
+							<defName>Bullet_81mmMortarShell_Swarm</defName>
+							<label>81mm mortar shell (Swarm)</label>
 							<graphicData>
 								<texPath>Things/Projectile/Mortar/EMP</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
@@ -68,7 +75,7 @@
 								<armorPenetrationBlunt>39.493</armorPenetrationBlunt>
 								<explosionRadius>1.9</explosionRadius>
 								<soundExplode>Explosion_EMP</soundExplode>
-								<postExplosionSpawnThingDef>MicroScytherGeneratorAI</postExplosionSpawnThingDef>
+								<postExplosionSpawnThingDef>ATR_MicroScytherGenerator</postExplosionSpawnThingDef>
 								<postExplosionSpawnThingCount>1</postExplosionSpawnThingCount>
 								<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 								<explosionEffect>ExtinguisherExplosion</explosionEffect>
@@ -80,7 +87,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
 					<value>
-						<Nanoswarm_shell_81mm>Bullet_81mmMortarShell_Nanoswarm</Nanoswarm_shell_81mm>
+						<Swarm_shell_81mm>Bullet_81mmMortarShell_Swarm</Swarm_shell_81mm>
 					</value>
 				</li>
 
@@ -88,10 +95,10 @@
 					<xpath>Defs</xpath>
 					<value>
 						<RecipeDef ParentName="AmmoRecipeBase">
-							<defName>MakeNanoswarm_shell_81mm</defName>
-							<label>make 81mm nanoswarmer mortar shell x1</label>
-							<description>Craft 1 81mm swarm shell.</description>
-							<jobString>Making 81mm swarm shells.</jobString>
+							<defName>MakeSwarm_shell_81mm</defName>
+							<label>make 81mm Swarm mortar shell x1</label>
+							<description>Craft 1 81mm Swarm shell.</description>
+							<jobString>Making 81mm Swarm shells.</jobString>
 							<ingredients>
 								<li>
 									<filter>
@@ -117,19 +124,19 @@
 								</thingDefs>
 							</fixedIngredientFilter>
 							<products>
-								<Nanoswarm_shell_81mm>1</Nanoswarm_shell_81mm>
+								<Swarm_shell_81mm>1</Swarm_shell_81mm>
 							</products>
 							<workAmount>3000</workAmount>
 							<recipeUsers Inherit="False">
-								<li>AndroidProductionVat</li>
+								<li>ATR_MechanicalAssemblyPod</li>
 							</recipeUsers>
-							<researchPrerequisite>UltimateRoboticAnimals</researchPrerequisite>
+							<researchPrerequisite>ATR_MilitaryBiomimetics</researchPrerequisite>
 						</RecipeDef>
 					</value>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="Nanoswarm_shell"]</xpath>
+					<xpath>Defs/ThingDef[defName="ATR_MicroscytherShell"]</xpath>
 				</li>
 
 			</operations>

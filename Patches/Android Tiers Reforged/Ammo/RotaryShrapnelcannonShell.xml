@@ -13,25 +13,23 @@
 					<xpath>Defs</xpath>
 					<value>
 
-						<!-- There is only one type of Mastiff shell, no subcategory for variants required -->
-
 						<!-- ==================== AmmoSet ========================== -->
 
 						<CombatExtended.AmmoSetDef>
-							<defName>AmmoSet_MastiffShotgunShell</defName>
-							<label>Mastiff shell</label>
+							<defName>AmmoSet_RotaryShrapnelcannonShell</defName>
+							<label>Rotary Shrapnelcannon shell</label>
 							<ammoTypes>
-								<Ammo_MastiffShotgunShell>Bullet_MastiffShotgunShell</Ammo_MastiffShotgunShell>
+								<Ammo_RotaryShrapnelcannonShell>Bullet_RotaryShrapnelcannonShell</Ammo_RotaryShrapnelcannonShell>
 							</ammoTypes>
 						</CombatExtended.AmmoSetDef>
 
 						<!-- ==================== Ammo ========================== -->
 
 						<ThingDef Class="CombatExtended.AmmoDef" Name="MastiffShotgunShellBase" ParentName="HeavyAmmoBase" Abstract="True">
-							<description>Very large caliber buckshot shell designed specifically for the mech-operated Mastiff Shotgun.</description>
+							<description>Very large caliber buckshot shell designed specifically for the mech-operated Rotary Shrapnelcannon.</description>
 							<statBases>
-								<Mass>2.128</Mass>
-								<Bulk>7.22</Bulk>
+								<Mass>1.072</Mass>
+								<Bulk>5.9</Bulk>
 							</statBases>
 							<tradeTags>
 								<li>CE_AutoEnableTrade</li>
@@ -44,45 +42,44 @@
 						</ThingDef>
 
 						<ThingDef Class="CombatExtended.AmmoDef" ParentName="MastiffShotgunShellBase">
-							<defName>Ammo_MastiffShotgunShell</defName>
-							<label>Mastiff shell (Buck)</label>
+							<defName>Ammo_RotaryShrapnelcannonShell</defName>
+							<label>Shrapnelcannon shell (Buck)</label>
 							<graphicData>
-								<texPath>ThirdParty/Android Tiers/MastiffShell</texPath>
+								<texPath>ThirdParty/Android Tiers/ShrapnelcannonShell</texPath>
 								<graphicClass>Graphic_StackCount</graphicClass>
 							</graphicData>
 							<statBases>
-								<MarketValue>9.52</MarketValue>
+								<MarketValue>4.37</MarketValue>
 							</statBases>
 							<ammoClass>BuckShot</ammoClass>
 						</ThingDef>
 
 						<!-- ================== Projectiles ================== -->
 
-						<!-- Workaround for conditionally-patched projectiles: use an existing abstract class from the generic ammo library (In this case, Base12GaugeBullet) -->
 						<ThingDef ParentName="Base12GaugeBullet">
-							<defName>Bullet_MastiffShotgunShell</defName>
-							<label>Mastiff buckshot pellet</label>
+							<defName>Bullet_RotaryShrapnelcannonShell</defName>
+							<label>Shrapnelcannon buckshot pellet</label>
 							<graphicData>
 								<texPath>Things/Projectile/Shotgun_Pellet</texPath>
 								<graphicClass>Graphic_Single</graphicClass>
 							</graphicData>
 							<projectile Class="CombatExtended.ProjectilePropertiesCE">
-								<speed>107</speed>
-								<damageAmountBase>16</damageAmountBase>
+								<speed>114</speed>
+								<damageAmountBase>57</damageAmountBase>
 								<damageDef>Fragment</damageDef>
-								<pelletCount>150</pelletCount>
-								<armorPenetrationSharp>6</armorPenetrationSharp>
-								<armorPenetrationBlunt>79.54</armorPenetrationBlunt>
-								<spreadMult>18.8</spreadMult>
+								<pelletCount>6</pelletCount>
+								<armorPenetrationSharp>12</armorPenetrationSharp>
+								<armorPenetrationBlunt>526.34</armorPenetrationBlunt>
+								<spreadMult>7.9</spreadMult>
 							</projectile>
 						</ThingDef>
 
 						<RecipeDef ParentName="AmmoRecipeBase">
-							<defName>MakeAmmo_MastiffShotgunShell</defName>
-							<label>make Mastiff (Buck) shell x5</label>
-							<description>Craft 5 Mastiff (Buck) shells.</description>
-							<jobString>Making Mastiff (Buck) shells.</jobString>
-							<workAmount>2500</workAmount>
+							<defName>MakeAmmo_RotaryShrapnelcannonShell</defName>
+							<label>make Shrapnelcannon (Buck) shell x10</label>
+							<description>Craft 10 Shrapnelcannon (Buck) shells.</description>
+							<jobString>Making Shrapnelcannon (Buck) shells.</jobString>
+							<workAmount>2200</workAmount>
 							<ingredients>
 								<li>
 									<filter>
@@ -90,7 +87,7 @@
 											<li>Steel</li>
 										</thingDefs>
 									</filter>
-									<count>30</count>
+									<count>22</count>
 								</li>
 							</ingredients>
 							<fixedIngredientFilter>
@@ -99,7 +96,7 @@
 								</thingDefs>
 							</fixedIngredientFilter>
 							<products>
-								<Ammo_MastiffShotgunShell>5</Ammo_MastiffShotgunShell>
+								<Ammo_RotaryShrapnelcannonShell>10</Ammo_RotaryShrapnelcannonShell>
 							</products>
 						</RecipeDef>
 
