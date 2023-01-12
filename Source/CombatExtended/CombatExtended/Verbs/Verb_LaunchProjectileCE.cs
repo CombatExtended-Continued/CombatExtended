@@ -980,7 +980,7 @@ namespace CombatExtended
                     {
                         return false;
                     }
-                    
+
                     shotAngle = lastShotAngle;
                     shotRotation = lastShotRotation;
                     GetSwayVec(ref shotRotation, ref shotAngle);
