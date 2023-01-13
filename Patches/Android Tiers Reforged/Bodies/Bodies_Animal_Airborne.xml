@@ -4,8 +4,6 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 
-			<!--Android Tailess Animal Bodytype-->
-
 			<li Class="PatchOperationFindMod">
 				<mods>
 					<li>Android Tiers Reforged</li>
@@ -14,17 +12,8 @@
 				<match Class="PatchOperationSequence">
 					<operations>
 
-						<!--Micro Drone-->
-
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/groups</xpath>
-							<value>
-								<li>CoveredByNaturalArmor</li>
-							</value>
-						</li>
-
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="MechanicalNeck"]</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart</xpath>
 							<value>
 								<groups>
 									<li>CoveredByNaturalArmor</li>
@@ -33,35 +22,42 @@
 						</li>
 
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="Head"]/groups</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_Framework"]/groups</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
 						</li>
 
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="LeftWingBlade"]/groups</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_MechanicalNeck"]</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
 						</li>
 
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="RightWingBlade"]/groups</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_MechanicalNeck"]/parts/li[def="ATR_MechanicalHead"]/groups</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
 						</li>
 
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="PropellerBladeMicro"]/groups</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_MechanicalWing"]/groups</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
 						</li>
 
 						<li Class="PatchOperationAdd">
-							<xpath>Defs/BodyDef[defName="MechanicalMicroDrone"]/corePart/parts/li[def="PropellerBladeMicro"]/parts/li[def="CounterWeightTop"]/groups</xpath>
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_MechanicalPropeller"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="ATR_MechAirborne"]/corePart/parts/li[def="ATR_MechanicalPropeller"]/parts/li[def="ATR_CounterWeightTop"]/groups</xpath>
 							<value>
 								<li>CoveredByNaturalArmor</li>
 							</value>
