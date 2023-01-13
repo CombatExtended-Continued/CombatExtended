@@ -66,7 +66,7 @@ namespace CombatExtended
         {
             get
             {
-                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenCountOverride);
+                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
             }
         }
         public int CurMagCount
