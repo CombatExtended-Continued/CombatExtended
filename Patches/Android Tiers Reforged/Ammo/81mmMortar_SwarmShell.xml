@@ -5,6 +5,7 @@
 		<mods>
 			<li>Android Tiers Reforged</li>
 		</mods>
+
 		<match Class="PatchOperationSequence">
 			<operations>
 
@@ -139,7 +140,17 @@
 					<xpath>Defs/ThingDef[defName="ATR_MicroscytherShell"]</xpath>
 				</li>
 
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="ATR_TrapIED_Microscyther"]/costList</xpath>
+					<value>
+						<costList>
+							<Swarm_shell_81mm>2</Swarm_shell_81mm>
+						</costList>
+					</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>
