@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>More Persona Traits</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="MPT_MeleeWeapon_PsyfocusStaffBladelink"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>6</power>
+								<cooldownTime>1.55</cooldownTime>
+								<armorPenetrationBlunt>1.95</armorPenetrationBlunt>
+								<linkedBodyPartsGroup>Head</linkedBodyPartsGroup>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MPT_MeleeWeapon_PsyfocusStaffBladelink"]/statBases</xpath>
+					<value>
+						<Bulk>6</Bulk>
+						<MeleeCounterParryBonus>1.56</MeleeCounterParryBonus>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="MPT_MeleeWeapon_PsyfocusStaffBladelink"]/equippedStatOffsets</xpath>
+					<value>
+						<MeleeCritChance>0.6</MeleeCritChance>
+						<MeleeParryChance>1.17</MeleeParryChance>
+						<MeleeDodgeChance>0.47</MeleeDodgeChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_MeleeHitChanceUp"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeHitChance>1</MeleeHitChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_MeleeHitChanceDown"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeHitChance>-1</MeleeHitChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_ArmorRatingUp"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ArmorRating_Sharp>2</ArmorRating_Sharp>
+							<ArmorRating_Blunt>2</ArmorRating_Blunt>
+							<ArmorRating_Heat>0.15</ArmorRating_Heat>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_ArmorRatingUp"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<ArmorRating_Sharp>2</ArmorRating_Sharp>
+							<ArmorRating_Blunt>2</ArmorRating_Blunt>
+							<ArmorRating_Heat>0.15</ArmorRating_Heat>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_MeleeDodgeChanceUp"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeDodgeChance>0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="MPT_Held_MeleeDodgeChanceDown"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<MeleeDodgeChance>-0.5</MeleeDodgeChance>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
