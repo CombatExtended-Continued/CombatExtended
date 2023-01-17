@@ -19,8 +19,8 @@
 							<statBases>
 								<SightsEfficiency>1.0</SightsEfficiency>
 								<ShotSpread>0.04</ShotSpread>
-								<SwayFactor>1.2</SwayFactor>
-								<Bulk>25</Bulk>
+								<SwayFactor>1.8</SwayFactor>
+								<Bulk>35</Bulk>
 								<Mass>42</Mass>
 								<RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
 							</statBases>
@@ -30,18 +30,13 @@
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Bullet_40x311mmR_AP</defaultProjectile>
 								<warmupTime>1.45</warmupTime>
-								<burstShotCount>2</burstShotCount>
-								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 								<range>75</range>
 								<soundCast>ATR_AutocannonBlast</soundCast>
 								<soundCastTail>GunTail_Heavy</soundCastTail>
 								<muzzleFlashScale>18</muzzleFlashScale>
-								<targetParams>
-									<canTargetLocations>true</canTargetLocations>
-								</targetParams>
 							</Properties>
 							<AmmoUser>
-								<magazineSize>20</magazineSize>
+								<magazineSize>10</magazineSize>
 								<reloadTime>4</reloadTime>
 								<ammoSet>AmmoSet_40x311mmR</ammoSet>
 							</AmmoUser>
@@ -106,8 +101,8 @@
 							<statBases>
 								<SightsEfficiency>1.0</SightsEfficiency>
 								<ShotSpread>0.15</ShotSpread>
-								<SwayFactor>1.12</SwayFactor>
-								<Bulk>25</Bulk>
+								<SwayFactor>1.37</SwayFactor>
+								<Bulk>30</Bulk>
 								<Mass>42</Mass>
 								<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 							</statBases>
@@ -123,7 +118,7 @@
 								<muzzleFlashScale>12</muzzleFlashScale>
 							</Properties>
 							<AmmoUser>
-								<magazineSize>7</magazineSize>
+								<magazineSize>5</magazineSize>
 								<reloadOneAtATime>true</reloadOneAtATime>
 								<reloadTime>1.7</reloadTime>
 								<ammoSet>AmmoSet_RotaryShrapnelcannonShell</ammoSet>
@@ -190,7 +185,7 @@
 								<SightsEfficiency>1.0</SightsEfficiency>
 								<ShotSpread>0.05</ShotSpread>
 								<SwayFactor>1.17</SwayFactor>
-								<Bulk>15</Bulk>
+								<Bulk>20</Bulk>
 								<Mass>30</Mass>
 								<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 							</statBases>
@@ -212,9 +207,15 @@
 							<FireModes>
 								<aiAimMode>Snapshot</aiAimMode>
 							</FireModes>
-							<weaponTags>
-								<li>CE_Sidearm_M7Mech</li>
-							</weaponTags>
+						</li>
+
+						<li Class="PatchOperationAdd">
+							<xpath>Defs/ThingDef[defName="ATR_HeadhunterCannon"]</xpath>
+							<value>
+								<weaponTags Inherit="False">
+									<li>CE_Sidearm_M7Mech</li>
+								</weaponTags>
+							</value>
 						</li>
 
 						<li Class="PatchOperationReplace">
