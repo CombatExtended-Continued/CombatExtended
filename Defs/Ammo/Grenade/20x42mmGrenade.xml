@@ -14,10 +14,12 @@
     <defName>AmmoSet_20x42mmGrenade</defName>
     <label>20x42mm Grenades</label>
     <ammoTypes>
+    	<Ammo_20x42mm_AP>Bullet_20x42mm_AP</Ammo_20x42mm_AP>
+    	<Ammo_20x42mm_Incendiary>Bullet_20x42mm_Incendiary</Ammo_20x42mm_Incendiary>
+    	<Ammo_20x42mm_APHE>Bullet_20x42mm_APHE</Ammo_20x42mm_APHE>
     	<Ammo_20x42mmGrenade_HE>Bullet_20x42mmGrenade_HE</Ammo_20x42mmGrenade_HE>
-		<Ammo_20x42mmGrenade_HE_TFuzed>Bullet_20x42mmGrenade_HE_TFuzed</Ammo_20x42mmGrenade_HE_TFuzed>
     	<Ammo_20x42mmGrenade_EMP>Bullet_20x42mmGrenade_EMP</Ammo_20x42mmGrenade_EMP>
-		<Ammo_20x42mmGrenade_Smoke>Bullet_20x42mmGrenade_Smoke</Ammo_20x42mmGrenade_Smoke>	      
+		<Ammo_20x42mmGrenade_Smoke>Bullet_20x42mmGrenade_Smoke</Ammo_20x42mmGrenade_Smoke>
     </ammoTypes>
     <similarTo>AmmoSet_LauncherGrenade</similarTo>
   </CombatExtended.AmmoSetDef>
@@ -27,7 +29,7 @@
   <ThingDef Class="CombatExtended.AmmoDef" Name="20x42mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
     <description>Specialized grenade developed for use in shoulder-fired grenade launchers.</description>
     <statBases>
-	  <Mass>0.125</Mass>
+	  <Mass>0.162</Mass>
 	  <Bulk>0.1</Bulk>
     </statBases>
     <tradeTags>
@@ -41,6 +43,51 @@
   </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
+    <defName>Ammo_20x42mm_AP</defName>
+    <label>20x42mm (AP)</label>
+    <description>Specialized cartridge developed for use in shoulder-fired grenade launchers.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.68</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_20x42mm_AP</detonateProjectile>
+  </ThingDef> 
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
+    <defName>Ammo_20x42mm_Incendiary</defName>
+    <label>20x42mm (AP-I)</label>
+    <description>Specialized cartridge developed for use in shoulder-fired grenade launchers.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.06</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_20x42mm_Incendiary</detonateProjectile>
+  </ThingDef> 
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
+    <defName>Ammo_20x42mm_APHE</defName>
+    <label>20x42mm (AP-HE)</label>
+    <description>Specialized cartridge developed for use in shoulder-fired grenade launchers.</description>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.82</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeHE</ammoClass>
+	<detonateProjectile>Bullet_20x42mm_APHE</detonateProjectile>
+  </ThingDef> 
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
     <defName>Ammo_20x42mmGrenade_HE</defName>
     <label>20x42mm grenade (HE)</label>
     <graphicData>
@@ -48,23 +95,9 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.69</MarketValue>
+      <MarketValue>1.85</MarketValue>
     </statBases>
     <ammoClass>GrenadeHE</ammoClass>
-	<detonateProjectile>Bullet_20x42mmGrenade_HE</detonateProjectile>
-  </ThingDef>  
-  
-  <ThingDef Class="CombatExtended.AmmoDef" ParentName="20x42mmGrenadeBase">
-    <defName>Ammo_20x42mmGrenade_HE_TFuzed</defName>
-    <label>20x42mm grenade (HE-Airburst)</label>
-    <graphicData>
-      <texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
-    <statBases>
-      <MarketValue>2.31</MarketValue>
-    </statBases>
-    <ammoClass>GrenadeHETF</ammoClass>
 	<detonateProjectile>Bullet_20x42mmGrenade_HE</detonateProjectile>
   </ThingDef>  
 
@@ -76,7 +109,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.8</MarketValue>
+      <MarketValue>3.28</MarketValue>
     </statBases>
     <ammoClass>GrenadeEMP</ammoClass>
     <generateAllowChance>0.5</generateAllowChance>
@@ -91,7 +124,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>1.30</MarketValue>
+      <MarketValue>1.46</MarketValue>
     </statBases>
     <ammoClass>Smoke</ammoClass>
     <generateAllowChance>0</generateAllowChance>
@@ -103,50 +136,82 @@
 	<ThingDef Name="Base20x42mmGrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
-			<texPath>Things/Projectile/LauncherShot</texPath>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(0.3,0.3)</drawSize>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>62</speed>
 		</projectile>
 	</ThingDef>
-		
+
+	<ThingDef Name="Base20x42mmBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>62</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="Base20x42mmBullet">
+    <defName>Bullet_20x42mm_AP</defName>
+    <label>20x42mm bullet (AP)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>20</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>
+      <armorPenetrationBlunt>105.72</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base20x42mmBullet">
+    <defName>Bullet_20x42mm_Incendiary</defName>
+    <label>20x42mm bullet (AP-I)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>20</damageAmountBase>
+      <armorPenetrationSharp>16</armorPenetrationSharp>
+      <armorPenetrationBlunt>105.72</armorPenetrationBlunt>
+      <secondaryDamage>
+        <li>
+          <def>Flame_Secondary</def>
+          <amount>12</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base20x42mmBullet">
+    <defName>Bullet_20x42mm_APHE</defName>
+    <label>20x42mm bullet (AP-HE)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>32</damageAmountBase>
+      <armorPenetrationSharp>8.0</armorPenetrationSharp>
+      <armorPenetrationBlunt>105.72</armorPenetrationBlunt>
+      <secondaryDamage>
+        <li>
+          <def>Bomb_Secondary</def>
+          <amount>19</amount>
+        </li>
+      </secondaryDamage>
+    </projectile>
+  </ThingDef>
+
 	<ThingDef ParentName="Base20x42mmGrenadeBullet">
 		<defName>Bullet_20x42mmGrenade_HE</defName>
 		<label>20mm grenade (HE)</label>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>15</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
+			<damageAmountBase>17</damageAmountBase>
+			<explosionRadius>1.0</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
 		<comps>
 		  <li Class="CombatExtended.CompProperties_Fragments">
 			<fragments>
 			  <Fragment_Small>11</Fragment_Small>
-			</fragments>
-		  </li>
-		</comps>
-	</ThingDef>
-	
-	<ThingDef ParentName="Base20x42mmGrenadeBullet">
-		<defName>Bullet_20x42mmGrenade_HE_TFuzed</defName>
-		<label>20mm grenade (HE-Airburst)</label>
-		<thingClass>CombatExtended.ProjectileCE_Bursting</thingClass>
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>15</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			<aimHeightOffset>0.4</aimHeightOffset>
-			<armingDelay>2</armingDelay>
-		</projectile>
-		<comps>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-			  <Fragment_Small>33</Fragment_Small>
 			</fragments>
 		  </li>
 		</comps>
@@ -158,7 +223,7 @@
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>EMP</damageDef>
-			<damageAmountBase>15</damageAmountBase>
+			<damageAmountBase>17</damageAmountBase>
 			<explosionRadius>1.5</explosionRadius>
 		</projectile>
 	</ThingDef>
@@ -178,6 +243,102 @@
 
 	<!-- ==================== Recipes ========================== -->
 
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_20x42mm_AP</defName>
+    <label>make 20x42mm (AP) cartridge x100</label>
+    <description>Craft 100 20x42mm (AP) cartridges.</description>
+    <jobString>Making 20x42mm (AP) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>34</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x42mm_AP>100</Ammo_20x42mm_AP>
+    </products>
+    <workAmount>4080</workAmount>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_20x42mm_Incendiary</defName>
+    <label>make 20x42mm (AP-I) cartridge x100</label>
+    <description>Craft 100 20x42mm (AP-I) cartridges.</description>
+    <jobString>Making 20x42mm (AP-I) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>34</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Prometheum</li>
+          </thingDefs>
+        </filter>
+        <count>6</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Prometheum</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x42mm_Incendiary>100</Ammo_20x42mm_Incendiary>
+    </products>
+    <workAmount>5800</workAmount>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="AdvancedAmmoRecipeBase">
+    <defName>MakeAmmo_20x42mm_APHE</defName>
+    <label>make 20x42mm (AP-HE) cartridge x100</label>
+    <description>Craft 100 20x42mm (AP-HE) cartridges.</description>
+    <jobString>Making 20x42mm (AP-HE) cartridges.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>34</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>FSX</li>
+          </thingDefs>
+        </filter>
+        <count>11</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>FSX</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_20x42mm_APHE>100</Ammo_20x42mm_APHE>
+    </products>
+    <workAmount>7800</workAmount>
+  </RecipeDef>
+
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
     <defName>MakeAmmo_20x42mmGrenade_HE</defName>
     <label>make 20x42mm HE grenades x100</label>
@@ -190,7 +351,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>34</count>
       </li>
       <li>
         <filter>
@@ -219,51 +380,7 @@
     <products>
       <Ammo_20x42mmGrenade_HE>100</Ammo_20x42mmGrenade_HE>
     </products>
-    <workAmount>5800</workAmount>    
-  </RecipeDef>
-  
-  <RecipeDef ParentName="LauncherAmmoRecipeBase">
-    <defName>MakeAmmo_20x42mmGrenade_HE_TFuzed</defName>
-    <label>make 20x42mm HE-Airburst grenades x100</label>
-    <description>Craft 100 20x42mm HE-Airburst grenades.</description>
-    <jobString>Making 20x42mm HE-Airburst grenades.</jobString>
-    <ingredients>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>Steel</li>
-          </thingDefs>
-        </filter>
-        <count>24</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>FSX</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>5</count>
-      </li>
-    </ingredients>
-    <fixedIngredientFilter>
-      <thingDefs>
-        <li>Steel</li>
-        <li>FSX</li>
-        <li>ComponentIndustrial</li>
-      </thingDefs>
-    </fixedIngredientFilter>
-    <products>
-      <Ammo_20x42mmGrenade_HE_TFuzed>100</Ammo_20x42mmGrenade_HE_TFuzed>
-    </products>
-    <workAmount>6800</workAmount>    
+    <workAmount>6600</workAmount>    
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
@@ -282,7 +399,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>34</count>
       </li>
       <li>
         <filter>
@@ -290,7 +407,7 @@
             <li>ComponentIndustrial</li>
           </thingDefs>
         </filter>
-        <count>7</count>
+        <count>8</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
@@ -302,7 +419,7 @@
     <products>
       <Ammo_20x42mmGrenade_EMP>100</Ammo_20x42mmGrenade_EMP>
     </products>
-    <workAmount>6800</workAmount>        
+    <workAmount>8200</workAmount>        
   </RecipeDef>
 
   <RecipeDef ParentName="LauncherAmmoRecipeBase">
@@ -317,7 +434,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>26</count>
+        <count>34</count>
       </li>
       <li>
         <filter>
@@ -346,7 +463,7 @@
     <products>
       <Ammo_20x42mmGrenade_Smoke>100</Ammo_20x42mmGrenade_Smoke>
     </products>
-    <workAmount>4600</workAmount>
+    <workAmount>5400</workAmount>
   </RecipeDef>
 
 </Defs>
