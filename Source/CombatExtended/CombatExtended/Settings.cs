@@ -253,7 +253,7 @@ namespace CombatExtended
             list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
             list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
             list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
-            list.CheckboxLabeled("Enable pawn kind autopatcher", ref enablePawnKindAutopatcher, "This will enable the pawn kind autopatcher.");
+            list.CheckboxLabeled("Enable PawnKind autopatcher", ref enablePawnKindAutopatcher, "This will enable the PawnKind autopatcher.");
 
             // Do ammo settings
             list.NewColumn();

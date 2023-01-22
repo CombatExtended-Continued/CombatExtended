@@ -77,6 +77,7 @@ Ancient Eastern Armory  |
 Ancient Fallout Armory  |
 Ancient Humans   |
 Android Tiers	|
+Android Tiers Reforged	|
 Android Tiers SM7 Overhaul (Continued)  |
 Android - TX Series   |
 Androids	|
