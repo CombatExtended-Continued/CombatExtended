@@ -737,7 +737,7 @@ namespace CombatExtended
         public void TryOrderReload(bool forced = false)
         {
             //No reload necessary at all --
-            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
+            if (compAmmo == null || (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
             {
                 return;
             }

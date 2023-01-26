@@ -947,6 +947,15 @@ namespace CombatExtended
                 aperatureSize = 0.03f;
             }
 
+            if (firingWithoutTarget)
+            {
+                currentTarget = new LocalTargetInfo(lastTargetPos);
+                if (!currentTarget.IsValid)
+                {
+                    return false;
+                }
+            }
+
             ShiftVecReport report = ShiftVecReportFor(currentTarget);
             bool pelletMechanicsOnly = false;
             for (int i = 0; i < projectilePropsCE.pelletCount; i++)
@@ -966,11 +975,16 @@ namespace CombatExtended
                 projectile.AccuracyFactor = report.accuracyFactor * report.swayDegrees * ((numShotsFired + 1) * 0.75f);
                 if (firingWithoutTarget)
                 {
+                    //cease fire if targeting mode is not suppressive and target is null
+                    if (CompFireModes != null && (CompFireModes?.CurrentAimMode == AimMode.AimedShot || CompFireModes?.CurrentAimMode == AimMode.Snapshot))
+                    {
+                        return false;
+                    }
+
                     shotAngle = lastShotAngle;
                     shotRotation = lastShotRotation;
                     GetSwayVec(ref shotRotation, ref shotAngle);
                     GetRecoilVec(ref shotRotation, ref shotAngle);
-
                 }
                 this.lastShotAngle = shotAngle;
                 this.lastShotRotation = shotRotation;
