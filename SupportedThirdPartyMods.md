@@ -246,6 +246,7 @@ Kit's Gunpowder Weapons |
 Kit's Industrial Weapons |   
 Kit's Roman Weapons |
 Kit's VFE Weapons |
+Kit's VFE Weapons Continued  |
 Kobolds of the Rim  |
 Kurin, The Three Tailed Fox	|
 Kurin, The Three Tailed Fox [Deluxe Edition]    |
