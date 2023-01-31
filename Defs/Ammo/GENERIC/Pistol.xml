@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
+	<!-- Relabeled .45 ACP -->
 
 	<ThingCategoryDef>
 		<defName>AmmoPistol</defName>
@@ -14,19 +16,19 @@
 		<defName>AmmoSet_Pistol</defName>
 		<label>pistol</label>
 		<ammoTypes>
-			<Ammo_Pistol_FMJ>Bullet_9x19mmPara_FMJ</Ammo_Pistol_FMJ>
-			<Ammo_Pistol_AP>Bullet_9x19mmPara_AP</Ammo_Pistol_AP>
-			<Ammo_Pistol_HP>Bullet_9x19mmPara_HP</Ammo_Pistol_HP>
+			<Ammo_Pistol_FMJ>Bullet_45ACP_FMJ</Ammo_Pistol_FMJ>
+			<Ammo_Pistol_AP>Bullet_45ACP_AP</Ammo_Pistol_AP>
+			<Ammo_Pistol_HP>Bullet_45ACP_HP</Ammo_Pistol_HP>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
-	
-    <!-- ==================== Ammo ========================== -->
+
+	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoPistolBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
 		<statBases>
-			<Mass>0.012</Mass>
-			<Bulk>0.01</Bulk>
+			<Mass>0.02</Mass>
+			<Bulk>0.02</Bulk>
 		</statBases>
 		<tradeTags>
 			<li>CE_AutoEnableTrade</li>
@@ -45,10 +47,10 @@
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_9x19mmPara_FMJ</cookOffProjectile>
+		<cookOffProjectile>Bullet_45ACP_FMJ</cookOffProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoPistolBase">
@@ -59,10 +61,10 @@
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_9x19mmPara_AP</cookOffProjectile>
+		<cookOffProjectile>Bullet_45ACP_AP</cookOffProjectile>
 	</ThingDef>
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoPistolBase">
@@ -73,13 +75,12 @@
 			<graphicClass>CombatExtended.Graphic_StackCountRanged</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>0.06</MarketValue>
+			<MarketValue>0.09</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_9x19mmPara_HP</cookOffProjectile>
+		<cookOffProjectile>Bullet_45ACP_HP</cookOffProjectile>
 	</ThingDef>
 
-    
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -94,7 +95,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>22</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -105,7 +106,7 @@
 		<products>
 			<Ammo_Pistol_FMJ>500</Ammo_Pistol_FMJ>
 		</products>
-		<workAmount>1400</workAmount>
+		<workAmount>2200</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -120,7 +121,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>22</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -131,7 +132,7 @@
 		<products>
 			<Ammo_Pistol_AP>500</Ammo_Pistol_AP>
 		</products>
-		<workAmount>1400</workAmount>
+		<workAmount>2640</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
@@ -146,7 +147,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>14</count>
+				<count>22</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -157,7 +158,7 @@
 		<products>
 			<Ammo_Pistol_HP>500</Ammo_Pistol_HP>
 		</products>
-		<workAmount>1400</workAmount>
+		<workAmount>2200</workAmount>
 	</RecipeDef>
 
 </Defs>
