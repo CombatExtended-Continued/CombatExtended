@@ -26,6 +26,8 @@ namespace CombatExtended
         private const float ShieldBlockChance = 0.75f;   // If we have a shield equipped, this is the chance a parry will be a shield block
         private const int KnockdownDuration = 120;   // Animal knockdown lasts for this long
 
+        private const float KnockdownMassRequirement = 5f;
+
         // XP variables
         private const float HitXP = 200;    // Vanilla is 250
         private const float DodgeXP = 50;
@@ -541,7 +543,7 @@ namespace CombatExtended
             if (isCrit && CasterPawn.def.race.Animal)
             {
                 var pawn = target.Thing as Pawn;
-                if (pawn != null && !pawn.Dead)
+                if (pawn != null && !pawn.Dead && pawn.GetStatValue(StatDefOf.Mass) < CasterPawn.GetStatValue(StatDefOf.Mass) * KnockdownMassRequirement)
                 {
                     //pawn.stances?.stunner.StunFor(KnockdownDuration);
                     pawn.stances?.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
