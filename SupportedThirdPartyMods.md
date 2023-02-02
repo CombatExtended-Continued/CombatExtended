@@ -460,6 +460,7 @@ Vanilla Genetics Expanded   |
 Vanilla Psycasts Expanded   |
 Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Saurid  |
+Vanilla Races Expanded - Phytokin  |
 Vanilla Skills Expanded  |
 Vanilla Vehicles Expanded	|
 Vanilla Weapons Expanded |
