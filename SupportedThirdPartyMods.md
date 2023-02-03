@@ -123,6 +123,10 @@ Black Widows	|
 Bori Race	|
 British Weapon Set	|
 Bulgarian Imperial Uniforms |
+Call of Duty: Zombies Pack |
+Call of Duty: Mystery Box |
+Call of Duty: Pack A Punch |
+Call of Duty: Wonder Weapons |
 Carbon	|
 Censored Armory  |
 Clay Soldier Race |
