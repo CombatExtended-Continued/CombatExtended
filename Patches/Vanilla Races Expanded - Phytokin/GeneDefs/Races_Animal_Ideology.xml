@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Races Expanded - Phytokin</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Ideology</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="VRE_CompanionDryad"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>Quadruped</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="VRE_CompanionDryad"]/statBases</xpath>
+						<value>
+							<MeleeDodgeChance>0.20</MeleeDodgeChance>
+							<MeleeCritChance>0.15</MeleeCritChance>
+							<MeleeParryChance>0.18</MeleeParryChance>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="VRE_CompanionDryad"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>left claw</label>
+									<capacities>
+										<li>Scratch</li>
+									</capacities>
+									<power>7</power>
+									<cooldownTime>1.1</cooldownTime>
+									<surpriseAttack>
+										<extraMeleeDamages>
+											<li>
+												<def>Stun</def>
+												<amount>12</amount>
+											</li>
+										</extraMeleeDamages>
+									</surpriseAttack>
+									<linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.15</armorPenetrationSharp>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>right claw</label>
+									<capacities>
+										<li>Scratch</li>
+									</capacities>
+									<power>7</power>
+									<cooldownTime>1.1</cooldownTime>
+									<surpriseAttack>
+										<extraMeleeDamages>
+											<li>
+												<def>Stun</def>
+												<amount>12</amount>
+											</li>
+										</extraMeleeDamages>
+									</surpriseAttack>
+									<linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.15</armorPenetrationSharp>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<capacities>
+										<li>Bite</li>
+									</capacities>
+									<power>14</power>
+									<cooldownTime>1.8</cooldownTime>
+									<surpriseAttack>
+										<extraMeleeDamages>
+											<li>
+												<def>Stun</def>
+												<amount>10</amount>
+											</li>
+										</extraMeleeDamages>
+									</surpriseAttack>
+									<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>5.0</armorPenetrationBlunt>
+									<armorPenetrationSharp>0.5</armorPenetrationSharp>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>6</power>
+									<cooldownTime>1.5</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<chanceFactor>0.2</chanceFactor>
+									<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>
