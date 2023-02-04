@@ -66,7 +66,6 @@ namespace CombatExtended
         private bool showCaliberOnGuns = true;
         private bool reuseNeolithicProjectiles = true;
         private bool realisticCookOff = true;
-        private bool enableSimplifiedAmmo = false;
 
         public bool EnableAmmoSystem => enableAmmoSystem;
         public bool RightClickAmmoSelect => rightClickAmmoSelect;
@@ -75,7 +74,6 @@ namespace CombatExtended
         public bool ShowCaliberOnGuns => showCaliberOnGuns;
         public bool ReuseNeolithicProjectiles => reuseNeolithicProjectiles;
         public bool RealisticCookOff => realisticCookOff;
-        public bool EnableSimplifiedAmmo => enableSimplifiedAmmo;
 
         // Debug settings - make sure all of these default to false for the release build
         private bool debuggingMode = false;
@@ -181,7 +179,6 @@ namespace CombatExtended
             Scribe_Values.Look(ref showCaliberOnGuns, "showCaliberOnGuns", true);
             Scribe_Values.Look(ref reuseNeolithicProjectiles, "reuseNeolithicProjectiles", true);
             Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
-            Scribe_Values.Look(ref enableSimplifiedAmmo, "enableSimplifiedAmmo", false);
             Scribe_Values.Look(ref genericammo, "genericAmmo", false);
 
             Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
@@ -273,7 +270,6 @@ namespace CombatExtended
                 list.CheckboxLabeled("CE_Settings_ShowCaliberOnGuns_Title".Translate(), ref showCaliberOnGuns, "CE_Settings_ShowCaliberOnGuns_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_ReuseNeolithicProjectiles_Title".Translate(), ref reuseNeolithicProjectiles, "CE_Settings_ReuseNeolithicProjectiles_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-                list.CheckboxLabeled("CE_Settings_EnableSimplifiedAmmo_Title".Translate(), ref enableSimplifiedAmmo, "CE_Settings_EnableSimplifiedAmmo_Desc".Translate());
                 list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate()); ;
             }
             else
@@ -285,7 +281,6 @@ namespace CombatExtended
                 list.Label("CE_Settings_ShowCaliberOnGuns_Title".Translate());
                 list.Label("CE_Settings_ReuseNeolithicProjectiles_Title".Translate());
                 list.Label("CE_Settings_RealisticCookOff_Title".Translate());
-                list.Label("CE_Settings_EnableSimplifiedAmmo_Title".Translate());
 
                 GUI.contentColor = Color.white;
             }

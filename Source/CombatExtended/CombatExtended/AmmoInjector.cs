@@ -21,21 +21,10 @@ namespace CombatExtended
      */
     internal static class AmmoInjector
     {
-        public static readonly FieldInfo _allRecipesCached = typeof(ThingDef).GetField("allRecipesCached", BindingFlags.Instance | BindingFlags.NonPublic);
 
         public const string destroyWithAmmoDisabledTag = "CE_AmmoInjector";               // The trade tag which automatically deleted this ammo with the ammo system disabled
         private const string enableTradeTag = "CE_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
         private const string enableCraftingTag = "CE_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
-        // these ammo classes are disabled when simplified ammo is turned on
-        private static HashSet<string> complexAmmoClasses = new HashSet<string>(new string[]
-        {
-            // pistol + rifle + high caliber
-            "ArmorPiercing", "HollowPoint", "Sabot", "IncendiaryAP", "ExplosiveAP",
-            // shotguns
-            "Beanbag", "Slug",
-            // advanced
-            "ChargedAP"
-        });
 
         /*
         private static ThingDef ammoCraftingStationInt;                         // The crafting station to which ammo will be automatically added
@@ -66,7 +55,6 @@ namespace CombatExtended
         public static bool InjectAmmos()
         {
             bool enabled = Controller.settings.EnableAmmoSystem;
-            bool simplifiedAmmo = Controller.settings.EnableSimplifiedAmmo;
 
             // Initialize list of all weapons
             CE_Utility.allWeaponDefs.Clear();
@@ -124,11 +112,6 @@ namespace CombatExtended
 
                 // mortar ammo will always be enabled, even if the ammo system is turned off
                 bool ammoEnabled = enabled || ammoDef.isMortarAmmo;
-                if (simplifiedAmmo && complexAmmoClasses.Contains(ammoDef.ammoClass.defName))
-                {
-                    ammoEnabled = false;
-                }
-
 
                 if (ammoDef.tradeTags != null)
                 {
