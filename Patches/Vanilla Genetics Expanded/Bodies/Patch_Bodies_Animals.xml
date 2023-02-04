@@ -8,11 +8,14 @@
 		<match Class="PatchOperationSequence">
 		<operations>
 
-			<!-- Jellyfish Body -->
+			<!-- Bird With Teeth -->
+
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_JellyfishBody"]//*[
-				def="GR_JellyfishMainBody" or 
-				def="GR_HydrogenSac"
+				<xpath>Defs/BodyDef[defName="GR_BirdWithTeeth"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Leg" or
+				def="Tail"
 				]</xpath>
 				<value>
 					<groups/>
@@ -20,76 +23,14 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_JellyfishBody"]//*[def="GR_JellyfishMainBody"]/groups</xpath>
-				<value>
-					<li>CoveredByNaturalArmor</li>
-				</value>
-			</li>
-
-			<!-- Quadruped With Paws, Horn, and Tail - Thrumbo -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTailThrumbo"]//*[
-				def="Body" or 
-				def="Neck"
-				]</xpath>
-				<value>
-					<groups/>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTailThrumbo"]//*[
-				def="Body" or 
-				def="Neck" or 
-				def="Head" or 
-				def="AnimalJaw" or 
+				<xpath>Defs/BodyDef[defName="GR_BirdWithTeeth"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
 				def="Leg" or
-				def="Horn" or
-				def="Paw"
-				]/groups</xpath>
-				<value>
-					<li>CoveredByNaturalArmor</li>
-				</value>
-			</li>
-
-			<!-- Quadruped With Paws and Fangs -->
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndFangs"]//*[
-				def="Body" or 
-				def="Neck"
-				]</xpath>
-				<value>
-					<groups/>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndFangs"]//*[
-				def="Body" or 
-				def="Neck" or 
-				def="Head" or 
-				def="AnimalJaw" or 
-				def="Leg" or
-				def="Paw"
-				]/groups</xpath>
-				<value>
-					<li>CoveredByNaturalArmor</li>
-				</value>
-			</li>
-
-			<!-- Quadruped With Paws, Horn, and Tail -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTail"]//*[
-				def="Body" or 
-				def="Neck" or 
-				def="Head" or 
-				def="AnimalJaw" or 
-				def="Leg" or
-				def="Horn" or
-				def="Paw"
+				def="Foot" or
+				def="Tail"
 				]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
@@ -99,9 +40,10 @@
 			<!-- Horned Bird -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_HornedBird"]//*[
+				<xpath>Defs/BodyDef[defName="GR_HornedBird"]//*[
 				def="Body" or
 				def="Neck" or
+				def="Leg" or
 				def="Tail"
 				]</xpath>
 				<value>
@@ -110,7 +52,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_HornedBird"]//*[
+				<xpath>Defs/BodyDef[defName="GR_HornedBird"]//*[
 				def="Body" or
 				def="Neck" or
 				def="Head" or
@@ -124,57 +66,17 @@
 				</value>
 			</li>
 
-			<!-- Bird With Teeth -->
+			<!-- Jellyfish Body -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_BirdWithTeeth"]//*[
-				def="Body" or
-				def="Neck" or
-				def="Tail"
-				]</xpath>
+				<xpath>Defs/BodyDef[defName="GR_JellyfishBody"]//*[def="GR_JellyfishMainBody"]</xpath>
 				<value>
 					<groups/>
 				</value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_BirdWithTeeth"]//*[
-				def="Body" or
-				def="Neck" or
-				def="Head" or
-				def="AnimalJaw" or
-				def="Leg" or
-				def="Foot" or
-				def="Tail"
-				]/groups</xpath>
-				<value>
-					<li>CoveredByNaturalArmor</li>
-				</value>
-			</li>
-
-			<!-- Quadruped With Paws, Horn, and Tail -->
-
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTail"]//*[
-				def="Body" or
-				def="Neck" or
-				def="Tail"
-				]</xpath>
-				<value>
-					<groups/>
-				</value>
-			</li>
-			
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTail"]//*[
-				def="Body" or
-				def="Neck" or
-				def="Head" or
-				def="AnimalJaw" or
-				def="Leg" or
-				def="Paw" or
-				def="Tail"
-				]/groups</xpath>
+				<xpath>Defs/BodyDef[defName="GR_JellyfishBody"]//*[def="GR_JellyfishMainBody"]/groups</xpath>
 				<value>
 					<li>CoveredByNaturalArmor</li>
 				</value>
@@ -183,10 +85,12 @@
 			<!-- Quadruped With Beak -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeak"]//*[
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeak"]//*[
 				def="Body" or
 				def="Neck" or
-				def="Leg"
+				def="Leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
 				]</xpath>
 				<value>
 					<groups/>
@@ -194,7 +98,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeak"]//*[
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeak"]//*[
 				def="Body" or
 				def="Neck" or
 				def="Head" or
@@ -210,9 +114,12 @@
 			<!-- Quadruped With Beak and Hump -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeakandHump"]//*[
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeakandHump"]//*[
 				def="Body" or
-				def="Neck"
+				def="Neck" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				def="Hoof"
 				]</xpath>
 				<value>
 					<groups/>
@@ -220,7 +127,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeakandHump"]//*[
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithBeakandHump"]//*[
 				def="Body" or
 				def="Neck" or
 				def="Head" or
@@ -233,10 +140,103 @@
 				</value>
 			</li>
 
+			<!-- Quadruped With Paws and Fangs -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndFangs"]//*[
+				def="Body" or 
+				def="Neck" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsAndFangs"]//*[
+				def="Body" or 
+				def="Neck" or 
+				def="Head" or 
+				def="AnimalJaw" or 
+				def="Leg" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Quadruped With Paws, Horn, and Tail -->
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTail"]//*[
+				def="Body" or
+				def="Neck" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				customLabel="rear left hoof" or
+				customLabel="rear right hoof" or
+				def="Tail"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTail"]//*[
+				def="Body" or
+				def="Neck" or
+				def="Head" or
+				def="AnimalJaw" or
+				def="Leg" or
+				def="Paw" or
+				def="Hoof" or
+				def="Tail"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
+			<!-- Quadruped With Paws, Horn, and Tail - Thrumbo -->
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTailThrumbo"]//*[
+				def="Body" or 
+				def="Neck" or
+				customLabel="rear left leg" or
+				customLabel="rear right leg" or
+				customLabel="rear left paw" or
+				customLabel="rear right paw" or
+				def="Hoof"
+				]</xpath>
+				<value>
+					<groups/>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/BodyDef[defName="GR_QuadrupedAnimalWithPawsHornAndTailThrumbo"]//*[
+				def="Body" or 
+				def="Neck" or 
+				def="Head" or 
+				def="AnimalJaw" or 
+				def="Leg" or
+				def="Horn" or
+				def="Paw"
+				]/groups</xpath>
+				<value>
+					<li>CoveredByNaturalArmor</li>
+				</value>
+			</li>
+
 			<!-- Great Ape -->
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_GreatApe"]//*[
+				<xpath>Defs/BodyDef[defName="GR_GreatApe"]//*[
 				def="Torso" or
 				def="Neck" or
 				def="Shoulder" or
@@ -252,7 +252,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/BodyDef[defName="GR_GreatApe"]//*[
+				<xpath>Defs/BodyDef[defName="GR_GreatApe"]//*[
 				def="Torso" or
 				def="Neck" or
 				def="Head" or
