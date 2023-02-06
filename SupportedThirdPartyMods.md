@@ -418,6 +418,7 @@ T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
 The Tuffalo |
+Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
