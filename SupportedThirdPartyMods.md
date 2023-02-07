@@ -385,6 +385,7 @@ Rimworld - Witcher Monster Hunt |
 Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
+Rockmen race    |
 Saclean Race    |
 Save Our Ship 2	|
 SCP |
@@ -416,6 +417,7 @@ T-45b Power Armor	|
 The GiantRace	|
 The Joris Experience	|
 The Tuffalo |
+Thog's Armor    |
 Thog's Guns - More Brukka Pack  |
 Toolmetrics Redux (Continued)   |
 TouhouStyle	|
