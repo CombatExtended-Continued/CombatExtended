@@ -8,45 +8,7 @@
     <match Class="PatchOperationSequence">
       <operations>
 
-      <!-- === Replace ThingClass === -->
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/thingClass</xpath>
-        <value>
-          <thingClass>CombatExtended.Apparel_Shield</thingClass>
-        </value>
-      </li>
-
-      <!-- === Replace Parent === -->
-      <li Class="PatchOperationAttributeSet">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]</xpath>
-        <attribute>ParentName</attribute>
-        <value>ArmorSmithableBase</value>
-      </li>
-
-      <!-- === Replace Apparel Layer & BodyPart Group === -->
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/apparel/layers</xpath>
-        <value>
-          <layers>
-            <li>Shield</li>
-          </layers>
-        </value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/apparel/bodyPartGroups</xpath>
-        <value>
-          <bodyPartGroups>
-            <li>LeftShoulder</li>
-          </bodyPartGroups>
-        </value>
-      </li>
-
       <!-- === Remove VFE Shield Stuff === -->
-      <li Class="PatchOperationRemove">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/tools</xpath>
-      </li>
-
       <li Class="PatchOperationRemove">
         <xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_KiteShield" or defName="DevDesigner_Blood_Apparel_Kite2Shield"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
       </li>
@@ -69,7 +31,7 @@
 
       <!-- === Add Bulk === -->
       <li Class="PatchOperationAdd">
-        <xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_KiteShield" or defName="DevDesigner_Blood_Apparel_Kite2Shield"]/statBases</xpath>
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/statBases</xpath>
         <value>
           <Bulk>8</Bulk>
           <WornBulk>5</WornBulk>
@@ -78,8 +40,8 @@
 
       <!-- === Replace Stat Offsets === -->
 
-      <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/equippedStatOffsets</xpath>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]</xpath>
         <value>
           <equippedStatOffsets>
             <ReloadSpeed>-0.2</ReloadSpeed>
@@ -95,7 +57,7 @@
 
       <!-- === Replace Stuff Thickness === -->
       <li Class="PatchOperationReplace">
-        <xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_KiteShield" or defName="DevDesigner_Blood_Apparel_Kite2Shield"]/statBases/StuffEffectMultiplierArmor</xpath>
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/statBases/StuffEffectMultiplierArmor</xpath>
         <value>
           <StuffEffectMultiplierArmor>2.2</StuffEffectMultiplierArmor>
         </value>
