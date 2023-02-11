@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods><li>Paniel the Automata</li></mods>
+		<mods>
+			<li>Paniel the Automata</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
-		
+
 		<li Class="PatchOperationReplace">
 			<xpath>Defs/HediffDef[
 			defName="PN_RapidFireModuleHediff"
@@ -24,13 +26,16 @@
 			  <AimingAccuracy>-0.2</AimingAccuracy>
 			</value>
 		</li>
-		
+
 		<!-- ==========  Abilities  =========== -->
-		
-		<li Class="PatchOperationConditional">
-			<xpath>/Defs/HediffDef[defName="PN_OfficerCommand"]</xpath>
+
+		<li Class="PatchOperationFindMod">
+			<mods>
+				<li>Ideology</li>
+			</mods>
 			<match Class="PatchOperationSequence">
 			<operations>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[
 					defName="PN_OfficerCommand" or
@@ -41,7 +46,7 @@
 					  <AimingAccuracy>0.2</AimingAccuracy>
 					</value>
 				</li>
-				
+			
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[
 					defName="PN_RapidFire"
@@ -51,7 +56,7 @@
 					  <AimingAccuracy>-0.4</AimingAccuracy>
 					</value>
 				</li>
-				
+			
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[
 					defName="PN_RapidFireOverload"
@@ -61,24 +66,11 @@
 					  <AimingAccuracy>-0.6</AimingAccuracy>
 					</value>
 				</li>
-				
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[
-					defName="PN_CQC" or
-					defName="PN_CQCOverload"
-					]/stages/li/statOffsets/ShootingAccuracyPawn</xpath>
-					<value>
-					  <ShootingAccuracyPawn>-0.8</ShootingAccuracyPawn>
-					  <AimingAccuracy>-0.4</AimingAccuracy>
-					</value>
-				</li>
+
 			</operations>
 			</match>
 		</li>
-		
 
-		
-		
 		</operations>
 		</match>
 	</Operation>
