@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Paniel the Automata</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[
+					defName="PN_AssociateH" or
+          defName="PN_AssociateP_EngineerA" or
+          defName="PN_AssociateP_EngineerB" or
+          defName="PN_AssociateP_DomesticA" or
+          defName="PN_AssociateP_DomesticB"
+					]</xpath>
+				<value>	
+				<li Class="CombatExtended.LoadoutPropertiesExtension">	
+					<primaryMagazineCount>
+						<min>2</min>
+						<max>3</max>
+					</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[
+					defName="PN_ManagerH" or
+          defName="PN_ManageUnit_Enginer" or
+          defName="PN_ManageUnit_Domestic" or
+          defName="PN_Director" or
+          @Name="PN_NPCBasePawnKind"
+					]</xpath>
+				<value>	
+				<li Class="CombatExtended.LoadoutPropertiesExtension">	
+					<primaryMagazineCount>
+						<min>3</min>
+						<max>5</max>
+					</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[
+					defName="PN_SecurityGuardH" or
+          defName="PN_SecurityUnit" or
+          @Name="PN_MidUnitBase"
+					]</xpath>
+				<value>	
+				<li Class="CombatExtended.LoadoutPropertiesExtension">	
+					<primaryMagazineCount>
+						<min>4</min>
+						<max>6</max>
+					</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAddModExtension">
+				<xpath>/Defs/PawnKindDef[@Name="PN_EliteUnitBase"]</xpath>
+				<value>	
+				<li Class="CombatExtended.LoadoutPropertiesExtension">	
+					<primaryMagazineCount>
+						<min>4</min>
+						<max>6</max>
+					</primaryMagazineCount>
+				</li>
+				</value>
+			</li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>    
