@@ -270,6 +270,8 @@
 						<MeleeParryChance>1.1</MeleeParryChance>
 						<Suppressability>0.2</Suppressability>
 						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryWeight>45</CarryWeight>
+						<CarryBulk>22.5</CarryBulk>
 					</value>
 				</li>
 
@@ -464,6 +466,40 @@
 				</li>
 
 				<!--M7 Mech-->
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="ATR_BaseMSeriesPawn"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>30</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="ATR_BaseMSeriesPawn"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>67.5</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="ATR_BaseMSeriesPawn"]/statBases/ArmorRating_Heat</xpath>
+					<value>
+						<ArmorRating_Heat>0</ArmorRating_Heat>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[@Name="ATR_BaseMSeriesPawn"]/statBases</xpath>
+					<value>
+						<NightVisionEfficiency>0.4</NightVisionEfficiency>
+						<MeleeDodgeChance>1.0</MeleeDodgeChance>
+						<MeleeCritChance>1.0</MeleeCritChance>
+						<MeleeParryChance>1.0</MeleeParryChance>
+						<SmokeSensitivity>0</SmokeSensitivity>
+						<CarryWeight>200</CarryWeight>
+						<CarryBulk>100</CarryBulk>
+					</value>
+				</li>
 
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="ATR_M7Mech"]</xpath>
