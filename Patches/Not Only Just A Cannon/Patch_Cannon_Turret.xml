@@ -460,21 +460,15 @@
 				<li>TurretGun</li>
 			</value>
 		</li>
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Turret_Coehorn"]/tradeTags</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
-			<value>
-				<tradeTags />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Coehorn"]</xpath>
+				<value>
+					<tradeTags />
+				</value>
+			</nomatch>
 		</li>
 		
 		<li Class="PatchOperationAdd">
@@ -593,21 +587,15 @@
 				<li>TurretGun</li>
 			</value>
 		</li>
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]/tradeTags</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
-			<value>
-				<tradeTags />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Early_Mortar"]</xpath>
+				<value>
+					<tradeTags />
+				</value>
+			</nomatch>
 		</li>
 		
 		<li Class="PatchOperationAdd">
@@ -729,21 +717,14 @@
 			</value>
 		</li>
 		
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]/tradeTags</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
-			<value>
-				<tradeTags />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Turret_Forted_Mortar"]</xpath>
+				<value>
+					<tradeTags />
+				</value>
+			</nomatch>
 		</li>
 		
 		<li Class="PatchOperationAdd">
