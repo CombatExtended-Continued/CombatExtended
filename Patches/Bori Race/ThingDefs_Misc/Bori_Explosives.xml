@@ -62,22 +62,17 @@
 		</li>	
 		
 		<!-- ========== Check Comp ========== -->		
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
-		</li>	
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_BR_Fr"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
+		</li>
+
 		<!-- ========== Add Fragmentation ========== -->		
 		
 		<li Class="PatchOperationAdd">
@@ -115,22 +110,17 @@
 		</li>
 		
 		<!-- Weapon Check Comps -->	
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="BD_GrenadeFrag"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
+
 		<!-- Weapon Values -->		
 		
 		<li Class="PatchOperationAdd">
