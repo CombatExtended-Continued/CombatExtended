@@ -57,24 +57,18 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="EMTurret"]/statBases/WorkToBuild</xpath>
-					<value>
-						<WorkToBuild>83500</WorkToBuild>
-					</value>
-				</li>
-
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="EMTurret"]/statBases</xpath>
 					<value>
+						<WorkToBuild>83500</WorkToBuild>
 						<Bulk>15</Bulk>
 					</value>
 				</li>
 
-				<!-- ========== Cannister turret ========== -->
+				<!-- ========== Canister turret ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Gun_CannisterTurret</defName>
+					<defName>Gun_CanisterTurret</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 						<SightsEfficiency>1.00</SightsEfficiency>
@@ -118,22 +112,16 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="CannisterTurret"]/building/turretBurstCooldownTime</xpath>
+					<xpath>Defs/ThingDef[defName="CanisterTurret"]/building/turretBurstCooldownTime</xpath>
 					<value>
 						<turretBurstCooldownTime>1.1</turretBurstCooldownTime>
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="CannisterTurret"]/statBases/WorkToBuild</xpath>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="CanisterTurret"]/statBases</xpath>
 					<value>
 						<WorkToBuild>89500</WorkToBuild>
-					</value>
-				</li>
-
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[defName="CannisterTurret"]/statBases</xpath>
-					<value>
 						<Bulk>20</Bulk>
 					</value>
 				</li>
@@ -141,7 +129,7 @@
 				<!-- ========== Automatic mortar ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Artillery_AutoMortar</defName>
+					<defName>Auto_Artillery_Mortar</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -180,7 +168,7 @@
 				<!-- ========== Automatic cluster mortar ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Artillery_ClusterMortar</defName>
+					<defName>Auto_Cluster_Mortar</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -220,7 +208,7 @@
 				<!-- ========== Automatic EMP mortar ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Artillery_EMPAMortar</defName>
+					<defName>Auto_EMP_Mortar</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -260,7 +248,7 @@
 				<!-- ========== Long range missile turret ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Artillery_MissileTurret</defName>
+					<defName>Gun_RocketswarmLauncher_GT</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -301,7 +289,7 @@
 				<!-- ========== Cruise missile turret ========== -->
 
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-					<defName>Artillery_CMissileTurret</defName>
+					<defName>Gun_CMissileTurret</defName>
 					<statBases>
 						<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
 						<SightsEfficiency>1</SightsEfficiency>
@@ -338,49 +326,51 @@
 					</FireModes>
 				</li>
 
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/ThingDef[defName="CMissileTurret"]/thingClass</xpath>
-					<!-- Fixes bug in GT preventing CE patching -->
-				</li>
-
 				<!-- ========== Shared settings for direct-fire turrets ========== -->
 
-				<li Class="PatchOperationReplace">
+				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
 					defName="EMTurret" or
-					defName="CannisterTurret"
-				]/thingClass</xpath>
+					defName="CanisterTurret"
+					]</xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
+				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[
 					defName="EMTurret" or
-					defName="CannisterTurret"
-				]/statBases</xpath>
+					defName="CanisterTurret"
+					]/statBases/ShootingAccuracyTurret</xpath>
 					<value>
 						<AimingAccuracy>1.0</AimingAccuracy>
 						<ShootingAccuracyTurret>1.0</ShootingAccuracyTurret>
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
+				<!-- Allows turrets to be fired from behind CE embrasures -->
+
+				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[
 					defName="EMTurret" or
-					defName="CannisterTurret"
-				]/fillPercent</xpath>
+					defName="CanisterTurret"
+					]</xpath>
 					<value>
 						<fillPercent>0.85</fillPercent>
-						<!-- Allows turrets to be fired from behind CE embrasures -->
 					</value>
 				</li>
 
 				<!-- ========== Shared settings for mortar and missile Turrets ========== -->
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name="BaseArtilleryWeapon_GT"]/comps</xpath>
+					<xpath>Defs/ThingDef[
+					defName="Auto_Artillery_Mortar" or
+					defName="Auto_Cluster_Mortar" or
+					defName="Auto_EMP_Mortar" or
+					defName="Gun_RocketswarmLauncher_GT" or
+					defName="Gun_CMissileTurret"
+					]/comps</xpath>
 					<value>
 						<li Class="CombatExtended.CompProperties_Charges">
 							<chargeSpeeds>
@@ -394,28 +384,29 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[@Name="BaseArtilleryBuilding_GT"
-				]/thingClass</xpath>
+					<xpath>Defs/ThingDef[@Name="AutoMortarBase_GT"]/thingClass</xpath>
 					<value>
 						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
 					</value>
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[
-						@Name = "BaseArtilleryBuilding_GT" or
-						defName = "MissileTurret" or
-						defName = "CMissileTurret"
-					]/statBases/WorkToBuild</xpath>
+					<xpath>Defs/ThingDef[@Name = "AutoMortarBase_GT"]/statBases/WorkToBuild</xpath>
 					<value>
 						<WorkToBuild>58500</WorkToBuild>
 					</value>
 				</li>
 
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/ThingDef[@Name = "BaseArtilleryBuilding_GT"]/statBases</xpath>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[@Name = "AutoMortarBase_GT"]/statBases/ShootingAccuracyTurret</xpath>
 					<value>
 						<ShootingAccuracyTurret>0.875</ShootingAccuracyTurret>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name = "AutoMortarBase_GT"]/statBases</xpath>
+					<value>
 						<AimingAccuracy>1</AimingAccuracy>
 						<Bulk>25</Bulk>
 					</value>

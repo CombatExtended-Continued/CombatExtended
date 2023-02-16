@@ -75,20 +75,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNProj_C4CSGO"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">
@@ -120,20 +114,14 @@
 				<value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-				<success>Always</success>
-				<operations>
-					<li Class="PatchOperationTest">
-						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]/comps</xpath>
-						<success>Invert</success>
-					</li>
-					<li Class="PatchOperationAdd">
-						<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
-						<value>
-							<comps />
-						</value>
-					</li>
-				</operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="RNThrown_C4CSGO"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<!-- Unthrown C4 does not have CombatExtended.CompProperties_ExplosiveCE, as C4 does not explode if dropped, shot at or set on fire -->

@@ -62,6 +62,7 @@ Mod |
 [SYR] Thrumkin	|
 [XND] Vanilla-Friendly Animal Surgery (Continued)
 ↁ Elves |
+ↁ House Sanguin |
 A Dog Said...	|
 ADE Advanced Turrets    |
 ADE Advanced Turrets +  |
@@ -386,6 +387,7 @@ Rimworld-Style Pilas and Bows Strapped with Grenades and Shells Extended    |
 Rimworld of Magic |
 Risk of Rain: UES Contact Light Armory (Continued) |
 Rockmen race    |
+Royal Warcaskets   |
 Saclean Race    |
 Save Our Ship 2	|
 SCP |
