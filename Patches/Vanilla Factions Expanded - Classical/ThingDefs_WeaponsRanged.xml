@@ -12,41 +12,41 @@
 
 			<!-- This dummy parent just provides a workaround so VFE - Classical can be loaded before CE. -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs</xpath>
+				<xpath>Defs</xpath>
 				<value>
 					<ThingDef ParentName="BaseWeaponAndAmmoNeolithic" Name="JavelinBase_VFEC" Abstract="True" />
 				</value>				
 			</li>	
 
 			<li Class="PatchOperationAttributeSet">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<attribute>ParentName</attribute>
 				<value>JavelinBase_VFEC</value>				
 			</li>	
 
 			<li Class="PatchOperationAttributeAdd">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<attribute>Class</attribute>
 				<value>CombatExtended.AmmoDef</value>
 			</li>
 
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/costList</xpath>
 			</li>
 
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]</xpath>
 				<value>
 					<techLevel>Neolithic</techLevel>			
 				</value>				
 			</li>		
 
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/recipeMaker</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/recipeMaker</xpath>
 			</li>
 	
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/statBases</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/statBases</xpath>
 				<value>
 					<statBases>
 						<MarketValue>7.26</MarketValue>
@@ -63,7 +63,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/verbs</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/verbs</xpath>
 				<value>
 					<verbs>
 						<li Class="CombatExtended.VerbPropertiesCE">
@@ -79,7 +79,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEC_Javelin"]/tools</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Javelin"]/tools</xpath>
 				<value>	
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -164,18 +164,18 @@
 			<!-- === Can't remove it entirely without causing errors, but make the mobile "Scorpion" weapon inaccessible. === -->
 
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]/weaponTags</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Weapon_Scorpion"]/weaponTags</xpath>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion"]/minifiedDef</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Turret_Scorpion"]/minifiedDef</xpath>
 				<value>
 					<minifiedDef>MinifiedThing</minifiedDef>			
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[defName="VFEC_Turret_Scorpion" or defName="VFEC_TurretGun_Scorpion"]/description</xpath>
+				<xpath>Defs/ThingDef[defName="VFEC_Turret_Scorpion" or defName="VFEC_TurretGun_Scorpion"]/description</xpath>
 				<value>
 				  <description>A ballista-like turret capable of firing rapidly when set up and manned. Very effective against enemy infantry.</description>
 				</value>

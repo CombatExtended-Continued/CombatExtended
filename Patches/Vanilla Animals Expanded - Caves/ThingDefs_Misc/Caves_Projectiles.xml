@@ -9,7 +9,7 @@
 
 	<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 	<li Class="PatchOperationReplace">
-	<xpath>/Defs/ThingDef[defName="VAECaves_RangedSilk"]/thingClass</xpath>
+	<xpath>Defs/ThingDef[defName="VAECaves_RangedSilk"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		</value>
@@ -17,14 +17,14 @@
 
 	<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
 	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/statBases</xpath>
 		<value>
 			<AimingAccuracy>0.6</AimingAccuracy>
 		</value>
 	</li>
 
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/verbs</xpath>
+		<xpath>Defs/ThingDef[defName="VAECaves_AncientGiantSpider"]/verbs</xpath>
 		<value>
 			<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
@@ -53,7 +53,7 @@
 
 	<!-- =============== Now defining Projectiles in CE Procedure(Please do not remove sharp penetration value >:(   ) ============= -->
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VAECaves_RangedSilk"]/projectile</xpath>
+		<xpath>Defs/ThingDef[defName="VAECaves_RangedSilk"]/projectile</xpath>
 		<value>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<flyOverhead>false</flyOverhead>

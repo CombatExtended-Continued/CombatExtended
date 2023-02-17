@@ -11,21 +11,21 @@
 					<!-- Changing the workerClass -->
 				
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[workerClass="DamageWorker_Stab"]/workerClass</xpath>
+					<xpath>Defs/DamageDef[workerClass="DamageWorker_Stab"]/workerClass</xpath>
 						<value>
 							<workerClass>DamageWorker_AddInjury</workerClass>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[workerClass="DamageWorker_Blunt"]/workerClass</xpath>
+					<xpath>Defs/DamageDef[workerClass="DamageWorker_Blunt"]/workerClass</xpath>
 						<value>
 							<workerClass>CombatExtended.DamageWorker_BluntCE</workerClass>
 						</value>
 					</li>
 
 					<li Class="PatchOperationAddModExtension">
-						<xpath>/Defs/DamageDef[defName="AA_AcidSpit" or defName="AA_SecondaryAcidBurn" or defName="AA_PermanentBurn"]</xpath>
+						<xpath>Defs/DamageDef[defName="AA_AcidSpit" or defName="AA_SecondaryAcidBurn" or defName="AA_PermanentBurn"]</xpath>
 						<value>
 							<li Class="CombatExtended.DamageDefExtensionCE">
 								<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
@@ -37,7 +37,7 @@
 					<!-- Buffing some Hediffs -->
 					
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="AA_ToxicSting" or
+					<xpath>Defs/DamageDef[defName="AA_ToxicSting" or
 					defName="AA_InfectedClaws" or
 					defName="AA_ToxicBite" or
 					defName="AA_ToxicBolt"]/additionalHediffs/li[hediff="AA_ToxicBuildup"]/severityPerDamageDealt</xpath>
@@ -47,28 +47,28 @@
 					</li>
 					
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="AA_VeryToxicSting"]/additionalHediffs/li[hediff="AA_ToxicBuildup"]/severityPerDamageDealt</xpath>
+					<xpath>Defs/DamageDef[defName="AA_VeryToxicSting"]/additionalHediffs/li[hediff="AA_ToxicBuildup"]/severityPerDamageDealt</xpath>
 						<value>
 							<severityPerDamageDealt>0.03</severityPerDamageDealt>
 						</value>
 					</li>
 					
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="AA_ParalysingBite"]/additionalHediffs/li[hediff="AA_Paralysis"]/severityPerDamageDealt</xpath>
+					<xpath>Defs/DamageDef[defName="AA_ParalysingBite"]/additionalHediffs/li[hediff="AA_Paralysis"]/severityPerDamageDealt</xpath>
 						<value>
 							<severityPerDamageDealt>0.02</severityPerDamageDealt>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="AA_Electric"]/additionalHediffs/li[hediff="AA_Electric"]/severityPerDamageDealt</xpath>
+					<xpath>Defs/DamageDef[defName="AA_Electric"]/additionalHediffs/li[hediff="AA_Electric"]/severityPerDamageDealt</xpath>
 						<value>
 							<severityPerDamageDealt>0.025</severityPerDamageDealt>
 						</value>
 					</li>
 
 					<li Class="PatchOperationReplace">
-					<xpath>/Defs/DamageDef[defName="AA_SwarmlingClaws"]/additionalHediffs/li[hediff="AA_SwarmlingImplantation"]/severityPerDamageDealt</xpath>
+					<xpath>Defs/DamageDef[defName="AA_SwarmlingClaws"]/additionalHediffs/li[hediff="AA_SwarmlingImplantation"]/severityPerDamageDealt</xpath>
 						<value>
 							<severityPerDamageDealt>0.0003</severityPerDamageDealt>
 						</value>
