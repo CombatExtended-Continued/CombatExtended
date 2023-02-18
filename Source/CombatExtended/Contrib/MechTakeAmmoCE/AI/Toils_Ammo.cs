@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 using RimWorld;
+using CombatExtended;
 
-namespace CombatExtended
+namespace IssacZhuangMTA
 {
     public static class Toils_Ammo
     {
@@ -19,6 +20,16 @@ namespace CombatExtended
             {
                 Pawn actor = toil.actor;
                 actor.inventory.DropCount(def, count);
+            };
+            return toil;
+        }
+
+        public static Toil TryUnloadAmmo(CompAmmoUser ammoUser)
+        {
+            Toil toil = ToilMaker.MakeToil("TryUnloadAmmo");
+            toil.initAction = () =>
+            {
+                ammoUser?.TryUnload(true);
             };
             return toil;
         }
