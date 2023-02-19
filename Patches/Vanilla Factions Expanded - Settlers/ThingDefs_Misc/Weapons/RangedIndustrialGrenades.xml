@@ -47,7 +47,7 @@
 
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
@@ -57,7 +57,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
@@ -66,9 +66,9 @@
         </li>
 
         <li Class="PatchOperationConditional">
-          <xpath>/Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]/comps</xpath>
+          <xpath>Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]/comps</xpath>
           <nomatch Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]</xpath>
+            <xpath>Defs/ThingDef[defName = "VFES_Weapon_GrenadeDynamite"]</xpath>
             <value>
               <comps />
             </value>
@@ -76,7 +76,7 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]/comps</xpath>
           <value>
             <li Class="CombatExtended.CompProperties_ExplosiveCE">
               <explosiveDamageType>Bomb</explosiveDamageType>
@@ -88,7 +88,7 @@
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
+          <xpath>Defs/ThingDef[defName="VFES_Weapon_GrenadeDynamite"]</xpath>
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>

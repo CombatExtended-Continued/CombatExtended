@@ -11,14 +11,14 @@
         <!-- === Settler === -->
         <!-- We'll add this as a secondary -->
         <li Class="PatchOperationConditional">
-            <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+            <xpath>Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
             <match Class="PatchOperationRemove">
-                <xpath>/Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
+                <xpath>Defs/PawnKindDef[defName="Settler"]/weaponTags/li[.="GrenadeDestructive"]</xpath>
             </match>
         </li>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/PawnKindDef[defName="Settler"]</xpath>
+          <xpath>Defs/PawnKindDef[defName="Settler"]</xpath>
           <value>
             <li Class="CombatExtended.LoadoutPropertiesExtension">
               <primaryMagazineCount>
@@ -47,7 +47,7 @@
 
         <!-- === Deputy | Militia | Frontier Trader === -->
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/PawnKindDef[defName="Deputy" or defName="Militia" or defName="Frontier_Trader" or defName="Sheriff" or defName="Mayor"]</xpath>
+          <xpath>Defs/PawnKindDef[defName="Deputy" or defName="Militia" or defName="Frontier_Trader" or defName="Sheriff" or defName="Mayor"]</xpath>
           <value>
             <li Class="CombatExtended.LoadoutPropertiesExtension">
               <primaryMagazineCount>

@@ -81,6 +81,11 @@
   	</value>
   </Operation>
 
+  <!--removed gunlink-->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]/specificApparelRequirements/li[1]</xpath>
+  </Operation>
+
   <Operation Class="PatchOperationAddModExtension">
   	<xpath>Defs/PawnKindDef[defName="Empire_Fighter_Janissary"]</xpath>
   	<value>
@@ -150,7 +155,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName ="Empire_Fighter_Cataphract"]/weaponTags</xpath>
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/weaponTags</xpath>
     <value>
         <li>Minigun</li>
     </value>
@@ -158,7 +163,7 @@
 
   <!--removed gunlink-->
   <Operation Class="PatchOperationRemove">
-    <xpath>Defs/PawnKindDef[defName ="Empire_Fighter_Cataphract"]/specificApparelRequirements/li[1]</xpath>
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/specificApparelRequirements/li[1]</xpath>
   </Operation>
 
   <Operation Class="PatchOperationAddModExtension">
@@ -214,7 +219,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName ="Empire_Fighter_Grenadier"]/weaponTags</xpath>
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Grenadier"]/weaponTags</xpath>
     <value>
         <weaponTags>
             <li>GunHeavy</li>
@@ -318,18 +323,36 @@
   <!-- ========== Add Loadbearing Gear to Imperial Fighters ========== -->
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[@Name="ImperialTrooperBase"]/apparelRequired</xpath>
+    <xpath>Defs/PawnKindDef[@Name="ImperialFighterBase"]/specificApparelRequirements</xpath>
       <value>
-        <li>CE_Apparel_Backpack</li>
+        <li>
+          <bodyPartGroup>Shoulders</bodyPartGroup>
+          <apparelLayer>Backpack</apparelLayer>
+          <stuff>Cloth</stuff>
+        </li>
       </value>
    </Operation>
- 
-   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Champion"]/apparelRequired</xpath>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="Empire_Fighter_Cataphract"]/specificApparelRequirements</xpath>
       <value>
-        <li>CE_Apparel_Backpack</li>
+        <li>
+          <bodyPartGroup>Shoulders</bodyPartGroup>
+          <apparelLayer>Backpack</apparelLayer>
+          <stuff>Synthread</stuff>
+        </li>
       </value>
    </Operation>
- 
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[@Name="StellicGuardBase"]/specificApparelRequirements</xpath>
+      <value>
+        <li>
+          <bodyPartGroup>Shoulders</bodyPartGroup>
+          <apparelLayer>Backpack</apparelLayer>
+          <stuff>Hyperweave</stuff>
+        </li>
+      </value>
+   </Operation>
 
 </Patch>
