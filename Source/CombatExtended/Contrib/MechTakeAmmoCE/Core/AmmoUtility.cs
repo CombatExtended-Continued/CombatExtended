@@ -8,7 +8,7 @@ using Verse;
 using CombatExtended;
 using RimWorld;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public static class MTAAmmoUtility
     {

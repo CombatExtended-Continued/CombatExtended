@@ -8,7 +8,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     [DefOf]
     public static class MTAJobDefOf

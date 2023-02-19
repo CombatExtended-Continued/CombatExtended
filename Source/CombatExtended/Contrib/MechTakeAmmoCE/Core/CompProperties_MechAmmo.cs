@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public class CompProperties_MechAmmo : CompProperties
     {

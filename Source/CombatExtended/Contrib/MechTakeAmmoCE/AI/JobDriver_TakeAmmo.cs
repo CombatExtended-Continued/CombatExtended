@@ -10,7 +10,7 @@ using RimWorld;
 using UnityEngine;
 using CombatExtended;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public class JobDriver_TakeAmmo : JobDriver
     {

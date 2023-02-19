@@ -9,7 +9,7 @@ using Verse.AI;
 using RimWorld;
 using CombatExtended;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public static class Toils_Ammo
     {

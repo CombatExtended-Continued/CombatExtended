@@ -8,7 +8,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public class Dialog_SetValue : Window
     {

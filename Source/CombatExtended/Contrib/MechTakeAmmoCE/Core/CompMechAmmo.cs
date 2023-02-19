@@ -11,7 +11,7 @@ using UnityEngine;
 using CombatExtended;
 using Verse.AI;
 
-namespace IssacZhuangMTA
+namespace CombatExtended
 {
     public class CompMechAmmo : ThingComp
     {
