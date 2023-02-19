@@ -121,10 +121,6 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (!AmmoUser.UseAmmo)
-            {
-                yield break;
-            }
 
             if (!IsWorkable())
             {
@@ -308,7 +304,10 @@ namespace CombatExtended
             {
                 return false;
             }
-
+            if (AmmoUser.UseAmmo == false)
+            {
+                return false;
+            }
             return true;
         }
     }
