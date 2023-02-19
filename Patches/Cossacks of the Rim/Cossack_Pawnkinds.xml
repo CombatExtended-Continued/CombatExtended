@@ -10,18 +10,18 @@
 			<operations>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase"]/apparelRequired</xpath>
+					<xpath>Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase"]/apparelRequired</xpath>
 					<value>
 						<li>CE_Apparel_TribalBackpack</li>
 					</value>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/PawnKindDef[@Name="Cossack_CommonBase" or defName="Cossack_Private" or defName="Cossack_Private2" or defName="Cossack_Peasant" or defName="Cossack_Trader"]/itemQuality</xpath>
+					<xpath>Defs/PawnKindDef[@Name="Cossack_CommonBase" or defName="Cossack_Private" or defName="Cossack_Private2" or defName="Cossack_Peasant" or defName="Cossack_Trader"]/itemQuality</xpath>
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/PawnKindDef[defName="Cossack_Captain2" or defName="Cossack_Private2" or defName="Cossack_Peasant"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="Cossack_Captain2" or defName="Cossack_Private2" or defName="Cossack_Peasant"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -49,7 +49,7 @@
 					<match Class="PatchOperationSequence">
 						<operations>
 							<li Class="PatchOperationAddModExtension">
-								<xpath>/Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase" or defName="Cossack_Private2" or defName="Cossack_Captain2"]</xpath>
+								<xpath>Defs/PawnKindDef[@Name="Cossack_NobleBase" or @Name="Cossack_CommonBase" or defName="Cossack_Private2" or defName="Cossack_Captain2"]</xpath>
 								<value>
 									<li Class="CombatExtended.LoadoutPropertiesExtension">
 										<primaryMagazineCount>

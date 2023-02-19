@@ -10,7 +10,7 @@
 
 		<!--Add the Humanoid Body Shape to the Moonjelly-->
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
 					<bodyShape>Humanoid</bodyShape>
@@ -20,7 +20,7 @@
 
 		<!--Add Stats to the Moonjelly-->
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/statBases</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/statBases</xpath>
 			<value>
 				<!--They aren't as good at range, have terrible meele, and are easily suppressed-->
 				<!--However, they reload quickly and are very reistant to smoke-->
@@ -36,7 +36,7 @@
 
 		<!--Give the Moon Gelly A toxic sting-->
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/tools</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/tools</xpath>
 			<value>
 				<tools>
 					<li Class="CombatExtended.ToolCE">
@@ -80,7 +80,7 @@
 
 		<!--Had to lower the severity of anesthethic by 10 because they were just downing living creatures in one hit-->
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/DamageDef[defName="TentacleStrikeDmg"]/additionalHediffs/li[hediff="Anesthetic"]/severityPerDamageDealt</xpath>
+			<xpath>Defs/DamageDef[defName="TentacleStrikeDmg"]/additionalHediffs/li[hediff="Anesthetic"]/severityPerDamageDealt</xpath>
 			<value>
 			<severityPerDamageDealt>0.03</severityPerDamageDealt>
 			</value>
@@ -99,7 +99,7 @@
 
 		<!--Adds the suppresibility to the moonjellyies-->
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Moonjelly_Race"]/comps</xpath>
 			<value>
 				<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
