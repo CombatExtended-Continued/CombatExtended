@@ -248,10 +248,9 @@ namespace CombatExtended
                 Job jobTakeAmmo = JobMaker.MakeJob(MTAJobDefOf.MTA_TakeAmmo, ammoFound);
 
                 jobTakeAmmo.count = ammoNeed;
-                Log.Message(" needs " + ammoNeed + " " + ammoDef.label + " ammo.");
                 if (ParentPawn.jobs.curJob.def != MTAJobDefOf.MTA_TakeAmmo)
                 {
-                    ParentPawn.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                    ParentPawn.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
                 }
 
                 ParentPawn.jobs.TryTakeOrderedJob(jobTakeAmmo, 0, true);
@@ -262,7 +261,6 @@ namespace CombatExtended
                 var ammoToDrop = AmmoUser.CurrentAmmo;
                 AmmoUser.TryUnload(true);
                 int count = ParentPawn.inventory.Count(ammoToDrop);
-                Log.Message("Dropping " + count + " " + ammoToDrop.label + " ammo.");
                 ParentPawn.inventory.DropCount(ammoToDrop, count);
             }
 
