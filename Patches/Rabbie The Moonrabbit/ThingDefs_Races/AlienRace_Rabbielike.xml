@@ -10,22 +10,22 @@
 		<operations>
 			
 			<li Class="PatchOperationConditional">
-				<xpath>/Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
 				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
+					<xpath>Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
 					<value>
 						<comps/>
 					</value>
 				</nomatch>
 				<match Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
+					<xpath>Defs/ThingDef[@Name="RB_PawnBase"]</xpath>
 					<value>
 					</value>
 				</match>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="RB_PawnBase"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -35,7 +35,7 @@
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -46,7 +46,7 @@
 			<!--Better shooting, Worse melee-->
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/statBases</xpath>
+			 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/statBases</xpath>
 				  <value>
 				    <!--Same as shooting offset-->
 				    <AimingAccuracy>1.2</AimingAccuracy>
@@ -62,7 +62,7 @@
 			<!--Base has no headbut, only bite-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath> 
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rabbie"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">

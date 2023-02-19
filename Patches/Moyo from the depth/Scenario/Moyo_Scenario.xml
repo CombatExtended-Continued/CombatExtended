@@ -28,26 +28,26 @@
 			<!--Add material filter to faction for MIB type events-->
 			
 			<li Class="PatchOperationConditional">
-				   <xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
+				   <xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
 				<match Class="PatchOperationConditional">
-					<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
+					<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
 					<match Class="PatchOperationConditional">
-						<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+						<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
 						<match Class="PatchOperationReplace">
-							<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
+							<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs/li["Steel"]</xpath>
 							<value>
 								<li>Steel</li>
 							</value>
 						</match>
 						<nomatch Class="PatchOperationAdd">
-							<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
+							<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter/thingDefs</xpath>
 							<value>
 								<li>Steel</li>
 							</value>
 						</nomatch>
 					</match>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
+						<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]/apparelStuffFilter</xpath>
 						<value>
 							<thingDefs>
 								<li>Steel</li>
@@ -56,7 +56,7 @@
 					</nomatch>
 				</match>
 				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/FactionDef[@Name="Moyo_PlayerBase"]</xpath>
+					<xpath>Defs/FactionDef[@Name="Moyo_PlayerBase"]</xpath>
 					<value>
 						<apparelStuffFilter>
 							<thingDefs>

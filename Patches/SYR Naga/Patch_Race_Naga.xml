@@ -8,9 +8,9 @@
 		<operations>
 
 		<li Class="PatchOperationConditional">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
 			<nomatch Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
 				<value>
 					<comps />
 				</value>
@@ -18,7 +18,7 @@
 		</li>
 		
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
 					<bodyShape>Humanoid</bodyShape>
@@ -27,7 +27,7 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases/Mass</xpath>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases/Mass</xpath>
 			  <!-- Nagas are too light in the original mod, only 80kg for a 5.5m THICC snake -->
 			  <value>
 				<Mass>100</Mass>
@@ -36,7 +36,7 @@
 
 		<!-- Melee Tool & Basestats Defs -->
 		<li Class="PatchOperationAdd">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases</xpath>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/statBases</xpath>
 			  <!-- Stats are calculated for a 5.5m long, 340kg Naga -->
 			  <value>
 			    <UnarmedDamage>0.9</UnarmedDamage>
@@ -49,7 +49,7 @@
 		</li>
 		
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/tools</xpath> 
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/tools</xpath> 
 			<value>
 				<tools>
 				  <li Class="CombatExtended.ToolCE">
@@ -104,7 +104,7 @@
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Naga"]/comps</xpath>
 			<value>
 				<li>
 				  <compClass>CombatExtended.CompPawnGizmo</compClass>

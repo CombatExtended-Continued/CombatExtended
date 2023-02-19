@@ -8,7 +8,7 @@
 			<operations>
 
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -18,7 +18,7 @@
 			
 			<!-- Melee Tool & Basestats Defs -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases</xpath>
 				<value>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
 					<MeleeCritChance>1</MeleeCritChance>
@@ -29,21 +29,21 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Blunt</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Blunt</xpath>
 				<value>
 					<ArmorRating_Blunt>1.75</ArmorRating_Blunt>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/statBases/ArmorRating_Sharp</xpath>
 				<value>
 					<ArmorRating_Sharp>4</ArmorRating_Sharp>
 				</value>
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/tools</xpath> 
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -113,9 +113,9 @@
 			
 			<!-- Checking if "Alien_Rockman" has a <comps> node and adding it if it doesn't exist -->
 			<li Class="PatchOperationConditional">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
 				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]</xpath>
 					<value>
 						<comps />
 					</value>
@@ -123,7 +123,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Rockman"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>
