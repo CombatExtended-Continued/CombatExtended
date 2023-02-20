@@ -61,8 +61,8 @@ namespace CombatExtended
 
             if (Widgets.ButtonText(new Rect(inRect.x, curY, inRect.width, BotAreaHeight), "OK".Translate(), true, true, true, null))
             {
+                mechAmmo.TakeAmmoNow();
                 Close(true);
-
             }
         }
 
