@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Glitter Weaponry</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
+
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]/tools</xpath>
@@ -61,6 +63,7 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]/statBases</xpath>
 					<value>
@@ -68,12 +71,14 @@
 						<MeleeCounterParryBonus>0.5</MeleeCounterParryBonus>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]/equippedAngleOffset</xpath>
 					<value>
 						<equippedAngleOffset>-45</equippedAngleOffset>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]</xpath>
 					<value>
@@ -84,14 +89,16 @@
 						</equippedStatOffsets>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]/weaponTags</xpath>
 					<value>
 						<li>CE_OneHandedWeapon</li>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName = "Laser_Handcannon"]/tools</xpath>
+					<xpath>Defs/ThingDef[defName = "Laser_Handcannon"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -118,11 +125,9 @@
 						</tools>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[
-        defName = "Laser_Carbine" or
-        defName = "Laser_Scatterer"
-        ]/tools</xpath>
+					<xpath>Defs/ThingDef[defName = "Laser_Carbine" or defName = "Laser_Scatterer"]/tools</xpath>
 					<value>
 						<tools>
 							<li Class="CombatExtended.ToolCE">
@@ -159,17 +164,16 @@
 						</tools>
 					</value>
 				</li>
+
 				<!-- === Remove Shotgun Gizmo === -->
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[
-        defName = "Laser_Scatterer"    
-        ]/verbs</xpath>
+					<xpath>Defs/ThingDef[defName = "Laser_Scatterer"]/verbs</xpath>
 				</li>
+
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/ThingDef[
-        defName = "Laser_Scatterer"    
-        ]/modExtensions/li[@Class="AthenaFramework.AngularShotgunExtension"]</xpath>
+					<xpath>Defs/ThingDef[defName = "Laser_Scatterer"]/modExtensions/li[@Class="AthenaFramework.AngularShotgunExtension"]</xpath>
 				</li>
+
 				<!-- === Laser Handcannon === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Laser_Handcannon</defName>
@@ -197,13 +201,14 @@
 						<ammoSet>AmmoSet_Laser_Handcannon</ammoSet>
 					</AmmoUser>
 					<FireModes>
-						<aiAimMode>AimedShot</aiAimMode>
+						<aiAimMode>Snapshot</aiAimMode>
 					</FireModes>
 					<weaponTags>
 						<li>SpacerGun</li>
 						<li>CE_OneHandedWeapon</li>
 					</weaponTags>
 				</li>
+
 				<!-- === Laser Rifle === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Laser_Carbine</defName>
@@ -239,6 +244,7 @@
 						<aimedBurstShotCount>3</aimedBurstShotCount>
 					</FireModes>
 				</li>
+
 				<!-- === Laser Shotgun === -->
 				<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 					<defName>Laser_Scatterer</defName>
@@ -270,8 +276,10 @@
 						<aiAimMode>AimedShot</aiAimMode>
 						<aiUseBurstMode>True</aiUseBurstMode>
 					</FireModes>
+
 				</li>
 			</operations>
 		</match>
 	</Operation>
+
 </Patch>

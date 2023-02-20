@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Glitter Weaponry</li>
@@ -8,11 +9,13 @@
 			<mods>
 				<li>Vanilla Weapons Expanded - Heavy Weapons</li>
 			</mods>
+
 			<match Class="PatchOperationSequence">
 				<operations>
+
 					<!-- === Tools === -->
 					<li Class="PatchOperationReplace">
-						<xpath>/Defs/ThingDef[defName="Laser_Destructor"]/tools</xpath>
+						<xpath>Defs/ThingDef[defName="Laser_Destructor"]/tools</xpath>
 						<value>
 							<tools>
 								<li Class="CombatExtended.ToolCE">
@@ -28,17 +31,16 @@
 							</tools>
 						</value>
 					</li>
+
 					<!-- === Remove Shotgun Gizmo === -->
 					<li Class="PatchOperationRemove">
-						<xpath>/Defs/ThingDef[ 
-        defName = "Laser_Destructor"    
-        ]/verbs</xpath>
+						<xpath>Defs/ThingDef[defName = "Laser_Destructor"]/verbs</xpath>
 					</li>
+
 					<li Class="PatchOperationRemove">
-						<xpath>/Defs/ThingDef[ 
-        defName = "Laser_Destructor"    
-        ]/modExtensions/li[@Class="AthenaFramework.AngularShotgunExtension"]</xpath>
+						<xpath>Defs/ThingDef[defName = "Laser_Destructor"]/modExtensions/li[@Class="AthenaFramework.AngularShotgunExtension"]</xpath>
 					</li>
+
 					<!-- === Laser Destructor === -->
 					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 						<defName>Laser_Destructor</defName>
@@ -74,8 +76,10 @@
 							<aiUseBurstMode>True</aiUseBurstMode>
 						</FireModes>
 					</li>
+
 				</operations>
 			</match>
 		</match>
 	</Operation>
+
 </Patch>

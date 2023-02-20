@@ -220,6 +220,7 @@ Girls' Frontline Apparel Pack	|
 Girls' Frontline Styles - 404 Team	|
 Girls' Frontline Weapon Pack	|
 Glitter Tech	|
+Glitter Weaponry	|
 GouRIMet	|
 Grimworld Lasguns	|
 Gulden Mod  |
