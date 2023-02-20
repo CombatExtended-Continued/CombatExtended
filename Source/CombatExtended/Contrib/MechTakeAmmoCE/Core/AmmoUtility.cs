@@ -57,7 +57,7 @@ namespace CombatExtended
             return floatOptionList;
         }
 
-        public static int NeedAmmo(this CompAmmoUser ammoUser, int amount)
+        public static int NeedAmmo(this CompAmmoUser ammoUser, AmmoDef ammoDef, int amount)
         {
             int current = 0;
             if (ammoUser == null)
@@ -65,14 +65,14 @@ namespace CombatExtended
                 return 0;
             }
 
-            if (ammoUser.CurrentAmmo == ammoUser.SelectedAmmo)
+            if (ammoUser.CurrentAmmo == ammoDef)
             {
                 current = ammoUser.CurMagCount;
             }
 
             foreach (Thing thing in ammoUser.Holder.inventory.innerContainer)
             {
-                if (thing.def == ammoUser.SelectedAmmo)
+                if (thing.def == ammoDef)
                 {
                     current += thing.stackCount;
                 }

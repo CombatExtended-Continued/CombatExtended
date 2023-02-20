@@ -13,9 +13,9 @@ using Verse.AI;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
     public class CompMechAmmo : ThingComp
     {
+
         private Pawn _parentPawn;
         private Pawn_InventoryTracker _pawnInventory;
         private CompAmmoUser _ammoUser;
@@ -27,13 +27,13 @@ namespace CombatExtended
 
         private readonly string _txtSetMagCount = "MTA_SetMagCount".Translate();
         private readonly string _txtTakeAmmoNow = "MTA_TakeAmmoNow".Translate();
-        private readonly string _txtMagCount = "MTA_MagCount".Translate();
-        private readonly string _txtShot = "MTA_Shot".Translate();
-        private readonly string _txtNoNeedAmmo = "MTA_NoNeedAmmo".Translate();
+        //private readonly string _txtMagCount = "MTA_MagCount".Translate();
+        //private readonly string _txtShot = "MTA_Shot".Translate();
+        //private readonly string _txtNoNeedAmmo = "MTA_NoNeedAmmo".Translate();
+
+        private Dictionary<AmmoDef, int> _loadouts = new Dictionary<AmmoDef, int>();
 
         public static readonly int REFRESH_INTERVAL = 6000;
-
-        public int magCount = 6;
 
         public Texture2D GizmoIcon_SetMagCount
         {
@@ -105,10 +105,23 @@ namespace CombatExtended
             }
         }
 
+        public Dictionary<AmmoDef, int> Loadouts
+        {
+            get
+            {
+                if (_loadouts == null)
+                {
+                    _loadouts = new Dictionary<AmmoDef, int>();
+                }
+                return _loadouts;
+            }
+        }
+
         public CompProperties_MechAmmo Props => (CompProperties_MechAmmo)this.props;
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
+
             if (!IsWorkable())
             {
                 yield break;
@@ -144,9 +157,19 @@ namespace CombatExtended
             TryMakeAmmoJob();
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Collections.Look<AmmoDef, int>(ref _loadouts, "MTA_Loadouts");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && _loadouts == null)
+            {
+                _loadouts = new Dictionary<AmmoDef, int>();
+            }
+        }
+
         public void SetMagCount()
         {
-            Dialog_SetValue dialog = new Dialog_SetValue(GetMagCountText, OnMagCountSetted, magCount);
+            Dialog_SetMagCount dialog = new Dialog_SetMagCount(this);
             Find.WindowStack.Add(dialog);
         }
 
@@ -158,6 +181,11 @@ namespace CombatExtended
         public void TryMakeAmmoJob(bool forced = false)
         {
             Thing ammoFound;
+
+            if (!AmmoUser.UseAmmo)
+            {
+                return;
+            }
 
             if (ParentPawn == null)
             {
@@ -184,26 +212,73 @@ namespace CombatExtended
                 return;
             }
 
-            AmmoDef currentAmmo = AmmoUser.SelectedAmmo;
+            bool currentAmmoInUse = false;
 
-            int ammoNeed = AmmoUser.NeedAmmo(AmmoUser.MagSize * magCount);
-
-            if (ammoNeed == 0)
+            foreach (var ammoType in AmmoUser.Props.ammoSet.ammoTypes)
             {
-                return;
+                AmmoDef ammoDef = ammoType.ammo;
+
+                int magCount = GetMagCount(ammoDef);
+                int ammoNeed = AmmoUser.NeedAmmo(ammoDef, AmmoUser.MagSize * magCount);
+
+                if (ammoDef == AmmoUser.CurrentAmmo && magCount > 0)
+                {
+                    currentAmmoInUse = true;
+                }
+
+                if (ammoNeed > 0)
+                {
+                    ammoFound = ParentPawn.FindBestAmmo(ammoDef);
+                }
+                else if (ammoNeed < 0)
+                {
+                    ParentPawn.inventory.DropCount(ammoDef, -ammoNeed);
+                    continue;
+                }
+                else
+                {
+                    continue;
+                }
+
+                if (ammoFound == null)
+                {
+                    continue;
+                }
+
+                Job jobTakeAmmo = JobMaker.MakeJob(MTAJobDefOf.MTA_TakeAmmo, ammoFound);
+
+                jobTakeAmmo.count = ammoNeed;
+                if (ParentPawn.jobs.curJob.def != MTAJobDefOf.MTA_TakeAmmo)
+                {
+                    ParentPawn.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
+                }
+
+                ParentPawn.jobs.TryTakeOrderedJob(jobTakeAmmo, 0, true);
             }
 
-            ammoFound = ParentPawn.FindBestAmmo(currentAmmo);
-            if (ammoFound == null)
+            if (!currentAmmoInUse && AmmoUser.CurrentAmmo != null)
             {
-                return;
+                var ammoToDrop = AmmoUser.CurrentAmmo;
+                AmmoUser.TryUnload(true);
+                int count = ParentPawn.inventory.Count(ammoToDrop);
+                ParentPawn.inventory.DropCount(ammoToDrop, count);
             }
 
-            Job jobTakeAmmo = JobMaker.MakeJob(MTAJobDefOf.MTA_TakeAmmo, ammoFound);
-            Job jobReload = JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, ParentPawn, AmmoUser.parent);
-            jobTakeAmmo.count = ammoNeed;
-            ParentPawn.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
-            ParentPawn.jobs.StartJob(jobTakeAmmo);
+
+            if (ParentPawn.jobs.curJob.def == MTAJobDefOf.MTA_TakeAmmo && !AmmoUser.FullMagazine)
+            {
+                ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(MTAJobDefOf.MTA_UnloadAmmo, ParentPawn), 0, true);
+                ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, ParentPawn, AmmoUser.parent), 0, true);
+            }
+        }
+
+        public int GetMagCount(AmmoDef ammo)
+        {
+            if (Loadouts.TryGetValue(ammo, out int result))
+            {
+                return result;
+            }
+            return 0;
         }
 
         public bool IsWorkable()
@@ -227,22 +302,11 @@ namespace CombatExtended
             {
                 return false;
             }
-
-            return true;
-        }
-
-        private string GetMagCountText(int value)
-        {
-            if (AmmoUser == null)
+            if (AmmoUser.UseAmmo == false)
             {
-                return _txtNoNeedAmmo;
+                return false;
             }
-            return _txtMagCount + value + " = " + value * AmmoUser.MagSize + _txtShot;
-        }
-
-        private void OnMagCountSetted(int value)
-        {
-            magCount = value;
+            return true;
         }
     }
 }

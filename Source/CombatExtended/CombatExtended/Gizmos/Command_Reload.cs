@@ -90,14 +90,6 @@ namespace CombatExtended
 
         private List<FloatMenuOption> BuildAmmoOptions()
         {
-            //Use ammo menu as ammo selector if target is mechanoid
-            CompMechAmmo mechAmmo = compAmmo?.Holder?.GetComp<CompMechAmmo>();
-            if (mechAmmo != null)
-            {
-                return compAmmo.BuildAmmoOptions(mechAmmo);
-            }
-
-
             //Prepare list of others in case only a single gizmo is selected
             if (others == null)
             {

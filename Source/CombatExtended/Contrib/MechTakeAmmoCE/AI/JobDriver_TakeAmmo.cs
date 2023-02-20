@@ -8,6 +8,7 @@ using Verse;
 using Verse.AI;
 using RimWorld;
 using UnityEngine;
+using CombatExtended;
 
 namespace CombatExtended
 {
@@ -32,22 +33,17 @@ namespace CombatExtended
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
             this.FailOnForbidden(TargetIndex.A);
-            CompAmmoUser ammoUser = pawn.equipment.Primary.GetComp<CompAmmoUser>();
+            CompAmmoUser ammoUser = pawn?.equipment?.Primary?.GetComp<CompAmmoUser>();
 
-            foreach (Thing thing in pawn.inventory.innerContainer)
-            {
-                if (!(thing.def is AmmoDef ammoDef))
-                {
-                    continue;
-                }
+            // foreach (Thing thing in pawn.inventory.innerContainer)
+            // {
+            //     if (!(thing.def is AmmoDef ammoDef)) continue;
+            //     if (ammoDef == Ammo.def) continue;
+            //     yield return Toils_Ammo.Drop(thing.def, thing.stackCount);
+            // }
 
-                if (ammoDef == Ammo.def)
-                {
-                    continue;
-                }
+            if (ammoUser == null) { yield break; }
 
-                yield return Toils_Ammo.Drop(thing.def, thing.stackCount);
-            }
             if (job.count > 0)
             {
                 yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
@@ -55,16 +51,12 @@ namespace CombatExtended
             }
             else if (job.count < 0)
             {
-                yield return Toils_Ammo.Drop(ammoUser.SelectedAmmo, -job.count);
+                yield return Toils_Ammo.Drop(Ammo.def, -job.count);
             }
             else
             {
                 Log.Error("[MechTakeAmmoCE] Trying to start job that no need ammo");
             }
-            Toil unloadToil = new Toil();
-            unloadToil.AddFinishAction(() => ammoUser.TryStartReload());
-            yield return unloadToil;
-
         }
     }
 }

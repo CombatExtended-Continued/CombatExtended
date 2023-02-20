@@ -14,5 +14,6 @@ namespace CombatExtended
     public static class MTAJobDefOf
     {
         public static JobDef MTA_TakeAmmo;
+        public static JobDef MTA_UnloadAmmo;
     }
 }
