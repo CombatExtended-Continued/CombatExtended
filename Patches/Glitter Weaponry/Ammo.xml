@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Glitter Weaponry</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+
+						<!-- === Ammo Sets === -->
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_Laser_Handcannon</defName>
+							<label>laser charge</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Bullet_Laser_Laser_Handcannon</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_Laser_Carbine</defName>
+							<label>laser charge</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Bullet_Laser_Laser_Carbine</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_Laser_Scatterer</defName>
+							<label>laser charge</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Bullet_Laser_Laser_Scatterer</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+						<CombatExtended.AmmoSetDef>
+							<defName>AmmoSet_DestructorLaser</defName>
+							<label>laser charge</label>
+							<ammoTypes>
+								<Ammo_LaserChargePack>Bullet_Laser_DestructorLaser</Ammo_LaserChargePack>
+							</ammoTypes>
+						</CombatExtended.AmmoSetDef>
+
+						<!-- === Projectiles === -->
+						<ThingDef ParentName="BaseBullet">
+							<defName>Bullet_Laser_Laser_Carbine</defName>
+							<label>laser bolt</label>
+							<graphicData>
+								<texPath>Things/LaserBolt</texPath>
+								<shaderType>TransparentPostLight</shaderType>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Laser</damageDef>
+								<speed>125</speed>
+								<damageAmountBase>16</damageAmountBase>
+								<armorPenetrationSharp>17.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+							</projectile>
+							<modExtensions>
+								<li Class="AthenaFramework.ProjectileEffectExtension">
+									<fleck>Fleck_Burn</fleck>
+								</li>
+							</modExtensions>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>Bullet_Laser_Laser_Handcannon</defName>
+							<label>small laser bolt</label>
+							<graphicData>
+								<texPath>Things/LaserBolt</texPath>
+								<shaderType>TransparentPostLight</shaderType>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Laser</damageDef>
+								<speed>125</speed>
+								<damageAmountBase>12</damageAmountBase>
+								<armorPenetrationSharp>12.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+							</projectile>
+							<modExtensions>
+								<li Class="AthenaFramework.ProjectileEffectExtension">
+									<fleck>Fleck_Burn</fleck>
+								</li>
+							</modExtensions>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>Bullet_Laser_Laser_Scatterer</defName>
+							<label>laser bolt</label>
+							<graphicData>
+								<texPath>Things/LaserBolt</texPath>
+								<shaderType>TransparentPostLight</shaderType>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Laser</damageDef>
+								<speed>125</speed>
+								<damageAmountBase>16</damageAmountBase>
+								<armorPenetrationSharp>15.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<pelletCount>6</pelletCount>
+								<spreadMult>8.9</spreadMult>
+							</projectile>
+							<modExtensions>
+								<li Class="AthenaFramework.ProjectileEffectExtension">
+									<fleck>Fleck_Burn</fleck>
+								</li>
+							</modExtensions>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>Bullet_Laser_DestructorLaser</defName>
+							<label>laser bolt</label>
+							<graphicData>
+								<texPath>Things/LaserBig</texPath>
+								<shaderType>TransparentPostLight</shaderType>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>Laser</damageDef>
+								<speed>125</speed>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationSharp>12.5</armorPenetrationSharp>
+								<armorPenetrationBlunt>0.001</armorPenetrationBlunt>
+								<explosionRadius>1.8</explosionRadius>
+								<explosionEffect>LaserBlast</explosionEffect>
+								<preExplosionSpawnThingDef>Filth_Ash</preExplosionSpawnThingDef>
+								<preExplosionSpawnChance>0.27</preExplosionSpawnChance>
+								<screenShakeFactor>0.5</screenShakeFactor>
+								<pelletCount>3</pelletCount>
+								<spreadMult>5.9</spreadMult>
+							</projectile>
+							<modExtensions>
+								<li Class="AthenaFramework.ProjectileEffectExtension">
+									<fleck>Fleck_Burn</fleck>
+								</li>
+							</modExtensions>
+						</ThingDef>
+
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
