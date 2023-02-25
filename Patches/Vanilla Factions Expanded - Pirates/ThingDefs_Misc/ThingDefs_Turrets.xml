@@ -103,6 +103,19 @@
           </FireModes>        
       </li>
 
+	<!-- Make the crashed ships don't destroy each other upon crashing -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]</xpath>
+		<value>
+			<damageMultipliers>
+				<li>
+					<damageDef>Bomb</damageDef>
+					<multiplier>0.1</multiplier>
+				</li>
+			</damageMultipliers>
+		</value>
+	</li>
+
       <li Class="PatchOperationReplace">
         <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
         <value>
