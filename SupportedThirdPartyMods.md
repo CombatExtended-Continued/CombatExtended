@@ -223,7 +223,7 @@ Girls' Frontline Weapon Pack	|
 Glitter Tech	|
 Glitter Weaponry	|
 GouRIMet	|
-Grimworld Lasguns	|
+Grimworld: Lasguns	|
 Gulden Mod  |
 Half Dragons    |
 Halo - Rimworld Auxiliary Combat Armory	|
