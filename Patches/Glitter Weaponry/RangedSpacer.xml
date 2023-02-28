@@ -8,6 +8,16 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/DamageDef[defName="Laser"]</xpath>
+					<value>
+						<li Class="CombatExtended.DamageDefExtensionCE">
+							<harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+							<isAmbientDamage>true</isAmbientDamage>
+						</li>
+					</value>
+				</li>
+
 				<!-- === Tools === -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Laser_Saber"]/tools</xpath>
