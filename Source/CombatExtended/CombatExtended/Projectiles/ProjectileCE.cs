@@ -22,6 +22,8 @@ namespace CombatExtended
         /// </summary>
         protected const int SuppressionRadius = 3;
 
+        protected const float DefaultSuppressionFactor = 1.5f;
+
         /// <summary>
         /// Check for collision with multi-cell pawns and apply suppression in radius of this size, centered on flight path.
         /// </summary>
@@ -1048,7 +1050,7 @@ namespace CombatExtended
                     var distanceFactor = Mathf.Clamp01(1f - (dPosX * dPosX + dPosZ * dPosZ) / (totalRadius * totalRadius));
                     suppressionAmount *= distanceFactor;
                 }
-                compSuppressable.AddSuppression(suppressionAmount, OriginIV3);
+                compSuppressable.AddSuppression(suppressionAmount * DefaultSuppressionFactor, OriginIV3);
             }
         }
 
