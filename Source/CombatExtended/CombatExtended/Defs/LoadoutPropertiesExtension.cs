@@ -261,7 +261,6 @@ namespace CombatExtended
                 // Generate currently loaded ammo
                 thingToAdd = compAmmo.CurrentAmmo;
                 // Check if we should use a different magazine ammo count for ammo generation.
-                Log.Message("AmmoGenPerMagOverride for weapon : " + gun.Label + " = " + compAmmo.MagSizeOverride);
                 int magCount = (compAmmo.MagSizeOverride > 0) ? compAmmo.MagSizeOverride : compAmmo.MagSize;
                 unitCount = Mathf.Max(1, magCount);  // Guns use full magazines as units
 
