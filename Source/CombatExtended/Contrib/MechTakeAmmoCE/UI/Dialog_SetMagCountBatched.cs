@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,32 +7,39 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using CombatExtended;
+
 
 namespace CombatExtended
 {
-    public class Dialog_SetMagCount : Window
+    public class Dialog_SetMagCountBatched : Window
     {
-        private readonly CompMechAmmo mechAmmo;
+        private readonly List<CompMechAmmo> _mechAmmoList;
+        private readonly CompMechAmmo _mechAmmoShown;
+        private readonly Dictionary<AmmoDef, int> _tmpLoadouts;
 
         private const float BotAreaWidth = 30f;
         private const float BotAreaHeight = 30f;
-        private new const float Margin = 3f;
+        private new const float Margin = 10f;
 
-
-        public Dialog_SetMagCount(CompMechAmmo mechAmmo)
+        public Dialog_SetMagCountBatched(List<CompMechAmmo> mechAmmoList)
         {
-            if (mechAmmo == null)
+            if (mechAmmoList == null || mechAmmoList.Count == 0)
             {
-                Log.Error("null CompMechAmmo for Dialog_SetMagCount");
+                Log.Error("null or empty CompMechAmmo list for Dialog_SetMagCount");
                 return;
             }
-            this.mechAmmo = mechAmmo;
+            _mechAmmoList = mechAmmoList;
+            _mechAmmoShown = mechAmmoList[0];
+            // copy the loadouts from the _mechAmmoShown
+            _tmpLoadouts = new Dictionary<AmmoDef, int>(_mechAmmoShown.Loadouts);
+
         }
 
         public override void PreOpen()
         {
             Vector2 initialSize = this.InitialSize;
-            initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight + Margin);
+            initialSize.y = (_mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight);
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
             this.windowRect = this.windowRect.Rounded();
         }
@@ -47,22 +54,33 @@ namespace CombatExtended
         public override void DoWindowContents(Rect inRect)
         {
             float curY = 0;
-            string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
+            string Maglabel = "MTA_MagazinePrefix".Translate(_mechAmmoShown.AmmoUser.Props.magazineSize);
             DrawLabel(inRect, ref curY, Maglabel);
-            foreach (var ammoType in mechAmmo.AmmoUser.Props.ammoSet.ammoTypes)
+            foreach (var ammoType in _mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes)
             {
                 int value = 0;
-                mechAmmo.Loadouts.TryGetValue(ammoType.ammo, out value);
+                _tmpLoadouts.TryGetValue(ammoType.ammo, out value);
                 string label = ammoType.ammo.ammoClass.labelShort != null ? ammoType.ammo.ammoClass.labelShort : ammoType.ammo.ammoClass.label;
                 DrawThingRow(inRect, ref curY, ref value, ammoType.ammo, label);
-                mechAmmo.Loadouts.SetOrAdd(ammoType.ammo, value);
+                _tmpLoadouts.SetOrAdd(ammoType.ammo, value);
             }
-            curY += Margin;
 
+
+            curY += Margin;
             if (Widgets.ButtonText(new Rect(inRect.x, curY, inRect.width, BotAreaHeight), "OK".Translate(), true, true, true, null))
             {
-                mechAmmo.TakeAmmoNow();
+                //set the loadouts for all the comps
+                foreach (var compMechAmmo in _mechAmmoList)
+                {
+                    //copy the loadouts from the _tmpLoadouts
+                    foreach (var ammoDef in _tmpLoadouts.Keys)
+                    {
+                        compMechAmmo.Loadouts.SetOrAdd(ammoDef, _tmpLoadouts[ammoDef]);
+                    }
+                    compMechAmmo.TakeAmmoNow();
+                }
                 Close(true);
+
             }
         }
 
@@ -85,7 +103,7 @@ namespace CombatExtended
 
             count = count < 0 ? 0 : count;
 
-            curY += BotAreaHeight + Margin;
+            curY += BotAreaHeight;
         }
 
         public void DrawLabel(Rect rect, ref float curY, string label)
@@ -96,3 +114,5 @@ namespace CombatExtended
         }
     }
 }
+
+

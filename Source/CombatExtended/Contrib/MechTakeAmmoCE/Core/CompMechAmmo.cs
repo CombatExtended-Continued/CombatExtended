@@ -121,7 +121,6 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-
             if (!IsWorkable())
             {
                 yield break;
@@ -169,8 +168,7 @@ namespace CombatExtended
 
         public void SetMagCount()
         {
-            Dialog_SetMagCount dialog = new Dialog_SetMagCount(this);
-            Find.WindowStack.Add(dialog);
+            Current.Game.GetComponent<GameComponent_MechLoadoutDialogManger>()?.RegisterCompMechAmmo(this);
         }
 
         public void TakeAmmoNow()
@@ -230,11 +228,6 @@ namespace CombatExtended
                 {
                     ammoFound = ParentPawn.FindBestAmmo(ammoDef);
                 }
-                else if (ammoNeed < 0)
-                {
-                    ParentPawn.inventory.DropCount(ammoDef, -ammoNeed);
-                    continue;
-                }
                 else
                 {
                     continue;
@@ -248,6 +241,7 @@ namespace CombatExtended
                 Job jobTakeAmmo = JobMaker.MakeJob(MTAJobDefOf.MTA_TakeAmmo, ammoFound);
 
                 jobTakeAmmo.count = ammoNeed;
+                Log.Message(" needs " + ammoNeed + " " + ammoDef.label + " ammo.");
                 if (ParentPawn.jobs.curJob.def != MTAJobDefOf.MTA_TakeAmmo)
                 {
                     ParentPawn.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
@@ -260,16 +254,15 @@ namespace CombatExtended
             {
                 var ammoToDrop = AmmoUser.CurrentAmmo;
                 AmmoUser.TryUnload(true);
-                int count = ParentPawn.inventory.Count(ammoToDrop);
-                ParentPawn.inventory.DropCount(ammoToDrop, count);
             }
 
 
-            if (ParentPawn.jobs.curJob.def == MTAJobDefOf.MTA_TakeAmmo && !AmmoUser.FullMagazine)
+            if (ParentPawn.jobs.AllJobs().Any(x => x.def == MTAJobDefOf.MTA_TakeAmmo))
             {
                 ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(MTAJobDefOf.MTA_UnloadAmmo, ParentPawn), 0, true);
                 ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, ParentPawn, AmmoUser.parent), 0, true);
             }
+
         }
 
         public int GetMagCount(AmmoDef ammo)
@@ -302,11 +295,30 @@ namespace CombatExtended
             {
                 return false;
             }
-            if (AmmoUser.UseAmmo == false)
+
+            if (!AmmoUser.UseAmmo)
             {
                 return false;
             }
+
             return true;
+        }
+
+        public void DropUnusedAmmo()
+        {
+            foreach (var ammoType in AmmoUser.Props.ammoSet.ammoTypes)
+            {
+                AmmoDef ammoDef = ammoType.ammo;
+
+                int magCount = GetMagCount(ammoDef);
+                int ammoNeed = AmmoUser.NeedAmmo(ammoDef, AmmoUser.MagSize * magCount);
+
+
+                if (ammoNeed < 0)
+                {
+                    ParentPawn.inventory.DropCount(ammoDef, -ammoNeed);
+                }
+            }
         }
     }
 }

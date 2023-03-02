@@ -24,13 +24,23 @@ namespace CombatExtended
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
             this.FailOnForbidden(TargetIndex.A);
-            CompAmmoUser ammoUser = pawn?.equipment?.Primary?.GetComp<CompAmmoUser>();
-            if (ammoUser == null)
+            ThingWithComps equipment = pawn?.equipment?.Primary;
+            if (equipment == null)
             {
                 yield break;
             }
 
-            yield return Toils_Ammo.TryUnloadAmmo(ammoUser);
+            CompAmmoUser ammoUser = equipment.GetComp<CompAmmoUser>();
+            if (ammoUser != null)
+            {
+                yield return Toils_Ammo.TryUnloadAmmo(ammoUser);
+            }
+            CompMechAmmo mechAmmo = pawn?.GetComp<CompMechAmmo>();
+            if (mechAmmo != null)
+            {
+                yield return Toils_Ammo.DropUnusedAmmo(mechAmmo);
+            }
+
         }
     }
 }
