@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>Ammo7.5FK</defName>
+		<defName>Ammo75FK</defName>
 		<label>7.5 FK</label>
 		<parent>AmmoPistols</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberPistol</iconPath>
@@ -11,19 +11,19 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_7.5FK</defName>
+		<defName>AmmoSet_75FK</defName>
 		<label>7.5 FK</label>
 		<ammoTypes>
-			<Ammo_7.5FK_FMJ>Bullet_7.5FK_FMJ</Ammo_7.5FK_FMJ>
-			<Ammo_7.5FK_AP>Bullet_7.5FK_AP</Ammo_7.5FK_AP>
-			<Ammo_7.5FK_HP>Bullet_7.5FK_HP</Ammo_7.5FK_HP>
+			<Ammo_75FK_FMJ>Bullet_75FK_FMJ</Ammo_75FK_FMJ>
+			<Ammo_75FK_AP>Bullet_75FK_AP</Ammo_75FK_AP>
+			<Ammo_75FK_HP>Bullet_75FK_HP</Ammo_75FK_HP>
 		</ammoTypes>
 		<similarTo>AmmoSet_Pistol</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="FN57x29mmBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="75FKBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>A high-velocity bottlenecked handgun cartridge capable of penetrating lightly armored targets.</description>
 		<statBases>
 			<Mass>0.011</Mass>
@@ -34,12 +34,12 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>Ammo7.5FK</li>
+			<li>Ammo75FK</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
-		<defName>Ammo_7.5FK_FMJ</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75FKBase">
+		<defName>Ammo_75FK_FMJ</defName>
 		<label>7.5 FK cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/FMJ</texPath>
@@ -49,11 +49,11 @@
 			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_7.5FK_FMJ</cookOffProjectile>
+		<cookOffProjectile>Bullet_75FK_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
-		<defName>Ammo_7.5FK_AP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75FKBase">
+		<defName>Ammo_75FK_AP</defName>
 		<label>7.5 FK cartridge (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/AP</texPath>
@@ -63,11 +63,11 @@
 			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_7.5FK_AP</cookOffProjectile>
+		<cookOffProjectile>Bullet_75FK_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="FN57x29mmBase">
-		<defName>Ammo_7.5FK_HP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="75FKBase">
+		<defName>Ammo_75FK_HP</defName>
 		<label>7.5 FK cartridge (HP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Pistol/HP</texPath>
@@ -77,12 +77,12 @@
 			<MarketValue>0.06</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_7.5FK_HP</cookOffProjectile>
+		<cookOffProjectile>Bullet_75FK_HP</cookOffProjectile>
 	</ThingDef>
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base7.5FKBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base75FKBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -94,8 +94,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base7.5FKBullet">
-		<defName>Bullet_7.5FK_FMJ</defName>
+	<ThingDef ParentName="Base75FKBullet">
+		<defName>Bullet_75FK_FMJ</defName>
 		<label>7.5 FK bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>13</damageAmountBase>
@@ -104,8 +104,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base7.5FKBullet">
-		<defName>Bullet_7.5FK_AP</defName>
+	<ThingDef ParentName="Base75FKBullet">
+		<defName>Bullet_75FK_AP</defName>
 		<label>7.5 FK bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>8</damageAmountBase>
@@ -114,8 +114,8 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base7.5FKBullet">
-		<defName>Bullet_7.5FK_HP</defName>
+	<ThingDef ParentName="Base75FKBullet">
+		<defName>Bullet_75FK_HP</defName>
 		<label>7.5 FK bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>17</damageAmountBase>
@@ -127,7 +127,7 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_7.5FK_FMJ</defName>
+		<defName>MakeAmmo_75FK_FMJ</defName>
 		<label>make 7.5 FK (FMJ) cartridge x500</label>
 		<description>Craft 500 7.5 FK (FMJ) cartridges.</description>
 		<jobString>Making 7.5 FK (FMJ) cartridges.</jobString>
@@ -147,13 +147,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_7.5FK_FMJ>500</Ammo_7.5FK_FMJ>
+			<Ammo_75FK_FMJ>500</Ammo_75FK_FMJ>
 		</products>
 		<workAmount>1400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_7.5FK_AP</defName>
+		<defName>MakeAmmo_75FK_AP</defName>
 		<label>make 7.5 FK (AP) cartridge x500</label>
 		<description>Craft 500 7.5 FK (AP) cartridges.</description>
 		<jobString>Making 7.5 FK (AP) cartridges.</jobString>
@@ -173,13 +173,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_7.5FK_AP>500</Ammo_7.5FK_AP>
+			<Ammo_75FK_AP>500</Ammo_75FK_AP>
 		</products>
 		<workAmount>1680</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_7.5FK_HP</defName>
+		<defName>MakeAmmo_75FK_HP</defName>
 		<label>make 7.5 FK (HP) cartridge x500</label>
 		<description>Craft 500 7.5 FK (HP) cartridges.</description>
 		<jobString>Making 7.5 FK (HP) cartridges.</jobString>
@@ -199,7 +199,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_7.5FK_HP>500</Ammo_7.5FK_HP>
+			<Ammo_75FK_HP>500</Ammo_75FK_HP>
 		</products>
 		<workAmount>1400</workAmount>
 	</RecipeDef>
