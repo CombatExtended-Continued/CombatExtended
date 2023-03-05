@@ -249,7 +249,6 @@ namespace CombatExtended
 
                 ParentPawn.jobs.TryTakeOrderedJob(jobTakeAmmo, 0, true);
             }
-
             if (!currentAmmoInUse && AmmoUser.CurrentAmmo != null)
             {
                 var ammoToDrop = AmmoUser.CurrentAmmo;

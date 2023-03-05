@@ -29,12 +29,6 @@ namespace CombatExtended
             {
                 yield break;
             }
-
-            CompAmmoUser ammoUser = equipment.GetComp<CompAmmoUser>();
-            if (ammoUser != null)
-            {
-                yield return Toils_Ammo.TryUnloadAmmo(ammoUser);
-            }
             CompMechAmmo mechAmmo = pawn?.GetComp<CompMechAmmo>();
             if (mechAmmo != null)
             {
