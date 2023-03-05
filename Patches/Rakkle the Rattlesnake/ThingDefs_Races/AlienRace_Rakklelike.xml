@@ -12,21 +12,21 @@
 		<operations>
 			
 			<li Class="PatchOperationReplace">
-                    <xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
+                    <xpath>Defs/ThingDef[@Name="RS_PawnBase"]/inspectorTabs/li[.="ITab_Pawn_Gear"]</xpath>
                     <value>
                         <li>CombatExtended.ITab_Inventory</li>
                     </value>
 			</li>
 
             <li Class="PatchOperationAdd">
-                    <xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
+                    <xpath>Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
                     <value>
                         <li Class="CombatExtended.CompProperties_Inventory" />
                     </value>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="RS_PawnBase"]/comps</xpath>
 				<value>
 					<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -36,7 +36,7 @@
 			</li>
 			
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -45,7 +45,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/statBases</xpath>
+			 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/statBases</xpath>
 				  <value>
 					<MeleeCritChance>1</MeleeCritChance>
 					<MeleeParryChance>1</MeleeParryChance>
@@ -57,7 +57,7 @@
 			<!--Powerful Bite, slightly faster regular attacks-->
 			
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/tools</xpath> 
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Rakkle"]/tools</xpath> 
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -129,7 +129,7 @@
 			<!--Venom immunity to make social fights less lethal-->
 			
 			<li Class="PatchOperationAdd">
-			 <xpath>/Defs/HediffDef[defName="Hediff_FoodpoisoningImmunity"]/comps/li[@Class="MoharHediffs.HediffCompProperties_HediffNullifier"]/hediffToNullify</xpath>
+			 <xpath>Defs/HediffDef[defName="Hediff_FoodpoisoningImmunity"]/comps/li[@Class="MoharHediffs.HediffCompProperties_HediffNullifier"]/hediffToNullify</xpath>
 				  <value>
 					<li>VenomBuildup</li>
 				  </value>

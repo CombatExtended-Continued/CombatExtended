@@ -9,7 +9,7 @@
 				<!-- ============== Changing Projectile's thingClass to CE ones ================ -->
 
 				<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="AA_FrostWeb" or 
 				defName="AA_FireWeb" or 
 				defName="AA_AcidicWeb" or 
@@ -19,7 +19,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="AA_AcidicWeb" or
 				defName="AA_Bullet_Barb" or
 				defName="AA_Bullet_VenomBarb" or
@@ -43,7 +43,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="AA_Bullet_Rock" or
 				defName="AA_ToxicInk" or
 				defName="AA_IncendiaryMote" or
@@ -56,7 +56,7 @@
 
 				<!-- ============== Adding 'Standard' AimingAccuracy node to creatures' that use ranged attack statBases. =============== -->
 				<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="AA_Barbslinger" or
 				defName="AA_Blizzarisk" or
 				defName="AA_BlizzariskClutchMother" or
@@ -91,7 +91,7 @@
 
 				<!-- Different accuracy for spammy stuff -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Needlepost" or defName="AA_Needleroll"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Needlepost" or defName="AA_Needleroll"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.3</AimingAccuracy>
 					</value>
@@ -99,7 +99,7 @@
 
 				<!-- Different accuracy for Gallatross since his Projectile isn't directly under his control (it's just a random boulder he picks off the ground with his psionic abilities) -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Gallatross"]/statBases</xpath>
 					<value>
 						<AimingAccuracy>0.6</AimingAccuracy>
 					</value>
@@ -107,7 +107,7 @@
 
 				<!-- Dunelisk web, does burn damage but does not set the target on fire -->
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs</xpath>
+					<xpath>Defs</xpath>
 					<value>
 						<ThingDef ParentName="BaseBullet">
 							<defName>AA_BurnWeb</defName>
@@ -157,7 +157,7 @@
 
 				<!-- =============== Now defining Projectiles in CE Procedure ============= -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Bullet_Barb"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Bullet_Barb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -171,7 +171,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_PoisonBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_PoisonBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -185,7 +185,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_RedPoisonBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_RedPoisonBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -199,7 +199,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Plasma"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Plasma"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -213,7 +213,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Quill"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Quill"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -227,7 +227,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Bullet_VenomBarb"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Bullet_VenomBarb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -241,7 +241,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Bullet_Rock"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionRadius>1.5</explosionRadius>
@@ -259,7 +259,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/ThingDef[defName="AA_Bullet_Rock"]</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Bullet_Rock"]</xpath>
 					<value>
 						<comps>
 							<li Class="CombatExtended.CompProperties_Fragments">
@@ -273,7 +273,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_FrostWeb"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_FrostWeb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -294,7 +294,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_FireWeb"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_FireWeb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -315,7 +315,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_AcidicWeb"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_AcidicWeb"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -337,7 +337,7 @@
 
 				<!-- ======== Note: AA_ExplodingWeb wasn't used in any Race, so it wasn't included. If it gets added, just add a secondaryDamage to the corresponding projectile, with the Bomb damageDef ======== -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_Web"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -350,7 +350,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_IncendiaryMote"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_IncendiaryMote"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>20</speed>
@@ -368,7 +368,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_ToxicInk"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_ToxicInk"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<speed>25</speed>
@@ -389,7 +389,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_FireSpit"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_FireSpit"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -402,7 +402,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_AcidBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_AcidBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -415,7 +415,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_DarkBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_DarkBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -427,7 +427,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_ElectricBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_ElectricBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -439,7 +439,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_WindBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_WindBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<flyOverhead>false</flyOverhead>
@@ -452,7 +452,7 @@
 
 				<!-- Windbolt uses an unsupported graphics class. -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_WindBolt"]/graphicData</xpath>
+					<xpath>Defs/ThingDef[defName="AA_WindBolt"]/graphicData</xpath>
 					<value>
 						<graphicData>
 							<texPath>Things/Pawn/Animal/AA_ArcticLion/AA_ArcticLion_Invisible</texPath>
@@ -462,7 +462,7 @@
 				</li>
 
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/ThingDef[defName="AA_FrostBolt"]/projectile</xpath>
+					<xpath>Defs/ThingDef[defName="AA_FrostBolt"]/projectile</xpath>
 					<value>
 						<projectile Class="CombatExtended.ProjectilePropertiesCE">
 							<explosionDelay>1</explosionDelay>
@@ -481,7 +481,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs</xpath>
+					<xpath>Defs</xpath>
 					<value>
 						<ThingDef ParentName="BaseBullet">
 							<defName>AA_FlameBreathAnimated_CE</defName>

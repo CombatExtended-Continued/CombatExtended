@@ -11,15 +11,15 @@
 				<!-- ========== Add Combat Extended Shields to pawns. =========== -->
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier" or defName="VFEM_Medieval_Knight"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]/shieldMoney</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier" or defName="VFEM_Medieval_Knight"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]/shieldMoney</xpath>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier" or defName="VFEM_Medieval_Knight"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]/shieldTags</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier" or defName="VFEM_Medieval_Knight"]/modExtensions/li[@Class="VFECore.PawnKindDefExtension"]/shieldTags</xpath>
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Footsoldier"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<shieldMoney>
@@ -36,7 +36,7 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Knight"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Knight"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<shieldMoney>
@@ -54,7 +54,7 @@
 
 				<!-- ========== Give ammo to archer ========== -->
 				<li Class="PatchOperationAddModExtension">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Bowman"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Bowman"]</xpath>
 					<value>
 						<li Class="CombatExtended.LoadoutPropertiesExtension">
 							<primaryMagazineCount>
@@ -76,7 +76,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Bowman"]</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Bowman"]</xpath>
 					<value>
 						<apparelRequired>
 							<li>CE_Apparel_TribalBackpack</li>
@@ -86,7 +86,7 @@
 
 				<!-- ========== Tweak Squire weapon money. =========== -->
 				<li Class="PatchOperationReplace">
-					<xpath>/Defs/PawnKindDef[defName="VFEM_Medieval_Squire"]/weaponMoney/min</xpath>
+					<xpath>Defs/PawnKindDef[defName="VFEM_Medieval_Squire"]/weaponMoney/min</xpath>
 					<value>
 						<min>120</min>
 					</value>

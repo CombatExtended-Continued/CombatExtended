@@ -63,7 +63,7 @@
         <!-- === Throwing Rock === -->
         <!-- == Projectile == -->
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Rock"]/projectile</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Rock"]/projectile</xpath>
           <value>
             <projectile Class="CombatExtended.ProjectilePropertiesCE">
               <damageDef>Blunt</damageDef>
@@ -77,13 +77,13 @@
 
         <!-- == Weapon == -->
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
           <attribute>ParentName</attribute>
           <value>BaseWeapon</value>
         </li>
         
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
           <value>
             <thingCategories>
               <li>WeaponsRanged</li>
@@ -93,14 +93,14 @@
 
         <li Class="PatchOperationRemove">
           <xpath>
-            /Defs/ThingDef[defName="VWE_Throwing_Rocks"]/recipeMaker |
-            /Defs/ThingDef[defName="VWE_Throwing_Rocks"]/costStuffCount |
-            /Defs/ThingDef[defName="VWE_Throwing_Rocks"]/stuffCategories
+            Defs/ThingDef[defName="VWE_Throwing_Rocks"]/recipeMaker |
+            Defs/ThingDef[defName="VWE_Throwing_Rocks"]/costStuffCount |
+            Defs/ThingDef[defName="VWE_Throwing_Rocks"]/stuffCategories
           </xpath>
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/smeltable</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/smeltable</xpath>
           <value>
             <thingClass>CombatExtended.AmmoThing</thingClass>
             <stackLimit>75</stackLimit>
@@ -110,22 +110,22 @@
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/graphicData</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/graphicData</xpath>
           <value>
             <color>(158,153,135)</color>
           </value>
         </li>
 
         <li Class="PatchOperationAttributeSet">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]</xpath>
           <attribute>Class</attribute>
           <value>CombatExtended.AmmoDef</value>
         </li>
 
         <li Class="PatchOperationConditional">
-          <xpath>/Defs/ThingDef[defName = "VWE_Throwing_Rocks"]/comps</xpath>
+          <xpath>Defs/ThingDef[defName = "VWE_Throwing_Rocks"]/comps</xpath>
           <nomatch Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName = "VWE_Throwing_Rocks"]</xpath>
+            <xpath>Defs/ThingDef[defName = "VWE_Throwing_Rocks"]</xpath>
             <value>
               <comps />
             </value>
@@ -158,7 +158,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Throwing_Rocks"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">

@@ -12,12 +12,12 @@
 			<!-- Comps and Classes -->
 			
 			<li Class="PatchOperationAttributeRemove">
-			  <xpath>/Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
+			  <xpath>Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
 			  <attribute>ParentName</attribute>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
+				<xpath>Defs/ThingDef[@Name="GiantBaseRange"]</xpath>
 				<value>
 					<equipmentType>Primary</equipmentType>
 					<pathCost>10</pathCost>
@@ -55,7 +55,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[@Name="GiantBaseRange"]/comps</xpath>
+				<xpath>Defs/ThingDef[@Name="GiantBaseRange"]/comps</xpath>
 				<value>
 					<li Class="CompProperties_Forbiddable"/>
 					<li>
@@ -65,183 +65,125 @@
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
-			</li>
-
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Jackstones_limestone"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Jackstones_granite"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Javelin"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Javelin"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Javelin"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Javelin"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Javelin"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Javelin"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Scrapmetal"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Scrapmetal"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Rockpillar_granite"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
+			</li>
+
+			<li Class="PatchOperationAttributeSet">
+			  <xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
+			  <attribute>Class</attribute>
+			  <value>CombatExtended.AmmoDef</value>
+			</li>
+
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
+			  <xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
 			  <attribute>Class</attribute>
 			  <value>CombatExtended.AmmoDef</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Rockpillar_Marble"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
-			</li>
-			
-			<li Class="PatchOperationAttributeSet">
-			  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
-			  <attribute>Class</attribute>
-			  <value>CombatExtended.AmmoDef</value>
-			</li>
-
-			<li Class="PatchOperationSequence">
-			  <success>Always</success>
-			  <operations>
-				<li Class="PatchOperationTest">
-				  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]/comps</xpath>
-				  <success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				  <xpath>/Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
-				  <value>
-					<comps />
-				  </value>
-				</li>
-			  </operations>
+			<li Class="PatchOperationConditional">
+				<xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]/comps</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="GI_Lightningjavelin"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
@@ -256,7 +198,7 @@
 			</li>
 			
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
@@ -268,7 +210,7 @@
 			</li>
 			
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
@@ -280,7 +222,7 @@
 			</li>
 			
 			<li Class="PatchOperationRemove">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
@@ -292,7 +234,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite" or
 				defName="GI_Javelin" or
@@ -308,7 +250,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Jackstones_limestone" or
 				defName="GI_Jackstones_granite"
 				]/statBases</xpath>
@@ -318,7 +260,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Javelin" or
 				defName="GI_Scrapmetal"
 				]/statBases</xpath>
@@ -328,7 +270,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Rockpillar_granite" or
 				defName="GI_Rockpillar_Marble"
 				]/statBases</xpath>
@@ -338,7 +280,7 @@
 			</li>
 			
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThingDef[
+				<xpath>Defs/ThingDef[
 				defName="GI_Lightningjavelin"
 				]/statBases</xpath>
 				<value>

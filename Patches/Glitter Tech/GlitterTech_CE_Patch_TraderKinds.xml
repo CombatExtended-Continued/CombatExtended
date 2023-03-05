@@ -8,20 +8,6 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- Remove mortar shells from Black Market traders, as CE uses its own tradeability tags -->
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraderKindDef[defName="BlackMarket"]/stockGenerators/li[thingDef="Shell_HighExplosive"]</xpath>
-				</li>
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraderKindDef[defName="BlackMarket"]/stockGenerators/li[thingDef="Shell_Incendiary"]</xpath>
-				</li>
-
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraderKindDef[defName="BlackMarket"]/stockGenerators/li[thingDef="Shell_EMP"]</xpath>
-				</li>
-
 				<!-- Allow Black Market traders to sell (lots!) of CE ammo and turrets -->
 
 				<li Class="PatchOperationAdd">
@@ -37,6 +23,30 @@
 							<thingDefCountRange>
 								<min>18</min>
 								<max>24</max>
+							</thingDefCountRange>
+						</li>
+					      <li Class="StockGenerator_Tag">
+							<tradeTag>CE_HeavyAmmo</tradeTag>
+							<countRange>
+							<min>10</min>
+							<max>50</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+							<min>4</min>
+							<max>6</max>
+							</thingDefCountRange>
+						</li>
+						<li Class="StockGenerator_Tag">
+							<tradeTag>CE_MediumAmmo</tradeTag>
+							<countRange>
+							<min>30</min>
+							<max>60</max>
+							</countRange>
+							<price>Cheap</price>
+							<thingDefCountRange>
+							<min>3</min>
+							<max>6</max>
 							</thingDefCountRange>
 						</li>
 						<li Class="StockGenerator_Category">
@@ -65,12 +75,6 @@
 							</thingDefCountRange>
 						</li>
 					</value>
-				</li>
-				
-				<!-- Adjust Black Market raw resource pricing to suppress "player sell price < player buy price" error -->
-				
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/TraderKindDef[defName="BlackMarket"]/stockGenerators/li[categoryDef="ResourcesRaw"]/price</xpath>
 				</li>
 
 			</operations>

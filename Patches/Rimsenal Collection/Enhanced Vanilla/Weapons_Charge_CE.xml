@@ -211,33 +211,36 @@
 			  <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
 				<defName>Gun_EMPRifle</defName>
 				<statBases>
-					<WorkToMake>93000</WorkToMake>
-					<SightsEfficiency>1.1</SightsEfficiency>
+					<SightsEfficiency>1</SightsEfficiency>
 					<ShotSpread>0.08</ShotSpread>
 					<SwayFactor>1.32</SwayFactor>
 					<Bulk>9.85</Bulk>
 					<Mass>4.80</Mass>
 					<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
 				</statBases>
-				<costList>
-					<Steel>30</Steel>
-					<Plasteel>20</Plasteel>
-					<ComponentIndustrial>6</ComponentIndustrial>
-					<ComponentSpacer>2</ComponentSpacer>
-					<Chemfuel>15</Chemfuel>
-				</costList>
-				<Properties>				
+				<Properties>
+					<recoilAmount>1.44</recoilAmount>
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>EMP_Blast</defaultProjectile>
-					<warmupTime>2</warmupTime>
+					<warmupTime>1.1</warmupTime>
 					<range>40</range>
+					<burstShotCount>4</burstShotCount>
+					<ammoConsumedPerShotCount>5</ammoConsumedPerShotCount>
+					<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
 					<soundCast>Shot_ChargeRifle</soundCast>
 					<soundCastTail>GunTail_Medium</soundCastTail>
 					<muzzleFlashScale>9</muzzleFlashScale>
 				</Properties>
+				<AmmoUser>
+					<magazineSize>100</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_LaserEMP_Rimsenal</ammoSet>
+				</AmmoUser>
 				<FireModes>
-					<aiAimMode>AimedShot</aiAimMode>
+				  <aimedBurstShotCount>2</aimedBurstShotCount>
+				  <aiUseBurstMode>True</aiUseBurstMode>
+				  <aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 				<weaponTags>
 					<li>CE_AI_Rifle</li>

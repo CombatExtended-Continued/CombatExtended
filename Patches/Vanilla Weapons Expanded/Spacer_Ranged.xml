@@ -10,7 +10,7 @@
         <!-- === Tools === -->
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[
+            Defs/ThingDef[
               defName ="VWE_Gun_ChargePistol" or 
               defName = "VWE_Gun_ChargeSMG"]/tools
           </xpath>
@@ -43,7 +43,7 @@
 
         <li Class="PatchOperationReplace">
           <xpath>
-            /Defs/ThingDef[
+            Defs/ThingDef[
               defName = "VWE_Gun_ChargeShotgun" or
               defName = "VWE_Gun_ChargeSniperRifle" or
               defName = "VWE_Gun_ChargeLMG" or
@@ -88,7 +88,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="VWE_Gun_ChargeRocketLauncher"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="VWE_Gun_ChargeRocketLauncher"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -124,6 +124,7 @@
             <ComponentIndustrial>2</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>3.0</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
@@ -136,12 +137,14 @@
             <muzzleFlashScale>9</muzzleFlashScale>
           </Properties>
           <AmmoUser>
-            <magazineSize>14</magazineSize>
+            <magazineSize>12</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
           </AmmoUser>
           <FireModes>
-            <aiAimMode>AimedShot</aiAimMode>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aiUseBurstMode>True</aiUseBurstMode>
+            <aimedBurstShotCount>2</aimedBurstShotCount>
           </FireModes>
           <weaponTags>
             <li>SpacerGun</li>
@@ -169,6 +172,7 @@
             <ComponentIndustrial>10</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>1.20</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
@@ -179,10 +183,9 @@
             <soundCast>VWE_Shot_ChargeSMG</soundCast>
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
-            <recoilAmount>1.20</recoilAmount>
           </Properties>
           <AmmoUser>
-            <magazineSize>35</magazineSize>
+            <magazineSize>30</magazineSize>
             <reloadTime>4</reloadTime>
             <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
           </AmmoUser>
@@ -215,6 +218,7 @@
             <ComponentIndustrial>10</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>3.0</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
@@ -229,7 +233,9 @@
             <reloadTime>4.5</reloadTime>
             <ammoSet>AmmoSet_12GaugeCharged</ammoSet>
           </AmmoUser>
-          <FireModes />
+          <FireModes>
+            <aiAimMode>Snapshot</aiAimMode>
+          </FireModes>
           <weaponTags>
             <li>SpacerGun</li>
             <li>CE_AI_AssaultWeapon</li>
@@ -256,6 +262,7 @@
             <ComponentIndustrial>12</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>1.5</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_8x35mmCharged_Triple</defaultProjectile>
@@ -301,6 +308,7 @@
             <ComponentIndustrial>10</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>1.16</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
             <defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
@@ -311,14 +319,13 @@
             <soundCast>Shot_ChargeBlaster</soundCast>
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
-            <recoilAmount>1.16</recoilAmount>
             <recoilPattern>Mounted</recoilPattern>
             <targetParams>
               <canTargetLocations>True</canTargetLocations>
             </targetParams>
           </Properties>
           <AmmoUser>
-            <magazineSize>100</magazineSize>
+            <magazineSize>200</magazineSize>
             <reloadTime>7.8</reloadTime>
             <ammoSet>AmmoSet_6x24mmCharged</ammoSet>
           </AmmoUser>
@@ -340,41 +347,40 @@
           <defName>VWE_Gun_ChargeMinigun</defName>
           <statBases>
             <WorkToMake>75500</WorkToMake>
-            <Mass>32.0</Mass>
-            <Bulk>28.0</Bulk>
+            <Mass>20.0</Mass>
+            <Bulk>12.0</Bulk>
             <SwayFactor>1.35</SwayFactor>
             <ShotSpread>0.10</ShotSpread>
             <SightsEfficiency>1</SightsEfficiency>
             <RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
           </statBases>
           <costList>
-            <Steel>125</Steel>
-            <Plasteel>55</Plasteel>
-            <Chemfuel>20</Chemfuel>
+            <Steel>120</Steel>
+            <Plasteel>40</Plasteel>
+            <Chemfuel>15</Chemfuel>
             <ComponentIndustrial>15</ComponentIndustrial>
           </costList>
           <Properties>
+            <recoilAmount>1.0</recoilAmount>
             <verbClass>CombatExtended.Verb_ShootCE</verbClass>
             <hasStandardCommand>True</hasStandardCommand>
-            <defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+            <defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
             <burstShotCount>50</burstShotCount>
-            <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
             <warmupTime>2.5</warmupTime>
             <range>62</range>
             <soundCast>VWE_Shot_ChargeMinigun</soundCast>
             <soundCastTail>GunTail_Medium</soundCastTail>
             <muzzleFlashScale>9</muzzleFlashScale>
-            <recoilAmount>1.24</recoilAmount>
-            <recoilPattern>Regular</recoilPattern>
           </Properties>
           <AmmoUser>
             <magazineSize>500</magazineSize>
             <reloadTime>9.2</reloadTime>
-            <ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+            <ammoSet>AmmoSet_8x35mmCharged</ammoSet>
           </AmmoUser>
           <FireModes>
-            <aiAimMode>SuppressFire</aiAimMode>
-            <aimedBurstShotCount>20</aimedBurstShotCount>
+            <aiAimMode>Snapshot</aiAimMode>
+            <aimedBurstShotCount>25</aimedBurstShotCount>
           </FireModes>
           <weaponTags>
             <li>SpacerGun</li>

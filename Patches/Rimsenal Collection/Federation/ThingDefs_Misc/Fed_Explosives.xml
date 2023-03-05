@@ -32,25 +32,19 @@
 					<damageDef>Plasma</damageDef>
 					<damageAmountBase>65</damageAmountBase>
 					<explosionDelay>100</explosionDelay>
-			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				</projectile>
 			</value>
 		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_Repose"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_Repose"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Repose"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 
 		<li Class="PatchOperationAdd">
@@ -95,20 +89,14 @@
 				</value>
 			</li>
 
-			<li Class="PatchOperationSequence">
-			<success>Always</success>
-			<operations>
-				<li Class="PatchOperationTest">
+			<li Class="PatchOperationConditional">
 				<xpath>Defs/ThingDef[defName="AD_FedPlasmaGrenades"]/comps</xpath>
-				<success>Invert</success>
-				</li>
-				<li Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName="AD_FedPlasmaGrenades"]</xpath>
-				<value>
-					<comps />
-				</value>
-				</li>
-			</operations>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AD_FedPlasmaGrenades"]</xpath>
+					<value>
+						<comps />
+					</value>
+				</nomatch>
 			</li>
 
 			<li Class="PatchOperationAdd">

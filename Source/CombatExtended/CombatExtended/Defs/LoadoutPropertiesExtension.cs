@@ -14,6 +14,7 @@ namespace CombatExtended
 
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public AttachmentOption primaryAttachments;
+        public int minAmmoCount = 10;
 
         public FloatRange shieldMoney = FloatRange.Zero;
         public List<string> shieldTags;
@@ -244,12 +245,19 @@ namespace CombatExtended
             }
             ThingDef thingToAdd;
             int unitCount = 1;  // How many ammo things to add per ammoCount
+            int minAmmoSpawned = minAmmoCount; //how many ammo things should the pawn have no matter the magsize
             var compAmmo = gun.TryGetComp<CompAmmoUser>();
             if (compAmmo == null || !compAmmo.UseAmmo)
             {
                 if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse))
                 {
                     thingToAdd = gun.def;   // For one-time use weapons such as grenades, add duplicates instead of ammo
+                    if (minAmmoSpawned == 10)
+                    {
+                        //don't spawn 10 (the default value) of single-use weapons,
+                        //unless the xml patcher explicitly set a different value
+                        minAmmoSpawned = 1;
+                    }
                 }
                 else
                 {
@@ -275,7 +283,8 @@ namespace CombatExtended
             }
 
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
-            ammoThing.stackCount = ammoCount * unitCount;
+            //check if total ammo required to load all magazines is less than minimum amount for pawnkind
+            ammoThing.stackCount = Math.Max(ammoCount * unitCount, minAmmoSpawned);
             int maxCount;
             if (inventory.CanFitInInventory(ammoThing, out maxCount))
             {

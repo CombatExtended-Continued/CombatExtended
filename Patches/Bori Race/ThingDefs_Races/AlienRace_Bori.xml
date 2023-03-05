@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
   <Operation Class="PatchOperationFindMod">
-		
-	<mods><li>Bori race</li></mods>
-		
+	<mods>
+		<li>Bori race</li>
+	</mods>
 	<match Class="PatchOperationSequence">
 	<operations>
 	
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="BaseBoriPawn"]/comps</xpath>
+			<xpath>Defs/ThingDef[@Name="BaseBoriPawn"]/comps</xpath>
 			<value>
-					<li>
+				<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
 			</value>
 		</li>
 		
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/ThingDef[@Name="BaseBoriPawn"]</xpath>
+			<xpath>Defs/ThingDef[@Name="BaseBoriPawn"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
 					<bodyShape>Humanoid</bodyShape>
@@ -26,17 +26,16 @@
 			</value>
 		</li>
 
-		
 		<li Class="PatchOperationReplace">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/statBases/MeleeDodgeChance</xpath>
-			  <value>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/statBases/MeleeDodgeChance</xpath>
+			<value>
 				<MeleeDodgeChance>1.5</MeleeDodgeChance>
 				<Suppressability>0.8</Suppressability>
-			  </value>
+			</value>
 		</li>
 		
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/tools</xpath> 
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/tools</xpath> 
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -75,7 +74,7 @@
 		</li>
 		
 		<li Class="PatchOperationAdd">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/alienRace/raceRestriction/whiteApparelList</xpath>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_Bori"]/alienRace/raceRestriction/whiteApparelList</xpath>
 			<value>
 			<li>CE_Apparel_TacVest</li>
 			<li>CE_Apparel_Backpack</li>
@@ -88,17 +87,17 @@
 		</li>
 		
 		<li Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="BaseSPPawn"]/comps</xpath>
+			<xpath>Defs/ThingDef[@Name="BaseSPPawn"]/comps</xpath>
 			<value>
-					<li>
+				<li>
 					<compClass>CombatExtended.CompPawnGizmo</compClass>
-					</li>
-					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
 			</value>
 		</li>
 		
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/ThingDef[@Name="BaseSPPawn"]</xpath>
+			<xpath>Defs/ThingDef[@Name="BaseSPPawn"]</xpath>
 			<value>
 				<li Class="CombatExtended.RacePropertiesExtensionCE">
 					<bodyShape>Humanoid</bodyShape>
@@ -107,7 +106,7 @@
 		</li>
 		
 		<li Class="PatchOperationReplace">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/statBases/MeleeDodgeChance</xpath>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/statBases/MeleeDodgeChance</xpath>
 			  <value>
 				<MeleeDodgeChance>1.2</MeleeDodgeChance>
 				<Suppressability>1</Suppressability>
@@ -115,7 +114,7 @@
 		</li>
 		
 		<li Class="PatchOperationReplace">
-			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/tools</xpath> 
+			<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/tools</xpath> 
 			<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -154,15 +153,17 @@
 		</li>
 		
 		<li Class="PatchOperationAdd">
-		 <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/alienRace/raceRestriction/whiteApparelList</xpath>
+		 <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_SP"]/alienRace/raceRestriction</xpath>
 			<value>
-			<li>CE_Apparel_TacVest</li>
-			<li>CE_Apparel_Backpack</li>
-			<li>CE_Apparel_TribalBackpack</li>
-			<li>CE_Apparel_BallisticShield</li>
-			<li>CE_Apparel_MeleeShield</li>
-			<li>CE_Apparel_GasMask</li>
-			<li>CE_Apparel_ImprovGasMask</li>
+			<whiteApparelList>
+				<li>CE_Apparel_TacVest</li>
+				<li>CE_Apparel_Backpack</li>
+				<li>CE_Apparel_TribalBackpack</li>
+				<li>CE_Apparel_BallisticShield</li>
+				<li>CE_Apparel_MeleeShield</li>
+				<li>CE_Apparel_GasMask</li>
+				<li>CE_Apparel_ImprovGasMask</li>
+			</whiteApparelList>
 			</value>
 		</li>
 		

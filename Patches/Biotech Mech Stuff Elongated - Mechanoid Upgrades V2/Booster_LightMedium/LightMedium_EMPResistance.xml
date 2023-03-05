@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech Mech Stuff Elongated - Mechanoid Upgrades V2</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="BMU_MechBoost_Armor_LightMedium_EMPResistance"]/stages</xpath>
+					<value>
+						<stages>
+							<li>
+								<label>level 1</label>
+								<minSeverity>1</minSeverity>
+								<statOffsets>
+									<EMPResistance>0.125</EMPResistance>
+									<ArmorRating_Electric>0.125</ArmorRating_Electric>
+								</statOffsets>
+							</li>
+							<li>
+								<label>level 2</label>
+								<minSeverity>2</minSeverity>
+								<statOffsets>
+									<EMPResistance>0.25</EMPResistance>
+									<ArmorRating_Electric>0.25</ArmorRating_Electric>
+								</statOffsets>
+							</li>
+							<li>
+								<label>level 3</label>
+								<minSeverity>3</minSeverity>
+								<statOffsets>
+									<EMPResistance>0.375</EMPResistance>
+									<ArmorRating_Electric>0.375</ArmorRating_Electric>
+								</statOffsets>
+							</li>
+							<li>
+								<label>level 4</label>
+								<minSeverity>4</minSeverity>
+								<statOffsets>
+									<EMPResistance>0.5</EMPResistance>
+									<ArmorRating_Electric>0.5</ArmorRating_Electric>
+								</statOffsets>
+							</li>
+						</stages>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

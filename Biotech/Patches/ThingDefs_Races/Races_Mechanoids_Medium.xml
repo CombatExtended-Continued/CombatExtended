@@ -41,6 +41,18 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Mech_Scorcher"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>4</min>
+					<max>5</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/PawnKindDef[defName="Mech_Apocriton"]</xpath>
 		<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
@@ -118,6 +130,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="Mech_Scorcher"]/statBases</xpath>
 		<value>
+			<CarryBulk>30</CarryBulk>
 			<MeleeDodgeChance>0.13</MeleeDodgeChance>
 			<MeleeCritChance>0.12</MeleeCritChance>
 			<MeleeParryChance>0.09</MeleeParryChance>

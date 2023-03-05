@@ -10,7 +10,7 @@
 		<!-- ========== Remove Unneccessary ========== -->
 
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[
+          <xpath>Defs/ThingDef[
 			defName="Bullet_UACPistol" or
 			defName="Bullet_UACCombatShotgun" or
 			defName="UAC_BulletSuperShotgun" or
@@ -26,19 +26,19 @@
         </li>
 
         <li Class="PatchOperationRemove">
-          <xpath>/Defs/ThingDef[defName="Gun_UACChaingun"]/recipeMaker/researchPrerequisite</xpath>
+          <xpath>Defs/ThingDef[defName="Gun_UACChaingun"]/recipeMaker/researchPrerequisite</xpath>
         </li>
 		
 		<!-- ========== Chainsaw ========== -->
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="MeleeWeapon_UACSaw"]/statBases</xpath>
+          <xpath>Defs/ThingDef[defName="MeleeWeapon_UACSaw"]/statBases</xpath>
           <value>
             <Bulk>5</Bulk>
           </value>
         </li>
 		
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/ThingDef[defName="MeleeWeapon_UACSaw"]/tools</xpath>
+          <xpath>Defs/ThingDef[defName="MeleeWeapon_UACSaw"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
@@ -59,7 +59,7 @@
 		
 		<!-- ========== Melee Tools for weapons ========== -->
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[@Name="UACBaseHumanMakeableGun"]</xpath>
+          <xpath>Defs/ThingDef[@Name="UACBaseHumanMakeableGun"]</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">
