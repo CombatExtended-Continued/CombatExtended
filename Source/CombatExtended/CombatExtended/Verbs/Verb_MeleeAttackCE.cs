@@ -26,6 +26,8 @@ namespace CombatExtended
         private const float ShieldBlockChance = 0.75f;   // If we have a shield equipped, this is the chance a parry will be a shield block
         private const int KnockdownDuration = 120;   // Animal knockdown lasts for this long
 
+        private const float KnockdownMassRequirement = 5f;
+
         // XP variables
         private const float HitXP = 200;    // Vanilla is 250
         private const float DodgeXP = 50;
@@ -240,7 +242,7 @@ namespace CombatExtended
                             // Do a critical hit
                             isCrit = true;
                             ApplyMeleeDamageToTarget(currentTarget).AssociateWithLog(log);
-                            moteText = casterPawn.def.race.Animal ? "CE_TextMote_Knockdown".Translate() : "CE_TextMote_CriticalHit".Translate();
+                            moteText = casterPawn.def.race.Animal ? null : "CE_TextMote_CriticalHit".Translate();
                             casterPawn.skills?.Learn(SkillDefOf.Melee, CritXP * verbProps.AdjustedFullCycleTime(this, casterPawn), false);
                         }
                         else
@@ -526,11 +528,17 @@ namespace CombatExtended
         {
             DamageWorker.DamageResult result = new DamageWorker.DamageResult();
             IEnumerable<DamageInfo> damageInfosToApply = DamageInfosToApply(target, isCrit);
+            bool isHeadHit = false;
             foreach (DamageInfo current in damageInfosToApply)
             {
                 if (target.ThingDestroyed)
                 {
                     break;
+                }
+
+                if (current.Height == BodyPartHeight.Top)
+                {
+                    isHeadHit = true;
                 }
 
                 LastAttackVerb = this;
@@ -541,8 +549,23 @@ namespace CombatExtended
             if (isCrit && CasterPawn.def.race.Animal)
             {
                 var pawn = target.Thing as Pawn;
-                if (pawn != null && !pawn.Dead)
+
+                float equivalentTargetWeight = pawn.GetStatValue(StatDefOf.Mass);
+                RacePropertiesExtensionCE bodyShape = pawn.def.GetModExtension<RacePropertiesExtensionCE>();
+                if (bodyShape != null)
                 {
+                    equivalentTargetWeight *= (bodyShape.bodyShape.width / bodyShape.bodyShape.height);
+                }
+                if (isHeadHit)
+                {
+                    equivalentTargetWeight *= 0.5f;
+                }
+
+                // an attacker have to be heavier that 1/mass requirement of target equivalent mass to have a chance to knock target down, and as attacker mass approaches equivalent mass, knock down chance increases
+                if (pawn != null && !pawn.Dead && Rand.Chance((CasterPawn.GetStatValue(StatDefOf.Mass) / equivalentTargetWeight) - (1 / (KnockdownMassRequirement - 1))))
+                {
+                    MoteMakerCE.ThrowText(pawn.PositionHeld.ToVector3Shifted(), pawn.MapHeld, "CE_TextMote_Knockdown".Translate());
+
                     //pawn.stances?.stunner.StunFor(KnockdownDuration);
                     pawn.stances?.SetStance(new Stance_Cooldown(KnockdownDuration, pawn, null));
                     Job job = JobMaker.MakeJob(CE_JobDefOf.WaitKnockdown);
