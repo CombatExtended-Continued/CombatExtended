@@ -261,7 +261,7 @@ namespace CombatExtended
             {
                 ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(MTAJobDefOf.MTA_UnloadAmmo, ParentPawn), 0, true);
 
-                if (!currentAmmoInUse && !AmmoUser.FullMagazine)
+                if (!AmmoUser.FullMagazine)
                 {
                     ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, ParentPawn, AmmoUser.parent), 0, true);
                 }
