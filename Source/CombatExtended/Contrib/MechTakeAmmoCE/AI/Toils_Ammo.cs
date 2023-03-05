@@ -33,5 +33,15 @@ namespace CombatExtended
             };
             return toil;
         }
+
+        public static Toil DropUnusedAmmo(CompMechAmmo mechAmmo)
+        {
+            Toil toil = ToilMaker.MakeToil("DropUnusedAmmo");
+            toil.initAction = () =>
+            {
+                mechAmmo.DropUnusedAmmo();
+            };
+            return toil;
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace CombatExtended
         public override void PreOpen()
         {
             Vector2 initialSize = this.InitialSize;
-            initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 3) * (BotAreaHeight + Margin);
+            initialSize.y = (mechAmmo.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight + Margin);
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
             this.windowRect = this.windowRect.Rounded();
         }
@@ -48,7 +48,7 @@ namespace CombatExtended
         {
             float curY = 0;
             string Maglabel = "MTA_MagazinePrefix".Translate(mechAmmo.AmmoUser.Props.magazineSize);
-            DrawThingRow(inRect, ref curY, Maglabel);
+            DrawLabel(inRect, ref curY, Maglabel);
             foreach (var ammoType in mechAmmo.AmmoUser.Props.ammoSet.ammoTypes)
             {
                 int value = 0;
@@ -88,7 +88,7 @@ namespace CombatExtended
             curY += BotAreaHeight + Margin;
         }
 
-        public void DrawThingRow(Rect rect, ref float curY, string label)
+        public void DrawLabel(Rect rect, ref float curY, string label)
         {
             Text.Anchor = TextAnchor.UpperCenter;
             Widgets.Label(new Rect(rect.x + BotAreaWidth, curY, rect.width - BotAreaWidth * 2, BotAreaHeight), label.ToString());
