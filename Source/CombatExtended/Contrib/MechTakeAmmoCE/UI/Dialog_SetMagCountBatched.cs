@@ -22,6 +22,9 @@ namespace CombatExtended
         private const float BotAreaHeight = 30f;
         private new const float Margin = 10f;
 
+        float headerHeight;
+        private string Maglabel;
+
         public Dialog_SetMagCountBatched(List<CompMechAmmo> mechAmmoList)
         {
             if (mechAmmoList == null || mechAmmoList.Count == 0)
@@ -39,7 +42,10 @@ namespace CombatExtended
         public override void PreOpen()
         {
             Vector2 initialSize = this.InitialSize;
-            initialSize.y = (_mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes.Count + 4) * (BotAreaHeight);
+            Maglabel = "MTA_MagazinePrefix".Translate(_mechAmmoShown.AmmoUser.Props.magazineSize);
+            Text.Font = GameFont.Small;
+            headerHeight = Text.CalcHeight(Maglabel, initialSize.x);
+            initialSize.y = (_mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes.Count + 3) * (BotAreaHeight) + headerHeight;
             this.windowRect = new Rect(((float)UI.screenWidth - initialSize.x) / 2f, ((float)UI.screenHeight - initialSize.y) / 2f, initialSize.x, initialSize.y);
             this.windowRect = this.windowRect.Rounded();
         }
@@ -53,11 +59,12 @@ namespace CombatExtended
         }
         public override void DoWindowContents(Rect inRect)
         {
+            Text.Font = GameFont.Small;
             float curY = 0;
-            string Maglabel = "MTA_MagazinePrefix".Translate(_mechAmmoShown.AmmoUser.Props.magazineSize);
 
-            Vector2 headerRect = Text.CalcSize(Maglabel);
-            DrawLabel(inRect, ref headerRect.y, Maglabel);
+            Text.Anchor = TextAnchor.UpperCenter;
+            Widgets.Label(inRect, Maglabel);
+            curY += headerHeight + Margin;
             foreach (var ammoType in _mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes)
             {
                 int value = 0;
@@ -88,15 +95,17 @@ namespace CombatExtended
 
         public void DrawThingRow(Rect rect, ref float curY, ref int count, Def defForIcon, string label)
         {
-            Text.Anchor = TextAnchor.UpperLeft;
+            Text.Font = GameFont.Small;
+            Text.Anchor = TextAnchor.MiddleLeft;
             Widgets.DefIcon(new Rect(rect.x, curY, BotAreaWidth, BotAreaHeight), defForIcon);
-            Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY + BotAreaHeight / 4, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
+            Widgets.Label(new Rect(rect.x + BotAreaWidth + Margin, curY, rect.width - BotAreaWidth * 4, BotAreaHeight), label);
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth * 4, curY, BotAreaWidth, BotAreaHeight), "-", true, true, true, null))
             {
                 count--;
             }
-            Text.Anchor = TextAnchor.UpperCenter;
-            Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY + BotAreaHeight / 4, BotAreaWidth * 2, BotAreaHeight), count.ToString());
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(new Rect(rect.x + rect.width - BotAreaWidth * 3, curY, BotAreaWidth * 2, BotAreaHeight), count.ToString() + " (" + (count * _mechAmmoShown.AmmoUser.Props.magazineSize).ToString() + ")");
             Text.Anchor = TextAnchor.UpperLeft;
             if (Widgets.ButtonText(new Rect(rect.x + rect.width - BotAreaWidth, curY, BotAreaWidth, BotAreaHeight), "+", true, true, true, null))
             {
@@ -106,13 +115,6 @@ namespace CombatExtended
             count = count < 0 ? 0 : count;
 
             curY += BotAreaHeight;
-        }
-
-        public void DrawLabel(Rect rect, ref float curY, string label)
-        {
-            Text.Anchor = TextAnchor.UpperCenter;
-            Widgets.Label(new Rect(rect.x + BotAreaWidth / 2, curY, rect.width - BotAreaWidth, BotAreaHeight), label.ToString());
-            curY += BotAreaHeight + Margin;
         }
     }
 }
