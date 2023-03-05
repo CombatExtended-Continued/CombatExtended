@@ -55,7 +55,9 @@ namespace CombatExtended
         {
             float curY = 0;
             string Maglabel = "MTA_MagazinePrefix".Translate(_mechAmmoShown.AmmoUser.Props.magazineSize);
-            DrawLabel(inRect, ref curY, Maglabel);
+
+            Vector2 headerRect = Text.CalcSize(Maglabel);
+            DrawLabel(inRect, ref headerRect.y, Maglabel);
             foreach (var ammoType in _mechAmmoShown.AmmoUser.Props.ammoSet.ammoTypes)
             {
                 int value = 0;
@@ -109,7 +111,7 @@ namespace CombatExtended
         public void DrawLabel(Rect rect, ref float curY, string label)
         {
             Text.Anchor = TextAnchor.UpperCenter;
-            Widgets.Label(new Rect(rect.x + BotAreaWidth, curY, rect.width - BotAreaWidth * 2, BotAreaHeight), label.ToString());
+            Widgets.Label(new Rect(rect.x + BotAreaWidth / 2, curY, rect.width - BotAreaWidth, BotAreaHeight), label.ToString());
             curY += BotAreaHeight + Margin;
         }
     }
