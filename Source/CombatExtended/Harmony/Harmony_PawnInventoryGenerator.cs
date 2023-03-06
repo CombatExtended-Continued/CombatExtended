@@ -17,7 +17,8 @@ namespace CombatExtended.HarmonyCE
             var loadoutProps = p.kindDef.GetModExtension<LoadoutPropertiesExtension>();
             if (loadoutProps != null)
             {
-                loadoutProps.GenerateLoadoutFor(p);
+                float biocodeChance = (request.BiocodeWeaponChance > 0f) ? request.BiocodeWeaponChance : p.kindDef.biocodeWeaponChance;  //pass biocode weapon chance to generate loadout
+                loadoutProps.GenerateLoadoutFor(p, biocodeChance);
             }
         }
     }
