@@ -43,6 +43,7 @@ Mod |
 [RH2] Faction: Bounty Hunters   |
 [RH2] Faction: Task Force 141   |
 [RH2] Faction: The Rangers  |
+[RH2] Faction: Utilitarian  |
 [RH2] Faction: V.O.I.D.	|
 [RH2] Rimmu-Nation² - Clothing	|
 [RH2] Rimmu-Nation² - Security  |

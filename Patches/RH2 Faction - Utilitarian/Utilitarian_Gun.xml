@@ -3,14 +3,14 @@
 
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>[RH2] Faction: Bounty Hunters</li>
+			<li>[RH2] Faction: Utilitarian</li>
 		</mods>
 			
 			<match Class="PatchOperationSequence">
 				<operations>       
 
 					<li Class="PatchOperationReplace">
-						<xpath>Defs/ThingDef[defName="RHGun_DOOM3_PlasmaGun"]/tools</xpath>
+						<xpath>Defs/ThingDef[defName="RNGun_DOOM3_MG88Enforcer"]/tools</xpath>
 						<value>
 						  <tools>
 							<li Class="CombatExtended.ToolCE">
@@ -49,33 +49,34 @@
 					</li>
 
 					<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
-						<defName>RHGun_DOOM3_PlasmaGun</defName>
+						<defName>RNGun_DOOM3_MG88Enforcer</defName>
 						<statBases>
-							<Bulk>7.5</Bulk>
-							<SwayFactor>1.27</SwayFactor>
-							<ShotSpread>0.07</ShotSpread>
-							<SightsEfficiency>1.1</SightsEfficiency>
-							<RangedWeapon_Cooldown>0.56</RangedWeapon_Cooldown>
+							<Bulk>7.0</Bulk>
+							<SwayFactor>1.15</SwayFactor>
+							<ShotSpread>0.05</ShotSpread>
+							<SightsEfficiency>1.0</SightsEfficiency>
+							<RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
 						</statBases>
 						<Properties>
-							<recoilAmount>1.25</recoilAmount>
+							<recoilAmount>2.25</recoilAmount>
 							<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 							<hasStandardCommand>True</hasStandardCommand>
-							<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+							<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
 							<burstShotCount>6</burstShotCount>
 							<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-							<warmupTime>1.2</warmupTime>
-							<range>62</range>
-							<soundCast>RHShot_DOOM3_PlasmaGunShot</soundCast>
-							<soundCastTail>GunTail_Medium</soundCastTail>
+							<warmupTime>1.1</warmupTime>
+							<range>51</range>
+							<soundCast>RHShot_DOOM3_MG88EnforcerShot</soundCast>
+							<soundCastTail>GunTail_Light</soundCastTail>
 							<muzzleFlashScale>9</muzzleFlashScale>
 						</Properties>
 						<AmmoUser>
 							<magazineSize>60</magazineSize>
-							<reloadTime>4.9</reloadTime>
-							<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+							<reloadTime>4.5</reloadTime>
+							<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
 						</AmmoUser>
 						<FireModes>
+							<aiUseBurstMode>TRUE</aiUseBurstMode>
 							<aiAimMode>AimedShot</aiAimMode>
 							<aimedBurstShotCount>3</aimedBurstShotCount>
 						</FireModes>
