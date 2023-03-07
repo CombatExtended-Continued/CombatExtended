@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>	
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[1.4] Astra Militarum Regimentum - Krieg: Officer Helmet </li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+			<!-- === Grenadier Helmet === -->
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]/statBases/StuffEffectMultiplierArmor</xpath>
+				<value>
+					<Bulk>5</Bulk>
+					<WornBulk>1</WornBulk>
+					<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
+				</value>
+			</li>
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]</xpath>
+				<value>
+					<costList>
+						<Hyperweave>20</Hyperweave>
+					</costList>
+				</value>
+			</li>
+
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="ODZ_40K_IG_DKOK_OFFICER" or defName="ODZ_40K_IG_DKOK_NCO"]/stuffCategories/li[.="Metallic"]</xpath>
+				<value>
+					<li>Steeled</li>
+				</value>
+			</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

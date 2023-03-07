@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Alpha Genes</li>
+		</mods>
+
+		<match Class="PatchOperationFindMod">
+			<mods>
+				<li>Vanilla Races Expanded - Phytokin</li>
+			</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ======= Eye Projectile ======= -->
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AG_EyeProjectile"]</xpath>
+						<value>
+							<thingClass>CombatExtended.BulletCE</thingClass>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AG_EyeProjectile"]/projectile</xpath>
+						<value>
+							<projectile Class="CombatExtended.ProjectilePropertiesCE">
+								<damageDef>AG_RangedBlunt</damageDef>
+								<speed>55</speed>
+								<damageAmountBase>10</damageAmountBase>
+								<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							</projectile>
+						</value>
+					</li>
+
+					<!-- ======= Ocular Slinger ======= -->
+
+					<li Class="PatchOperationAddModExtension">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]</xpath>
+						<value>
+							<li Class="CombatExtended.RacePropertiesExtensionCE">
+								<bodyShape>QuadrupedLow</bodyShape>
+							</li>
+						</value>
+					</li>
+
+					<li Class="PatchOperationAdd">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/statBases</xpath>
+						<value>
+							<AimingAccuracy>0.7</AimingAccuracy>
+							<MeleeDodgeChance>0.1</MeleeDodgeChance>
+							<MeleeCritChance>0.4</MeleeCritChance>
+							<MeleeParryChance>0.4</MeleeParryChance>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/statBases/ArmorRating_Blunt</xpath>
+						<value>
+							<ArmorRating_Blunt>4</ArmorRating_Blunt>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/statBases/ArmorRating_Sharp</xpath>
+						<value>
+							<ArmorRating_Sharp>2</ArmorRating_Sharp>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/tools</xpath>
+						<value>
+							<tools>
+								<li Class="CombatExtended.ToolCE">
+									<label>left pincer</label>
+									<capacities>
+										<li>Scratch</li>
+									</capacities>
+									<power>26</power>
+									<cooldownTime>1.68</cooldownTime>
+									<linkedBodyPartsGroup>AG_PincerAttackTool</linkedBodyPartsGroup>
+									<armorPenetrationSharp>3</armorPenetrationSharp>
+									<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>right pincer</label>
+									<capacities>
+										<li>Scratch</li>
+									</capacities>
+									<power>26</power>
+									<cooldownTime>1.68</cooldownTime>
+									<linkedBodyPartsGroup>AG_PincerAttackTool</linkedBodyPartsGroup>
+									<armorPenetrationSharp>3</armorPenetrationSharp>
+									<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<capacities>
+										<li>AG_ToxicSting</li>
+									</capacities>
+									<power>24</power>
+									<cooldownTime>1.8</cooldownTime>
+									<linkedBodyPartsGroup>AG_Sting</linkedBodyPartsGroup>
+									<armorPenetrationSharp>10</armorPenetrationSharp>
+									<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								</li>
+								<li Class="CombatExtended.ToolCE">
+									<label>head</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>4</power>
+									<cooldownTime>2</cooldownTime>
+									<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+									<armorPenetrationBlunt>0.25</armorPenetrationBlunt>
+									<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+									<chanceFactor>0.1</chanceFactor>
+								</li>
+							</tools>
+						</value>
+					</li>
+
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/verbs</xpath>
+						<value>
+							<verbs>
+								<li Class="CombatExtended.VerbPropertiesCE">
+									<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>AG_EyeProjectile</defaultProjectile>
+									<warmupTime>2</warmupTime>
+									<burstShotCount>3</burstShotCount>
+									<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+									<minRange>2</minRange>
+									<range>18</range>
+									<soundCast>AG_Throw</soundCast>
+									<muzzleFlashScale>0</muzzleFlashScale>
+									<label>eye</label>
+									<commonality>0.8</commonality>
+								</li>
+							</verbs>
+						</value>
+					</li>
+
+					<!-- ======= AG_ScorpionLike Body ======= -->
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_Thorax"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_Thorax"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_Thorax"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="Pronotum"]/parts/li[def="InsectHead"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+					<li Class="PatchOperationConditional">
+						<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]/parts/li[def="AG_InsectSting"]/groups</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]/parts/li[def="AG_InsectSting"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+						</nomatch>
+						<match Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AG_ScorpionLike"]/corePart/parts/li[def="AG_InsectTail"]/parts/li[def="AG_InsectSting"]/groups</xpath>
+							<value>
+								<li>CoveredByNaturalArmor</li>
+							</value>
+						</match>
+					</li>
+
+				</operations>
+			</match>
+		</match>
+	</Operation>
+
+</Patch>

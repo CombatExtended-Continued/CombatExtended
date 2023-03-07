@@ -385,6 +385,10 @@ namespace CombatExtended
             if (AttackVerb.verbProps.warmupTime > 0f)
             {
                 burstWarmupTicksLeft = AttackVerb.verbProps.warmupTime.SecondsToTicks();
+                if (AttackVerb is Verb_ShootCE verb)
+                {
+                    verb.RecalculateWarmupTicks();
+                }
                 return;
             }
             if (canBeginBurstImmediately)
@@ -733,7 +737,7 @@ namespace CombatExtended
         public void TryOrderReload(bool forced = false)
         {
             //No reload necessary at all --
-            if ((CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
+            if (compAmmo == null || (CompAmmo.CurrentAmmo == CompAmmo.SelectedAmmo && (!CompAmmo.HasMagazine || CompAmmo.CurMagCount == CompAmmo.MagSize)))
             {
                 return;
             }

@@ -14,6 +14,7 @@ namespace CombatExtended
 
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public AttachmentOption primaryAttachments;
+        public int minAmmoCount = 10;
 
         public FloatRange shieldMoney = FloatRange.Zero;
         public List<string> shieldTags;
@@ -62,7 +63,7 @@ namespace CombatExtended
             allShieldPairs = ThingStuffPair.AllWith(td => td.thingClass == typeof(Apparel_Shield));
         }
 
-        public void GenerateLoadoutFor(Pawn pawn)
+        public void GenerateLoadoutFor(Pawn pawn, float biocodeWeaponChance)
         {
             if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                     || (pawn.WorkTagIsDisabled(WorkTags.Violent))
@@ -81,7 +82,7 @@ namespace CombatExtended
             // Generate forced sidearm
             if (forcedSidearm != null)
             {
-                TryGenerateWeaponWithAmmoFor(pawn, inventory, forcedSidearm);
+                TryGenerateWeaponWithAmmoFor(pawn, inventory, forcedSidearm, biocodeWeaponChance);
             }
 
             // Generate primary ammo
@@ -107,7 +108,7 @@ namespace CombatExtended
             {
                 foreach (SidearmOption current in sidearms)
                 {
-                    TryGenerateWeaponWithAmmoFor(pawn, inventory, current);
+                    TryGenerateWeaponWithAmmoFor(pawn, inventory, current, biocodeWeaponChance);
                 }
             }
         }
@@ -153,7 +154,7 @@ namespace CombatExtended
             weapon.UpdateConfiguration();
         }
 
-        private void TryGenerateWeaponWithAmmoFor(Pawn pawn, CompInventory inventory, SidearmOption option)
+        private void TryGenerateWeaponWithAmmoFor(Pawn pawn, CompInventory inventory, SidearmOption option, float biocodeChance)
         {
             if (option.weaponTags.NullOrEmpty() || !Rand.Chance(option.generateChance))
             {
@@ -161,7 +162,7 @@ namespace CombatExtended
             }
             // Generate weapon - mostly based on PawnWeaponGenerator.TryGenerateWeaponFor()
             // START 1:1 COPY
-            float randomInRange = pawn.kindDef.weaponMoney.RandomInRange;
+            float randomInRange = option.sidearmMoney.RandomInRange;
             for (int i = 0; i < allWeaponPairs.Count; i++)
             {
                 ThingStuffPair w = allWeaponPairs[i];
@@ -188,6 +189,10 @@ namespace CombatExtended
             {
                 // Create the actual weapon and put it into inventory
                 ThingWithComps thingWithComps = (ThingWithComps)ThingMaker.MakeThing(thingStuffPair.thing, thingStuffPair.stuff);
+                if (Rand.Value < biocodeChance)
+                {
+                    thingWithComps.TryGetComp<CompBiocodable>()?.CodeFor(pawn);
+                }
                 LoadWeaponWithRandAmmo(thingWithComps); //Custom
                 int count; //Custom
                 if (inventory.CanFitInInventory(thingWithComps, out count)) //Custom
@@ -244,12 +249,19 @@ namespace CombatExtended
             }
             ThingDef thingToAdd;
             int unitCount = 1;  // How many ammo things to add per ammoCount
+            int minAmmoSpawned = minAmmoCount; //how many ammo things should the pawn have no matter the magsize
             var compAmmo = gun.TryGetComp<CompAmmoUser>();
             if (compAmmo == null || !compAmmo.UseAmmo)
             {
                 if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse))
                 {
                     thingToAdd = gun.def;   // For one-time use weapons such as grenades, add duplicates instead of ammo
+                    if (minAmmoSpawned == 10)
+                    {
+                        //don't spawn 10 (the default value) of single-use weapons,
+                        //unless the xml patcher explicitly set a different value
+                        minAmmoSpawned = 1;
+                    }
                 }
                 else
                 {
@@ -260,7 +272,9 @@ namespace CombatExtended
             {
                 // Generate currently loaded ammo
                 thingToAdd = compAmmo.CurrentAmmo;
-                unitCount = Mathf.Max(1, compAmmo.MagSize);  // Guns use full magazines as units
+                // Check if we should use a different magazine ammo count for ammo generation.
+                int magCount = (compAmmo.MagSizeOverride > 0) ? compAmmo.MagSizeOverride : compAmmo.MagSize;
+                unitCount = Mathf.Max(1, magCount);  // Guns use full magazines as units
 
                 if (forcedAmmoCategory != null)
                 {
@@ -273,7 +287,8 @@ namespace CombatExtended
             }
 
             var ammoThing = thingToAdd.MadeFromStuff ? ThingMaker.MakeThing(thingToAdd, gun.Stuff) : ThingMaker.MakeThing(thingToAdd);
-            ammoThing.stackCount = ammoCount * unitCount;
+            //check if total ammo required to load all magazines is less than minimum amount for pawnkind
+            ammoThing.stackCount = Math.Max(ammoCount * unitCount, minAmmoSpawned);
             int maxCount;
             if (inventory.CanFitInInventory(ammoThing, out maxCount))
             {

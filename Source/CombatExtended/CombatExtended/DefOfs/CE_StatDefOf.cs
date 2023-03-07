@@ -26,6 +26,7 @@ namespace CombatExtended
         public static readonly StatDef ReloadSpeed = StatDef.Named("ReloadSpeed"); // pawn capacity
         public static readonly StatDef MuzzleFlash = StatDef.Named("MuzzleFlash");
         public static readonly StatDef MagazineCapacity = StatDef.Named("MagazineCapacity");
+        public static readonly StatDef AmmoGenPerMagOverride = StatDef.Named("AmmoGenPerMagOverride");
         public static readonly StatDef NightVisionEfficiency_Weapon = StatDef.Named("NightVisionEfficiency_Weapon");
         public static StatDef TicksBetweenBurstShots;
         public static StatDef BurstShotCount;

@@ -4,12 +4,13 @@
 	<Operation Class="PatchOperationFindMod">
     <mods>
 		<li>Not Only just a cannon</li>
+		<li>Not Only just a cannon (Continued)</li>
     </mods>
 		<match Class="PatchOperationSequence">
 		<operations>
 			
 		<li Class="PatchOperationAdd">
-		<xpath>/Defs</xpath>
+		<xpath>Defs</xpath>
 		<value>
 		
 			<ThingCategoryDef>
@@ -53,7 +54,7 @@
 			<isMortarAmmo>true</isMortarAmmo>
 			</ThingDef>
 
-			<ThingDef Name="Base164mmCannonShell" ParentName="BaseBullet" Abstract="true">
+			<ThingDef Name="Base164mmCannonShell" ParentName="BaseExplosiveBullet" Abstract="true">
 			<graphicData>
 				<shaderType>TransparentPostLight</shaderType>
 			</graphicData>
@@ -63,6 +64,7 @@
 				<flyOverhead>false</flyOverhead>
 				<dropsCasings>false</dropsCasings>
 				<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+ 				<casingFilthDefname>Filth_CannonAmmoCasings</casingFilthDefname>
 			</projectile>
 			</ThingDef>
 
@@ -865,7 +867,7 @@
 		</li>
 		
 		<li Class="PatchOperationRemove">
-			<xpath>/Defs/ThingDef[
+			<xpath>Defs/ThingDef[
 			defName="CannonBall_Solidshot" or
 			defName="CannonBall_Explosiveshot" or
 			defName="CannonBall_Incendiary" or

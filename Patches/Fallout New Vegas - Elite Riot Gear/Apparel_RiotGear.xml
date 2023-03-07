@@ -3,14 +3,14 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Fallout New Vegas - Elite Riot Gear</li>
+	  <li>Fallout New Vegas - Elite Riot Gear (Continued)</li>
     </mods>
     <match Class="PatchOperationSequence">
       <operations>
 
 		<!-- Stranger --> 
 		<li Class="PatchOperationAddModExtension">
-			<xpath>/Defs/PawnKindDef[defName="Stranger"]</xpath>
+			<xpath>Defs/PawnKindDef[defName="Stranger"]</xpath>
 			<value>
 			<li Class="CombatExtended.LoadoutPropertiesExtension">
 				<primaryMagazineCount>
@@ -24,14 +24,14 @@
 		<!-- Riot Armor -->
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotArmor" or defName = "2SP_StuffableEliteRiotArmor"]/equippedStatOffsets</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotArmor" or defName = "ZSP_StuffableEliteRiotArmor"]/equippedStatOffsets</xpath>
 			<value>
 				<CarryBulk>10</CarryBulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotArmor" or defName = "2SP_StuffableEliteRiotArmor"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotArmor" or defName = "ZSP_StuffableEliteRiotArmor"]/statBases</xpath>
 			<value>
 				<Bulk>40</Bulk>
 				<WornBulk>15</WornBulk>
@@ -39,21 +39,21 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotArmor"]/statBases/ArmorRating_Sharp</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotArmor"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
 				<ArmorRating_Sharp>14</ArmorRating_Sharp>
 			</value>
 		</li>	
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotArmor"]/statBases/ArmorRating_Blunt</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotArmor"]/statBases/ArmorRating_Blunt</xpath>
 			<value>
 				<ArmorRating_Blunt>18</ArmorRating_Blunt>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotArmor"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>12</StuffEffectMultiplierArmor>
 			</value>
@@ -62,9 +62,9 @@
 		<!-- Riot Helmet -->
 
 		<li Class="PatchOperationConditional">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotHelmet" or defName= "2SP_EliteRiotHelmet"]/apparel/immuneToToxGasExposure</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotHelmet" or defName= "ZSP_EliteRiotHelmet"]/apparel/immuneToToxGasExposure</xpath>
 			<nomatch Class="PatchOperationAdd">
-				<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotHelmet" or defName= "2SP_EliteRiotHelmet"]/apparel</xpath>
+				<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotHelmet" or defName= "ZSP_EliteRiotHelmet"]/apparel</xpath>
 				<value>
 					<immuneToToxGasExposure>true</immuneToToxGasExposure>
 				</value>
@@ -72,35 +72,35 @@
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotHelmet" or defName= "2SP_EliteRiotHelmet"]/equippedStatOffsets</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotHelmet" or defName= "ZSP_EliteRiotHelmet"]/equippedStatOffsets</xpath>
 			<value>
 				<SmokeSensitivity>-1</SmokeSensitivity>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "2SP_StuffableEliteRiotHelmet" or defName= "2SP_EliteRiotHelmet"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_StuffableEliteRiotHelmet" or defName= "ZSP_EliteRiotHelmet"]/statBases</xpath>
 			<value>
 				<Bulk>4</Bulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotHelmet"]/statBases/ArmorRating_Sharp</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotHelmet"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
 				<ArmorRating_Sharp>10</ArmorRating_Sharp>
 			</value>
 		</li>	
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotHelmet"]/statBases/ArmorRating_Blunt</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotHelmet"]/statBases/ArmorRating_Blunt</xpath>
 			<value>
 				<ArmorRating_Blunt>15</ArmorRating_Blunt>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>10</StuffEffectMultiplierArmor>
 			</value>
@@ -109,14 +109,14 @@
 		<!-- Riot Armor Jacket -->
 	
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName = "2SP_StuffableEliteRiotJacket" or defName = "2SP_EliteRiotJacket"]/equippedStatOffsets</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_StuffableEliteRiotJacket" or defName = "ZSP_EliteRiotJacket"]/equippedStatOffsets</xpath>
 			<value>
 				<CarryBulk>10</CarryBulk>
 			</value>
 		</li>
 
 		<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotJacket" or defName = "2SP_EliteRiotJacket"]/statBases</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotJacket" or defName = "ZSP_EliteRiotJacket"]/statBases</xpath>
 			<value>
 				<Bulk>7.5</Bulk>
 				<WornBulk>1</WornBulk>
@@ -124,21 +124,21 @@
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotJacket"]/statBases/ArmorRating_Sharp</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotJacket"]/statBases/ArmorRating_Sharp</xpath>
 			<value>
 				<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 			</value>
 		</li>	
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName = "2SP_EliteRiotJacket"]/statBases/ArmorRating_Blunt</xpath>
+			<xpath>Defs/ThingDef[defName = "ZSP_EliteRiotJacket"]/statBases/ArmorRating_Blunt</xpath>
 			<value>
 				<ArmorRating_Blunt>0.2</ArmorRating_Blunt>
 			</value>
 		</li>
 
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName= "2SP_StuffableEliteRiotJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<xpath>Defs/ThingDef[defName= "ZSP_StuffableEliteRiotJacket"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 			</value>

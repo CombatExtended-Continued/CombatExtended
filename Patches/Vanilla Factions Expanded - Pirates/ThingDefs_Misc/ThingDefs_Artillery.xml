@@ -10,7 +10,7 @@
 
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
-      <xpath>/Defs/ThingDef[
+      <xpath>Defs/ThingDef[
         defName = "VFEP_Turret_FieldGun" or
         defName = "VFEP_Turret_Cannon"
         ]/comps/li[@Class = "CompProperties_Refuelable"]</xpath>
@@ -18,7 +18,7 @@
 
       <!-- Replace vanilla thingClass -->
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon" or defName="VFEP_Turret_FieldGun"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_Cannon" or defName="VFEP_Turret_FieldGun"]</xpath>
         <value>
           <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
         </value>
@@ -27,28 +27,28 @@
       <!-- Field Gun -->
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
         <value>
             <fillPercent>0.85</fillPercent>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_FieldGun"]/building/turretBurstWarmupTime</xpath>
         <value>
             <turretBurstWarmupTime>4.0</turretBurstWarmupTime>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]/building/turretBurstCooldownTime</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_FieldGun"]/building/turretBurstCooldownTime</xpath>
         <value>
             <turretBurstCooldownTime>2.0</turretBurstCooldownTime>
         </value>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
         <value>
         <statBases>
           <Mass>500</Mass>
@@ -58,7 +58,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_FieldGun"]</xpath>
         <value>
           <placeWorkers Inherit="False">
             <li>PlaceWorker_TurretTop</li>
@@ -68,28 +68,28 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases</xpath>
         <value>
             <Mass>250</Mass>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases/RangedWeapon_Cooldown</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases/RangedWeapon_Cooldown</xpath>
         <value>
             <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
         </value>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/statBases</xpath>
         <value>
             <SightsEfficiency>0.5</SightsEfficiency>
         </value>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/comps</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/comps</xpath>
         <value>
             <li Class="CombatExtended.CompProperties_AmmoUser">
               <magazineSize>1</magazineSize>
@@ -100,14 +100,14 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/weaponTags</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/weaponTags</xpath>
         <value>
           <li>TurretGun</li>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/verbs</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_FieldGun"]/verbs</xpath>
         <value>
           <verbs>
             <li Class="CombatExtended.VerbPropertiesCE">
@@ -134,28 +134,28 @@
       <!-- Cannon - Based on the M1897 12-pounder -->
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/fillPercent</xpath>
+        <xpath>Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/fillPercent</xpath>
         <value>
             <fillPercent>0.85</fillPercent>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/building/turretBurstWarmupTime</xpath>
+        <xpath>Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/building/turretBurstWarmupTime</xpath>
         <value>
             <turretBurstWarmupTime>3.3</turretBurstWarmupTime>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/building/turretBurstCooldownTime</xpath>
+        <xpath>Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/building/turretBurstCooldownTime</xpath>
         <value>
             <turretBurstCooldownTime>2.7</turretBurstCooldownTime>
         </value>
       </li>
 
       <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/placeWorkers/li[.="PlaceWorker_NotUnderRoof"]</xpath>
+        <xpath>Defs/ThingDef[@Name="VFEP_BaseCannonBuilding"]/placeWorkers/li[.="PlaceWorker_NotUnderRoof"]</xpath>
       </li>
 
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
@@ -182,7 +182,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="VFEP_Artillery_Cannon"]/verbs</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Artillery_Cannon"]/verbs</xpath>
         <value>
           <verbs>
             <li Class="CombatExtended.VerbPropertiesCE">
@@ -206,7 +206,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
+        <xpath>Defs/ThingDef[defName="VFEP_Turret_Cannon"]</xpath>
         <value>
           <statBases>
             <Bulk>150</Bulk>

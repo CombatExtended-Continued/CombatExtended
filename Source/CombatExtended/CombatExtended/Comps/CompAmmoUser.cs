@@ -62,6 +62,13 @@ namespace CombatExtended
                 return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
             }
         }
+        public int MagSizeOverride
+        {
+            get
+            {
+                return (int)parent.GetStatValue(CE_StatDefOf.AmmoGenPerMagOverride);
+            }
+        }
         public int CurMagCount
         {
             get

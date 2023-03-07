@@ -28,13 +28,14 @@ namespace CombatExtended.HarmonyCE
                     var sourceLoc = new Vector2();
                     sourceLoc.Set(u.x, u.z);
                     var targetLocation = new Vector2();
-                    targetLocation.Set(target.Pawn.TrueCenter().x, target.Pawn.TrueCenter().z);
+                    targetLocation.Set(target.Thing.TrueCenter().x, target.Thing.TrueCenter().z);
 
                     var w = (targetLocation - sourceLoc);
                     float shotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
 
-                    var angle = ProjectileCE.GetShotAngle(projectileDef.projectile.speed, (target.Cell - pawn.Position).LengthHorizontal, 0, false, ppce.Gravity);
-                    CE_Utility.LaunchProjectileCE(projectileDef, sourceLoc, target, pawn, angle, shotRotation, 1, 80);
+                    var targetVert = new CollisionVertical(target.Thing);
+                    var angle = ProjectileCE.GetShotAngle(ppce.speed, (target.Cell - pawn.Position).LengthHorizontal, targetVert.HeightRange.Average - 1, ppce.flyOverhead, ppce.Gravity);
+                    CE_Utility.LaunchProjectileCE(projectileDef, sourceLoc, target, pawn, angle, shotRotation, 1, ppce.speed);
                     return false;
                 }
             }

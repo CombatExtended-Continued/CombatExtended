@@ -74,6 +74,7 @@
 				  <dropsCasings>false</dropsCasings>
 				  <speed>12</speed>
 				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				</projectile>
 			</value>
@@ -90,6 +91,7 @@
 				  <dropsCasings>false</dropsCasings>
 				  <speed>10</speed>
 				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				</projectile>
 			</value>
@@ -106,6 +108,7 @@
 				  <dropsCasings>true</dropsCasings>
 				  <speed>12</speed>
 				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				</projectile>
 			</value>
@@ -121,6 +124,7 @@
 				  <dropsCasings>false</dropsCasings>
 				  <speed>12</speed>
 				  <casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				  <casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 				</projectile>
 			</value>
@@ -128,70 +132,46 @@
 
 		<!-- ========== Check Comp ========== -->		
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_BaegYa"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_BaegYa"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_Dunder"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_Dunder"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
-		</li>	
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Dunder"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
+		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_Bobcat"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
-		</li>	
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Bobcat"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
+		</li>
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="Proj_Grief"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Proj_Grief"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
-		</li>		
-		
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Proj_Grief"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
+		</li>
+
 		<!-- ========== Add Fragmentation ========== -->		
 		
 		<li Class="PatchOperationAdd">
@@ -275,69 +255,45 @@
 		</li>
 		
 		<!-- Weapon Check Comps -->	
-		
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="YP_BaegYa"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="YP_BaegYa"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="YP_BaegYa"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="JI_Dunder"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="JI_Dunder"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="JI_Dunder"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="GD_Bobcat"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="GD_Bobcat"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="GD_Bobcat"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 
-		<li Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
+		<li Class="PatchOperationConditional">
 			<xpath>Defs/ThingDef[defName="TE_Grief"]/comps</xpath>
-			<success>Invert</success>
-			</li>
-			<li Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="TE_Grief"]</xpath>
-			<value>
-				<comps />
-			</value>
-			</li>
-		</operations>
+			<nomatch Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="TE_Grief"]</xpath>
+				<value>
+					<comps />
+				</value>
+			</nomatch>
 		</li>
 		
 		<!-- Weapon Values -->		

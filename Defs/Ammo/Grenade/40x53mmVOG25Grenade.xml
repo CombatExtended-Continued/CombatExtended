@@ -5,7 +5,7 @@
 		<defName>Ammo40x53mmVOG25Grenades</defName>
 		<label>40x53mm VOG-25 Grenade</label>
 		<parent>AmmoGrenades</parent>
-    <iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
+		<iconPath>UI/Icons/ThingCategories/CaliberGrenade</iconPath>
 	</ThingCategoryDef>
 	
 	<!-- ==================== AmmoSet ========================== -->
@@ -59,7 +59,7 @@
     <defName>Ammo_40x53mmVOG25Grenade_HE_TFuzed</defName>
     <label>40x53mm VOG-25 grenade (HE Time Fuzed)</label>
     <graphicData>
-      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <texPath>Things/Ammo/GrenadeLauncher/AIR</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
@@ -101,7 +101,7 @@
 
 	<!-- ================== Projectiles ================== -->
 
-  <ThingDef Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base40x53mmVOG25GrenadeBullet" ParentName="BaseExplosiveBullet" Abstract="true">
     <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/LauncherShot</texPath>
@@ -169,6 +169,8 @@
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <explosionRadius>2.5</explosionRadius>
       <damageDef>Smoke</damageDef>
+      <suppressionFactor>0.0</suppressionFactor>
+      <dangerFactor>0.0</dangerFactor>
       <postExplosionGasType>BlindSmoke</postExplosionGasType>
       <preExplosionSpawnChance>1</preExplosionSpawnChance>
     </projectile>

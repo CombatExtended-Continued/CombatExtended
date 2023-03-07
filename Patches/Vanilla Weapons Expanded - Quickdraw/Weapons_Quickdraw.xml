@@ -10,7 +10,7 @@
 
   <!-- ========== Melee Tools ========== -->
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="VWE_Gun_AutomaticPistol"]/tools</xpath>
+    <xpath>Defs/ThingDef[defName="VWE_Gun_AutomaticPistol"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -39,7 +39,7 @@
   </li>
 
   <li Class="PatchOperationReplace">
-    <xpath>/Defs/ThingDef[defName="VWE_Gun_PDW" or defName="VWE_Gun_BullpupRifle" or defName="VWE_Gun_BullpupDMR"]/tools</xpath>
+    <xpath>Defs/ThingDef[defName="VWE_Gun_PDW" or defName="VWE_Gun_BullpupRifle" or defName="VWE_Gun_BullpupDMR"]/tools</xpath>
     <value>
       <tools>
         <li Class="CombatExtended.ToolCE">
@@ -121,7 +121,7 @@
 
   <!-- Name -->
   <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='VWE_Gun_PDW']/label</xpath> 
+    <xpath>Defs/ThingDef[defName='VWE_Gun_PDW']/label</xpath> 
     <value>
       <label>P90</label>
     </value>
@@ -140,6 +140,7 @@
       <RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
     </statBases>
     <Properties>
+      <recoilAmount>1.46</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>True</hasStandardCommand>
       <defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
@@ -151,7 +152,6 @@
       <soundCastTail>GunTail_Medium</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
       <recoilPattern>Regular</recoilPattern>
-      <recoilAmount>1.46</recoilAmount>
     </Properties>
     <AmmoUser>
       <magazineSize>30</magazineSize>
@@ -173,7 +173,7 @@
 
   <!-- Name -->
   <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='VWE_Gun_BullpupRifle']/label</xpath>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_BullpupRifle']/label</xpath>
     <value>
       <label>FAMAS</label>
     </value>
@@ -192,6 +192,7 @@
       <RangedWeapon_Cooldown>0.37</RangedWeapon_Cooldown>
     </statBases>
     <Properties>
+      <recoilAmount>2.0</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>True</hasStandardCommand>
       <defaultProjectile>Bullet_762x54mmR_FMJ</defaultProjectile>
@@ -220,7 +221,7 @@
 
   <!-- Name -->
   <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='VWE_Gun_BullpupDMR']/label</xpath>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_BullpupDMR']/label</xpath>
     <value>
       <label>Bullpup DMR</label>
     </value>
@@ -239,6 +240,7 @@
       <RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
     </statBases>
     <Properties>
+      <recoilAmount>2.74</recoilAmount>
       <verbClass>CombatExtended.Verb_ShootCE</verbClass>
       <hasStandardCommand>True</hasStandardCommand>
       <defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
@@ -249,8 +251,7 @@
       <soundCast>Shot_Autopistol</soundCast>
       <soundCastTail>GunTail_Light</soundCastTail>
       <muzzleFlashScale>9</muzzleFlashScale>
-      <recoilPattern>Regular</recoilPattern>
-      <recoilAmount>2.74</recoilAmount>      
+      <recoilPattern>Regular</recoilPattern>    
     </Properties>
     <AmmoUser>
       <magazineSize>17</magazineSize>
@@ -271,16 +272,14 @@
 
   <!-- Name -->
   <li Class='PatchOperationReplace'>
-    <xpath>/Defs/ThingDef[defName='VWE_Gun_AutomaticPistol']/label</xpath>
+    <xpath>Defs/ThingDef[defName='VWE_Gun_AutomaticPistol']/label</xpath>
     <value>
       <label>Glock 18</label>
     </value>
   </li>
-
 
 			</operations>		
 		</match>
 	</Operation>
 
 </Patch>
-

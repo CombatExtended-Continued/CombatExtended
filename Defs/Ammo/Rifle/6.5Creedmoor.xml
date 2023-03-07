@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingCategoryDef>
-		<defName>Ammo65x48mmBlackout</defName>
+		<defName>Ammo65x48mmCreedmoor</defName>
 		<label>6.5mm Creedmoor</label>
 		<parent>AmmoRifles</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRifle</iconPath>
@@ -11,22 +11,22 @@
 	<!-- ==================== AmmoSet ========================== -->
 
 	<CombatExtended.AmmoSetDef>
-		<defName>AmmoSet_65x48mmBlackout</defName>
+		<defName>AmmoSet_65x48mmCreedmoor</defName>
 		<label>6.5mm Creedmoor</label>
 		<ammoTypes>
-			<Ammo_65x48mmBlackout_FMJ>Bullet_65x48mmBlackout_FMJ</Ammo_65x48mmBlackout_FMJ>
-			<Ammo_65x48mmBlackout_AP>Bullet_65x48mmBlackout_AP</Ammo_65x48mmBlackout_AP>
-			<Ammo_65x48mmBlackout_HP>Bullet_65x48mmBlackout_HP</Ammo_65x48mmBlackout_HP>
-			<Ammo_65x48mmBlackout_Incendiary>Bullet_65x48mmBlackout_Incendiary</Ammo_65x48mmBlackout_Incendiary>
-			<Ammo_65x48mmBlackout_HE>Bullet_65x48mmBlackout_HE</Ammo_65x48mmBlackout_HE>
-			<Ammo_65x48mmBlackout_Sabot>Bullet_65x48mmBlackout_Sabot</Ammo_65x48mmBlackout_Sabot>			
+			<Ammo_65x48mmCreedmoor_FMJ>Bullet_65x48mmCreedmoor_FMJ</Ammo_65x48mmCreedmoor_FMJ>
+			<Ammo_65x48mmCreedmoor_AP>Bullet_65x48mmCreedmoor_AP</Ammo_65x48mmCreedmoor_AP>
+			<Ammo_65x48mmCreedmoor_HP>Bullet_65x48mmCreedmoor_HP</Ammo_65x48mmCreedmoor_HP>
+			<Ammo_65x48mmCreedmoor_Incendiary>Bullet_65x48mmCreedmoor_Incendiary</Ammo_65x48mmCreedmoor_Incendiary>
+			<Ammo_65x48mmCreedmoor_HE>Bullet_65x48mmCreedmoor_HE</Ammo_65x48mmCreedmoor_HE>
+			<Ammo_65x48mmCreedmoor_Sabot>Bullet_65x48mmCreedmoor_Sabot</Ammo_65x48mmCreedmoor_Sabot>			
 		</ammoTypes>
 		<similarTo>AmmoSet_Rifle</similarTo>
 	</CombatExtended.AmmoSetDef>
 
 	<!-- ==================== Ammo ========================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="65x48mmBlackoutBase" ParentName="SmallAmmoBase" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="65x48mmCreedmoorBase" ParentName="SmallAmmoBase" Abstract="True">
 		<description>An intermediate centerfire rifle cartridge desinged for long range shooting.</description>
 		<statBases>
 			<Mass>0.023</Mass>
@@ -37,12 +37,12 @@
 			<li>CE_AutoEnableCrafting</li>
 		</tradeTags>
 		<thingCategories>
-			<li>Ammo65x48mmBlackout</li>
+			<li>Ammo65x48mmCreedmoor</li>
 		</thingCategories>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_FMJ</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_FMJ</defName>
 		<label>6.5mm Creedmoor cartridge (FMJ)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/FMJ</texPath>
@@ -52,11 +52,11 @@
 			<MarketValue>0.1</MarketValue>
 		</statBases>
 		<ammoClass>FullMetalJacket</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_FMJ</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_FMJ</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_AP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_AP</defName>
 		<label>6.5mm Creedmoor cartridge (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/AP</texPath>
@@ -66,11 +66,11 @@
 			<MarketValue>0.1</MarketValue>
 		</statBases>
 		<ammoClass>ArmorPiercing</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_AP</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_AP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_HP</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_HP</defName>
 		<label>6.5mm Creedmoor cartridge (HP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HP</texPath>
@@ -80,11 +80,11 @@
 			<MarketValue>0.1</MarketValue>
 		</statBases>
 		<ammoClass>HollowPoint</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_HP</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_HP</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_Incendiary</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_Incendiary</defName>
 		<label>6.5mm Creedmoor cartridge (AP-I)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/Incendiary</texPath>
@@ -94,11 +94,11 @@
 			<MarketValue>0.14</MarketValue>
 		</statBases>
 		<ammoClass>IncendiaryAP</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_Incendiary</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_Incendiary</cookOffProjectile>
 	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_HE</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_HE</defName>
 		<label>6.5mm Creedmoor cartridge (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/HE</texPath>
@@ -108,11 +108,11 @@
 			<MarketValue>0.2</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_HE</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_HE</cookOffProjectile>
 	</ThingDef>
 	
-	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmBlackoutBase">
-		<defName>Ammo_65x48mmBlackout_Sabot</defName>
+	<ThingDef Class="CombatExtended.AmmoDef" ParentName="65x48mmCreedmoorBase">
+		<defName>Ammo_65x48mmCreedmoor_Sabot</defName>
 		<label>6.5mm Creedmoor cartridge (Sabot)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Rifle/Sabot</texPath>
@@ -123,12 +123,12 @@
 			<Mass>0.019</Mass>
 		</statBases>
 		<ammoClass>Sabot</ammoClass>
-		<cookOffProjectile>Bullet_65x48mmBlackout_Sabot</cookOffProjectile>
+		<cookOffProjectile>Bullet_65x48mmCreedmoor_Sabot</cookOffProjectile>
 	</ThingDef>
   
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="Base65x48mmBlackoutBullet" ParentName="BaseBullet" Abstract="true">
+	<ThingDef Name="Base65x48mmCreedmoorBullet" ParentName="BaseBullet" Abstract="true">
 		<graphicData>
 			<texPath>Things/Projectile/Bullet_Small</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -140,42 +140,42 @@
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_FMJ</defName>
+	<ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_FMJ</defName>
 		<label>6.5mm Creedmoor bullet (FMJ)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationSharp>6</armorPenetrationSharp>
+			<armorPenetrationSharp>6.5</armorPenetrationSharp>
 			<armorPenetrationBlunt>67.34</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_AP</defName>
+	<ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_AP</defName>
 		<label>6.5mm Creedmoor bullet (AP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
-			<armorPenetrationSharp>12</armorPenetrationSharp>
+			<armorPenetrationSharp>13</armorPenetrationSharp>
 			<armorPenetrationBlunt>67.34</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_HP</defName>
+	<ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_HP</defName>
 		<label>6.5mm Creedmoor bullet (HP)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>25</damageAmountBase>
-			<armorPenetrationSharp>3</armorPenetrationSharp>
+			<armorPenetrationSharp>4</armorPenetrationSharp>
 			<armorPenetrationBlunt>67.34</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
-	  <ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_Incendiary</defName>
+	  <ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_Incendiary</defName>
 		<label>6.5mm Creedmoor bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>12</damageAmountBase>
-		  <armorPenetrationSharp>12</armorPenetrationSharp>
+		  <armorPenetrationSharp>13</armorPenetrationSharp>
 		  <armorPenetrationBlunt>67.34</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
@@ -186,12 +186,12 @@
 		</projectile>
 	  </ThingDef>
 	  
-	  <ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_HE</defName>
+	  <ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_HE</defName>
 		<label>6.5mm Creedmoor bullet (AP-HE)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>20</damageAmountBase>
-		  <armorPenetrationSharp>6</armorPenetrationSharp>
+		  <armorPenetrationSharp>6.5</armorPenetrationSharp>
 		  <armorPenetrationBlunt>67.34</armorPenetrationBlunt>
 		  <secondaryDamage>
 				<li>
@@ -202,12 +202,12 @@
 		</projectile>
 	  </ThingDef>
 
-	  <ThingDef ParentName="Base65x48mmBlackoutBullet">
-		<defName>Bullet_65x48mmBlackout_Sabot</defName>
+	  <ThingDef ParentName="Base65x48mmCreedmoorBullet">
+		<defName>Bullet_65x48mmCreedmoor_Sabot</defName>
 		<label>6.5mm Creedmoor bullet (Sabot)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 		  <damageAmountBase>10</damageAmountBase>
-		  <armorPenetrationSharp>21</armorPenetrationSharp>
+		  <armorPenetrationSharp>23</armorPenetrationSharp>
 		  <armorPenetrationBlunt>87.28</armorPenetrationBlunt>
 		  <speed>203</speed>
 		</projectile>
@@ -216,7 +216,7 @@
 	<!-- ==================== Recipes ========================== -->
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x48mmBlackout_FMJ</defName>
+		<defName>MakeAmmo_65x48mmCreedmoor_FMJ</defName>
 		<label>make 6.5mm Creedmoor (FMJ) cartridge x500</label>
 		<description>Craft 500 6.5mm Creedmoor (FMJ) cartridges.</description>
 		<jobString>Making 6.5mm Creedmoor (FMJ) cartridges.</jobString>
@@ -236,13 +236,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_65x48mmBlackout_FMJ>500</Ammo_65x48mmBlackout_FMJ>
+			<Ammo_65x48mmCreedmoor_FMJ>500</Ammo_65x48mmCreedmoor_FMJ>
 		</products>
 		<workAmount>2400</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x48mmBlackout_AP</defName>
+		<defName>MakeAmmo_65x48mmCreedmoor_AP</defName>
 		<label>make 6.5mm Creedmoor (AP) cartridge x500</label>
 		<description>Craft 500 6.5mm Creedmoor (AP) cartridges.</description>
 		<jobString>Making 6.5mm Creedmoor (AP) cartridges.</jobString>
@@ -262,13 +262,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_65x48mmBlackout_AP>500</Ammo_65x48mmBlackout_AP>
+			<Ammo_65x48mmCreedmoor_AP>500</Ammo_65x48mmCreedmoor_AP>
 		</products>
 		<workAmount>2880</workAmount>
 	</RecipeDef>
 
 	<RecipeDef ParentName="AmmoRecipeBase">
-		<defName>MakeAmmo_65x48mmBlackout_HP</defName>
+		<defName>MakeAmmo_65x48mmCreedmoor_HP</defName>
 		<label>make 6.5mm Creedmoor (HP) cartridge x500</label>
 		<description>Craft 500 6.5mm Creedmoor (HP) cartridges.</description>
 		<jobString>Making 6.5mm Creedmoor (HP) cartridges.</jobString>
@@ -288,13 +288,13 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<Ammo_65x48mmBlackout_HP>500</Ammo_65x48mmBlackout_HP>
+			<Ammo_65x48mmCreedmoor_HP>500</Ammo_65x48mmCreedmoor_HP>
 		</products>
 		<workAmount>2400</workAmount>
 	</RecipeDef>
 
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_65x48mmBlackout_Incendiary</defName>
+    <defName>MakeAmmo_65x48mmCreedmoor_Incendiary</defName>
     <label>make 6.5mm Creedmoor (AP-I) cartridge x500</label>
     <description>Craft 500 6.5mm Creedmoor (AP-I) cartridges.</description>
     <jobString>Making 6.5mm Creedmoor (AP-I) cartridges.</jobString>
@@ -323,13 +323,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_65x48mmBlackout_Incendiary>500</Ammo_65x48mmBlackout_Incendiary>
+      <Ammo_65x48mmCreedmoor_Incendiary>500</Ammo_65x48mmCreedmoor_Incendiary>
     </products>
     <workAmount>3600</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_65x48mmBlackout_HE</defName>
+    <defName>MakeAmmo_65x48mmCreedmoor_HE</defName>
     <label>make 6.5mm Creedmoor (AP-HE) cartridge x500</label>
     <description>Craft 500 6.5mm Creedmoor (AP-HE) cartridges.</description>
     <jobString>Making 6.5mm Creedmoor (AP-HE) cartridges.</jobString>
@@ -358,13 +358,13 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_65x48mmBlackout_HE>500</Ammo_65x48mmBlackout_HE>
+      <Ammo_65x48mmCreedmoor_HE>500</Ammo_65x48mmCreedmoor_HE>
     </products>
     <workAmount>4400</workAmount>
   </RecipeDef>
   
   <RecipeDef ParentName="AdvancedAmmoRecipeBase">
-    <defName>MakeAmmo_65x48mmBlackout_Sabot</defName>
+    <defName>MakeAmmo_65x48mmCreedmoor_Sabot</defName>
     <label>make 6.5mm Creedmoor (Sabot) cartridge x500</label>
     <description>Craft 500 6.5mm Creedmoor (Sabot) cartridges.</description>
     <jobString>Making 6.5mm Creedmoor (Sabot) cartridges.</jobString>
@@ -402,7 +402,7 @@
       </thingDefs>
     </fixedIngredientFilter>
     <products>
-      <Ammo_65x48mmBlackout_Sabot>500</Ammo_65x48mmBlackout_Sabot>
+      <Ammo_65x48mmCreedmoor_Sabot>500</Ammo_65x48mmCreedmoor_Sabot>
     </products>
     <workAmount>3200</workAmount>
   </RecipeDef>
