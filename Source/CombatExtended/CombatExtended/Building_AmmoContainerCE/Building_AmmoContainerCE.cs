@@ -36,6 +36,13 @@ namespace CombatExtended
 
         private static readonly Material FilledMat = SolidColorMaterials.NewSolidColorMaterial(new Color(0.9f, 0.85f, 0.2f, 0.65f), ShaderDatabase.MetaOverlay);
 
+        public CompPowerTrader powerComp;
+        public CompCanBeDormant dormantComp;
+        public CompInitiatable initiatableComp;
+        public CompMannable mannableComp;
+
+        public bool shouldBeOn => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated) && (mannableComp == null || mannableComp.MannedNow);
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -52,6 +59,12 @@ namespace CombatExtended
             base.SpawnSetup(map, respawningAfterLoad);
             Map.GetComponent<AmmoContainerTracker>().Register(this);
             CompAmmoUser = GetComp<CompAmmoUser>();
+
+            dormantComp = GetComp<CompCanBeDormant>();
+            initiatableComp = GetComp<CompInitiatable>();
+            powerComp = GetComp<CompPowerTrader>();
+            mannableComp = GetComp<CompMannable>();
+
             if (CompAmmoUser == null)
             {
                 Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
@@ -177,7 +190,7 @@ namespace CombatExtended
         public override void Tick()
         {
             base.Tick();
-            if (isActive)
+            if (isActive && shouldBeOn)
             {
                 ticksToComplete--;
                 if (ticksToComplete == 0)
@@ -228,7 +241,7 @@ namespace CombatExtended
 
             foreach (Thing building in adjThings)
             {
-                if (building is Building_TurretGunCE turret && StartReload(turret.GetAmmo()))
+                if (building is Building_TurretGunCE turret && (turret.GetAmmo().EmptyMagazine || turret.currentTargetInt == LocalTargetInfo.Invalid) && StartReload(turret.GetAmmo()))
                 {
                     return true;
                 }
@@ -238,17 +251,18 @@ namespace CombatExtended
 
         public bool StartReload(CompAmmoUser TurretMagazine, bool continued = false)
         {
+            Building_Turret turret = TurretMagazine.turret;
+            if (!turret.Spawned || turret.IsForbidden(Faction) || turret.GetReloading())
+            {
+                return false;
+            }
+
             if (isActive && !continued)
             {
                 return false;
             }
 
-            if (TurretMagazine.FullMagazine || CompAmmoUser.EmptyMagazine)
-            {
-                return false;
-            }
-
-            if (TurretMagazine.turret.GetReloading())
+            if (TurretMagazine.FullMagazine || CompAmmoUser.EmptyMagazine || !shouldBeOn)
             {
                 return false;
             }
@@ -258,7 +272,7 @@ namespace CombatExtended
                 TargetTurret = TurretMagazine;
                 ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
                 ticksToCompleteInitial = ticksToComplete;
-                TurretMagazine.turret.SetReloading(true);
+                turret.SetReloading(true);
                 return true;
             }
 
