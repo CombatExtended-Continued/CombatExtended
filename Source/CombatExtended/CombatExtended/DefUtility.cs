@@ -55,7 +55,7 @@ namespace CombatExtended
             }
 
             // Process all weapons
-            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser))))
+            foreach (ThingDef def in DefDatabase<ThingDef>.AllDefs.Where(d => d.HasComp(typeof(CompAmmoUser)) && (d.thingClass != typeof(Building_AmmoContainerCE))))
             {
                 ProcessWeapons(def);
             }

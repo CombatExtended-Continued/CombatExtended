@@ -742,6 +742,8 @@ namespace CombatExtended
                 return;
             }
 
+            TryReloadViaAmmoContainer();
+
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
             {
@@ -769,7 +771,21 @@ namespace CombatExtended
                     manningPawn.jobs.StartJob(jobOnThing, JobCondition.Ongoing, null, manningPawn.CurJob?.def != CE_JobDefOf.ReloadTurret);
                 }
             }
+        }
 
+        public void TryReloadViaAmmoContainer()
+        {
+            CompAffectedByFacilities compAffectedByFacilities = this.TryGetComp<CompAffectedByFacilities>();
+            if (compAffectedByFacilities != null)
+            {
+                foreach (Thing building in compAffectedByFacilities.linkedFacilities)
+                {
+                    if (building is Building_AmmoContainerCE container && container.StartReload(compAmmo))
+                    {
+                        break;
+                    }
+                }
+            }
         }
         #endregion
     }

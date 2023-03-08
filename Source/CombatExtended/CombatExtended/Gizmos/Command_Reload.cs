@@ -42,7 +42,7 @@ namespace CombatExtended
                 return;
             }
 
-            if (compAmmo.UseAmmo && (compAmmo.CompInventory != null || compAmmo.turret != null) || action == null)
+            if (compAmmo.UseAmmo && (compAmmo.CompInventory != null || compAmmo.turret != null || compAmmo.parent is Building_AmmoContainerCE) || action == null)
             {
                 bool currentlyMannedTurret = compAmmo.turret?.GetMannable()?.MannedNow ?? false;
                 if (Controller.settings.RightClickAmmoSelect && action != null && (compAmmo.turret == null || currentlyMannedTurret))

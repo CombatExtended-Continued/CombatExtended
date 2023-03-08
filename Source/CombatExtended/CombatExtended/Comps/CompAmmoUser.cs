@@ -113,7 +113,7 @@ namespace CombatExtended
         {
             get
             {
-                return Wielder ?? (CompEquippable.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
+                return Wielder ?? (CompEquippable?.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
             }
         }
         public bool UseAmmo
@@ -597,6 +597,17 @@ namespace CombatExtended
                 }
             }
             CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
+            CompAffectedByFacilities compAffectedByFacilities = turret?.TryGetComp<CompAffectedByFacilities>();
+            if (compAffectedByFacilities != null)
+            {
+                foreach (Thing building in compAffectedByFacilities.linkedFacilities)
+                {
+                    if (building is Building_AmmoContainerCE container && container.StartReload(this))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public bool TryPickupAmmo()
