@@ -56,7 +56,7 @@ namespace CombatExtended
 
             var ammo = ammoContainer.CompAmmoUser;
 
-            if (ammoContainer.isReloading)
+            if (ammoContainer.isReloading || ammoContainer.isActive)
             {
                 return false;
             }

@@ -187,16 +187,10 @@ namespace CombatExtended
                 {
                     MoteMakerCE.ThrowText(ammoContainer.Position.ToVector3Shifted(), ammoContainer.Map, string.Format("CE_ReloadingTurretMote".Translate(), TargetThingA.LabelCapNoCount));
                 }
-                //Thing newAmmo;
-                //compReloader.TryUnload(out newAmmo);
-                //if (newAmmo?.CanStackWith(ammo) ?? false)
-                //{
-                //    pawn.carryTracker.TryStartCarry(newAmmo, Mathf.Min(newAmmo.stackCount, compReloader.MagSize - ammo.stackCount));
-                //}
                 AmmoDef currentAmmo = AmmoUser.CurrentAmmo;
                 if (currentAmmo != ammo?.def)    //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                 {
-                    AmmoUser.TryUnload(out Thing newAmmo);
+                    ammoContainer.DropAmmo();
                 }
             };
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -208,6 +202,7 @@ namespace CombatExtended
             reloadToil.defaultCompleteMode = ToilCompleteMode.Instant;
             reloadToil.initAction = delegate
             {
+
                 AmmoUser.LoadAmmo(ammo);
                 ammoContainer.isReloading = false;
             };

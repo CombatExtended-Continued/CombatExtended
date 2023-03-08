@@ -248,11 +248,17 @@ namespace CombatExtended
                 return false;
             }
 
+            if (TurretMagazine.turret.GetReloading())
+            {
+                return false;
+            }
+
             if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || (shouldReplaceAmmo && TurretMagazine.Props.ammoSet == CompAmmoUser.Props.ammoSet))
             {
                 TargetTurret = TurretMagazine;
                 ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
                 ticksToCompleteInitial = ticksToComplete;
+                TurretMagazine.turret.SetReloading(true);
                 return true;
             }
 
@@ -271,9 +277,9 @@ namespace CombatExtended
             {
                 TargetTurret.CurMagCount++;
                 CompAmmoUser.CurMagCount--;
-                if (!StartReload(TargetTurret, true))
+                if (StartReload(TargetTurret, true))
                 {
-                    TargetTurret = null;
+                    return true;
                 }
             }
             else
@@ -281,8 +287,9 @@ namespace CombatExtended
                 int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
                 TargetTurret.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
-                TargetTurret = null;
             }
+            TargetTurret.turret.SetReloading(false);
+            TargetTurret = null;
             TryActiveReload();
             return true;
         }
