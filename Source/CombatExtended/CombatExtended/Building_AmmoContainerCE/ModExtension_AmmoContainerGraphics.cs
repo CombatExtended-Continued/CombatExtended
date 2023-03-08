@@ -14,5 +14,9 @@ namespace CombatExtended
         public GraphicData fullGraphic;
         public GraphicData halfFullGraphic;
         public GraphicData emptyGraphic;
+
+        public SoundDef reloadingSustainer;
+
+        public SoundDef reloadCompleteSound;
     }
 }

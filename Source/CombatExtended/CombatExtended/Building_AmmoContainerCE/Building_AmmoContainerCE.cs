@@ -33,6 +33,8 @@ namespace CombatExtended
 
         public CompAmmoUser TargetTurret;
 
+        private Sustainer reloadingSustainer;
+
         private static readonly Material UnfilledMat = SolidColorMaterials.NewSolidColorMaterial(new Color(0.3f, 0.3f, 0.3f, 0.65f), ShaderDatabase.MetaOverlay);
 
         private static readonly Material FilledMat = SolidColorMaterials.NewSolidColorMaterial(new Color(0.9f, 0.85f, 0.2f, 0.65f), ShaderDatabase.MetaOverlay);
@@ -98,8 +100,6 @@ namespace CombatExtended
             mannableComp = GetComp<CompMannable>();
 
             graphicsExt = def.GetModExtension<ModExtension_AmmoContainerGraphics>();
-
-            Log.Message((graphicsExt == null).ToString());
             if (CompAmmoUser == null)
             {
                 Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
@@ -248,12 +248,27 @@ namespace CombatExtended
             if (isActive && shouldBeOn)
             {
                 ticksToComplete--;
+
+                if (reloadingSustainer == null)
+                {
+                    reloadingSustainer = (graphicsExt?.reloadingSustainer ?? CE_SoundDefOf.CE_AmmoContainerAmbient).TrySpawnSustainer(SoundInfo.InMap(this));
+                }
+                reloadingSustainer.Maintain();
+
                 if (ticksToComplete == 0)
                 {
                     ticksToCompleteInitial = 0;
+                    (graphicsExt?.reloadCompleteSound ?? TargetTurret.parent.def.soundInteract).PlayOneShot(this);
                     ReloadFinalize();
+                    Notify_ColorChanged();
                 }
             }
+            else if (reloadingSustainer != null)
+            {
+                reloadingSustainer.End();
+                reloadingSustainer = null;
+            }
+
         }
 
         public override void Draw()
@@ -353,7 +368,6 @@ namespace CombatExtended
                 CompAmmoUser.CurMagCount--;
                 if (StartReload(TargetTurret, true))
                 {
-                    Notify_ColorChanged();
                     return true;
                 }
             }
@@ -362,8 +376,7 @@ namespace CombatExtended
                 int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
                 TargetTurret.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
-            }
-            Notify_ColorChanged();
+            };
             TargetTurret.turret.SetReloading(false);
             TargetTurret = null;
             TryActiveReload();
