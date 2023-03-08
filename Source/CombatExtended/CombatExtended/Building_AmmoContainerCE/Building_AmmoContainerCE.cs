@@ -131,14 +131,14 @@ namespace CombatExtended
             Thing ammoThing = ThingMaker.MakeThing(CompAmmoUser.CurrentAmmo);
             ammoThing.stackCount = CompAmmoUser.CurMagCount;
             CompAmmoUser.CurMagCount = 0;
+            if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out outThing, Faction != Faction.OfPlayer))
+            {
+                Log.Warning(String.Concat(GetType().Assembly.GetName().Name + " :: " + GetType().Name + " :: ", "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
+            }
             if (forcibly)
             {
                 DamageInfo dinfo = new DamageInfo(DamageDefOf.Bullet, Rand.Range(0, 100));
                 ammoThing.TakeDamage(dinfo);
-            }
-            if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out outThing, Faction != Faction.OfPlayer))
-            {
-                Log.Warning(String.Concat(GetType().Assembly.GetName().Name + " :: " + GetType().Name + " :: ", "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
             }
             Notify_ColorChanged();
         }

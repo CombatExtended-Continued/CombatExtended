@@ -297,9 +297,16 @@ namespace CombatExtended
                 ticksUntilAutoReload--;    // Reduce time until we can auto-reload
             }
 
-            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks) && (MannableComp?.MannedNow ?? false))
+            if (!isReloading && this.IsHashIntervalTick(TicksBetweenAmmoChecks))
             {
-                TryOrderReload();
+                if (MannableComp?.MannedNow ?? false)
+                {
+                    TryOrderReload();
+                }
+                else
+                {
+                    TryReloadViaAmmoContainer();
+                }
             }
 
             //This code runs TryOrderReload for manning pawns or for non-humanlike intelligence such as mechs
@@ -783,9 +790,9 @@ namespace CombatExtended
 
             foreach (Thing building in adjThings)
             {
-                if (building is Building_AmmoContainerCE container)
+                if (building is Building_AmmoContainerCE container && container.StartReload(compAmmo))
                 {
-                    return container.StartReload(compAmmo);
+                    return true;
                 }
             }
             return false;
