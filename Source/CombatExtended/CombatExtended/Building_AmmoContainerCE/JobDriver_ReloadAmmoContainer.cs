@@ -40,7 +40,7 @@ namespace CombatExtended
         {
             if (!pawn.Reserve(TargetA, job))
             {
-                CELogger.Message("Combat Extended: Could not reserve turret for reloading job.");
+                CELogger.Message("Combat Extended: Could not reserve ammo container for reloading job.");
                 return false;
             }
 
@@ -71,34 +71,17 @@ namespace CombatExtended
             return true;
         }
 
-        public override string GetReport()
-        {
-            string text = CE_JobDefOf.ReloadTurret.reportString;
-            string turretType = (ammoContainer.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
-            text = text.Replace("TurretType", turretType);
-            text = text.Replace("TargetA", TargetThingA.def.label);
-            if (AmmoUser.UseAmmo)
-            {
-                text = text.Replace("TargetB", TargetThingB.def.label);
-            }
-            else
-            {
-                text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
-            }
-            return text;
-        }
-
         public override IEnumerable<Toil> MakeNewToils()
         {
             // Error checking/input validation.
             if (ammoContainer == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_TurretGunCE"));
+                Log.Error(string.Concat(errorBase, "TargetThingA isn't a Building_AmmoContainerCE"));
                 yield return null;
             }
             if (AmmoUser == null)
             {
-                Log.Error(string.Concat(errorBase, "TargetThingA (Building_TurretGunCE) is missing its CompAmmoUser."));
+                Log.Error(string.Concat(errorBase, "TargetThingA (Building_AmmoContainerCE) is missing its CompAmmoUser."));
                 yield return null;
             }
             if (AmmoUser.UseAmmo && ammo == null)

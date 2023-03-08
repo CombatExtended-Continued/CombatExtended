@@ -264,7 +264,7 @@ namespace CombatExtended
                 GenDraw.FillableBarRequest r = default(GenDraw.FillableBarRequest);
                 r.center = DrawPos + Vector3.up * 0.1f;
                 r.size = new Vector2(1f, 0.14f);
-                r.fillPercent = ticksToComplete / (float)ticksToCompleteInitial;
+                r.fillPercent = 1 - (ticksToComplete / (float)ticksToCompleteInitial);
                 r.filledMat = FilledMat;
                 r.unfilledMat = UnfilledMat;
                 r.margin = 0.12f;

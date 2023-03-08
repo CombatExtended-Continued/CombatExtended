@@ -58,6 +58,7 @@ namespace CombatExtended
 
             if (ammoContainer.isReloading || ammoContainer.isActive)
             {
+                JobFailReason.Is("CE_AmmoContainerBusy".Translate());
                 return false;
             }
 
@@ -81,19 +82,19 @@ namespace CombatExtended
 
             if (!(thing is Building_AmmoContainerCE ammoContainer))
             {
-                CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
+                CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Building_AmmoContainerCE. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
                 return false;
             }
             var compAmmo = ammoContainer.CompAmmoUser;
 
             if (compAmmo == null)
             {
-                CELogger.Warn($"{pawn} could not reload {ammoContainer} because turret has no {nameof(CompAmmoUser)}.");
+                CELogger.Warn($"{pawn} could not reload {ammoContainer} because Building_AmmoContainerCE has no {nameof(CompAmmoUser)}.");
                 return false;
             }
             if (ammoContainer.IsBurning() && !emergency)
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because turret is on fire.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because Building_AmmoContainerCE is on fire.");
                 JobFailReason.Is("CE_TurretIsBurning".Translate());
                 return false;
             }
@@ -110,7 +111,7 @@ namespace CombatExtended
             }
             if (ammoContainer.Faction != pawn.Faction && pawn.Faction != null && ammoContainer.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
             {
-                CELogger.Message($"{pawn} could not reload {ammoContainer} because the turret is unclaimed or hostile to them.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because the Building_AmmoContainerCE is unclaimed or hostile to them.");
                 JobFailReason.Is("CE_TurretNonAllied".Translate());
                 return false;
             }
