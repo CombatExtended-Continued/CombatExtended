@@ -42,6 +42,8 @@ namespace CombatExtended
         public CompInitiatable initiatableComp;
         public CompMannable mannableComp;
 
+        public ModExtension_AmmoContainerGraphics graphicsExt;
+
         public bool shouldBeOn => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated) && (mannableComp == null || mannableComp.MannedNow);
 
         public override void ExposeData()
@@ -53,6 +55,30 @@ namespace CombatExtended
             Scribe_Values.Look(ref ticksToComplete, "ticksToComplete", 0, false);
             Scribe_Values.Look(ref TargetTurret, "TargetTurret");
             Scribe_Values.Look(ref isReloading, "isReloading");
+        }
+
+        public override Graphic Graphic
+        {
+            get
+            {
+                Graphic graphic = null;
+                if (graphicsExt != null)
+                {
+                    if (CompAmmoUser.CurMagCount > CompAmmoUser.MagSize * 0.75f)
+                    {
+                        graphic = graphicsExt.fullGraphic?.Graphic;
+                    }
+                    else if (CompAmmoUser.EmptyMagazine)
+                    {
+                        graphic = graphicsExt.emptyGraphic?.Graphic;
+                    }
+                    else
+                    {
+                        graphic = graphicsExt.halfFullGraphic?.Graphic;
+                    }
+                }
+                return graphic ?? base.Graphic;
+            }
         }
 
         public bool CanReplaceAmmo(CompAmmoUser ammoUser)
@@ -71,6 +97,9 @@ namespace CombatExtended
             powerComp = GetComp<CompPowerTrader>();
             mannableComp = GetComp<CompMannable>();
 
+            graphicsExt = def.GetModExtension<ModExtension_AmmoContainerGraphics>();
+
+            Log.Message((graphicsExt == null).ToString());
             if (CompAmmoUser == null)
             {
                 Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
@@ -111,6 +140,7 @@ namespace CombatExtended
             {
                 Log.Warning(String.Concat(GetType().Assembly.GetName().Name + " :: " + GetType().Name + " :: ", "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
             }
+            Notify_ColorChanged();
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -141,21 +171,21 @@ namespace CombatExtended
                 {
                     Command_Action devSetAmmoToMinCommandGizmo = new Command_Action
                     {
-                        action = delegate { CompAmmoUser.CurMagCount = 0; },
+                        action = delegate { CompAmmoUser.CurMagCount = 0; Notify_ColorChanged(); },
                         defaultLabel = "DEV: Set ammo to 0"
                     };
                     yield return devSetAmmoToMinCommandGizmo;
 
                     Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
                     {
-                        action = delegate { CompAmmoUser.CurrentAmmo = CompAmmoUser.SelectedAmmo; CompAmmoUser.CurMagCount = CompAmmoUser.MagSize; },
+                        action = delegate { CompAmmoUser.CurrentAmmo = CompAmmoUser.SelectedAmmo; CompAmmoUser.CurMagCount = CompAmmoUser.MagSize; Notify_ColorChanged(); },
                         defaultLabel = "DEV: Set ammo to max"
                     };
                     yield return devSetAmmoToMaxCommandGizmo;
 
                     Command_Action devSetAmmoPlusOneCommandGizmo = new Command_Action
                     {
-                        action = delegate { CompAmmoUser.CurrentAmmo = CompAmmoUser.SelectedAmmo; CompAmmoUser.CurMagCount += 1; },
+                        action = delegate { CompAmmoUser.CurrentAmmo = CompAmmoUser.SelectedAmmo; CompAmmoUser.CurMagCount += 1; Notify_ColorChanged(); },
                         defaultLabel = "DEV: Ammo +1"
                     };
                     yield return devSetAmmoPlusOneCommandGizmo;
@@ -323,6 +353,7 @@ namespace CombatExtended
                 CompAmmoUser.CurMagCount--;
                 if (StartReload(TargetTurret, true))
                 {
+                    Notify_ColorChanged();
                     return true;
                 }
             }
@@ -332,6 +363,7 @@ namespace CombatExtended
                 TargetTurret.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
             }
+            Notify_ColorChanged();
             TargetTurret.turret.SetReloading(false);
             TargetTurret = null;
             TryActiveReload();

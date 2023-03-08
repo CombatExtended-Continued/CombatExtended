@@ -205,6 +205,7 @@ namespace CombatExtended
 
                 AmmoUser.LoadAmmo(ammo);
                 ammoContainer.isReloading = false;
+                ammoContainer.Notify_ColorChanged();
             };
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
