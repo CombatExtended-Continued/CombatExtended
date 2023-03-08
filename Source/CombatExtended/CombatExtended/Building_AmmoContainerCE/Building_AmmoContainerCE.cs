@@ -21,7 +21,7 @@ namespace CombatExtended
     {
         public CompAmmoUser CompAmmoUser;
 
-        public bool isActive => TargetTurret != null;
+        public bool isActive => TargetAmmoUser != null;
 
         public bool shouldReplaceAmmo;
 
@@ -31,7 +31,9 @@ namespace CombatExtended
 
         public bool isReloading;
 
-        public CompAmmoUser TargetTurret;
+        public CompAmmoUser TargetAmmoUser => TargetTurret.GetAmmo();
+
+        public Building_Turret TargetTurret;
 
         private Sustainer reloadingSustainer;
 
@@ -55,8 +57,9 @@ namespace CombatExtended
             Scribe_Values.Look(ref shouldReplaceAmmo, "shouldReplaceAmmo", false);
             Scribe_Values.Look(ref ticksToCompleteInitial, "ticksToCompleteInitial", 0);
             Scribe_Values.Look(ref ticksToComplete, "ticksToComplete", 0, false);
-            Scribe_Values.Look(ref TargetTurret, "TargetTurret");
             Scribe_Values.Look(ref isReloading, "isReloading");
+
+            Scribe_References.Look(ref TargetTurret, "Turret", false);
         }
 
         public override Graphic Graphic
@@ -247,6 +250,12 @@ namespace CombatExtended
             base.Tick();
             if (isActive && shouldBeOn)
             {
+                if (!TargetTurret.Spawned || TargetTurret.IsForbidden(Faction) || CompAmmoUser.EmptyMagazine)
+                {
+                    TargetTurret = null;
+                    ticksToCompleteInitial = 0;
+                }
+
                 ticksToComplete--;
 
                 if (reloadingSustainer == null)
@@ -258,7 +267,7 @@ namespace CombatExtended
                 if (ticksToComplete == 0)
                 {
                     ticksToCompleteInitial = 0;
-                    (graphicsExt?.reloadCompleteSound ?? TargetTurret.parent.def.soundInteract).PlayOneShot(this);
+                    (graphicsExt?.reloadCompleteSound ?? TargetAmmoUser.parent.def.soundInteract).PlayOneShot(this);
                     ReloadFinalize();
                     Notify_ColorChanged();
                 }
@@ -337,14 +346,14 @@ namespace CombatExtended
 
             bool canReplaceAmmo = CanReplaceAmmo(TurretMagazine);
 
-            if ((TurretMagazine.FullMagazine && !canReplaceAmmo) || CompAmmoUser.EmptyMagazine || !shouldBeOn)
+            if ((TurretMagazine.FullMagazine && !canReplaceAmmo))
             {
                 return false;
             }
 
             if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || canReplaceAmmo)
             {
-                TargetTurret = TurretMagazine;
+                TargetTurret = TurretMagazine.turret;
                 ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
                 ticksToCompleteInitial = ticksToComplete;
                 turret.SetReloading(true);
@@ -356,28 +365,28 @@ namespace CombatExtended
 
         public bool ReloadFinalize()
         {
-            if (TargetTurret.CurrentAmmo != CompAmmoUser.CurrentAmmo)
+            if (TargetAmmoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo)
             {
-                TargetTurret.TryUnload();
-                TargetTurret.SelectedAmmo = CompAmmoUser.CurrentAmmo;
-                TargetTurret.CurrentAmmo = CompAmmoUser.CurrentAmmo;
+                TargetAmmoUser.TryUnload();
+                TargetAmmoUser.SelectedAmmo = CompAmmoUser.CurrentAmmo;
+                TargetAmmoUser.CurrentAmmo = CompAmmoUser.CurrentAmmo;
             }
-            if (TargetTurret.Props.reloadOneAtATime)
+            if (TargetAmmoUser.Props.reloadOneAtATime)
             {
-                TargetTurret.CurMagCount++;
+                TargetAmmoUser.CurMagCount++;
                 CompAmmoUser.CurMagCount--;
-                if (StartReload(TargetTurret, true))
+                if (StartReload(TargetAmmoUser, true))
                 {
                     return true;
                 }
             }
             else
             {
-                int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
-                TargetTurret.CurMagCount += ammoCount;
+                int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetAmmoUser.MissingToFullMagazine);
+                TargetAmmoUser.CurMagCount += ammoCount;
                 CompAmmoUser.CurMagCount -= ammoCount;
             };
-            TargetTurret.turret.SetReloading(false);
+            TargetTurret.SetReloading(false);
             TargetTurret = null;
             TryActiveReload();
             return true;
