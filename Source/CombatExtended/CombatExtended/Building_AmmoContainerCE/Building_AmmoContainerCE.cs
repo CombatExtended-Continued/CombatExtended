@@ -88,6 +88,10 @@ namespace CombatExtended
 
         public void DropAmmo(bool forcibly = false)
         {
+            if (CompAmmoUser.EmptyMagazine)
+            {
+                return;
+            }
             Thing outThing;
             Thing ammoThing = ThingMaker.MakeThing(CompAmmoUser.CurrentAmmo);
             ammoThing.stackCount = CompAmmoUser.CurMagCount;
@@ -154,8 +158,8 @@ namespace CombatExtended
                 if (!CompAmmoUser.EmptyMagazine)
                 {
                     Command_Action drop = new Command_Action();
-                    drop.defaultLabel = "CommandDropAllInAmmoContainer".Translate();
-                    drop.defaultDesc = "CommandDropAllInAmmoContainerDesc".Translate();
+                    drop.defaultLabel = "CE_AmmoContainer_DropAmmo".Translate();
+                    drop.defaultDesc = "CE_AmmoContainer_DropAmmoDesc".Translate();
                     drop.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                     drop.action = delegate
                     {
@@ -165,19 +169,22 @@ namespace CombatExtended
 
                     //forced reload
                     Command_Action reload = new Command_Action();
-                    reload.defaultLabel = "CommandForcedReload".Translate();
-                    reload.defaultDesc = "CommandForcedReload".Translate();
+                    reload.defaultLabel = "CE_AmmoContainer_ForceReload".Translate();
+                    reload.defaultDesc = "CE_AmmoContainer_ForceReloadDesc".Translate();
                     reload.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                     reload.action = delegate
                     {
-                        TryActiveReload();
+                        if (!TryActiveReload())
+                        {
+                            Messages.Message(string.Format("CE_AmmoContainer_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
+                        }
                     };
                     yield return reload;
                 }
 
                 Command_Action toggleShouldReplace = new Command_Action();
-                toggleShouldReplace.defaultLabel = "CommandToggleShouldReplace".Translate();
-                toggleShouldReplace.defaultDesc = "CommandToggleShouldReplace".Translate();
+                toggleShouldReplace.defaultLabel = "CE_AmmoContainer_ToggleReplace".Translate();
+                toggleShouldReplace.defaultDesc = "CE_AmmoContainer_ToggleReplaceDesc".Translate();
                 toggleShouldReplace.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                 toggleShouldReplace.action = delegate
                 {
@@ -228,9 +235,9 @@ namespace CombatExtended
             }
             if (isActive)
             {
-                stringBuilder.AppendLine(ticksToComplete.TicksToSeconds().ToString());
+                stringBuilder.AppendLine("CE_AmmoContainer_ReloadTime".Translate(ticksToComplete.TicksToSeconds().ToString("F0")));
             }
-            stringBuilder.AppendLine(shouldReplaceAmmo.ToString());
+            stringBuilder.AppendLine("CE_AmmoContainer_ShouldReplace".Translate(shouldReplaceAmmo.ToString()));
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
