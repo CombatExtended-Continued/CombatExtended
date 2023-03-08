@@ -785,6 +785,11 @@ namespace CombatExtended
 
         public bool TryReloadViaAmmoContainer()
         {
+            if (TargetCurrentlyAimingAt != null)
+            {
+                return false;
+            }
+
             List<Thing> adjThings = new List<Thing>();
             GenAdjFast.AdjacentThings8Way(this, adjThings);
 
