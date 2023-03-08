@@ -20,8 +20,6 @@ namespace CombatExtended
     {
         public CompAmmoUser CompAmmoUser;
 
-        public CompFacility CompFacility;
-
         public bool isActive => TargetTurret != null;
 
         public bool shouldReplaceAmmo;
@@ -51,12 +49,6 @@ namespace CombatExtended
             base.SpawnSetup(map, respawningAfterLoad);
             Map.GetComponent<AmmoContainerTracker>().Register(this);
             CompAmmoUser = GetComp<CompAmmoUser>();
-            CompFacility = GetComp<CompFacility>();
-
-            if (CompFacility == null)
-            {
-                Log.Error(this.GetCustomLabelNoCount() + " Requires CompFacility to funtion properly.");
-            }
             if (CompAmmoUser == null)
             {
                 Log.Error(this.GetCustomLabelNoCount() + " Requires CompAmmoUser to funtion properly.");
@@ -175,18 +167,7 @@ namespace CombatExtended
                     reload.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
                     reload.action = delegate
                     {
-                        if (CompFacility.LinkedBuildings.Any())
-                        {
-                            foreach (Thing turret in CompFacility.LinkedBuildings)
-                            {
-                                Building_TurretGunCE Turret = turret as Building_TurretGunCE;
-                                CompAmmoUser turretAmmo = Turret.GetAmmo();
-                                if (StartReload(turretAmmo))
-                                {
-                                    break;
-                                }
-                            }
-                        }
+                        TryActiveReload();
                     };
                     yield return reload;
                 }
@@ -239,6 +220,21 @@ namespace CombatExtended
             return stringBuilder.ToString().TrimEndNewlines();
         }
 
+        public bool TryActiveReload()
+        {
+            List<Thing> adjThings = new List<Thing>();
+            GenAdjFast.AdjacentThings8Way(this, adjThings);
+
+            foreach (Thing building in adjThings)
+            {
+                if (building is Building_TurretGunCE turret && StartReload(turret.GetAmmo()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool StartReload(CompAmmoUser TurretMagazine)
         {
             if (isActive)
@@ -264,13 +260,18 @@ namespace CombatExtended
 
         public bool ReloadFinalize()
         {
-            TargetTurret.SelectedAmmo = CompAmmoUser.CurrentAmmo;
-            TargetTurret.CurrentAmmo = CompAmmoUser.CurrentAmmo;
+            if (TargetTurret.CurrentAmmo != CompAmmoUser.CurrentAmmo)
+            {
+                TargetTurret.TryUnload();
+                TargetTurret.SelectedAmmo = CompAmmoUser.CurrentAmmo;
+                TargetTurret.CurrentAmmo = CompAmmoUser.CurrentAmmo;
+            }
             int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
             TargetTurret.CurMagCount += ammoCount;
             CompAmmoUser.CurMagCount -= ammoCount;
             ticksToCompleteInitial = 0;
             TargetTurret = null;
+            TryActiveReload();
             return true;
         }
     }

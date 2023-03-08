@@ -742,7 +742,10 @@ namespace CombatExtended
                 return;
             }
 
-            TryReloadViaAmmoContainer();
+            if (TryReloadViaAmmoContainer())
+            {
+                return;
+            }
 
             //Non-mannableComp interaction
             if (!mannableComp?.MannedNow ?? true)
@@ -773,19 +776,19 @@ namespace CombatExtended
             }
         }
 
-        public void TryReloadViaAmmoContainer()
+        public bool TryReloadViaAmmoContainer()
         {
-            CompAffectedByFacilities compAffectedByFacilities = this.TryGetComp<CompAffectedByFacilities>();
-            if (compAffectedByFacilities != null)
+            List<Thing> adjThings = new List<Thing>();
+            GenAdjFast.AdjacentThings8Way(this, adjThings);
+
+            foreach (Thing building in adjThings)
             {
-                foreach (Thing building in compAffectedByFacilities.linkedFacilities)
+                if (building is Building_AmmoContainerCE container)
                 {
-                    if (building is Building_AmmoContainerCE container && container.StartReload(compAmmo))
-                    {
-                        break;
-                    }
+                    return container.StartReload(compAmmo);
                 }
             }
+            return false;
         }
         #endregion
     }
