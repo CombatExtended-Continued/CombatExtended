@@ -16,6 +16,7 @@ using Verse.Sound;
 
 namespace CombatExtended
 {
+    [StaticConstructorOnStartup]
     public class Building_AmmoContainerCE : Building
     {
         public CompAmmoUser CompAmmoUser;
@@ -160,7 +161,7 @@ namespace CombatExtended
                     Command_Action drop = new Command_Action();
                     drop.defaultLabel = "CE_AmmoContainer_DropAmmo".Translate();
                     drop.defaultDesc = "CE_AmmoContainer_DropAmmoDesc".Translate();
-                    drop.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    drop.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_Drop", true);
                     drop.action = delegate
                     {
                         DropAmmo();
@@ -171,7 +172,7 @@ namespace CombatExtended
                     Command_Action reload = new Command_Action();
                     reload.defaultLabel = "CE_AmmoContainer_ForceReload".Translate();
                     reload.defaultDesc = "CE_AmmoContainer_ForceReloadDesc".Translate();
-                    reload.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_Reload", true);
                     reload.action = delegate
                     {
                         if (!TryActiveReload())
@@ -183,9 +184,9 @@ namespace CombatExtended
                 }
 
                 Command_Action toggleShouldReplace = new Command_Action();
-                toggleShouldReplace.defaultLabel = "CE_AmmoContainer_ToggleReplace".Translate();
-                toggleShouldReplace.defaultDesc = "CE_AmmoContainer_ToggleReplaceDesc".Translate();
-                toggleShouldReplace.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                toggleShouldReplace.defaultLabel = shouldReplaceAmmo ? "CE_AmmoContainer_ToggleReplaceOn".Translate() : "CE_AmmoContainer_ToggleReplaceOff".Translate();
+                toggleShouldReplace.defaultDesc = shouldReplaceAmmo ? "CE_AmmoContainer_ToggleReplaceDescOn".Translate() : "CE_AmmoContainer_ToggleReplaceDescOff".Translate();
+                toggleShouldReplace.icon = shouldReplaceAmmo ? ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_ReplaceOn", true) : ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_ReplaceOff", true);
                 toggleShouldReplace.action = delegate
                 {
                     shouldReplaceAmmo = !shouldReplaceAmmo;
