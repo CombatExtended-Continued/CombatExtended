@@ -250,7 +250,7 @@ namespace CombatExtended
             if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || (shouldReplaceAmmo && TurretMagazine.Props.ammoSet == CompAmmoUser.Props.ammoSet))
             {
                 TargetTurret = TurretMagazine;
-                ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks());
+                ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
                 ticksToCompleteInitial = ticksToComplete;
                 return true;
             }
