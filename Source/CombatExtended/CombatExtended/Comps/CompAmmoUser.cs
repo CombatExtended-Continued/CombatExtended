@@ -657,12 +657,17 @@ namespace CombatExtended
 
         public void LoadAmmo(Thing ammo = null)
         {
-            if (Holder == null && turret == null)
+            Building_AmmoContainerCE AmmoContainer = null;
+            if (parent is Building_AmmoContainerCE)
+            {
+                AmmoContainer = parent as Building_AmmoContainerCE;
+            }
+
+            if (Holder == null && turret == null && AmmoContainer == null)
             {
                 Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
             }
-
             int newMagCount;
             if (UseAmmo)
             {
@@ -697,12 +702,11 @@ namespace CombatExtended
                         ammoThing.stackCount -= MagSize;
                     }
                 }
-
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
                 else
                 {
                     int newAmmoCount = ammoThing.stackCount;
-                    if (turret != null)     //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    if (turret != null || AmmoContainer != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
@@ -725,6 +729,10 @@ namespace CombatExtended
             if (turret != null)
             {
                 turret.SetReloading(false);
+            }
+            if (AmmoContainer != null)
+            {
+                AmmoContainer.isReloading = false;
             }
             if (parent.def.soundInteract != null)
             {

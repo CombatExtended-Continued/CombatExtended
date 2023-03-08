@@ -28,6 +28,8 @@ namespace CombatExtended
 
         public int ticksToComplete;
 
+        public bool isReloading;
+
         public CompAmmoUser TargetTurret;
 
         private static readonly Material UnfilledMat = SolidColorMaterials.NewSolidColorMaterial(new Color(0.3f, 0.3f, 0.3f, 0.65f), ShaderDatabase.MetaOverlay);
@@ -42,6 +44,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref ticksToCompleteInitial, "ticksToCompleteInitial", 0);
             Scribe_Values.Look(ref ticksToComplete, "ticksToComplete", 0, false);
             Scribe_Values.Look(ref TargetTurret, "TargetTurret");
+            Scribe_Values.Look(ref isReloading, "isReloading");
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -146,6 +149,17 @@ namespace CombatExtended
                         DropAmmo();
                     };
                     yield return drop;
+
+                    //forced reload
+                    Command_Action reload = new Command_Action();
+                    reload.defaultLabel = "CommandForcedReload".Translate();
+                    reload.defaultDesc = "CommandForcedReload".Translate();
+                    reload.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
+                    reload.action = delegate
+                    {
+                        TryActiveReload();
+                    };
+                    yield return reload;
                 }
 
                 Command_Action toggleShouldReplace = new Command_Action();
@@ -157,20 +171,6 @@ namespace CombatExtended
                     shouldReplaceAmmo = !shouldReplaceAmmo;
                 };
                 yield return toggleShouldReplace;
-
-                //forced reload
-                if (Prefs.DevMode)
-                {
-                    Command_Action reload = new Command_Action();
-                    reload.defaultLabel = "CommandForcedReload".Translate();
-                    reload.defaultDesc = "CommandForcedReload".Translate();
-                    reload.icon = ContentFinder<Texture2D>.Get("UI/Commands/Halt", true);
-                    reload.action = delegate
-                    {
-                        TryActiveReload();
-                    };
-                    yield return reload;
-                }
             }
         }
 
@@ -182,6 +182,7 @@ namespace CombatExtended
                 ticksToComplete--;
                 if (ticksToComplete == 0)
                 {
+                    ticksToCompleteInitial = 0;
                     ReloadFinalize();
                 }
             }
@@ -235,9 +236,9 @@ namespace CombatExtended
             return false;
         }
 
-        public bool StartReload(CompAmmoUser TurretMagazine)
+        public bool StartReload(CompAmmoUser TurretMagazine, bool continued = false)
         {
-            if (isActive)
+            if (isActive && !continued)
             {
                 return false;
             }
@@ -266,11 +267,22 @@ namespace CombatExtended
                 TargetTurret.SelectedAmmo = CompAmmoUser.CurrentAmmo;
                 TargetTurret.CurrentAmmo = CompAmmoUser.CurrentAmmo;
             }
-            int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
-            TargetTurret.CurMagCount += ammoCount;
-            CompAmmoUser.CurMagCount -= ammoCount;
-            ticksToCompleteInitial = 0;
-            TargetTurret = null;
+            if (TargetTurret.Props.reloadOneAtATime)
+            {
+                TargetTurret.CurMagCount++;
+                CompAmmoUser.CurMagCount--;
+                if (!StartReload(TargetTurret, true))
+                {
+                    TargetTurret = null;
+                }
+            }
+            else
+            {
+                int ammoCount = Mathf.Min(CompAmmoUser.CurMagCount, TargetTurret.MissingToFullMagazine);
+                TargetTurret.CurMagCount += ammoCount;
+                CompAmmoUser.CurMagCount -= ammoCount;
+                TargetTurret = null;
+            }
             TryActiveReload();
             return true;
         }

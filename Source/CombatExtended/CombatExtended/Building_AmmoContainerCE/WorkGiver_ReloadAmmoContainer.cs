@@ -18,9 +18,9 @@ namespace CombatExtended
 
         private float GetThingPriority(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE turret = t as Building_AmmoContainerCE;
+            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
 
-            if (!turret.CompAmmoUser.EmptyMagazine || turret.isActive)
+            if (!ammoContainer.CompAmmoUser.EmptyMagazine || ammoContainer.isActive)
             {
                 return 9f;
             }
@@ -50,20 +50,25 @@ namespace CombatExtended
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE turret = t as Building_AmmoContainerCE;
+            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
 
             var priority = GetThingPriority(pawn, t, forced);
 
-            var ammo = turret.CompAmmoUser;
+            var ammo = ammoContainer.CompAmmoUser;
 
-            return CanReload(pawn, turret, forced);
+            if (ammoContainer.isReloading)
+            {
+                return false;
+            }
+
+            return CanReload(pawn, ammoContainer, forced);
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Building_AmmoContainerCE turret = t as Building_AmmoContainerCE;
+            Building_AmmoContainerCE ammoContainer = t as Building_AmmoContainerCE;
 
-            return JobGiverUtils_Reload.MakeReloadJob(pawn, turret);
+            return JobGiverUtils_Reload.MakeReloadJob(pawn, ammoContainer);
         }
 
         public static bool CanReload(Pawn pawn, Thing thing, bool forced = false, bool emergency = false)
@@ -74,42 +79,42 @@ namespace CombatExtended
                 return false;
             }
 
-            if (!(thing is Building_AmmoContainerCE turret))
+            if (!(thing is Building_AmmoContainerCE ammoContainer))
             {
                 CELogger.Warn($"{pawn} could not reload {thing} because {thing} is not a Turret. If you are a modder, make sure to use {nameof(CombatExtended)}.{nameof(Building_TurretGunCE)} for your turret's compClass.");
                 return false;
             }
-            var compAmmo = turret.CompAmmoUser;
+            var compAmmo = ammoContainer.CompAmmoUser;
 
             if (compAmmo == null)
             {
-                CELogger.Warn($"{pawn} could not reload {turret} because turret has no {nameof(CompAmmoUser)}.");
+                CELogger.Warn($"{pawn} could not reload {ammoContainer} because turret has no {nameof(CompAmmoUser)}.");
                 return false;
             }
-            if (turret.IsBurning() && !emergency)
+            if (ammoContainer.IsBurning() && !emergency)
             {
-                CELogger.Message($"{pawn} could not reload {turret} because turret is on fire.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because turret is on fire.");
                 JobFailReason.Is("CE_TurretIsBurning".Translate());
                 return false;
             }
             if (compAmmo.FullMagazine)
             {
-                CELogger.Message($"{pawn} could not reload {turret} because it is full of ammo.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because it is full of ammo.");
                 JobFailReason.Is("CE_TurretFull".Translate());
                 return false;
             }
-            if (turret.IsForbidden(pawn) || !pawn.CanReserve(turret, 1, -1, null, forced))
+            if (ammoContainer.IsForbidden(pawn) || !pawn.CanReserve(ammoContainer, 1, -1, null, forced))
             {
-                CELogger.Message($"{pawn} could not reload {turret} because it is forbidden or otherwise busy.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because it is forbidden or otherwise busy.");
                 return false;
             }
-            if (turret.Faction != pawn.Faction && pawn.Faction != null && turret.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
+            if (ammoContainer.Faction != pawn.Faction && pawn.Faction != null && ammoContainer.Faction?.RelationKindWith(pawn.Faction) != FactionRelationKind.Ally)
             {
-                CELogger.Message($"{pawn} could not reload {turret} because the turret is unclaimed or hostile to them.");
+                CELogger.Message($"{pawn} could not reload {ammoContainer} because the turret is unclaimed or hostile to them.");
                 JobFailReason.Is("CE_TurretNonAllied".Translate());
                 return false;
             }
-            if (compAmmo.UseAmmo && JobGiverUtils_Reload.FindBestAmmo(pawn, turret) == null)
+            if (compAmmo.UseAmmo && JobGiverUtils_Reload.FindBestAmmo(pawn, ammoContainer) == null)
             {
                 JobFailReason.Is("CE_NoAmmoAvailable".Translate());
                 return false;
