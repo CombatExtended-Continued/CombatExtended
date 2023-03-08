@@ -181,7 +181,7 @@ namespace CombatExtended
                             {
                                 Building_TurretGunCE Turret = turret as Building_TurretGunCE;
                                 CompAmmoUser turretAmmo = Turret.GetAmmo();
-                                if (turretAmmo.Props.ammoSet == CompAmmoUser.Props.ammoSet && StartReload(turretAmmo))
+                                if (StartReload(turretAmmo))
                                 {
                                     break;
                                 }
@@ -251,7 +251,7 @@ namespace CombatExtended
                 return false;
             }
 
-            if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || shouldReplaceAmmo)
+            if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || (shouldReplaceAmmo && TurretMagazine.Props.ammoSet == CompAmmoUser.Props.ammoSet))
             {
                 TargetTurret = TurretMagazine;
                 ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks());
