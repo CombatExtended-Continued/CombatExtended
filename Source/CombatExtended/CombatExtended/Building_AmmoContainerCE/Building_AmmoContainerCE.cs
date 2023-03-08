@@ -55,6 +55,11 @@ namespace CombatExtended
             Scribe_Values.Look(ref isReloading, "isReloading");
         }
 
+        public bool CanReplaceAmmo(CompAmmoUser ammoUser)
+        {
+            return shouldReplaceAmmo && ammoUser.Props.ammoSet == CompAmmoUser.Props.ammoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
+        }
+
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
@@ -99,7 +104,7 @@ namespace CombatExtended
             CompAmmoUser.CurMagCount = 0;
             if (forcibly)
             {
-                DamageInfo dinfo = new DamageInfo(DamageDefOf.Bullet, Rand.Range(0, 10));
+                DamageInfo dinfo = new DamageInfo(DamageDefOf.Bullet, Rand.Range(0, 100));
                 ammoThing.TakeDamage(dinfo);
             }
             if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out outThing, Faction != Faction.OfPlayer))
@@ -127,6 +132,7 @@ namespace CombatExtended
                     defaultLabel = CompAmmoUser.HasMagazine ? (string)"CE_ReloadLabel".Translate() : "",
                     defaultDesc = "CE_ReloadDesc".Translate(),
                     icon = CompAmmoUser.CurrentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : CompAmmoUser.SelectedAmmo.IconTexture(),
+                    tutorTag = "CE_AmmoContainer"
                 };
                 yield return reloadCommandGizmo;
 
@@ -175,7 +181,18 @@ namespace CombatExtended
                     reload.icon = ContentFinder<Texture2D>.Get("UI/Buttons/CE_AmmoContainer_Reload", true);
                     reload.action = delegate
                     {
-                        if (!TryActiveReload())
+                        List<Thing> adjThings = new List<Thing>();
+                        GenAdjFast.AdjacentThings8Way(this, adjThings);
+                        bool success = false;
+                        foreach (Thing building in adjThings)
+                        {
+                            if (building is Building_TurretGunCE turret && StartReload(turret.GetAmmo()))
+                            {
+                                success = true;
+                                break;
+                            }
+                        }
+                        if (!success)
                         {
                             Messages.Message(string.Format("CE_AmmoContainer_NoTurretToReload".Translate(), Label, CompAmmoUser.Props.ammoSet.label), this, MessageTypeDefOf.RejectInput, historical: false);
                         }
@@ -260,22 +277,27 @@ namespace CombatExtended
         public bool StartReload(CompAmmoUser TurretMagazine, bool continued = false)
         {
             Building_Turret turret = TurretMagazine.turret;
+
+            //If turret is unable to be reloaded
             if (!turret.Spawned || turret.IsForbidden(Faction) || turret.GetReloading())
             {
                 return false;
             }
 
-            if (isActive && !continued)
+            //If the ammo container is unable to reload turret
+            if ((isActive && !continued) || CompAmmoUser.EmptyMagazine || !shouldBeOn)
             {
                 return false;
             }
 
-            if (TurretMagazine.FullMagazine || CompAmmoUser.EmptyMagazine || !shouldBeOn)
+            bool canReplaceAmmo = CanReplaceAmmo(TurretMagazine);
+
+            if ((TurretMagazine.FullMagazine && !canReplaceAmmo) || CompAmmoUser.EmptyMagazine || !shouldBeOn)
             {
                 return false;
             }
 
-            if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || (shouldReplaceAmmo && TurretMagazine.Props.ammoSet == CompAmmoUser.Props.ammoSet))
+            if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || canReplaceAmmo)
             {
                 TargetTurret = TurretMagazine;
                 ticksToComplete = Mathf.CeilToInt(TurretMagazine.Props.reloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
