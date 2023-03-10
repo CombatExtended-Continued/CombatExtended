@@ -574,7 +574,8 @@ namespace CombatExtended
 
         private void DoOutOfAmmoAction()
         {
-            if (this.parent.def.weaponTags.Contains("NoSwitch"))
+            //Don't stow weapon for player pawns when in god mode
+            if (this.parent.def.weaponTags.Contains("NoSwitch") || (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech)))
             {
                 return;
             }
