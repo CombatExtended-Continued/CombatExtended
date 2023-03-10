@@ -126,7 +126,7 @@ namespace CombatExtended
 
                         // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
                         // Otherwise, iterate through all suitable ammo types and check if they're in our inventory
-                        if (user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true)
+                        if ((user.CompInventory?.ammoList?.Any(x => x.def == ammoDef) ?? true) || DebugSettings.godMode)
                         {
                             if (!ammoClassAmounts.ContainsKey(ammoClass))
                             {

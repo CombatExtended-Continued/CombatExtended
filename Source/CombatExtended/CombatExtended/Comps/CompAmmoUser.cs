@@ -846,7 +846,7 @@ namespace CombatExtended
 
                     Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
                     {
-                        action = delegate { CurMagCount = MagSize; },
+                        action = delegate { CurrentAmmo = SelectedAmmo; CurMagCount = MagSize; },
                         defaultLabel = "DEV: Set ammo to max"
                     };
                     yield return devSetAmmoToMaxCommandGizmo;
