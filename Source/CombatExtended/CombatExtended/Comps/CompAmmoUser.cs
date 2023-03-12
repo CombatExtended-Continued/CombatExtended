@@ -427,6 +427,13 @@ namespace CombatExtended
         /// </summary>
         public void TryStartReload()
         {
+            //Don't reload when changing player pawn ammo in god mode
+            if (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech) && selectedAmmo != CurrentAmmo)
+            {
+                return;
+            }
+
+
             if (Wielder?.jobs.curDriver is IJobDriver_Tactical)
             {
                 return;
@@ -574,7 +581,8 @@ namespace CombatExtended
 
         private void DoOutOfAmmoAction()
         {
-            if (this.parent.def.weaponTags.Contains("NoSwitch"))
+            //Don't stow weapon for player pawns when in god mode, can be ammoying when testing single shot weapons.
+            if (this.parent.def.weaponTags.Contains("NoSwitch") || (DebugSettings.godMode && Wielder != null && (Wielder.IsColonistPlayerControlled || Wielder.IsColonyMech)))
             {
                 return;
             }
@@ -846,7 +854,7 @@ namespace CombatExtended
 
                     Command_Action devSetAmmoToMaxCommandGizmo = new Command_Action
                     {
-                        action = delegate { CurMagCount = MagSize; },
+                        action = delegate { CurrentAmmo = SelectedAmmo; CurMagCount = MagSize; },
                         defaultLabel = "DEV: Set ammo to max"
                     };
                     yield return devSetAmmoToMaxCommandGizmo;
