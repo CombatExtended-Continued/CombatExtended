@@ -170,7 +170,7 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (_compEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
+            if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
             {
                 if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
                 {
