@@ -14,7 +14,7 @@ namespace CombatExtended
 
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public AttachmentOption primaryAttachments;
-        public int minAmmoCount = 10;
+        public int minAmmoCount = 1;
 
         public FloatRange shieldMoney = FloatRange.Zero;
         public List<string> shieldTags;
