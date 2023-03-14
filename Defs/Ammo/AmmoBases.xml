@@ -87,13 +87,20 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
+  	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBulletCE" Abstract="True">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<alwaysFreeIntercept>true</alwaysFreeIntercept>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBulletCE" Abstract="True">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<suppressionFactor>3.0</suppressionFactor>
 			<dangerFactor>2.0</dangerFactor>
