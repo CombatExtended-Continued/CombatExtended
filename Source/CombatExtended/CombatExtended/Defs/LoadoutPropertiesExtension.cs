@@ -256,12 +256,6 @@ namespace CombatExtended
                 if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse))
                 {
                     thingToAdd = gun.def;   // For one-time use weapons such as grenades, add duplicates instead of ammo
-                    if (minAmmoSpawned == 10)
-                    {
-                        //don't spawn 10 (the default value) of single-use weapons,
-                        //unless the xml patcher explicitly set a different value
-                        minAmmoSpawned = 1;
-                    }
                 }
                 else
                 {
