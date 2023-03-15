@@ -360,12 +360,53 @@
 				</Properties>
 				<AmmoUser>
 					<magazineSize>32</magazineSize>
-					<reloadTime>3.5</reloadTime>
+					<reloadTime>4.5</reloadTime>
 					<ammoSet>AmmoSet_MihoPlasma</ammoSet>
 				</AmmoUser>
 				<FireModes>
 					<aimedBurstShotCount>2</aimedBurstShotCount>
 					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+				</FireModes>
+			</li>
+			
+			<!-- ========== Plamsa Sniper =========== -->
+			
+			<li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+				<defName>Miho_Weapon_SniperPlasma</defName>
+				<statBases>
+					<SightsEfficiency>2.60</SightsEfficiency>
+					<ShotSpread>0.02</ShotSpread>
+					<SwayFactor>1.44</SwayFactor>
+					<Bulk>11.15</Bulk>
+					<Mass>7.50</Mass>
+					<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+				</statBases>
+				<Properties>
+					<recoilAmount>1.27</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>Bullet_MihoPlasma</defaultProjectile>
+					<warmupTime>2.5</warmupTime>
+					<soundAiming>Miho_Charging</soundAiming>
+					<burstShotCount>1</burstShotCount>
+					<ammoConsumedPerShotCount>4</ammoConsumedPerShotCount>
+					<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+					<range>75</range>
+					<soundCast>Miho_CannonPlasma</soundCast>
+					<soundCastTail>GunTail_Medium</soundCastTail>
+					<muzzleFlashScale>9</muzzleFlashScale>
+				</Properties>
+				<AmmoUser>
+					<magazineSize>16</magazineSize>
+					<reloadTime>4.5</reloadTime>
+					<ammoSet>AmmoSet_MihoPlasmaSniper</ammoSet>
+				</AmmoUser>
+				<weaponTags>
+				  <li>CE_AI_SR</li>
+				  <li>Bipod_DMR</li>
+				</weaponTags>
+				<FireModes>
 					<aiAimMode>AimedShot</aiAimMode>
 				</FireModes>
 			</li>
@@ -417,7 +458,8 @@
 				defName="Miho_Weapon_RifleGrenade" or 
 				defName="Miho_Weapon_Shotgun" or 
 				defName="Miho_Weapon_RiflePlasma" or 
-				defName="Miho_Weapon_ShotgunPsychic"
+				defName="Miho_Weapon_ShotgunPsychic" or 
+				defName="Miho_Weapon_SniperPlasma"
 				]/tools</xpath>
 				<value>
 					<tools>
