@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	
-	<!-- ==================== AmmoSet ========================== -->
-	
-	<!-- ==================== Ammo ========================== -->
+
+  <!-- ==================== AmmoSet ========================== -->
+
+  <!-- ==================== Ammo ========================== -->
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBase" Abstract="True">
     <thingClass>CombatExtended.AmmoThing</thingClass>
@@ -22,8 +22,8 @@
     <stackLimit>5000</stackLimit>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Metal_Drop</soundDrop>
-    <menuHidden>True</menuHidden>	<!-- Toggled by AmmoInjector.cs -->
-    <destroyOnDrop>True</destroyOnDrop>	<!-- Toggled by AmmoInjector.cs -->  
+    <menuHidden>True</menuHidden> <!-- Toggled by AmmoInjector.cs -->
+    <destroyOnDrop>True</destroyOnDrop> <!-- Toggled by AmmoInjector.cs -->
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -43,64 +43,71 @@
     <cookOffTailSound>GunTail_Medium</cookOffTailSound>
     <techLevel>Industrial</techLevel>
   </ThingDef>
-	
-	<ThingDef Class="CombatExtended.AmmoDef" Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<smallVolume>true</smallVolume>
-		<statBases>
-		  <MaxHitPoints>75</MaxHitPoints>
-		</statBases>
-	</ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<techLevel>Neolithic</techLevel>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <smallVolume>true</smallVolume>
+    <statBases>
+      <MaxHitPoints>75</MaxHitPoints>
+    </statBases>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
-		<techLevel>Spacer</techLevel>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="NeolithicAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Neolithic</techLevel>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<techLevel>Spacer</techLevel>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SpacerSmallAmmoBase" ParentName="SmallAmmoBase" Abstract="True">
+    <techLevel>Spacer</techLevel>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="SpacerMediumAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<techLevel>Spacer</techLevel>
-		<tradeTags Inherit="False">
-			<li>CE_AmmoInjector</li>
-			<li>CE_MediumAmmo</li>
-		</tradeTags>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SpacerAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Spacer</techLevel>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="MediumAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<tradeTags Inherit="False">
-			<li>CE_AmmoInjector</li>
-			<li>CE_MediumAmmo</li>
-		</tradeTags>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="SpacerMediumAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <techLevel>Spacer</techLevel>
+    <tradeTags Inherit="False">
+      <li>CE_AmmoInjector</li>
+      <li>CE_MediumAmmo</li>
+    </tradeTags>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="HeavyAmmoBase" ParentName="AmmoBase" Abstract="True">
-		<tradeTags Inherit="False">
-			<li>CE_AmmoInjector</li>
-			<li>CE_HeavyAmmo</li>
-		</tradeTags>
-	</ThingDef>
+  <ThingDef Class="CombatExtended.AmmoDef" Name="MediumAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <tradeTags Inherit="False">
+      <li>CE_AmmoInjector</li>
+      <li>CE_MediumAmmo</li>
+    </tradeTags>
+  </ThingDef>
 
-	<!-- ================== Projectiles ================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="HeavyAmmoBase" ParentName="AmmoBase" Abstract="True">
+    <tradeTags Inherit="False">
+      <li>CE_AmmoInjector</li>
+      <li>CE_HeavyAmmo</li>
+    </tradeTags>
+  </ThingDef>
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<alwaysFreeIntercept>true</alwaysFreeIntercept>
-		</projectile>
-	</ThingDef>
+  <!-- ================== Projectiles ================== -->
 
-	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
-		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<suppressionFactor>3.0</suppressionFactor>
-			<dangerFactor>2.0</dangerFactor>
-		</projectile>
-	</ThingDef>
-  
-	<!-- ==================== Recipes ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
+    <thingClass>CombatExtended.BulletCE</thingClass>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionDamageFalloff>true</explosionDamageFalloff>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <alwaysFreeIntercept>true</alwaysFreeIntercept>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <suppressionFactor>3.0</suppressionFactor>
+      <dangerFactor>2.0</dangerFactor>
+    </projectile>
+  </ThingDef>
+
+  <!-- ==================== Recipes ========================== -->
 
   <RecipeDef Name="AmmoRecipeBase" Abstract="true">
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
@@ -110,23 +117,23 @@
     <workAmount>10000</workAmount>
     <workSkill>Crafting</workSkill>
     <targetCountAdjustment>20</targetCountAdjustment>
-	<recipeUsers>
-	  <!-- Need an empty list here or the ammo injector will throw a null ref exception -->
-	</recipeUsers>
-	<conceptLearned>CE_AmmoCrafting</conceptLearned>
-	<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+    <recipeUsers>
+      <!-- Need an empty list here or the ammo injector will throw a null ref exception -->
+    </recipeUsers>
+    <conceptLearned>CE_AmmoCrafting</conceptLearned>
+    <unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
   </RecipeDef>
 
   <RecipeDef Name="AdvancedAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>CE_AdvancedAmmo</researchPrerequisite>
+    <researchPrerequisite>CE_AdvancedAmmo</researchPrerequisite>
   </RecipeDef>
 
   <RecipeDef Name="LauncherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>CE_Launchers</researchPrerequisite>
+    <researchPrerequisite>CE_Launchers</researchPrerequisite>
   </RecipeDef>
 
   <RecipeDef Name="ChargeAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>ChargedShot</researchPrerequisite>
+    <researchPrerequisite>ChargedShot</researchPrerequisite>
   </RecipeDef>
 
   <RecipeDef Name="AmmoRecipeNeolithicBase" Abstract="true">
@@ -142,9 +149,9 @@
 
   <!-- Base for hand grenades -->
   <RecipeDef ParentName="AmmoRecipeBase" Name="GrenadeRecipeBase" Abstract="true">
-		<recipeUsers>
-			<li>TableMachining</li>
-		</recipeUsers>
+    <recipeUsers>
+      <li>TableMachining</li>
+    </recipeUsers>
   </RecipeDef>
-	
+
 </Defs>
