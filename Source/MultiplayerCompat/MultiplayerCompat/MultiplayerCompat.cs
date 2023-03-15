@@ -199,5 +199,11 @@ namespace CombatExtended.Compatibility.MultiplayerAPI
                 loadoutSlot = LoadoutManager.Loadouts[loadoutIndex].Slots[sync.Read<int>()];
             }
         }
+
+        // Don't sync anything, we just want a blank instance for method calling purposes
+        // We only care about shouldConstruct being true
+        [SyncWorker(shouldConstruct = true)]
+        private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
+        { }
     }
 }
