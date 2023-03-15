@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
-    <thingClass>CombatExtended.BulletCE</thingClass>
-    <projectile Class="CombatExtended.ProjectilePropertiesCE">
-      <explosionDamageFalloff>true</explosionDamageFalloff>
-    </projectile>
-  </ThingDef>
 
   <!-- ==================== AmmoSet ========================== -->
 
@@ -28,10 +22,8 @@
     <stackLimit>5000</stackLimit>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Metal_Drop</soundDrop>
-    <menuHidden>True</menuHidden>
-    <!-- Toggled by AmmoInjector.cs -->
-    <destroyOnDrop>True</destroyOnDrop>
-    <!-- Toggled by AmmoInjector.cs -->
+    <menuHidden>True</menuHidden> <!-- Toggled by AmmoInjector.cs -->
+    <destroyOnDrop>True</destroyOnDrop> <!-- Toggled by AmmoInjector.cs -->
     <comps>
       <li Class="CompProperties_Forbiddable"/>
     </comps>
@@ -94,6 +86,13 @@
   </ThingDef>
 
   <!-- ================== Projectiles ================== -->
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
+    <thingClass>CombatExtended.BulletCE</thingClass>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionDamageFalloff>true</explosionDamageFalloff>
+    </projectile>
+  </ThingDef>
 
   <ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
