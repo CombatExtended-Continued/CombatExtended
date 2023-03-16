@@ -14,7 +14,7 @@ namespace CombatExtended
 
         public FloatRange primaryMagazineCount = FloatRange.Zero;
         public AttachmentOption primaryAttachments;
-        public int minAmmoCount = 10;
+        public int minAmmoCount;
 
         public FloatRange shieldMoney = FloatRange.Zero;
         public List<string> shieldTags;
@@ -256,12 +256,6 @@ namespace CombatExtended
                 if (gun.TryGetComp<CompEquippable>().PrimaryVerb.verbProps.verbClass == typeof(Verb_ShootCEOneUse))
                 {
                     thingToAdd = gun.def;   // For one-time use weapons such as grenades, add duplicates instead of ammo
-                    if (minAmmoSpawned == 10)
-                    {
-                        //don't spawn 10 (the default value) of single-use weapons,
-                        //unless the xml patcher explicitly set a different value
-                        minAmmoSpawned = 1;
-                    }
                 }
                 else
                 {
