@@ -59,7 +59,12 @@ namespace CombatExtended.HarmonyCE.Compatibility
 
             public static bool Prepare()
             {
-                Type t = AccessTools.FindIncludingInnerTypes(AccessTools.TypeByName("VFECore.Patch_ThingDef"), type => type.Name == "SetFaction" ? type : null);
+                Type t = AccessTools.TypeByName("VFECore.Patch_ThingDef");
+                if (t == null)
+                {
+                    return false;
+                }
+                t = AccessTools.FindIncludingInnerTypes(t, type => type.Name == "SetFaction" ? type : null);
                 return (_target = AccessTools.Method(t, "Postfix")) != null;
             }
 
