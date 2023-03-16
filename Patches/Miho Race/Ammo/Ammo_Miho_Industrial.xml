@@ -388,7 +388,7 @@
 
 			<!-- ================== Projectiles ================== -->
 
-			<ThingDef Name="BaseMiho47x285mmBullet" ParentName="BaseBullet" Abstract="true">
+			<ThingDef Name="BaseMiho47x285mmBullet" ParentName="BaseBulletCE" Abstract="true">
 				<graphicData>
 					<texPath>Things/Projectile/Bullet_Big</texPath>
 					<graphicClass>Graphic_Single</graphicClass>
@@ -489,6 +489,152 @@
 				<workAmount>10800</workAmount>
 			</RecipeDef>
 
+			<!-- ==================== AmmoSet ========================== -->
+
+			<CombatExtended.AmmoSetDef>
+				<defName>AmmoSetMiho100mm_Incendiary</defName>
+				<label>100mm Rocket</label>
+				<ammoTypes>
+					<Ammo_Miho100mm_Incendiary>Bullet_Miho100mm_Incendiary</Ammo_Miho100mm_Incendiary>
+				</ammoTypes>
+			</CombatExtended.AmmoSetDef>
+			
+			<ThingCategoryDef>
+			  <defName>AmmoMiho100mm_Incendiary</defName>
+			  <label></label>
+			  <parent>AmmoRockets</parent>
+			  <iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
+			</ThingCategoryDef>
+
+			<!-- ==================== Ammo ========================== -->
+
+			<ThingDef Class="CombatExtended.AmmoDef" Name="Miho100mm_IncendiaryBase" ParentName="HeavyAmmoBase" Abstract="True">
+				<description>An unguided rocket equipped with an explosive warhead and a contact fuse.</description>
+				<thingCategories>
+					<li>AmmoMiho100mm_Incendiary</li>
+				</thingCategories>
+				<stackLimit>25</stackLimit>
+				<tradeTags>
+					<li>CE_AutoEnableTrade</li>
+					<li>CE_AutoEnableCrafting_TableMachining</li>
+				</tradeTags>
+				<statBases>
+					<MaxHitPoints>250</MaxHitPoints>
+					<Mass>19</Mass>
+					<Bulk>20</Bulk>
+				</statBases>
+				<cookOffFlashScale>25</cookOffFlashScale>
+				<cookOffSound>MortarBomb_Explode</cookOffSound>
+				<isMortarAmmo>true</isMortarAmmo>
+			</ThingDef>
+
+			<ThingDef Class="CombatExtended.AmmoDef" ParentName="Miho100mm_IncendiaryBase">
+				<defName>Ammo_Miho100mm_Incendiary</defName>
+				<label>100mm Artillery Rocket (Incendiary)</label>
+				<graphicData>
+					<texPath>Things/Ammo/Rocket/M74</texPath>
+					<graphicClass>Graphic_StackCount</graphicClass>
+					<drawSize>0.90</drawSize>
+				</graphicData>
+				<statBases>
+					<MarketValue>41.52</MarketValue>
+				</statBases>
+				<ammoClass>GrenadeIncendiary</ammoClass>
+				<detonateProjectile>Bullet_Miho100mm_Incendiary</detonateProjectile>
+			</ThingDef>	
+
+			<!-- ================== Projectiles ================== -->
+
+			<ThingDef Name="BaseMiho100mm_Incendiary" ParentName="BaseExplosiveBullet" Abstract="true">
+				<graphicData>
+					<shaderType>TransparentPostLight</shaderType>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<speed>0</speed>
+					<soundExplode>MortarBomb_Explode</soundExplode>
+					<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+					<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+					<soundAmbient>MortarRound_Ambient</soundAmbient>
+					<flyOverhead>true</flyOverhead>
+					<dropsCasings>false</dropsCasings>
+					<gravityFactor>5</gravityFactor>
+				</projectile>
+			</ThingDef>
+
+			<ThingDef ParentName="BaseMiho100mm_Incendiary">
+				<defName>Bullet_Miho100mm_Incendiary</defName>
+				<label>100mm Rocket (Incendiary)</label>
+				<graphicData>
+				  <texPath>Things/Projectile/Rocket/SMAW_Thermobaric</texPath>
+				  <graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<projectile Class="CombatExtended.ProjectilePropertiesCE">
+					<damageDef>PrometheumFlame</damageDef>
+					<damageAmountBase>0</damageAmountBase>
+					<armorPenetrationSharp>0</armorPenetrationSharp>
+					<armorPenetrationBlunt>0</armorPenetrationBlunt>
+					<explosionRadius>5.9</explosionRadius>
+					<flyOverhead>true</flyOverhead>
+					<preExplosionSpawnThingDef>FilthPrometheum</preExplosionSpawnThingDef>
+					<preExplosionSpawnChance>0.15</preExplosionSpawnChance>
+					<soundExplode>MortarIncendiary_Explode</soundExplode>
+				  </projectile>
+				  <comps>
+					<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					  <damageAmountBase>75</damageAmountBase>
+					  <explosiveDamageType>MihoGunshotDemo</explosiveDamageType>
+					  <explosiveRadius>1.9</explosiveRadius>
+					  <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+					</li>
+				</comps>
+			</ThingDef>
+
+			<!-- ==================== Recipes ========================== -->
+
+			<RecipeDef ParentName="AmmoRecipeBase">
+				<defName>MakeAmmo_Miho100mm_Incendiary</defName>
+				<label>make 100mm Miho Rocket x5</label>
+				<description>Craft 5 100mm Miho Rocket cartridges.</description>
+				<jobString>Making 100mm Miho Rocket cartridges.</jobString>
+				<ingredients>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>Prometheum</li>
+					  </thingDefs>
+					</filter>
+					<count>3</count>
+				  </li>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>Steel</li>
+					  </thingDefs>
+					</filter>
+					<count>10</count>
+				  </li>
+				  <li>
+					<filter>
+					  <thingDefs>
+						<li>ComponentIndustrial</li>
+					  </thingDefs>
+					</filter>
+					<count>6</count>
+				  </li>
+				</ingredients>
+				<fixedIngredientFilter>
+				  <thingDefs>
+					<li>Prometheum</li>
+					<li>Steel</li>
+					<li>ComponentIndustrial</li>
+				  </thingDefs>
+				</fixedIngredientFilter>
+				<products>
+					<Ammo_Miho100mm_Incendiary>5</Ammo_Miho100mm_Incendiary>
+				</products>
+				<workAmount>3730</workAmount>
+			</RecipeDef>
+	
 			</value>
 		</match>	
 	  </Operation>
