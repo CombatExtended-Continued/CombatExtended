@@ -22,7 +22,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>
-						/Defs/ThingDef[
+						Defs/ThingDef[
 							defName="Gun_P08_RA" or 
 							defName="Gun_P38_RA" or 
 							defName="Gun_PPK_RA" or 
@@ -58,7 +58,7 @@
 
 				<li Class="PatchOperationReplace">
 					<xpath>
-						/Defs/ThingDef[
+						Defs/ThingDef[
 							defName="Gun_StG_44_Scope_RA" or 
 							defName="Gun_StG_44_RA" or 
 							defName="Gun_FG_42_RA" or 
@@ -813,6 +813,7 @@
 					</Properties>
 					<AmmoUser>
 						<magazineSize>1</magazineSize>
+						<AmmoGenPerMagOverride>2</AmmoGenPerMagOverride>
 						<reloadTime>6</reloadTime>
 						<ammoSet>AmmoSet_30mmRifleGrenade</ammoSet>
 					</AmmoUser>
@@ -1119,6 +1120,7 @@
 					</Properties>
 					<AmmoUser>
 						<magazineSize>1</magazineSize>
+						<AmmoGenPerMagOverride>8</AmmoGenPerMagOverride>
 						<reloadTime>1.6</reloadTime>
 						<ammoSet>AmmoSet_792x94mmPatronen</ammoSet>
 					</AmmoUser>
@@ -1252,9 +1254,9 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
-					<xpath>/Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
+						<xpath>Defs/ThingDef[defName="Weapon_M24_RA"]</xpath>
 						<value>
 							<comps />
 						</value>
@@ -1338,9 +1340,9 @@
 				</li>
 
 				<li Class="PatchOperationConditional">
-					<xpath>/Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
+					<xpath>Defs/ThingDef[defName="Proj_M24_RA"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
+						<xpath>Defs/ThingDef[defName="Proj_M24_RA"]</xpath>
 						<value>
 							<comps />
 						</value>

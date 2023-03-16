@@ -49,6 +49,18 @@ namespace CombatExtended
                 return Mathf.Clamp01(mod);
             }
         }
+        public float StabilizedBleed  //returns the amount by which stabilization has reduced bleeding rate
+        {
+            get
+            {
+                float unstabilizedBleedRate = parent.Severity * parent.def.injuryProps.bleedRate;
+                if (parent.Part != null)
+                {
+                    unstabilizedBleedRate *= parent.Part.def.bleedRate;
+                }
+                return unstabilizedBleedRate * (1 - BleedModifier);
+            }
+        }
 
         public void Stabilize(Pawn medic, Medicine medicine)
         {

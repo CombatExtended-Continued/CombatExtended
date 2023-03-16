@@ -11,26 +11,26 @@
       <!-- Striker Turret -->
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
       </li>
 
       <!-- Replace vanilla thingClass -->
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/thingClass</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
       </li>
 
       <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFEE_Turret_StrikerTurret"]/statBases</xpath>
+          <xpath>Defs/ThingDef[defName="VFEE_Turret_StrikerTurret"]/statBases</xpath>
           <value>
             <AimingAccuracy>0.5</AimingAccuracy>
           </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/building/turretBurstCooldownTime</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEE_Turret_StrikerTurret"]/building/turretBurstCooldownTime</xpath>
         <value>
           <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
         </value>
@@ -73,30 +73,37 @@
 
       <!-- Armored Shuttle Turret -->
 
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEI_TurretArmoredShuttle_CE"]/statBases/ShootingAccuracyTurret</xpath>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/statBases</xpath>
         <value>
           <ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building/turretGunDef</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building/turretGunDef</xpath>
         <value>
           <turretGunDef>VFEI_TurretArmoredShuttle_CE</turretGunDef>
         </value>
       </li>
 
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building</xpath>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building/turretBurstCooldownTime</xpath>
         <value>
-          <turretBurstWarmupTime>3.0</turretBurstWarmupTime>
+          <turretBurstCooldownTime>1.0</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName = "VFEI_ArmoredShuttle"]/building</xpath>
+        <value>
+          <turretBurstWarmupTime>2.3</turretBurstWarmupTime>
         </value>
       </li>
 
       <!-- Vanilla Gauntlet Charge Cannnon -->
       <li Class="PatchOperationAdd">
-        <xpath>/Defs</xpath>
+        <xpath>Defs</xpath>
         <value>
 
           <ThingDef ParentName="BaseWeaponTurret">
@@ -110,11 +117,11 @@
             </graphicData>
             <soundInteract>Interact_Rifle</soundInteract>
             <statBases>
-              <AccuracyTouch>0.24</AccuracyTouch>
-              <AccuracyShort>0.52</AccuracyShort>
-              <AccuracyMedium>0.57</AccuracyMedium>
-              <AccuracyLong>0.43</AccuracyLong>
-              <RangedWeapon_Cooldown>5.6</RangedWeapon_Cooldown>
+              <AccuracyTouch>0.4</AccuracyTouch>
+              <AccuracyShort>0.65</AccuracyShort>
+              <AccuracyMedium>0.70</AccuracyMedium>
+              <AccuracyLong>0.60</AccuracyLong>
+              <RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
               <DeteriorationRate>0</DeteriorationRate>
               <Mass>80</Mass>
               <Flammability>0</Flammability>
@@ -126,9 +133,9 @@
                 <defaultProjectile>Bullet_ArmoredShuttleTurret_CE</defaultProjectile>
                 <minRange>8.9</minRange>
                 <warmupTime>2.3</warmupTime>
-                <range>78</range>
-                <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-                <burstShotCount>10</burstShotCount>
+                <range>55</range>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <burstShotCount>6</burstShotCount>
                 <soundCast>Shot_Autocannon</soundCast>
                 <soundCastTail>GunTail_Heavy</soundCastTail>
                 <muzzleFlashScale>12</muzzleFlashScale>
@@ -145,9 +152,9 @@
             </graphicData>
             <projectile>
               <damageDef>Bullet</damageDef>
-              <damageAmountBase>44</damageAmountBase>
-              <speed>206</speed>
-              <armorPenetrationBase>30</armorPenetrationBase>  
+              <damageAmountBase>15</damageAmountBase>
+              <speed>170</speed>
+              <armorPenetrationBase>25</armorPenetrationBase>
             </projectile>
           </ThingDef>
 

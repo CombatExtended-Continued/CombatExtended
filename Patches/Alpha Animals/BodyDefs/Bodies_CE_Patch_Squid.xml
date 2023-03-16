@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		<li>Alpha Animals</li>
+		</mods>
+
+			<match Class="PatchOperationSequence">
+				<operations>
+
+					<!-- ====== Squid ====== -->
+					
+					<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+					</li>
+			
+					<li Class="PatchOperationConditional">
+					<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart/parts/li[def="AA_ConicalShell"]/groups</xpath>
+					<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart/parts/li[def="AA_ConicalShell"]</xpath>
+							<value>
+								<groups>
+									<li>CoveredByNaturalArmor</li>
+								</groups>
+							</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/BodyDef[defName="AA_Squid"]/corePart/parts/li[def="AA_ConicalShell"]/groups</xpath>
+						<value>
+							<li>CoveredByNaturalArmor</li>
+						</value>
+					</match>
+					</li>
+					
+				</operations>
+			</match>
+	</Operation>
+</Patch>

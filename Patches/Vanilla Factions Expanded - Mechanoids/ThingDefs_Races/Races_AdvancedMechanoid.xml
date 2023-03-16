@@ -10,9 +10,9 @@
       <operations>
 
 	<li Class="PatchOperationConditional">
-		<xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/comps</xpath>
+		<xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/comps</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]</xpath>
+			<xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]</xpath>
 			<value>
 				<comps />
 			</value>
@@ -28,21 +28,24 @@
 			<li>
 				<compClass>CombatExtended.CompAmmoGiver</compClass>
 			</li>
+			<li Class="CombatExtended.CompProperties_MechAmmo">
+				<gizmoIconSetMagCount>UI/Buttons/SetMagCount</gizmoIconSetMagCount>
+				<gizmoIconTakeAmmoNow>UI/Buttons/TakeAmmoNow</gizmoIconTakeAmmoNow>
+			</li>
 		</value>
 	</li>
-
 
 	<!-- Advanced mechs retain some heat armor to represent sealing of sensitive electronics. Minor improvement to EMP resistance as well-->
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases/ArmorRating_Heat</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases/ArmorRating_Heat</xpath>
       <value>
         <ArmorRating_Heat>0.5</ArmorRating_Heat>
       </value>
     </li>
 
 	<li Class="PatchOperationAdd">
-    <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases</xpath>
+    <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoid"]/statBases</xpath>
       <value>
         <SmokeSensitivity>0</SmokeSensitivity>
         <ArmorRating_Electric>0.10</ArmorRating_Electric>
@@ -53,7 +56,7 @@
     <!-- ========== VFE Advanced Centipede ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>QuadrupedLow</bodyShape>
@@ -62,7 +65,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases</xpath>
       <value>
         <CarryWeight>260</CarryWeight>
         <CarryBulk>70</CarryBulk>
@@ -77,28 +80,28 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>48</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>22</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/race/baseBodySize</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/race/baseBodySize</xpath>
       <value>
         <baseBodySize>3.0</baseBodySize>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCentipede"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -120,7 +123,7 @@
     <!-- ========== VFE Advanced Scyther/Lancer ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedScyther" or defName="VFE_Mech_AdvancedLancer"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedScyther" or defName="VFE_Mech_AdvancedLancer"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Humanoid</bodyShape>
@@ -129,7 +132,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>20</CarryBulk>
@@ -143,21 +146,21 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>7.5</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_AdvancedMechanoidWalker"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>5</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedScyther"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedScyther"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -225,7 +228,7 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedLancer"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedLancer"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -271,7 +274,7 @@
 	<!-- ========== VFE Advanced Pikeman ========== -->
 
 	<li Class="PatchOperationAddModExtension">
-		<xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]</xpath>
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
@@ -280,7 +283,7 @@
 	</li>
 
 	<li Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/statBases</xpath>
 		<value>
 			<ArmorRating_Sharp>7.5</ArmorRating_Sharp>
 			<ArmorRating_Blunt>18</ArmorRating_Blunt>			
@@ -294,11 +297,11 @@
 	</li>
 
 	<li Class="PatchOperationRemove">
-		<xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/race/baseHealthScale</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/race/baseHealthScale</xpath>
 	</li>
 
 	<li Class="PatchOperationReplace">
-		<xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedPikeman"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -320,7 +323,7 @@
    <!-- ========== VFE Advanced Knight ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Humanoid</bodyShape>
@@ -329,7 +332,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>20</CarryBulk>
@@ -341,21 +344,21 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>12</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>8</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedKnight"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -401,7 +404,7 @@
    <!-- ========== VFE Advanced Inquisitor ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Humanoid</bodyShape>
@@ -410,7 +413,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases</xpath>
       <value>
         <CarryWeight>50</CarryWeight>
         <CarryBulk>50</CarryBulk>
@@ -424,21 +427,21 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>15</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>10</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -484,7 +487,7 @@
 	<!--CE's blast is way too strong for them dying. Switching it to boomalope-->
 	
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/race/deathActionWorkerClass</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedInquisitor"]/race/deathActionWorkerClass</xpath>
       <value>
         <deathActionWorkerClass>DeathActionWorker_BigExplosion</deathActionWorkerClass>
       </value>
@@ -493,7 +496,7 @@
     <!-- ========== VFE Advanced Carpenter ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>Quadruped</bodyShape>
@@ -502,7 +505,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases</xpath>
       <value>
         <CarryWeight>400</CarryWeight>
         <CarryBulk>80</CarryBulk>
@@ -514,21 +517,21 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases/ArmorRating_Blunt</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases/ArmorRating_Blunt</xpath>
       <value>
         <ArmorRating_Blunt>48</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases/ArmorRating_Sharp</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/statBases/ArmorRating_Sharp</xpath>
       <value>
         <ArmorRating_Sharp>22</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvancedCarpenter"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -550,7 +553,7 @@
     <!-- ==========VFE Advanced Termite ========== -->
 
     <li Class="PatchOperationAddModExtension">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvTermite"]</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]</xpath>
       <value>
         <li Class="CombatExtended.RacePropertiesExtensionCE">
           <bodyShape>QuadrupedLow</bodyShape>
@@ -559,7 +562,7 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
       <value>
         <CarryWeight>300</CarryWeight>
         <CarryBulk>60</CarryBulk>
@@ -574,21 +577,21 @@
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
       <value>
         <ArmorRating_Blunt>48</ArmorRating_Blunt>
       </value>
     </li>
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/statBases</xpath>
       <value>
         <ArmorRating_Sharp>22</ArmorRating_Sharp>
       </value>
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Mech_AdvTermite"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">

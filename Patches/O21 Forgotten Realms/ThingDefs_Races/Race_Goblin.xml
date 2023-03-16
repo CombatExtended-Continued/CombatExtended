@@ -9,7 +9,7 @@
 
 			<!-- Goblins stand about as tall as a child, with strength and wits to match. -->
 			<li Class="PatchOperationAddModExtension">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
 				<value>
 					<li Class="CombatExtended.RacePropertiesExtensionCE">
 						<bodyShape>Humanoid</bodyShape>
@@ -18,9 +18,9 @@
 			</li>
 
 			<li Class="PatchOperationConditional">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
 				<nomatch Class="PatchOperationAdd">
-					<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
+					<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]</xpath>
 					<value>
 						<comps />
 					</value>
@@ -29,7 +29,7 @@
 
 			<!-- Goblins are cowardly, cruel, brutal, and not very smart. -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/alienRace/generalSettings/forcedRaceTraitEntries</xpath>
 				<value>
 					<li>
 						<defName>Beauty</defName>
@@ -50,7 +50,7 @@
 
 			<!-- The only good goblins are the ones who never come out of their holes. -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/statBases</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/statBases</xpath>
 				<value>
 					<NightVisionEfficiency>0.4</NightVisionEfficiency>
 					<MeleeDodgeChance>1</MeleeDodgeChance>
@@ -62,7 +62,7 @@
 			</li>
 
 			<li Class="PatchOperationReplace">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/tools</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/tools</xpath>
 				<value>
 					<tools>
 						<li Class="CombatExtended.ToolCE">
@@ -128,7 +128,7 @@
 
 			<!-- Goblins aren't bright, but they're not fools. -->
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
+				<xpath>Defs/AlienRace.ThingDef_AlienRace[defName="O21_FR_Goblin"]/comps</xpath>
 				<value>
 					<li>
 						<compClass>CombatExtended.CompPawnGizmo</compClass>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>ↁ House Sanguin</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+      <!-- === Remove VFE Shield Stuff === -->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="DevDesigner_Blood_Apparel_KiteShield" or defName="DevDesigner_Blood_Apparel_Kite2Shield"]/comps/li[@Class="VFECore.CompProperties_Shield"]</xpath>
+      </li>
+
+      <!-- === Add CE Shield Stuff === -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]</xpath>
+        <value>
+          <li Class="CombatExtended.ShieldDefExtension">
+            <shieldCoverage>
+              <li>Hands</li>
+              <li>Arms</li>
+              <li>Shoulders</li>
+              <li>Torso</li>
+              <li>Neck</li>
+            </shieldCoverage>
+          </li>
+        </value>
+      </li>
+
+      <!-- === Add Bulk === -->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/statBases</xpath>
+        <value>
+          <Bulk>8</Bulk>
+          <WornBulk>5</WornBulk>
+        </value>
+      </li>
+
+      <!-- === Replace Stat Offsets === -->
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]</xpath>
+        <value>
+          <equippedStatOffsets>
+            <ReloadSpeed>-0.2</ReloadSpeed>
+            <MeleeHitChance>-1</MeleeHitChance>
+            <ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+            <AimingAccuracy>-0.08</AimingAccuracy>
+            <Suppressability>-0.25</Suppressability>
+            <MeleeCritChance>-0.05</MeleeCritChance>
+            <MeleeParryChance>1.0</MeleeParryChance>
+          </equippedStatOffsets>
+        </value>
+      </li>
+
+      <!-- === Replace Stuff Thickness === -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[@Name="DevDesigner_Blood_KiteBase"]/statBases/StuffEffectMultiplierArmor</xpath>
+        <value>
+          <StuffEffectMultiplierArmor>2.2</StuffEffectMultiplierArmor>
+        </value>
+      </li>
+
+      </operations>
+    </match>
+  </Operation>
+</Patch>

@@ -268,6 +268,15 @@ namespace CombatExtended
                     stat = CE_StatDefOf.ReloadTime, value = reloadTime
                 });
             }
+
+            float ammoGenPerMagOverride = def.GetCompProperties<CompProperties_AmmoUser>().AmmoGenPerMagOverride;
+            if (!def.statBases.Any(s => s.stat == CE_StatDefOf.AmmoGenPerMagOverride))
+            {
+                def.statBases.Add(new StatModifier()
+                {
+                    stat = CE_StatDefOf.AmmoGenPerMagOverride, value = ammoGenPerMagOverride
+                });
+            }
         }
 
         /// <summary>

@@ -9,7 +9,7 @@
       <operations>
 
         <li Class="PatchOperationAddModExtension">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]</xpath>
           <value>
             <li Class="CombatExtended.RacePropertiesExtensionCE">
               <bodyShape>Humanoid</bodyShape>
@@ -17,25 +17,18 @@
           </value>
         </li>
 
-        <li Class="PatchOperationSequence">
-          <success>Always</success>
-          <operations>
-            <li Class="PatchOperationTest">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/comps</xpath>
-              <success>Invert</success>
-            </li>
-
-            <li Class="PatchOperationAdd">
-              <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]</xpath>
-              <value>
-                <comps />
-              </value>
-            </li>
-          </operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/comps</xpath>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]</xpath>
+            <value>
+              <comps />
+            </value>
+          </nomatch>
         </li>
 
         <li Class="PatchOperationAdd">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/comps</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/comps</xpath>
           <value>
             <li>
               <compClass>CombatExtended.CompPawnGizmo</compClass>
@@ -45,7 +38,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_OrassanHumanHybrid"]/statBases/MeleeDodgeChance</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName = "Alien_OrassanHumanHybrid"]/statBases/MeleeDodgeChance</xpath>
           <value>
             <AimingAccuracy>1</AimingAccuracy>
             <MeleeCritChance>1.93</MeleeCritChance>
@@ -57,7 +50,7 @@
         </li>
 
         <li Class="PatchOperationReplace">
-          <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/tools</xpath>
+          <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Alien_OrassanHumanHybrid"]/tools</xpath>
           <value>
             <tools>
               <li Class="CombatExtended.ToolCE">

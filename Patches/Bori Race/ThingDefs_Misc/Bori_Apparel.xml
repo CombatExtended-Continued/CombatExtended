@@ -3,16 +3,16 @@
   <Operation Class="PatchOperationSequence">
 	<operations>
 	  <li Class="PatchOperationFindMod">
-			
-		<mods><li>Bori race</li></mods>
-			
+		<mods>
+			<li>Bori race</li>
+		</mods>
 		<match Class="PatchOperationSequence">
 		<operations>
 		
 			<!--========= Stuffable =========-->
 			
 			<!--Basic-->
-			
+		
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="BD_CasualClothes" or defName="BD_WorkClothes"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
@@ -34,9 +34,9 @@
 			<li Class="PatchOperationRemove">
 				<xpath>Defs/ThingDef[defName="BD_NewsboyCap"]/statBases/ArmorRating_Blunt</xpath>
 			</li>
-			
+	
 			<!--Armor-->
-			
+	
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="BD_IndSoldierUniform"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
@@ -63,25 +63,20 @@
 					<WornBulk>1</WornBulk>
 				</value>
 			</li>
-			
+	
 			<!--Armor-->
-			
+
 			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="BD_IndSoldierArmour"]/statBases/ArmorRating_Sharp</xpath>
+				<xpath>Defs/ThingDef[defName="BD_IndSoldierArmour"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
 					<Bulk>20</Bulk>
 					<WornBulk>8</WornBulk>
 					<ArmorRating_Sharp>10</ArmorRating_Sharp>
+					<ArmorRating_Blunt>14</ArmorRating_Blunt>
+					<StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
 				</value>
 			</li>
-			
-			<li Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="BD_IndSoldierArmour"]/statBases/ArmorRating_Blunt</xpath>
-				<value>
-					<ArmorRating_Blunt>15</ArmorRating_Blunt>
-				</value>
-			</li>
-			
+					
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="BD_IndSoldierArmour"]/statBases/Mass</xpath>
 				<value>
@@ -220,9 +215,9 @@
 					<WornBulk>4</WornBulk>
 				</value>
 			</li>
-			
+	
 			<!--Sheep-->
-			
+		
 			<li Class="PatchOperationReplace">
 				<xpath>Defs/ThingDef[defName="SP_ChroniclerUniform" or defName="SP_WorkClothes"]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
@@ -332,7 +327,7 @@
 					<WornBulk>0</WornBulk>
 				</value>
 			</li>
-			
+	
 		</operations>
 		</match>	
 	  </li>

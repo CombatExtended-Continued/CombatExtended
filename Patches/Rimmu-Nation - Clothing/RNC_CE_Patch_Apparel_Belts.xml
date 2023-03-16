@@ -89,27 +89,25 @@
 				
 				<!-- Shared with other CP / RH / RN mods - make sure not to apply redundant patches and cause duplicate XML node errors -->
 
-				<li Class="PatchOperationSequence">
-					<success>Always</success>
-					<operations>
-						<li Class="PatchOperationTest">
-							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases/Bulk</xpath>
-							<success>Invert</success>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases</xpath>
-							<value>
-								<Bulk>2.5</Bulk>
-								<WornBulk>1</WornBulk>
-							</value>
-						</li>
-						<li Class="PatchOperationAdd">
-							<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/equippedStatOffsets</xpath>
-							<value>
-								<CarryBulk>2.5</CarryBulk>
-							</value>
-						</li>
-					</operations>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases/Bulk</xpath>
+					<nomatch Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/statBases</xpath>
+								<value>
+									<Bulk>2.5</Bulk>
+									<WornBulk>1</WornBulk>
+								</value>
+							</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/ThingDef[defName="RNApparel_Holsters_Shoulder"]/equippedStatOffsets</xpath>
+								<value>
+									<CarryBulk>2.5</CarryBulk>
+								</value>
+							</li>
+						</operations>
+					</nomatch>
 				</li>
 
 				<li Class="PatchOperationReplace">

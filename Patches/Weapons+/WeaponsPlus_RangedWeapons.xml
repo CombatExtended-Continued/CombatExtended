@@ -8,19 +8,19 @@
 		<operations>
       
       <li Class="PatchOperationAttributeAdd">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
         <attribute>Class</attribute>
         <value>CombatExtended.AmmoDef</value>
 		  </li>
 
       <li Class="PatchOperationAttributeSet">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
         <attribute>ParentName</attribute>
         <value>BaseWeaponAndAmmoNeolithic</value>
 		  </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/graphicData</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/graphicData</xpath>
         <value>
           <graphicData>
             <texPath>Things/Ammo/Neolithic/Kunai</texPath>
@@ -32,11 +32,11 @@
 
       <!-- Kunai is made of stuff, we remove that and just give a steel cost per kunai. -->
       <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/costStuffCount|/Defs/ThingDef[defName="RangedWeapon_Kunai"]/stuffCategories</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/costStuffCount|Defs/ThingDef[defName="RangedWeapon_Kunai"]/stuffCategories</xpath>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]</xpath>
         <value>
           <costList>
             <Steel>3</Steel>
@@ -50,7 +50,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-			  <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/tools</xpath>
+			  <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/tools</xpath>
         <value>
           <tools>
               <li Class="CombatExtended.ToolCE">
@@ -80,7 +80,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-			  <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/verbs</xpath>
+			  <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/verbs</xpath>
         <value>
           <verbs>
             <li Class="CombatExtended.VerbPropertiesCE">
@@ -95,7 +95,7 @@
       </li>
 
       <li Class="PatchOperationReplace">
-			  <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/statBases</xpath>
+			  <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/statBases</xpath>
         <value>
           <statBases>
             <WorkToMake>1000</WorkToMake>
@@ -111,7 +111,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="RangedWeapon_Kunai"]/weaponTags</xpath>
+        <xpath>Defs/ThingDef[defName="RangedWeapon_Kunai"]/weaponTags</xpath>
         <value>
           <li>CE_Pila</li>
           <li>CE_OneHandedWeapon</li>

@@ -21,6 +21,7 @@
 				]/statBases/StuffEffectMultiplierArmor</xpath>
 				<value>
 					<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+					<WornBulk>0</WornBulk>
 				</value>
 			</li>
 			
@@ -570,7 +571,21 @@
 					<CarryBulk>5</CarryBulk>
 				</value>
 			</li>
-			
+
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[
+					defName="AT_Apparel_CombatSmoke" or
+					defName="AT_Apparel_pheromone_TP" or
+					defName="AT_Apparel_chunk" or
+					defName="AT_Apparel_barricade" or
+					defName="AT_Apparel_bunker"
+				]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<WornBulk>1</WornBulk>
+				</value>
+			</li>
+
 		</operations>
 		</match>	
 	  </li>

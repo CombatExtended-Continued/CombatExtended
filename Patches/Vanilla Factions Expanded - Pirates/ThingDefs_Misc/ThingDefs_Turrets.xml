@@ -10,50 +10,57 @@
 
       <!-- Remove refuelable property -->
       <li Class="PatchOperationRemove">
-        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/comps/li[@Class = "VFEPirates.CompProperties_Fueled"]</xpath>
       </li>
 
       <!-- Replace vanilla thingClass -->
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/thingClass</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/thingClass</xpath>
           <value>
             <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
           </value>
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
           <value>
             <thingCategories />
           </value>
       </li>
 
-      <li Class="PatchOperationAdd">
-          <xpath>/Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/statBases</xpath>
+      <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/statBases/ShootingAccuracyTurret</xpath>
           <value>
-            <AimingAccuracy>0.5</AimingAccuracy>
+            <ShootingAccuracyTurret>1.25</ShootingAccuracyTurret>
           </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="VFEP_ShipChunkGauntletTurret"]/statBases</xpath>
+          <value>
+            <AimingAccuracy>0.75</AimingAccuracy>
+          </value>
+      </li>
+
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/building/turretBurstCooldownTime</xpath>
+        <value>
+          <turretBurstCooldownTime>0.5</turretBurstCooldownTime>
+        </value>
       </li>
 
 	  	<!-- Make turrets taller -->
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]</xpath>
         <value>
           <fillPercent>0.95</fillPercent>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/fillPercent</xpath>
+        <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/fillPercent</xpath>
         <value>
           <fillPercent>0.95</fillPercent>
-        </value>
-      </li>
-
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEP_ShipChunkGauntletTurret"]/building/turretBurstCooldownTime</xpath>
-        <value>
-          <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
         </value>
       </li>
 
@@ -61,7 +68,7 @@
       <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
         <defName>VFEP_GauntletChargeCanon</defName>
         <statBases>
-          <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+          <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
           <SightsEfficiency>1</SightsEfficiency>
           <ShotSpread>0.09</ShotSpread>
           <SwayFactor>0.26</SwayFactor>
@@ -71,10 +78,10 @@
           <verbClass>CombatExtended.Verb_ShootCE</verbClass>
           <hasStandardCommand>True</hasStandardCommand>
           <defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
-          <warmupTime>2</warmupTime>
+          <warmupTime>2.3</warmupTime>
           <range>62</range>
           <minRange>13</minRange>
-          <burstShotCount>4</burstShotCount>
+          <burstShotCount>10</burstShotCount>
           <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
           <soundCast>VFEP_Shot_GauntletCannon</soundCast>
           <soundCastTail>GunTail_Light</soundCastTail>
@@ -83,7 +90,7 @@
         </Properties>
         <AmmoUser>
           <magazineSize>200</magazineSize>
-          <reloadTime>10</reloadTime>
+          <reloadTime>7.8</reloadTime>
           <ammoSet>AmmoSet_12x72mmCharged</ammoSet>
         </AmmoUser>
         <weaponTags Inherit="False">
@@ -96,37 +103,50 @@
           </FireModes>        
       </li>
 
-      <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretBurstCooldownTime</xpath>
-        <value>
-          <turretBurstCooldownTime>1.1</turretBurstCooldownTime>
-        </value>
-      </li>
+	<!-- Make the crashed ships don't destroy each other upon crashing -->
+	<li Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]</xpath>
+		<value>
+			<damageMultipliers>
+				<li>
+					<damageDef>Bomb</damageDef>
+					<multiplier>0.1</multiplier>
+				</li>
+			</damageMultipliers>
+		</value>
+	</li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
+        <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/statBases/ShootingAccuracyTurret</xpath>
         <value>
           <ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretGunDef</xpath>
+        <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretGunDef</xpath>
         <value>
           <turretGunDef>VFEP_GauntletChargeCanon_CE</turretGunDef>
         </value>
       </li>
 
-      <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building</xpath>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building/turretBurstCooldownTime</xpath>
         <value>
-          <turretBurstWarmupTime>3.0</turretBurstWarmupTime>
+          <turretBurstCooldownTime>0.5</turretBurstCooldownTime>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[@Name = "VFEP_CrashedShip"]/building</xpath>
+        <value>
+          <turretBurstWarmupTime>2.3</turretBurstWarmupTime>
         </value>
       </li>
 
       <!-- Vanilla Gauntlet Charge Cannnon -->
       <li Class="PatchOperationAdd">
-        <xpath>/Defs</xpath>
+        <xpath>Defs</xpath>
         <value>
           <ThingDef ParentName="BaseWeaponTurret">
             <defName>VFEP_GauntletChargeCanon_CE</defName>
@@ -139,29 +159,25 @@
             <statBases>
               <AccuracyTouch>0.9</AccuracyTouch>
               <AccuracyShort>0.85</AccuracyShort>
-              <AccuracyMedium>0.75</AccuracyMedium>
-              <AccuracyLong>0.60</AccuracyLong>
-              <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+              <AccuracyMedium>0.60</AccuracyMedium>
+              <AccuracyLong>0.40</AccuracyLong>
+              <RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
               <DeteriorationRate>0</DeteriorationRate>
               <Mass>5</Mass>
               <Flammability>0</Flammability>
             </statBases>
-            <weaponTags>
-              <li>Patched</li>
-            </weaponTags>            
             <verbs>
               <li>
                 <verbClass>Verb_Shoot</verbClass>
                 <defaultProjectile>VFEP_Bullet_GauntletChargeCanon</defaultProjectile>
-                <warmupTime>3</warmupTime>
+                <warmupTime>2.3</warmupTime>
                 <range>62</range>
-                <minRange>13</minRange>
-                <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-                <burstShotCount>4</burstShotCount>
+                <minRange>8.9</minRange>
+                <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+                <burstShotCount>3</burstShotCount>
                 <soundCast>VFEP_Shot_GauntletCannon</soundCast>
                 <soundCastTail>GunTail_Light</soundCastTail>
                 <muzzleFlashScale>9</muzzleFlashScale>
-                <consumeFuelPerShot>1</consumeFuelPerShot>
               </li>
             </verbs>
           </ThingDef>
@@ -169,21 +185,21 @@
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/damageAmountBase</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/damageAmountBase</xpath>
         <value>
           <damageAmountBase>20</damageAmountBase>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/armorPenetrationBase</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/armorPenetrationBase</xpath>
         <value>
           <armorPenetrationBase>25</armorPenetrationBase>
         </value>
       </li>
 
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/speed</xpath>
+        <xpath>Defs/ThingDef[defName = "VFEP_Bullet_GauntletChargeCanon"]/projectile/speed</xpath>
         <value>
           <speed>150</speed>
         </value>

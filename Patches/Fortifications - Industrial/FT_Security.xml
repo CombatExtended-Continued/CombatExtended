@@ -11,21 +11,21 @@
       <!-- === Common === -->
       
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or @Name="FT_MannedTurret" or defName="FT_Gun_Recoilless"]/thingClass</xpath>
+        <xpath>Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or @Name="FT_MannedTurret" or defName="FT_Gun_Recoilless"]/thingClass</xpath>
         <value>
           <thingClass>CombatExtended.Building_TurretGunCE</thingClass>
         </value>
       </li>
       
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or defName="FT_Maxim4M" or defName="FT_AutoCannon" or defName="FT_RecoillessGun"]/fillPercent</xpath>
+        <xpath>Defs/ThingDef[@Name="FT_BaseCannonBuilding" or defName="FT_Maxim4M" or defName="FT_AutoCannon" or defName="FT_RecoillessGun"]/fillPercent</xpath>
         <value>
           <fillPercent>0.85</fillPercent>
         </value>
       </li>
       
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or defName="FT_TurretAA" or defName="FT_TurretAT"]/building/turretBurstCooldownTime</xpath>
+        <xpath>Defs/ThingDef[@Name="FT_BaseCannonBuilding" or @Name="FT_MGNest" or defName="FT_TurretAA" or defName="FT_TurretAT"]/building/turretBurstCooldownTime</xpath>
         <value>
           <turretBurstCooldownTime>1</turretBurstCooldownTime>
         </value>
@@ -33,9 +33,9 @@
       
       <li Class="PatchOperationRemove">
         <xpath>
-          /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT"]/comps/li[@Class="CompProperties_Explosive"] |
-          /Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT" or @Name="FT_MGNest" or defName="FT_Maxim4M" or defName="FT_AutoCannon" or defName="FT_RecoillessGun"]/comps/li[@Class="CompProperties_Refuelable"] |
-          /Defs/ThingDef[defName="FT_Bullet_AAShell" or defName="FT_Bullet_ATShell"]
+          Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT"]/comps/li[@Class="CompProperties_Explosive"] |
+          Defs/ThingDef[defName="FT_TurretAA" or defName="FT_TurretAT" or @Name="FT_MGNest" or defName="FT_Maxim4M" or defName="FT_AutoCannon" or defName="FT_RecoillessGun"]/comps/li[@Class="CompProperties_Refuelable"] |
+          Defs/ThingDef[defName="FT_Bullet_AAShell" or defName="FT_Bullet_ATShell"]
         </xpath>
       </li>
       
@@ -120,7 +120,7 @@
       <!-- === MG Nests === -->
       
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[@Name="FT_MGNest"]/fillPercent</xpath>
+        <xpath>Defs/ThingDef[@Name="FT_MGNest"]/fillPercent</xpath>
         <value>
           <fillPercent>0.75</fillPercent>
         </value>
@@ -163,7 +163,7 @@
 
 			<!-- Recoilless Rifle -->
       <li Class="PatchOperationReplace">
-        <xpath>/Defs/ThingDef[defName="FT_Gun_Recoilless"]</xpath>
+        <xpath>Defs/ThingDef[defName="FT_Gun_Recoilless"]</xpath>
         <value>
           <ThingDef ParentName="BaseWeaponTurret">
             <defName>FT_Gun_Recoilless</defName>
@@ -298,7 +298,7 @@
       </li>
 
       <li Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="FT_AutoCannon"]</xpath>
+        <xpath>Defs/ThingDef[defName="FT_AutoCannon"]</xpath>
         <value>
           <fillPercent>0.75</fillPercent>
         </value>

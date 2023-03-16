@@ -21,7 +21,7 @@
     <!-- ========== Inferno spewer description change ========== -->
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_Gun_InfernoSpewerBase"]/description</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_Gun_InfernoSpewerBase"]/description</xpath>
       <value>
         <description>A surprisingly lightweight flamethrower of mechanoid design, while idle the device seems cold as any other, but can immediately heat up to temperatures well above purely human technology. Two undermounted prometheum jelly tanks allow for an ammo capacity big enough for large plumes of liquid flame.</description>
       </value>
@@ -67,7 +67,7 @@
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Gun_CombatMechanoidGun"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Gun_CombatMechanoidGun"]/tools</xpath>
       <value>
         <tools>
         <li Class="CombatExtended.ToolCE">
@@ -125,7 +125,7 @@
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName = "VFE_Gun_RaiderMechanoidGun"]/tools
+      <xpath>Defs/ThingDef[defName = "VFE_Gun_RaiderMechanoidGun"]/tools
       </xpath>
       <value>
         <tools>
@@ -188,7 +188,7 @@
     </li>
         <!-- === Tools === -->
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name = "VFE_Gun_InfernoSpewerBase"]/tools
+      <xpath>Defs/ThingDef[@Name = "VFE_Gun_InfernoSpewerBase"]/tools
       </xpath>
       <value>
         <tools>
@@ -209,7 +209,7 @@
     <!-- ========== Light Charge Blaster ========== -->
 	
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/statBases</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/statBases</xpath>
       <value>
         <statBases>
         <Mass>3.0</Mass>
@@ -225,7 +225,7 @@
     </li>
 	
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/tools</xpath>
+      <xpath>Defs/ThingDef[@Name="VFE_Gun_ChargeBlasterLightBase"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -466,7 +466,7 @@
     <!-- ========== Add the Advanced Thermal Bolt Projector ========== -->
 
     <li Class="PatchOperationAdd">
-      <xpath>/Defs</xpath>
+      <xpath>Defs</xpath>
       <value>
         <ThingDef ParentName="BaseGun">
           <defName>VFE_AdvancedThermalBoltProjector</defName>
@@ -595,7 +595,7 @@
     </li>
 
     <li Class="PatchOperationReplace">
-      <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance"]/tools</xpath>
+      <xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedChargeLance"]/tools</xpath>
       <value>
         <tools>
           <li Class="CombatExtended.ToolCE">
@@ -631,7 +631,7 @@
 		  <verbClass>CombatExtended.Verb_ShootCE</verbClass>
 		  <hasStandardCommand>true</hasStandardCommand>
 		  <defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
-		  <warmupTime>2.0</warmupTime>
+		  <warmupTime>2.1</warmupTime>
 		  <range>75</range>
 		  <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 		  <burstShotCount>30</burstShotCount>
@@ -646,7 +646,7 @@
 		</AmmoUser>
 		<FireModes>
 		  <aimedBurstShotCount>15</aimedBurstShotCount>
-		  <aiAimMode>AimedShot</aiAimMode>
+		  <aiAimMode>Snapshot</aiAimMode>
 		</FireModes>
 		<weaponTags>
 		  <li>VFE_AdvMechanoidGunHeavy</li>
@@ -739,7 +739,7 @@
 	  </li>
 
 	  <li Class="PatchOperationReplace">
-	    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]/tools</xpath>
+	    <xpath>Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]/tools</xpath>
 	    <value>
 	      <tools>
 		<li Class="CombatExtended.ToolCE">
@@ -753,16 +753,6 @@
 		  <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
 		</li>
 	      </tools>
-	    </value>
-	  </li>
-
-	  <li Class="PatchOperationAddModExtension">
-	    <xpath>/Defs/ThingDef[defName="VFE_Gun_AdvancedThumpCannon"]</xpath>
-	    <value>
-	      <li Class="CombatExtended.GunDrawExtension">
-		<DrawSize>1.95,1.95</DrawSize>
-		<DrawOffset>0.0,0.0</DrawOffset>
-	      </li>
 	    </value>
 	  </li>
   

@@ -170,37 +170,40 @@ namespace CombatExtended
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
+            if (CompEq.Holder?.Faction == Faction.OfPlayer || DebugSettings.godMode)
             {
-                yield return new Command_Action
+                if (CompAmmo.Props.ammoSet == CompPropsAmmo.ammoSet)
                 {
-
-                    defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
-                    defaultDesc = "CE_UBGLStats".Translate() +
-                    "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
-                    + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
-                    + "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
-                    + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
-                    ,
-                    action = delegate
+                    yield return new Command_Action
                     {
-                        SwitchToUB();
-                    }
-                };
-            }
-            else
-            {
-                yield return new Command_Action
+
+                        defaultLabel = "CE_SwitchAmmmoSetToUnderBarrel".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        defaultDesc = "CE_UBGLStats".Translate() +
+                        "\n " + "WarmupTime".Translate() + ": " + Props.verbPropsUnderBarrel.warmupTime
+                        + "\n " + "Range".Translate() + ": " + Props.verbPropsUnderBarrel.range
+                        + "\n " + "CE_AmmoSet".Translate() + ": " + Props.propsUnderBarrel.ammoSet.label
+                        + "\n " + "CE_MagazineSize".Translate() + ": " + Props.propsUnderBarrel.magazineSize
+                        ,
+                        action = delegate
+                        {
+                            SwitchToUB();
+                        }
+                    };
+                }
+                else
                 {
-
-                    defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
-                    action = delegate
+                    yield return new Command_Action
                     {
-                        SwithToB();
-                    }
-                };
+
+                        defaultLabel = "CE_SwitchAmmmoSetToNormalRifle".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload"),
+                        action = delegate
+                        {
+                            SwithToB();
+                        }
+                    };
+                }
             }
         }
 

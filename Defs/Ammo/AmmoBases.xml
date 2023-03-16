@@ -1,53 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	
-	<!-- ==================== AmmoSet ========================== -->
-	
+
 	<!-- ==================== Ammo ========================== -->
 
-  <ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBase" Abstract="True">
-    <thingClass>CombatExtended.AmmoThing</thingClass>
-    <label>unspecified ammunition</label>
-    <category>Item</category>
-    <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <useHitPoints>true</useHitPoints>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Beauty>-5</Beauty>
-      <Flammability>1</Flammability>
-      <DeteriorationRate>2</DeteriorationRate>
-    </statBases>
-    <selectable>true</selectable>
-    <altitudeLayer>Item</altitudeLayer>
-    <stackLimit>5000</stackLimit>
-    <soundInteract>Metal_Drop</soundInteract>
-    <soundDrop>Metal_Drop</soundDrop>
-    <menuHidden>True</menuHidden>	<!-- Toggled by AmmoInjector.cs -->
-    <destroyOnDrop>True</destroyOnDrop>	<!-- Toggled by AmmoInjector.cs -->  
-    <comps>
-      <li Class="CompProperties_Forbiddable"/>
-    </comps>
-    <alwaysHaulable>true</alwaysHaulable>
-    <drawGUIOverlay>true</drawGUIOverlay>
-    <rotatable>false</rotatable>
-    <pathCost>15</pathCost>
-    <tradeTags>
-      <li>CE_AmmoInjector</li>
-      <li>CE_Ammo</li>
-    </tradeTags>
-    <tradeability>None</tradeability>
-    <tickerType>Normal</tickerType>
-    <cookOffSpeed>0.2</cookOffSpeed>
-    <cookOffFlashScale>10</cookOffFlashScale>
-    <cookOffSound>Shot_AssaultRifle</cookOffSound>
-    <cookOffTailSound>GunTail_Medium</cookOffTailSound>
-    <techLevel>Industrial</techLevel>
-  </ThingDef>
-	
+	<ThingDef Class="CombatExtended.AmmoDef" Name="AmmoBase" Abstract="True">
+		<thingClass>CombatExtended.AmmoThing</thingClass>
+		<label>unspecified ammunition</label>
+		<category>Item</category>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
+		<useHitPoints>true</useHitPoints>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Beauty>-5</Beauty>
+			<Flammability>1</Flammability>
+			<DeteriorationRate>2</DeteriorationRate>
+		</statBases>
+		<selectable>true</selectable>
+		<altitudeLayer>Item</altitudeLayer>
+		<stackLimit>5000</stackLimit>
+		<soundInteract>Metal_Drop</soundInteract>
+		<soundDrop>Metal_Drop</soundDrop>
+		<menuHidden>True</menuHidden><!-- Toggled by AmmoInjector.cs -->
+		<destroyOnDrop>True</destroyOnDrop><!-- Toggled by AmmoInjector.cs -->
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+		</comps>
+		<alwaysHaulable>true</alwaysHaulable>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<rotatable>false</rotatable>
+		<pathCost>15</pathCost>
+		<tradeTags>
+			<li>CE_AmmoInjector</li>
+			<li>CE_Ammo</li>
+		</tradeTags>
+		<tradeability>None</tradeability>
+		<tickerType>Normal</tickerType>
+		<cookOffSpeed>0.2</cookOffSpeed>
+		<cookOffFlashScale>10</cookOffFlashScale>
+		<cookOffSound>Shot_AssaultRifle</cookOffSound>
+		<cookOffTailSound>GunTail_Medium</cookOffTailSound>
+		<techLevel>Industrial</techLevel>
+	</ThingDef>
+
 	<ThingDef Class="CombatExtended.AmmoDef" Name="SmallAmmoBase" ParentName="AmmoBase" Abstract="True">
 		<smallVolume>true</smallVolume>
 		<statBases>
-		  <MaxHitPoints>75</MaxHitPoints>
+			<MaxHitPoints>75</MaxHitPoints>
 		</statBases>
 	</ThingDef>
 
@@ -87,64 +85,87 @@
 
 	<!-- ================== Projectiles ================== -->
 
-	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBullet" Abstract="True">
+		<category>Projectile</category>
+		<tickerType>Normal</tickerType>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<label>bullet</label>
+		<useHitPoints>False</useHitPoints>
+		<neverMultiSelect>True</neverMultiSelect>
+		<graphicData>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseBulletCE" ParentName="BaseBullet" Abstract="True">
+		<thingClass>CombatExtended.BulletCE</thingClass>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<explosionDamageFalloff>true</explosionDamageFalloff>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef Class="CombatExtended.AmmoDef" Name="BaseFragment" ParentName="BaseBulletCE" Abstract="True">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<alwaysFreeIntercept>true</alwaysFreeIntercept>
 		</projectile>
 	</ThingDef>
 
-	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBullet" Abstract="True">
+	<ThingDef Name="BaseExplosiveBullet" ParentName="BaseBulletCE" Abstract="True">
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<suppressionFactor>3.0</suppressionFactor>
 			<dangerFactor>2.0</dangerFactor>
 		</projectile>
 	</ThingDef>
-  
+
 	<!-- ==================== Recipes ========================== -->
 
-  <RecipeDef Name="AmmoRecipeBase" Abstract="true">
-    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_Machining</soundWorking>
-    <allowMixingIngredients>true</allowMixingIngredients>
-    <workAmount>10000</workAmount>
-    <workSkill>Crafting</workSkill>
-    <targetCountAdjustment>20</targetCountAdjustment>
-	<recipeUsers>
-	  <!-- Need an empty list here or the ammo injector will throw a null ref exception -->
-	</recipeUsers>
-	<conceptLearned>CE_AmmoCrafting</conceptLearned>
-	<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
-  </RecipeDef>
+	<RecipeDef Name="AmmoRecipeBase" Abstract="true">
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Machining</soundWorking>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<workAmount>10000</workAmount>
+		<workSkill>Crafting</workSkill>
+		<targetCountAdjustment>20</targetCountAdjustment>
+		<recipeUsers>
+			<!-- Need an empty list here or the ammo injector will throw a null ref exception -->
+		</recipeUsers>
+		<conceptLearned>CE_AmmoCrafting</conceptLearned>
+		<unfinishedThingDef>UnfinishedAmmo</unfinishedThingDef>
+	</RecipeDef>
 
-  <RecipeDef Name="AdvancedAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>CE_AdvancedAmmo</researchPrerequisite>
-  </RecipeDef>
+	<RecipeDef Name="AdvancedAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
+		<researchPrerequisite>CE_AdvancedAmmo</researchPrerequisite>
+	</RecipeDef>
 
-  <RecipeDef Name="LauncherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>CE_Launchers</researchPrerequisite>
-  </RecipeDef>
+	<RecipeDef Name="LauncherAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
+		<researchPrerequisite>CE_Launchers</researchPrerequisite>
+	</RecipeDef>
 
-  <RecipeDef Name="ChargeAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
-  	<researchPrerequisite>ChargedShot</researchPrerequisite>
-  </RecipeDef>
+	<RecipeDef Name="ChargeAmmoRecipeBase" ParentName="AmmoRecipeBase" Abstract="true">
+		<researchPrerequisite>ChargedShot</researchPrerequisite>
+	</RecipeDef>
 
-  <RecipeDef Name="AmmoRecipeNeolithicBase" Abstract="true">
-    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_Machining</soundWorking>
-    <allowMixingIngredients>true</allowMixingIngredients>
-    <workAmount>2000</workAmount>
-    <workSkill>Crafting</workSkill>
-    <targetCountAdjustment>20</targetCountAdjustment>
-    <unfinishedThingDef>UnfinishedArrows</unfinishedThingDef>
-  </RecipeDef>
+	<RecipeDef Name="AmmoRecipeNeolithicBase" Abstract="true">
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Machining</soundWorking>
+		<allowMixingIngredients>true</allowMixingIngredients>
+		<workAmount>2000</workAmount>
+		<workSkill>Crafting</workSkill>
+		<targetCountAdjustment>20</targetCountAdjustment>
+		<unfinishedThingDef>UnfinishedArrows</unfinishedThingDef>
+	</RecipeDef>
 
-  <!-- Base for hand grenades -->
-  <RecipeDef ParentName="AmmoRecipeBase" Name="GrenadeRecipeBase" Abstract="true">
+	<!-- Base for hand grenades -->
+	<RecipeDef ParentName="AmmoRecipeBase" Name="GrenadeRecipeBase" Abstract="true">
 		<recipeUsers>
 			<li>TableMachining</li>
 		</recipeUsers>
-  </RecipeDef>
-	
+	</RecipeDef>
+
 </Defs>

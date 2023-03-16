@@ -6,18 +6,36 @@
 		
 	<match Class="PatchOperationSequence">
 	<operations>
-	
+
+		<!-- ==========  Module  =========== -->
+		<li Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="PN_ApparelModuleBase"]/statBases</xpath>
+			<value>
+				<Bulk>1</Bulk>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
+
 		<!--========= Stuffable =========-->
 		
 		<!--Fabric-->
 		
 		<li Class="PatchOperationReplace">
-			<xpath>Defs/ThingDef[defName="PN_ApparelBasic" or defName="PN_ApparelBasicHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<xpath>Defs/ThingDef[defName="PN_ApparelBasic"]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				<WornBulk>1</WornBulk>
 			</value>
 		</li>
-		
+
+		<li Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="PN_ApparelBasicHat"]/statBases/StuffEffectMultiplierArmor</xpath>
+			<value>
+				<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+				<WornBulk>0</WornBulk>
+			</value>
+		</li>
+
 		<li Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="PN_ApparelCape"]/statBases</xpath>
 			<value>
@@ -53,6 +71,7 @@
 			]/statBases/StuffEffectMultiplierArmor</xpath>
 			<value>
 				<StuffEffectMultiplierArmor>5.5</StuffEffectMultiplierArmor>
+				<WornBulk>1</WornBulk>
 			</value>
 		</li>
 		
@@ -148,7 +167,7 @@
 			<value>
 				<Mass>12</Mass>
 				<Bulk>28</Bulk>
-				<WornBulk>18</WornBulk>
+				<WornBulk>16</WornBulk>
 			</value>
 		</li>
 		
