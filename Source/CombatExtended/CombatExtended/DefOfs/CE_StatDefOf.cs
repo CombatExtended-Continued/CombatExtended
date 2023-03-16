@@ -32,8 +32,7 @@ namespace CombatExtended
         public static StatDef BurstShotCount;
         public static StatDef Recoil;
         public static StatDef ReloadTime;
-
-        public static StatDef OneHandedNess;
+        public static StatDef OneHandedness;
 
         // *** Melee weapon stats ***
         public static StatDef MeleePenetrationFactor;

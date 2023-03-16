@@ -19,7 +19,7 @@ namespace CombatExtended
                 {
                     def.statBases = new List<StatModifier>();
                 }
-                def.statBases.Add(new StatModifier { stat = CE_StatDefOf.OneHandedNess, value = 1 });
+                def.statBases.Add(new StatModifier { stat = CE_StatDefOf.OneHandedness, value = 1 });
             }
         }
     }
