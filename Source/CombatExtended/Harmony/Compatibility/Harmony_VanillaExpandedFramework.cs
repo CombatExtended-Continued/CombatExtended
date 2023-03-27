@@ -49,5 +49,34 @@ namespace CombatExtended.HarmonyCE.Compatibility
                 }
             }
         }
+
+        [HarmonyPatch]
+        public class Harmony_Patch_YeetVEshieldStat
+        {
+            //It's my lucky day run aross a code doing similar stuff
+
+            private static MethodBase _target;
+
+            public static bool Prepare()
+            {
+                Type t = AccessTools.TypeByName("VFECore.Patch_ThingDef");
+                if (t == null)
+                {
+                    return false;
+                }
+                t = AccessTools.FindIncludingInnerTypes(t, type => type.Name == "SetFaction" ? type : null);
+                return (_target = AccessTools.Method(t, "Postfix")) != null;
+            }
+
+            public static MethodBase TargetMethod()
+            {
+                return _target;
+            }
+
+            public static bool Prefix()
+            {
+                return false;
+            }
+        }
     }
 }
