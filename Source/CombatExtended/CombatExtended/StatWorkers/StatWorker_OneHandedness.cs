@@ -19,13 +19,18 @@ namespace CombatExtended
                 {
                     def.statBases = new List<StatModifier>();
                 }
-                def.statBases.Add(new StatModifier { stat = CE_StatDefOf.OneHandedNess, value = 1 });
+                def.statBases.Add(new StatModifier { stat = CE_StatDefOf.OneHandedness, value = 1 });
             }
         }
     }
     public class StatWorker_OneHandedness : StatWorker
     {
-        public override bool ShouldShowFor(StatRequest req)
+
+        public override float GetValueUnfinalized(StatRequest req, bool applyPostProcess = true)
+        {
+            return IsOneHanded(req) ? 1 : 0;
+        }
+        public bool IsOneHanded(StatRequest req)
         {
             if (req.Thing != null)
             {
@@ -40,7 +45,7 @@ namespace CombatExtended
 
         public override string ValueToString(float val, bool finalized, ToStringNumberSense numberSense = ToStringNumberSense.Absolute)
         {
-            return "CE_Yes".Translate();
+            return (val > 0 ? "CE_Yes" : "CE_No").Translate();
         }
     }
 }
