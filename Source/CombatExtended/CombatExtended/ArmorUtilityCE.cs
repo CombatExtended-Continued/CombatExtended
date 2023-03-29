@@ -143,12 +143,19 @@ namespace CombatExtended
 
                             return dinfo;
                         }
-                        //Blunt damage penetrated the shield, apply the damage to right arm
+                        //Blunt damage penetrated the shield, apply the damage to left arm
+                        //Could add a check for having weapon equipped, if not, pawns should be able to hold the shield with both arms, increasing their defence
                         else
                         {
                             shieldAbsorbed = true;
-                            //I'm not sure whether pawn having no arms is able to use the shield
-                            dinfo.SetHitPart(pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbCore).Where(x => x.IsInGroup(CE_BodyPartGroupDefOf.RightArm)).First());
+                            //Priority: Left Arm > Right Arm > Left Shoulder
+                            //It seems that losing left shoulder makes shield unequippable, so no need to add a null check (for now)
+                            BodyPartRecord PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbCore).First(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftArm) || x.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
+                            if (PartToHit == null)
+                            {
+                                PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbSegment).First(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftShoulder));
+                            }
+                            dinfo.SetHitPart(PartToHit);
                             dinfo.SetAmount(dmgAmount);
                             // Apply secondary damage to shield
                             if (dinfo.Weapon?.projectile is ProjectilePropertiesCE props && !props.secondaryDamage.NullOrEmpty())
