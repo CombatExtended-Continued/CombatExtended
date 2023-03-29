@@ -126,9 +126,13 @@ namespace CombatExtended
                             {
                                 foreach (var sec in props.secondaryDamage)
                                 {
-                                    if (shield.Destroyed || !Rand.Chance(sec.chance))
+                                    if (shield.Destroyed)
                                     {
                                         break;
+                                    }
+                                    if (!Rand.Chance(sec.chance))
+                                    {
+                                        continue;
                                     }
                                     var secDinfo = sec.GetDinfo();
                                     var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
@@ -151,9 +155,13 @@ namespace CombatExtended
                             {
                                 foreach (var sec in props.secondaryDamage)
                                 {
-                                    if (shield.Destroyed || !Rand.Chance(sec.chance))
+                                    if (shield.Destroyed)
                                     {
                                         break;
+                                    }
+                                    if (!Rand.Chance(sec.chance))
+                                    {
+                                        continue;
                                     }
                                     var secDinfo = sec.GetDinfo();
                                     var pen = secDinfo.ArmorPenetrationInt; //GetPenetrationValue(originalDinfo);
