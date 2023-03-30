@@ -150,7 +150,8 @@ namespace CombatExtended
                             shieldAbsorbed = true;
                             //Priority: Left Arm > Right Arm > Left Shoulder
                             //It seems that losing left shoulder makes shield unequippable, so no need to add a null check (for now)
-                            BodyPartRecord PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbCore).First(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftArm) || x.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
+                            //FirstOrFallback returns null when nothing satisfies, effectively brings the program into the if statement
+                            BodyPartRecord PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbCore).FirstOrFallback(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftArm) || x.IsInGroup(CE_BodyPartGroupDefOf.RightArm));
                             if (PartToHit == null)
                             {
                                 PartToHit = pawn.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside, tag: BodyPartTagDefOf.ManipulationLimbSegment).First(x => x.IsInGroup(CE_BodyPartGroupDefOf.LeftShoulder));
