@@ -15,6 +15,7 @@ namespace CombatExtended
         private const float PenetrationRandVariation = 0.05f;    // Armor penetration will be randomized by +- this amount
         private const float SoftArmorMinDamageFactor = 0.2f;    // Soft body armor will always take at least original damage * this number from sharp attacks
         private const float SpikeTrapAPModifierBlunt = 0.65f;
+        private const float BulletImpactForceMultiplier = 0.05f; //Bullet has less mass => less impluse comparing to melee => less Blunt penetration
 
         #endregion
 
@@ -115,6 +116,8 @@ namespace CombatExtended
                         }
                         // Hit was deflected, convert damage type
                         dinfo = GetDeflectDamageInfo(dinfo, hitPart, ref dmgAmount, ref penAmount);
+                        //Applies multiplier to bullet.
+                        penAmount *= dinfo.Weapon?.IsMeleeWeapon ?? false ? 1.0f : BulletImpactForceMultiplier;
                         //Check if converted blunt damage could penetrate the shield
                         if (!TryPenetrateArmor(dinfo.Def, shield.GetStatValue(dinfo.Def.armorCategory.armorRatingStat), ref penAmount, ref dmgAmount))
                         {
