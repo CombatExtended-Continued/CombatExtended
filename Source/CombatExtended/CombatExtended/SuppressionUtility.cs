@@ -13,8 +13,11 @@ namespace CombatExtended
     {
         private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
 
-        public const float dangerAmountFactor = 0.25f; // Multiplier for danger amount at a cell while calculating how safe the cell is;
-        private const float pathCostMultiplier = 2f;
+        public const float linearDangerAmountFactor = 0.2f; // The coefficient for linear danger amount when calculating cell cover attractiveness
+        public const float squaredDangerAmountFactor = 0.008f; // The coefficient for squared danger amount when calculating cell cover attractiveness
+        private const float pathCostFactor = 2f; // How important is the distance to travel
+        private const float obstaclePathCostFactor = 2f; // How important is travelling over a path that has mantling or doors involved
+        private const float distanceFromThreatFactor = 0.5f; // How important is the distance change from the new cell to the shooter position versus the current cell to the shooter position
 
         private static LightingTracker lightingTracker;
 
@@ -135,6 +138,16 @@ namespace CombatExtended
             {
                 return -1000f;
             }
+
+            //Ignore cells that aren't directly reachable
+            foreach (var pathCell in GenSight.PointsOnLineOfSight(pawn.Position, cell))
+            {
+                if (!pathCell.Walkable(pawn.Map))
+                {
+                    return -1000f;
+                }
+            }
+
             float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
                   pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
                   pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
@@ -164,7 +177,7 @@ namespace CombatExtended
                 {
                     pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 1.25f) * 10f;
+                    cellRating = Mathf.Min(coverRating, 1f) * 10f;
                 }
             }
 
@@ -182,7 +195,7 @@ namespace CombatExtended
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
                     if (distancedCoverRating * 10f > cellRating)
                     {
-                        cellRating = Mathf.Min(distancedCoverRating, 1.25f) * 10f;
+                        cellRating = Mathf.Min(distancedCoverRating, 1f) * 10f;
                     }
                 }
                 else
@@ -202,8 +215,10 @@ namespace CombatExtended
                 }
             }
 
-            // Avoid bullets and other danger sources.
-            cellRating -= dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX * dangerAmountFactor;
+            // Avoid bullets and other danger sources;
+            // Yet do not discard cover that is extremely good, even if it may be dangerous
+            float dangerAmount = dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX;
+            cellRating -= (dangerAmount * linearDangerAmountFactor + dangerAmount * dangerAmount * squaredDangerAmountFactor) / (cellRating + 1);
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
@@ -211,16 +226,22 @@ namespace CombatExtended
                 cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
                 //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
+                // Reduce the chances of mantling over cover when running from danger
                 foreach (var pathCell in GenSight.PointsOnLineOfSight(pawn.Position, cell))
                 {
-                    if (!pathCell.Standable(pawn.Map))
+                    if (!pathCell.Standable(pawn.Map) || pathCell.GetDoor(pawn.Map) != null)
                     {
-                        pathCost *= 2f;
+                        pathCost *= obstaclePathCostFactor;
                         break;
                     }
                 }
-                cellRating = cellRating - (pathCost * pathCostMultiplier);
+
+                cellRating -= pathCost * pathCostFactor;
+
+                // Moving away from the threat is preferred.
+                cellRating += ((cell - shooterPos).LengthHorizontal - (pawn.Position - shooterPos).LengthHorizontal) * distanceFromThreatFactor;
             }
+
 
             if (Controller.settings.DebugDisplayCellCoverRating)
             {

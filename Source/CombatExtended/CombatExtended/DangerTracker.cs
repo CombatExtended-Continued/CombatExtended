@@ -62,7 +62,7 @@ namespace CombatExtended
                 IntVec3 cell = pos + AdjCells[i];
                 if (cell.InBounds(map))
                 {
-                    IncreaseAt(cell, (int)Mathf.Ceil(AdjWeights[i] * dangerAmount));
+                    IncreaseAt(cell, (int)Mathf.Ceil(AdjWeights[i] * dangerAmount * PROJECTILE_DANGER_FACTOR));
                 }
             }
             if (Controller.settings.DebugDisplayDangerBuildup)
@@ -71,7 +71,7 @@ namespace CombatExtended
             }
         }
 
-        public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount)
+        public void Notify_DangerRadiusAt(IntVec3 pos, float radius, float dangerAmount, bool reduceOverDistance = true)
         {
             //var radiusSqrd = radius * radius;
             foreach (IntVec3 cell in GenRadial.RadialCellsAround(pos, radius, true))
@@ -80,7 +80,10 @@ namespace CombatExtended
                 {
                     continue;
                 }
-                //dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / radiusSqrd));
+                if (reduceOverDistance)
+                {
+                    dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / (radius* radius)) * 0.5f);
+                }
                 IncreaseAt(cell, (int)Mathf.Ceil(dangerAmount));
 
                 if (Controller.settings.DebugDisplayDangerBuildup)
@@ -94,14 +97,14 @@ namespace CombatExtended
             }
         }
 
-        public void Notify_SmokeAt(IntVec3 pos)
+        public void Notify_SmokeAt(IntVec3 pos, float concentration)
         {
             for (int i = 0; i < 9; i++)
             {
                 IntVec3 cell = pos + AdjCells[i];
                 if (cell.InBounds(map))
                 {
-                    IncreaseAt(cell, (int)(DANGER_TICKS_SMOKE_STEP * AdjWeights[i]));
+                    SetAt(cell, (int)(DANGER_TICKS_SMOKE_STEP * AdjWeights[i] * concentration));
                 }
             }
             if (Controller.settings.DebugDisplayDangerBuildup)
@@ -156,8 +159,15 @@ namespace CombatExtended
             int index = map.cellIndices.CellToIndex(pos);
             int value = dangerArray[index];
             int ticks = GenTicks.TicksGame;
-            amount = (int)Mathf.Round(((float)amount) * PROJECTILE_DANGER_FACTOR);
             dangerArray[index] = Mathf.Clamp(value + amount, ticks + amount, ticks + DANGER_TICKS_MAX);
+        }
+
+        private void SetAt(IntVec3 pos, int amount)
+        {
+            int index = map.cellIndices.CellToIndex(pos);
+            int value = dangerArray[index];
+            int ticks = GenTicks.TicksGame;
+            dangerArray[index] = Mathf.Clamp(ticks + amount, value, ticks + DANGER_TICKS_MAX);
         }
     }
 }
