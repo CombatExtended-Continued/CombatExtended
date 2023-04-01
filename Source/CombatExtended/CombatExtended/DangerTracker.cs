@@ -82,7 +82,7 @@ namespace CombatExtended
                 }
                 if (reduceOverDistance)
                 {
-                    dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / (radius* radius)) * 0.5f);
+                    dangerAmount *= Mathf.Clamp01(1 - ((pos.ToVector3() - cell.ToVector3()).sqrMagnitude / (radius * radius)) * 0.5f);
                 }
                 IncreaseAt(cell, (int)Mathf.Ceil(dangerAmount));
 
