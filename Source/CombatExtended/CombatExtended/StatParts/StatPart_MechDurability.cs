@@ -8,21 +8,23 @@ using Verse;
 
 namespace CombatExtended
 {
-    [StaticConstructorOnStartup]
-    public class StatPatches
-    {
-        static StatPatches()
-        {
-            StatDefOf.ArmorRating_Sharp.parts.Add(new StatPart_MechDurability());
-
-            StatDefOf.ArmorRating_Blunt.parts.Add(new StatPart_MechDurability());
-
-            StatDefOf.ArmorRating_Heat.parts.Add(new StatPart_MechDurability());
-        }
-    }
 
     public class StatPart_MechDurability : StatPart
     {
+        float getMinArmorExplicit(CompArmorDurability comp)
+        {
+            if (parentStat == StatDefOf.ArmorRating_Sharp) { return comp.durabilityProps.MinArmorValueSharp; }
+            if (parentStat == StatDefOf.ArmorRating_Blunt) { return comp.durabilityProps.MinArmorValueBlunt; }
+            if (parentStat == StatDefOf.ArmorRating_Heat) { return comp.durabilityProps.MinArmorValueHeat; }
+            return -1;
+        }
+
+        float getMinArmor(CompArmorDurability comp, float val)
+        {
+            float f = getMinArmorExplicit(comp);
+            return f >= 0 ? f : comp.durabilityProps.MinArmorPct * val;
+        }
+
         public override void TransformValue(StatRequest req, ref float val)
         {
 
@@ -31,7 +33,11 @@ namespace CombatExtended
             {
                 var mech = (Pawn)req.Thing;
 
+                float minArmor = getMinArmor(comp, val);
+
                 val *= comp.curDurabilityPercent;
+
+                if (val < minArmor) { val = minArmor; }
             }
         }
 
@@ -42,7 +48,9 @@ namespace CombatExtended
             {
                 var mech = (Pawn)req.Thing;
 
-                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent() + "\n" + comp.curDurability.ToString() + "/" + comp.maxDurability.ToString();
+                string minArmorExp = getMinArmorExplicit(comp) >= 0 ? "Minimal armor value: " + getMinArmorExplicit(comp).ToString() : "Minimal armor percentage: " + comp.durabilityProps.MinArmorPct.ToStringPercent();
+
+                return "Armor durability: " + comp.curDurabilityPercent.ToStringPercent() + "\n" + comp.curDurability.ToString() + "/" + comp.maxDurability.ToString() + "\n" + minArmorExp;
             }
             return null;
         }

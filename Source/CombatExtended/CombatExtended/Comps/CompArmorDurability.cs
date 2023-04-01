@@ -144,13 +144,13 @@ namespace CombatExtended
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
-            if (curDurability < 0)
-            {
-                curDurability = 0;
-            }
-            else
+            if (curDurability > 0)
             {
                 curDurability -= dinfo.Amount;
+                if (curDurability < 0)
+                {
+                    curDurability = 0;
+                }
             }
         }
 
@@ -242,6 +242,14 @@ namespace CombatExtended
         public bool CanOverHeal;
 
         public float MaxOverHeal;
+
+        public float MinArmorValueSharp = -1;
+
+        public float MinArmorValueBlunt = -1;
+
+        public float MinArmorValueHeat = -1;
+
+        public float MinArmorPct = 0.25f;
     }
 
     public class JobDriver_RepairNaturalArmor : JobDriver
