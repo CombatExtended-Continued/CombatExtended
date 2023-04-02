@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-	<Operation Class="PatchOperationAddModExtension">
-		<xpath>Defs/ThingDef[defName="Human"]</xpath>
-		<value>
-			<li Class="CombatExtended.RacePropertiesExtensionCE">
-				<bodyShape>Humanoid</bodyShape>
-			</li>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Human"]</xpath>
+    <value>
+      <li Class="CombatExtended.RacePropertiesExtensionCE">
+        <bodyShape>Humanoid</bodyShape>
+      </li>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
-		<value>
-			<MeleeDodgeChance>1</MeleeDodgeChance>
-			<MeleeCritChance>1</MeleeCritChance>
-			<MeleeParryChance>1</MeleeParryChance>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Human"]/statBases</xpath>
+    <value>
+      <MeleeDodgeChance>1</MeleeDodgeChance>
+      <MeleeCritChance>1</MeleeCritChance>
+      <MeleeParryChance>1</MeleeParryChance>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Human"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>left fist</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>1.26</cooldownTime>
-					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>right fist</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>1.26</cooldownTime>
-					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>teeth</label>
-					<capacities>
-					  <li>Bite</li>
-					</capacities>
-					<power>1</power>
-					<cooldownTime>2</cooldownTime>
-					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					<chanceFactor>0.07</chanceFactor>
-					<soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
-					<soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
-					<armorPenetrationSharp>0.15</armorPenetrationSharp>
-					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>head</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>2</power>
-					<cooldownTime>4.49</cooldownTime>
-					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
-				</li>
-			</tools>
-		</value>
-	</Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Human"]/tools</xpath>
+    <value>
+      <tools>
+        <li Class="CombatExtended.ToolCE">
+          <label>left fist</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>1</power>
+          <cooldownTime>1.26</cooldownTime>
+          <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+          <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>right fist</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>1</power>
+          <cooldownTime>1.26</cooldownTime>
+          <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+          <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>teeth</label>
+          <capacities>
+            <li>Bite</li>
+          </capacities>
+          <power>1</power>
+          <cooldownTime>2</cooldownTime>
+          <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+          <chanceFactor>0.07</chanceFactor>
+          <soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
+          <soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
+          <armorPenetrationSharp>0.15</armorPenetrationSharp>
+          <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+        </li>
+        <li Class="CombatExtended.ToolCE">
+          <label>head</label>
+          <capacities>
+            <li>Blunt</li>
+          </capacities>
+          <power>2</power>
+          <cooldownTime>4.49</cooldownTime>
+          <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+          <chanceFactor>0.2</chanceFactor>
+          <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+        </li>
+      </tools>
+    </value>
+  </Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="Human"]</xpath>
-			<value>
-				<comps />
-			</value>
-		</nomatch>
-	</Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Human"]</xpath>
+      <value>
+        <comps />
+      </value>
+    </nomatch>
+  </Operation>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
-		<value>
-			<li>
-			  <compClass>CombatExtended.CompPawnGizmo</compClass>
-			</li>
-			<!-- <li>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+    <value>
+      <li>
+        <compClass>CombatExtended.CompPawnGizmo</compClass>
+      </li>
+      <!-- <li>
 				<compClass>CombatExtended.CompArmorDurability</compClass>
 			</li> -->
-			<li Class="CombatExtended.CompProperties_Suppressable" />
-			<li>
-			  <compClass>CombatExtended.CompAmmoGiver</compClass>
-			</li>
-		</value>
-	</Operation>
+      <li Class="CombatExtended.CompProperties_Suppressable" />
+      <li>
+        <compClass>CombatExtended.CompAmmoGiver</compClass>
+      </li>
+    </value>
+  </Operation>
 
-	<!-- <Operation Class="PatchOperationAddModExtension"> 
+  <!-- <Operation Class="PatchOperationAddModExtension"> 
 		<xpath>Defs/ThingDef[defName="Human"]</xpath>
 		<value>
 			<li Class="CombatExtended.MechArmorDurabilityExt">
@@ -115,6 +115,11 @@
 				<RepairValue>200</RepairValue>
 				<CanOverHeal>true</CanOverHeal>
 				<MaxOverHeal>500</MaxOverHeal>
+        <MinArmorPct>0.25</MinArmorPct> The default minimal armor percentage for all armor kinds. Will be overriden by any below
+        <MinArmorValueSharp>14</MinArmorValueSharp>
+        <MinArmorValueBlunt>30</MinArmorValueBlunt>
+        <MinArmorValueHeat>0.2</MinArmorValueHeat>
+        <MinArmorValueElectric>0.1</MinArmorValueElectric>
 			</li>
 		</value>
 	</Operation> -->

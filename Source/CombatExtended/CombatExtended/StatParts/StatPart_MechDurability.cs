@@ -16,6 +16,7 @@ namespace CombatExtended
             if (parentStat == StatDefOf.ArmorRating_Sharp) { return comp.durabilityProps.MinArmorValueSharp; }
             if (parentStat == StatDefOf.ArmorRating_Blunt) { return comp.durabilityProps.MinArmorValueBlunt; }
             if (parentStat == StatDefOf.ArmorRating_Heat) { return comp.durabilityProps.MinArmorValueHeat; }
+            if (parentStat == CE_StatDefOf.ArmorRating_Electric) { return comp.durabilityProps.MinArmorValueElectric; }
             return -1;
         }
 

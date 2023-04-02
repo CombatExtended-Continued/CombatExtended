@@ -249,6 +249,8 @@ namespace CombatExtended
 
         public float MinArmorValueHeat = -1;
 
+        public float MinArmorValueElectric = -1;
+
         public float MinArmorPct = 0.25f;
     }
 

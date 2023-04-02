@@ -55,6 +55,6 @@ namespace CombatExtended
 
         public static StatDef Suppressability;
 
-
+        public static StatDef ArmorRating_Electric;
     }
 }
