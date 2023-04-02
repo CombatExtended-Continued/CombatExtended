@@ -36,7 +36,7 @@ namespace CombatExtended
 
                 float minArmor = getMinArmor(comp, val);
 
-                val *= comp.curDurabilityPercent;
+                val -= (val - minArmor) * (1 - comp.curDurabilityPercent);
 
                 if (val < minArmor) { val = minArmor; }
             }
