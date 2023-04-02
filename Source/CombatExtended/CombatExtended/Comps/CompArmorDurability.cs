@@ -100,7 +100,7 @@ namespace CombatExtended
 
     public class CompArmorDurability : ThingComp
     {
-        public MechArmorDurabilityExt durabilityProps => this.parent.def.GetModExtension<MechArmorDurabilityExt>();
+        public CompProperties_ArmorDurability durabilityProps => props as CompProperties_ArmorDurability;
 
         public float maxDurability => durabilityProps.Durability;
 
@@ -221,8 +221,12 @@ namespace CombatExtended
         }
     }
 
-    public class MechArmorDurabilityExt : DefModExtension
+    public class CompProperties_ArmorDurability : CompProperties
     {
+        public CompProperties_ArmorDurability()
+        {
+            compClass = typeof(CompArmorDurability);
+        }
         public float Durability;
 
         public bool Regenerates;
