@@ -141,6 +141,11 @@ namespace CombatExtended
             base.PostExposeData();
         }
 
+        public override string CompInspectStringExtra()
+        {
+            return "Armor durability: " + curDurability.ToString() + "/" + maxDurability.ToString() + " (" + curDurabilityPercent.ToStringPercent() + ")";
+        }
+
         public override void PostPreApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(dinfo, out absorbed);
