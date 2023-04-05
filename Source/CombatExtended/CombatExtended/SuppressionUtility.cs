@@ -14,7 +14,7 @@ namespace CombatExtended
         private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
 
         public const float linearDangerAmountFactor = 0.2f; // The coefficient for linear danger amount when calculating cell cover attractiveness
-        public const float squaredDangerAmountFactor = 0.008f; // The coefficient for squared danger amount when calculating cell cover attractiveness
+        public const float squaredDangerAmountFactor = 0.01f; // The coefficient for squared danger amount when calculating cell cover attractiveness
         private const float pathCostFactor = 2f; // How important is the distance to travel
         private const float obstaclePathCostFactor = 2f; // How important is travelling over a path that has mantling or doors involved
         private const float distanceFromThreatFactor = 0.5f; // How important is the distance change from the new cell to the shooter position versus the current cell to the shooter position
