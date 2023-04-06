@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Animals Expanded — Waste Animals</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxscorpion"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>QuadrupedLow</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxscorpion"]/statBases/MoveSpeed</xpath>
+					<value>
+						<MoveSpeed>4.8</MoveSpeed>
+						<MeleeDodgeChance>0.07</MeleeDodgeChance>
+						<MeleeCritChance>0.5</MeleeCritChance>
+						<MeleeParryChance>0.39</MeleeParryChance>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxscorpion"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>14</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxscorpion"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>7</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="VAEWaste_Toxscorpion"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left pincer</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>2.72</cooldownTime>
+								<linkedBodyPartsGroup>VAEWaste_PincerAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>3.54</armorPenetrationSharp>
+								<armorPenetrationBlunt>61.875</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right pincer</label>
+								<capacities>
+									<li>Scratch</li>
+								</capacities>
+								<power>37</power>
+								<cooldownTime>2.72</cooldownTime>
+								<linkedBodyPartsGroup>VAEWaste_PincerAttackTool</linkedBodyPartsGroup>
+								<armorPenetrationSharp>3.54</armorPenetrationSharp>
+								<armorPenetrationBlunt>61.875</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<capacities>
+									<li>VFEI_ToxicSting</li>
+								</capacities>
+								<power>18</power>
+								<cooldownTime>1.33</cooldownTime>
+								<linkedBodyPartsGroup>VAEWaste_Sting</linkedBodyPartsGroup>
+								<armorPenetrationSharp>40</armorPenetrationSharp>
+								<armorPenetrationBlunt>20</armorPenetrationBlunt>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+								</capacities>
+								<power>16</power>
+								<cooldownTime>2.46</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<chanceFactor>0.1</chanceFactor>
+								<armorPenetrationBlunt>10.8</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+</Patch>
